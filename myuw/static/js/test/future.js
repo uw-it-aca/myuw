@@ -16,7 +16,7 @@ describe("Future Quarter", function() {
     it("should show VisualScheduleCard to student", function() {
         window.enabled_features = {};
         window.user.student = true;
-        assert.equal(false, VisualScheduleCard.hide_card());
+        assert.equal(false, VisualScheduleCard.should_hide());
     });
     it("should show CourseCards to student", function() {
         window.enabled_features = {};
