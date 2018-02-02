@@ -1,0 +1,76 @@
+{
+  "uwNetID": "jalum",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField": "KPW",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 16,
+          "categoryName": "Alumni",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": false,
+      "statusCode": 101,
+      "statusName": "Unpermitted",
+      "actions": [
+        "Show"
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 24,
+      "statusName": "Inactive",
+      "actions": [
+        "Show",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 16,
+          "categoryName": "Alumni",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Fri, 02 Feb 2018 15:38:20 -0800"
+}
