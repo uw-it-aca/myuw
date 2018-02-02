@@ -25,7 +25,7 @@ class MyGrad(ProtectedAPI):
         """
         timer = Timer()
         try:
-            if not is_grad_student():
+            if not is_grad_student(request):
                 log_msg(logger, timer, "Not a grad student, abort!")
                 return data_not_found()
 
@@ -35,7 +35,7 @@ class MyGrad(ProtectedAPI):
                         "petitions": None}
 
             try:
-                committee_reqs = get_grad_committee_for_current_user()
+                committee_reqs = get_grad_committee_for_current_user(request)
                 json_ret["committees"] = committee_to_json(committee_reqs)
             except DataFailureException as ex:
                 logger.error(ex)
@@ -43,7 +43,7 @@ class MyGrad(ProtectedAPI):
                     json_ret["comm_err"] = ex.status
 
             try:
-                degree_reqs = get_grad_degree_for_current_user()
+                degree_reqs = get_grad_degree_for_current_user(request)
                 json_ret["degrees"] = degree_to_json(degree_reqs, request)
             except DataFailureException as ex:
                 logger.error(ex)
@@ -51,7 +51,7 @@ class MyGrad(ProtectedAPI):
                     json_ret["degree_err"] = ex.status
 
             try:
-                leave_reqs = get_grad_leave_for_current_user()
+                leave_reqs = get_grad_leave_for_current_user(request)
                 json_ret["leaves"] = leave_to_json(leave_reqs, request)
             except DataFailureException as ex:
                 logger.error(ex)
@@ -59,7 +59,7 @@ class MyGrad(ProtectedAPI):
                     json_ret["leave_err"] = ex.status
 
             try:
-                petition_reqs = get_grad_petition_for_current_user()
+                petition_reqs = get_grad_petition_for_current_user(request)
                 json_ret["petitions"] = petition_to_json(
                     petition_reqs, request)
             except DataFailureException as ex:

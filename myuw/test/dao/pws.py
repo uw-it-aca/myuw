@@ -1,44 +1,50 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException, InvalidNetID
-from uw_pws import PWS
-from myuw.dao.pws import get_display_name_of_current_user,\
-    is_student, get_campus_of_current_user
+from myuw.dao.pws import pws, get_display_name_of_current_user, is_employee,\
+    is_student, is_bothell_employee, is_seattle_employee, is_tacoma_employee,\
+    get_person_of_current_user
 from myuw.test import fdao_pws_override, get_request_with_user
 
 
 @fdao_pws_override
 class TestPwsDao(TestCase):
 
-    def test_not_in_pws_netid(self):
+    def test_no_entity_netid(self):
         self.assertRaises(InvalidNetID,
-                          PWS().get_person_by_netid,
+                          pws.get_person_by_netid,
                           "thisisnotarealnetid")
 
-    def test_pws_err(self):
-        self.assertRaises(DataFailureException,
-                          PWS().get_person_by_netid,
-                          "nomockid")
+    def test_no_pws_person_netid(self):
+        req = get_request_with_user('nobody')
+        person = get_person_of_current_user(req)
+        self.assertIsNotNone(req.myuw_pws_person)
+
+    def test_get_person_of_current_user(self):
+        req = get_request_with_user('javerage')
+        self.assertFalse(hasattr(req, "myuw_pws_person"))
+        person = get_person_of_current_user(req)
+        self.assertIsNotNone(req.myuw_pws_person)
 
     def test_display_name(self):
-        get_request_with_user('javerage')
-        name = get_display_name_of_current_user()
-        self.assertEqual(name, 'J. Average Student')
+        req = get_request_with_user('javerage')
+        self.assertEqual(get_display_name_of_current_user(req),
+                         'J. Average Student')
 
     def test_is_student(self):
-        get_request_with_user('javerage')
-        self.assertTrue(is_student())
+        req = get_request_with_user('javerage')
+        self.assertTrue(is_student(req))
 
     def test_instructor_seattle_campus(self):
-        get_request_with_user('bill')
-        self.assertEquals(
-            get_campus_of_current_user(), 'Seattle')
+        req = get_request_with_user('bill')
+        self.assertTrue(is_employee(req))
+        self.assertTrue(is_seattle_employee(req))
 
     def test_instructor_bothell_campus(self):
-        get_request_with_user('billbot')
-        self.assertEquals(
-            get_campus_of_current_user(), 'Bothell')
+        req = get_request_with_user('billbot')
+        self.assertTrue(is_employee(req))
+        self.assertTrue(is_bothell_employee(req))
 
     def test_instructor_tacoma_campus(self):
-        get_request_with_user('billtac')
-        self.assertEquals(
-            get_campus_of_current_user(), 'Tacoma')
+        req = get_request_with_user('billtac')
+        self.assertTrue(is_employee(req))
+        self.assertTrue(is_tacoma_employee(req))

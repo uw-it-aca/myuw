@@ -30,6 +30,17 @@
             "RegID": "55555333366711D5BE060004AC494FFE",
             "SectionID": "A",
             "Year": 2013
+        },
+        {
+            "CourseNumber": "233",
+            "CurriculumAbbreviation": "BIGDATA",
+            "DuplicateCode": "",
+            "Href": "/student/v5/registration/2013,spring,BIGDATA,233,A,55555333366711D5BE060004AC494FFE,.json",
+            "Instructor": null,
+            "Quarter": "spring",
+            "RegID": "55555333366711D5BE060004AC494FFE",
+            "SectionID": "A",
+            "Year": 2013
         }
     ],
     "TotalCount": 1

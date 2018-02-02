@@ -2,8 +2,9 @@ import logging
 from myuw.models import UserMigrationPreference
 from myuw.dao import _is_optin_user as is_optin_user
 from myuw.dao import get_netid_of_current_user
-from myuw.dao.gws import (is_staff_employee, is_student_employee, is_student,
+from myuw.dao.gws import (is_staff_employee, is_student_employee,
                           is_undergrad_student, is_current_graduate_student,
+                          is_grad_c2, is_undergrad_c2,
                           is_employee,  is_faculty, is_applicant)
 
 
@@ -44,20 +45,22 @@ def has_newmyuw_preference(uwnetid):
     return False
 
 
-def is_oldmyuw_user():
-    uwnetid = get_netid_of_current_user()
-    if has_newmyuw_preference(uwnetid) or is_optin_user(uwnetid):
+def is_oldmyuw_user(request):
+    uwnetid = get_netid_of_current_user(request)
+    if has_newmyuw_preference(uwnetid) or\
+       is_optin_user(uwnetid):
         return False
-    if has_legacy_preference(uwnetid):
+
+    if has_legacy_preference(uwnetid) or\
+       is_staff_employee(request) or\
+       is_faculty(request) or\
+       is_current_graduate_student(request):
         return True
-    if is_staff_employee():
-        return True
-    if is_faculty():
-        return True
-    if is_current_graduate_student():
-        return True
-    if is_undergrad_student():
+
+    if is_applicant(request) or\
+       is_undergrad_student(request) or\
+       is_undergrad_c2(request) or\
+       is_grad_c2(request):
         return False
-    if is_applicant():
-        return False
+
     return True

@@ -14,25 +14,24 @@ from myuw.dao import get_netid_of_current_user
 logger = logging.getLogger(__name__)
 
 
-def get_password_info(uwnetid):
+def get_password_info(request):
     """
     returns uw_netid.models.UwPassword object
     for a given uwnetid
     """
-    if uwnetid is None:
-        return None
-    return get_uwnetid_password(uwnetid)
+    if not hasattr(request, "myuw_netid_password"):
+        request.myuw_netid_password = get_uwnetid_password(
+            get_netid_of_current_user(request))
+    return request.myuw_netid_password
 
 
 def password_prefetch():
-
     def _method(request):
-        get_password_info(get_netid_of_current_user())
-
+        get_password_info(request)
     return [_method]
 
 
-def get_pw_json(uwnetid, request):
+def get_pw_json(request):
     """
     return data attributes:
     {
@@ -52,7 +51,10 @@ def get_pw_json(uwnetid, request):
     "kerb_status": string
     }
     """
-    pw = get_password_info(uwnetid)
+    pw = get_password_info(request)
+    if pw is None:
+        return None
+
     now_dt = get_comparison_datetime_with_tz(request)
 
     json_data = pw.json_data()

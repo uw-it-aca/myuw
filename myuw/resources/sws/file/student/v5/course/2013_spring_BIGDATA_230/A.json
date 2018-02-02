@@ -24,7 +24,7 @@
     "DeleteFlag": "active",
     "DistanceLearning": false,
     "DuplicateEnrollmentAllowed": false,
-    "EndDate": "2013-06-12",
+    "EndDate": "2013-05-11",
     "EnrollmentRestrictions": false,
     "FeeAmount": null,
     "FeeBudget": null,
@@ -62,9 +62,12 @@
                 "Days": [
                     {
                         "Name": "Wednesday"
+                    },
+                    {
+                        "Name": "Sunday"
                     }
                 ],
-                "Text": "..W...."
+                "Text": "..W...S"
             },
             "DaysOfWeekToBeArranged": false,
             "EndTime": "21:00:00",

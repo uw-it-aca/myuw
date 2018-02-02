@@ -22,7 +22,7 @@ def get_target_group(request):
     if hasattr(request, CACHE_ID):
         return request.CACHE_ID
 
-    uwnetid = get_netid_of_current_user()
+    uwnetid = get_netid_of_current_user(request)
     for target in target_groups:
         try:
             if is_thrive_viewer(uwnetid, target):
@@ -91,7 +91,7 @@ def _get_messages_for_quarter_dates(dates, term, target):
         os.path.dirname(__file__),
         '..', 'data', "%s_%s" % (target, 'thrive_content.csv'))
     rows = {}
-    with open(path, 'rbU') as csvfile:
+    with open(path) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         # skip headers
         next(reader)

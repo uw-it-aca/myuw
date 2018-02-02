@@ -17,7 +17,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('jnone')
         response = self.client.get(url,
                                    HTTP_USER_AGENT='Fake Android Mobile')
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 400)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_desktop_redirect(self):

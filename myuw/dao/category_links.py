@@ -1,8 +1,8 @@
-from django.db.models import Q
-from myuw.models.res_category_link import ResCategoryLink
-from myuw.dao.affiliation import get_base_campus, get_all_affiliations
 import csv
 import os
+from django.db.models import Q
+from myuw.models.res_category_link import ResCategoryLink
+from myuw.dao.affiliation import get_all_affiliations, get_base_campus
 
 
 class Res_Links:
@@ -19,11 +19,12 @@ class Res_Links:
             os.path.dirname(__file__),
             '..', 'data', 'category_links_import.csv')
 
-        with open(path, 'rbU') as csvfile:
+        with open(path) as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-            reader.next()
             for row in reader:
                 category = row[0]
+                if category == 'Category':
+                    continue
                 category_id = _get_category_id(category)
                 subcategory = row[1]
                 affiliation = row[2]
@@ -105,9 +106,10 @@ def _get_category_id(category_name):
 
 
 def get_links_for_category(search_category_id, request):
+    affiliations = get_all_affiliations(request)
     return _get_links_by_category_and_campus(search_category_id,
-                                             get_base_campus(request),
-                                             get_all_affiliations(request))
+                                             get_base_campus(affiliations),
+                                             affiliations)
 
 
 def _get_links_by_category_and_campus(search_category_id,

@@ -1,0 +1,137 @@
+{
+  "uwNetID" : "tacgrad",
+  "subscriptionList" : [
+    {
+      "subscriptionCode" : 60,
+      "subscriptionName" : "A Kerberos Principal",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField" : "KPW",
+      "permits" : [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 16,
+          "categoryName": "Alumni",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type" : "permit",
+          "mode" : "implicit",
+          "categoryCode" : 49,
+          "categoryName" : "UW Exchange User",
+          "statusCode" : 1,
+          "statusName" : "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode" : 64,
+      "subscriptionName" : "Duo Two-Factor Authentication",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show"
+      ],
+      "dataValue" : "user_id=VMN8TPI",
+      "permits" : [
+        {
+        "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode" : 105,
+      "subscriptionName" : "U Forwarding",
+      "permitted" : true,
+      "statusCode" : 20,
+      "statusName" : "Active",
+      "actions" : [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "tacgrad@exchange.washington.edu",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 14,
+          "categoryName": "Student Employee",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 16,
+          "categoryName": "Alumni",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Sun, 21 Jan 2018 21:52:15 -0800"
+}

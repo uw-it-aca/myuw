@@ -10,7 +10,6 @@ from uw_grad.committee import get_committee_by_regid
 from uw_grad.leave import get_leave_by_regid
 from uw_grad.petition import get_petition_by_regid
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.gws import is_grad_student
 from myuw.dao.term import get_comparison_datetime,\
     get_eod_specific_quarter_after, get_eod_specific_quarter,\
     get_eod_specific_quarter_last_instruction
@@ -19,36 +18,36 @@ from myuw.dao.term import get_comparison_datetime,\
 logger = logging.getLogger(__name__)
 
 
-def get_grad_degree_for_current_user():
+def get_grad_degree_for_current_user(request):
     """
     returns json data of grad degree requests
     for the current user
     """
-    return get_degree_by_regid(get_regid_of_current_user())
+    return get_degree_by_regid(get_regid_of_current_user(request))
 
 
-def get_grad_committee_for_current_user():
+def get_grad_committee_for_current_user(request):
     """
     returns json data of grad degree requests
     for the current user
     """
-    return get_committee_by_regid(get_regid_of_current_user())
+    return get_committee_by_regid(get_regid_of_current_user(request))
 
 
-def get_grad_leave_for_current_user():
+def get_grad_leave_for_current_user(request):
     """
     returns json data of grad degree requests
     for the current user
     """
-    return get_leave_by_regid(get_regid_of_current_user())
+    return get_leave_by_regid(get_regid_of_current_user(request))
 
 
-def get_grad_petition_for_current_user():
+def get_grad_petition_for_current_user(request):
     """
     returns json data of grad degree requests
     for the current user
     """
-    return get_petition_by_regid(get_regid_of_current_user())
+    return get_petition_by_regid(get_regid_of_current_user(request))
 
 
 def committee_to_json(req_data):

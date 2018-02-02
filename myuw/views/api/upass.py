@@ -2,10 +2,9 @@ import logging
 import traceback
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
-from myuw.views import prefetch_resources
+from myuw.dao.upass import get_upass
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
-from myuw.dao.upass import get_upass_by_netid, get_netid_of_current_user
 
 logger = logging.getLogger(__name__)
 
@@ -17,12 +16,7 @@ class UPass(ProtectedAPI):
     def get(self, request, *args, **kwargs):
         timer = Timer()
         try:
-            prefetch_resources(request,
-                               prefetch_upass=True)
-
-            status_json = get_upass_by_netid(get_netid_of_current_user(),
-                                             request)
-
+            status_json = get_upass(request)
             log_success_response(logger, timer)
             return self.json_response(status_json)
         except Exception:

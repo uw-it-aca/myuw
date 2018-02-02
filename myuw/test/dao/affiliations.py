@@ -70,7 +70,7 @@ class TestAffilliations(TestCase):
         self.assertTrue(affiliations.get("student"))
         self.assertTrue(affiliations.get("official_seattle"))
         self.assertFalse(affiliations.get("official_pce"))
-        self.assertTrue('PCE-student' in get_identity_log_str(now_request))
+        self.assertTrue('PCE-student' in get_identity_log_str(affiliations))
 
         now_request = get_request_with_user('jinter')
         affiliations = get_all_affiliations(now_request)
@@ -82,7 +82,7 @@ class TestAffilliations(TestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get('undergrad_c2'))
         self.assertFalse(affiliations.get('grad_c2'))
-        log_str = get_identity_log_str(now_request)
+        log_str = get_identity_log_str(affiliations)
         self.assertTrue('PCE-student' in log_str)
         self.assertFalse('Campus: PCE' in log_str)
 
@@ -90,3 +90,29 @@ class TestAffilliations(TestCase):
         now_request = get_request_with_user('javerage')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get('2fa_permitted'))
+
+    def test_official_campus(self):
+        now_request = get_request_with_user('jbothell')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("bothell"))
+        self.assertTrue(affiliations.get("official_bothell"))
+
+        now_request = get_request_with_user('seagrad')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_seattle"))
+
+        now_request = get_request_with_user('eight')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_tacoma"))
+
+        now_request = get_request_with_user('billbot')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_bothell"))
+
+        now_request = get_request_with_user('billsea')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_seattle"))
+
+        now_request = get_request_with_user('billtac')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("official_tacoma"))

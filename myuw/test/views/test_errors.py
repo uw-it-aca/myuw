@@ -8,37 +8,37 @@ class TestViewsError(MyuwApiTest):
 
     def test_data_not_found(self):
         response = data_not_found()
-        self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.content, b'Data not found')
         self.assertEquals(response.status_code, 404)
 
     def test_not_instructor_error(self):
         response = not_instructor_error()
         self.assertEquals(response.content,
-                          'Access Forbidden to Non Instructor')
+                          b'Access Forbidden to Non Instructor')
         self.assertEquals(response.status_code, 403)
 
     def test_invalid_session(self):
         response = invalid_session()
-        self.assertEquals(response.content, 'No valid userid in session')
+        self.assertEquals(response.content, b'No valid userid in session')
         self.assertEquals(response.status_code, 400)
 
     def test_invalid_input_data(self):
         response = invalid_input_data()
-        self.assertEquals(response.content, 'Invalid post data content')
+        self.assertEquals(response.content, b'Invalid post data content')
         self.assertEquals(response.status_code, 400)
 
     def test_invalid_method(self):
         response = invalid_method()
-        self.assertEquals(response.content, 'Method not allowed')
+        self.assertEquals(response.content, b'Method not allowed')
         self.assertEquals(response.status_code, 405)
 
     def test_invalid_future_term(self):
         response = invalid_future_term()
-        self.assertEquals(response.content, 'Invalid requested future term')
+        self.assertEquals(response.content, b'Invalid requested future term')
         self.assertEquals(response.status_code, 410)
 
     def test_data_error(self):
         response = data_error()
         self.assertEquals(response.content,
-                          'Data not available due to an error')
+                          b'Data not available due to an error')
         self.assertEquals(response.status_code, 543)
