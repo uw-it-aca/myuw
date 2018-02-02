@@ -1,10 +1,10 @@
 {% load templatetag_handlebars %}
-{% tplhandlebars "hfs_card_content" %}
+{% tplhandlebars "husky_card_content" %}
 
-<div class="card clearfix"  data-name="HFSCard" data-type="card">
+<div class="card clearfix"  data-name="HuskyCard" data-type="card">
 
-    <h3 aria-hidden="true">Husky Card{{#if resident_dining}} &amp; Dining{{/if}}</h3>
-    <h3 class="sr-only">Husky Card accounts{{#if resident_dining}} and Dining account{{/if}}</h3>
+    <h3 aria-hidden="true">Husky Card</h3>
+    <h3 class="sr-only">Husky Card accounts</h3>
 
     <div class="card-badge-container">
 	<ul class="card_list">
@@ -46,32 +46,12 @@
             </li>
             {{/if}}
 
-            {{#if resident_dining}}
-            <li>
-                <div class="card-badge clearfix">
-                    {{#with resident_dining}}
-                    <div class="pull-left">
-                        <h4 class="card-badge-label">Resident Dining</h4>
-                    </div>
-                    <div class="pull-right">
-                        <span class="card-badge-value">${{formatPrice balance}}</span>
-                    </div>
-                    {{#if last_updated}}
-                        <div class="card-badge-note">Last transaction: {{last_updated}}</div>
-                    {{/if}}
-                    {{/with}}
-                </div>
-            </li>
-            {{/if}}
 	</ul>
-	    {{#if student_husky_card}}
-        	<div class="btn btn-default card-action-btn pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary">Add funds to your accounts</a></div>
+	{{#if student_husky_card}}
+            <div class="btn btn-default card-action-btn pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary">Add funds to your accounts</a></div>
 
-        {{else}}
-            {{#if employee_husky_card}}
-            <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank">Add funds to your accounts</a></div>
-            {{/if}}
-
+        {{else if employee_husky_card}}
+                <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank">Add funds to your accounts</a></div>
         {{/if}}
 
     </div>
