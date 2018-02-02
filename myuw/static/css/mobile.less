@@ -587,7 +587,7 @@ label { font-weight: normal; margin-bottom: auto; }
             font-weight: 600;
             font-size: @font-header-small;
             margin-top: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
             color: @darktan; }
         h4 {
             font-family:'Roboto', sans-serif;
@@ -811,128 +811,129 @@ label { font-weight: normal; margin-bottom: auto; }
         a { opacity: .75; font-size: medium;}
     }
 
-	.profile-bio {padding: 0 0;
-		.profile-student-major {text-align: left; padding-top:5px;
-			.student-major-list {list-style: none;padding-left:0; margin-top:0;}
-		}
+    .profile-bio {
+        padding: 0 0;
+	.profile-student-major {
+            text-align: left; padding-top:5px;
+	    .student-major-list {list-style: none;padding-left:0; margin-top:0;}
 	}
+    }
 
     .profile-links, .aside-links {
         padding-left: 16px;
         ul { list-style-type: none; padding-left: 0; }
     }
-	// Move the action button out of the .card
-	
-    .card-actions-wrapper {text-align: center; margin-top: 8px; margin-bottom: 16px;
-         .card-action-btn {margin-bottom: 8px;}
+
+    // Move the action button out of the .card
+    .card-actions-wrapper {
+        text-align: center; margin-top: 8px; margin-bottom: 16px;
+        .card-action-btn {margin-bottom: 8px;}
     }
  
-	.card-action-btn {
-	        margin-bottom: 16px; margin-top: 8px;
-                    &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}
-                    a {color:#444;
-                    	&:hover, &:focus {color: #000; text-decoration: none; }
-                    }
+    .card-action-btn {
+	margin-bottom: 16px; margin-top: 8px;
+        &:hover, &:focus {background-color:#e8e3d3;border-color:#e8e3d3;}
+        a {color:#444;
+           &:hover, &:focus {color: #000; text-decoration: none; }
+          }
     }
     
     .card-action-btn-first {margin-right:16px;}
     
 
-	//Sub-heading style
-	.myuw-card-heading {
-		font-size: 16px;
-		font-family:'Roboto', sans-serif;
-		font-weight: 500;
-		color:#85754d;
-		line-height: 1.25;
-		}
+    //Sub-heading style
+    .myuw-card-heading {
+	font-size: 16px;
+	font-family:'Roboto', sans-serif;
+	font-weight: 500;
+	color:#85754d;
+	line-height: 1.25;
+    }
 
     // Application cards styles
-   .myuw-card.application-card { //remove top padding
-		    margin-top: 0;
-	    }
+    .myuw-card.application-card {
+        //remove top padding
+        margin-top: 0;
+    }
 
     .application-card {
-
-	    .myuw-header-msg {
-		    margin-top: -8px;
-		    margin-bottom: 16px;
-		    }
-	     // Application card Resources section header:
-		.resources-header {
-			margin-top: 15px;
+	.myuw-header-msg {
+	    margin-top: -8px;
+	    margin-bottom: 16px;
+	}
+	// Application card Resources section header:
+	.resources-header {
+	    margin-top: 15px;
             margin-bottom: 5px;
-		}
-		.list-leading {
-			li { margin-top: 3px; margin-bottom: 4px;}
-		}
+	}
+	.list-leading {
+	    li { margin-top: 3px; margin-bottom: 4px;}
+	}
     }
 
     // Grades card
-	#GradeCard {
-		.card {
-			.official-note {display: block; font-style: italic; color: #595959;}
-			.card-badge-container {
-				ul.unstyled-list {margin-bottom: 5px;margin-top: 10px;
-					li {
-						.card-badge {padding: 0 10px;
-							.card-badge-inline-label { display: inline-block; font-weight: bold; line-height: 35px; }
-							.card-badge-nograde-value {display: inline-block; line-height: 35px; padding-right: 20px; font-style: italic;}
-						}
-					}
-				}
+    #GradeCard {
+	.card {
+	    .official-note {
+                display: block; font-style: italic; color: #595959;}
+	    .card-badge-container {
+		ul.unstyled-list {
+                    margin-bottom: 5px;margin-top: 10px;
+		    li {
+			.card-badge {
+                            padding: 0 10px;
+			    .card-badge-inline-label {
+                                display: inline-block; font-weight: bold; line-height: 35px; }
+			    .card-badge-nograde-value {display: inline-block; line-height: 35px; padding-right: 20px; font-style: italic;}
 			}
-			#grade_card_resources {
-				.unstyled-list {padding-top: 10px;}
-			}
+		    }
 		}
+	    }
+	    #grade_card_resources {
+				.unstyled-list {padding-top: 10px;}
+	    }
 	}
+    }
 
 
-
-	.simplesquare { display: inline-block; height: .9em; width: .9em; margin-right: 0.3em; }
+    .simplesquare { display: inline-block; height: .9em; width: .9em; margin-right: 0.3em; }
     .minirectangle { display: inline-block; height: .9em; width: .55em; margin-right: .3em; }
 
+    // --- NEW STUDENT CHECKLIST CARDS --- //
+
+    // Thank You (New Student Checklist) //
+    #ThankYouCard {
+	h3 {margin-bottom: 25px;}
+	.notice-title {display:none;}
+	.card {background-color: #FDFFF7;}
+    }
+
+    // To Register For Classes (New Student Checklist) //
+    #ToRegisterCard {
+	.card {
+	    h3 {margin-bottom: 25px;}
+	    .card_list {margin-top: 10px; margin-bottom: 15px; line-height: 25px;}
+	    .notice-title { display: block; font-weight: bold; margin-bottom: 2px; font-size: 1.1em;}
+	    .notice-content { padding-bottom: 2em;}
+	    .notice-body-with-title {display: inline-block;  /*margin-top: -1em;*/}
+
+	    // pre
+	    div.pre, div.post { margin-left: 2.2em;}
+	    // .pre .notice-title {float:left; width: 90%;}
+	    // .pre .notice-body-with-title {float:left; width: 90%;}
+	    // post - NO TITLES
+	    // .post .notice-body-with-title {float:left; width: 90%; margin-top: 0;}
+	    // .post .notice-body-with-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
+	    // .post .notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
+	    // .post .non-notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
+	    i.fa-check-circle { font-size: 1.5em;  vertical-align: middle;  margin-right: .5em; float:left; color:green; }
+	    i.fa-circle-o { font-size: 1.5em;  vertical-align: middle;  margin-right: .5em; float:left; color:#999; font-weight:400;}
+	    // strong {font-weight:400;}
+	}
+    }
 
 
-	// --- NEW STUDENT CHECKLIST CARDS --- //
-
-
-		// Thank You (New Student Checklist) //
-		#ThankYouCard {
-			h3 {margin-bottom: 25px;}
-			.notice-title {display:none;}
-			.card {background-color: #FDFFF7;}
-		}
-
-
-		// To Register For Classes (New Student Checklist) //
-		#ToRegisterCard {
-			.card {
-				h3 {margin-bottom: 25px;}
-				.card_list {margin-top: 10px; margin-bottom: 15px; line-height: 25px;}
-				.notice-title { display: block; font-weight: bold; margin-bottom: 2px; font-size: 1.1em;}
-				.notice-content { padding-bottom: 2em;}
-				.notice-body-with-title {display: inline-block;  /*margin-top: -1em;*/}
-
-				// pre
-				div.pre, div.post { margin-left: 2.2em;}
-				// .pre .notice-title {float:left; width: 90%;}
-				// .pre .notice-body-with-title {float:left; width: 90%;}
-				// post - NO TITLES
-				// .post .notice-body-with-title {float:left; width: 90%; margin-top: 0;}
-				// .post .notice-body-with-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
-				// .post .notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
-				// .post .non-notice-body-without-title {margin-left: 2.2em;  margin-top: -1.5em; display:inline-block;}
-
-				i.fa-check-circle { font-size: 1.5em;  vertical-align: middle;  margin-right: .5em; float:left; color:green; }
-				i.fa-circle-o { font-size: 1.5em;  vertical-align: middle;  margin-right: .5em; float:left; color:#999; font-weight:400;}
-				// strong {font-weight:400;}
-			}
-		}
-
-
-		// Critical Summer Reg & Early Fall Start  (New Student Checklist) //
+    // Critical Summer Reg & Early Fall Start  (New Student Checklist) //
 
 		div#EarlyFallStart {padding-top: 25px;}
 		#EarlyFallStart {
