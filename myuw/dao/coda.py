@@ -57,3 +57,11 @@ def _set_json_cgpa(section_label, json_obj):
 
 def _process_section_label(section_label):
     return section_label.replace(" ", "%20")
+
+
+def get_section_label(section):
+    return (section.term.year + "-" +
+            section.term.quarter + "-" +
+            section.curriculum_abbr + "-" +
+            section.course_number + "-" +
+            section.section_id)
