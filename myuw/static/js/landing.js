@@ -66,7 +66,8 @@ var Landing = {
         ];
 
         if(!window.user.student &&
-           !window.user.instructor) {
+           !window.user.instructor &&
+           !window.user.applicant) {
 
             if(window.user.employee ||
                window.user.clinician ||
@@ -133,7 +134,8 @@ var Landing = {
         ];
 
         if(!window.user.student &&
-           !window.user.instructor) {
+           !window.user.instructor &&
+           !window.user.applicant)) {
 
             if(window.user.employee ||
                window.user.clinician ||
