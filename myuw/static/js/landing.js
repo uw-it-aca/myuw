@@ -64,10 +64,35 @@ var Landing = {
             TacomaApplicationCard,
             WelcomeCard
         ];
-        if(!window.user.student && !window.user.instructor &&
-           (window.user.employee || window.user.clinician)) {
-               desktop_body_cards.unshift(HRPayrollCard);
+
+        if(!window.user.student &&
+           !window.user.instructor) {
+
+            if(window.user.employee ||
+               window.user.clinician ||
+               window.user.past_employee) {
+                desktop_body_cards.push(HRPayrollCard);
+            }
+
+            if(window.user.retiree) {
+                desktop_body_cards.push(RetireAssoCard);
+            }
+
+            if(window.user.past_stud) {
+                desktop_body_cards.push(ReenrollConEduCard);
+                desktop_body_cards.push(TranscriptsCard);
+            }
+
+            if(window.user.past_stud ||
+               window.user.past_employee) {
+                desktop_body_cards.push(UwnetidCard);
+            }
+
+            if(window.user.alumni) {
+                desktop_body_cards.push(AlumniCard);
+            }
         }
+
         var desktop_sidebar_cards = [
             QuickLinksCard,
             AcadCalSnippet,
@@ -106,10 +131,35 @@ var Landing = {
             EventsCard,
             WelcomeCard
         ];
-        if(!window.user.student && !window.user.instructor &&
-           (window.user.employee || window.user.clinician)) {
-            mobile_cards.unshift(HRPayrollCard);
+
+        if(!window.user.student &&
+           !window.user.instructor) {
+
+            if(window.user.employee ||
+               window.user.clinician ||
+               window.user.past_employee) {
+                desktop_body_cards.push(HRPayrollCard);
+            }
+
+            if(window.user.retiree) {
+                desktop_body_cards.push(RetireAssoCard);
+            }
+
+            if(window.user.past_stud) {
+                desktop_body_cards.push(ReenrollConEduCard);
+                desktop_body_cards.push(TranscriptsCard);
+            }
+
+            if(window.user.past_stud ||
+               window.user.past_employee) {
+                desktop_body_cards.push(UwnetidCard);
+            }
+
+            if(window.user.alumni) {
+                desktop_body_cards.push(AlumniCard);
+            }
         }
+
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
     },
 
@@ -117,7 +167,6 @@ var Landing = {
         // Reset all the multiple resourse card render records
         // needed on every page refresh MUWM-3803
         resetCardRenderCalled();
-
         $("#landing_content_cards").html('');
         $("#landing_accounts_cards").html('');
     }

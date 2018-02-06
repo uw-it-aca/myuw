@@ -17,12 +17,15 @@ describe("AccountsPage", function() {
                                 });
     });
     beforeEach(function (){
+        window.page = "accounts";
         window.user.clinician = false;
         window.user.employee = false;
         window.user.instructor = false;
         window.user.student = false;
         window.user.seattle = false;
         window.user.stud_employee = false;
+        window.user.past_employee = false;
+        window.user.retiree = false;
     });
     describe('_get_card_order_by_affiliation', function() {
 

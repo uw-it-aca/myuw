@@ -19,13 +19,8 @@ var LibraryCard = {
     _render: function (library_data) {
         var source = $("#library_card_content").html();
         var template = Handlebars.compile(source);
-        if (!library_data.next_due && !library_data.holds_ready && !library_data.items_loaned && !library_data.fines) {
-            remove_card(LibraryCard.dom_target);
-        }
-        else {
-            LibraryCard.dom_target.html(template(library_data));
-            LogUtils.cardLoaded(LibraryCard.name, LibraryCard.dom_target);
-        }
+        LibraryCard.dom_target.html(template(library_data));
+        LogUtils.cardLoaded(LibraryCard.name, LibraryCard.dom_target);
     },
 
     _has_all_data: function () {

@@ -46,7 +46,7 @@ setup(
         'UW-RestClients-IASystem>=0.2.2,<1.0',
         'UW-RestClients-Canvas>=0.7.0,<1.0',
         'UW-RestClients-UPass>=0.2,<1.0',
-        'UW-RestClients-UWNetID>=0.3.4,<1.0',
+        'UW-RestClients-UWNetID>=0.4,<1.0',
         'UW-RestClients-Grad<1.0',
         'UW-RestClients-Bookstore<1.0',
         'UW-RestClients-Mailman<1.0',
