@@ -135,7 +135,7 @@ var Landing = {
 
         if(!window.user.student &&
            !window.user.instructor &&
-           !window.user.applicant)) {
+           !window.user.applicant) {
 
             if(window.user.employee ||
                window.user.clinician ||
