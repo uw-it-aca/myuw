@@ -60,8 +60,8 @@ def _process_section_label(section_label):
 
 
 def get_section_label(section):
-    return (section.term.year + "-" +
-            section.term.quarter + "-" +
-            section.curriculum_abbr + "-" +
-            section.course_number + "-" +
-            section.section_id)
+    return section.term.year + "-" + \
+           section.term.quarter + "-" + \
+           section.curriculum_abbr + "-" + \
+           section.course_number + "-" + \
+           section.section_id
