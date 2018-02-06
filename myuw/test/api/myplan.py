@@ -42,4 +42,4 @@ class TestMyPlanApi(MyuwApiTest):
         self.set_user('jerror')
         response = self.get_myplan_response(2013, 'spring')
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, '[]')
+        self.assertEquals(json.loads(response.content), [])

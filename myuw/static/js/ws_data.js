@@ -37,6 +37,7 @@ WSData = {
     _myplan_data: {},
     _thrive_data: null,
     _upass_data: null,
+    _visual_schedule_data: {},
     _hx_toolkit_data: {},
 
 
@@ -424,6 +425,9 @@ WSData = {
     upass_data: function() {
         return WSData._upass_data;
     },
+    visual_schedule_data: function(term) {
+        return WSData._visual_schedule_data[term];
+    },
 
     _get_hx_toolkit_data: function(){
         return WSData._hx_toolkit_msg;
@@ -617,6 +621,44 @@ WSData = {
                 },
                 error: function(xhr, status, error) {
                     WSData._course_data_error_status[term] = xhr.status;
+                    WSData._run_error_callbacks_for_url(url);
+                }
+            });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+
+    },
+
+    fetch_current_visual_schedule: function(callback, err_callback, args) {
+        return WSData.fetch_visual_schedule_term("current", callback, err_callback, args);
+    },
+
+    fetch_visual_schedule_term: function(term, callback, err_callback, args) {
+        if (!WSData._visual_schedule_data[term]) {
+            var url = "/api/v1/visual_schedule/"+term;
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+
+            $.ajax({
+                url: url,
+                dataType: "JSON",
+
+                type: "GET",
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    WSData._visual_schedule_data[term] = results;
+                    WSData._run_success_callbacks_for_url(url);
+                },
+                error: function(xhr, status, error) {
                     WSData._run_error_callbacks_for_url(url);
                 }
             });

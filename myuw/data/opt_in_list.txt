@@ -1,9 +1,9 @@
-botgrad
-javerage
-jerror
+jeos
 jinter
+botgrad
 seagrad
 tacgrad
+jerror
 none
 none1
 none2
@@ -21,8 +21,6 @@ billbot
 billtac
 billseata
 billpce
-jpce
-jeos
 staff
 javg001
 javg002

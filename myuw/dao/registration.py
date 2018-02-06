@@ -13,30 +13,22 @@ from myuw.dao.pws import get_regid_of_current_user
 logger = logging.getLogger(__name__)
 
 
-def get_schedule_by_term(term):
-    """
-    Return the actively enrolled sections for the current user
-    in the given term/quarter
-    """
-    return _get_schedule(get_regid_of_current_user(), term)
-
-
-def _get_schedule(regid, term):
+def get_schedule_by_term(request, term):
     """
     @return a uw_sws.models.ClassSchedule object
-    Return the actively enrolled sections for the current user
+    Return the actively enrolled sections for the user
     in the given term/quarter
     """
-    if regid is None or term is None:
-        return None
-    logid = ('get_schedule_by_regid_and_term ' +
-             str(regid) + ',' + str(term.year) + ',' + term.quarter)
-    return get_schedule_by_regid_and_term(
-        regid,
-        term,
-        non_time_schedule_instructors=False,
-        per_section_prefetch_callback=myuw_section_prefetch,
-        transcriptable_course="all")
+    regid = get_regid_of_current_user(request)
+    id = "myuwschedule%d%s" % (term.year, term.quarter)
+    if not hasattr(request, id):
+        request.id = get_schedule_by_regid_and_term(
+            regid,
+            term,
+            non_time_schedule_instructors=False,
+            per_section_prefetch_callback=myuw_section_prefetch,
+            transcriptable_course="all")
+    return request.id
 
 
 def myuw_section_prefetch(data):

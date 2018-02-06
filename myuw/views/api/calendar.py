@@ -15,7 +15,8 @@ class DepartmentalCalendar(ProtectedAPI):
         timer = Timer()
         try:
             prefetch_resources(request,
-                               prefetch_person=True)
+                               prefetch_group=True,
+                               prefetch_enrollment=True)
             response = api_request(request)
             log_success_response(logger, timer)
             return self.json_response(response)

@@ -3,12 +3,12 @@ from django.conf import settings
 from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import get_specific_term, get_next_non_summer_quarter,\
     is_a_term, is_b_term, is_full_summer_term
-from myuw.dao.registration import _get_schedule
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.registered_term import _get_registered_summer_terms,\
     _must_displayed_separately, _get_registered_future_quarters,\
     save_seen_registration_obj
 from myuw.models import SeenRegistration, User
-from myuw.test import get_request_with_date, get_request,\
+from myuw.test import get_request_with_date, get_request_with_user,\
     fdao_sws_override, fdao_pws_override
 
 
@@ -16,35 +16,31 @@ from myuw.test import get_request_with_date, get_request,\
 @fdao_sws_override
 class TestRegisteredTerm(TestCase):
 
-    def setUp(self):
-        get_request()
-
     def test_get_registered_summer_terms(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        req = get_request_with_user('javerage')
         term = get_specific_term(2013, "summer")
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         data = _get_registered_summer_terms(schedule.sections)
         self.assertTrue(data["B"])
         self.assertTrue(data["A"])
 
     def test_must_displayed_separately(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        req = get_request_with_user('javerage')
         term = get_specific_term(2013, "summer")
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         self.assertTrue(_must_displayed_separately(schedule))
 
     def test_get_registered_future_quarters(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        req = get_request_with_user('javerage')
         term1 = get_specific_term(2013, "summer")
-        schedule1 = _get_schedule(regid, term1)
+        schedule1 = get_schedule_by_term(req, term1)
         self.assertEqual(len(schedule1.sections), 3)
 
         term2 = get_specific_term(2013, "autumn")
-        schedule2 = _get_schedule(regid, term2)
+        schedule2 = get_schedule_by_term(req, term2)
         self.assertEqual(len(schedule2.sections), 2)
 
-        terms = _get_registered_future_quarters(
-            get_request(), schedule1, schedule2)
+        terms = _get_registered_future_quarters(req, schedule1, schedule2)
         self.assertTrue(len(terms) == 3)
         self.assertTrue(terms[0]['year'] == 2013)
         self.assertEqual(terms[0]['quarter'], "Summer")
@@ -58,13 +54,15 @@ class TestRegisteredTerm(TestCase):
         self.assertEqual(terms[2]['quarter'], "Autumn")
         self.assertEqual(terms[2]['summer_term'], "")
 
-        terms = _get_registered_future_quarters(get_request(), None, None)
+        terms = _get_registered_future_quarters(req, None, None)
         self.assertEqual(len(terms), 0)
 
         # MUWM-3010
         # Baseline pre-summer
-        now_request = get_request_with_date("2013-04-01")
-        terms = _get_registered_future_quarters(now_request, schedule1,
+        now_request = get_request_with_user(
+            'javerage', get_request_with_date("2013-04-01"))
+        terms = _get_registered_future_quarters(now_request,
+                                                schedule1,
                                                 schedule2)
         self.assertTrue(len(terms) == 3)
         self.assertTrue(terms[0]['year'] == 2013)
@@ -80,7 +78,8 @@ class TestRegisteredTerm(TestCase):
         self.assertEqual(terms[2]['summer_term'], "")
 
         # Summer has started - so no a-term
-        now_request = get_request_with_date("2013-06-30")
+        now_request = get_request_with_user(
+            'javerage', get_request_with_date("2013-06-30"))
         terms = _get_registered_future_quarters(now_request, schedule1,
                                                 schedule2)
         self.assertTrue(len(terms) == 2)
@@ -94,7 +93,8 @@ class TestRegisteredTerm(TestCase):
         self.assertEqual(terms[1]['summer_term'], "")
 
         # Summer b-term has started - so no a-term or b-term
-        now_request = get_request_with_date("2013-07-30")
+        now_request = get_request_with_user(
+            'javerage', get_request_with_date("2013-07-30"))
         terms = _get_registered_future_quarters(now_request, schedule1,
                                                 schedule2)
         self.assertTrue(len(terms) == 1)
@@ -103,9 +103,10 @@ class TestRegisteredTerm(TestCase):
         self.assertEqual(terms[0]['quarter'], "Autumn")
         self.assertEqual(terms[0]['summer_term'], "")
 
-        now_request = get_request_with_date("2013-12-10")
+        now_request = get_request_with_user(
+            'javerage', get_request_with_date("2013-12-10"))
         term = get_specific_term(2014, "winter")
-        winter2014_sche = _get_schedule(regid, term)
+        winter2014_sche = get_schedule_by_term(now_request, term)
         self.assertIsNotNone(winter2014_sche)
         self.assertEqual(len(winter2014_sche.sections), 5)
         registered_future_quarters =\
@@ -120,10 +121,10 @@ class TestRegisteredTerm(TestCase):
         self.assertEqual(term1["section_count"], 5)
 
     def test_save_seen_registration_obj(self):
-        now_request = get_request_with_date("2013-12-10")
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        now_request = get_request_with_user(
+            'javerage', get_request_with_date("2013-12-10"))
         term = get_specific_term(2014, "winter")
-        winter2014_sche = _get_schedule(regid, term)
+        winter2014_sche = get_schedule_by_term(now_request, term)
         self.assertIsNotNone(winter2014_sche)
         self.assertEqual(len(winter2014_sche.sections), 5)
         registered_future_quarters = _get_registered_future_quarters(
@@ -159,10 +160,10 @@ class TestRegisteredTerm(TestCase):
                                                 )
         self.assertEqual(len(qset1), 1)
 
-        now_request = get_request_with_date("2013-5-10")
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        now_request = get_request_with_user(
+            'javerage', get_request_with_date("2013-5-10"))
         term = get_specific_term(2013, "summer")
-        summer2013_sche = _get_schedule(regid, term)
+        summer2013_sche = get_schedule_by_term(now_request, term)
         self.assertIsNotNone(summer2013_sche)
         self.assertEqual(len(summer2013_sche.sections), 3)
         registered_future_quarters = _get_registered_future_quarters(

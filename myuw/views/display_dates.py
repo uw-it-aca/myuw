@@ -125,7 +125,7 @@ def add_session_context(request, context):
 
 
 def add_seen_registration_context(request, context):
-    user = get_user_model()
+    user = get_user_model(request)
 
     seen_registrations = SeenRegistration.objects.filter(user=user)
     seen = []

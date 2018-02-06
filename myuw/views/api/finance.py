@@ -1,8 +1,8 @@
 import logging
 import traceback
-from myuw.dao.gws import is_student
 from myuw.dao.finance import get_account_balances_for_current_user
 from myuw.dao.notice import get_tuition_due_date
+from myuw.dao.pws import is_student
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_data_not_found_response, log_msg, log_success_response)
@@ -23,13 +23,13 @@ class Finance(ProtectedAPI):
         """
         timer = Timer()
         try:
-            if not is_student():
+            if not is_student(request):
                 log_msg(logger, timer, "Not a student, abort!")
                 return data_not_found()
 
-            balances = get_account_balances_for_current_user()
+            balances = get_account_balances_for_current_user(request)
 
-            date = get_tuition_due_date()
+            date = get_tuition_due_date(request)
             response = balances.json_data()
             response['tuition_due'] = str(date)
 

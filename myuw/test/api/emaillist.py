@@ -126,8 +126,7 @@ class TestEmaillistApi(MyuwApiTest):
             {u'section_single_ZC': u'2013,spring,PHYS,122/ZC'})
         self.assertEquals(resp.status_code, 403)
 
-        self.assertEquals(resp.content,
-                          'Access Forbidden to Non Instructor')
+        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
 
     def test_not_instructor_post(self):
         client = Client()
@@ -139,8 +138,7 @@ class TestEmaillistApi(MyuwApiTest):
             {u'section_single_A': u'2013,spring,ESS,102/A'})
         self.assertEquals(resp.status_code, 403)
 
-        self.assertEquals(resp.content,
-                          'Access Forbidden to Non Instructor')
+        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
 
     def test_not_instructor_secondary_post(self):
         client = Client()
@@ -152,8 +150,7 @@ class TestEmaillistApi(MyuwApiTest):
             {u'section_single_AB': u'2013,spring,ESS,102/AB'})
         self.assertEquals(resp.status_code, 403)
 
-        self.assertEquals(resp.content,
-                          'Access Forbidden to Non Instructor')
+        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
 
     def test_primary_instructor_secondary_post(self):
         client = Client()
@@ -166,6 +163,8 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEquals(resp.status_code, 200)
 
     def test_is_emaillist_authorized(self):
-        get_request_with_user('billbot')
-        self.assertTrue(is_emaillist_authorized("2013,summer,B BIO,180/A"))
-        self.assertFalse(is_emaillist_authorized("2013,summer,B%20BIO,180/A"))
+        req = get_request_with_user('billbot')
+        self.assertTrue(is_emaillist_authorized(req,
+                                                "2013,summer,B BIO,180/A"))
+        self.assertFalse(is_emaillist_authorized(req,
+                                                 "2013,summer,B%20BIO,180/A"))

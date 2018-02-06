@@ -9,7 +9,7 @@ from uw_sws.section import get_section_by_label
 from myuw.dao.iasystem import json_for_evaluation, _get_evaluations_domain,\
     _get_evaluations_by_section_and_student, summer_term_overlaped,\
     get_evaluation_by_section_and_instructor
-from myuw.dao.registration import _get_schedule
+from myuw.dao.registration import get_schedule_by_term
 from myuw.test import fdao_pws_override, fdao_sws_override, fdao_ias_override,\
     get_request_with_date, get_request_with_user, get_request
 
@@ -42,7 +42,8 @@ class IASystemDaoTest(TestCase):
         section.summer_term = "A-term"
         section.term = term
 
-        now_request = get_request_with_date("2013-07-10")
+        now_request = get_request_with_user(
+            'javerage', get_request_with_date("2013-07-10"))
         self.assertTrue(summer_term_overlaped(now_request, section))
         section.summer_term = "Full-term"
         self.assertFalse(summer_term_overlaped(now_request, section))
@@ -57,14 +58,14 @@ class IASystemDaoTest(TestCase):
         self.assertTrue(summer_term_overlaped(now_request, '-'))
 
     def test_get_evaluations_by_section(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        req = get_request_with_user('javerage')
         term = Term()
         term.year = 2013
         term.quarter = "summer"
         section = Section()
         section.summer_term = "A-term"
         section.term = term
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         evals = None
         for section in schedule.sections:
             if section.curriculum_abbr == 'ELCBUS':
@@ -74,7 +75,7 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(evals)
         self.assertEqual(evals[0].section_sln, 13833)
         self.assertEqual(evals[0].eval_open_date,
-                         datetime.datetime(2013, 7, 02,
+                         datetime.datetime(2013, 7, 2,
                                            14, 0,
                                            tzinfo=pytz.utc))
         self.assertEqual(evals[0].eval_close_date,
@@ -131,11 +132,11 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(json_data), 0)
 
     def test_multiple_instructors(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        req = get_request_with_user('javerage')
         term = Term()
         term.year = 2013
         term.quarter = "summer"
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         evals = None
         for section in schedule.sections:
             if section.curriculum_abbr == 'TRAIN' and\
@@ -162,11 +163,11 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(evals[0].instructor_ids[2], 123456798)
 
     def test_multiple_evals(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
+        req = get_request_with_user('javerage')
         term = Term()
         term.year = 2013
         term.quarter = "spring"
-        schedule = _get_schedule(regid, term)
+        schedule = get_schedule_by_term(req, term)
         evals = None
         for section in schedule.sections:
             if section.curriculum_abbr == 'TRAIN' and\

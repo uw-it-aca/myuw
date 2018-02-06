@@ -21,13 +21,13 @@ SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
+            'debug': DEBUG,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
@@ -66,7 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.RemoteUserMiddleware',
+    'django.contrib.auth.middleware.PersistentRemoteUserMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -135,6 +135,8 @@ COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
-USERSERVICE_ADMIN_GROUP = "x"
+USERSERVICE_ADMIN_GROUP = "u_x"
+MYUW_ADMIN_GROUP = 'u_x'
+RESTCLIENTS_ADMIN_GROUP = 'u_x'
 AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
 MAILMAN_COURSEREQUEST_RECIPIENT = ""

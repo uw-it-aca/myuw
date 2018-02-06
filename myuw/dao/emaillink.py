@@ -14,7 +14,7 @@ def get_service_url_for_address(address):
         os.path.dirname(__file__),
         '..', 'data', 'forward_mapping.csv')
 
-    with open(path, 'rbU') as csvfile:
+    with open(path) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         # skip header
         next(reader)

@@ -11,7 +11,7 @@ TRUMBA_PREFIX = 'http://www.trumba.com/calendar/5_current'
 
 class TestCalendar(TestCase):
     def setUp(self):
-        self.now = datetime(2013, 04, 15, 0, 0, 0, tzinfo=pytz.utc)
+        self.now = datetime(2013, 4, 15, 0, 0, 0, tzinfo=pytz.utc)
 
     def test_far_future(self):
         cal = {'far_future': None}
@@ -69,7 +69,7 @@ class TestCalendar(TestCase):
         self.assertEqual(event_response['active_cals'][0]['url'],
                          TRUMBA_PREFIX)
         self.assertEqual(event_response['active_cals'][0]['title'],
-                         "Department of Five Events")
+                         b'Department of Five Events')
 
     def test_all_day_1(self):
         cal = {'5_current': None}

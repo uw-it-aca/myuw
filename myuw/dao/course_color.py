@@ -2,27 +2,24 @@
 This module encapsulates the access of the registration
 and section modules in restclients
 """
-
 import logging
 from myuw.models import CourseColor
 from myuw.dao.pws import get_regid_of_current_user
-
 
 logger = logging.getLogger(__name__)
 TOTAL_COURSE_COLORS = 8
 
 
-def get_colors_by_schedule(schedule):
+def get_colors_by_schedule(request, schedule):
     return get_colors_by_regid_and_schedule(
-        get_regid_of_current_user(), schedule)
+        get_regid_of_current_user(request), schedule)
 
 
 def get_colors_by_regid_and_schedule(regid, schedule):
     return _indexed_colors_by_section_label(
-        CourseColor.objects.filter(
-            regid=regid,
-            year=schedule.term.year,
-            quarter=schedule.term.quarter),
+        CourseColor.objects.filter(regid=regid,
+                                   year=schedule.term.year,
+                                   quarter=schedule.term.quarter),
         regid,
         schedule)
 
@@ -51,7 +48,7 @@ def _indexed_colors_by_section_label(query, regid, schedule):
 
     for section in primary_sections:
         label = section.section_label()
-        if section.section_label() not in color_lookup:
+        if label not in color_lookup:
             color = _get_section_color(existing_sections,
                                        active_colors,
                                        schedule,

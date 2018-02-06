@@ -1,7 +1,7 @@
 import csv
 import os
-from myuw.dao.student_profile import get_cur_future_enrollments
 from myuw.dao.gws import is_grad_student
+from myuw.dao.student_profile import get_cur_future_enrollments
 
 
 DEGREE_TYPE_COLUMN_MAP = {"major": 2,
@@ -12,20 +12,16 @@ CALENDAR_URL_COL = 6
 
 
 def get_calendars_for_current_user(request):
-    return _get_calendars(_get_enrollments(request))
+    return _get_calendars(request, _get_enrollments(request))
 
 
-def _get_calendars(enrollments):
+def _get_calendars(request, enrollments):
     calendars = {}
-
-    minor_cals = get_calendars_for_minors(enrollments['minors'])
-    calendars = dict(calendars.items() + minor_cals.items())
-    if enrollments['is_grad']:
-        grad_cals = get_calendars_for_gradmajors(enrollments['majors'])
-        calendars = dict(calendars.items() + grad_cals.items())
+    calendars.update(get_calendars_for_minors(enrollments['minors']))
+    if is_grad_student(request):
+        calendars.update(get_calendars_for_gradmajors(enrollments['majors']))
     else:
-        major_cals = get_calendars_for_majors(enrollments['majors'])
-        calendars = dict(calendars.items() + major_cals.items())
+        calendars.update(get_calendars_for_majors(enrollments['majors']))
     return calendars
 
 
@@ -46,8 +42,7 @@ def _get_enrollments(request):
                         minors.append(minor.short_name)
     except Exception:
         pass
-    return {'is_grad': is_grad_student(),
-            'majors': majors,
+    return {'majors': majors,
             'minors': minors}
 
 
@@ -70,7 +65,7 @@ def _get_calendars_by_name_and_type(major_name, major_type):
     path = os.path.join(
         os.path.dirname(__file__),
         '..', 'data', 'calendar_major_mapping.csv')
-    with open(path, 'rbU') as csvfile:
+    with open(path) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             degree_name = row[degree_column].strip()

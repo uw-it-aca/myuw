@@ -84,7 +84,7 @@ class TestDaoEnrollment(TestCase):
         terms.append(t1)
         terms.append(t2)
         terms.append(t3)
-        enrollments = get_enrollments_of_terms(terms)
+        enrollments = get_enrollments_of_terms(req, terms)
         self.assertEqual(len(enrollments), 3)
 
         self.assertTrue(t1 in enrollments)
@@ -95,7 +95,7 @@ class TestDaoEnrollment(TestCase):
 
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))
-        enrollments = get_enrollments_of_terms(terms)
+        enrollments = get_enrollments_of_terms(req, terms)
         self.assertEqual(len(enrollments), 3)
         self.assertTrue(t1 in enrollments)
         self.assertTrue(t2 in enrollments)
@@ -106,7 +106,7 @@ class TestDaoEnrollment(TestCase):
 
         req = get_request_with_user('eight',
                                     get_request_with_date("2013-04-01"))
-        enrollments = get_enrollments_of_terms(terms)
+        enrollments = get_enrollments_of_terms(req, terms)
         self.assertEqual(len(enrollments), 3)
         self.assertTrue(t1 in enrollments)
         self.assertTrue(t2 in enrollments)

@@ -54,7 +54,7 @@ class TestDeptCalAPI(MyuwApiTest):
     def test_nonexistant_user(self):
         '''Test user with no deptcals'''
 
-        self.set_user('nonexist')
+        self.set_user('nobody')
         self.set_date('2013-4-15')
         response = self.get_deptcal()
         data = json.loads(response.content)

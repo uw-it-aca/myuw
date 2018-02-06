@@ -1,0 +1,9 @@
+{
+  "employee_husky_card": {
+    "balance": 95.46,
+    "last_transaction_date": "2016-01-11T13:54:34.112",
+    "last_transaction_amount": -1.96,
+    "last_transaction_location": "Bookstore",
+    "add_funds_url": "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx"
+    }
+}
