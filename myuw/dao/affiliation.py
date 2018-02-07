@@ -26,7 +26,7 @@ def get_all_affiliations(request):
     """
     return a dictionary of affiliation indicators.
     ["alumni"]: True if the user is currently an UW alumni
-    ["is_alum_asso"]: alumni association member
+    ["alum_asso"]: alumni association member
     ["student"]: True if the user is currently an UW student.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
