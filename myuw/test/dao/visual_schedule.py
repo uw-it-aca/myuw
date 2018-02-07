@@ -857,7 +857,8 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(consolidated[2].end_date, datetime.date(2018, 3, 2))
         self.assertEqual(consolidated[3].start_date, datetime.date(2018, 3, 5))
         self.assertEqual(consolidated[3].end_date, datetime.date(2018, 3, 10))
-        self.assertEqual(consolidated[4].start_date, datetime.date(2018, 3, 12))
+        self.assertEqual(consolidated[4].start_date,
+                         datetime.date(2018, 3, 12))
         self.assertEqual(consolidated[4].end_date, datetime.date(2018, 3, 31))
         self.assertEqual(consolidated[5].start_date,
                          datetime.date(2018, 4, 2))
@@ -906,7 +907,6 @@ class TestVisualSchedule(TestCase):
         section4.course_number = 210
         section4.section_id = 'A'
         section4.meetings = [mw_mtg, f_mtg]
-        
 
         term = get_term_from_quarter_string("2018,winter")
         schedule = ClassSchedule()
