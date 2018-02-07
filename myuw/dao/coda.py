@@ -66,6 +66,7 @@ def _process_section_label(section_label):
                 counts += 1
 
             if counts == 3:
-                section_label = section_label[:i] + section_label[i+1:]
+                section_label = section_label[:i] + " " + section_label[i+1:]
+                break
 
     return section_label.replace(" ", "%20")
