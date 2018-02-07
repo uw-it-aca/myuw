@@ -742,7 +742,9 @@ class TestVisualSchedule(TestCase):
     def test_get_latest_end_from_period(self):
         periods = self._get_schedule_with_meetings()
         latest_end = _get_latest_end_from_period(periods[0])
-        self.assertEqual(latest_end, datetime.date(2017, 10, 21))
+        self.assertEqual(latest_end, datetime.date(2017, 10, 14))
+        latest_end = _get_latest_end_from_period(periods[1])
+        self.assertEqual(latest_end, datetime.date(2017, 10, 20))
 
         no_mtg_periods = self._get_schedule_no_meetings()
         latest_end = _get_latest_end_from_period(no_mtg_periods[0])
@@ -845,7 +847,7 @@ class TestVisualSchedule(TestCase):
         _add_weekend_meeting_data(consolidated)
         _adjust_period_dates(consolidated)
 
-        self.assertEqual(len(consolidated), 5)
+        self.assertEqual(len(consolidated), 6)
         self.assertEqual(consolidated[0].start_date, datetime.date(2018, 1, 3))
         self.assertEqual(consolidated[0].end_date, datetime.date(2018, 1, 6))
         self.assertEqual(consolidated[1].start_date, datetime.date(2018, 1, 8))
@@ -854,7 +856,72 @@ class TestVisualSchedule(TestCase):
                          datetime.date(2018, 2, 26))
         self.assertEqual(consolidated[2].end_date, datetime.date(2018, 3, 2))
         self.assertEqual(consolidated[3].start_date, datetime.date(2018, 3, 5))
-        self.assertEqual(consolidated[3].end_date, datetime.date(2018, 3, 31))
-        self.assertEqual(consolidated[4].start_date,
+        self.assertEqual(consolidated[3].end_date, datetime.date(2018, 3, 10))
+        self.assertEqual(consolidated[4].start_date, datetime.date(2018, 3, 12))
+        self.assertEqual(consolidated[4].end_date, datetime.date(2018, 3, 31))
+        self.assertEqual(consolidated[5].start_date,
                          datetime.date(2018, 4, 2))
-        self.assertEqual(consolidated[4].end_date, datetime.date(2018, 4, 21))
+        self.assertEqual(consolidated[5].end_date, datetime.date(2018, 4, 21))
+
+    def test_midweek_start(self):
+        mwf_mtg = SectionMeeting()
+        mwf_mtg.meets_monday = True
+        mwf_mtg.meets_wednesday = True
+        mwf_mtg.meets_friday = True
+
+        tth_mtg = SectionMeeting()
+        tth_mtg.meets_tuesday = True
+        tth_mtg.meets_thursday = True
+
+        th_mtg = SectionMeeting()
+        th_mtg.meets_thursday = True
+
+        mw_mtg = SectionMeeting()
+        mw_mtg.meets_monday = True
+        mw_mtg.meets_wednesday = True
+
+        f_mtg = SectionMeeting()
+        f_mtg.meets_friday = True
+
+        section1 = Section()
+        section1.curriculum_abbr = 'CSE'
+        section1.course_number = 143
+        section1.section_id = 'A'
+        section1.meetings = [mwf_mtg]
+
+        section2 = Section()
+        section2.curriculum_abbr = 'CSE'
+        section2.course_number = 143
+        section2.section_id = 'AQ'
+        section2.meetings = [tth_mtg]
+
+        section3 = Section()
+        section3.curriculum_abbr = 'MATH'
+        section3.course_number = 126
+        section3.section_id = 'F'
+        section3.meetings = [th_mtg]
+
+        section4 = Section()
+        section4.curriculum_abbr = 'PSYCH'
+        section4.course_number = 210
+        section4.section_id = 'A'
+        section4.meetings = [mw_mtg, f_mtg]
+        
+
+        term = get_term_from_quarter_string("2018,winter")
+        schedule = ClassSchedule()
+        schedule.term = term
+        schedule.sections = [section1, section2, section3, section4]
+
+        _add_dates_to_sections(schedule)
+
+        bounds = get_schedule_bounds(schedule)
+        weeks = _get_weeks_from_bounds(bounds)
+        weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
+        weeks = _add_sections_to_weeks(schedule.sections, weeks)
+        weeks = trim_section_meetings(weeks)
+        weeks = trim_weeks_no_meetings(weeks)
+        consolidated = _consolidate_weeks(weeks)
+        _add_weekend_meeting_data(consolidated)
+        _adjust_period_dates(consolidated)
+        self.assertEqual(len(consolidated), 2)
