@@ -56,12 +56,16 @@ def _set_json_cgpa(section_label, json_obj):
 
 
 def _process_section_label(section_label):
+    section_label = section_label.replace("_", "-")
+    indices = section_label.count("-")
+
+    if indices > 4:
+        counts = 0
+        for i in range(0, len(section_label)):
+            if section_label[i] == '-':
+                counts += 1
+
+            if counts == 3:
+                section_label = section_label[:i] + section_label[i+1:]
+
     return section_label.replace(" ", "%20")
-
-
-def get_section_label(section):
-    return section.term.year + "-" + \
-           section.term.quarter + "-" + \
-           section.curriculum_abbr + "-" + \
-           section.course_number + "-" + \
-           section.section_id
