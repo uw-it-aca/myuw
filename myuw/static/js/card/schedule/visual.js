@@ -29,7 +29,7 @@ var VisualScheduleCard = {
 
     render_handler: function() {
         var schedule_data = WSData.visual_schedule_data(VisualScheduleCard.term);
-        if (schedule_data === undefined){
+        if (schedule_data === undefined || schedule_data === 404){
             VisualScheduleCard.hide_card();
             return;
         }
