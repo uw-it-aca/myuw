@@ -3,9 +3,7 @@
 
     {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
     {{#if current_or_future}}
-        {{#exists failure_rate includeZero=false }}
-            {% include "handlebars/card/instructor_schedule/course_resource/course_stats.html" %}
-        {{/exists}}
+        {% include "handlebars/card/instructor_schedule/course_resource/course_stats.html" %}
     {{/if}}
 
 
