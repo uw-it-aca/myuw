@@ -404,25 +404,21 @@ def trim_weeks_no_meetings(weeks):
 
 def trim_section_meetings(weeks):
     for week in weeks:
-        meetings_trimmed_front = True
-        meetings_trimmed_back = True
+        front_trim_count = 0
+        back_trim_count = 0
         for section in week.sections:
             if section.start_date > week.start_date:
                 trimmed = _trim_section_before(section, section.start_date)
-                if not trimmed:
-                    meetings_trimmed_front = False
-            else:
-                meetings_trimmed_front = False
+                if trimmed:
+                    front_trim_count += 1
             if section.end_date < week.end_date:
                 trimmed = _trim_section_after(section, section.end_date)
-                if not trimmed:
-                    meetings_trimmed_back = False
-            else:
-                meetings_trimmed_back = False
-        if meetings_trimmed_front:
+                if trimmed:
+                    back_trim_count += 1
+        if front_trim_count > 0:
             week.meetings_trimmed = True
             week.meetings_trimmed_front = True
-        if meetings_trimmed_back:
+        if back_trim_count > 0:
             week.meetings_trimmed = True
             week.meetings_trimmed_back = True
     return weeks
