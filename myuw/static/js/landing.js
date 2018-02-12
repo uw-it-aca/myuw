@@ -85,10 +85,7 @@ var Landing = {
 
             desktop_body_cards.push(ContinuingEducationCard);
 
-            if(window.user.past_stud ||
-               window.user.past_employee) {
-                desktop_body_cards.push(UwnetidCard);
-            }
+            desktop_body_cards.push(UwnetidCard);
 
             if(window.user.alumni) {
                 desktop_body_cards.push(AlumniCard);
@@ -154,10 +151,7 @@ var Landing = {
 
             desktop_body_cards.push(ContinuingEducationCard);
 
-            if(window.user.past_stud ||
-               window.user.past_employee) {
-                desktop_body_cards.push(UwnetidCard);
-            }
+            desktop_body_cards.push(UwnetidCard);
 
             if(window.user.alumni) {
                 desktop_body_cards.push(AlumniCard);
