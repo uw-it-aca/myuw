@@ -4,6 +4,11 @@
     {{#if registration_is_open}}
     <div class="card-actions-wrapper">
         <div class="btn btn-default card-action-btn card-action-btn-first">
+            <a target="_blank" class="reg-link" data-linklabel="Register using SLN codes"
+               href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Register using SLN codes</a>
+        </div>
+
+        <div class="btn btn-default card-action-btn">
             {{#if plan_data}}
                 {{#unless plan_data.has_ready_courses}}
                         <a target="_blank" class="focus-link" data-linklabel="Edit plan in MyPlan"
@@ -18,10 +23,6 @@
             {{/if}}
         </div>
 
-        <div class="btn btn-default card-action-btn">
-            <a target="_blank" class="reg-link" data-linklabel="Register using SLN codes"
-               href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">Register using SLN codes</a>
-        </div>
         {{#if is_c2}}
             <br>
             <a target="_blank"
