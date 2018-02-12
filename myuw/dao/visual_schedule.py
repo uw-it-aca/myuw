@@ -210,14 +210,17 @@ def _get_visual_schedule_from_schedule(schedule, request):
         consolidated = a_consolidated + b_consolidated
 
     else:
-        # find sections beyond term
-        bounds = get_schedule_bounds(schedule)
-        weeks = _get_weeks_from_bounds(bounds)
-        weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
-        weeks = _add_sections_to_weeks(schedule.sections, weeks)
-        weeks = trim_section_meetings(weeks)
-        weeks = trim_weeks_no_meetings(weeks)
-        consolidated = _consolidate_weeks(weeks)
+        try:
+            # find sections beyond term
+            bounds = get_schedule_bounds(schedule)
+            weeks = _get_weeks_from_bounds(bounds)
+            weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
+            weeks = _add_sections_to_weeks(schedule.sections, weeks)
+            weeks = trim_section_meetings(weeks)
+            weeks = trim_weeks_no_meetings(weeks)
+            consolidated = _consolidate_weeks(weeks)
+        except AttributeError:
+            return None
 
     _add_weekend_meeting_data(consolidated)
     consolidated = _remove_empty_periods(consolidated)
@@ -754,7 +757,10 @@ class SchedulePeriod():
         section_data = []
         for section in self.sections:
             section_json = section.json_data()
-            section_json['color_id'] = section.color_id
+            try:
+                section_json['color_id'] = section.color_id
+            except AttributeError:
+
             section_json['is_teaching'] = section.is_teaching
             section_data.append(section_json)
         data = {'start_date': self.start_date,
