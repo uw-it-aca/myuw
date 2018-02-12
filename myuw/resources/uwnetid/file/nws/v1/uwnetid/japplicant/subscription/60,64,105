@@ -24,6 +24,14 @@
         {
           "type": "permit",
           "mode": "implicit",
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
           "categoryCode": 20,
           "categoryName": "Applicant",
           "statusCode": 1,
@@ -62,6 +70,14 @@
           "categoryName": "Undergraduate",
           "statusCode": 1,
           "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 3,
+          "statusName": "former"
         },
         {
           "type": "permit",

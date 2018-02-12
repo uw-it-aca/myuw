@@ -19,11 +19,12 @@ class Res_Links:
             os.path.dirname(__file__),
             '..', 'data', 'category_links_import.csv')
 
-        with open(path, 'rbU') as csvfile:
+        with open(path) as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-            reader.next()
             for row in reader:
                 category = row[0]
+                if category == 'Category':
+                    continue
                 category_id = _get_category_id(category)
                 subcategory = row[1]
                 affiliation = row[2]

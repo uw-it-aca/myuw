@@ -73,7 +73,7 @@ class TestApiGrad(MyuwApiTest):
         self.set_user('none')
         response = self.get_response_by_reverse('myuw_grad_api')
         self.assertEquals(response.status_code, 404)
-        self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.content, b'Data not found')
 
         self.set_user('jerror')
         response = self.get_response_by_reverse('myuw_grad_api')

@@ -7,7 +7,10 @@ from myuw.dao import get_user_model, get_netid_of_current_user,\
     get_netid_of_original_user, is_using_file_dao
 from myuw.views import prefetch_resources
 from myuw.models import VisitedLinkNew
-from urllib import unquote
+try:
+    from urllib.parse import unquote
+except ImportError:
+    from urllib import unquote
 import os
 import re
 

@@ -9,25 +9,30 @@ describe("AccountsPage", function() {
                                         "myuw/static/js/card/accounts/uwnetid.js",
                                         "myuw/static/js/card/accounts/account_medicine.js",
                                         "myuw/static/js/card/accounts/hr_payroll_card.js",
-                                        "myuw/static/js/card/accounts/hfs.js",
+                                        "myuw/static/js/card/accounts/hfs_sea.js",
+                                        "myuw/static/js/card/accounts/husky.js",
                                         "myuw/static/js/card/accounts/library.js",
                                         "myuw/static/js/card/accounts/upass.js"
                                     ]
                                 });
     });
     beforeEach(function (){
+        window.page = "accounts";
         window.user.clinician = false;
         window.user.employee = false;
         window.user.instructor = false;
         window.user.student = false;
+        window.user.seattle = false;
         window.user.stud_employee = false;
+        window.user.past_employee = false;
+        window.user.retiree = false;
     });
     describe('_get_card_order_by_affiliation', function() {
 
         it('should handle clinician affiliation', function() {
             var order = [
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 LibraryCard,
                 UPassCard,
                 UwnetidCard
@@ -41,7 +46,7 @@ describe("AccountsPage", function() {
             var student_order = [
                 TuitionCard,
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 LibraryCard,
                 UPassCard,
                 UwnetidCard
@@ -51,11 +56,27 @@ describe("AccountsPage", function() {
             assert.deepEqual(card_order, student_order)
         });
 
+        it('should handle seattle student affiliation', function() {
+            var student_order = [
+                TuitionCard,
+                MedicineAccountsCard,
+                HuskyCard,
+                HfsSeaCard,
+                LibraryCard,
+                UPassCard,
+                UwnetidCard
+            ];
+            window.user.student = true;
+            window.user.seattle = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, student_order)
+        });
+
         it('should handle student employee affiliation', function() {
             var stud_employee_order = [
                 TuitionCard,
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 HRPayrollCard,
                 LibraryCard,
                 UPassCard,
@@ -70,7 +91,7 @@ describe("AccountsPage", function() {
         it('should handle employee affiliation', function() {
             var employee_order = [
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 LibraryCard,
                 UPassCard,
                 UwnetidCard
@@ -83,7 +104,7 @@ describe("AccountsPage", function() {
         it('should handle instructor affiliation', function() {
             var instructor_order = [
                 MedicineAccountsCard,
-                HfsCard,
+                HuskyCard,
                 HRPayrollCard,
                 LibraryCard,
                 UPassCard,
