@@ -80,9 +80,10 @@ var Landing = {
             }
 
             if(window.user.past_stud) {
-                desktop_body_cards.push(ReenrollConEduCard);
                 desktop_body_cards.push(TranscriptsCard);
             }
+
+            desktop_body_cards.push(ContinuingEducationCard);
 
             if(window.user.past_stud ||
                window.user.past_employee) {
@@ -148,9 +149,10 @@ var Landing = {
             }
 
             if(window.user.past_stud) {
-                desktop_body_cards.push(ReenrollConEduCard);
                 desktop_body_cards.push(TranscriptsCard);
             }
+
+            desktop_body_cards.push(ContinuingEducationCard);
 
             if(window.user.past_stud ||
                window.user.past_employee) {
