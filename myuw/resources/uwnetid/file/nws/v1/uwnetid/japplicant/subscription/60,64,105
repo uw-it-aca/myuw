@@ -16,14 +16,6 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 1,
-          "categoryName": "Undergraduate",
-          "statusCode": 1,
-          "statusName": "current"
-        },
-        {
-          "type": "permit",
-          "mode": "implicit",
           "categoryCode": 4,
           "categoryName": "Staff",
           "statusCode": 3,
@@ -63,14 +55,6 @@
       "dataField": "FWD",
       "dataValue": "japplicant@gmail.com",
       "permits": [
-        {
-          "type": "permit",
-          "mode": "implicit",
-          "categoryCode": 1,
-          "categoryName": "Undergraduate",
-          "statusCode": 1,
-          "statusName": "current"
-        },
         {
           "type": "permit",
           "mode": "implicit",
