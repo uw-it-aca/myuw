@@ -9,7 +9,7 @@ Affiliation: definition
  grad_c2: takes UW PCE grad courses
  undergrad_c2: takes UW PCE undergrad courses
  student: current UW student (grad, undergrad, or pce).
- employee: current uw employee.
+ employee: current uw employee NOT student employee.
  faculty: current faculty.
  staff_employee: current a staff
  stud_employee: current student employee.
@@ -22,7 +22,7 @@ Affiliation: definition
  bothell: UW Bothell student
  tacoma: UW Tacoma student
  retiree: current retired staff and NOT
-                current applicant, student, employee
+          current applicant, student, employee
  past_employee: former employee (staff, faculty or clinician) and NOT
                 current student, applicant
  past_stud: former grad, undergrad, or pce student and NOT
