@@ -11,7 +11,7 @@ describe('StudentInfoCard', function(){
                     "myuw/static/js/card/profile/student_info.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/student_info.html'
+                    'myuw/templates/handlebars/card/profile/student_info.html'
                 ]
             });
 
@@ -44,7 +44,7 @@ describe('StudentInfoCard', function(){
                     "myuw/static/js/card/profile/student_info.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/student_info.html'
+                    'myuw/templates/handlebars/card/profile/student_info.html'
                 ]
             });
 

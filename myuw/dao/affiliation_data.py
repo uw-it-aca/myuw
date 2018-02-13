@@ -64,7 +64,7 @@ def _load_data_from_file(file_name):
     all_data = []
 
     path = os.path.join(os.path.dirname(__file__), '..', 'data', file_name)
-    with open(path, 'rbU') as csvfile:
+    with open(path) as csvfile:
         reader = csv.DictReader(csvfile)
         for name in ('campus', 'affiliation', 'pce'):
             if name not in reader.fieldnames:

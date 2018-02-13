@@ -35,7 +35,7 @@ def check_all_links():
     for link in links:
         out = check_and_format_link(link)
         if out is not None:
-            print out
+            print(out)
 
 
 def check_and_format_link(link, ignore=[200]):

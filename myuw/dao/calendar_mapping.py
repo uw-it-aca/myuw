@@ -17,14 +17,11 @@ def get_calendars_for_current_user(request):
 
 def _get_calendars(request, enrollments):
     calendars = {}
-    minor_cals = get_calendars_for_minors(enrollments['minors'])
-    calendars = dict(calendars.items() + minor_cals.items())
+    calendars.update(get_calendars_for_minors(enrollments['minors']))
     if is_grad_student(request):
-        grad_cals = get_calendars_for_gradmajors(enrollments['majors'])
-        calendars = dict(calendars.items() + grad_cals.items())
+        calendars.update(get_calendars_for_gradmajors(enrollments['majors']))
     else:
-        major_cals = get_calendars_for_majors(enrollments['majors'])
-        calendars = dict(calendars.items() + major_cals.items())
+        calendars.update(get_calendars_for_majors(enrollments['majors']))
     return calendars
 
 
@@ -68,7 +65,7 @@ def _get_calendars_by_name_and_type(major_name, major_type):
     path = os.path.join(
         os.path.dirname(__file__),
         '..', 'data', 'calendar_major_mapping.csv')
-    with open(path, 'rbU') as csvfile:
+    with open(path) as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             degree_name = row[degree_column].strip()

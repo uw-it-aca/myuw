@@ -11,7 +11,7 @@ describe('DirectoryInfoCard', function(){
                     "myuw/static/js/card/profile/directory_info.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/directory_info.html'
+                    'myuw/templates/handlebars/card/profile/directory_info.html'
                 ]
             });
 
@@ -34,7 +34,7 @@ describe('DirectoryInfoCard', function(){
                     "myuw/static/js/card/profile/directory_info.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/directory_info.html'
+                    'myuw/templates/handlebars/card/profile/directory_info.html'
                 ]
             });
 
@@ -73,7 +73,7 @@ describe('DirectoryInfoCard', function(){
                     "myuw/static/js/card/profile/directory_info.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/directory_info.html'
+                    'myuw/templates/handlebars/card/profile/directory_info.html'
                 ]
             });
 

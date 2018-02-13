@@ -4,13 +4,15 @@ with the UW Affiliation Group API resource
 """
 
 import logging
-from sets import Set, ImmutableSet
+try:
+    from sets import Set as set, ImmutableSet as frozenset
+except ImportError:
+    pass
 from django.conf import settings
 from authz_group import Group
 from uw_gws import GWS
 from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
-from myuw.dao.pws import (is_bothell_employee, is_tacoma_employee,
-                          is_seattle_employee, is_employee)
+from myuw.dao.pws import is_employee
 from myuw.dao.uwnetid import is_clinician, is_faculty
 
 
@@ -36,14 +38,14 @@ all_groups = [alumni, alumni_asso,
               bot_stud, sea_stud, tac_stud,
               undergrad, grad, cur_grad_prof,
               pce, grad_c2, undergrad_c2]
-RELEVANT_GROUPS = ImmutableSet(all_groups)
+RELEVANT_GROUPS = frozenset(all_groups)
 
 
 def _search_groups(uwnetid):
     """
     Returns a Set of the uw groups the uwnetid is an effective member of
     """
-    group_names = Set([])
+    group_names = set([])
     group_refs = gws.search_groups(member=uwnetid,
                                    stem="uw_affiliation",
                                    scope="all",
@@ -169,16 +171,9 @@ def is_staff_employee(request):
     return staff in get_groups(request)
 
 
-def is_bothell_employee(request):
-    return is_bothell_employee(request)
-
-
-def is_seattle_employee(request):
-    return is_seattle_employee(request)
-
-
-def is_tacoma_employee(request):
-    return is_tacoma_employee(request)
+def is_regular_employee(request):
+    return ((is_employee(request) or is_clinician(request)) and
+            not is_student_employee(request))
 
 
 def is_applicant(request):
@@ -188,18 +183,16 @@ def is_applicant(request):
     return applicant in get_groups(request)
 
 
-def no_affiliation(request):
-    return not is_employee(request) and\
-        not is_student(request) and\
-        not is_applicant(request) and\
-        not is_clinician(request) and\
-        not is_alumni(request)
+def no_major_affiliations(request):
+    return (not is_applicant(request) and
+            not is_regular_employee(request) and
+            not is_student(request))
 
 
 def is_in_admin_group(group_key):
     if not hasattr(settings, group_key):
-        print "You must have a group defined as your admin group."
-        print 'Configure that using %s="foo_group"' % group_key
+        print('You must have a group defined as your admin group.')
+        print('Configure that using %s="foo_group"' % group_key)
         raise Exception("Missing %s in settings" % group_key)
 
     actual_user = get_netid_of_original_user()

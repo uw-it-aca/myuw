@@ -7,8 +7,10 @@ import logging
 from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.models import Subscription
 from uw_uwnetid.subscription import get_netid_subscriptions
-from uw_uwnetid.subscription_60 import has_clinician_in_permits,\
-    has_faculty_in_permits, has_staff_in_permits
+from uw_uwnetid.subscription_60 import is_current_alumni, is_current_staff,\
+    is_former_staff, is_current_faculty, is_former_faculty,\
+    is_current_clinician, is_former_clinician, is_current_retiree,\
+    is_former_grad, is_former_undergrad, is_former_pce
 from uw_uwnetid.subscription_105 import get_uwemail_forwarding
 from myuw.dao import get_netid_of_current_user
 
@@ -19,12 +21,33 @@ uforwarding_id = Subscription.SUBS_CODE_U_FORWARDING
 twofa_id = Subscription.SUBS_CODE_2FA
 
 
+def is_past_grad(request):
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_former_grad(permits)
+
+
+def is_past_pce(request):
+    # may be grad or undergrad
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_former_pce(permits)
+
+
+def is_past_undergrad(request):
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_former_undergrad(permits)
+
+
 def is_clinician(request):
     """
     return True if is a member of the UW Med Center Workforce
     """
     permits = get_subscriptions(request).get(kerberos_id)
-    return has_clinician_in_permits(permits)
+    return is_current_clinician(permits)
+
+
+def is_past_clinician(request):
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_former_clinician(permits)
 
 
 def is_faculty(request):
@@ -32,7 +55,12 @@ def is_faculty(request):
     return True if is a current UW faculty
     """
     permits = get_subscriptions(request).get(kerberos_id)
-    return has_faculty_in_permits(permits)
+    return is_current_faculty(permits)
+
+
+def is_past_faculty(request):
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_former_faculty(permits)
 
 
 def is_staff(request):
@@ -40,7 +68,28 @@ def is_staff(request):
     return True if is a current UW staff
     """
     permits = get_subscriptions(request).get(kerberos_id)
-    return has_staff_in_permits(permits)
+    return is_current_staff(permits)
+
+
+def is_past_staff(request):
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_former_staff(permits)
+
+
+def is_alumni(request):
+    """
+    return True if is a current UW Alumni
+    """
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_current_alumni(permits)
+
+
+def is_retired_staff(request):
+    """
+    return True if is a current UW Retired Staff
+    """
+    permits = get_subscriptions(request).get(kerberos_id)
+    return is_current_retiree(permits)
 
 
 def is_2fa_permitted(request):
