@@ -760,7 +760,7 @@ class SchedulePeriod():
             try:
                 section_json['color_id'] = section.color_id
             except AttributeError:
-
+                pass
             section_json['is_teaching'] = section.is_teaching
             section_data.append(section_json)
         data = {'start_date': self.start_date,
