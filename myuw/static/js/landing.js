@@ -65,32 +65,32 @@ var Landing = {
             WelcomeCard
         ];
 
-        if(!window.user.student &&
+        if(window.user.employee &&
+           !window.user.student &&
            !window.user.instructor &&
-           !window.user.applicant) {
+           !window.user.applicant ||
+           window.user.past_employee) {
+            desktop_body_cards.push(HRPayrollCard);
+        }
 
-            if(window.user.employee ||
-               window.user.clinician ||
-               window.user.past_employee) {
-                desktop_body_cards.push(HRPayrollCard);
-            }
+        if(window.user.retiree) {
+            desktop_body_cards.push(RetireAssoCard);
+        }
 
-            if(window.user.retiree) {
-                desktop_body_cards.push(RetireAssoCard);
-            }
+        if(window.user.past_stud) {
+            desktop_body_cards.push(TranscriptsCard);
+        }
 
-            if(window.user.past_stud) {
-                desktop_body_cards.push(TranscriptsCard);
-            }
+        if (!window.user.student &&
+            !window.user.instructor &&
+            !window.user.applicant &&
+            !window.user.employee) {
+            desktop_body_cards.push(ContinuingEducationCard);
+            desktop_body_cards.push(UwnetidCard);
+        }
 
-            if (!window.user.employee) {
-                desktop_body_cards.push(ContinuingEducationCard);
-                desktop_body_cards.push(UwnetidCard);
-            }
-
-            if(window.user.alumni) {
-                desktop_body_cards.push(AlumniCard);
-            }
+        if(window.user.alumni) {
+            desktop_body_cards.push(AlumniCard);
         }
 
         var desktop_sidebar_cards = [
@@ -132,32 +132,32 @@ var Landing = {
             WelcomeCard
         ];
 
-        if(!window.user.student &&
+        if(window.user.employee &&
+           !window.user.student &&
            !window.user.instructor &&
-           !window.user.applicant) {
+           !window.user.applicant ||
+           window.user.past_employee) {
+            desktop_body_cards.push(HRPayrollCard);
+        }
 
-            if(window.user.employee ||
-               window.user.clinician ||
-               window.user.past_employee) {
-                desktop_body_cards.push(HRPayrollCard);
-            }
+        if(window.user.retiree) {
+            desktop_body_cards.push(RetireAssoCard);
+        }
 
-            if(window.user.retiree) {
-                desktop_body_cards.push(RetireAssoCard);
-            }
+        if(window.user.past_stud) {
+            desktop_body_cards.push(TranscriptsCard);
+        }
 
-            if(window.user.past_stud) {
-                desktop_body_cards.push(TranscriptsCard);
-            }
+        if (!window.user.student &&
+            !window.user.instructor &&
+            !window.user.applicant &&
+            !window.user.employee) {
+            desktop_body_cards.push(ContinuingEducationCard);
+            desktop_body_cards.push(UwnetidCard);
+        }
 
-            if (!window.user.employee) {
-                desktop_body_cards.push(ContinuingEducationCard);
-                desktop_body_cards.push(UwnetidCard);
-            }
-
-            if(window.user.alumni) {
-                desktop_body_cards.push(AlumniCard);
-            }
+        if(window.user.alumni) {
+            desktop_body_cards.push(AlumniCard);
         }
 
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
