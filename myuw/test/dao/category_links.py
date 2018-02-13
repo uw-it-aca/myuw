@@ -8,14 +8,20 @@ import re
 
 class TestCategoryLinks(TestCase):
 
+    def _test_ascii(self, s):
+        try:
+            s.decode('ascii')  # python 2
+        except AttributeError:
+            s.encode('ascii')  # python 3
+
     def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
         self.assertEquals(len(all_links), 209)
         val = URLValidator()
         for link in all_links:
             try:
-                link.url.decode('ascii')
-            except UnicodeDecodeError:
+                self._test_ascii(link.url)
+            except (UnicodeDecodeError, UnicodeEncodeError):
                 self.fail("%s url has non-ASCII text: %s" %
                           (link.title, link.url))
 
@@ -27,8 +33,8 @@ class TestCategoryLinks(TestCase):
                     self.fail("Invalid url:" + link.url)
 
             try:
-                link.title.decode('ascii')
-            except UnicodeDecodeError:
+                self._test_ascii(link.title)
+            except (UnicodeDecodeError, UnicodeEncodeError):
                 self.fail("Link title has non-ASCII text:" + link.title)
 
     def test_undergrad_category(self):

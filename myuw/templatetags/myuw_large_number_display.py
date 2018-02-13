@@ -11,7 +11,7 @@ def large_number(value):
 
     labels = ['K', 'M', 'B']
     for l in labels:
-        value /= 1000
+        value //= 1000
         if value < 1000:
             return "%s%s" % (value, l)
 

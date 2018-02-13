@@ -42,7 +42,7 @@ class TestSchedule(MyuwApiTest):
 
         response = self.get_current_schedule_res('none')
         self.assertEquals(response.status_code, 404)
-        self.assertEquals(response.content, 'Data not found')
+        self.assertEquals(response.content, b'Data not found')
 
     def test_eight_current_term(self):
 

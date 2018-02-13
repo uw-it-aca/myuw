@@ -1,0 +1,30 @@
+Affiliation: definition
+ alumni: current UW alumni and NOT
+                current student, employee, applicant
+ alum_asso: current alumni association member
+ applicant: current UW applicant
+ grad: current UW graduate student.
+ undergrad: current UW undergraduate student.
+ pce: is an UW PCE student.
+ grad_c2: takes UW PCE grad courses
+ undergrad_c2: takes UW PCE undergrad courses
+ student: current UW student (grad, undergrad, or pce).
+ employee: current uw employee NOT student employee.
+ faculty: current faculty.
+ staff_employee: current a staff
+ stud_employee: current student employee.
+ instructor: current instructor
+ fyp: first year student
+ aut_transfer: autumn transfer
+ win_transfer: winter transfer
+ hxt_viewer: husky experience viewer
+ seattle: UW Seattle student
+ bothell: UW Bothell student
+ tacoma: UW Tacoma student
+ retiree: current retired staff and NOT
+          current applicant, student, employee
+ past_employee: former employee (staff, faculty or clinician) and NOT
+                current student, applicant
+ past_stud: former grad, undergrad, or pce student and NOT
+            current employee, applicant
+ no_affi: no affiliation

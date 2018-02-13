@@ -116,7 +116,7 @@ def remove_finished(request, result_dict):
         enrollment = result_dict.get(prev_term)
         if enrollment.has_unfinished_pce_course():
             unf_pce_sections = enrollment.unf_pce_courses
-            for label in unf_pce_sections.keys():
+            for label in list(unf_pce_sections):
                 section = unf_pce_sections[label]
                 if is_ended(request, section.end_date):
                     del unf_pce_sections[label]
