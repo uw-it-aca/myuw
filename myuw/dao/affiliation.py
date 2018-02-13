@@ -4,11 +4,11 @@ This module provides affiliations of the current user
 
 import logging
 from myuw.dao.enrollment import get_main_campus
-from myuw.dao.gws import is_alumni, is_alum_asso,\
+from myuw.dao.gws import is_alumni, is_alum_asso, is_regular_employee,\
     is_student, is_grad_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_staff_employee,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
-    is_applicant, is_grad_c2, is_undergrad_c2, no_affiliation
+    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations
 from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.pws import get_employee_campus, is_employee
 from myuw.dao.term import get_current_quarter
@@ -25,18 +25,20 @@ logger = logging.getLogger(__name__)
 def get_all_affiliations(request):
     """
     return a dictionary of affiliation indicators.
-    ["alumni"]: True if the user is currently an UW alumni
-    ["alum_asso"]: alumni association member
+
+    The first class affiliations:
+    ["employee"]: True if the user is currently a uw employee.
+    ["faculty"]: True if the user is currently faculty.
+    ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
+    ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
     ["applicant"]: True if the user is currently a UW applicant
     ["pce"]: True if the user is an UW PCE student.
     ["grad_c2"]: True if the user takes UW PCE grad courses
     ["undergrad_c2"]: True if the user takes UW PCE undergrad courses
-    ["employee"]: True if the user is currently a uw employee.
-    ["stud_employee"]: True if the user is currently a student employee.
-    ["faculty"]: True if the user is currently faculty.
+
     ["seattle"]: True if the user is an UW Seattle student
                  in the current quarter.
     ["bothell"]: True if the user is an UW Bothell student
@@ -50,13 +52,22 @@ def get_all_affiliations(request):
     ["official_tacoma"]: True if the user is an UW Tacoma student
                 according to the SWS Enrollment.
     ["official_pce"]: waiting on sws to add a field in Enrollment.
-    ["retiree"]: True if the user is a retired staff
-    ["past_employee"]: True if the user is a former employee
-    ["past_stud"]: True if the user is a former student
+    ["alum_asso"]: alumni association member
+
+    The following are secondary affiliations:
+    ["alumni"]: True if the user is currently an UW alumni and NOT
+                current student, employee, applicant
+    ["retiree"]: True if the user is a retired staff  and NOT
+                current applicant, student, employee
+    ["past_employee"]: True if the user is a former employee and NOT
+                       current student, applicant
+    ["past_stud"]: True if the user is a former student and NOT
+                   current employee, applicant
     """
     if hasattr(request, 'myuw_user_affiliations'):
         return request.myuw_user_affiliations
 
+    not_major_affi = no_major_affiliations(request)
     is_fy_stud = is_fyp(request)
     is_aut_xfer = is_aut_transfer(request)
     is_win_xfer = is_win_transfer(request)
@@ -73,7 +84,7 @@ def get_all_affiliations(request):
             "undergrad_c2": is_undergrad_c2(request),
             "staff_employee": is_staff_employee(request),
             "stud_employee": is_student_employee(request),
-            "employee": is_employee(request),
+            "employee": is_regular_employee(request),
             "fyp": is_fy_stud,
             "aut_transfer": is_aut_xfer,
             "win_transfer": is_win_xfer,
@@ -85,30 +96,30 @@ def get_all_affiliations(request):
             "bothell": is_bothell_student(request),
             "tacoma": is_tacoma_student(request),
             "hxt_viewer": is_hxt_viewer,
-            "alumni": is_alumni(request),
             "alum_asso": is_alum_asso(request),
-            "retiree": is_retired_staff(request),
+            "alumni": is_alumni(request) and not_major_affi,
+            "retiree": is_retired_staff(request) and not_major_affi,
             "past_employee": (is_past_staff(request) or
                               is_past_faculty(request) or
-                              is_past_clinician(request)),
+                              is_past_clinician(request)) and not_major_affi,
             "past_stud": (is_past_grad(request) or
                           is_past_undergrad(request) or
-                          is_past_pce(request)),
-            "no_affi": no_affiliation(request),
+                          is_past_pce(request)) and not_major_affi,
+            "no_affi": not_major_affi,
             }
 
     campuses = []
-    if data["student"]:
-        # determine student campus based on current and future enrollments
-        try:
-            campuses = get_main_campus(request)
-        except IndeterminateCampusException:
-            pass
-
-    if data["employee"]:
+    if is_employee(request):
         # determine employee primary campus based on their mailstop
         try:
             campuses = [get_employee_campus(request)]
+        except IndeterminateCampusException:
+            pass
+
+    if len(campuses) == 0 and data["student"]:
+        # determine student campus based on current and future enrollments
+        try:
+            campuses = get_main_campus(request)
         except IndeterminateCampusException:
             pass
 

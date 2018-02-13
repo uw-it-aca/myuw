@@ -12,8 +12,7 @@ from django.conf import settings
 from authz_group import Group
 from uw_gws import GWS
 from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
-from myuw.dao.pws import (is_bothell_employee, is_tacoma_employee,
-                          is_seattle_employee, is_employee)
+from myuw.dao.pws import is_employee
 from myuw.dao.uwnetid import is_clinician, is_faculty
 
 
@@ -172,16 +171,9 @@ def is_staff_employee(request):
     return staff in get_groups(request)
 
 
-def is_bothell_employee(request):
-    return is_bothell_employee(request)
-
-
-def is_seattle_employee(request):
-    return is_seattle_employee(request)
-
-
-def is_tacoma_employee(request):
-    return is_tacoma_employee(request)
+def is_regular_employee(request):
+    return ((is_employee(request) or is_clinician(request)) and
+            not is_student_employee(request))
 
 
 def is_applicant(request):
@@ -191,12 +183,10 @@ def is_applicant(request):
     return applicant in get_groups(request)
 
 
-def no_affiliation(request):
-    return not is_employee(request) and\
-        not is_student(request) and\
-        not is_applicant(request) and\
-        not is_clinician(request) and\
-        not is_alumni(request)
+def no_major_affiliations(request):
+    return (not is_applicant(request) and
+            not is_regular_employee(request) and
+            not is_student(request))
 
 
 def is_in_admin_group(group_key):
