@@ -54,7 +54,9 @@ def get_all_affiliations(request):
     ["official_pce"]: waiting on sws to add a field in Enrollment.
     ["alum_asso"]: alumni association member
 
-    The following are secondary affiliations:
+    ["no_1st_class_affi"]: not applicant, employee, student, instructor
+
+    The following are secondary affiliations (without 1st_class_aff):
     ["alumni"]: True if the user is currently an UW alumni and NOT
                 current student, employee, applicant
     ["retiree"]: True if the user is a retired staff  and NOT
@@ -105,7 +107,7 @@ def get_all_affiliations(request):
             "past_stud": (is_past_grad(request) or
                           is_past_undergrad(request) or
                           is_past_pce(request)) and not_major_affi,
-            "no_affi": not_major_affi,
+            "no_1st_class_affi": not_major_affi,
             }
 
     campuses = []
