@@ -4,8 +4,8 @@ from myuw.dao.gws import is_alumni, is_alum_asso, is_seattle_student,\
     is_bothell_student, is_tacoma_student, is_current_graduate_student,\
     is_grad_student, is_undergrad_student, is_student,\
     is_pce_student, is_grad_c2, is_undergrad_c2,\
-    is_student_employee, is_staff_employee,\
-    is_applicant, no_affiliation, get_groups, is_in_admin_group
+    is_student_employee, is_staff_employee, is_regular_employee,\
+    is_applicant, no_major_affiliations, get_groups, is_in_admin_group
 from myuw.test import fdao_gws_override, get_request_with_user
 
 GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
@@ -44,13 +44,22 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_student_employee(req))
         self.assertTrue(is_tacoma_student(req))
         self.assertTrue(is_undergrad_student(req))
+        self.assertFalse(is_regular_employee(req))
+
+        req = get_request_with_user('staff')
+        self.assertTrue(is_regular_employee(req))
+        self.assertTrue(is_staff_employee(req))
+
+        req = get_request_with_user('jalum')
+        self.assertFalse(is_regular_employee(req))
+        self.assertTrue(is_alumni(req))
 
         req = get_request_with_user('nobody')
-        self.assertTrue(no_affiliation(req))
+        self.assertTrue(no_major_affiliations(req))
 
         req = get_request_with_user('no_entity')
         self.assertRaises(DataFailureException,
-                          no_affiliation, req)
+                          no_major_affiliations, req)
 
     def test_is_pce(self):
         req = get_request_with_user('jpce')
