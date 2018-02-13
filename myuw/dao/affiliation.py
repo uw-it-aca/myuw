@@ -25,19 +25,20 @@ logger = logging.getLogger(__name__)
 def get_all_affiliations(request):
     """
     return a dictionary of affiliation indicators.
-    ["alumni"]: True if the user is currently an UW alumni and NOT
-                current student, employee, applicant
-    ["alum_asso"]: alumni association member
+
+    The first class affiliations:
+    ["employee"]: True if the user is currently a uw employee.
+    ["faculty"]: True if the user is currently faculty.
+    ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
+    ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
     ["applicant"]: True if the user is currently a UW applicant
     ["pce"]: True if the user is an UW PCE student.
     ["grad_c2"]: True if the user takes UW PCE grad courses
     ["undergrad_c2"]: True if the user takes UW PCE undergrad courses
-    ["employee"]: True if the user is currently a uw employee.
-    ["stud_employee"]: True if the user is currently a student employee.
-    ["faculty"]: True if the user is currently faculty.
+
     ["seattle"]: True if the user is an UW Seattle student
                  in the current quarter.
     ["bothell"]: True if the user is an UW Bothell student
@@ -51,6 +52,11 @@ def get_all_affiliations(request):
     ["official_tacoma"]: True if the user is an UW Tacoma student
                 according to the SWS Enrollment.
     ["official_pce"]: waiting on sws to add a field in Enrollment.
+    ["alum_asso"]: alumni association member
+
+    The following are secondary affiliations:
+    ["alumni"]: True if the user is currently an UW alumni and NOT
+                current student, employee, applicant
     ["retiree"]: True if the user is a retired staff  and NOT
                 current applicant, student, employee
     ["past_employee"]: True if the user is a former employee and NOT
