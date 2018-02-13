@@ -36,6 +36,22 @@ def _get_majors(enrollments):
     return _process_fields(enrollments, "majors")
 
 
+def get_minors(regid):
+    """
+    Returns a dictionary with a dict of majors by terms in the 'majors'
+    attribute, and a 'current' and 'rollup' major field
+    :param regid
+    :return: dict
+    """
+    enrollments = enrollment_search_by_regid(regid)
+
+    return _get_majors(enrollments)
+
+
+def _get_minors(enrollments):
+    return _process_fields(enrollments, "minors")
+
+
 def get_class_standings(regid):
     """
     Returns a dictionary with a dict of majors by terms in the majors

@@ -1,8 +1,8 @@
 from django.test import TestCase
 from myuw.dao.calendar_mapping import \
     get_calendars_for_minors, get_calendars_for_majors, \
-    get_calendars_for_gradmajors, _get_enrollments, \
-    _get_calendars, _get_calendar_ids_from_text
+    get_calendars_for_gradmajors, _get_calendars,\
+    _get_calendar_ids_from_text
 from myuw.test import get_request_with_user, get_request_with_date
 
 
@@ -63,19 +63,3 @@ class TestCalendarMapping(TestCase):
         ids = _get_calendar_ids_from_text(text)
         self.assertEqual(len(ids), 1)
         self.assertEqual(ids[0], "sea_art")
-
-    def test_get_cur_future_enrollments(self):
-        req = get_request_with_user('javerage',
-                                    get_request_with_date("2013-04-10"))
-        enrollments = _get_enrollments(req)
-        majors = sorted(enrollments['majors'])
-        minors = sorted(enrollments['minors'])
-
-        self.assertEqual(len(majors), 3)
-        self.assertEqual(majors[0], 'ACMS (SOC & BEH SCI)')
-        self.assertEqual(majors[1], 'COMPUTER SCIENCE')
-        self.assertEqual(majors[2], 'ENGLISH')
-
-        self.assertEqual(len(minors), 2)
-        self.assertEqual(minors[0], 'ASL')
-        self.assertEqual(minors[1], 'MATH')

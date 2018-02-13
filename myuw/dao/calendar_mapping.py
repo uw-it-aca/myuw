@@ -1,7 +1,7 @@
 import csv
 import os
 from myuw.dao.gws import is_grad_student
-from myuw.dao.student_profile import get_cur_future_enrollments
+from myuw.dao.student import get_minors, get_majors
 
 
 DEGREE_TYPE_COLUMN_MAP = {"major": 2,
@@ -12,38 +12,32 @@ CALENDAR_URL_COL = 6
 
 
 def get_calendars_for_current_user(request):
-    return _get_calendars(request, _get_enrollments(request))
+
+    majors = get_majors(request.user.regid)['rollup']
+    majors = [major.major_name for major in majors]
+
+    minors = get_minors(request.user.regid)['rollup']
+    minors = [minor.short_name for minor in minors]
+
+    enrollments = {
+        'majors': majors,
+        'minors': minors
+    }
+
+    return _get_calendars(request, enrollments)
 
 
 def _get_calendars(request, enrollments):
+
     calendars = {}
+
     calendars.update(get_calendars_for_minors(enrollments['minors']))
+
     if is_grad_student(request):
         calendars.update(get_calendars_for_gradmajors(enrollments['majors']))
     else:
         calendars.update(get_calendars_for_majors(enrollments['majors']))
     return calendars
-
-
-def _get_enrollments(request):
-    majors = []
-    minors = []
-    try:
-        terms, enrollments = get_cur_future_enrollments(request)
-        for enrollment in enrollments.values():
-            if len(enrollment.majors) > 0:
-                for major in enrollment.majors:
-                    if major.major_name and major.major_name not in majors:
-                        majors.append(major.major_name)
-
-            if len(enrollment.minors) > 0:
-                for minor in enrollment.minors:
-                    if minor.short_name and minor.short_name not in minors:
-                        minors.append(minor.short_name)
-    except Exception:
-        pass
-    return {'majors': majors,
-            'minors': minors}
 
 
 def get_calendars_for_majors(majors):
