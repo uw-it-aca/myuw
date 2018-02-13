@@ -10,20 +10,8 @@
       UW Groups search results: 
       (effective)
 
-    <ul class="groupreferences">
-
-    <li class="groupreference">
-      <span class="regid">A8FEDF2F303145F787CF4F30E6FF9632</span>
-      <span class="title">UW members</span>
-      <span class="description">UW members</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_member">uw_member</a></li>
+      <ul class="groupreferences">
       </ul>
-    </li>
-
-
-
-   </ul>
-  </div>
+    </div>
 </body>
 </html>

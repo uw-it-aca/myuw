@@ -23,7 +23,7 @@ setup(
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
-        'Django==1.11.10',
+        'Django==1.10.5',
         'ordereddict',
         'simplejson',
         'django-compressor==2.2',
@@ -46,7 +46,7 @@ setup(
         'UW-RestClients-IASystem>=0.2.2,<1.0',
         'UW-RestClients-Canvas>=0.7.0,<1.0',
         'UW-RestClients-UPass>=0.2,<1.0',
-        'UW-RestClients-UWNetID==0.3.4',
+        'UW-RestClients-UWNetID>=0.4,<1.0',
         'UW-RestClients-Grad<1.0',
         'UW-RestClients-Bookstore<1.0',
         'UW-RestClients-Mailman<1.0',

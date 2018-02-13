@@ -1,0 +1,169 @@
+{
+  "uwNetID": "retirestaff",
+  "subscriptionList": [
+    {
+      "subscriptionCode": 60,
+      "subscriptionName": "A Kerberos Principal",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate"
+      ],
+      "dataField": "KPW",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 5,
+          "categoryName": "Faculty",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 19,
+          "categoryName": "non-Techfee Student",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 34,
+          "categoryName": "Retired Staff",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 64,
+      "subscriptionName": "Duo Two-Factor Authentication",
+      "permitted": true,
+      "statusCode": 24,
+      "statusName": "Inactive",
+      "actions": [
+        "Show",
+        "Activate"
+      ],
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 34,
+          "categoryName": "Retired Staff",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    },
+    {
+      "subscriptionCode": 105,
+      "subscriptionName": "U Forwarding",
+      "permitted": true,
+      "statusCode": 20,
+      "statusName": "Active",
+      "actions": [
+        "Show",
+        "Deactivate",
+        "Activate"
+      ],
+      "dataField": "FWD",
+      "dataValue": "retirestaff@gmail.com",
+      "permits": [
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 1,
+          "categoryName": "Undergraduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 2,
+          "categoryName": "Graduate",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 5,
+          "categoryName": "Faculty",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 19,
+          "categoryName": "non-Techfee Student",
+          "statusCode": 3,
+          "statusName": "former"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 28,
+          "categoryName": "Development Affiliate",
+          "statusCode": 1,
+          "statusName": "current"
+        },
+        {
+          "type": "permit",
+          "mode": "implicit",
+          "categoryCode": 34,
+          "categoryName": "Retired Staff",
+          "statusCode": 1,
+          "statusName": "current"
+        }
+      ]
+    }
+  ],
+  "timeStamp": "Fri, 02 Feb 2018 15:41:15 -0800"
+}

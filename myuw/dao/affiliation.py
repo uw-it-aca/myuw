@@ -4,15 +4,18 @@ This module provides affiliations of the current user
 
 import logging
 from myuw.dao.enrollment import get_main_campus
-from myuw.dao.gws import is_grad_student, is_student, is_undergrad_student,\
+from myuw.dao.gws import is_alumni, is_alum_asso,\
+    is_student, is_grad_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_staff_employee,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
-    is_applicant, is_grad_c2, is_undergrad_c2, is_alumni, no_affiliation
+    is_applicant, is_grad_c2, is_undergrad_c2, no_affiliation
 from myuw.dao.instructor_schedule import is_instructor
 from myuw.dao.pws import get_employee_campus, is_employee
 from myuw.dao.term import get_current_quarter
 from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
-from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, is_faculty
+from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, is_faculty,\
+    is_past_grad, is_past_undergrad, is_past_pce, is_retired_staff,\
+    is_past_clinician, is_past_faculty, is_past_staff
 from myuw.dao.exceptions import IndeterminateCampusException
 
 
@@ -23,6 +26,7 @@ def get_all_affiliations(request):
     """
     return a dictionary of affiliation indicators.
     ["alumni"]: True if the user is currently an UW alumni
+    ["alum_asso"]: alumni association member
     ["student"]: True if the user is currently an UW student.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
@@ -46,6 +50,9 @@ def get_all_affiliations(request):
     ["official_tacoma"]: True if the user is an UW Tacoma student
                 according to the SWS Enrollment.
     ["official_pce"]: waiting on sws to add a field in Enrollment.
+    ["retiree"]: True if the user is a retired staff
+    ["past_employee"]: True if the user is a former employee
+    ["past_stud"]: True if the user is a former student
     """
     if hasattr(request, 'myuw_user_affiliations'):
         return request.myuw_user_affiliations
@@ -79,6 +86,14 @@ def get_all_affiliations(request):
             "tacoma": is_tacoma_student(request),
             "hxt_viewer": is_hxt_viewer,
             "alumni": is_alumni(request),
+            "alum_asso": is_alum_asso(request),
+            "retiree": is_retired_staff(request),
+            "past_employee": (is_past_staff(request) or
+                              is_past_faculty(request) or
+                              is_past_clinician(request)),
+            "past_stud": (is_past_grad(request) or
+                          is_past_undergrad(request) or
+                          is_past_pce(request)),
             "no_affi": no_affiliation(request),
             }
 

@@ -16,8 +16,8 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 2,
-          "categoryName": "Graduate",
+          "categoryCode": 18,
+          "categoryName": "Techfee Student",
           "statusCode": 3,
           "statusName": "former"
         },
@@ -101,8 +101,8 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 2,
-          "categoryName": "Graduate",
+          "categoryCode": 18,
+          "categoryName": "Techfee Student",
           "statusCode": 3,
           "statusName": "former"
         },

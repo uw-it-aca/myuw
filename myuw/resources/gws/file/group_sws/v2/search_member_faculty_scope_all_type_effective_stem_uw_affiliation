@@ -12,36 +12,25 @@
       (effective)
 
       <ul class="groupreferences">
+            <li class="groupreference">
+                <span class="regid">2364284941D949959DE70C672B616084</span>
+                <span class="title">UW Alumni</span>
+                <span class="description">UW Alumni</span>
+                <ul>
+                    <li><a class="name" href="/group_sws/v2/group/uw_affiliation_alumni">uw_affiliation_alumni</a></li>
+                </ul>
+            </li>
 
-    <li class="groupreference">
-      <span class="regid">190FB0821059A78FBC3D2B70E6743C34</span>
-      <span class="title">UW Faculty</span>
-      <span class="description">UW NetIDs with eduperson affiliation of 'faculty'</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_faculty">uw_faculty</a></li>
+            <li class="groupreference">
+                <span class="regid">2364284941D949959DE70C672B616084</span>
+                <span class="title">UW Alumni Association Members</span>
+                <span class="description">UW Alumni Association Members</span>
+                <ul>
+                    <li><a class="name"
+                     href="/group_sws/v2/group/uw_affiliation_alumni-association-members">uw_affiliation_alumni-association-members</a></li>
+                </ul>
+            </li>
       </ul>
-    </li>
-
-
-    <li class="groupreference">
-      <span class="regid">2364284941D949959DE70C672B616084</span>
-      <span class="title">UW Employees</span>
-      <span class="description">UW NetIDs with eduperson affiliation of 'employee'</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_employee">uw_employee</a></li>
-      </ul>
-    </li>
-
-    <li class="groupreference">
-      <span class="regid">A8FEDF2F303145F787CF4F30E6FF9632</span>
-      <span class="title">UW members</span>
-      <span class="description">UW members</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_member">uw_member</a></li>
-      </ul>
-    </li>
-
-   </ul>
   </div>
 </body>
 </html>
