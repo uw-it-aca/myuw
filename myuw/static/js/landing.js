@@ -83,9 +83,10 @@ var Landing = {
                 desktop_body_cards.push(TranscriptsCard);
             }
 
-            desktop_body_cards.push(ContinuingEducationCard);
-
-            desktop_body_cards.push(UwnetidCard);
+            if (!window.user.employee) {
+                desktop_body_cards.push(ContinuingEducationCard);
+                desktop_body_cards.push(UwnetidCard);
+            }
 
             if(window.user.alumni) {
                 desktop_body_cards.push(AlumniCard);
@@ -149,9 +150,10 @@ var Landing = {
                 desktop_body_cards.push(TranscriptsCard);
             }
 
-            desktop_body_cards.push(ContinuingEducationCard);
-
-            desktop_body_cards.push(UwnetidCard);
+            if (!window.user.employee) {
+                desktop_body_cards.push(ContinuingEducationCard);
+                desktop_body_cards.push(UwnetidCard);
+            }
 
             if(window.user.alumni) {
                 desktop_body_cards.push(AlumniCard);
