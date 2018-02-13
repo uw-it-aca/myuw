@@ -83,6 +83,42 @@ class TestStudentDAO(TestCase):
         self.assertIn("majors", student_status)
         self.assertIn("class_level", student_status)
 
+    def test_get_minors(self):
+        minors = get_minors(test_regid)
+
+        self.assertNotIn('current', minors)
+
+        self.assertEquals(minors['rollup'][0].full_name,
+                          "American Sign Language")
+
+        minors = get_minors(javerage_regid)
+
+        self.assertIn("minors", minors)
+        self.assertIn("current", minors)
+        self.assertIn("rollup", minors)
+
+        self.assertEquals(minors['current'][0].full_name,
+                          "American Sign Language")
+
+        self.assertEquals(minors['rollup'][0].full_name,
+                          "American Sign Language")
+
+        term_minors = minors['minors']
+
+        self.assertEquals(term_minors[spring_2013][0].full_name,
+                          "American Sign Language")
+
+        self.assertEquals(term_minors[autumn_2013][0].full_name,
+                          "American Sign Language")
+
+        self.assertEquals(term_minors[winter_2014][0].full_name,
+                          "Mathematics")
+
+        minors = get_minors(testalicious_regid)
+
+        self.assertEquals(minors['rollup'][0].full_name,
+                          "American Sign Language")
+
     def test_get_rollup_and_future(self):
 
         majors = get_majors(javerage_regid)

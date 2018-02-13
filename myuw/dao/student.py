@@ -49,7 +49,7 @@ def get_minors(regid):
     """
     enrollments = enrollment_search_by_regid(regid)
 
-    return _get_majors(enrollments)
+    return _get_minors(enrollments)
 
 
 def get_rollup_and_future_minors(minors):
@@ -116,11 +116,14 @@ def _get_rollup_and_future(obj, rollup):
     objects = []
     current_term = get_current_term()
 
-    for term, objct in obj.values():
-        if term > current_term and objct not in objects:
-            objects.append(objct)
+    for term in obj.keys():
+        list_value = obj[term]
+        for item in list_value:
+            if term > current_term and item not in objects:
+                objects.append(item)
 
-    if rollup not in objects:
-        objects.append(rollup)
+    for item in rollup:
+        if item not in objects:
+            objects.append(item)
 
     return objects
