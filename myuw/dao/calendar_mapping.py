@@ -2,7 +2,7 @@ import csv
 import os
 
 from restclients_core.exceptions import DataFailureException
-
+from uw_sws.term import get_current_term
 from myuw.dao.gws import is_grad_student
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.student import get_minors, get_majors
@@ -18,11 +18,14 @@ CALENDAR_URL_COL = 6
 def get_calendars_for_current_user(request):
 
     try:
+        current_term = get_current_term()
+
         majors = get_majors(get_regid_of_current_user(request))['rollup']
         majors = [major.major_name for major in majors]
 
         minors = get_minors(get_regid_of_current_user(request))['rollup']
         minors = [minor.short_name for minor in minors]
+
     except DataFailureException:
         majors = []
         minors = []

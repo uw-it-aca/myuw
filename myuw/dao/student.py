@@ -32,6 +32,10 @@ def get_majors(regid):
     return _get_majors(enrollments)
 
 
+def get_rollup_and_future_majors(majors):
+    return _get_rollup_and_future(majors['majors'], majors['rollup'])
+
+
 def _get_majors(enrollments):
     return _process_fields(enrollments, "majors")
 
@@ -46,6 +50,10 @@ def get_minors(regid):
     enrollments = enrollment_search_by_regid(regid)
 
     return _get_majors(enrollments)
+
+
+def get_rollup_and_future_minors(minors):
+    return _get_rollup_and_future(minors['minors'], minors['rollup'])
 
 
 def _get_minors(enrollments):
@@ -102,3 +110,17 @@ def _process_fields(enrollments, attribute):
         obj['rollup'] = obj['current']
 
     return obj
+
+
+def _get_rollup_and_future(obj, rollup):
+    objects = []
+    current_term = get_current_term()
+
+    for term, objct in obj.values():
+        if term > current_term and objct not in objects:
+            objects.append(objct)
+
+    if rollup not in objects:
+        objects.append(rollup)
+
+    return objects
