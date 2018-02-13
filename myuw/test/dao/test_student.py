@@ -1,7 +1,9 @@
 from unittest2 import TestCase
 from uw_sws.models import Term
 
-from myuw.dao.student import get_class_standings, get_majors, get_student_status
+from myuw.dao.student import get_class_standings, get_majors, \
+    get_student_status, get_rollup_and_future_majors, get_minors, \
+    get_rollup_and_future_minors
 
 javerage_regid = '9136CCB8F66711D5BE060004AC494FFE'
 test_regid = '9136CCB8F66711D5BE060024ACA9CFDE'
@@ -80,3 +82,24 @@ class TestStudentDAO(TestCase):
 
         self.assertIn("majors", student_status)
         self.assertIn("class_level", student_status)
+
+    def test_get_rollup_and_future(self):
+
+        majors = get_majors(javerage_regid)
+
+        future_rollup_majors = get_rollup_and_future_majors(majors)
+
+        intended_majors = [u'ENGLISH', u'ACMS (SOC & BEH SCI)',
+                           u'COMPUTER SCIENCE']
+
+        intended_minors = [u'MATH', u'ASL']
+
+        minors = get_minors(javerage_regid)
+
+        future_rollup_minors = get_rollup_and_future_minors(minors)
+
+        for major in future_rollup_majors:
+            self.assertIn(major.major_name, intended_majors)
+
+        for minor in future_rollup_minors:
+            self.assertIn(minor.short_name, intended_minors)
