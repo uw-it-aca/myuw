@@ -1,6 +1,5 @@
 from unittest2 import TestCase
 from uw_sws.models import Term
-
 from myuw.dao.student import get_class_standings, get_majors, \
     get_student_status, get_rollup_and_future_majors, get_minors, \
     get_rollup_and_future_minors

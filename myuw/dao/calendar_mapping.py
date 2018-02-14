@@ -18,7 +18,6 @@ CALENDAR_URL_COL = 6
 def get_calendars_for_current_user(request):
 
     try:
-        current_term = get_current_term()
 
         majors = get_majors(get_regid_of_current_user(request))['rollup']
         majors = [major.major_name for major in majors]
