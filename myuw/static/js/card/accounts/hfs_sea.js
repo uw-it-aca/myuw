@@ -18,20 +18,15 @@ var HfsSeaCard = {
         var hfs_data = WSData.hfs_data();
         var source = $("#sea_hfs_card").html();
         var template = Handlebars.compile(source);
-        var template_data;
 
-        if(! (window.user.undergrad || window.user.grad)){
-            remove_card(HfsSeaCard.dom_target);
-        } else {
-            if (!hfs_data.resident_dining) {
-                hfs_data.resident_dining = {
-                    "balance": 0.00
-                };
-            }
-
-            HfsSeaCard.dom_target.html(template(hfs_data));
-            LogUtils.cardLoaded(HfsSeaCard.name, HfsSeaCard.dom_target);
+        if (!hfs_data.resident_dining) {
+            hfs_data.resident_dining = {
+                "balance": 0.00
+            };
         }
+
+        HfsSeaCard.dom_target.html(template(hfs_data));
+        LogUtils.cardLoaded(HfsSeaCard.name, HfsSeaCard.dom_target);
 
     },
 
