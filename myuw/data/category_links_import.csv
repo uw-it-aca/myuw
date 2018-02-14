@@ -7,7 +7,7 @@ Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,yes
 Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,yes
 Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,yes
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
-Academics,Registration,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/nsc/,Self-Service Enrollment Verification,,,,,,,no
+Academics,Registration,all,https://registrar.washington.edu/enrollment-and-degree-verification/,Self-Service Enrollment Verification,,,,,,,no
 Academics,Registration,pce,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no
 Academics,Advising & Tutoring,all,,,http://careers.washington.edu/,Career Center,http://www.bothell.washington.edu/careers,Career Services,http://www.tacoma.uw.edu/career-development/career-development-education,Career Development and Education,no
 Academics,Advising & Tutoring,ugrad,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),,,http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
@@ -82,6 +82,7 @@ Employment,,all,https://prp.admin.uw.edu/legacyess,Legacy ESS,,,,,,,yes
 Employment,,all,https://careers.uw.edu/jobs/,Career and Internship Center,,,,,,,yes
 Employment,,all,http://www.lib.washington.edu/about/employment/students,Student Employment in the Libraries,,,,,,,no
 Employment,,all,http://www.huskyjobs.washington.edu/students,Husky Jobs,,,,,,,no
+PageAcademics,Registration,all,https://registrar.washington.edu/enrollment-and-degree-verification/,Self-Service Enrollment Verification,,,,,,,no
 PageAcademics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
 PageAcademics,Registration,pce,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no
 PageAcademics,Registration,all,,,http://www.washington.edu/students/crscat/,Course Catalog,http://www.washington.edu/students/crscatb/,Course Catalog,http://www.washington.edu/students/crscatt/,Course Catalog,no
