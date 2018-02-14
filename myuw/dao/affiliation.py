@@ -111,6 +111,7 @@ def get_all_affiliations(request):
             }
 
     campuses = []
+
     if is_employee(request):
         # determine employee primary campus based on their mailstop
         try:
