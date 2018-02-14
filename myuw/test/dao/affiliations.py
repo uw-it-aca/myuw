@@ -56,6 +56,7 @@ class TestAffilliations(TestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations["alumni"])
         self.assertTrue(affiliations["past_stud"])
+        self.assertTrue(affiliations["no_1st_class_affi"])
 
     def test_is_retiree(self):
         now_request = get_request_with_user('retirestaff')
@@ -63,6 +64,7 @@ class TestAffilliations(TestCase):
         self.assertTrue(affiliations["retiree"])
         self.assertTrue(affiliations["past_employee"])
         self.assertTrue(affiliations["past_stud"])
+        self.assertTrue(affiliations["no_1st_class_affi"])
 
     def test_is_grad_stud_employee(self):
         now_request = get_request_with_user('billseata')

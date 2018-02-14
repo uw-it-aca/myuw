@@ -81,10 +81,7 @@ var Landing = {
             desktop_body_cards.push(TranscriptsCard);
         }
 
-        if (!window.user.student &&
-            !window.user.instructor &&
-            !window.user.applicant &&
-            !window.user.employee) {
+        if (window.user.no_1st_class_affi) {
             desktop_body_cards.push(ContinuingEducationCard);
             desktop_body_cards.push(UwnetidCard);
         }
@@ -148,10 +145,7 @@ var Landing = {
             desktop_body_cards.push(TranscriptsCard);
         }
 
-        if (!window.user.student &&
-            !window.user.instructor &&
-            !window.user.applicant &&
-            !window.user.employee) {
+        if (window.user.no_1st_class_affi) {
             desktop_body_cards.push(ContinuingEducationCard);
             desktop_body_cards.push(UwnetidCard);
         }
