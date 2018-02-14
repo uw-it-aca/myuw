@@ -20,8 +20,7 @@ var HfsSeaCard = {
         var template = Handlebars.compile(source);
         var template_data;
 
-        if(! (window.user.seattle && window.user.undergrad ||
-                window.user.grad)){
+        if(! (window.user.undergrad || window.user.grad)){
             remove_card(HfsSeaCard.dom_target);
         } else {
             if (!hfs_data.resident_dining) {
