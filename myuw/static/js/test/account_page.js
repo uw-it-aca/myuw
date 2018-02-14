@@ -66,7 +66,8 @@ describe("AccountsPage", function() {
                 UPassCard,
                 UwnetidCard
             ];
-            window.user.student = true;
+            window.user.student = true
+            window.user.undergrad = true;
             window.user.seattle = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, student_order)
