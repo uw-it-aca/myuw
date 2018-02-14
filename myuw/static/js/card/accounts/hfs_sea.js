@@ -23,16 +23,16 @@ var HfsSeaCard = {
         if(! (window.user.seattle && window.user.undergrad ||
                 window.user.grad)){
             remove_card(HfsSeaCard.dom_target);
-        }
+        } else {
+            if (!hfs_data.resident_dining) {
+                hfs_data.resident_dining = {
+                    "balance": 0.00
+                };
+            }
 
-        if (!hfs_data.resident_dining) {
-            hfs_data.resident_dining = {
-                "balance": 0.00
-            };
+            HfsSeaCard.dom_target.html(template(hfs_data));
+            LogUtils.cardLoaded(HfsSeaCard.name, HfsSeaCard.dom_target);
         }
-
-        HfsSeaCard.dom_target.html(template(hfs_data));
-        LogUtils.cardLoaded(HfsSeaCard.name, HfsSeaCard.dom_target);
 
     },
 
