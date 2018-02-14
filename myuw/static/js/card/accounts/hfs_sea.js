@@ -19,12 +19,6 @@ var HfsSeaCard = {
         var source = $("#sea_hfs_card").html();
         var template = Handlebars.compile(source);
 
-        if (!hfs_data.resident_dining) {
-            hfs_data.resident_dining = {
-                "balance": 0.00
-            };
-        }
-
         HfsSeaCard.dom_target.html(template(hfs_data));
         LogUtils.cardLoaded(HfsSeaCard.name, HfsSeaCard.dom_target);
 
