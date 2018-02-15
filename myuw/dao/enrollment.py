@@ -5,6 +5,7 @@ the SWS Enrollment resource.
 
 import logging
 from uw_sws.enrollment import enrollment_search_by_regid
+from myuw.dao import is_using_file_dao
 from myuw.dao.term import (get_current_quarter,
                            get_current_and_next_quarters,
                            get_previous_number_quarters,
