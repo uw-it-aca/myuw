@@ -1,5 +1,8 @@
 """
-This module will provide a
+This module will provide a method to retrieve all user majors, class standings
+and minors along with current and rollup variables to facilitate
+determinations about user context in the case that a user is not
+enrolled for the current quarter
 """
 from uw_sws.enrollment import enrollment_search_by_regid
 from uw_sws.term import get_current_term
