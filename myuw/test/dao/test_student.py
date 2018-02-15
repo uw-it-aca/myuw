@@ -1,12 +1,18 @@
 from unittest2 import TestCase
+from uw_sws.enrollment import enrollment_search_by_regid
 from uw_sws.models import Term
+
+from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.student import get_class_standings, get_majors, \
     get_student_status, get_rollup_and_future_majors, get_minors, \
-    get_rollup_and_future_minors
+    get_rollup_and_future_minors, _get_minors, _get_majors, _get_class_standings
+from myuw.test import get_request_with_date, get_request_with_user
 
 javerage_regid = '9136CCB8F66711D5BE060004AC494FFE'
 test_regid = '9136CCB8F66711D5BE060024ACA9CFDE'
 testalicious_regid = '9136CCB8F66711D5BE060024ACA9CFAE'
+
+spring_req = get_request_with_date("2013-10-10")
 
 winter_2013 = Term()
 winter_2013.year = 2013
@@ -31,15 +37,29 @@ winter_2014.quarter = Term.WINTER
 
 class TestStudentDAO(TestCase):
 
+    def get_majors(self, regid):
+        enrollments = enrollment_search_by_regid(regid)
+        return _get_majors(enrollments)
+
+    def get_minors(self, regid):
+        enrollments = enrollment_search_by_regid(regid)
+        return _get_minors(enrollments)
+
+    def get_class_standing(self, regid):
+        enrollments = enrollment_search_by_regid(regid)
+        return _get_class_standings(enrollments)
+
     def test_get_majors(self):
-        majors = get_majors(test_regid)
+        majors = self.get_majors(test_regid)
 
         self.assertNotIn('current', majors)
 
         self.assertEquals(majors['rollup'][0].full_name,
                           "Test Major")
 
-        majors = get_majors(javerage_regid)
+        javerage_req = get_request_with_user('javerage', spring_req)
+
+        majors = get_majors(javerage_req)
 
         self.assertIn("majors", majors)
         self.assertIn("current", majors)
@@ -62,35 +82,38 @@ class TestStudentDAO(TestCase):
         self.assertEquals(term_majors[winter_2014][0].full_name,
                           "English")
 
-        majors = get_majors(testalicious_regid)
+        majors = self.get_majors(testalicious_regid)
 
         self.assertEquals(majors['rollup'][0].full_name,
                           "App & Comp Math Sci (Social & Behav Sci)")
 
     def test_get_class_standing(self):
+        javerage_req = get_request_with_user('javerage', spring_req)
 
-        class_standings = get_class_standings(javerage_regid)
+        class_standings = get_class_standings(javerage_req)
 
         self.assertIn("class_level", class_standings)
         self.assertIn("current", class_standings)
         self.assertIn("rollup", class_standings)
 
     def test_get_student_status(self):
+        javerage_req = get_request_with_user('javerage', spring_req)
 
-        student_status = get_student_status(javerage_regid)
+        student_status = get_student_status(javerage_req)
 
         self.assertIn("majors", student_status)
         self.assertIn("class_level", student_status)
 
     def test_get_minors(self):
-        minors = get_minors(test_regid)
+        minors = self.get_minors(test_regid)
 
         self.assertNotIn('current', minors)
 
         self.assertEquals(minors['rollup'][0].full_name,
                           "American Sign Language")
 
-        minors = get_minors(javerage_regid)
+        javerage_req = get_request_with_user('javerage', spring_req)
+        minors = get_minors(javerage_req)
 
         self.assertIn("minors", minors)
         self.assertIn("current", minors)
@@ -113,14 +136,15 @@ class TestStudentDAO(TestCase):
         self.assertEquals(term_minors[winter_2014][0].full_name,
                           "Mathematics")
 
-        minors = get_minors(testalicious_regid)
+        minors = self.get_minors(testalicious_regid)
 
         self.assertEquals(minors['rollup'][0].full_name,
                           "American Sign Language")
 
     def test_get_rollup_and_future(self):
+        javerage_req = get_request_with_user('javerage', spring_req)
 
-        majors = get_majors(javerage_regid)
+        majors = get_majors(javerage_req)
 
         future_rollup_majors = get_rollup_and_future_majors(majors)
 
@@ -129,7 +153,7 @@ class TestStudentDAO(TestCase):
 
         intended_minors = [u'MATH', u'ASL']
 
-        minors = get_minors(javerage_regid)
+        minors = get_minors(javerage_req)
 
         future_rollup_minors = get_rollup_and_future_minors(minors)
 

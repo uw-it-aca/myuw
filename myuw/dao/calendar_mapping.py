@@ -19,10 +19,10 @@ def get_calendars_for_current_user(request):
 
     try:
 
-        majors = get_majors(get_regid_of_current_user(request))['rollup']
+        majors = get_majors(request)['rollup']
         majors = [major.major_name for major in majors]
 
-        minors = get_minors(get_regid_of_current_user(request))['rollup']
+        minors = get_minors(request)['rollup']
         minors = [minor.short_name for minor in minors]
 
     except DataFailureException:

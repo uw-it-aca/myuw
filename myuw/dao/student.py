@@ -4,18 +4,18 @@ and minors along with current and rollup variables to facilitate
 determinations about user context in the case that a user is not
 enrolled for the current quarter
 """
-from myuw.dao.enrollment import enrollment_search_by_regid
+from myuw.dao.enrollment import enrollment_search
 from uw_sws.term import get_current_term
 
 
-def get_student_status(regid):
+def get_student_status(request):
     """
     This will return a dictionary with the student status over time alongside
     various rollup variables
-    :param regid:
+    :param request:
     :return: dict
     """
-    enrollments = enrollment_search_by_regid(regid)
+    enrollments = enrollment_search(request)
 
     return {
         'majors': _get_majors(enrollments),
@@ -23,14 +23,14 @@ def get_student_status(regid):
     }
 
 
-def get_majors(regid):
+def get_majors(request):
     """
     Returns a dictionary with a dict of majors by terms in the 'majors'
     attribute, and a 'current' and 'rollup' major field
-    :param regid
+    :param request
     :return: dict
     """
-    enrollments = enrollment_search_by_regid(regid)
+    enrollments = enrollment_search(request)
 
     return _get_majors(enrollments)
 
@@ -43,14 +43,14 @@ def _get_majors(enrollments):
     return _process_fields(enrollments, "majors")
 
 
-def get_minors(regid):
+def get_minors(request):
     """
     Returns a dictionary with a dict of majors by terms in the 'majors'
     attribute, and a 'current' and 'rollup' major field
-    :param regid
+    :param request
     :return: dict
     """
-    enrollments = enrollment_search_by_regid(regid)
+    enrollments = enrollment_search(request)
 
     return _get_minors(enrollments)
 
@@ -63,14 +63,14 @@ def _get_minors(enrollments):
     return _process_fields(enrollments, "minors")
 
 
-def get_class_standings(regid):
+def get_class_standings(request):
     """
     Returns a dictionary with a dict of majors by terms in the majors
     attribute, and a 'current' and 'rollup' major field
-    :param regid
+    :param request
     :return: dict
     """
-    enrollments = enrollment_search_by_regid(regid)
+    enrollments = enrollment_search(request)
 
     return _get_class_standings(enrollments)
 
