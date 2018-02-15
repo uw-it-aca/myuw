@@ -134,24 +134,24 @@ var Landing = {
            !window.user.instructor &&
            !window.user.applicant ||
            window.user.past_employee) {
-            desktop_body_cards.push(HRPayrollCard);
+            mobile_cards.push(HRPayrollCard);
         }
 
         if(window.user.retiree) {
-            desktop_body_cards.push(RetireAssoCard);
+            mobile_cards.push(RetireAssoCard);
         }
 
         if(window.user.past_stud) {
-            desktop_body_cards.push(TranscriptsCard);
+            mobile_cards.push(TranscriptsCard);
         }
 
         if (window.user.no_1st_class_affi) {
-            desktop_body_cards.push(ContinuingEducationCard);
-            desktop_body_cards.push(UwnetidCard);
+            mobile_cards.push(ContinuingEducationCard);
+            mobile_cards.push(UwnetidCard);
         }
 
         if(window.user.alumni) {
-            desktop_body_cards.push(AlumniCard);
+            mobile_cards.push(AlumniCard);
         }
 
         Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
