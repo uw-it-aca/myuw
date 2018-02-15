@@ -9,7 +9,7 @@ python:
 env:
   matrix:
     - DB=sqlite3
-    - DB=mysql
+    # - DB=mysql
 install:
   - pip install -r requirements.txt
 before_script:
