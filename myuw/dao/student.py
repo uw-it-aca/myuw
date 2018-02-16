@@ -77,6 +77,9 @@ def _get_class_standings(enrollments):
 
 
 def _process_fields(enrollments, attributes):
+    if len(attributes) == 0:
+        return {}
+
     obj = {}
     for attribute in attributes:
         obj[attribute] = {}
@@ -93,7 +96,7 @@ def _process_fields(enrollments, attributes):
                                                    attribute)
                                      for term in enrollments}
 
-    if 'current' not in obj:
+    if 'current' not in obj[attributes[0]]:
         sorted_terms = sorted(enrollments.keys())
 
         has_future_entry = False
