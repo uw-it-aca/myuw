@@ -1,11 +1,10 @@
 from unittest2 import TestCase
 from uw_sws.enrollment import enrollment_search_by_regid
 from uw_sws.models import Term
-
-from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.student import get_class_standings, get_majors, \
     get_student_status, get_rollup_and_future_majors, get_minors, \
-    get_rollup_and_future_minors, _get_minors, _get_majors, _get_class_standings
+    get_rollup_and_future_minors, _get_minors, _get_majors, \
+    _get_class_standings
 from myuw.test import get_request_with_date, get_request_with_user
 
 javerage_regid = '9136CCB8F66711D5BE060004AC494FFE'
@@ -36,8 +35,8 @@ winter_2014.quarter = Term.WINTER
 class TestStudentDAO(TestCase):
 
     def setUp(self):
-        self.javerage_req = get_request_with_user('javerage',
-                                                  get_request_with_date("2013-04-10"))
+        date_req = get_request_with_date("2013-04-10")
+        self.javerage_req = get_request_with_user('javerage', date_req)
 
     def get_majors(self, regid):
         enrollments = enrollment_search_by_regid(regid)
