@@ -21,26 +21,6 @@
       </ul>
     </li>
 
-    <li class="groupreference">
-      <span class="regid">9b9dab58766a25b1ce605968a347b4ee</span>
-      <span class="title">UW Students</span>
-      <span class="description">UW NetIDs with eduperson affiliation of 'student'</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_student">uw_student</a></li>
-      </ul>
-    </li>
-
-   <li class="groupreference">
-      <span class="regid">A8FEDF2F303145F787CF4F30E6FF9632</span>
-      <span class="title">UW members</span>
-      <span class="description">UW members</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_member">uw_member</a></li>
-      </ul>
-    </li>
-
-
-
    </ul>
   </div>
 </body>
