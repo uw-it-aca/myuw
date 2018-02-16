@@ -17,10 +17,7 @@ def get_student_status(request):
     """
     enrollments = enrollment_search(request)
 
-    return {
-        'majors': _get_majors(enrollments),
-        'class_level': _get_class_standings(enrollments)
-    }
+    return _process_fields(enrollments, ['majors', 'minors', 'class_level'])
 
 
 def get_majors(request):
@@ -40,7 +37,7 @@ def get_rollup_and_future_majors(majors):
 
 
 def _get_majors(enrollments):
-    return _process_fields(enrollments, "majors")
+    return _process_fields(enrollments, ["majors"])['majors']
 
 
 def get_minors(request):
@@ -60,7 +57,7 @@ def get_rollup_and_future_minors(minors):
 
 
 def _get_minors(enrollments):
-    return _process_fields(enrollments, "minors")
+    return _process_fields(enrollments, ["minors"])['minors']
 
 
 def get_class_standings(request):
@@ -76,19 +73,25 @@ def get_class_standings(request):
 
 
 def _get_class_standings(enrollments):
-    return _process_fields(enrollments, "class_level")
+    return _process_fields(enrollments, ["class_level"])['class_level']
 
 
-def _process_fields(enrollments, attribute):
+def _process_fields(enrollments, attributes):
     obj = {}
+    for attribute in attributes:
+        obj[attribute] = {}
 
     current_term = get_current_term()
 
     if current_term in enrollments:
-        obj['current'] = getattr(enrollments[current_term], attribute)
+        for attribute in attributes:
+            obj[attribute]['current'] = getattr(enrollments[current_term],
+                                                attribute)
 
-    obj[attribute] = {term: getattr(enrollments[term], attribute)
-                      for term in enrollments}
+    for attribute in attributes:
+        obj[attribute][attribute] = {term: getattr(enrollments[term],
+                                                   attribute)
+                                     for term in enrollments}
 
     if 'current' not in obj:
         sorted_terms = sorted(enrollments.keys())
@@ -97,20 +100,25 @@ def _process_fields(enrollments, attribute):
 
         for term in sorted_terms:
             if term > current_term:
-                obj['rollup'] = getattr(enrollments[term], attribute)
+                for attribute in attributes:
+                    obj[attribute]['rollup'] = getattr(enrollments[term],
+                                                       attribute)
                 has_future_entry = True
                 break
 
-        most_recent_term = sorted_terms[0]
+        recent_term = sorted_terms[0]
 
         if not has_future_entry:
             for term in sorted_terms:
-                if term > most_recent_term:
-                    most_recent_term = term
+                if term > recent_term:
+                    recent_term = term
 
-            obj['rollup'] = getattr(enrollments[most_recent_term], attribute)
+            for attribute in attributes:
+                obj[attribute]['rollup'] = getattr(enrollments[recent_term],
+                                                   attribute)
     else:
-        obj['rollup'] = obj['current']
+        for attribute in attributes:
+            obj[attribute]['rollup'] = obj[attribute]['current']
 
     return obj
 
