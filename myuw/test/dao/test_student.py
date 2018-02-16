@@ -12,8 +12,6 @@ javerage_regid = '9136CCB8F66711D5BE060004AC494FFE'
 test_regid = '9136CCB8F66711D5BE060024ACA9CFDE'
 testalicious_regid = '9136CCB8F66711D5BE060024ACA9CFAE'
 
-spring_req = get_request_with_date("2013-10-10")
-
 winter_2013 = Term()
 winter_2013.year = 2013
 winter_2013.quarter = Term.WINTER
@@ -37,6 +35,10 @@ winter_2014.quarter = Term.WINTER
 
 class TestStudentDAO(TestCase):
 
+    def setUp(self):
+        self.javerage_req = get_request_with_user('javerage',
+                                                  get_request_with_date("2013-04-10"))
+
     def get_majors(self, regid):
         enrollments = enrollment_search_by_regid(regid)
         return _get_majors(enrollments)
@@ -57,9 +59,7 @@ class TestStudentDAO(TestCase):
         self.assertEquals(majors['rollup'][0].full_name,
                           "Test Major")
 
-        javerage_req = get_request_with_user('javerage', spring_req)
-
-        majors = get_majors(javerage_req)
+        majors = get_majors(self.javerage_req)
 
         self.assertIn("majors", majors)
         self.assertIn("current", majors)
@@ -88,18 +88,14 @@ class TestStudentDAO(TestCase):
                           "App & Comp Math Sci (Social & Behav Sci)")
 
     def test_get_class_standing(self):
-        javerage_req = get_request_with_user('javerage', spring_req)
-
-        class_standings = get_class_standings(javerage_req)
+        class_standings = get_class_standings(self.javerage_req)
 
         self.assertIn("class_level", class_standings)
         self.assertIn("current", class_standings)
         self.assertIn("rollup", class_standings)
 
     def test_get_student_status(self):
-        javerage_req = get_request_with_user('javerage', spring_req)
-
-        student_status = get_student_status(javerage_req)
+        student_status = get_student_status(self.javerage_req)
 
         self.assertIn("majors", student_status)
         self.assertIn("class_level", student_status)
@@ -112,8 +108,7 @@ class TestStudentDAO(TestCase):
         self.assertEquals(minors['rollup'][0].full_name,
                           "American Sign Language")
 
-        javerage_req = get_request_with_user('javerage', spring_req)
-        minors = get_minors(javerage_req)
+        minors = get_minors(self.javerage_req)
 
         self.assertIn("minors", minors)
         self.assertIn("current", minors)
@@ -142,9 +137,8 @@ class TestStudentDAO(TestCase):
                           "American Sign Language")
 
     def test_get_rollup_and_future(self):
-        javerage_req = get_request_with_user('javerage', spring_req)
 
-        majors = get_majors(javerage_req)
+        majors = get_majors(self.javerage_req)
 
         future_rollup_majors = get_rollup_and_future_majors(majors)
 
@@ -153,7 +147,7 @@ class TestStudentDAO(TestCase):
 
         intended_minors = [u'MATH', u'ASL']
 
-        minors = get_minors(javerage_req)
+        minors = get_minors(self.javerage_req)
 
         future_rollup_minors = get_rollup_and_future_minors(minors)
 
