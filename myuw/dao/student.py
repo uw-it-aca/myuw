@@ -66,23 +66,23 @@ def _process_fields(enrollments, attributes):
     if len(attributes) == 0:
         return {}
 
-    obj = {}
+    status = {}
     for attribute in attributes:
-        obj[attribute] = {}
+        status[attribute] = {}
 
     current_term = get_current_term()
 
     if current_term in enrollments:
         for attribute in attributes:
-            obj[attribute]['current'] = getattr(enrollments[current_term],
-                                                attribute)
+            status[attribute]['current'] = getattr(enrollments[current_term],
+                                                   attribute)
 
     for attribute in attributes:
-        obj[attribute][attribute] = {term: getattr(enrollments[term],
-                                                   attribute)
-                                     for term in enrollments}
+        status[attribute][attribute] = {term: getattr(enrollments[term],
+                                                      attribute)
+                                        for term in enrollments}
 
-    if 'current' not in obj[attributes[0]]:
+    if 'current' not in status[attributes[0]]:
         sorted_terms = sorted(enrollments.keys())
 
         has_future_entry = False
@@ -90,8 +90,8 @@ def _process_fields(enrollments, attributes):
         for term in sorted_terms:
             if term > current_term:
                 for attribute in attributes:
-                    obj[attribute]['rollup'] = getattr(enrollments[term],
-                                                       attribute)
+                    status[attribute]['rollup'] = getattr(enrollments[term],
+                                                          attribute)
                 has_future_entry = True
                 break
 
@@ -103,13 +103,13 @@ def _process_fields(enrollments, attributes):
                     recent_term = term
 
             for attribute in attributes:
-                obj[attribute]['rollup'] = getattr(enrollments[recent_term],
-                                                   attribute)
+                status[attribute]['rollup'] = getattr(enrollments[recent_term],
+                                                      attribute)
     else:
         for attribute in attributes:
-            obj[attribute]['rollup'] = obj[attribute]['current']
+            status[attribute]['rollup'] = status[attribute]['current']
 
-    return obj
+    return status
 
 
 def _get_rollup_and_future(obj, rollup):
