@@ -30,7 +30,7 @@ var LibraryCard = {
 
     show_error: function(status) {
         if (status === 404) {
-            LibraryCard._render({});
+            LibraryCard._render({"holds_ready": 0, "items_loaned": 0});
             return;
         }
         var raw = CardWithError.render("Library Account");
