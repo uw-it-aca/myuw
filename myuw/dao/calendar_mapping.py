@@ -16,21 +16,9 @@ CALENDAR_URL_COL = 6
 
 def get_calendars_for_current_user(request):
 
-    try:
-
-        majors = get_majors(request)['rollup']
-        majors = [major.major_name for major in majors]
-
-        minors = get_minors(request)['rollup']
-        minors = [minor.short_name for minor in minors]
-
-    except DataFailureException:
-        majors = []
-        minors = []
-
     enrollments = {
-        'majors': majors,
-        'minors': minors
+        'majors': [maj.major_name for maj in get_majors(request)['rollup']],
+        'minors': [mino.short_name for mino in get_minors(request)['rollup']]
     }
 
     return _get_calendars(request, enrollments)
