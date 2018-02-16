@@ -1,6 +1,4 @@
 Affiliation: definition
- alumni: current UW alumni and NOT
-                current student, employee, applicant
  alum_asso: current alumni association member
  applicant: current UW applicant
  grad: current UW graduate student.
@@ -21,10 +19,10 @@ Affiliation: definition
  seattle: UW Seattle student
  bothell: UW Bothell student
  tacoma: UW Tacoma student
- retiree: current retired staff and NOT
-          current applicant, student, employee
- past_employee: former employee (staff, faculty or clinician) and NOT
-                current student, applicant
- past_stud: former grad, undergrad, or pce student and NOT
-            current employee, applicant
- no_affi: no affiliation
+ no_1st_class_affii: no 1st class affiliation
+ alumni: current UW alumni and no_1st_class_affii
+ retiree: current retired staff and no_1st_class_affii
+ past_employee: former employee (staff, faculty or clinician) and
+                no_1st_class_affii
+ past_stud: former grad, undergrad, or pce student and no_1st_class_affii
+
