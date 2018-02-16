@@ -1,10 +1,9 @@
 from unittest2 import TestCase
 from uw_sws.enrollment import enrollment_search_by_regid
 from uw_sws.models import Term
-from myuw.dao.student import get_class_standings, get_majors, \
+from myuw.dao.student import get_class_levels, get_majors, \
     get_student_status, get_rollup_and_future_majors, get_minors, \
-    get_rollup_and_future_minors, _get_minors, _get_majors, \
-    _get_class_standings
+    get_rollup_and_future_minors, _process_fields
 from myuw.test import get_request_with_date, get_request_with_user
 
 javerage_regid = '9136CCB8F66711D5BE060004AC494FFE'
@@ -46,9 +45,9 @@ class TestStudentDAO(TestCase):
         enrollments = enrollment_search_by_regid(regid)
         return _get_minors(enrollments)
 
-    def get_class_standing(self, regid):
+    def get_class_level(self, regid):
         enrollments = enrollment_search_by_regid(regid)
-        return _get_class_standings(enrollments)
+        return _get_class_levels(enrollments)
 
     def test_get_majors(self):
         majors = self.get_majors(test_regid)
@@ -86,12 +85,12 @@ class TestStudentDAO(TestCase):
         self.assertEquals(majors['rollup'][0].full_name,
                           "App & Comp Math Sci (Social & Behav Sci)")
 
-    def test_get_class_standing(self):
-        class_standings = get_class_standings(self.javerage_req)
+    def test_get_class_level(self):
+        class_levels = get_class_levels(self.javerage_req)
 
-        self.assertIn("class_level", class_standings)
-        self.assertIn("current", class_standings)
-        self.assertIn("rollup", class_standings)
+        self.assertIn("class_level", class_levels)
+        self.assertIn("current", class_levels)
+        self.assertIn("rollup", class_levels)
 
     def test_get_student_status(self):
         student_status = get_student_status(self.javerage_req)
@@ -155,3 +154,15 @@ class TestStudentDAO(TestCase):
 
         for minor in future_rollup_minors:
             self.assertIn(minor.short_name, intended_minors)
+
+
+def _get_majors(enrollments):
+    return _process_fields(enrollments, ["majors"])['majors']
+
+
+def _get_minors(enrollments):
+    return _process_fields(enrollments, ["minors"])['minors']
+
+
+def _get_class_levels(enrollments):
+    return _process_fields(enrollments, ["class_level"])['class_level']

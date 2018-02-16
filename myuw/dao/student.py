@@ -16,8 +16,12 @@ def get_student_status(request):
     :return: dict
     """
     enrollments = enrollment_search(request)
+    if not hasattr(request, "student_status"):
+        request.student_status = _process_fields(enrollments,
+                                                 ['majors', 'minors',
+                                                  'class_level'])
 
-    return _process_fields(enrollments, ['majors', 'minors', 'class_level'])
+    return request.student_status
 
 
 def get_majors(request):
@@ -27,17 +31,11 @@ def get_majors(request):
     :param request
     :return: dict
     """
-    enrollments = enrollment_search(request)
-
-    return _get_majors(enrollments)
+    return get_student_status(request)['majors']
 
 
 def get_rollup_and_future_majors(majors):
     return _get_rollup_and_future(majors['majors'], majors['rollup'])
-
-
-def _get_majors(enrollments):
-    return _process_fields(enrollments, ["majors"])['majors']
 
 
 def get_minors(request):
@@ -47,33 +45,21 @@ def get_minors(request):
     :param request
     :return: dict
     """
-    enrollments = enrollment_search(request)
-
-    return _get_minors(enrollments)
+    return get_student_status(request)['minors']
 
 
 def get_rollup_and_future_minors(minors):
     return _get_rollup_and_future(minors['minors'], minors['rollup'])
 
 
-def _get_minors(enrollments):
-    return _process_fields(enrollments, ["minors"])['minors']
-
-
-def get_class_standings(request):
+def get_class_levels(request):
     """
     Returns a dictionary with a dict of majors by terms in the majors
     attribute, and a 'current' and 'rollup' major field
     :param request
     :return: dict
     """
-    enrollments = enrollment_search(request)
-
-    return _get_class_standings(enrollments)
-
-
-def _get_class_standings(enrollments):
-    return _process_fields(enrollments, ["class_level"])['class_level']
+    return get_student_status(request)['class_level']
 
 
 def _process_fields(enrollments, attributes):
