@@ -22,7 +22,6 @@ from myuw.test.dao.hfs import TestHFS as TestDaoHFS
 from myuw.test.dao.iasystem import IASystemDaoTest
 from myuw.test.dao.library import TestLibrary
 from myuw.test.dao.mailman import TestMailmanDao
-from myuw.test.dao.test_student import TestStudentDAO
 from myuw.test.dao.pws import TestPwsDao
 from myuw.test.dao.password import TestDaoPassword
 from myuw.test.dao.textbook import TestTextbooks

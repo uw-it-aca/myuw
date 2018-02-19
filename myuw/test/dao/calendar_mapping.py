@@ -2,7 +2,7 @@ from django.test import TestCase
 from myuw.dao.calendar_mapping import \
     get_calendars_for_minors, get_calendars_for_majors, \
     get_calendars_for_gradmajors, _get_calendars,\
-    _get_calendar_ids_from_text
+    _get_calendar_ids_from_text, _get_major_minors
 from myuw.test import get_request_with_user, get_request_with_date
 
 
@@ -63,3 +63,34 @@ class TestCalendarMapping(TestCase):
         ids = _get_calendar_ids_from_text(text)
         self.assertEqual(len(ids), 1)
         self.assertEqual(ids[0], "sea_art")
+
+    def test_get_major_minors(self):
+        # has current, future enrollments
+        req = get_request_with_user('javerage')
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 3)
+        self.assertEqual(len(mm['minors']), 2)
+        self.assertTrue(u'ENGLISH' in mm['majors'])
+        self.assertTrue(u'COMPUTER SCIENCE' in mm['majors'])
+        self.assertTrue(u'ACMS (SOC & BEH SCI)' in mm['majors'])
+        self.assertTrue(u'MATH'in mm['minors'])
+        self.assertTrue(u'ASL' in mm['minors'])
+
+        # has only future enrollment
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2013-02-01"))
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 1)
+        self.assertEqual(len(mm['minors']), 2)
+        self.assertTrue(u'PREMAJOR (BOTHELL)' in mm['majors'])
+        self.assertTrue(u'ASL' in mm['minors'])
+        self.assertTrue(u'POL SCI' in mm['minors'])
+
+        # has only past enrollment
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2014-01-01"))
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 1)
+        self.assertEqual(len(mm['minors']), 1)
+        self.assertTrue(u'PREMAJOR (BOTHELL)' in mm['majors'])
+        self.assertTrue(u'ASL' in mm['minors'])
