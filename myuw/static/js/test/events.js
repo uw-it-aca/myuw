@@ -26,7 +26,7 @@ describe('EventsCard', function(){
         });
         it ('should render card', function () {
             assert.equal($('.myuw-events').length, 1);
-            assert.equal($('.myuw-events-list').length, 10);
+            assert.equal($('.myuw-events-list').length, 2);
         });
         it('should sort events', function(){
             var event_data = WSData.dept_event_data();
