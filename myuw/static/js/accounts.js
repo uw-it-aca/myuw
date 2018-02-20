@@ -74,7 +74,7 @@ var AccountsPage = {
             cards.push(TuitionCard);
         }
 
-        if(window.user.student ||
+        if(window.user.student || window.user.past_stud ||
            window.user.employee ||
            window.user.clinician) {
             cards = cards.concat([MedicineAccountsCard,
