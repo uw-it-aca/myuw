@@ -33,8 +33,8 @@ def _get_major_minors(request):
 
     for enrollment in reversed(enrollment_list):
         if enrollment.term.is_past(now):
-            # former student
             if len(majors) == 0:
+                # no current or future enrollment
                 _collect(majors, minors, enrollment)
             return result
         elif enrollment.term.is_current(now):
