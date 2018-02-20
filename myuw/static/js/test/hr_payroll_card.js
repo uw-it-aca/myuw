@@ -18,7 +18,6 @@ describe('HRPayrollCard', function(){
             HRPayrollCard.dom_target = $('#' + render_id);
         });
         beforeEach(function () {
-            window.user.clinician = false;
             window.user.student = false;
             window.user.faculty = false;
             window.user.employee = false;
