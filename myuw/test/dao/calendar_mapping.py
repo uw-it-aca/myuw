@@ -1,8 +1,8 @@
 from django.test import TestCase
 from myuw.dao.calendar_mapping import \
     get_calendars_for_minors, get_calendars_for_majors, \
-    get_calendars_for_gradmajors, _get_enrollments, \
-    _get_calendars, _get_calendar_ids_from_text
+    get_calendars_for_gradmajors, _get_calendars,\
+    _get_calendar_ids_from_text, _get_major_minors
 from myuw.test import get_request_with_user, get_request_with_date
 
 
@@ -64,18 +64,40 @@ class TestCalendarMapping(TestCase):
         self.assertEqual(len(ids), 1)
         self.assertEqual(ids[0], "sea_art")
 
-    def test_get_cur_future_enrollments(self):
+    def test_get_major_minors(self):
+        # has current and future enrollments, include both
+        req = get_request_with_user('javerage')
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 3)
+        self.assertEqual(len(mm['minors']), 2)
+        self.assertTrue(u'ENGLISH' in mm['majors'])
+        self.assertTrue(u'COMPUTER SCIENCE' in mm['majors'])
+        self.assertTrue(u'ACMS (SOC & BEH SCI)' in mm['majors'])
+
+        # has current and past, do not include past
         req = get_request_with_user('javerage',
-                                    get_request_with_date("2013-04-10"))
-        enrollments = _get_enrollments(req)
-        majors = sorted(enrollments['majors'])
-        minors = sorted(enrollments['minors'])
+                                    get_request_with_date("2014-02-01"))
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 1)
+        self.assertEqual(len(mm['minors']), 1)
+        self.assertTrue(u'ENGLISH' in mm['majors'])
+        self.assertTrue(u'MATH'in mm['minors'])
 
-        self.assertEqual(len(majors), 3)
-        self.assertEqual(majors[0], 'ACMS (SOC & BEH SCI)')
-        self.assertEqual(majors[1], 'COMPUTER SCIENCE')
-        self.assertEqual(majors[2], 'ENGLISH')
+        # has only future enrollment
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2013-02-01"))
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 1)
+        self.assertEqual(len(mm['minors']), 2)
+        self.assertTrue(u'PREMAJOR (BOTHELL)' in mm['majors'])
+        self.assertTrue(u'ASL' in mm['minors'])
+        self.assertTrue(u'POL SCI' in mm['minors'])
 
-        self.assertEqual(len(minors), 2)
-        self.assertEqual(minors[0], 'ASL')
-        self.assertEqual(minors[1], 'MATH')
+        # has only past enrollment
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2014-01-01"))
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 1)
+        self.assertEqual(len(mm['minors']), 1)
+        self.assertTrue(u'PREMAJOR (BOTHELL)' in mm['majors'])
+        self.assertTrue(u'ASL' in mm['minors'])
