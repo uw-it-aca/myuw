@@ -5,7 +5,7 @@ from myuw.dao.term import get_current_quarter, get_previous_quarter,\
 from myuw.dao.enrollment import get_current_quarter_enrollment,\
     get_enrollment_for_term, get_enrollments_of_terms,\
     get_prev_enrollments_with_open_sections, is_ended,\
-    get_main_campus
+    get_main_campus, enrollment_history
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 
@@ -174,3 +174,9 @@ class TestDaoEnrollment(TestCase):
                                     get_request_with_date("2013-04-10"))
         campus = get_main_campus(req)
         self.assertEqual(len(campus), 0)
+
+    def test_enrollment_history(self):
+        req = get_request_with_user('javerage')
+        history = enrollment_history(req)
+        self.assertEqual(len(history), 4)
+        self.assertIsNotNone(req.enrollment_history)

@@ -37,7 +37,7 @@ setup(
         'AuthZ-Group',
         'python-binary-memcached',
         'UW-RestClients-Core==0.9.6',
-        'UW-RestClients-SWS>=1.4.6.2,<2.0',
+        'UW-RestClients-SWS>=1.4.6.4,<2.0',
         'UW-RestClients-PWS<1.0,>=0.6',
         'UW-RestClients-HFS<1.0',
         'UW-RestClients-GWS>=0.4.1,<1.0',
