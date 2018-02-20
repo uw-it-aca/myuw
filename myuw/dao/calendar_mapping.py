@@ -1,7 +1,11 @@
 import csv
 import os
+from restclients_core.exceptions import DataFailureException
+from uw_sws.term import get_current_term
 from myuw.dao.gws import is_grad_student
-from myuw.dao.student_profile import get_cur_future_enrollments
+from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.enrollment import enrollment_history
+from myuw.dao.term import get_comparison_datetime
 
 
 DEGREE_TYPE_COLUMN_MAP = {"major": 2,
@@ -12,38 +16,62 @@ CALENDAR_URL_COL = 6
 
 
 def get_calendars_for_current_user(request):
-    return _get_calendars(request, _get_enrollments(request))
+    return _get_calendars(request, _get_major_minors(request))
+
+
+def _get_major_minors(request):
+    """
+    Collect majors and minors of current and future quarter enrollments
+    for current students.
+    Return those of their last quarter's for former students.
+    """
+    majors = []
+    minors = []
+    result = {'majors': majors, 'minors': minors}
+    enrollment_list = enrollment_history(request)
+    now = get_comparison_datetime(request)
+
+    for enrollment in reversed(enrollment_list):
+        if enrollment.term.is_past(now):
+            # former student
+            if len(majors) == 0:
+                _collect(majors, minors, enrollment)
+            return result
+        elif enrollment.term.is_current(now):
+            _collect(majors, minors, enrollment)
+            if len(majors) or len(minors):
+                return result
+        else:
+            _collect(majors, minors, enrollment)
+    return result
+
+
+def _collect(majors, minors, enrollment):
+    """
+    Collect unique major names and minor short names
+    """
+    for major in enrollment.majors:
+        majr = major.major_name
+        if majr and majr not in majors:
+            majors.append(majr)
+
+    for minor in enrollment.minors:
+        minr = minor.short_name
+        if minr and minr not in minors:
+            minors.append(minr)
 
 
 def _get_calendars(request, enrollments):
+
     calendars = {}
+
     calendars.update(get_calendars_for_minors(enrollments['minors']))
+
     if is_grad_student(request):
         calendars.update(get_calendars_for_gradmajors(enrollments['majors']))
     else:
         calendars.update(get_calendars_for_majors(enrollments['majors']))
     return calendars
-
-
-def _get_enrollments(request):
-    majors = []
-    minors = []
-    try:
-        terms, enrollments = get_cur_future_enrollments(request)
-        for enrollment in enrollments.values():
-            if len(enrollment.majors) > 0:
-                for major in enrollment.majors:
-                    if major.major_name and major.major_name not in majors:
-                        majors.append(major.major_name)
-
-            if len(enrollment.minors) > 0:
-                for minor in enrollment.minors:
-                    if minor.short_name and minor.short_name not in minors:
-                        minors.append(minor.short_name)
-    except Exception:
-        pass
-    return {'majors': majors,
-            'minors': minors}
 
 
 def get_calendars_for_majors(majors):
