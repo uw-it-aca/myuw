@@ -65,7 +65,7 @@ class TestCalendarMapping(TestCase):
         self.assertEqual(ids[0], "sea_art")
 
     def test_get_major_minors(self):
-        # has current, future enrollments
+        # has current and future enrollments, include both
         req = get_request_with_user('javerage')
         mm = _get_major_minors(req)
         self.assertEqual(len(mm['majors']), 3)
@@ -73,8 +73,15 @@ class TestCalendarMapping(TestCase):
         self.assertTrue(u'ENGLISH' in mm['majors'])
         self.assertTrue(u'COMPUTER SCIENCE' in mm['majors'])
         self.assertTrue(u'ACMS (SOC & BEH SCI)' in mm['majors'])
+
+        # has current and past, do not include past
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2014-02-01"))
+        mm = _get_major_minors(req)
+        self.assertEqual(len(mm['majors']), 1)
+        self.assertEqual(len(mm['minors']), 1)
+        self.assertTrue(u'ENGLISH' in mm['majors'])
         self.assertTrue(u'MATH'in mm['minors'])
-        self.assertTrue(u'ASL' in mm['minors'])
 
         # has only future enrollment
         req = get_request_with_user('jbothell',
