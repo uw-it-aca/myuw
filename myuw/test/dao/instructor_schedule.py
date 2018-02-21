@@ -9,7 +9,7 @@ from myuw.dao.instructor_schedule import is_instructor,\
     get_instructor_schedule_by_term, get_section_by_label,\
     get_limit_estimate_enrollment_for_section, _set_section_from_url,\
     get_instructor_section, get_primary_section, check_section_instructor
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.exceptions import NotSectionInstructorException
 from userservice.user import UserServiceMiddleware
@@ -44,29 +44,39 @@ class TestInstructorSchedule(TestCase):
         self.assertEqual(len(schedule.sections), 7)
 
     def test_set_section_from_url(self):
-        # exclude course unpublished on Time Schedule
-        sections = []
         section_url = "/student/v5/course/2018,spring,JAPAN,573/A.json"
         term = Term()
         term.year = 2018
         term.quarter = 'spring'
+
+        # not to check_time_schedule_published
+        sections = []
+        term.check_time_schedule_published = False
+        _set_section_from_url(sections, section_url, term)
+        self.assertEqual(len(sections), 1)
+
+        # The coresponding time Schedule is unpublished
+        sections = []
         term.time_schedule_published = {u'seattle': False}
+        term.check_time_schedule_published = True
         _set_section_from_url(sections, section_url, term)
         self.assertEqual(len(sections), 0)
 
-        # include course published on Time Schedule
+        # The coresponding time Schedule is published
+        sections = []
         term.time_schedule_published = {u'seattle': True}
         _set_section_from_url(sections, section_url, term)
         self.assertEqual(len(sections), 1)
         self.assertEqual(sections[0].section_label(),
                          "2018,spring,JAPAN,573/A")
 
-        # PCE course not covered by time_schedule_published
+        # PCE course is an exception
         sections = []
         section_url = "/student/v5/course/2013,winter,BIGDATA,220/A.json"
         term = Term()
         term.year = 2013
         term.quarter = 'winter'
+        term.check_time_schedule_published = True
         term.time_schedule_published = {u'seattle': False,
                                         u'tacoma': False,
                                         u'bothell': False}
@@ -146,13 +156,22 @@ class TestInstructorSchedule(TestCase):
         limit = get_limit_estimate_enrollment_for_section(section)
         self.assertEqual(limit, 5)
 
-    def test_pce_instructor_schedule(self):
+    def test_get_instructor_schedule_by_term(self):
+        # PCE instructor
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
         term = get_current_quarter(request)
         schedule = get_instructor_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 1)
         self.assertEqual(schedule.sections[0].current_enrollment, 3)
+
+        # unpublished term
+        request = get_request_with_user('billsea',
+                                        get_request_with_date("2018-01-01"))
+        term = get_next_quarter(request)
+        get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(request, term)
+        self.assertEqual(len(schedule.sections), 0)
 
     def test_get_primary_section(self):
         secondary_section = get_section_by_label('2017,autumn,CSE,154/AA')
