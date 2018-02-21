@@ -19,29 +19,49 @@ from userservice.user import UserServiceMiddleware
 @fdao_pws_override
 class TestInstructorSchedule(TestCase):
     def test_is_instructor(self):
-        now_request = get_request_with_user('bill')
-        self.assertTrue(is_instructor(now_request))
+        request = get_request_with_user('bill')
+        self.assertFalse(hasattr(request, "myuw_is_instructor"))
+        self.assertTrue(is_instructor(request))
+        self.assertTrue(hasattr(request, "myuw_is_instructor"))
+        self.assertTrue(is_instructor(request))
 
-        now_request = get_request_with_user('billsea')
-        self.assertTrue(is_instructor(now_request))
-
-        now_request = get_request_with_user('billseata')
-        self.assertTrue(is_instructor(now_request))
-
-        now_request = get_request_with_user('billpce')
-        self.assertTrue(is_instructor(now_request))
-
-    def test_current_quarter_instructor_schedule(self):
-        now_request = get_request_with_user('bill')
-        term = get_current_quarter(now_request)
-        schedule = get_instructor_schedule_by_term(now_request, term)
-        self.assertEqual(len(schedule.sections), 6)
+        request = get_request_with_user('billsea')
+        self.assertTrue(is_instructor(request))
 
         request = get_request_with_user('billseata')
-        UserServiceMiddleware().process_request(request)
+        self.assertTrue(is_instructor(request))
+
+        request = get_request_with_user('billpce')
+        self.assertTrue(is_instructor(request))
+
+    def test_get_instructor_schedule_by_term(self):
+        # current quarter instructor schedule
+        request = get_request_with_user('bill')
+        term = get_current_quarter(request)
+        schedule = get_instructor_schedule_by_term(request, term)
+        self.assertEqual(len(schedule.sections), 6)
+
+        # current quarter TA schedule
+        request = get_request_with_user('billseata')
         term = get_current_quarter(request)
         schedule = get_instructor_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 7)
+
+        # PCE courses
+        request = get_request_with_user('billpce',
+                                        get_request_with_date("2013-10-01"))
+        term = get_current_quarter(request)
+        schedule = get_instructor_schedule_by_term(request, term)
+        self.assertEqual(len(schedule.sections), 1)
+        self.assertEqual(schedule.sections[0].current_enrollment, 3)
+
+        # unpublished term
+        request = get_request_with_user('billsea',
+                                        get_request_with_date("2018-01-01"))
+        term = get_next_quarter(request)
+        get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(request, term)
+        self.assertEqual(len(schedule.sections), 0)
 
     def test_set_section_from_url(self):
         section_url = "/student/v5/course/2018,spring,JAPAN,573/A.json"
@@ -155,23 +175,6 @@ class TestInstructorSchedule(TestCase):
 
         limit = get_limit_estimate_enrollment_for_section(section)
         self.assertEqual(limit, 5)
-
-    def test_get_instructor_schedule_by_term(self):
-        # PCE instructor
-        request = get_request_with_user('billpce',
-                                        get_request_with_date("2013-10-01"))
-        term = get_current_quarter(request)
-        schedule = get_instructor_schedule_by_term(request, term)
-        self.assertEqual(len(schedule.sections), 1)
-        self.assertEqual(schedule.sections[0].current_enrollment, 3)
-
-        # unpublished term
-        request = get_request_with_user('billsea',
-                                        get_request_with_date("2018-01-01"))
-        term = get_next_quarter(request)
-        get_instructor_schedule_by_term(request, term)
-        schedule = get_instructor_schedule_by_term(request, term)
-        self.assertEqual(len(schedule.sections), 0)
 
     def test_get_primary_section(self):
         secondary_section = get_section_by_label('2017,autumn,CSE,154/AA')
