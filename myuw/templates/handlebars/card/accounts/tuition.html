@@ -23,23 +23,7 @@
 
 	<div class="card-badge-container ">
 	<ul class="card_list">  <!-- balance list -->
-   
-   <!-- To display SFS tuition balance = 0 -->
-    {{#unless has_balance}}   
-		<li>
-	            <div class="card-badge clearfix">
-	                <div class="pull-left">
-	                    <h4 class="card-badge-label">Amount Due<br><span style="font-size:14px;font-weight:normal;line-height:32px;">Student Fiscal Services</span></h4>
-	                </div>
-	                <div class="pull-right">
-	                    <span class="card-badge-value">$ 0</span>
-	                    <span class="card-badge-action pull-right" style="clear:both;margin-top:-6px;">Paid in full<br></span>
-	                    <span class="card-badge-action pull-right" style="clear:both;" ><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a></span>
-	                </div>
-	            </div>
-	        </li>
-    {{/unless}}
-   <!-- end, SFS tuition balance = 0 -->
+  
    <!-- To display SFS tuition or credit --> 
     {{#if has_balance}}
         {{#if is_credit}}
@@ -77,24 +61,20 @@
 			</li>
         
         {{/if}} <!-- end if tuition_credit -->
-    {{/if}}<!-- end if has_balance -->
-        
-    <!-- if PCE balance is 0 -->
-    {{#unless pce_accbalance}}    
-		<li>
+    {{else}} <!-- N-T-S: moving 0 balance case -->
+    		<li>
 	            <div class="card-badge clearfix">
 	                <div class="pull-left">
-	                    <h4 class="card-badge-label">Amount Due<br><span style="font-size:14px;font-weight:normal;line-height:32px;">PCE-Continuum College</span></h4>
+	                    <h4 class="card-badge-label">Amount Due<br><span style="font-size:14px;font-weight:normal;line-height:32px;">Student Fiscal Services</span></h4>
 	                </div>
 	                <div class="pull-right">
 	                    <span class="card-badge-value">$ 0</span>
 	                    <span class="card-badge-action pull-right" style="clear:both;margin-top:-6px;">Paid in full<br></span>
-	                    <span class="card-badge-action pull-right" style="clear:both;" ><a href="http://portal.continuum.uw.edu" target="_blank" data-linklabel="Tuition Statement">Fee Statement</a></span>
+	                    <span class="card-badge-action pull-right" style="clear:both;" ><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a></span>
 	                </div>
 	            </div>
-	        </li>
-    {{/unless}}
-    <!-- end if PCE balance is 0 -->
+	        </li>    
+    {{/if}}<!-- end if has_balance -->
     
 	<!-- PCE balance is NOT 0 -->
     {{#if pce_accbalance}}
@@ -113,8 +93,21 @@
 		        	<div class="pull-right"><div class="btn btn-default card-action-btn" style="margin-top:-40px;"><a href="http://portal.continuum.uw.edu" target="_blank" data-linklabel="PCE Payment portal">Make payment to PCE</a></div>
 		        	</div>
 		        </div>
-			</li>
-    
+	
+		</li>
+    {{else}} <!-- if PCE balance is 0 -->
+		<li>
+            <div class="card-badge clearfix">
+                <div class="pull-left">
+                    <h4 class="card-badge-label">Amount Due<br><span style="font-size:14px;font-weight:normal;line-height:32px;">PCE-Continuum College</span></h4>
+                </div>
+                <div class="pull-right">
+                    <span class="card-badge-value">$ 0</span>
+                    <span class="card-badge-action pull-right" style="clear:both;margin-top:-6px;">Paid in full<br></span>
+                    <span class="card-badge-action pull-right" style="clear:both;" ><a href="http://portal.continuum.uw.edu" target="_blank" data-linklabel="Account Statement">Account Statement</a></span>
+                </div>
+            </div>
+        </li>
     {{/if}}<!-- end pce balance -->
     
     {{#if tuition_date}} <!-- N-T-S. UPDATE THE LOGIC TO REFELCT BOTH SFS + PCE -->
@@ -132,7 +125,7 @@
     {{/if}}<!-- end tuition_date -->
 	</ul><!-- .end of the balance list -->
 	
-    {{#unless is_pce}} <!-- Access msg for non-PCE -->
+    {{#unless is_c2}} <!-- Access msg for non-PCE -->
     <div class="card-related-messages">
         <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.</p>
 	{{/unless}}
