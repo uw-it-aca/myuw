@@ -23,8 +23,9 @@
 
 	<div class="card-badge-container ">
 	<ul class="card_list">  <!-- balance list -->
-    {{#unless has_balance}}
-        <!-- if SFS tuition balance is 0 -->
+   
+   <!-- To display SFS tuition balance = 0 -->
+    {{#unless has_balance}}   
 		<li>
 	            <div class="card-badge clearfix">
 	                <div class="pull-left">
@@ -38,8 +39,8 @@
 	            </div>
 	        </li>
     {{/unless}}
-        <!-- end if SFS balance is 0 -->
-
+   <!-- end, SFS tuition balance = 0 -->
+   <!-- To display SFS tuition or credit --> 
     {{#if has_balance}}
         {{#if is_credit}}
 	        <li>
@@ -93,10 +94,9 @@
 	            </div>
 	        </li>
     {{/unless}}
-        <!-- end if SFS balance is 0 -->
+    <!-- end if PCE balance is 0 -->
     
-        <!-- end if PCE balance is 0 -->
-        
+	<!-- PCE balance is NOT 0 -->
     {{#if pce_accbalance}}
 
 			<li class="pce-tuition">
@@ -114,6 +114,7 @@
 		        	</div>
 		        </div>
 			</li>
+    
     {{/if}}<!-- end pce balance -->
     
     {{#if tuition_date}} <!-- N-T-S. UPDATE THE LOGIC TO REFELCT BOTH SFS + PCE -->
