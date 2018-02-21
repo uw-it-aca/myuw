@@ -7,7 +7,7 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 from myuw.dao.instructor_schedule import is_instructor,\
     get_instructor_schedule_by_term, get_section_by_label,\
-    get_limit_estimate_enrollment_for_section,\
+    get_limit_estimate_enrollment_for_section, _set_section_from_url,\
     get_instructor_section, get_primary_section, check_section_instructor
 from myuw.dao.term import get_current_quarter
 from myuw.dao.pws import get_person_of_current_user
@@ -42,6 +42,39 @@ class TestInstructorSchedule(TestCase):
         term = get_current_quarter(request)
         schedule = get_instructor_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 7)
+
+    def test_set_section_from_url(self):
+        # exclude course unpublished on Time Schedule
+        sections = []
+        section_url = "/student/v5/course/2018,spring,JAPAN,573/A.json"
+        term = Term()
+        term.year = 2018
+        term.quarter = 'spring'
+        term.time_schedule_published = {u'seattle': False}
+        _set_section_from_url(sections, section_url, term)
+        self.assertEqual(len(sections), 0)
+
+        # include course published on Time Schedule
+        term.time_schedule_published = {u'seattle': True}
+        _set_section_from_url(sections, section_url, term)
+        self.assertEqual(len(sections), 1)
+        self.assertEqual(sections[0].section_label(),
+                         "2018,spring,JAPAN,573/A")
+
+        # PCE course not covered by time_schedule_published
+        sections = []
+        section_url = "/student/v5/course/2013,winter,BIGDATA,220/A.json"
+        term = Term()
+        term.year = 2013
+        term.quarter = 'winter'
+        term.time_schedule_published = {u'seattle': False,
+                                        u'tacoma': False,
+                                        u'bothell': False}
+        _set_section_from_url(sections, section_url, term)
+        self.assertEqual(len(sections), 1)
+        self.assertEqual(sections[0].section_label(),
+                         "2013,winter,BIGDATA,220/A")
+
 
     def test_get_instructor_section(self):
         req = get_request_with_user('bill')
