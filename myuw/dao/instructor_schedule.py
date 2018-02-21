@@ -30,7 +30,8 @@ def get_instructor_schedule_by_term(request, term):
     schedule.term = term
 
     section_references = _get_instructor_sections(person, term)
-    schedule.sections = _get_sections_by_section_reference(section_references, term)
+    schedule.sections = _get_sections_by_section_reference(
+        section_references, term)
     return schedule
 
 

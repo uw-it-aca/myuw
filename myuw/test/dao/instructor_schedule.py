@@ -75,7 +75,6 @@ class TestInstructorSchedule(TestCase):
         self.assertEqual(sections[0].section_label(),
                          "2013,winter,BIGDATA,220/A")
 
-
     def test_get_instructor_section(self):
         req = get_request_with_user('bill')
         schedule = get_instructor_section(req, '2013,spring,ESS,102/A')
