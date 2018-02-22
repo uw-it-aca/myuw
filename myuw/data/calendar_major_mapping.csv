@@ -12,33 +12,33 @@
 ,ACCOUNTING                              ,,,ACCOUNTING              ,sea_acctg,
 ,ACCOUNTING                              ,,,ACCOUNTING (AUD & ASSUR),sea_acctg,
 ,ACCOUNTING                              ,,,ACCOUNTING (TAXATION)   ,sea_acctg,
-,AERONAUTICS & ASTRONAUTICS              ,AERONAUTICS & ASTRO     ,,,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERONAUTICS & ASTRO     ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERONAUTICS & ASTRO(TEL),,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERONAUTICS & ASTRO     ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGINEERING   ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGR (CM&S)   ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGR (CM&S)   ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERO & ASTRO AND ASTBIO ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGINEERING   ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: CONTROLS     ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: FLUIDS       ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: P/P/P        ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: STRUCTURES   ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: COMPOSITES   ,,
-,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: GEN ST       ,,
+,AERONAUTICS & ASTRONAUTICS              ,AERONAUTICS & ASTRO     ,,,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERONAUTICS & ASTRO     ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERONAUTICS & ASTRO(TEL),sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERONAUTICS & ASTRO     ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGINEERING   ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGR (CM&S)   ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGR (CM&S)   ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERO & ASTRO AND ASTBIO ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AEROSPACE ENGINEERING   ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: CONTROLS     ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: FLUIDS       ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: P/P/P        ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: STRUCTURES   ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: COMPOSITES   ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
+,AERONAUTICS & ASTRONAUTICS              ,,,AERO ENGR: GEN ST       ,sea_aa,http://www.aa.washington.edu/news/eventsCalendar
 ,AEROSPACE STUDIES                       ,AEROSPACE STUDIES       ,,,,
 ,AEROSPACE STUDIES                       ,,AEROSPACE LEADERSHIP ST ,,,
 ,AMERICAN ETHNIC STUDIES                 ,AMERICAN ETHNIC STUDIES ,,,sea_aes,http://aes.washington.edu/calendar
 ,AMERICAN INDIAN STUDIES                 ,AMERICAN INDIAN STUDIES ,,,sea_ais,http://ais.washington.edu/calendar
 ,AMERICAN INDIAN STUDIES                 ,,AMERICAN INDIAN STUDIES ,,sea_ais,http://ais.washington.edu/calendar
-,ANTHROPOLOGY                            ,ANTHROPOLOGY            ,,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY                            ,ANTH: MED ANTH & GLOB HL,,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY                            ,ANTH: ANTH OF GLOBAL    ,,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY                            ,ANTH: ARCHAEOLOGICAL SCI,,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY                            ,ANTH: HUMAN EVOL BIOLOGY,,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY                            ,,ANTHROPOLOGY            ,,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
-,ANTHROPOLOGY                            ,,,ANTHROPOLOGY            ,sea_anthweb,http://depts.washington.edu/anthweb/news-events/upcoming-events
+,ANTHROPOLOGY                            ,ANTHROPOLOGY            ,,,sea_anthweb,http://anthropology.washington.edu/calendar
+,ANTHROPOLOGY                            ,ANTH: MED ANTH & GLOB HL,,,sea_anthweb,http://anthropology.washington.edu/calendar
+,ANTHROPOLOGY                            ,ANTH: ANTH OF GLOBAL    ,,,sea_anthweb,http://anthropology.washington.edu/calendar
+,ANTHROPOLOGY                            ,ANTH: ARCHAEOLOGICAL SCI,,,sea_anthweb,http://anthropology.washington.edu/calendar
+,ANTHROPOLOGY                            ,ANTH: HUMAN EVOL BIOLOGY,,,sea_anthweb,http://anthropology.washington.edu/calendar
+,ANTHROPOLOGY                            ,,ANTHROPOLOGY            ,,sea_anthweb,http://anthropology.washington.edu/calendar
+,ANTHROPOLOGY                            ,,,ANTHROPOLOGY            ,sea_anthweb,http://anthropology.washington.edu/calendar
 ,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/EPIDEMIOLOGY       ,sea_anthweb sea_epidem,
 ,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/GLOBAL HLTH        ,sea_anthweb sea_globalhealth,
 ,ANTHROPOLOGY/PUBLIC HEALTH CONCURRENT   ,,,ANTH/HSERV              ,sea_anthweb sea_sph-hserv,
@@ -59,18 +59,18 @@
 ,APPLIED MATHEMATICS                     ,,,CMP FN &RSK MGT (CMP) DL,sea_amath,
 ,APPLIED MATHEMATICS                     ,,,COMP FIN & RISK MGT (RM),sea_amath,
 ,APPLIED MATHEMATICS                     ,,,CMP FN & RSK MGT (RM) DL,sea_amath,
-,ARCHITECTURE                            ,ARCHITECTURE            ,,,,
-,ARCHITECTURE                            ,ARCHITECTURAL DESIGN    ,,,,
-,ARCHITECTURE                            ,ARCHITECTURAL DS (W/CM) ,,,,
-,ARCHITECTURE                            ,VISITING ARCHITECTURE   ,,,,
-,ARCHITECTURE                            ,,ARCHITECTURE            ,,,
-,ARCHITECTURE                            ,,,ARCHITECTURE            ,,
-,ARCHITECTURE                            ,,,ARCH (HIGH-PERFM BLDG)  ,,
-,ARCHITECTURE                            ,,,ARCH HIST AND THEORY    ,,
-,ARCHITECTURE                            ,,,ARCH DESIGN COMPUTING   ,,
-,ARCHITECTURE                            ,,,ARCH: MATERIALS & FAB   ,,
-,ARCHITECTURE                            ,,,ARCH: SUST SYS & DES    ,,
-,ARCHITECTURE                            ,,,"ARCH: HIST, THRY, CRIT  ",,
+,ARCHITECTURE                            ,ARCHITECTURE            ,,,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,ARCHITECTURAL DESIGN    ,,,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,ARCHITECTURAL DS (W/CM) ,,,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,VISITING ARCHITECTURE   ,,,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,ARCHITECTURE            ,,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,,ARCHITECTURE            ,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,,ARCH (HIGH-PERFM BLDG)  ,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,,ARCH HIST AND THEORY    ,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,,ARCH DESIGN COMPUTING   ,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,,ARCH: MATERIALS & FAB   ,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,,ARCH: SUST SYS & DES    ,sea_be-arch,http://arch.be.uw.edu/news/calendar
+,ARCHITECTURE                            ,,,"ARCH: HIST, THRY, CRIT  ",sea_be-arch,http://arch.be.uw.edu/news/calendar
 ,ART                                     ,ART (INTERD VISUAL ARTS),,,sea_art-div,
 ,ART                                     ,ART (PAINTING & DRAWING),,,sea_art-div,
 ,ART                                     ,ART (THREE DIMEN FORUM) ,,,sea_art-div,

@@ -4,8 +4,8 @@ the SWS Enrollment resource.
 """
 
 import logging
-from uw_sws.enrollment import enrollment_search_by_regid
-from myuw.dao import is_using_file_dao
+from uw_sws.enrollment import enrollment_search_by_regid,\
+    get_enrollment_history_by_regid
 from myuw.dao.term import (get_current_quarter,
                            get_current_and_next_quarters,
                            get_previous_number_quarters,
@@ -121,3 +121,14 @@ def remove_finished(request, result_dict):
                 if is_ended(request, section.end_date):
                     del unf_pce_sections[label]
     return result_dict
+
+
+def enrollment_history(request):
+    """
+    The underline uw_sws call is the same as enrollment_search
+    :return: a chronological list of all the Enrollemnts ordered by Term
+    """
+    if not hasattr(request, "enrollment_history"):
+        request.enrollment_history = get_enrollment_history_by_regid(
+            get_regid_of_current_user(request))
+    return request.enrollment_history

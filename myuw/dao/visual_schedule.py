@@ -210,14 +210,17 @@ def _get_visual_schedule_from_schedule(schedule, request):
         consolidated = a_consolidated + b_consolidated
 
     else:
-        # find sections beyond term
-        bounds = get_schedule_bounds(schedule)
-        weeks = _get_weeks_from_bounds(bounds)
-        weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
-        weeks = _add_sections_to_weeks(schedule.sections, weeks)
-        weeks = trim_section_meetings(weeks)
-        weeks = trim_weeks_no_meetings(weeks)
-        consolidated = _consolidate_weeks(weeks)
+        try:
+            # find sections beyond term
+            bounds = get_schedule_bounds(schedule)
+            weeks = _get_weeks_from_bounds(bounds)
+            weeks = _add_qtr_start_data_to_weeks(weeks, schedule)
+            weeks = _add_sections_to_weeks(schedule.sections, weeks)
+            weeks = trim_section_meetings(weeks)
+            weeks = trim_weeks_no_meetings(weeks)
+            consolidated = _consolidate_weeks(weeks)
+        except AttributeError:
+            return None
 
     _add_weekend_meeting_data(consolidated)
     consolidated = _remove_empty_periods(consolidated)
@@ -404,25 +407,21 @@ def trim_weeks_no_meetings(weeks):
 
 def trim_section_meetings(weeks):
     for week in weeks:
-        meetings_trimmed_front = True
-        meetings_trimmed_back = True
+        front_trim_count = 0
+        back_trim_count = 0
         for section in week.sections:
             if section.start_date > week.start_date:
                 trimmed = _trim_section_before(section, section.start_date)
-                if not trimmed:
-                    meetings_trimmed_front = False
-            else:
-                meetings_trimmed_front = False
+                if trimmed:
+                    front_trim_count += 1
             if section.end_date < week.end_date:
                 trimmed = _trim_section_after(section, section.end_date)
-                if not trimmed:
-                    meetings_trimmed_back = False
-            else:
-                meetings_trimmed_back = False
-        if meetings_trimmed_front:
+                if trimmed:
+                    back_trim_count += 1
+        if front_trim_count > 0:
             week.meetings_trimmed = True
             week.meetings_trimmed_front = True
-        if meetings_trimmed_back:
+        if back_trim_count > 0:
             week.meetings_trimmed = True
             week.meetings_trimmed_back = True
     return weeks
@@ -758,7 +757,10 @@ class SchedulePeriod():
         section_data = []
         for section in self.sections:
             section_json = section.json_data()
-            section_json['color_id'] = section.color_id
+            try:
+                section_json['color_id'] = section.color_id
+            except AttributeError:
+                pass
             section_json['is_teaching'] = section.is_teaching
             section_data.append(section_json)
         data = {'start_date': self.start_date,

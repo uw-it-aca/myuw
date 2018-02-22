@@ -74,27 +74,31 @@ var AccountsPage = {
             cards.push(TuitionCard);
         }
 
-        if(window.user.student ||
-           window.user.employee ||
-           window.user.clinician) {
-            cards = cards.concat([MedicineAccountsCard,
-                                  HuskyCard]);
+        if(window.user.student || window.user.employee) {
+            cards.push(MedicineAccountsCard);
         }
 
-        if(window.user.student &&
-           (window.user.seattle_affil || window.user.seattle)) {
+        if(window.user.student || window.user.past_stud ||
+           window.user.employee || window.user.past_employee) {
+            cards.push(HuskyCard);
+        }
+
+        if((window.user.undergrad ||
+            window.user.grad) &&
+           (window.user.seattle_affil ||
+            window.user.seattle)) {
             cards.push(HfsSeaCard);
         }
 
-        if(window.user.stud_employee || window.user.instructor) {
+        if(window.user.stud_employee ||
+           window.user.instructor) {
             cards.push(HRPayrollCard);
         }
 
         cards.push(LibraryCard);
 
         if(window.user.student ||
-           window.user.employee ||
-           window.user.clinician) {
+           window.user.employee) {
             cards.push(UPassCard);
         }
 

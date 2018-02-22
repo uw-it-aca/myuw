@@ -56,9 +56,10 @@ class InstSche(ProtectedAPI):
         threads = []
 
         for section in resp_data['sections']:
+
             _set_current_or_future(term, request, section)
             t = Thread(target=coda.get_course_card_details,
-                       args=(section['section_label'].replace("_", "-"),
+                       args=(section['section_label'],
                              section,))
             threads.append(t)
             t.start()

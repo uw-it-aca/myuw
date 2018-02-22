@@ -40,15 +40,6 @@
     </li>
 
     <li class="groupreference">
-      <span class="regid">9b9dab58766a25b1ce605968a347b4ee</span>
-      <span class="title">UW Students</span>
-      <span class="description">UW NetIDs with eduperson affiliation of 'student'</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_student">uw_student</a></li>
-      </ul>
-    </li>
-
-    <li class="groupreference">
       <span class="regid">e2241983c2f5489e92157309d88f13dd</span>
       <span class="title">UW Continuum College Undergraduate Students</span>
       <span class="description">Students who are enrolled with the Continuum College and have SDB class levels of 01, 02, 03, 04 or 05. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
@@ -65,26 +56,6 @@
       <li><a class="name" href="/group_sws/v2/group/uw_affiliation_student-employee">uw_affiliation_student-employee</a></li>
       </ul>
     </li>
-
-    <li class="groupreference">
-      <span class="regid">2364284941D949959DE70C672B616084</span>
-      <span class="title">UW Employees</span>
-      <span class="description">UW NetIDs with eduperson affiliation of 'employee'</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_employee">uw_employee</a></li>
-      </ul>
-    </li>
-
-    <li class="groupreference">
-      <span class="regid">A8FEDF2F303145F787CF4F30E6FF9632</span>
-      <span class="title">UW members</span>
-      <span class="description">UW members</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_member">uw_member</a></li>
-      </ul>
-    </li>
-
-
 
    </ul>
   </div>

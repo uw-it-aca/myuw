@@ -16,10 +16,10 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 1,
-          "categoryName": "Undergraduate",
-          "statusCode": 1,
-          "statusName": "current"
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 3,
+          "statusName": "former"
         },
         {
           "type": "permit",
@@ -58,10 +58,10 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 1,
-          "categoryName": "Undergraduate",
-          "statusCode": 1,
-          "statusName": "current"
+          "categoryCode": 4,
+          "categoryName": "Staff",
+          "statusCode": 3,
+          "statusName": "former"
         },
         {
           "type": "permit",

@@ -18,11 +18,12 @@ describe('HRPayrollCard', function(){
             HRPayrollCard.dom_target = $('#' + render_id);
         });
         beforeEach(function () {
-            window.user.clinician = false;
             window.user.student = false;
             window.user.faculty = false;
             window.user.employee = false;
             window.user.stud_employee = false;
+            window.user.past_employee = false;
+            window.user.retiree = false;
             window.enabled_features = {};
             HRPayrollCard.dom_target.html('');
         });
@@ -45,12 +46,18 @@ describe('HRPayrollCard', function(){
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 1);
             assert.equal(HRPayrollCard.dom_target.find('a[href="https://isc.uw.edu/"]').length, 1);
         });
-        it("Should NOT render for student", function() {
-            window.user.student = true;
+        it("Should render truncated view for past_employee", function() {
+            window.user.past_employee = true;
+            window.page = "home";
+
             HRPayrollCard.render_init();
-            assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 0);
-            assert.equal(HRPayrollCard.dom_target.find('a[href="https://isc.uw.edu/"]').length, 0);
+            assert.equal(HRPayrollCard.dom_target.find('a[href="https://isc.uw.edu"]').length, 1);
+
+            // not faculty
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
+            // truncated
+            assert.equal(HRPayrollCard.dom_target.find('a[href="https://isc.uw.edu/your-time-absence/time-off/"]').length, 0);
+            assert.equal(HRPayrollCard.dom_target.find('a[href="https://www.washington.edu/wholeu/"]').length, 0);
         });
     });
 });
