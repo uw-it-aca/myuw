@@ -18,12 +18,12 @@ describe("AccountsPage", function() {
     });
     beforeEach(function (){
         window.page = "accounts";
-        window.user.clinician = false;
         window.user.employee = false;
         window.user.instructor = false;
         window.user.student = false;
         window.user.seattle = false;
         window.user.stud_employee = false;
+        window.user.past_stud = false;
         window.user.past_employee = false;
         window.user.retiree = false;
     });
@@ -37,7 +37,7 @@ describe("AccountsPage", function() {
                 UPassCard,
                 UwnetidCard
             ];
-            window.user.clinician = true;
+            window.user.employee = true;  // including clinician
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, order)
         });
@@ -52,6 +52,17 @@ describe("AccountsPage", function() {
                 UwnetidCard
             ];
             window.user.student = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, student_order)
+        });
+
+        it('should handle past student affiliation', function() {
+            var student_order = [
+                HuskyCard,
+                LibraryCard,
+                UwnetidCard
+            ];
+            window.user.past_stud = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, student_order)
         });
@@ -98,6 +109,17 @@ describe("AccountsPage", function() {
                 UwnetidCard
             ];
             window.user.employee = true;
+            var card_order = AccountsPage._get_card_order_by_affiliation();
+            assert.deepEqual(card_order, employee_order)
+        });
+
+        it('should handle past employee affiliation', function() {
+            var employee_order = [
+                HuskyCard,
+                LibraryCard,
+                UwnetidCard
+            ];
+            window.user.past_employee = true;
             var card_order = AccountsPage._get_card_order_by_affiliation();
             assert.deepEqual(card_order, employee_order)
         });
