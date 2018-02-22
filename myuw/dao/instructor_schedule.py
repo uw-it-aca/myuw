@@ -13,7 +13,7 @@ from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_comparison_datetime
 
 
 logger = logging.getLogger(__name__)
@@ -28,9 +28,12 @@ def get_instructor_schedule_by_term(request, term):
     schedule = ClassSchedule()
     schedule.person = person
     schedule.term = term
-
+    # turn on the checking for future quarters
+    term.check_time_schedule_published = term.is_future(
+        get_comparison_datetime(request))
     section_references = _get_instructor_sections(person, term)
-    schedule.sections = _get_sections_by_section_reference(section_references)
+    schedule.sections = _get_sections_by_section_reference(section_references,
+                                                           term)
     return schedule
 
 
@@ -52,18 +55,14 @@ def _get_instructor_sections(person, term,
         transcriptable_course='all')
 
 
-def _set_section_from_url(sections, section_url):
-    sections.append(get_section_by_url(section_url))
-
-
-def _get_sections_by_section_reference(section_references):
+def _get_sections_by_section_reference(section_references, term):
     sections = []
     section_threads = []
 
     for section_ref in section_references:
         try:
             t = Thread(target=_set_section_from_url,
-                       args=(sections, section_ref.url))
+                       args=(sections, section_ref.url, term))
             section_threads.append(t)
             t.start()
         except KeyError:
@@ -73,6 +72,18 @@ def _get_sections_by_section_reference(section_references):
         t.join()
 
     return sections
+
+
+def _set_section_from_url(sections, section_url, term):
+    section = get_section_by_url(section_url)
+    if not term.check_time_schedule_published:
+        sections.append(section)
+    else:
+        course_campus = section.course_campus.lower()
+        # check if the campus specific time schedule is published
+        if course_campus not in term.time_schedule_published or\
+           term.time_schedule_published[course_campus] is True:
+            sections.append(section)
 
 
 def get_instructor_section(request, section_id,

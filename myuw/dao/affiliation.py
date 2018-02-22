@@ -112,17 +112,17 @@ def get_all_affiliations(request):
 
     campuses = []
 
-    if is_employee(request):
-        # determine employee primary campus based on their mailstop
-        try:
-            campuses = [get_employee_campus(request)]
-        except IndeterminateCampusException:
-            pass
-
-    if len(campuses) == 0 and data["student"]:
+    if data["student"]:
         # determine student campus based on current and future enrollments
         try:
             campuses = get_main_campus(request)
+        except IndeterminateCampusException:
+            pass
+
+    if len(campuses) == 0 and is_employee(request):
+        # determine employee primary campus based on their mailstop
+        try:
+            campuses = [get_employee_campus(request)]
         except IndeterminateCampusException:
             pass
 
