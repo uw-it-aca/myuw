@@ -1,0 +1,36 @@
+{
+    "Current": {
+        "ChangedSinceDate": null, 
+        "CourseNumber": null, 
+        "CurriculumAbbreviation": null, 
+        "DeleteFlag": null, 
+        "FacilityCode": null, 
+        "FutureTerms": 2, 
+        "Href": "/student/v5/section.json?year=2018&quarter=spring&future_terms=2&curriculum_abbreviation=&course_number=&reg_id=10000000000000000000000000000006&search_by=Instructor&include_secondaries=&delete_flag=&changed_since_date=&transcriptable_course=all&page_size=10&page_start=1&facility_code=&room_number=&sln=", 
+        "IncludeSecondaries": false, 
+        "PageSize": "10", 
+        "PageStart": "1", 
+        "Quarter": "spring", 
+        "RegID": "10000000000000000000000000000006", 
+        "RoomNumber": null, 
+        "SLN": null, 
+        "SearchBy": "Instructor", 
+        "TranscriptableCourse": "all", 
+        "Year": "2018"
+    }, 
+    "Next": null, 
+    "PageSize": "10", 
+    "PageStart": "1", 
+    "Previous": null, 
+    "Sections": [
+        {
+            "CourseNumber": "573", 
+            "CurriculumAbbreviation": "JAPAN", 
+            "Href": "/student/v5/course/2018,spring,JAPAN,573/A.json", 
+            "Quarter": "spring", 
+            "SectionID": "A", 
+            "Year": 2018
+        }
+    ], 
+    "TotalCount": 1
+}

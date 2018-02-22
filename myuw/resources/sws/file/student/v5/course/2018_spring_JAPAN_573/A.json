@@ -1,0 +1,192 @@
+{
+    "AddCodeRequired": false, 
+    "Auditors": 0, 
+    "ClassWebsiteUrl": null, 
+    "Course": {
+        "CourseNumber": "573", 
+        "CurriculumAbbreviation": "JAPAN", 
+        "Href": "/student/v5/course/2018,spring,JAPAN,573.json", 
+        "Quarter": "spring", 
+        "Year": 2018
+    }, 
+    "CourseCampus": "Seattle", 
+    "CourseDescription": "Continued readings in classical literary texts. Prerequisite: permission of instructor.", 
+    "CourseHasVariableContent": false, 
+    "CourseTitle": "ADV RDGS CLSCL LIT", 
+    "CourseTitleLong": "Advanced Readings in Classical Japanese Literature", 
+    "CreditControl": "fixed credit", 
+    "CurrentEnrollment": 1, 
+    "Curriculum": {
+        "CollegeName": "ARTS & SCI", 
+        "DepartmentAbbreviation": "ASIAN", 
+        "TimeScheduleLinkAbbreviation": "japanese"
+    }, 
+    "DeleteFlag": "active", 
+    "DistanceLearning": false, 
+    "DistanceLearningType": {
+        "Code": null, 
+        "Description": null
+    }, 
+    "DuplicateEnrollmentAllowed": false, 
+    "EndDate": "", 
+    "EnrollmentRestrictions": false, 
+    "FeeAmount": "", 
+    "FeeBudget": "", 
+    "FeeType": "", 
+    "FinalExam": {
+        "Building": "SAV", 
+        "Date": "2018-06-07", 
+        "EndTime": "16:20", 
+        "FinalExamBuilding": {
+            "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=SAV&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+        }, 
+        "MeetingStatus": "0", 
+        "RoomNumber": "140", 
+        "StartTime": "14:30"
+    }, 
+    "FinancialAidEligible": true, 
+    "FinancialAidEligibleDisplay": "", 
+    "GeneralEducationRequirements": {
+        "Diversity": false, 
+        "EnglishComposition": false, 
+        "IndividualsAndSocieties": false, 
+        "NaturalWorld": false, 
+        "QuantitativeAndSymbolicReasoning": false, 
+        "VisualLiteraryAndPerformingArts": false, 
+        "Writing": false
+    }, 
+    "GradeSubmissionDelegates": [], 
+    "GradingSystem": "standard", 
+    "HonorsCourse": false, 
+    "IndependentStudy": false, 
+    "InstituteName": "", 
+    "IsIndependentStart": false, 
+    "JointSections": [], 
+    "LMSOwnership": null, 
+    "LimitEstimateEnrollment": 15, 
+    "LimitEstimateEnrollmentIndicator": "limit", 
+    "LinkedSectionTypes": [], 
+    "MaximumCredit": "", 
+    "MaximumTermCredit": "", 
+    "Meetings": [
+        {
+            "Building": "SAV", 
+            "BuildingToBeArranged": false, 
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Monday"
+                    }, 
+                    {
+                        "Name": "Wednesday"
+                    }
+                ], 
+                "Text": "M W"
+            }, 
+            "DaysOfWeekToBeArranged": false, 
+            "EndTime": "17:20", 
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "", 
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2018,spring,JAPAN,573,A,10000000000000000000000000000006"
+                    }, 
+                    "PercentInvolve": "100", 
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json", 
+                        "Name": "Bill Seattle", 
+                        "RegID": "10000000000000000000000000000006"
+                    }, 
+                    "TSPrint": true
+                }
+            ], 
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=SAV&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            }, 
+            "MeetingIndex": "1", 
+            "MeetingType": "seminar", 
+            "RoomNumber": "140", 
+            "RoomToBeArranged": false, 
+            "StartTime": "15:30"
+        }
+    ], 
+    "Metadata": "SectionSourceKey=SDB;", 
+    "MinimumTermCredit": "5.0", 
+    "OnlineLearningType": {
+        "Code": "00", 
+        "Description": "No online learning component"
+    }, 
+    "PrimaryLMS": null, 
+    "PrimarySection": {
+        "CourseNumber": "573", 
+        "CurriculumAbbreviation": "JAPAN", 
+        "Href": "/student/v5/course/2018,spring,JAPAN,573/A.json", 
+        "Quarter": "spring", 
+        "SectionID": "A", 
+        "Year": 2018
+    }, 
+    "Registrations": {
+        "ChangedSinceDate": "", 
+        "CourseNumber": "573", 
+        "CurriculumAbbreviation": "JAPAN", 
+        "Href": "/student/v5/registration.json?year=2018&quarter=spring&curriculum_abbreviation=JAPAN&course_number=573&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=", 
+        "InstructorRegID": null, 
+        "IsActive": true, 
+        "PageSize": "", 
+        "PageStart": "", 
+        "Quarter": "spring", 
+        "RegID": null, 
+        "SectionID": "A", 
+        "TranscriptableCourse": "", 
+        "Verbose": false, 
+        "Year": 2018
+    }, 
+    "RepositoryTimeStamp": "2/9/2018 7:48:26 PM", 
+    "ResearchCredit": false, 
+    "RoomCapacity": 15, 
+    "SLN": "15633", 
+    "SameVariableContentAs": [], 
+    "SecondaryGradingOption": false, 
+    "SectionID": "A", 
+    "SectionType": "seminar", 
+    "SelfRegistrationAllowed": true, 
+    "ServiceLearning": false, 
+    "StartDate": "", 
+    "StudentCreditHours": "   5.0", 
+    "SummerTerm": "", 
+    "Term": {
+        "Href": "/student/v5/term/2018,spring.json", 
+        "Quarter": "spring", 
+        "Year": 2018
+    }, 
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        }, 
+        "CourseComments": {
+            "Lines": []
+        }, 
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "STUDENTS WHO DO NOT ATTEND THE FIRST THREE DAYS OF"
+                }, 
+                {
+                    "Text": "CLASS MAY BE DROPPED."
+                }
+            ]
+        }, 
+        "DepartmentComments": {
+            "Lines": []
+        }, 
+        "InstituteComments": {
+            "Lines": []
+        }, 
+        "SectionComments": {
+            "Lines": []
+        }, 
+        "TimeScheduleGeneratedComments": {
+            "Lines": []
+        }
+    }
+}
