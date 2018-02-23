@@ -3,7 +3,6 @@ var data;
 var multi_res_card_render_called = {};
 
 $(window.document).ready(function() {
-
     LogUtils.init_logging();
     init_modal_events();
     init_search_events();
