@@ -59,6 +59,15 @@
         <!-- android icons -->
         <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
 
+        <script>
+            // Check if this browser is Internet Explorer 7 and running Document Mode 7
+            if(document.documentMode !== null && document.documentMode === 7){
+                // Notify the user that we do not support this document mode
+                alert("We  have detected that your browser is running in document mode for Internet Explorer 7!\n" +
+                      "Please Switch to Firefox or Chrome or change your document mode")
+            }
+        </script>
+
         {% load templatetag_handlebars %}
     </head>
 

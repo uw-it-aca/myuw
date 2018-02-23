@@ -2,12 +2,6 @@
 var data;
 var multi_res_card_render_called = {};
 
-// Check if this browser is Internet Explorer 7 and running Document Mode 7
-if(document.documentMode !== null && document.documentMode === 7){
-    alert("We  have detected that your browser is running in document mode for Internet Explorer 7!" +
-          "Please Switch to Firefox or Chrome or change your document mode")
-}
-
 $(window.document).ready(function() {
 
     LogUtils.init_logging();
