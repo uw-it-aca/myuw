@@ -66,7 +66,7 @@ var TuitionCard = {
             template_data.pce_accbalance = 0;
         }
         template_data.is_grad = window.user.grad;
-        template_data.is_pce = window.user.pce;
+        template_data.is_c2 = window.user.grad_c2 || window.user.undergrad_c2;
         template_data.is_tacoma = window.user.tacoma_affil;
         template_data.is_bothell = window.user.bothell_affil;
         template_data.is_seattle = window.user.seattle_affil;

@@ -75,7 +75,6 @@
 	            </div>
 	        </li>    
     {{/if}}<!-- end if has_balance -->
-    
 	<!-- PCE balance is NOT 0 -->
     {{#if pce_accbalance}}
 
@@ -96,6 +95,7 @@
 	
 		</li>
     {{else}} <!-- if PCE balance is 0 -->
+        {{#if is_c2}}
 		<li>
             <div class="card-badge clearfix">
                 <div class="pull-left">
@@ -108,6 +108,7 @@
                 </div>
             </div>
         </li>
+        {{/if}}
     {{/if}}<!-- end pce balance -->
     
     {{#if tuition_date}} <!-- N-T-S. UPDATE THE LOGIC TO REFELCT BOTH SFS + PCE -->
