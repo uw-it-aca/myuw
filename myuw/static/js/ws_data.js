@@ -141,19 +141,17 @@ WSData = {
         return WSData._instructed_course_data_error_status[term];
     },
 
-    normalized_instructed_course_data: function(term) {
-        var course_data;
-        if (term) {
-            course_data = WSData.instructed_course_data_for_term(term);
+    instructed_course_data: function(term, normalized) {
+        var course_data = WSData.instructed_course_data_for_term(term);
+        course_data = WSData._link_secondary_sections(course_data);
+        if (normalized) {
+            return WSData._normalize_instructed_data(course_data);
         } else {
-            course_data = WSData.current_instructed_course_data();
+            return course_data;
         }
-
-        return WSData._normalize_instructed_data(course_data);
     },
 
-    _link_secondary_sections: function (term) {
-        var course_data = WSData.instructed_course_data_for_term(term);
+    _link_secondary_sections: function (course_data) {
         if (course_data) {
             WSData._normalize_instructors(course_data);
 

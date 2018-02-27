@@ -51,7 +51,7 @@ var SummaryScheduleCard = {
     _render: function () {
         Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
         var term = SummaryScheduleCard.term;
-        var instructed_course_data = WSData._link_secondary_sections(term);
+        var instructed_course_data = WSData.instructed_course_data(term, false);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
         var data = {
