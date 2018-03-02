@@ -20,7 +20,7 @@ Academics,Grades & Transcripts,all,https://www.washington.edu/uaa/advising/grade
 Academics,Grades & Transcripts,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx,Grade Report,,,,,,,yes
 Academics,Grades & Transcripts,all,,,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,http://www.uwb.edu/registration/transcript,Order Official Transcripts,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,yes
 Academics,Grades & Transcripts,all,https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp,Unofficial Transcript,,,,,,,yes
-Academics,Libraries,all,,,https://eres.lib.washington.edu/,Electronic Course Reserves,,,,,yes
+Academics,Libraries,all,,,http://www.lib.washington.edu/types/course/,Electronic Course Reserves,,,,,yes
 Academics,Libraries,all,,,http://lib.washington.edu/,UW Libraries,http://library.uwb.edu/,UW Bothell Library,http://www.tacoma.uw.edu/library,UW Tacoma Library,no
 Academics,Graduation,all,,,http://www.washington.edu/students/reg/grad.html,Application for Graduation,https://www.uwb.edu/registration/graduation/apply,Applying for Graduation,http://www.tacoma.uw.edu/node/37921,Applying to Graduate,no
 Academics,Husky Experience,fyp,/thrive_messages,Thrive Messages,,,,,,,no
