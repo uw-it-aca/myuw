@@ -3,7 +3,7 @@ from unittest2 import skipIf
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test.utils import override_settings
-from django.test import TestCase
+from django.test import TransactionTestCase
 from myuw.test import (get_user, get_user_pass, fdao_uwnetid_override,
                        fdao_sws_override, fdao_subject_guide_override,
                        fdao_mylib_override, fdao_ias_override,
@@ -52,7 +52,7 @@ standard_test_override = override_settings(
 
 
 @standard_test_override
-class MyuwApiTest(TestCase):
+class MyuwApiTest(TransactionTestCase):
 
     def set_user(self, user):
         get_user(user)
