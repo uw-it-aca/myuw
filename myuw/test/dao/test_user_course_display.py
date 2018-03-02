@@ -89,7 +89,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEquals(sections[2].color_id, '2a')
         self.assertEquals(sections[3].color_id, '2a')
         self.assertEquals(sections[4].color_id, '3a')
-        self.assertEquals(sections[5].color_id, '3a')
+        self.assertEquals(sections[5].color_id, '4a')
         self.assertEquals(sections[6].color_id, '4a')
 
         records = UserCourseDisplay.objects.all()
@@ -113,7 +113,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEquals(sections[2].color_id, '2a')
         self.assertEquals(sections[3].color_id, '2a')
         self.assertEquals(sections[4].color_id, '3a')
-        self.assertEquals(sections[5].color_id, '3a')
+        self.assertEquals(sections[5].color_id, '4a')
         self.assertEquals(sections[6].color_id, '4a')
         records = UserCourseDisplay.objects.all()
         self.assertEquals(len(records), 7)
