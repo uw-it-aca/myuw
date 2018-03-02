@@ -23,45 +23,45 @@ class AcademicEvents(ProtectedAPI):
     def get(self, request, *args, **kwargs):
         current = kwargs.get('current', False)
         timer = Timer()
-        try:
-            events = []
+        events = []
 
-            cal_names = ['sea_acad-inst', 'sea_acad-holidays']
-            if is_instructor(request):
-                cal_names = cal_names + ['sea_acad-regi', 'sea_acad-grade']
+        cal_names = ['sea_acad-inst', 'sea_acad-holidays']
+        if is_instructor(request):
+            cal_names = cal_names + ['sea_acad-regi', 'sea_acad-grade']
 
-            calendars = []
-            for cal in cal_names:
-                calendars.append(get_calendar_by_name(cal))
+        calendars = []
+        for cal in cal_names:
+            calendars.append(get_calendar_by_name(cal))
 
-            raw_events = []
-            index = 0
-            for calendar in calendars:
-                for event in calendar.walk('vevent'):
-                    event.add("calendar_name", cal_names[index])
-                    raw_events.append(event)
-                index = index + 1
+        raw_events = []
+        index = 0
+        for calendar in calendars:
+            for event in calendar.walk('vevent'):
+                event.add("calendar_name", cal_names[index])
+                raw_events.append(event)
+            index = index + 1
 
-            raw_events = self.sort_events(raw_events)
+        raw_events = self.sort_events(raw_events)
 
-            raw_events = self.categorize_events(raw_events)
+        raw_events = self.categorize_events(raw_events)
 
-            raw_events = self.filter_past_events(request, raw_events)
+        raw_events = self.filter_past_events(request, raw_events)
 
-            if current:
-                raw_events = self.filter_non_current(request, raw_events)
-            else:
-                raw_events = self.filter_too_future_events(request, raw_events)
+        if current:
+            raw_events = self.filter_non_current(request, raw_events)
+        else:
+            raw_events = self.filter_too_future_events(request, raw_events)
 
-            for event in raw_events:
-                events.append(self.json_for_event(event))
-            log_success_response(logger, timer)
-            return self.json_response(events)
-        except Exception:
-            return handle_exception(logger, timer, traceback)
+        for event in raw_events:
+            events.append(self.json_for_event(event, request))
+        log_success_response(logger, timer)
+        return self.json_response(events)
 
-    def json_for_event(self, event):
+    def json_for_event(self, event, request):
         year, quarter = self.parse_year_quarter(event)
+        # MUWM-4033 if event in current quarter use that year/qtr as backup
+        if None in (year, quarter):
+            year, quarter = self._get_year_qtr_from_cur_term(event, request)
         start, end = self.parse_dates(event)
         category = self.parse_category(event)
         categories = self.parse_myuw_categories(event)
@@ -80,6 +80,13 @@ class AcademicEvents(ProtectedAPI):
             "event_url": event_url,
             "is_all_day": is_all_day,
         }
+
+    def _get_year_qtr_from_cur_term(self, event, request):
+        current = get_current_quarter(request)
+        start = self.get_start_date(event)
+        if current.first_day_quarter <= start <= current.last_final_exam_date:
+            return current.year, current.quarter.capitalize()
+        return None, None
 
     def parse_myuw_categories(self, event):
         return json.loads(event.get('myuw_categories'))

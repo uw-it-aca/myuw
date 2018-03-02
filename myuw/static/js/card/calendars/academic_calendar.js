@@ -61,7 +61,6 @@ var AcademicCalendarCard = {
 
             by_group[group_name].events.push(ev);
         }
-
         return groups;
     },
 
