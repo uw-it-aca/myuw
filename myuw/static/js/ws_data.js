@@ -705,9 +705,6 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    if (results.sections && results.sections.length) {
-                        WSData.process_term_course_data(results);
-                    }
                     WSData._instructed_course_data_error_status[term] = null;
                     WSData._instructed_course_data[term] = results;
                     WSData._run_success_callbacks_for_url(url);
@@ -744,9 +741,6 @@ WSData = {
                 type: "GET",
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    if (results.sections && results.sections.length) {
-                        WSData.process_term_course_data(results);
-                    }
                     WSData._instructed_section_data_error_status[section_label] = null;
                     WSData._instructed_section_data[section_label] = results;
                     WSData._run_success_callbacks_for_url(url);
