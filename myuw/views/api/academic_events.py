@@ -23,39 +23,42 @@ class AcademicEvents(ProtectedAPI):
     def get(self, request, *args, **kwargs):
         current = kwargs.get('current', False)
         timer = Timer()
-        events = []
+        try:
+            events = []
 
-        cal_names = ['sea_acad-inst', 'sea_acad-holidays']
-        if is_instructor(request):
-            cal_names = cal_names + ['sea_acad-regi', 'sea_acad-grade']
+            cal_names = ['sea_acad-inst', 'sea_acad-holidays']
+            if is_instructor(request):
+                cal_names = cal_names + ['sea_acad-regi', 'sea_acad-grade']
 
-        calendars = []
-        for cal in cal_names:
-            calendars.append(get_calendar_by_name(cal))
+            calendars = []
+            for cal in cal_names:
+                calendars.append(get_calendar_by_name(cal))
 
-        raw_events = []
-        index = 0
-        for calendar in calendars:
-            for event in calendar.walk('vevent'):
-                event.add("calendar_name", cal_names[index])
-                raw_events.append(event)
-            index = index + 1
+            raw_events = []
+            index = 0
+            for calendar in calendars:
+                for event in calendar.walk('vevent'):
+                    event.add("calendar_name", cal_names[index])
+                    raw_events.append(event)
+                index = index + 1
 
-        raw_events = self.sort_events(raw_events)
+            raw_events = self.sort_events(raw_events)
 
-        raw_events = self.categorize_events(raw_events)
+            raw_events = self.categorize_events(raw_events)
 
-        raw_events = self.filter_past_events(request, raw_events)
+            raw_events = self.filter_past_events(request, raw_events)
 
-        if current:
-            raw_events = self.filter_non_current(request, raw_events)
-        else:
-            raw_events = self.filter_too_future_events(request, raw_events)
+            if current:
+                raw_events = self.filter_non_current(request, raw_events)
+            else:
+                raw_events = self.filter_too_future_events(request, raw_events)
 
-        for event in raw_events:
-            events.append(self.json_for_event(event, request))
-        log_success_response(logger, timer)
-        return self.json_response(events)
+            for event in raw_events:
+                events.append(self.json_for_event(event, request))
+            log_success_response(logger, timer)
+            return self.json_response(events)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
 
     def json_for_event(self, event, request):
         year, quarter = self.parse_year_quarter(event)
