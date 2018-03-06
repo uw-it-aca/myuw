@@ -2,12 +2,13 @@
     {% tplhandlebars "instructor_course_resource_panel" %}
 
     {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
+
     {{#if current_or_future}}
         {% include "handlebars/card/instructor_schedule/course_resource/course_stats.html" %}
     {{/if}}
 
 
-{{#if display_resources}}
+    {{#if display_resources}}
     <div class="myuw-card-section">
         <div class="row">
             <div class="col-sm-3">
@@ -16,23 +17,28 @@
             <div class="col-sm-9">
                 <div class="myuw-card-row-content">
                     <ul class="myuw-card-itemlist">
-                        <li class="clearfix">
-                          {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
-                        </li>
+                        {{#unless mini_card}}
+                            <li class="clearfix">
+                                {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
+                            </li>
+                        {{/unless}}
+
                         {{#if email_list }}
-                        <li class="clearfix">
-                          {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
-                        </li>
+                            <li class="clearfix">
+                                {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
+                            </li>
                         {{/if}}
+
                         {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
+
                         <li class="clearfix">
-                          {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
+                            {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-{{/if}}
+    {{/if}}
 
 {% endtplhandlebars %}

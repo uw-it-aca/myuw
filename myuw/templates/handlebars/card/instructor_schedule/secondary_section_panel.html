@@ -5,9 +5,9 @@
         <tr class="course-schedule-row">
             <td class="course-section">
                 {{#if @first }}
-                    <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div>
-                        <a href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"
-                           future-nav-target="{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}}-{{../course_number}}-{{../section_id}}">{{../section_id}}</a>
+                    <div class="section-id">
+                        <div class="c{{../color_id}} minirectangle" aria-hidden="true"></div>
+                        <a class="pin-mini-card" href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}" cabb="{{ ../curriculum_abbr }}" cnum="{{ ../course_number }}" sid="{{ ../section_id }}">{{../section_id}}</a>
                     </div>
                 {{/if}}
             </td>
@@ -43,9 +43,7 @@
             </td>
 
             <td class="course-type">
-                {{#if @first }}
-                    {{ shorten_meeting_type type }}
-                {{/if}}
+                {{shorten_meeting_type type}}
             </td>
 
             <td class="course-sln">

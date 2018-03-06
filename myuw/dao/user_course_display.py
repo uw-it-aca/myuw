@@ -4,7 +4,9 @@ This module accesses the DB table object UserCourseDisplay
 import logging
 from myuw.models import UserCourseDisplay
 from myuw.dao import get_user_model
-
+from myuw.dao.instructor_schedule import check_section_instructor,\
+    get_section_by_label
+from myuw.dao.pws import get_person_of_current_user
 
 TOTAL_COURSE_COLORS = 8
 logger = logging.getLogger(__name__)
@@ -112,14 +114,17 @@ def _clean_up_dropped_sections(user, existing_color_dict):
 
 
 def set_pin_on_teaching_page(request,
-                             year,
-                             quarter,
                              section_label,
                              pin=True):
     """
     if pin=True, pin the section on teaching page
     if pin=False, unpin the section from teaching page
+    @except InvalidSectionID
+    @except NotSectionInstructorException
     """
+    check_section_instructor(get_section_by_label(section_label),
+                             get_person_of_current_user(request))
+
     obj = UserCourseDisplay.objects.get(user=get_user_model(request),
                                         section_label=section_label)
     if obj:

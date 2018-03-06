@@ -1,6 +1,8 @@
 from django.test import TransactionTestCase
 from django.conf import settings
 from userservice.user import UserServiceMiddleware
+from uw_sws.exceptions import InvalidSectionID
+from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.models import UserCourseDisplay
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.registration import get_schedule_by_term
@@ -128,17 +130,26 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertFalse(records[3].pin_on_teaching_page)
 
         section_label = schedule.sections[2].section_label()
+        # test pin mini card
         set_pin_on_teaching_page(req,
-                                 schedule.term.year,
-                                 schedule.term.quarter,
                                  section_label)
         records = UserCourseDisplay.objects.all()
         self.assertTrue(records[2].pin_on_teaching_page)
 
+        # close pin mini card
         set_pin_on_teaching_page(req,
-                                 schedule.term.year,
-                                 schedule.term.quarter,
                                  section_label,
                                  pin=False)
         records = UserCourseDisplay.objects.all()
         self.assertFalse(records[2].pin_on_teaching_page)
+
+        # test InvalidSectionID
+        section_label = '2013,spring,PHYS,121/'
+        with self.assertRaises(InvalidSectionID):
+            set_pin_on_teaching_page(req, section_label)
+
+        # test NotSectionInstructorException
+        req = get_request_with_user("billpce")
+        section_label = '2013,spring,PHYS,121/AC'
+        with self.assertRaises(NotSectionInstructorException):
+            set_pin_on_teaching_page(req, section_label)

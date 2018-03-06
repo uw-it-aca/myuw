@@ -252,7 +252,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
 
         section_data["section_type"] = section.section_type
         section_data["color_id"] = section.color_id
-        section_data["pin_on_teaching"] = section.pin_on_teaching
+        section_data["mini_card"] = section.pin_on_teaching
 
         section_data["section_label"] =\
             safe_label(section.section_label())
@@ -348,7 +348,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     for t in course_resource_threads:
         t.join()
     """
-    SWS section search response are already sorted.
+    # SWS section search response are already sorted.
     json_data["sections"] = sorted(json_data["sections"],
                                    key=itemgetter('curriculum_abbr',
                                                   'course_number',

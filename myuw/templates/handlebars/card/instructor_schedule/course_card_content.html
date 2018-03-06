@@ -6,9 +6,21 @@
     <div id="instructor_course_resource{{index}}">
     </div>
 
-    {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+    {{#unless mini_card}}
+        {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+    {{else}}
+        {{#if allows_secondary_grading}}
+            {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+        {{/if}}
+    {{/unless}}
 
-    {% include "handlebars/card/instructor_schedule/course_eval.html" %}
+    {{#unless mini_card}}
+        {% include "handlebars/card/instructor_schedule/course_eval.html" %}
+    {{else}}
+        {{#unless evaluation.eval_not_exist}}
+            {% include "handlebars/card/instructor_schedule/course_eval.html" %}
+        {{/unless}}
+    {{/unless}}
 
     {{#if linked_secondaries}}
        {% include "handlebars/card/instructor_schedule/secondaries.html" %}

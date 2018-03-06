@@ -2,18 +2,7 @@
     {% tplhandlebars "instructor_course_card_list" %}
 
 <div class="instructor_cards">
-    <div class="instructor-term-selection">
-        <div role="tablist" class="instructor-term-tabs myuw-pagetabs">
-            {{#each tab_terms}}
-                <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="instructor-term-{{toLowerCase quarter}}-{{year}}" {{# if matching_term}}class="myuw-tab myuw-tab-selected" {{else}}class="myuw-tab"{{/if}}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}" {{# if matching_term}}aria-selected="true" {{else}} aria-selected="false"{{/if}}>{{quarter}} {{short_year year}}</a></div>
-            {{/each}}
-        </div>
-
-        <div class="instructor-term-menu myuw-pagemenu">
-            <label for="teaching-term-select" class="sr-only">Select from all terms</label>
-            <select id="teaching-term-select" class="instructed-terms myuw-dropmenu {{#if matching_term}}myuw-dropmenu-selected{{/if}}"><option selected="selected" value=''>All terms</option>{{#each reversed_related_terms}}<option {{#if matching_term}}selected{{/if}} value="{{year}},{{toLowerCase quarter}}" aria-controls="instructor-term-{{toLowerCase quarter}}-{{year}}">{{#if is_current}}{{quarter}} {{short_year year}} (Current){{else}}{{quarter}} {{short_year year}}{{/if}}</option>{{/each}}</select>
-        </div>
-    </div>
+    {% include "handlebars/card/instructor_schedule/term_panel.html" %}
 
     <div id="instructor-term-{{toLowerCase quarter}}-{{year}}" class="instructor-term-cards" aria-labelledby="instructor-term-label">
         <h3 id="instructor-term-label" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
@@ -21,9 +10,10 @@
         {{#each sections}}
             {{#unless under_disclosure}}
                 <a name="{{curriculum_abbr}}-{{course_number}}-{{section_id}}"></a>
-                <div class="myuw-card instructor-course-card" style="position:relative;"
-                     data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
-                    <div class="c{{color_id}}Border"></div>
+                <div class="myuw-card instructor-course-card" style="position:relative;" data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
+
+                    <div class={{#if mini_card}}{{else}}"c{{color_id}}Border"{{/if}}></div>
+
                     <div class="fade-in">
                         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
                             <h3 class="myuw-card-title">
@@ -40,12 +30,11 @@
                                     <span class="myuw-meta course-sln">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation ../quarter }}+{{ ../year }}&SLN={{ sln }}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
                                 {{/if}}
                                 <span class="myuw-meta course-meeting-type c{{color_id}}Color">{{section_type}}</span>
+                                {{#if mini_card}}
+                                    <a class="close-mini-card" href="/teaching/" cabb="{{curriculum_abbr}}" cnum="{{course_number }}" sid="{{section_id}}">X</a>
+                                {{/if}}
                             </div>
 
-                            <!-- need to remove
-                               <h4 class="myuw-card-row-heading">Enrollment</h4>
-                               {{ current_enrollment }}{{#if limit_estimate_enrollment}}/{{ limit_estimate_enrollment }}{{/if}}
-                            -->
                             <div class="myuw-card-content" id="instructor_course_card_content{{index}}"></div>
                         </div>
                     </div>

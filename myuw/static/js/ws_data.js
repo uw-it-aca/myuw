@@ -171,11 +171,13 @@ WSData = {
                         linked_primary_label = this.section_label;
                     }
                 } else {
-                    primary_label = this.primary_section_label;
-                    if (primary_label === linked_primary_label &&
-                        linked_secondaries !== undefined) {
-                        this.under_disclosure = true;
-                        linked_secondaries.push(this);
+                    if (!this.mini_card) {
+                        primary_label = this.primary_section_label;
+                        if (primary_label === linked_primary_label &&
+                            linked_secondaries !== undefined) {
+                            this.under_disclosure = true;
+                            linked_secondaries.push(this);
+                        }
                     }
                 }
             });
