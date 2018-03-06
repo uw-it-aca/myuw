@@ -16,7 +16,7 @@ class TestCategoryLinks(TestCase):
 
     def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
-        self.assertEquals(len(all_links), 211)
+        self.assertEquals(len(all_links), 212)
         val = URLValidator()
         for link in all_links:
             try:
