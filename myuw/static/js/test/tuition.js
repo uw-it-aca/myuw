@@ -37,10 +37,8 @@ describe('TuitionCard', function(){
         });
         it("Should have regular and pce tuition balances for javerage", function() {
             assert.equal(TuitionCard.dom_target.find('h4').length, 4);
-            assert.equal(TuitionCard.dom_target.find('h4')[0].innerHTML,
-                         "You owe");
-            assert.equal(TuitionCard.dom_target.find('h4')[1].innerHTML,
-                         "You owe PCE");
+            assert.notEqual(TuitionCard.dom_target.find('h4')[0].innerHTML.indexOf('Student Fiscal Services'), -1);
+            assert.notEqual(TuitionCard.dom_target.find('h4')[1].innerHTML.indexOf('PCE-Continuum College'), -1);
             assert.equal(TuitionCard.dom_target.find('h4')[2].innerHTML,
                          "Financial Aid");
             assert.equal(TuitionCard.dom_target.find('h4')[3].innerHTML,
