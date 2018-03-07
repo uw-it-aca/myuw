@@ -55,7 +55,7 @@ setup(
         'UW-RestClients-Django-Utils>=0.6.9.1,<1.0',
         'UW-RestClients-CoDa',
         'UW-RestClients-Sdbmyuw',
-        'UW-HX-Toolkit==1.0.3b',
+        'UW-HX-Toolkit==1.0.3c',
         'Django-Safe-EmailBackend>=0.1,<1.0',
         'Django-SupportTools>=1.2,<2.0',
         'django_mobileesp',
