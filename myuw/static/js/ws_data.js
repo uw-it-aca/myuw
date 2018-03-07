@@ -159,12 +159,7 @@ WSData = {
             var linked_primary_label;
             $.each(course_data.sections, function () {
                 if (this.is_primary_section) {
-                    // verify prev linked_secondaries
-                    if (linked_secondaries &&
-                        linked_secondaries.length ===0) {
-                        linked_secondaries = null;
-                    }
-
+                    linked_secondaries = null;
                     if (this.total_linked_secondaries) {
                         this.linked_secondaries = [];
                         linked_secondaries = this.linked_secondaries;
@@ -178,6 +173,16 @@ WSData = {
                             this.under_disclosure = true;
                             linked_secondaries.push(this);
                         }
+                    }
+                }
+            });
+
+            // correct the count of the linked secondaries
+            $.each(course_data.sections, function () {
+                if (this.linked_secondaries) {
+                    this.total_linked_secondaries = this.linked_secondaries.length;
+                    if (this.total_linked_secondaries === 0) {
+                        this.linked_secondaries = null;
                     }
                 }
             });
