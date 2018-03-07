@@ -20,14 +20,6 @@
       <li><a class="name" href="/group_sws/v2/group/uw_affiliation_extension-student">uw_affiliation_extension-student</a></li>
       </ul>
     </li>
-    <li class="groupreference">
-      <span class="regid">e2241983c2f5489e92157309d88f13dd</span>
-      <span class="title">UW Continuum College Undergraduate Students</span>
-      <span class="description">Students who are enrolled with the Continuum College and have SDB class levels of 01, 02, 03, 04 or 05. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
-      <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_continuum-student_undergraduate">uw_affiliation_continuum-student_undergraduate</a></li>
-      </ul>
-    </li>
 
    </ul>
   </div>
