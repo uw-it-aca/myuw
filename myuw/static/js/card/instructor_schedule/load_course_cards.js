@@ -112,6 +112,13 @@ var InstructorCourseCards = {
             }
         });
 
+        # correct the count of the linked secondaries
+        $.each(course_data.sections, function () {
+            if (this.linked_secondaries) {
+                this.total_linked_secondaries = this.linked_secondaries.length;
+            }
+        });
+
         course_data.tab_terms = tab_terms;
         course_data.reversed_related_terms = course_data.related_terms.slice().reverse();
         var raw = courses_template(course_data);
