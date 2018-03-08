@@ -13,9 +13,11 @@ from myuw.dao.schedule import (
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.logger.logresp import (log_data_not_found_response,
                                  log_success_response, log_msg)
+from myuw.logger.logback import log_exception
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 from myuw.views import prefetch_resources
+import traceback
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +79,8 @@ def load_schedule(request, schedule, summer_term=""):
     try:
         canvas_enrollments = get_canvas_active_enrollments(request)
     except Exception as ex:
-        logger.error(ex)
+        log_exception(
+            logger, 'load_schedule', traceback.format_exc())
         pass
 
     # Since the schedule is restclients, and doesn't know
@@ -116,7 +119,8 @@ def load_schedule(request, schedule, summer_term=""):
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
             except Exception as ex:
-                logger.error(ex)
+                log_exception(
+                    logger, 'load_schedule', traceback.format_exc())
                 pass
 
         try:
