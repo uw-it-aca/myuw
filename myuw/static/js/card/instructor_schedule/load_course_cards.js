@@ -190,7 +190,7 @@ var InstructorCourseCards = {
                 type: 'GET',
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    return true;
+                    return results.done;
                 },
                 error: function(xhr, status, error) {
                     return false;
@@ -212,7 +212,7 @@ var InstructorCourseCards = {
                 type: 'GET',
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    return true;
+                    return results.done;
                 },
                 error: function(xhr, status, error) {
                     return false;

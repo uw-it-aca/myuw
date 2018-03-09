@@ -190,10 +190,14 @@ def is_instructor_prefetch():
 def check_section_instructor(section, person):
     if not section.is_instructor(person):
         if section.is_primary_section:
-            raise NotSectionInstructorException()
+            raise NotSectionInstructorException(
+                "%s Not Instructor for %s" % (person.uwnetid,
+                                              section.section_label()))
         primary_section = get_section_by_label(section.primary_section_label())
         if not primary_section.is_instructor(person):
-            raise NotSectionInstructorException()
+            raise NotSectionInstructorException(
+                "%s Not Instructor for %s" % (
+                    person.uwnetid, primary_section.section_label()))
 
 
 def get_primary_section(secondary_section):

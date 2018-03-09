@@ -18,9 +18,10 @@ class CloseMinicard(ProtectedAPI):
         section_label = kwargs.get("section_label")
         timer = Timer()
         try:
-            set_pin_on_teaching_page(request, section_label, pin=False)
+            result = set_pin_on_teaching_page(request, section_label,
+                                              pin=False)
             log_success_response(logger, timer)
-            return self.json_response({})
+            return self.json_response({"done": result})
         except Exception:
             return handle_exception(logger, timer, traceback)
 
@@ -34,8 +35,9 @@ class PinMinicard(ProtectedAPI):
         section_label = kwargs.get("section_label")
         timer = Timer()
         try:
-            set_pin_on_teaching_page(request, section_label, pin=True)
+            result = set_pin_on_teaching_page(request, section_label,
+                                              pin=True)
             log_success_response(logger, timer)
-            return self.json_response({})
+            return self.json_response({"done": result})
         except Exception:
             return handle_exception(logger, timer, traceback)

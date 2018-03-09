@@ -122,11 +122,18 @@ def set_pin_on_teaching_page(request,
     @except InvalidSectionID
     @except NotSectionInstructorException
     """
-    check_section_instructor(get_section_by_label(section_label),
-                             get_person_of_current_user(request))
+    section = get_section_by_label(section_label)
+    check_section_instructor(section, get_person_of_current_user(request))
+
+    # not to pin a primary section
+    if section.is_primary_section:
+        return False
 
     obj = UserCourseDisplay.objects.get(user=get_user_model(request),
                                         section_label=section_label)
     if obj:
-        obj.pin_on_teaching_page = pin
-        obj.save()
+        if obj.pin_on_teaching_page != pin:
+            obj.pin_on_teaching_page = pin
+            obj.save()
+        return True
+    return False

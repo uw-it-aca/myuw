@@ -23,7 +23,17 @@ class TestInstSectDetails(MyuwApiTest):
         req = get_request_with_user('bill')
         section_id = '2013,spring,PHYS,121/AC'
         resp = PinMinicard().get(req, section_label=section_id)
-        self.assertEqual(resp.content, "{}")
+        self.assertEqual(resp.content, '{"done": true}')
 
         resp = CloseMinicard().get(req, section_label=section_id)
-        self.assertEqual(resp.content, "{}")
+        self.assertEqual(resp.content, '{"done": true}')
+
+        # test InvalidSectionID
+        section_id = '2013,spring,PHYS,121/'
+        resp = PinMinicard().get(req, section_label=section_id)
+        self.assertEqual(resp.status_code, 400)
+
+        # test DoesNotExist in DB
+        section_id = '2013,spring,PHYS,121/AB'
+        resp = PinMinicard().get(req, section_label=section_id)
+        self.assertEqual(resp.status_code, 543)

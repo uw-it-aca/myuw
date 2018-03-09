@@ -131,25 +131,28 @@ class TestUserCourseDisplayDao(TransactionTestCase):
 
         section_label = schedule.sections[2].section_label()
         # test pin mini card
-        set_pin_on_teaching_page(req,
-                                 section_label)
+        self.assertTrue(set_pin_on_teaching_page(req,
+                                                 section_label))
         records = UserCourseDisplay.objects.all()
         self.assertTrue(records[2].pin_on_teaching_page)
 
         # close pin mini card
-        set_pin_on_teaching_page(req,
-                                 section_label,
-                                 pin=False)
+        self.assertTrue(set_pin_on_teaching_page(req,
+                                                 section_label,
+                                                 pin=False))
         records = UserCourseDisplay.objects.all()
         self.assertFalse(records[2].pin_on_teaching_page)
 
+        # not pin primary section
+        section_label = '2013,spring,PHYS,122/A'
+        self.assertFalse(set_pin_on_teaching_page(req, section_label))
+
         # test InvalidSectionID
-        section_label = '2013,spring,PHYS,121/'
+        section_label = '2013,spring,PHYS,122/'
         with self.assertRaises(InvalidSectionID):
             set_pin_on_teaching_page(req, section_label)
 
         # test NotSectionInstructorException
-        req = get_request_with_user("billpce")
         section_label = '2013,spring,PHYS,121/AC'
         with self.assertRaises(NotSectionInstructorException):
             set_pin_on_teaching_page(req, section_label)
