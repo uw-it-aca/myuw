@@ -7,7 +7,7 @@
                 {{#if @first }}
                     <div class="section-id">
                         <div class="c{{../color_id}} minirectangle" aria-hidden="true"></div>
-                        <a class="pin-mini-card" href="/teaching/{{ @root.year }},{{ @root.quarter }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}" cabb="{{ ../curriculum_abbr }}" cnum="{{ ../course_number }}" sid="{{ ../section_id }}">{{../section_id}}</a>
+                        <a class="pin-mini-card" href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../index }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}" cabb="{{ ../curriculum_abbr }}" cnum="{{ ../course_number }}" sid="{{ ../section_id }}">{{../section_id}}</a>
                     </div>
                 {{/if}}
             </td>
