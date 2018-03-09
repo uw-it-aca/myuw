@@ -59,11 +59,20 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         sections = schedule.sections
         self.assertEquals(len(sections), 8)
         self.assertEquals(sections[0].color_id, 1)
+
+        self.assertEquals(sections[1].section_label(),
+                          '2013,spring,PHYS,122/B')
         self.assertEquals(sections[1].color_id, 2)
+
+        # secondaries has its primary's color id plus 'a'
+        self.assertEquals(sections[2].section_label(),
+                          '2013,spring,PHYS,122/BA')
         self.assertEquals(sections[2].primary_section_label(),
                           sections[1].section_label())
         self.assertEquals(sections[2].color_id, '2a')
 
+        self.assertEquals(sections[3].section_label(),
+                          '2013,spring,PHYS,122/BS')
         self.assertEquals(sections[3].primary_section_label(),
                           sections[1].section_label())
         self.assertEquals(sections[3].color_id, '2a')
