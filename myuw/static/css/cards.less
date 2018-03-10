@@ -29,6 +29,10 @@
         font-size: 18px;
     }
 
+    .myuw-close-card:hover {
+        color: #000;
+    }
+
     /*** Buttons ***/
     .card-btn {
         @media @two-column { position: absolute; top: 12px; right: 10px;}
@@ -237,6 +241,18 @@
             td:first-child { padding-left: 0; }
         }
         td { border: none; }
+    }
+
+    /*** Disclosure bar at bottom of card ***/
+    .myuw-card-disclosure {
+        margin: 16px -16px -16px -16px;
+        border-top: solid 1px #eee;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 12px;
+        background-color: #efefef;
+        a { color: #444; display: block; line-height:40px; }
+        a:hover { background-color: #ddd; }
     }
 
 } /*** END myuw-cards ***/
