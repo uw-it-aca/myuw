@@ -98,6 +98,29 @@ var SummaryScheduleCard = {
             var item_id = this.getAttribute("aria-controls");
             WSData.log_interaction("toggle_disclosure_of_"+item_id);
         });
+
+        $(".pin_mini_card_" + term_id).on("click", function(ev) {
+            var section_abbr = ev.currentTarget.getAttribute("cabb");
+            var course_number = ev.currentTarget.getAttribute("cnum");
+            var section_id = ev.currentTarget.getAttribute("sid");
+            var label = section_abbr + "_" + course_number + "_" + section_id;
+            WSData.log_interaction("from-summary-pin-mini-card_for_" + label, term);
+            var section_label = (term + "," + section_abbr + "," +
+                                 course_number + "/" + section_id);
+            $.ajax({
+                url: "/api/v1/inst_section_display/" + section_label + "/pin_mini",
+                dataType: "JSON",
+                async: true,
+                type: 'GET',
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    return results.done;
+                },
+                error: function(xhr, status, error) {
+                    return false;
+                }
+            });
+        });
     }
 };
 
