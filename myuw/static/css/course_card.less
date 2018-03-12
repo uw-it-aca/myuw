@@ -35,7 +35,7 @@ c8a #473EC5;
 
         .@{key} { background-color: @value; }
         .@{key}Border { border-top: 6px solid @value; &:extend(.cBorder); }
-        .@{key}LeftBorder { border-left: 6px solid @value; }
+        .@{key}LeftBorder { border-left: 4px solid @value; position: absolute; top:0; left:0; bottom:0; width:0;}
         .@{key}Color { color: @value; }
     }
 }
@@ -72,6 +72,11 @@ c8a #473EC5;
         padding:2px 4px 2px 4px;
         border: 1px solid #eee;
     }
+
+    .myuw-close-card {
+        margin: 0 0 0 12px;
+        vertical-align: -1px;
+    }
 }
 
 .course-sln {
@@ -80,9 +85,6 @@ c8a #473EC5;
         text-decoration: underline;
     }
 }
-
-
-
 
 .table-course-schedule {
     width: 100%;
@@ -137,6 +139,10 @@ c8a #473EC5;
 
     tr:last-child td { padding-bottom: 0; }
 
+}
+
+.table-course-schedule.secondary-sections-list {
+    margin-bottom: 16px;
 }
 
 .grading-system { display: block; }
