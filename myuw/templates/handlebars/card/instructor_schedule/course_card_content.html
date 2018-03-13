@@ -3,14 +3,16 @@
 
     <div id="instructor_sche_on_course_card{{index}}">
     </div>
-    <div id="instructor_course_resource{{index}}">
+    <div id="instructor_course_resource{{index}}" {{#if mini_card}}{{#unless allows_secondary_grading}}class="last"{{/unless}}{{/if}}>
     </div>
 
     {{#unless mini_card}}
         {% include "handlebars/card/instructor_schedule/course_grading.html" %}
     {{else}}
         {{#if allows_secondary_grading}}
+            {{#if evaluation.eval_not_exist}}<div class="last">{{/if}}
             {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+            {{#if evaluation.eval_not_exist}}</div>{{/if}}
         {{/if}}
     {{/unless}}
 
