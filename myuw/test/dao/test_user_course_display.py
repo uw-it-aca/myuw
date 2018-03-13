@@ -42,11 +42,11 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEqual(sections[2].color_id, 3)
 
         self.assertEqual(sections[3].primary_section_label(),
-                          sections[2].section_label())
+                         sections[2].section_label())
         self.assertEqual(sections[3].color_id, '3a')
 
         self.assertEqual(sections[4].primary_section_label(),
-                          sections[2].section_label())
+                         sections[2].section_label())
         self.assertEqual(sections[4].color_id, '3a')
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 5)
@@ -62,27 +62,27 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEqual(sections[0].color_id, 1)
 
         self.assertEqual(sections[1].section_label(),
-                          '2013,spring,PHYS,122/B')
+                         '2013,spring,PHYS,122/B')
         self.assertEqual(sections[1].color_id, 2)
 
         # secondaries has its primary's color id plus 'a'
         self.assertEqual(sections[2].section_label(),
-                          '2013,spring,PHYS,122/BA')
+                         '2013,spring,PHYS,122/BA')
         self.assertEqual(sections[2].primary_section_label(),
-                          sections[1].section_label())
+                         sections[1].section_label())
         self.assertEqual(sections[2].color_id, '2a')
 
         self.assertEqual(sections[3].section_label(),
-                          '2013,spring,PHYS,122/BS')
+                         '2013,spring,PHYS,122/BS')
         self.assertEqual(sections[3].primary_section_label(),
-                          sections[1].section_label())
+                         sections[1].section_label())
         self.assertEqual(sections[3].color_id, '2a')
 
         self.assertEqual(sections[4].color_id, 3)
         self.assertEqual(sections[5].color_id, 4)
 
         self.assertEqual(sections[6].primary_section_label(),
-                          sections[5].section_label())
+                         sections[5].section_label())
         self.assertEqual(sections[6].color_id, '4a')
 
         self.assertEqual(sections[7].color_id, '5a')
