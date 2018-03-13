@@ -71,6 +71,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEqual(sections[2].primary_section_label(),
                          sections[1].section_label())
         self.assertEqual(sections[2].color_id, '2a')
+        self.assertFalse(sections[2].pin_on_teaching)
 
         self.assertEqual(sections[3].section_label(),
                          '2013,spring,PHYS,122/BS')
@@ -88,6 +89,14 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEqual(sections[7].color_id, '5a')
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 8)
+
+        # test .pin_on_teaching is True
+        secondary_obj = records[2]
+        secondary_obj.pin_on_teaching_page = True
+        secondary_obj.save()
+        schedule = get_instructor_schedule_by_term(req, term)
+        set_course_display_pref(req, schedule)
+        self.assertTrue(schedule.sections[2].pin_on_teaching)
 
     def test_all_secondary_schedule(self):
         req = get_request_with_user("billseata")
@@ -152,6 +161,11 @@ class TestUserCourseDisplayDao(TransactionTestCase):
                                                  pin=False))
         records = UserCourseDisplay.objects.all()
         self.assertFalse(records[2].pin_on_teaching_page)
+
+        # test if not in DB
+        records[2].delete()
+        with self.assertRaises(UserCourseDisplay.DoesNotExist):
+            set_pin_on_teaching_page(req, section_label, pin=True)
 
         # not pin primary section
         section_label = '2013,spring,PHYS,122/A'
