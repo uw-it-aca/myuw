@@ -11,9 +11,11 @@
             {{#unless under_disclosure}}
                 <a name="{{curriculum_abbr}}-{{course_number}}-{{section_id}}"></a>
                 <div class="myuw-card instructor-course-card" style="position:relative;" data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
-
-                    <div class="c{{ color_id }}{{#if mini_card}}Left{{/if}}Border"></div>
-
+                    {{#if mini_card}}
+                        <div class="c{{ color_id }}LeftBorder"></div>
+                    {{else}}
+                        <div class="c{{ color_id }}Border"></div>
+                    {{/if}}
                     <div class="fade-in">
                         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
                             <h3 class="myuw-card-title">
