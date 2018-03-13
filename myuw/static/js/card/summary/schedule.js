@@ -79,18 +79,9 @@ var SummaryScheduleCard = {
         });
 
         $(".course_class_list").on("click", function(ev) {
-            var width = 970;
-            var height = 600;
-
-            var left = window.screenX + 200;
-            var top = window.screenY + 200;
-
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-
-            window.open(ev.currentTarget.href, course_id, 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
-
-            WSData.log_interaction("open_course_classlist_"+course_id, term);
+            var section_label = ev.currentTarget.getAttribute("rel");
+            window.open(ev.currentTarget.href, section_label);
+            WSData.log_interaction("from_summary_open_course_classlist_of_" + section_label, term);
             return false;
         });
 
@@ -99,7 +90,7 @@ var SummaryScheduleCard = {
             var course_number = ev.currentTarget.getAttribute("cnum");
             var section_id = ev.currentTarget.getAttribute("sid");
             var label = section_abbr + "_" + course_number + "_" + section_id;
-            WSData.log_interaction("from-summary-pin-mini-card_for_" + label, term);
+            WSData.log_interaction("from_summary_pin_mini_card_of_" + label, term);
             var section_label = (term + "," + section_abbr + "," +
                                  course_number + "/" + section_id);
             $.ajax({

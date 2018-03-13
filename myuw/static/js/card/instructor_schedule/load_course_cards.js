@@ -180,7 +180,7 @@ var InstructorCourseCards = {
             var course_number = ev.currentTarget.getAttribute("cnum");
             var section_id = ev.currentTarget.getAttribute("sid");
             var label = section_abbr + "_" + course_number + "_" + section_id;
-            WSData.log_interaction("close-mini-card_for_" + label, term);
+            WSData.log_interaction("close_mini_card_of_" + label, term);
             var section_label = (term + "," + section_abbr + "," +
                                  course_number + "/" + section_id);
             $.ajax({
@@ -206,7 +206,7 @@ var InstructorCourseCards = {
             var course_number = ev.currentTarget.getAttribute("cnum");
             var section_id = ev.currentTarget.getAttribute("sid");
             var label = section_abbr + "_" + course_number + "_" + section_id;
-            WSData.log_interaction("pin-mini-card_for_" + label, term);
+            WSData.log_interaction("pin_mini_card_of_" + label, term);
             var section_label = (term + "," + section_abbr + "," +
                                  course_number + "/" + section_id);
             $.ajax({
