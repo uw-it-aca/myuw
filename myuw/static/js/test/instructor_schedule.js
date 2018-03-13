@@ -9,14 +9,14 @@ describe('InstructorScheduleCards', function(){
                 render_id: render_id,
                 scripts: [
                     "myuw/static/js/card/instructor_schedule/load_course_cards.js",
-                    "myuw/static/js/card/instructor_schedule/course_card_content.js",
+                    "myuw/static/js/card/instructor_schedule/course_content.js",
                     "myuw/static/js/card/instructor_schedule/course_sche_panel.js",
                     "myuw/static/js/card/instructor_schedule/course_resource_panel.js",
                     "myuw/static/js/card/schedule/instructor_panel.js"
                 ],
                 templates: [
                     'myuw/templates/handlebars/card/instructor_schedule/course_cards.html',
-                    'myuw/templates/handlebars/card/instructor_schedule/course_card_content.html',
+                    'myuw/templates/handlebars/card/instructor_schedule/course_content.html',
                     'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html',
                     'myuw/templates/handlebars/card/instructor_schedule/course_section.html',
                     'myuw/templates/handlebars/card/instructor_schedule/course_sche_panel.html',
