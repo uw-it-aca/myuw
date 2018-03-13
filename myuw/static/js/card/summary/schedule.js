@@ -94,11 +94,6 @@ var SummaryScheduleCard = {
             return false;
         });
 
-        $(".toggle_secondary_" + term_id).on("click", function(ev) {
-            var item_id = this.getAttribute("aria-controls");
-            WSData.log_interaction("toggle_disclosure_of_"+item_id);
-        });
-
         $(".pin_mini_card_" + term_id).on("click", function(ev) {
             var section_abbr = ev.currentTarget.getAttribute("cabb");
             var course_number = ev.currentTarget.getAttribute("cnum");
