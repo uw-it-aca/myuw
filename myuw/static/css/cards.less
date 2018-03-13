@@ -104,22 +104,22 @@
             .row + .row { padding-top: 8px; }
         }
 
-        // target the very last section of a card by usign the "last" class
-        &.last {
-
-            // remove the bottom border for last element
-            .col-sm-9 {
-                border-bottom: none !important;
-                padding-bottom: 0 !important;
-            }
-        }
-
         /*** workday specific link (need to move this)***/
         .workday-link {
             display: inline-block;
             line-height: 30px;
             background-position: 0 50% !important;
             padding-left: 28px !important;
+        }
+    }
+
+    // target the very last section of a card by usign the "last" class
+    .myuw-card-section.last, .last .myuw-card-section {
+
+        // remove the bottom border for last element
+        .col-sm-9 {
+            border-bottom: none !important;
+            padding-bottom: 0 !important;
         }
     }
 
