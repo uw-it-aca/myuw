@@ -190,7 +190,11 @@ var InstructorCourseCards = {
                 type: 'GET',
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    return results.done;
+                    if (results.done) {
+                        window.location = "/teaching/" + term;
+                    } else {
+                        return false;
+                    }
                 },
                 error: function(xhr, status, error) {
                     return false;
