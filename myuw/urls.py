@@ -215,7 +215,7 @@ urlpatterns += [
         name="myuw_husky_experience_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"),
     url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[A-Za-z]+),'
-        r'(\d)$',
+        r'([1-9][0-9]?)$',
         teaching, name="myuw_teaching_page"),
     url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[A-Za-z]+),'
         r'(?P<section>[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
