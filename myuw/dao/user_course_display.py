@@ -121,6 +121,7 @@ def set_pin_on_teaching_page(request,
     if pin=False, unpin the section from teaching page
     @except InvalidSectionID
     @except NotSectionInstructorException
+    @except UserCourseDisplay.DoesNotExist
     """
     section = get_section_by_label(section_label)
     check_section_instructor(section, get_person_of_current_user(request))
@@ -131,9 +132,7 @@ def set_pin_on_teaching_page(request,
 
     obj = UserCourseDisplay.objects.get(user=get_user_model(request),
                                         section_label=section_label)
-    if obj:
-        if obj.pin_on_teaching_page != pin:
-            obj.pin_on_teaching_page = pin
-            obj.save()
-        return True
-    return False
+    if obj.pin_on_teaching_page != pin:
+        obj.pin_on_teaching_page = pin
+        obj.save()
+    return True
