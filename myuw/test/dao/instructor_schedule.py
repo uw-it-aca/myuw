@@ -70,28 +70,22 @@ class TestInstructorSchedule(TestCase):
         term.quarter = 'spring'
 
         # not to check_time_schedule_published
-        sections = []
         term.check_time_schedule_published = False
-        _set_section_from_url(sections, section_url, term)
-        self.assertEqual(len(sections), 1)
+        section = _set_section_from_url(section_url, term)
+        self.assertEqual(section.section_label(), "2018,spring,JAPAN,573/A")
 
         # The coresponding time Schedule is unpublished
-        sections = []
         term.time_schedule_published = {u'seattle': False}
         term.check_time_schedule_published = True
-        _set_section_from_url(sections, section_url, term)
-        self.assertEqual(len(sections), 0)
+        section = _set_section_from_url(section_url, term)
+        self.assertIsNone(section)
 
         # The coresponding time Schedule is published
-        sections = []
         term.time_schedule_published = {u'seattle': True}
-        _set_section_from_url(sections, section_url, term)
-        self.assertEqual(len(sections), 1)
-        self.assertEqual(sections[0].section_label(),
-                         "2018,spring,JAPAN,573/A")
+        section = _set_section_from_url(section_url, term)
+        self.assertEqual(section.section_label(), "2018,spring,JAPAN,573/A")
 
         # PCE course is an exception
-        sections = []
         section_url = "/student/v5/course/2013,winter,BIGDATA,220/A.json"
         term = Term()
         term.year = 2013
@@ -100,10 +94,8 @@ class TestInstructorSchedule(TestCase):
         term.time_schedule_published = {u'seattle': False,
                                         u'tacoma': False,
                                         u'bothell': False}
-        _set_section_from_url(sections, section_url, term)
-        self.assertEqual(len(sections), 1)
-        self.assertEqual(sections[0].section_label(),
-                         "2013,winter,BIGDATA,220/A")
+        section = _set_section_from_url(section_url, term)
+        self.assertEqual(section.section_label(), "2013,winter,BIGDATA,220/A")
 
     def test_get_instructor_section(self):
         req = get_request_with_user('bill')

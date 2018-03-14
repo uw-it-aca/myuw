@@ -17,7 +17,7 @@ from uw_gradepage.grading_status import get_grading_status
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
-from myuw.dao.course_color import get_colors_by_schedule
+from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
@@ -239,22 +239,20 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     json_data["grading_period_is_past"] =\
         schedule.term.is_grading_period_past()
 
-    colors = get_colors_by_schedule(request, schedule)
+    set_course_display_pref(request, schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
-    # Since the schedule is restclients, and doesn't know
-    # about color ids, backfill that data
     section_index = 0
     course_resource_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
+        section_data["index"] = section_index
+        section_index += 1
 
         section_data["section_type"] = section.section_type
-        if section.section_label() in colors:
-            color = colors[section.section_label()]
-            section_data["color_id"] = color
-        section_index += 1
+        section_data["color_id"] = section.color_id
+        section_data["mini_card"] = section.pin_on_teaching
 
         section_data["section_label"] =\
             safe_label(section.section_label())
@@ -349,8 +347,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     for t in course_resource_threads:
         t.join()
-
-    # MUWM-443
+    """
+    # SWS section search response are already sorted.
     json_data["sections"] = sorted(json_data["sections"],
                                    key=itemgetter('curriculum_abbr',
                                                   'course_number',
@@ -359,9 +357,11 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     # add section index
     index = 0
     for section in json_data["sections"]:
-        section["index"] = index
+        if section["index"] != index:
+            print section['section_label']
+            section["index"] = index
         index = index + 1
-
+    """
     return json_data
 
 

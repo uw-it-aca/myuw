@@ -84,9 +84,10 @@ var InstructorCourseCards = {
 
     _render: function () {
         var term = InstructorCourseCards.term;
-        var course_data = WSData.normalized_instructed_course_data(term);
+        var course_data = WSData.instructed_course_data(term, true);
         var source = $("#instructor_course_card_list").html();
         var courses_template = Handlebars.compile(source);
+
         var i = 0,
             tab_terms = [],
             number_to_add = 0;
@@ -116,7 +117,7 @@ var InstructorCourseCards = {
         var raw = courses_template(course_data);
         InstructorCourseCards.dom_target.html(raw);
 
-        if (!(course_data.sections.length || course_data.section_references)) {
+        if (course_data.sections.length === 0) {
             InstructorCourseCards._render_no_courses_found();
         } else {
             $.each(course_data.sections, function () {
@@ -124,7 +125,7 @@ var InstructorCourseCards = {
             });
         }
 
-        InstructorCourseCards.add_events();
+        InstructorCourseCards.add_events(InstructorCourseCards.term);
         InstructorCourseCards._show_correct_term_dropdown();
 
         if (window.location.hash) {
@@ -173,6 +174,54 @@ var InstructorCourseCards = {
             WSData.log_interaction("show_instructed_courses_for_" +
                                    InstructorCourseCards.term);
             return false;
+        });
+        $(".close-mini-card").click(function(ev) {
+            var section_abbr = ev.currentTarget.getAttribute("cabb");
+            var course_number = ev.currentTarget.getAttribute("cnum");
+            var section_id = ev.currentTarget.getAttribute("sid");
+            var label = section_abbr + "_" + course_number + "_" + section_id;
+            WSData.log_interaction("close_mini_card_of_" + label, term);
+            var section_label = (term + "," + section_abbr + "," +
+                                 course_number + "/" + section_id);
+            $.ajax({
+                url: "/api/v1/inst_section_display/" + section_label + "/close_mini",
+                dataType: "JSON",
+                async: true,
+                type: 'GET',
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    if (results.done) {
+                        window.location = "/teaching/" + term;
+                    } else {
+                        return false;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    return false;
+                }
+            });
+        });
+        $(".pin-mini-card").click(function(ev) {
+            var section_abbr = ev.currentTarget.getAttribute("cabb");
+            var course_number = ev.currentTarget.getAttribute("cnum");
+            var section_id = ev.currentTarget.getAttribute("sid");
+            var label = section_abbr + "_" + course_number + "_" + section_id;
+            WSData.log_interaction("pin_mini_card_of_" + label, term);
+            var section_label = (term + "," + section_abbr + "," +
+                                 course_number + "/" + section_id);
+            $.ajax({
+                url: "/api/v1/inst_section_display/" + section_label + "/pin_mini",
+                dataType: "JSON",
+                async: true,
+                type: 'GET',
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    return results.done;
+                },
+                error: function(xhr, status, error) {
+                    return false;
+                }
+            });
         });
     }
 };

@@ -141,19 +141,17 @@ WSData = {
         return WSData._instructed_course_data_error_status[term];
     },
 
-    normalized_instructed_course_data: function(term) {
-        var course_data;
-        if (term) {
-            course_data = WSData.instructed_course_data_for_term(term);
+    instructed_course_data: function(term, normalized) {
+        var course_data = WSData.instructed_course_data_for_term(term);
+        course_data = WSData._link_secondary_sections(course_data);
+        if (normalized) {
+            return WSData._normalize_instructed_data(course_data);
         } else {
-            course_data = WSData.current_instructed_course_data();
+            return course_data;
         }
-
-        return WSData._normalize_instructed_data(course_data);
     },
 
-    _link_secondary_sections: function (term) {
-        var course_data = WSData.instructed_course_data_for_term(term);
+    _link_secondary_sections: function (course_data) {
         if (course_data) {
             WSData._normalize_instructors(course_data);
 
@@ -161,23 +159,30 @@ WSData = {
             var linked_primary_label;
             $.each(course_data.sections, function () {
                 if (this.is_primary_section) {
-                    // verify prev linked_secondaries
-                    if (linked_secondaries &&
-                        linked_secondaries.length ===0) {
-                        linked_secondaries = null;
-                    }
-
+                    linked_secondaries = null;
                     if (this.total_linked_secondaries) {
                         this.linked_secondaries = [];
                         linked_secondaries = this.linked_secondaries;
                         linked_primary_label = this.section_label;
                     }
                 } else {
-                    primary_label = this.primary_section_label;
-                    if (primary_label === linked_primary_label &&
-                        linked_secondaries !== undefined) {
-                        this.under_disclosure = true;
-                        linked_secondaries.push(this);
+                    if (!this.mini_card) {
+                        primary_label = this.primary_section_label;
+                        if (primary_label === linked_primary_label &&
+                            linked_secondaries !== undefined) {
+                            this.under_disclosure = true;
+                            linked_secondaries.push(this);
+                        }
+                    }
+                }
+            });
+
+            // correct the count of the linked secondaries
+            $.each(course_data.sections, function () {
+                if (this.linked_secondaries) {
+                    this.total_linked_secondaries = this.linked_secondaries.length;
+                    if (this.total_linked_secondaries === 0) {
+                        this.linked_secondaries = null;
                     }
                 }
             });
