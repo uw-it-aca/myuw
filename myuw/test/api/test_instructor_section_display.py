@@ -33,6 +33,9 @@ class TestInstSectDetails(MyuwApiTest):
         resp = PinMinicard().get(req, section_label=section_id)
         self.assertEqual(resp.status_code, 400)
 
+        resp = CloseMinicard().get(req, section_label=section_id)
+        self.assertEqual(resp.status_code, 400)
+
         # test DoesNotExist in DB
         section_id = '2013,spring,PHYS,121/AB'
         resp = PinMinicard().get(req, section_label=section_id)
