@@ -69,7 +69,7 @@ c8a #473EC5;
 
     .course-meeting-type {
         margin-left: 16px;
-        padding:2px 4px 2px 4px;
+        padding: 2px 4px 2px 4px;
         border: 1px solid #eee;
     }
 
@@ -78,13 +78,14 @@ c8a #473EC5;
         vertical-align: -1px;
     }
 }
-
+/*
 .course-sln {
     a {
         color:inherit;
         text-decoration: underline;
     }
 }
+*/
 
 .table-course-schedule {
     width: 100%;
@@ -104,6 +105,7 @@ c8a #473EC5;
                 white-space: nowrap;
                 display: inline-block;
                 margin-right: -4px;
+                width: 2.7em;
             }
             .course-sln {
                 margin-left: 12px;
@@ -141,13 +143,14 @@ c8a #473EC5;
 
 }
 
+/* Secondary Section list on Teaching Page */
 .table-course-schedule.secondary-sections-list {
     margin-bottom: 16px;
 
     td {
-        &.course-section,
-        &.course-sln { width: 12.5%; }
-        &.course-days { width:auto; }
+        &.course-section { width: 9%; }
+        &.course-sln { width: 16%; }
+        &.course-days, &.course-time { width:auto; }
     }
 }
 

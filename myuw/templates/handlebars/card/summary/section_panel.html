@@ -8,7 +8,7 @@
             <div class="section-meta">
                 <span class="myuw-meta course-meeting-type">{{ meetings.0.type }}</span>
                 {{#if sln}}
-                <span class="myuw-meta course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{sln}}" title="Time Schedule for SLN {{sln}}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
+                <span class="myuw-meta myuw-muted course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{sln}}" title="Time Schedule for SLN {{sln}}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
                 {{/if}}
             </div>
         </div>
@@ -35,7 +35,7 @@
                                     {{#if @first }}
                                         <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a class="pin_mini_card_{{ @root.year }}_{{ @root.quarter}} " href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../index }}#{{ ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}" cabb="{{ ../curriculum_abbr }}" cnum="{{ ../course_number }}" sid="{{ ../section_id }}">{{../section_id}}</a></div>
 
-                                             {{#if ../sln}}<span class="course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a></span>{{/if}}
+                                             {{#if ../sln}}<span class="course-sln myuw-muted"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a></span>{{/if}}
                                     {{/if}}
                                 </td>
 
