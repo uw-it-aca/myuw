@@ -61,8 +61,7 @@ var Landing = {
             SummerRegStatusCard1,
             SeattleApplicationCard,
             BothellApplicationCard,
-            TacomaApplicationCard,
-            WelcomeCard
+            TacomaApplicationCard
         ];
 
         if(window.user.employee &&
@@ -124,8 +123,7 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1,
             AcadCalSnippet,
-            EventsCard,
-            WelcomeCard
+            EventsCard
         ];
 
         if(window.user.employee &&
