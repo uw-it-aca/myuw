@@ -4,9 +4,8 @@ var WelcomeCard = {
 
     render_init: function() {
         if (window.user.applicant && !window.user.student) {
-            WSData.fetch_applicant_data(WelcomeCard.render_upon_data(), WelcomeCard.render_error());
+            this._render();
         } else {
-            console.log('hide at init');
             this.render_error();
         }
     },
@@ -16,22 +15,12 @@ var WelcomeCard = {
     },
 
     _render: function () {
-        var applicant_info = WSData.applicant_data();
-        console.log(applicant_info);
-        if(applicant_info){
-            console.log('has app info');
-            if(applicant_info.length === 0) {
-                console.log("app len 0");
-                WelcomeCard.render_error();
-            }
-        } else {
-            var student_info = {};
-            var source = $("#welcome_card").html();
-            var template = Handlebars.compile(source);
+        var student_info = {};
+        var source = $("#welcome_card").html();
+        var template = Handlebars.compile(source);
 
-            WelcomeCard.dom_target.html(template(student_info));
-            LogUtils.cardLoaded(WelcomeCard.name, WelcomeCard.dom_target);
-        }
+        WelcomeCard.dom_target.html(template(student_info));
+        LogUtils.cardLoaded(WelcomeCard.name, WelcomeCard.dom_target);
     },
 
     _has_all_data: function () {
