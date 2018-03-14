@@ -4,7 +4,7 @@ var WelcomeCard = {
 
     render_init: function() {
         if (window.user.applicant && !window.user.student) {
-            WSData.fetch_applicant_data(WelcomeCard.render_upon_data(), WelcomeCard.render_error())
+            WSData.fetch_applicant_data(WelcomeCard.render_upon_data(), WelcomeCard.render_error());
         } else {
             this.render_error();
         }
