@@ -225,7 +225,9 @@ def safe_label(label):
 
 
 def load_schedule(request, schedule, summer_term="", section_callback=None):
-
+    """
+    schedule.sections are already sorted by curriculum_abbr, course_number, section_id
+    """
     json_data = schedule.json_data()
 
     json_data["summer_term"] = summer_term
@@ -347,21 +349,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     for t in course_resource_threads:
         t.join()
-    """
-    # SWS section search response are already sorted.
-    json_data["sections"] = sorted(json_data["sections"],
-                                   key=itemgetter('curriculum_abbr',
-                                                  'course_number',
-                                                  'section_id',
-                                                  ))
-    # add section index
-    index = 0
-    for section in json_data["sections"]:
-        if section["index"] != index:
-            print section['section_label']
-            section["index"] = index
-        index = index + 1
-    """
+
     return json_data
 
 
