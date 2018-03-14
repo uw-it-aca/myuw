@@ -6,6 +6,7 @@ var WelcomeCard = {
         if (window.user.applicant && !window.user.student) {
             WSData.fetch_applicant_data(WelcomeCard.render_upon_data(), WelcomeCard.render_error());
         } else {
+            console.log('hide at init');
             this.render_error();
         }
     },
@@ -16,8 +17,11 @@ var WelcomeCard = {
 
     _render: function () {
         var applicant_info = WSData.applicant_data();
+        console.log(applicant_info);
         if(applicant_info){
-            if(applicant_info.length == 0) {
+            console.log('has app info');
+            if(applicant_info.length === 0) {
+                console.log("app len 0");
                 WelcomeCard.render_error();
             }
         } else {
