@@ -17,7 +17,7 @@ var WelcomeCard = {
     _render: function () {
         var applicant_info = WSData.applicant_data();
         if(applicant_info){
-            if(applicant_info.length > 0) {
+            if(applicant_info.length == 0) {
                 WelcomeCard.render_error();
             }
         } else {
