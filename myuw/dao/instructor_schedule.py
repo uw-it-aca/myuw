@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 
 def get_instructor_schedule_by_term(request, term):
     """
-    Return the sections the current user is instructing
-    in the given term/quarter
+    Return the sections (ordered by course abbr, number, section id)
+    the current user is instructing in the given term/quarter
     """
     person = get_person_of_current_user(request)
     schedule = ClassSchedule()
@@ -56,6 +56,9 @@ def _get_instructor_sections(person, term,
 
 
 def _get_sections_by_section_reference(section_references, term):
+    """
+    Return sections in the same order as the section_references
+    """
     sections = []
     section_threads = []
 
