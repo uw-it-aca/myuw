@@ -15,12 +15,17 @@ var WelcomeCard = {
     },
 
     _render: function () {
-        var student_info = {};
-        var source = $("#welcome_card").html();
-        var template = Handlebars.compile(source);
+        var applicant_info = WSData.applicant_data();
+        if(applicant_info.length > 0){
+            WelcomeCard.render_error();
+        } else {
+            var student_info = {};
+            var source = $("#welcome_card").html();
+            var template = Handlebars.compile(source);
 
-        WelcomeCard.dom_target.html(template(student_info));
-        LogUtils.cardLoaded(WelcomeCard.name, WelcomeCard.dom_target);
+            WelcomeCard.dom_target.html(template(student_info));
+            LogUtils.cardLoaded(WelcomeCard.name, WelcomeCard.dom_target);
+        }
     },
 
     _has_all_data: function () {
