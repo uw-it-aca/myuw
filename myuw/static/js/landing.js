@@ -67,8 +67,7 @@ var Landing = {
 
         if(window.user.employee &&
            !window.user.student &&
-           !window.user.instructor &&
-           !window.user.applicant ||
+           !window.user.instructor||
            window.user.past_employee) {
             desktop_body_cards.push(HRPayrollCard);
         }
