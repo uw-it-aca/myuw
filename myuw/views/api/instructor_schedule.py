@@ -225,9 +225,6 @@ def safe_label(label):
 
 
 def load_schedule(request, schedule, summer_term="", section_callback=None):
-    """
-    schedule.sections are already sorted by curriculum_abbr, course_number, section_id
-    """
     json_data = schedule.json_data()
 
     json_data["summer_term"] = summer_term
@@ -349,6 +346,9 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
 
     for t in course_resource_threads:
         t.join()
+
+    # schedule.sections as returned from dao are sorted by
+    # curriculum_abbr, course_number, section_id
 
     return json_data
 
