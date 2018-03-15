@@ -23,6 +23,7 @@ from myuw.views.accounts import accounts
 from myuw.views.profile import profile
 from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
+from myuw.views.explore import explore
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
                                                LTIInstSectionDetails)
@@ -248,6 +249,7 @@ urlpatterns += [
         textbooks, name="myuw_textbooks_page"),
     url(r'^resource(/((?P<category>[a-z]+)?(/(?P<topic>[a-z]+))?)?)?',
         category, name="myuw_resource_page"),
+    url(r'explore/?', explore, name="myuw_explore_page"),
     url(r'^logout', logout, name="myuw_logout"
         ),
 
