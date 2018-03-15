@@ -163,7 +163,7 @@
                             {% add_sidebar_context %}
                             <li role="none"><a {% if is_myuw_home %}class="active"{% endif %} href="/" role="menuitem"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
 
-                            {% if user.affiliations.student %}
+                            {% if user.affiliations.student or user.affiliations.applicant %}
                             <li role="none"><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/" role="menuitem"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
                             {% endif %}
                             {% if user.affiliations.hxt_viewer %}
@@ -239,7 +239,7 @@
         <!-- footer -->
         {% block footer %}
         <div id="app_footer">
-	        {% if user.affiliations.student %}
+	        {% if user.affiliations.student or user.affiliations.applicant%}
             <div class="myuw-wrapper navigation-bar" role="navigation" aria-labelledby="categories">
                 <h2 id="categories" class="sr-only">Categorized Resources</h2>
                 <ul class="clearfix navigation-list">
