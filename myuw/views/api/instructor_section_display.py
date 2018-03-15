@@ -13,7 +13,7 @@ class CloseMinicard(ProtectedAPI):
 
     def get(self, request, *args, **kwargs):
         """
-        GET returns 200 with email lists for the course
+        GET returns 200, unpins and returns the status of the set pin request
         """
         section_label = kwargs.get("section_label")
         timer = Timer()
@@ -30,7 +30,7 @@ class PinMinicard(ProtectedAPI):
 
     def get(self, request, *args, **kwargs):
         """
-        GET returns 200 with email lists for the course
+        GET returns 200, pins and returns the status of the set pin request
         """
         section_label = kwargs.get("section_label")
         timer = Timer()
