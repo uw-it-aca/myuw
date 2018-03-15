@@ -28,6 +28,8 @@ from myuw.views.api.instructor_section import (InstSectionDetails,
                                                LTIInstSectionDetails)
 from myuw.views.api.instructor_schedule import (InstScheCurQuar, InstScheQuar,
                                                 InstSect)
+from myuw.views.api.instructor_section_display import \
+    CloseMinicard, PinMinicard
 from myuw.views.api.finance import Finance
 from myuw.views.api.hfs import HfsBalances
 from myuw.views.api.future_schedule import StudClasScheFutureQuar
@@ -171,6 +173,12 @@ urlpatterns += [
     url(r'^lti/api/v1/instructor_section_details/(?P<section_id>[^/]*)$',
         LTIInstSectionDetails.as_view(),
         name="myuw_lti_instructor_section_details_api"),
+    url(r'api/v1/inst_section_display/(?P<section_label>.*)/close_mini',
+        CloseMinicard.as_view(),
+        name="myuw_inst_section_display_close_mini"),
+    url(r'api/v1/inst_section_display/(?P<section_label>.*)/pin_mini',
+        PinMinicard.as_view(),
+        name="myuw_inst_section_display_pin_mini"),
     url(r'^api/v1/visual_schedule/current/?$',
         VisSchedCurQtr.as_view(),
         name="myuw_current_visual_schedule"),
@@ -207,9 +215,11 @@ urlpatterns += [
         name="myuw_husky_experience_page"),
     url(r'^search/?$', search_res, name="myuw_search_res_page"),
     url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[A-Za-z]+),'
+        r'([1-9][0-9]?)$',
+        teaching, name="myuw_teaching_page"),
+    url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[A-Za-z]+),'
         r'(?P<section>[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)$',
-        teaching_section, name="myuw_section_page"
-        ),
+        teaching_section, name="myuw_section_page"),
     url(r'^teaching/(?P<year>2[0-9]{3}),(?P<quarter>[A-Za-z]+),'
         r'(?P<section>[\w& ]+,\d{3}\/[A-Z][A-Z0-9]?)'
         r'/students$',

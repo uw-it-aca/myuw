@@ -58,6 +58,14 @@
         {
             "CourseNumber": "123",
             "CurriculumAbbreviation": "PHYS",
+            "Href": "/student/v5/course/2013,spring,PHYS,123/BA.json",
+            "Quarter": "spring",
+            "SectionID": "BA",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "123",
+            "CurriculumAbbreviation": "PHYS",
             "Href": "/student/v5/course/2013,spring,PHYS,123/CA.json",
             "Quarter": "spring",
             "SectionID": "CA",
@@ -69,14 +77,6 @@
             "Href": "/student/v5/course/2013,spring,PHYS,123/CU.json",
             "Quarter": "spring",
             "SectionID": "CU",
-            "Year": 2013
-        },
-        {
-            "CourseNumber": "123",
-            "CurriculumAbbreviation": "PHYS",
-            "Href": "/student/v5/course/2013,spring,PHYS,123/BA.json",
-            "Quarter": "spring",
-            "SectionID": "BA",
             "Year": 2013
         }
     ],

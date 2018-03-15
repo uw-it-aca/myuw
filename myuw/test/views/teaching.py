@@ -34,6 +34,17 @@ class TestTeachingMethods(MyuwApiTest):
         self.assertEquals(response.context['display_term']["quarter"],
                           'summer')
 
+    def test_url_with_section_index(self):
+        url = "/teaching/2013,spring,13#PHYS-122-BS"
+        self.set_user('billsea')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['display_term']["year"], '2013')
+        self.assertEquals(response.context['display_term']["quarter"],
+                          'spring')
+
     @skipIf(missing_url("myuw_section_page",
                         kwargs={'year': '2013', 'quarter': 'spring',
                                 'section': 'TRAIN,101/A'}),

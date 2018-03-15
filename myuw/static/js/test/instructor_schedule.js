@@ -9,17 +9,19 @@ describe('InstructorScheduleCards', function(){
                 render_id: render_id,
                 scripts: [
                     "myuw/static/js/card/instructor_schedule/load_course_cards.js",
-                    "myuw/static/js/card/instructor_schedule/course_card_content.js",
+                    "myuw/static/js/card/instructor_schedule/course_content.js",
                     "myuw/static/js/card/instructor_schedule/course_sche_panel.js",
                     "myuw/static/js/card/instructor_schedule/course_resource_panel.js",
                     "myuw/static/js/card/schedule/instructor_panel.js"
                 ],
                 templates: [
                     'myuw/templates/handlebars/card/instructor_schedule/course_cards.html',
-                    'myuw/templates/handlebars/card/instructor_schedule/course_card_content.html',
+                    'myuw/templates/handlebars/card/instructor_schedule/course_content.html',
                     'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html',
                     'myuw/templates/handlebars/card/instructor_schedule/course_section.html',
                     'myuw/templates/handlebars/card/instructor_schedule/course_sche_panel.html',
+                    'myuw/templates/handlebars/card/instructor_schedule/secondaries.html',
+                    'myuw/templates/handlebars/card/instructor_schedule/secondary_section_panel.html',
                     'myuw/templates/handlebars/card/schedule/instructor_panel.html'
                 ]
             });
@@ -47,7 +49,7 @@ describe('InstructorScheduleCards', function(){
             assert.equal($('div[data-identifier="TRAIN 101 A"]').length, 1);
         });
         it("before grading open date", function() {
-            var data = WSData.normalized_instructed_course_data('2013,summer');
+            var data = WSData.instructed_course_data('2013,summer', true);
             assert.equal(data.sections[0].grading_period_is_open, false);
             assert.equal(data.sections[0].opens_in_24_hours, false);
             assert.equal(data.sections[0].deadline_in_24_hours, false);
@@ -55,7 +57,7 @@ describe('InstructorScheduleCards', function(){
         it("immediately before grading open date", function() {
             // only change the ref moment in _normalize_instructed_data
             dom.reconfigure({url: "http://www.foo.com?grading_date=2013-08-15%2018:00"});
-            var data = WSData.normalized_instructed_course_data('2013,summer');
+            var data = WSData.instructed_course_data('2013,summer', true);
             assert.equal(data.sections[0].grading_period_is_open, false);
             assert.equal(data.sections[0].opens_in_24_hours, true);
             assert.equal(data.sections[0].deadline_in_24_hours, false);
@@ -63,14 +65,14 @@ describe('InstructorScheduleCards', function(){
         it("while grading open", function() {
             // only change the ref moment in _normalize_instructed_data
             dom.reconfigure({url: "http://www.foo.com?grading_date=2013-08-17%2018:00"});
-            var data = WSData.normalized_instructed_course_data('2013,summer');
+            var data = WSData.instructed_course_data('2013,summer', true);
             assert.equal(data.sections[0].grading_period_is_open, true);
             assert.equal(data.sections[0].grading_status.all_grades_submitted, true);
         });
         it("immediately before grading deadline", function() {
             // only change the ref moment in _normalize_instructed_data
             dom.reconfigure({url: "http://www.foo.com?grading_date=2013-08-26%2018:00"});
-            var data = WSData.normalized_instructed_course_data('2013,summer');
+            var data = WSData.instructed_course_data('2013,summer', true);
             assert.equal(data.sections[0].grading_period_is_open, true);
             assert.equal(data.sections[0].opens_in_24_hours, false);
             assert.equal(data.sections[0].deadline_in_24_hours, true);
@@ -78,7 +80,7 @@ describe('InstructorScheduleCards', function(){
         it("after grading deadline", function() {
             // only change the ref moment in _normalize_instructed_data
             dom.reconfigure({url: "http://www.foo.com?grading_date=2013-08-27%2018:00"});
-            var data = WSData.normalized_instructed_course_data('2013,summer');
+            var data = WSData.instructed_course_data('2013,summer', true);
             assert.equal(data.sections[0].grading_period_is_open, false);
             assert.equal(data.sections[0].opens_in_24_hours, false);
             assert.equal(data.sections[0].deadline_in_24_hours, false);

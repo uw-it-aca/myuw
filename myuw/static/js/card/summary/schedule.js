@@ -51,7 +51,7 @@ var SummaryScheduleCard = {
     _render: function () {
         Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
         var term = SummaryScheduleCard.term;
-        var instructed_course_data = WSData._link_secondary_sections(term);
+        var instructed_course_data = WSData.instructed_course_data(term, false);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
         var data = {
@@ -79,24 +79,33 @@ var SummaryScheduleCard = {
         });
 
         $(".course_class_list").on("click", function(ev) {
-            var width = 970;
-            var height = 600;
-
-            var left = window.screenX + 200;
-            var top = window.screenY + 200;
-
-            var course_id = ev.currentTarget.getAttribute("rel");
-            course_id = course_id.replace(/[^a-z0-9]/gi, '_');
-
-            window.open(ev.currentTarget.href, course_id, 'scrollbars=1,resizable=1,width='+width+',height='+height+',left='+left+',top='+top);
-
-            WSData.log_interaction("open_course_classlist_"+course_id, term);
+            var section_label = ev.currentTarget.getAttribute("rel");
+            window.open(ev.currentTarget.href, section_label);
+            WSData.log_interaction("from_summary_open_course_classlist_of_" + section_label, term);
             return false;
         });
 
-        $(".toggle_secondary_" + term_id).on("click", function(ev) {
-            var item_id = this.getAttribute("aria-controls");
-            WSData.log_interaction("toggle_disclosure_of_"+item_id);
+        $(".pin_mini_card_" + term_id).on("click", function(ev) {
+            var section_abbr = ev.currentTarget.getAttribute("cabb");
+            var course_number = ev.currentTarget.getAttribute("cnum");
+            var section_id = ev.currentTarget.getAttribute("sid");
+            var label = section_abbr + "_" + course_number + "_" + section_id;
+            WSData.log_interaction("from_summary_pin_mini_card_of_" + label, term);
+            var section_label = (term + "," + section_abbr + "," +
+                                 course_number + "/" + section_id);
+            $.ajax({
+                url: "/api/v1/inst_section_display/" + section_label + "/pin_mini",
+                dataType: "JSON",
+                async: true,
+                type: 'GET',
+                accepts: {html: "text/html"},
+                success: function(results) {
+                    return results.done;
+                },
+                error: function(xhr, status, error) {
+                    return false;
+                }
+            });
         });
     }
 };

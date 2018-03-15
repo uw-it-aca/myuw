@@ -4,7 +4,7 @@ from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
-from myuw.dao.course_color import get_colors_by_schedule
+from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.pws import get_regid_of_current_user
@@ -62,7 +62,7 @@ def load_schedule(request, schedule, summer_term=""):
 
     json_data["summer_term"] = summer_term
 
-    colors = get_colors_by_schedule(request, schedule)
+    set_course_display_pref(request, schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
@@ -83,15 +83,13 @@ def load_schedule(request, schedule, summer_term=""):
             logger, 'load_schedule', traceback.format_exc())
         pass
 
-    # Since the schedule is restclients, and doesn't know
-    # about color ids, backfill that data
     section_index = 0
     course_url_threads = []
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
-        color = colors[section.section_label()]
-        section_data["color_id"] = color
         section_index += 1
+
+        section_data["color_id"] = section.color_id
 
         if section.is_early_fall_start():
             section_data["cc_display_dates"] = True
