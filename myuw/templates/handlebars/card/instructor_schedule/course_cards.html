@@ -9,7 +9,7 @@
 
         {{#each sections}}
             {{#unless under_disclosure}}
-                <a name="{{toUrlSafe curriculum_abbr}}-{{course_number}}-{{section_id}}"></a>
+                <a name="{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}"></a>
                 <div class="myuw-card instructor-course-card" style="position:relative;" data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
                     {{#if mini_card}}
                         <div class="c{{ color_id }}LeftBorder"></div>
