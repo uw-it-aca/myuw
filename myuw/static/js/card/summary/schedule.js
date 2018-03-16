@@ -89,7 +89,7 @@ var SummaryScheduleCard = {
             var section_abbr = ev.currentTarget.getAttribute("cabb");
             var course_number = ev.currentTarget.getAttribute("cnum");
             var section_id = ev.currentTarget.getAttribute("sid");
-            var label = section_abbr + "_" + course_number + "_" + section_id;
+            var label = safe_label(section_abbr) + "_" + course_number + "_" + section_id;
             WSData.log_interaction("from_summary_pin_mini_card_of_" + label, term);
             var section_label = (term + "," + section_abbr + "," +
                                  course_number + "/" + section_id);
