@@ -89,12 +89,9 @@ describe('Handlebar-helpers', function(){
 
     describe("toAnchorName", function() {
         it ("should replace spaces", function() {
-            template = Handlebars.compile("{{toAnchorName 'A&E'}}");
-            output = template();
-            assert.equal(output, "AE");
             template = Handlebars.compile("{{toAnchorName 'B BIO'}}");
             output = template();
-            assert.equal(output, "BBIO");
+            assert.equal(output, "B-BIO");
         });
     });
 

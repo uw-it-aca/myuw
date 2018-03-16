@@ -106,7 +106,7 @@ Handlebars.registerHelper("toUrlSafe", function(curr_abbr) {
 
 // a letter followed by up to 33 letters, digits, periods, or hyphens.
 Handlebars.registerHelper("toAnchorName", function(curr_abbr) {
-    return curr_abbr.replace(/[& ]/g, '');
+    return curr_abbr.replace(/ /g, '-');
 });
 
 
