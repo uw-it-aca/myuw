@@ -9,7 +9,7 @@ var Explore = {
         $('html,body').animate({scrollTop: 0}, 'fast');
         // var source = $("#explore_page").html();
         // var template = Handlebars.compile(source);
-        $("#main-content").html("foo");
+        // $("#main-content").html("");
     }
 
 };
