@@ -4,12 +4,57 @@
 {% load compress %}
 
 {% block load_values %}
-{% set_context 'page_title' 'Explore UW' %}
+{% set_context 'page_title' 'Explore UW Resources' %}
 {% endblock %}
 
 {% block content %}
 
-    <div id="main-content" role="main" aria-labelledby="main"></div>
+    <div id="main-content" role="main" aria-labelledby="main-content-label">
+
+        <!-- temp location -->
+        <div class="container explore-uw-container">
+            <h2 class="heading-page" id="main-content-label">Explore UW Resources</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>On this page:</h3>
+                    <ul>
+                        <li><a href="#">Anchor link</a></li>
+                        <li><a href="#">Anchor link</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- For each category of links -->
+            <div class="row">
+                <h3>Top level category heading</h3>
+                <div class="col-md-6">
+                    <div class="">
+                        <h4>Link card heading</h4>
+                        <button type="button">Pin to home</button>
+                        <ul>
+                            <li><a href="">Link</a></li>
+                            <li><a href="">Link</a></li>
+                            <li><a href="">Link</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <h4>Link card heading</h4>
+                        <button type="button">Pin to home</button>
+                        <ul>
+                            <li><a href="">Link</a></li>
+                            <li><a href="">Link</a></li>
+                            <li><a href="">Link</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
     <div id="static-links"></div>
 
     <!-- component content templates -->
