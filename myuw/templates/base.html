@@ -194,6 +194,9 @@
                         <ul class="unstyled-list myuw-muted">
                             <li><a id="welcome_modal_link" href="#" class="js-modal-toggle" data-toggle="modal" data-target="#message_modal">About the new MyUW</a></li>
                             <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                            <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">TEMP: Quick tour of MyUW</a></li>	
+                            <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" data-toggle="" data-target="" target="_blank">Learn more about MyUW </a></li>
+
                         </ul>
                     </div>
                     {% endif %}
@@ -543,6 +546,29 @@
 
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end modal code -->
+        
+         <!-- Tour for late migrators -->
+        <div id="tour_page-modal"></div>
+        <div class="myuw-modal modal fade" id="tour_modal" tabindex="-1" role="dialog" aria-labelledby="tour_modal_label" aria-describedby="tour_modal_description" aria-hidden="true" aria-modal="true">
+            <div class="modal-dialog message-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="tour_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="tour_modal_label">MyUW at a glance</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div style="margin-top:10px; margin-bottom:30px;">
+                            <p id="tour_modal_description">Find key features in the new MyUW. <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank">Learn more about MyUW</a>.</p>
+							<div>add image here</div>
+                        </div>
+                    </div><!-- end modal body -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
