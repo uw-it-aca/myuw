@@ -5,6 +5,7 @@ from myuw.logger.logresp import (
     log_data_not_found_response, log_msg, log_success_response)
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
+from myuw.dao.category_links import Explore_Links
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +22,8 @@ class Explore(ProtectedAPI):
         timer = Timer()
         try:
             response = []
+            links = Explore_Links.get_all_links()
+            print len(links)
             log_success_response(logger, timer)
             return self.json_response(response)
         except Exception:

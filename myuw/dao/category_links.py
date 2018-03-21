@@ -5,10 +5,10 @@ from myuw.models.res_category_link import ResCategoryLink
 from myuw.dao.affiliation import get_all_affiliations, get_base_campus
 
 
-class Res_Links:
+class MyuwLink:
     """
-    Read the resource links froma file and store them
-    in an array of ResCategoryLink objects.
+    Read the resource links from a file and store them
+    in an array of Link objects.
     """
 
     _singleton = None
@@ -17,7 +17,7 @@ class Res_Links:
         self.links = []
         path = os.path.join(
             os.path.dirname(__file__),
-            '..', 'data', 'category_links_import.csv')
+            '..', 'data', self.csv_filename)
 
         with open(path) as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
@@ -95,8 +95,28 @@ class Res_Links:
     @classmethod
     def get_all_links(cls):
         if cls._singleton is None:
-            cls._singleton = Res_Links()
+            cls._singleton = cls()
         return cls._singleton.links
+
+
+class Res_Links(MyuwLink):
+    """
+    Read the resource links from a file and store them
+    in an array of ResCategoryLink objects.
+    """
+
+    _singleton = None
+    csv_filename = 'category_links_import.csv'
+
+
+class Explore_Links(MyuwLink):
+    """
+    Read the explore links from a file and store them
+    in an array of ResCategoryLink objects.
+    """
+
+    _singleton = None
+    csv_filename = 'explore_link_import.csv'
 
 
 def _get_category_id(category_name):
