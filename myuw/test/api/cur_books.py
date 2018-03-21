@@ -18,8 +18,9 @@ class TestApiCurBooks(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEquals(len(data["13833"]), 1)
         self.assertEquals(
-            data["verba_link"],
-            "%s/m?section_id=AB12345&quarter=spring" % VERBACOMPARE_URL_PREFIX)
+            data["order_url"],
+            ('http://www.ubookstore.com/adoption-search-results?' +
+             'ccid=9335,1132,5320,2230,4405'))
         book = data['18532'][0]
         self.assertEquals(len(book["authors"]), 1)
         self.assertTrue(book["is_required"])
