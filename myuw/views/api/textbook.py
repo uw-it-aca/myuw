@@ -48,6 +48,10 @@ class Textbook(ProtectedAPI):
                 order_url = get_order_url_by_schedule(schedule)
                 if order_url:
                     by_sln["order_url"] = order_url
+                else:
+                    raise DataFailureException("/api/v1/book/",
+                                               404,
+                                               "Unable to retrieve cart URL")
             except DataFailureException as ex:
                 if ex.status != 400 and ex.status != 404:
                     raise
