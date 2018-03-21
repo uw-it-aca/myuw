@@ -105,8 +105,8 @@ var TextBooks = {
         var template = Handlebars.compile(source);
         var template_data = TextBooks.process_book_data(WSData.book_data(term),
                                                         WSData.course_data_for_term(term),
-                                                        WSData.instructed_course_data_for_term(term))
-        console.log(template_data)
+                                                        WSData.instructed_course_data_for_term(term));
+
         if (template_data !== undefined){
             $("#main-content").html(template(template_data));
         }
