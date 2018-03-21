@@ -20,10 +20,10 @@ class ExploreList(ProtectedAPI):
         of the current user
         """
         timer = Timer()
-        try:
-            links = Explore_Links()
-            grouped = links.get_grouped_links()
-            log_success_response(logger, timer)
-            return self.json_response(grouped)
-        except Exception:
-            return handle_exception(logger, timer, traceback)
+        # try:
+        links = Explore_Links()
+        grouped = links.get_grouped_links()
+        log_success_response(logger, timer)
+        return self.json_response(grouped)
+        # except Exception:
+        #     return handle_exception(logger, timer, traceback)

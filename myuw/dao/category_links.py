@@ -25,7 +25,7 @@ class MyuwLink:
                 category = row[0]
                 if category == 'Category':
                     continue
-                category_id = _get_category_id(category)
+                category_id = self._get_category_id(category)
                 subcategory = row[1]
                 affiliation = row[2]
                 central_url = row[3]
@@ -98,6 +98,12 @@ class MyuwLink:
             cls._singleton = cls()
         return cls._singleton.links
 
+    @classmethod
+    def _get_category_id(cls, category_name):
+        category_id = category_name.lower()
+        category_id = "".join(c for c in category_id if c.isalpha())
+        return category_id
+
 
 class Res_Links(MyuwLink):
     """
@@ -128,12 +134,6 @@ class Explore_Links(MyuwLink):
                 category.append(link.sub_category)
         link_list = [{k: v} for k, v in grouped_links.items()]
         return link_list
-
-
-def _get_category_id(category_name):
-    category_id = category_name.lower()
-    category_id = "".join(c for c in category_id if c.isalpha())
-    return category_id
 
 
 def get_links_for_category(search_category_id, request):
