@@ -118,6 +118,17 @@ class Explore_Links(MyuwLink):
     _singleton = None
     csv_filename = 'explore_link_import.csv'
 
+    def get_grouped_links(self):
+        if self.links is None:
+            self.links = self.get_all_links()
+        grouped_links = {}
+        for link in self.links:
+            category = grouped_links.setdefault(link.category_name, [])
+            if link.sub_category not in category:
+                category.append(link.sub_category)
+        link_list = [{k: v} for k, v in grouped_links.items()]
+        return link_list
+
 
 def _get_category_id(category_name):
     category_id = category_name.lower()

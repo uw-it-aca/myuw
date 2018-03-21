@@ -10,7 +10,7 @@ from myuw.dao.category_links import Explore_Links
 logger = logging.getLogger(__name__)
 
 
-class Explore(ProtectedAPI):
+class ExploreList(ProtectedAPI):
     """
     Performs actions on resource at /api/v1/explore_resources/.
     """
@@ -21,10 +21,9 @@ class Explore(ProtectedAPI):
         """
         timer = Timer()
         try:
-            response = []
-            links = Explore_Links.get_all_links()
-            print len(links)
+            links = Explore_Links()
+            grouped = links.get_grouped_links()
             log_success_response(logger, timer)
-            return self.json_response(response)
+            return self.json_response(grouped)
         except Exception:
             return handle_exception(logger, timer, traceback)

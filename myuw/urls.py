@@ -57,7 +57,7 @@ from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
 from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
     HxToolkitMessageList
-from myuw.views.api.explore_resources import Explore
+from myuw.views.api.explore_resources import ExploreList
 
 
 urlpatterns = []
@@ -207,7 +207,7 @@ urlpatterns += [
         MyDirectoryInfo.as_view(),
         name="myuw_directory_api"),
     url(r'^api/v1/explore_resources/$',
-        Explore.as_view(),
+        ExploreList.as_view(),
         name="myuw_explore_api"),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"),
