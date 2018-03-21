@@ -48,7 +48,7 @@ setup(
         'UW-RestClients-UPass>=0.2,<1.0',
         'UW-RestClients-UWNetID>=0.4,<1.0',
         'UW-RestClients-Grad<1.0',
-        'UW-RestClients-Bookstore>=0.5',
+        'UW-RestClients-Bookstore>=0.5.2',
         'UW-RestClients-Mailman<1.0',
         'UW-RestClients-MyPlan<1.0',
         'UW-RestClients-Trumba<1.0,>=0.3',
