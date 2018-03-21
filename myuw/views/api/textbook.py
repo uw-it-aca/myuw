@@ -53,8 +53,7 @@ class Textbook(ProtectedAPI):
                                                404,
                                                "Unable to retrieve cart URL")
             except DataFailureException as ex:
-                if ex.status != 400 and ex.status != 404:
-                    raise
+                return handle_exception(logger, timer, traceback)
 
             # instructed sections
             try:
