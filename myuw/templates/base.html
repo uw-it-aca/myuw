@@ -140,9 +140,12 @@
                         {% for message in banner_messages %}
                         <div class="message">
                             <p>{{ message.message_body|safe }}</p>
+                            <!-- NTS adding the banner message close btn: DESKTOP -->
+							<button id="banner_msg_close" type="button"style="margin-top:-24px;float: right;color: white;font-size:2em;padding-right:16px;" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         {% endfor %}
                     </div>
+                    
                 </div>
                 {% endif %}
            </div>
@@ -566,7 +569,7 @@
                     <div class="modal-body">
                         <div style="margin-top:10px; margin-bottom:30px;">
                             <p id="tour_modal_description">Find key features in the new MyUW. <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank">Learn more about MyUW</a>.</p>
-							<div><img src="/static/images/myuw-tour-1.0x.png"></div>
+							<div><img src="/static/images/myuw-tour-mobile-1.0x.png"></div>
                         </div>
                     </div><!-- end modal body -->
                     <div class="modal-footer">
