@@ -29,7 +29,8 @@ var TextBooks = {
             "sections": [],
             "quarter": course_data ? course_data.quarter : instructed_course_data.quarter,
             "year": course_data ? course_data.year: instructed_course_data.year,
-            "summer_term": course_data ? course_data.summer_term : instructed_course_data.summer_term
+            "summer_term": course_data ? course_data.summer_term : instructed_course_data.summer_term,
+            "order_url": book_data.order_url
         };
 
         var section_data = function (i, section, instructor) {
@@ -104,7 +105,8 @@ var TextBooks = {
         var template = Handlebars.compile(source);
         var template_data = TextBooks.process_book_data(WSData.book_data(term),
                                                         WSData.course_data_for_term(term),
-                                                        WSData.instructed_course_data_for_term(term));
+                                                        WSData.instructed_course_data_for_term(term))
+        console.log(template_data)
         if (template_data !== undefined){
             $("#main-content").html(template(template_data));
         }
