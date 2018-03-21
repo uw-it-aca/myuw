@@ -8,7 +8,7 @@ from uw_sws.models import ClassSchedule
 from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url, get_section_by_label
 from uw_sws.section_status import get_section_status_by_label
-from myuw.util.thread import Thread, ThreadWithResponse
+from myuw.util.thread import ThreadWithResponse
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.pws import get_person_of_current_user
@@ -21,8 +21,8 @@ logger = logging.getLogger(__name__)
 
 def get_instructor_schedule_by_term(request, term):
     """
-    Return the sections the current user is instructing
-    in the given term/quarter
+    Return the sections (ordered by course abbr, number, section id)
+    the current user is instructing in the given term/quarter
     """
     person = get_person_of_current_user(request)
     schedule = ClassSchedule()
@@ -56,13 +56,16 @@ def _get_instructor_sections(person, term,
 
 
 def _get_sections_by_section_reference(section_references, term):
+    """
+    Return sections in the same order as the section_references
+    """
     sections = []
     section_threads = []
 
     for section_ref in section_references:
         try:
-            t = Thread(target=_set_section_from_url,
-                       args=(sections, section_ref.url, term))
+            t = ThreadWithResponse(target=_set_section_from_url,
+                                   args=(section_ref.url, term))
             section_threads.append(t)
             t.start()
         except KeyError:
@@ -70,20 +73,24 @@ def _get_sections_by_section_reference(section_references, term):
 
     for t in section_threads:
         t.join()
-
+        section = t.response
+        if section:
+            sections.append(section)
     return sections
 
 
-def _set_section_from_url(sections, section_url, term):
+def _set_section_from_url(section_url, term):
     section = get_section_by_url(section_url)
     if not term.check_time_schedule_published:
-        sections.append(section)
+        # no need to check
+        return section
     else:
         course_campus = section.course_campus.lower()
         # check if the campus specific time schedule is published
         if course_campus not in term.time_schedule_published or\
            term.time_schedule_published[course_campus] is True:
-            sections.append(section)
+            return section
+    return None
 
 
 def get_instructor_section(request, section_id,
@@ -186,10 +193,14 @@ def is_instructor_prefetch():
 def check_section_instructor(section, person):
     if not section.is_instructor(person):
         if section.is_primary_section:
-            raise NotSectionInstructorException()
+            raise NotSectionInstructorException(
+                "%s Not Instructor for %s" % (person.uwnetid,
+                                              section.section_label()))
         primary_section = get_section_by_label(section.primary_section_label())
         if not primary_section.is_instructor(person):
-            raise NotSectionInstructorException()
+            raise NotSectionInstructorException(
+                "%s Not Instructor for %s" % (
+                    person.uwnetid, primary_section.section_label()))
 
 
 def get_primary_section(secondary_section):

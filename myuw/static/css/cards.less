@@ -21,6 +21,18 @@
         position: relative;
     }
 
+    .myuw-close-card {
+        border: none;
+        background: none;
+        padding: 0;
+        color: #444;
+        font-size: 18px;
+    }
+
+    .myuw-close-card:hover {
+        color: #000;
+    }
+
     /*** Buttons ***/
     .card-btn {
         @media @two-column { position: absolute; top: 12px; right: 10px;}
@@ -63,7 +75,15 @@
         margin-top: -8px;
     }
 
+    /*** major divison. separated by ful line across card ***/
+    .myuw-card-division--top-border {
+        margin: 8px -16px 0 -16px;
+        border-top: 1px solid #eee;
 
+        .wrapper {
+            margin: 0 16px;
+        }
+    }
 
     /*** card section ***/
     .myuw-card-section {
@@ -84,22 +104,22 @@
             .row + .row { padding-top: 8px; }
         }
 
-        // target the very last section of a card by usign the "last" class
-        &.last {
-
-            // remove the bottom border for last element
-            .col-sm-9 {
-                border-bottom: none !important;
-                padding-bottom: 0 !important;
-            }
-        }
-
         /*** workday specific link (need to move this)***/
         .workday-link {
             display: inline-block;
             line-height: 30px;
             background-position: 0 50% !important;
             padding-left: 28px !important;
+        }
+    }
+
+    // target the very last section of a card by usign the "last" class
+    .myuw-card-section.last, .last .myuw-card-section:last-child {
+
+        // remove the bottom border for last element
+        .col-sm-9 {
+            border-bottom: none !important;
+            padding-bottom: 0 !important;
         }
     }
 
@@ -229,6 +249,18 @@
             td:first-child { padding-left: 0; }
         }
         td { border: none; }
+    }
+
+    /*** Disclosure bar at bottom of card ***/
+    .myuw-card-disclosure {
+        margin: 0 -16px -16px -16px;
+        border-top: solid 1px #eee;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 12px;
+        background-color: #efefef;
+        a { color: #444; display: block; line-height:40px; }
+        a:hover { background-color: #ddd; }
     }
 
 } /*** END myuw-cards ***/

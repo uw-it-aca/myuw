@@ -37,17 +37,26 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
             section1["email_list"]['section_list']['list_address'],
             'ess102a_sp13')
 
-        section2 = data['sections'][5]
-        self.assertTrue(section2['current_or_future'])
-        self.assertEqual(section2['canvas_url'],
+        section3 = data['sections'][2]
+        self.assertEqual(section3["color_id"], "2a")
+        self.assertFalse(section3["mini_card"])
+        self.assertFalse(section3.get("no_2nd_registration"))
+        self.assertFalse(section3.get("cc_display_dates"))
+        self.assertFalse(section3.get("early_fall_start"))
+        self.assertFalse(section3.get("has_early_fall_start"))
+
+        section6 = data['sections'][5]
+        self.assertTrue(section6['current_or_future'])
+        self.assertEqual(section6['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
-        self.assertEqual(len(section2['grade_submission_delegates']), 1)
+        self.assertEqual(len(section6['grade_submission_delegates']), 1)
         self.assertEqual(
             len(data['sections'][4]['grade_submission_delegates']), 1)
         self.assertGreater(len(data['related_terms']), 3)
         self.assertEqual(
-            section2["email_list"]['section_list']['list_address'],
+            section6["email_list"]['section_list']['list_address'],
             'train101a_sp13')
+
         self.assertGreater(len(data['related_terms']), 2)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
@@ -92,6 +101,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
         primary_section = data['sections'][0]
         self.assertEqual(primary_section["section_label"],
                          "2017_autumn_CSE_154_A")
+        self.assertEqual(primary_section["color_id"], 1)
         self.assertEqual(primary_section["total_linked_secondaries"], 4)
         final = primary_section['final_exam']
         self.assertFalse(final["is_confirmed"])
@@ -101,6 +111,8 @@ class TestInstructorTermSchedule(MyuwApiTest):
         secondary_section = data['sections'][1]
         self.assertEqual(secondary_section["section_label"],
                          "2017_autumn_CSE_154_AA")
+        self.assertEqual(secondary_section["color_id"], "1a")
+        self.assertFalse(secondary_section["mini_card"])
         self.assertEqual(secondary_section["primary_section_label"],
                          "2017_autumn_CSE_154_A")
         final = secondary_section["final_exam"]
