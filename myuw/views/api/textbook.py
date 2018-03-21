@@ -7,7 +7,7 @@ from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_specific_term, get_current_quarter, \
     get_current_summer_term, get_comparison_datetime
 from myuw.dao.textbook import get_textbook_by_schedule
-from myuw.dao.textbook import get_verba_link_by_schedule
+from myuw.dao.textbook import get_order_url_by_schedule
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_success_response, log_msg, log_data_not_found_response)
@@ -45,9 +45,9 @@ class Textbook(ProtectedAPI):
                 by_sln.update(self._get_schedule_textbooks(
                     schedule, summer_term))
 
-                verba_link = get_verba_link_by_schedule(schedule)
-                if verba_link:
-                    by_sln["verba_link"] = verba_link
+                order_url = get_order_url_by_schedule(schedule)
+                if order_url:
+                    by_sln["order_url"] = order_url
             except DataFailureException as ex:
                 if ex.status != 400 and ex.status != 404:
                     raise
