@@ -87,6 +87,14 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe("toAnchorName", function() {
+        it ("should replace spaces", function() {
+            template = Handlebars.compile("{{toAnchorName 'B BIO'}}");
+            output = template();
+            assert.equal(output, "B-BIO");
+        });
+    });
+
     describe("toLowerCase", function() {
         it ("should replace unicode", function() {
             var template = Handlebars.compile("{{toLowerCase 'OK!'}}");

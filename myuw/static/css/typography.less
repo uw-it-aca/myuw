@@ -101,18 +101,20 @@ abbr[title] {
     font-size: @fontsize-small;
 }
 
-/** Can be used on an element or as a container for multiples **/
+/** Can be used on an element or as a container for many elements **/
 .myuw-muted {
     color: #777;
 
-    a&,
-    a {
+    a&, a&:visited,
+    a, a:visited {
         color: #777;
         text-decoration: none;
+        border-bottom: 1px solid #999;
 
-        &:hover, &:visited {
-            color: #777;
-            text-decoration: underline;
+        &:hover {
+            color: darken(#777, 20%);
+            text-decoration: none;
+            border-bottom-color: darken(#999, 20%);
         }
     }
 }

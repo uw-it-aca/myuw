@@ -1,6 +1,7 @@
 var InstructorCourseCardContent = {
 
     render: function (c_section) {
+        Handlebars.registerPartial('secondary_section_panel', $("#secondary_section_panel").html());
         var index = c_section.index;
         var source = $("#instructor_course_card_content_panel").html();
         var template = Handlebars.compile(source);

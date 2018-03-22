@@ -2,6 +2,7 @@ import sys
 from django.http import HttpResponse
 from restclients_core.exceptions import (DataFailureException, InvalidNetID,
                                          InvalidRegID)
+from myuw.dao.exceptions import NotSectionInstructorException
 from uw_sws.exceptions import InvalidSectionID
 from myuw.logger.logresp import log_err
 
@@ -34,6 +35,14 @@ def invalid_input_data():
     return _make_response(HTTP_BAD_REQUEST, "Invalid post data content")
 
 
+def invalid_section():
+    return _make_response(HTTP_BAD_REQUEST, "Invalid section label")
+
+
+def not_section_instructor():
+    return _make_response(HTTP_BAD_REQUEST, "Invalid section instructor")
+
+
 def data_not_found():
     return _make_response(HTTP_NOT_FOUND, "Data not found")
 
@@ -55,12 +64,17 @@ def handle_exception(logger, timer, stack_trace):
     log_err(logger, timer, stack_trace.format_exc())
     exc_type, exc_value, exc_traceback = sys.exc_info()
     if isinstance(exc_value, InvalidNetID) or\
-            isinstance(exc_value, InvalidRegID):
+       isinstance(exc_value, InvalidRegID):
         return invalid_session()
 
-    if (isinstance(exc_value, InvalidInputFormData) or
-            isinstance(exc_value, InvalidSectionID)):
+    if isinstance(exc_value, InvalidInputFormData):
         return invalid_input_data()
+
+    if isinstance(exc_value, InvalidSectionID):
+        return invalid_section()
+
+    if isinstance(exc_value, NotSectionInstructorException):
+        return not_section_instructor()
 
     if isinstance(exc_value, DataFailureException) and\
             (exc_value.status == 400 or exc_value.status == 404):
