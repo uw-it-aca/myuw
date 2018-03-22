@@ -129,10 +129,13 @@ class Explore_Links(MyuwLink):
             self.links = self.get_all_links()
         grouped_links = {}
         for link in self.links:
-            category = grouped_links.setdefault(link.category_name, [])
-            if link.sub_category not in category:
-                category.append(link.sub_category)
+            category = grouped_links.setdefault(link.category_name, {})
+            subcategory = category.setdefault(link.sub_category, [])
+            subcategory.append({'title': link.title,
+                                'url': link.url})
+
         link_list = [{k: v} for k, v in grouped_links.items()]
+
         return link_list
 
 
