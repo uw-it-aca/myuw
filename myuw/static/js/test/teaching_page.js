@@ -2,10 +2,8 @@ var Global = require("./global.js");
 
 describe("TeachingPage", function() {
     before(function () {
-        var render_id = 'render_teaching_resources_card';
 
         Global.Environment.init({
-            render_id: render_id,
             scripts: [
                 "myuw/static/js/teaching.js",
                 "myuw/static/js/cards.js",
@@ -16,38 +14,14 @@ describe("TeachingPage", function() {
                 "myuw/static/js/card/instructor_schedule/course_content.js",
                 "myuw/static/js/card/instructor_schedule/course_resource_panel.js",
                 "myuw/static/js/card/instructor_schedule/course_sche_panel.js",
-                "myuw/static/js/card/instructor_schedule/load_section_card.js",
+                "myuw/static/js/card/schedule/instructor_panel.js",
             ],
             templates: [
                 'myuw/templates/teaching_base.html',
                 'myuw/templates/teaching.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_cards.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_content.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_eval.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_grading.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_sche_panel.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_section.html',
-                'myuw/templates/handlebars/card/instructor_schedule/secondaries.html',
-                'myuw/templates/handlebars/card/instructor_schedule/secondary_section_panel.html',
-                'myuw/templates/handlebars/card/instructor_schedule/term_panel.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_resource/class_website.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_resource/course_class_list.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_resource/course_stats.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_resource/email_list.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_resource/online_tools.html',
-                'myuw/templates/handlebars/card/instructor_schedule/course_resource/textbooks.html',
-                'myuw/templates/handlebars/card/schedule/course_sche_col_bldg.html',
-                'myuw/templates/handlebars/card/schedule/course_sche_col_days.html',
             ]
         });
-        
         Global.Environment.ajax_stub('api/v1/instructor_schedule/billsea-2013-spring');
-
-        window.card_display_dates = { system_date: '2013-04-15 00:01' };
-        window.innerWidth = 800;
-        Teaching.is_desktop = true;
-        Teaching.make_html();
 
     });
 
@@ -55,15 +29,28 @@ describe("TeachingPage", function() {
         window.page = "teaching";
         window.user.instructor = true;
         window.user.seattle = true;
+        window.card_display_dates = { system_date: '2013-04-15 00:01' };
     });
 
     describe('load desktop cards', function() {
         
-        it('Should have teaching content card and resource card', function() {
+        it('Desktop should have teaching content card and resource card', function() {
+            window.innerWidth = 800;
+            Teaching.make_html();
+            assert.equal(Teaching.is_desktop, true);
+            assert.equal($('h2[id="main-content-label"]').length, 1);
+            assert.equal($('div[id="InstructorCourseCards"]').length, 1);
+            assert.equal($('div[data-name="CourseCard"]').length, 7);
+            assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
+        });
+
+        it('Mobile should have teaching content card and resource card', function() {
+            window.innerWidth = 767;
+            Teaching.make_html();
+            assert.equal(Teaching.is_desktop, false);
             assert.equal($('h2[id="main-content-label"]').length, 1);
             assert.equal($('div[id="InstructorCourseCards"]').length, 1);
             assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
-            // assert.equal($('div[data-name="CourseCard"]').length, 7);
         });
 
     });
