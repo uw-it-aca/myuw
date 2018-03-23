@@ -176,6 +176,7 @@ var InstructorCourseCards = {
             return false;
         });
         $(".close-mini-card").click(function(ev) {
+            ev.preventDefault();
             var section_abbr = ev.currentTarget.getAttribute("cabb");
             var course_number = ev.currentTarget.getAttribute("cnum");
             var section_id = ev.currentTarget.getAttribute("sid");
@@ -190,11 +191,8 @@ var InstructorCourseCards = {
                 type: 'GET',
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    if (results.done) {
-                        window.location = "/teaching/" + term;
-                    } else {
-                        return false;
-                    }
+                    window.location = "/teaching/" + term;
+                    return results.done;
                 },
                 error: function(xhr, status, error) {
                     return false;
@@ -202,6 +200,7 @@ var InstructorCourseCards = {
             });
         });
         $(".pin-mini-card").click(function(ev) {
+            ev.preventDefault();
             var section_abbr = ev.currentTarget.getAttribute("cabb");
             var course_number = ev.currentTarget.getAttribute("cnum");
             var section_id = ev.currentTarget.getAttribute("sid");
@@ -216,6 +215,7 @@ var InstructorCourseCards = {
                 type: 'GET',
                 accepts: {html: "text/html"},
                 success: function(results) {
+                    window.location = ev.currentTarget.href;
                     return results.done;
                 },
                 error: function(xhr, status, error) {
