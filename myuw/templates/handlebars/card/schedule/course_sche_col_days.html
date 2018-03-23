@@ -1,4 +1,5 @@
 {% verbatim %}
+    {{#if start_time}}
                 <td class="course-days">
                     {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
                     meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
@@ -9,4 +10,5 @@
                     meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
                 </td>
                 <td class="course-time">{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}</td>
+    {{/if}}
 {% endverbatim %}
