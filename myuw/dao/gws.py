@@ -133,6 +133,7 @@ def is_undergrad_student(request):
 def is_student(request):
     return (is_undergrad_student(request) or
             is_current_graduate_student(request) or
+            is_grad_student(request) or
             is_pce_student(request))
 
 
