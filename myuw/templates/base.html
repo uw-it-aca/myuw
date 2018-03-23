@@ -141,7 +141,7 @@
                         <div class="message">
                             <p>{{ message.message_body|safe }}</p>
                             <!-- NTS adding the banner message close btn: DESKTOP -->
-							<button id="banner_msg_close" type="button"style="margin-top:-24px;float: right;color: white;font-size:2em;padding-right:16px;" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button>
                         </div>
                         {% endfor %}
                     </div>
@@ -221,6 +221,8 @@
                                 {% for message in banner_messages %}
                                 <div class="message">
                                     <p>{{ message.message_body|safe }}</p>
+                                    <!-- NTS adding the banner message close btn: MOBILE -->
+							<button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 {% endfor %}
                             </div>
