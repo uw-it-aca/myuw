@@ -123,6 +123,8 @@
                             <span class="sr-only">Main Menu</span>
                         </button>
                         <h2>{% if page_title == "Home" %}MyUW<span class="sr-only"> Home</span>{% else %}{{page_title}}{% endif %}</h2>
+                        <!-- NTS: trigger for mobile modal -->
+	                <span><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">TEMP: Quick tour</a></span><!-- NTS: end of trigger for mobile modal -->
                     </div>
                 </div>
             </div>
@@ -560,7 +562,8 @@
         <!-- end modal code -->
         
          <!-- Tour for late migrators -->
-        <div id="tour_page-modal"></div>
+        {% block mobile_tour_page-modal %} 
+        <div id="tour-page-modal"></div>
         <div class="myuw-modal modal fade" id="tour_modal" tabindex="-1" role="dialog" aria-labelledby="tour_modal_label" aria-describedby="tour_modal_description" aria-hidden="true" aria-modal="true">
             <div class="modal-dialog message-dialog" role="document">
                 <div class="modal-content">
@@ -581,6 +584,7 @@
             </div>
         </div>
         <!-- end modal code -->
-
+        {% endblock %}
+        
     </body>
 </html>
