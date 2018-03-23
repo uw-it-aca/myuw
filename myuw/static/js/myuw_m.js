@@ -334,11 +334,12 @@ if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.capitalizeString = capitalizeString;
+exports.curr_abbr_url_safe = curr_abbr_url_safe;
 exports.date_from_string = date_from_string;
+exports.get_is_desktop = get_is_desktop;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
-exports.safe_label = safe_label;
-exports.curr_abbr_url_safe = curr_abbr_url_safe;
-exports.renderedCardOnce = renderedCardOnce;
-exports.titilizeTerm = titilizeTerm;
 exports.remove_card = remove_card;
+exports.renderedCardOnce = renderedCardOnce;
+exports.safe_label = safe_label;
+exports.titilizeTerm = titilizeTerm;
