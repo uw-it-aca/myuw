@@ -52,7 +52,8 @@ def _get_instructor_sections(person, term,
         term,
         future_terms=future_terms,
         include_secondaries=include_secondaries,
-        transcriptable_course='all')
+        transcriptable_course='all',
+        delete_flag=['active', 'suspended'])
 
 
 def _get_sections_by_section_reference(section_references, term):
