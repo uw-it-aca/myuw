@@ -95,7 +95,7 @@ var Landing = {
         if(window.user.alumni) {
             desktop_body_cards.push(AlumniCard);
         }
-        return desktop_body_cards
+        return desktop_body_cards;
     },
 
     _get_desktop_sidebar_cards: function() {
@@ -163,7 +163,7 @@ var Landing = {
         if(window.user.alumni) {
             mobile_cards.push(AlumniCard);
         }
-        return mobile_cards
+        return mobile_cards;
     },
 
     _reset_content_divs: function() {
