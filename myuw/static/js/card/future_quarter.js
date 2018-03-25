@@ -70,3 +70,11 @@ var FutureQuarterCard1 = {
     render_init: function() {}
 };
 
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.FutureQuarterCard = FutureQuarterCard;
+exports.FutureQuarterCardA = FutureQuarterCardA;
+exports.FutureQuarterCard1 = FutureQuarterCard1;

@@ -341,5 +341,6 @@ exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
 exports.remove_card = remove_card;
 exports.renderedCardOnce = renderedCardOnce;
+exports.resetCardRenderCalled = resetCardRenderCalled;
 exports.safe_label = safe_label;
 exports.titilizeTerm = titilizeTerm;

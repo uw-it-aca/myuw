@@ -5,41 +5,41 @@
     <div class="card" data-name="NS-ToRegister"  data-type="card">
 	<div class="card-badge-container clearfix">
             <h3>To Register For Classes</h3>
-            {{  #if no_orient_date }}
+            {{#if no_orient_date}}
             <strong>Register on {{ no_orient_date }} through <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a> or <a target="_blank" href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">the registration screen</a>.</strong>
             <ul class="card_list">
 	        <li><a href="https://depts.washington.edu/sislearn/registration-resources/">How to register</a></li>
 	        <li><a href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/">How to choose courses</a></li>
             </ul>
-            {{ /if }}
+            {{/if}}
 
-            {{ #each post_orient }}
+            {{#each post_orient}}
                 <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
-            {{ /each }}
+            {{/each}}
 
-            {{ #each pre_iss }}
+            {{#each pre_iss}}
                 <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
-            {{ /each }}
+            {{/each}}
 
-            {{ #each post_iss }}
+            {{#each post_iss}}
                 <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post">{{{ notice_content }}}</div>
-            {{ /each }}
+            {{/each}}
 
-            {{ #each pre_measles }}
+            {{#each pre_measles}}
                 <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
-            {{ /each }}
+            {{/each}}
 
-            {{ #each post_measles }}
+            {{#each post_measles}}
                 <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post">{{{ notice_content }}}</div>
-            {{ /each }}
+            {{/each}}
 
-            {{ #each pre_orient }}
+            {{#each pre_orient}}
                 <i class="fa fa-circle-o pre" aria-hidden="true"></i><div class="notice-content pre">{{{ notice_content }}}</div>
-            {{ /each }}
+            {{/each}}
 
-            {{ #if post_orient }}
+            {{#if post_orient}}
                 <i class="fa fa-check-circle" aria-hidden="true"></i><div class="notice-content post"><span class="non-notice-body-without-title">You have registered for an Advising & Orientation Session.</span></div>
-            {{ /if }}
+            {{/if}}
 	</div>
     </div>
 

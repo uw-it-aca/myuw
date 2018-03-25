@@ -32,9 +32,9 @@ describe("TeachingPage", function() {
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
     });
 
-    describe('load desktop cards', function() {
+    describe('load teaching page cards', function() {
         
-        it('Desktop should have teaching content card and resource card', function() {
+        it('Desktop should have course card and resource card', function() {
             window.innerWidth = 800;
             Teaching.make_html();
             assert.equal(Teaching.is_desktop, true);
@@ -44,7 +44,7 @@ describe("TeachingPage", function() {
             assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
         });
 
-        it('Mobile should have teaching content card and resource card', function() {
+        it('Mobile should have course card and resource card', function() {
             window.innerWidth = 767;
             Teaching.make_html();
             assert.equal(Teaching.is_desktop, false);
