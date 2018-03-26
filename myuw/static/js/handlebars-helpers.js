@@ -28,16 +28,6 @@ Handlebars.registerHelper("strToInt", function(str) {
         return moment(parse_date(str)).format("MMM D");
     });
 
-    // used on course card
-    Handlebars.registerHelper("toMoreDay", function(str) {
-        var d =  moment().from(moment(parse_date(str)), true);
-        if (d.match(/^an? [a-z]+$/)) {
-            return d.replace(/^an? /, '1 more ');
-        } else {
-            return d.replace(/ ([a-z]+)$/, ' more $1');
-        }
-    });
-
     // used on Library card
     Handlebars.registerHelper("toFromNowDate", function(str) {
         return moment(parse_date(str)).fromNow();
@@ -54,8 +44,10 @@ Handlebars.registerHelper("strToInt", function(str) {
 })();
 
 (function() {
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
+                  'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+                'Thursday', 'Friday', 'Saturday'];
 
     function _get_date(d) {
         return new Date(d.replace(/-/g, "/") + " 00:00:00");
@@ -92,6 +84,7 @@ Handlebars.registerHelper("strToInt", function(str) {
         }
 
     });
+
     Handlebars.registerHelper('short_year', function(year) {
         year = ""+year;
         return "’"+year.substr(-2,2);
