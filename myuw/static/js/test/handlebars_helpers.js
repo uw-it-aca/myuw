@@ -88,6 +88,40 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe("formatDateAsTime", function() {
+        it ("should convert a date to 12 hour display", function() {
+            var template = Handlebars.compile("{{formatDateAsTime '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, '1:30');
+            var template = Handlebars.compile("{{formatDateAsTime '2013-03-04 00:00'}}");
+            var output = template();
+            assert.equal(output, '0:00');
+        });
+        it ("should handle undefined date", function() {
+            var template = Handlebars.compile("{{formatDateAsTimeAMPM null}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
+
+    describe("formatDateAsTimeAMPM", function() {
+        it ("should convert PM", function() {
+            var template = Handlebars.compile("{{formatDateAsTimeAMPM '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, '1:30 PM');
+        });
+        it ("should convert AM", function() {
+            var template = Handlebars.compile("{{formatDateAsTimeAMPM '2013-03-04 8:00'}}");
+            var output = template();
+            assert.equal(output, '8:00 AM');
+        });
+        it ("should handle undefined date", function() {
+            var template = Handlebars.compile("{{formatDateAsTimeAMPM null}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
+
     describe("formatTime", function() {
         it ("should return HH:MM{AM,PM}", function() {
             var template = Handlebars.compile("{{formatTime '13:30:00'}}");
@@ -428,6 +462,18 @@ describe('Handlebar-helpers', function(){
             template = Handlebars.compile("{{toTitleCase '2013 summer, a-term'}}");
             output = template();
             assert.equal(output, "2013 Summer A-Term");
+        });
+    });
+
+    describe("titleFormatTerm", function() {
+        it ("should handle summer term", function() {
+            var template = Handlebars.compile("{{titleFormatTerm '2013,summer,a-term'}}");
+            var output = template();
+            assert.equal(output, "Summer 2013 A-Term");
+
+            template = Handlebars.compile("{{titleFormatTerm '2013,winter'}}");
+            output = template();
+            assert.equal(output, "Winter 2013");
         });
     });
 
