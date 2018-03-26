@@ -6,6 +6,53 @@ require("../handlebars-helpers.js");
 var assert = require("assert");
 describe('Handlebar-helpers', function(){
 
+    describe('formatPhoneNumber', function(){
+        it('should replace 10 digits with a formatted phone number', function(){
+            var template = Handlebars.compile("{{formatPhoneNumber '5035551234'}}");
+            var output = template();
+            assert.equal(output, "503-555-1234");
+        });
+        it('should return the original string', function(){
+            var template = Handlebars.compile("{{formatPhoneNumber '5551234'}}");
+            var output = template();
+            assert.equal(output, "5551234");
+            template = Handlebars.compile("{{formatPhoneNumber 'abcdefghij'}}");
+            output = template();
+            assert.equal(output, "abcdefghij");
+        });
+    });
+
+    describe('strToInt', function(){
+        it('should convert string to int', function(){
+            var template = Handlebars.compile("{{strToInt '2.0'}}");
+            var output = template();
+            assert.equal(output, 2);
+            var template = Handlebars.compile("{{strToInt '10.0'}}");
+            var output = template();
+            assert.equal(output, 10);
+        });
+    });
+
+    describe('toMonthDay', function(){
+        it('should work for YYYY-MM-DD hh:mm', function(){
+            var template = Handlebars.compile("{{toMonthDay '2013-06-10 08:30'}}");
+            var output = template();
+            assert.equal(output, 'Jun 10');
+        });
+    });
+
+
+    describe('toMoreDay', function(){
+        it('should work for YYYY-MM-DD hh:mm', function(){
+            var d =  moment().add(7,  'days').format();
+            var str = "{{toMoreDay " + d + "}}";
+            console.log(str);
+            var template = Handlebars.compile(str);
+            var output = template();
+            assert.equal(output, '7 more days');
+        });
+    });
+
     describe('date_from_string', function(){
         it('should work for YYYY-MM-DD hh:mm:ss', function(){
             var d = date_from_string('2013-04-22 10:57:06-08:00');
@@ -37,23 +84,6 @@ describe('Handlebar-helpers', function(){
             output = template();
             assert.equal(output, "11:30AM");
         });
-    });
-
-    describe('phonenumber', function(){
-        it('should replace 10 digits with a formatted phone number', function(){
-            var template = Handlebars.compile("{{formatPhoneNumber '5035551234'}}");
-            var output = template();
-            assert.equal(output, "503-555-1234");
-        });
-        it('should return the original string', function(){
-            var template = Handlebars.compile("{{formatPhoneNumber '5551234'}}");
-            var output = template();
-            assert.equal(output, "5551234");
-            template = Handlebars.compile("{{formatPhoneNumber 'abcdefghij'}}");
-            output = template();
-            assert.equal(output, "abcdefghij");
-        });
-
     });
 
     describe('toFromNowDate', function(){

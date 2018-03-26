@@ -6,7 +6,9 @@ Handlebars.registerHelper("formatPhoneNumber", function(str) {
     return str;
 });
 
-Handlebars.registerHelper("formatStudentCredits", function(str) {
+// used on future_quarter.html
+Handlebars.registerHelper("strToInt", function(str) {
+    // credit string to integer
     return parseInt(str, 10);
 });
 
