@@ -101,8 +101,9 @@ var SummaryScheduleCard = {
                 type: 'GET',
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    window.location = ev.currentTarget.href;
-                    return results.done;
+                    if (results.done) {
+                        window.location = ev.currentTarget.href;
+                    }
                 },
                 error: function(xhr, status, error) {
                     return false;

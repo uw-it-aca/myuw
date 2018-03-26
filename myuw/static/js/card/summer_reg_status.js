@@ -90,3 +90,11 @@ var SummerRegStatusCard1 = {
     name: 'SummerRegStatusCard1',
     render_init: function() {}
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.SummerRegStatusCard = SummerRegStatusCard;
+exports.SummerRegStatusCardA = SummerRegStatusCardA;
+exports.SummerRegStatusCard1 = SummerRegStatusCard1;

@@ -5,3 +5,9 @@ var CardLoading = {
         return template({card_name: card_name_str});
     },
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.CardLoading = CardLoading;
