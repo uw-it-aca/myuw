@@ -93,12 +93,14 @@ describe('Handlebar-helpers', function(){
             var template = Handlebars.compile("{{formatDateAsTime '2013-03-04 13:30'}}");
             var output = template();
             assert.equal(output, '1:30');
+        });
+        it ("should handle midnight time", function() {
             var template = Handlebars.compile("{{formatDateAsTime '2013-03-04 00:00'}}");
             var output = template();
             assert.equal(output, '0:00');
         });
         it ("should handle undefined date", function() {
-            var template = Handlebars.compile("{{formatDateAsTimeAMPM null}}");
+            var template = Handlebars.compile("{{formatDateAsTime ''}}");
             var output = template();
             assert.equal(output, '');
         });
@@ -108,15 +110,15 @@ describe('Handlebar-helpers', function(){
         it ("should convert PM", function() {
             var template = Handlebars.compile("{{formatDateAsTimeAMPM '2013-03-04 13:30'}}");
             var output = template();
-            assert.equal(output, '1:30 PM');
+            assert.equal(output, '1:30PM');
         });
         it ("should convert AM", function() {
             var template = Handlebars.compile("{{formatDateAsTimeAMPM '2013-03-04 8:00'}}");
             var output = template();
-            assert.equal(output, '8:00 AM');
+            assert.equal(output, '8:00AM');
         });
         it ("should handle undefined date", function() {
-            var template = Handlebars.compile("{{formatDateAsTimeAMPM null}}");
+            var template = Handlebars.compile("{{formatDateAsTimeAMPM ''}}");
             var output = template();
             assert.equal(output, '');
         });

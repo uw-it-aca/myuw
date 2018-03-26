@@ -178,7 +178,7 @@ Handlebars.registerHelper("formatTimeAMPM", function(time) {
 
 // converts date string into 12 hour display - no am/pm
 Handlebars.registerHelper("formatDateAsTime", function(date_str) {
-    if (date_str === undefined) {
+    if (!date_str || date_str.length === 0) {
         return "";
     }
     var date = date_from_string(date_str);
@@ -199,7 +199,7 @@ Handlebars.registerHelper("formatDateAsTime", function(date_str) {
 // converts date string into 12 hour am/pm display
 Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
     var date = date_from_string(date_str);
-    if (date_str === undefined) {
+    if (!date_str  || date_str.length === 0) {
         return "";
     }
     var hours = date.getHours();
