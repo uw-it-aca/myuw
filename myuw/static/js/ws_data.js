@@ -39,6 +39,7 @@ WSData = {
     _upass_data: null,
     _visual_schedule_data: {},
     _hx_toolkit_data: {},
+    _explore_data: {},
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -451,6 +452,9 @@ WSData = {
         if(WSData._hx_toolkit_data.hasOwnProperty('week/')){
             return WSData._hx_toolkit_data["week/"];
         }
+    },
+    explore_data: function(){
+        return WSData._explore_data;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -1513,7 +1517,39 @@ WSData = {
                 callback.apply(null, args);
             }, 0);
         }
-    }
+    },
+
+    fetch_explore_data: function(callback, err_callback, args) {
+        if (Object.keys(WSData._explore_data).length === 0) {
+            var url = "/api/v1/explore_resources/";
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                url: url,
+                    dataType: "JSON",
+
+                    type: "GET",
+                    accepts: {html: "application/json"},
+                    success: function(results) {
+                        WSData._explore_data = results;
+                        WSData._run_success_callbacks_for_url(url);
+                    },
+                    error: function(xhr, status, error) {
+                        WSData._run_error_callbacks_for_url(url);
+                    }
+                 });
+              }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
 };
 
 /* node.js exports */
