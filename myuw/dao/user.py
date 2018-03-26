@@ -3,7 +3,7 @@ from myuw.models import UserMigrationPreference
 from myuw.dao import _is_optin_user as is_optin_user
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.gws import (is_staff_employee, is_student_employee,
-                          is_undergrad_student, is_current_graduate_student,
+                          is_undergrad_student, is_grad_and_prof_student,
                           is_grad_c2, is_undergrad_c2,
                           is_employee,  is_faculty, is_applicant)
 
@@ -54,7 +54,7 @@ def is_oldmyuw_user(request):
     if has_legacy_preference(uwnetid) or\
        is_staff_employee(request) or\
        is_faculty(request) or\
-       is_current_graduate_student(request):
+       is_grad_and_prof_student(request):
         return True
 
     if is_applicant(request) or\
