@@ -28,15 +28,15 @@ bot_stud = 'uw_affiliation_bothell-student'
 sea_stud = 'uw_affiliation_seattle-student'
 tac_stud = 'uw_affiliation_tacoma-student'
 grad = 'uw_affiliation_graduate-grad'
-cur_grad_prof = 'uw_affiliation_graduate-current'
-undergrad = 'uw_affiliation_undergraduate'
+undergrad = 'uw_affiliation_undergraduate'  # grace 90 days
+grad_prof = 'uw_affiliation_graduate'  # grace 90 days
 pce = 'uw_affiliation_extension-student'
 grad_c2 = 'uw_affiliation_continuum-student_graduate'
 undergrad_c2 = 'uw_affiliation_continuum-student_undergraduate'
 all_groups = [alumni, alumni_asso,
               applicant, staff, stud_emp,
               bot_stud, sea_stud, tac_stud,
-              undergrad, grad, cur_grad_prof,
+              undergrad, grad_prof, grad,
               pce, grad_c2, undergrad_c2]
 RELEVANT_GROUPS = frozenset(all_groups)
 
@@ -106,12 +106,12 @@ def is_tacoma_student(request):
     return tac_stud in get_groups(request)
 
 
-def is_current_graduate_student(request):
+def is_grad_and_prof_student(request):
     """
     In SDB, class is one of (00, 08, 11, 12, 13, 14),
-    and status is Enrolled or on Leave
+    and status is Enrolled or on Leave, 90 days of grace status
     """
-    return cur_grad_prof in get_groups(request)
+    return grad_prof in get_groups(request)
 
 
 def is_grad_student(request):
@@ -132,7 +132,7 @@ def is_undergrad_student(request):
 
 def is_student(request):
     return (is_undergrad_student(request) or
-            is_current_graduate_student(request) or
+            is_grad_and_prof_student(request) or
             is_grad_student(request) or
             is_pce_student(request))
 
