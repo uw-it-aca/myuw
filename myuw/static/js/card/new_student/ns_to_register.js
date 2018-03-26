@@ -79,3 +79,9 @@ var ToRegisterCard = {
 
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.ToRegisterCard = ToRegisterCard;

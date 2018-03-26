@@ -217,3 +217,9 @@ var QuickLinksCard = {
         $("body").on('keydown', QuickLinksCard.handle_escape);
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.QuickLinksCard = QuickLinksCard;
