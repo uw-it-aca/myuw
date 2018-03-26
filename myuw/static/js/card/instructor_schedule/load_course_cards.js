@@ -83,7 +83,6 @@ var InstructorCourseCards = {
     },
 
     _render: function () {
-        console.log("InstructorCourseCards _render");
         var term = InstructorCourseCards.term;
         var course_data = WSData.instructed_course_data(term, true);
         var source = $("#instructor_course_card_list").html();
