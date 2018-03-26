@@ -33,26 +33,6 @@ describe('Handlebar-helpers', function(){
         });
     });
 
-    describe('toMonthDay', function(){
-        it('should work for YYYY-MM-DD hh:mm', function(){
-            var template = Handlebars.compile("{{toMonthDay '2013-06-10 08:30'}}");
-            var output = template();
-            assert.equal(output, 'Jun 10');
-        });
-    });
-
-
-    describe('toMoreDay', function(){
-        it('should work for YYYY-MM-DD hh:mm', function(){
-            var d =  moment().add(7,  'days').format();
-            var str = "{{toMoreDay " + d + "}}";
-            console.log(str);
-            var template = Handlebars.compile(str);
-            var output = template();
-            assert.equal(output, '7 more days');
-        });
-    });
-
     describe('date_from_string', function(){
         it('should work for YYYY-MM-DD hh:mm:ss', function(){
             var d = date_from_string('2013-04-22 10:57:06-08:00');
@@ -61,6 +41,50 @@ describe('Handlebar-helpers', function(){
         it('should work for YYYY-MM-DDThh:mm:ss', function(){
             var d = date_from_string('2013-04-22T10:57:06-08:00');
             assert(d);
+        });
+    });
+
+    describe('toMonthDay', function(){
+        it('should work for YYYY-MM-DD hh:mm', function(){
+            var template = Handlebars.compile("{{toMonthDay '2013-06-10 08:30'}}");
+            var output = template();
+            assert.equal(output, 'Jun 10');
+        });
+    });
+
+    describe('toFromNowDate', function(){
+        it('should say in an hour', function(){
+            var date = new Date();
+            date.setHours(date.getHours()+1);
+            var str = date.toString();
+            var template = Handlebars.compile("{{toFromNowDate '"+str+"'}}");
+            var output = template();
+            assert.equal(output, "in an hour");
+        });
+        it('should say tomorrow', function(){
+            var date = new Date();
+            date.setDate(date.getDate()+1);
+            var str = date.toString();
+            var template = Handlebars.compile("{{toFromNowDate '"+str+"'}}");
+            var output = template();
+            assert.equal(output, "in a day");
+        });
+
+    });
+
+    describe("toFriendlyDate", function() {
+        it ("should convert to ddd, MMM D", function() {
+            var template = Handlebars.compile("{{toFriendlyDate '2013-03-04'}}");
+            var output = template();
+            assert.equal(output, 'Mon, Mar 4');
+        });
+    });
+
+    describe("toFriendlyDateVerbose", function() {
+        it ("should convert to dddd, MMMM D", function() {
+            var template = Handlebars.compile("{{toFriendlyDateVerbose '2013-03-04'}}");
+            var output = template();
+            assert.equal(output, 'Monday, March 4');
         });
     });
 
@@ -84,26 +108,6 @@ describe('Handlebar-helpers', function(){
             output = template();
             assert.equal(output, "11:30AM");
         });
-    });
-
-    describe('toFromNowDate', function(){
-        it('should say in an hour', function(){
-            var date = new Date();
-            date.setHours(date.getHours()+1);
-            var str = date.toString();
-            var template = Handlebars.compile("{{toFromNowDate '"+str+"'}}");
-            var output = template();
-            assert.equal(output, "in an hour");
-        });
-        it('should say tomorrow', function(){
-            var date = new Date();
-            date.setDate(date.getDate()+1);
-            var str = date.toString();
-            var template = Handlebars.compile("{{toFromNowDate '"+str+"'}}");
-            var output = template();
-            assert.equal(output, "in a day");
-        });
-
     });
 
     describe("toUrlSafe", function() {
@@ -381,16 +385,6 @@ describe('Handlebar-helpers', function(){
             var template = Handlebars.compile("{{phone_number '555-5555' }}");
             var output = template();
             assert.equal(output, '555-5555');
-        });
-    });
-
-    describe("muwm-2505", function() {
-        it ("should have the right date", function() {
-            var template = Handlebars.compile("{{toFriendlyDate '2013-03-04' }}");
-            var output = template();
-
-            assert.equal(output, 'Mon, Mar 4');
-
         });
     });
 
