@@ -97,7 +97,7 @@
                     <div class="myuw-search-links">
 
                         {% if user.email_forward_url %}
-                            <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i><span>{{ user.email_forward_title }}</span></a>
+                            <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa fa-envelope" aria-hidden="true">&nbsp;</i><span>Email</span></a>
                         {% endif %}
 
                         <button id="search_toggle" role=”search” aria-controls="app_search" aria-expanded="false" aria-haspopup="true" aria-label="Open search area" data-toggle="collapse" data-target="#app_search"><i class="fa fa-search fa-flip-horizontal"></i> <span>Search</span></button>

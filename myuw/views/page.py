@@ -72,10 +72,8 @@ def page(request,
         if my_uwemail_forwarding.is_active():
             c_user = context["user"]
             try:
-                (c_user['email_forward_url'],
-                 c_user['email_forward_title'],
-                 c_user['email_forward_icon']) = get_service_url_for_address(
-                     my_uwemail_forwarding.fwd)
+                c_user['email_forward_url'] = get_service_url_for_address(
+                    my_uwemail_forwarding.fwd)
             except EmailServiceUrlException:
                 c_user['login_url'] = None
                 c_user['title'] = None
