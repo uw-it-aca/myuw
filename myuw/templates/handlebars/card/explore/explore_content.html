@@ -1,0 +1,11 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "explore_content" %}
+    <div>
+        <h4>{{ subcat_name }}</h4>
+        <ul>
+            {{#each links}}
+            <li><a href="{{ url }}">{{ title }}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+{% endtplhandlebars %}

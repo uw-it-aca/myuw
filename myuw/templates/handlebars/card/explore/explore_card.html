@@ -1,0 +1,12 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "explore_card" %}
+    <div class="row card">
+        <div class="col-xs-11">
+            <h3>Explore UW</h3>
+            <div class="row">
+                {{> explore_content }}
+            </div>
+        </div>
+
+    </div>
+{% endtplhandlebars %}

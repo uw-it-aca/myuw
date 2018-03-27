@@ -20,10 +20,28 @@ class ExploreList(ProtectedAPI):
         of the current user
         """
         timer = Timer()
-        # try:
-        links = Explore_Links()
-        grouped = links.get_grouped_links()
-        log_success_response(logger, timer)
-        return self.json_response(grouped)
-        # except Exception:
-        #     return handle_exception(logger, timer, traceback)
+        try:
+            links = Explore_Links()
+            grouped = links.get_grouped_links()
+            log_success_response(logger, timer)
+            return self.json_response(grouped)
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+
+
+
+class ExplorePin(ProtectedAPI):
+    """
+    Pins and unpins explore cards at /api/v1/explore_resources/<cat+subcat>/pin
+    """
+
+    def post(self, request, *args, **kwargs):
+        """
+        POST returns a 200 creating the pin record
+        """
+        return self.html_response("")
+
+    def delete(self, request, *args, **kwargs):
+        """
+        DELETE returns a 200 deleting the pin record
+        """
