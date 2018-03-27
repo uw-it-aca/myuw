@@ -1,8 +1,8 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_sche_panel" %}
 
-<h5 class="scheduleHeading{{ #unless has_eval}} sr-only{{ /unless }}">
-{{ #if has_eval}}{{ucfirst meetings.0.type}}{{ /if }} Schedule
+<h5 class="scheduleHeading{{#unless has_eval}} sr-only{{/unless}}">
+{{#if has_eval}}{{ucfirst meetings.0.type}}{{/if}} Schedule
 </h5>
 
 <table class="table table-borderless table-condensed table-course-schedule">
@@ -21,7 +21,7 @@
                 <td colspan="2" class="text-muted course-tbd">No meeting on ... </td>
                 -->
             {{else}}
-                {{#if days_tbd }}
+                {{#if days_tbd}}
                     <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
                 {{else if no_meeting}}
                     <td colspan="2" class="text-muted course-loc-tbd">No classroom meeting: online learning</td>
