@@ -1,0 +1,49 @@
+{% load templatetag_handlebars %}
+{% tplhandlebars "explore_page" %}
+
+    <h1>TEST</h1>
+    <!-- temp location -->
+    <div class="container explore-uw-container">
+        <h2 class="heading-page" id="main-content-label">UW Resources</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>On this page:</h3>
+                <ul>
+                    <li><a href="#">Anchor link</a></li>
+                    <li><a href="#">Anchor link</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- For each category of links -->
+        <div class="row">
+            <h3>Top level category heading</h3>
+            <div class="col-md-6">
+                <div class="">
+                    <h4>Link card heading</h4>
+                    <button type="button">Pin to home</button>
+                    <ul>
+                        <li><a href="">Link</a></li>
+                        <li><a href="">Link</a></li>
+                        <li><a href="">Link</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="">
+                    <h4>Link card heading</h4>
+                    <button type="button">Pin to home</button>
+                    <ul>
+                        <li><a href="">Link</a></li>
+                        <li><a href="">Link</a></li>
+                        <li><a href="">Link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="static-links"></div>
+{% endtplhandlebars %}
