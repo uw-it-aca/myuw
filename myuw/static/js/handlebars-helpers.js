@@ -1,9 +1,14 @@
-// used in profile banner
-Handlebars.registerHelper("formatPhoneNumber", function(str) {
-    if (str.length === 10) {
-        return str.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+// used on profile student_info, directory_info
+Handlebars.registerHelper("formatPhoneNumber", function(value) {
+    if (arguments.length === 0 || value === undefined || value.length === 0) {
+        return '';
     }
-    return str;
+    var regexp = /^(\d{3})([ -\.]?)(\d{3})([ -\.]?)(\d{4})$/;
+    var number = value.match(regexp);
+    if (number) {
+        return '(' + number[1] + ') ' + number[3] + '-' + number[5];
+    }
+    return value;
 });
 
 // used on future_quarter.html
@@ -35,14 +40,14 @@ Handlebars.registerHelper("strToInt", function(str) {
 
     // used on Grade, Library card
     Handlebars.registerHelper("toFriendlyDate", function(date_str) {
-        if (!date_str  || date_str.length === 0) {
+        if (date_str === undefined || date_str.length === 0) {
             return "";
         }
         return moment(parse_date(date_str)).format("ddd, MMM D");
     });
 
     Handlebars.registerHelper("toFriendlyDateVerbose", function(date_str) {
-        if (!date_str  || date_str.length === 0) {
+        if (date_str === undefined || date_str.length === 0) {
             return "";
         }
         return moment(parse_date(date_str)).format("dddd, MMMM D");
@@ -184,7 +189,7 @@ Handlebars.registerHelper("formatTimeAMPM", function(time) {
 
 // converts date string into 12 hour display - no am/pm
 Handlebars.registerHelper("formatDateAsTime", function(date_str) {
-    if (!date_str || date_str.length === 0) {
+    if (date_str === undefined || date_str.length === 0) {
         return "";
     }
     var date = date_from_string(date_str);
@@ -204,10 +209,10 @@ Handlebars.registerHelper("formatDateAsTime", function(date_str) {
 
 // converts date string into 12 hour am/pm display
 Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
-    var date = date_from_string(date_str);
-    if (!date_str  || date_str.length === 0) {
+    if (date_str === undefined || date_str.length === 0) {
         return "";
     }
+    var date = date_from_string(date_str);
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var am_pm;
@@ -339,8 +344,8 @@ Handlebars.registerHelper('pluralize_by_size', function(list, single, plural) {
 });
 
 Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
-    if (arguments.length < 1) {
-        throw new Error("Handlebars Helper quarter_code needs 1 parameter");
+    if (arguments.length === 0 || quarter_str === undefined || quarter_str.length === 0) {
+        return "";
     }
     var q = quarter_str.toLowerCase();
     if(q === "winter") {
@@ -355,14 +360,11 @@ Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
     else if(q === "autumn") {
         return 4;
     }
-    else {
-        return "";
-    }
 });
 
 Handlebars.registerHelper('get_quarter_abbreviation', function(quarter_str) {
-    if (arguments.length < 1) {
-        throw new Error("Handlebars Helper quarter_abbreviation needs 1 parameter");
+    if (arguments.length === 0 || quarter_str === undefined || quarter_str.length === 0) {
+        return "";
     }
     var q = quarter_str.toLowerCase();
     if(q === "winter") {
@@ -377,9 +379,6 @@ Handlebars.registerHelper('get_quarter_abbreviation', function(quarter_str) {
     else if(q === "autumn") {
         return "AUT";
     }
-    else {
-        return "";
-    }
 });
 
 Handlebars.registerHelper('slugify', function(value) {
@@ -392,19 +391,6 @@ Handlebars.registerHelper('shorten_meeting_type', function(str) {
         return str.substring(0, 3);
     }
     return str;
-});
-
-Handlebars.registerHelper('phone_number', function(value) {
-    var number;
-
-    if (value) {
-        number = value.match(/^(\d{3})[ -\.]?(\d{3})[ -\.]?(\d{4})$/);
-        if (number) {
-            return '(' + number[1] + ') ' + number[2] + '-' + number[3];
-        }
-    }
-
-    return value;
 });
 
 /********************************
