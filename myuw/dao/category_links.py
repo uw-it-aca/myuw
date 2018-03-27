@@ -115,7 +115,7 @@ class Res_Links(MyuwLink):
     csv_filename = 'category_links_import.csv'
 
 
-class Explore_Links(MyuwLink):
+class Resource_Links(MyuwLink):
     """
     Read the explore links from a file and store them
     in an array of ResCategoryLink objects.

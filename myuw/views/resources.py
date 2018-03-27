@@ -3,5 +3,5 @@ from myuw.util.page_view import page_view
 
 
 @page_view
-def explore(request):
-    return page(request, {}, template='explore.html')
+def resources(request):
+    return page(request, {}, template='resources.html')

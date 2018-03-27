@@ -1,5 +1,5 @@
 {% load templatetag_handlebars %}
-{% tplhandlebars "explore_page" %}
+{% tplhandlebars "resource_page" %}
 
     <h1>TEST</h1>
     <!-- temp location -->
@@ -22,7 +22,7 @@
                 <h3>{{ category_name }}</h3>
                 {{#each subcategories }}
                     <div>
-                        {{> explore_content}}
+                        {{> resource_content}}
                     </div>
                 {{/each}}
             </div>

@@ -23,7 +23,7 @@ from myuw.views.accounts import accounts
 from myuw.views.profile import profile
 from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
-from myuw.views.explore import explore
+from myuw.views.resources import resources
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
                                                LTIInstSectionDetails)
@@ -57,7 +57,7 @@ from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
 from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
     HxToolkitMessageList
-from myuw.views.api.explore_resources import ExploreList
+from myuw.views.api.resources import ResourcesList
 
 
 urlpatterns = []
@@ -206,9 +206,9 @@ urlpatterns += [
     url(r'^api/v1/directory/$',
         MyDirectoryInfo.as_view(),
         name="myuw_directory_api"),
-    url(r'^api/v1/explore_resources/$',
-        ExploreList.as_view(),
-        name="myuw_explore_api"),
+    url(r'^api/v1/resources/$',
+        ResourcesList.as_view(),
+        name="myuw_resources_api"),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"),
     url(r'^academics/?$', academics, name="myuw_academics_page"),
@@ -251,9 +251,9 @@ urlpatterns += [
         textbooks, name="myuw_textbooks_page"),
     url(r'^textbooks/?',
         textbooks, name="myuw_textbooks_page"),
+    url(r'resources/?', resources, name="myuw_resources_page"),
     url(r'^resource(/((?P<category>[a-z]+)?(/(?P<topic>[a-z]+))?)?)?',
         category, name="myuw_resource_page"),
-    url(r'explore/?', explore, name="myuw_explore_page"),
     url(r'^logout', logout, name="myuw_logout"
         ),
 
