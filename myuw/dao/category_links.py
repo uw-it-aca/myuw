@@ -142,9 +142,12 @@ class Explore_Links(MyuwLink):
             subcategories[link.sub_category]['links'].append(
                 {'title': link.title,
                  'url': link.url})
-        link_list = [{k: v} for k, v in grouped_links.items()]
 
-        return link_list
+        category_list = []
+        for category in grouped_links:
+            category_list.append(grouped_links[category])
+
+        return category_list
 
 
 def get_links_for_category(search_category_id, request):

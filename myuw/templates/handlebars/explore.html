@@ -16,7 +16,23 @@
         </div>
 
         <!-- For each category of links -->
-        <div id="explore_cards"></div>
+        <div id="explore_cards">
+            {{#each categories}}
+            <div>
+                <h3>{{ category_name }}</h3>
+                {{#each subcategories }}
+                    <div>
+                        <h4>{{ subcat_name }}</h4>
+                        <ul>
+                            {{#each links}}
+                            <li><a href="{{ url }}">{{ title }}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                {{/each}}
+            </div>
+            {{/each}}
+        </div>
 
 
     </div>
