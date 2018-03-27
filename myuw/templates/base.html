@@ -124,7 +124,7 @@
                         </button>
                         <h2>{% if page_title == "Home" %}MyUW<span class="sr-only"> Home</span>{% else %}{{page_title}}{% endif %}</h2>
                         <!-- NTS: trigger for mobile modal -->
-	                <span><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal-mobile">TEMP: Quick tour</a></span><!-- NTS: end of trigger for mobile modal -->
+	                <span><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal-desktop">TEMP: Quick tour</a></span><!-- NTS: end of trigger for mobile modal -->
                     </div>
                 </div>
             </div>
@@ -561,9 +561,9 @@
         </div>
         <!-- end modal code -->
         
-         <!-- MyUW Tour modal -->
+         <!-- MyUW Tour modal 
         {% block mobile_tour-page-modal %} 
-        <!-- Tour modal (mobile only) -->
+        <!-- Tour modal (mobile only) 
         <div id="tour-page-modal-mobile"></div>
         <div class="myuw-tour-modal-mobile myuw-modal modal fade" id="tour_modal-mobile" tabindex="-1" role="dialog" aria-labelledby="tour_modal_label" aria-describedby="tour_modal_description" aria-hidden="true" aria-modal="true">
             <div class="modal-dialog message-dialog" style="width:382px;" role="document">
@@ -577,21 +577,21 @@
                             <p id="tour_modal_description">Find key features in the new MyUW. <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank">Learn more about MyUW</a>.</p>
 							<div><img srcset="/static/images/myuw-tour-mobile-1.0x.png 1x, /static/images/myuw-tour-mobile-2.0x.png 2x" sizes="352px" src="/static/images/myuw-tour-mobile-1.0x.png" style="border:#ddd 1px solid;"></div>
                         </div>
-                    </div><!-- end modal body -->
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end modal code -->
-        {% endblock %} 
+        <!-- end modal code 
+        {% endblock %} -->
         
         {% block desktop_tour-page-modal %} 
         <!-- Tour modal (desktop only) -->
         <div id="tour-page-modal-desktop"></div>
         <div class="myuw-tour-modal-desktop myuw-modal modal fade" id="tour_modal-desktop" tabindex="-1" role="dialog" aria-labelledby="tour_modal_label" aria-describedby="tour_modal_description" aria-hidden="true" aria-modal="true">
-            <div class="modal-dialog message-dialog" role="document">
+            <div class="modal-dialog message-dialog" role="document" style="max-width:600px;">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button id="tour_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -600,7 +600,7 @@
                     <div class="modal-body">
                         <div style="margin-top:10px;">
                             <p id="tour_modal_description">Find key features in the new MyUW. <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank">Learn more about MyUW</a>.</p>
-							<div><img srcset="/static/images/myuw-tour-1.0x.png 1x, /static/images/myuw-tour-2.0x.png 2x" sizes="570px" src="/static/images/myuw-tour-1.0x.png" alt="MyUW Home page with new feature callouts"></div>
+							<div><img class="myuw-tour-img" sizes="570px" srcset="/static/images/myuw-tour-1.0x.png 1x, /static/images/myuw-tour-2.0x.png 2x"  alt="MyUW Home page with new feature callouts"></div>
                         </div>
                     </div><!-- end modal body -->
                     <div class="modal-footer">
