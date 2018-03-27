@@ -26,7 +26,7 @@ var ResourcesCard = {
         Handlebars.registerPartial('resource_content', $("#resource_content").html());
         var data = WSData.resource_data();
 
-        var temp_subcat = data[0].subcategories['Registration'];;
+        var temp_subcat = data[0].subcategories.Registration;
 
         var source = $("#resources_card").html();
         var template = Handlebars.compile(source);

@@ -32,7 +32,6 @@ class ResourcesList(ProtectedAPI):
             return handle_exception(logger, timer, traceback)
 
 
-
 class ResourcesPin(ProtectedAPI):
     """
     Pins and unpins explore cards at /api/v1/resources/<cat+subcat>/pin
