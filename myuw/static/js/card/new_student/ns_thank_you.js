@@ -52,3 +52,9 @@ var ThankYouCard = {
         WSData.mark_notices_read(notice_hashes);
     },
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.ThankYouCard = ThankYouCard;
