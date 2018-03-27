@@ -113,7 +113,7 @@ describe('Handlebar-helpers', function(){
             assert.equal(output, '1:30PM');
         });
         it ("should convert AM", function() {
-            var template = Handlebars.compile("{{formatDateAsTimeAMPM '2013-03-04 8:00'}}");
+            var template = Handlebars.compile("{{formatDateAsTimeAMPM '2013-03-04 08:00'}}");
             var output = template();
             assert.equal(output, '8:00AM');
         });
