@@ -34,12 +34,18 @@ Handlebars.registerHelper("strToInt", function(str) {
     });
 
     // used on Grade, Library card
-    Handlebars.registerHelper("toFriendlyDate", function(str) {
-        return moment(parse_date(str)).format("ddd, MMM D");
+    Handlebars.registerHelper("toFriendlyDate", function(date_str) {
+        if (!date_str  || date_str.length === 0) {
+            return "";
+        }
+        return moment(parse_date(date_str)).format("ddd, MMM D");
     });
 
-    Handlebars.registerHelper("toFriendlyDateVerbose", function(str) {
-        return moment(parse_date(str)).format("dddd, MMMM D");
+    Handlebars.registerHelper("toFriendlyDateVerbose", function(date_str) {
+        if (!date_str  || date_str.length === 0) {
+            return "";
+        }
+        return moment(parse_date(date_str)).format("dddd, MMMM D");
     });
 })();
 
@@ -219,51 +225,6 @@ Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
         hours = hours - 12;
     }
     return hours + ":" + minutes + am_pm;
-});
-
-// converts date string into a day display
-Handlebars.registerHelper("formatDateAsDate", function(date_str) {
-    if (date_str === undefined) {
-        return "";
-    }
-    var date = date_from_string(date_str);
-    var day_of_week = date.getDay();
-    var month_num = date.getMonth();
-    var day_of_month = date.getDate();
-
-    var day_names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    return new Handlebars.SafeString(day_names[day_of_week] + ", " + month_names[month_num] + " " + day_of_month);
-});
-
-// converts date string into a day display with full names
-Handlebars.registerHelper("formatDateAsDateFullName", function(date_str) {
-    if (date_str === undefined) {
-        return "";
-    }
-    var date = date_from_string(date_str);
-    var day_of_week = date.getDay();
-    var month_num = date.getMonth();
-    var day_of_month = date.getDate();
-
-    var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    return new Handlebars.SafeString(day_names[day_of_week] + ", " + month_names[month_num] + " " + day_of_month);
-});
-
-// converts date string into the label for the final exams schedule
-Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back) {
-    var date = moment(date_str);
-    date.subtract(days_back, "days");
-    var day_of_week = date.day();
-    var month_num = date.month();
-    var day_of_month = date.date();
-
-    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    return month_names[month_num] + " " + day_of_month;
 });
 
 Handlebars.registerHelper("ucfirst", function(str) {

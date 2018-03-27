@@ -73,10 +73,20 @@ describe('Handlebar-helpers', function(){
     });
 
     describe("toFriendlyDate", function() {
-        it ("should convert to ddd, MMM D", function() {
+        it ("should handle a date", function() {
             var template = Handlebars.compile("{{toFriendlyDate '2013-03-04'}}");
             var output = template();
             assert.equal(output, 'Mon, Mar 4');
+        });
+        it ("should handle a datetime", function() {
+            var template = Handlebars.compile("{{toFriendlyDate '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, 'Mon, Mar 4');
+        });
+        it ("should handle empty date", function() {
+            var template = Handlebars.compile("{{toFriendlyDate ''}}");
+            var output = template();
+            assert.equal(output, '');
         });
     });
 
@@ -85,6 +95,16 @@ describe('Handlebar-helpers', function(){
             var template = Handlebars.compile("{{toFriendlyDateVerbose '2013-03-04'}}");
             var output = template();
             assert.equal(output, 'Monday, March 4');
+        });
+        it ("should handle a datetime", function() {
+            var template = Handlebars.compile("{{toFriendlyDateVerbose '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, 'Monday, March 4');
+        });
+        it ("should handle empty date", function() {
+            var template = Handlebars.compile("{{toFriendlyDateVerbose ''}}");
+            var output = template();
+            assert.equal(output, '');
         });
     });
 
@@ -476,6 +496,37 @@ describe('Handlebar-helpers', function(){
             template = Handlebars.compile("{{titleFormatTerm '2013,winter'}}");
             output = template();
             assert.equal(output, "Winter 2013");
+        });
+    });
+
+    describe("ucfirst", function() {
+        it ("should handle section type", function() {
+            var template = Handlebars.compile("{{ucfirst 'QUIZ'}}");
+            var output = template();
+            assert.equal(output, "Quiz");
+        });
+        it ("should handle quarter", function() {
+            template = Handlebars.compile("{{ucfirst 'summer'}}");
+            output = template();
+            assert.equal(output, "Summer");
+        });
+    });
+
+    describe('formatPrice', function(){
+        it('should handle normal amount', function(){
+            var template = Handlebars.compile("{{formatPrice '125.34'}}");
+            var output = template();
+            assert.equal(output, 125.34);
+        });
+        it ("should handle integer", function() {
+            var template = Handlebars.compile("{{formatPrice '10'}}");
+            var output = template();
+            assert.equal(output, 10.00);
+        });
+        it ("should handle zero", function() {
+            var template = Handlebars.compile("{{formatPrice '0'}}");
+            var output = template();
+            assert.equal(output, 0.00);
         });
     });
 
