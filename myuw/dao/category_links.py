@@ -3,6 +3,9 @@ import os
 from django.db.models import Q
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.dao.affiliation import get_all_affiliations, get_base_campus
+from myuw.dao import get_user_model
+from myuw.models import ResourceCategoryPin
+from myuw.exceptions import InvalidResourceCategory
 
 
 class MyuwLink:
@@ -149,6 +152,15 @@ class Resource_Links(MyuwLink):
 
         return category_list
 
+    def category_exists(self, category_id):
+        if self.links is None:
+            self.links = self.get_all_links()
+        for link in self.links:
+            link_cat_id = link.category_id + link.sub_category
+            if category_id == link_cat_id.lower():
+                return True
+        return False
+
 
 def get_links_for_category(search_category_id, request):
     affiliations = get_all_affiliations(request)
@@ -192,3 +204,21 @@ def _get_links_by_category_and_campus(search_category_id,
             continue
 
     return selected_links
+
+
+def pin_category(request, category_id):
+    user = get_user_model(request)
+    rs = Resource_Links()
+    if rs.category_exists(category_id):
+        rs_pin = ResourceCategoryPin.objects.\
+            get_or_create(user=user, resource_category_id=category_id)
+    else:
+        raise InvalidResourceCategory(category_id)
+
+
+def delete_categor_pin(request, category_id):
+    user = get_user_model(request)
+    pinned = ResourceCategoryPin.objects.\
+        get(user=user, resource_category_id=category_id)
+    if pinned:
+        pinned.delete()

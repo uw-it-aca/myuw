@@ -5,7 +5,10 @@ from myuw.logger.logresp import (
     log_data_not_found_response, log_msg, log_success_response)
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
-from myuw.dao.category_links import Resource_Links
+from myuw.dao.category_links import (
+    Resource_Links, pin_category, delete_categor_pin)
+from myuw.exceptions import InvalidResourceCategory
+from myuw.models import ResourceCategoryPin
 
 logger = logging.getLogger(__name__)
 
@@ -39,9 +42,24 @@ class ResourcesPin(ProtectedAPI):
         """
         POST returns a 200 creating the pin record
         """
+        timer = Timer()
+        category_id = kwargs['category_id'].lower()
+        try:
+            pin_category(request, category_id)
+        except InvalidResourceCategory as ex:
+            return handle_exception(logger, timer, traceback)
+
         return self.html_response("")
 
     def delete(self, request, *args, **kwargs):
         """
         DELETE returns a 200 deleting the pin record
         """
+        timer = Timer()
+        category_id = kwargs['category_id'].lower()
+        try:
+            delete_categor_pin(request, category_id)
+        except ResourceCategoryPin.DoesNotExist as ex:
+            return handle_exception(logger, timer, traceback)
+
+        return self.html_response("")

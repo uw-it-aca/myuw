@@ -329,3 +329,8 @@ class UserCourseDisplay(models.Model):
             ["user", "section_label"],
         ]
         ordering = ['section_label']
+
+
+class ResourceCategoryPin(models.Model):
+    resource_category_id = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
