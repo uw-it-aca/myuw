@@ -24,7 +24,7 @@
                                 <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
                                 -->
                             {{else}}
-                                {{#if days_tbd }}
+                                {{#if days_tbd}}
                                     <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
                                     {{else if no_meeting}}
                                     <td colspan="3" class="course-tbd">No classroom meeting: online learning</td>
@@ -74,7 +74,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="tbody-course-schedule">
-                                            <td class="course-final-date">{{ formatDateAsDate start_date }}</td>
+                                            <td class="course-final-date">{{ toFriendlyDate start_date }}</td>
                                             <td class="course-time">{{ formatDateAsTime start_date }} &ndash; {{ formatDateAsTimeAMPM end_date }}</td>
 
                                             {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}

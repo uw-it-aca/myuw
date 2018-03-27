@@ -82,6 +82,8 @@ var Environment = {
             user = config.user;
         } else {
             user = {
+                alumni: false,
+                applicant: false,
                 bothell: false,
                 bothell_affil: false,
                 email_forward_icon: "",
@@ -89,7 +91,10 @@ var Environment = {
                 email_forward_url: "",
                 employee: false,
                 faculty: false,
+                instructor: false,
                 fyp: false,
+                aut_transfer: false,
+                win_transfer: false,
                 grad: false,
                 netid: "bill",
                 pce: false,
@@ -99,7 +104,13 @@ var Environment = {
                 student: true,
                 tacoma: false,
                 tacoma_affil: false,
-                undergrad: false
+                undergrad: false,
+                is_hxt_viewer: false,
+                no_1st_class_affi: false,
+                retiree: false,
+                past_stud: false,
+                past_employee: false,
+
             };
         }
 
