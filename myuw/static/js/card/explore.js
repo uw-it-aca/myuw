@@ -23,9 +23,14 @@ var ExploreCard = {
     },
 
     _render: function () {
+        Handlebars.registerPartial('explore_content', $("#explore_content").html());
+        var data = WSData.explore_data();
+
+        var temp_subcat = data[0].subcategories['Registration'];;
+
         var source = $("#explore_card").html();
         var template = Handlebars.compile(source);
-        ExploreCard.dom_target.html(template());
+        ExploreCard.dom_target.html(template(temp_subcat));
         var name = ExploreCard.name + ExploreCard.target_group;
         LogUtils.cardLoaded(name, ExploreCard.dom_target);
     },

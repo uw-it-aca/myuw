@@ -7,7 +7,7 @@ var Explore = {
 
     make_html: function () {
         if (WSData.explore_data()) {
-            Handlebars.registerPartial('explore_content', $("#explore_content").html())
+            Handlebars.registerPartial('explore_content', $("#explore_content").html());
             var explore_data = WSData.explore_data();
             $('html,body').animate({scrollTop: 0}, 'fast');
             var source = $("#explore_page").html();
