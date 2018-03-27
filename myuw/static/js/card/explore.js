@@ -17,28 +17,19 @@ var ExploreCard = {
     },
 
     render_upon_data: function () {
-        if (WSData.thrive_data()) {
+        if (WSData.explore_data()) {
             ExploreCard._render();
         }
     },
 
     _render: function () {
-        var source = $("#thrive_card").html();
+        var source = $("#explore_card").html();
         var template = Handlebars.compile(source);
-        ExploreCard.dom_target.html(template(thrive));
+        ExploreCard.dom_target.html(template());
         var name = ExploreCard.name + ExploreCard.target_group;
         LogUtils.cardLoaded(name, ExploreCard.dom_target);
-        ExploreCard.add_events();
     },
 
-    add_events: function(term) {
-        $(".what-is-thrive").on("click", function(ev) {
-            WSData.log_interaction("click_what_is_thrive" + ExploreCard.target_group);
-        });
-        $(".view-thrive-msg").on("click", function(ev) {
-            WSData.log_interaction("click_view_thrive_msg" + ExploreCard.target_group);
-        });
-    },
 
     render_error: function () {
         $("#ExploreCard").hide();
