@@ -1,6 +1,7 @@
 Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
 moment = require("../../vendor/js/moment.2.18.1.min.js");
 require("datejs");
+require("../visual_schedule.js");
 require("../handlebars-helpers.js");
 
 var assert = require("assert");
@@ -530,4 +531,122 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe('format_schedule_hour', function(){
+        it('should handle am', function(){
+            var template = Handlebars.compile("{{format_schedule_hour '08' 0}}");
+            var output = template();
+            assert.equal(output, '08a');
+        });
+        it ("should handle pm", function() {
+            var template = Handlebars.compile("{{format_schedule_hour '13' 0}}");
+            var output = template();
+            assert.equal(output, '1p');
+            var template = Handlebars.compile("{{format_schedule_hour '22' 0}}");
+            var output = template();
+            assert.equal(output, '10p');
+        });
+    });
+
+    describe('pluralize', function(){
+        it('should handle plural', function(){
+            var template = Handlebars.compile("{{pluralize 2 'day' 'days'}}");
+            var output = template();
+            assert.equal(output, 'days');
+        });
+        it('should handle singular', function(){
+            var template = Handlebars.compile("{{pluralize 1 'hold' 'holds'}}");
+            var output = template();
+            assert.equal(output, 'hold');
+        });
+    });
+
+    describe('pluralize_by_size', function(){
+        it('should handle plural', function(){
+            var alist = ["A", "B"];
+            var raw = "{{pluralize_by_size '" + alist + "' 'Major' 'Majors'}}";
+            var template = Handlebars.compile(raw);
+            var output = template();
+            assert.equal(output, 'Majors');
+        });
+        it('should handle singular', function(){
+            var alist = ['A'];
+            var raw = "{{pluralize_by_size '" + alist + "' 'Major' 'Majors'}}";
+            var template = Handlebars.compile(raw);
+            var output = template();
+            assert.equal(output, 'Major');
+        });
+    });
+
+    describe('get_quarter_code', function(){
+        it('should each quarter', function(){
+            var template = Handlebars.compile("{{get_quarter_code 'Winter'}}");
+            var output = template();
+            assert.equal(output, 1);
+            var template = Handlebars.compile("{{get_quarter_code 'Spring'}}");
+            var output = template();
+            assert.equal(output, 2);
+            var template = Handlebars.compile("{{get_quarter_code 'Summer'}}");
+            var output = template();
+            assert.equal(output, 3);
+            var template = Handlebars.compile("{{get_quarter_code 'Autumn'}}");
+            var output = template();
+            assert.equal(output, 4);
+        });
+        it('should handle empty input', function(){
+            var template = Handlebars.compile("{{get_quarter_code ''}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
+
+    describe('get_quarter_abbreviation', function(){
+        it('should each quarter', function(){
+            var template = Handlebars.compile("{{get_quarter_abbreviation 'Winter'}}");
+            var output = template();
+            assert.equal(output, 'WIN');
+            var template = Handlebars.compile("{{get_quarter_abbreviation 'Spring'}}");
+            var output = template();
+            assert.equal(output, 'SPR');
+            var template = Handlebars.compile("{{get_quarter_abbreviation 'Summer'}}");
+            var output = template();
+            assert.equal(output, 'SUM');
+            var template = Handlebars.compile("{{get_quarter_abbreviation 'Autumn'}}");
+            var output = template();
+            assert.equal(output, 'AUT');
+        });
+        it('should handle empty input', function(){
+            var template = Handlebars.compile("{{get_quarter_abbreviation ''}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
+
+    describe('slugify', function(){
+        it('should place consecutive spaces with -', function(){
+            var template = Handlebars.compile("{{slugify '2013 Summer ASE 510 A'}}");
+            var output = template();
+            assert.equal(output, '2013-summer-ase-510-a');
+        });
+    });
+
+    describe('shorten_meeting_type', function(){
+        it('should truncate after the third char', function(){
+            var template = Handlebars.compile("{{shorten_meeting_type 'LECTURE'}}");
+            var output = template();
+            assert.equal(output, 'LEC');
+        });
+    });
+
+    describe('phone_number', function(){
+        it('should handle regular phone number format', function(){
+            var template = Handlebars.compile("{{phone_number '206 220 4514'}}");
+            var output = template();
+            assert.equal(output, '(206) 220-4514');
+            var template = Handlebars.compile("{{phone_number '206-220-4514'}}");
+            var output = template();
+            assert.equal(output, '(206) 220-4514');
+        });
+    });
+
+    
 });

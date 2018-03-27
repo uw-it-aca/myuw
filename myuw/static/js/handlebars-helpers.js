@@ -245,28 +245,6 @@ Handlebars.registerHelper("formatPrice", function(price) {
     return formatted.join(".");
 });
 
-Handlebars.registerHelper('equal', function(value1, value2, options) {
-    if (arguments.length < 3) {
-        throw new Error("Handlebars Helper equal needs 2 parameters");
-    }
-    if(value1 !== value2) {
-        return options.inverse(this);
-    }
-    else {
-        return options.fn(this);
-    }
-});
-
-Handlebars.registerHelper("eachWithIndex", function(array, fn) {
-    var buffer = "";
-    for (var i = 0, j = array.length; i < j; i++) {
-        var item = array[i];
-        item.index = i;
-        buffer += fn.fn(item);
-    }
-    return buffer;
-});
-
 Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     if (parseInt(hour, 10) === 12) {
         VisualSchedule.shown_am_marker = true;
@@ -360,37 +338,6 @@ Handlebars.registerHelper('pluralize_by_size', function(list, single, plural) {
     return plural;
 });
 
-Handlebars.registerHelper('greater_than', function(value1, value2, options) {
-    if (arguments.length < 3) {
-        throw new Error("Handlebars Helper greater_than needs 2 parameters");
-    }
-    if(value1 > value2) {
-        return options.inverse(this);
-    }
-    else {
-        return options.fn(this);
-    }
-});
-
-Handlebars.registerHelper('not_first', function(index, block) {
-    // display block if the index greater than 0
-    if (arguments.length < 2) {
-        throw new Error("Handlebars Helper not_first needs 1 parameter");
-    }
-    if(parseInt(index) > 0) {
-        return block.fn(this);
-    }
-});
-
-Handlebars.registerHelper('not_equal', function(obj, value, block) {
-    if (arguments.length < 3) {
-        throw new Error("Handlebars Helper not_equal needs 2 parameters");
-    }
-    if(obj !== value) {
-        return block.fn(this);
-    }
-});
-
 Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
     if (arguments.length < 1) {
         throw new Error("Handlebars Helper quarter_code needs 1 parameter");
@@ -460,8 +407,35 @@ Handlebars.registerHelper('phone_number', function(value) {
     return value;
 });
 
+/********************************
+* Below are {{# block helpers
+********************************/
+
+Handlebars.registerHelper("eachWithIndex", function(array, fn) {
+    var buffer = "";
+    for (var i = 0, j = array.length; i < j; i++) {
+        var item = array[i];
+        item.index = i;
+        buffer += fn.fn(item);
+    }
+    return buffer;
+});
+
+Handlebars.registerHelper('equal', function(value1, value2, options) {
+    if (arguments.length < 3) {
+        throw new Error("Handlebars Helper equal needs 2 parameters");
+    }
+    if(value1 !== value2) {
+        return options.inverse(this);
+    }
+    else {
+        return options.fn(this);
+    }
+});
+
 /**
  * The {{#exists}} helper checks if a variable is defined.
+ * being 0 or null are considered defined.
  */
 Handlebars.registerHelper('exists', function(variable, options) {
     if (typeof variable !== 'undefined') {
@@ -471,3 +445,33 @@ Handlebars.registerHelper('exists', function(variable, options) {
     }
 });
 
+Handlebars.registerHelper('greater_than', function(value1, value2, options) {
+    if (arguments.length < 3) {
+        throw new Error("Handlebars Helper greater_than needs 2 parameters");
+    }
+    if(value1 > value2) {
+        return options.inverse(this);
+    }
+    else {
+        return options.fn(this);
+    }
+});
+
+Handlebars.registerHelper('not_first', function(index, block) {
+    // display block if the index greater than 0
+    if (arguments.length < 2) {
+        throw new Error("Handlebars Helper not_first needs 1 parameter");
+    }
+    if(parseInt(index) > 0) {
+        return block.fn(this);
+    }
+});
+
+Handlebars.registerHelper('not_equal', function(obj, value, block) {
+    if (arguments.length < 3) {
+        throw new Error("Handlebars Helper not_equal needs 2 parameters");
+    }
+    if(obj !== value) {
+        return block.fn(this);
+    }
+});

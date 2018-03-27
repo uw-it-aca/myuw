@@ -1,6 +1,7 @@
 var VisualSchedule = {
     // This is the height of the days bar... needed for positioning math below
     day_label_offset: 0,
+    shown_am_marker: false,
 
     show_visual_schedule: function(term, course_index) {
         showLoading();
@@ -22,7 +23,7 @@ var VisualSchedule = {
     // The course_index will be given when a modal is shown.
     render: function(term, course_index) {
         $('html,body').animate({scrollTop: 0}, 'fast');
-        VisualSchedule.shown_am_marker = false;
+
         var course_data;
         if (term) {
             course_data = WSData.course_data_for_term(term);
