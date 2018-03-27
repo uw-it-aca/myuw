@@ -6,33 +6,33 @@
 
         <h3>Final Grades</h3>
 
-        {{ #if display_note }}
+        {{#if display_note}}
         <span class="official-note">These grades are not official until midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
-        {{ /if }}
+        {{/if}}
 
-        {{ #if display_grades }}
+        {{#if display_grades}}
         <div class="card-badge-container clearfix">
             <ul class="unstyled-list">
-                {{ #each sections }}
-                    {{ #if display_grade }}
+                {{#each sections}}
+                    {{#if display_grade}}
                     <li class="clearfix">
                         <div class="card-badge">
 			    <div class="pull-left">
 		                <!--i class="fa fa-check-square c{{color_id}}Color"></i -->
 				<div class="c{{color_id}} simplesquare" aria-hidden="true"></div>
-				<span class="card-badge-inline-label">{{curriculum_abbr }} {{course_number}}</span>
+				<span class="card-badge-inline-label">{{curriculum_abbr}} {{course_number}}</span>
                             </div>
 			    <div class="pull-right">
-                                {{ #if no_grade }}<span class="card-badge-nograde-value">No grade yet</span> {{ /if }}
+                                {{#if no_grade}}<span class="card-badge-nograde-value">No grade yet</span> {{/if}}
 				<span class="card-badge-value pull-right">{{grade}}</span>
                             </div>
                         </div>
                     </li>
-                    {{ /if }}
-                    {{ /each }}
+                    {{/if}}
+                    {{/each}}
             </ul>
         </div>
-        {{ /if }}
+        {{/if}}
 
         <div id="grade_card_resources" class="slide-hide"
              aria-expanded="false" hidden aria-hidden="true"
@@ -61,5 +61,5 @@
         </div>
 
     </div>
-{{ /if }}
+{{/if}}
 {% endtplhandlebars %}

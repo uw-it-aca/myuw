@@ -12,8 +12,8 @@ def get_textbook_by_schedule(schedule):
     return Bookstore().get_books_for_schedule(schedule)
 
 
-def get_verba_link_by_schedule(schedule):
+def get_order_url_by_schedule(schedule):
     """
-    returns a link to the verba price compare page for a valid schedule
+    returns a link to the bookstore ordering page for a given schedule
     """
-    return Bookstore().get_verba_link_for_schedule(schedule)
+    return Bookstore().get_url_for_schedule(schedule)

@@ -86,6 +86,7 @@ var SummaryScheduleCard = {
         });
 
         $(".pin_mini_card_" + term_id).on("click", function(ev) {
+            ev.preventDefault();
             var section_abbr = ev.currentTarget.getAttribute("cabb");
             var course_number = ev.currentTarget.getAttribute("cnum");
             var section_id = ev.currentTarget.getAttribute("sid");
@@ -100,7 +101,9 @@ var SummaryScheduleCard = {
                 type: 'GET',
                 accepts: {html: "text/html"},
                 success: function(results) {
-                    return results.done;
+                    if (results.done) {
+                        window.location = ev.currentTarget.href;
+                    }
                 },
                 error: function(xhr, status, error) {
                     return false;
