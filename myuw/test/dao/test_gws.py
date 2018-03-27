@@ -1,7 +1,7 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.gws import is_alumni, is_alum_asso, is_seattle_student,\
-    is_bothell_student, is_tacoma_student, is_current_graduate_student,\
+    is_bothell_student, is_tacoma_student, is_grad_and_prof_student,\
     is_grad_student, is_undergrad_student, is_student,\
     is_pce_student, is_grad_c2, is_undergrad_c2,\
     is_student_employee, is_staff_employee, is_regular_employee,\
@@ -31,7 +31,7 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_student_employee(req))
         self.assertFalse(is_bothell_student(req))
         self.assertFalse(is_tacoma_student(req))
-        self.assertFalse(is_current_graduate_student(req))
+        self.assertFalse(is_grad_and_prof_student(req))
         self.assertFalse(is_grad_student(req))
         self.assertFalse(is_staff_employee(req))
 
@@ -45,6 +45,14 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_tacoma_student(req))
         self.assertTrue(is_undergrad_student(req))
         self.assertFalse(is_regular_employee(req))
+
+        req = get_request_with_user('seagrad')
+        self.assertTrue(is_grad_and_prof_student(req))
+        self.assertTrue(is_grad_student(req))
+
+        req = get_request_with_user('curgrad')
+        self.assertTrue(is_grad_and_prof_student(req))
+        self.assertFalse(is_grad_student(req))
 
         req = get_request_with_user('staff')
         self.assertTrue(is_regular_employee(req))

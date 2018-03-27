@@ -39,6 +39,14 @@
       </ul>
     </li>
 
+    <li class="groupreference">
+      <span class="regid">26878311206A767FC48FBA9687634D1E</span>
+      <span class="title">UW Graduate Students</span>
+      <span class="description">UW students who are identified as graduate students, including professional degree programs (Dentistry, Law, Medicine, etc.) and approved on-leave graduate students. Membership includes 90 days of grace status. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <ul>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_graduate">uw_affiliation_graduate</a></li>
+      </ul>
+    </li>
 
     <li class="groupreference">
       <span class="regid">c0bb186dd509480dae99280d682f573c</span>

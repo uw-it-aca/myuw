@@ -40,6 +40,14 @@ var Landing = {
 
     _load_desktop_cards: function() {
         Landing._reset_content_divs();
+
+        Cards.load_cards_in_order(Landing._get_desktop_body_cards(),
+                                  $("#landing_content_cards"));
+        Cards.load_cards_in_order(Landing._get_desktop_sidebar_cards(),
+                                  $("#landing_accounts_cards"));
+    },
+
+    _get_desktop_body_cards: function() {
         var desktop_body_cards = [
             ResourcesCard,
             HuskyExperienceCard,
@@ -88,18 +96,23 @@ var Landing = {
         if(window.user.alumni) {
             desktop_body_cards.push(AlumniCard);
         }
+        return desktop_body_cards;
+    },
 
-        var desktop_sidebar_cards = [
-            QuickLinksCard,
-            AcadCalSnippet,
-            EventsCard
-        ];
-        Cards.load_cards_in_order(desktop_body_cards, $("#landing_content_cards"));
-        Cards.load_cards_in_order(desktop_sidebar_cards, $("#landing_accounts_cards"));
+    _get_desktop_sidebar_cards: function() {
+        return [QuickLinksCard,
+                AcadCalSnippet,
+                EventsCard
+               ];
     },
 
     _load_mobile_cards: function() {
         Landing._reset_content_divs();
+        Cards.load_cards_in_order(Landing._get_mobile_cards(),
+                                  $("#landing_content_cards"));
+    },
+
+    _get_mobile_cards: function() {
         var mobile_cards = [
             ResourcesCard,
             HuskyExperienceCard,
@@ -152,8 +165,7 @@ var Landing = {
         if(window.user.alumni) {
             mobile_cards.push(AlumniCard);
         }
-
-        Cards.load_cards_in_order(mobile_cards, $("#landing_content_cards"));
+        return mobile_cards;
     },
 
     _reset_content_divs: function() {
@@ -165,3 +177,9 @@ var Landing = {
     }
 
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.Landing = Landing;

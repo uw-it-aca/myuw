@@ -35,3 +35,9 @@ var InternationalStuCard = {
         InternationalStuCard.dom_target.html(CardWithError.render("International Student Resources"));
     },
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.InternationalStuCard = InternationalStuCard;

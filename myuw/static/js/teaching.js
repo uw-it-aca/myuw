@@ -64,3 +64,9 @@ var Teaching = {
         $("#teaching_accounts_cards").html('');
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.Teaching = Teaching;

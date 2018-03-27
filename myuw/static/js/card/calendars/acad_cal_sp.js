@@ -66,3 +66,9 @@ var AcadCalSnippet = {
         return events.slice(0, 3);
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.AcadCalSnippet = AcadCalSnippet;

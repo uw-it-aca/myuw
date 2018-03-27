@@ -33,3 +33,9 @@ var SummerEFSCard = {
         SummerEFSCard.dom_target.html(CardWithError.render("Summer & Early Fall Start"));
     },
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.SummerEFSCard = SummerEFSCard;
