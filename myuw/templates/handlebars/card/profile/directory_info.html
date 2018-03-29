@@ -48,9 +48,9 @@
                     </div>
                     <div class="col-sm-9">
                         {{#unless phone1}}{{#unless voicemail}}{{#unless fax}}<p class="my-text-muted">No phone numbers listed</p>{{/unless}}{{/unless}}{{/unless}}
-                        {{#if phone1}}<span>Office:</span>&nbsp;&nbsp;<span property="telephone">{{phone_number phone1}}</span><br />{{/if}}
-                        {{#if voicemail}}<span>Voicemail:</span>&nbsp;&nbsp;<span property="telephone">{{phone_number voicemail}}</span><br />{{/if}}
-                        {{#if fax}}<span>Fax:</span>&nbsp;&nbsp;<span property="faxNumber">{{phone_number fax}}</span><br />{{/if}}
+                        {{#if phone1}}<span>Office:</span>&nbsp;&nbsp;<span property="telephone">{{formatPhoneNumber phone1}}</span><br />{{/if}}
+                        {{#if voicemail}}<span>Voicemail:</span>&nbsp;&nbsp;<span property="telephone">{{formatPhoneNumber voicemail}}</span><br />{{/if}}
+                        {{#if fax}}<span>Fax:</span>&nbsp;&nbsp;<span property="faxNumber">{{formatPhoneNumber fax}}</span><br />{{/if}}
                     </div>
                 </div>
 

@@ -3,35 +3,35 @@
 
 <h5 class="scheduleHeading">Course Evaluations</h5>
 
-{{ #each evals }}
+{{#each evals}}
     <div>
-        {{ #if is_multi_instr }}
+        {{#if is_multi_instr}}
             <p><span class="myuw-eval-close-date">Evaluations close
-            {{ formatDateAsDate close_date }}</span> (at 11:59PM), and only take a few minutes to complete.</p>
+            {{toFriendlyDate close_date}}</span> (at 11:59PM), and only take a few minutes to complete.</p>
 
-            <a class="myuw-eval-multi-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{ ../curriculum_abbr }} {{../course_number}} {{../section_id}} Evaluation</span></a>
+            <a class="myuw-eval-multi-link" href="{{ url }}" target="_blank"><span class="myuw-eval-name">{{../curriculum_abbr}} {{../course_number}} {{../section_id}} Evaluation</span></a>
 
             <ul class="myuw-eval-multi-list">
-                {{ #each instructors }}
+                {{#each instructors}}
                     <li class="myuw-eval-multi-list-item">
-                        <span class="myuw-eval-name">{{ instructor_name }}</span>
-                            {{ #if instructor_title }}
-                        <div class="myuw-eval-title">{{ instructor_title }}</div>
+                        <span class="myuw-eval-name">{{instructor_name}}</span>
+                            {{#if instructor_title}}
+                        <div class="myuw-eval-title">{{instructor_title}}</div>
                         {{/if}}
                     </li>
                 {{/each}}
             </ul>
-        {{ else }}
+        {{else}}
 
             <p><span class="myuw-eval-close-date">Evaluation closes
-            {{ formatDateAsDate close_date }}</span> (at 11:59PM), and only takes a few minutes to complete.</p>
+            {{toFriendlyDate close_date}}</span> (at 11:59PM), and only takes a few minutes to complete.</p>
 
             <ul class="myuw-eval-list">
-                {{ #each instructors }}
+                {{#each instructors}}
                     <li class="myuw-eval-list-item">
-                        <a class="myuw-eval-link" href="{{ ../url }}" target="_blank"><span class="myuw-eval-name"><span class="myuw-eval-name">{{ instructor_name }}</span></a>
-                        {{ #if instructor_title }}
-                            <div class="myuw-eval-title">{{ instructor_title }}</div>
+                        <a class="myuw-eval-link" href="{{ ../url }}" target="_blank"><span class="myuw-eval-name"><span class="myuw-eval-name">{{instructor_name}}</span></a>
+                        {{#if instructor_title}}
+                            <div class="myuw-eval-title">{{instructor_title}}</div>
                         {{/if}}
                     </li>
                 {{/each}}
@@ -39,6 +39,6 @@
         {{/if}}
 
     </div>
-    {{ /each }}
+    {{/each}}
 
 {% endtplhandlebars %}
