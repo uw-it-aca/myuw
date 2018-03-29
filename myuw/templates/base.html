@@ -110,28 +110,6 @@
             </div>
             {% endblock %}
 
-        {% block desktop_banner_tour %}
-        <!-- NTS: message banner copied from the desktop banner below, but not displayed  -->
-        <div class="myuw-banner-desktop app-messages" id="app_messages_desktop" aria-labelledby="app_messages_desktop_label" role="complementary">
-            <div class="message-banner">
-                {% if banner_messages %}
-                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
-                <div id="message_banner_location">
-                    <div id="messages" class="message-text myuw-wrapper">
-                        <div class="message">
-                            <p>Message will go here</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- NTS adding the banner message close btn: DESKTOP -->
-				<span><button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button></span>
-
-                {% endif %}
-           </div>
-        </div>
-        <!-- end message banner -->
-        {% endblock %}
-
 
             {% block mobile_navigation %}
             <div class="myuw-navigation">
@@ -169,15 +147,30 @@
                         {% endfor %}
                     </div>
                 </div>
-                <!-- NTS adding the banner message close btn: DESKTOP -->
-				<span><button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button></span>
-
                 {% endif %}
            </div>
         </div>
         <!-- end message banner -->
         {% endblock %}
-
+		
+		{% block desktop_tour_banner %}
+        <!-- NTS: message banner based off the banner above (Desktop only) -->
+        <div class="myuw-banner-desktop app-messages" id="tour_messages_desktop" aria-labelledby="app_messages_desktop_label" role="complementary">
+            <div class="message-banner">
+                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
+                <div id="message_banner_location">
+                    <div class="message-text myuw-wrapper">
+                        <div class="message">
+                            <p>Desktop Message will go here</p>
+                        </div>
+                    </div>
+                </div>
+				<span><button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button></span>
+           </div>
+        </div>
+        <!-- end message banner -->
+        {% endblock %} 
+        
         <div class="myuw-body">
             <div class="myuw-wrapper">
 
@@ -250,14 +243,30 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <!-- NTS adding the banner message close btn: DESKTOP -->
-						<span><button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button></span>
                         {% endif %}
                    </div>
                 </div>
                 <!-- end message banner -->
                 {% endblock %}
 
+				{% block mobile_tour_banner %}
+		        <!-- NTS: message banner (mobile only)-->
+		        <div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="app_messages_mobile_label" role="complementary">
+		            <div class="message-banner">
+		                <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
+		                <div id="message_banner_location">
+		                    <div class="message-text myuw-wrapper">
+		                        <div class="message">
+		                            <p>Mobile Message will go here</p>
+		                        </div>
+		                    </div>
+		                </div>
+						<span><button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button></span>
+		           </div>
+		        </div>
+		        <!-- end message banner -->
+				{% endblock %} 
+        
                 <div class="myuw-content">
                     <!-- app_content -->
                     <div id="app_content">
