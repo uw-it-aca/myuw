@@ -57,7 +57,9 @@ from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.views.api.visual_schedule import VisSchedCurQtr, VisSchedOthrQtr
 from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
     HxToolkitMessageList
-from myuw.views.api.resources import ResourcesList, ResourcesPin
+from myuw.views.api.resources import (ResourcesList,
+                                      ResourcesPin,
+                                      PinnedResources)
 
 
 urlpatterns = []
@@ -212,6 +214,9 @@ urlpatterns += [
     url(r'^api/v1/resources/(?P<category_id>.*?)/pin$',
         ResourcesPin.as_view(),
         name="myuw_resources_pin_api"),
+    url(r'^api/v1/resources/pinned$',
+        PinnedResources.as_view(),
+        name="myuw_resources_pinned_api"),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"),
     url(r'^choose/legacy', old_site, name="myuw_pref_old_site"),
     url(r'^academics/?$', academics, name="myuw_academics_page"),

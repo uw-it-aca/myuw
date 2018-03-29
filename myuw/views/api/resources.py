@@ -25,7 +25,7 @@ class ResourcesList(ProtectedAPI):
         timer = Timer()
         try:
             links = Resource_Links()
-            grouped = links.get_grouped_links(request)
+            grouped = links.get_all_grouped_links(request)
             log_success_response(logger, timer)
             return self.json_response(grouped)
         except Exception:
@@ -73,4 +73,10 @@ class PinnedResources(ProtectedAPI):
         GET returns a 200 with the user's pinned resources
         """
         timer = Timer()
-        return self.html_response("my-pinned")
+        try:
+            links = Resource_Links()
+            grouped = links.get_pinned_links(request)
+            log_success_response(logger, timer)
+            return self.json_response(grouped)
+        except Exception:
+            return handle_exception(logger, timer, traceback)

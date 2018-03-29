@@ -124,11 +124,48 @@ class Resource_Links(MyuwLink):
     _singleton = None
     csv_filename = 'resource_link_import.csv'
 
-    def get_grouped_links(self, request):
-        if self.links is None:
-            self.links = self.get_all_links()
+    def get_all_grouped_links(self, request):
+        category_list = []
         user = get_user_model(request)
         pinned = ResourceCategoryPin.get_user_pinned_categories(user)
+        grouped_links = self.get_grouped_links(pinned)
+
+        for category in grouped_links:
+            category_list.append(grouped_links[category])
+
+        return category_list
+
+    def get_pinned_links(self, request):
+        category_list = []
+        user = get_user_model(request)
+        pinned = ResourceCategoryPin.get_user_pinned_categories(user)
+        grouped_links = self.get_grouped_links(pinned)
+        self._filter_pinned(grouped_links)
+
+        for category in grouped_links:
+            category_list.append(grouped_links[category])
+
+        return category_list
+
+    def _filter_pinned(self, links):
+        # remove unpinned subcats
+        for category in links:
+            category_id = links[category]['category_id']
+            for subcat in links[category]['subcategories'].keys():
+                if not links[category]['subcategories'][subcat]['is_pinned']:
+                    del links[category]['subcategories'][subcat]
+
+        #remove cats w/o subcat
+        for category in links.keys():
+            subcat = links[category]['subcategories']
+            if len(subcat) == 0:
+                del links[category]
+
+        return links
+
+    def get_grouped_links(self, pinned_list=[]):
+        if self.links is None:
+            self.links = self.get_all_links()
 
         grouped_links = {}
         for link in self.links:
@@ -140,7 +177,7 @@ class Resource_Links(MyuwLink):
             subcategories = grouped_links[link.category_id]['subcategories']
             if link.sub_category not in subcategories:
                 subcat_id = link.category_id.lower() + link.subcategory_id.lower()
-                is_pinned = subcat_id in pinned
+                is_pinned = subcat_id in pinned_list
                 subcategories[link.sub_category] = \
                     {'subcat_name': link.sub_category,
                      'subcat_id': subcat_id,
@@ -150,12 +187,12 @@ class Resource_Links(MyuwLink):
             subcategories[link.sub_category]['links'].append(
                 {'title': link.title,
                  'url': link.url})
+        return grouped_links
 
-        category_list = []
-        for category in grouped_links:
-            category_list.append(grouped_links[category])
-
-        return category_list
+    def get_user_links(self, request):
+        user = get_user_model(request)
+        pinned = ResourceCategoryPin.get_user_pinned_categories(user)
+        links = self.get_grouped_links()
 
     def category_exists(self, category_id):
         if self.links is None:
