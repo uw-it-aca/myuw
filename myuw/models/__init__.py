@@ -334,3 +334,15 @@ class UserCourseDisplay(models.Model):
 class ResourceCategoryPin(models.Model):
     resource_category_id = models.CharField(max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    @staticmethod
+    def get_user_pinned_categories(user):
+        print type(user)
+        try:
+            pinned = ResourceCategoryPin.objects.filter(user=user)
+            category_ids = []
+            for pin in pinned:
+                category_ids.append(pin.resource_category_id)
+            return category_ids
+        except ResourceCategoryPin.DoesNotExist:
+            return None

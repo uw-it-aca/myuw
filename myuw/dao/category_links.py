@@ -28,7 +28,6 @@ class MyuwLink:
                 category = row[0]
                 if category == 'Category':
                     continue
-                category_id = self._get_category_id(category)
                 subcategory = row[1]
                 affiliation = row[2]
                 central_url = row[3]
@@ -54,6 +53,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(seattle_url) > 0:
@@ -67,6 +67,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(bothell_url) > 0:
@@ -80,6 +81,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(tacoma_url) > 0:
@@ -93,6 +95,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
     @classmethod
@@ -100,12 +103,6 @@ class MyuwLink:
         if cls._singleton is None:
             cls._singleton = cls()
         return cls._singleton.links
-
-    @classmethod
-    def _get_category_id(cls, category_name):
-        category_id = category_name.lower()
-        category_id = "".join(c for c in category_id if c.isalpha())
-        return category_id
 
 
 class Res_Links(MyuwLink):
@@ -125,21 +122,29 @@ class Resource_Links(MyuwLink):
     """
 
     _singleton = None
-    csv_filename = 'explore_link_import.csv'
+    csv_filename = 'resource_link_import.csv'
 
-    def get_grouped_links(self):
+    def get_grouped_links(self, request):
         if self.links is None:
             self.links = self.get_all_links()
+        user = get_user_model(request)
+        pinned = ResourceCategoryPin.get_user_pinned_categories(user)
+
         grouped_links = {}
         for link in self.links:
             if link.category_id not in grouped_links:
                 grouped_links[link.category_id] = \
                     {'category_name': link.category_name,
+                     'category_id': link.category_id,
                      'subcategories': {}}
             subcategories = grouped_links[link.category_id]['subcategories']
             if link.sub_category not in subcategories:
+                subcat_id = link.category_id.lower() + link.subcategory_id.lower()
+                is_pinned = subcat_id in pinned
                 subcategories[link.sub_category] = \
                     {'subcat_name': link.sub_category,
+                     'subcat_id': subcat_id,
+                     'is_pinned': is_pinned,
                      'links': []}
 
             subcategories[link.sub_category]['links'].append(
@@ -156,7 +161,7 @@ class Resource_Links(MyuwLink):
         if self.links is None:
             self.links = self.get_all_links()
         for link in self.links:
-            link_cat_id = link.category_id + link.sub_category
+            link_cat_id = link.category_id + link.subcategory_id
             if category_id == link_cat_id.lower():
                 return True
         return False

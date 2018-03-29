@@ -14,6 +14,7 @@ var Resources = {
             var template = Handlebars.compile(source);
             var content = template({'categories': resource_data});
             $("#main-content").html(content);
+            Resources.init_events();
         }
 
     },
@@ -38,6 +39,37 @@ var Resources = {
 
     resource_error: function () {
         console.log('err');
+    },
+
+    init_events: function () {
+        $(".category-pin, .category-unpin").click(function(ev){
+            var cat_id = $(ev.target).val(),
+                pin = true;
+            if ($(ev.target).attr('class').indexOf('unpin') > -1){
+                pin = false;
+                $(ev.target).addClass('hidden');
+                $(ev.target).siblings('.category-pin').removeClass('hidden');
+            } else {
+                $(ev.target).addClass('hidden');
+                $(ev.target).siblings('.category-unpin').removeClass('hidden');
+            }
+
+            Resources.handle_pin_click(cat_id, pin);
+        });
+    },
+
+    handle_pin_click: function (category_id, pin) {
+        WSData.handle_resource_pin(Resources.pinned_success,
+                                   Resources.resource_error,
+                                   undefined,
+                                   category_id,
+                                   pin)
+    },
+
+    pinned_success: function () {
+        console.log('pinned!');
     }
+
+
 
 };
