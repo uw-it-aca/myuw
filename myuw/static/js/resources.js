@@ -49,7 +49,17 @@ var Resources = {
     },
 
     handle_pin_click: function (category_id) {
-        console.log(category_id);
+        WSData.handle_resource_pin(Resources.pinned_success,
+                                   Resources.resource_error,
+                                   undefined,
+                                   category_id,
+                                   true)
+    },
+
+    pinned_success: function () {
+        console.log('pinned!');
     }
+
+
 
 };

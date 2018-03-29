@@ -155,7 +155,7 @@ class Resource_Links(MyuwLink):
         if self.links is None:
             self.links = self.get_all_links()
         for link in self.links:
-            link_cat_id = link.category_id + link.sub_category
+            link_cat_id = link.category_id + link.subcategory_id
             if category_id == link_cat_id.lower():
                 return True
         return False
