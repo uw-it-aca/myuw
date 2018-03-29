@@ -337,7 +337,6 @@ class ResourceCategoryPin(models.Model):
 
     @staticmethod
     def get_user_pinned_categories(user):
-        print type(user)
         try:
             pinned = ResourceCategoryPin.objects.filter(user=user)
             category_ids = []
