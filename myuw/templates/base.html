@@ -161,7 +161,7 @@
                 <div id="message_banner_location">
                     <div class="message-text myuw-wrapper">
                         <div class="message">
-                            <p>Desktop Message will go here</p>
+                            <p>New to MyUW? <a href="">Take a quick tour </a></p>
                         </div>
                     </div>
                 </div>
@@ -213,9 +213,7 @@
                     <div class="myuw-welcome" role="complementary">
                         <h2>Welcome!</h2>
                         <ul class="unstyled-list myuw-muted">
-                            <!--NTS: REMOVE<li><a id="welcome_modal_link" href="#" class="js-modal-toggle" data-toggle="modal" data-target="#message_modal">About the new MyUW</a></li>
-                            <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>-->
-                            <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">TEMP: Quick tour of MyUW</a></li>	
+                            <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">Quick tour of MyUW</a></li>	
                             <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" data-toggle="" data-target="" target="_blank">Learn more about MyUW </a></li>
 
                         </ul>
@@ -250,9 +248,9 @@
                 {% endblock %}
 
 				{% block mobile_tour_banner %}
-		        <!-- NTS: message banner (mobile only)-->
+		        <!-- Tour message banner (mobile only)-->
 		        <div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="app_messages_mobile_label" role="complementary">
-		            <div class="message-banner">
+		            <div class="message-banner" style="margin-top:-17px;">
 		                <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
 		                <div id="message_banner_location">
 		                    <div class="message-text myuw-wrapper">
