@@ -95,6 +95,9 @@ var TuitionCard = {
                 if(template_data.tuition_date_offset === 0){
                     template_data.due_today = true;
                 }
+                if(template_data.tuition_date_offset === 1){
+                    template_data.due_tomorrow = true;
+                }
                 if (template_data.tuition_date_offset < 0){
                     template_data.past_due = true;
                 }
