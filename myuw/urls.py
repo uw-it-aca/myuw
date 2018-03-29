@@ -214,7 +214,7 @@ urlpatterns += [
     url(r'^api/v1/resources/(?P<category_id>.*?)/pin$',
         ResourcesPin.as_view(),
         name="myuw_resources_pin_api"),
-    url(r'^api/v1/resources/pinned$',
+    url(r'^api/v1/resources/pinned/$',
         PinnedResources.as_view(),
         name="myuw_resources_pinned_api"),
     url(r'^choose/new', new_site, name="myuw_pref_new_site"),

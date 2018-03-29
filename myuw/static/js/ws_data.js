@@ -1519,9 +1519,12 @@ WSData = {
         }
     },
 
-    fetch_resource_data: function(callback, err_callback, args) {
+    fetch_resource_data: function(callback, err_callback, args, get_pinned=false) {
         if (Object.keys(WSData._resource_data).length === 0) {
             var url = "/api/v1/resources/";
+            if (get_pinned){
+                url += "pinned/"
+            }
 
             if (WSData._is_running_url(url)) {
                 WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
