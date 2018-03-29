@@ -62,3 +62,15 @@ class ResourcesPin(ProtectedAPI):
             return handle_exception(logger, timer, traceback)
 
         return self.html_response("")
+
+
+class PinnedResources(ProtectedAPI):
+    """
+    Returns of all pinned resources for the given user
+    """
+    def get(self, request, *args, **kwargs):
+        """
+        GET returns a 200 with the user's pinned resources
+        """
+        timer = Timer()
+        return self.html_response("my-pinned")

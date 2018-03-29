@@ -138,8 +138,10 @@ class Resource_Links(MyuwLink):
                      'subcategories': {}}
             subcategories = grouped_links[link.category_id]['subcategories']
             if link.sub_category not in subcategories:
+                subcat_id = link.category_id + link.sub_category
                 subcategories[link.sub_category] = \
                     {'subcat_name': link.sub_category,
+                     'subcat_id': subcat_id.lower(),
                      'links': []}
 
             subcategories[link.sub_category]['links'].append(

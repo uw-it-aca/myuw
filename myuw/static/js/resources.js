@@ -14,6 +14,7 @@ var Resources = {
             var template = Handlebars.compile(source);
             var content = template({'categories': resource_data});
             $("#main-content").html(content);
+            Resources.init_events();
         }
 
     },
@@ -38,6 +39,17 @@ var Resources = {
 
     resource_error: function () {
         console.log('err');
+    },
+
+    init_events: function () {
+        $(".category-pin").click(function(ev){
+            var cat_id = $(ev.target).val();
+            Resources.handle_pin_click(cat_id);
+        });
+    },
+
+    handle_pin_click: function (category_id) {
+        console.log(category_id);
     }
 
 };
