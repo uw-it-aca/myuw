@@ -124,8 +124,6 @@
                             <span class="sr-only">Main Menu</span>
                         </button>
                         <h2>{% if page_title == "Home" %}MyUW<span class="sr-only"> Home</span>{% else %}{{page_title}}{% endif %}</h2>
-                        <!-- NTS: trigger for mobile modal -->
-	                <span><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">TEMP: Quick tour</a></span><!-- NTS: end of trigger for mobile modal -->
                     </div>
                 </div>
             </div>
@@ -161,7 +159,7 @@
                 <div id="message_banner_location">
                     <div class="message-text myuw-wrapper">
                         <div class="message">
-                            <p>New to MyUW? <a href="">Take a quick tour </a></p>
+                            <p>New to MyUW?  <a href="#" data-toggle="modal" data-target="#tour_modal">Take a quick tour </a></p>
                         </div>
                     </div>
                 </div>
@@ -255,7 +253,7 @@
 		                <div id="message_banner_location">
 		                    <div class="message-text myuw-wrapper">
 		                        <div class="message">
-		                            <p>Mobile Message will go here</p>
+		                            <p>New to MyUW?  <a href="#" data-toggle="modal" data-target="#tour_modal">Take a quick tour </a></p>
 		                        </div>
 		                    </div>
 		                </div>
