@@ -28,7 +28,6 @@ class MyuwLink:
                 category = row[0]
                 if category == 'Category':
                     continue
-                category_id = self._get_category_id(category)
                 subcategory = row[1]
                 affiliation = row[2]
                 central_url = row[3]
@@ -54,6 +53,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(seattle_url) > 0:
@@ -67,6 +67,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(bothell_url) > 0:
@@ -80,6 +81,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(tacoma_url) > 0:
@@ -93,6 +95,7 @@ class MyuwLink:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
     @classmethod
@@ -100,12 +103,6 @@ class MyuwLink:
         if cls._singleton is None:
             cls._singleton = cls()
         return cls._singleton.links
-
-    @classmethod
-    def _get_category_id(cls, category_name):
-        category_id = category_name.lower()
-        category_id = "".join(c for c in category_id if c.isalpha())
-        return category_id
 
 
 class Res_Links(MyuwLink):
@@ -138,7 +135,7 @@ class Resource_Links(MyuwLink):
                      'subcategories': {}}
             subcategories = grouped_links[link.category_id]['subcategories']
             if link.sub_category not in subcategories:
-                subcat_id = link.category_id + link.sub_category
+                subcat_id = link.category_id + link.subcategory_id
                 subcategories[link.sub_category] = \
                     {'subcat_name': link.sub_category,
                      'subcat_id': subcat_id.lower(),
