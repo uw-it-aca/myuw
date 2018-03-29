@@ -132,6 +132,7 @@ class Resource_Links(MyuwLink):
             if link.category_id not in grouped_links:
                 grouped_links[link.category_id] = \
                     {'category_name': link.category_name,
+                     'category_id': link.category_id,
                      'subcategories': {}}
             subcategories = grouped_links[link.category_id]['subcategories']
             if link.sub_category not in subcategories:
