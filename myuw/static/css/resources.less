@@ -1,0 +1,33 @@
+@import (reference) "typography.less";
+@import (reference) "boilerplate.less";
+
+
+.resources-toc {
+
+    @media @two-column {
+        display: flex;
+        flex-flow: column wrap;
+        height: 15em;
+    }
+
+    li {
+        width: 100%;
+        font-size: @fontsize-large;
+        border-bottom: 1px solid #ddd;
+        padding: 8px 0;
+
+    }
+
+    @media @two-column {
+
+        li {
+            width: auto;
+        }
+
+        li:nth-child(-n+5) {
+            margin-right: 32px;
+        }
+    }
+}
+
+/* @media @two-column { padding-top: 0; } */
