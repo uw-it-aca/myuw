@@ -6,27 +6,29 @@
         <h2 class="heading-page" id="main-content-label">UW Resources</h2>
         <div class="row">
             <div class="col-md-12">
-                <h3>On this page</h3>
-                <ul>
+                <h3 class="myuw-heading-page">On this page</h3>
+                <ol class="resources-toc unstyled-list">
                     {{#each categories}}
                     <li><a href="#">{{ category_name }}</a></li>
                     {{/each}}
-                </ul>
+                </ol>
             </div>
         </div>
+
+        <br/><br/>
 
         <!-- For each category of links -->
         <div id="explore_cards">
             {{#each categories}}
             <div class="row">
-                <h3>{{ category_name }}</h3>
+                <h3 class="myuw-heading-page">{{ category_name }}</h3>
                 {{#each subcategories }}
                     <div>
                         {{> resource_content}}
                     </div>
                 {{/each}}
             </div>
-            <hr style="border: 1px solid #ccc;"/>
+            <hr />
             {{/each}}
         </div>
 
