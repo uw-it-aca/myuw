@@ -90,7 +90,7 @@ var VisualScheduleCard = {
                     var meeting = this;
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
                     var seen = false;
-                    if (!meeting.days_tbd && has_meetings) {
+                    if (!meeting.days_tbd && has_meetings && meeting.start_time) {
                         var start_parts = meeting.start_time.split(":");
                         var start_minutes = parseInt(start_parts[0], 10) * 60 + parseInt(start_parts[1], 10);
 

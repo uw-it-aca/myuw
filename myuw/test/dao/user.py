@@ -41,6 +41,9 @@ class TestUserDao(TransactionTestCase):
         req = get_request_with_user('none')
         self.assertFalse(is_oldmyuw_user(req))
 
+        req = get_request_with_user('billseata')
+        self.assertFalse(is_oldmyuw_user(req))
+
         # undergrad student
         req = get_request_with_user('jnew')
         self.assertFalse(is_oldmyuw_user(req))
