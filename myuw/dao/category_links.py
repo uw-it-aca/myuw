@@ -124,9 +124,12 @@ class Resource_Links(MyuwLink):
     _singleton = None
     csv_filename = 'explore_link_import.csv'
 
-    def get_grouped_links(self):
+    def get_grouped_links(self, request):
         if self.links is None:
             self.links = self.get_all_links()
+        user = get_user_model(request)
+        pinned = ResourceCategoryPin.get_user_pinned_categories(user)
+
         grouped_links = {}
         for link in self.links:
             if link.category_id not in grouped_links:
@@ -136,10 +139,12 @@ class Resource_Links(MyuwLink):
                      'subcategories': {}}
             subcategories = grouped_links[link.category_id]['subcategories']
             if link.sub_category not in subcategories:
-                subcat_id = link.category_id + link.subcategory_id
+                subcat_id = link.category_id.lower() + link.subcategory_id.lower()
+                is_pinned = subcat_id in pinned
                 subcategories[link.sub_category] = \
                     {'subcat_name': link.sub_category,
-                     'subcat_id': subcat_id.lower(),
+                     'subcat_id': subcat_id,
+                     'is_pinned': is_pinned,
                      'links': []}
 
             subcategories[link.sub_category]['links'].append(

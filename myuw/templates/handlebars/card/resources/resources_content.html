@@ -4,7 +4,8 @@
     <div class="col-sm-6">
         <div class="myuw-canvas">
             <h4>{{ subcat_name }}</h4>
-            <button class="category-pin" value="{{ subcat_id }}">Pin {{ subcat_id }}</button>
+            <button class="category-pin{{#if is_pinned}} hidden{{/if}}" value="{{ subcat_id }}">Pin {{ subcat_id }}</button>
+            <button class="category-unpin{{#unless is_pinned}} hidden{{/unless}}" value="{{ subcat_id }}">Unpin {{ subcat_id }}</button>
             <ul class="unstyled-list">
                 {{#each links}}
                 <li><a href="{{ url }}">{{ title }}</a></li>

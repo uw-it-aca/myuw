@@ -42,18 +42,28 @@ var Resources = {
     },
 
     init_events: function () {
-        $(".category-pin").click(function(ev){
-            var cat_id = $(ev.target).val();
-            Resources.handle_pin_click(cat_id);
+        $(".category-pin, .category-unpin").click(function(ev){
+            var cat_id = $(ev.target).val(),
+                pin = true;
+            if ($(ev.target).attr('class').indexOf('unpin') > -1){
+                pin = false;
+                $(ev.target).addClass('hidden');
+                $(ev.target).siblings('.category-pin').removeClass('hidden');
+            } else {
+                $(ev.target).addClass('hidden');
+                $(ev.target).siblings('.category-unpin').removeClass('hidden');
+            }
+
+            Resources.handle_pin_click(cat_id, pin);
         });
     },
 
-    handle_pin_click: function (category_id) {
+    handle_pin_click: function (category_id, pin) {
         WSData.handle_resource_pin(Resources.pinned_success,
                                    Resources.resource_error,
                                    undefined,
                                    category_id,
-                                   true)
+                                   pin)
     },
 
     pinned_success: function () {
