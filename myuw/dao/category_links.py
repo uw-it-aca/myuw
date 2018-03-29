@@ -122,7 +122,7 @@ class Resource_Links(MyuwLink):
     """
 
     _singleton = None
-    csv_filename = 'explore_link_import.csv'
+    csv_filename = 'resource_link_import.csv'
 
     def get_grouped_links(self, request):
         if self.links is None:

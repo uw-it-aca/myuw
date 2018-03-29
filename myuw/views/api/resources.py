@@ -25,7 +25,7 @@ class ResourcesList(ProtectedAPI):
         timer = Timer()
         try:
             links = Resource_Links()
-            grouped = links.get_grouped_links()
+            grouped = links.get_grouped_links(request)
             log_success_response(logger, timer)
             return self.json_response(grouped)
         except Exception:
