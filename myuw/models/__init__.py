@@ -323,7 +323,6 @@ class UserCourseDisplay(models.Model):
     class Meta(object):
         app_label = 'myuw'
         db_table = 'user_course_display_pref'
-        unique_together = ("user", "section_label")
         index_together = [
             ["user", "year", "quarter"],
             ["user", "section_label"],
