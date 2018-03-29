@@ -1,11 +1,14 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "resource_content" %}
-    <div>
-        <h4>{{ subcat_name }}</h4>
-        <ul>
-            {{#each links}}
-            <li><a href="{{ url }}">{{ title }}</a></li>
-            {{/each}}
-        </ul>
+
+    <div class="col-sm-6">
+        <div class="myuw-canvas">
+            <h4>{{ subcat_name }}</h4>
+            <ul class="unstyled-list">
+                {{#each links}}
+                <li><a href="{{ url }}">{{ title }}</a></li>
+                {{/each}}
+            </ul>
+        </div>
     </div>
 {% endtplhandlebars %}
