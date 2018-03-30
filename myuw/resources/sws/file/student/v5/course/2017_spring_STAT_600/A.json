@@ -5,9 +5,9 @@
     "Course": {
         "CourseNumber": "600",
         "CurriculumAbbreviation": "STAT",
-        "Href": "/student/v5/course/2018,spring,STAT,600.json",
+        "Href": "/student/v5/course/2017,spring,STAT,600.json",
         "Quarter": "spring",
-        "Year": 2018
+        "Year": 2017
     },
     "CourseCampus": "Seattle",
     "CourseDescription": "Prerequisite: permission of Graduate Program Coordinator. Offered: AWSpS.",
@@ -15,7 +15,7 @@
     "CourseTitle": "INDEPNDNT STDY/RSCH",
     "CourseTitleLong": "Independent Study or Research",
     "CreditControl": "variable credit - min to max credits",
-    "CurrentEnrollment": 56,
+    "CurrentEnrollment": 20,
     "Curriculum": {
         "CollegeName": "ARTS & SCI",
         "DepartmentAbbreviation": "STAT",
@@ -78,7 +78,16 @@
     "IndependentStudy": true,
     "InstituteName": "",
     "IsIndependentStart": false,
-    "JointSections": [],
+    "JointSections": [
+        {
+            "CourseNumber": "600", 
+            "CurriculumAbbreviation": "STAT", 
+            "Href": "/student/v5/course/2017,spring,STAT,600/B.json", 
+            "Quarter": "spring", 
+            "SectionID": "B", 
+            "Year": 2017
+        }
+    ],
     "LMSOwnership": null,
     "LimitEstimateEnrollment": 50,
     "LimitEstimateEnrollmentIndicator": "estimate",
@@ -99,7 +108,7 @@
                 {
                     "FacultySequenceNumber": "52296",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2018,spring,STAT,600,A,10000000000000000000000000000006"
+                        "Href": "/student/v5/graderoster/2017,spring,STAT,600,A,10000000000000000000000000000006"
                     },
                     "PercentInvolve": "100",
                     "Person": {
@@ -107,7 +116,7 @@
                         "Name": "Bill Seattle",
                         "RegID": "10000000000000000000000000000006"
                     },
-                    "TSPrint": false
+                    "TSPrint": true
                 }
             ],
             "Meeting": {
@@ -130,16 +139,16 @@
     "PrimarySection": {
         "CourseNumber": "600",
         "CurriculumAbbreviation": "STAT",
-        "Href": "/student/v5/course/2018,spring,STAT,600/A.json",
+        "Href": "/student/v5/course/2017,spring,STAT,600/A.json",
         "Quarter": "spring",
         "SectionID": "A",
-        "Year": 2018
+        "Year": 2017
     },
     "Registrations": {
         "ChangedSinceDate": "",
         "CourseNumber": "600",
         "CurriculumAbbreviation": "STAT",
-        "Href": "/student/v5/registration.json?year=2018&quarter=spring&curriculum_abbreviation=STAT&course_number=600&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "Href": "/student/v5/registration.json?year=2017&quarter=spring&curriculum_abbreviation=STAT&course_number=600&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
         "InstructorRegID": null,
         "IsActive": true,
         "PageSize": "",
@@ -149,12 +158,12 @@
         "SectionID": "A",
         "TranscriptableCourse": "",
         "Verbose": false,
-        "Year": 2018
+        "Year": 2017
     },
-    "RepositoryTimeStamp": "3/29/2018 2:40:56 PM",
+    "RepositoryTimeStamp": "3/29/2017 2:40:56 PM",
     "ResearchCredit": false,
     "RoomCapacity": 0,
-    "SLN": "19875",
+    "SLN": "19695",
     "SameVariableContentAs": [],
     "SecondaryGradingOption": false,
     "SectionID": "A",
@@ -162,12 +171,12 @@
     "SelfRegistrationAllowed": true,
     "ServiceLearning": false,
     "StartDate": "",
-    "StudentCreditHours": " 240.0",
+    "StudentCreditHours": "218.0",
     "SummerTerm": "",
     "Term": {
-        "Href": "/student/v5/term/2018,spring.json",
+        "Href": "/student/v5/term/2017,spring.json",
         "Quarter": "spring",
-        "Year": 2018
+        "Year": 2017
     },
     "TimeScheduleComments": {
         "CollegeComments": {
@@ -198,15 +207,18 @@
         "SectionComments": {
             "Lines": [
                 {
-                    "Text": "FACULTY CODE: 543-8296 OR"
+                    "Text": "FACULTY CODE: "
                 },
                 {
-                    "Text": "STATUGRADADV@STAT.WASHINGTON.EDU"
+                    "Text": ""
                 }
             ]
         },
         "TimeScheduleGeneratedComments": {
             "Lines": [
+                {
+                    "Text": "Offered jointly with STAT 600 B"
+                },
                 {
                     "Text": "Credit/No Credit"
                 },

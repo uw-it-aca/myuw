@@ -57,7 +57,7 @@ class TestSchedule(TestCase):
 
     def test_multi_enrollments_for_a_course(self):
         request = get_request_with_user('seagrad',
-                                        get_request_with_date("2018-04-01"))
+                                        get_request_with_date("2017-04-01"))
         schedule = get_current_quarter_schedule(request)
         self.assertIsNotNone(schedule)
         self.assertEqual(len(schedule.sections), 2)

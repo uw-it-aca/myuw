@@ -304,6 +304,17 @@ class UserCourseDisplay(models.Model):
     pin_on_teaching_page = models.BooleanField(default=False)
 
     @classmethod
+    def delete_section_display(cls, user, section_label):
+        obj = UserCourseDisplay.get_section_display(
+            user=user, section_label=section_label)
+        obj.delete()
+
+    @classmethod
+    def get_section_display(cls, user, section_label):
+        return UserCourseDisplay.objects.get(user=user,
+                                             section_label=section_label)
+
+    @classmethod
     def get_course_display(cls, user, year, quarter):
         objs = UserCourseDisplay.objects.filter(user=user,
                                                 year=year,
@@ -314,8 +325,7 @@ class UserCourseDisplay(models.Model):
         for record in objs:
             if record.pin_on_teaching_page is True:
                 pin_on_teaching.append(record.section_label)
-            if record.section_label not in color_dict:
-                color_dict[record.section_label] = record.color_id
+            color_dict[record.section_label] = record.color_id
             if record.color_id not in colors_taken:
                 colors_taken.append(record.color_id)
 
@@ -324,6 +334,7 @@ class UserCourseDisplay(models.Model):
     class Meta(object):
         app_label = 'myuw'
         db_table = 'user_course_display_pref'
+        unique_together = ("user", "section_label")
         index_together = [
             ["user", "year", "quarter"],
             ["user", "section_label"],

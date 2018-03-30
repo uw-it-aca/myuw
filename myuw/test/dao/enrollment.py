@@ -48,7 +48,7 @@ class TestDaoEnrollment(TestCase):
         return get_enrollment_for_term(req, term)
 
     def test_multi_enrollments_for_a_course(self):
-        enrollment = self.get_enrollment('seagrad', "2018-04-10")
+        enrollment = self.get_enrollment('seagrad', "2017-04-10")
         self.assertIsNotNone(enrollment)
         self.assertEqual(len(enrollment.majors), 1)
 

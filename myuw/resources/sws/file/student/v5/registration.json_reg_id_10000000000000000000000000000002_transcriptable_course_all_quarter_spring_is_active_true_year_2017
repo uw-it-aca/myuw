@@ -1,6 +1,6 @@
 {
     "Current": {
-        "Href": "\/student\/v5\/registration.json?year=2018&quarter=spring&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000002&is_active=&instructor_reg_id=",
+        "Href": "\/student\/v5\/registration.json?year=2017&quarter=spring&curriculum_abbreviation=&course_number=&section_id=&reg_id=10000000000000000000000000000002&is_active=&instructor_reg_id=",
         "CourseNumber": null,
         "CurriculumAbbreviation": null,
         "InstructorRegID": null,
@@ -10,7 +10,7 @@
         "Quarter": "spring",
         "RegID": "10000000000000000000000000000002",
         "SectionID": null,
-        "Year": "2018"
+        "Year": "2017"
     },
     "Next": null,
     "PageSize": "10",
@@ -21,7 +21,7 @@
             "CourseNumber": "600", 
             "CurriculumAbbreviation": "STAT", 
             "DuplicateCode": "", 
-            "Href": "/student/v5/registration/2018,spring,STAT,600,A,10000000000000000000000000000002,.json", 
+            "Href": "/student/v5/registration/2017,spring,STAT,600,A,10000000000000000000000000000002,.json", 
             "Instructor": {
                 "Href": "/student/v5/person/10000000000000000000000000000006.json", 
                 "RegID": "10000000000000000000000000000006"
@@ -29,13 +29,13 @@
             "Quarter": "spring", 
             "RegID": "10000000000000000000000000000002", 
             "SectionID": "A", 
-            "Year": 2018
+            "Year": 2017
         }, 
         {
             "CourseNumber": "600", 
             "CurriculumAbbreviation": "STAT", 
             "DuplicateCode": "A", 
-            "Href": "/student/v5/registration/2018,spring,STAT,600,A,10000000000000000000000000000002,A.json", 
+            "Href": "/student/v5/registration/2017,spring,STAT,600,A,10000000000000000000000000000002,A.json", 
             "Instructor": {
                 "Href": "/student/v5/person/10000000000000000000000000000006.json", 
                 "RegID": "10000000000000000000000000000006"
@@ -43,7 +43,7 @@
             "Quarter": "spring", 
             "RegID": "10000000000000000000000000000002", 
             "SectionID": "A", 
-            "Year": 2018
+            "Year": 2017
         }
      ],
     "TotalCount": 2
