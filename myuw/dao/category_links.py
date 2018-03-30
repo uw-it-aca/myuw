@@ -128,7 +128,7 @@ class Resource_Links(MyuwLink):
         category_list = []
         user = get_user_model(request)
         pinned = ResourceCategoryPin.get_user_pinned_categories(user)
-        grouped_links = self.get_grouped_links(pinned)
+        grouped_links = self.get_grouped_links(request, pinned)
 
         for category in grouped_links:
             category_list.append(grouped_links[category])
@@ -139,7 +139,7 @@ class Resource_Links(MyuwLink):
         category_list = []
         user = get_user_model(request)
         pinned = ResourceCategoryPin.get_user_pinned_categories(user)
-        grouped_links = self.get_grouped_links(pinned)
+        grouped_links = self.get_grouped_links(request, pinned)
         self._filter_pinned(grouped_links)
 
         for category in grouped_links:
@@ -155,7 +155,7 @@ class Resource_Links(MyuwLink):
                 if not links[category]['subcategories'][subcat]['is_pinned']:
                     del links[category]['subcategories'][subcat]
 
-        #remove cats w/o subcat
+        # remove cats w/o subcat
         for category in links.keys():
             subcat = links[category]['subcategories']
             if len(subcat) == 0:
@@ -163,36 +163,37 @@ class Resource_Links(MyuwLink):
 
         return links
 
-    def get_grouped_links(self, pinned_list=[]):
+    def get_grouped_links(self, request, pinned_list=[]):
         if self.links is None:
             self.links = self.get_all_links()
 
         grouped_links = {}
+        affiliations = get_all_affiliations(request)
+        campus = get_base_campus(affiliations)
+
         for link in self.links:
-            if link.category_id not in grouped_links:
-                grouped_links[link.category_id] = \
-                    {'category_name': link.category_name,
-                     'category_id': link.category_id,
-                     'subcategories': {}}
-            subcategories = grouped_links[link.category_id]['subcategories']
-            if link.sub_category not in subcategories:
-                subcat_id = link.category_id.lower() + link.subcategory_id.lower()
-                is_pinned = subcat_id in pinned_list
-                subcategories[link.sub_category] = \
-                    {'subcat_name': link.sub_category,
-                     'subcat_id': subcat_id,
-                     'is_pinned': is_pinned,
-                     'links': []}
+            link = _get_link_by_affiliation(link, campus, affiliations)
+            if link:
+                if link.category_id not in grouped_links:
+                    grouped_links[link.category_id] = \
+                        {'category_name': link.category_name,
+                         'category_id': link.category_id,
+                         'subcategories': {}}
+                subcats = grouped_links[link.category_id]['subcategories']
+                if link.sub_category not in subcats:
+                    subcat_id = link.category_id.lower() + \
+                                link.subcategory_id.lower()
+                    is_pinned = subcat_id in pinned_list
+                    subcats[link.sub_category] = \
+                        {'subcat_name': link.sub_category,
+                         'subcat_id': subcat_id,
+                         'is_pinned': is_pinned,
+                         'links': []}
 
-            subcategories[link.sub_category]['links'].append(
-                {'title': link.title,
-                 'url': link.url})
+                subcats[link.sub_category]['links'].append(
+                    {'title': link.title,
+                     'url': link.url})
         return grouped_links
-
-    def get_user_links(self, request):
-        user = get_user_model(request)
-        pinned = ResourceCategoryPin.get_user_pinned_categories(user)
-        links = self.get_grouped_links()
 
     def category_exists(self, category_id):
         if self.links is None:
@@ -220,32 +221,32 @@ def _get_links_by_category_and_campus(search_category_id,
     for link in all_links:
         if not link.category_id_matched(search_category_id):
             continue
-
-        if link.all_affiliation() and link.campus_matched(campus):
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["grad"] and link.for_grad():
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["undergrad"] and link.for_undergrad():
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["fyp"] and link.for_fyp():
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["pce"] and link.for_pce():
-            selected_links.append(link)
-            continue
+        customized_link = _get_link_by_affiliation(link, campus, affiliations)
+        if customized_link:
+            selected_links.append(customized_link)
 
     return selected_links
+
+
+def _get_link_by_affiliation(link, campus, affiliations):
+    if link.all_affiliation() and link.campus_matched(campus):
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["grad"] and link.for_grad():
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["undergrad"] and link.for_undergrad():
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["fyp"] and link.for_fyp():
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["pce"] and link.for_pce():
+        return link
 
 
 def pin_category(request, category_id):

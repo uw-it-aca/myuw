@@ -40,6 +40,7 @@ var ResourcesCard = {
         });
 
         var name = ResourcesCard.name + ResourcesCard.target_group;
+        Resources.init_events();
         LogUtils.cardLoaded(name, ResourcesCard.dom_target);
     },
 

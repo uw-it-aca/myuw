@@ -72,7 +72,7 @@ class ResCategoryLink(models.Model):
 
     def _concat_id(self, long_name):
         concat = long_name.lower()
-        concat = "".join(c for c in long_name if c.isalpha())
+        concat = "".join(c for c in concat if c.isalpha())
         return concat
 
     class Meta:
