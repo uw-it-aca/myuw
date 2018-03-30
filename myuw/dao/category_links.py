@@ -179,18 +179,18 @@ class Resource_Links(MyuwLink):
                         {'category_name': link.category_name,
                          'category_id': link.category_id,
                          'subcategories': {}}
-                subcategories = grouped_links[link.category_id]['subcategories']
-                if link.sub_category not in subcategories:
+                subcats = grouped_links[link.category_id]['subcategories']
+                if link.sub_category not in subcats:
                     subcat_id = link.category_id.lower() + \
                                 link.subcategory_id.lower()
                     is_pinned = subcat_id in pinned_list
-                    subcategories[link.sub_category] = \
+                    subcats[link.sub_category] = \
                         {'subcat_name': link.sub_category,
                          'subcat_id': subcat_id,
                          'is_pinned': is_pinned,
                          'links': []}
 
-                subcategories[link.sub_category]['links'].append(
+                subcats[link.sub_category]['links'].append(
                     {'title': link.title,
                      'url': link.url})
         return grouped_links
