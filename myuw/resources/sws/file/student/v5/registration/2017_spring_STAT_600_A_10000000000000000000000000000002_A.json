@@ -1,0 +1,46 @@
+{
+    "AccessDateRangeEnd": "",
+    "AccessDateRangeStart": "",
+    "Auditor": false,
+    "Credits": "2",
+    "DuplicateCode": "A",
+    "EducationUnitType": null,
+    "EndDate": "",
+    "FeeBaseType": "",
+    "Grade": "X",
+    "GradeDate": "",
+    "GradeDocumentID": "",
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "Href": "/student/v5/registration/2017,spring,STAT,600,A,2769516650B94D27B71F709D99F85A29,.json",
+    "Instructor": {
+        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+        "Name": "Seattle Faculty",
+        "RegID": "10000000000000000000000000000006"
+    },
+    "IsActive": true,
+    "IsCredit": true,
+    "IsIndependentStart": false,
+    "Metadata": "RegistrationSourceLocation=SDB;",
+    "Person": {
+        "Href": "/student/v5/person/10000000000000000000000000000002.json",
+        "Name": "Seattle Grad",
+        "RegID": "10000000000000000000000000000002"
+    },
+    "RepeatCourse": false,
+    "RepositoryTimeStamp": "3/21/2017 10:55:49 AM",
+    "RequestDate": "2017-03-02",
+    "RequestStatus": "ADDED TO CLASS",
+    "Section": {
+        "CourseNumber": "600",
+        "CurriculumAbbreviation": "STAT",
+        "Href": "/student/v5/course/2017,spring,STAT,600/A.json",
+        "Quarter": "spring",
+        "SLN": "19695",
+        "SectionID": "A",
+        "Year": 2017
+    },
+    "StartDate": "",
+    "VariableCredit": true,
+    "WritingCourse": false
+}
