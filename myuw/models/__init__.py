@@ -314,7 +314,8 @@ class UserCourseDisplay(models.Model):
         for record in objs:
             if record.pin_on_teaching_page is True:
                 pin_on_teaching.append(record.section_label)
-            color_dict[record.section_label] = record.color_id
+            if record.section_label not in color_dict:
+                color_dict[record.section_label] = record.color_id
             if record.color_id not in colors_taken:
                 colors_taken.append(record.color_id)
 
