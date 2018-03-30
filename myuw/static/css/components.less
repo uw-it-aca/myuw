@@ -68,12 +68,17 @@
     display: block;
     text-align: center;
     position: fixed;
-    right: 32px;
-    bottom: 32px;
+    right: 16px;
+    bottom: 16px;
     color: @uw-dark-gray;
     background-color: @myuw-accent-gray;
     border-radius: 2px;
     padding: 2px 8px 6px 8px;
+
+    @media @two-column {
+        right: 32px;
+        bottom: 32px;
+    }
 
     .fa-chevron-up {
         font-size: 20px;

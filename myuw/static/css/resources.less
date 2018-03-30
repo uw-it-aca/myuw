@@ -34,11 +34,23 @@
 #explore_cards .row {
     border-bottom: 1px solid @myuw-accent-gray;
     padding-top: 1em;
-    
+
     &:last-child {
         border-bottom: none;
     }
 }
 
+.resources-canvas {
+    .myuw-canvas-title {
+        display: inline-block;
+    }
 
-/* @media @two-column { padding-top: 0; } */
+    .resource-canvas-pin {
+        display: inline-block;
+        margin-left: 16px;
+
+        button {
+            font-size: @fontsize-small;
+        }
+    }
+}
