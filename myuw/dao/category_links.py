@@ -155,7 +155,7 @@ class Resource_Links(MyuwLink):
                 if not links[category]['subcategories'][subcat]['is_pinned']:
                     del links[category]['subcategories'][subcat]
 
-        #remove cats w/o subcat
+        # remove cats w/o subcat
         for category in links.keys():
             subcat = links[category]['subcategories']
             if len(subcat) == 0:
@@ -181,7 +181,8 @@ class Resource_Links(MyuwLink):
                          'subcategories': {}}
                 subcategories = grouped_links[link.category_id]['subcategories']
                 if link.sub_category not in subcategories:
-                    subcat_id = link.category_id.lower() + link.subcategory_id.lower()
+                    subcat_id = link.category_id.lower() + \
+                                link.subcategory_id.lower()
                     is_pinned = subcat_id in pinned_list
                     subcategories[link.sub_category] = \
                         {'subcat_name': link.sub_category,

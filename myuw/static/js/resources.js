@@ -63,7 +63,7 @@ var Resources = {
                                    Resources.resource_error,
                                    undefined,
                                    category_id,
-                                   pin)
+                                   pin);
     },
 
     pinned_success: function () {

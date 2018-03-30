@@ -1519,11 +1519,12 @@ WSData = {
         }
     },
 
-    fetch_resource_data: function(callback, err_callback, args, get_pinned=false) {
+    fetch_resource_data: function(callback, err_callback, args, get_pinned) {
+        get_pinned = typeof get_pinned !=='undefined' ? get_pinned: false;
         if (Object.keys(WSData._resource_data).length === 0) {
             var url = "/api/v1/resources/";
             if (get_pinned){
-                url += "pinned/"
+                url += "pinned/";
             }
 
             if (WSData._is_running_url(url)) {
