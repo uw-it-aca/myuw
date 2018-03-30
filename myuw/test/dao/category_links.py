@@ -3,6 +3,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
     Res_Links
+from myuw.models.res_category_link import ResCategoryLink
 import re
 
 
@@ -38,7 +39,7 @@ class TestCategoryLinks(TestCase):
                 self.fail("Link title has non-ASCII text:" + link.title)
 
     def test_undergrad_category(self):
-        category_id = Res_Links()._get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": True,
@@ -61,7 +62,7 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(len(links), 21)
 
     def test_grad_category(self):
-        category_id = Res_Links()._get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": True,
                 "undergrad": False,
@@ -83,7 +84,7 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(len(links), 23)
 
     def test_pce_links(self):
-        category_id = Res_Links()._get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": False,
@@ -95,7 +96,7 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(len(links), 6)
 
     def test_fyp_links(self):
-        category_id = Res_Links()._get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": False,
