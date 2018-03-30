@@ -13,7 +13,7 @@
     li {
         width: 100%;
         font-size: @fontsize-large;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid @myuw-accent-gray;
         padding: 8px 0;
 
     }
@@ -22,6 +22,7 @@
 
         li {
             width: auto;
+            /* TODO determine set width */
         }
 
         li:nth-child(-n+5) {
@@ -29,5 +30,15 @@
         }
     }
 }
+
+#explore_cards .row {
+    border-bottom: 1px solid @myuw-accent-gray;
+    padding-top: 1em;
+    
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
 
 /* @media @two-column { padding-top: 0; } */

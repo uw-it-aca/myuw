@@ -66,8 +66,14 @@
 .myuw-back-to-top {
 
     display: block;
-    width: 22px;
-    text-align: center;   
+    text-align: center;
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+    color: @uw-dark-gray;
+    background-color: @myuw-accent-gray;
+    border-radius: 2px;
+    padding: 2px 8px 6px 8px;
 
     .fa-chevron-up {
         font-size: 20px;
@@ -77,6 +83,15 @@
         display: block;
         font-size: 10px;
         text-transform: uppercase;
+    }
+
+    &.affix-bottom {
+        bottom: auto;
+    }
+
+    &:hover {
+        text-decoration: none;
+        background-color: darken(@myuw-accent-gray, 5%);
     }
 }
 

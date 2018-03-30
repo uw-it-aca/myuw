@@ -245,37 +245,6 @@
         <!-- footer -->
         {% block footer %}
         <div id="app_footer">
-	        {% if user.affiliations.student or user.affiliations.applicant%}
-            <div class="myuw-wrapper navigation-bar" role="navigation" aria-labelledby="categories">
-                <h2 id="categories" class="sr-only">Categorized Resources</h2>
-                <ul class="clearfix navigation-list">
-                    <li class="pull-left">
-                        <a href="/resource/academics" class="navigation-item hover"><span class="navigation-item-text">Academics</span>
-                            <div class="subcategories">Registration, Advising, Grades&#8230;</div></a>
-                    </li>
-                    <li class="pull-left">
-                        <a href="/resource/finances" class="navigation-item hover"><span class="navigation-item-text">Finances</span>
-                            <div class="subcategories">Financial Aid, Taxes, Tuition&#8230;</div></a>
-                    </li>
-                    <li class="pull-left">
-                        <a href="/resource/studentcampuslife" class="navigation-item hover"><span class="navigation-item-text">Student &amp; Campus Life</span>
-                            <div class="subcategories">Housing & Dining, Wellness, Transportation&#8230;</div></a>
-                    </li>
-                    <li class="pull-left">
-                        <a href="/resource/eventsactivities" class="navigation-item hover"><span class="navigation-item-text">Events &amp; Activities</span>
-                            <div class="subcategories">Campus Events, News, Social Media&#8230;</div></a>
-                    </li>
-                    <li class="pull-left">
-                        <a href="/resource/toolssoftware" class="navigation-item hover"><span class="navigation-item-text">Tools &amp; Software</span>
-                            <div class="subcategories">Learning Tools, Email, Directory&#8230;</div></a>
-                    </li>
-                    <li class="pull-left">
-                        <a href="/resource/employment" class="navigation-item hover"><span class="navigation-item-text">Employment</span>
-                            <div class="subcategories">Career Center, Husky Jobs, Workday&#8230;</div></a>
-                    </li>
-                </ul>
-            </div>
-			{% endif %}
             <div class="footer-bar" role="contentinfo">
                 <div class="myuw-wrapper footer-links" style="position:relative;">
                     <ul class="footer-links-list">
