@@ -18,14 +18,16 @@
         <br/><br/>
 
         <!-- For each category of links -->
-        <div id="explore_cards">
+        <div id="explore_cards" class="uw-resources">
             {{#each categories}}
             <div class="row">
                 <h3 id="{{ category_id }}">{{ category_name }}</h3>
 
                 {{#each subcategories }}
-                    <div>
-                        {{> resource_content}}
+                    <div class="col-sm-6">
+                        <div class="myuw-canvas">
+                            {{> resource_content}}
+                        </div>
                     </div>
                 {{/each}}
             </div>

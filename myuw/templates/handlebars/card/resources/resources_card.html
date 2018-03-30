@@ -1,12 +1,10 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "resources_card" %}
-    <div class="row card">
-        <div class="col-xs-11">
-            <h3>Explore UW</h3>
-            <div class="row">
-                {{> resource_content }}
-            </div>
-        </div>
+    <div class="myuw-card resources-card">
+        <div style="position:relative;">
+            <span>UW Resources</span>
 
+            {{> resource_content }}
+        </div>
     </div>
 {% endtplhandlebars %}
