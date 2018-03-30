@@ -1,0 +1,47 @@
+{
+    "Current": {
+        "ChangedSinceDate": "", 
+        "CourseNumber": "600", 
+        "CurriculumAbbreviation": "STAT", 
+        "Href": "/student/v5/registration.json?year=2017&quarter=spring&curriculum_abbreviation=STAT&course_number=600&section_id=A&reg_id=&is_active=true&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=&page_start=&page_size=", 
+        "InstructorRegID": "", 
+        "IsActive": true, 
+        "PageSize": null, 
+        "PageStart": null, 
+        "Quarter": "spring", 
+        "RegID": null, 
+        "SectionID": "A", 
+        "TranscriptableCourse": "", 
+        "Verbose": false, 
+        "Year": 2017
+    }, 
+    "Next": null, 
+    "PageSize": null, 
+    "PageStart": null, 
+    "Previous": null, 
+    "Registrations": [
+        {
+            "CourseNumber": "600", 
+            "CurriculumAbbreviation": "STAT", 
+            "DuplicateCode": "", 
+            "Href": "/student/v5/registration/2017,spring,STAT,600,A,1000000000000000000000000000000,.json", 
+            "Instructor": null, 
+            "Quarter": "spring", 
+            "RegID": "1000000000000000000000000000000", 
+            "SectionID": "A", 
+            "Year": 2017
+        },
+        {
+            "CourseNumber": "600",
+            "CurriculumAbbreviation": "STAT",
+            "DuplicateCode": "A",
+            "Href": "/student/v5/registration/2017,spring,STAT,600,A,1000000000000000000000000000000,A.json",
+            "Instructor": null,
+            "Quarter": "spring",
+            "RegID": "1000000000000000000000000000000",
+            "SectionID": "A",
+            "Year": 2017
+        }
+    ], 
+    "TotalCount": 2
+} 
