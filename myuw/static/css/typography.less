@@ -32,6 +32,22 @@ hr {
     border-top: 1px solid #ddd;
 }
 
+/** Lists **/
+
+ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
+    padding-left: 0px;
+    list-style-type: none;
+    line-height: inherit;
+    margin: 0;
+
+    li {
+        margin: 0 0 .357143em 0;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
 /*** Headings ***/
 h2.heading-page, h2.myuw-heading-page {
     font-family: 'encode_sans_normalbold', sans-serif;
@@ -172,14 +188,6 @@ h3.heading-page, h3.myuw-heading-page, .myuw-article h3 {
 
 }
 
-/** Lists **/
-
-ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
-    padding-left: 0px;
-    list-style-type: none;
-    line-height: 23px;
-    margin: 4px 0;
-}
 
 /* Extra ID, .card, and element added to override generic styles */
 #app_content .card h3.myuw-card-row-heading,
