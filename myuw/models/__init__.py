@@ -312,6 +312,10 @@ class UserCourseDisplay(models.Model):
 
         return color_dict, colors_taken, pin_on_teaching
 
+    def save_section_color(self, color_id):
+        self.color_id = color_id
+        self.save()
+
     def json_data(self):
         return {
             "user": self.user.json_data(),

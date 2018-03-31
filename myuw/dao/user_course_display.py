@@ -88,12 +88,18 @@ def _save_section_color(user, section, color_id):
     """
     Store the color of the section in DB
     """
-    UserCourseDisplay.objects.update_or_create(
-        user=user,
-        year=section.term.year,
-        quarter=section.term.quarter,
-        section_label=section.section_label(),
-        color_id=color_id)
+    entries = UserCourseDisplay.objects.select_for_update().filter(
+        user=user, section_label=section.section_label())
+    # lock rows until the end of the transaction
+    if len(entries):
+        entries[0].save_section_color(color_id)
+        return
+
+    UserCourseDisplay.objects.create(user=user,
+                                     year=section.term.year,
+                                     quarter=section.term.quarter,
+                                     section_label=section.section_label(),
+                                     color_id=color_id)
 
 
 def _set_section_colorid(section, color_id):
