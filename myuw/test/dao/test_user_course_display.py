@@ -51,6 +51,17 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 5)
 
+        # multiple enrollments of a single section
+        req = get_request_with_user("seagrad",
+                                    get_request_with_date("2017-04-10"))
+        term = get_current_quarter(req)
+        schedule = get_schedule_by_term(req, term)
+        set_course_display_pref(req, schedule)
+        sections = schedule.sections
+        self.assertEqual(len(sections), 2)
+        self.assertEqual(sections[0].color_id, 1)
+        self.assertEqual(sections[1].color_id, 1)
+
     def test_instructor_schedule(self):
         req = get_request_with_user("billsea")
         term = get_current_quarter(req)
