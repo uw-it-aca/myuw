@@ -1,16 +1,17 @@
-from django.test import TestCase
-from django.conf import settings
-from myuw.dao import _is_optin_user
+from django.test import TransactionTestCase
+from myuw.dao import get_user_model
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request, get_request_with_user
 
 
 @fdao_pws_override
 @fdao_sws_override
-class TestNetidInList(TestCase):
-    def test_optin_user(self):
-        is_optin = _is_optin_user('jerror')
-        self.assertTrue(is_optin)
+class TestDaoInit(TransactionTestCase):
 
-        not_optin = _is_optin_user('jtacoma')
-        self.assertFalse(not_optin)
+    def test_get_user_model(self):
+        req = get_request_with_user("javerage")
+        user = get_user_model(req)
+        self.assertEqual(user.uwnetid, "javerage")
+        self.assertIsNotNone(user.last_visit)
+        self.assertIsNotNone(user.json_data())
+        self.assertIsNotNone(user.__str__())

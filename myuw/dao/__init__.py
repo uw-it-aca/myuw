@@ -35,15 +35,6 @@ def is_using_file_dao():
     return SWS_DAO().get_implementation().is_mock()
 
 
-def _is_optin_user(uwnetid):
-    if is_using_file_dao():
-        file_path = _get_file_path("MYUW_OPTIN_SWITCH_PATH",
-                                   "opt_in_list.txt")
-        return is_netid_in_list(uwnetid, file_path)
-    else:
-        return False
-
-
 def is_thrive_viewer(uwnetid, population):
     file_path = _get_file_path("MYUW_MANDATORY_SWITCH_PATH",
                                population + "_list.txt")

@@ -1,66 +1,45 @@
 import logging
-from myuw.models import UserMigrationPreference
-from myuw.dao import _is_optin_user as is_optin_user
-from myuw.dao import get_netid_of_current_user
-from myuw.dao.gws import (is_staff_employee, is_student_employee,
-                          is_undergrad_student, is_grad_and_prof_student,
-                          is_grad_c2, is_undergrad_c2,
-                          is_employee,  is_faculty, is_applicant)
+from myuw.models import MigrationPreference
+from myuw.dao import get_user_model
 
 
 logger = logging.getLogger(__name__)
 
 
-def set_preference_to_new_myuw(uwnetid):
-    obj, is_new = UserMigrationPreference.objects.get_or_create(
-        username=uwnetid)
-    obj.use_legacy_site = False
-    obj.save()
-
-
-def set_preference_to_old_myuw(uwnetid):
-    obj, is_new = UserMigrationPreference.objects.get_or_create(
-        username=uwnetid)
-    obj.use_legacy_site = True
-    obj.save()
-
-
-def has_legacy_preference(uwnetid):
+def has_legacy_preference(request):
     try:
-        saved = UserMigrationPreference.objects.get(username=uwnetid)
-        if saved.use_legacy_site:
-            return True
-    except UserMigrationPreference.DoesNotExist:
+        saved = MigrationPreference.objects.get(user=get_user_model(request))
+        return saved.use_legacy_site
+    except MigrationPreference.DoesNotExist:
         pass
     return False
 
 
-def has_newmyuw_preference(uwnetid):
+def display_onboard_message(request):
     try:
-        saved = UserMigrationPreference.objects.get(username=uwnetid)
-        if saved and not saved.use_legacy_site:
-            return True
-    except UserMigrationPreference.DoesNotExist:
+        saved = MigrationPreference.objects.get(user=get_user_model(request))
+        return saved.display_onboard_message
+    except MigrationPreference.DoesNotExist:
         pass
     return False
 
 
 def is_oldmyuw_user(request):
-    uwnetid = get_netid_of_current_user(request)
-    if has_newmyuw_preference(uwnetid) or\
-       is_optin_user(uwnetid):
-        return False
-
-    if has_legacy_preference(uwnetid) or\
-       is_staff_employee(request) or\
-       is_faculty(request) or\
-       is_grad_and_prof_student(request):
+    if has_legacy_preference(request):
         return True
+    return False
 
-    if is_applicant(request) or\
-       is_undergrad_student(request) or\
-       is_undergrad_c2(request) or\
-       is_grad_c2(request):
-        return False
 
-    return True
+def set_no_onboard_message(request):
+    return MigrationPreference.set_preference(get_user_model(request),
+                                              display_onboard_message=False)
+
+
+def set_preference_to_new_myuw(request):
+    return MigrationPreference.set_preference(get_user_model(request),
+                                              use_legacy_site=False)
+
+
+def set_preference_to_old_myuw(request):
+    return MigrationPreference.set_preference(get_user_model(request),
+                                              use_legacy_site=True)

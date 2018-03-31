@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.user import set_preference_to_new_myuw,\
-    set_preference_to_old_myuw, get_netid_of_current_user
+from myuw.dao.user import set_preference_to_old_myuw,\
+    set_preference_to_new_myuw
 from myuw.logger.logresp import log_msg_with_affiliation
 from myuw.logger.timer import Timer
 from myuw.views import prefetch_resources
@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 @login_required
 def new_site(request):
     timer = Timer()
-    set_preference_to_new_myuw(get_netid_of_current_user(request))
+    set_preference_to_new_myuw(request)
     prefetch_resources(request,
                        prefetch_group=True,
                        prefetch_enrollment=True)
@@ -31,7 +31,7 @@ def new_site(request):
 @login_required
 def old_site(request):
     timer = Timer()
-    set_preference_to_old_myuw(get_netid_of_current_user(request))
+    set_preference_to_old_myuw(request)
     prefetch_resources(request,
                        prefetch_group=True,
                        prefetch_enrollment=True)

@@ -1,36 +1,29 @@
 import hashlib
-import uuid
+import json
+import logging
 from datetime import datetime, timedelta
 from dateutil.parser import parse
+from hashlib import sha1
 from django.utils import timezone
 from django.db import models
 from django.db.models import Count
 from myuw.models.building import Building
+from myuw.models.banner_msg import BannerMessage
+from myuw.models.popular_link import PopularLink
 from myuw.models.res_category_link import ResCategoryLink
-from hashlib import sha1
+
+logger = logging.getLogger(__name__)
 
 
-class CourseColor(models.Model):
-    regid = models.CharField(max_length=32, db_index=True)
-    year = models.PositiveSmallIntegerField(db_index=True)
-    quarter = models.CharField(max_length=10, db_index=True)
-    curriculum_abbr = models.CharField(max_length=10)
-    # 098 is a valid course number, and that leading 0 matters
-    course_number = models.CharField(max_length=3)
-    section_id = models.CharField(max_length=2)
-    is_active = models.BooleanField()
-    color_id = models.PositiveIntegerField()
+def datetime_to_str(d_obj):
+    if d_obj is not None:
+        return d_obj.strftime("%Y-%m-%d %H:%M:%S")  # +00:00
+    return None
 
-    def section_label(self):
-        return "%s,%s,%s,%s/%s" % (self.year,
-                                   self.quarter,
-                                   self.curriculum_abbr,
-                                   self.course_number,
-                                   self.section_id
-                                   )
 
-    class Meta:
-        db_table = "myuw_mobile_coursecolor"
+##########################################
+# this file has only user related tables #
+##########################################
 
 
 class User(models.Model):
@@ -45,39 +38,60 @@ class User(models.Model):
 
     last_visit = models.DateTimeField(default=timezone.now)
 
-    class Meta:
-        db_table = "myuw_mobile_user"
+    def __init__(self, *args, **kwargs):
+        super(User, self).__init__(*args, **kwargs)
 
+    @classmethod
+    def get_user_by_netid(cls, uwnetid):
+        if uwnetid:
+            return User.objects.get(uwnetid=uwnetid)
+        return None
 
-class StudentAccountsBalances(models.Model):
-    student_number = models.CharField(max_length=10,
-                                      db_index=True,
-                                      unique=True)
-    employee_id = models.CharField(max_length=10,
-                                   db_index=True,
-                                   null=True,
-                                   blank=True)
-    asof_datetime = models.DateTimeField()
-    is_am = models.BooleanField(default=True)
-    husky_card = models.DecimalField(max_digits=6,
-                                     decimal_places=2,
-                                     default=0.00)
-    residence_hall_dining = models.DecimalField(max_digits=7,
-                                                decimal_places=2,
-                                                null=True,
-                                                blank=True)
+    @classmethod
+    def get_user_by_regid(cls, uwregid):
+        if uwregid:
+            return User.objects.get(uwregid=uwregid)
+        return None
+
+    def is_netid_changed(self, uwnetid):
+        return uwnetid and uwnetid != self.uwnetid
+
+    def is_regid_changed(self, uwregid):
+        return self.uwregid is None or self.uwregid != uwregid
+
+    def set_netid(self, uwnetid):
+        self.uwnetid = uwnetid
+        self.last_visit = timezone.now
+        self.save()
+
+    def set_regid(self, uwregid):
+        self.uwregid = uwregid
+        self.last_visit = timezone.now
+        self.save()
+
+    def set_user(self, uwnetid, uwregid):
+        if self.is_netid_changed(uwnetid):
+            self.set_netid(uwnetid)
+        if self.is_regid_changed(uwregid):
+            self.set_regid(uwnetid)
+
+    def __eq__(self, other):
+        return (self.uwnetid == other.uwnetid and
+                self.uwregid == other.uwregid)
 
     def json_data(self):
-        data = {
-            "asof_date": self.asof_datetime.date().strftime("%m/%d/%Y"),
-            "asof_time": self.asof_datetime.time().strftime("%H:%M"),
-            "husky_card": self.husky_card,
-            "residence_hall_dining": self.residence_hall_dining
-            }
-        return data
+        return {
+            "uwnetid": self.uwnetid,
+            "uwregid": self.uwregid,
+            "last_visit": datetime_to_str(self.last_visit)
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data(), default=str)
 
     class Meta:
-        db_table = "myuw_mobile_studentaccountsbalances"
+        app_label = 'myuw'
+        db_table = "myuw_mobile_user"
 
 
 class TuitionDate(models.Model):
@@ -226,14 +240,6 @@ class VisitedLinkNew(models.Model):
         return sorted(values, key=lambda x: x['popularity'], reverse=True)
 
 
-class PopularLink(models.Model):
-    affiliation = models.CharField(max_length=80, null=True)
-    pce = models.NullBooleanField()
-    campus = models.CharField(max_length=8, null=True)
-    url = models.CharField(max_length=512)
-    label = models.CharField(max_length=50)
-
-
 class CustomLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     url = models.CharField(max_length=512)
@@ -269,31 +275,6 @@ class HiddenLink(models.Model):
         unique_together = (('url_key', 'user'),)
 
 
-class BannerMessage(models.Model):
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    message_title = models.TextField()
-    message_body = models.TextField()
-
-    is_published = models.BooleanField(default=False)
-
-    affiliation = models.CharField(max_length=80, null=True)
-    pce = models.NullBooleanField()
-    campus = models.CharField(max_length=8, null=True)
-    group_id = models.CharField(max_length=200, null=True)
-
-    added_by = models.CharField(max_length=50)
-    added_date = models.DateTimeField(auto_now_add=True)
-
-    preview_id = models.SlugField(null=True, db_index=True, unique=True)
-
-    def save(self, *args, **kwargs):
-        if not self.preview_id:
-            self.preview_id = str(uuid.uuid4())
-
-        super(BannerMessage, self).save(*args, **kwargs)
-
-
 class UserCourseDisplay(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     year = models.PositiveSmallIntegerField()
@@ -320,6 +301,17 @@ class UserCourseDisplay(models.Model):
 
         return color_dict, colors_taken, pin_on_teaching
 
+    def json_data(self):
+        return {
+            "user": self.user.json_data(),
+            "section_label": self.section_label,
+            "color_id": self.color_id,
+            "pin_on_teaching_page": self.pin_on_teaching_page
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data(), default=str)
+
     class Meta(object):
         app_label = 'myuw'
         db_table = 'user_course_display_pref'
@@ -329,3 +321,39 @@ class UserCourseDisplay(models.Model):
             ["user", "section_label"],
         ]
         ordering = ['section_label']
+
+
+class MigrationPreference(models.Model):
+    user = models.OneToOneField('User', on_delete=models.CASCADE)
+    display_onboard_message = models.BooleanField(default=True)
+    use_legacy_site = models.BooleanField(default=False)
+
+    def __init__(self, *args, **kwargs):
+        super(MigrationPreference, self).__init__(*args, **kwargs)
+
+    @classmethod
+    def set_preference(cls, user,
+                       display_onboard_message=True,
+                       use_legacy_site=False):
+        obj, is_new = MigrationPreference.objects.get_or_create(user=user)
+
+        if (obj.display_onboard_message != display_onboard_message or
+                obj.use_legacy_site != use_legacy_site):
+            obj.display_onboard_message = display_onboard_message
+            obj.use_legacy_site = use_legacy_site
+            obj.save()
+        return obj
+
+    def json_data(self):
+        return {
+            "user": self.user.json_data(),
+            "display_onboard_message": self.display_onboard_message,
+            "use_legacy_site": self.use_legacy_site
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data(), default=str)
+
+    class Meta(object):
+        app_label = 'myuw'
+        db_table = 'migration_preference'
