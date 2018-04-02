@@ -91,10 +91,10 @@ def _save_section_color(user, section, color_id):
     entries = UserCourseDisplay.objects.select_for_update().filter(
         user=user, section_label=section.section_label())
     # lock rows until the end of the transaction
-    if len(entries):
-        entries[0].save_section_color(color_id)
+    if len(entries) > 0:
+        if entries[0].color_id != color_id:
+            entries[0].save_section_color(color_id)
         return
-
     UserCourseDisplay.objects.create(user=user,
                                      year=section.term.year,
                                      quarter=section.term.quarter,
