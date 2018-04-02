@@ -13,7 +13,7 @@ from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import is_oldmyuw_user
+from myuw.dao.user import is_oldmyuw_user, display_onboard_message
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
@@ -44,6 +44,7 @@ def page(request,
     except Exception:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
+
     netid = person.uwnetid
     context["user"] = {
         "netid": netid,
@@ -66,6 +67,7 @@ def page(request,
     context["err"] = None
     context["user"]["affiliations"] = affiliations
     context["banner_messages"] = get_current_messages(request)
+    context["display_onboard_message"] = display_onboard_message(request)
     context["card_display_dates"] = get_card_visibilty_date_values(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
@@ -103,6 +105,7 @@ def page(request,
 def try_prefetch(request):
     try:
         prefetch_resources(request,
+                           prefetch_migration_preference=True,
                            prefetch_enrollment=True,
                            prefetch_group=True,
                            prefetch_instructor=True)

@@ -10,6 +10,7 @@ from myuw.dao.password import password_prefetch
 from myuw.dao.term import current_terms_prefetch
 from myuw.dao.uwnetid import subscriptions_prefetch
 from myuw.dao.canvas import canvas_prefetch
+from myuw.dao.user import migration_preference_prefetch
 
 
 def prefetch(request, prefetch_methods):
@@ -27,6 +28,7 @@ def prefetch(request, prefetch_methods):
 
 
 def prefetch_resources(request,
+                       prefetch_migration_preference=False,
                        prefetch_enrollment=False,
                        prefetch_group=False,
                        prefetch_instructor=False,
@@ -40,6 +42,9 @@ def prefetch_resources(request,
     prefetch_methods.extend(current_terms_prefetch(request))
     prefetch_methods.extend(person_prefetch())
     prefetch_methods.extend(subscriptions_prefetch())
+
+    if prefetch_migration_preference:
+        prefetch_methods.extend(migration_preference_prefetch())
 
     if prefetch_instructor:
         # depends on person

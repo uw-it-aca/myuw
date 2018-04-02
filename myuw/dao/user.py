@@ -6,22 +6,38 @@ from myuw.dao import get_user_model
 logger = logging.getLogger(__name__)
 
 
-def has_legacy_preference(request):
+def migration_preference_prefetch():
+    def _method(request):
+        get_migration_preference(request)
+    return [_method]
+
+
+def get_migration_preference(request):
+    if hasattr(request, "migration_preference"):
+        return request.migration_preference
+
+    user = get_user_model(request)
     try:
-        saved = MigrationPreference.objects.get(user=get_user_model(request))
-        return saved.use_legacy_site
+        user_mig_pref = MigrationPreference.objects.get(user=user)
     except MigrationPreference.DoesNotExist:
-        pass
-    return False
+        user_mig_pref = MigrationPreference(user=user,
+                                            use_legacy_site=False,
+                                            display_onboard_message=True)
+
+    request.migration_preference = user_mig_pref
+    return user_mig_pref
+
+
+def set_migration_preference(request, user_mig_pref):
+    request.migration_preference = user_mig_pref
+
+
+def has_legacy_preference(request):
+    return get_migration_preference(request).use_legacy_site
 
 
 def display_onboard_message(request):
-    try:
-        saved = MigrationPreference.objects.get(user=get_user_model(request))
-        return saved.display_onboard_message
-    except MigrationPreference.DoesNotExist:
-        pass
-    return False
+    return get_migration_preference(request).display_onboard_message
 
 
 def is_oldmyuw_user(request):
@@ -31,15 +47,21 @@ def is_oldmyuw_user(request):
 
 
 def set_no_onboard_message(request):
-    return MigrationPreference.set_preference(get_user_model(request),
-                                              display_onboard_message=False)
+    obj = MigrationPreference.set_preference(get_user_model(request),
+                                             display_onboard_message=False)
+    set_migration_preference(request, obj)
+    return obj
 
 
 def set_preference_to_new_myuw(request):
-    return MigrationPreference.set_preference(get_user_model(request),
-                                              use_legacy_site=False)
+    obj = MigrationPreference.set_preference(get_user_model(request),
+                                             use_legacy_site=False)
+    set_migration_preference(request, obj)
+    return obj
 
 
 def set_preference_to_old_myuw(request):
-    return MigrationPreference.set_preference(get_user_model(request),
-                                              use_legacy_site=True)
+    obj = MigrationPreference.set_preference(get_user_model(request),
+                                             use_legacy_site=True)
+    set_migration_preference(request, obj)
+    return obj

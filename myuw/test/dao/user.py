@@ -1,8 +1,9 @@
 from django.test import TransactionTestCase
 from django.conf import settings
-from myuw.dao.user import set_preference_to_old_myuw,\
-    set_preference_to_new_myuw, display_onboard_message,\
-    has_legacy_preference, is_oldmyuw_user, set_no_onboard_message
+from myuw.dao.user import get_migration_preference,\
+    set_preference_to_old_myuw, set_preference_to_new_myuw,\
+    display_onboard_message, has_legacy_preference,\
+    is_oldmyuw_user, set_no_onboard_message
 from myuw.test import get_request_with_user
 
 
@@ -11,18 +12,25 @@ class TestUserDao(TransactionTestCase):
     def test_legacy_preference(self):
         req = get_request_with_user('nobody')
         # default value
+        migration_preference = get_migration_preference(req)
+        self.assertFalse(migration_preference.use_legacy_site)
         self.assertFalse(has_legacy_preference(req))
 
         set_preference_to_old_myuw(req)
+        self.assertTrue(get_migration_preference(req).use_legacy_site)
         self.assertTrue(has_legacy_preference(req))
-        self.assertTrue(display_onboard_message(req))
+
         set_preference_to_new_myuw(req)
+        self.assertFalse(get_migration_preference(req).use_legacy_site)
         self.assertFalse(has_legacy_preference(req))
-        self.assertTrue(display_onboard_message(req))
 
     def set_no_onboard_message(self):
         req = get_request_with_user('nobody')
+        # default value
+        migration_preference = get_migration_preference(req)
+        self.assertTrue(migration_preference.display_onboard_message)
         self.assertTrue(display_onboard_message(req))
+
         set_no_onboard_message(req)
         self.assertFalse(display_onboard_message(req))
 
