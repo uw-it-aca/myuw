@@ -1,5 +1,6 @@
 @import (reference) "typography.less";
 @import (reference) "boilerplate.less";
+@import (reference) "cards.less";
 
 
 ol.resources-toc {
@@ -53,6 +54,14 @@ ol.resources-toc {
             display: inline-block;
             margin-left: 16px;
         }
+    }
+
+    .myuw-canvas:hover {
+        .myuw-card-style-mixin;
+
+        -webkit-transition: background .3s, box-shadow .3s, border .3s;
+        -moz-transition: background .3s, box-shadow .3s, border .3s;
+        transition: background .3s, box-shadow .3s, border .3s;
     }
 }
 

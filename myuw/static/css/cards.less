@@ -1,16 +1,21 @@
 @import (reference) "boilerplate.less";
 
 /*** cards ***/
-.myuw-card {
 
+.myuw-card-style-mixin() {
     background: #fff;
     box-shadow: 0 1px 3px rgba(34,25,25,.15);
+    border: 1px solid #ddd;
+}
+
+.myuw-card {
+
+    .myuw-card-style-mixin;
     margin-top: 0;
     margin-left: -16px;
     margin-right: -16px;
     margin-bottom: 16px;
     padding: 16px;
-    border: 1px solid #ddd;
     border-left: none;
     border-right: none;
     position: relative;

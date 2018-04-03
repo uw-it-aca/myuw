@@ -47,8 +47,11 @@
     margin-right: -16px;
     margin-bottom: 16px;
     padding: 16px !important;
+    border: 1px solid transparent;
+    border-left: none;
+    border-right: none;
 
-    @media @two-column { margin-left: 0; margin-right: 0; }
+    @media @two-column { border-left: solid 1px transparent; border-right: solid 1px transparent; margin-left: 0; margin-right: 0; }
 
     /*** canvas title ***/
     .myuw-canvas-title { font-size: 18px !important; line-height: 1.3; color: #000; margin-top: 0; }
