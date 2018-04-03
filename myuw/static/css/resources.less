@@ -5,12 +5,6 @@
 
 ol.resources-toc {
 
-    @media @two-column {
-        display: flex;
-        flex-flow: column wrap;
-        height: 15em;
-    }
-
     li {
         width: 100%;
         font-size: @fontsize-large;
@@ -20,14 +14,11 @@ ol.resources-toc {
     }
 
     @media @two-column {
+        columns: 2;
+        column-gap: 16px;
 
         li {
-            width: auto;
-            /* TODO determine set width */
-        }
-
-        li:nth-child(-n+5) {
-            margin-right: 32px;
+            display: inline-block;
         }
     }
 }
