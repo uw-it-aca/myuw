@@ -20,15 +20,17 @@
         <div id="explore_cards" class="uw-resources">
             {{#each categories}}
             <div class="row">
-                <h3 id="{{ category_id }}">{{ category_name }}</h3>
+                <div class="col-md-12">
+                    <h3 id="{{ category_id }}">{{ category_name }}</h3>
 
-                {{#each subcategories }}
-                    <div class="col-sm-6">
+                    <div class="uw-resources-columns">
+                    {{#each subcategories }}
                         <div class="myuw-canvas">
                             {{> resource_content}}
                         </div>
+                    {{/each}}
                     </div>
-                {{/each}}
+                </div>
             </div>
             {{/each}}
         </div>

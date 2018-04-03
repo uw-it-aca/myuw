@@ -45,6 +45,18 @@ ol.resources-toc {
 /* Resource cards/canvas while on the Resources page */
 .uw-resources {
 
+    @media @two-column {
+        .uw-resources-columns {
+            column-count: 2;
+            column-gap: 16px;
+
+            .myuw-canvas {
+                width: 100%;
+                display: inline-block;
+            }
+        }
+    }
+
     .resources-block {
         .myuw-canvas-title {
             display: inline-block;
@@ -59,9 +71,16 @@ ol.resources-toc {
     .myuw-canvas:hover {
         .myuw-card-style-mixin;
 
+        border-left: none;
+        border-right: none;
+
         -webkit-transition: background .3s, box-shadow .3s, border .3s;
         -moz-transition: background .3s, box-shadow .3s, border .3s;
         transition: background .3s, box-shadow .3s, border .3s;
+
+        @media @two-column {
+            border: 1px solid #ddd;
+        }
     }
 }
 
