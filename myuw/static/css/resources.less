@@ -14,15 +14,16 @@ ol.resources-toc {
     }
 
     @media @two-column {
-        -webkit-columns: 320px 2;
-        -moz-columns: 320px 2;
-        columns: 320px 2;
+        -webkit-columns-count: 2;
+        -moz-columns-count: 2;
+        column-count: 2;
         -webkit-column-gap: 16px;
         -moz-column-gap: 16px;
         column-gap: 16px;
 
         li {
             display: inline-block;
+            position: relative;
             -webkit-column-break-inside: avoid;
             page-break-inside: avoid;
             break-inside: avoid;
@@ -67,7 +68,8 @@ ol.resources-toc {
     }
 
     .myuw-canvas {
-        margin-bottom: 0;     /* Save vertical space */
+        margin-top: 4px; /* Save vertical space */
+        margin-bottom: 6px;
     }
 
     .resources-block {
@@ -95,6 +97,7 @@ ol.resources-toc {
             border: 1px solid #ddd;
         }
     }
+
 }
 
 .resources-block {
