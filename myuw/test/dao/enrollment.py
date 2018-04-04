@@ -47,6 +47,11 @@ class TestDaoEnrollment(TestCase):
         term = get_current_quarter(req)
         return get_enrollment_for_term(req, term)
 
+    def test_multi_enrollments_for_a_course(self):
+        enrollment = self.get_enrollment('seagrad', "2017-04-10")
+        self.assertIsNotNone(enrollment)
+        self.assertEqual(len(enrollment.majors), 1)
+
     def test_get_enrollment_for_term(self):
         enrollment = self.get_enrollment('staff', "2013-04-10")
         self.assertIsNone(enrollment)

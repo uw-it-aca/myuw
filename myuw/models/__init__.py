@@ -304,6 +304,17 @@ class UserCourseDisplay(models.Model):
     pin_on_teaching_page = models.BooleanField(default=False)
 
     @classmethod
+    def delete_section_display(cls, user, section_label):
+        obj = UserCourseDisplay.get_section_display(
+            user=user, section_label=section_label)
+        obj.delete()
+
+    @classmethod
+    def get_section_display(cls, user, section_label):
+        return UserCourseDisplay.objects.get(user=user,
+                                             section_label=section_label)
+
+    @classmethod
     def get_course_display(cls, user, year, quarter):
         objs = UserCourseDisplay.objects.filter(user=user,
                                                 year=year,
