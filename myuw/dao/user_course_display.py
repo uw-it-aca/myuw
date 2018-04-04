@@ -86,13 +86,14 @@ def _record_primary_colors(primary_color_dict, section, color_id):
 
 def _save_section_color(user, section, color_id):
     """
-    Assign a new color to the section
+    Store the color of the section in DB
     """
-    UserCourseDisplay.objects.create(user=user,
-                                     year=section.term.year,
-                                     quarter=section.term.quarter,
-                                     section_label=section.section_label(),
-                                     color_id=color_id)
+    UserCourseDisplay.objects.update_or_create(
+        user=user,
+        year=section.term.year,
+        quarter=section.term.quarter,
+        section_label=section.section_label(),
+        color_id=color_id)
 
 
 def _set_section_colorid(section, color_id):
@@ -104,13 +105,11 @@ def _set_section_colorid(section, color_id):
 
 def _clean_up_dropped_sections(user, existing_color_dict):
     """
-    The remaining objects in existing_color_dict are no longer needed
+    Delete the remaining objects in existing_color_dict
     """
     if existing_color_dict:
         for section_label in existing_color_dict.keys():
-            obj = UserCourseDisplay.objects.get(user=user,
-                                                section_label=section_label)
-            obj.delete()
+            UserCourseDisplay.delete_section_display(user, section_label)
 
 
 def set_pin_on_teaching_page(request,
@@ -130,8 +129,8 @@ def set_pin_on_teaching_page(request,
     if section.is_primary_section:
         return False
 
-    obj = UserCourseDisplay.objects.get(user=get_user_model(request),
-                                        section_label=section_label)
+    obj = UserCourseDisplay.get_section_display(get_user_model(request),
+                                                section_label)
     if obj.pin_on_teaching_page != pin:
         obj.pin_on_teaching_page = pin
         obj.save()
