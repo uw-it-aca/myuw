@@ -117,8 +117,36 @@ ol.resources-toc {
 
 .resources-explore-card {
 
+    .resources-top-topics {
+        list-style-type: none;
+        margin: 0;
+        padding: 0 0 8px 0;
+
+        li {
+            margin-bottom: 16px;
+            font-size: @fontsize-medium;
+
+            a { color: #000; }
+            .fa { color: #4d66ca; margin-right: 2px; }
+        }
+
+        @media @two-column {
+            -webkit-columns-count: 2;
+            -moz-columns-count: 2;
+            column-count: 2;
+
+            li {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
 
     .resources-more-topics {
         border-top: 1px solid @myuw-accent-gray;
+
+        .myuw-card-heading {
+            margin-top: 16px;
+        }
     }
 }
