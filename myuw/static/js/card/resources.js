@@ -40,8 +40,26 @@ var ResourcesCard = {
         });
 
         var name = ResourcesCard.name + ResourcesCard.target_group;
-        Resources.init_events();
+        ResourcesCard.init_events();
         LogUtils.cardLoaded(name, ResourcesCard.dom_target);
+    },
+
+    init_events: function () {
+        $(".category-pin, .category-unpin").click(function(ev){
+            var cat_id = $(ev.target).val(),
+                pin = true;
+            if ($(ev.target).attr('class').indexOf('unpin') > -1){
+                pin = false;
+                $(ev.target).addClass('hidden');
+                $(ev.target).siblings('.category-pin').removeClass('hidden');
+                $(ev.target).closest(".resources-card").hide();
+            } else {
+                $(ev.target).addClass('hidden');
+                $(ev.target).siblings('.category-unpin').removeClass('hidden');
+            }
+
+            Resources.handle_pin_click(cat_id, pin);
+        });
     },
 
     _append_card: function (subcategory){

@@ -38,7 +38,7 @@ var Resources = {
     },
 
     resource_error: function () {
-        console.log('err');
+        return;
     },
 
     init_events: function () {
@@ -56,6 +56,10 @@ var Resources = {
 
             Resources.handle_pin_click(cat_id, pin);
         });
+
+        $("#scroll-to-top").click(function(ev){
+            $('html,body').animate({scrollTop: 0}, 'fast');
+        });
     },
 
     handle_pin_click: function (category_id, pin) {
@@ -67,7 +71,7 @@ var Resources = {
     },
 
     pinned_success: function () {
-        console.log('pinned!');
+        return;
     }
 
 

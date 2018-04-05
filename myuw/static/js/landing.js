@@ -49,6 +49,7 @@ var Landing = {
 
     _get_desktop_body_cards: function() {
         var desktop_body_cards = [
+            ResourcesExploreCard,
             ResourcesCard,
             HuskyExperienceCard,
             ThriveCard,
@@ -114,6 +115,7 @@ var Landing = {
 
     _get_mobile_cards: function() {
         var mobile_cards = [
+            ResourcesExploreCard,
             ResourcesCard,
             HuskyExperienceCard,
             SeattleApplicationCard,
