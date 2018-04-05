@@ -48,6 +48,22 @@ ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
     }
 }
 
+ul.myuw-inline-list, ol.myuw-inline-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        margin-right: .6em;
+        a { margin-right: .6em; }
+    }
+
+    li:not(:last-child)::after {
+        content: "·";
+    }
+}
+
 /*** Headings ***/
 h2.heading-page, h2.myuw-heading-page {
     font-family: 'encode_sans_normalbold', sans-serif;

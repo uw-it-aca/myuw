@@ -1,10 +1,22 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "resources_card_explore" %}
-    <div class="myuw-card resources-card">
+    <div class="myuw-card resources-explore-card">
         <div style="position:relative;">
-            <span>UW Resources</span>
+            <h3 class="myuw-card-title">UW Resources</h3>
 
-            <p>Here are some static resource categories/links</p>
+            <p>Explore tools, services, and resources by popular topics.</p>
+
+            <ul class="resources-top-topics">
+                <li><a href="">Academic Resources</a></li>
+                <li><a href="">Accounts, Identity, and Email</a></li>
+                <li><a href="">Student Finances</a></li>
+                <li><a href="">Employment</a></li>
+            </ul>
+
+            <div class="resources-more-topics">
+                <h4>More topics</h4>
+                <ul class="myuw-inline-list"><li><a href="">Teaching</a></li><li><a href="">Libraries</a></li><li><a href="">Campus Life</a></li><li><a href="">Events and Activities</a></li><li><a href="">Services for Faculty and Staff</a></li></ul>
+            </div>
         </div>
     </div>
 {% endtplhandlebars %}
