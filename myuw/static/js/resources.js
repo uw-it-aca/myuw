@@ -38,7 +38,7 @@ var Resources = {
     },
 
     resource_error: function () {
-        console.log('err');
+        return;
     },
 
     init_events: function () {
@@ -67,7 +67,7 @@ var Resources = {
     },
 
     pinned_success: function () {
-        console.log('pinned!');
+        return;
     }
 
 
