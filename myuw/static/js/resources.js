@@ -56,6 +56,10 @@ var Resources = {
 
             Resources.handle_pin_click(cat_id, pin);
         });
+
+        $("#scroll-to-top").click(function(ev){
+            $('html,body').animate({scrollTop: 0}, 'fast');
+        });
     },
 
     handle_pin_click: function (category_id, pin) {
