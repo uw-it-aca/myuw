@@ -6,6 +6,7 @@ $(window.document).ready(function() {
     LogUtils.init_logging();
     init_modal_events();
     init_search_events();
+    init_close_banner_msg_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -322,6 +323,35 @@ var init_search_events = function() {
         }, 400);
 	});
 
+};
+
+var init_close_banner_msg_events = function() {
+    // handle clicking on onboarding close button
+
+    $("#banner_msg_close").bind("click", function(ev) {
+        ev.preventDefault();
+        var target_div_id = ev.currentTarget.getAttribute("aria-controls");
+        var div = $("#" + target_div_id);
+        $.ajax({
+            url: "/api/v1/close_banner_message",
+            dataType: "JSON",
+            async: true,
+            type: 'GET',
+            accepts: {html: "text/html"},
+            success: function(results) {
+                if (results.done) {
+                    window.setTimeout(function() {
+                        div.attr("hidden", true);
+                        div.attr("aria-hidden", true);
+                        window.location = "/";
+                    }, 400);
+                }
+            },
+            error: function(xhr, status, error) {
+                return false;
+            }
+        });
+    });
 };
 
 var remove_card = function(target) {
