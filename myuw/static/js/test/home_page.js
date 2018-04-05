@@ -13,6 +13,7 @@ describe("HomePage", function() {
                 "myuw/static/js/resources.js",
                 "myuw/static/js/cards.js",
                 "myuw/static/js/card/resources.js",
+                "myuw/static/js/card/resources_explore.js",
                 "myuw/static/js/card/alumni.js",
                 "myuw/static/js/card/calendars/acad_cal_sp.js",
                 "myuw/static/js/card/calendars/events.js",
@@ -85,7 +86,8 @@ describe("HomePage", function() {
         it('Desktop cards for applicants/students/instructors', function() {
             var desktop_body_cards = Landing._get_desktop_body_cards();
             assert.deepEqual(desktop_body_cards,
-                             [ResourcesCard,
+                             [ResourcesExploreCard,
+                              ResourcesCard,
                               HuskyExperienceCard,
                               ThriveCard,
                               OutageCard,
@@ -118,7 +120,8 @@ describe("HomePage", function() {
         it('Mobile cards for applicants/students/instructors', function() {
             var mobile_cards = Landing._get_mobile_cards();
             assert.deepEqual(mobile_cards,
-                         [ResourcesCard,
+                         [ResourcesExploreCard,
+                          ResourcesCard,
                           HuskyExperienceCard,
                           SeattleApplicationCard,
                           BothellApplicationCard,
