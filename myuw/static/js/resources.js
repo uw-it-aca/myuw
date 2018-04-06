@@ -25,23 +25,23 @@ var Resources = {
 
     },
 
-    render_cards: function () {
-        if (WSData.resource_data()) {
-            var resource_data = WSData.resource_data();
-            $(resource_data).each(function(idx, category){
-                console.log(category.category_name);
-            });
-            var card = ResourcesCard;
-            card.dom_target = $("#explore_cards");
-        }
-
-    },
-
     resource_error: function () {
         return;
     },
 
     init_events: function () {
+        if(window.location.hash){
+            setTimeout(function(){
+                $('html, body').animate({
+                                            scrollTop: $(window.location.hash).offset().top
+                                        }, 'fast');
+
+
+
+
+            }, 500);
+        }
+
         $(".category-pin, .category-unpin").click(function(ev){
             var cat_id = $(ev.target).val(),
                 pin = true;
