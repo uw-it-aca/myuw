@@ -115,6 +115,8 @@ ol.resources-toc {
     }
 }
 
+
+/* Homepage > Explore Resources Card */
 .resources-explore-card {
 
     .resources-top-topics {
@@ -125,9 +127,10 @@ ol.resources-toc {
         li {
             margin-bottom: 16px;
             font-size: @fontsize-medium;
+            position: relative;
 
-            a { color: #000; }
-            .fa { color: #4d66ca; margin-right: 2px; }
+            a { color: #000; display: inline-block; margin-left: 1.2em; }
+            .fa { color: #4d66ca; position: absolute; top: 4px; }
         }
 
         @media @two-column {
