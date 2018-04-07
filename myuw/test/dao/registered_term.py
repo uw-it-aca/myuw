@@ -7,7 +7,8 @@ from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.registered_term import _get_registered_summer_terms,\
     _must_displayed_separately, _get_registered_future_quarters,\
     save_seen_registration_obj
-from myuw.models import SeenRegistration, User
+from myuw.dao.user import get_user_model
+from myuw.models import SeenRegistration
 from myuw.test import get_request_with_date, get_request_with_user,\
     fdao_sws_override, fdao_pws_override
 
@@ -130,10 +131,7 @@ class TestRegisteredTerm(TestCase):
         registered_future_quarters = _get_registered_future_quarters(
             now_request,  winter2014_sche, None)
 
-        user, created = User.objects.get_or_create(
-            uwnetid='javerage',
-            uwregid='9136CCB8F66711D5BE060004AC494FFE')
-
+        user = get_user_model(now_request)
         model, created, now_datetime, summer_term =\
             save_seen_registration_obj(user, now_request,
                                        registered_future_quarters[0])

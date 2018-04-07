@@ -10,10 +10,10 @@ from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import is_oldmyuw_user, display_onboard_message
+from myuw.dao.user import get_user_model
+from myuw.dao.user_pref import is_oldmyuw_user, display_onboard_message
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
@@ -40,12 +40,12 @@ def page(request,
 
     timer = Timer()
     try:
-        person = get_person_of_current_user(request)
+        user = get_user_model(request)
     except Exception:
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 
-    netid = person.uwnetid
+    netid = user.uwnetid
     context["user"] = {
         "netid": netid,
         "session_key": request.session.session_key,

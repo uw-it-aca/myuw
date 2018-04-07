@@ -1,6 +1,6 @@
 import traceback
 import logging
-from myuw.dao.user import set_no_onboard_message
+from myuw.dao.user_pref import set_no_onboard_message
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from myuw.views.api import ProtectedAPI

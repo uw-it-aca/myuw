@@ -1,7 +1,7 @@
 from unittest2 import skipIf
 from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
-from myuw.dao.user import has_legacy_preference
+from myuw.dao.user_pref import has_legacy_preference
 from myuw.test import get_request_with_user
 from myuw.test.api import missing_url, require_url, MyuwApiTest
 

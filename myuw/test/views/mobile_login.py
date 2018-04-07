@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
-from myuw.dao.user import set_preference_to_old_myuw
+from myuw.dao.user_pref import set_preference_to_old_myuw
 from myuw.test import get_request_with_user
 from myuw.test.api import MyuwApiTest, require_url
 

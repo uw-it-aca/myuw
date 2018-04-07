@@ -1,9 +1,9 @@
-import hashlib
 import json
 import logging
+import hashlib
+from hashlib import sha1
 from datetime import datetime, timedelta
 from dateutil.parser import parse
-from hashlib import sha1
 from django.utils import timezone
 from django.db import models
 from django.db.models import Count
@@ -15,12 +15,6 @@ from myuw.models.res_category_link import ResCategoryLink
 logger = logging.getLogger(__name__)
 
 
-def datetime_to_str(d_obj):
-    if d_obj is not None:
-        return d_obj.strftime("%Y-%m-%d %H:%M:%S")  # +00:00
-    return None
-
-
 ##########################################
 # this file has only user related tables #
 ##########################################
@@ -30,60 +24,57 @@ class User(models.Model):
     uwnetid = models.SlugField(max_length=16,
                                db_index=True,
                                unique=True)
-
-    uwregid = models.CharField(max_length=32,
-                               null=True,
-                               db_index=True,
-                               unique=True)
-
-    last_visit = models.DateTimeField(default=timezone.now)
+    last_visit = models.DateTimeField(editable=True)
 
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
 
     @classmethod
     def get_user_by_netid(cls, uwnetid):
-        if uwnetid:
-            return User.objects.get(uwnetid=uwnetid)
-        return None
+        return User.objects.get(uwnetid=uwnetid)
 
     @classmethod
-    def get_user_by_regid(cls, uwregid):
-        if uwregid:
-            return User.objects.get(uwregid=uwregid)
-        return None
+    def get_user(cls, uwnetid, prior_netids=[]):
+        obj = None
+        try:
+            obj = User.get_user_by_netid(uwnetid)
+            obj.update_user(uwnetid)
+
+        except User.DoesNotExist:
+            # no entry for the current netid
+
+            for prior_netid in reversed(prior_netids):
+                try:
+                    obj = User.get_user_by_netid(prior_netid)
+                    obj.update_user(uwnetid)
+                    break
+                except User.DoesNotExist:
+                    pass
+
+        if obj is None:
+            # no existing entry
+            obj = User(uwnetid=uwnetid,
+                       last_visit=timezone.now())
+            obj.save()
+
+        return obj
 
     def is_netid_changed(self, uwnetid):
-        return uwnetid and uwnetid != self.uwnetid
+        return uwnetid != self.uwnetid
 
-    def is_regid_changed(self, uwregid):
-        return self.uwregid is None or self.uwregid != uwregid
-
-    def set_netid(self, uwnetid):
-        self.uwnetid = uwnetid
-        self.last_visit = timezone.now
-        self.save()
-
-    def set_regid(self, uwregid):
-        self.uwregid = uwregid
-        self.last_visit = timezone.now
-        self.save()
-
-    def set_user(self, uwnetid, uwregid):
+    def update_user(self, uwnetid):
         if self.is_netid_changed(uwnetid):
-            self.set_netid(uwnetid)
-        if self.is_regid_changed(uwregid):
-            self.set_regid(uwnetid)
+            self.uwnetid = uwnetid
+        self.last_visit = timezone.now()
+        self.save()
 
     def __eq__(self, other):
-        return (self.uwnetid == other.uwnetid and
-                self.uwregid == other.uwregid)
+        return self.uwnetid == other.uwnetid
 
     def json_data(self):
         return {
             "uwnetid": self.uwnetid,
-            "uwregid": self.uwregid,
-            "last_visit": datetime_to_str(self.last_visit)
+            "last_visit": str(self.last_visit)
         }
 
     def __str__(self):

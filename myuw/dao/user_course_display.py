@@ -3,10 +3,10 @@ This module accesses the DB table object UserCourseDisplay
 """
 import logging
 from myuw.models import UserCourseDisplay
-from myuw.dao import get_user_model
 from myuw.dao.instructor_schedule import check_section_instructor,\
     get_section_by_label
 from myuw.dao.pws import get_person_of_current_user
+from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
 logger = logging.getLogger(__name__)

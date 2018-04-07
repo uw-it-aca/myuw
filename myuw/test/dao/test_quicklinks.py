@@ -1,6 +1,7 @@
 from django.test import TransactionTestCase
 from myuw.models import VisitedLinkNew, CustomLink, PopularLink, User
-from myuw.test import get_request_with_user, get_myuw_user
+from myuw.test import get_request_with_user
+from myuw.dao.user import get_user_model
 from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
     add_custom_link, delete_custom_link, edit_custom_link,\
     add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
@@ -18,9 +19,9 @@ class TestQuickLinkDAO(TransactionTestCase):
                 recent.add(link['url'])
             return recent
 
-        username = 'link_dao_user'
+        username = 'none'
         req = get_request_with_user(username)
-        user, created = User.objects.get_or_create(uwnetid=username)
+        user = get_user_model(req)
 
         u1 = 'http://example.com?q=1'
         u2 = 'http://example.com?q=2'
@@ -62,8 +63,8 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertEquals(len(recent), 5)
 
     def test_link_label_override(self):
-        username = 'ql_override_lbl_user'
-        user = get_myuw_user(username)
+        req = get_request_with_user('none')
+        user = get_user_model(req)
         data = {"user": user,
                 "url": "http://example.com?q=replaceit",
                 "label": "Original"}
@@ -78,8 +79,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertEquals(get_link_label(l1), "Original")
 
     def test_hidden_link(self):
-        username = 'add_hidlink_user'
-        req = get_request_with_user(username)
+        req = get_request_with_user('none')
         url = "http://s.ss.edu"
         link = add_hidden_link(req, url)
         self.assertEquals(link.url, url)
@@ -92,7 +92,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertIsNone(delete_hidden_link(req, link.pk))
 
     def test_add_custom_link(self):
-        username = 'add_link_user'
+        username = 'none'
         req = get_request_with_user(username)
         link = add_custom_link(req, "http://s1.ss.edu")
         self.assertIsNone(link.label)
@@ -107,7 +107,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertEquals(link2.pk, link1.pk)
 
     def test_delete_custom_link(self):
-        username = 'rm_link_user'
+        username = 'none'
         req = get_request_with_user(username)
         url = "http://s.ss.edu"
         link = add_custom_link(req, url)
@@ -116,7 +116,7 @@ class TestQuickLinkDAO(TransactionTestCase):
         self.assertIsNone(delete_custom_link(req, link.pk))
 
     def test_edit_custom_link(self):
-        username = 'edit_link_user'
+        username = 'none'
         req = get_request_with_user(username)
         url = "http://s.ss.edu"
         link = add_custom_link(req, url)

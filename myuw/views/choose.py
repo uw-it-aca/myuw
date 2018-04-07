@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.user import set_preference_to_old_myuw,\
+from myuw.dao.user_pref import set_preference_to_old_myuw,\
     set_preference_to_new_myuw
 from myuw.logger.logresp import log_msg_with_affiliation
 from myuw.logger.timer import Timer

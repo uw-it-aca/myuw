@@ -10,7 +10,7 @@ from myuw.dao.password import password_prefetch
 from myuw.dao.term import current_terms_prefetch
 from myuw.dao.uwnetid import subscriptions_prefetch
 from myuw.dao.canvas import canvas_prefetch
-from myuw.dao.user import migration_preference_prefetch
+from myuw.dao.user_pref import migration_preference_prefetch
 
 
 def prefetch(request, prefetch_methods):

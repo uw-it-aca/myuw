@@ -3,11 +3,11 @@ from django.conf import settings
 from userservice.user import UserServiceMiddleware
 from uw_sws.exceptions import InvalidSectionID
 from myuw.models import UserCourseDisplay
-from myuw.dao import get_user_model
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
+from myuw.dao.user import get_user_model
 from myuw.dao.user_course_display import set_course_display_pref,\
     _get_next_color, set_pin_on_teaching_page, _save_section_color
 from myuw.test import get_request_with_user, get_request_with_date
@@ -68,6 +68,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
 
         _save_section_color(get_user_model(req), schedule.sections[1], 2)
         records = UserCourseDisplay.objects.all()
+        self.assertIsNotNone(str(records[0]))
 
         set_course_display_pref(req, schedule)
         sections = schedule.sections

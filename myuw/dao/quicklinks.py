@@ -3,8 +3,9 @@ import logging
 import os
 from django.db import transaction, IntegrityError
 from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
-from myuw.dao import get_netid_of_current_user, get_user_model
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.affiliation_data import get_data_for_affiliations
+from myuw.dao.user import get_user_model
 
 
 RECENT_LINKS_DISPLAY_LIMIT = 5
