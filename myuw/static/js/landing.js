@@ -49,7 +49,6 @@ var Landing = {
 
     _get_desktop_body_cards: function() {
         var desktop_body_cards = [
-            ResourcesCard,
             HuskyExperienceCard,
             ThriveCard,
             OutageCard,
@@ -70,8 +69,7 @@ var Landing = {
             SummerRegStatusCard1,
             SeattleApplicationCard,
             BothellApplicationCard,
-            TacomaApplicationCard,
-            ResourcesExploreCard
+            TacomaApplicationCard
         ];
 
         if(window.user.employee &&
@@ -97,6 +95,9 @@ var Landing = {
         if(window.user.alumni) {
             desktop_body_cards.push(AlumniCard);
         }
+
+        // Always show these cards last
+        desktop_body_cards.push(ResourcesCard, ResourcesExploreCard);
         return desktop_body_cards;
     },
 
@@ -115,7 +116,6 @@ var Landing = {
 
     _get_mobile_cards: function() {
         var mobile_cards = [
-            ResourcesCard,
             HuskyExperienceCard,
             SeattleApplicationCard,
             BothellApplicationCard,
@@ -139,8 +139,7 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1,
             AcadCalSnippet,
-            EventsCard,
-            ResourcesExploreCard
+            EventsCard
         ];
 
         if(window.user.employee &&
@@ -167,6 +166,8 @@ var Landing = {
         if(window.user.alumni) {
             mobile_cards.push(AlumniCard);
         }
+        // Always show these cards last
+        mobile_cards.push(ResourcesCard, ResourcesExploreCard);
         return mobile_cards;
     },
 
