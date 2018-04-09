@@ -69,9 +69,7 @@ var Landing = {
             SummerRegStatusCard1,
             SeattleApplicationCard,
             BothellApplicationCard,
-            TacomaApplicationCard,
-            ResourcesCard,
-            ResourcesExploreCard
+            TacomaApplicationCard
         ];
 
         if(window.user.employee &&
@@ -97,6 +95,9 @@ var Landing = {
         if(window.user.alumni) {
             desktop_body_cards.push(AlumniCard);
         }
+
+        // Always show these cards last
+        desktop_body_cards.push(ResourcesCard, ResourcesExploreCard);
         return desktop_body_cards;
     },
 
@@ -138,9 +139,7 @@ var Landing = {
             FutureQuarterCard1,
             SummerRegStatusCard1,
             AcadCalSnippet,
-            EventsCard,
-            ResourcesCard,
-            ResourcesExploreCard
+            EventsCard
         ];
 
         if(window.user.employee &&
@@ -167,6 +166,8 @@ var Landing = {
         if(window.user.alumni) {
             mobile_cards.push(AlumniCard);
         }
+        // Always show these cards last
+        mobile_cards.push(ResourcesCard, ResourcesExploreCard);
         return mobile_cards;
     },
 
