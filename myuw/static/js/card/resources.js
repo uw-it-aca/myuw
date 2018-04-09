@@ -30,14 +30,18 @@ var ResourcesCard = {
         // Hide loading card
         ResourcesCard.dom_target.html("");
 
-        var temp_subcat = data[0].subcategories.Registration;
+        var sorted_subcategories = {};
+
         $(data).each(function(idx, category){
             var sc = Object.keys(category.subcategories);
             $(sc).each(function(i, subcat){
                 var cat_data = category.subcategories[subcat];
-                ResourcesCard._append_card(cat_data);
+                sorted_subcategories[cat_data.order] = cat_data;
             });
         });
+        for(var i=0; i < Object.keys(sorted_subcategories).length; i++){
+            ResourcesCard._append_card(sorted_subcategories[i]);
+        }
 
         var name = ResourcesCard.name + ResourcesCard.target_group;
         ResourcesCard.init_events();

@@ -49,7 +49,6 @@ var Landing = {
 
     _get_desktop_body_cards: function() {
         var desktop_body_cards = [
-            ResourcesCard,
             HuskyExperienceCard,
             ThriveCard,
             OutageCard,
@@ -71,6 +70,7 @@ var Landing = {
             SeattleApplicationCard,
             BothellApplicationCard,
             TacomaApplicationCard,
+            ResourcesCard,
             ResourcesExploreCard
         ];
 
@@ -115,7 +115,6 @@ var Landing = {
 
     _get_mobile_cards: function() {
         var mobile_cards = [
-            ResourcesCard,
             HuskyExperienceCard,
             SeattleApplicationCard,
             BothellApplicationCard,
@@ -140,6 +139,7 @@ var Landing = {
             SummerRegStatusCard1,
             AcadCalSnippet,
             EventsCard,
+            ResourcesCard,
             ResourcesExploreCard
         ];
 

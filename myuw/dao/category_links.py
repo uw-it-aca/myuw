@@ -150,7 +150,6 @@ class Resource_Links(MyuwLink):
     def _filter_pinned(self, links):
         # remove unpinned subcats
         for category in links:
-            category_id = links[category]['category_id']
             for subcat in links[category]['subcategories'].keys():
                 if not links[category]['subcategories'][subcat]['is_pinned']:
                     del links[category]['subcategories'][subcat]
@@ -184,10 +183,15 @@ class Resource_Links(MyuwLink):
                     subcat_id = link.category_id.lower() + \
                                 link.subcategory_id.lower()
                     is_pinned = subcat_id in pinned_list
+                    try:
+                        order = pinned_list.index(subcat_id)
+                    except ValueError:
+                        order = None
                     subcats[link.sub_category] = \
                         {'subcat_name': link.sub_category,
                          'subcat_id': subcat_id,
                          'is_pinned': is_pinned,
+                         'order': order,
                          'links': []}
 
                 subcats[link.sub_category]['links'].append(
