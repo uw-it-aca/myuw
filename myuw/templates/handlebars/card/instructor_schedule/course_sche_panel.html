@@ -24,7 +24,7 @@
                                 <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
                                 -->
                             {{else}}
-                                {{#if days_tbd }}
+                                {{#if days_tbd}}
                                     <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
                                     {{else if no_meeting}}
                                     <td colspan="3" class="course-tbd">No classroom meeting: online learning</td>
@@ -48,58 +48,60 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-3">
-            <h4 class="myuw-card-row-heading">Final Exam</h4>
-        </div>
+    {{#unless mini_card}}
+        <div class="row">
+            <div class="col-sm-3">
+                <h4 class="myuw-card-row-heading">Final Exam</h4>
+            </div>
 
-        <div class="col-sm-9">
-            <div class="myuw-card-row-content">
-                {{#if final_exam }}
-                    {{#with final_exam}}
-                        {{#if no_exam_or_nontraditional}}
-                             <span>No Exam or Non-Traditional</span>
-                        {{else}}
-                            {{#if start_date }}
-                                {{#unless ../is_primary_section}}
-                                    <span>The final exam for the primary section is:</span><br>
-                                {{/unless}}
-                                <table class="table-course-schedule">
-                                    <thead class="sr-only">
-                                        <tr>
-                                            <th>Day</th>
-                                            <th>Time</th>
-                                            <th>Location</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="tbody-course-schedule">
-                                        <td class="course-final-date">{{ formatDateAsDate start_date }}</td>
-                                        <td class="course-time">{{ formatDateAsTime start_date }} &ndash; {{ formatDateAsTimeAMPM end_date }}</td>
-
-                                        {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
-                                    </tbody>
-                                </table>
+            <div class="col-sm-9">
+                <div class="myuw-card-row-content">
+                    {{#if final_exam }}
+                        {{#with final_exam}}
+                            {{#if no_exam_or_nontraditional}}
+                                <span>No Exam or Non-Traditional</span>
                             {{else}}
-                                <span>Day and time to be arranged.</span>
-                            {{/if}}
-                        {{/if}}
+                                {{#if start_date }}
+                                    {{#unless ../is_primary_section}}
+                                        <span>The final exam for the primary section is:</span><br>
+                                    {{/unless}}
+                                    <table class="table-course-schedule">
+                                        <thead class="sr-only">
+                                            <tr>
+                                                <th>Day</th>
+                                                <th>Time</th>
+                                                <th>Location</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="tbody-course-schedule">
+                                            <td class="course-final-date">{{ toFriendlyDate start_date }}</td>
+                                            <td class="course-time">{{ formatDateAsTime start_date }} &ndash; {{ formatDateAsTimeAMPM end_date }}</td>
 
-                    {{/with}}
-                {{else}}
-                    <span>No Final Exam Scheduled.</span>
-                {{/if}}
-                {{#if is_primary_section}}
-                    {{#unless final_exam.no_exam_or_nontraditional}}
-                        {{#unless final_exam.is_confirmed}}
-                            {{#if sln}}
-                                 <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid="
-                                    target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
+                                            {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                        </tbody>
+                                    </table>
+                                {{else}}
+                                    <span>Day and time to be arranged.</span>
+                                {{/if}}
                             {{/if}}
+                        {{/with}}
+                    {{else}}
+                        <span>No Final Exam Scheduled.</span>
+                    {{/if}}
+
+                    {{#if is_primary_section}}
+                        {{#unless final_exam.no_exam_or_nontraditional}}
+                            {{#unless final_exam.is_confirmed}}
+                                {{#if sln}}
+                                    <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid="
+                                    target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
+                                {{/if}}
+                            {{/unless}}
                         {{/unless}}
-                    {{/unless}}
-                {{/if}}
+                    {{/if}}
+                </div>
             </div>
         </div>
-    </div>
+    {{/unless}}
 </div>
 {% endtplhandlebars %}

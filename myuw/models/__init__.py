@@ -292,3 +292,51 @@ class BannerMessage(models.Model):
             self.preview_id = str(uuid.uuid4())
 
         super(BannerMessage, self).save(*args, **kwargs)
+
+
+class UserCourseDisplay(models.Model):
+    user = models.ForeignKey('User', on_delete=models.PROTECT)
+    year = models.PositiveSmallIntegerField()
+    quarter = models.CharField(max_length=10)
+    section_label = models.CharField(max_length=64)
+    # year,quarter,curriculum_abbr,course_number/section_id
+    color_id = models.PositiveSmallIntegerField()
+    pin_on_teaching_page = models.BooleanField(default=False)
+
+    @classmethod
+    def delete_section_display(cls, user, section_label):
+        obj = UserCourseDisplay.get_section_display(
+            user=user, section_label=section_label)
+        obj.delete()
+
+    @classmethod
+    def get_section_display(cls, user, section_label):
+        return UserCourseDisplay.objects.get(user=user,
+                                             section_label=section_label)
+
+    @classmethod
+    def get_course_display(cls, user, year, quarter):
+        objs = UserCourseDisplay.objects.filter(user=user,
+                                                year=year,
+                                                quarter=quarter)
+        pin_on_teaching = []  # section_labels
+        color_dict = {}  # section_labels: color_id
+        colors_taken = []  # a list of color_ids
+        for record in objs:
+            if record.pin_on_teaching_page is True:
+                pin_on_teaching.append(record.section_label)
+            color_dict[record.section_label] = record.color_id
+            if record.color_id not in colors_taken:
+                colors_taken.append(record.color_id)
+
+        return color_dict, colors_taken, pin_on_teaching
+
+    class Meta(object):
+        app_label = 'myuw'
+        db_table = 'user_course_display_pref'
+        unique_together = ("user", "section_label")
+        index_together = [
+            ["user", "year", "quarter"],
+            ["user", "section_label"],
+        ]
+        ordering = ['section_label']

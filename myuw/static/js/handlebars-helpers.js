@@ -1,12 +1,19 @@
-// used in profile banner
-Handlebars.registerHelper("formatPhoneNumber", function(str) {
-    if (str.length === 10) {
-        return str.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+// used on profile student_info, directory_info
+Handlebars.registerHelper("formatPhoneNumber", function(value) {
+    if (arguments.length === 0 || value === undefined || value.length === 0) {
+        return '';
     }
-    return str;
+    var regexp = /^(\d{3})([ -\.]?)(\d{3})([ -\.]?)(\d{4})$/;
+    var number = value.match(regexp);
+    if (number) {
+        return '(' + number[1] + ') ' + number[3] + '-' + number[5];
+    }
+    return value;
 });
 
-Handlebars.registerHelper("formatStudentCredits", function(str) {
+// used on future_quarter.html
+Handlebars.registerHelper("strToInt", function(str) {
+    // credit string to integer
     return parseInt(str, 10);
 });
 
@@ -26,34 +33,32 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         return moment(parse_date(str)).format("MMM D");
     });
 
-    // used on course card
-    Handlebars.registerHelper("toMoreDay", function(str) {
-        var d =  moment().from(moment(parse_date(str)), true);
-        if (d.match(/^an? [a-z]+$/)) {
-            return d.replace(/^an? /, '1 more ');
-        } else {
-            return d.replace(/ ([a-z]+)$/, ' more $1');
-        }
-    });
-
     // used on Library card
     Handlebars.registerHelper("toFromNowDate", function(str) {
         return moment(parse_date(str)).fromNow();
     });
 
     // used on Grade, Library card
-    Handlebars.registerHelper("toFriendlyDate", function(str) {
-        return moment(parse_date(str)).format("ddd, MMM D");
+    Handlebars.registerHelper("toFriendlyDate", function(date_str) {
+        if (date_str === undefined || date_str.length === 0) {
+            return "";
+        }
+        return moment(parse_date(date_str)).format("ddd, MMM D");
     });
 
-    Handlebars.registerHelper("toFriendlyDateVerbose", function(str) {
-        return moment(parse_date(str)).format("dddd, MMMM D");
+    Handlebars.registerHelper("toFriendlyDateVerbose", function(date_str) {
+        if (date_str === undefined || date_str.length === 0) {
+            return "";
+        }
+        return moment(parse_date(date_str)).format("dddd, MMMM D");
     });
 })();
 
 (function() {
-    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June',
+                  'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
+                'Thursday', 'Friday', 'Saturday'];
 
     function _get_date(d) {
         return new Date(d.replace(/-/g, "/") + " 00:00:00");
@@ -90,6 +95,7 @@ Handlebars.registerHelper("formatStudentCredits", function(str) {
         }
 
     });
+
     Handlebars.registerHelper('short_year', function(year) {
         year = ""+year;
         return "’"+year.substr(-2,2);
@@ -103,6 +109,12 @@ Handlebars.registerHelper("safeLabel", function(str) {
 Handlebars.registerHelper("toUrlSafe", function(curr_abbr) {
     return curr_abbr_url_safe(curr_abbr);
 });
+
+// a letter followed by up to 33 letters, digits, periods, or hyphens.
+Handlebars.registerHelper("toAnchorName", function(curr_abbr) {
+    return curr_abbr.replace(/ /g, '-');
+});
+
 
 Handlebars.registerHelper("toLowerCase", function(str) {
     if (str) {
@@ -177,7 +189,7 @@ Handlebars.registerHelper("formatTimeAMPM", function(time) {
 
 // converts date string into 12 hour display - no am/pm
 Handlebars.registerHelper("formatDateAsTime", function(date_str) {
-    if (date_str === undefined) {
+    if (date_str === undefined || date_str.length === 0) {
         return "";
     }
     var date = date_from_string(date_str);
@@ -197,10 +209,10 @@ Handlebars.registerHelper("formatDateAsTime", function(date_str) {
 
 // converts date string into 12 hour am/pm display
 Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
-    var date = date_from_string(date_str);
-    if (date_str === undefined) {
+    if (date_str === undefined || date_str.length === 0) {
         return "";
     }
+    var date = date_from_string(date_str);
     var hours = date.getHours();
     var minutes = date.getMinutes();
     var am_pm;
@@ -220,51 +232,6 @@ Handlebars.registerHelper("formatDateAsTimeAMPM", function(date_str) {
     return hours + ":" + minutes + am_pm;
 });
 
-// converts date string into a day display
-Handlebars.registerHelper("formatDateAsDate", function(date_str) {
-    if (date_str === undefined) {
-        return "";
-    }
-    var date = date_from_string(date_str);
-    var day_of_week = date.getDay();
-    var month_num = date.getMonth();
-    var day_of_month = date.getDate();
-
-    var day_names = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    return new Handlebars.SafeString(day_names[day_of_week] + ", " + month_names[month_num] + " " + day_of_month);
-});
-
-// converts date string into a day display with full names
-Handlebars.registerHelper("formatDateAsDateFullName", function(date_str) {
-    if (date_str === undefined) {
-        return "";
-    }
-    var date = date_from_string(date_str);
-    var day_of_week = date.getDay();
-    var month_num = date.getMonth();
-    var day_of_month = date.getDate();
-
-    var day_names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-    return new Handlebars.SafeString(day_names[day_of_week] + ", " + month_names[month_num] + " " + day_of_month);
-});
-
-// converts date string into the label for the final exams schedule
-Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back) {
-    var date = moment(date_str);
-    date.subtract(days_back, "days");
-    var day_of_week = date.day();
-    var month_num = date.month();
-    var day_of_month = date.date();
-
-    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    return month_names[month_num] + " " + day_of_month;
-});
-
 Handlebars.registerHelper("ucfirst", function(str) {
     lstr = str.toLowerCase();
     return lstr.replace(/^([a-z])/, function(match) {
@@ -281,28 +248,6 @@ Handlebars.registerHelper("formatPrice", function(price) {
         formatted[1] = "00";
     }
     return formatted.join(".");
-});
-
-Handlebars.registerHelper('equal', function(value1, value2, options) {
-    if (arguments.length < 3) {
-        throw new Error("Handlebars Helper equal needs 2 parameters");
-    }
-    if(value1 !== value2) {
-        return options.inverse(this);
-    }
-    else {
-        return options.fn(this);
-    }
-});
-
-Handlebars.registerHelper("eachWithIndex", function(array, fn) {
-    var buffer = "";
-    for (var i = 0, j = array.length; i < j; i++) {
-        var item = array[i];
-        item.index = i;
-        buffer += fn.fn(item);
-    }
-    return buffer;
 });
 
 Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
@@ -398,6 +343,94 @@ Handlebars.registerHelper('pluralize_by_size', function(list, single, plural) {
     return plural;
 });
 
+Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
+    if (arguments.length === 0 || quarter_str === undefined || quarter_str.length === 0) {
+        return "";
+    }
+    var q = quarter_str.toLowerCase();
+    if(q === "winter") {
+        return 1;
+    }
+    else if(q === "spring") {
+        return 2;
+    }
+    else if(q === "summer") {
+        return 3;
+    }
+    else if(q === "autumn") {
+        return 4;
+    }
+});
+
+Handlebars.registerHelper('get_quarter_abbreviation', function(quarter_str) {
+    if (arguments.length === 0 || quarter_str === undefined || quarter_str.length === 0) {
+        return "";
+    }
+    var q = quarter_str.toLowerCase();
+    if(q === "winter") {
+        return "WIN";
+    }
+    else if(q === "spring") {
+        return "SPR";
+    }
+    else if(q === "summer") {
+        return "SUM";
+    }
+    else if(q === "autumn") {
+        return "AUT";
+    }
+});
+
+Handlebars.registerHelper('slugify', function(value) {
+    var slug = value.replace(/[^\w\s]+/gi, '').replace(/ +/gi, '-');
+    return slug.toLowerCase();
+});
+
+Handlebars.registerHelper('shorten_meeting_type', function(str) {
+    if (str.length > 4) {
+        return str.substring(0, 3);
+    }
+    return str;
+});
+
+/********************************
+* Below are {{# block helpers
+********************************/
+
+Handlebars.registerHelper("eachWithIndex", function(array, fn) {
+    var buffer = "";
+    for (var i = 0, j = array.length; i < j; i++) {
+        var item = array[i];
+        item.index = i;
+        buffer += fn.fn(item);
+    }
+    return buffer;
+});
+
+Handlebars.registerHelper('equal', function(value1, value2, options) {
+    if (arguments.length < 3) {
+        throw new Error("Handlebars Helper equal needs 2 parameters");
+    }
+    if(value1 !== value2) {
+        return options.inverse(this);
+    }
+    else {
+        return options.fn(this);
+    }
+});
+
+/**
+ * The {{#exists}} helper checks if a variable is defined.
+ * being 0 or null are considered defined.
+ */
+Handlebars.registerHelper('exists', function(variable, options) {
+    if (typeof variable !== 'undefined') {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
 Handlebars.registerHelper('greater_than', function(value1, value2, options) {
     if (arguments.length < 3) {
         throw new Error("Handlebars Helper greater_than needs 2 parameters");
@@ -428,84 +461,3 @@ Handlebars.registerHelper('not_equal', function(obj, value, block) {
         return block.fn(this);
     }
 });
-
-Handlebars.registerHelper('get_quarter_code', function(quarter_str) {
-    if (arguments.length < 1) {
-        throw new Error("Handlebars Helper quarter_code needs 1 parameter");
-    }
-    var q = quarter_str.toLowerCase();
-    if(q === "winter") {
-        return 1;
-    }
-    else if(q === "spring") {
-        return 2;
-    }
-    else if(q === "summer") {
-        return 3;
-    }
-    else if(q === "autumn") {
-        return 4;
-    }
-    else {
-        return "";
-    }
-});
-
-Handlebars.registerHelper('get_quarter_abbreviation', function(quarter_str) {
-    if (arguments.length < 1) {
-        throw new Error("Handlebars Helper quarter_abbreviation needs 1 parameter");
-    }
-    var q = quarter_str.toLowerCase();
-    if(q === "winter") {
-        return "WIN";
-    }
-    else if(q === "spring") {
-        return "SPR";
-    }
-    else if(q === "summer") {
-        return "SUM";
-    }
-    else if(q === "autumn") {
-        return "AUT";
-    }
-    else {
-        return "";
-    }
-});
-
-Handlebars.registerHelper('slugify', function(value) {
-    var slug = value.replace(/[^\w\s]+/gi, '').replace(/ +/gi, '-');
-    return slug.toLowerCase();
-});
-
-Handlebars.registerHelper('shorten_meeting_type', function(str) {
-    if (str.length > 4) {
-        return str.substring(0, 3);
-    }
-    return str;
-});
-
-Handlebars.registerHelper('phone_number', function(value) {
-    var number;
-
-    if (value) {
-        number = value.match(/^(\d{3})[ -\.]?(\d{3})[ -\.]?(\d{4})$/);
-        if (number) {
-            return '(' + number[1] + ') ' + number[2] + '-' + number[3];
-        }
-    }
-
-    return value;
-});
-
-/**
- * The {{#exists}} helper checks if a variable is defined.
- */
-Handlebars.registerHelper('exists', function(variable, options) {
-    if (typeof variable !== 'undefined') {
-        return options.fn(this);
-    } else {
-        return options.inverse(this);
-    }
-});
-

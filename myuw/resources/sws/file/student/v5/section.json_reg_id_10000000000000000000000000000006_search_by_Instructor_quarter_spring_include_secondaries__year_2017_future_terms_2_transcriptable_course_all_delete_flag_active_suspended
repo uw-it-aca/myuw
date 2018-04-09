@@ -30,6 +30,14 @@
             "Quarter": "spring", 
             "SectionID": "A", 
             "Year": 2018
+        },
+        {
+            "CourseNumber": "600",
+            "CurriculumAbbreviation": "STAT",
+            "Href": "/student/v5/course/2018,spring,STAT,600/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2018
         }
     ], 
     "TotalCount": 1

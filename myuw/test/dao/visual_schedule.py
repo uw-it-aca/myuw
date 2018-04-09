@@ -7,9 +7,9 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same, \
     _consolidate_weeks, _add_weekend_meeting_data, \
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period, \
-    _add_course_colors_to_schedule, _get_combined_schedule, \
-    get_future_visual_schedule, get_current_visual_schedule, \
-    _trim_summer_term, _get_disabled_days, _get_earliest_meeting_day, \
+    _get_combined_schedule, get_future_visual_schedule,\
+    get_current_visual_schedule, _trim_summer_term,\
+    _get_disabled_days, _get_earliest_meeting_day, \
     _get_latest_meeting_day, _get_earliest_start_from_period, \
     _get_latest_end_from_period, trim_section_meetings, \
     trim_weeks_no_meetings, _get_off_term_trimmed, _adjust_off_term_dates, \
@@ -636,21 +636,6 @@ class TestVisualSchedule(TestCase):
         schedule = get_schedule_by_term(request, term)
         finals = _get_finals_period(schedule)
         self.assertEqual(len(finals.sections), 5)
-
-    def test_add_section_color(self):
-        term = get_term_from_quarter_string("2013,spring")
-        request = get_request_with_user('javerage')
-        schedule = get_schedule_by_term(request, term)
-
-        get_request_with_user('javerage',
-                              get_request_with_date("2013-04-01"))
-
-        _add_course_colors_to_schedule(request, schedule)
-        self.assertEqual(schedule.sections[0].color_id, 1)
-        self.assertEqual(schedule.sections[1].color_id, 2)
-        self.assertEqual(schedule.sections[2].color_id, 3)
-        self.assertEqual(schedule.sections[3].color_id, '3a')
-        self.assertEqual(schedule.sections[4].color_id, '3a')
 
     def test_get_instructor_sections(self):
         request = get_request_with_user('bill',

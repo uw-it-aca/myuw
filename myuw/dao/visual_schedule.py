@@ -1,7 +1,7 @@
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.course_color import get_colors_by_schedule
+from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.term import get_current_quarter, get_current_summer_term
 from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *
@@ -185,7 +185,7 @@ def _set_student_sections(student_schedule):
 
 
 def _get_visual_schedule_from_schedule(schedule, request):
-    _add_course_colors_to_schedule(request, schedule)
+    set_course_display_pref(request, schedule)
     _add_dates_to_sections(schedule)
     if _is_split_summer(schedule):
         _adjust_off_term_dates(schedule)
@@ -369,17 +369,6 @@ def _get_latest_meeting_day(meeting):
         day_index = 5
 
     return day_index
-
-
-def _add_course_colors_to_schedule(request, schedule):
-    colors = get_colors_by_schedule(request, schedule)
-    for section in schedule.sections:
-        try:
-            color = colors[section.section_label()]
-            section.color_id = color
-        except KeyError:
-            pass
-    return schedule
 
 
 def _get_finals_period(schedule):

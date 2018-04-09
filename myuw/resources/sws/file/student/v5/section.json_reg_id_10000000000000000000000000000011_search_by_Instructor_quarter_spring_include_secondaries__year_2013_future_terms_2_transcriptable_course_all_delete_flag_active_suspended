@@ -48,6 +48,22 @@
             "Year": 2013
         },
         {
+            "CourseNumber": "421",
+            "CurriculumAbbreviation": "CM",
+            "Href": "/student/v5/course/2013,spring,CM,421/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "450",
+            "CurriculumAbbreviation": "CM",
+            "Href": "/student/v5/course/2013,summer,CM,450/A.json",
+            "Quarter": "summer",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
             "CourseNumber": "712",
             "CurriculumAbbreviation": "CPROGRM",
             "Href": "/student/v5/course/2013,spring,CPROGRM,712/A.json",
@@ -56,13 +72,13 @@
             "Year": 2013
         },
         {
-            "CourseNumber": "421",
-            "CurriculumAbbreviation": "CM",
-            "Href": "/student/v5/course/2013,spring,CM,421/A.json",
-            "Quarter": "spring",
-            "SectionID": "A",
+            "CourseNumber": "498",
+            "CurriculumAbbreviation": "LIS",
+            "Href": "/student/v5/course/2013,summer,LIS,498/C.json",
+            "Quarter": "summer",
+            "SectionID": "C",
             "Year": 2013
         }
     ],
-    "TotalCount": 5
+    "TotalCount": 7
 }
