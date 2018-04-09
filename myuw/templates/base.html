@@ -160,7 +160,7 @@
                 <div id="message_banner_location">
                     <div class="message-text myuw-wrapper">
                         <div class="message">
-                            <p>New to MyUW?  <a href="#" data-toggle="modal" data-target="#tour_modal">Take a quick tour </a></p>
+                            <p>New here? <a href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance </a></p>
                         </div>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
                     <div class="myuw-welcome" role="complementary">
                         <h2>Welcome!</h2>
                         <ul class="unstyled-list myuw-muted">
-                            <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">Quick tour of MyUW</a></li>	
+                            <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance</a></li>	
                             <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" data-toggle="" data-target="" target="_blank">Learn more about MyUW </a></li>
                             <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
                         </ul>
@@ -254,7 +254,7 @@
 		        <div id="message_banner_location">
 		            <div class="message-text myuw-wrapper">
 		                <div class="message">
-		                    <p>New to MyUW?  <a href="#" data-toggle="modal" data-target="#tour_modal">Take a quick tour </a></p>
+		                    <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal"> See MyUW at a glance </a></p>
 		                </div>
 		            </div>
 		        </div>
@@ -600,20 +600,21 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button id="tour_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="tour_modal_label">MyUW at a glance</h3>
+                        <h3 class="modal-title" id="tour_modal_label">Hello there! Here's MyUW at a glance</h3>
                     </div>
                     <div class="modal-body">
                         <div style="margin-top:10px;">
-                            <p id="tour_modal_description">Find key features in the new MyUW. <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank">Learn more about MyUW</a>.</p>
-
+                            <p id="tour_modal_description">Find key features and UW Resources.</p>
 			    <div>
 				<picture> 
-				    <source media="(min-width: 992px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" />
-				    <source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" />
-				    <img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page with email link, Account page, UW resources page callouts" longdesc="" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;"/>
+				    <source media="(min-width: 992px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
+					<source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
+					    <img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page with email link, Account page, UW resources page callouts" longdesc="" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
 				</picture>
 			    </div>
                         </div>
+                        <p style="margin-top:10px;">Watch a <a href="">video tour of MyUW for Instructors</a>, <a href="">for staff</a>, or <a href="">for students</a>. <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank" title="MyUW Help center">Learn more about MyUW</a>.
+                        </p>
                     </div><!-- end modal body -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
