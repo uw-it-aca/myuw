@@ -86,9 +86,7 @@ describe("HomePage", function() {
         it('Desktop cards for applicants/students/instructors', function() {
             var desktop_body_cards = Landing._get_desktop_body_cards();
             assert.deepEqual(desktop_body_cards,
-                             [ResourcesExploreCard,
-                              ResourcesCard,
-                              HuskyExperienceCard,
+                             [HuskyExperienceCard,
                               ThriveCard,
                               OutageCard,
                               GradeCard,
@@ -108,7 +106,9 @@ describe("HomePage", function() {
                               SummerRegStatusCard1,
                               SeattleApplicationCard,
                               BothellApplicationCard,
-                              TacomaApplicationCard
+                              TacomaApplicationCard,
+                              ResourcesExploreCard,
+                              ResourcesCard,
                              ]);
             var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
             assert.deepEqual(desktop_sidebar_cards,
@@ -120,9 +120,7 @@ describe("HomePage", function() {
         it('Mobile cards for applicants/students/instructors', function() {
             var mobile_cards = Landing._get_mobile_cards();
             assert.deepEqual(mobile_cards,
-                         [ResourcesExploreCard,
-                          ResourcesCard,
-                          HuskyExperienceCard,
+                         [HuskyExperienceCard,
                           SeattleApplicationCard,
                           BothellApplicationCard,
                           TacomaApplicationCard,
@@ -145,7 +143,9 @@ describe("HomePage", function() {
                           FutureQuarterCard1,
                           SummerRegStatusCard1,
                           AcadCalSnippet,
-                          EventsCard]);
+                          EventsCard,
+                          ResourcesExploreCard,
+                          ResourcesCard,]);
         });
 
         it('Desktop for alumni should have', function() {
