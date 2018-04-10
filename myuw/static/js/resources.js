@@ -33,12 +33,8 @@ var Resources = {
         if(window.location.hash){
             setTimeout(function(){
                 $('html, body').animate({
-                                            scrollTop: $(window.location.hash).offset().top
-                                        }, 'fast');
-
-
-
-
+                    scrollTop: $(window.location.hash).offset().top
+                }, 'fast');
             }, 500);
         }
 
