@@ -33,6 +33,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
 
     def test_student_schedule(self):
         req = get_request_with_user("javerage")
+        user = get_user_model(req)
         term = get_current_quarter(req)
         schedule = get_schedule_by_term(req, term)
         set_course_display_pref(req, schedule)
@@ -49,8 +50,16 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEqual(sections[4].primary_section_label(),
                          sections[2].section_label())
         self.assertEqual(sections[4].color_id, '3a')
+
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 5)
+        self.assertIsNotNone(str(records[0]))
+
+        # change existing color
+        _save_section_color(user, sections[0], 5)
+        record = UserCourseDisplay.objects.get(
+            user=user, section_label="2013,spring,TRAIN,100/A")
+        self.assertEqual(record.color_id, 5)
 
     def test_single_section_multiple_enrollments(self):
         # multiple enrollments of a single section

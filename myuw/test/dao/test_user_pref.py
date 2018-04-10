@@ -16,6 +16,10 @@ class TestUserPrefDao(TransactionTestCase):
         self.assertIsNotNone(str(migration_preference))
         self.assertFalse(migration_preference.use_legacy_site)
 
+        # use the one in request
+        pref = get_migration_preference(req)
+        self.assertFalse(pref.use_legacy_site)
+
         pref = set_preference_to_old_myuw(req)
         self.assertTrue(pref.use_legacy_site)
 

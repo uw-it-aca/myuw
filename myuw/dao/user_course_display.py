@@ -92,7 +92,7 @@ def _save_section_color(user, section, color_id):
     if UserCourseDisplay.exists_section_display(user, section_label):
         obj = _get_for_update(user, section_label)
         if obj.color_id != color_id:
-            obj.color_id != color_id
+            obj.color_id = color_id
             obj.save()
         return
 

@@ -25,7 +25,7 @@ class TestChoose(MyuwApiTest):
 
     @skipIf(missing_url("myuw_pref_new_site"),
             "myuw_pref_new_site urls not configured")
-    def test_choose_old(self):
+    def test_choose_new(self):
         username = "jnew"
         self.set_user(username)
         url = reverse("myuw_pref_new_site")

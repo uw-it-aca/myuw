@@ -22,7 +22,7 @@ class TestBannerMessage(MyuwApiTest):
         pref = MigrationPreference.objects.get(user=user)
         self.assertIsNotNone(str(pref))
 
-    def test_error_case(self):
+    def test_close_banner_msg_error_case(self):
         self.set_user('0000')
         resp = self.get_response_by_reverse('myuw_close_banner_message')
         self.assertEqual(resp.content, 'No valid userid in session')
@@ -32,7 +32,7 @@ class TestBannerMessage(MyuwApiTest):
         resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
         self.assertEqual(resp.content, '{"done": true}')
 
-    def test_error_case(self):
+    def test_turn_off_pop_up_error_case(self):
         self.set_user('0000')
         resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
         self.assertEqual(resp.content, 'No valid userid in session')
