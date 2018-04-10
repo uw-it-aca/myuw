@@ -30,8 +30,9 @@ class TestUserDao(TransactionTestCase):
         self.assertEqual(user.last_visit, last_visit)
 
         # netid change, update last_visit value
-        user = User.update("javerage", "javg001")
-        self.assertNotEqual(last_visit, user.last_visit)
+        user1 = User.update("javerage", "javg001")
+        self.assertFalse(user1 == user)
+        self.assertNotEqual(last_visit, user1.last_visit)
         last_visit = user.last_visit
 
         # get by current and prior netids (update last_visit value)
