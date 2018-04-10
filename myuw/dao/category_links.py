@@ -16,7 +16,9 @@ class MyuwLink:
 
     _singleton = None
 
-    def __init__(self):
+    def __init__(self, csv_filename=None):
+        if csv_filename:
+            self.csv_filename = csv_filename
         self.links = []
         path = os.path.join(
             os.path.dirname(__file__),

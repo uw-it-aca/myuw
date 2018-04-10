@@ -2,8 +2,9 @@ from django.test import TestCase
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
-    Res_Links
+    Res_Links, Resource_Links
 from myuw.models.res_category_link import ResCategoryLink
+from myuw.test import get_request_with_user
 import re
 
 
@@ -106,3 +107,9 @@ class TestCategoryLinks(TestCase):
                                                   "",
                                                   affi)
         self.assertEquals(len(links), 7)
+
+    def test_get_all_grouped(self):
+        req = get_request_with_user("javerage")
+        rl = Resource_Links(csv_filename="test/resource_link_import.csv")
+        links = rl.get_all_grouped_links(req)
+        self.assertEqual(len(links), 1)
