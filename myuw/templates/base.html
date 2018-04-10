@@ -209,16 +209,16 @@
 
                     </div>
 
-                    {% if user.affiliations.applicant is False %}
                     <div class="myuw-welcome" role="complementary">
                         <h2>Welcome!</h2>
                         <ul class="unstyled-list myuw-muted">
                             <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance</a></li>	
                             <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" data-toggle="" data-target="" target="_blank">Learn more about MyUW </a></li>
-                            <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                            {% if user.affiliations.applicant is False %}
+                                <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                            {% endif %}
                         </ul>
                     </div>
-                    {% endif %}
 
                 </div>
                 {% endblock %}

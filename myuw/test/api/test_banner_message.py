@@ -1,5 +1,4 @@
 from myuw.models import MigrationPreference, User
-from myuw.dao.user_pref import display_onboard_message
 from myuw.test import get_request_with_user
 from myuw.test.api import MyuwApiTest
 
@@ -11,15 +10,29 @@ class TestBannerMessage(MyuwApiTest):
         resp = self.get_response_by_reverse('myuw_close_banner_message')
         self.assertEqual(resp.content, '{"done": true}')
 
+        # remove the entry in DB (delete CASCADE)
         obj = User.objects.get(uwnetid='bill')
         obj.delete()
+
         resp = self.get_response_by_reverse('myuw_close_banner_message')
         self.assertEqual(resp.content, '{"done": true}')
 
-        req = get_request_with_user('bill')
-        self.assertFalse(display_onboard_message(req))
+        user = User.objects.get(uwnetid='bill')
+        self.assertIsNotNone(str(user))
+        pref = MigrationPreference.objects.get(user=user)
+        self.assertIsNotNone(str(pref))
 
     def test_error_case(self):
         self.set_user('0000')
         resp = self.get_response_by_reverse('myuw_close_banner_message')
+        self.assertEqual(resp.content, 'No valid userid in session')
+
+    def test_turn_off_pop_up(self):
+        self.set_user('bill')
+        resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
+        self.assertEqual(resp.content, '{"done": true}')
+
+    def test_error_case(self):
+        self.set_user('0000')
+        resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
         self.assertEqual(resp.content, 'No valid userid in session')

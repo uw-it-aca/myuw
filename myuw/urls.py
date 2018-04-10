@@ -23,7 +23,7 @@ from myuw.views.accounts import accounts
 from myuw.views.profile import profile
 from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
-from myuw.views.api.banner_message import CloseBannerMsg
+from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
                                                LTIInstSectionDetails)
@@ -84,6 +84,9 @@ urlpatterns += [
     url(r'api/v1/close_banner_message',
         CloseBannerMsg.as_view(),
         name="myuw_close_banner_message"),
+    url(r'api/v1/turn_off_tour_popup',
+        TurnOffPopup.as_view(),
+        name="myuw_turn_off_tour_popup"),
     url(r'^api/v1/academic_events$',
         AcademicEvents.as_view(),
         name="myuw_academic_calendar"),

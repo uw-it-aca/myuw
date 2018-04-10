@@ -1,8 +1,8 @@
 import traceback
 import logging
-from myuw.dao.user_pref import set_no_onboard_message
+from myuw.dao.user_pref import set_no_onboard_message, turn_off_pop_up
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_msg_with_affiliation
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -17,8 +17,27 @@ class CloseBannerMsg(ProtectedAPI):
         """
         timer = Timer()
         try:
-            obj = set_no_onboard_message(request)
-            log_success_response(logger, timer)
-            return self.json_response({'done': (obj is not None)})
+            pref = set_no_onboard_message(request)
+            log_msg_with_affiliation(logger, timer, request,
+                                     "Closed Banner Message")
+            return self.json_response(
+                {'done': pref.display_onboard_message is False})
+        except Exception:
+            return handle_exception(logger, timer, traceback)
+
+
+class TurnOffPopup(ProtectedAPI):
+
+    def get(self, request, *args, **kwargs):
+        """
+        GET returns 200, close the banner message
+        """
+        timer = Timer()
+        try:
+            pref = turn_off_pop_up(request)
+            log_msg_with_affiliation(logger, timer, request,
+                                     "Turned Off Tour Popup")
+            return self.json_response(
+                {'done': pref.display_pop_up is False})
         except Exception:
             return handle_exception(logger, timer, traceback)

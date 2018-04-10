@@ -3,7 +3,6 @@ import traceback
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user_pref import set_preference_to_old_myuw,\
     set_preference_to_new_myuw
 from myuw.logger.logresp import log_msg_with_affiliation
@@ -22,9 +21,8 @@ def new_site(request):
     prefetch_resources(request,
                        prefetch_group=True,
                        prefetch_enrollment=True)
-    affi = get_all_affiliations(request)
-    log_msg_with_affiliation(logger, timer, affi,
-                             add_referer(request, "Choose new myuw"))
+    log_msg_with_affiliation(logger, timer, request,
+                             add_referer(request, "Chose new myuw"))
     return HttpResponseRedirect(reverse("myuw_home"))
 
 
@@ -35,9 +33,8 @@ def old_site(request):
     prefetch_resources(request,
                        prefetch_group=True,
                        prefetch_enrollment=True)
-    affi = get_all_affiliations(request)
-    log_msg_with_affiliation(logger, timer, affi,
-                             add_referer(request, "Choose old myuw"))
+    log_msg_with_affiliation(logger, timer, request,
+                             add_referer(request, "Chose old myuw"))
     return redirect_to_legacy_site()
 
 

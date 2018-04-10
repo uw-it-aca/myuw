@@ -29,47 +29,43 @@ class User(models.Model):
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
 
+    def __eq__(self, other):
+        return self.uwnetid == other.uwnetid
+
     @classmethod
     def get_user_by_netid(cls, uwnetid):
+        # doesn't change last_visit value
         return User.objects.get(uwnetid=uwnetid)
 
     @classmethod
+    def exists(cls, uwnetid):
+        return User.objects.filter(uwnetid=uwnetid).exists()
+
+    @classmethod
     def get_user(cls, uwnetid, prior_netids=[]):
-        obj = None
-        try:
-            obj = User.get_user_by_netid(uwnetid)
-            obj.update_user(uwnetid)
+        if User.exists(uwnetid):
+            return User.update(uwnetid, uwnetid)
 
-        except User.DoesNotExist:
-            # no entry for the current netid
+        # no entry for the current netid
+        for prior_netid in reversed(prior_netids):
+            if User.exists(prior_netid):
+                return User.update(prior_netid, uwnetid)
 
-            for prior_netid in reversed(prior_netids):
-                try:
-                    obj = User.get_user_by_netid(prior_netid)
-                    obj.update_user(uwnetid)
-                    break
-                except User.DoesNotExist:
-                    pass
+        # no existing entry
+        return User.objects.create(uwnetid=uwnetid,
+                                   last_visit=timezone.now())
 
-        if obj is None:
-            # no existing entry
-            obj = User(uwnetid=uwnetid,
-                       last_visit=timezone.now())
-            obj.save()
-
+    @classmethod
+    def update(cls, uwnetid, new_uwnetid):
+        # update last_visit value
+        obj = User.objects.select_for_update().get(uwnetid=uwnetid)
+        obj.uwnetid = new_uwnetid
+        obj.last_visit = timezone.now()
+        obj.save()
         return obj
 
     def is_netid_changed(self, uwnetid):
         return uwnetid != self.uwnetid
-
-    def update_user(self, uwnetid):
-        if self.is_netid_changed(uwnetid):
-            self.uwnetid = uwnetid
-        self.last_visit = timezone.now()
-        self.save()
-
-    def __eq__(self, other):
-        return self.uwnetid == other.uwnetid
 
     def json_data(self):
         return {
@@ -276,17 +272,6 @@ class UserCourseDisplay(models.Model):
     pin_on_teaching_page = models.BooleanField(default=False)
 
     @classmethod
-    def delete_section_display(cls, user, section_label):
-        obj = UserCourseDisplay.get_section_display(
-            user=user, section_label=section_label)
-        obj.delete()
-
-    @classmethod
-    def get_section_display(cls, user, section_label):
-        return UserCourseDisplay.objects.get(user=user,
-                                             section_label=section_label)
-
-    @classmethod
     def get_course_display(cls, user, year, quarter):
         objs = UserCourseDisplay.objects.filter(user=user,
                                                 year=year,
@@ -303,9 +288,10 @@ class UserCourseDisplay(models.Model):
 
         return color_dict, colors_taken, pin_on_teaching
 
-    def save_section_color(self, color_id):
-        self.color_id = color_id
-        self.save()
+    @classmethod
+    def exists_section_display(cls, user, section_label):
+        return UserCourseDisplay.objects.filter(
+            user=user, section_label=section_label).exists()
 
     def json_data(self):
         return {
@@ -332,20 +318,38 @@ class UserCourseDisplay(models.Model):
 class MigrationPreference(models.Model):
     user = models.OneToOneField('User', on_delete=models.CASCADE)
     display_onboard_message = models.BooleanField(default=True)
+    display_pop_up = models.BooleanField(default=True)
     use_legacy_site = models.BooleanField(default=False)
 
     def __init__(self, *args, **kwargs):
         super(MigrationPreference, self).__init__(*args, **kwargs)
 
     @classmethod
-    def set_preference(cls, user,
-                       display_onboard_message=True,
-                       use_legacy_site=False):
-        obj, is_new = MigrationPreference.objects.get_or_create(user=user)
+    def _get_for_update(cls, user):
+        obj, new = MigrationPreference.objects.select_for_update(
+        ).get_or_create(user=user)
+        return obj
 
-        if (obj.display_onboard_message != display_onboard_message or
-                obj.use_legacy_site != use_legacy_site):
-            obj.display_onboard_message = display_onboard_message
+    @classmethod
+    def set_no_onboard_message(cls, user):
+        obj = MigrationPreference._get_for_update(user)
+        if obj.display_onboard_message is True:
+            obj.display_onboard_message = False
+            obj.save()
+        return obj
+
+    @classmethod
+    def turn_off_pop_up(cls, user):
+        obj = MigrationPreference._get_for_update(user)
+        if obj.display_pop_up is True:
+            obj.display_pop_up = False
+            obj.save()
+        return obj
+
+    @classmethod
+    def set_use_legacy(cls, user, use_legacy_site):
+        obj = MigrationPreference._get_for_update(user)
+        if obj.use_legacy_site != use_legacy_site:
             obj.use_legacy_site = use_legacy_site
             obj.save()
         return obj
@@ -353,6 +357,7 @@ class MigrationPreference(models.Model):
     def json_data(self):
         return {
             "user": self.user.json_data(),
+            "display_pop_up": self.display_pop_up,
             "display_onboard_message": self.display_onboard_message,
             "use_legacy_site": self.use_legacy_site
         }

@@ -99,6 +99,21 @@ $(window.document).ready(function() {
 
     register_link_recorder();
 
+    // display myuw tour popup once
+    if (window.user.display_pop_up) {
+        $('#tour_modal').modal('show');
+        $.ajax({
+            url: "/api/v1/turn_off_tour_popup",
+            dataType: "JSON",
+            async: true,
+            type: 'GET',
+            accepts: {html: "text/html"},
+            success: function(results) {
+                window.user.display_pop_up = false;
+            },
+            error: function(xhr, status, error) { }
+        });
+    }
 });
 
 var showLoading = function() {
@@ -330,8 +345,8 @@ var init_close_banner_msg_events = function() {
 
     $(".myuw-banner-msg-close-btn").bind("click", function(ev) {
         ev.preventDefault();
-        var desktop_div = $("#tour_messages_desktop");
-        var mobile_div = $("#tour_messages_mobile");
+        var desktop_div = document.getElementById("tour_messages_desktop");
+        var mobile_div = document.getElementById("tour_messages_mobile");
         $.ajax({
             url: "/api/v1/close_banner_message",
             dataType: "JSON",
@@ -340,11 +355,8 @@ var init_close_banner_msg_events = function() {
             accepts: {html: "text/html"},
             success: function(results) {
                 if (results.done) {
-                    desktop_div.attr("hidden", true);
-                    desktop_div.attr("aria-hidden", true);
-                    mobile_div.attr("hidden", true);
-                    mobile_div.attr("aria-hidden", true);
-                    window.location = "/";
+                    desktop_div.className += " hidden";
+                    mobile_div.className += " hidden";
                 }
             },
             error: function(xhr, status, error) {

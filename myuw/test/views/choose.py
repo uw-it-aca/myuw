@@ -1,7 +1,6 @@
 from unittest2 import skipIf
 from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
-from myuw.dao.user_pref import has_legacy_preference
 from myuw.test import get_request_with_user
 from myuw.test.api import missing_url, require_url, MyuwApiTest
 
@@ -23,15 +22,16 @@ class TestChoose(MyuwApiTest):
         response = self.get_response(url)
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), old_valid_url)
-        self.assertTrue(
-            has_legacy_preference(get_request_with_user(username)))
 
+    @skipIf(missing_url("myuw_pref_new_site"),
+            "myuw_pref_new_site urls not configured")
+    def test_choose_old(self):
+        username = "jnew"
+        self.set_user(username)
         url = reverse("myuw_pref_new_site")
         response = self.get_response(url)
         self.assertEquals(response.status_code, 302)
         self.assertEqual(response["Location"], '/')
-        self.assertFalse(
-            has_legacy_preference(get_request_with_user(username)))
 
     def get_response(self, url):
         return self.client.get(url)

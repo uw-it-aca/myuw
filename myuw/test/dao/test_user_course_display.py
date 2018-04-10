@@ -66,15 +66,6 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 1)
 
-        _save_section_color(get_user_model(req), schedule.sections[1], 2)
-        records = UserCourseDisplay.objects.all()
-        self.assertIsNotNone(str(records[0]))
-
-        set_course_display_pref(req, schedule)
-        sections = schedule.sections
-        self.assertEqual(sections[0].color_id, 2)
-        self.assertEqual(sections[1].color_id, 2)
-
     def test_instructor_schedule(self):
         req = get_request_with_user("billsea")
         term = get_current_quarter(req)

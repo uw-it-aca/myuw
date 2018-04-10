@@ -31,7 +31,7 @@ class TestQuickLinkDAO(TransactionTestCase):
 
         v2 = VisitedLinkNew.objects.create(user=user, url=u2)
 
-        data = get_quicklink_data(req, {})
+        data = get_quicklink_data(req)
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 2)
@@ -41,14 +41,14 @@ class TestQuickLinkDAO(TransactionTestCase):
         plink = PopularLink.objects.create(url=u2)
         self.assertTrue(get_popular_link_by_id(plink.pk))
 
-        data = get_quicklink_data(req, {})
+        data = get_quicklink_data(req)
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 1)
         self.assertTrue(u1 in recent)
 
         CustomLink.objects.create(user=user, url=u1)
-        data = get_quicklink_data(req, {})
+        data = get_quicklink_data(req)
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 0)
@@ -57,7 +57,7 @@ class TestQuickLinkDAO(TransactionTestCase):
             VisitedLinkNew.objects.create(user=user,
                                           url="http://example.com?q=%s" % i)
 
-        data = get_quicklink_data(req, {})
+        data = get_quicklink_data(req)
         recent = _get_recent(data)
 
         self.assertEquals(len(recent), 5)
