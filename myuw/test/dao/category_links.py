@@ -29,7 +29,7 @@ class TestCategoryLinks(TestCase):
                 val(link.url)
             except ValidationError:
                 # allow relative references
-                if not re.match('^/[\w/]+$', link.url):
+                if not re.match(r'^/[\w/]+$', link.url):
                     self.fail("Invalid url:" + link.url)
 
             try:
