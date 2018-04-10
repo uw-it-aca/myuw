@@ -3,10 +3,10 @@ This module accesses the DB table object UserCourseDisplay
 """
 import logging
 from myuw.models import UserCourseDisplay
-from myuw.dao import get_user_model
 from myuw.dao.instructor_schedule import check_section_instructor,\
     get_section_by_label
 from myuw.dao.pws import get_person_of_current_user
+from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
 logger = logging.getLogger(__name__)
@@ -88,12 +88,19 @@ def _save_section_color(user, section, color_id):
     """
     Store the color of the section in DB
     """
-    UserCourseDisplay.objects.update_or_create(
-        user=user,
-        year=section.term.year,
-        quarter=section.term.quarter,
-        section_label=section.section_label(),
-        color_id=color_id)
+    section_label = section.section_label()
+    if UserCourseDisplay.exists_section_display(user, section_label):
+        obj = _get_for_update(user, section_label)
+        if obj.color_id != color_id:
+            obj.color_id != color_id
+            obj.save()
+        return
+
+    UserCourseDisplay.objects.create(user=user,
+                                     year=section.term.year,
+                                     quarter=section.term.quarter,
+                                     section_label=section_label,
+                                     color_id=color_id)
 
 
 def _set_section_colorid(section, color_id):
@@ -109,7 +116,8 @@ def _clean_up_dropped_sections(user, existing_color_dict):
     """
     if existing_color_dict:
         for section_label in existing_color_dict.keys():
-            UserCourseDisplay.delete_section_display(user, section_label)
+            obj = _get_for_update(user, section_label)
+            obj.delete()
 
 
 def set_pin_on_teaching_page(request,
@@ -129,9 +137,16 @@ def set_pin_on_teaching_page(request,
     if section.is_primary_section:
         return False
 
-    obj = UserCourseDisplay.get_section_display(get_user_model(request),
-                                                section_label)
+    obj = _get_for_update(get_user_model(request), section_label)
     if obj.pin_on_teaching_page != pin:
         obj.pin_on_teaching_page = pin
         obj.save()
     return True
+
+
+def _get_for_update(user, section_label):
+    """
+    lock the row until the end of the transaction
+    """
+    return UserCourseDisplay.objects.select_for_update().get(
+        user=user, section_label=section_label)

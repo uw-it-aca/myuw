@@ -97,7 +97,7 @@
                     <div class="myuw-search-links">
 
                         {% if user.email_forward_url %}
-                            <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa {{ user.email_forward_icon }}" aria-hidden="true">&nbsp;</i><span>{{ user.email_forward_title }}</span></a>
+                            <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa fa-envelope" aria-hidden="true">&nbsp;</i><span>Email</span></a>
                         {% endif %}
 
                         <button id="search_toggle" role=”search” aria-controls="app_search" aria-expanded="false" aria-haspopup="true" aria-label="Open search area" data-toggle="collapse" data-target="#app_search"><i class="fa fa-search fa-flip-horizontal"></i> <span>Search</span></button>
@@ -150,8 +150,9 @@
         </div>
         <!-- end message banner -->
         {% endblock %}
-		
-		{% block desktop_tour_banner %}
+
+	{% if display_onboard_message %}
+	{% block desktop_tour_banner %}
         <!-- NTS: message banner based off the banner above (Desktop only) -->
         <div class="myuw-banner-desktop app-messages" id="tour_messages_desktop" aria-labelledby="app_messages_desktop_label" role="complementary">
             <div class="message-banner">
@@ -159,16 +160,17 @@
                 <div id="message_banner_location">
                     <div class="message-text myuw-wrapper">
                         <div class="message">
-                            <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance </a></p>
+                            <p>New here? <a href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance </a></p>
                         </div>
                     </div>
                 </div>
-				<span><button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button></span>
+		<button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message" aria-controls="tour_messages_desktop"><span aria-hidden="true">&times;</span></button>
            </div>
         </div>
         <!-- end message banner -->
         {% endblock %} 
-        
+        {% endif %}
+
         <div class="myuw-body">
             <div class="myuw-wrapper">
 
@@ -207,22 +209,20 @@
 
                     </div>
 
-                    {% if user.affiliations.applicant is False %}
                     <div class="myuw-welcome" role="complementary">
                         <h2>Welcome!</h2>
                         <ul class="unstyled-list myuw-muted">
                             <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance</a></li>	
                             <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" data-toggle="" data-target="" target="_blank">Learn more about MyUW </a></li>
-                            <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                            {% if user.affiliations.applicant is False %}
+                                <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
+                            {% endif %}
                         </ul>
                     </div>
-                    {% endif %}
 
                 </div>
                 {% endblock %}
                 <!-- end app_navigation -->
-
-
 
                 {% block mobile_banner %}
                 <!-- message banner (mobile only) -->
@@ -245,24 +245,26 @@
                 <!-- end message banner -->
                 {% endblock %}
 
-				{% block mobile_tour_banner %}
-		        <!-- Tour message banner (mobile only)-->
-		        <div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="app_messages_mobile_label" role="complementary">
-		            <div class="message-banner" style="margin-top:-17px;">
-		                <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
-		                <div id="message_banner_location">
-		                    <div class="message-text myuw-wrapper">
-		                        <div class="message">
-		                            <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal"> See MyUW at a glance </a></p>
-		                        </div>
-		                    </div>
+                {% if display_onboard_message %}
+		{% block mobile_tour_banner %}
+		<!-- Tour message banner (mobile only)-->
+		<div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="app_messages_mobile_label" role="complementary">
+		    <div class="message-banner" style="margin-top:-17px;">
+		        <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
+		        <div id="message_banner_location">
+		            <div class="message-text myuw-wrapper">
+		                <div class="message">
+		                    <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal"> See MyUW at a glance </a></p>
 		                </div>
-						<span><button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message"><span aria-hidden="true">&times;</span></button></span>
-		           </div>
+		            </div>
 		        </div>
-		        <!-- end message banner -->
-				{% endblock %} 
-        
+			<button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message" aria-controls="tour_messages_mobile"><span aria-hidden="true">&times;</span></button>
+		    </div>
+		</div>
+		<!-- end message banner -->
+		{% endblock %}
+                {% endif %}
+
                 <div class="myuw-content">
                     <!-- app_content -->
                     <div id="app_content">
@@ -594,19 +596,20 @@
         <div id="tour-page-modal"></div>
         <div class="myuw-tour-modal-desktop myuw-modal modal fade" id="tour_modal" tabindex="-1" role="dialog" aria-labelledby="tour_modal_label" aria-describedby="tour_modal_description" aria-hidden="true" aria-modal="true">
             <div class="modal-dialog message-dialog" role="document" style="">
+
                 <div class="modal-content">
                     <div class="modal-header">
                         <button id="tour_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h3 class="modal-title" id="tour_modal_label">Welcome! Here's MyUW at a glance</h3>
                     </div>
                     <div class="modal-body">
-						<div style="margin-top:16px;">
-								<picture> 
-									<source media="(min-width: 992px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
-									<source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
-									<img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page with email link, Account page, UW resources page callouts" longdesc="" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
-								</picture>
-								</div>
+			<div style="margin-top:16px;">
+			    <picture> 
+				<source media="(min-width: 992px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
+				    <source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
+					<img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page with email link, Account page, UW resources page callouts" longdesc="" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
+			    </picture>
+			</div>
 
                         <p style="margin-top:16px;">Watch a video tour of <a href="https://www.youtube.com/watch?v=AIXJ4UPGXE4&feature=youtu.be" target="_blank" title="MyUW video tour for instructors" data-linklabel="MyUW video tour for Instructors">MyUW for Instructors</a>, <a href="" target="_blank" title="MyUW video tour for staff">for staff</a>, or <a href="https://www.youtube.com/watch?v=K7GoUc32TMs&t=5s&list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&index=1" target="_blank" title="MyUW video tour for students" data-linklabel="MyUW video tour for students">for students</a>. <br><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank" title="MyUW Help center in IT Connect"  data-linklabel="MyUW Help center in IT Connect">Visit the MyUW help guide for more information</a>.
                         </p>

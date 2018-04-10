@@ -7,9 +7,9 @@ import logging
 from django.db import IntegrityError
 from uw_sws.notice import get_notices_by_regid
 from myuw.models import TuitionDate, UserNotices
-from myuw.dao import get_user_model
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.notice_mapping import categorize_notices
+from myuw.dao.user import get_user_model
 
 
 logger = logging.getLogger(__name__)

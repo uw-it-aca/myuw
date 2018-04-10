@@ -1,22 +1,22 @@
+from datetime import datetime
+from dateutil import tz
+import logging
+import pytz
 from django.shortcuts import render
 from django.template import RequestContext
 from django.http import Http404
-from datetime import datetime
-import logging
 from django.contrib.auth.decorators import login_required
-from myuw.views.decorators import admin_required
-from myuw.views import set_admin_wrapper_template
-from myuw.dao import get_user_model
+from django.test.client import RequestFactory
+from uw_sws.term import get_term_by_date
 from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao import is_using_file_dao
 from myuw.dao.term import get_default_date, get_comparison_datetime, \
     get_default_datetime
+from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
-from django.test.client import RequestFactory
-from uw_sws.term import get_term_by_date
-from dateutil import tz
-import pytz
+from myuw.views.decorators import admin_required
+from myuw.views import set_admin_wrapper_template
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
              'myuw_before_finals_end', 'myuw_before_last_day',

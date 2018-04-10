@@ -1,6 +1,6 @@
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
-from myuw.test.dao import TestNetidInList
+from myuw.test.dao import TestDaoInit
 from myuw.test.dao.calendar_mapping import TestCalendarMapping
 from myuw.test.dao.calendar import TestCalendar
 from myuw.test.dao.enrollment import TestDaoEnrollment
@@ -26,7 +26,6 @@ from myuw.test.dao.password import TestDaoPassword
 from myuw.test.dao.textbook import TestTextbooks
 from myuw.test.dao.thrive import TestThrive
 from myuw.test.dao.emaillink import TestEmailServiceUrl
-from myuw.test.dao.user import TestUserDao
 from myuw.test.dao.upass import TestUPassDao
 from myuw.test.dao.coda import TestCoDaDAO
 from myuw.test.dao.instructor_schedule import TestInstructorSchedule

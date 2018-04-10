@@ -2,13 +2,14 @@ from django.test import TransactionTestCase
 from django.conf import settings
 from userservice.user import UserServiceMiddleware
 from uw_sws.exceptions import InvalidSectionID
-from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.models import UserCourseDisplay
+from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
+from myuw.dao.user import get_user_model
 from myuw.dao.user_course_display import set_course_display_pref,\
-    _get_next_color, set_pin_on_teaching_page
+    _get_next_color, set_pin_on_teaching_page, _save_section_color
 from myuw.test import get_request_with_user, get_request_with_date
 
 
@@ -51,6 +52,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 5)
 
+    def test_single_section_multiple_enrollments(self):
         # multiple enrollments of a single section
         req = get_request_with_user("seagrad",
                                     get_request_with_date("2017-04-10"))
@@ -61,6 +63,8 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertEqual(len(sections), 2)
         self.assertEqual(sections[0].color_id, 1)
         self.assertEqual(sections[1].color_id, 1)
+        records = UserCourseDisplay.objects.all()
+        self.assertEqual(len(records), 1)
 
     def test_instructor_schedule(self):
         req = get_request_with_user("billsea")
