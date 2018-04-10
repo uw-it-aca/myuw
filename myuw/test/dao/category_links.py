@@ -5,6 +5,7 @@ from myuw.dao.category_links import _get_links_by_category_and_campus, \
     Res_Links, Resource_Links, pin_category, delete_categor_pin
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.test import get_request_with_user
+from myuw.exceptions import InvalidResourceCategory
 import re
 
 
@@ -138,5 +139,8 @@ class TestCategoryLinks(TestCase):
         delete_categor_pin(req, "academicsadvisingtutoring")
         pinned = rl.get_pinned_links(req)
         self.assertEqual(len(pinned), 0)
+
+        with self.assertRaises(InvalidResourceCategory):
+            pin_category(req, 'foobar')
 
 
