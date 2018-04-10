@@ -112,4 +112,8 @@ class TestCategoryLinks(TestCase):
         req = get_request_with_user("javerage")
         rl = Resource_Links(csv_filename="test/resource_link_import.csv")
         links = rl.get_all_grouped_links(req)
-        self.assertEqual(len(links), 1)
+        self.assertEqual(len(links), 2)
+        self.assertEqual(links[0]['category_id'], "academics")
+        self.assertEqual(len(links[0]['subcategories']), 1)
+        self.assertEqual(links[0]['subcategories']['A & T']['subcat_id'],
+                         'academicsat')
