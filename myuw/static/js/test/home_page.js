@@ -107,9 +107,8 @@ describe("HomePage", function() {
                               SeattleApplicationCard,
                               BothellApplicationCard,
                               TacomaApplicationCard,
-                              ResourcesExploreCard,
                               ResourcesCard,
-                             ]);
+                              ResourcesExploreCard]);
             var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
             assert.deepEqual(desktop_sidebar_cards,
                              [QuickLinksCard,
@@ -144,8 +143,8 @@ describe("HomePage", function() {
                           SummerRegStatusCard1,
                           AcadCalSnippet,
                           EventsCard,
-                          ResourcesExploreCard,
-                          ResourcesCard,]);
+                          ResourcesCard,
+                          ResourcesExploreCard]);
         });
 
         it('Desktop for alumni should have', function() {
