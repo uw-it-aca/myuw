@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
-    Res_Links, Resource_Links
+    Res_Links, Resource_Links, pin_category, delete_categor_pin
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.test import get_request_with_user
 import re
@@ -117,3 +117,26 @@ class TestCategoryLinks(TestCase):
         self.assertEqual(len(links[0]['subcategories']), 1)
         self.assertEqual(links[0]['subcategories']['A & T']['subcat_id'],
                          'academicsat')
+
+    def test_category_exists(self):
+        req = get_request_with_user("javerage")
+        rl = Resource_Links(csv_filename="test/resource_link_import.csv")
+        self.assertFalse(rl.category_exists("foobar"))
+        self.assertTrue(rl.category_exists("academicsat"))
+
+    def test_category_pin(self):
+        req = get_request_with_user('javerage')
+
+        rl = Resource_Links()
+        pinned = rl.get_pinned_links(req)
+        self.assertEqual(len(pinned), 0)
+
+        pin_category(req, "academicsadvisingtutoring")
+        pinned = rl.get_pinned_links(req)
+        self.assertEqual(len(pinned), 1)
+
+        delete_categor_pin(req, "academicsadvisingtutoring")
+        pinned = rl.get_pinned_links(req)
+        self.assertEqual(len(pinned), 0)
+
+
