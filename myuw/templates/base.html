@@ -600,20 +600,18 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button id="tour_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="tour_modal_label">Hello there! Here's MyUW at a glance</h3>
+                        <h3 class="modal-title" id="tour_modal_label">Welcome! Here's MyUW at a glance</h3>
                     </div>
                     <div class="modal-body">
-                        <div style="margin-top:10px;">
-                            <p id="tour_modal_description">Find key features and UW Resources.</p>
-			    <div>
-				<picture> 
-				    <source media="(min-width: 992px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
-					<source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
-					    <img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page with email link, Account page, UW resources page callouts" longdesc="" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
-				</picture>
-			    </div>
-                        </div>
-                        <p style="margin-top:10px;">Watch a <a href="">video tour of MyUW for Instructors</a>, <a href="">for staff</a>, or <a href="">for students</a>. <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank" title="MyUW Help center">Learn more about MyUW</a>.
+			<div style="margin-top:16px;">
+			    <picture> 
+				<source media="(min-width: 992px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
+				    <source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
+					<img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page with email link, Account page, UW resources page callouts" longdesc="" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
+			    </picture>
+			</div>
+
+                        <p style="margin-top:16px;">Watch a video tour of <a href="https://www.youtube.com/watch?v=AIXJ4UPGXE4&feature=youtu.be" target="_blank" title="MyUW video tour for instructors" data-linklabel="MyUW video tour for Instructors">MyUW for Instructors</a>, <a href="" target="_blank" title="MyUW video tour for staff">for staff</a>, or <a href="https://www.youtube.com/watch?v=K7GoUc32TMs&t=5s&list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&index=1" target="_blank" title="MyUW video tour for students" data-linklabel="MyUW video tour for students">for students</a>. <br><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" target="_blank" title="MyUW Help center in IT Connect"  data-linklabel="MyUW Help center in IT Connect">Visit the MyUW help guide for more information</a>.
                         </p>
                     </div><!-- end modal body -->
                     <div class="modal-footer">
