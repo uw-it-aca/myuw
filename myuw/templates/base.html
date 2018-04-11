@@ -153,10 +153,10 @@
 
 	{% if display_onboard_message %}
 	{% block desktop_tour_banner %}
-        <!-- NTS: message banner based off the banner above (Desktop only) -->
-        <div class="myuw-banner-desktop app-messages" id="tour_messages_desktop" aria-labelledby="app_messages_desktop_label" role="complementary">
+        <!-- Tour banner message (Desktop only) -->
+        <div class="myuw-banner-desktop app-messages" id="tour_messages_desktop" aria-labelledby="tour_messages_desktop_label" role="complementary">
             <div class="message-banner">
-                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
+                <h2 class="sr-only" id="tour_messages_desktop_label">MyUW Announcements</h2>
                     <div class="message-text myuw-wrapper">
                         <div class="message">
                             <p>New here? <a href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance </a></p>
@@ -246,9 +246,9 @@
                 {% if display_onboard_message %}
 		{% block mobile_tour_banner %}
 		<!-- Tour message banner (mobile only)-->
-		<div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="app_messages_mobile_label" role="complementary">
+		<div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="tour_messages_mobile_label" role="complementary">
 		    <div class="message-banner" style="margin-top:-17px;">
-		        <h2 class="sr-only" id="app_messages_mobile_label">MyUW Announcements</h2>
+		        <h2 class="sr-only" id="tour_messages_mobile_label">MyUW Announcements</h2>
 		            <div class="message-text myuw-wrapper">
 		                <div class="message">
 		                    <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal"> See MyUW at a glance </a></p>
