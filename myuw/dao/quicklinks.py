@@ -3,8 +3,10 @@ import logging
 import os
 from django.db import transaction, IntegrityError
 from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
-from myuw.dao import get_netid_of_current_user, get_user_model
+from myuw.dao import get_netid_of_current_user
+from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
+from myuw.dao.user import get_user_model
 
 
 RECENT_LINKS_DISPLAY_LIMIT = 5
@@ -12,9 +14,9 @@ CACHED_LABEL_DATA = {}
 logger = logging.getLogger(__name__)
 
 
-def get_quicklink_data(request, affiliations):
+def get_quicklink_data(request):
     data = {}
-
+    affiliations = get_all_affiliations(request)
     # For excluding from the recent list
     existing_list_urls = set()
     custom = []

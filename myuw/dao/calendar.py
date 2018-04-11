@@ -166,7 +166,7 @@ def sort_events(events):
 def parse_event_url(event, cal_url, cal_id):
     uid = event.get('uid')
 
-    matches = re.match('.*?(\d+)$', uid)
+    matches = re.match(r'.*?(\d+)$', uid)
     if not matches:
         return
 
