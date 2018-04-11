@@ -3,7 +3,7 @@ import os
 from django.db.models import Q
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.dao.affiliation import get_all_affiliations, get_base_campus
-from myuw.dao import get_user_model
+from myuw.dao.user import get_user_model
 from myuw.models import ResourceCategoryPin
 from myuw.exceptions import InvalidResourceCategory
 
