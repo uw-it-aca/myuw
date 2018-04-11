@@ -3,10 +3,11 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao import get_user_model, get_netid_of_current_user,\
+from myuw.dao import get_netid_of_current_user,\
     get_netid_of_original_user, is_using_file_dao
-from myuw.views import prefetch_resources
+from myuw.dao.user import get_user_model
 from myuw.models import VisitedLinkNew
+from myuw.views import prefetch_resources
 try:
     from urllib.parse import unquote
 except ImportError:
@@ -21,7 +22,6 @@ ignored_links = set()
 
 def outbound_link(request):
     url = request.GET.get('u', '')
-
     if not re.match('^https?://', url):
         return HttpResponseRedirect("/")
 
@@ -38,16 +38,14 @@ def save_visited_link(request):
     netid = get_netid_of_current_user(request)
     original = get_netid_of_original_user()
 
-    is_overriding = (netid != original)
-    if is_overriding and not is_using_file_dao():
+    if netid is None:
+        return
+
+    if not is_using_file_dao() and netid != original:
         # not record visited link when overriding in Live
         return
 
-    try:
-        user = get_user_model(request)
-    except IntegrityError:
-        return
-
+    user = get_user_model(request)
     prefetch_resources(request, prefetch_group=True)
 
     if label:

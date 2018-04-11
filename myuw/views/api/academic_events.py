@@ -135,7 +135,6 @@ class AcademicEvents(ProtectedAPI):
         quarter = None
         if not desc:
             return year, quarter
-
         matches = re.match(r".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
         if matches:
             year = matches.group(1)
