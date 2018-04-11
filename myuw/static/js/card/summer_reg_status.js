@@ -73,6 +73,7 @@ var SummerRegStatusCard = {
                 return;
             }
             SummerRegStatusCard.dom_target.html(content);
+            console.log(SummerRegStatusCard.dom_target);
             RegStatusCard._add_events(SummerRegStatusCard.label);
             LogUtils.cardLoaded(SummerRegStatusCard.name,
                                 SummerRegStatusCard.dom_target);

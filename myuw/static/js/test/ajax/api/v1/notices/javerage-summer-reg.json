@@ -1,0 +1,31 @@
+[{
+	"category": "Registration",
+	"is_read": false,
+	"location_tags": ["est_reg_date", "notices_date_sort"],
+	"is_my_1st_reg_day": false,
+	"my_reg_has_opened": false,
+	"sws_category": "StudentDAD",
+	"is_critical": true,
+	"notice_content": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for spring quarter is <span class=\"date\"></span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorsp15.html\">View your Priority I Registration Date.</a></span>",
+	"id_hash": "0ce2fe3af156ce4d3b6b3e3650a3a3b0",
+	"attributes": [{
+		"value": "2014-02-14",
+		"name": "Date",
+		"data_type": "date",
+		"formatted_value": "Fri, Feb 14"
+	}, {
+		"value": "2014-02-01",
+		"name": "DisplayBegin",
+		"data_type": "date",
+		"formatted_value": "Sat, Feb 1"
+	}, {
+		"value": "2014-03-03",
+		"name": "DisplayEnd",
+		"data_type": "date",
+		"formatted_value": "Mon, Mar 3"
+	}, {
+		"value": "Summer",
+		"name": "Quarter",
+		"data_type": "string"
+	}]
+} ]
