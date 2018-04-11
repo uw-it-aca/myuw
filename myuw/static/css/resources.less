@@ -53,13 +53,17 @@ ol.resources-toc {
             -moz-column-gap: 16px;
             column-gap: 16px;
 
-            .myuw-canvas {
+            .uw-resources-canvas-wrapper {
                 width: 100%;
                 display: inline-block;
                 -webkit-column-break-inside: avoid;
                 page-break-inside: avoid;
                 break-inside: avoid;
                 position: relative;
+                padding: 1px 0;
+            }
+            .uw-resources-canvas-wrapper:last-child:nth-child(2) {
+                display: block;
             }
         }
     }
@@ -69,8 +73,8 @@ ol.resources-toc {
     }
 
     .myuw-canvas {
-        margin-top: 4px; /* Save vertical space */
-        margin-bottom: 6px;
+        margin-top: 0; /* Save vertical space */
+        margin-bottom: 0;
     }
 
     .resources-block {
