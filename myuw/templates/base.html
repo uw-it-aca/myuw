@@ -72,7 +72,7 @@
         {% load templatetag_handlebars %}
     </head>
 
-    <body {% if request.is_firefox %} class="firefox" {% endif %}>
+    <body>
         {% csrf_token %}
 
         {% block header %}
