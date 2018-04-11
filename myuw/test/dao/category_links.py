@@ -142,5 +142,3 @@ class TestCategoryLinks(TestCase):
 
         with self.assertRaises(InvalidResourceCategory):
             pin_category(req, 'foobar')
-
-
