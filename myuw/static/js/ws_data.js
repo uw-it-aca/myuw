@@ -159,7 +159,7 @@ WSData = {
             var linked_primary_label;
             $.each(course_data.sections, function () {
                 if (this.is_primary_section) {
-                    linked_secondaries = null;
+                    linked_secondaries = undefined;
                     if (this.total_linked_secondaries) {
                         this.linked_secondaries = [];
                         linked_secondaries = this.linked_secondaries;
