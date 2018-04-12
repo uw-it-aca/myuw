@@ -99,12 +99,12 @@
                     <div class="myuw-search-links">
 
                         {% if user.email_forward_url %}
-                            <a href="{{ user.email_forward_url }}" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa fa-envelope" aria-hidden="true">&nbsp;</i><span>Email</span></a>
+                        <a href="{{ user.email_forward_url }}" class="myuw-iconlink" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa fa-envelope" aria-hidden="true"></i><span>Email</span></a>
                         {% endif %}
 
-                        <button id="search_toggle" role=”search” aria-controls="app_search" aria-expanded="false" aria-haspopup="true" aria-label="Open search area" data-toggle="collapse" data-target="#app_search"><i class="fa fa-search fa-flip-horizontal"></i> <span>Search</span></button>
+                        <button id="search_toggle" class="myuw-iconlink" role=”search” aria-controls="app_search" aria-expanded="false" aria-haspopup="true" aria-label="Open search area" data-toggle="collapse" data-target="#app_search"><i class="fa fa-search fa-flip-horizontal"></i><span>Search</span></button>
 
-                        <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true" style="font-size: 15px;"></i> <span>Sign Out</span></a>
+                        <a href="/logout" class="myuw-iconlink"><i class="fa fa-sign-out" aria-hidden="true" style="font-size: 15px;"></i><span>Sign Out</span></a>
 
                     </div>
 
@@ -168,7 +168,7 @@
            </div>
         </div>
         <!-- end message banner -->
-        {% endblock %} 
+        {% endblock %}
         {% endif %}
 
         <div class="myuw-body">
@@ -216,7 +216,7 @@
                     <div class="myuw-welcome" role="complementary">
                         <h2>Welcome!</h2>
                         <ul class="unstyled-list myuw-muted">
-                            <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance</a></li>	
+                            <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance</a></li>
                             <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" data-toggle="" data-target="" target="_blank">Learn more about MyUW </a></li>
                             {% if user.affiliations.applicant is False %}
                                 <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
@@ -557,8 +557,8 @@
             </div>
         </div>
         <!-- end modal code -->
-                
-        {% block tour-page-modal %} 
+
+        {% block tour-page-modal %}
         <!-- MyUW Tour modal -->
         <div id="tour-page-modal"></div>
         <div class="myuw-tour-modal-desktop myuw-modal modal fade" id="tour_modal" tabindex="-1" role="dialog" aria-labelledby="tour_modal_label" aria-describedby="tour_modal_description" aria-hidden="true" aria-modal="true">
@@ -571,7 +571,7 @@
                     </div>
                     <div class="modal-body">
 			<div style="margin-top:16px;">
-			    <picture> 
+			    <picture>
 				<source media="(min-width: 1024px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
 				    <source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
 					<img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page screenshot highlighting the email link, the Accounts page, and UW resources page. The Account page is for managing Husky card, U-Pass, library, UW NetID account. UW resources page is for an index of UW resources link" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
