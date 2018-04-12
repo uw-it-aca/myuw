@@ -19,13 +19,15 @@ Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,no
 Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,no
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
-Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no
+Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
+Academics,Registration,all,https://www.degreereg.uw.edu/user-guide,How to Register for PCE Courses,,,,,,,
 Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
 Academics,Tools and Software,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
 Academics,Tools and Software,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Tools and Software,all,,,http://scout.uw.edu/seattle,Scout: Discover the UW,http://scout.uw.edu/bothell,Scout: Discover the UW,http://scout.uw.edu/tacoma,Scout: Discover the UW,no
 Academics,Tools and Software,all,http://www.washington.edu/itconnect/wares/uware/tableau-software/,Tableau Data Analysis Software,,,,,,,no
 Academics,Tools and Software,all,https://panopto.uw.edu/,Panopto Lecture Capture,,,,,,,no
+Academics,Tools and Software,all,https://itconnect.uw.edu/wares/,Other Software and Hardware Services,,,,,,,
 "Accounts, Identity, and Email",Email,all,http://alpine.washington.edu/,Alpine Email,,,,,,,no
 "Accounts, Identity, and Email",Email,all,https://outlook.office365.com/uw.edu,UW Office 365 Email,,,,,,,no
 "Accounts, Identity, and Email",Email,all,http://mail.google.com/a/uw.edu,UW Gmail,,,,,,,no
@@ -49,6 +51,7 @@ Services for Faculty and Staff,Procurement,all,http://f2.washington.edu/fm/ps/ho
 Services for Faculty and Staff,Procurement,all,,,http://f2.washington.edu/fm/ps,Procurement Services,https://www.uwb.edu/finance/purchasing,Purchasing,http://www.tacoma.uw.edu/node/40039,Procurement Services,no
 Services for Faculty and Staff,Others,all,http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears,Electronic Advising Records System (EARS),,,,,,,no
 Services for Faculty and Staff,Others,all,,,http://washington.edu/itconnect,IT Connect,https://www.uwb.edu/it,Information Technologies,http://www.tacoma.uw.edu/information-technology/information-technology,Information Technology,no
+Services for Faculty and Staff,Others,all,https://itconnect.uw.edu/wares/,Software and Hardware,,,,,,,
 Services for Faculty and Staff,Others,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/facility/ehs,Environmental Health & Safety,http://www.tacoma.uw.edu/node/38910,Environmental Health & Safety,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/,Facilities Services,https://www.uwb.edu/facility,Facilities and Campus Operations,http://www.tacoma.uw.edu/facilities-services/facilities-services,Facilities Services,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/services,Facilities Services: Request Service,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,http://www.tacoma.uw.edu/facilities-services/work-order-request,Facilities Services: Work Order Request,no
@@ -67,7 +70,7 @@ Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseling/,Counse
 Campus Life,Health & Wellness,all,,,http://depts.washington.edu/hhpccweb/,Hall Health Center,http://www.uwb.edu/recwell/health-promotion,Health Promotion,http://www.tacoma.uw.edu/student-health-services/about-student-health-services,Student Health Services (SHS),no
 Campus Life,Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),http://www.uwb.edu/recwell,Recreation and Wellness,http://www.tacoma.uw.edu/uwy/fitness,Recreation & Fitness,no
 Campus Life,Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
-Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,http://apps.tacoma.uw.edu/dawgdollars/,Add Funds to UW Tacoma Husky Card,no
+Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,http://apps.tacoma.uw.edu/dawgdollars/,Add Funds to UW Tacoma Dawg Dollars Account,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/dining/,Campus Dining,http://www.uwb.edu/food,Campus Dining,http://www.tacoma.uw.edu/food-services/locations,Campus Dining,no
 Campus Life,Housing & Dining,all,https://www.hfs.washington.edu/myhfs/ledger.aspx,Check HFS Balance,,,,,,,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/housing/,Student Housing,http://www.uwb.edu/housing,Student Housing,http://www.tacoma.uw.edu/housing,Housing,no
