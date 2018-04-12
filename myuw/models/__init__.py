@@ -376,11 +376,11 @@ class ResourceCategoryPin(models.Model):
 
     @staticmethod
     def get_user_pinned_categories(user):
-        try:
+        if ResourceCategoryPin.objects.filter(user=user).exists():
             pinned = ResourceCategoryPin.objects.filter(user=user)
             category_ids = []
             for pin in pinned:
                 category_ids.append(pin.resource_category_id)
             return category_ids
-        except ResourceCategoryPin.DoesNotExist:
+        else:
             return None
