@@ -50,3 +50,9 @@ var CriticalInfoCard = {
         CriticalInfoCard.dom_target.html(CardWithError.render("Update Critical Information"));
     },
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.CriticalInfoCard = CriticalInfoCard;
