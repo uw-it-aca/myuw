@@ -48,7 +48,7 @@ class User(models.Model):
             return User.update(uwnetid, uwnetid)
 
         # no entry for the current netid
-        for prior_netid in reversed(prior_netids):
+        for prior_netid in prior_netids:
             if User.exists(prior_netid):
                 return User.update(prior_netid, uwnetid)
 
