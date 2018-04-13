@@ -18,7 +18,7 @@ var HuskyCard = {
         var hfs_data = WSData.hfs_data();
         var source = $("#husky_card_content").html();
         var template = Handlebars.compile(source);
-        var template_data;
+        hfs_data.is_tacoma = window.user.tacoma_affil;
         if (!hfs_data.student_husky_card &&
             !hfs_data.employee_husky_card) {
             remove_card(HuskyCard.dom_target);
