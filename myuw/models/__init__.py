@@ -7,6 +7,7 @@ from dateutil.parser import parse
 from django.utils import timezone
 from django.db import models
 from django.db.models import Count
+from django.db import transaction
 from myuw.models.building import Building
 from myuw.models.banner_msg import BannerMessage
 from myuw.models.popular_link import PopularLink
@@ -47,7 +48,7 @@ class User(models.Model):
             return User.update(uwnetid, uwnetid)
 
         # no entry for the current netid
-        for prior_netid in reversed(prior_netids):
+        for prior_netid in prior_netids:
             if User.exists(prior_netid):
                 return User.update(prior_netid, uwnetid)
 
@@ -56,6 +57,7 @@ class User(models.Model):
                                    last_visit=timezone.now())
 
     @classmethod
+    @transaction.atomic
     def update(cls, uwnetid, new_uwnetid):
         # update last_visit value
         obj = User.objects.select_for_update().get(uwnetid=uwnetid)
@@ -293,6 +295,35 @@ class UserCourseDisplay(models.Model):
         return UserCourseDisplay.objects.filter(
             user=user, section_label=section_label).exists()
 
+    @classmethod
+    def delete_section_display(cls, user, section_label):
+        obj = UserCourseDisplay.objects.get(
+            user=user, section_label=section_label)
+        obj.delete()
+
+    @classmethod
+    def get_section_display(cls, user, section_label):
+        return UserCourseDisplay.objects.get(
+            user=user, section_label=section_label)
+
+    @classmethod
+    @transaction.atomic
+    def set_color(cls,  user, section_label, color_id):
+        obj = UserCourseDisplay.objects.select_for_update().get(
+            user=user, section_label=section_label)
+        if obj.color_id != color_id:
+            obj.color_id = color_id
+            obj.save()
+
+    @classmethod
+    @transaction.atomic
+    def set_pin(cls,  user, section_label, pin):
+        obj = UserCourseDisplay.objects.select_for_update().get(
+            user=user, section_label=section_label)
+        if obj.pin_on_teaching_page != pin:
+            obj.pin_on_teaching_page = pin
+            obj.save()
+
     def json_data(self):
         return {
             "user": self.user.json_data(),
@@ -325,12 +356,14 @@ class MigrationPreference(models.Model):
         super(MigrationPreference, self).__init__(*args, **kwargs)
 
     @classmethod
+    @transaction.atomic
     def _get_for_update(cls, user):
         obj, new = MigrationPreference.objects.select_for_update(
         ).get_or_create(user=user)
         return obj
 
     @classmethod
+    @transaction.atomic
     def set_no_onboard_message(cls, user):
         obj = MigrationPreference._get_for_update(user)
         if obj.display_onboard_message is True:
@@ -339,6 +372,7 @@ class MigrationPreference(models.Model):
         return obj
 
     @classmethod
+    @transaction.atomic
     def turn_off_pop_up(cls, user):
         obj = MigrationPreference._get_for_update(user)
         if obj.display_pop_up is True:
@@ -347,6 +381,7 @@ class MigrationPreference(models.Model):
         return obj
 
     @classmethod
+    @transaction.atomic
     def set_use_legacy(cls, user, use_legacy_site):
         obj = MigrationPreference._get_for_update(user)
         if obj.use_legacy_site != use_legacy_site:
