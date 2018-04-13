@@ -8,10 +8,10 @@ describe('DirectoryInfoCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "myuw/static/js/card/profile/directory_info.js"
+                    "myuw/static/js/card/profile/employee_profile.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/profile/directory_info.html'
+                    'myuw/templates/handlebars/card/profile/employee_profile.html'
                 ]
             });
 
@@ -31,10 +31,10 @@ describe('DirectoryInfoCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "myuw/static/js/card/profile/directory_info.js"
+                    "myuw/static/js/card/profile/employee_profile.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/profile/directory_info.html'
+                    'myuw/templates/handlebars/card/profile/employee_profile.html'
                 ]
             });
 
@@ -70,10 +70,10 @@ describe('DirectoryInfoCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "myuw/static/js/card/profile/directory_info.js"
+                    "myuw/static/js/card/profile/employee_profile.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/profile/directory_info.html'
+                    'myuw/templates/handlebars/card/profile/employee_profile.html'
                 ]
             });
 

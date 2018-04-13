@@ -49,9 +49,8 @@ class User(models.Model):
 
         # no entry for the current netid
         for prior_netid in prior_netids:
-            id = prior_netid.strip()
-            if len(id) and User.exists(id):
-                return User.update(id, uwnetid)
+            if User.exists(prior_netid):
+                return User.update(prior_netid, uwnetid)
 
         # no existing entry
         return User.objects.create(uwnetid=uwnetid,
