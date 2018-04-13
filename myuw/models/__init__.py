@@ -39,8 +39,8 @@ class User(models.Model):
         return User.objects.get(uwnetid=uwnetid)
 
     @classmethod
-    def exists(cls, uwnetid):
-        return User.objects.filter(uwnetid=uwnetid).exists()
+    def exists(cls, netid):
+        return User.objects.filter(uwnetid=netid).exists()
 
     @classmethod
     def get_user(cls, uwnetid, prior_netids=[]):
@@ -49,8 +49,9 @@ class User(models.Model):
 
         # no entry for the current netid
         for prior_netid in prior_netids:
-            if User.exists(prior_netid):
-                return User.update(prior_netid, uwnetid)
+            id = prior_netid.strip()
+            if len(id) and User.exists(id):
+                return User.update(id, uwnetid)
 
         # no existing entry
         return User.objects.create(uwnetid=uwnetid,
