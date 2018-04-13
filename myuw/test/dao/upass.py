@@ -60,7 +60,7 @@ class TestUPassDao(TestCase):
         req = get_request_with_user("seagrad", req)
         status = get_upass(req)
         self.assertTrue(status['is_current'])
-        self.assertFalse(status['is_employee'])
+        self.assertTrue(status['is_employee'])
         self.assertTrue(status['is_student'])
         self.assertTrue(status['display_activation'])
         self.assertFalse(status['in_summer'])

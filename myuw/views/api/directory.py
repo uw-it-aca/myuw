@@ -24,5 +24,4 @@ class MyDirectoryInfo(ProtectedAPI):
 
     def _json_directory(self, person):
         json = person.json_data()
-        json['display_name'] = person.display_name
         return json
