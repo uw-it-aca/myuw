@@ -2,7 +2,10 @@ from django.test import TestCase
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
-    _get_category_id, Res_Links
+    Res_Links, Resource_Links, pin_category, delete_categor_pin
+from myuw.models.res_category_link import ResCategoryLink
+from myuw.test import get_request_with_user
+from myuw.exceptions import InvalidResourceCategory
 import re
 
 
@@ -38,7 +41,7 @@ class TestCategoryLinks(TestCase):
                 self.fail("Link title has non-ASCII text:" + link.title)
 
     def test_undergrad_category(self):
-        category_id = _get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": True,
@@ -61,7 +64,7 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(len(links), 21)
 
     def test_grad_category(self):
-        category_id = _get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": True,
                 "undergrad": False,
@@ -83,7 +86,7 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(len(links), 23)
 
     def test_pce_links(self):
-        category_id = _get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": False,
@@ -95,7 +98,7 @@ class TestCategoryLinks(TestCase):
         self.assertEquals(len(links), 6)
 
     def test_fyp_links(self):
-        category_id = _get_category_id("Student & Campus Life")
+        category_id = ResCategoryLink()._concat_id("Student & Campus Life")
         self.assertEquals(category_id, "studentcampuslife")
         affi = {"grad": False,
                 "undergrad": False,
@@ -105,3 +108,37 @@ class TestCategoryLinks(TestCase):
                                                   "",
                                                   affi)
         self.assertEquals(len(links), 7)
+
+    def test_get_all_grouped(self):
+        req = get_request_with_user("javerage")
+        rl = Resource_Links(csv_filename="test/resource_link_import.csv")
+        links = rl.get_all_grouped_links(req)
+        self.assertEqual(len(links), 2)
+        self.assertEqual(links[0]['category_id'], "academics")
+        self.assertEqual(len(links[0]['subcategories']), 1)
+        self.assertEqual(links[0]['subcategories']['A & T']['subcat_id'],
+                         'academicsat')
+
+    def test_category_exists(self):
+        req = get_request_with_user("javerage")
+        rl = Resource_Links(csv_filename="test/resource_link_import.csv")
+        self.assertFalse(rl.category_exists("foobar"))
+        self.assertTrue(rl.category_exists("academicsat"))
+
+    def test_category_pin(self):
+        req = get_request_with_user('javerage')
+
+        rl = Resource_Links()
+        pinned = rl.get_pinned_links(req)
+        self.assertEqual(len(pinned), 0)
+
+        pin_category(req, "academicsadvisingtutoring")
+        pinned = rl.get_pinned_links(req)
+        self.assertEqual(len(pinned), 1)
+
+        delete_categor_pin(req, "academicsadvisingtutoring")
+        pinned = rl.get_pinned_links(req)
+        self.assertEqual(len(pinned), 0)
+
+        with self.assertRaises(InvalidResourceCategory):
+            pin_category(req, 'foobar')

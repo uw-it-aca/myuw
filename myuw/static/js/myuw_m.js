@@ -6,6 +6,7 @@ $(window.document).ready(function() {
     LogUtils.init_logging();
     init_modal_events();
     init_search_events();
+    init_close_banner_msg_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -98,6 +99,21 @@ $(window.document).ready(function() {
 
     register_link_recorder();
 
+    // display myuw tour popup once
+    if (window.user.display_pop_up) {
+        $('#tour_modal').modal('show');
+        $.ajax({
+            url: "/api/v1/turn_off_tour_popup",
+            dataType: "JSON",
+            async: true,
+            type: 'GET',
+            accepts: {html: "text/html"},
+            success: function(results) {
+                window.user.display_pop_up = false;
+            },
+            error: function(xhr, status, error) { }
+        });
+    }
 });
 
 var showLoading = function() {
@@ -322,6 +338,32 @@ var init_search_events = function() {
         }, 400);
 	});
 
+};
+
+var init_close_banner_msg_events = function() {
+    // handle clicking on onboarding close button
+
+    $(".myuw-banner-msg-close-btn").bind("click", function(ev) {
+        ev.preventDefault();
+        var desktop_div = document.getElementById("tour_messages_desktop");
+        var mobile_div = document.getElementById("tour_messages_mobile");
+        $.ajax({
+            url: "/api/v1/close_banner_message",
+            dataType: "JSON",
+            async: true,
+            type: 'GET',
+            accepts: {html: "text/html"},
+            success: function(results) {
+                if (results.done) {
+                    desktop_div.className += " hidden";
+                    mobile_div.className += " hidden";
+                }
+            },
+            error: function(xhr, status, error) {
+                return false;
+            }
+        });
+    });
 };
 
 var remove_card = function(target) {

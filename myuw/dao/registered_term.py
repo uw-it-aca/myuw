@@ -13,7 +13,7 @@ from myuw.dao.term import get_current_summer_term,\
 from myuw.dao.schedule import has_summer_quarter_section,\
     get_current_quarter_schedule, get_next_quarter_schedule,\
     get_next_autumn_quarter_schedule
-from myuw.dao import get_user_model
+from myuw.dao.user import get_user_model
 
 
 logger = logging.getLogger(__name__)

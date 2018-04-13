@@ -1,83 +1,86 @@
+import json
+import logging
 import hashlib
-import uuid
+from hashlib import sha1
 from datetime import datetime, timedelta
 from dateutil.parser import parse
 from django.utils import timezone
 from django.db import models
 from django.db.models import Count
+from django.db import transaction
 from myuw.models.building import Building
+from myuw.models.banner_msg import BannerMessage
+from myuw.models.popular_link import PopularLink
 from myuw.models.res_category_link import ResCategoryLink
-from hashlib import sha1
+
+logger = logging.getLogger(__name__)
 
 
-class CourseColor(models.Model):
-    regid = models.CharField(max_length=32, db_index=True)
-    year = models.PositiveSmallIntegerField(db_index=True)
-    quarter = models.CharField(max_length=10, db_index=True)
-    curriculum_abbr = models.CharField(max_length=10)
-    # 098 is a valid course number, and that leading 0 matters
-    course_number = models.CharField(max_length=3)
-    section_id = models.CharField(max_length=2)
-    is_active = models.BooleanField()
-    color_id = models.PositiveIntegerField()
-
-    def section_label(self):
-        return "%s,%s,%s,%s/%s" % (self.year,
-                                   self.quarter,
-                                   self.curriculum_abbr,
-                                   self.course_number,
-                                   self.section_id
-                                   )
-
-    class Meta:
-        db_table = "myuw_mobile_coursecolor"
+##########################################
+# this file has only user related tables #
+##########################################
 
 
 class User(models.Model):
     uwnetid = models.SlugField(max_length=16,
                                db_index=True,
                                unique=True)
+    last_visit = models.DateTimeField(editable=True)
 
-    uwregid = models.CharField(max_length=32,
-                               null=True,
-                               db_index=True,
-                               unique=True)
+    def __init__(self, *args, **kwargs):
+        super(User, self).__init__(*args, **kwargs)
 
-    last_visit = models.DateTimeField(default=timezone.now)
+    def __eq__(self, other):
+        return self.uwnetid == other.uwnetid
 
-    class Meta:
-        db_table = "myuw_mobile_user"
+    @classmethod
+    def get_user_by_netid(cls, uwnetid):
+        # doesn't change last_visit value
+        return User.objects.get(uwnetid=uwnetid)
 
+    @classmethod
+    def exists(cls, uwnetid):
+        return User.objects.filter(uwnetid=uwnetid).exists()
 
-class StudentAccountsBalances(models.Model):
-    student_number = models.CharField(max_length=10,
-                                      db_index=True,
-                                      unique=True)
-    employee_id = models.CharField(max_length=10,
-                                   db_index=True,
-                                   null=True,
-                                   blank=True)
-    asof_datetime = models.DateTimeField()
-    is_am = models.BooleanField(default=True)
-    husky_card = models.DecimalField(max_digits=6,
-                                     decimal_places=2,
-                                     default=0.00)
-    residence_hall_dining = models.DecimalField(max_digits=7,
-                                                decimal_places=2,
-                                                null=True,
-                                                blank=True)
+    @classmethod
+    def get_user(cls, uwnetid, prior_netids=[]):
+        if User.exists(uwnetid):
+            return User.update(uwnetid, uwnetid)
+
+        # no entry for the current netid
+        for prior_netid in prior_netids:
+            if User.exists(prior_netid):
+                return User.update(prior_netid, uwnetid)
+
+        # no existing entry
+        return User.objects.create(uwnetid=uwnetid,
+                                   last_visit=timezone.now())
+
+    @classmethod
+    @transaction.atomic
+    def update(cls, uwnetid, new_uwnetid):
+        # update last_visit value
+        obj = User.objects.select_for_update().get(uwnetid=uwnetid)
+        obj.uwnetid = new_uwnetid
+        obj.last_visit = timezone.now()
+        obj.save()
+        return obj
+
+    def is_netid_changed(self, uwnetid):
+        return uwnetid != self.uwnetid
 
     def json_data(self):
-        data = {
-            "asof_date": self.asof_datetime.date().strftime("%m/%d/%Y"),
-            "asof_time": self.asof_datetime.time().strftime("%H:%M"),
-            "husky_card": self.husky_card,
-            "residence_hall_dining": self.residence_hall_dining
-            }
-        return data
+        return {
+            "uwnetid": self.uwnetid,
+            "last_visit": str(self.last_visit)
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data(), default=str)
 
     class Meta:
-        db_table = "myuw_mobile_studentaccountsbalances"
+        app_label = 'myuw'
+        db_table = "myuw_mobile_user"
 
 
 class TuitionDate(models.Model):
@@ -226,14 +229,6 @@ class VisitedLinkNew(models.Model):
         return sorted(values, key=lambda x: x['popularity'], reverse=True)
 
 
-class PopularLink(models.Model):
-    affiliation = models.CharField(max_length=80, null=True)
-    pce = models.NullBooleanField()
-    campus = models.CharField(max_length=8, null=True)
-    url = models.CharField(max_length=512)
-    label = models.CharField(max_length=50)
-
-
 class CustomLink(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     url = models.CharField(max_length=512)
@@ -269,31 +264,6 @@ class HiddenLink(models.Model):
         unique_together = (('url_key', 'user'),)
 
 
-class BannerMessage(models.Model):
-    start = models.DateTimeField()
-    end = models.DateTimeField()
-    message_title = models.TextField()
-    message_body = models.TextField()
-
-    is_published = models.BooleanField(default=False)
-
-    affiliation = models.CharField(max_length=80, null=True)
-    pce = models.NullBooleanField()
-    campus = models.CharField(max_length=8, null=True)
-    group_id = models.CharField(max_length=200, null=True)
-
-    added_by = models.CharField(max_length=50)
-    added_date = models.DateTimeField(auto_now_add=True)
-
-    preview_id = models.SlugField(null=True, db_index=True, unique=True)
-
-    def save(self, *args, **kwargs):
-        if not self.preview_id:
-            self.preview_id = str(uuid.uuid4())
-
-        super(BannerMessage, self).save(*args, **kwargs)
-
-
 class UserCourseDisplay(models.Model):
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     year = models.PositiveSmallIntegerField()
@@ -302,17 +272,6 @@ class UserCourseDisplay(models.Model):
     # year,quarter,curriculum_abbr,course_number/section_id
     color_id = models.PositiveSmallIntegerField()
     pin_on_teaching_page = models.BooleanField(default=False)
-
-    @classmethod
-    def delete_section_display(cls, user, section_label):
-        obj = UserCourseDisplay.get_section_display(
-            user=user, section_label=section_label)
-        obj.delete()
-
-    @classmethod
-    def get_section_display(cls, user, section_label):
-        return UserCourseDisplay.objects.get(user=user,
-                                             section_label=section_label)
 
     @classmethod
     def get_course_display(cls, user, year, quarter):
@@ -331,6 +290,51 @@ class UserCourseDisplay(models.Model):
 
         return color_dict, colors_taken, pin_on_teaching
 
+    @classmethod
+    def exists_section_display(cls, user, section_label):
+        return UserCourseDisplay.objects.filter(
+            user=user, section_label=section_label).exists()
+
+    @classmethod
+    def delete_section_display(cls, user, section_label):
+        obj = UserCourseDisplay.objects.get(
+            user=user, section_label=section_label)
+        obj.delete()
+
+    @classmethod
+    def get_section_display(cls, user, section_label):
+        return UserCourseDisplay.objects.get(
+            user=user, section_label=section_label)
+
+    @classmethod
+    @transaction.atomic
+    def set_color(cls,  user, section_label, color_id):
+        obj = UserCourseDisplay.objects.select_for_update().get(
+            user=user, section_label=section_label)
+        if obj.color_id != color_id:
+            obj.color_id = color_id
+            obj.save()
+
+    @classmethod
+    @transaction.atomic
+    def set_pin(cls,  user, section_label, pin):
+        obj = UserCourseDisplay.objects.select_for_update().get(
+            user=user, section_label=section_label)
+        if obj.pin_on_teaching_page != pin:
+            obj.pin_on_teaching_page = pin
+            obj.save()
+
+    def json_data(self):
+        return {
+            "user": self.user.json_data(),
+            "section_label": self.section_label,
+            "color_id": self.color_id,
+            "pin_on_teaching_page": self.pin_on_teaching_page
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data(), default=str)
+
     class Meta(object):
         app_label = 'myuw'
         db_table = 'user_course_display_pref'
@@ -340,3 +344,76 @@ class UserCourseDisplay(models.Model):
             ["user", "section_label"],
         ]
         ordering = ['section_label']
+
+
+class MigrationPreference(models.Model):
+    user = models.OneToOneField('User', on_delete=models.CASCADE)
+    display_onboard_message = models.BooleanField(default=True)
+    display_pop_up = models.BooleanField(default=True)
+    use_legacy_site = models.BooleanField(default=False)
+
+    def __init__(self, *args, **kwargs):
+        super(MigrationPreference, self).__init__(*args, **kwargs)
+
+    @classmethod
+    @transaction.atomic
+    def _get_for_update(cls, user):
+        obj, new = MigrationPreference.objects.select_for_update(
+        ).get_or_create(user=user)
+        return obj
+
+    @classmethod
+    @transaction.atomic
+    def set_no_onboard_message(cls, user):
+        obj = MigrationPreference._get_for_update(user)
+        if obj.display_onboard_message is True:
+            obj.display_onboard_message = False
+            obj.save()
+        return obj
+
+    @classmethod
+    @transaction.atomic
+    def turn_off_pop_up(cls, user):
+        obj = MigrationPreference._get_for_update(user)
+        if obj.display_pop_up is True:
+            obj.display_pop_up = False
+            obj.save()
+        return obj
+
+    @classmethod
+    @transaction.atomic
+    def set_use_legacy(cls, user, use_legacy_site):
+        obj = MigrationPreference._get_for_update(user)
+        if obj.use_legacy_site != use_legacy_site:
+            obj.use_legacy_site = use_legacy_site
+            obj.save()
+        return obj
+
+    def json_data(self):
+        return {
+            "user": self.user.json_data(),
+            "display_pop_up": self.display_pop_up,
+            "display_onboard_message": self.display_onboard_message,
+            "use_legacy_site": self.use_legacy_site
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data(), default=str)
+
+    class Meta(object):
+        app_label = 'myuw'
+        db_table = 'migration_preference'
+
+
+class ResourceCategoryPin(models.Model):
+    resource_category_id = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    @staticmethod
+    def get_user_pinned_categories(user):
+        category_ids = []
+        if ResourceCategoryPin.objects.filter(user=user).exists():
+            pinned = ResourceCategoryPin.objects.filter(user=user)
+            for pin in pinned:
+                category_ids.append(pin.resource_category_id)
+        return category_ids

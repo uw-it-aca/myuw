@@ -47,8 +47,11 @@
     margin-right: -16px;
     margin-bottom: 16px;
     padding: 16px !important;
+    border: 1px solid transparent;
+    border-left: none;
+    border-right: none;
 
-    @media @two-column { margin-left: 0; margin-right: 0; }
+    @media @two-column { border-left: solid 1px transparent; border-right: solid 1px transparent; margin-left: 0; margin-right: 0; }
 
     /*** canvas title ***/
     .myuw-canvas-title { font-size: 18px !important; line-height: 1.3; color: #000; margin-top: 0; }
@@ -57,11 +60,50 @@
 
 }
 
-.aside-links {
-    ul { margin-bottom:35px; }
+.aside-links,
+.myuw-aside-links {
+
+    & > ul, & > ol { margin-bottom: 32px; }
 }
 
 
+/*** Back to Top - Floating link ***/
+.myuw-back-to-top {
+    border: none;
+    display: block;
+    text-align: center;
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    color: @uw-dark-gray;
+    background-color: @myuw-accent-gray;
+    border-radius: 2px;
+    padding: 2px 8px 6px 8px;
+
+    @media @two-column {
+        right: 32px;
+        bottom: 32px;
+    }
+
+    .fa-chevron-up {
+        font-size: 20px;
+    }
+
+    span {
+        display: block;
+        font-size: 10px;
+        text-transform: uppercase;
+    }
+
+    &.affix-bottom {
+        bottom: auto;
+    }
+
+    &:hover {
+        text-decoration: none;
+        background-color: darken(@myuw-accent-gray, 5%);
+    }
+}
 
 
 /* Husky Experience - Article Pages */
