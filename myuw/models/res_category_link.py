@@ -19,7 +19,7 @@ class ResCategoryLink(models.Model):
     category_id = models.CharField(max_length=80)
     category_name = models.CharField(max_length=80)
     sub_category = models.CharField(max_length=80)
-    subcategory_id = models.CharField(max_length=80)
+    subcategory_id = models.CharField(max_length=80, null=True)
     new_tab = models.BooleanField(default=False)
 
     def category_id_matched(self, acategory_id):
