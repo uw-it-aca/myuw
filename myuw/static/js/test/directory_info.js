@@ -1,6 +1,6 @@
 var Global = require("./global.js");
 
-describe('DirectoryInfoCard', function(){
+describe('EmployeeInfoCard', function(){
     describe("instructor/employee profile card default", function() {
         before(function () {
             var render_id = 'dir_info';
@@ -16,12 +16,12 @@ describe('DirectoryInfoCard', function(){
             });
 
             window.enabled_features = { 'employee_profile': false };
-            DirectoryInfoCard.dom_target = $('#' + render_id);
+            EmployeeInfoCard.dom_target = $('#' + render_id);
 
         });
         it("Should NOT render instructor card", function() {
             window.user.employee = false;
-            assert.equal(true, DirectoryInfoCard.hide_card());
+            assert.equal(true, EmployeeInfoCard.hide_card());
         });
     });
     describe("instructor/employee profile card", function() {
@@ -48,15 +48,15 @@ describe('DirectoryInfoCard', function(){
 
             window.enabled_features = { 'employee_profile': true };
             window.user.employee = true;
-            DirectoryInfoCard.dom_target = $('#' + render_id);
-            DirectoryInfoCard.render_init();
+            EmployeeInfoCard.dom_target = $('#' + render_id);
+            EmployeeInfoCard.render_init();
         });
         it("Should render instructor card", function() {
-            assert.equal(DirectoryInfoCard.dom_target.find('span[property="telephone"]').first().html(),
+            assert.equal(EmployeeInfoCard.dom_target.find('span[property="telephone"]').first().html(),
                          '(206) 555-1235');
         });
         it("UW Seattle instructor", function() {
-            assert.equal(DirectoryInfoCard.dom_target.find('.card-related-messages a').attr('href'),
+            assert.equal(EmployeeInfoCard.dom_target.find('.card-related-messages a').attr('href'),
                          'https://www.washington.edu/home/peopledir/');
         });
         after(function () {
@@ -90,15 +90,15 @@ describe('DirectoryInfoCard', function(){
             window.user.employee = true;
             window.user.tacoma = true;
 
-            DirectoryInfoCard.dom_target = $('#' + render_id);
-            DirectoryInfoCard.render_init();
+            EmployeeInfoCard.dom_target = $('#' + render_id);
+            EmployeeInfoCard.render_init();
         });
         it("Should render instructor card", function() {
-            assert.equal(DirectoryInfoCard.dom_target.find('span[property="telephone"]').first().html(),
+            assert.equal(EmployeeInfoCard.dom_target.find('span[property="telephone"]').first().html(),
                          '(253) 867-5309');
         });
         it("UW Tacoma instructor", function() {
-            assert.equal(DirectoryInfoCard.dom_target.find('.card-related-messages a').attr('href'),
+            assert.equal(EmployeeInfoCard.dom_target.find('.card-related-messages a').attr('href'),
                          'http://directory.tacoma.uw.edu/');
         });
         after(function () {
