@@ -19,6 +19,7 @@ class ResCategoryLink(models.Model):
     category_id = models.CharField(max_length=80)
     category_name = models.CharField(max_length=80)
     sub_category = models.CharField(max_length=80)
+    subcategory_id = models.CharField(max_length=80)
     new_tab = models.BooleanField(default=False)
 
     def category_id_matched(self, acategory_id):
@@ -64,9 +65,15 @@ class ResCategoryLink(models.Model):
         return data
 
     def set_category_id(self, category_name):
-        category_id = category_name.lower()
-        category_id = "".join(c for c in category_id if c.isalpha())
-        self.category_id = category_id
+        self.category_id = self._concat_id(category_name)
+
+    def set_subcategory_id(self, subcategory_name):
+        self.subcategory_id = self._concat_id(subcategory_name)
+
+    def _concat_id(self, long_name):
+        concat = long_name.lower()
+        concat = "".join(c for c in concat if c.isalpha())
+        return concat
 
     class Meta:
         db_table = "myuw_res_category_links"

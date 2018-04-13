@@ -368,3 +368,17 @@ class MigrationPreference(models.Model):
     class Meta(object):
         app_label = 'myuw'
         db_table = 'migration_preference'
+
+
+class ResourceCategoryPin(models.Model):
+    resource_category_id = models.CharField(max_length=255)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    @staticmethod
+    def get_user_pinned_categories(user):
+        category_ids = []
+        if ResourceCategoryPin.objects.filter(user=user).exists():
+            pinned = ResourceCategoryPin.objects.filter(user=user)
+            for pin in pinned:
+                category_ids.append(pin.resource_category_id)
+        return category_ids

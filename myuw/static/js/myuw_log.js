@@ -40,7 +40,7 @@ function MyuwLog()  {
         this.card_logger.info(JSON.stringify(message));
     };
     this.log_link = function(link, action) {
-        var parent_cards = $(link).closest('.card');
+        var parent_cards = $(link).closest('.card, .myuw-card');
         var card_name;
         var card_info;
         if (parent_cards.length > 0){

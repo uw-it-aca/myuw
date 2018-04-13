@@ -11,6 +11,8 @@
 @uw-gold: #e8e3d3;
 @uw-metalic-gold: #85754d;
 
+@myuw-accent-gray: #ddd;
+
 @status-green: #27ae60;
 @status-red: #e74c3c;
 
@@ -373,8 +375,8 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
             i { color: #333 !important; width: 20px; text-align: center; margin-right: 5px; }
 
-            &:hover, &:focus { background: #ddd; }
-            &.active { color: @uw-purple-light; background: #ddd;
+            &:hover, &:focus { background: @myuw-accent-gray; }
+            &.active { color: @uw-purple-light; background: @myuw-accent-gray;
                 i { color: @uw-purple-dark !important; }
             }
 
@@ -382,7 +384,7 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
         }
 
-
+        hr { margin: 0; border-color: @myuw-accent-gray; }
     }
 
     .myuw-menu-logout { display: none;
@@ -430,15 +432,15 @@ body { padding: 0; margin: 0; font-family: "Open Sans",Helvetica,Arial,Verdana,s
 
     .myuw-week-counter { display: block; border: none; padding-left: 0;
         @media @two-column { display: inline-block; text-align: left; float: left; padding-bottom: 0;}
-        @media @desktop { padding-left: 8px; border-left: solid 1px #ddd; }
+        @media @desktop { padding-left: 8px; border-left: solid 1px @myuw-accent-gray; }
     }
 
-    .myuw-account-summaries { display: block; text-align: center; margin: 8px 0; border-top: solid 1px #ddd; padding-top: 8px;
+    .myuw-account-summaries { display: block; text-align: center; margin: 8px 0; border-top: solid 1px @myuw-accent-gray; padding-top: 8px;
 
         a:nth-child(even) { margin-bottom: 8px; }
 
         @media @two-column { text-align: left; float: right; margin: 0; border: none; padding: 0;
-            a { border-left: solid 1px #ddd; padding-left: 8px; margin-bottom: 0 !important; }
+            a { border-left: solid 1px @myuw-accent-gray; padding-left: 8px; margin-bottom: 0 !important; }
         }
     }
 
