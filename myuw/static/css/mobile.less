@@ -700,14 +700,6 @@ label { font-weight: normal; margin-bottom: auto; }
             li { padding-bottom: 8px; }
         }
 
-        ul.unstyled-list, ol.unstyled-list {
-            padding-left: 0px;
-            list-style-type: none;
-            line-height: 23px; }
-        ul.unstyled, ol.unstyled {
-            padding-left: 0px;
-            list-style-type: none;
-            line-height: 23px; }
 
         .card-disclosure {
             margin-left: -10px;
@@ -821,7 +813,7 @@ label { font-weight: normal; margin-bottom: auto; }
 	}
     }
 
-    .profile-links, .aside-links {
+    .aside-links {
         padding-left: 16px;
         ul { list-style-type: none; padding-left: 0; }
     }
@@ -1424,6 +1416,8 @@ label { font-weight: normal; margin-bottom: auto; }
 					}
 				}
 			}
+
+            .course-resources { margin-bottom: 16px; }
 
 			.card-faux-disclosure {  margin-left: -10px; margin-right: -10px; margin-bottom: -10px; margin-top: 1em; border-top: solid 1px #eee; text-align: center; font-size: 12px;font-style:italic;background-color: #fefefe;color:#777; line-height: 40px;}
 			.no-instructors {  margin-bottom: -10px; margin-top: 1em; font-size: 12px;font-style:italic;background-color: #fefefe;color:#777; line-height: 40px;}
@@ -2182,40 +2176,18 @@ th.mailman-sections-column { width: 99%; }
 
 #app_footer { background: darken(@lighttan, 5%); margin-top: 10px; padding-top: 15px;
 
-    // navigation bar
-    .navigation-bar { margin-bottom: 10px;
 
-        .navigation-list {  list-style:none; padding-left:0; margin:0;
-
-            li {  width: 49%; margin-right: 2%; margin-bottom: 2%; height: 100px; background:@lighttan; }
-
-            li:nth-child(even) { margin-right: 0; }
-
-            .navigation-item { display: inline-block; position: relative; padding: 5px; height: 100px; width: 100%;
-				.subcategories {font-size: 85%;color:#777;}
-                .navigation-item-text {font-family: 'encode_sans_normalsemibold', sans-serif; font-weight: 600; color: #555; font-size: @font-base;  }
-            }
-
-            // handle :hover state as mobile touch
-            .hover:hover { background: darken(@lighttan, 20%); }
-        }
-
-    }
 
     // footer bar
     .footer-bar { background:#333; padding: 10px 0;
 
         .footer-links { color: #aaa; font-size: 11px;
-        	a, button {color: #fff}
-            .footer-links-list { padding: 0; margin-bottom: .5em; line-height: 17px; list-style: none;
-                .footer-links-list-item { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222;
-				}
-				.desktop-footer-link {
-					float: left;
-					line-height: 3em;
-					margin-left: -12px;
-					border:none;
-				}
+            .footer-links-list { margin-bottom: .5em;
+                .footer-links-list-item { color: #fff; }
+                a { color: #fff;
+
+                    .fa { margin-right: 4px; }
+                }
             }
         }
     }

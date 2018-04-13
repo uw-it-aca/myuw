@@ -3,21 +3,26 @@ import os
 from django.db.models import Q
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.dao.affiliation import get_all_affiliations, get_base_campus
+from myuw.dao.user import get_user_model
+from myuw.models import ResourceCategoryPin
+from myuw.exceptions import InvalidResourceCategory
 
 
-class Res_Links:
+class MyuwLink:
     """
-    Read the resource links froma file and store them
-    in an array of ResCategoryLink objects.
+    Read the resource links from a file and store them
+    in an array of Link objects.
     """
 
     _singleton = None
 
-    def __init__(self):
+    def __init__(self, csv_filename=None):
+        if csv_filename:
+            self.csv_filename = csv_filename
         self.links = []
         path = os.path.join(
             os.path.dirname(__file__),
-            '..', 'data', 'category_links_import.csv')
+            '..', 'data', self.csv_filename)
 
         with open(path) as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
@@ -25,7 +30,6 @@ class Res_Links:
                 category = row[0]
                 if category == 'Category':
                     continue
-                category_id = _get_category_id(category)
                 subcategory = row[1]
                 affiliation = row[2]
                 central_url = row[3]
@@ -51,6 +55,7 @@ class Res_Links:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(seattle_url) > 0:
@@ -64,6 +69,7 @@ class Res_Links:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(bothell_url) > 0:
@@ -77,6 +83,7 @@ class Res_Links:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
                 if len(tacoma_url) > 0:
@@ -90,19 +97,118 @@ class Res_Links:
                         new_tab=new_tab
                         )
                     link.set_category_id(category)
+                    link.set_subcategory_id(subcategory)
                     self.links.append(link)
 
     @classmethod
     def get_all_links(cls):
         if cls._singleton is None:
-            cls._singleton = Res_Links()
+            cls._singleton = cls()
         return cls._singleton.links
 
 
-def _get_category_id(category_name):
-    category_id = category_name.lower()
-    category_id = "".join(c for c in category_id if c.isalpha())
-    return category_id
+class Res_Links(MyuwLink):
+    """
+    Read the resource links from a file and store them
+    in an array of ResCategoryLink objects.
+    """
+
+    _singleton = None
+    csv_filename = 'category_links_import.csv'
+
+
+class Resource_Links(MyuwLink):
+    """
+    Read the explore links from a file and store them
+    in an array of ResCategoryLink objects.
+    """
+
+    _singleton = None
+    csv_filename = 'resource_link_import.csv'
+
+    def get_all_grouped_links(self, request):
+        category_list = []
+        user = get_user_model(request)
+        pinned = ResourceCategoryPin.get_user_pinned_categories(user)
+        grouped_links = self.get_grouped_links(request, pinned)
+
+        for category in grouped_links:
+            category_list.append(grouped_links[category])
+
+        return category_list
+
+    def get_pinned_links(self, request):
+        category_list = []
+        user = get_user_model(request)
+        pinned = ResourceCategoryPin.get_user_pinned_categories(user)
+        grouped_links = self.get_grouped_links(request, pinned)
+        self._filter_pinned(grouped_links)
+
+        for category in grouped_links:
+            category_list.append(grouped_links[category])
+
+        return category_list
+
+    def _filter_pinned(self, links):
+        # remove unpinned subcats
+        for category in links:
+            for subcat in links[category]['subcategories'].keys():
+                if not links[category]['subcategories'][subcat]['is_pinned']:
+                    del links[category]['subcategories'][subcat]
+
+        # remove cats w/o subcat
+        for category in links.keys():
+            subcat = links[category]['subcategories']
+            if len(subcat) == 0:
+                del links[category]
+
+        return links
+
+    def get_grouped_links(self, request, pinned_list=[]):
+        if self.links is None:
+            self.links = self.get_all_links()
+
+        grouped_links = {}
+        affiliations = get_all_affiliations(request)
+        campus = get_base_campus(affiliations)
+
+        for link in self.links:
+            link = _get_link_by_affiliation(link, campus, affiliations)
+            if link:
+                if link.category_id not in grouped_links:
+                    grouped_links[link.category_id] = \
+                        {'category_name': link.category_name,
+                         'category_id': link.category_id,
+                         'subcategories': {}}
+                subcats = grouped_links[link.category_id]['subcategories']
+                if link.sub_category not in subcats:
+                    subcat_id = link.category_id.lower() + \
+                                link.subcategory_id.lower()
+                    is_pinned = subcat_id in pinned_list
+                    try:
+                        order = pinned_list.index(subcat_id)
+                    except ValueError:
+                        order = None
+                    subcats[link.sub_category] = \
+                        {'subcat_name': link.sub_category,
+                         'subcat_id': subcat_id,
+                         'is_pinned': is_pinned,
+                         'order': order,
+                         'links': []}
+
+                subcats[link.sub_category]['links'].append(
+                    {'title': link.title,
+                     'url': link.url})
+        return grouped_links
+
+    def category_exists(self, category_id):
+        if self.links is None:
+            self.links = self.get_all_links()
+        for link in self.links:
+            link_cat_id = link.category_id + link.subcategory_id
+            if category_id == link_cat_id.lower():
+                return True
+        return False
 
 
 def get_links_for_category(search_category_id, request):
@@ -121,29 +227,47 @@ def _get_links_by_category_and_campus(search_category_id,
     for link in all_links:
         if not link.category_id_matched(search_category_id):
             continue
-
-        if link.all_affiliation() and link.campus_matched(campus):
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["grad"] and link.for_grad():
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["undergrad"] and link.for_undergrad():
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["fyp"] and link.for_fyp():
-            selected_links.append(link)
-            continue
-
-        if link.campus_matched(campus) and\
-                affiliations["pce"] and link.for_pce():
-            selected_links.append(link)
-            continue
+        customized_link = _get_link_by_affiliation(link, campus, affiliations)
+        if customized_link:
+            selected_links.append(customized_link)
 
     return selected_links
+
+
+def _get_link_by_affiliation(link, campus, affiliations):
+    if link.all_affiliation() and link.campus_matched(campus):
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["grad"] and link.for_grad():
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["undergrad"] and link.for_undergrad():
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["fyp"] and link.for_fyp():
+        return link
+
+    if link.campus_matched(campus) and \
+            affiliations["pce"] and link.for_pce():
+        return link
+
+
+def pin_category(request, category_id):
+    user = get_user_model(request)
+    rs = Resource_Links()
+    if rs.category_exists(category_id):
+        rs_pin = ResourceCategoryPin.objects.\
+            get_or_create(user=user, resource_category_id=category_id)
+    else:
+        raise InvalidResourceCategory(category_id)
+
+
+def delete_categor_pin(request, category_id):
+    user = get_user_model(request)
+    pinned = ResourceCategoryPin.objects.\
+        get(user=user, resource_category_id=category_id)
+    if pinned:
+        pinned.delete()

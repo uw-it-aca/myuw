@@ -10,7 +10,10 @@ describe("HomePage", function() {
                 "myuw/static/js/textbooks.js",
                 "myuw/static/js/notices.js",
                 "myuw/static/js/visual_schedule.js",
+                "myuw/static/js/resources.js",
                 "myuw/static/js/cards.js",
+                "myuw/static/js/card/resources.js",
+                "myuw/static/js/card/resources_explore.js",
                 "myuw/static/js/card/alumni.js",
                 "myuw/static/js/card/calendars/acad_cal_sp.js",
                 "myuw/static/js/card/calendars/events.js",
@@ -103,8 +106,9 @@ describe("HomePage", function() {
                               SummerRegStatusCard1,
                               SeattleApplicationCard,
                               BothellApplicationCard,
-                              TacomaApplicationCard
-                             ]);
+                              TacomaApplicationCard,
+                              ResourcesCard,
+                              ResourcesExploreCard]);
             var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
             assert.deepEqual(desktop_sidebar_cards,
                              [QuickLinksCard,
@@ -138,7 +142,9 @@ describe("HomePage", function() {
                           FutureQuarterCard1,
                           SummerRegStatusCard1,
                           AcadCalSnippet,
-                          EventsCard]);
+                          EventsCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
         });
 
         it('Desktop for alumni should have', function() {

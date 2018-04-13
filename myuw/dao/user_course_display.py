@@ -90,12 +90,8 @@ def _save_section_color(user, section, color_id):
     """
     section_label = section.section_label()
     if UserCourseDisplay.exists_section_display(user, section_label):
-        obj = _get_for_update(user, section_label)
-        if obj.color_id != color_id:
-            obj.color_id = color_id
-            obj.save()
+        UserCourseDisplay.set_color(user, section_label, color_id)
         return
-
     UserCourseDisplay.objects.create(user=user,
                                      year=section.term.year,
                                      quarter=section.term.quarter,
@@ -116,8 +112,8 @@ def _clean_up_dropped_sections(user, existing_color_dict):
     """
     if existing_color_dict:
         for section_label in existing_color_dict.keys():
-            obj = _get_for_update(user, section_label)
-            obj.delete()
+            UserCourseDisplay.delete_section_display(
+                user, section_label)
 
 
 def set_pin_on_teaching_page(request,
@@ -137,16 +133,6 @@ def set_pin_on_teaching_page(request,
     if section.is_primary_section:
         return False
 
-    obj = _get_for_update(get_user_model(request), section_label)
-    if obj.pin_on_teaching_page != pin:
-        obj.pin_on_teaching_page = pin
-        obj.save()
+    UserCourseDisplay.set_pin(get_user_model(request),
+                              section_label, pin)
     return True
-
-
-def _get_for_update(user, section_label):
-    """
-    lock the row until the end of the transaction
-    """
-    return UserCourseDisplay.objects.select_for_update().get(
-        user=user, section_label=section_label)
