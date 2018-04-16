@@ -217,7 +217,7 @@
                         <h2>Welcome!</h2>
                         <ul class="unstyled-list myuw-muted">
                             <li><a id="tour_link" href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance</a></li>
-                            <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" data-toggle="" data-target="" target="_blank">Learn more about MyUW </a></li>
+                            <li><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated" title="MyUW Help Center in IT Connect"  data-linklabel="MyUW Help Center" target="_blank">Learn more about MyUW </a></li>
                             {% if user.affiliations.applicant is False %}
                                 <li><a id="optout_link" href="#" data-toggle="modal" data-target="#optout_modal">Switch back to the old MyUW</a></li>
                             {% endif %}
@@ -575,7 +575,7 @@
 			    <picture>
 				<source media="(min-width: 1024px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
 				    <source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
-					<img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page screenshot highlighting the email link, the Accounts page, and UW resources page. The Account page is for managing Husky card, U-Pass, library, UW NetID account. UW resources page is for an index of UW resources link" style="display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
+					<img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page screenshot highlighting the email link, the Accounts page, and UW resources page. The Account page is for managing Husky card, U-Pass, library, UW NetID account. UW resources page is for an index of UW resources link" style="max-width:100%;display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
 			    </picture>
 			</div>
 

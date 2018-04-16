@@ -57,7 +57,7 @@ setup(
         'UW-RestClients-Sdbmyuw',
         'UW-HX-Toolkit==1.03',
         'Django-Safe-EmailBackend>=0.1,<1.0',
-        'Django-SupportTools>=1.3,<2.0',
+        'Django-SupportTools>=1.3.2,<2.0',
         'django_mobileesp',
         'yajl',
         'bleach',

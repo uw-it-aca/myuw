@@ -49,6 +49,8 @@ class TestPwsDao(TestCase):
         req = get_request_with_user('seagrad')
         self.assertTrue(is_grad_and_prof_student(req))
         self.assertTrue(is_grad_student(req))
+        self.assertTrue(is_staff_employee(req))
+        self.assertTrue(is_regular_employee(req))
 
         req = get_request_with_user('curgrad')
         self.assertTrue(is_grad_and_prof_student(req))
