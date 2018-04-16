@@ -7,9 +7,9 @@
     <h3 class="sr-only">Husky Card accounts</h3>
 
     <div class="card-badge-container">
-	<ul class="card_list">
-    <!--NTS: Tacoma Dawg Dollars    -->
-        {{#if is_tacoma}}
+    <!--Tacoma Dawg Dollars    -->
+    {{#if is_tacoma}}
+    <ul class="card_list">
         <li>
             <div class="card-badge clearfix">
                 <div class="pull-left">
@@ -17,12 +17,14 @@
                     <h4 class="sr-only">Tacoma Dawg Dollars Account</h4>
                 </div>
                 <div class="pull-right">
-                    <div class="btn btn-default card-action-btn" ><a href="https://uwt.campuscardcenter.com/ch/login.html" target="_blank" data-linklabel="Tacoma Dawg Doallar account">Manage account</a></div>
+                    <div class="btn btn-default card-action-btn" ><a href="http://apps.tacoma.uw.edu/dawgdollars/" target="_blank" data-linklabel="Tacoma Dawg Doallar account">Manage account</a></div>
                 </div>
             </div>
         </li>
-     <!--NTS: Tacoma Dawg Dollar + Husky card case  -->
-            {{#if student_husky_card}}
+     </ul>
+     <!-- Tacoma Dawg Dollar + Husky card case  -->
+        {{#if student_husky_card}}
+        <ul class="card_list">
             <li>
                 <div class="card-badge clearfix">
                     {{#with student_husky_card}}
@@ -58,17 +60,19 @@
                 </div>
             </li>
             {{/if}}
-	         <li>
+	        <li>
 	         {{#if student_husky_card}}
             <div class="btn btn-default card-action-btn pull-right" style="margin-top:0px;"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary" aria-label="Manage Husky account"> Manage account</a></div>
 
             {{else if employee_husky_card}}
                 <div class="btn btn-default card-action-btn pull-right" style="margin-top:0px;"><a href="{{employee_husky_card.add_funds_url}}" target="_blank" aria-label="Manage Husky account">Manage account</a></div>
             {{/if}}
-             </li>
+            </li>
+        </ul>
         <!--NTS: Non-Tacoma Husky card case  -->
         {{else}}
             {{#if student_husky_card}}
+        <ul class="card_list">
             <li>
                 <div class="card-badge clearfix">
                     {{#with student_husky_card}}
@@ -111,9 +115,9 @@
             {{else if employee_husky_card}}
                 <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank" aria-label="Manage Husky account">Manage account</a></div>
             {{/if}}
-             </li>
+            </li>
+        </ul>
         {{/if}} <!-- End of Tacoma affil    -->
-	</ul>
     </div>
 </div>
 {% endtplhandlebars %}
