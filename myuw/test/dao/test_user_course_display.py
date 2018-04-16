@@ -57,7 +57,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
 
         # change existing color
         _save_section_color(user, sections[0], 5)
-        record = UserCourseDisplay.objects.get(
+        record = UserCourseDisplay.get_section_display(
             user=user, section_label="2013,spring,TRAIN,100/A")
         self.assertEqual(record.color_id, 5)
 
