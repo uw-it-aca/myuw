@@ -3,7 +3,7 @@ var EmployeeInfoCard = {
     dom_target: undefined,
 
     hide_card: function() {
-        if (window.user.employee) {
+        if (window.user.employee || window.user.stud_employee) {
             return false;
         }
         return true;
