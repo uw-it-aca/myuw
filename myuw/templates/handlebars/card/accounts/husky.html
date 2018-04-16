@@ -69,7 +69,7 @@
             {{/if}}
             </li>
         </ul>
-        <!--NTS: Non-Tacoma Husky card case  -->
+        <!-- Non-Tacoma Husky card case  -->
         {{else}}
             {{#if student_husky_card}}
         <ul class="card_list">
@@ -108,15 +108,13 @@
                 </div>
             </li>
             {{/if}}
-	         <li>
+	        </ul>
 	         {{#if student_husky_card}}
             <div class="btn btn-default card-action-btn pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary" aria-label="Manage Husky account">Manage account</a></div>
 
             {{else if employee_husky_card}}
                 <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank" aria-label="Manage Husky account">Manage account</a></div>
             {{/if}}
-            </li>
-        </ul>
         {{/if}} <!-- End of Tacoma affil    -->
     </div>
 </div>
