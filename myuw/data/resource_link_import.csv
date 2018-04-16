@@ -25,10 +25,10 @@ Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
 Academics,Tools and Software,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
 Academics,Tools and Software,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Tools and Software,all,,,http://scout.uw.edu/seattle,Scout: Discover the UW,http://scout.uw.edu/bothell,Scout: Discover the UW,http://scout.uw.edu/tacoma,Scout: Discover the UW,no
-Academics,Tools and Software,all,http://grad.uw.edu/for-students-and-post-docs/mygrad-program/,MyGrad – Graduate School Portal,,,,,,,
+Academics,Tools and Software,all,http://grad.uw.edu/for-students-and-post-docs/mygrad-program/,MyGrad – Graduate School Portal,,,,,,,no
 Academics,Tools and Software,all,http://www.washington.edu/itconnect/wares/uware/tableau-software/,Tableau Data Analysis Software,,,,,,,no
 Academics,Tools and Software,all,https://panopto.uw.edu/,Panopto Lecture Capture,,,,,,,no
-Academics,Tools and Software,all,https://itconnect.uw.edu/wares/,Other Software and Hardware Services,,,,,,,
+Academics,Tools and Software,all,https://itconnect.uw.edu/wares/,Other Software and Hardware Services,,,,,,,no
 "Email, and Accounts and Identity",Email,all,http://alpine.washington.edu/,Alpine Email,,,,,,,no
 "Email, and Accounts and Identity",Email,all,https://outlook.office365.com/uw.edu,UW Office 365 Email,,,,,,,no
 "Email, and Accounts and Identity",Email,all,http://mail.google.com/a/uw.edu,UW Gmail,,,,,,,no
@@ -37,7 +37,7 @@ Academics,Tools and Software,all,https://itconnect.uw.edu/wares/,Other Software 
 "Email, and Accounts and Identity",Email,all,,,http://itconnect.uw.edu/connect/email,Email and Calendaring Options,https://www.uwb.edu/it/service-catalog/email-and-calendaring,Email and Calendaring Options,http://www.tacoma.uw.edu/admissions/setting-your-uw-email,Setting up your UW email,no
 "Email, and Accounts and Identity",Accounts and Identity,all,https://uwnetid.washington.edu/manage/,Manage UW NetID Account,,,,,,,no
 "Email, and Accounts and Identity",Accounts and Identity,all,http://services.uwmedicine.org/passwordportal,UW Medicine Password Portal,,,,,,,no
-"Email, and Accounts and Identity",Accounts and Identity,all,https://identity.uw.edu/,Identity.UW,,,,,,,
+"Email, and Accounts and Identity",Accounts and Identity,all,https://identity.uw.edu/,Identity.UW,,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,http://wd5.myworkday.com/uw/login.htmld,Workday,,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,http://isc.uw.edu,Integrated Service Center (ISC),,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,,,http://washington.edu/admin/hr/benefits,Benefits,https://www.uwb.edu/hr/benefits,Benefits,http://washington.edu/admin/hr/benefits,Benefits,no
