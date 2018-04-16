@@ -38,7 +38,7 @@ describe("ProfilePage for student and employee", function() {
     });
 
     describe('load profile page for seagrad (stud, staff)', function() {
-        it('Desktop should have cards', function() {
+        it('Desktop profile page for seagrad', function() {
             window.innerWidth = 800;
             ProfilePage.make_html();
             assert.equal(ProfilePage.is_desktop, true);
@@ -48,7 +48,7 @@ describe("ProfilePage for student and employee", function() {
             assert.equal($('div[id="HelpLinksCard"]').length, 1);
         });
 
-        it('Mobile should have cards', function() {
+        it('Mobile profile page for seagrad', function() {
             window.innerWidth = 767;
             ProfilePage.make_html();
             assert.equal(ProfilePage.is_desktop, false);
@@ -98,8 +98,8 @@ describe("ProfilePage for applicant and employee", function() {
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
     });
 
-    describe('load profile page for japplicant (, staff)', function() {
-        it('Desktop should have cards', function() {
+    describe('load profile page for japplicant (japplicant, staff)', function() {
+        it('Desktop profile page for japplicant', function() {
             window.innerWidth = 800;
             ProfilePage.make_html();
             assert.equal(ProfilePage.is_desktop, true);
@@ -109,7 +109,7 @@ describe("ProfilePage for applicant and employee", function() {
             assert.equal($('div[id="HelpLinksCard"]').length, 1);
         });
 
-        it('Mobile should have cards', function() {
+        it('Mobile profile page for japplicant', function() {
             window.innerWidth = 767;
             ProfilePage.make_html();
             assert.equal(ProfilePage.is_desktop, false);
@@ -159,8 +159,8 @@ describe("ProfilePage for student and student employee", function() {
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
     });
 
-    describe('load profile page for japplicant (, staff)', function() {
-        it('Desktop should have cards', function() {
+    describe('load profile page for javerage (stud, stud_employee)', function() {
+        it('Desktop profile page for javerage', function() {
             window.innerWidth = 800;
             ProfilePage.make_html();
             assert.equal(ProfilePage.is_desktop, true);
@@ -170,7 +170,7 @@ describe("ProfilePage for student and student employee", function() {
             assert.equal($('div[id="HelpLinksCard"]').length, 1);
         });
 
-        it('Mobile should have cards', function() {
+        it('Mobile profile page for javerage', function() {
             window.innerWidth = 767;
             ProfilePage.make_html();
             assert.equal(ProfilePage.is_desktop, false);
