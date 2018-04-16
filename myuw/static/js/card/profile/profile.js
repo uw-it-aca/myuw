@@ -28,3 +28,9 @@ var CommonProfileCard = {
         CommonProfileCard.dom_target.html(compiled);
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.CommonProfileCard = CommonProfileCard;

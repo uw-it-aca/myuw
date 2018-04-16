@@ -21,7 +21,7 @@ class TestUpassApi(MyuwApiTest):
         self.assertTrue(data["is_current"])
         self.assertTrue(data["is_student"])
         self.assertTrue(data["display_activation"])
-        self.assertFalse(data["is_employee"])
+        self.assertTrue(data["is_employee"])
         self.assertFalse(data["in_summer"])
 
     def test_error_543(self):

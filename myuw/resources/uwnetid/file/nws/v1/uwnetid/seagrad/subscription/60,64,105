@@ -32,8 +32,8 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 14,
-          "categoryName": "Student Employee",
+          "categoryCode": 4,
+          "categoryName": "Staff",
           "statusCode": 1,
           "statusName": "current"
         },
@@ -101,8 +101,8 @@
         {
           "type": "permit",
           "mode": "implicit",
-          "categoryCode": 14,
-          "categoryName": "Student Employee",
+          "categoryCode": 4,
+          "categoryName": "Staff",
           "statusCode": 1,
           "statusName": "current"
         },
