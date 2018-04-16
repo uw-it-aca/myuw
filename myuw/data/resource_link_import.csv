@@ -1,4 +1,4 @@
-Category,Subcategory,affiliation,Central (not campus specific),Central Title,Seattle,Seattle (link text),Bothell (destination URL),Bothell (link text),Tacoma,Tacoma Title,Open in a new tab?
+Category,Subcategory,Working Affiliation,Central (not campus specific),Central Title,Seattle (destination URL),Seattle (link text),Bothell (destination URL),Bothell (link text),Tacoma,Tacoma Title,Open in new tab?
 Academics,Advising & Tutoring,all,,,http://careers.washington.edu/,Career Center,http://www.bothell.washington.edu/careers,Career Services,http://www.tacoma.uw.edu/career-development/career-development-education,Career Development and Education,no
 Academics,Advising & Tutoring,all,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
 Academics,Advising & Tutoring,all,,,http://iss.washington.edu/,International Student Services (ISS),http://www.uwb.edu/iss,International Student Services (ISS),http://www.tacoma.uw.edu/international-student-services/welcome-international-student-scholar-services,International Student Services (ISS),no
@@ -25,17 +25,19 @@ Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
 Academics,Tools and Software,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
 Academics,Tools and Software,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Tools and Software,all,,,http://scout.uw.edu/seattle,Scout: Discover the UW,http://scout.uw.edu/bothell,Scout: Discover the UW,http://scout.uw.edu/tacoma,Scout: Discover the UW,no
+Academics,Tools and Software,all,http://grad.uw.edu/for-students-and-post-docs/mygrad-program/,MyGrad – Graduate School Portal,,,,,,,
 Academics,Tools and Software,all,http://www.washington.edu/itconnect/wares/uware/tableau-software/,Tableau Data Analysis Software,,,,,,,no
 Academics,Tools and Software,all,https://panopto.uw.edu/,Panopto Lecture Capture,,,,,,,no
 Academics,Tools and Software,all,https://itconnect.uw.edu/wares/,Other Software and Hardware Services,,,,,,,
-"Accounts, Identity, and Email",Email,all,http://alpine.washington.edu/,Alpine Email,,,,,,,no
-"Accounts, Identity, and Email",Email,all,https://outlook.office365.com/uw.edu,UW Office 365 Email,,,,,,,no
-"Accounts, Identity, and Email",Email,all,http://mail.google.com/a/uw.edu,UW Gmail,,,,,,,no
-"Accounts, Identity, and Email",Email,all,http://outlook.com/owa/myuw.net,MyUW.net Email,,,,,,,no
-"Accounts, Identity, and Email",Email,all,https://uwnetid.washington.edu/manage/?forward,Email Forwarding,,,,,,,no
-"Accounts, Identity, and Email",Email,all,,,http://itconnect.uw.edu/connect/email,Email and Calendaring Options,https://www.uwb.edu/it/service-catalog/email-and-calendaring,Email and Calendaring Options,http://www.tacoma.uw.edu/admissions/setting-your-uw-email,Setting up your UW email,no
-"Accounts, Identity, and Email",Accounts and Identity,all,https://uwnetid.washington.edu/manage/,Manage UW NetID Account,,,,,,,no
-"Accounts, Identity, and Email",Accounts and Identity,all,http://services.uwmedicine.org/passwordportal,UW Medicine Password Portal,,,,,,,no
+"Email, and Accounts and Identity",Email,all,http://alpine.washington.edu/,Alpine Email,,,,,,,no
+"Email, and Accounts and Identity",Email,all,https://outlook.office365.com/uw.edu,UW Office 365 Email,,,,,,,no
+"Email, and Accounts and Identity",Email,all,http://mail.google.com/a/uw.edu,UW Gmail,,,,,,,no
+"Email, and Accounts and Identity",Email,all,http://outlook.com/owa/myuw.net,MyUW.net Email,,,,,,,no
+"Email, and Accounts and Identity",Email,all,https://uwnetid.washington.edu/manage/?forward,Email Forwarding,,,,,,,no
+"Email, and Accounts and Identity",Email,all,,,http://itconnect.uw.edu/connect/email,Email and Calendaring Options,https://www.uwb.edu/it/service-catalog/email-and-calendaring,Email and Calendaring Options,http://www.tacoma.uw.edu/admissions/setting-your-uw-email,Setting up your UW email,no
+"Email, and Accounts and Identity",Accounts and Identity,all,https://uwnetid.washington.edu/manage/,Manage UW NetID Account,,,,,,,no
+"Email, and Accounts and Identity",Accounts and Identity,all,http://services.uwmedicine.org/passwordportal,UW Medicine Password Portal,,,,,,,no
+"Email, and Accounts and Identity",Accounts and Identity,all,https://identity.uw.edu/,Identity.UW,,,,,,,
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,http://wd5.myworkday.com/uw/login.htmld,Workday,,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,http://isc.uw.edu,Integrated Service Center (ISC),,,,,,,no
 Services for Faculty and Staff,"HR, Payroll, and Benefits",all,,,http://washington.edu/admin/hr/benefits,Benefits,https://www.uwb.edu/hr/benefits,Benefits,http://washington.edu/admin/hr/benefits,Benefits,no
@@ -70,7 +72,7 @@ Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseling/,Counse
 Campus Life,Health & Wellness,all,,,http://depts.washington.edu/hhpccweb/,Hall Health Center,http://www.uwb.edu/recwell/health-promotion,Health Promotion,http://www.tacoma.uw.edu/student-health-services/about-student-health-services,Student Health Services (SHS),no
 Campus Life,Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),http://www.uwb.edu/recwell,Recreation and Wellness,http://www.tacoma.uw.edu/uwy/fitness,Recreation & Fitness,no
 Campus Life,Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
-Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Add Funds to Husky Card,http://apps.tacoma.uw.edu/dawgdollars/,Add Funds to UW Tacoma Dawg Dollars Account,no
+Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account ,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account ,http://apps.tacoma.uw.edu/dawgdollars/,Tacoma Dawg Dollars Account,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/dining/,Campus Dining,http://www.uwb.edu/food,Campus Dining,http://www.tacoma.uw.edu/food-services/locations,Campus Dining,no
 Campus Life,Housing & Dining,all,https://www.hfs.washington.edu/myhfs/ledger.aspx,Check HFS Balance,,,,,,,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/housing/,Student Housing,http://www.uwb.edu/housing,Student Housing,http://www.tacoma.uw.edu/housing,Housing,no
