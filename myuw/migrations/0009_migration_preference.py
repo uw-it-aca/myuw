@@ -25,12 +25,6 @@ class Migration(migrations.Migration):
                 'db_table': 'migration_preference',
             },
         ),
-        migrations.DeleteModel(
-            name='CourseColor',
-        ),
-        migrations.DeleteModel(
-            name='StudentAccountsBalances',
-        ),
         migrations.RemoveField(
             model_name='user',
             name='uwregid',
