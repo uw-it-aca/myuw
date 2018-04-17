@@ -13,18 +13,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='MigrationPreference',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('display_onboard_message', models.BooleanField(default=True)),
-                ('display_pop_up', models.BooleanField(default=True)),
-                ('use_legacy_site', models.BooleanField(default=False)),
-            ],
-            options={
-                'db_table': 'migration_preference',
-            },
-        ),
         migrations.DeleteModel(
             name='CourseColor',
         ),
