@@ -1,6 +1,6 @@
 {
 "DisplayName":"J. Average Applicant",
-"EduPersonAffiliations":["affiliate"],
+"EduPersonAffiliations":["affiliate", "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],

@@ -49,11 +49,11 @@
     </li>
 
     <li class="groupreference">
-      <span class="regid">c0bb186dd509480dae99280d682f573c</span>
-      <span class="title">UW Student Employees</span>
-      <span class="description">UW student employees.  This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
+      <span class="regid">642d545076c7481a9d27e9ccf936b381</span>
+      <span class="title">UW Staff Employees</span>
+      <span class="description">UW staff.  Excludes student employee appointments. This is an automatically generated group from the UW Identity Registry. It is updated nightly.</span>
       <ul>
-      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_student-employee">uw_affiliation_student-employee</a></li>
+      <li><a class="name" href="/group_sws/v2/group/uw_affiliation_staff-employee">uw_affiliation_staff-employee</a></li>
       </ul>
     </li>
 

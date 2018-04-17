@@ -7,6 +7,7 @@
 
 @fontsize-small: 12px;
 @fontsize-base: 14px;
+@fontsize-medium: 16px;
 @fontsize-large: 18px;
 
 @font-header-larger: 26px;
@@ -19,6 +20,53 @@
 
 /*** Body Copy ***/
 p { margin: 0 0 1.42857143em 0; }
+
+abbr[data-original-title],
+abbr[title] {
+    cursor: help;
+    border-bottom: 1px dotted #777;
+    text-decoration: none;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+}
+
+/** Lists **/
+
+ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
+    padding-left: 0px;
+    list-style-type: none;
+    line-height: inherit;
+    margin: 0;
+
+    li {
+        margin: 0 0 .357143em 0;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+/*** Dot Separated Lists
+* Lists items inline, separated by a dot character
+* Example: List item 1 · List item 2 · item 3  ***/
+ul.myuw-inline-list, ol.myuw-inline-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        margin-right: .6em;
+        a { margin-right: .6em; }
+    }
+
+    li:not(:last-child)::after {
+        content: "·";
+    }
+}
 
 /*** Headings ***/
 h2.heading-page, h2.myuw-heading-page {
@@ -40,12 +88,7 @@ h3.heading-page, h3.myuw-heading-page, .myuw-article h3 {
     margin-top: 0;
 }
 
-abbr[data-original-title],
-abbr[title] {
-    cursor: help;
-    border-bottom: 1px dotted #777;
-    text-decoration: none;
-}
+
 
 /*** Utility class ***/
 .myuw-text-capitalize::first-letter {
@@ -117,6 +160,19 @@ abbr[title] {
             border-bottom-color: darken(#999, 20%);
         }
     }
+
+    button&, button {
+        border: none;
+        background: none;
+        color: #777;
+        padding: 0;
+
+        &:hover {
+            color: darken(#777, 20%);
+            border-bottom: 1px solid #777;
+            border-bottom-color: darken(#999, 20%);
+        }
+    }
 }
 
 
@@ -152,14 +208,6 @@ abbr[title] {
 
 }
 
-/** Lists **/
-
-ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
-    padding-left: 0px;
-    list-style-type: none;
-    line-height: 23px;
-    margin: 4px 0;
-}
 
 /* Extra ID, .card, and element added to override generic styles */
 #app_content .card h3.myuw-card-row-heading,
@@ -178,7 +226,7 @@ ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
 .myuw-iconlink {
     i,
     .fa {
-        margin-right: .4em;
+        margin-right: .4rem;
     }
 }
 
