@@ -8,8 +8,6 @@ from django.test import Client
 class TestRedirect(MyuwApiTest):
 
     def test_invalid_urls(self):
-        VisitedLinkNew.objects.all().delete()
-
         self.client.logout()
         url = reverse('myuw_outbound_link')
 
@@ -35,8 +33,6 @@ class TestRedirect(MyuwApiTest):
         self.assertEquals(len(all), 0)
 
     def test_valid_urls(self):
-        VisitedLinkNew.objects.all().delete()
-
         self.set_user('javerage')
         url = reverse('myuw_outbound_link')
         response = self.client.get(url, {'u': 'https://example.com',
@@ -65,7 +61,6 @@ class TestRedirect(MyuwApiTest):
         self.assertEquals(len(pce), 2)
 
     def test_anonymous_user(self):
-        VisitedLinkNew.objects.all().delete()
         self.client.logout()
         url = reverse('myuw_outbound_link')
         response = self.client.get(url, {'u': 'https://example.com',
@@ -75,10 +70,8 @@ class TestRedirect(MyuwApiTest):
         self.assertEquals(len(all), 0)
 
     def test_ignore_link(self):
-        VisitedLinkNew.objects.all().delete()
-        self.set_user('jbothell')
         url = reverse('myuw_outbound_link')
-
+        self.set_user('jbothell')
         response = self.client.get(url, {'u': 'http://gmail.uw.edu'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"], "http://gmail.uw.edu")

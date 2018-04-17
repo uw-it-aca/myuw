@@ -6,6 +6,7 @@ $(window.document).ready(function() {
     LogUtils.init_logging();
     init_modal_events();
     init_search_events();
+    init_close_banner_msg_events();
     var course_data = null;
     var book_data = null;
     // This is to prevent multiple events on load from making
@@ -98,6 +99,21 @@ $(window.document).ready(function() {
 
     register_link_recorder();
 
+    // display myuw tour popup once
+    if (window.user.display_pop_up) {
+        $('#tour_modal').modal('show');
+        $.ajax({
+            url: "/api/v1/turn_off_tour_popup",
+            dataType: "JSON",
+            async: true,
+            type: 'GET',
+            accepts: {html: "text/html"},
+            success: function(results) {
+                window.user.display_pop_up = false;
+            },
+            error: function(xhr, status, error) { }
+        });
+    }
 });
 
 var showLoading = function() {
@@ -324,6 +340,32 @@ var init_search_events = function() {
 
 };
 
+var init_close_banner_msg_events = function() {
+    // handle clicking on onboarding close button
+
+    $(".myuw-banner-msg-close-btn").bind("click", function(ev) {
+        ev.preventDefault();
+        var desktop_div = document.getElementById("tour_messages_desktop");
+        var mobile_div = document.getElementById("tour_messages_mobile");
+        $.ajax({
+            url: "/api/v1/close_banner_message",
+            dataType: "JSON",
+            async: true,
+            type: 'GET',
+            accepts: {html: "text/html"},
+            success: function(results) {
+                if (results.done) {
+                    desktop_div.className += " hidden";
+                    mobile_div.className += " hidden";
+                }
+            },
+            error: function(xhr, status, error) {
+                return false;
+            }
+        });
+    });
+};
+
 var remove_card = function(target) {
     $(target).remove();
     $(window).trigger("card-hide");
@@ -334,11 +376,13 @@ if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.capitalizeString = capitalizeString;
+exports.curr_abbr_url_safe = curr_abbr_url_safe;
 exports.date_from_string = date_from_string;
+exports.get_is_desktop = get_is_desktop;
 exports.myuwFeatureEnabled = myuwFeatureEnabled;
 exports.register_link_recorder = register_link_recorder;
-exports.safe_label = safe_label;
-exports.curr_abbr_url_safe = curr_abbr_url_safe;
-exports.renderedCardOnce = renderedCardOnce;
-exports.titilizeTerm = titilizeTerm;
 exports.remove_card = remove_card;
+exports.renderedCardOnce = renderedCardOnce;
+exports.resetCardRenderCalled = resetCardRenderCalled;
+exports.safe_label = safe_label;
+exports.titilizeTerm = titilizeTerm;

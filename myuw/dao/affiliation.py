@@ -185,10 +185,11 @@ def get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
     return is_viewer
 
 
-def get_identity_log_str(affi):
+def get_identity_log_str(request):
     """
     Return "(Affiliations: <affiliations>, <campus codes>)"
     """
+    affi = get_all_affiliations(request)
     res = "(Affiliations:"
     no_affiliation_lengthmark = len(res)
     if affi["grad"]:

@@ -39,6 +39,7 @@ WSData = {
     _upass_data: null,
     _visual_schedule_data: {},
     _hx_toolkit_data: {},
+    _resource_data: {},
 
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
@@ -451,6 +452,9 @@ WSData = {
         if(WSData._hx_toolkit_data.hasOwnProperty('week/')){
             return WSData._hx_toolkit_data["week/"];
         }
+    },
+    resource_data: function(){
+        return WSData._resource_data;
     },
 
     fetch_event_data: function(callback, err_callback, args) {
@@ -1513,6 +1517,70 @@ WSData = {
                 callback.apply(null, args);
             }, 0);
         }
+    },
+
+    fetch_resource_data: function(callback, err_callback, args, get_pinned) {
+        get_pinned = typeof get_pinned !=='undefined' ? get_pinned: false;
+        if (Object.keys(WSData._resource_data).length === 0) {
+            var url = "/api/v1/resources/";
+            if (get_pinned){
+                url += "pinned/";
+            }
+
+            if (WSData._is_running_url(url)) {
+                WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+                return;
+            }
+
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            $.ajax({
+                       url: url,
+                       dataType: "JSON",
+
+                       type: "GET",
+                       accepts: {html: "application/json"},
+                       success: function(results) {
+                           WSData._resource_data = results;
+                           WSData._run_success_callbacks_for_url(url);
+                       },
+                       error: function(xhr, status, error) {
+                           WSData._run_error_callbacks_for_url(url);
+                       }
+                   });
+        }
+        else {
+            window.setTimeout(function() {
+                callback.apply(null, args);
+            }, 0);
+        }
+    },
+
+    handle_resource_pin: function(callback, err_callback, args, category_id, will_pin) {
+        var url = "/api/v1/resources/" + category_id + "/pin",
+            ajax_method = will_pin ? "POST" : "DELETE",
+            csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
+
+        if (WSData._is_running_url(url)) {
+            WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+            return;
+        }
+
+        WSData._enqueue_callbacks_for_url(url, callback, err_callback, args);
+        $.ajax({
+                   url: url,
+                   dataType: "JSON",
+                   type: ajax_method,
+                   accepts: {html: "application/json"},
+                   success: function (results) {
+                       WSData._run_success_callbacks_for_url(url);
+                   },
+                   error: function (xhr, status, error) {
+                       WSData._run_error_callbacks_for_url(url);
+                   },
+                   headers: {
+                       "X-CSRFToken": csrf_token
+                   },
+               });
     }
 };
 

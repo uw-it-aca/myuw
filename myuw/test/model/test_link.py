@@ -1,16 +1,17 @@
-from myuw.models import VisitedLinkNew
-from myuw.test import get_myuw_user
-from unittest2 import TestCase
 from django.utils import timezone
 from datetime import datetime, timedelta
+from myuw.dao.user import get_user_model
+from myuw.models import VisitedLinkNew
+from myuw.test import get_request_with_user
+from myuw.test.api import MyuwApiTest
 
 TEST_URLS = ('http://google.com', 'http://uw.edu', 'http://cs.uw.edu')
 
 
-class TestLink(TestCase):
+class TestLink(MyuwApiTest):
     def test_user_recent_basic(self):
-        VisitedLinkNew.objects.all().delete()
-        user = get_myuw_user('basic_recent')
+        req = get_request_with_user('none')
+        user = get_user_model(req)
         for url in TEST_URLS:
             VisitedLinkNew.objects.create(user=user,
                                           url=url)
@@ -22,8 +23,8 @@ class TestLink(TestCase):
         self.assertEquals(recent[2].url, TEST_URLS[0])
 
     def test_user_recent_multi_visit(self):
-        VisitedLinkNew.objects.all().delete()
-        user = get_myuw_user('basic_recent')
+        req = get_request_with_user('none')
+        user = get_user_model(req)
         for url in TEST_URLS:
             for i in range(3):
                 VisitedLinkNew.objects.create(user=user,
@@ -36,8 +37,8 @@ class TestLink(TestCase):
         self.assertEquals(recent[2].url, TEST_URLS[0])
 
     def test_max_old_links(self):
-        VisitedLinkNew.objects.all().delete()
-        user = get_myuw_user('basic_recent')
+        req = get_request_with_user('none')
+        user = get_user_model(req)
         VisitedLinkNew.objects.create(user=user, url=TEST_URLS[0])
         for i in range(VisitedLinkNew.MAX_RECENT_HISTORY):
             VisitedLinkNew.objects.create(user=user, url=TEST_URLS[1])
@@ -49,8 +50,8 @@ class TestLink(TestCase):
         self.assertEquals(recent[1].url, TEST_URLS[1])
 
     def test_max_by_date(self):
-        VisitedLinkNew.objects.all().delete()
-        user = get_myuw_user('basic_recent')
+        req = get_request_with_user('none')
+        user = get_user_model(req)
         visit_date = (timezone.now() +
                       VisitedLinkNew.OLDEST_RECENT_TIME_DELTA +
                       timedelta(seconds=-1))
@@ -65,32 +66,36 @@ class TestLink(TestCase):
         self.assertEquals(recent[0].url, TEST_URLS[1])
 
     def test_none(self):
-        VisitedLinkNew.objects.all().delete()
-        user = get_myuw_user('basic_recent')
+        req = get_request_with_user('none')
+        user = get_user_model(req)
         recent = VisitedLinkNew.recent_for_user(user)
         self.assertEquals(recent, [])
 
     def test_popular(self):
-        VisitedLinkNew.objects.all().delete()
+        req1 = get_request_with_user('none')
+        user1 = get_user_model(req1)
 
-        user1 = get_myuw_user('basic1')
-        user2 = get_myuw_user('basic2')
+        req2 = get_request_with_user('none1')
+        user2 = get_user_model(req2)
+
         VisitedLinkNew.objects.create(user=user1, url=TEST_URLS[0],
                                       is_student=True, is_seattle=True)
+
         VisitedLinkNew.objects.create(user=user2, url=TEST_URLS[0],
                                       is_seattle=True)
         VisitedLinkNew.objects.create(user=user2, url=TEST_URLS[1])
-        VisitedLinkNew.objects.create(user=user1, url=TEST_URLS[2])
-        VisitedLinkNew.objects.create(user=user1, url=TEST_URLS[2],
+        VisitedLinkNew.objects.create(user=user2, url=TEST_URLS[2],
                                       is_seattle=True)
 
         popular_links = VisitedLinkNew.get_popular()
 
         self.assertEquals(len(popular_links), 3)
         self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 4)
+        self.assertEquals(popular_links[0]['popularity'], 2)
+
         self.assertEquals(popular_links[1]['url'], TEST_URLS[2])
-        self.assertEquals(popular_links[1]['popularity'], 2)
+        self.assertEquals(popular_links[1]['popularity'], 1)
+
         self.assertEquals(popular_links[2]['url'], TEST_URLS[1])
         self.assertEquals(popular_links[2]['popularity'], 1)
 
@@ -102,16 +107,17 @@ class TestLink(TestCase):
         popular_links = VisitedLinkNew.get_popular(is_seattle=True)
         self.assertEquals(len(popular_links), 2)
         self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 4)
+        self.assertEquals(popular_links[0]['popularity'], 2)
         self.assertEquals(popular_links[1]['url'], TEST_URLS[2])
         self.assertEquals(popular_links[1]['popularity'], 1)
 
     def test_popular_multi_labels(self):
-        VisitedLinkNew.objects.all().delete()
-
-        user1 = get_myuw_user('basic1')
-        user2 = get_myuw_user('basic2')
-        user3 = get_myuw_user('basic3')
+        req1 = get_request_with_user('none')
+        user1 = get_user_model(req1)
+        req2 = get_request_with_user('none1')
+        user2 = get_user_model(req2)
+        req3 = get_request_with_user('none2')
+        user3 = get_user_model(req3)
 
         VisitedLinkNew.objects.create(user=user1, url=TEST_URLS[0], label="x",
                                       is_student=True, is_seattle=True)
@@ -128,9 +134,9 @@ class TestLink(TestCase):
         popular_links = VisitedLinkNew.get_popular()
         self.assertEquals(len(popular_links), 2)
         self.assertEquals(popular_links[0]['url'], TEST_URLS[1])
-        self.assertEquals(popular_links[0]['popularity'], 9)
+        self.assertEquals(popular_links[0]['popularity'], 6)
         self.assertEquals(popular_links[0]['labels'], ['x', 'y'])
 
         self.assertEquals(popular_links[1]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[1]['popularity'], 4)
+        self.assertEquals(popular_links[1]['popularity'], 2)
         self.assertEquals(popular_links[1]['labels'], ['x'])

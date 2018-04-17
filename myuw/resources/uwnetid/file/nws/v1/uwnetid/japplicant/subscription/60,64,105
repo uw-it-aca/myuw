@@ -18,8 +18,8 @@
           "mode": "implicit",
           "categoryCode": 4,
           "categoryName": "Staff",
-          "statusCode": 3,
-          "statusName": "former"
+          "statusCode": 1,
+          "statusName": "current"
         },
         {
           "type": "permit",
@@ -60,8 +60,8 @@
           "mode": "implicit",
           "categoryCode": 4,
           "categoryName": "Staff",
-          "statusCode": 3,
-          "statusName": "former"
+          "statusCode": 1,
+          "statusName": "current"
         },
         {
           "type": "permit",
