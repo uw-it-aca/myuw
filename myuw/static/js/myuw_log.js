@@ -50,7 +50,13 @@ function MyuwLog()  {
 
         var href = $(link).attr('href');
         if (href && href !== "#") {
-            var message = {href: $(link).attr('href'),
+            if(href.indexOf("/out?u=") !== -1){
+                href = href.replace("/out?u=", "");
+                var parts = href.split("&");
+                href = decodeURIComponent(parts[0]);
+            }
+
+            var message = {href: href,
                            action: action,
                            source_card: card_name,
                            card_info: card_info};
