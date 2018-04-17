@@ -28,9 +28,6 @@ class Migration(migrations.Migration):
         migrations.DeleteModel(
             name='CourseColor',
         ),
-        migrations.DeleteModel(
-            name='StudentAccountsBalances',
-        ),
         migrations.RemoveField(
             model_name='user',
             name='uwregid',
