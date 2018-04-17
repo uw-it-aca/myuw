@@ -26,13 +26,13 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 200)
 
         self.set_user('faculty')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_undergrad_access(self):
@@ -57,7 +57,7 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(
             url,
             HTTP_USER_AGENT='Fake iPhone Agent')
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_instructor_access(self):

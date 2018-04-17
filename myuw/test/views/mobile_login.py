@@ -1,8 +1,9 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from myuw.test.api import MyuwApiTest, require_url
-from myuw.models import UserMigrationPreference
 from django.test.utils import override_settings
+from myuw.dao.user_pref import set_preference_to_old_myuw
+from myuw.test import get_request_with_user
+from myuw.test.api import MyuwApiTest, require_url
 
 
 redirect_to_legacy_url = "https://myuw.washington.edu/servlet/user"
@@ -46,93 +47,29 @@ class TestLoginRedirects(MyuwApiTest):
     def test_non_student_non_optin_mobile(self):
         self.set_user('curgrad')
         response = self.get_home_mobile()
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
+        self.assertEquals(response.status_code, 200)
 
     def test_random_desktop_user(self):
         url = reverse("myuw_home")
         self.set_user('nobody')
         response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 200)
 
         self.set_user('jnew')
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 
-        UserMigrationPreference.objects.all().delete()
-        username = "jbothell"
-        self.set_user(username)
-        response = self.get_home_desktop()
-
-        # By default, they get sent to the new site
-        self.assertEquals(response.status_code, 200)
-
-        # Test with a saved preference of the old site
         regid = "jbothell"
-        obj = UserMigrationPreference.objects.create(username=regid,
-                                                     use_legacy_site=True)
-
-        response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
-
-        # Test with a saved preference for the new site
-        obj.use_legacy_site = False
-        obj.save()
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
-        UserMigrationPreference.objects.all().delete()
 
     def test_set_legacy_preferences(self):
-        # Clear any existing data...
-        UserMigrationPreference.objects.all().delete()
-
         username = "faculty"
-        new_url = reverse('myuw_pref_new_site')
-        old_url = reverse('myuw_pref_old_site')
-
-        # Set a preference for the new site, with no existing preference
         self.set_user(username)
-        response = self.client.get(new_url)
+        req = get_request_with_user(username)
+        set_preference_to_old_myuw(req)
 
-        new_valid_url = "/"
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), new_valid_url)
-
-        obj = UserMigrationPreference.objects.get(username=username)
-        self.assertFalse(obj.use_legacy_site)
-
-        # Set a preference again for the new site
-        response = self.client.get(new_url)
-
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), new_valid_url)
-
-        obj = UserMigrationPreference.objects.get(username=username)
-        self.assertFalse(obj.use_legacy_site)
-
-        # Go to the set old preference url
-        response = self.client.get(old_url)
-
+        self.set_user(username)
+        response = self.get_home_desktop()
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.get("Location"), redirect_to_legacy_url)
-
-        obj = UserMigrationPreference.objects.get(username=username)
-        self.assertTrue(obj.use_legacy_site)
-
-        response = self.client.post(old_url)
-
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
-
-        obj = UserMigrationPreference.objects.get(username=username)
-        self.assertTrue(obj.use_legacy_site)
-
-        # Replace a legacy preference with a new one
-        response = self.client.get(new_url)
-
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), new_valid_url)
-
-        obj = UserMigrationPreference.objects.get(username=username)
-        self.assertFalse(obj.use_legacy_site)

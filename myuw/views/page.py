@@ -10,10 +10,10 @@ from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
-from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import is_oldmyuw_user
+from myuw.dao.user import get_user_model
+from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
@@ -40,11 +40,13 @@ def page(request,
 
     timer = Timer()
     try:
-        person = get_person_of_current_user(request)
-    except Exception:
+        user = get_user_model(request)
+    except Exception as ex:
+        logger.error(ex)
         log_invalid_netid_response(logger, timer)
         return invalid_session()
-    netid = person.uwnetid
+
+    netid = user.uwnetid
     context["user"] = {
         "netid": netid,
         "session_key": request.session.session_key,
@@ -56,7 +58,9 @@ def page(request,
         if failure:
             return failure
 
-    if is_oldmyuw_user(request):
+    user_pref = get_migration_preference(request)
+
+    if user_pref.use_legacy_site:
         return redirect_to_legacy_site()
 
     affiliations = get_all_affiliations(request)
@@ -66,16 +70,16 @@ def page(request,
     context["err"] = None
     context["user"]["affiliations"] = affiliations
     context["banner_messages"] = get_current_messages(request)
+    context["display_onboard_message"] = user_pref.display_onboard_message
+    context["display_pop_up"] = user_pref.display_pop_up
     context["card_display_dates"] = get_card_visibilty_date_values(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
         if my_uwemail_forwarding.is_active():
             c_user = context["user"]
             try:
-                (c_user['email_forward_url'],
-                 c_user['email_forward_title'],
-                 c_user['email_forward_icon']) = get_service_url_for_address(
-                     my_uwemail_forwarding.fwd)
+                c_user['email_forward_url'] = get_service_url_for_address(
+                    my_uwemail_forwarding.fwd)
             except EmailServiceUrlException:
                 c_user['login_url'] = None
                 c_user['title'] = None
@@ -96,15 +100,16 @@ def page(request,
     context['google_search_key'] = get_google_search_key()
 
     if add_quicklink_context:
-        _add_quicklink_context(request, affiliations, context)
+        _add_quicklink_context(request, context)
 
-    log_success_response_with_affiliation(logger, timer, affiliations)
+    log_success_response_with_affiliation(logger, timer, request)
     return render(request, template, context)
 
 
 def try_prefetch(request):
     try:
         prefetch_resources(request,
+                           prefetch_migration_preference=True,
                            prefetch_enrollment=True,
                            prefetch_group=True,
                            prefetch_instructor=True)
@@ -129,8 +134,8 @@ def logout(request):
     return HttpResponseRedirect(get_logout_url())
 
 
-def _add_quicklink_context(request, affiliations, context):
-    link_data = get_quicklink_data(request, affiliations)
+def _add_quicklink_context(request, context):
+    link_data = get_quicklink_data(request)
 
     for key in link_data:
         context[key] = link_data[key]

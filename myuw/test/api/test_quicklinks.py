@@ -1,9 +1,10 @@
 import json
 from django.core.urlresolvers import reverse
-from myuw.test.api import MyuwApiTest
-from myuw.test import get_myuw_user
+from myuw.dao.user import get_user_model
 from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
 from myuw.views.api.link import get_link_data
+from myuw.test import get_request_with_user
+from myuw.test.api import MyuwApiTest
 
 
 class TestQuickLinksAPI(MyuwApiTest):
@@ -67,10 +68,11 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(len(all), 1)
 
     def test_add_recent(self):
-        VisitedLinkNew.objects.all().delete()
-        CustomLink.objects.all().delete()
-        not_me = get_myuw_user('not_me')
-        javerage = get_myuw_user('javerage')
+        req = get_request_with_user('none')
+        not_me = get_user_model(req)
+
+        req1 = get_request_with_user('javerage')
+        javerage = get_user_model(req1)
 
         l1 = VisitedLinkNew.objects.create(label="L1",
                                            url="http://example.com",

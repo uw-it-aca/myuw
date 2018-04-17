@@ -95,6 +95,9 @@ var Landing = {
         if(window.user.alumni) {
             desktop_body_cards.push(AlumniCard);
         }
+
+        // Always show these cards last
+        desktop_body_cards.push(ResourcesCard, ResourcesExploreCard);
         return desktop_body_cards;
     },
 
@@ -163,6 +166,8 @@ var Landing = {
         if(window.user.alumni) {
             mobile_cards.push(AlumniCard);
         }
+        // Always show these cards last
+        mobile_cards.push(ResourcesCard, ResourcesExploreCard);
         return mobile_cards;
     },
 

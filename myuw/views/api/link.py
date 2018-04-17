@@ -9,7 +9,6 @@ from myuw.dao.quicklinks import (
     get_quicklink_data, get_link_label, add_custom_link, delete_custom_link,
     edit_custom_link, add_hidden_link, delete_hidden_link,
     get_popular_link_by_id, get_recent_link_by_id)
-from myuw.dao.affiliation import get_all_affiliations
 from myuw.models import PopularLink, VisitedLinkNew, CustomLink, HiddenLink
 from myuw.logger.logresp import log_msg_with_affiliation
 from myuw.logger.timer import Timer
@@ -27,8 +26,6 @@ class ManageLinks(ProtectedAPI):
             data = json.loads(request.body)
         except ValueError:
             return data_not_found()
-
-        affiliations = get_all_affiliations(request)
 
         def clean(field):
             if field not in data:
@@ -54,7 +51,7 @@ class ManageLinks(ProtectedAPI):
                 except PopularLink.DoesNotExist:
                     return data_not_found()
                 link = add_custom_link(request, plink.url, plink.label)
-                log_msg_with_affiliation(logger, timer, affiliations,
+                log_msg_with_affiliation(logger, timer, request,
                                          "Popular==>Custom link (%s)" %
                                          plink.url)
 
@@ -66,7 +63,7 @@ class ManageLinks(ProtectedAPI):
                 except VisitedLinkNew.DoesNotExist:
                     return data_not_found()
                 link = add_custom_link(request, vlink.url, vlink.label)
-                log_msg_with_affiliation(logger, timer, affiliations,
+                log_msg_with_affiliation(logger, timer, request,
                                          "Recent==>Custom link (%s)" %
                                          vlink.url)
 
@@ -75,7 +72,7 @@ class ManageLinks(ProtectedAPI):
             url, label = get_link_data(data, get_id=False)
             if url and label:
                 link = add_custom_link(request, url, label)
-                log_msg_with_affiliation(logger, timer, affiliations,
+                log_msg_with_affiliation(logger, timer, request,
                                          "Add Custom link (%s)" % url)
             else:
                 return data_not_found()
@@ -84,7 +81,7 @@ class ManageLinks(ProtectedAPI):
             link_id, new_url, new_label = get_link_data(data)
             if link_id and new_url:
                 link = edit_custom_link(request, link_id, new_url, new_label)
-                log_msg_with_affiliation(logger, timer, affiliations,
+                log_msg_with_affiliation(logger, timer, request,
                                          "Edit Custom link (%s)" % new_url)
             else:
                 return data_not_found()
@@ -102,7 +99,7 @@ class ManageLinks(ProtectedAPI):
             url = get_link_id(data)
             if url:
                 link = add_hidden_link(request, url)
-                log_msg_with_affiliation(logger, timer, affiliations,
+                log_msg_with_affiliation(logger, timer, request,
                                          "Hide Default link (%s)" % url)
             else:
                 return data_not_found()
@@ -110,7 +107,7 @@ class ManageLinks(ProtectedAPI):
         if not link:
             return data_not_found()
 
-        return self.json_response(get_quicklink_data(request, affiliations))
+        return self.json_response(get_quicklink_data(request))
 
 
 def get_link_id(data):

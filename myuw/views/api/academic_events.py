@@ -110,7 +110,7 @@ class AcademicEvents(ProtectedAPI):
     def parse_event_url(self, event):
         uid = event.get('uid')
 
-        matches = re.match('.*?(\d+)$', uid)
+        matches = re.match(r'.*?(\d+)$', uid)
         if not matches:
             return
 
@@ -135,14 +135,13 @@ class AcademicEvents(ProtectedAPI):
         quarter = None
         if not desc:
             return year, quarter
-
-        matches = re.match(".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
+        matches = re.match(r".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
         if matches:
             year = matches.group(1)
             quarter = matches.group(2)
 
         else:
-            matches = re.match(".*Year: (\d{4}).*", desc)
+            matches = re.match(r".*Year: (\d{4}).*", desc)
             if matches:
                 year = matches.group(1)
 

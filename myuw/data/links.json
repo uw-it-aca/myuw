@@ -91,7 +91,7 @@
     },
     {
 	"id":50,
-        "title":"Faculty/Staff/Student Directory",
+        "title":"Directory Search",
         "url":"http://www.washington.edu/home/peopledir/",
         "on_for_employees":false,
         "on_for_undergrad":false,

@@ -16,7 +16,6 @@ from uw_mailman.util import fdao_mailman_override
 from uw_upass.util import fdao_upass_override
 from uw_hfs.util import fdao_hfs_override
 from restclients_core.util.decorators import use_mock
-from myuw.models import User as MyuwUser
 
 
 EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
@@ -58,8 +57,3 @@ def get_user(username):
 
 def get_user_pass(username):
     return 'pass'
-
-
-def get_myuw_user(username):
-    user, created = MyuwUser.objects.get_or_create(uwnetid=username)
-    return user

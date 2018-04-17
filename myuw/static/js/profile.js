@@ -38,7 +38,7 @@ var ProfilePage = {
         ProfilePage._reset_content_divs();
         var desktop_body_cards = [
             CommonProfileCard,
-            DirectoryInfoCard,
+            EmployeeInfoCard,
             StudentInfoCard,
             ApplicantProfileCard
         ];
@@ -54,7 +54,7 @@ var ProfilePage = {
         ProfilePage._reset_content_divs();
         var mobile_cards = [
             CommonProfileCard,
-            DirectoryInfoCard,
+            EmployeeInfoCard,
             StudentInfoCard,
             ApplicantProfileCard
         ];
@@ -66,3 +66,9 @@ var ProfilePage = {
         $("#profile_sidebar_cards").html('');
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.ProfilePage = ProfilePage;

@@ -20,8 +20,8 @@ def get_service_url_for_address(address):
         next(reader)
         for row in reader:
             try:
-                if re.match('.*[@\.]%s$' % row[0], address, re.I):
-                    return (row[1], row[2], row[3])
+                if re.match(r'.*[@\.]%s$' % row[0], address, re.I):
+                    return row[1]
             except TypeError:
                 raise EmailServiceUrlException("Non-string address")
 
