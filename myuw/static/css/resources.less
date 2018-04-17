@@ -64,6 +64,12 @@ ol.resources-toc {
             .uw-resources-canvas-wrapper:last-child:nth-child(2) {
                 display: block;
             }
+
+            @-moz-document url-prefix() { // targets FF only
+              .uw-resources-canvas-wrapper:last-child:nth-child(2) {
+                 display: inline-block;
+              }
+            }
         }
     }
 
