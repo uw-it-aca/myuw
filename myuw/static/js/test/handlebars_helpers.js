@@ -670,4 +670,12 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe('formatDateAsFinalsDay', function(){
+        it('get finals month + day number', function(){
+            var template = Handlebars.compile("{{formatDateAsFinalsDay '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, 'Mar 4');
+        });
+    });
+
 });
