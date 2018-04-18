@@ -62,6 +62,9 @@ class TestUWNetidDao(TestCase):
         self.assertFalse(is_past_undergrad(req))
         self.assertFalse(is_past_pce(req))
 
+        req = get_request_with_user('japplicant')
+        self.assertTrue(is_staff(req))
+
     def test_retiree(self):
         req = get_request_with_user('retirestaff')
         self.assertFalse(is_staff(req))

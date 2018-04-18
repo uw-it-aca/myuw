@@ -17,7 +17,7 @@
     {% include "handlebars/card/profile/profile_card.html" %}
     {% include "handlebars/card/profile/applicant_profile_card.html" %}
     {% include "handlebars/card/profile/help_links_card.html" %}
-    {% include "handlebars/card/profile/directory_info.html" %}
+    {% include "handlebars/card/profile/employee_profile.html" %}
     {% include "handlebars/card/profile/student_info.html" %}
     {% include "handlebars/card/loading.html" %}
 
@@ -34,7 +34,7 @@
     {% compress js inline %}
         <script src="{% static 'js/page/profile.js' %}"></script>
         <script src="{% static 'js/card/profile/profile.js' %}"></script>
-        <script src="{% static 'js/card/profile/directory_info.js' %}"></script>
+        <script src="{% static 'js/card/profile/employee_profile.js' %}"></script>
         <script src="{% static 'js/card/profile/student_info.js' %}"></script>
         <script src="{% static 'js/card/profile/help_links.js' %}"></script>
         <script src="{% static 'js/card/profile/applicant_profile.js' %}"></script>

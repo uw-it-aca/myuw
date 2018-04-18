@@ -1,6 +1,5 @@
     <script>
     window.user = {
-        "display_pop_up": {{display_pop_up|yesno:"true, false" }},
         "alumni": {{ user.affiliations.alumni|yesno:"true, false" }},
         "retiree": {{ user.affiliations.retiree|yesno:"true, false" }},
         "past_stud": {{ user.affiliations.past_stud|yesno:"true, false" }},
@@ -18,6 +17,7 @@
         "staff_employee": {{ user.affiliations.staff_employee|yesno:"true, false" }},
         "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
         "employee": {{ user.affiliations.employee|yesno:"true, false" }},
+        // employee means full time employee not stud_employee
         "fyp": {{ user.affiliations.fyp|yesno:"true, false" }},
         "aut_transfer": {{ user.affiliations.aut_transfer|yesno:"true, false" }},
         "win_transfer": {{ user.affiliations.win_transfer|yesno:"true, false" }},
@@ -35,7 +35,8 @@
         "email_forward_title": "{{ user.email_forward_title }}",
         "email_forward_icon": "{{ user.email_forward_icon }}",
         "netid": "{{ user.netid }}",
-        "is_hxt_viewer": {{ user.affiliations.hxt_viewer|yesno:"true, false" }}
+        "is_hxt_viewer": {{ user.affiliations.hxt_viewer|yesno:"true, false" }},
+        "display_pop_up": {{display_pop_up|yesno:"true, false" }},
     };
     window.enabled_features = {
         {% for feature in enabled_features %}

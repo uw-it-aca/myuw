@@ -41,7 +41,8 @@ def page(request,
     timer = Timer()
     try:
         user = get_user_model(request)
-    except Exception:
+    except Exception as ex:
+        logger.error(ex)
         log_invalid_netid_response(logger, timer)
         return invalid_session()
 

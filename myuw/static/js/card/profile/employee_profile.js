@@ -1,26 +1,26 @@
-var DirectoryInfoCard = {
-    name: 'DirectoryInfoCard',
+var EmployeeInfoCard = {
+    name: 'EmployeeInfoCard',
     dom_target: undefined,
 
     hide_card: function() {
-        if (window.user.employee) {
+        if (window.user.employee || window.user.stud_employee) {
             return false;
         }
         return true;
     },
 
     render_init: function() {
-        if (DirectoryInfoCard.hide_card()) {
-            $("#DirectoryInfoCard").hide();
+        if (EmployeeInfoCard.hide_card()) {
+            $("#EmployeeInfoCard").hide();
             return;
         }
-        WSData.fetch_directory_data(DirectoryInfoCard.render_upon_data,
-                                    DirectoryInfoCard.render_error);
+        WSData.fetch_directory_data(EmployeeInfoCard.render_upon_data,
+                                    EmployeeInfoCard.render_error);
     },
 
     render_upon_data: function () {
         if (WSData.directory_data()) {
-            DirectoryInfoCard._render();
+            EmployeeInfoCard._render();
         }
     },
 
@@ -32,12 +32,12 @@ var DirectoryInfoCard = {
         // enhanced directory info
         directory_info.is_tacoma = window.user.tacoma;
 
-        DirectoryInfoCard.dom_target.html(template(directory_info));
-        LogUtils.cardLoaded(DirectoryInfoCard.name, DirectoryInfoCard.dom_target);
+        EmployeeInfoCard.dom_target.html(template(directory_info));
+        LogUtils.cardLoaded(EmployeeInfoCard.name, EmployeeInfoCard.dom_target);
     },
 
     render_error: function () {
-        $("#DirectoryInfoCard").hide();
+        $("#EmployeeInfoCard").hide();
     }
 };
 
@@ -45,4 +45,4 @@ var DirectoryInfoCard = {
 if (typeof exports === "undefined") {
     var exports = {};
 }
-exports.DirectoryInfoCard = DirectoryInfoCard;
+exports.EmployeeInfoCard = EmployeeInfoCard;
