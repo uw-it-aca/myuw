@@ -6,10 +6,9 @@
     <h3 aria-hidden="true">Husky Card</h3>
     <h3 class="sr-only">Husky Card accounts</h3>
     <div class="card-badge-container">
-
-    <!--Tacoma Dawg Dollars    -->
     <ul class="card_list" >
-    {{#if is_tacoma}}
+	    <!--Tacoma Dawg Dollars    -->
+       {{#if is_tacoma}}
         <li>
             <div class="card-badge clearfix">
                 <div class="pull-left">
@@ -21,7 +20,7 @@
                 </div>
             </div>
         </li>
-     <!-- Tacoma Dawg Dollar + Husky card case  -->
+		{{/if}}
         {{#if student_husky_card}}
         <li>
             <div class="card-badge clearfix">
@@ -58,60 +57,24 @@
             </div>
         </li>
         {{/if}}
+        <!-- 2 line case: Tacoma Husky account button  -->
+        {{#if is_tacoma}}
         <li>
-         {{#if student_husky_card}}
-        <div class="btn btn-default card-action-btn pull-right" style="margin-top:0px;"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary" aria-label="Manage Husky account"> Manage account</a></div>
-        {{else if employee_husky_card}}
-            <div class="btn btn-default card-action-btn pull-right" style="margin-top:0px;"><a href="{{employee_husky_card.add_funds_url}}" target="_blank" aria-label="Manage Husky account">Manage account</a></div>
-        {{/if}}
-        </li>
-     <!-- Non-Tacoma Husky card case  -->
-    {{else}}
-            {{#if student_husky_card}}
-            <li>
-                <div class="card-badge clearfix">
-                    {{#with student_husky_card}}
-                    <div class="pull-left">
-                        <h4 class="card-badge-label" aria-hidden="true">Student Husky Card</h4>
-                        <h4 class="sr-only">Student Husky Account</h4>
-                    </div>
-                    <div class="pull-right">
-                        <span class="card-badge-value">${{formatPrice balance}}</span>
-                    </div>
-                    {{#if last_updated}}
-                        <div class="card-badge-note">Last transaction: {{last_updated}}</div>
-                    {{/if}}
-                    {{/with}}
-                </div>
-            </li>
-            {{/if}}
-            {{#if employee_husky_card}}
-            <li>
-                <div class="card-badge clearfix">
-                    {{#with employee_husky_card}}
-                    <div class="pull-left">
-                        <h4 class="card-badge-label" aria-hidden="true">Employee Husky Card</h4>
-                        <h4 class="sr-only">Employee Husky Account</h4>
-                    </div>
-                    <div class="pull-right">
-                        <span class="card-badge-value">${{formatPrice balance}}</span>
-                    </div>
-                    {{#if last_updated}}
-                        <div class="card-badge-note">Last transaction: {{last_updated}}</div>
-                    {{/if}}
-                    {{/with}}
-                </div>
-            </li>
-            {{/if}}
-			<li>
 	         {{#if student_husky_card}}
-            <div class="btn btn-default card-action-btn pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary" aria-label="Manage Husky account">Manage account</a></div>
-            {{else if employee_husky_card}}
-                <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank" aria-label="Manage Husky account">Manage account</a></div>
-            {{/if}}
-            </li>
-    {{/if}} <!-- End of Tacoma affil    -->
+	        <div class="btn btn-default card-action-btn pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary" aria-label="Manage Husky account">Manage account</a></div>
+	        {{else if employee_husky_card}}
+	            <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank" aria-label="Manage Husky account">Manage account</a></div>
+	        {{/if}}
+        </li>
     </ul>
+        {{else}}<!-- Non-Tacoma Husky account button  -->
+        </ul>
+		{{#if student_husky_card}}
+        <div class="btn btn-default card-action-btn pull-right"><a href="{{student_husky_card.add_funds_url}}" target="_blank" data-linklabel="HFS Account Summary" aria-label="Manage Husky account">Manage account</a></div>
+        {{else if employee_husky_card}}
+            <div class="btn btn-default card-action-btn pull-right"><a href="{{employee_husky_card.add_funds_url}}" target="_blank" aria-label="Manage Husky account">Manage account</a></div>
+        {{/if}}
+		{{/if}}<!-- End of Tacoma affil    -->
     </div>
 </div>
 {% endtplhandlebars %}
