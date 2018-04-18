@@ -29,23 +29,6 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
-            name='CourseColor',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('regid', models.CharField(db_index=True, max_length=32)),
-                ('year', models.PositiveSmallIntegerField(db_index=True)),
-                ('quarter', models.CharField(db_index=True, max_length=10)),
-                ('curriculum_abbr', models.CharField(max_length=10)),
-                ('course_number', models.CharField(max_length=3)),
-                ('section_id', models.CharField(max_length=2)),
-                ('is_active', models.BooleanField()),
-                ('color_id', models.PositiveIntegerField()),
-            ],
-            options={
-                'db_table': 'myuw_mobile_coursecolor',
-            },
-        ),
-        migrations.CreateModel(
             name='ResCategoryLink',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -73,21 +56,6 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'myuw_mobile_seenregistration',
-            },
-        ),
-        migrations.CreateModel(
-            name='StudentAccountsBalances',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('student_number', models.CharField(db_index=True, max_length=10, unique=True)),
-                ('employee_id', models.CharField(blank=True, db_index=True, max_length=10, null=True)),
-                ('asof_datetime', models.DateTimeField()),
-                ('is_am', models.BooleanField(default=True)),
-                ('husky_card', models.DecimalField(decimal_places=2, default=0.0, max_digits=6)),
-                ('residence_hall_dining', models.DecimalField(blank=True, decimal_places=2, max_digits=7, null=True)),
-            ],
-            options={
-                'db_table': 'myuw_mobile_studentaccountsbalances',
             },
         ),
         migrations.CreateModel(
