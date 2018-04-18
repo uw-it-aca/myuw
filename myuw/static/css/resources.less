@@ -64,12 +64,6 @@ ol.resources-toc {
             .uw-resources-canvas-wrapper:last-child:nth-child(2) {
                 display: block;
             }
-
-            @-moz-document url-prefix() { // targets FF only
-              .uw-resources-canvas-wrapper:last-child:nth-child(2) {
-                 display: inline-block;
-              }
-            }
         }
     }
 
@@ -107,8 +101,17 @@ ol.resources-toc {
             border: 1px solid #ddd;
         }
     }
-
 }
+
+@-moz-document url-prefix() { // targets FF only
+
+    @media @two-column {
+      .uw-resources .uw-resources-columns .uw-resources-canvas-wrapper:last-child:nth-child(2) {
+         display: inline-block;
+     }
+   }
+}
+
 
 .resources-block {
     button {
