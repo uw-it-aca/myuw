@@ -96,7 +96,11 @@ def load_schedule(request, schedule, summer_term=""):
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
             if len(str(section.end_date)):
-                section_data["is_ended"] = is_ended(request, section.end_date)
+                try:
+                    section_data["is_ended"] = is_ended(request,
+                                                        section.end_date)
+                except TypeError:
+                    section_data["is_ended"] = False
         else:
             if len(pce_sections) > 0 and\
                     section.section_label() in pce_sections:
