@@ -15,7 +15,7 @@ describe('MedicineAccountsCard', function(){
                 ]
             });
 
-            Global.Environment.ajax_stub('/api/v1/profile/index.json');
+            Global.Environment.ajax_stub('/api/v1/profile/bill.json');
 
             $(window).on("myuw:card_load", function () {
                 done();

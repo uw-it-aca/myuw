@@ -53,7 +53,7 @@ describe("HomePage", function() {
             '/api/v1/hfs/': 'api/v1/hfs/javerage.json',
             '/api/v1/library/': 'api/v1/library/javerage.json',
             '/api/v1/notices/': 'api/v1/notices/index.json',
-            '/api/v1/profile/': 'api/v1/profile/index-javerage.json',
+            '/api/v1/profile/': 'api/v1/profile/javerage.json',
             '/api/v1/oquarters/': 'api/v1/oquarters/2013,spring',
             '/api/v1/deptcal/': 'api/v1/deptcal/index.json',
             '/api/v1/visual_schedule/current': 'api/v1/schedule/visual.json',

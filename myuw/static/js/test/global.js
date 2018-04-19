@@ -30,6 +30,7 @@ var Environment = {
         global.document = dom.window.document;
         global.assert = require("assert");
         global.moment = require("moment-timezone");
+        global.sinon  = require("sinon");
         global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
         global.dom = dom;
         var HandlebarsHelpers = require("../handlebars-helpers.js")
