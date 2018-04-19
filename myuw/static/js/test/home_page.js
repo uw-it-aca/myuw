@@ -81,44 +81,42 @@ describe("HomePage", function() {
         window.card_display_dates = { "system_date": '2013-04-15 00:01' };
     });
 
-    describe('load Home page cards', function() {
+    it('Desktop cards for applicants/students/instructors', function() {
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.deepEqual(desktop_body_cards,
+                         [HuskyExperienceCard,
+                          ThriveCard,
+                          OutageCard,
+                          GradeCard,
+                          FutureQuarterCardA,
+                          ThankYouCard,
+                          ToRegisterCard,
+                          RegStatusCard,
+                          SummerEFSCard,
+                          SummerRegStatusCardA,
+                          CriticalInfoCard,
+                          InternationalStuCard,
+                          SummaryScheduleCard,
+                          VisualScheduleCard,
+                          TextbookCard,
+                          FutureSummaryScheduleCard,
+                          FutureQuarterCard1,
+                          SummerRegStatusCard1,
+                          SeattleApplicationCard,
+                          BothellApplicationCard,
+                          TacomaApplicationCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
+        var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
+        assert.deepEqual(desktop_sidebar_cards,
+                         [QuickLinksCard,
+                          AcadCalSnippet,
+                          EventsCard]);
+    });
 
-        it('Desktop cards for applicants/students/instructors', function() {
-            var desktop_body_cards = Landing._get_desktop_body_cards();
-            assert.deepEqual(desktop_body_cards,
-                             [HuskyExperienceCard,
-                              ThriveCard,
-                              OutageCard,
-                              GradeCard,
-                              FutureQuarterCardA,
-                              ThankYouCard,
-                              ToRegisterCard,
-                              RegStatusCard,
-                              SummerEFSCard,
-                              SummerRegStatusCardA,
-                              CriticalInfoCard,
-                              InternationalStuCard,
-                              SummaryScheduleCard,
-                              VisualScheduleCard,
-                              TextbookCard,
-                              FutureSummaryScheduleCard,
-                              FutureQuarterCard1,
-                              SummerRegStatusCard1,
-                              SeattleApplicationCard,
-                              BothellApplicationCard,
-                              TacomaApplicationCard,
-                              ResourcesCard,
-                              ResourcesExploreCard]);
-            var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
-            assert.deepEqual(desktop_sidebar_cards,
-                             [QuickLinksCard,
-                              AcadCalSnippet,
-                              EventsCard]);
-        });
-
-        it('Mobile cards for applicants/students/instructors', function() {
-            var mobile_cards = Landing._get_mobile_cards();
-            assert.deepEqual(mobile_cards,
+    it('Mobile cards for applicants/students/instructors', function() {
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.deepEqual(mobile_cards,
                          [HuskyExperienceCard,
                           SeattleApplicationCard,
                           BothellApplicationCard,
@@ -145,118 +143,115 @@ describe("HomePage", function() {
                           EventsCard,
                           ResourcesCard,
                           ResourcesExploreCard]);
-        });
+    });
 
-        it('Desktop for alumni should have', function() {
-            window.innerWidth = 800;
-            window.user.netid = "jalum";
-            window.user.student = false;
-            window.user.no_1st_class_affi = true,
-            window.user.alumni = true;
+    it('Desktop for alumni should have', function() {
+        window.innerWidth = 800;
+        window.user.netid = "jalum";
+        window.user.student = false;
+        window.user.no_1st_class_affi = true,
+        window.user.alumni = true;
 
-            Landing.make_html();
-            assert.equal(Landing.is_desktop, true);
-            assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
-            assert.equal($('div[id="UwnetidCard"]').length, 1);
-            assert.equal($('div[id="AlumniCard"]').length, 1);
-            assert.equal($('div[id="QuickLinksCard"]').length, 1);
-            assert.equal($('div[id="AcadCalSnippet"]').length, 1);
-            assert.equal($('div[id="EventsCard"]').length, 1);
-        });
+        Landing.make_html();
+        assert.equal(Landing.is_desktop, true);
+        assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
+        assert.equal($('div[id="UwnetidCard"]').length, 1);
+        assert.equal($('div[id="AlumniCard"]').length, 1);
+        assert.equal($('div[id="QuickLinksCard"]').length, 1);
+        assert.equal($('div[id="AcadCalSnippet"]').length, 1);
+        assert.equal($('div[id="EventsCard"]').length, 1);
+    });
 
-        it('Mobile for alumni should have', function() {
-            window.innerWidth = 767;
+    it('Mobile for alumni should have', function() {
+        window.innerWidth = 767;
 
-            window.user.netid = "jalum";
-            window.user.student = false;
-            window.user.no_1st_class_affi = true,
-            window.user.alumni = true;
+        window.user.netid = "jalum";
+        window.user.student = false;
+        window.user.no_1st_class_affi = true,
+        window.user.alumni = true;
 
-            Landing.make_html();
-            assert.equal(Landing.is_desktop, false);
-            assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
-            assert.equal($('div[id="UwnetidCard"]').length, 1);
-            assert.equal($('div[id="AlumniCard"]').length, 1);
-            assert.equal($('div[id="QuickLinksCard"]').length, 1);
-            assert.equal($('div[id="AcadCalSnippet"]').length, 1);
-            assert.equal($('div[id="EventsCard"]').length, 1);
-        });
+        Landing.make_html();
+        assert.equal(Landing.is_desktop, false);
+        assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
+        assert.equal($('div[id="UwnetidCard"]').length, 1);
+        assert.equal($('div[id="AlumniCard"]').length, 1);
+        assert.equal($('div[id="QuickLinksCard"]').length, 1);
+        assert.equal($('div[id="AcadCalSnippet"]').length, 1);
+        assert.equal($('div[id="EventsCard"]').length, 1);
+    });
 
-        it('Desktop for past student should have', function() {
-            window.innerWidth = 800;
+    it('Desktop for past student should have', function() {
+        window.innerWidth = 800;
 
-            window.user.netid = "javerage";
-            window.user.student = false;
-            window.user.no_1st_class_affi = true,
-            window.user.past_stud = true;
+        window.user.netid = "javerage";
+        window.user.student = false;
+        window.user.no_1st_class_affi = true,
+        window.user.past_stud = true;
 
-            Landing.make_html();
-            assert.equal(Landing.is_desktop, true);
-            assert.equal($('div[id="TranscriptsCard"]').length, 1);
-            assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
-            assert.equal($('div[id="UwnetidCard"]').length, 1);
-            assert.equal($('div[id="QuickLinksCard"]').length, 1);
-            assert.equal($('div[id="AcadCalSnippet"]').length, 1);
-            assert.equal($('div[id="EventsCard"]').length, 1);
-        });
+        Landing.make_html();
+        assert.equal(Landing.is_desktop, true);
+        assert.equal($('div[id="TranscriptsCard"]').length, 1);
+        assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
+        assert.equal($('div[id="UwnetidCard"]').length, 1);
+        assert.equal($('div[id="QuickLinksCard"]').length, 1);
+        assert.equal($('div[id="AcadCalSnippet"]').length, 1);
+        assert.equal($('div[id="EventsCard"]').length, 1);
+    });
 
-        it('Mobile for past student should have', function() {
-            window.innerWidth = 767;
+    it('Mobile for past student should have', function() {
+        window.innerWidth = 767;
 
-            window.user.netid = "javerage";
-            window.user.student = false;
-            window.user.no_1st_class_affi = true,
-            window.user.past_stud = true;
+        window.user.netid = "javerage";
+        window.user.student = false;
+        window.user.no_1st_class_affi = true,
+        window.user.past_stud = true;
 
-            Landing.make_html();
-            assert.equal(Landing.is_desktop, false);
-            assert.equal($('div[id="TranscriptsCard"]').length, 1);
-            assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
-            assert.equal($('div[id="UwnetidCard"]').length, 1);
-            assert.equal($('div[id="QuickLinksCard"]').length, 1);
-            assert.equal($('div[id="AcadCalSnippet"]').length, 1);
-            assert.equal($('div[id="EventsCard"]').length, 1);
-        });
+        Landing.make_html();
+        assert.equal(Landing.is_desktop, false);
+        assert.equal($('div[id="TranscriptsCard"]').length, 1);
+        assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
+        assert.equal($('div[id="UwnetidCard"]').length, 1);
+        assert.equal($('div[id="QuickLinksCard"]').length, 1);
+        assert.equal($('div[id="AcadCalSnippet"]').length, 1);
+        assert.equal($('div[id="EventsCard"]').length, 1);
+    });
 
-        it('Desktop for past employee should have', function() {
-            window.innerWidth = 800;
+    it('Desktop for past employee should have', function() {
+        window.innerWidth = 800;
 
-            window.user.netid = "javerage";
-            window.user.student = false;
-            window.user.retiree = true;
-            window.user.past_employee = true;
+        window.user.netid = "javerage";
+        window.user.student = false;
+        window.user.retiree = true;
+        window.user.past_employee = true;
 
-            Landing.make_html();
-            assert.equal(Landing.is_desktop, true);
-            assert.equal($('div[id="HRPayrollCard"]').length, 1);
-            assert.equal($('div[id="RetireAssoCard"]').length, 1);
-            assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
-            assert.equal($('div[id="UwnetidCard"]').length, 1);
-            assert.equal($('div[id="QuickLinksCard"]').length, 1);
-            assert.equal($('div[id="AcadCalSnippet"]').length, 1);
-            assert.equal($('div[id="EventsCard"]').length, 1);
-        });
+        Landing.make_html();
+        assert.equal(Landing.is_desktop, true);
+        assert.equal($('div[id="HRPayrollCard"]').length, 1);
+        assert.equal($('div[id="RetireAssoCard"]').length, 1);
+        assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
+        assert.equal($('div[id="UwnetidCard"]').length, 1);
+        assert.equal($('div[id="QuickLinksCard"]').length, 1);
+        assert.equal($('div[id="AcadCalSnippet"]').length, 1);
+        assert.equal($('div[id="EventsCard"]').length, 1);
+    });
 
-        it('Mobile for past employee should have', function() {
-            window.innerWidth = 767;
+    it('Mobile for past employee should have', function() {
+        window.innerWidth = 767;
 
-            window.user.netid = "javerage";
-            window.user.is_hxt_viewer = false;
-            window.user.student = false;
-            window.user.retiree = true;
-            window.user.past_employee = true;
+        window.user.netid = "javerage";
+        window.user.is_hxt_viewer = false;
+        window.user.student = false;
+        window.user.retiree = true;
+        window.user.past_employee = true;
 
-            Landing.make_html();
-            assert.equal(Landing.is_desktop, false);
-            assert.equal($('div[id="HRPayrollCard"]').length, 1);
-            assert.equal($('div[id="RetireAssoCard"]').length, 1);
-            assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
-            assert.equal($('div[id="UwnetidCard"]').length, 1);
-            assert.equal($('div[id="QuickLinksCard"]').length, 1);
-            assert.equal($('div[id="AcadCalSnippet"]').length, 1);
-            assert.equal($('div[id="EventsCard"]').length, 1);
-        });
-
+        Landing.make_html();
+        assert.equal(Landing.is_desktop, false);
+        assert.equal($('div[id="HRPayrollCard"]').length, 1);
+        assert.equal($('div[id="RetireAssoCard"]').length, 1);
+        assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
+        assert.equal($('div[id="UwnetidCard"]').length, 1);
+        assert.equal($('div[id="QuickLinksCard"]').length, 1);
+        assert.equal($('div[id="AcadCalSnippet"]').length, 1);
+        assert.equal($('div[id="EventsCard"]').length, 1);
     });
 });
-

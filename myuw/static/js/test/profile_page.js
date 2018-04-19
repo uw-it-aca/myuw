@@ -37,27 +37,24 @@ describe("ProfilePage for student and employee", function() {
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
     });
 
-    describe('load profile page for seagrad (stud, staff)', function() {
-        it('Desktop profile page for seagrad', function() {
-            window.innerWidth = 800;
-            ProfilePage.make_html();
-            assert.equal(ProfilePage.is_desktop, true);
-            assert.equal($('div[id="CommonProfileCard"]').length, 1);
-            assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-            assert.equal($('div[id="StudentInfoCard"]').length, 1);
-            assert.equal($('div[id="HelpLinksCard"]').length, 1);
-        });
+    it('Desktop profile page for seagrad (stud, staff)', function() {
+        window.innerWidth = 800;
+        ProfilePage.make_html();
+        assert.equal(ProfilePage.is_desktop, true);
+        assert.equal($('div[id="CommonProfileCard"]').length, 1);
+        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
+        assert.equal($('div[id="StudentInfoCard"]').length, 1);
+        assert.equal($('div[id="HelpLinksCard"]').length, 1);
+    });
 
-        it('Mobile profile page for seagrad', function() {
-            window.innerWidth = 767;
-            ProfilePage.make_html();
-            assert.equal(ProfilePage.is_desktop, false);
-            assert.equal($('div[id="CommonProfileCard"]').length, 1);
-            assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-            assert.equal($('div[id="StudentInfoCard"]').length, 1);
-            assert.equal($('div[id="HelpLinksCard"]').length, 0);
-        });
-
+    it('Mobile profile page for seagrad', function() {
+        window.innerWidth = 767;
+        ProfilePage.make_html();
+        assert.equal(ProfilePage.is_desktop, false);
+        assert.equal($('div[id="CommonProfileCard"]').length, 1);
+        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
+        assert.equal($('div[id="StudentInfoCard"]').length, 1);
+        assert.equal($('div[id="HelpLinksCard"]').length, 0);
     });
 });
 
@@ -98,27 +95,24 @@ describe("ProfilePage for applicant and employee", function() {
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
     });
 
-    describe('load profile page for japplicant (japplicant, staff)', function() {
-        it('Desktop profile page for japplicant', function() {
-            window.innerWidth = 800;
-            ProfilePage.make_html();
-            assert.equal(ProfilePage.is_desktop, true);
-            assert.equal($('div[id="CommonProfileCard"]').length, 1);
-            assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-            assert.equal($('div[id="ApplicantProfileCard"]').length, 1);
-            assert.equal($('div[id="HelpLinksCard"]').length, 1);
-        });
+    it('Desktop profile page for japplicant (japplicant, staff)', function() {
+        window.innerWidth = 800;
+        ProfilePage.make_html();
+        assert.equal(ProfilePage.is_desktop, true);
+        assert.equal($('div[id="CommonProfileCard"]').length, 1);
+        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
+        assert.equal($('div[id="ApplicantProfileCard"]').length, 1);
+        assert.equal($('div[id="HelpLinksCard"]').length, 1);
+    });
 
-        it('Mobile profile page for japplicant', function() {
-            window.innerWidth = 767;
-            ProfilePage.make_html();
-            assert.equal(ProfilePage.is_desktop, false);
-            assert.equal($('div[id="CommonProfileCard"]').length, 1);
-            assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-            assert.equal($('div[id="ApplicantProfileCard"]').length, 1);
-            assert.equal($('div[id="HelpLinksCard"]').length, 0);
-        });
-
+    it('Mobile profile page for japplicant', function() {
+        window.innerWidth = 767;
+        ProfilePage.make_html();
+        assert.equal(ProfilePage.is_desktop, false);
+        assert.equal($('div[id="CommonProfileCard"]').length, 1);
+        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
+        assert.equal($('div[id="ApplicantProfileCard"]').length, 1);
+        assert.equal($('div[id="HelpLinksCard"]').length, 0);
     });
 });
 
@@ -159,26 +153,23 @@ describe("ProfilePage for student and student employee", function() {
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
     });
 
-    describe('load profile page for javerage (stud, stud_employee)', function() {
-        it('Desktop profile page for javerage', function() {
-            window.innerWidth = 800;
-            ProfilePage.make_html();
-            assert.equal(ProfilePage.is_desktop, true);
-            assert.equal($('div[id="CommonProfileCard"]').length, 1);
-            assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-            assert.equal($('div[id="StudentInfoCard"]').length, 1);
-            assert.equal($('div[id="HelpLinksCard"]').length, 1);
-        });
+    it('Desktop profile page for javerage (stud, stud_employee)', function() {
+        window.innerWidth = 800;
+        ProfilePage.make_html();
+        assert.equal(ProfilePage.is_desktop, true);
+        assert.equal($('div[id="CommonProfileCard"]').length, 1);
+        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
+        assert.equal($('div[id="StudentInfoCard"]').length, 1);
+        assert.equal($('div[id="HelpLinksCard"]').length, 1);
+    });
 
-        it('Mobile profile page for javerage', function() {
-            window.innerWidth = 767;
-            ProfilePage.make_html();
-            assert.equal(ProfilePage.is_desktop, false);
-            assert.equal($('div[id="CommonProfileCard"]').length, 1);
-            assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-            assert.equal($('div[id="StudentInfoCard"]').length, 1);
-            assert.equal($('div[id="HelpLinksCard"]').length, 0);
-        });
-
+    it('Mobile profile page for javerage', function() {
+        window.innerWidth = 767;
+        ProfilePage.make_html();
+        assert.equal(ProfilePage.is_desktop, false);
+        assert.equal($('div[id="CommonProfileCard"]').length, 1);
+        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
+        assert.equal($('div[id="StudentInfoCard"]').length, 1);
+        assert.equal($('div[id="HelpLinksCard"]').length, 0);
     });
 });
