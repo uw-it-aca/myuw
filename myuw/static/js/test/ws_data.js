@@ -28,7 +28,6 @@ describe("WSData", function() {
 
             assert.equal(Object.keys(WSData._book_data).length, 0);
 
-            console.log("But this is called")
             WSData.fetch_book_data('2013,summer,a-term', function(){
             WSData.fetch_book_data('2013,summer,a-term', function(){
                 assert.equal(Object.keys(WSData._book_data['2013,summer,a-term']).length, 0);
