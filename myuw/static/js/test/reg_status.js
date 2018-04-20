@@ -11,7 +11,13 @@ describe('RegStatusCard', function(){
                     "myuw/static/js/card/reg_status.js"
                 ],
                 templates: [
-                    'myuw/templates/handlebars/card/reg_status.html'
+                    'myuw/templates/handlebars/card/reg_status.html',
+                    'myuw/templates/handlebars/card/registration/reg_holds.html',
+                    'myuw/templates/handlebars/card/registration/reg_finaid_notices.html',
+                    'myuw/templates/handlebars/card/registration/notice_est_reg_date.html',
+                    'myuw/templates/handlebars/card/registration/in_myplan.html',
+                    'myuw/templates/handlebars/card/registration/reg_resources.html',
+                    'myuw/templates/handlebars/card/registration/myplan_courses.html'
                 ]
             });
 
