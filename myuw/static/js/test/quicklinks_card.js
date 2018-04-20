@@ -56,13 +56,9 @@ describe('QuickLinksCard', function(){
             ]
         };
         QuickLinksCard.render_init();
-        spy_add_link = sinon.spy(QuickLinksCard, "_add_link");
-        // Global.Environment.ajax_stub('/api/v1/link/rm_links.json');
     });
 
     afterEach(function(){
-        // Global.Environment.ajax_stub_restore();
-        spy_add_link.restore();
     });
 
     it("Test render links", function() {
@@ -105,12 +101,14 @@ describe('QuickLinksCard', function(){
     });
 
     it("Test remove a default link", function() {
+        spy_add_link = sinon.spy(QuickLinksCard, "_add_link");
         var a = QuickLinksCard.dom_target.find('#rm-def-link-0');
         try {
             a.trigger('click');
         } catch (e) {
             assert.equal(e.name, "TypeError");
         } finally {
+            spy_add_link.restore();
             assert.equal(spy_add_link.callCount, 1);
         }
     });
