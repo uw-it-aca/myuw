@@ -21,11 +21,6 @@ describe("ProfilePage for student and employee", function() {
                 'myuw/templates/handlebars/profile.html',
             ]
         });
-        Global.Environment.ajax_stub({
-            '/api/v1/profile/': 'api/v1/profile/seagrad.json',
-            '/api/v1/directory/': 'api/v1/directory/seagrad.json'
-            }
-        );
         
     });
 
@@ -35,6 +30,15 @@ describe("ProfilePage for student and employee", function() {
         window.user.student = true;
         window.user.seattle = true;
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
+        Global.Environment.ajax_stub({
+            '/api/v1/profile/': 'api/v1/profile/seagrad.json',
+            '/api/v1/directory/': 'api/v1/directory/seagrad.json'
+            }
+        );
+    });
+
+    afterEach(function(){
+        Global.Environment.ajax_stub_restore();
     });
 
     it('Desktop profile page for seagrad (stud, staff)', function() {
@@ -79,12 +83,6 @@ describe("ProfilePage for applicant and employee", function() {
                 'myuw/templates/handlebars/profile.html',
             ]
         });
-        Global.Environment.ajax_stub({
-            '/api/v1/profile/': 'api/v1/profile/japplicant.json',
-            '/api/v1/directory/': 'api/v1/directory/japplicant.json'
-            }
-        );
-        
     });
 
     beforeEach(function (){
@@ -93,6 +91,15 @@ describe("ProfilePage for applicant and employee", function() {
         window.user.applicant = true;
         window.user.seattle = true;
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
+        Global.Environment.ajax_stub({
+            '/api/v1/profile/': 'api/v1/profile/japplicant.json',
+            '/api/v1/directory/': 'api/v1/directory/japplicant.json'
+            }
+        );
+    });
+
+    afterEach(function(){
+        Global.Environment.ajax_stub_restore();
     });
 
     it('Desktop profile page for japplicant (japplicant, staff)', function() {
@@ -137,11 +144,6 @@ describe("ProfilePage for student and student employee", function() {
                 'myuw/templates/handlebars/profile.html',
             ]
         });
-        Global.Environment.ajax_stub({
-            '/api/v1/profile/': 'api/v1/profile/javerage.json',
-            '/api/v1/directory/': 'api/v1/directory/javerage.json'
-            }
-        );
         
     });
 
@@ -151,6 +153,15 @@ describe("ProfilePage for student and student employee", function() {
         window.user.student = true;
         window.user.seattle = true;
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
+        Global.Environment.ajax_stub({
+            '/api/v1/profile/': 'api/v1/profile/javerage.json',
+            '/api/v1/directory/': 'api/v1/directory/javerage.json'
+            }
+        );
+    });
+
+    afterEach(function(){
+        Global.Environment.ajax_stub_restore();
     });
 
     it('Desktop profile page for javerage (stud, stud_employee)', function() {

@@ -49,17 +49,6 @@ describe("HomePage", function() {
                 'myuw/templates/index.html',
             ]
         });
-        Global.Environment.ajax_stub({
-            '/api/v1/hfs/': 'api/v1/hfs/javerage.json',
-            '/api/v1/library/': 'api/v1/library/javerage.json',
-            '/api/v1/notices/': 'api/v1/notices/index.json',
-            '/api/v1/profile/': 'api/v1/profile/javerage.json',
-            '/api/v1/oquarters/': 'api/v1/oquarters/2013,spring',
-            '/api/v1/deptcal/': 'api/v1/deptcal/index.json',
-            '/api/v1/visual_schedule/current': 'api/v1/schedule/visual.json',
-            '/api/v1/schedule/current': 'api/v1/schedule/2013,spring',
-            '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/billsea-2013-spring'
-        });
 
     });
 
@@ -79,7 +68,23 @@ describe("HomePage", function() {
         };
 
         window.card_display_dates = { "system_date": '2013-04-15 00:01' };
+        Global.Environment.ajax_stub({
+            '/api/v1/hfs/': 'api/v1/hfs/javerage.json',
+            '/api/v1/library/': 'api/v1/library/javerage.json',
+            '/api/v1/notices/': 'api/v1/notices/index.json',
+            '/api/v1/profile/': 'api/v1/profile/javerage.json',
+            '/api/v1/oquarters/': 'api/v1/oquarters/2013,spring',
+            '/api/v1/deptcal/': 'api/v1/deptcal/index.json',
+            '/api/v1/visual_schedule/current': 'api/v1/schedule/visual.json',
+            '/api/v1/schedule/current': 'api/v1/schedule/2013,spring',
+            '/api/v1/instructor_schedule/2013,spring': 'api/v1/instructor_schedule/billsea-2013-spring'
+        });
     });
+
+    afterEach(function(){
+        Global.Environment.ajax_stub_restore();
+    });
+
 
     it('Desktop cards for applicants/students/instructors', function() {
         var desktop_body_cards = Landing._get_desktop_body_cards();

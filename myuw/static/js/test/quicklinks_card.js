@@ -3,8 +3,9 @@ var Global = require("./global.js");
 describe('QuickLinksCard', function(){
 
     before(function () {
-        var render_id = 'render_links_card';
+        var render_id = 'render_quick_links_card';
         var spy_add_link;
+
         Global.Environment.init({
             render_id: render_id,
             scripts: [
@@ -14,7 +15,6 @@ describe('QuickLinksCard', function(){
                 'myuw/templates/handlebars/card/quicklinks.html'
             ]
         });
-
         QuickLinksCard.dom_target = $('#' + render_id);
     });
 
