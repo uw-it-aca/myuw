@@ -270,6 +270,20 @@ Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     return hour;
 });
 
+// converts date string into the label for the final exams schedule
+Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back) {
+    var date = moment(date_str);
+    date.subtract(days_back, "days");
+    var day_of_week = date.day();
+    var month_num = date.month();
+    var day_of_month = date.date();
+
+    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    return month_names[month_num] + " " + day_of_month;
+});
+
+
 Handlebars.registerHelper('time_percentage', function(time, start, end) {
     return VisualSchedule.get_scaled_percentage(time, start, end);
 });
