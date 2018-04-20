@@ -1,46 +1,49 @@
 WSData = {
-    _book_data: {},
-    _book_data_error_status: {},
-    _category_link_data: {},
-    _course_data: {},
-    _course_data_error_status: {},
-    _instructed_course_data: {},
-    _instructed_course_data_error_status: {},
-    _instructed_emaillist_data_error_status: {},
-    _instructed_emaillist_data: {},
-    _instructed_section_data: {},
-    _instructed_section_data_error_status: {},
-    _instructed_section_details: null,
-    _instructed_section_details_error_status: null,
-    _department_events: null,
-    _grade_data: {},
-    _hfs_data: null,
-    _applicant_data: null,
-    _mygrad_data: null,
-    _iasystem_data: null,
-    _library_data: null,
-    _oquarter_data: null,
-    _notice_data: null,
-    _notice_error_status: null,
-    _profile_data: null,
-    _profile_error_status: null,
-    _tuition_data: null,
-    _directory_data: null,
-    _directory_error_status: null,
-    _instructor_data: {},
-    _link_data: null,
-    _success_callbacks: {},
-    _error_callbacks: {},
-    _callback_args: {},
-    _academic_calendar_data: null,
-    _current_academic_calendar_data: null,
-    _myplan_data: {},
-    _thrive_data: null,
-    _upass_data: null,
-    _visual_schedule_data: {},
-    _hx_toolkit_data: {},
-    _resource_data: {},
 
+
+    default_data : {
+        _book_data: {},
+        _book_data_error_status: {},
+        _category_link_data: {},
+        _course_data: {},
+        _course_data_error_status: {},
+        _instructed_course_data: {},
+        _instructed_course_data_error_status: {},
+        _instructed_emaillist_data_error_status: {},
+        _instructed_emaillist_data: {},
+        _instructed_section_data: {},
+        _instructed_section_data_error_status: {},
+        _instructed_section_details: null,
+        _instructed_section_details_error_status: null,
+        _department_events: null,
+        _grade_data: {},
+        _hfs_data: null,
+        _applicant_data: null,
+        _mygrad_data: null,
+        _iasystem_data: null,
+        _library_data: null,
+        _oquarter_data: null,
+        _notice_data: null,
+        _notice_error_status: null,
+        _profile_data: null,
+        _profile_error_status: null,
+        _tuition_data: null,
+        _directory_data: null,
+        _directory_error_status: null,
+        _instructor_data: {},
+        _link_data: null,
+        _success_callbacks: {},
+        _error_callbacks: {},
+        _callback_args: {},
+        _academic_calendar_data: null,
+        _current_academic_calendar_data: null,
+        _myplan_data: {},
+        _thrive_data: null,
+        _upass_data: null,
+        _visual_schedule_data: {},
+        _hx_toolkit_data: {},
+        _resource_data: {}
+    },
 
     // MUWM-1894 - enqueue callbacks for multiple callers of urls.
     _is_running_url: function(url) {
@@ -1581,8 +1584,14 @@ WSData = {
                        "X-CSRFToken": csrf_token
                    },
                });
+    },
+
+    clear_cache: function(){
+        Object.assign(WSData, JSON.parse(JSON.stringify(WSData.default_data)));
     }
 };
+
+Object.assign(WSData, JSON.parse(JSON.stringify(WSData.default_data)));
 
 /* node.js exports */
 if (typeof exports === "undefined") {
