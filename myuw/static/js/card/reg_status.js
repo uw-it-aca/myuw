@@ -42,8 +42,8 @@ var RegStatusCard = {
             return;
         }
 
-
         var next_term_data = WSData.oquarter_data().next_term_data;
+
         var reg_next_quarter = next_term_data.quarter;
 
         if (! window.card_display_dates.myplan_peak_load &&
@@ -72,6 +72,8 @@ var RegStatusCard = {
     render_error: function (status) {
         // none of the api data returns 404.
         // if any data failure, display error
+        console.log("Status: " + status);
+        console.trace();
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
@@ -160,11 +162,13 @@ var RegStatusCard = {
         if (hide_card && reg_holds && reg_holds.length) {
             hide_card = false;
         }
-        if (hide_card && plan_data && plan_data.length) {
+
+        if (hide_card && plan_data && (plan_data.length || Object.keys(plan_data).length)) {
             hide_card = false;
         }
 
         if (hide_card) {
+            console.log("Hiding card")
             return;
         }
 
@@ -308,6 +312,7 @@ var RegStatusCard = {
                                                          reg_next_quarter);
             if (!content) {
                 RegStatusCard.dom_target.hide();
+                console.log("RIP")
                 return;
             }
 

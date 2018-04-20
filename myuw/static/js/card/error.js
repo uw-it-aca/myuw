@@ -5,3 +5,9 @@ var CardWithError = {
         return template({"card_name": card_name});
     },
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.CardWithError = CardWithError;
