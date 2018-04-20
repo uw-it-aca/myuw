@@ -54,10 +54,14 @@ describe('QuickLinksCard', function(){
                  label: "Parking"}
             ]
         };
+        QuickLinksCard.render_init();
+    });
+
+    afterEach(function(){
+
     });
 
     it("Test render links", function() {
-        QuickLinksCard.render_init();
         assert.equal(QuickLinksCard.dom_target.find('.myuw-qlinks-item').length, 8);
 
         // default_links
@@ -85,7 +89,16 @@ describe('QuickLinksCard', function(){
     });
 
 
-    it("Test add to your Quick Links", function() {
-        QuickLinksCard.render_init();
+    it("Test edit custom link show disclosure", function() {
+        var style = QuickLinksCard.dom_target.find('#custom-link-edit')[0].getAttribute("style");
+        assert.equal(style, "display: none;");
+
+        var a = QuickLinksCard.dom_target.find('#custom-link-edit-control-83');
+        a.trigger('click');
+
+        var style = QuickLinksCard.dom_target.find('#custom-link-edit')[0].getAttribute("style");
+        console.log(style);
+        assert.ok(style, 'left: 0px; top: 20px;');
     });
+
 });
