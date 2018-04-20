@@ -312,7 +312,6 @@ var RegStatusCard = {
                                                          reg_next_quarter);
             if (!content) {
                 RegStatusCard.dom_target.hide();
-                console.log("RIP")
                 return;
             }
 

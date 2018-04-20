@@ -5,6 +5,8 @@ describe('RegStatusCard', function(){
         before(function (done) {
             var render_id = 'RegStatusCard';
 
+            WSData.clear_cache();
+
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
