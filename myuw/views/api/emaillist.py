@@ -14,7 +14,7 @@ from myuw.dao.mailman import (
     get_course_email_lists, request_mailman_lists, is_valid_section_label,
     get_section_by_label)
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_response_time
+from myuw.logger.logresp import log_msg_with_request
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import (
     handle_exception, not_instructor_error, InvalidInputFormData)
@@ -50,9 +50,8 @@ class Emaillist(ProtectedAPI):
                 year, quarter, cur_abb,
                 course_number, section_id, True)
 
-            log_response_time(logger,
-                              "Checked with %s" % section_label,
-                              timer)
+            log_msg_with_request(logger, timer, request,
+                                  msg="Checked with %s" % section_label)
             return self.json_response(email_list_json)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -73,10 +72,9 @@ class Emaillist(ProtectedAPI):
             else:
                 resp = request_mailman_lists(uwnetid,
                                              single_section_labels)
-            log_response_time(
-                logger,
-                "Request %s ==> %s" % (single_section_labels, resp),
-                timer)
+            log_msg_with_request(
+                logger, timer, request,
+                msg="Request %s ==> %s" % (single_section_labels, resp))
 
             return self.json_response(resp)
         except Exception as ex:

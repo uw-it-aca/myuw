@@ -5,7 +5,7 @@ from myuw.dao.term import get_current_quarter, get_previous_quarter,\
 from myuw.dao.enrollment import get_current_quarter_enrollment,\
     get_enrollment_for_term, get_enrollments_of_terms,\
     get_prev_enrollments_with_open_sections, is_ended,\
-    get_main_campus, enrollment_history
+    get_main_campus, enrollment_history, get_class_level
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 
@@ -24,22 +24,16 @@ class TestDaoEnrollment(TestCase):
 
         req = get_request_with_user('none',
                                     get_request_with_date("2013-04-10"))
-        enrollment = get_current_quarter_enrollment(req)
-
-        self.assertEqual(enrollment, None)
+        self.assertIsNone(get_current_quarter_enrollment(req))
+        self.assertIsNone(get_class_level(req))
 
         req = get_request_with_user('jerror',
                                     get_request_with_date("2013-04-10"))
-
-        enrollment = get_current_quarter_enrollment(req)
-
-        self.assertEqual(enrollment, None)
+        self.assertIsNone(get_current_quarter_enrollment(req))
 
         req = get_request_with_user('staff',
                                     get_request_with_date("2013-04-10"))
-        enrollment = get_current_quarter_enrollment(req)
-
-        self.assertEqual(enrollment, None)
+        self.assertIsNone(get_current_quarter_enrollment(req))
 
     def get_enrollment(self, netid, req_date):
         req = get_request_with_user(netid,
@@ -82,6 +76,7 @@ class TestDaoEnrollment(TestCase):
     def test_get_enrollments_of_terms(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-01"))
+        self.assertEqual(get_class_level(req), "SENIOR")
         terms = []
         t1 = get_current_quarter(req)
         t2 = get_next_quarter(req)

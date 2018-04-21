@@ -99,6 +99,16 @@ def get_main_campus(request):
     return campuses
 
 
+def get_class_level(request):
+    """
+    Return current term class level
+    """
+    enrollment =  get_current_quarter_enrollment(request)
+    if enrollment:
+        return enrollment.class_level
+    return None
+
+
 def get_code_for_class_level(class_name):
     if class_name in CLASS_CODES:
         return CLASS_CODES[class_name]

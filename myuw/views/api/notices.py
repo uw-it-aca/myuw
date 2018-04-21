@@ -8,7 +8,7 @@ from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
 from myuw.dao.pws import is_student
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_success_response, log_msg_with_request
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -57,4 +57,6 @@ class Notices(ProtectedAPI):
     def put(self, request, *args, **kwargs):
         notice_hashes = json.loads(request.body).get('notice_hashes', None)
         mark_notices_read_for_current_user(request, notice_hashes)
+        log_msg_with_request(logger, None, request,
+                             "Read notice %s" % notice_hashes)
         return self.json_response()
