@@ -103,7 +103,7 @@ def get_class_level(request):
     """
     Return current term class level
     """
-    enrollment =  get_current_quarter_enrollment(request)
+    enrollment = get_current_quarter_enrollment(request)
     if enrollment:
         return enrollment.class_level
     return None

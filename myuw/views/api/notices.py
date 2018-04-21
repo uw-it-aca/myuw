@@ -13,6 +13,7 @@ from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
 logger = logging.getLogger(__name__)
+action_logger = logging.getLogger("myuw.views.api.notices.seen")
 
 
 class Notices(ProtectedAPI):
@@ -57,6 +58,6 @@ class Notices(ProtectedAPI):
     def put(self, request, *args, **kwargs):
         notice_hashes = json.loads(request.body).get('notice_hashes', None)
         mark_notices_read_for_current_user(request, notice_hashes)
-        log_msg_with_request(logger, None, request,
+        log_msg_with_request(action_logger, None, request,
                              "Read notice %s" % notice_hashes)
         return self.json_response()

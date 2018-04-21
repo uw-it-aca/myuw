@@ -51,7 +51,7 @@ class Emaillist(ProtectedAPI):
                 course_number, section_id, True)
 
             log_msg_with_request(logger, timer, request,
-                                  msg="Checked with %s" % section_label)
+                                 "Checked emaillist for %s" % section_label)
             return self.json_response(email_list_json)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -74,7 +74,8 @@ class Emaillist(ProtectedAPI):
                                              single_section_labels)
             log_msg_with_request(
                 logger, timer, request,
-                msg="Request %s ==> %s" % (single_section_labels, resp))
+                "Request emaillist for %s ==> %s" % (
+                    single_section_labels, resp))
 
             return self.json_response(resp)
         except Exception as ex:
