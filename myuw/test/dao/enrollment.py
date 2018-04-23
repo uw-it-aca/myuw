@@ -150,6 +150,9 @@ class TestDaoEnrollment(TestCase):
         s1 = sections.get('2013,spring,CPROGRM,712/A')
         self.assertEqual(str(s1.end_date), '2013-06-28')
 
+        self.assertFalse(is_ended(req, None))
+        self.assertFalse(is_ended(req, ""))
+
     def test_get_main_campus(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-10"))
