@@ -3,6 +3,7 @@ moment = require("../../vendor/js/moment.2.18.1.min.js");
 require("datejs");
 require("../visual_schedule.js");
 require("../handlebars-helpers.js");
+var Global = require("./global.js");
 
 var assert = require("assert");
 describe('Handlebar-helpers', function(){
@@ -137,6 +138,24 @@ describe('Handlebar-helpers', function(){
         });
         it ("undefined", function() {
             var template = Handlebars.compile("{{toFriendlyDateVerbose undefined}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
+
+    describe("formatDateAsFinalsDay", function() {
+        it ("work for a date", function() {
+            var template = Handlebars.compile("{{formatDateAsFinalsDay '2013-06-14' 4}}");
+            var output = template();
+            assert.equal(output, 'Jun 10');
+        });
+        it ("empty date", function() {
+            var template = Handlebars.compile("{{formatDateAsFinalsDay '' 0}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+        it ("undefined", function() {
+            var template = Handlebars.compile("{{formatDateAsFinalsDay undefined 0}}");
             var output = template();
             assert.equal(output, '');
         });
