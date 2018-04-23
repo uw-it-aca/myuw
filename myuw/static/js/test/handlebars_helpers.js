@@ -3,7 +3,7 @@ moment = require("../../vendor/js/moment.2.18.1.min.js");
 require("datejs");
 require("../visual_schedule.js");
 require("../handlebars-helpers.js");
-var Global = require("./global.js");
+
 
 var assert = require("assert");
 describe('Handlebar-helpers', function(){
