@@ -1,6 +1,6 @@
 var Global = require("./global.js");
 
-describe('QuickLinksCard', function(){
+describe('Card: QuickLinksCard', function(){
 
     before(function () {
         var render_id = 'render_quick_links_card';
