@@ -46,3 +46,9 @@ var GradCommitteeCard = {
     }
 
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.GradCommitteeCard = GradCommitteeCard;
