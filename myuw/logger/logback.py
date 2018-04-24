@@ -15,7 +15,7 @@ def log_exception(logger, action, exc_info):
 
 
 def log_exception_with_timer(logger, timer, exc_info):
-    logger.error("%s - %s Time=%.3f milliseconds" %
+    logger.error("%s - %s Time=%f seconds" %
                  (get_logging_userid(),
                   exc_info.splitlines(),
                   timer.get_elapsed()))
@@ -27,7 +27,7 @@ def log_info(logger, message):
 
 def log_time(logger, action_message, timer):
     log_info(logger,
-             "%s Time=%.3f milliseconds" %
+             "%s Time=%f seconds" %
              (action_message, timer.get_elapsed())
              )
 

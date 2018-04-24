@@ -1,25 +1,21 @@
-from myuw.dao.affiliation import get_identity_log_str
 from myuw.logger.logback import log_info, log_time, log_exception_with_timer
+from myuw.logger.session_log import get_request_session_key
 
 
-def log_response_time(logger, message, timer):
-    log_time(logger, message, timer)
+def log_msg_with_request(logger, timer, request, msg='fulfilled'):
+    if timer:
+        log_time(logger,
+                 "session_key:%s, %s" % (
+                     get_request_session_key(request), msg),
+                 timer)
+    else:
+        log_info(logger,
+                 "session_key:%s, %s" % (get_request_session_key(request),
+                                         msg))
 
 
 def log_success_response(logger, timer):
     log_time(logger, 'fulfilled', timer)
-
-
-def log_success_response_with_affiliation(logger, timer, request):
-    log_time(logger,
-             get_identity_log_str(request) + 'fulfilled',
-             timer)
-
-
-def log_msg_with_affiliation(logger, timer, request, msg):
-    log_time(logger,
-             "%s %s" % (msg, get_identity_log_str(request)),
-             timer)
 
 
 def log_err(logger, timer, exc_info):

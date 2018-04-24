@@ -64,7 +64,6 @@ test ("get_unread_count_by_category", function() {
 });
 
 test ("get_critical_this_week", function() {
-    console.log('test');
     critical_count = Notices.get_critical_this_week();
     equal (critical_count, "3", "Passed!");
 });
