@@ -192,7 +192,6 @@ describe("AcademicsPage", function() {
 
         assert.equal($('div[id="academics_content_cards"]').length, 1);
         assert.equal($('div[id="academics_content_cards"]').contents().length, 12);
-        console.log($('div[id="academics_content_cards"]').contents());
 
         // GradStatusCard show
         assert.equal($('div[id="academics_content_cards"]').contents()[7].getAttribute("id"), "GradStatusCard");

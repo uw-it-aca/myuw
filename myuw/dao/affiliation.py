@@ -3,7 +3,7 @@ This module provides affiliations of the current user
 """
 
 import logging
-from myuw.dao.enrollment import get_main_campus
+from myuw.dao.enrollment import get_main_campus, get_class_level
 from myuw.dao.gws import is_alumni, is_alum_asso, is_regular_employee,\
     is_student, is_grad_student, is_undergrad_student,\
     is_pce_student, is_student_employee, is_staff_employee,\
@@ -53,7 +53,7 @@ def get_all_affiliations(request):
                 according to the SWS Enrollment.
     ["official_pce"]: waiting on sws to add a field in Enrollment.
     ["alum_asso"]: alumni association member
-
+    ["class_level"]: current term class level
     ["no_1st_class_affi"]: not applicant, employee, student, instructor
 
     The following are secondary affiliations (without 1st_class_aff):
@@ -77,7 +77,8 @@ def get_all_affiliations(request):
     is_undergrad = is_undergrad_student(request)
     is_hxt_viewer = get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
                                       is_fy_stud, is_aut_xfer, is_win_xfer)
-    data = {"grad": is_grad_student(request),
+    data = {"class_level": None,
+            "grad": is_grad_student(request),
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
             "student": is_student(request),
@@ -113,6 +114,8 @@ def get_all_affiliations(request):
     campuses = []
 
     if data["student"]:
+        data["class_level"] = get_class_level(request)
+
         # determine student campus based on current and future enrollments
         try:
             campuses = get_main_campus(request)
@@ -183,47 +186,3 @@ def get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
         else:
             is_viewer = True
     return is_viewer
-
-
-def get_identity_log_str(request):
-    """
-    Return "(Affiliations: <affiliations>, <campus codes>)"
-    """
-    affi = get_all_affiliations(request)
-    res = "(Affiliations:"
-    no_affiliation_lengthmark = len(res)
-    if affi["grad"]:
-        res += ' Grad'
-    if affi["undergrad"]:
-        res += ' Undergrad'
-    if affi["pce"]:
-        res += ' PCE-student'
-    if affi["grad_c2"]:
-        res += ' Grad_C2'
-    if affi["undergrad_c2"]:
-        res += ' Undergrad_C2'
-    if affi["faculty"]:
-        res += ' Faculty'
-    if affi["staff_employee"]:
-        res += ' Staff'
-    if affi["instructor"]:
-        res += ' Instructor'
-    if affi["clinician"]:
-        res += 'Clinician'
-    if affi["employee"]:
-        res += ' Employee'
-    if len(res) == no_affiliation_lengthmark:
-        res += 'None'
-
-    res += ', Campuses:'
-    no_campus_lengthmark = len(res)
-    if affi["seattle"] or affi["official_seattle"]:
-        res += ' Seattle'
-    if affi["bothell"] or affi["official_bothell"]:
-        res += ' Bothell'
-    if affi["tacoma"] or affi["official_tacoma"]:
-        res += ' Tacoma'
-    if len(res) == no_campus_lengthmark:
-        res += 'None'
-    res += ') '
-    return res
