@@ -45,10 +45,30 @@ describe("ProfilePage for student and employee", function() {
         window.innerWidth = 800;
         ProfilePage.make_html();
         assert.equal(ProfilePage.is_desktop, true);
-        assert.equal($('div[id="CommonProfileCard"]').length, 1);
-        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-        assert.equal($('div[id="StudentInfoCard"]').length, 1);
-        assert.equal($('div[id="HelpLinksCard"]').length, 1);
+
+        assert.equal($('div[id="profile_content_cards"]').length, 1);
+        assert.equal($('div[id="profile_content_cards"]').contents().length, 4);
+        // CommonProfileCard
+        assert.equal($('div[id="profile_content_cards"]').contents()[0].getAttribute("id"), "CommonProfileCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[0].getAttribute("style"), null);
+
+        // EmployeeInfoCard
+        assert.equal($('div[id="profile_content_cards"]').contents()[1].getAttribute("id"), "EmployeeInfoCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[1].getAttribute("style"), null);
+
+        // StudentInfoCard
+        assert.equal($('div[id="profile_content_cards"]').contents()[2].getAttribute("id"), "StudentInfoCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[2].getAttribute("style"), null);
+
+        // ApplicantProfileCard hidden
+        assert.equal($('div[id="profile_content_cards"]').contents()[3].getAttribute("id"), "ApplicantProfileCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[3].getAttribute("style"), "display: none;");
+
+        assert.equal($('div[id="profile_sidebar_cards"]').length, 1);
+        assert.equal($('div[id="profile_sidebar_cards"]').contents().length, 1);
+        // HelpLinksCard
+        assert.equal($('div[id="profile_sidebar_cards"]').contents()[0].getAttribute("id"), "HelpLinksCard");
+        assert.equal($('div[id="profile_sidebar_cards"]').contents()[0].getAttribute("style"), null);
     });
 
     it('Mobile profile page for seagrad', function() {
@@ -89,6 +109,7 @@ describe("ProfilePage for applicant and employee", function() {
         window.page = "profile";
         window.user.employee = true;
         window.user.applicant = true;
+        window.user.student = false;
         window.user.seattle = true;
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
         Global.Environment.ajax_stub({
@@ -106,10 +127,29 @@ describe("ProfilePage for applicant and employee", function() {
         window.innerWidth = 800;
         ProfilePage.make_html();
         assert.equal(ProfilePage.is_desktop, true);
-        assert.equal($('div[id="CommonProfileCard"]').length, 1);
-        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-        assert.equal($('div[id="ApplicantProfileCard"]').length, 1);
-        assert.equal($('div[id="HelpLinksCard"]').length, 1);
+        assert.equal($('div[id="profile_content_cards"]').length, 1);
+        assert.equal($('div[id="profile_content_cards"]').contents().length, 4);
+        // CommonProfileCard
+        assert.equal($('div[id="profile_content_cards"]').contents()[0].getAttribute("id"), "CommonProfileCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[0].getAttribute("style"), null);
+
+        // EmployeeInfoCard
+        assert.equal($('div[id="profile_content_cards"]').contents()[1].getAttribute("id"), "EmployeeInfoCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[1].getAttribute("style"), null);
+
+        // StudentInfoCard hidden
+        assert.equal($('div[id="profile_content_cards"]').contents()[2].getAttribute("id"), "StudentInfoCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[2].getAttribute("style"), 'display: none;');
+
+        // ApplicantProfileCard show
+        assert.equal($('div[id="profile_content_cards"]').contents()[3].getAttribute("id"), "ApplicantProfileCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[3].getAttribute("style"), null);
+
+        assert.equal($('div[id="profile_sidebar_cards"]').length, 1);
+        assert.equal($('div[id="profile_sidebar_cards"]').contents().length, 1); 
+        // HelpLinksCard show
+        assert.equal($('div[id="profile_sidebar_cards"]').contents()[0].getAttribute("id"), "HelpLinksCard");
+        assert.equal($('div[id="profile_sidebar_cards"]').contents()[0].getAttribute("style"), null);
     });
 
     it('Mobile profile page for japplicant', function() {
@@ -151,6 +191,7 @@ describe("ProfilePage for student and student employee", function() {
         window.page = "profile";
         window.user.stud_employee = true;
         window.user.student = true;
+        window.user.applicant = false;
         window.user.seattle = true;
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
         Global.Environment.ajax_stub({
@@ -168,10 +209,29 @@ describe("ProfilePage for student and student employee", function() {
         window.innerWidth = 800;
         ProfilePage.make_html();
         assert.equal(ProfilePage.is_desktop, true);
-        assert.equal($('div[id="CommonProfileCard"]').length, 1);
-        assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
-        assert.equal($('div[id="StudentInfoCard"]').length, 1);
-        assert.equal($('div[id="HelpLinksCard"]').length, 1);
+        assert.equal($('div[id="profile_content_cards"]').length, 1);
+        assert.equal($('div[id="profile_content_cards"]').contents().length, 4);
+        // CommonProfileCard
+        assert.equal($('div[id="profile_content_cards"]').contents()[0].getAttribute("id"), "CommonProfileCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[0].getAttribute("style"), null);
+
+        // EmployeeInfoCard
+        assert.equal($('div[id="profile_content_cards"]').contents()[1].getAttribute("id"), "EmployeeInfoCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[1].getAttribute("style"), null);
+
+        // StudentInfoCard show
+        assert.equal($('div[id="profile_content_cards"]').contents()[2].getAttribute("id"), "StudentInfoCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[2].getAttribute("style"), null);
+
+        // ApplicantProfileCard hidden
+        assert.equal($('div[id="profile_content_cards"]').contents()[3].getAttribute("id"), "ApplicantProfileCard");
+        assert.equal($('div[id="profile_content_cards"]').contents()[3].getAttribute("style"), 'display: none;');
+
+        assert.equal($('div[id="profile_sidebar_cards"]').length, 1);
+        assert.equal($('div[id="profile_sidebar_cards"]').contents().length, 1); 
+        // HelpLinksCard show
+        assert.equal($('div[id="profile_sidebar_cards"]').contents()[0].getAttribute("id"), "HelpLinksCard");
+        assert.equal($('div[id="profile_sidebar_cards"]').contents()[0].getAttribute("style"), null);
     });
 
     it('Mobile profile page for javerage', function() {
