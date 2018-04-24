@@ -16,7 +16,7 @@ describe('UwnetidCard', function(){
             });
 
             Global.Environment.ajax_stub({
-                '/api/v1/profile/': '/api/v1/profile/index.json',
+                '/api/v1/profile/': '/api/v1/profile/bill.json',
             });
 
             var has_loaded = false;

@@ -3,18 +3,20 @@ var Global = require("./global.js");
 describe("AccountsPage", function() {
     before(function () {
         Global.Environment.init({
-                                    scripts: [
-                                        "myuw/static/js/accounts.js",
-                                        "myuw/static/js/card/accounts/tuition.js",
-                                        "myuw/static/js/card/accounts/uwnetid.js",
-                                        "myuw/static/js/card/accounts/account_medicine.js",
-                                        "myuw/static/js/card/accounts/hr_payroll_card.js",
-                                        "myuw/static/js/card/accounts/hfs_sea.js",
-                                        "myuw/static/js/card/accounts/husky.js",
-                                        "myuw/static/js/card/accounts/library.js",
-                                        "myuw/static/js/card/accounts/upass.js"
-                                    ]
-                                });
+            scripts: [
+                "myuw/static/js/accounts.js",
+                "myuw/static/js/cards.js",
+                "myuw/static/js/card/loading.js",
+                "myuw/static/js/card/accounts/tuition.js",
+                "myuw/static/js/card/accounts/uwnetid.js",
+                "myuw/static/js/card/accounts/account_medicine.js",
+                "myuw/static/js/card/accounts/hr_payroll_card.js",
+                "myuw/static/js/card/accounts/hfs_sea.js",
+                "myuw/static/js/card/accounts/husky.js",
+                "myuw/static/js/card/accounts/library.js",
+                "myuw/static/js/card/accounts/upass.js"
+            ]
+        });
     });
     beforeEach(function (){
         window.page = "accounts";
@@ -163,4 +165,3 @@ describe("AccountsPage", function() {
 
     });
 });
-

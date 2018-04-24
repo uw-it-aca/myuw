@@ -29,10 +29,10 @@ var Environment = {
         global.window = dom.window;
         global.document = dom.window.document;
         global.assert = require("assert");
-        global.moment = require("moment");
+        global.moment = require("moment-timezone");
+        global.sinon  = require("sinon");
         global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
         global.dom = dom;
-        var MomentTZ = require("moment-timezone");
         var HandlebarsHelpers = require("../handlebars-helpers.js")
 
         // set up client environment
