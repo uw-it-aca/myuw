@@ -37,9 +37,8 @@ var Academics = {
         }
     },
 
-    _load_desktop_cards: function() {
-        Academics._reset_content_divs();
-        var desktop_body_cards = [
+    body_cards: function() {
+        return [
             OutageCard,
             GradeCard,
             CourseCards,
@@ -52,6 +51,11 @@ var Academics = {
             FutureQuarterCardA,
             FutureQuarterCard1
         ];
+    },
+
+    _load_desktop_cards: function() {
+        Academics._reset_content_divs();
+        var desktop_body_cards = Academics.body_cards();
         var desktop_sidebar_cards = [
             SidebarLinks
         ];
@@ -62,20 +66,8 @@ var Academics = {
 
     _load_mobile_cards: function() {
         Academics._reset_content_divs();
-        var mobile_cards = [
-            OutageCard,
-            GradeCard,
-            CourseCards,
-            VisualScheduleCard,
-            TextbookCard,
-            PrevTermCourseCards,
-            PrevTermCourseCards1,
-            GradStatusCard,
-            GradCommitteeCard,
-            FutureQuarterCardA,
-            FutureQuarterCard1,
-            SidebarLinks
-        ];
+        var mobile_cards = Academics.body_cards();
+        mobile_cards.push(SidebarLinks);
         Cards.load_cards_in_order(mobile_cards, $("#academics_content_cards"));
     },
 
@@ -85,3 +77,9 @@ var Academics = {
         $("#academics_sidebar_cards").html('');
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+exports.Academics = Academics;

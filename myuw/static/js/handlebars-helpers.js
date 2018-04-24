@@ -270,6 +270,17 @@ Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     return hour;
 });
 
+// converts date string into the label for the final exams schedule
+Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back) {
+    if (date_str === undefined || date_str.length === 0) {
+            return "";
+        }
+    var date = moment(date_str);
+    date.subtract(days_back, "days");
+    return date.format("MMM D");
+});
+
+
 Handlebars.registerHelper('time_percentage', function(time, start, end) {
     return VisualSchedule.get_scaled_percentage(time, start, end);
 });

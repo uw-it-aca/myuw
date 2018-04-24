@@ -4,6 +4,7 @@ require("datejs");
 require("../visual_schedule.js");
 require("../handlebars-helpers.js");
 
+
 var assert = require("assert");
 describe('Handlebar-helpers', function(){
 
@@ -137,6 +138,24 @@ describe('Handlebar-helpers', function(){
         });
         it ("undefined", function() {
             var template = Handlebars.compile("{{toFriendlyDateVerbose undefined}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
+
+    describe("formatDateAsFinalsDay", function() {
+        it ("work for a date", function() {
+            var template = Handlebars.compile("{{formatDateAsFinalsDay '2013-06-14' 4}}");
+            var output = template();
+            assert.equal(output, 'Jun 10');
+        });
+        it ("empty date", function() {
+            var template = Handlebars.compile("{{formatDateAsFinalsDay '' 0}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+        it ("undefined", function() {
+            var template = Handlebars.compile("{{formatDateAsFinalsDay undefined 0}}");
             var output = template();
             assert.equal(output, '');
         });
@@ -667,6 +686,14 @@ describe('Handlebar-helpers', function(){
             var template = Handlebars.compile("{{shorten_meeting_type 'LECTURE'}}");
             var output = template();
             assert.equal(output, 'LEC');
+        });
+    });
+
+    describe('formatDateAsFinalsDay', function(){
+        it('get finals month + day number', function(){
+            var template = Handlebars.compile("{{formatDateAsFinalsDay '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, 'Mar 4');
         });
     });
 

@@ -5,12 +5,12 @@
         <h3>Graduate Request Status</h3>
 
         <!-- petitions -->
-        {{#if petitions }}
+        {{#if petitions}}
             <div class="card-badge-container" id="petition-reqs">
                 <h4>Petition Requests</h4>
 
                 <ul class="card_list">
-                    {{ #each petitions}}
+                    {{#each petitions}}
                     <li>
                         <div class="card-badge clearfix">
                             <h5>{{description}}</h5>
@@ -46,12 +46,12 @@
         <!-- end petitions -->
 
         <!-- leave -->
-        {{#if leaves }}
+        {{#if leaves}}
             <div class="card-badge-container" id="leave-reqs">
                 <h4>Leave Requests</h4>
 
                 <ul class="card_list">
-                    {{ #each leaves}}
+                    {{#each leaves}}
                     <li>
                         <div class="card-badge clearfix">
                             <h5>
@@ -79,12 +79,12 @@
         <!-- end leave -->
 
         <!-- degrees -->
-        {{#if degrees }}
+        {{#if degrees}}
             <div class="card-badge-container" id="degree-reqs">
                 <h4>Degree and Exam Requests</h4>
 
                 <ul class="card_list">
-                    {{ #each degrees}}
+                    {{#each degrees}}
                     <li>
                         <div class="card-badge clearfix"><!--<span class="card-badge-value">{{req_type}}</span>-->
                             <h5>{{req_type}}, {{target_award_quarter}} {{target_award_year}}</h5>
