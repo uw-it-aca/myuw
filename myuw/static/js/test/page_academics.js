@@ -87,7 +87,7 @@ describe("AcademicsPage", function() {
             today_date: new Date(2013, 4, 15),
             year: "2013"
         };
-
+        window.sidebar_links_category = "pageacademics";
         window.card_display_dates = { "system_date": '2013-04-15 00:01' };
         window.card_display_dates.is_after_last_day_of_classes = false;
         window.card_display_dates.is_summer = false;
@@ -97,6 +97,7 @@ describe("AcademicsPage", function() {
             '/api/v1/oquarters/': 'api/v1/oquarters/javerage_2013_spring.json',
             '/api/v1/visual_schedule/current': 'api/v1/visual_schedule/javerage_2013_spring.json',
             '/api/v1/book/current': 'api/v1/book/javerage_2013_spring.json',
+            '/api/v1/categorylinks/pageacademics': 'api/v1/categorylinks/pageacademics/javerage.json',
             '/api/v1/grad/': 'api/v1/grad/seagrad.json',
         });
 
@@ -127,37 +128,114 @@ describe("AcademicsPage", function() {
         window.innerWidth = 800;
         Academics.make_html();
         assert.equal(Academics.is_desktop, true);
-        assert.equal($('div[id="OutageCard"]').length, 1);
-        assert.equal($('div[id="GradeCard"]').length, 1);
-        assert.equal($('div[id="CourseCards"]').length, 1);
-        assert.equal($('div[id="VisualScheduleCard"]').length, 1);
-        assert.equal($('div[id="TextbookCard"]').length, 1);
-        assert.equal($('div[id="PrevTermCourseCards"]').length, 1);
-        assert.equal($('div[id="PrevTermCourseCards1"]').length, 1);
-        assert.equal($('div[id="GradStatusCard"]').length, 1);
-        assert.equal($('div[id="GradCommitteeCard"]').length, 1);
-        assert.equal($('div[id="FutureQuarterCardA"]').length, 1);
-        assert.equal($('div[id="FutureQuarterCard1"]').length, 1);
+        assert.equal($('div[id="academics_content_cards"]').length, 1);
+        assert.equal($('div[id="academics_content_cards"]').contents().length, 11);
+        // OutageCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[0].getAttribute("id"), "OutageCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[0].getAttribute("style"), "display: none;");
+
+        // GradeCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[1].getAttribute("id"), "GradeCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[1].getAttribute("style"), "display: none;");
+
+        // CourseCards show
+        assert.equal($('div[id="academics_content_cards"]').contents()[2].getAttribute("id"), "CourseCards");
+        assert.equal($('div[id="academics_content_cards"]').contents()[2].getAttribute("style"), null);
+
+        // VisualScheduleCard show
+        assert.equal($('div[id="academics_content_cards"]').contents()[3].getAttribute("id"), "VisualScheduleCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[3].getAttribute("style"), null);
+
+        // TextbookCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[4].getAttribute("id"), "TextbookCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[4].getAttribute("style"), "display: none;");
+
+        // PrevTermCourseCards hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[5].getAttribute("id"), "PrevTermCourseCards");
+        assert.equal($('div[id="academics_content_cards"]').contents()[5].getAttribute("style"), "display: none;");
+
+        // PrevTermCourseCards1 hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[6].getAttribute("id"), "PrevTermCourseCards1");
+        assert.equal($('div[id="academics_content_cards"]').contents()[6].getAttribute("style"), "display: none;");
+
+        // GradStatusCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[7].getAttribute("id"), "GradStatusCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[7].getAttribute("style"), "display: none;");
+
+        // GradCommitteeCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[8].getAttribute("id"), "GradCommitteeCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[8].getAttribute("style"), "display: none;");
+
+        // FutureQuarterCardA show
+        assert.equal($('div[id="academics_content_cards"]').contents()[9].getAttribute("id"), "FutureQuarterCardA");
+        assert.equal($('div[id="academics_content_cards"]').contents()[9].getAttribute("style"), null);
+
+        // FutureQuarterCard1 hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[10].getAttribute("id"), "FutureQuarterCard1");
+        assert.equal($('div[id="academics_content_cards"]').contents()[10].getAttribute("style"), 'display: none;');
+
         assert.equal($('div[id="academics_sidebar_cards"]').length, 1);
-        assert.equal($('div[id="SidebarLinks"]').length, 1);
+        assert.equal($('div[id="academics_sidebar_cards"]').contents().length, 1);
+        // SidebarLinks show
+        assert.equal($('div[id="academics_sidebar_cards"]').contents()[0].getAttribute("id"), "SidebarLinks");
+        assert.equal($('div[id="academics_sidebar_cards"]').contents()[0].getAttribute("style"), null);
     });
 
-    it('Mobile for alumni should have', function() {
+    it('Mobile with grad cards', function() {
         window.innerWidth = 767;
+        window.user.grad = true;
+
         Academics.make_html();
         assert.equal(Academics.is_desktop, false);
-        assert.equal($('div[id="OutageCard"]').length, 1);
-        assert.equal($('div[id="GradeCard"]').length, 1);
-        assert.equal($('div[id="CourseCards"]').length, 1);
-        assert.equal($('div[id="VisualScheduleCard"]').length, 1);
-        assert.equal($('div[id="TextbookCard"]').length, 1);
-        assert.equal($('div[id="PrevTermCourseCards"]').length, 1);
-        assert.equal($('div[id="PrevTermCourseCards1"]').length, 1);
-        assert.equal($('div[id="GradStatusCard"]').length, 1);
-        assert.equal($('div[id="GradCommitteeCard"]').length, 1);
-        assert.equal($('div[id="FutureQuarterCardA"]').length, 1);
-        assert.equal($('div[id="FutureQuarterCard1"]').length, 1);
-        assert.equal($('div[id="academics_sidebar_cards"]').length, 1);
-        assert.equal($('div[id="SidebarLinks"]').length, 1);
+
+        assert.equal($('div[id="academics_content_cards"]').length, 1);
+        assert.equal($('div[id="academics_content_cards"]').contents().length, 12);
+        // OutageCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[0].getAttribute("id"), "OutageCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[0].getAttribute("style"), "display: none;");
+
+        // GradeCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[1].getAttribute("id"), "GradeCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[1].getAttribute("style"), "display: none;");
+
+        // CourseCards show
+        assert.equal($('div[id="academics_content_cards"]').contents()[2].getAttribute("id"), "CourseCards");
+        assert.equal($('div[id="academics_content_cards"]').contents()[2].getAttribute("style"), null);
+
+        // VisualScheduleCard show
+        assert.equal($('div[id="academics_content_cards"]').contents()[3].getAttribute("id"), "VisualScheduleCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[3].getAttribute("style"), null);
+
+        // TextbookCard hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[4].getAttribute("id"), "TextbookCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[4].getAttribute("style"), "display: none;");
+
+        // PrevTermCourseCards hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[5].getAttribute("id"), "PrevTermCourseCards");
+        assert.equal($('div[id="academics_content_cards"]').contents()[5].getAttribute("style"), "display: none;");
+
+        // PrevTermCourseCards1 hidden
+        assert.equal($('div[id="academics_content_cards"]').contents()[6].getAttribute("id"), "PrevTermCourseCards1");
+        assert.equal($('div[id="academics_content_cards"]').contents()[6].getAttribute("style"), "display: none;");
+
+        // GradStatusCard show
+        assert.equal($('div[id="academics_content_cards"]').contents()[7].getAttribute("id"), "GradStatusCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[7].getAttribute("style"), null);
+
+        // GradCommitteeCard show
+        assert.equal($('div[id="academics_content_cards"]').contents()[8].getAttribute("id"), "GradCommitteeCard");
+        assert.equal($('div[id="academics_content_cards"]').contents()[8].getAttribute("style"), null);
+
+        // FutureQuarterCardA show
+        assert.equal($('div[id="academics_content_cards"]').contents()[9].getAttribute("id"), "FutureQuarterCardA");
+        assert.equal($('div[id="academics_content_cards"]').contents()[9].getAttribute("style"), null);
+
+        // FutureQuarterCard1 show
+        assert.equal($('div[id="academics_content_cards"]').contents()[10].getAttribute("id"), "FutureQuarterCard1");
+        assert.equal($('div[id="academics_content_cards"]').contents()[10].getAttribute("style"), null);
+
+        // SidebarLinks show
+        assert.equal($('div[id="academics_content_cards"]').contents()[11].getAttribute("id"), "SidebarLinks");
+        assert.equal($('div[id="academics_content_cards"]').contents()[11].getAttribute("style"), null);
     });
 });
