@@ -75,6 +75,7 @@ describe("AcademicsPage", function() {
     beforeEach(function (){
         window.page = "academics";
         window.user.student = true;
+        window.user.grad = false;
         window.term_data = {
             break_quarter: "spring",
             break_year: "2013",
@@ -128,6 +129,7 @@ describe("AcademicsPage", function() {
         window.innerWidth = 800;
         Academics.make_html();
         assert.equal(Academics.is_desktop, true);
+
         assert.equal($('div[id="academics_content_cards"]').length, 1);
         assert.equal($('div[id="academics_content_cards"]').contents().length, 11);
         // OutageCard hidden
@@ -181,7 +183,7 @@ describe("AcademicsPage", function() {
         assert.equal($('div[id="academics_sidebar_cards"]').contents()[0].getAttribute("style"), null);
     });
 
-    it('Mobile with grad cards', function() {
+    it('Test mobile plus grad cards', function() {
         window.innerWidth = 767;
         window.user.grad = true;
 
@@ -190,33 +192,7 @@ describe("AcademicsPage", function() {
 
         assert.equal($('div[id="academics_content_cards"]').length, 1);
         assert.equal($('div[id="academics_content_cards"]').contents().length, 12);
-        // OutageCard hidden
-        assert.equal($('div[id="academics_content_cards"]').contents()[0].getAttribute("id"), "OutageCard");
-        assert.equal($('div[id="academics_content_cards"]').contents()[0].getAttribute("style"), "display: none;");
-
-        // GradeCard hidden
-        assert.equal($('div[id="academics_content_cards"]').contents()[1].getAttribute("id"), "GradeCard");
-        assert.equal($('div[id="academics_content_cards"]').contents()[1].getAttribute("style"), "display: none;");
-
-        // CourseCards show
-        assert.equal($('div[id="academics_content_cards"]').contents()[2].getAttribute("id"), "CourseCards");
-        assert.equal($('div[id="academics_content_cards"]').contents()[2].getAttribute("style"), null);
-
-        // VisualScheduleCard show
-        assert.equal($('div[id="academics_content_cards"]').contents()[3].getAttribute("id"), "VisualScheduleCard");
-        assert.equal($('div[id="academics_content_cards"]').contents()[3].getAttribute("style"), null);
-
-        // TextbookCard hidden
-        assert.equal($('div[id="academics_content_cards"]').contents()[4].getAttribute("id"), "TextbookCard");
-        assert.equal($('div[id="academics_content_cards"]').contents()[4].getAttribute("style"), "display: none;");
-
-        // PrevTermCourseCards hidden
-        assert.equal($('div[id="academics_content_cards"]').contents()[5].getAttribute("id"), "PrevTermCourseCards");
-        assert.equal($('div[id="academics_content_cards"]').contents()[5].getAttribute("style"), "display: none;");
-
-        // PrevTermCourseCards1 hidden
-        assert.equal($('div[id="academics_content_cards"]').contents()[6].getAttribute("id"), "PrevTermCourseCards1");
-        assert.equal($('div[id="academics_content_cards"]').contents()[6].getAttribute("style"), "display: none;");
+        console.log($('div[id="academics_content_cards"]').contents());
 
         // GradStatusCard show
         assert.equal($('div[id="academics_content_cards"]').contents()[7].getAttribute("id"), "GradStatusCard");
@@ -226,16 +202,11 @@ describe("AcademicsPage", function() {
         assert.equal($('div[id="academics_content_cards"]').contents()[8].getAttribute("id"), "GradCommitteeCard");
         assert.equal($('div[id="academics_content_cards"]').contents()[8].getAttribute("style"), null);
 
-        // FutureQuarterCardA show
-        assert.equal($('div[id="academics_content_cards"]').contents()[9].getAttribute("id"), "FutureQuarterCardA");
-        assert.equal($('div[id="academics_content_cards"]').contents()[9].getAttribute("style"), null);
-
-        // FutureQuarterCard1 show
-        assert.equal($('div[id="academics_content_cards"]').contents()[10].getAttribute("id"), "FutureQuarterCard1");
-        assert.equal($('div[id="academics_content_cards"]').contents()[10].getAttribute("style"), null);
-
-        // SidebarLinks show
+        // SidebarLinks show at the end of content column
         assert.equal($('div[id="academics_content_cards"]').contents()[11].getAttribute("id"), "SidebarLinks");
         assert.equal($('div[id="academics_content_cards"]').contents()[11].getAttribute("style"), null);
+
+        assert.equal($('div[id="academics_sidebar_cards"]').length, 1);
+        assert.equal($('div[id="academics_sidebar_cards"]').contents().length, 0);
     });
 });
