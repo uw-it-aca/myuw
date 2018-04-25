@@ -14,6 +14,7 @@
                             <th>Day(s)</th>
                             <th>Time</th>
                             <th>Location</th>
+                            <th>Meeting Type</th>
                         </tr>
                     </thead>
                     <tbody class="tbody-course-schedule">
@@ -39,6 +40,12 @@
                                         {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                                     {{/if}}
                                 {{/unless}}
+
+                                <td class="course-meeting">
+                                    <!-- if meeting type other than the section type -->
+                                    <span class="myuw-course-meeting-type c{{color_id}}Color">Fake</span>
+                                    <!-- endif -->
+                                </td>
                             {{/if}}
                         </tr>
                         {{/each}}
