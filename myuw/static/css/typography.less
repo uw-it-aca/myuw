@@ -33,7 +33,15 @@ hr {
     border-top: 1px solid #ddd;
 }
 
-/** Lists **/
+/*** Links ***/
+a { text-decoration: none; color: #4d66ca;
+    &:hover, &:focus { text-decoration: underline; color: #334baa; }
+    &:active { text-decoration: underline; color: @uw-metalic-gold; }
+}
+
+
+
+/*** Lists ***/
 
 ul.unstyled-list, ol.unstyled-list, ul.unstyled, ol.unstyled {
     padding-left: 0px;
