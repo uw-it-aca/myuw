@@ -11,6 +11,7 @@
             <th>Day(s)</th>
             <th>Time</th>
             <th>Location</th>
+            <th>Meeting Type</th>
         </tr>
     </thead>
     <tbody class="tbody-course-schedule">
@@ -22,9 +23,9 @@
                 -->
             {{else}}
                 {{#if days_tbd}}
-                    <td colspan="2" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
+                    <td colspan="3" class="text-muted course-tbd">Days and times to<br/> be arranged</td>
                 {{else if no_meeting}}
-                    <td colspan="2" class="text-muted course-loc-tbd">No classroom meeting: online learning</td>
+                    <td colspan="3" class="text-muted course-loc-tbd">No classroom meeting: online learning</td>
                 {{else}}
                     {% include "handlebars/card/schedule/course_sche_col_days.html" %}
                 {{/if}}
@@ -34,6 +35,12 @@
                 {{else}}
                     {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                 {{/if}}
+
+                <td class="course-meeting">
+                    <!-- if meeting type other than the section type -->
+                    <span class="myuw-course-meeting-type c{{color_id}}Color">Fake</span>
+                    <!-- endif -->
+                </td>
             {{/if}}
         </tr>
 
