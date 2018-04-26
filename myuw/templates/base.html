@@ -192,10 +192,8 @@
                             {% endif %}
 
 
-                            {% if instructor_schedule_enabled %}
-                              {% if user.affiliations.instructor %}
+                            {% if user.affiliations.instructor %}
                             <li role="none"><a {% if is_myuw_teaching_page %}class="active"{% endif %} href="/teaching/" role="menuitem"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Teaching</a></li>
-                             {% endif %}
                             {% endif %}
 
                             <li role="none"><a {% if is_myuw_accounts_page  %}class="active"{% endif %} href="/accounts/" role="menuitem"><i class="fa fa-credit-card" aria-hidden="true"></i>Accounts</a></li>
