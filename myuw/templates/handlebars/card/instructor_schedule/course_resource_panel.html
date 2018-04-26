@@ -19,9 +19,6 @@
             <div class="col-sm-9">
                 <div class="myuw-card-row-content">
                     <ul class="myuw-card-itemlist">
-                        <li class="clearfix">
-                            {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
-                        </li>
 
                         {{#if myuwclass_url}}
                         <li class="clearfix">
@@ -33,6 +30,9 @@
                         </li>
                         {{/if}}
 
+                        <li class="clearfix">
+                            {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
+                        </li>
 
                         {{#if email_list }}
                             <li class="clearfix">
