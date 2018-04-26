@@ -15,7 +15,6 @@ describe('EmployeeInfoCard', function(){
                 ]
             });
 
-            window.enabled_features = { 'employee_profile': false };
             EmployeeInfoCard.dom_target = $('#' + render_id);
 
         });
@@ -46,7 +45,6 @@ describe('EmployeeInfoCard', function(){
                 done();
             });
 
-            window.enabled_features = { 'employee_profile': true };
             window.user.employee = true;
             EmployeeInfoCard.dom_target = $('#' + render_id);
             EmployeeInfoCard.render_init();
@@ -86,7 +84,6 @@ describe('EmployeeInfoCard', function(){
                 done();
             });
 
-            window.enabled_features = { 'employee_profile': true };
             window.user.employee = true;
             window.user.tacoma = true;
 

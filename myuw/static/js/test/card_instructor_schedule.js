@@ -30,7 +30,6 @@ describe('InstructorScheduleCards for 2013 summer', function(){
     beforeEach(function (){
         Global.Environment.ajax_stub('api/v1/instructor_schedule/2013-summer');
 
-        window.enabled_features = { 'instructor_schedule': true };
         window.card_display_dates = { system_date: '2017-06-25 17:59' };
         window.user.instructor = true;
         window.term_data = {
@@ -132,7 +131,6 @@ describe('InstructorScheduleCards for billpce 2013 spring', function(){
     beforeEach(function (){
         Global.Environment.ajax_stub('api/v1/instructor_schedule/billpce-2013-spring');
 
-        window.enabled_features = { 'instructor_schedule': true };
         window.card_display_dates = { system_date: '2017-06-25 17:59' };
         window.user.instructor = true;
         window.term_data = {
