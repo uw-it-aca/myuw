@@ -76,12 +76,14 @@ describe("TeachingPage", function() {
         assert.equal($('div[data-identifier="PHYS 123 A"]').length, 1);
         assert.equal($('div[data-identifier="PHYS 123 B"]').length, 1);
         assert.equal($('div[data-identifier="PHYS 123 CA"]').length, 1);
+
+        assert.equal($('div[id="teaching_accounts_cards"]').length, 1);
+        assert.equal($('div[id="teaching_accounts_cards"]').contents().length, 1);
         assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
         assert.equal($('div[id="TeachingResourcesCard"]')[0].getAttribute("style"), null);
-
     });
     
-    it('Desktop for billsea', function() {
+    it('Mobile for billsea', function() {
         window.innerWidth = 767;
         Teaching.make_html();
         assert.equal(Teaching.is_desktop, false);
@@ -91,5 +93,20 @@ describe("TeachingPage", function() {
         
         assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
         assert.equal($('div[id="TeachingResourcesCard"]')[0].getAttribute("style"), null);
+        
+        assert.equal($('div[id="teaching_accounts_cards"]').length, 1);
+        assert.equal($('div[id="teaching_accounts_cards"]').contents().length, 0);
+    });
+
+    it('Test resizing', function() {
+        window.innerWidth = 800;
+        Teaching.make_html();
+        assert.equal($('div[id="teaching_accounts_cards"]').length, 1);
+        assert.equal($('div[id="teaching_accounts_cards"]').contents().length, 1);
+
+        window.innerWidth = 700;
+        Teaching.make_html();
+        assert.equal($('div[id="teaching_accounts_cards"]').length, 1);
+        assert.equal($('div[id="teaching_accounts_cards"]').contents().length, 0);
     });
 });
