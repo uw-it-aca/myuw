@@ -107,15 +107,15 @@ var Notices = {
             }
 
         });
-        
+
         // event for slide show/hide panels
         $(".slide-link").on("click", function(ev) {
             ev.preventDefault();
 
             var hidden_block = $($(ev.target).closest("div.disclosure-heading").siblings(".slide-hide")[0]);
-            
+
             var slide_link = $(this);
-            
+
             if (hidden_block.css('display') === 'none') {
                 Notices._show_section(hidden_block, slide_link);
             }
@@ -290,7 +290,7 @@ var Notices = {
     get_total_unread: function (){
         return Notices._get_unread_count(Notices.get_notice_page_notices());
     },
-    
+
     get_unread_non_critical_count: function() {
         var all_non_critical = [];
         var all_notices = Notices.get_notice_page_notices();
@@ -331,17 +331,26 @@ var Notices = {
     },
 
     _get_critical: function(notices, exclude_sws_category) {
-        var critical = [];
+        return Notices._get_notices_by_criticality(notices, true, exclude_sws_category)
+    },
+
+    _get_noncritical: function(notices, exclude_sws_category) {
+        return Notices._get_notices_by_criticality(notices, false, exclude_sws_category)
+
+    },
+
+    _get_notices_by_criticality: function(notices, is_critical, exclude_sws_category) {
+        var filtered_notices = [];
         for (i = 0; i < notices.length; i += 1) {
-            notice = notices[i];
-            if (notice.is_critical) {
-                if (exclude_sws_category === 'undefined' ||
-                    notice.sws_category !== exclude_sws_category) {
-                    critical.push(notice);
+            var notice = notices[i];
+            if (exclude_sws_category === 'undefined' ||
+                notice.sws_category !== exclude_sws_category) {
+                if (notice.is_critical === is_critical) {
+                    filtered_notices.push(notice);
                 }
             }
         }
-        return critical;
+        return filtered_notices;
     },
 
     _get_all_critical: function() {
@@ -405,12 +414,13 @@ var Notices = {
         }
     },
 
-    get_notice_page_notices: function () {
+    get_notice_page_notices: function (exclude_critical) {
         var page_notices = [];
         var unique_notices = [];
-
-        var critical = Notices._get_all_critical();
-        page_notices = page_notices.concat(critical);
+        if (typeof exclude_critical === 'undefined'){
+            var critical = Notices._get_all_critical();
+            page_notices = page_notices.concat(critical);
+        }
 
         var legal = Notices.get_notices_for_category("Legal").notices;
         if(legal !== undefined) {
