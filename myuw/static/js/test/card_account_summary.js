@@ -62,8 +62,10 @@ describe('AccountSummaryCard', function() {
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "myuw/static/js/card/summary/accounts.js"
-                ],
+                   "myuw/static/js/ws_data.js",
+                   "myuw/static/js/myuw_log.js",
+                   "myuw/static/js/card/summary/accounts.js"
+                 ],
                 templates: [
                     'myuw/templates/handlebars/card/summary/accounts.html'
                 ]
@@ -75,64 +77,63 @@ describe('AccountSummaryCard', function() {
                 quarter: "spring",
                 year: "2017",
                 is_break: false,
-                is_finals: false
+                is_finals: false,
+                last_day: new Date(2017, 6, 9),
+                today: "Monday, April 5, 2017",
+                today_date: new Date(2017, 4, 5)
             };
 
             dom_target = $('#' + render_id);
         });
 
 
-        describe("render", function () {
-            before(function (done) {
-                Global.Environment.ajax_stub({
-                    '/api/v1/library/': 'api/v1/library/javerage.json',
-                    '/api/v1/hfs/': 'api/v1/hfs/javerage.json'
-                });
-
-                $(window).one("myuw:card_load", function () {
-                    Global.Environment.ajax_stub_restore();
-                    done();
-                });
-
-                AccountSummaryCard.render_init(dom_target);
+        beforeEach(function (){
+            Global.Environment.ajax_stub({
+                '/api/v1/library/': 'api/v1/library/javerage.json',
+                '/api/v1/hfs/': 'api/v1/hfs/javerage.json'
             });
+            AccountSummaryCard.render_init(dom_target);
+        });
 
-            it("all", function() {
-                // test if hfs and library are both rendered
-                assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 4);
-            });
+        afterEach(function(){
+            Global.Environment.ajax_stub_restore();
+        });
 
-            it("only hfs", function() {
-                // test if only hfs is true
-                var lib_data = WSData._library_data;
-                WSData._library_data = {};
-                $(window).one("myuw:card_load", function () {
-                    assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 3);
-                });
-                AccountSummaryCard.render_init(dom_target);
-                WSData._library_data = lib_data;
-            });
+        it("all", function() {
+            // test if hfs and library are both rendered
+            assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 4);
+        });
 
-            it("only library", function() {
-                // test if only library is true
-                var hfs_data = WSData._hfs_data;
-                WSData._hfs_data = {};
-                $(window).one("myuw:card_load", function () {
-                    assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 1);
-                });
-                AccountSummaryCard.render_init(dom_target);
-                WSData._hfs_data = hfs_data;
+        it("only hfs", function() {
+            // test if only hfs is true
+            var lib_data = WSData._library_data;
+            WSData._library_data = {};
+            $(window).one("myuw:card_load", function () {
+                assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 3);
             });
+            AccountSummaryCard.render_init(dom_target);
+            WSData._library_data = lib_data;
+        });
 
-            it("NO render", function() {
-                WSData._library_data = {};
-                WSData._hfs_data = {};
-                // test if hfs and library are both rendered
-                $(window).one("myuw:card_load", function () {
-                    assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 0);
-                });
-                AccountSummaryCard.render_init(dom_target);
+        it("only library", function() {
+            // test if only library is true
+            var hfs_data = WSData._hfs_data;
+            WSData._hfs_data = {};
+            $(window).one("myuw:card_load", function () {
+                assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 1);
             });
+            AccountSummaryCard.render_init(dom_target);
+            WSData._hfs_data = hfs_data;
+        });
+
+        it("NO render", function() {
+            WSData._library_data = {};
+            WSData._hfs_data = {};
+            // test if hfs and library are both rendered
+            $(window).one("myuw:card_load", function () {
+                assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 0);
+            });
+            AccountSummaryCard.render_init(dom_target);
         });
     });
 });

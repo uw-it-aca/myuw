@@ -272,15 +272,12 @@ Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
 
 // converts date string into the label for the final exams schedule
 Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back) {
+    if (date_str === undefined || date_str.length === 0) {
+            return "";
+        }
     var date = moment(date_str);
     date.subtract(days_back, "days");
-    var day_of_week = date.day();
-    var month_num = date.month();
-    var day_of_month = date.date();
-
-    var month_names = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
-    return month_names[month_num] + " " + day_of_month;
+    return date.format("MMM D");
 });
 
 

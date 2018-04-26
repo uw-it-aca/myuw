@@ -17,7 +17,7 @@ describe('StudentInfoCard', function(){
 
             WSData._profile_data = null;
             Global.Environment.ajax_stub({
-                '/api/v1/profile/': 'api/v1/profile/index-jbothell.json'
+                '/api/v1/profile/': 'api/v1/profile/jbothell.json'
             });
 
             $(window).on("myuw:card_load", function () {
@@ -50,7 +50,7 @@ describe('StudentInfoCard', function(){
 
             WSData._profile_data = null;
             Global.Environment.ajax_stub({
-                '/api/v1/profile/': 'api/v1/profile/index-javerage.json'
+                '/api/v1/profile/': 'api/v1/profile/javerage.json'
             });
 
             $(window).on("myuw:card_load", function () {

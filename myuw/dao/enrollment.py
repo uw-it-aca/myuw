@@ -2,7 +2,7 @@
 This class encapsulates the interactions with
 the SWS Enrollment resource.
 """
-
+import datetime
 import logging
 from uw_sws.enrollment import enrollment_search_by_regid,\
     get_enrollment_history_by_regid
@@ -99,6 +99,16 @@ def get_main_campus(request):
     return campuses
 
 
+def get_class_level(request):
+    """
+    Return current term class level
+    """
+    enrollment = get_current_quarter_enrollment(request)
+    if enrollment:
+        return enrollment.class_level
+    return None
+
+
 def get_code_for_class_level(class_name):
     if class_name in CLASS_CODES:
         return CLASS_CODES[class_name]
@@ -106,8 +116,11 @@ def get_code_for_class_level(class_name):
 
 
 def is_ended(request, end_date):
+    """
+    Return True only when end_date is a valid date and is in the past
+    """
     now = get_comparison_date(request)
-    return now > end_date
+    return end_date and isinstance(end_date, datetime.date) and now > end_date
 
 
 def remove_finished(request, result_dict):

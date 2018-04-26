@@ -18,7 +18,7 @@ from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response,\
-    log_success_response_with_affiliation
+    log_msg_with_request
 from myuw.logger.session_log import log_session
 from myuw.util.settings import get_google_search_key,\
     get_legacy_url, get_logout_url
@@ -50,7 +50,7 @@ def page(request,
     context["user"] = {
         "netid": netid,
         "session_key": request.session.session_key,
-     }
+    }
 
     if prefetch:
         # Some pages need to prefetch before this point
@@ -63,8 +63,8 @@ def page(request,
     if user_pref.use_legacy_site:
         return redirect_to_legacy_site()
 
+    log_session(netid, request)
     affiliations = get_all_affiliations(request)
-    log_session(netid, affiliations, request.session.session_key, request)
 
     context["home_url"] = "/"
     context["err"] = None
@@ -102,7 +102,7 @@ def page(request,
     if add_quicklink_context:
         _add_quicklink_context(request, context)
 
-    log_success_response_with_affiliation(logger, timer, request)
+    log_msg_with_request(logger, timer, request)
     return render(request, template, context)
 
 

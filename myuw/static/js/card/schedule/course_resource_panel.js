@@ -11,3 +11,10 @@ var CourseResourcePanel = {
         $('#course_resource' + c_section.index).html(raw);
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+
+exports.CourseResourcePanel = CourseResourcePanel;
