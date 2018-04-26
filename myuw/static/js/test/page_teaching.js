@@ -19,9 +19,19 @@ describe("TeachingPage", function() {
             templates: [
                 'myuw/templates/teaching_base.html',
                 'myuw/templates/teaching.html',
+                'myuw/templates/handlebars/teaching.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_cards.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_content.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_section.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_sche_panel.html',
+                'myuw/templates/handlebars/card/instructor_schedule/secondaries.html',
+                'myuw/templates/handlebars/card/instructor_schedule/secondary_section_panel.html',
+                'myuw/templates/handlebars/card/schedule/instructor_panel.html',
+                'myuw/templates/handlebars/card/quicklinks.html',
+                'myuw/templates/handlebars/error.html',
             ]
         });
-        Global.Environment.ajax_stub('api/v1/instructor_schedule/billsea-2013-spring');
 
     });
 
@@ -30,29 +40,56 @@ describe("TeachingPage", function() {
         window.user.instructor = true;
         window.user.seattle = true;
         window.card_display_dates = { system_date: '2013-04-15 00:01' };
+        window.term_data = {
+            break_quarter: "spring",
+            break_year: "2013",
+            first_day: new Date(2013, 4, 1),
+            is_break: false,
+            is_finals: false,
+            last_day: new Date(2013, 6, 7),
+            quarter: "spring",
+            today: "Monday, April 15, 2013",
+            today_date: new Date(2013, 4, 15),
+            year: "2013"
+        };
+        window.sidebar_links_category = "pageteaching";
+        Global.Environment.ajax_stub('api/v1/instructor_schedule/billsea-2013-spring');
     });
 
-    describe('load teaching page cards', function() {
+    afterEach(function(){
+        Global.Environment.ajax_stub_restore();
+    });
+
+    it('Desktop for billsea', function() {
+        window.innerWidth = 800;
+        Teaching.make_html();
+        assert.equal(Teaching.is_desktop, true);
+        assert.equal($('div[id="teaching_content_cards"]').length, 1);
+        assert.equal($('div[id="teaching_content_cards"]').contents().length, 1);
+        // InstructorCourseCards show
+        assert.equal($('div[id="InstructorCourseCards"]').length, 1);
+        assert.equal($('div[id="InstructorCourseCards"]')[0].getAttribute("style"), null);
+
+        assert.equal($('div[id="instructor-term-spring-2013"]').length, 1);
+        assert.equal($('div[data-identifier="PHYS 122 A"]').length, 1);
+        assert.equal($('div[data-identifier="PHYS 122 B"]').length, 1);
+        assert.equal($('div[data-identifier="PHYS 123 A"]').length, 1);
+        assert.equal($('div[data-identifier="PHYS 123 B"]').length, 1);
+        assert.equal($('div[data-identifier="PHYS 123 CA"]').length, 1);
+        assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
+        assert.equal($('div[id="TeachingResourcesCard"]')[0].getAttribute("style"), null);
+
+    });
+    
+    it('Desktop for billsea', function() {
+        window.innerWidth = 767;
+        Teaching.make_html();
+        assert.equal(Teaching.is_desktop, false);
+        assert.equal($('h2[id="main-content-label"]').length, 1);
+        assert.equal($('div[id="InstructorCourseCards"]').length, 1);
+        assert.equal($('div[id="InstructorCourseCards"]')[0].getAttribute("style"), null);
         
-        it('Desktop should have course card and resource card', function() {
-            window.innerWidth = 800;
-            Teaching.make_html();
-            assert.equal(Teaching.is_desktop, true);
-            assert.equal($('h2[id="main-content-label"]').length, 1);
-            assert.equal($('div[id="InstructorCourseCards"]').length, 1);
-            assert.equal($('div[data-name="CourseCard"]').length, 7);
-            assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
-        });
-
-        it('Mobile should have course card and resource card', function() {
-            window.innerWidth = 767;
-            Teaching.make_html();
-            assert.equal(Teaching.is_desktop, false);
-            assert.equal($('h2[id="main-content-label"]').length, 1);
-            assert.equal($('div[id="InstructorCourseCards"]').length, 1);
-            assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
-        });
-
+        assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
+        assert.equal($('div[id="TeachingResourcesCard"]')[0].getAttribute("style"), null);
     });
 });
-
