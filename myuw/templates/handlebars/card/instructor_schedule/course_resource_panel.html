@@ -22,6 +22,11 @@
                             {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
                         </li>
 
+                        {{#if eos_cid}}
+                            {% include "handlebars/card/instructor_schedule/course_resource/myuwclass.html" %}
+                        {{/if}}
+
+
                         {{#if email_list }}
                             <li class="clearfix">
                                 {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}

@@ -4,11 +4,10 @@ var InstructorCourseResourcePanel = {
         var panel = $('#instructor_course_resource' + c_section.index);
         var term = c_section.year + ',' + c_section.quarter.toLowerCase();
 
-        if (c_section.class_website_url || c_section.canvas_url) {
-            c_section.has_resources = true;
-        }
-
-        if (c_section.has_resources || c_section.sln) {
+        if (c_section.class_website_url ||
+            c_section.canvas_url ||
+            c_section.sln ||
+            c_section.eos_cid) {
             c_section.display_resources = true;
         }
 
@@ -21,6 +20,12 @@ var InstructorCourseResourcePanel = {
     },
 
     add_events: function(panel, term) {
+
+        $(".myuwclass", panel).on("click", function(ev) {
+            var target = ev.currentTarget;
+            var course_id = safe_label(target.getAttribute("rel"));
+            WSData.log_interaction("open_myuwclass_"+course_id, term);
+        });
 
         $(".course_website", panel).on("click", function(ev) {
             var target = ev.currentTarget;
