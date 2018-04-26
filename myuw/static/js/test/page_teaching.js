@@ -99,14 +99,13 @@ describe("TeachingPage", function() {
     });
 
     it('Test resizing', function() {
-        window.innerWidth = 800;
+        window.innerWidth = 1200;
         Teaching.make_html();
-        assert.equal($('div[id="teaching_accounts_cards"]').length, 1);
-        assert.equal($('div[id="teaching_accounts_cards"]').contents().length, 1);
+        assert.equal(Teaching.is_desktop, true);
 
         window.innerWidth = 700;
+        $(window).trigger('resize');
         Teaching.make_html();
-        assert.equal($('div[id="teaching_accounts_cards"]').length, 1);
-        assert.equal($('div[id="teaching_accounts_cards"]').contents().length, 0);
+        assert.equal(Teaching.is_desktop, false);
     });
 });
