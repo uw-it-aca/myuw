@@ -105,7 +105,6 @@ describe("TeachingPage", function() {
 
         window.innerWidth = 700;
         $(window).trigger('resize');
-        Teaching.make_html();
         assert.equal(Teaching.is_desktop, false);
     });
 });
