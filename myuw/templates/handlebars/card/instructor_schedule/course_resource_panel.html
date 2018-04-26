@@ -31,7 +31,7 @@
                         {{/if}}
 
                         {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
-                        
+
                         {{#if email_list }}
                             <li class="clearfix">
                                 {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
@@ -41,9 +41,7 @@
                         {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
 
                         {{#unless mini_card}}
-                            <li class="clearfix">
-                                {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
-                            </li>
+                        {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
                         {{/unless}}
                     </ul>
                 </div>
