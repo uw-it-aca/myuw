@@ -7,7 +7,7 @@ var InstructorCourseResourcePanel = {
         if (c_section.class_website_url ||
             c_section.canvas_url ||
             c_section.sln ||
-            c_section.eos_cid) {
+            c_section.myuwclass_url) {
             c_section.display_resources = true;
         }
 
