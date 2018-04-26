@@ -96,3 +96,4 @@ if (typeof exports === "undefined") {
     var exports = {};
 }
 exports.PrevTermCourseCards = PrevTermCourseCards;
+exports.PrevTermCourseCards1 = PrevTermCourseCards1;

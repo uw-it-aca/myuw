@@ -9,15 +9,14 @@ var FutureQuarterCard = {
             return;
         }
         WSData.fetch_oquarter_data(FutureQuarterCard.render_upon_data, FutureQuarterCard.render_error);
-
-        FutureQuarterCard.dom_target = $("#FutureQuarterCardA");
     },
 
     render_upon_data: function() {
-        if (!FutureQuarterCard._has_all_data()) {
+        if (!WSData.oquarter_data()) {
             return;
         }
         if (WSData.oquarter_data().highlight_future_quarters) {
+            FutureQuarterCard.dom_target = $("#FutureQuarterCardA");
             $("#FutureQuarterCard1").hide();
         }
         else {
@@ -33,11 +32,11 @@ var FutureQuarterCard = {
 
         if (!oquarter_data.terms.length) {
             FutureQuarterCard.dom_target.hide();
+            return;
         }
-        else {
-            FutureQuarterCard.dom_target.html(template(oquarter_data));
-            LogUtils.cardLoaded(FutureQuarterCard.name, FutureQuarterCard.dom_target);
-        }
+        var raw = template(oquarter_data);
+        FutureQuarterCard.dom_target.html(raw);
+        LogUtils.cardLoaded(FutureQuarterCard.name, FutureQuarterCard.dom_target);
     },
 
     render_error: function(status) {
@@ -48,14 +47,6 @@ var FutureQuarterCard = {
         }
         FutureQuarterCard.dom_target.html(CardWithError.render("Future Quarter Courses"));
     },
-
-    _has_all_data: function () {
-        if (WSData.oquarter_data()) {
-            return true;
-        }
-        return false;
-    }
-
 };
 
 
