@@ -70,6 +70,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'userservice.user.UserServiceMiddleware',
+    'rc_django.middleware.EnableServiceDegradationMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
