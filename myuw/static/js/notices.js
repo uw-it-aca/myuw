@@ -331,12 +331,7 @@ var Notices = {
     },
 
     _get_critical: function(notices, exclude_sws_category) {
-        return Notices._get_notices_by_criticality(notices, true, exclude_sws_category)
-    },
-
-    _get_noncritical: function(notices, exclude_sws_category) {
-        return Notices._get_notices_by_criticality(notices, false, exclude_sws_category)
-
+        return Notices._get_notices_by_criticality(notices, true, exclude_sws_category);
     },
 
     _get_notices_by_criticality: function(notices, is_critical, exclude_sws_category) {
