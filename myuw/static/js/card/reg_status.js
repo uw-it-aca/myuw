@@ -72,8 +72,6 @@ var RegStatusCard = {
     render_error: function (status) {
         // none of the api data returns 404.
         // if any data failure, display error
-        console.log("Status: " + status);
-        console.trace();
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },
 
@@ -168,7 +166,6 @@ var RegStatusCard = {
         }
 
         if (hide_card) {
-            console.log("Hiding card")
             return;
         }
 
