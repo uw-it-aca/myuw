@@ -243,4 +243,15 @@ describe("ProfilePage for student and student employee", function() {
         assert.equal($('div[id="StudentInfoCard"]').length, 1);
         assert.equal($('div[id="HelpLinksCard"]').length, 0);
     });
+
+    it('Test resizing', function() {
+        window.innerWidth = 1200;
+        ProfilePage.make_html();
+        assert.equal(ProfilePage.is_desktop, true);
+
+        window.innerWidth = 700;
+        $(window).trigger('resize');
+        assert.equal(ProfilePage.is_desktop, false);
+    });
+
 });
