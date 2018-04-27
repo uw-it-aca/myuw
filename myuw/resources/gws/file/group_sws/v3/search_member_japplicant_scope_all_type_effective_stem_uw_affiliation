@@ -18,11 +18,6 @@
       "displayName":"UW Applicants",
       "id":"uw_affiliation_applicant",
       "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_applicant"
-    },
-    { "regid":"93B5EA5D2859E6DE68E45B43880D6D9F",
-      "displayName":"UW Undergraduate Students",
-      "id":"uw_affiliation_undergraduate",
-      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_undergraduate"
     }
   ]
 }

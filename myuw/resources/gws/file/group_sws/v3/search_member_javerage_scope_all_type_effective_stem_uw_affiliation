@@ -30,6 +30,11 @@
       "id":"uw_affiliation_seattle-student",
       "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_seattle-student"
     },
+    { "regid":"8acdc23c0c4c43498c95c8997642d691",
+      "displayName":"UW Extension Students",
+      "id":"uw_affiliation_extension-student",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_extension-student"
+    },
     { "regid":"c0bb186dd509480dae99280d682f573c",
       "displayName":"UW Student Employees",
       "id":"uw_affiliation_student-employee",

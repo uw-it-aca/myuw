@@ -40,10 +40,11 @@
       "id":"uw_affiliation_seattle-student",
       "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_seattle-student"
     },
-    { "regid":"c0bb186dd509480dae99280d682f573c",
-      "displayName":"UW Student Employees",
-      "id":"uw_affiliation_student-employee",
-      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_student-employee"
+    {
+      "regid":"642d545076c7481a9d27e9ccf936b381",
+      "displayName":"UW Staff Employees",
+      "id":"uw_affiliation_staff-employee",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_staff-employee"
     }
   ]
 }
