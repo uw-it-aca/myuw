@@ -1,0 +1,18 @@
+{
+  "schemas": ["urn:mace:washington.edu:schemas:groups:1.0"],
+  "meta": {
+    "resourceType": "search",
+    "version": "v3.0",
+    "totalResults": 0,
+    "searchParameters": {
+    "stem":"uw_affiliation",
+    "scope":"all"
+    ,"member":"",
+    "type":"effective"
+    },
+    "selfRef": "https://iam-ws.u.washington.edu:7443/group_sws/v3/search?member=&type=effective&stem=uw_affiliation&scope=all",
+    "timestamp": 1524865789549
+  },
+  "data": [
+  ]
+}
