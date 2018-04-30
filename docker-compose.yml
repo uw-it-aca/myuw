@@ -6,5 +6,6 @@ services:
     command: bash -c "pwd && ls && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./myuw:/app/myuw
+      - ./project:/app/project
     ports:
       - "8000:8000"
