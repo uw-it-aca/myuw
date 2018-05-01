@@ -12,16 +12,19 @@ var NoticeBanner = {
         if (notice_data.length > 0) {
             var source = $("#notice_banner").html();
             var template = Handlebars.compile(source);
-            var notices = Notices._get_critical(WSData.notice_data());
-            notices = Notices.sort_notices_by_start_date(notices);
+            var critical_notices = Notices._get_critical(WSData.notice_data());
+            critical_notices = Notices.sort_notices_by_start_date(critical_notices);
 
-            $.each(notices, function(idx, notice){
+            $.each(critical_notices, function(idx, notice){
                 notice.icon_class = NoticeBanner.get_icon_class_for_category(notice.category);
             });
+            NoticeBanner._split_notice_titles(critical_notices);
+
+            var notices = Notices.get_notice_page_notices(true);
             NoticeBanner._split_notice_titles(notices);
 
             var html = template({
-                "total_unread": Notices.get_unread_non_critical_count(),
+                "critical_notices": critical_notices,
                 "notices": notices
             });
             NoticeBanner.dom_target.html(html);
@@ -45,7 +48,6 @@ var NoticeBanner = {
             notice.notice_title = notice_title_html;
             notice.notice_body = notice_body_html;
         });
-        return notices;
     },
 
 
