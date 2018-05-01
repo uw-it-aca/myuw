@@ -32,8 +32,6 @@ describe("VisualScheduleCard", function() {
                 '/api/v1/visual_schedule/current': 'api/v1/schedule/visual.json'
             });
 
-            window.enabled_features = { 'instructor_schedule': true };
-
             //handle the two card load events the VS fires for inst+stu schedules
             var has_loaded = false;
             $(window).on("myuw:card_load", function () {

@@ -15,7 +15,7 @@ var TextBooks = {
         var course_err_status = WSData.course_data_error_code(TextBooks.term);
         var instructed_course_err_status = WSData.instructed_course_data_error_code(TextBooks.term);
 
-        if (book_err_status === 543 || course_err_status === 543 || (window.enabled_features.instructor_textbooks && instructed_course_err_status === 543)) {
+        if (book_err_status === 543 || course_err_status === 543 || instructed_course_err_status === 543) {
             ContentError.render("Textbooks");
         } else {
             TextBooks.render_books();
@@ -62,7 +62,7 @@ var TextBooks = {
             });
         }
 
-        if (myuwFeatureEnabled('instructor_textbooks') && instructed_course_data) {
+        if (instructed_course_data) {
             $.each(instructed_course_data.sections, function (index) {
                 var section = section_data(index, this, true);
                 template_data.teaching_sections.push(section);
