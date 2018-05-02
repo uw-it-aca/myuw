@@ -39,4 +39,10 @@ def _save_new_notice(request, context):
 
     title = clean_html(request.POST.get('title'))
     content = clean_html(request.POST.get('content'))
-    # start_date =
+    start_date = request.POST.get('start_date')
+    end_date = request.POST.get('end_date')
+
+    notice_type = request.POST.get('notice_type')
+    notice_category = request.POST.get('notice_category')
+
+

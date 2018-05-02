@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 var NoticeAdmin = {
     render: function() {
-        $('#datetimepicker1').datetimepicker();
+        $('#start_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm'});
+        $('#end_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm'});
     }
 };

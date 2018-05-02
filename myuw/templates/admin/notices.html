@@ -5,36 +5,45 @@
         <h1>Notice Administration</h1>
         <strong>Display Dates</strong>
         <form action="{% url 'myuw_manage_notices' %}" method="POST">
+        <label>Start</label>
             <div class="form-group">
-                <label class="">Start Date<input type='text' name='start_date' value='{% if start_date %}{{ start_date }}{% endif %}'></label>
-
-
                 <div class="container">
                     <div class="row">
                         <div class='col-sm-6'>
                             <div class="form-group">
-                                <div class='input-group date' id='datetimepicker1'>
-                                    <input type='text' class="form-control" />
+                                <div class='input-group date' id='start_dt'>
+                                    <input type='text' name="start_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}'/>
                                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <label class="">End Date<input type='text' name='end_date' value='{% if end_date %}{{ end_date }}{% endif %}'></label>
-                <p><i>Note: This could use a date/time picker widget</i></p>
+            <label>End</label>
+                <div class="container">
+                        <div class="row">
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <div class='input-group date' id='end_dt'>
+                                        <input type='text' name="end_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}'/>
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </div>
             <strong>Notice Data</strong>
             <div class="form-group">
                 <label class="">Title<input type='text' name='title' value='{% if title %}{{ title }}{% endif %}'></label>
                 <label class="">Content<textarea name='content'>{% if content %}{{ content }}{% endif %}</textarea></label>
                 <br />
-                <label class="">Notice Type<select><option value="foo">Foo</option></select></label>
-                <label class="">Notice Category<select><option value="bar">Bar</option></select></label>
+                <label class="">Notice Type<select name="notice_type"><option value="foo">Foo</option></select></label>
+                <label class="">Notice Category<select name="notice_category"><option value="bar">Bar</option></select></label>
                 <p><i>Note: I think we'll want these to be a statically defined list since the type+category determines where it's placed</i></p>
 
             </div>
