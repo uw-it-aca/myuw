@@ -15,8 +15,6 @@ describe('TextbookCard', function(){
             ]
         });
 
-        window.enabled_features = { 'instructor_schedule': false };
-
         Global.Environment.ajax_stub({
             '/api/v1/schedule/2013,summer,a-term': '/api/v1/schedule/2013,summer,a-term',
             '/api/v1/book/2013,summer,a-term': '/api/v1/book/2013,summer,a-term'

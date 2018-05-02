@@ -1,0 +1,43 @@
+{
+  "schemas": ["urn:mace:washington.edu:schemas:groups:1.0"],
+  "meta": {
+    "resourceType": "search",
+    "version": "v3.0",
+    "totalResults": 7,
+    "searchParameters": {
+    "stem":"uw_affiliation",
+    "scope":"all"
+    ,"member":"",
+    "type":"effective"
+    },
+    "selfRef": "https://iam-ws.u.washington.edu:7443/group_sws/v3/search?member=&type=effective&stem=uw_affiliation&scope=all",
+    "timestamp": 1524865390572
+  },
+  "data": [
+    {"regid":"13e6181b520b470091dd2baa0ea24572",
+      "displayName":"Current Bothell students",
+      "id":"uw_affiliation_bothell-student",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_bothell-student"
+    },
+    {"regid":"26878311206A767FC48FBA9687634D1E",
+      "displayName":"UW Graduate Students",
+      "id":"uw_affiliation_graduate",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_graduate"
+    }
+    ,{"regid":"1439c337ff1b44c7b36f05468845cfe6",
+      "displayName":"UW Graduate Students - Current",
+      "id":"uw_affiliation_graduate-current",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_graduate-current"
+    },
+    { "regid":"c0bb186dd509480dae99280d682f573c",
+      "displayName":"UW Student Employees",
+      "id":"uw_affiliation_student-employee",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_student-employee"
+    },
+    {"regid":"aade9f4dd3174feeae144f675c46acf5",
+      "displayName":"UW Graduate Students - Graduate",
+      "id":"uw_affiliation_graduate-grad",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_graduate-grad"
+    }
+  ]
+}
