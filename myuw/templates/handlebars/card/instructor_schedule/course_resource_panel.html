@@ -1,5 +1,6 @@
 {% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_course_resource_panel" %}
+{% load static %}
+{% tplhandlebars "instructor_course_resource_panel" %}
 
     {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
 
@@ -18,9 +19,18 @@
             <div class="col-sm-9">
                 <div class="myuw-card-row-content">
                     <ul class="myuw-card-itemlist">
+
+                        {{#if myuwclass_url}}
                         <li class="clearfix">
-                            {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
+                            <span class="card-badge-value">
+                                <a class="myuwclass" href="{{ myuwclass_url }}" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank" data-linklabel="MyUWClass: {{curriculum_abbr}} {{course_number}} {{section_id}}" title="MyUWClass">
+                                    <img src="{% static '/images/myuwclasslink.gif' %}" alt="MyUWClass" width="67px" height="24px" />
+                                </a>
+                            </span>
                         </li>
+                        {{/if}}
+
+                        {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
 
                         {{#if email_list }}
                             <li class="clearfix">
@@ -31,9 +41,7 @@
                         {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
 
                         {{#unless mini_card}}
-                            <li class="clearfix">
-                                {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
-                            </li>
+                        {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
                         {{/unless}}
                     </ul>
                 </div>
