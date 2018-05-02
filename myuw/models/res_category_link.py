@@ -22,7 +22,7 @@ class ResCategoryLink(models.Model):
     subcategory_id = models.CharField(max_length=80, null=True)
     new_tab = models.BooleanField(default=False)
 
-    def category_id_matchedq(self, acategory_id):
+    def category_id_matched(self, acategory_id):
         return self.category_id == acategory_id
 
     def all_affiliation(self):
