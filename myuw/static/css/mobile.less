@@ -368,7 +368,7 @@ label { font-weight: normal; margin-bottom: auto; }
 		.modal-footer {border-top: none;}
 	}
 }
- 
+
 /*** notice banner - critical notices on landing page ***/
 @media @under992 {
     #app_notices { border-bottom: 1px solid #ddd; }
@@ -376,30 +376,20 @@ label { font-weight: normal; margin-bottom: auto; }
 
 #app_notices { position: relative;
 
-    .notice-header { font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
-        a {font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; color: #444;}
-        .no-critical { color: #85754d; }
-    }
-    .critical-notices-container {margin-top: 0; margin-bottom: 15px;padding-left: 0;
-	    .notice-content-list { font-weight: normal; padding-left: 1px; list-style: none;
+    .notice-content-list { font-weight: normal; padding-left: 0; list-style: none;
 
-	        .notice-content-list-item {margin-bottom: .3em;background-color: @notice-bg;
-				.notice-category-icon {float:left;background-color:#fff;}
-				.fa-usd {padding-left: 3px;}
-		        .notice-title /*not h3*/ {font-size:15px; line-height:20px;color:#4d66ca;padding-left:18px;display:block;background-color:#fff;padding-bottom:5px;cursor: pointer;
-					&:hover {text-decoration: underline;}
-			        &:active, a:focus {text-decoration: none;}
-		        }
-				.new-status {padding: 0 3px; background: #f5d300; float: right; border-radius: 4px;margin-right: 20px; font-size: 12px;}
-		        .notice-body-with-title {padding: 10px 18px;display:inline-block;}
-		        .notice-body-without-title { }
-		        .notice-list {padding-top:5px;}
-			}
+        .notice-content-list-item {margin-bottom: .3em;background-color: @notice-bg;
+			.notice-category-icon {float:left;background-color:#fff;}
+			.fa-usd {padding-left: 3px;}
+	        .notice-title /*not h3*/ {font-size:15px; line-height:20px;color:#4d66ca;padding-left:18px;display:block;background-color:#fff;padding-bottom:5px;cursor: pointer;
+				&:hover {text-decoration: underline;}
+		        &:active, a:focus {text-decoration: none;}
+	        }
+			.new-status {padding: 0 3px; background: #f5d300; float: right; border-radius: 4px;margin-right: 20px; font-size: 12px;}
+		}
 
-	    }
     }
 
-    .other-notices-link {}
     .notice-unread { /*background-color: white; color:#444;*/ font-weight:normal; /*border:1px solid #444;*/ position: absolute; right: 15px; top: 50%; margin-top: -5px; }
     .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
 }
