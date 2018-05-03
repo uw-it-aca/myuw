@@ -30,14 +30,17 @@ class ManageLinks(ProtectedAPI):
         def clean(field):
             if field not in data:
                 return True
+            pre = data[field]
             data[field] = data[field].strip()
-            if "" == data[field]:
+            if "" == data[field] and "" != pre:
                 return False
             return True
 
-        for field in ("label", "url"):
-            if not clean(field):
-                return invalid_input_data()
+        if not clean("url"):
+            return invalid_input_data()
+
+        if 'label' in data:
+            data['label'] = data['label'].strip()
 
         link = None
         if "type" not in data:
