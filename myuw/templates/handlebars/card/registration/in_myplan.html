@@ -12,13 +12,13 @@
             <div class="pull-right">
                 <ul class="card-badge-value">
                     <li>{{ plan_data.ready_count }} {{ pluralize plan_data.ready_count "course" "courses" }} ready</li>
-                    {{ #if plan_data.unready_count }}
+                    {{#if plan_data.unready_count }}
                         <li class="courses-not-ready">{{ plan_data.unready_count }} not ready
 
-                            {{ #unless plan_data.has_sections }}
+                            {{#unless plan_data.has_sections }}
                                 <a target="_blank"
                                    href="{{plan_data.myplan_href}}">Add Sections</a>
-                            {{ else }}
+                            { else }}
                                 <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
                                     <a href="#"
                                        aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
@@ -32,7 +32,7 @@
                                        title="Collapse to hide courses not ready"
                                        class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">Hide details</a>
                                 </span>
-                            {{ /unless}}
+                            {{/unless}}
                         </li>
                     {{/if}}
                 </ul>
@@ -47,12 +47,12 @@
          style="display: none;" tabindex="-1">
         <h4>Not ready for registration</h4>
         <ul id="courses_not_ready_list" class="courses-not-ready-list">
-            {{ #each plan_data.courses }}
-                {{ #unless registrations_available }}
+            {{#each plan_data.courses }}
+                {{#unless registrations_available }}
                     <li class="courses-not-ready-list-item">{{ curriculum_abbr }} {{ course_number }}</li>
-                    <!--{{ #unless @last }}<br />{{/unless}}-->
-                {{ /unless }}
-            {{ /each}}
+                    <!--{{#unless @last }}<br/>{{/unless}}-->
+                {{/unless }}
+            {{/each}}
         </ul>
 
         <div>

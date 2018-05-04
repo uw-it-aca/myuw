@@ -1,0 +1,245 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "543",
+        "CurriculumAbbreviation": "INFX",
+        "Href": "/student/v5/course/2018,winter,INFX,543.json",
+        "Quarter": "winter",
+        "Year": 2018
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Introduces relational database design, implementation, and management, with a focus on using relational database management systems (DBMS) to manage data in an organization. Topics include: data modeling tools and techniques, conceptual and logical database design, physical implementation, SQL, data management, and database administration. Recommended: INFX 502.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "REL DB MGMT SYSTEMS",
+    "CourseTitleLong": "Relational Database Management Systems",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 18,
+    "Curriculum": {
+        "CollegeName": "INFORM SCH",
+        "DepartmentAbbreviation": "INFORM",
+        "TimeScheduleLinkAbbreviation": "95infx"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EOS_CID": "116878",
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "*",
+        "Date": "0000-00-00",
+        "EndTime": "00:00",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": "1",
+        "RoomNumber": "*",
+        "StartTime": "00:00"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/A9D2DDFA6A7D11D5A4AE0004AC494FFE.json",
+                "Name": "M W",
+                "RegID": "A9D2DDFA6A7D11D5A4AE0004AC494FFE"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "Bill Pce",
+                "RegID": "10000000000000000000000000000011"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "UW PROFESSIONAL AND CONTINUING EDUCATION",
+    "IsIndependentStart": false,
+    "JointSections": [
+        {
+            "CourseNumber": "543",
+            "CurriculumAbbreviation": "INFX",
+            "Href": "/student/v5/course/2018,winter,INFX,543/B.json",
+            "Quarter": "winter",
+            "SectionID": "B",
+            "Year": 2018
+        }
+    ],
+    "LMSOwnership": "CAMPUS",
+    "LimitEstimateEnrollment": 38,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "MGH",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Friday"
+                    }
+                ],
+                "Text": "    F"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "20:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2018,winter,INFX,543,A,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "99",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "Bill Pce",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": true
+                },
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2018,winter,INFX,543,A,A9D2DDFA6A7D11D5A4AE0004AC494FFE"
+                    },
+                    "PercentInvolve": "1",
+                    "Person": {
+                        "Href": "/student/v5/person/A9D2DDFA6A7D11D5A4AE0004AC494FFE.json",
+                        "Name": "Phil",
+                        "RegID": "A9D2DDFA6A7D11D5A4AE0004AC494FFE"
+                    },
+                    "TSPrint": false
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=MGH&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "430",
+            "RoomToBeArranged": false,
+            "StartTime": "17:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB_EOS;",
+    "MinimumTermCredit": "4.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "543",
+        "CurriculumAbbreviation": "INFX",
+        "Href": "/student/v5/course/2018,winter,INFX,543/A.json",
+        "Quarter": "winter",
+        "SectionID": "A",
+        "Year": 2018
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "543",
+        "CurriculumAbbreviation": "INFX",
+        "Href": "/student/v5/registration.json?year=2018&quarter=winter&curriculum_abbreviation=INFX&course_number=543&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "winter",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2018
+    },
+    "RepositoryTimeStamp": "3/30/2018 7:40:00 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 41,
+    "SLN": "15887",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "  72.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2018,winter.json",
+        "Quarter": "winter",
+        "Year": 2018
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "FOR ADDITIONAL INFX SECTIONS,PLEASE SEE"
+                },
+                {
+                    "Text": "www.uw.edu/students/timeschd/WIN2018/infx.html"
+                }
+            ]
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Offered jointly with INFX 543 B"
+                },
+                {
+                    "Text": "Only majors from INFORM College Period 1"
+                },
+                {
+                    "Text": "    (11/3/2017-11/19/2017)"
+                },
+                {
+                    "Text": "Only majors from INFORM College Period 2"
+                },
+                {
+                    "Text": "    (11/20/2017-1/2/2018)"
+                }
+            ]
+        }
+    }
+}

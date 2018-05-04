@@ -1,8 +1,8 @@
 import logging
 import traceback
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import (
-    log_data_not_found_response, log_msg, log_success_response)
+from myuw.logger.logresp import log_msg_with_request,\
+    log_data_not_found_response, log_msg, log_success_response
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 from myuw.dao.category_links import (
@@ -11,6 +11,7 @@ from myuw.exceptions import InvalidResourceCategory
 from myuw.models import ResourceCategoryPin
 
 logger = logging.getLogger(__name__)
+post_logger = logging.getLogger("myuw.views.api.resources.pin")
 
 
 class ResourcesList(ProtectedAPI):
@@ -47,7 +48,8 @@ class ResourcesPin(ProtectedAPI):
             pin_category(request, category_id)
         except InvalidResourceCategory as ex:
             return handle_exception(logger, timer, traceback)
-
+        log_msg_with_request(post_logger, timer, request,
+                             "Pin category %s" % category_id)
         return self.html_response("")
 
     def delete(self, request, *args, **kwargs):
@@ -60,7 +62,8 @@ class ResourcesPin(ProtectedAPI):
             delete_categor_pin(request, category_id)
         except ResourceCategoryPin.DoesNotExist as ex:
             return handle_exception(logger, timer, traceback)
-
+        log_msg_with_request(post_logger, timer, request,
+                             "Unpin category %s" % category_id)
         return self.html_response("")
 
 
