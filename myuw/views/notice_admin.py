@@ -18,54 +18,80 @@ def manage_notices(request):
     if request.POST:
         if _save_new_notice(request, context):
             return redirect('myuw_manage_notices')
-    #
-    # messages = BannerMessage.objects.all().order_by('-end', '-start')
-    #
-    # used_now = timezone.make_aware(get_comparison_datetime(request))
-    # for message in messages:
-    #     if message.start <= used_now <= message.end:
-    #         message.is_current = True
-    #
-    # context['now'] = used_now
-    # context['messages'] = messages
     set_admin_wrapper_template(context)
 
     return render(request, "admin/notices.html", context)
 
 
 def _save_new_notice(request, context):
-    if 'save' != request.POST['action']:
+    form_action = request.POST.get('action')
+    if 'save' != form_action:
         return False
 
     has_error = False
 
-    title = clean_html(request.POST.get('title'))
-    content = clean_html(request.POST.get('content'))
-    start_date = _get_datetime(request.POST.get('start_date'))
-    end_date = _get_datetime(request.POST.get('end_date'))
+    start_date = None
+    end_date = None
+    try:
+        start_date = _get_datetime(request.POST.get('start_date'))
+    except TypeError:
+        has_error = True
+        context['start_error'] = True
+
+    try:
+        end_date = _get_datetime(request.POST.get('end_date'))
+    except TypeError:
+        has_error = True
+        context['end_error'] = True
+
+    try:
+        if end_date < start_date:
+            has_error = True
+            context['date_error'] = True
+    except TypeError:
+        pass
 
     notice_type = request.POST.get('notice_type')
     notice_category = request.POST.get('notice_category')
+    if notice_type is None:
+        has_error = True
+        context['type_error'] = True
+    if notice_category is None:
+        has_error = True
+        context['category_error'] = True
+
+    title = None
+    content = None
+    try:
+        title = clean_html(request.POST.get('title'))
+    except TypeError:
+        has_error = True
+        context['title_error'] = True
+    try:
+        content = clean_html(request.POST.get('content'))
+    except TypeError:
+        has_error = True
+        context['content_error'] = True
 
     campus_list = request.POST.getlist('campus')
     affil_list = request.POST.getlist('affil')
 
-    notice = MyuwNotice(title=title,
-                        content=content,
-                        notice_type=notice_type,
-                        notice_category=notice_category)
-    if start_date:
-        notice.start = start_date
-    if end_date:
-        notice.end = end_date
+    if not has_error:
+        notice = MyuwNotice(title=title,
+                            content=content,
+                            notice_type=notice_type,
+                            notice_category=notice_category,
+                            start=start_date,
+                            end=end_date)
+        for campus in campus_list:
+            setattr(notice, campus, True)
 
-    for campus in campus_list:
-        setattr(notice, campus, True)
-
-    for affil in affil_list:
-        setattr(notice, affil, True)
-
-    notice.save()
+        for affil in affil_list:
+            setattr(notice, affil, True)
+        notice.save()
+        return True
+    else:
+        return False
 
 
 def _get_datetime(dt_string):
