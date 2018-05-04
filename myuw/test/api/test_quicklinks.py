@@ -235,8 +235,10 @@ class TestQuickLinksAPI(MyuwApiTest):
         all = CustomLink.objects.all()
         self.assertEquals(len(all), 1)
         link = all[0]
-        self.assertEquals(link.url, 'http://www.washington.edu/classroom/SMI+401')
-        self.assertEquals(link.label, 'http://www.washington.edu/classroom/SMI+401')
+        self.assertEquals(link.url, 'http://www.washington.edu/'
+                                    'classroom/SMI+401')
+        self.assertEquals(link.label, 'http://www.washington.edu/'
+                                      'classroom/SMI+401')
 
     def test_remove_link(self):
         CustomLink.objects.all().delete()
