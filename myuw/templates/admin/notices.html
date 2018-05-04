@@ -1,87 +1,149 @@
 {% extends wrapper_template %}
 {% load static %}
 {% block content %}
-    <div class="container">
-        <h1>Notice Administration</h1>
-        <strong>Display Dates</strong>
+    <div class="container notice-admin">
+        <h2>Notice Administration</h2>
+
         <form action="{% url 'myuw_manage_notices' %}" method="POST">
-        <label>Start</label>
-            <div class="form-group">
-                <div class="container">
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <div class="form-group">
-                                <div class='input-group date' id='start_dt'>
-                                    <input type='text' name="start_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}'/>
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
+
+            <div class="row">
+                <div class="col-sm-8">
+                    <h3>Display Dates</h3>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label for="start_dt">Start</label>
+                            <div class="input-group date" id='start_dt'>
+                                <input type='text' name="start_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}'/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="end_dt">End</label>
+                            <div class='input-group date' id='end_dt'>
+                                <input type='text' name="end_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}'/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
                             </div>
                         </div>
                     </div>
+
+                    <h3>Notice Content</h3>
+                    <div class="form-group">
+                        <label class="" for="notice_title">Title</label>
+                        <input id="notice_title" type='text' name='title' class="form-control" value='{% if title %}{{ title }}{% endif %}'>
+                    </div>
+                    <div class="form-group">
+                        <label class="" for="notice_content">Content</label>
+                        <textarea id="notice_content" name='content' class="form-control">{% if content %}{{ content }}{% endif %}</textarea>
+                    </div>
+
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <label class="" for="notice_type">Notice Type</label>
+                            <select id="notice_type" name="notice_type" class="form-control"><option value="foo">Foo</option></select>
+                        </div>
+                        <div class="form-group">
+                            <label class="" for="notice_category">Notice Category</label>
+                            <select id="notice_category" name="notice_category" class="form-control"><option value="bar">Bar</option></select>
+                        </div>
+                        <br/>
+                        <p><i>Note: I think we'll want these to be a statically defined list since the type+category determines where it's placed</i></p>
+                    </div>
+
+
+                    <h3>Audience</h3>
+
+                    <h4>Campus</h4>
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label class=""><input type='checkbox' name='campus' value='seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
+                            </div>
+                            <div class="checkbox">
+                                <label class=""><input type='checkbox' name='campus' value='tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
+                            </div>
+                            <div class="checkbox">
+                                <label class=""><input type='checkbox' name='campus' value='bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <h4>Affiliation</h4>
+                    <div class="form-inline">
+                        <ul class="form-group affiliation">
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_alumni' {% if checked.is_alumni %}checked="checked"{% endif %}> is_alumni</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_applicant' {% if checked.is_applicant %}checked="checked"{% endif %}> is_applicant</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_grad' {% if checked.is_grad %}checked="checked"{% endif %}> is_grad</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_grad_c2' {% if checked.is_grad_c2 %}checked="checked"{% endif %}> is_grad_c2</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_pce' {% if checked.is_pce %}checked="checked"{% endif %}> is_pce</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_student' {% if checked.is_student %}checked="checked"{% endif %}> is_student</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> is_undergrad</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_undergrad_c2' {% if checked.is_undergrad_c2 %}checked="checked"{% endif %}> is_undergrad_c2</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_fyp' {% if checked.is_fyp %}checked="checked"{% endif %}> is_fyp</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_past_student' {% if checked.is_past_student %}checked="checked"{% endif %}> is_past_student</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_clinician' {% if checked.is_clinician %}checked="checked"{% endif %}> is_clinician</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_employee' {% if checked.is_employee %}checked="checked"{% endif %}> is_employee</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> is_faculty</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_instructor' {% if checked.is_instructor %}checked="checked"{% endif %}> is_instructor</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_past_employee' {% if checked.is_past_employee %}checked="checked"{% endif %}> is_past_employee</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_retiree' {% if checked.is_retiree %}checked="checked"{% endif %}> is_retiree</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_staff_employee' {% if checked.is_staff_employee %}checked="checked"{% endif %}> is_staff_employee</label>
+                            </li>
+                            <li class="checkbox">
+                                <label class=""><input type='checkbox' name='affil' value='is_stud_employee' {% if checked.is_stud_employee %}checked="checked"{% endif %}> is_stud_employee</label>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {% csrf_token %}
+                    <br/><br/>
+                    <button type="submit" name="action" value="save" class="btn btn-primary">Submit</button>
+                    <br/><br/>
                 </div>
-            <label>End</label>
-                <div class="container">
-                        <div class="row">
-                            <div class='col-sm-6'>
-                                <div class="form-group">
-                                    <div class='input-group date' id='end_dt'>
-                                        <input type='text' name="end_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}'/>
-                                        <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
             </div>
-            <strong>Notice Data</strong>
-            <div class="form-group">
-                <label class="">Title<input type='text' name='title' value='{% if title %}{{ title }}{% endif %}'></label>
-                <label class="">Content<textarea name='content'>{% if content %}{{ content }}{% endif %}</textarea></label>
-                <br />
-                <label class="">Notice Type<select name="notice_type"><option value="foo">Foo</option></select></label>
-                <label class="">Notice Category<select name="notice_category"><option value="bar">Bar</option></select></label>
-                <p><i>Note: I think we'll want these to be a statically defined list since the type+category determines where it's placed</i></p>
-
-            </div>
-            <strong>Campus</strong>
-            <div class="form-group">
-                <label class=""><input type='checkbox' name='campus' value='seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
-                <label class=""><input type='checkbox' name='campus' value='tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
-                <label class=""><input type='checkbox' name='campus' value='bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
-            </div>
-            <strong>Affiliation</strong>
-            <div class="form-group">
-                <label class=""><input type='checkbox' name='affil' value='is_alumni' {% if checked.is_alumni %}checked="checked"{% endif %}> is_alumni</label>
-                <label class=""><input type='checkbox' name='affil' value='is_applicant' {% if checked.is_applicant %}checked="checked"{% endif %}> is_applicant</label>
-                <label class=""><input type='checkbox' name='affil' value='is_grad' {% if checked.is_grad %}checked="checked"{% endif %}> is_grad</label>
-                <label class=""><input type='checkbox' name='affil' value='is_grad_c2' {% if checked.is_grad_c2 %}checked="checked"{% endif %}> is_grad_c2   </label>
-                <label class=""><input type='checkbox' name='affil' value='is_pce' {% if checked.is_pce %}checked="checked"{% endif %}> is_pce</label>
-                <label class=""><input type='checkbox' name='affil' value='is_student' {% if checked.is_student %}checked="checked"{% endif %}> is_student</label>
-                <label class=""><input type='checkbox' name='affil' value='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> is_undergrad</label>
-                <label class=""><input type='checkbox' name='affil' value='is_undergrad_c2' {% if checked.is_undergrad_c2 %}checked="checked"{% endif %}> is_undergrad_c2</label>
-                <label class=""><input type='checkbox' name='affil' value='is_fyp' {% if checked.is_fyp %}checked="checked"{% endif %}> is_fyp</label>
-                <label class=""><input type='checkbox' name='affil' value='is_past_student' {% if checked.is_past_student %}checked="checked"{% endif %}> is_past_student</label>
-                <br />
-                <label class=""><input type='checkbox' name='affil' value='is_clinician' {% if checked.is_clinician %}checked="checked"{% endif %}> is_clinician</label>
-                <label class=""><input type='checkbox' name='affil' value='is_employee' {% if checked.is_employee %}checked="checked"{% endif %}> is_employee</label>
-                <label class=""><input type='checkbox' name='affil' value='is_faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> is_faculty</label>
-                <label class=""><input type='checkbox' name='affil' value='is_instructor' {% if checked.is_instructor %}checked="checked"{% endif %}> is_instructor</label>
-                <label class=""><input type='checkbox' name='affil' value='is_past_employee' {% if checked.is_past_employee %}checked="checked"{% endif %}> is_past_employee</label>
-                <label class=""><input type='checkbox' name='affil' value='is_retiree' {% if checked.is_retiree %}checked="checked"{% endif %}> is_retiree</label>
-                <label class=""><input type='checkbox' name='affil' value='is_staff_employee' {% if checked.is_staff_employee %}checked="checked"{% endif %}> is_staff_employee</label>
-                <label class=""><input type='checkbox' name='affil' value='is_stud_employee' {% if checked.is_stud_employee %}checked="checked"{% endif %}> is_stud_employee</label>
-
-            </div>
-            {% csrf_token %}
-            <button type="submit" name="action" value="save" class="btn btn-primary">Submit</button>
         </form>
-
     </div>
-    <link href="{% static 'vendor/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet"/>
+
+<link href="{% static 'vendor/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 {% block extra_js %}
@@ -89,5 +151,3 @@
     <script src="{% static 'vendor/js/moment.2.18.1.min.js'%}"></script>
     <script src="{% static 'vendor/js/bootstrap-datetimepicker.min.js'%}"></script>
 {% endblock %}
-
-
