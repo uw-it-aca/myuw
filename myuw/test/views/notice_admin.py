@@ -33,9 +33,7 @@ class TestNoticeAdmin(MyuwApiTest):
             'start_date': "2018-05-25 12:05",
             'end_date': "2018-05-26 12:05",
             'notice_type': 'Foo',
-            'notice_category': 'Bar',
-
-
+            'notice_category': 'Bar'
         }
         request = rf.post('', notice_context)
         saved = _save_new_notice(request, {})
@@ -49,8 +47,7 @@ class TestNoticeAdmin(MyuwApiTest):
             'start_date': "2018-05-25 12:05",
             'end_date': "2017-05-26 12:05",
             'notice_type': 'Foo',
-            'notice_category': 'Bar',
-
+            'notice_category': 'Bar'
         }
         request = rf.post('', notice_context)
         context = {}
@@ -65,15 +62,13 @@ class TestNoticeAdmin(MyuwApiTest):
             'content': "<p>Foobar</p>",
             'end_date': "2017-05-26 12:05",
             'notice_type': 'Foo',
-            'notice_category': 'Bar',
-
+            'notice_category': 'Bar'
         }
         request = rf.post('', notice_context)
         context = {}
         saved = _save_new_notice(request, context)
         self.assertFalse(saved)
         self.assertTrue(context['start_error'])
-
 
         # Missing Attrs
         notice_context = {
@@ -89,4 +84,3 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertTrue(context['category_error'])
         self.assertTrue(context['title_error'])
         self.assertTrue(context['content_error'])
-
