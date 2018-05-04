@@ -5,8 +5,6 @@ from myuw.views.notice_admin import _get_datetime
 from datetime import datetime
 
 
-
-
 class TestNoticeAdmin(MyuwApiTest):
 
     def test_get_datetime(self):
