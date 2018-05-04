@@ -56,7 +56,7 @@
                     <h4 id="custom-link-edit-form-label">Edit Quick Link</h4>
                     <input class="form-control" type="hidden" id="custom-link-edit-id">
                     <label for="custom-link-edit-url">URL</label> <input class="form-control" type="url" id="custom-link-edit-url"> <span class="small text-danger" id="edit-url-required" style="display: none;">* Required URL</span><br />
-                    <label for="custom-link-edit-label">Label</label> <input class="form-control" type="text" id="custom-link-edit-label"> <span class="small text-danger" id="edit-label-required" style="display: none;">* Required Label</span>
+                    <label for="custom-link-edit-label">Link name (optional)</label> <input class="form-control" type="text" id="custom-link-edit-label">
                     <div class="text-right" style="padding: 8px 0;"><a href='#' id="close-custom-link-edit">Cancel</a> <button class="btn btn-primary btn-qlinks" type="button" id="quicklinks-save-edits">Save</button></div>
                 </fieldset>
             </div>
@@ -74,15 +74,16 @@
             </ul>
         </div>
         <div class="myuw-qlinks-custom collapse" id="custom_qlinks" role="form" aria-labelledby="custom_qlinks_label">
-            <div class="form-group">
+            <div class="form-group marginless">
                 <h4 id="custom_qlinks_label">Add your link to Quick Links</h4>
                 <div class="col-10">
                     <label for="myuw-custom-qlink" class="sr-only">Web Address</label>
                     <fieldset>
-                        <input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value="">
+                        <label for="myuw-custom-qlink">URL</label><input class="form-control" type="url" placeholder="https://www.washington.edu" id="myuw-custom-qlink" value=""> <br />
+                        <label for="myuw-custom-qlink-label">Link name (optional)</label><input class="form-control" type="text" placeholder="UW Homepage" id="myuw-custom-qlink-label" value=""> <br />
                         <div class="clearfix myuw-qlinks-custom-btn">
                             <div class="pull-right">
-                                <div class="text-right" style="padding: 8px 0;"><a data-toggle="collapse" href="#custom_qlinks">Close</a> <button class="btn btn-primary btn-qlinks" id="quicklinks-save-new">Save</button></div>
+                                <div class="text-right" style="padding: 8px 0;"><a data-toggle="collapse" href="#custom_qlinks">Cancel</a> <button class="btn btn-primary btn-qlinks" id="quicklinks-save-new">Add</button></div>
                             </div>
                             <div class="pull-left" style="display: none;" id="error_saving" class="help-block"><span class="small text-danger">Error saving</span></div>
                             <div class="pull-left" style="display: none;" id="quicklink_saving" class="help-block"><span class="small">Saving...</span></div>
