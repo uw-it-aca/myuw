@@ -32,6 +32,7 @@ from myuw.dao.term import (
 from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
+from myuw.util.settings import get_myuwclass_url
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI, prefetch_resources
 from myuw.views.api.base_schedule import irregular_start_end
@@ -255,6 +256,10 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
 
         section_data["section_label"] =\
             safe_label(section.section_label())
+
+        if section.eos_cid:
+            section_data["myuwclass_url"] = "%s%s" % (get_myuwclass_url(),
+                                                      section.eos_cid)
 
         if section.is_primary_section:
             if section.linked_section_urls:

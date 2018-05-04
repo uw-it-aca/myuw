@@ -1,0 +1,29 @@
+{
+  "schemas": ["urn:mace:washington.edu:schemas:groups:1.0"],
+  "meta": {
+    "resourceType": "search",
+    "version": "v3.0",
+    "totalResults": 1,
+    "searchParameters": {
+    "stem":"uw_affiliation",
+    "scope":"all",
+    "member":"retirestaff",
+    "type":"effective"
+    },
+    "selfRef": "https://iam-ws.u.washington.edu:7443/group_sws/v3/search?member=retirestaff&type=effective&stem=uw_affiliation&scope=all",
+    "timestamp": 1524863943245
+  },
+  "data": [
+    {"regid":"40537c45c40247a28ccf223c772bd786",
+     "displayName":"UW Alumni",
+     "id":"uw_affiliation_alumni",
+     "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_alumni"
+    },
+    {
+     "regid":"e81ca953a1254607910eec9aead424d5",
+     "displayName":"UW Alumni Association Members",
+     "id":"uw_affiliation_alumni-association-members",
+     "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_alumni-association-members"
+    }
+  ]
+}

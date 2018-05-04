@@ -21,3 +21,7 @@ def get_legacy_url():
 
 def get_logout_url():
     return getattr(settings, "LOGOUT_URL", "/user_logout")
+
+
+def get_myuwclass_url():
+    return getattr(settings, "MYUWCLASS", "myuwclass.asp?cid=")

@@ -1,0 +1,47 @@
+{
+  "schemas": ["urn:mace:washington.edu:schemas:groups:1.0"],
+  "meta": {
+    "resourceType": "search",
+    "version": "v3.0",
+    "totalResults": 6,
+    "searchParameters": {
+    "stem":"uw_affiliation",
+    "scope":"all"
+    ,"member":"tacgrad",
+    "type":"effective"
+    },
+    "selfRef": "https://iam-ws.u.washington.edu:7443/group_sws/v3/search?member=tacgrad&type=effective&stem=uw_affiliation&scope=all",
+    "timestamp": 1524866465451
+  },
+  "data": [
+    {"regid":"40537c45c40247a28ccf223c772bd786", "displayName":"UW Alumni",
+      "id":"uw_affiliation_alumni",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_alumni"
+    }
+    ,{"regid":"26878311206A767FC48FBA9687634D1E", "displayName":"UW Graduate Students",
+      "id":"uw_affiliation_graduate",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_graduate"
+    }
+    ,{"regid":"1439c337ff1b44c7b36f05468845cfe6",
+       "displayName":"UW Graduate Students - Current",
+      "id":"uw_affiliation_graduate-current",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_graduate-current"
+    }
+    ,{"regid":"aade9f4dd3174feeae144f675c46acf5",
+      "displayName":"UW Graduate Students - Graduate",
+      "id":"uw_affiliation_graduate-grad",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_graduate-grad"
+    },
+    {
+      "regid":"e02cf2a0195c469f86bfe2eddc390486",
+      "displayName":"Current Tacoma students",
+      "id": "uw_affiliation_tacoma-student",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_tacoma-student"
+    },
+    { "regid":"c0bb186dd509480dae99280d682f573c",
+      "displayName":"UW Student Employees",
+      "id":"uw_affiliation_student-employee",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_student-employee"
+    }
+  ]
+}

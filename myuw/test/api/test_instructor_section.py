@@ -71,6 +71,19 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(
             len(data['sections'][0]['grade_submission_delegates']), 1)
 
+        self.assertEqual(len(data['sections'][0]['registrations']), 4)
+
+        netid_counts = {}
+
+        for registration in data['sections'][0]['registrations']:
+            if registration["netid"] in netid_counts:
+                netid_counts[registration["netid"]] = netid_counts[
+                    registration["netid"]] + 1
+            else:
+                netid_counts[registration["netid"]] = 1
+
+        self.assertEqual(netid_counts["javg001"], 2)
+
         self.assertGreater(len(data['related_terms']), 3)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')

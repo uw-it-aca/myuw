@@ -165,38 +165,48 @@ class OpenInstSectionDetails(OpenAPI):
             enrollment_threads[regid] = enrollment_thread
             name_email_thread.start()
             enrollment_thread.start()
+            reg = {
+                    'full_name': person.display_name,
+                    'netid': person.uwnetid,
+                    'regid': person.uwregid,
+                    'student_number': person.student_number,
+                    'credits': registration.credits,
+                    'is_auditor': registration.is_auditor,
+                    'class_level': person.student_class,
+                    'email': person.email1,
+                    'url_key': get_url_key_for_regid(person.uwregid),
+                }
 
-            registrations[regid] = {
-                'full_name': person.display_name,
-                'netid': person.uwnetid,
-                'regid': person.uwregid,
-                'student_number': person.student_number,
-                'credits': registration.credits,
-                'is_auditor': registration.is_auditor,
-                'class_level': person.student_class,
-                'email': person.email1,
-                'url_key': get_url_key_for_regid(person.uwregid),
-            }
+            if regid not in registrations:
+                registrations[regid] = [reg]
+            else:
+                registrations[regid].append(reg)
 
         registration_list = []
         for regid in name_threads:
             thread = name_threads[regid]
             thread.join()
-            registrations[regid]["first_name"] = thread.response["first_name"]
-            registrations[regid]["surname"] = thread.response["surname"]
-            registrations[regid]["email"] = thread.response["email"]
+
+            for reg in registrations[regid]:
+                reg["first_name"] = thread.response["first_name"]
+                reg["surname"] = thread.response["surname"]
+                reg["email"] = thread.response["email"]
 
             thread = enrollment_threads[regid]
             thread.join()
             if thread.response:
-                registrations[regid]["majors"] = thread.response["majors"]
-                registrations[regid]["class_level"] =\
-                    thread.response["class_level"]
+
+                for reg in registrations[regid]:
+                    reg["majors"] = thread.response["majors"]
+                    reg["class_level"] =\
+                        thread.response["class_level"]
 
                 code = get_code_for_class_level(thread.response["class_level"])
-                registrations[regid]['class_code'] = code
 
-            registration_list.append(registrations[regid])
+                for reg in registrations[regid]:
+                    reg['class_code'] = code
+
+            registration_list.extend(registrations[regid])
         section_data["registrations"] = registration_list
 
     def get_person_info(self, regid):

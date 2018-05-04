@@ -259,4 +259,15 @@ describe("HomePage", function() {
         assert.equal($('div[id="AcadCalSnippet"]').length, 1);
         assert.equal($('div[id="EventsCard"]').length, 1);
     });
+
+    it('Test resizing', function() {
+        window.innerWidth = 1200;
+        Landing.make_html();
+        assert.equal(Landing.is_desktop, true);
+
+        window.innerWidth = 700;
+        $(window).trigger('resize');
+        assert.equal(Landing.is_desktop, false);
+    });
+
 });
