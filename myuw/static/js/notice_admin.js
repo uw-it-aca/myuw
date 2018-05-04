@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    NoticeAdmin.render()
+    NoticeAdmin.render();
 });
 
 var NoticeAdmin = {
