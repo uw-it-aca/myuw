@@ -12,4 +12,4 @@ class TestSessionLog(TestCase):
     def test_mywm_2436(self):
         netid = 'javerage'
         req = get_request_with_user(netid)
-        log_session(netid, None, None, req)
+        log_session(netid, req)

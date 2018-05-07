@@ -1,0 +1,39 @@
+{
+  "schemas": ["urn:mace:washington.edu:schemas:groups:1.0"],
+  "meta": {
+    "resourceType": "search",
+    "version": "v3.0",
+    "totalResults": 3,
+    "searchParameters": {
+    "stem":"uw_affiliation",
+    "scope":"all"
+    ,"member":"javerage",
+    "type":"effective"
+    },
+    "selfRef": "https://iam-ws.u.washington.edu:7443/group_sws/v3/search?member=javerage&type=effective&stem=uw_affiliation&scope=all",
+    "timestamp": 1524865176252
+  },
+  "data": [
+    {"regid":"40537c45c40247a28ccf223c772bd786",
+     "displayName":"UW Alumni",
+      "id":"uw_affiliation_alumni",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_alumni"
+    },
+    {"regid":"93B5EA5D2859E6DE68E45B43880D6D9F",
+      "displayName":"UW Undergraduate Students",
+      "id":"uw_affiliation_undergraduate",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_undergraduate"
+    },
+    {
+      "regid":"8a6449feb1f14fd88d8785aa05931687",
+      "displayName":"Current Seattle students",
+      "id":"uw_affiliation_seattle-student",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_seattle-student"
+    },
+    { "regid":"c0bb186dd509480dae99280d682f573c",
+      "displayName":"UW Student Employees",
+      "id":"uw_affiliation_student-employee",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_student-employee"
+    }
+  ]
+}

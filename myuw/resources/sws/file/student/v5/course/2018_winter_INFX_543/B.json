@@ -1,0 +1,223 @@
+{
+    "AddCodeRequired": true,
+    "Auditors": 0,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "543",
+        "CurriculumAbbreviation": "INFX",
+        "Href": "/student/v5/course/2018,winter,INFX,543.json",
+        "Quarter": "winter",
+        "Year": 2018
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Introduces relational database design, implementation, and management, with a focus on using relational database management systems (DBMS) to manage data in an organization. Topics include: data modeling tools and techniques, conceptual and logical database design, physical implementation, SQL, data management, and database administration. Recommended: INFX 502.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "REL DB MGMT SYSTEMS",
+    "CourseTitleLong": "Relational Database Management Systems",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 3,
+    "Curriculum": {
+        "CollegeName": "INFORM SCH",
+        "DepartmentAbbreviation": "INFORM",
+        "TimeScheduleLinkAbbreviation": "infx"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EOS_CID": null,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "*",
+        "Date": "0000-00-00",
+        "EndTime": "00:00",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": "1",
+        "RoomNumber": "*",
+        "StartTime": "00:00"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/A9D2DDFA6A7D11D5A4AE0004AC494FFE.json",
+                "Name": "Phil",
+                "RegID": "A9D2DDFA6A7D11D5A4AE0004AC494FFE"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "Bill Pce",
+                "RegID": "10000000000000000000000000000011"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [
+        {
+            "CourseNumber": "543",
+            "CurriculumAbbreviation": "INFX",
+            "Href": "/student/v5/course/2018,winter,INFX,543/A.json",
+            "Quarter": "winter",
+            "SectionID": "A",
+            "Year": 2018
+        }
+    ],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 2,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "MGH",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Friday"
+                    }
+                ],
+                "Text": "    F"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "20:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2018,winter,INFX,543,B,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "Bill Pce",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=MGH&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "430",
+            "RoomToBeArranged": false,
+            "StartTime": "17:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "4.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "543",
+        "CurriculumAbbreviation": "INFX",
+        "Href": "/student/v5/course/2018,winter,INFX,543/B.json",
+        "Quarter": "winter",
+        "SectionID": "B",
+        "Year": 2018
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "543",
+        "CurriculumAbbreviation": "INFX",
+        "Href": "/student/v5/registration.json?year=2018&quarter=winter&curriculum_abbreviation=INFX&course_number=543&section_id=B&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "winter",
+        "RegID": null,
+        "SectionID": "B",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2018
+    },
+    "RepositoryTimeStamp": "3/23/2018 8:39:25 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 41,
+    "SLN": "22162",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "B",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "  12.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2018,winter.json",
+        "Quarter": "winter",
+        "Year": 2018
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "FOR ADDITIONAL INFX SECTIONS,PLEASE SEE"
+                },
+                {
+                    "Text": "www.uw.edu/students/timeschd/WIN2018/INFX.HTML"
+                }
+            ]
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Offered jointly with INFX 543 A"
+                },
+                {
+                    "Text": "Add Code required"
+                }
+            ]
+        }
+    }
+}

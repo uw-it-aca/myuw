@@ -42,8 +42,8 @@ var RegStatusCard = {
             return;
         }
 
-
         var next_term_data = WSData.oquarter_data().next_term_data;
+
         var reg_next_quarter = next_term_data.quarter;
 
         if (! window.card_display_dates.myplan_peak_load &&
@@ -160,7 +160,8 @@ var RegStatusCard = {
         if (hide_card && reg_holds && reg_holds.length) {
             hide_card = false;
         }
-        if (hide_card && plan_data && plan_data.length) {
+
+        if (hide_card && plan_data && (plan_data.length || Object.keys(plan_data).length)) {
             hide_card = false;
         }
 

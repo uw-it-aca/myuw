@@ -17,9 +17,9 @@
                 <div>
                     <h5>Ready for registration</h5>
                     <ul class="courses-ready-list">
-                        {{ #each plan_data.courses }} <!--Course-->
+                        {{#each plan_data.courses }} <!--Course-->
                             <li>
-                            {{ #if registrations_available }}
+                            {{#if registrations_available }}
                                 {{ curriculum_abbr }} {{ course_number }}
                                 <table class="reg-status-table table table-condensed table-borderless borderless" style="border-width: 0;">
                                     <thead class="sr-only">
@@ -30,7 +30,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{ #each sections }} <!--Section-->
+                                        {{#each sections }} <!--Section-->
                                              <tr class="reg-status-table-row">
                                                  <td>{{ section_id }}</td>
                                                  {{#each section_data.meetings}}
@@ -50,7 +50,7 @@
                                                       {{/if}}
                                                   {{/each}}
                                              </tr>
-                                         {{ /each }} <!--Section end-->
+                                         {{/each }} <!--Section end-->
                                     </tbody>
                                 </table>
                             {{/if}}
@@ -64,13 +64,13 @@
                  <div>
                      <h5>Not ready for registration</h5>
                      <ul class="courses-not-ready-list">
-                        {{ #each plan_data.courses }}
+                        {{#each plan_data.courses }}
                         <li>
-                            {{ #unless registrations_available }}
-                            {{ curriculum_abbr }} {{ course_number }} <br />
-                            {{ /unless }}
+                            {{#unless registrations_available }}
+                            {{ curriculum_abbr }} {{ course_number }} <br/>
+                            {{/unless }}
                         </li>
-                         {{ /each}}
+                         {{/each}}
                      </ul>
                  </div>
             {{/if}}

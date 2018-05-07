@@ -7,3 +7,10 @@ var CourseSchePanel = {
         $('#sche_on_course_card' + c_section.index).html(raw);
     }
 };
+
+/* node.js exports */
+if (typeof exports === "undefined") {
+    var exports = {};
+}
+
+exports.CourseSchePanel = CourseSchePanel;
