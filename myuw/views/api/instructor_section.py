@@ -179,10 +179,10 @@ class OpenInstSectionDetails(OpenAPI):
                     'email': person.email1,
                     'url_key': get_url_key_for_regid(person.uwregid),
                 }
-            for field in ["start_date", "end_date"]:
-                date = getattr(registration, field)
 
-                if date is not None:
+            for field in ["start_date", "end_date"]:
+                if registration.is_independent_start:
+                    date = getattr(registration, field)
                     reg[field] = date.strftime("%m/%d/%Y")
                 else:
                     reg[field] = ""

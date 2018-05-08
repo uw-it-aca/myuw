@@ -101,15 +101,19 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(data['sections'][0]['is_independent_start'], True)
 
         self.assertIn('start_date', data['sections'][0]['registrations'][0])
-        self.assertEqual(len(data['sections'][0]['registrations']), 2)
+        self.assertEqual(len(data['sections'][0]['registrations']), 3)
 
-        reg_one = data['sections'][0]['registrations'][0]
-        self.assertEqual(reg_one['start_date'], '02/22/2013')
-        self.assertEqual(reg_one['end_date'], '11/14/2013')
+        reg = data['sections'][0]['registrations'][0]
+        self.assertEqual(reg['start_date'], '02/22/2013')
+        self.assertEqual(reg['end_date'], '11/14/2013')
 
-        reg_two = data['sections'][0]['registrations'][1]
-        self.assertEqual(reg_two['start_date'], '01/01/2013')
-        self.assertEqual(reg_two['end_date'], '12/13/2013')
+        reg = data['sections'][0]['registrations'][1]
+        self.assertEqual(reg['start_date'], '01/01/2013')
+        self.assertEqual(reg['end_date'], '12/13/2013')
+
+        reg = data['sections'][0]['registrations'][2]
+        self.assertEqual(reg['start_date'], '')
+        self.assertEqual(reg['end_date'], '')
 
     def test_invalid_section(self):
         request = get_request()
