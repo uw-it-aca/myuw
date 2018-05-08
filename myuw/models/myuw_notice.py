@@ -7,7 +7,7 @@ class MyuwNotice(models.Model):
     notice_type = models.TextField(max_length=128)
     notice_category = models.TextField(max_length=128)
 
-    start = models.DateTimeField(auto_now_add=True)
+    start = models.DateTimeField()
     end = models.DateTimeField(null=True)
     last_edit_by = models.CharField(max_length=16)
     last_edit_date = models.DateTimeField(auto_now=True)
