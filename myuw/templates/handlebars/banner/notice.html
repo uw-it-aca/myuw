@@ -11,7 +11,7 @@
 
 
         {{ #not_empty critical_notices notices }}
-            <ul class="notice-list">
+            <ul class="notice-list unstyled-list">
         {{ /not_empty }}
 
             {{ #if critical_notices }}
@@ -20,8 +20,8 @@
                        <div id="{{ id_hash }}" class="notice-container">
                            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
                            <span class="notice-critical">Critical:</span>
-                           <a href="#{{ id_hash }}_div" class="crit-notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
-                           <div id="{{ id_hash }}_div" class="collapse" aria-hidden="true" hidden="hidden">{{{ notice_body }}}</div>
+                           <a href="#{{ id_hash }}_div" class="notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                           <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
                        </div>
                    </li>
                {{ /each }}
@@ -29,12 +29,11 @@
 
            {{#if notices}}
                 {{#each notices}}
-                    <li class="notice-content-list-item clearfix">
+                    <li class="clearfix">
                         <div id="{{ id_hash }}" class="notice-container">
-                            <div class="notice-category-icon"><i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i></div>
                             {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
-                            <a href="#{{ id_hash }}_div" class="crit-notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
-                            <div id="{{ id_hash }}_div" class="collapse" aria-hidden="true" hidden="hidden">{{{ notice_content }}}</div>
+                            <a href="#{{ id_hash }}_div" class="notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                            <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden">{{{ notice_content }}}</div>
                         </div>
                     </li>
                 {{/each}}
