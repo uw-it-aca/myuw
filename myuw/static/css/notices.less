@@ -1,12 +1,16 @@
+@import (reference) "boilerplate.less";
+
 
 @notice-color-body-bg: #f5f5f5;
 @notice-color-critical: #a94442;
 
-/*** notice banner - critical notices on landing page ***/
-
+/*** Notice Card - Notices on landing page ***/
 .notices-summary {
 
-    & > .notice-list { font-weight: normal; padding-left: 0; list-style: none;
+    & > .notice-list {
+        font-weight: normal;
+        padding-left: 0;
+        list-style: none;
 
         li {
 
@@ -15,11 +19,14 @@
                 font-weight: bold;
             }
 
-            .new-status { padding: 0 3px; background: #f5d300; float: right; border-radius: 4px; margin-right: 20px; font-size: 12px; }
+            .new-status {
+                padding: 0 3px;
+                background: #f5d300;
+                float: right;
+                border-radius: 4px;
+                font-size: 12px;
+            }
 
-	        .notice-title {
-
-	        }
 		}
     }
 }
@@ -41,6 +48,5 @@
                 margin-bottom: 0;
             }
         }
-
     }
 }
