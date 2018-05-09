@@ -36,59 +36,15 @@ def get_myuw_notices_for_user(request):
                 notice.is_past_employee or notice.is_retiree or
                 notice.is_staff_employee or notice.is_stud_employee):
             user_notices.append(notice)
-        if notice.is_alumni and affiliations["alumni"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_applicant and affiliations["applicant"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_grad and affiliations["grad"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_grad_c2 and affiliations["grad_c2"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_pce and affiliations["pce"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_student and affiliations["student"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_undergrad and affiliations["undergrad"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_undergrad_c2 and affiliations["undergrad_c2"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_fyp and affiliations["fyp"]:
-            user_notices.append(notice)
-            pass
+            continue
         if notice.is_past_student and affiliations["past_stud"]:
             user_notices.append(notice)
-            pass
-        if notice.is_clinician and affiliations["clinician"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_employee and affiliations["employee"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_faculty and affiliations["faculty"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_instructor and affiliations["instructor"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_past_employee and affiliations["past_employee"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_retiree and affiliations["retiree"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_staff_employee and affiliations["staff_employee"]:
-            user_notices.append(notice)
-            pass
-        if notice.is_stud_employee and affiliations["stud_employee"]:
-            user_notices.append(notice)
-            pass
-
+            continue
+        for key in affiliations:
+            try:
+                if getattr(notice, "is_" + key) and affiliations[key]:
+                    user_notices.append(notice)
+                    continue
+            except AttributeError:
+                pass
     return user_notices
