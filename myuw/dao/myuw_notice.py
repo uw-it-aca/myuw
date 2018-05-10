@@ -1,6 +1,7 @@
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.models.myuw_notice import MyuwNotice
 from myuw.dao.term import get_comparison_datetime
+from myuw.dao.notice_mapping import map_notice_category
 
 
 def get_myuw_notices_for_user(request):

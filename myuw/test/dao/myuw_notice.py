@@ -1,11 +1,11 @@
 from django.test import TestCase
-
 from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 from myuw.views.notice_admin import _get_datetime, _save_new_notice
 from datetime import datetime
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
+from myuw.dao.notice_mapping import categorize_notices
 from myuw.test import get_request_with_user, get_request_with_date
 from myuw.models.myuw_notice import MyuwNotice
 
@@ -115,3 +115,15 @@ class TestMyuwNotice(TestCase):
             get_request_with_user('javerage', request)
             notices = get_myuw_notices_for_user(request)
             self.assertEqual(len(notices), 2)
+
+    def test_myuwnotice_mapping(self):
+        notice = MyuwNotice(title="Test",
+                            content="Notice Content Five",
+                            notice_type="Banner",
+                            notice_category="MyUWNotice",
+                            start=datetime(2018, 6, 8, 10, 0, 0),
+                            end=datetime(2018, 6, 20, 10, 0, 0),
+                            is_student=True)
+        categorized = categorize_notices([notice])
+        self.assertEqual(len(categorized), 1)
+        self.assertEqual(categorized[0].location_tags, ['notice_banner'])

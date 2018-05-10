@@ -18,7 +18,6 @@ UNKNOWN_CATEGORY_NAME = "Uncategorized"
 def categorize_notices(notices):
     for notice in notices:
         map_notice_category(notice)
-
     notices[:] = [n for n in notices if n.custom_category != "not a notice"]
     # Removing uncategorized notices for MUWM-2343
     notices[:] = [n for n in notices if
