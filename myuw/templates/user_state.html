@@ -37,6 +37,7 @@
         "netid": "{{ user.netid }}",
         "is_hxt_viewer": {{ user.affiliations.hxt_viewer|yesno:"true, false" }},
         "display_pop_up": {{ display_pop_up|yesno:"true, false" }},
+        "save_user_actions": {{ save_user_actions|yesno:"true, false" }},
     };
     window.enabled_features = {
         {% for feature in enabled_features %}

@@ -1,6 +1,10 @@
+from django.conf import settings
 from django.test import TransactionTestCase
+from django.test.client import RequestFactory
+from userservice.user import UserServiceMiddleware
+from userservice.user import UserService
 from myuw.dao import get_netid_of_current_user, get_netid_of_original_user,\
-    is_using_file_dao, is_thrive_viewer
+    is_using_file_dao, is_thrive_viewer, not_overriding
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request, get_request_with_user
 
@@ -25,3 +29,21 @@ class TestDaoInit(TransactionTestCase):
         self.assertTrue(is_thrive_viewer("jnew", "fyp"))
         self.assertTrue(is_thrive_viewer("javg001", "au_xfer"))
         self.assertTrue(is_thrive_viewer("javg002", "wi_xfer"))
+
+    def test_not_overriding(self):
+        with self.settings(MYUW_SAVE_USER_ACTIONS_WHEN_OVERRIDE=False):
+            self.assertTrue(not_overriding())
+            request = RequestFactory().get("/")
+            request.session = {}
+            request.session["_us_override_user"] = 'bill'
+            UserServiceMiddleware().process_request(request)
+            self.assertFalse(not_overriding())
+
+    def test_not_overriding(self):
+        with self.settings(MYUW_SAVE_USER_ACTIONS_WHEN_OVERRIDE=True):
+            self.assertTrue(not_overriding())
+            request = RequestFactory().get("/")
+            request.session = {}
+            request.session["_us_override_user"] = 'bill'
+            UserServiceMiddleware().process_request(request)
+            self.assertTrue(not_overriding())

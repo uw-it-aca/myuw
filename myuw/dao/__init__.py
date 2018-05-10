@@ -3,7 +3,7 @@ import os
 from django.conf import settings
 from uw_sws.dao import SWS_DAO
 from userservice.user import UserService
-
+from myuw.util.settings import get_save_user_actions_when_override
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +25,14 @@ def get_netid_of_original_user():
     return the actual authenticated user
     """
     return UserService().get_original_user()
+
+
+def not_overriding():
+    """
+    return True if is overriding in Live
+    """
+    ignore_override = get_save_user_actions_when_override()
+    return ignore_override or UserService().get_override_user() is None
 
 
 def is_using_file_dao():

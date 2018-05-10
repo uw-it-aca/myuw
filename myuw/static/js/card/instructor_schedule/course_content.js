@@ -18,10 +18,12 @@ var InstructorCourseCardContent = {
             CourseInstructorPanel.render(c_section);
         }
 
-        InstructorCourseCardContent.add_events(card, term);
+        InstructorCourseCardContent.add_events(card, term,
+                                               window.user.save_user_actions);
     },
 
-    add_events: function(card, term) {
+    add_events: function(card, term, save_user_actions) {
+
         $(".show_map", card).on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
@@ -30,6 +32,9 @@ var InstructorCourseCardContent = {
             WSData.log_interaction("show_map_from_course_list_"+building, term);
         });
         $(".course_delegate_link", card).on("click", function(ev) {
+            if (!save_user_actions) {
+                return false;
+            }
             var width = 800;
             var height = 400;
 

@@ -78,7 +78,7 @@ def load_schedule(request, schedule, summer_term=""):
     canvas_enrollments = {}
     try:
         canvas_enrollments = get_canvas_active_enrollments(request)
-    except Exception as ex:
+    except Exception:
         log_exception(
             logger, 'load_schedule', traceback.format_exc())
         pass
@@ -115,7 +115,7 @@ def load_schedule(request, schedule, summer_term=""):
             try:
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
-            except Exception as ex:
+            except Exception:
                 log_exception(
                     logger, 'load_schedule', traceback.format_exc())
                 pass

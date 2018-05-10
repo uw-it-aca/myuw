@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from restclients_core.exceptions import DataFailureException
+from myuw.dao import not_overriding
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
@@ -72,6 +73,7 @@ def page(request,
     context["banner_messages"] = get_current_messages(request)
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
+    context["save_user_actions"] = not_overriding()
     context["card_display_dates"] = get_card_visibilty_date_values(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user(request)

@@ -43,6 +43,9 @@ class TestCustomCachePolicy(TestCase):
                 "sws", "/student/v5/section"), FIFTEEN_MINS)
 
         self.assertEquals(get_cache_time(
+                "gws", "/group_sws/v3"), FIFTEEN_MINS)
+
+        self.assertEquals(get_cache_time(
                 "pws", "/nws/v1/uwnetid"), ONE_HOUR)
         self.assertEquals(get_cache_time(
                 "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR)

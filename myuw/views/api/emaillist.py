@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from restclients_core.exceptions import DataFailureException
 from uw_sws.exceptions import InvalidSectionID
-from myuw.dao import get_netid_of_current_user
+from myuw.dao import get_netid_of_current_user, not_overriding
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.instructor_schedule import check_section_instructor
@@ -60,22 +60,21 @@ class Emaillist(ProtectedAPI):
     def post(self, request, *args, **kwargs):
         timer = Timer()
         try:
-            uwnetid = get_netid_of_current_user(request)
-            single_section_labels = get_input(request)
-            if not validate_is_instructor(request, single_section_labels):
-                logger.error("%s is not an instructor",
-                             uwnetid)
-                return not_instructor_error()
+            if not_overriding():
+                uwnetid = get_netid_of_current_user(request)
+                single_section_labels = get_input(request)
+                if not validate_is_instructor(request, single_section_labels):
+                    logger.error("%s is not an instructor", uwnetid)
+                    return not_instructor_error()
 
-            if len(single_section_labels) == 0:
-                resp = {"none_selected": True}
-            else:
-                resp = request_mailman_lists(uwnetid,
-                                             single_section_labels)
-            log_msg_with_request(
-                logger, timer, request,
-                "Request emaillist for %s ==> %s" % (
-                    single_section_labels, resp))
+                if len(single_section_labels) == 0:
+                    resp = {"none_selected": True}
+                else:
+                    resp = request_mailman_lists(uwnetid,
+                                                 single_section_labels)
+                log_msg_with_request(logger, timer, request,
+                                     "Request emaillist for %s ==> %s" % (
+                                         single_section_labels, resp))
 
             return self.json_response(resp)
         except Exception as ex:
