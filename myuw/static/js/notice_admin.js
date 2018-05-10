@@ -4,7 +4,11 @@ $(document).ready(function() {
 
 var NoticeAdmin = {
     render: function() {
-        $('#start_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm'});
-        $('#end_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm'});
+        var start = moment($("#start_value").html());
+        $('#start_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm',
+                                          date: start});
+        var end = moment($("#end_value").html());
+        $('#end_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm',
+                                        date: end});
     }
 };

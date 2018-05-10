@@ -3,8 +3,11 @@
 {% block content %}
     <div class="container notice-admin">
         <h2>Notice Administration</h2>
-
+        {% if action == "save" %}
         <form action="{% url 'myuw_manage_notices' %}" method="POST">
+        {% else %}
+            <form action="{% url 'myuw_edit_notices' notice.id %}" method="POST">
+        {% endif %}
 
             <div class="row">
                 <div class="col-sm-8">
@@ -13,7 +16,8 @@
                         <div class="form-group">
                             <label for="start_dt">Start</label>
                             <div class="input-group date" id='start_dt'>
-                                <input type='text' name="start_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}' placeholder="yyyy-mm-dd hh:mm"/>
+                                <div id='start_value' class="hidden">{{ notice.start | date:"r" }}</div>
+                                <input type='text' name="start_date" class="form-control" placeholder="yyyy-mm-dd hh:mm"/>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -23,24 +27,24 @@
                         <div class="form-group">
                             <label for="end_dt">End</label>
                             <div class='input-group date' id='end_dt'>
-                                <input type='text' name="end_date" class="form-control" value='{% if start_date %}{{ start_date }}{% endif %}' placeholder="yyyy-mm-dd hh:mm"/>
+                                <div id='end_value' class="hidden">{{ notice.end | date:"r" }}</div>
+                                <input type='text' name="end_date" class="form-control" placeholder="yyyy-mm-dd hh:mm"/>
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
-                        </div>
-                    </div>
+                        </div></div>
 
                     <br/>
 
                     <h3>Notice Content</h3>
                     <div class="form-group">
                         <label class="" for="notice_title">Title</label>
-                        <input id="notice_title" type='text' name='title' class="form-control" value='{% if title %}{{ title }}{% endif %}'>
+                        <input id="notice_title" type='text' name='title' class="form-control" value='{% if notice.title %}{{ notice.title }}{% endif %}'>
                     </div>
                     <div class="form-group">
                         <label class="" for="notice_content">Content</label>
-                        <textarea id="notice_content" name='content' class="form-control">{% if content %}{{ content }}{% endif %}</textarea>
+                        <textarea id="notice_content" name='content' class="form-control">{% if notice.content %}{{ notice.content }}{% endif %}</textarea>
                         <p class="text-muted"><small>HTML content is enabled. &lt;a&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;abbr&gt;, &lt;br&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, etc...</small></p>
                     </div>
 
@@ -64,17 +68,18 @@
                     <br/>
 
                     <h4>Campus</h4>
+                {{ notice.is_seattle }}
                     <p class="text-muted"><small>Set is a union of selections. (Seattle OR Tacoma)</small><p>
                     <div class="form-inline">
                         <div class="form-group">
                             <div class="checkbox">
-                                <label class=""><input type='checkbox' name='campus' value='seattle' {% if checked.is_seattle %}checked="checked"{% endif %}> Seattle</label>
+                                <label class=""><input type='checkbox' name='campus' value='is_seattle' {% if notice.is_seattle %}checked="checked"{% endif %}> Seattle</label>
                             </div>
                             <div class="checkbox">
-                                <label class=""><input type='checkbox' name='campus' value='tacoma' {% if checked.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
+                                <label class=""><input type='checkbox' name='campus' value='is_tacoma' {% if notice.is_tacoma %}checked="checked"{% endif %}> Tacoma</label>
                             </div>
                             <div class="checkbox">
-                                <label class=""><input type='checkbox' name='campus' value='bothell' {% if checked.is_bothell %}checked="checked"{% endif %}> Bothell</label>
+                                <label class=""><input type='checkbox' name='campus' value='is_bothell' {% if notice.is_bothell %}checked="checked"{% endif %}> Bothell</label>
                             </div>
                         </div>
                     </div>
@@ -90,62 +95,62 @@
                                 <label class=""><input type='checkbox' name='affil' value='is_alumni' {% if checked.is_alumni %}checked="checked"{% endif %}> is_alumni</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_applicant' {% if checked.is_applicant %}checked="checked"{% endif %}> is_applicant</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_applicant' {% if notice.is_applicant %}checked="checked"{% endif %}> is_applicant</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_grad' {% if checked.is_grad %}checked="checked"{% endif %}> is_grad</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_grad' {% if notice.is_grad %}checked="checked"{% endif %}> is_grad</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_grad_c2' {% if checked.is_grad_c2 %}checked="checked"{% endif %}> is_grad_c2</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_grad_c2' {% if notice.is_grad_c2 %}checked="checked"{% endif %}> is_grad_c2</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_pce' {% if checked.is_pce %}checked="checked"{% endif %}> is_pce</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_pce' {% if notice.is_pce %}checked="checked"{% endif %}> is_pce</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_student' {% if checked.is_student %}checked="checked"{% endif %}> is_student</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_student' {% if notice.is_student %}checked="checked"{% endif %}> is_student</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_undergrad' {% if checked.is_undergrad %}checked="checked"{% endif %}> is_undergrad</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_undergrad' {% if notice.is_undergrad %}checked="checked"{% endif %}> is_undergrad</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_undergrad_c2' {% if checked.is_undergrad_c2 %}checked="checked"{% endif %}> is_undergrad_c2</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_undergrad_c2' {% if notice.is_undergrad_c2 %}checked="checked"{% endif %}> is_undergrad_c2</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_fyp' {% if checked.is_fyp %}checked="checked"{% endif %}> is_fyp</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_fyp' {% if notice.is_fyp %}checked="checked"{% endif %}> is_fyp</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_past_student' {% if checked.is_past_student %}checked="checked"{% endif %}> is_past_student</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_past_student' {% if notice.is_past_student %}checked="checked"{% endif %}> is_past_student</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_clinician' {% if checked.is_clinician %}checked="checked"{% endif %}> is_clinician</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_clinician' {% if notice.is_clinician %}checked="checked"{% endif %}> is_clinician</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_employee' {% if checked.is_employee %}checked="checked"{% endif %}> is_employee</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_employee' {% if notice.is_employee %}checked="checked"{% endif %}> is_employee</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_faculty' {% if checked.is_faculty %}checked="checked"{% endif %}> is_faculty</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_faculty' {% if notice.is_faculty %}checked="checked"{% endif %}> is_faculty</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_instructor' {% if checked.is_instructor %}checked="checked"{% endif %}> is_instructor</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_instructor' {% if notice.is_instructor %}checked="checked"{% endif %}> is_instructor</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_past_employee' {% if checked.is_past_employee %}checked="checked"{% endif %}> is_past_employee</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_past_employee' {% if notice.is_past_employee %}checked="checked"{% endif %}> is_past_employee</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_retiree' {% if checked.is_retiree %}checked="checked"{% endif %}> is_retiree</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_retiree' {% if notice.is_retiree %}checked="checked"{% endif %}> is_retiree</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_staff_employee' {% if checked.is_staff_employee %}checked="checked"{% endif %}> is_staff_employee</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_staff_employee' {% if notice.is_staff_employee %}checked="checked"{% endif %}> is_staff_employee</label>
                             </li>
                             <li class="checkbox">
-                                <label class=""><input type='checkbox' name='affil' value='is_stud_employee' {% if checked.is_stud_employee %}checked="checked"{% endif %}> is_stud_employee</label>
+                                <label class=""><input type='checkbox' name='affil' value='is_stud_employee' {% if notice.is_stud_employee %}checked="checked"{% endif %}> is_stud_employee</label>
                             </li>
                         </ul>
                     </div>
 
                     {% csrf_token %}
                     <br/><br/>
-                    <button type="submit" name="action" value="save" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="action" value="{{ action }}" class="btn btn-primary">Submit</button>
                     <br/><br/>
                 </div>
             </div>
