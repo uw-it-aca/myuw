@@ -39,3 +39,15 @@ class MyuwNotice(models.Model):
     is_retiree = models.BooleanField(default=False)
     is_staff_employee = models.BooleanField(default=False)
     is_stud_employee = models.BooleanField(default=False)
+
+    def json_data(self, include_abbr_week_month_day_format=False):
+        # Returns dict in same format as SDB Notices
+        notice_format = "<span class=\"notice-title\">{}</span>" \
+                        "<span class=\"notice-body-with-title\">{}</span>"
+
+        notice_content = notice_format.format(self.title, self.content)
+        return {'notice_content': notice_content,
+                'attributes': []}
+
+    def get_notice_content(self):
+        return self.title + self.content
