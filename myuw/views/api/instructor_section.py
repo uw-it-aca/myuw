@@ -2,12 +2,10 @@ import re
 import logging
 import traceback
 from datetime import date, datetime
-
 from blti import BLTI
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
 from myuw.dao import coda
 from myuw.views.error import \
     handle_exception, not_instructor_error, data_not_found
