@@ -253,6 +253,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data["section_type"] = section.section_type
         section_data["color_id"] = section.color_id
         section_data["mini_card"] = section.pin_on_teaching
+        section_data['is_independent_start'] = section.is_independent_start
 
         section_data["section_label"] =\
             safe_label(section.section_label())

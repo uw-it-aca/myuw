@@ -80,6 +80,10 @@
                                 <th>Credits</th>
                                 <th>Class</th>
                                 <th>Major</th>
+                                {{#if sections.0.is_independent_start}}
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                {{/if}}
                                 <th><span class="sr-only">Email</span></th>
                             </tr>
                         </thead>
@@ -103,6 +107,10 @@
                                         {{/if}}
                                     {{/each}}
                                 </td>
+                                {{#if @root.sections.0.is_independent_start}}
+                                <td>{{ start_date }}</td>
+                                <td>{{ end_date }}</td>
+                                {{/if}}
                                 <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
                             </tr>
                             {{/each}}
