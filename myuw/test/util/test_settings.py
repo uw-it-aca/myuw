@@ -3,7 +3,8 @@ from django.conf import settings
 from myuw.util.settings import get_calendar_time_zone,\
     get_mailman_courserequest_recipient, get_google_search_key,\
     get_legacy_url, get_logout_url, get_myuwclass_url,\
-    get_myuw_admin_group, get_myuw_override_group, get_myuw_astra_group_stem
+    get_myuw_admin_group, get_myuw_override_group, get_myuw_astra_group_stem,\
+    get_save_user_actions_when_override
 
 
 class TestSetting(TestCase):
