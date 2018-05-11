@@ -27,10 +27,15 @@ def create_notice(request):
 @login_required
 @admin_required('MYUW_ADMIN_GROUP')
 def edit_notice(request, notice_id):
+    print notice_id
     context = {}
     set_admin_wrapper_template(context)
     if request.POST:
-        _save_notice(request, context, notice_id)
+        if request.POST.get('action') == "delete":
+            MyuwNotice.objects.get(id=notice_id).delete()
+            return redirect("myuw_manage_notices")
+        else:
+            _save_notice(request, context, notice_id)
     notice = _get_notice_by_id(notice_id)
     context['notice'] = notice
     context['action'] = "edit"

@@ -155,6 +155,12 @@
                 </div>
             </div>
         </form>
+        {% if action != "save" %}
+        <form action="{% url 'myuw_edit_notices' notice.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" name="action" value="delete">Delete</button>
+        </form>
+        {% endif %}
     </div>
 
 {% endblock %}
