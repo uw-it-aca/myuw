@@ -1,11 +1,11 @@
 import re
 import logging
 import traceback
+from datetime import date, datetime
 from blti import BLTI
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
 from myuw.dao import coda
 from myuw.views.error import \
     handle_exception, not_instructor_error, data_not_found
@@ -171,10 +171,18 @@ class OpenInstSectionDetails(OpenAPI):
                     'student_number': person.student_number,
                     'credits': registration.credits,
                     'is_auditor': registration.is_auditor,
+                    'is_independent_start': registration.is_independent_start,
                     'class_level': person.student_class,
                     'email': person.email1,
                     'url_key': get_url_key_for_regid(person.uwregid),
                 }
+
+            for field in ["start_date", "end_date"]:
+                if registration.is_independent_start:
+                    date = getattr(registration, field)
+                    reg[field] = date.strftime("%m/%d/%Y")
+                else:
+                    reg[field] = ""
 
             if regid not in registrations:
                 registrations[regid] = [reg]
