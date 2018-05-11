@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myuw.dao.admin import is_admin, can_override
+from myuw.authorization import can_override_user, is_myuw_admin
 from blti import BLTI, BLTIException
 from blti.validators import BLTIRoles
 
@@ -8,7 +8,7 @@ BLTI_USER_LOGIN = 'custom_canvas_user_login_id'
 
 def admin_required(func):
     def wrapper(request, *args, **kwargs):
-        if not is_admin():
+        if not is_myuw_admin(request):
             return render(request, 'no_access.html', {})
 
         return func(request, *args, **kwargs)
@@ -17,7 +17,7 @@ def admin_required(func):
 
 def override_required(func):
     def wrapper(request, *args, **kwargs):
-        if not can_override():
+        if not can_override_user(request):
             return render(request, 'no_access.html', {})
 
         return func(request, *args, **kwargs)

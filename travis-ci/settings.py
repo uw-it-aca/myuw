@@ -137,6 +137,6 @@ RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
 MAILMAN_COURSEREQUEST_RECIPIENT = ""
 
-USERSERVICE_VALIDATION_MODULE = "myuw.userservice_validation.validate"
-USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.userservice_validation.can_override"
-RC_DJANGO_ADMIN_AUTH_MODULE = "myuw.userservice_validation.is_admin"
+USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
+USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
+RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
