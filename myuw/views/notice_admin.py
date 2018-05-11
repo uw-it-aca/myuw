@@ -27,7 +27,6 @@ def create_notice(request):
 @login_required
 @admin_required('MYUW_ADMIN_GROUP')
 def edit_notice(request, notice_id):
-    print notice_id
     context = {}
     set_admin_wrapper_template(context)
     if request.POST:
@@ -78,12 +77,14 @@ def _save_notice(request, context, notice_id=None):
     except TypeError:
         has_error = True
         context['start_error'] = True
+    if start_date is None:
+        has_error = True
+        context['start_error'] = True
 
     try:
         end_date = _get_datetime(request.POST.get('end_date'))
     except TypeError:
         has_error = True
-        context['end_error'] = True
 
     try:
         if end_date < start_date:
@@ -108,15 +109,20 @@ def _save_notice(request, context, notice_id=None):
     except TypeError:
         has_error = True
         context['title_error'] = True
+    if len(title) == 0:
+        has_error = True
+        context['title_error'] = True
     try:
         content = clean_html(request.POST.get('content'))
     except TypeError:
         has_error = True
         context['content_error'] = True
+    if len(content) == 0:
+        has_error = True
+        context['content_error'] = True
 
     campus_list = request.POST.getlist('campus')
     affil_list = request.POST.getlist('affil')
-
     if not has_error:
         if form_action == "save":
             notice = MyuwNotice(title=title,
@@ -155,6 +161,7 @@ def _save_notice(request, context, notice_id=None):
 
         return True
     else:
+        context['has_error'] = has_error
         return False
 
 
