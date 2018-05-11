@@ -2,17 +2,23 @@
 {% load static %}
 {% block content %}
     <div class="container notice-admin">
-    {% if notices %}
-    <ol>
-    {% for notice in notices %}
-        <li><a href="{% url 'myuw_edit_notices' notice.id %}">{{ notice.title }} starts {{ notice.start }} and ends {{ notice.end }}</a></li>
-    {% endfor %}
-    </ol>
-    {% else %}
-        <p>No notices</p>
-    {% endif %}
+        <h2>Notice Administration</h2>
+
+        <h3>Current Notices</h3>
+        {% if notices %}
+            <ol class="notices-custom-list">
+            {% for notice in notices %}
+                <li><a href="{% url 'myuw_edit_notices' notice.id %}">{{ notice.title }}</a> <span class="text-muted">{{ notice.start }} - {{ notice.end }}</span></li>
+            {% endfor %}
+            </ol>
+        {% else %}
+            <p>No notices</p>
+        {% endif %}
+
+        <br/>
+        <a href="{% url 'myuw_create_notice' %}" class="btn btn-primary" role="button">Create New Notice</a>
+
     </div>
-    <a href="{% url 'myuw_create_notice' %}">Create New</a>
 {% endblock %}
 
 {% block extra_css %}
