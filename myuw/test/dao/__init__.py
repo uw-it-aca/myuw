@@ -30,9 +30,10 @@ class TestDaoInit(TransactionTestCase):
         self.assertTrue(is_thrive_viewer("javg001", "au_xfer"))
         self.assertTrue(is_thrive_viewer("javg002", "wi_xfer"))
 
-    def test_is_overriding(self):
+    def test_overriding(self):
         with self.settings(MYUW_SAVE_USER_ACTIONS_WHEN_OVERRIDE=False):
-            self.assertTrue(not_overriding())
+            self.assertFalse(not_overriding())
+            # set override
             request = RequestFactory().get("/")
             request.session = {}
             request.session["_us_override_user"] = 'bill'

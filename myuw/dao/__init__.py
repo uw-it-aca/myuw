@@ -29,7 +29,8 @@ def get_netid_of_original_user():
 
 def not_overriding():
     """
-    return True if is overriding in Live
+    return True if is NOT overriding or
+    MYUW_SAVE_USER_ACTIONS_WHEN_OVERRIDE is False in settings
     """
     ignore_override = get_save_user_actions_when_override()
     return ignore_override or UserService().get_override_user() is None
