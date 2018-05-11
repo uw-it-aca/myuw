@@ -4,11 +4,13 @@ import datetime
 import bleach
 from dateutil.parser import parse
 from myuw.models import BannerMessage
-from myuw.dao import is_netid_in_list, get_netid_of_current_user
+from myuw.dao import is_netid_in_list, get_netid_of_current_user,\
+    is_using_file_dao
+from myuw.dao.admin import is_admin
+from myuw.dao.gws import gws
 from myuw.dao.term import get_comparison_datetime
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
-from authz_group import Group
 from django.utils import timezone
 
 MESSAGE_ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS + ["span", "h1", "h2",
@@ -32,10 +34,11 @@ def get_current_messages(request):
 
     filtered = []
     user = get_netid_of_current_user(request)
-    g = Group()
+
     for message in messages:
         if message.group_id:
-            if not g.is_member_of_group(user, message.group_id):
+            if (not is_using_file_dao() and
+                    not gws.is_member_of_group(user, message.group_id)):
                 continue
         filtered.append(message)
 

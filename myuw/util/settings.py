@@ -31,6 +31,7 @@ def get_myuw_admin_group():
     return getattr(settings, "MYUW_ADMIN_GROUP",
                    'u_astratst_myuw_test-support-admin')
 
+
 def get_myuw_override_group():
     return getattr(settings, "MYUW_OVERRIDE_GROUP",
                    'u_astratst_myuw_test-support-impersonate')

@@ -8,8 +8,6 @@ from myuw.dao.gws import is_alumni, is_alum_asso, is_seattle_student,\
     is_applicant, no_major_affiliations, get_groups
 from myuw.test import fdao_gws_override, get_request_with_user
 
-GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
-
 
 @fdao_gws_override
 class TestPwsDao(TestCase):

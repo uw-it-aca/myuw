@@ -37,4 +37,4 @@ class TestViewsLinkAdmin(MyuwApiTest):
         response = self.client.post(url)
         self.assertEquals(response.status_code, 200)
         not_authorized = "<title>403 Error: Access Denied</title>"
-        self.assertTrue(not_authorized in str(response))
+        self.assertTrue(not_authorized in str(response.content))

@@ -135,8 +135,8 @@ COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
-
-USERSERVICE_ADMIN_GROUP = 'u_a'
-AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
-
 MAILMAN_COURSEREQUEST_RECIPIENT = ""
+
+USERSERVICE_VALIDATION_MODULE = "myuw.userservice_validation.validate"
+USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.userservice_validation.can_override"
+RC_DJANGO_ADMIN_AUTH_MODULE = "myuw.userservice_validation.is_admin"
