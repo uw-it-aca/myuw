@@ -30,7 +30,7 @@ class TestDaoInit(TransactionTestCase):
         self.assertTrue(is_thrive_viewer("javg001", "au_xfer"))
         self.assertTrue(is_thrive_viewer("javg002", "wi_xfer"))
 
-    def test_not_overriding(self):
+    def test_is_overriding(self):
         with self.settings(MYUW_SAVE_USER_ACTIONS_WHEN_OVERRIDE=False):
             self.assertTrue(not_overriding())
             request = RequestFactory().get("/")
@@ -39,7 +39,7 @@ class TestDaoInit(TransactionTestCase):
             UserServiceMiddleware().process_request(request)
             self.assertFalse(not_overriding())
 
-    def test_not_overriding(self):
+    def test_ignore_overriding(self):
         with self.settings(MYUW_SAVE_USER_ACTIONS_WHEN_OVERRIDE=True):
             self.assertTrue(not_overriding())
             request = RequestFactory().get("/")
