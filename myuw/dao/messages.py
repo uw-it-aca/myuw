@@ -33,12 +33,12 @@ def get_current_messages(request):
                                          is_published=True)
 
     filtered = []
-    user = get_netid_of_current_user(request)
+    user_netid = get_netid_of_current_user(request)
 
     for message in messages:
         if message.group_id:
             if (not is_using_file_dao() and
-                    not gws.is_member_of_group(user, message.group_id)):
+                    not gws.is_effective_member(message.group_id, user_netid)):
                 continue
         filtered.append(message)
 
