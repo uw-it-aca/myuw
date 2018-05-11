@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 import logging
 from myuw.models.myuw_notice import MyuwNotice
 from datetime import datetime
+from myuw.dao.term import get_comparison_datetime
 
 
 logger = logging.getLogger(__name__)
@@ -13,16 +14,18 @@ logger = logging.getLogger(__name__)
 
 @login_required
 @admin_required('MYUW_ADMIN_GROUP')
-def manage_notices(request):
+def create_notice(request):
     context = {}
     if request.POST:
         if _save_notice(request, context):
             return redirect('myuw_manage_notices')
     set_admin_wrapper_template(context)
     context['action'] = "save"
-    return render(request, "admin/notices.html", context)
+    return render(request, "admin/notice_edit.html", context)
 
 
+@login_required
+@admin_required('MYUW_ADMIN_GROUP')
 def edit_notice(request, notice_id):
     context = {}
     set_admin_wrapper_template(context)
@@ -31,7 +34,18 @@ def edit_notice(request, notice_id):
     notice = _get_notice_by_id(notice_id)
     context['notice'] = notice
     context['action'] = "edit"
-    return render(request, "admin/notices.html", context)
+    return render(request, "admin/notice_edit.html", context)
+
+
+@login_required
+@admin_required('MYUW_ADMIN_GROUP')
+def list_notices(request):
+    context = {}
+    set_admin_wrapper_template(context)
+    now = get_comparison_datetime(request)
+    notices = MyuwNotice.objects.filter(end__gte=now).order_by('start', 'end')
+    context['notices'] = notices
+    return render(request, "admin/notice_list.html", context)
 
 
 def _get_notice_by_id(notice_id):

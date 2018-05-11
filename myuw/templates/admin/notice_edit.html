@@ -4,9 +4,9 @@
     <div class="container notice-admin">
         <h2>Notice Administration</h2>
         {% if action == "save" %}
-        <form action="{% url 'myuw_manage_notices' %}" method="POST">
+        <form action="{% url 'myuw_create_notice' %}" method="POST">
         {% else %}
-            <form action="{% url 'myuw_edit_notices' notice.id %}" method="POST">
+        <form action="{% url 'myuw_edit_notices' notice.id %}" method="POST">
         {% endif %}
 
             <div class="row">
@@ -157,7 +157,6 @@
         </form>
     </div>
 
-<link href="{% static 'vendor/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet"/>
 {% endblock %}
 
 {% block extra_js %}
@@ -168,4 +167,5 @@
 
 {% block extra_css %}
     <link href="{% static 'css/notice_admin.less' %}" rel="stylesheet" type="text/less">
+    <link href="{% static 'vendor/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet"/>
 {% endblock %}
