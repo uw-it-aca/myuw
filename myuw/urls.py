@@ -61,7 +61,7 @@ from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
 from myuw.views.api.resources import (ResourcesList,
                                       ResourcesPin,
                                       PinnedResources)
-from myuw.views.notice_admin import manage_notices
+from myuw.views.notice_admin import create_notice, edit_notice, list_notices
 
 
 urlpatterns = []
@@ -80,7 +80,10 @@ urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
     url(r'admin/messages', manage_messages, name="myuw_manage_messages"),
-    url(r'admin/notices', manage_notices, name="myuw_manage_notices"),
+    url(r'admin/notices/(?P<notice_id>[0-9]+)', edit_notice,
+        name="myuw_edit_notices"),
+    url(r'admin/notice_create', create_notice, name="myuw_create_notice"),
+    url(r'admin/notices', list_notices, name="myuw_manage_notices"),
     url(r'admin/links/(?P<page>[0-9]+)', popular_links,
         name="myuw_popular_links_paged"),
     url(r'admin/links', popular_links, {'page': 1},

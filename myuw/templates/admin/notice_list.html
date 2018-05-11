@@ -1,0 +1,20 @@
+{% extends wrapper_template %}
+{% load static %}
+{% block content %}
+    <div class="container notice-admin">
+    {% if notices %}
+    <ol>
+    {% for notice in notices %}
+        <li><a href="{% url 'myuw_edit_notices' notice.id %}">{{ notice.title }} starts {{ notice.start }} and ends {{ notice.end }}</a></li>
+    {% endfor %}
+    </ol>
+    {% else %}
+        <p>No notices</p>
+    {% endif %}
+    </div>
+    <a href="{% url 'myuw_create_notice' %}">Create New</a>
+{% endblock %}
+
+{% block extra_css %}
+    <link href="{% static 'css/notice_admin.less' %}" rel="stylesheet" type="text/less">
+{% endblock %}

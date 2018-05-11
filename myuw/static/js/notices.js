@@ -427,6 +427,10 @@ var Notices = {
             page_notices = page_notices.concat(date_sort);
         }
 
+        var myuw_notices = Notices.get_notices_for_tag('notice_banner');
+        if(myuw_notices !== undefined) {
+            page_notices = page_notices.concat(myuw_notices);
+        }
         $(page_notices).each(function (i, notice) {
             var unmatched = true;
             $(unique_notices).each(function (i, unique_notice){

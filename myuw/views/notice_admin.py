@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 import logging
 from myuw.models.myuw_notice import MyuwNotice
 from datetime import datetime
+from myuw.dao.term import get_comparison_datetime
 
 
 logger = logging.getLogger(__name__)
@@ -13,20 +14,60 @@ logger = logging.getLogger(__name__)
 
 @login_required
 @admin_required('MYUW_ADMIN_GROUP')
-def manage_notices(request):
+def create_notice(request):
     context = {}
     if request.POST:
-        if _save_new_notice(request, context):
+        if _save_notice(request, context):
             return redirect('myuw_manage_notices')
     set_admin_wrapper_template(context)
+    context['action'] = "save"
+    return render(request, "admin/notice_edit.html", context)
 
-    return render(request, "admin/notices.html", context)
+
+@login_required
+@admin_required('MYUW_ADMIN_GROUP')
+def edit_notice(request, notice_id):
+    print notice_id
+    context = {}
+    set_admin_wrapper_template(context)
+    if request.POST:
+        if request.POST.get('action') == "delete":
+            MyuwNotice.objects.get(id=notice_id).delete()
+            return redirect("myuw_manage_notices")
+        else:
+            _save_notice(request, context, notice_id)
+    notice = _get_notice_by_id(notice_id)
+    context['notice'] = notice
+    context['action'] = "edit"
+    return render(request, "admin/notice_edit.html", context)
 
 
-def _save_new_notice(request, context):
+@login_required
+@admin_required('MYUW_ADMIN_GROUP')
+def list_notices(request):
+    context = {}
+    set_admin_wrapper_template(context)
+    now = get_comparison_datetime(request)
+    notices = MyuwNotice.objects.filter(end__gte=now).order_by('start', 'end')
+    context['notices'] = notices
+    return render(request, "admin/notice_list.html", context)
+
+
+def _get_notice_by_id(notice_id):
+    notice = MyuwNotice.objects.get(id=notice_id)
+    return notice
+
+
+def _get_notice_data(request, context):
+    pass
+
+
+def _edit_notice(request, context):
+    pass
+
+
+def _save_notice(request, context, notice_id=None):
     form_action = request.POST.get('action')
-    if 'save' != form_action:
-        return False
 
     has_error = False
 
@@ -77,18 +118,41 @@ def _save_new_notice(request, context):
     affil_list = request.POST.getlist('affil')
 
     if not has_error:
-        notice = MyuwNotice(title=title,
-                            content=content,
-                            notice_type=notice_type,
-                            notice_category=notice_category,
-                            start=start_date,
-                            end=end_date)
-        for campus in campus_list:
-            setattr(notice, campus, True)
+        if form_action == "save":
+            notice = MyuwNotice(title=title,
+                                content=content,
+                                notice_type=notice_type,
+                                notice_category=notice_category,
+                                start=start_date,
+                                end=end_date)
+            for campus in campus_list:
+                setattr(notice, campus, True)
 
-        for affil in affil_list:
-            setattr(notice, affil, True)
-        notice.save()
+            for affil in affil_list:
+                setattr(notice, affil, True)
+            notice.save()
+        elif form_action == "edit":
+            notice = MyuwNotice.objects.get(id=notice_id)
+            notice.title = title
+            notice.content = content
+            notice.notice_type = notice_type
+            notice.notice_category = notice_category
+            notice.start = start_date
+            notice.end = end_date
+
+            # reset filters
+            fields = MyuwNotice._meta.get_fields()
+            for field in fields:
+                if "is_" in field.name:
+                    setattr(notice, field.name, False)
+
+            for campus in campus_list:
+                setattr(notice, campus, True)
+
+            for affil in affil_list:
+                setattr(notice, affil, True)
+            notice.save()
+
         return True
     else:
         return False

@@ -2,7 +2,7 @@ from django.test.utils import override_settings
 from django.core.urlresolvers import reverse
 from myuw.test.api import missing_url, MyuwApiTest
 from django.test.client import RequestFactory
-from myuw.views.notice_admin import _get_datetime, _save_new_notice
+from myuw.views.notice_admin import _get_datetime, _save_notice
 from datetime import datetime
 
 
@@ -23,7 +23,7 @@ class TestNoticeAdmin(MyuwApiTest):
         rf = RequestFactory()
         request = rf.post('', {})
 
-        saved = _save_new_notice(request, {})
+        saved = _save_notice(request, {})
         self.assertFalse(saved)
 
         notice_context = {
@@ -36,7 +36,7 @@ class TestNoticeAdmin(MyuwApiTest):
             'notice_category': 'Bar'
         }
         request = rf.post('', notice_context)
-        saved = _save_new_notice(request, {})
+        saved = _save_notice(request, {})
         self.assertTrue(saved)
 
         # end before start
@@ -51,7 +51,7 @@ class TestNoticeAdmin(MyuwApiTest):
         }
         request = rf.post('', notice_context)
         context = {}
-        saved = _save_new_notice(request, context)
+        saved = _save_notice(request, context)
         self.assertFalse(saved)
         self.assertTrue(context['date_error'])
 
@@ -66,7 +66,7 @@ class TestNoticeAdmin(MyuwApiTest):
         }
         request = rf.post('', notice_context)
         context = {}
-        saved = _save_new_notice(request, context)
+        saved = _save_notice(request, context)
         self.assertFalse(saved)
         self.assertTrue(context['start_error'])
 
@@ -76,7 +76,7 @@ class TestNoticeAdmin(MyuwApiTest):
         }
         request = rf.post('', notice_context)
         context = {}
-        saved = _save_new_notice(request, context)
+        saved = _save_notice(request, context)
         self.assertFalse(saved)
         self.assertTrue(context['start_error'])
         self.assertTrue(context['end_error'])
