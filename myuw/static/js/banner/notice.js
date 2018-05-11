@@ -52,12 +52,11 @@ var NoticeBanner = {
 
 
     _init_events: function () {
-        $(".crit-notice-title").on("click", function(e) {
+        $(".notice-title").on("click", function(e) {
             NoticeBanner._mark_read(e.target);
             var notice_id = $(e.target).parents(".notice-container").first().attr('id');
             var aria_div = $("#"+notice_id+"_div");
             var aria_a = $(e.currentTarget);
-
 
             if(aria_div.attr('aria-hidden') === "true"){
                 // Remove hidden first to keep it from interfering with Bootstrap.

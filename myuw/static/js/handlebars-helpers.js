@@ -472,3 +472,13 @@ Handlebars.registerHelper('not_equal', function(obj, value, block) {
         return block.fn(this);
     }
 });
+
+Handlebars.registerHelper('not_empty', function(array1, array2, options) {
+    if (arguments.length < 3) {
+        throw new Error("Handlebars Helper not_empty needs 2 parameters");
+    }
+    if (array1.length > 0 || array2.length > 0 ) {
+        return options.fn(this);
+    }
+    return options.inverse(this);
+});
