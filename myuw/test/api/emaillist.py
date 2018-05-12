@@ -1,13 +1,17 @@
 import json
 from django.core.urlresolvers import reverse
 from django.test import Client
+from userservice.user import UserServiceMiddleware, UserService
 from myuw.views.api.emaillist import Emaillist, section_id_matched,\
     is_emaillist_authorized
 from myuw.test import get_request, get_request_with_user, get_user,\
-    email_backend_override
+    email_backend_override, set_override_user
 from django.test.utils import override_settings
 from myuw.test.api import MyuwApiTest, require_url,\
     fdao_sws_override, fdao_mailman_override
+
+VALIDATE = "myuw.authorization.validate_netid"
+OVERRIDE = "myuw.authorization.can_override_user"
 
 
 @email_backend_override
@@ -153,14 +157,37 @@ class TestEmaillistApi(MyuwApiTest):
         self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
 
     def test_primary_instructor_secondary_post(self):
-        client = Client()
-        get_user('bill')
-        client.login(username='bill', password='pass')
-        url = reverse("myuw_emaillist_api")
-        resp = client.post(
-            url,
-            {u'section_single_AB': u'2013,spring,ESS,102/AB'})
-        self.assertEquals(resp.status_code, 200)
+        with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT=""):
+            client = Client()
+            get_user('bill')
+            client.login(username='bill', password='pass')
+            url = reverse("myuw_emaillist_api")
+            resp = client.post(
+                url,
+                {u'section_single_AB': u'2013,spring,ESS,102/AB'})
+            self.assertEquals(resp.status_code, 200)
+
+    def test_override_primary_instructor_secondary_post(self):
+        with self.settings(DEBUG=False,
+                           MAILMAN_COURSEREQUEST_RECIPIENT="",
+                           USERSERVICE_VALIDATION_MODULE=VALIDATE,
+                           USERSERVICE_OVERRIDE_AUTH_MODULE=OVERRIDE):
+            self.set_user('javerage')
+            req = get_request_with_user('javerage')
+            req.session = self.client.session
+            resp = self.client.post(reverse("userservice_override"),
+                                    {"override_as": "bill"})
+            self.assertEquals(resp.status_code, 200)
+
+            req.session = self.client.session
+            UserServiceMiddleware().process_request(req)
+            self.assertEquals(UserService().get_override_user(), "bill")
+
+            url = reverse("myuw_emaillist_api")
+            resp = self.client.post(
+                url,
+                {u'section_single_AB': u'2013,spring,ESS,102/AB'})
+            self.assertEquals(resp.status_code, 401)
 
     def test_is_emaillist_authorized(self):
         req = get_request_with_user('billbot')

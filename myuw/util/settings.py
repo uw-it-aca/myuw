@@ -42,5 +42,5 @@ def get_myuw_astra_group_stem():
                    'u_astratst_myuw')
 
 
-def get_save_user_actions_when_override():
-    return getattr(settings, "MYUW_SAVE_USER_ACTIONS_WHEN_OVERRIDE", True)
+def get_disable_actions_when_override():
+    return getattr(settings, "MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE", True)

@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao import not_overriding, get_netid_of_current_user
+from myuw.dao import is_action_disabled, get_netid_of_current_user
 from myuw.dao.user import get_user_model
 from myuw.models import VisitedLinkNew
 from myuw.views import prefetch_resources
@@ -25,7 +25,8 @@ def outbound_link(request):
         return HttpResponseRedirect("/")
 
     if (get_netid_of_current_user(request) is not None and
-            not_overriding() and is_link_of_interest(url)):
+            not is_action_disabled() and
+            is_link_of_interest(url)):
         save_visited_link(request)
 
     return HttpResponseRedirect(url)

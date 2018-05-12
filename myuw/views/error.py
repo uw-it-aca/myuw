@@ -8,11 +8,12 @@ from myuw.logger.logresp import log_err
 
 
 HTTP_BAD_REQUEST = 400
+UNAUTHORIZED_ERROR = 401
+NOT_INSTRUCTOR_ERROR = 403
 HTTP_NOT_FOUND = 404
 HTTP_METHOD_NOT_ALLOWED = 405
 HTTP_GONE = 410
 MYUW_DATA_ERROR = 543
-NOT_INSTRUCTOR_ERROR = 403
 
 
 def _make_response(status_code, reason_phrase):
@@ -20,6 +21,11 @@ def _make_response(status_code, reason_phrase):
     response.status_code = status_code
     response.reason_phrase = reason_phrase
     return response
+
+
+def unauthorized_error():
+    return _make_response(UNAUTHORIZED_ERROR,
+                          "Action Forbidden while overriding user")
 
 
 def not_instructor_error():

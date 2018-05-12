@@ -3,7 +3,7 @@ import logging
 import traceback
 from datetime import datetime
 from restclients_core.exceptions import DataFailureException
-from myuw.dao import not_overriding
+from myuw.dao import is_action_disabled
 from myuw.dao.notice import get_notices_for_current_user
 from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
@@ -57,7 +57,7 @@ class Notices(ProtectedAPI):
         return _associate_short_to_long(notice_json)
 
     def put(self, request, *args, **kwargs):
-        if not_overriding():
+        if not is_action_disabled():
             notice_hashes = json.loads(request.body).get('notice_hashes', None)
             mark_notices_read_for_current_user(request, notice_hashes)
             log_msg_with_request(action_logger, None, request,

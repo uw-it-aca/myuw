@@ -76,7 +76,7 @@ class TestPageMethods(MyuwApiTest):
         self.assertEquals(response.context["banner_messages"], [])
         self.assertEquals(response.context["display_onboard_message"], True)
         self.assertEquals(response.context["display_pop_up"], True)
-        self.assertEquals(response.context["save_user_actions"], True)
+        self.assertEquals(response.context["disable_actions"], False)
         self.assertIsNotNone(response.context["card_display_dates"])
         self.assertIsNotNone(response.context["user"]["affiliations"])
         self.assertEquals(response.context["user"]['email_forward_url'],

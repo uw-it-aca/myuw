@@ -18,11 +18,10 @@ var InstructorCourseCardContent = {
             CourseInstructorPanel.render(c_section);
         }
 
-        InstructorCourseCardContent.add_events(card, term,
-                                               window.user.save_user_actions);
+        InstructorCourseCardContent.add_events(card, term, window.user.is_override_and_disable_actions);
     },
 
-    add_events: function(card, term, save_user_actions) {
+    add_events: function(card, term, is_override_and_disable_actions) {
 
         $(".show_map", card).on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
@@ -32,7 +31,7 @@ var InstructorCourseCardContent = {
             WSData.log_interaction("show_map_from_course_list_"+building, term);
         });
         $(".course_delegate_link", card).on("click", function(ev) {
-            if (!save_user_actions) {
+            if (is_override_and_disable_actions) {
                 return false;
             }
             var width = 800;
