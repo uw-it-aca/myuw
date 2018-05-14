@@ -5,6 +5,8 @@ from restclients_core.exceptions import (DataFailureException, InvalidNetID,
 from myuw.dao.exceptions import NotSectionInstructorException
 from uw_sws.exceptions import InvalidSectionID
 from myuw.logger.logresp import log_err
+from myuw.views.exceptions import DisabledAction, NotInstructorError,\
+    InvalidInputFormData
 
 
 HTTP_BAD_REQUEST = 400
@@ -23,9 +25,9 @@ def _make_response(status_code, reason_phrase):
     return response
 
 
-def unauthorized_error():
+def disabled_action_error():
     return _make_response(UNAUTHORIZED_ERROR,
-                          "Action Forbidden while overriding user")
+                          "Action Disabled while overriding users")
 
 
 def not_instructor_error():
@@ -69,6 +71,13 @@ def data_error():
 def handle_exception(logger, timer, stack_trace):
     log_err(logger, timer, stack_trace.format_exc())
     exc_type, exc_value, exc_traceback = sys.exc_info()
+
+    if isinstance(exc_value, DisabledAction):
+        return disabled_action_error()
+
+    if isinstance(exc_value, NotInstructorError):
+        return not_instructor_error()
+
     if isinstance(exc_value, InvalidNetID) or\
        isinstance(exc_value, InvalidRegID):
         return invalid_session()
@@ -86,8 +95,3 @@ def handle_exception(logger, timer, stack_trace):
             (exc_value.status == 400 or exc_value.status == 404):
         return data_not_found()
     return data_error()
-
-
-class InvalidInputFormData(Exception):
-    """malformed syntax in the form input data"""
-    pass
