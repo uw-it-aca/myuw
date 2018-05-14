@@ -42,15 +42,28 @@
         margin: 0;
         padding: 0;
 
-        -webkit-columns-count: 4;
-        -moz-columns-count: 4;
-        column-count: 4;
+        -webkit-columns: 2 160px;
+        -moz-columns: 2 160px;
+        columns: 2 160px;
+
         -webkit-column-gap: 8px;
         -moz-column-gap: 8px;
         column-gap: 8px;
 
-        li {
-            display: inline-block;
+        @media (min-width: 768px) {
+            -webkit-columns-count: 3;
+            -moz-columns-count: 3;
+            column-count: 3;
+        }
+
+        @media (min-width: 1000px) {
+            -webkit-columns-count: 4;
+            -moz-columns-count: 4;
+            column-count: 4;
+        }
+
+        li.checkbox:first-child {
+            margin-top: 0;
         }
     }
 
