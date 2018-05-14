@@ -109,7 +109,7 @@ def _save_notice(request, context, notice_id=None):
     except TypeError:
         has_error = True
         context['title_error'] = True
-    if len(title) == 0:
+    if title is not None and len(title) == 0:
         has_error = True
         context['title_error'] = True
     try:
@@ -117,7 +117,7 @@ def _save_notice(request, context, notice_id=None):
     except TypeError:
         has_error = True
         context['content_error'] = True
-    if len(content) == 0:
+    if content is not None and len(content) == 0:
         has_error = True
         context['content_error'] = True
 

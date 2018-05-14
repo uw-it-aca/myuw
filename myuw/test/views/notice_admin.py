@@ -79,7 +79,6 @@ class TestNoticeAdmin(MyuwApiTest):
         saved = _save_notice(request, context)
         self.assertFalse(saved)
         self.assertTrue(context['start_error'])
-        self.assertTrue(context['end_error'])
         self.assertTrue(context['type_error'])
         self.assertTrue(context['category_error'])
         self.assertTrue(context['title_error'])
