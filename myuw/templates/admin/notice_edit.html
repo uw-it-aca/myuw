@@ -8,7 +8,9 @@
         {% else %}
         <form action="{% url 'myuw_edit_notices' notice.id %}" method="POST">
         {% endif %}
-
+            {% if has_error %}
+            <p>Error saving notice!</p>
+            {% endif %}
             <div class="row">
                 <div class="col-sm-8">
                     <h3>Display Dates</h3>
@@ -21,7 +23,13 @@
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
+                                {% if start_error %}
+                                ERROR: Must define start date
+                                {% endif %}
                             </div>
+                        {% if date_error %}
+                            <p>Start date must be before end date</p>
+                        {% endif %}
                         </div>
 
                         <div class="form-group">
@@ -41,11 +49,17 @@
                     <div class="form-group">
                         <label class="" for="notice_title">Title</label>
                         <input id="notice_title" type='text' name='title' class="form-control" value='{% if notice.title %}{{ notice.title }}{% endif %}'>
+                        {% if title_error %}
+                            <p>Required</p>
+                        {% endif %}
                     </div>
                     <div class="form-group">
                         <label class="" for="notice_content">Content</label>
                         <textarea id="notice_content" name='content' class="form-control">{% if notice.content %}{{ notice.content }}{% endif %}</textarea>
                         <p class="text-muted"><small>HTML content is enabled. &lt;a&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;abbr&gt;, &lt;br&gt;, &lt;p&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, etc...</small></p>
+                        {% if content_error %}
+                            <p>Required</p>
+                        {% endif %}
                     </div>
 
                     <div class="form-inline">
