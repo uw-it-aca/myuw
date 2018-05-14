@@ -2,10 +2,12 @@
 {% load static %}
 {% block content %}
     <div class="container notice-admin">
-        <h2>Notice Administration</h2>
+
         {% if action == "save" %}
+        <h2>Create Notice</h2>
         <form action="{% url 'myuw_create_notice' %}" method="POST">
         {% else %}
+        <h2>Edit Notice</h2>
         <form action="{% url 'myuw_edit_notices' notice.id %}" method="POST">
         {% endif %}
 
