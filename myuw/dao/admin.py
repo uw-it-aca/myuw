@@ -46,8 +46,7 @@ def is_admin():
 
 def can_override():
     try:
-        is_admin, override = get_myuw_support_role()
-        return override or is_admin
+        return any(get_myuw_support_role())
     except Exception as ex:
         logger.error("can_override ==> %s", ex)
         return False
