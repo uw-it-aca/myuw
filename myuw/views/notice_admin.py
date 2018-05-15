@@ -46,8 +46,7 @@ def edit_notice(request, notice_id):
 def list_notices(request):
     context = {}
     set_admin_wrapper_template(context)
-    now = get_comparison_datetime(request)
-    notices = MyuwNotice.objects.filter(end__gte=now).order_by('start', 'end')
+    notices = MyuwNotice.objects.order_by('start', 'end')
     context['notices'] = notices
     return render(request, "admin/notice_list.html", context)
 
