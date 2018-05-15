@@ -107,3 +107,29 @@ class TestNoticeAdmin(MyuwApiTest):
 
         self.assertEqual(notices[0].content, "<p>allowed tag</p> &lt;script"
                                              "&gt;not allowed&lt;/script&gt;")
+
+    def test_edit_notice(self):
+        notice_context = {
+            'action': 'save',
+            'title': 'The Title',
+            'content': "Foo",
+            'start_date': "2018-05-05 12:05",
+            'end_date': "2018-05-26 12:05",
+            'notice_type': 'Foo',
+            'notice_category': 'Bar'
+        }
+        rf = RequestFactory()
+        request = rf.post('', notice_context)
+        saved = _save_notice(request, {})
+        self.assertTrue(saved)
+
+        notice_context['content'] = "Bar"
+        notice_context['action'] = 'edit'
+
+        request = rf.post('', notice_context)
+        _save_notice(request, {}, 1)
+
+        request = get_request_with_date("2018-05-09")
+        get_request_with_user('javerage', request)
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(notices[0].content, 'Bar')
