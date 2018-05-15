@@ -20,6 +20,13 @@ from restclients_core.util.decorators import use_mock
 
 EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 email_backend_override = override_settings(EMAIL_BACKEND=EMAILBACKEND)
+VALIDATION_MODULE = "myuw.authorization.validate_netid"
+OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
+ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
+auth_override = override_settings(
+    USERSERVICE_VALIDATION_MODULE=VALIDATION_MODULE,
+    USERSERVICE_OVERRIDE_AUTH_MODULE=OVERRIDE_AUTH_MODULE,
+    RESTCLIENTS_ADMIN_AUTH_MODULE=ADMIN_AUTH_MODULE)
 
 
 def get_request():

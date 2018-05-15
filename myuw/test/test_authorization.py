@@ -1,9 +1,11 @@
 from django.test import TestCase
+from django.test.utils import override_settings
 from myuw.authorization import validate_netid, INVALID_STRING, NO_USER,\
     can_override_user, is_myuw_admin
-from myuw.test import get_request_with_user
+from myuw.test import get_request_with_user, auth_override
 
 
+@auth_override
 class TestValidation(TestCase):
 
     def test_validation(self):

@@ -1,10 +1,11 @@
 from django.test import TestCase
 from myuw.dao import get_netid_of_original_user
 from myuw.dao.admin import is_admin, can_override
-from myuw.test import fdao_gws_override, get_request_with_user
+from myuw.test import fdao_gws_override, get_request_with_user, auth_override
 
 
 @fdao_gws_override
+@auth_override
 class TestAdminDao(TestCase):
 
     def test_is_admin(self):
