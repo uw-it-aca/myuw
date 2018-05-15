@@ -55,3 +55,7 @@
 .notice-admin ul.affiliation li.checkbox:first-child {
   margin-top: 0;
 }
+
+.notice-admin .btn-danger {
+    margin-left: 1em;
+}

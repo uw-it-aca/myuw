@@ -86,7 +86,6 @@
                     <br/>
 
                     <h4>Campus</h4>
-                {{ notice.is_seattle }}
                     <p class="text-muted"><small>Set is a union of selections. (Seattle OR Tacoma)</small><p>
                     <div class="form-inline">
                         <div class="form-group">
@@ -169,16 +168,25 @@
                     {% csrf_token %}
                     <br/><br/>
                     <button type="submit" name="action" value="{{ action }}" class="btn btn-primary">Submit</button>
-                    <br/><br/>
+
+                    {% if action != "save" %}
+                    {% csrf_token %}
+                    <button type="submit" name="action" value="delete" class="btn btn-danger">Delete Notice</button>
+                    {% endif %}
+                    <br/><br/><br/><br/>
                 </div>
             </div>
         </form>
+
+        <!--
         {% if action != "save" %}
         <form action="{% url 'myuw_edit_notices' notice.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" name="action" value="delete">Delete</button>
         </form>
         {% endif %}
+
+    -->
     </div>
 
 {% endblock %}
