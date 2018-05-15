@@ -104,6 +104,7 @@ elif os.environ['DB'] == "mysql":
             'NAME': 'myuw',
             'USER': 'myuw',
             'PASSWORD': 'my_pass',
+            'PORT': 3306,
         }
     }
 
