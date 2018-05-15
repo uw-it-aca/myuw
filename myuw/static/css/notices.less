@@ -13,23 +13,28 @@
 
         li {
             .notice-container {
+                display: -ms-flexbox;
                 display: flex;
             }
 
             .notice-title {
+                -ms-flex: auto;
                 flex: auto;
                 padding-right: 8px;
             }
 
             .notice-status {
+                -ms-flex: 0;
                 flex: 0;
             }
 
             @media @over550 {
                 .notice-title {
+                    -ms-flex: initial;
                     flex: initial;
                 }
                 .notice-status {
+                    -ms-flex: initial;
                     flex: initial;
                 }
             }
