@@ -18,11 +18,13 @@
                {{ #each critical_notices }}
                    <li class="clearfix">
                        <div id="{{ id_hash }}" class="notice-container">
-                           {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
-                           <span class="notice-critical">Critical:</span>
-                           <a href="#{{ id_hash }}_div" class="notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
-                           <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
+                           <span class="notice-title">
+                               <span class="notice-critical">Critical:</span>
+                               <a href="#{{ id_hash }}_div" class="collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                           </span>
+                           {{ #unless is_read }}<span class="notice-status"><span class="new-status">New</span></span>{{ /unless }}
                        </div>
+                       <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
                    </li>
                {{ /each }}
            {{/if}}
@@ -31,10 +33,12 @@
                 {{#each notices}}
                     <li class="clearfix">
                         <div id="{{ id_hash }}" class="notice-container">
-                            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
-                            <a href="#{{ id_hash }}_div" class="notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
-                            <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
+                            <span class="notice-title">
+                                <a href="#{{ id_hash }}_div" class="collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                            </span>
+                            {{ #unless is_read }}<span class="notice-status"><span class="new-status">New</span></span>{{ /unless }}
                         </div>
+                        <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
                     </li>
                 {{/each}}
             {{/if}}

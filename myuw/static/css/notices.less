@@ -1,5 +1,4 @@
-@import (reference) "boilerplate.less";
-
+@over550: ~"screen and (min-width: 550px)";
 
 @notice-color-body-bg: #f5f5f5;
 @notice-color-critical: #a94442;
@@ -13,18 +12,38 @@
         list-style: none;
 
         li {
+            .notice-container {
+                display: flex;
+            }
 
-            .notice-critical {
-                color: @notice-color-critical;
-                font-weight: bold;
+            .notice-title {
+                flex: auto;
+                padding-right: 8px;
+            }
+
+            .notice-status {
+                flex: 0;
+            }
+
+            @media @over550 {
+                .notice-title {
+                    flex: initial;
+                }
+                .notice-status {
+                    flex: initial;
+                }
             }
 
             .new-status {
                 padding: 0 3px;
                 background: #f5d300;
-                float: right;
                 border-radius: 4px;
                 font-size: 12px;
+            }
+
+            .notice-critical {
+                color: @notice-color-critical;
+                font-weight: bold;
             }
 
 		}
