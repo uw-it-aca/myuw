@@ -42,8 +42,8 @@ class MyuwNotice(models.Model):
 
     def json_data(self, include_abbr_week_month_day_format=False):
         # Returns dict in same format as SDB Notices
-        notice_format = "<span class=\"notice-title\">{}</span>" \
-                        "<span class=\"notice-body-with-title\">{}</span>"
+        notice_format = u"<span class=\"notice-title\">{}</span>" \
+                        u"<span class=\"notice-body-with-title\">{}</span>"
 
         notice_content = notice_format.format(self.title, self.content)
         return {'notice_content': notice_content,
