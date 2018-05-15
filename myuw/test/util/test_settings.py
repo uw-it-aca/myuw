@@ -1,3 +1,4 @@
+from commonconf import override_settings
 from django.test import TestCase
 from django.conf import settings
 from myuw.util.settings import get_calendar_time_zone,\
@@ -7,6 +8,13 @@ from myuw.util.settings import get_calendar_time_zone,\
     get_disable_actions_when_override
 
 
+
+@override_settings(USERSERVICE_VALIDATION_MODULE=
+                   "myuw.authorization.validate_netid",
+                   USERSERVICE_OVERRIDE_AUTH_MODULE=
+                   "myuw.authorization.can_override_user",
+                   RESTCLIENTS_ADMIN_AUTH_MODULE=
+                   "myuw.authorization.can_proxy_restclient")
 class TestSetting(TestCase):
 
     def test_default(self):

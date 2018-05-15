@@ -1,9 +1,17 @@
+from commonconf import override_settings
 from django.test import TestCase
 from myuw.dao import get_netid_of_original_user
 from myuw.dao.admin import is_admin, can_override
 from myuw.test import fdao_gws_override, get_request_with_user
 
 
+
+@override_settings(USERSERVICE_VALIDATION_MODULE=
+                   "myuw.authorization.validate_netid",
+                   USERSERVICE_OVERRIDE_AUTH_MODULE=
+                   "myuw.authorization.can_override_user",
+                   RESTCLIENTS_ADMIN_AUTH_MODULE=
+                   "myuw.authorization.can_proxy_restclient")
 @fdao_gws_override
 class TestAdminDao(TestCase):
 

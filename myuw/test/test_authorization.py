@@ -1,9 +1,16 @@
+from commonconf import override_settings
 from django.test import TestCase
 from myuw.authorization import validate_netid, INVALID_STRING, NO_USER,\
     can_override_user, is_myuw_admin
 from myuw.test import get_request_with_user
 
 
+@override_settings(USERSERVICE_VALIDATION_MODULE=
+                   "myuw.authorization.validate_netid",
+                   USERSERVICE_OVERRIDE_AUTH_MODULE=
+                   "myuw.authorization.can_override_user",
+                   RESTCLIENTS_ADMIN_AUTH_MODULE=
+                   "myuw.authorization.can_proxy_restclient")
 class TestValidation(TestCase):
 
     def test_validation(self):
