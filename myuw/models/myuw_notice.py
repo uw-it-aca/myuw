@@ -45,7 +45,8 @@ class MyuwNotice(models.Model):
         notice_format = u"<span class=\"notice-title\">{}</span>" \
                         u"<span class=\"notice-body-with-title\">{}</span>"
 
-        notice_content = notice_format.format(self.title, self.content)
+        notice_content = notice_format.format(unicode(self.title, 'utf-8'),
+                                              unicode(self.content, 'utf-8'))
         return {'notice_content': notice_content,
                 'attributes': []}
 
