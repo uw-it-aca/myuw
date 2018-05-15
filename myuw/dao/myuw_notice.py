@@ -2,11 +2,22 @@ from myuw.dao.affiliation import get_all_affiliations
 from myuw.models.myuw_notice import MyuwNotice
 from myuw.dao.term import get_comparison_datetime
 from myuw.dao.notice_mapping import map_notice_category
+import pytz
 
 
 def get_myuw_notices_for_user(request):
     date = get_comparison_datetime(request)
-    active_notices = MyuwNotice.objects.filter(start__lte=date, end__gte=date)
+    fetched_notices = MyuwNotice.objects.filter(start__lte=date)
+    active_notices = []
+    for notice in fetched_notices:
+        if notice.end is None:
+            active_notices.append(notice)
+            continue
+        if notice.end is not None:
+            end = notice.end.replace(tzinfo=None)
+            if end >= date:
+                active_notices.append(notice)
+
     affiliations = get_all_affiliations(request)
 
     campus_notices = []
