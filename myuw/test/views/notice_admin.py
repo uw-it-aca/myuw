@@ -1,9 +1,9 @@
-from django.test.utils import override_settings
-from django.core.urlresolvers import reverse
 from myuw.test.api import missing_url, MyuwApiTest
 from django.test.client import RequestFactory
 from myuw.views.notice_admin import _get_datetime, _save_notice
 from datetime import datetime
+from myuw.dao.myuw_notice import get_myuw_notices_for_user
+from myuw.test import get_request_with_user, get_request_with_date
 
 
 class TestNoticeAdmin(MyuwApiTest):
@@ -83,3 +83,27 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertTrue(context['category_error'])
         self.assertTrue(context['title_error'])
         self.assertTrue(context['content_error'])
+
+    def test_html_content(self):
+        notice_context = {
+            'action': 'save',
+            'title': '<b>The</b> <p>Title</p>',
+            'content': "<p>allowed tag</p> <script>not allowed</script>",
+            'start_date': "2018-05-05 12:05",
+            'end_date': "2018-05-26 12:05",
+            'notice_type': 'Foo',
+            'notice_category': 'Bar'
+        }
+        rf = RequestFactory()
+        request = rf.post('', notice_context)
+        _save_notice(request, {})
+
+        request = get_request_with_date("2018-05-09")
+        get_request_with_user('javerage', request)
+        notices = get_myuw_notices_for_user(request)
+
+        self.assertEqual(notices[0].title, "<b>The</b> &lt;p&gt;"
+                                           "Title&lt;/p&gt;")
+
+        self.assertEqual(notices[0].content, "<p>allowed tag</p> &lt;script"
+                                             "&gt;not allowed&lt;/script&gt;")

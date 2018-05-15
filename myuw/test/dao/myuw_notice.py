@@ -1,8 +1,5 @@
+# -*- coding: utf8 -*-
 from django.test import TestCase
-from django.test.utils import override_settings
-from django.core.urlresolvers import reverse
-from django.test.client import RequestFactory
-from myuw.views.notice_admin import _get_datetime, _save_notice
 from datetime import datetime
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
 from myuw.dao.notice_mapping import categorize_notices
@@ -127,3 +124,16 @@ class TestMyuwNotice(TestCase):
         categorized = categorize_notices([notice])
         self.assertEqual(len(categorized), 1)
         self.assertEqual(categorized[0].location_tags, ['notice_banner'])
+
+    def test_notice_content(self):
+        notice = MyuwNotice(title=" ٰ ٱ ٲ ٳ ٴ ٵ ٶ ٷ ٸ ٹ ٺ",
+                            content=" ↙ ↚ ↛ ↜ ↝ ↞ ↟ ↠ ↡ ↢ ↣ ↤ ↥ ↦ ↧",
+                            notice_type="Banner",
+                            notice_category="Student",
+                            start=datetime(2018, 6, 8, 10, 0, 0),
+                            end=datetime(2018, 6, 20, 10, 0, 0),)
+        notice.save()
+        self.assertEqual(notice.json_data()['notice_content'],
+                         u"<span class=\"notice-title\"> ٰ ٱ ٲ ٳ ٴ ٵ ٶ ٷ ٸ ٹ ٺ"
+                         u"</span><span class=\"notice-body-with-title\">"
+                         u" ↙ ↚ ↛ ↜ ↝ ↞ ↟ ↠ ↡ ↢ ↣ ↤ ↥ ↦ ↧</span>")
