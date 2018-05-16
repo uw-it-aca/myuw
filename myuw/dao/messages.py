@@ -49,7 +49,11 @@ def get_current_messages(request):
     return filtered
 
 
-def clean_html(input):
-    return bleach.clean(input, tags=MESSAGE_ALLOWED_TAGS,
+def clean_html(input, additional_tags=None):
+    tags = MESSAGE_ALLOWED_TAGS[:]
+    if additional_tags:
+        tags += additional_tags
+
+    return bleach.clean(input, tags=tags,
                         attributes=MESSAGE_ALLOWED_ATTRIBUTES,
                         styles=MESSAGE_ALLOWED_STYLES)
