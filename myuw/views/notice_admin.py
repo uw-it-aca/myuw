@@ -16,8 +16,7 @@ MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
 @admin_required('MYUW_ADMIN_GROUP')
 def create_notice(request):
     context = {}
-    if request.POST:
-        if _save_notice(request, context):
+    if request.POST and _save_notice(request, context):
             return redirect('myuw_manage_notices')
     set_admin_wrapper_template(context)
     context['action'] = "save"
@@ -58,6 +57,8 @@ def _get_notice_by_id(notice_id):
 
 def _save_notice(request, context, notice_id=None):
     form_action = request.POST.get('action')
+    if form_action not in ('save', 'edit'):
+        return False
 
     has_error = False
 
