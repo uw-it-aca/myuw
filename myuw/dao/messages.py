@@ -50,7 +50,7 @@ def get_current_messages(request):
 
 
 def clean_html(input, additional_tags=None):
-    tags = MESSAGE_ALLOWED_TAGS
+    tags = MESSAGE_ALLOWED_TAGS[:]
     if additional_tags:
         tags += additional_tags
 
