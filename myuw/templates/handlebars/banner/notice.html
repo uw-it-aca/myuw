@@ -1,33 +1,47 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "notice_banner" %}
 
-    <div id="app_notices" class="myuw-card">
+    <div id="app_notices" class="myuw-card notices-summary">
 
-        {{ #if notices}}
-            <h3 class="myuw-card-title text-danger">Critical Notices</h3>
-        {{else}}
-            <h3 class="myuw-card-title">Notices</h3>
-        {{/if}}
+        <h3 class="myuw-card-title">Notices</h3>
 
-        <div class="critical-notices-container myuw-card-section">
-               {{ #if notices }}
-               <ul class="notice-content-list">
-                   {{ #each notices }}
-                   <li class="notice-content-list-item clearfix">
+        {{ #unless critical_notices }}{{ #unless notices }}
+        <p>You do not have any notices at this time.</p>
+        {{ /unless }}{{ /unless }}
+
+
+        {{ #not_empty critical_notices notices }}
+            <ul class="notice-list unstyled-list">
+        {{ /not_empty }}
+
+            {{ #if critical_notices }}
+               {{ #each critical_notices }}
+                   <li class="clearfix">
                        <div id="{{ id_hash }}" class="notice-container">
-                           <div class="notice-category-icon"><i class="fa {{ icon_class }}" title="{{ category }}" aria-hidden="true"></i></div>
                            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
-                           <a href="#{{ id_hash }}_div" class="crit-notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
-                           <div id="{{ id_hash }}_div" class="collapse" aria-hidden="true" hidden="hidden">{{{ notice_body }}}</div>
+                           <span class="notice-critical">Critical:</span>
+                           <a href="#{{ id_hash }}_div" class="notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                           <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
                        </div>
                    </li>
-                   {{ /each }}
-               </ul>
-               {{ else }}
-               <p>You have no critical notices at this time.</p>
-               {{/if}}
-        </div>
+               {{ /each }}
+           {{/if}}
 
-        <div class="other-notices-link"><a href="/notices">{{ #if total_unread }}{{ total_unread }} more new {{ pluralize total_unread "notice" "notices" }}{{ else }}View all notices{{ /if }}</a></div>
+           {{#if notices}}
+                {{#each notices}}
+                    <li class="clearfix">
+                        <div id="{{ id_hash }}" class="notice-container">
+                            {{ #unless is_read }}<span class="new-status">New</span>{{ /unless }}
+                            <a href="#{{ id_hash }}_div" class="notice-title collapsed" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                            <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
+                        </div>
+                    </li>
+                {{/each}}
+            {{/if}}
+
+        {{ #not_empty critical_notices notices }}
+        </ul>
+        {{ /not_empty }}
+
     </div>
 {% endtplhandlebars %}
