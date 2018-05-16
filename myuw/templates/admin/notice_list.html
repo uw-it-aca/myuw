@@ -1,0 +1,26 @@
+{% extends wrapper_template %}
+{% load static %}
+{% block content %}
+    <div class="container notice-admin">
+        <h2>Notice Administration</h2>
+
+        <h3>Current Notices</h3>
+        {% if notices %}
+            <ol class="notices-custom-list">
+            {% for notice in notices %}
+                <li><a href="{% url 'myuw_edit_notices' notice.id %}">{{ notice.title }}</a> <span class="text-muted">{{ notice.start }} - {{ notice.end }}</span></li>
+            {% endfor %}
+            </ol>
+        {% else %}
+            <p>No notices</p>
+        {% endif %}
+
+        <br/>
+        <a href="{% url 'myuw_create_notice' %}" class="btn btn-primary" role="button">Create New Notice</a>
+
+    </div>
+{% endblock %}
+
+{% block extra_css %}
+    <link href="{% static 'css/notice_admin.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
