@@ -48,7 +48,7 @@ class TestPageMethods(MyuwApiTest):
         url = reverse("myuw_date_override")
         self.set_user('jbothell')
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 401)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_non_student_mobile(self):

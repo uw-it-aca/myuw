@@ -35,6 +35,4 @@ class TestViewsLinkAdmin(MyuwApiTest):
         url = reverse("myuw_popular_links",
                       kwargs={'page': 1})
         response = self.client.post(url)
-        self.assertEquals(response.status_code, 200)
-        not_authorized = "<title>403 Error: Access Denied</title>"
-        self.assertTrue(not_authorized in str(response.content))
+        self.assertEquals(response.status_code, 401)

@@ -15,7 +15,7 @@ from myuw.dao.term import get_default_date, get_comparison_datetime, \
     get_default_datetime
 from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
-from myuw.views.decorators import override_required
+from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
 DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
@@ -26,7 +26,7 @@ DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
 
 
 @login_required
-@override_required
+@admin_required
 def override(request):
     logger = logging.getLogger(__name__)
 

@@ -9,13 +9,13 @@
             <li><a href="{{ user_override_url }}">{{ userservice_link|default:"Impersonate User" }}</a></li>
         {% endif %}
 
-        <li><a href="{% url 'myuw_date_override' %}">Date Override</a></li>
     </ul>
 {% endif %}
 
 {% if is_myuw_admin %}
     <h3>MyUW Admin</h3>
     <ul>
+        <li><a href="{% url 'myuw_date_override' %}">Date Override</a></li>
         <li><a href="{% url 'myuw_manage_messages' %}">Banner Messages</a></li>
         <li><a href="{% url 'myuw_popular_links' %}">Popular Links</a></li>
     </ul>
