@@ -29,7 +29,7 @@ def get_netid_of_original_user():
     return UserService().get_original_user()
 
 
-def is_action_disabled(request=None):
+def is_action_disabled():
     """
     return True if overriding and
     MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE is True

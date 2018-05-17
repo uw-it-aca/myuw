@@ -14,6 +14,7 @@ from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.term import get_specific_term
 from uw_gradepage.grading_status import get_grading_status
+from myuw.dao import is_action_disabled
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
@@ -249,6 +250,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data = json_data["sections"][section_index]
         section_data["index"] = section_index
         section_index += 1
+
+        section_data["is_override_and_disable_actions"] = is_action_disabled()
 
         section_data["section_type"] = section.section_type
         section_data["color_id"] = section.color_id
