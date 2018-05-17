@@ -38,7 +38,7 @@ class TestDaoInit(MyuwApiTest):
             request = get_request_with_user('javerage')
             self.assertEquals(UserService().get_original_user(), 'javerage')
             self.assertEquals(UserService().get_override_user(), None)
-            self.assertFalse(is_action_disabled(request))
+            self.assertFalse(is_action_disabled())
 
             set_override_user('bill')
             self.assertEquals(UserService().get_original_user(), 'javerage')
@@ -49,7 +49,7 @@ class TestDaoInit(MyuwApiTest):
         with self.settings(DEBUG=False,
                            MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=False):
             request = get_request_with_user('javerage')
-            self.assertFalse(is_action_disabled(request))
+            self.assertFalse(is_action_disabled())
 
             set_override_user('bill')
             self.assertEquals(UserService().get_original_user(), 'javerage')
