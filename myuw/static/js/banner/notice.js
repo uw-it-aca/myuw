@@ -56,6 +56,7 @@ var NoticeBanner = {
             NoticeBanner._mark_read(e.target);
             var notice_id = $(e.target).parents(".notice-container").first().attr('id');
             var aria_div = $("#"+notice_id+"_div");
+            var aria_focus = $("#"+notice_id+"_focus");
             var aria_a = $(e.currentTarget);
 
             if(aria_div.attr('aria-hidden') === "true"){
@@ -68,8 +69,8 @@ var NoticeBanner = {
                     aria_a.attr('aria-expanded', true);
 
                     // Set focus on div
-                    aria_div.attr('tabindex', 0);
-                    aria_div.focus();
+                    aria_focus.attr('tabindex', 0);
+                    aria_focus.focus();
                 }, 300);
             } else {
                 window.setTimeout(function() {
@@ -79,7 +80,7 @@ var NoticeBanner = {
                     aria_a.attr('aria-expanded', false);
 
                     // Remove tabindex
-                    aria_div.removeAttr('tabindex');
+                    aria_focus.removeAttr('tabindex');
                 }, 300);
             }
 

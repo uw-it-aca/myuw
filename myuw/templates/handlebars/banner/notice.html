@@ -24,7 +24,7 @@
                            </span>
                            {{ #unless is_read }}<span class="notice-status"><span class="new-status">New</span></span>{{ /unless }}
                        </div>
-                       <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div class="notice-body-wrapper">{{{ notice_body }}}</div></div>
+                       <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div id="{{ id_hash }}_focus" class="notice-body-wrapper">{{{ notice_body }}}</div></div>
                    </li>
                {{ /each }}
            {{/if}}
