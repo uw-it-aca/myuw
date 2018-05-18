@@ -38,7 +38,7 @@ setup(
         'python-binary-memcached',
         'UW-RestClients-Core==0.9.6',
         'UW-RestClients-SWS<2.0,>=1.5.3',
-        'UW-RestClients-PWS<1.0,>=0.7.1',
+        'UW-RestClients-PWS<2.0,>=1.0.1',
         'UW-RestClients-HFS<1.0',
         'UW-RestClients-GWS>=1.0,<2.0',
         'UW-RestClients-GradePage<1.0,>=0.1.1',
