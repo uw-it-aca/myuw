@@ -1,5 +1,4 @@
-@import (reference) "boilerplate.less";
-
+@over550: ~"screen and (min-width: 550px)";
 
 @notice-color-body-bg: #f5f5f5;
 @notice-color-critical: #a94442;
@@ -12,22 +11,49 @@
         padding-left: 0;
         list-style: none;
 
-        li {
+        .notice-container {
+            display: -ms-flexbox;
+            display: flex;
 
-            .notice-critical {
-                color: @notice-color-critical;
-                font-weight: bold;
+            & > .notice-title {
+                -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+                padding-right: 8px;
+                display: block; /* fixes ie10 */
+
+                @media @over550 {
+                    -ms-flex: 0 1 auto;
+                    flex: 0 1 auto;
+                }
             }
 
-            .new-status {
-                padding: 0 3px;
-                background: #f5d300;
-                float: right;
-                border-radius: 4px;
-                font-size: 12px;
+            & > .notice-status {
+                -ms-flex: 0 0 4rem;
+                flex: 0 0 4rem;
+                text-align: right;
+
+                @media @over550 {
+                    -ms-flex: 0 1 auto;
+                    flex: 0 1 auto;
+                }
             }
 
-		}
+        }
+
+
+        .new-status {
+            padding: 0 3px;
+            background: #f5d300;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .notice-critical {
+            color: @notice-color-critical;
+            font-weight: bold;
+        }
+
+
     }
 }
 
