@@ -1,0 +1,43 @@
+{"DisplayName":"SEATTLE GRADUATE STUDENT",
+"EduPersonAffiliations":["member",
+                         "student",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"SEATTLE GRADUATE",
+"RegisteredName":"SEATTLE GRADUATE STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"10001",
+"UWNetID":"seagrad",
+"UWRegID":"10000000000000000000000000000002",
+"WhitepagesPublish":true,
+"PersonAffiliations":{
+  "EmployeePersonAffiliation":{
+     "EmployeeID":"100000002",
+     "EmployeeWhitePages":{
+         "Addresses": [],
+            "EmailAddresses":[],
+            "Faxes":[],
+            "Mobiles":[],
+            "Phones": [],
+            "Pagers":[],
+            "Name" : null,
+            "Positions":[],
+            "PublishInDirectory": false,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment": null,
+        "MailStop" : null},
+  "StudentPersonAffiliation":{
+      "StudentNumber":"1000002",
+      "StudentSystemKey":"1000002",
+      "StudentWhitePages":{
+          "Class":"Master",
+          "Departments":["Computer Science",
+                         "Anthropology"],
+          "Email":"seagrad@uw.edu",
+          "Name":"SEATTLE GRADUATE STUDENT",
+          "Phone":"+1 206 123-1234",
+          "PublishInDirectory":false}
+}}}

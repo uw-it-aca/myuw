@@ -1,0 +1,48 @@
+{
+"DisplayName":"JAMES NEW STUDENT",
+"EduPersonAffiliations":["member",
+                         "student",
+                         "alum",
+                         "staff",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"JAMES ERROR",
+"RegisteredName":"JAMES ERROR STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"35443",
+"UWNetID":"jerror",
+"UWRegID":"11111111111111111111111111111111",
+"WhitepagesPublish":false,
+"PersonAffiliations":
+   {"AlumPersonAffiliation":{"DevelopmentID":"1111111111"},
+    "EmployeePersonAffiliation":
+           {"EmployeeID":"111111111",
+            "EmployeeWhitePages":{
+                "Addresses": [],
+                "EmailAddresses":[],
+                "Faxes":[],
+                "Mobiles":[],
+                "Phones": [],
+                "Pagers":[],
+                "Name" : null,
+                "Positions":[],
+                "PublishInDirectory": false,
+                "TouchDials":[],
+                "VoiceMails":[]},
+            "HomeDepartment":"C&C TEST BUDGET",
+            "MailStop":null},
+       "StudentPersonAffiliation":
+           {"StudentNumber":"1111111",
+            "StudentSystemKey":"111111111",
+            "StudentWhitePages":{
+                "Class":null,
+                "Departments":[],
+                "Email":null,
+                "Name":null,
+                "Phone":null,
+                "PublishInDirectory":false}
+      }
+   }
+}

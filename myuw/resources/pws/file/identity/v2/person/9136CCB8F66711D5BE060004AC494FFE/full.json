@@ -1,0 +1,46 @@
+{"DisplayName":"J. Average Student",
+"EduPersonAffiliations":["member","student","alum","staff","employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"JAMES AVERAGE",
+"RegisteredName":"JAMES AVERAGE STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"35443",
+"UWNetID":"javerage",
+"UWRegID":"9136CCB8F66711D5BE060004AC494FFE",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"123456789",
+        "EmployeeWhitePages":{
+            "Addresses": [],
+            "EmailAddresses":["javerage@uw.edu"],
+            "Faxes":[],
+            "Mobiles":[],
+            "Phones": ["+1 206 111-1234",
+                       "+1 425 555-1236"],
+            "Pagers":[],
+            "Name" : "Average, James",
+            "Positions":[{
+                "EWPDept":"Computer Science",
+                "EWPTitle":"Teaching Assistant",
+                "Primary":true}],
+            "PublishInDirectory": true,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment":"Computer Science",
+        "MailStop":"359540"},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1033334",
+        "StudentSystemKey":"000083856",
+        "StudentWhitePages":{
+            "Class":"Senior",
+            "Departments":["Computer Science",
+                           "Anthropology"],
+            "Email":"javerage@uw.edu",
+            "Name":"JAMES AVERAGE",
+            "Phone":"+1 206 123-1234",
+            "PublishInDirectory":false}
+}}}

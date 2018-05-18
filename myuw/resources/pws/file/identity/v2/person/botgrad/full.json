@@ -1,0 +1,45 @@
+{"DisplayName":"BOTHELL GRADUATE STUDENT",
+"EduPersonAffiliations":["member",
+                         "student",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"BOTHELL GRADUATE",
+"RegisteredName":"BOTHELL GRADUATE STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"10001",
+"UWNetID":"botgrad",
+"UWRegID":"10000000000000000000000000000003",
+"WhitepagesPublish":true,
+"PersonAffiliations":{
+  "EmployeePersonAffiliation":{
+     "EmployeeID":"100000003",
+     "EmployeeWhitePages":{
+         "Addresses":[],
+         "EmailAddresses":["botgrad@uw.edu"],
+         "Faxes":[],
+         "Mobiles":[],
+         "Name":"Grad, Bothell",
+         "Pagers":[],
+         "Phones":[],
+         "Positions":[
+             {"EWPDept":"BOT: History: Admin JM Student",
+              "EWPTitle":"Reader\/Grader (NE H UAW ASE)",
+              "Primary":true}],
+         "PublishInDirectory":false,
+         "TouchDials":[],
+         "VoiceMails":[]},
+      "HomeDepartment":"BOT: History: Admin JM Student",
+      "MailStop":"358501"},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1000003",
+        "StudentSystemKey":"001000003",
+        "StudentWhitePages":{
+            "Class":"Graduate",
+            "Departments":["History"],
+            "Email":"botgrad@uw.edu",
+            "Name":"Bothell, Grad Student",
+            "Phone":"+1 425 123-1234",
+            "PublishInDirectory":false}
+}}}
