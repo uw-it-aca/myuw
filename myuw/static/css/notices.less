@@ -11,48 +11,48 @@
         padding-left: 0;
         list-style: none;
 
-        li {
-            .notice-container {
-                display: -ms-flexbox;
-                display: flex;
-            }
+        .notice-container {
+            display: -ms-flexbox;
+            display: flex;
 
-            .notice-title {
+            & > .notice-title {
                 -ms-flex: 1 1 auto;
                 flex: 1 1 auto;
                 padding-right: 8px;
+
+                @media @over550 {
+                    -ms-flex: 0 1 auto;
+                    flex: 0 1 auto;
+                }
             }
 
-            .notice-status {
+            & > .notice-status {
                 -ms-flex: 0 0 4rem;
                 flex: 0 0 4rem;
                 text-align: right;
-            }
 
-            @media @over550 {
-                .notice-title {
-                    -ms-flex: 0 1 auto;
-                    flex: 0 1 auto;
-                }
-                .notice-status {
+                @media @over550 {
                     -ms-flex: 0 1 auto;
                     flex: 0 1 auto;
                 }
             }
 
-            .new-status {
-                padding: 0 3px;
-                background: #f5d300;
-                border-radius: 4px;
-                font-size: 12px;
-            }
+        }
 
-            .notice-critical {
-                color: @notice-color-critical;
-                font-weight: bold;
-            }
 
-		}
+        .new-status {
+            padding: 0 3px;
+            background: #f5d300;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .notice-critical {
+            color: @notice-color-critical;
+            font-weight: bold;
+        }
+
+
     }
 }
 
