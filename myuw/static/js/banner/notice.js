@@ -52,9 +52,9 @@ var NoticeBanner = {
 
 
     _init_events: function () {
-        $(".notice-title").on("click", function(e) {
-            NoticeBanner._mark_read(e.target);
-            var notice_id = $(e.target).parents(".notice-container").first().attr('id');
+        $(".js-notice-link").on("click", function(e) {
+            NoticeBanner._mark_read(e.currentTarget);
+            var notice_id = $(e.currentTarget).parents(".notice-container").first().attr('id');
             var aria_div = $("#"+notice_id+"_div");
             var aria_focus = $("#"+notice_id+"_focus");
             var aria_a = $(e.currentTarget);
@@ -91,12 +91,13 @@ var NoticeBanner = {
         // Looks backwards because class isn't removed until elm is shown,
         // which happens long after click event fires,
         // if has class element was just shown
-        if($(elm).parent().hasClass('collapsed')){
+        if($(elm).hasClass('collapsed')){
             var notice_id = $(elm).parents(".notice-container").first().attr('id');
             WSData.mark_notices_read([notice_id]);
-            var new_tag = $(elm).parent().siblings(".new-status").first();
-            new_tag.hide();
-
+            var new_tag = $("#"+notice_id).find( ".new-status" ).first();
+            if (new_tag.length > 0) {
+                new_tag.hide();
+            }
         }
     },
 
