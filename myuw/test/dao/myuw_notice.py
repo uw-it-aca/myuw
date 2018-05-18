@@ -1,8 +1,5 @@
+# -*- coding: utf8 -*-
 from django.test import TestCase
-from django.test.utils import override_settings
-from django.core.urlresolvers import reverse
-from django.test.client import RequestFactory
-from myuw.views.notice_admin import _get_datetime, _save_notice
 from datetime import datetime
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
 from myuw.dao.notice_mapping import categorize_notices

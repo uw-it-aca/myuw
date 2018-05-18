@@ -1752,13 +1752,9 @@ label { font-weight: normal; margin-bottom: auto; }
     .seven-day span.final-date {
       font-size: 85%;
     }
-    /*
-    .six-day:last-child, .five-day:last-child {
-    	border-right: none;
-
-    }*/
+    
     .six-day:first-child,
-    seven-day:first-child,
+    .seven-day:first-child,
     .five-day:first-child {
       border-left: 2px groove #eeeeee;
     }
@@ -1768,7 +1764,10 @@ label { font-weight: normal; margin-bottom: auto; }
     	border-left: 1px solid #ddd;
     	border-right: 1px solid #ddd;
     }
+	.six-day:last-child, .five-day:last-child {
+    	border-right: none;
 
+    }
     .day-col {
       position: relative;
       height: 92%;

@@ -6,18 +6,17 @@ from django.contrib.auth.decorators import login_required
 import logging
 from myuw.models.myuw_notice import MyuwNotice
 from datetime import datetime
-from myuw.dao.term import get_comparison_datetime
 
 
 logger = logging.getLogger(__name__)
+MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
 
 
 @login_required
 @admin_required('MYUW_ADMIN_GROUP')
 def create_notice(request):
     context = {}
-    if request.POST:
-        if _save_notice(request, context):
+    if request.POST and _save_notice(request, context):
             return redirect('myuw_manage_notices')
     set_admin_wrapper_template(context)
     context['action'] = "save"
@@ -56,16 +55,10 @@ def _get_notice_by_id(notice_id):
     return notice
 
 
-def _get_notice_data(request, context):
-    pass
-
-
-def _edit_notice(request, context):
-    pass
-
-
 def _save_notice(request, context, notice_id=None):
     form_action = request.POST.get('action')
+    if form_action not in ('save', 'edit'):
+        return False
 
     has_error = False
 
@@ -112,7 +105,8 @@ def _save_notice(request, context, notice_id=None):
         has_error = True
         context['title_error'] = True
     try:
-        content = clean_html(request.POST.get('content'))
+        content = clean_html(request.POST.get('content'),
+                             MYUW_NOTICE_ALLOWED_TAGS)
     except TypeError:
         has_error = True
         context['content_error'] = True

@@ -128,7 +128,7 @@ var VisualScheduleCard = {
                         if(course_data.meets_saturday && course_data.meets_sunday){
                             visual_data.day_class = "seven-day";
                         } else if(course_data.meets_saturday || course_data.meets_sunday){
-                            visual_data.day_class = "seven-day";
+                            visual_data.day_class = "six-day";
                         } else {
 
                         }
