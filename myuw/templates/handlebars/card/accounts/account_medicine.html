@@ -2,12 +2,12 @@
 {% load static %}
 {% tplhandlebars "accounts_medicine" %}
 
-<div class="card" style="position:relative;" id="medicine-pw"> 
-    <div class="c7Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div> 
+<div class="card" style="position:relative;" id="medicine-pw">
+    <div class="c7Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div>
     <div class="med-logo"><img src="{% static '/images/UWMedicine_Logo_RGB@2x.png' %}" width="100px" alt=""></div>
     <h3>UW Medicine Account </h3>
     <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
-
+    {{#unless has_error}}
     {{#if med_pw_expired }}
         <div class="pw-exp">
 	    <p class="pw-exp-date password-alert">Password expired on {{toFriendlyDate expires_med}}.
@@ -27,6 +27,9 @@
             <div class="pw-link"><a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a></div>
         </div><!-- .card-badge -->
     {{/if}}
+    {{else}}
+    <div>ERR</div>
+    {{/unless}}
 </div> <!-- .card -->
 
 {% endtplhandlebars %}
