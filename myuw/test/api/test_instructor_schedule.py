@@ -27,7 +27,6 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(len(data['sections']), 6)
 
         section1 = data['sections'][0]
-        self.assertFalse(section1["is_override_and_disable_actions"])
         self.assertEqual(section1['lib_subj_guide'],
                          'http://guides.lib.uw.edu/research')
         self.assertEqual(section1['curriculum_abbr'], "ESS")
