@@ -5,6 +5,7 @@
 
     <h3 aria-hidden="true">Husky Card</h3>
     <h3 class="sr-only">Husky Card accounts</h3>
+    {{#unless has_error}}
     <div class="card-badge-container">
     <ul class="card_list" >
 	    <!--Tacoma Dawg Dollars    -->
@@ -76,5 +77,8 @@
         {{/if}}
 		{{/if}}<!-- End of Tacoma affil    -->
     </div>
+    {{else}}
+    <div>Card Error</div>
+    {{/unless}}
 </div>
 {% endtplhandlebars %}

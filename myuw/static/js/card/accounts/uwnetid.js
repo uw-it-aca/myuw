@@ -7,7 +7,7 @@ var UwnetidCard = {
     },
 
     render_error: function() {
-        UwnetidCard._render_with_context({has_error: true})
+        UwnetidCard._render_with_context({has_error: true});
     },
 
     _render_with_context: function(context){
