@@ -4,7 +4,7 @@
 <div class="card"  data-name="TuitionCard" data-type="card">
 	<!-- Card title -->
     <h3>Tuition &amp; Fees</h3>
-
+    {{#unless has_error}}
         <!-- if tuition due date is TODAY -->
     {{#if due_today}}
         <div class="card-critical-alert">
@@ -173,7 +173,12 @@
         <!-- finaid notices end -->
 		{{/if}}
      </div>
-
+    {{else}}
+        <div>ERROR</div>
+        {{#if is_pce}}
+        <div> IS PCE</div>
+        {{/if}}
+    {{/unless}}
     {% include "handlebars/card/accounts/tuition_resources.html" %}
 
 </div>

@@ -27,8 +27,8 @@ var TuitionCard = {
             remove_card(TuitionCard.dom_target);
             return;
         }
-        var raw = CardWithError.render("Tuition & Fees");
-        TuitionCard.dom_target.html(raw);
+        TuitionCard._render_with_context({has_error: true,
+                                         is_pce: window.user.pce})
     },
 
     render_upon_data: function() {
@@ -51,6 +51,12 @@ var TuitionCard = {
             tuition: data,
             is_credit: is_credit
         };
+    },
+    _render_with_context: function(context) {
+        var source = $("#tuition_card").html();
+        var template = Handlebars.compile(source);
+        var raw = template(context);
+        TuitionCard.dom_target.html(raw);
     },
 
     _render: function () {
@@ -118,10 +124,7 @@ var TuitionCard = {
                            "tuition_summeraid_avail_title"
                           ];
         template_data.finaid_notices = Notices.get_ordered_finaid_notices(finaid_tags);
-        var source = $("#tuition_card").html();
-        var template = Handlebars.compile(source);
-        var raw = template(template_data);
-        TuitionCard.dom_target.html(raw);
+        TuitionCard._render_with_context(template_data);
         LogUtils.cardLoaded(TuitionCard.name, TuitionCard.dom_target);
         TuitionCard._init_events();
     },
