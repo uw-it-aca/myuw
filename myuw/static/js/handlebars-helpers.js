@@ -3,6 +3,9 @@ Handlebars.registerHelper("formatPhoneNumber", function(value) {
     if (arguments.length === 0 || value === undefined || value.length === 0) {
         return '';
     }
+    if (value.match(/^\+1 /)) {
+        value = value.substring(3);
+    }
     var regexp = /^(\d{3})([ -\.]?)(\d{3})([ -\.]?)(\d{4})$/;
     var number = value.match(regexp);
     if (number) {
