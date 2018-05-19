@@ -105,7 +105,10 @@ class UserNotices(models.Model):
         notice_hash = hashlib.md5()
         notice_hash.update(notice.notice_type.encode('utf-8'))
         notice_hash.update(notice.notice_category.encode('utf-8'))
-        notice_hash.update(notice.notice_content.encode('utf-8'))
+        try:
+            notice_hash.update(notice.notice_content.encode('utf-8'))
+        except AttributeError:
+            notice_hash.update(notice.get_notice_content().encode('utf-8'))
         return notice_hash.hexdigest()
 
     @staticmethod
