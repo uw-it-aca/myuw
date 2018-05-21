@@ -164,3 +164,9 @@ THRIVE_OUTPUT = "/hx_toolkit_output"
 USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
+
+#Support Tools settings
+SUPPORTTOOLS_PARENT_APP = "MyUW"
+SUPPORTTOOLS_PARENT_APP_URL = "/"
+
+REMOTE_USER_FORMAT = "uwnetid"
