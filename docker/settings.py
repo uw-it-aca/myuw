@@ -21,26 +21,10 @@ SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'debug': DEBUG,
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+
+ALLOWED_HOSTS = ['*']
 
 
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -53,12 +37,14 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'rc_django',
     'templatetag_handlebars',
     'myuw',
     'userservice',
     'django_client_logger',
-    'rc_django',
-    'blti'
+    'supporttools',
+    'blti',
+    'hx_toolkit'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,24 +52,24 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.PersistentRemoteUserMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'userservice.user.UserServiceMiddleware',
-    'rc_django.middleware.EnableServiceDegradationMiddleware',
+    'django_mobileesp.middleware.UserAgentDetectionMiddleware'
 )
+
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.RemoteUserBackend',
-#    'django.contrib.auth.backends.ModelBackend',
+
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
-ROOT_URLCONF = 'travis-ci.urls'
+ROOT_URLCONF = 'project.urls'
 
-WSGI_APPLICATION = 'travis-ci.wsgi.application'
+WSGI_APPLICATION = 'project.wsgi.application'
 
 
 # Database
@@ -136,5 +122,45 @@ STATICFILES_FINDERS = (
 
 COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
+STATIC_ROOT = "/static/"
+
+# Test the memcached cache code
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+USERSERVICE_ADMIN_GROUP = ' '
+RESTCLIENTS_ADMIN_GROUP = ''
+
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug':  True,
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        }
+    }
+]
+# MYUW_PREFETCH_THREADING = True
+MYUW_ENABLED_FEATURES = ['instructor_schedule', 'employee_profile']
+
+MAILMAN_COURSEREQUEST_RECIPIENT = ""
+RESTCLIENTS_TEST_MEMCACHED = True
+RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+
+
+# Thrive required settings
+
+MEDIA_ROOT = "/statics/hx_images"
+MEDIA_URL = "/uploaded_images/"
+
+THRIVE_OUTPUT = "/hx_toolkit_output"
+
+USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
+USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
+RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
