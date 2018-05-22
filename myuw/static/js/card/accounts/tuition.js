@@ -28,7 +28,7 @@ var TuitionCard = {
             return;
         }
         TuitionCard._render_with_context({has_error: true,
-                                         is_pce: window.user.pce})
+                                         is_pce: window.user.pce});
     },
 
     render_upon_data: function() {
