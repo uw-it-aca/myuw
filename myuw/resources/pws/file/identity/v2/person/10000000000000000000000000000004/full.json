@@ -31,7 +31,7 @@
       "MailStop":"358401"},
     "StudentPersonAffiliation":{
         "StudentNumber":"1000004",
-        "StudentSystemKey":"1000004",
+        "StudentSystemKey":"001000004",
         "StudentWhitePages":{
             "Class":"Senior",
             "Departments":[],

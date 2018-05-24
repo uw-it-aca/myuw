@@ -174,7 +174,7 @@ class OpenInstSectionDetails(OpenAPI):
                     'is_auditor': registration.is_auditor,
                     'is_independent_start': registration.is_independent_start,
                     'class_level': person.student_class,
-                    'email': person.email1,
+                    'email': person.email_addresses,
                     'url_key': get_url_key_for_regid(person.uwregid),
                 }
 

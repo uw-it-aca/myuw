@@ -5,11 +5,11 @@ the Grad School request resource.
 
 import logging
 from datetime import date, datetime, timedelta
-from uw_grad.degree import get_degree_by_regid
-from uw_grad.committee import get_committee_by_regid
-from uw_grad.leave import get_leave_by_regid
-from uw_grad.petition import get_petition_by_regid
-from myuw.dao.pws import get_regid_of_current_user
+from uw_grad.degree import get_degree_by_syskey
+from uw_grad.committee import get_committee_by_syskey
+from uw_grad.leave import get_leave_by_syskey
+from uw_grad.petition import get_petition_by_syskey
+from myuw.dao.pws import get_student_system_key_of_current_user
 from myuw.dao.term import get_comparison_datetime,\
     get_eod_specific_quarter_after, get_eod_specific_quarter,\
     get_eod_specific_quarter_last_instruction
@@ -23,7 +23,8 @@ def get_grad_degree_for_current_user(request):
     returns json data of grad degree requests
     for the current user
     """
-    return get_degree_by_regid(get_regid_of_current_user(request))
+    return get_degree_by_syskey(
+        get_student_system_key_of_current_user(request))
 
 
 def get_grad_committee_for_current_user(request):
@@ -31,7 +32,8 @@ def get_grad_committee_for_current_user(request):
     returns json data of grad degree requests
     for the current user
     """
-    return get_committee_by_regid(get_regid_of_current_user(request))
+    return get_committee_by_syskey(
+        get_student_system_key_of_current_user(request))
 
 
 def get_grad_leave_for_current_user(request):
@@ -39,7 +41,8 @@ def get_grad_leave_for_current_user(request):
     returns json data of grad degree requests
     for the current user
     """
-    return get_leave_by_regid(get_regid_of_current_user(request))
+    return get_leave_by_syskey(
+        get_student_system_key_of_current_user(request))
 
 
 def get_grad_petition_for_current_user(request):
@@ -47,7 +50,8 @@ def get_grad_petition_for_current_user(request):
     returns json data of grad degree requests
     for the current user
     """
-    return get_petition_by_regid(get_regid_of_current_user(request))
+    return get_petition_by_syskey(
+        get_student_system_key_of_current_user(request))
 
 
 def committee_to_json(req_data):

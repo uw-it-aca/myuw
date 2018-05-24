@@ -20,7 +20,7 @@
         "EmployeeID":"133456789",
         "EmployeeWhitePages":{
             "Addresses": [],
-            "EmailAddresses":[],
+            "EmailAddresses":["jbothell@uw.edu"],
             "Faxes":[],
             "Mobiles":[],
             "Phones": [],
@@ -31,7 +31,7 @@
             "TouchDials":[],
             "VoiceMails":[]},
         "HomeDepartment": null,
-        "MailStop":null},
+        "MailStop": null},
     "StudentPersonAffiliation":{
         "StudentNumber":"1233334",
         "StudentSystemKey":"000083856",
@@ -42,4 +42,6 @@
             "Name":null,
             "Phone":null,
             "PublishInDirectory":false}
-}}}
+    }
+  }
+}

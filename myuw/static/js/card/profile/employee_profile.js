@@ -33,7 +33,12 @@ var EmployeeInfoCard = {
         emp_white_page.is_tacoma = window.user.tacoma;
 
         if (emp_white_page.positions.length > 0) {
-            emp_white_page.position1 = emp_white_page.positions[0];
+            for (i = 0; i < emp_white_page.positions.length; i++) {
+                if (emp_white_page.positions[i].is_primary ) {
+                    emp_white_page.position1 = emp_white_page.positions[i];
+                    break;
+                }
+            }
         }
 
         if (emp_white_page.email_addresses.length > 0) {

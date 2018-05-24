@@ -1,8 +1,9 @@
-{"DisplayName":"JAMES Faculty",
+{
+"DisplayName":"JAMES Faculty",
 "EduPersonAffiliations":["member",
-"alum",
-"faculty",
-"employee"],
+                         "alum",
+                         "faculty",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -22,18 +23,18 @@
             "EmailAddresses":["faculty@uw.edu"],
             "Faxes":[],
             "Mobiles":[],
-            "Phones": ["+1 206 111-1234",
-                       "+1 425 555-1236"],
+            "Phones": ["+1 206 111-1234", "+1 425 555-1236"],
             "Pagers":[],
-            "Name" : ", ",
-            "Positions":[{
-                "EWPDept":"Mechanical Engineering",
-                "EWPTitle":"INSTRUCTOR",
-                "Primary":true}],
+            "Name" : "Faculty, James",
+            "Positions":[{"EWPDept":"Mechanical Engineering",
+                          "EWPTitle":"INSTRUCTOR",
+                          "Primary":true}],
             "PublishInDirectory": true,
             "TouchDials":[],
-            "VoiceMails":[]},
+            "VoiceMails":[]
+        },
         "HomeDepartment":"ENG: Mechanical Engineering",
-        "MailStop": "352600"},
+        "MailStop": "352600"
+      }
    }
 }

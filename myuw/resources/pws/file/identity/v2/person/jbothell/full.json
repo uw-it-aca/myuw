@@ -20,7 +20,7 @@
         "EmployeeID":"133456789",
         "EmployeeWhitePages":{
             "Addresses": [],
-            "EmailAddresses":[],
+            "EmailAddresses":["jbothell@uw.edu"],
             "Faxes":[],
             "Mobiles":[],
             "Phones": [],
@@ -30,16 +30,18 @@
             "PublishInDirectory": false,
             "TouchDials":[],
             "VoiceMails":[]},
-        "HomeDepartment": null,
-        "MailStop":null},
+        "HomeDepartment": "Math",
+        "MailStop": null},
     "StudentPersonAffiliation":{
         "StudentNumber":"1233334",
         "StudentSystemKey":"000083856",
         "StudentWhitePages":{
             "Class":null,
-            "Departments":[],
+            "Departments":["Math"],
             "Email":null,
             "Name":null,
             "Phone":null,
             "PublishInDirectory":false}
-}}}
+    }
+  }
+}

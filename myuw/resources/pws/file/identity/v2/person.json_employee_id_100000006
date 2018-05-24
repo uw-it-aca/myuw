@@ -1,32 +1,9 @@
 {
-    "Current": {
-        "DevelopmentID": null,
-        "EduPersonAffiliationAffiliate": null,
-        "EduPersonAffiliationAlum": null,
-        "EduPersonAffiliationEmployee": null,
-        "EduPersonAffiliationFaculty": null,
-        "EduPersonAffiliationMember": null,
-        "EduPersonAffiliationStaff": null,
-        "EduPersonAffiliationStudent": null,
-        "EmployeeID": "100000006",
-        "Href": "/identity/v2/person.json?uwregid=&uwnetid=&employee_id=100000006&student_number=&student_system_key=&development_id=&registered_surname=&registered_first_middle_name=&edupersonaffiliation_student=&edupersonaffiliation_staff=&edupersonaffiliation_faculty=&edupersonaffiliation_employee=&edupersonaffiliation_member=&edupersonaffiliation_alum=&edupersonaffiliation_affiliate=&page_size=10&page_start=1",
-        "PageSize": "10",
-        "PageStart": "1",
-        "RegisteredFirstMiddleName": null,
-        "RegisteredSurname": null,
-        "Start": "1",
-        "StudentNumber": null,
-        "StudentSystemKey": null,
-        "UWNetID": null,
-        "UWRegID": null
-    },
-    "MaxResultSize": 500,
-    "Next": null,
     "Persons": [
-        {
-            "PersonFullURI": {
+            {"PersonFullURI": {
                 "DisplayName": "Bill Sea Teacher",
                 "Href": "/identity/v2/person/10000000000000000000000000000006/full.json",
+                "RegisteredName":"Bill Sea Teacher",
                 "UWNetID": "billsea",
                 "UWRegID": "10000000000000000000000000000006"
             },
@@ -34,9 +11,7 @@
                 "DisplayName": "Bill Sea Teacher",
                 "Href": "/identity/v2/person/10000000000000000000000000000006.json",
                 "UWNetID": "billsea",
-                "UWRegID": "10000000000000000000000000000006"
-            }
-        }
-    ],
-    "Previous": null
+                "RegisteredName":"Bill Sea Teacher",
+                "UWRegID": "10000000000000000000000000000006"}
+            }]
 }

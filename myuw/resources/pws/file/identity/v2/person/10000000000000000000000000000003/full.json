@@ -25,7 +25,7 @@
          "Phones":[],
          "Positions":[
              {"EWPDept":"BOT: History: Admin JM Student",
-              "EWPTitle":"Reader\/Grader (NE H UAW ASE)",
+              "EWPTitle":"Reader/Grader (NE H UAW ASE)",
               "Primary":true}],
          "PublishInDirectory":false,
          "TouchDials":[],
@@ -37,7 +37,7 @@
         "StudentSystemKey":"001000003",
         "StudentWhitePages":{
             "Class":"Graduate",
-            "Departments":["History"],
+            "Departments":["BOT: History"],
             "Email":"botgrad@uw.edu",
             "Name":"Bothell, Grad Student",
             "Phone":"+1 425 123-1234",

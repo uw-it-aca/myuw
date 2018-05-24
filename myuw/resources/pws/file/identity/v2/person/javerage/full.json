@@ -35,8 +35,8 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1033334",
         "StudentSystemKey":"000083856",
-        "StudentWhitePages":{
-            "Class":"Senior",
+        "StudentWhitePages": {
+            "Class": "Senior",
             "Departments":["Computer Science",
                            "Anthropology"],
             "Email":"javerage@uw.edu",

@@ -19,7 +19,7 @@
     "EmployeePersonAffiliation":{
         "EmployeeID":"133456789",
         "EmployeeWhitePages":{
-             "Addresses": [],
+            "Addresses": [],
             "EmailAddresses":[],
             "Faxes":[],
             "Mobiles":[],
@@ -29,7 +29,8 @@
             "Positions":[],
             "PublishInDirectory": false,
             "TouchDials":[],
-            "VoiceMails":[]},
+            "VoiceMails":[]
+        },
         "HomeDepartment": null,
         "MailStop":null},
     "StudentPersonAffiliation":{
@@ -39,7 +40,9 @@
             "Class":"Freshman",
             "Departments":["Pre Major (Arts & Sciences)"],
             "Email": "jnew@uw.edu",
-            "Name": "New, James"l,
+            "Name": "New, James",
             "Phone":"+1 949 391-1234",
             "PublishInDirectory": true}
-}}}
+    }
+  }
+}

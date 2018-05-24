@@ -1,36 +1,16 @@
 {
-"Current":{
-   "Href":"\/identity\/v2\/person.json?uwregid=&uwnetid=&employee_id=100000011&student_number=&student_system_key=&development_id=&registered_surname=&registered_first_middle_name=&edupersonaffiliation_student=&edupersonaffiliation_staff=&edupersonaffiliation_faculty=&edupersonaffiliation_employee=&edupersonaffiliation_member=&edupersonaffiliation_alum=&edupersonaffiliation_affiliate=&page_size=10&page_start=1",
-   "DevelopmentID":null,
-   "EduPersonAffiliationAffiliate":null,
-   "EduPersonAffiliationAlum":null,
-   "EduPersonAffiliationEmployee":null,
-   "EduPersonAffiliationFaculty":null,
-   "EduPersonAffiliationMember":null,
-   "EduPersonAffiliationStaff":null,
-   "EduPersonAffiliationStudent":null,
-   "EmployeeID":"873001825",
-   "PageSize":"10",
-   "PageStart":"1",
-   "RegisteredFirstMiddleName":null,
-   "RegisteredSurname":null,
-   "Start":"1",
-   "StudentNumber":null,
-   "StudentSystemKey":null,
-   "UWNetID":null,
-   "UWRegID":null},
-   "MaxResultSize":500,
-   "Next":null,
-   "PageSize":"10",
-   "PageStart":"1",
-   "Persons":[
+"Persons":[
      {"Href":"\/identity\/v2\/person\/10000000000000000000000000000011.json",
       "PersonURI":{
         "Href":"\/identity\/v2\/person\/10000000000000000000000000000011.json",
         "DisplayName":"Bill Pce",
+        "RegisteredName":"Bill Pce",
         "UWNetID":"billpce",
         "UWRegID":"10000000000000000000000000000011"},
-      "PersonFullURI":{"Href":"\/identity\/v2\/person\/10000000000000000000000000000011\/full.json",
-      "DisplayName":"Bill Pce",
-      "UWNetID":"billpce",
-      "UWRegID":"10000000000000000000000000000011"}}],"Previous":null}
+      "PersonFullURI":{
+        "Href":"\/identity\/v2\/person\/10000000000000000000000000000011\/full.json",
+        "DisplayName":"Bill Pce",
+        "RegisteredName":"Bill Pce",
+        "UWNetID":"billpce",
+        "UWRegID":"10000000000000000000000000000011"}}]
+}
