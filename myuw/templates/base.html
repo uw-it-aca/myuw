@@ -78,13 +78,12 @@
 
         {% if disable_actions %}
             {% block actions_disabled_banner %}
-            <div class="app-messages sticky" id="actions_disabled_banner" aria-labelledby="actions_disabled_banner-label" role="complementary">
-                <div class="message-banner">
-                    <h2 class="sr-only" id="actions_disabled_banner-label">Notes</h2>
+            <div class="app-messages" id="actions_disabled_banner" aria-labelledby="actions_disabled_banner-label" role="complementary">
+                <div class="override-banner message-banner">
+                    <h2 class="sr-only" id="actions_disabled_banner-label">Notes for MyUW support staff:</h2>
                     <div class="message-text myuw-wrapper">
-                        <div class="message">
-                            <p>Because you are overriding, you can't perform actions on behalf of the actual user. <a href="/support">To Clear Override</a></p>
-                        </div>
+                        <p class="message"><strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and no actions will be saved. &nbsp;&nbsp;<a href="/support" style="font-weight:normal; color:#003399;">Back to MyUW Support tool</a>
+                        </p>
                     </div>
                 </div>
             </div>
