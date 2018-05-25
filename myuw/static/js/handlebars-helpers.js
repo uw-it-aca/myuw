@@ -18,16 +18,6 @@ Handlebars.registerHelper("strToInt", function(str) {
 });
 
 (function() {
-
-    function parse_date(str) {
-        // After MUWM-3672, we're not using browser based parsing anymore.  Too many quirks.
-        var date = Date.parse(str);
-        if (!date){
-            date = date_from_string(date);
-        }
-        return date;
-    }
-
     // used on course card
     Handlebars.registerHelper("toMonthDay", function(str) {
         return moment(str).format("MMM D");
