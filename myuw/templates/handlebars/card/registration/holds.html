@@ -3,11 +3,7 @@
 
 <div class="card-badge-container" title="Registration Holds">
     {{#unless myplan_peak_load }}
-    <div class="card-badge card-critical-alert" role="status">
-    <!--
-    <ul title="Registration Holds" style="list-style-type: none; padding-left: 0;">
-    <li>
-    -->
+    <div class="card-badge" role="status">
         <div class="reg-holds-container">
             <div class="clearfix">
                 <div class="pull-left">
@@ -19,14 +15,14 @@
                     <div class="card-badge-value">
                         <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
                             <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
-                               class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
+                               class="reg_disclosure{{#if card}}_{{card}}{{/if}} text-danger"
                                aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
                                href="#"
                                title="Expand and show holds details"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
                         </span>
                         <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
                             <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
-                               class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
+                               class="reg_disclosure{{#if card}}_{{card}}{{/if}} text-danger"
                                aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
                                href="#"
                                title="Collapse and hide holds details"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
@@ -52,10 +48,7 @@
         </div>
     </div>
     {{/unless}}
-    <!--
-    </li>
-    </ul>
-    -->
+
 </div>
 
 {% endtplhandlebars %}
