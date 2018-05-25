@@ -43,12 +43,14 @@ var GradeCard = {
     },
 
     render_error: function() {
-        var course_error_code = WSData.course_data_error_code(GradeCard.term);
-        if (course_error_code === null || course_error_code === 404) {
-            $("#GradeCard").hide();
-            return;
-        }
-        GradeCard.dom_target.html(CardWithError.render("Final Grades"));
+        // var course_error_code = WSData.course_data_error_code(GradeCard.term);
+        // if (course_error_code === null || course_error_code === 404) {
+        //     $("#GradeCard").hide();
+        //     return;
+        // }
+        console.log('err');
+        GradeCard._render_with_context({has_error: true,
+                                       display_grade_card: true});
     },
 
     _has_all_data: function () {
@@ -56,6 +58,14 @@ var GradeCard = {
             return true;
         }
         return false;
+    },
+
+    _render_with_context: function (context){
+        var source = $("#grade_card_content").html();
+        var grades_template = Handlebars.compile(source);
+        console.log(context);
+        GradeCard.dom_target.html(grades_template(context));
+        console.log(grades_template(context));
     },
 
     _render: function () {
@@ -97,9 +107,7 @@ var GradeCard = {
             course_data.display_grade_card = false;
         }
 
-        var source = $("#grade_card_content").html();
-        var grades_template = Handlebars.compile(source);
-        GradeCard.dom_target.html(grades_template(course_data));
+        GradeCard._render_with_context(course_data);
         GradeCard.add_events(term);
         LogUtils.cardLoaded(GradeCard.name, GradeCard.dom_target);
     },

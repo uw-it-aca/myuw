@@ -5,7 +5,7 @@
     <div class="card clearfix"  data-name="GradeCard" data-type="card">
 
         <h3>Final Grades</h3>
-
+        {{#unless has_error}}
         {{#if display_note}}
         <span class="official-note">These grades are not official until midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
         {{/if}}
@@ -59,7 +59,9 @@
                    title="Collapse to hide additional grade resources">SHOW LESS</a>
             </span>
         </div>
-
+        {{else}}
+        <p>has error</p>
+        {{/unless}}
     </div>
 {{/if}}
 {% endtplhandlebars %}

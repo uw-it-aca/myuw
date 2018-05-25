@@ -27,16 +27,19 @@ var FutureQuarterCard = {
     },
 
     _render: function (oquarter_data) {
-        var source = $("#future_quarter_card").html();
-        var template = Handlebars.compile(source);
-
         if (!oquarter_data.terms.length) {
             FutureQuarterCard.dom_target.hide();
             return;
         }
-        var raw = template(oquarter_data);
-        FutureQuarterCard.dom_target.html(raw);
+        FutureQuarterCard._render_with_context(oquarter_data);
         LogUtils.cardLoaded(FutureQuarterCard.name, FutureQuarterCard.dom_target);
+    },
+
+    _render_with_context: function(context){
+        var source = $("#future_quarter_card").html();
+        var template = Handlebars.compile(source);
+        var raw = template(context);
+        FutureQuarterCard.dom_target.html(raw);
     },
 
     render_error: function(status) {
@@ -45,7 +48,7 @@ var FutureQuarterCard = {
             FutureQuarterCard.dom_target.hide();
             return;
         }
-        FutureQuarterCard.dom_target.html(CardWithError.render("Future Quarter Courses"));
+        FutureQuarterCard._render_with_context({has_error: true});
     },
 };
 
