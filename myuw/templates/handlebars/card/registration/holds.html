@@ -2,15 +2,20 @@
     {% tplhandlebars "reg_holds_tmpl" %}
 
 <div class="card-badge-container" title="Registration Holds">
-    {{#unless myplan_peak_load }}
+
     <div class="card-badge" role="status">
         <div class="reg-holds-container">
             <div class="clearfix">
+                {{!-- Show left label during non-peak load time. Else align the HOLD link to the left --}}
+                {{#unless myplan_peak_load }}
                 <div class="pull-left">
                     <h4 class="card-badge-label pull-left">Holds</h4>
                 </div>
 
                 <div class="pull-right">
+                {{else}}
+                <div class="pull-left">
+                {{/unless}}
 
                     <div class="card-badge-value">
                         <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
@@ -30,6 +35,8 @@
                     </div>
                 </div>
             </div>
+            {{!-- end clearfix --}}
+
             <div id="reg_holds{{#if card}}_{{card}}{{/if}}"
                  class="slide-hide reg_holds_disc"
                  aria-label="Hold details" tabindex="-1"
@@ -47,7 +54,6 @@
 
         </div>
     </div>
-    {{/unless}}
 
 </div>
 
