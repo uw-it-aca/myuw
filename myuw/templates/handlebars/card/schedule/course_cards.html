@@ -1,6 +1,6 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_list" %}
-
+{{#unless has_error}}
 {{#if display_term}}
     <h3 id="prev_qtr_heading" class="prev-qtr-heading">Continuing courses from {{ucfirst quarter}} {{year}}</h3>
 {{else}}
@@ -33,4 +33,7 @@
     </div>
     {{/each}}
 </div>
+{{else}}
+<p>Has Error</p>
+{{/unless}}
 {% endtplhandlebars %}

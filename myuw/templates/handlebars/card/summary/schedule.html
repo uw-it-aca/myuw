@@ -3,9 +3,11 @@
     <div class="myuw-card teaching-schedule-summary" data-type="card"
          data-name="SummaryScheduleCard" data-identifier="{{ title }}">
          <div style="position:relative;">
+
             <h3 class="myuw-card-title">
               {{capitalizeString quarter}} {{year}} Teaching Schedule
             </h3>
+            {{#unless has_error}}
             {{#unless section_count}}
                 You are not teaching any courses {{capitalizeString quarter}} {{year}}.
             {{else}}
@@ -75,6 +77,9 @@
                    <a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a>
                </div>
             {{/unless}}
+             {{ else }}
+             <p>Error</p>
+             {{/unless}}
         </div>
     </div>
 {% endtplhandlebars %}

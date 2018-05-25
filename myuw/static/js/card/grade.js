@@ -48,7 +48,6 @@ var GradeCard = {
         //     $("#GradeCard").hide();
         //     return;
         // }
-        console.log('err');
         GradeCard._render_with_context({has_error: true,
                                        display_grade_card: true});
     },
@@ -63,9 +62,7 @@ var GradeCard = {
     _render_with_context: function (context){
         var source = $("#grade_card_content").html();
         var grades_template = Handlebars.compile(source);
-        console.log(context);
         GradeCard.dom_target.html(grades_template(context));
-        console.log(grades_template(context));
     },
 
     _render: function () {

@@ -49,17 +49,20 @@ var  FutureSummaryScheduleCard = {
             $("#FutureSummaryScheduleCard").hide();
             return;
         }
-        var raw = CardWithError.render("Future Quarter Schedule Summary");
-        InstructorCourseCards.dom_target.html(raw);
+        FutureSummaryScheduleCard._render_with_context({has_error: true});
+    },
+
+    _render_with_context: function(context){
+        Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
+        var source = $("#instructor_summary_schedule").html();
+        var courses_template = Handlebars.compile(source);
+        var raw = courses_template(context);
+        FutureSummaryScheduleCard.dom_target.html(raw);
     },
 
     _render: function () {
-        Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
-
         var term = FutureSummaryScheduleCard.term;
         var instructed_course_data = WSData.instructed_course_data(term, false);
-        var source = $("#instructor_summary_schedule").html();
-        var courses_template = Handlebars.compile(source);
         var data = {
             first_day_quarter: instructed_course_data.term.first_day_quarter,
             quarter: instructed_course_data.quarter,
@@ -70,8 +73,7 @@ var  FutureSummaryScheduleCard = {
             section_count: instructed_course_data.sections.length,
             show_enrollment: true
         };
-        var raw = courses_template(data);
-        FutureSummaryScheduleCard.dom_target.html(raw);
+        FutureSummaryScheduleCard._render_with_context(data);
         SummaryScheduleCard.add_events(term);
     }
 };
