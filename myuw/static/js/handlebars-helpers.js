@@ -136,6 +136,9 @@ Handlebars.registerHelper("termNoYear", function(term) {
     return str;
 });
 
+Handlebars.registerHelper('titleCaseName', function(str) {
+    return str.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ');
+});
 
 Handlebars.registerHelper('toTitleCase', function(term_str) {
     return titilizeTerm(term_str);

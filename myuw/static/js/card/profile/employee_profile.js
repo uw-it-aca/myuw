@@ -28,7 +28,7 @@ var EmployeeInfoCard = {
         var emp_white_page = WSData.directory_data();
         var source = $("#emp_white_page_card").html();
         var template = Handlebars.compile(source);
-
+        var i;
         // enhanced directory info
         emp_white_page.is_tacoma = window.user.tacoma;
 

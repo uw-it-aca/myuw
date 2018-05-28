@@ -501,6 +501,14 @@ describe('Handlebar-helpers', function(){
 
     });
 
+    describe("titleCaseName", function() {
+        it ("all upper case", function() {
+            var template = Handlebars.compile("{{titleCaseName 'JAMES AVERAGE STAFF'}}");
+            var output = template();
+            assert.equal(output, "James Average Staff");
+        });
+    });
+
     describe("toTitleCase", function() {
         it ("summer term", function() {
             var template = Handlebars.compile("{{toTitleCase 'summer a-term'}}");
