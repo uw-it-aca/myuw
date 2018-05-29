@@ -920,6 +920,7 @@ WSData = {
             return;
         }
         if (data.sections[0].instructors !== undefined) {
+            // already normalized
             return;
         }
 

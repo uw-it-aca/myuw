@@ -1,0 +1,42 @@
+{"DisplayName":"TACOMA GRADUATE STUDENT",
+"EduPersonAffiliations":["member",
+                         "student",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"TACOMA GRADUATE",
+"RegisteredName":"TACOMA GRADUATE STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"10001",
+"UWNetID":"tacgrad",
+"UWRegID":"10000000000000000000000000000004",
+"WhitepagesPublish":true,
+"PersonAffiliations":{
+  "EmployeePersonAffiliation":{
+     "EmployeeID":"100000004",
+     "EmployeeWhitePages":{
+         "Addresses": [],
+            "EmailAddresses":[],
+            "Faxes":[],
+            "Mobiles":[],
+            "Phones": [],
+            "Pagers":[],
+            "Name" : null,
+            "Positions":[],
+            "PublishInDirectory": false,
+            "TouchDials":[],
+            "VoiceMails":[]},
+      "HomeDepartment":null,
+      "MailStop":"358401"},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1000004",
+        "StudentSystemKey":"001000004",
+        "StudentWhitePages":{
+            "Class":"Senior",
+            "Departments":[],
+            "Email":"tacgrad@uw.edu",
+            "Name":"TACOMA GRADUATE STUDENT",
+            "Phone":"+1 206 123-1234",
+            "PublishInDirectory":false}
+}}}

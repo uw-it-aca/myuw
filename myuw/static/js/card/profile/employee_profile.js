@@ -25,14 +25,63 @@ var EmployeeInfoCard = {
     },
 
     _render: function () {
-        var directory_info = WSData.directory_data();
-        var source = $("#directory_info_card").html();
+        var emp_white_page = WSData.directory_data();
+        var source = $("#emp_white_page_card").html();
         var template = Handlebars.compile(source);
-
+        var i;
         // enhanced directory info
-        directory_info.is_tacoma = window.user.tacoma;
+        emp_white_page.is_tacoma = window.user.tacoma;
 
-        EmployeeInfoCard.dom_target.html(template(directory_info));
+        if (emp_white_page.positions.length > 0) {
+            for (i = 0; i < emp_white_page.positions.length; i++) {
+                if (emp_white_page.positions[i].is_primary ) {
+                    emp_white_page.position1 = emp_white_page.positions[i];
+                    break;
+                }
+            }
+        }
+
+        if (emp_white_page.email_addresses.length > 0) {
+            emp_white_page.has_email = true;
+            emp_white_page.email1 = emp_white_page.email_addresses[0];
+        }
+
+        if (emp_white_page.addresses.length > 0) {
+            emp_white_page.address1 = emp_white_page.addresses[0];
+        } else {
+            emp_white_page.no_address = (emp_white_page.mailstop === null);
+            // no_address and no mailstop
+        }
+
+        if (emp_white_page.faxes.length > 0) {
+            emp_white_page.fax1 = emp_white_page.faxes[0];
+        } else {
+            emp_white_page.no_fax = true;
+        }
+
+        if (emp_white_page.phones.length > 0) {
+            emp_white_page.phone1 = emp_white_page.phones[0];
+        } else {
+            emp_white_page.no_phone = true;
+        }
+
+        if (emp_white_page.mobiles.length > 0) {
+            emp_white_page.mobile1 = emp_white_page.mobiles[0];
+        } else {
+            emp_white_page.no_mobile = true;
+        }
+
+        if (emp_white_page.voice_mails.length > 0) {
+            emp_white_page.voice_mail1 = emp_white_page.voice_mails[0];
+        } else {
+            emp_white_page.no_voice_mail = true;
+        }
+        emp_white_page.no_pmvf = (emp_white_page.no_phone &&
+                                  emp_white_page.no_mobile &&
+                                  emp_white_page.no_voice_mail &&
+                                  emp_white_page.no_fax);
+
+        EmployeeInfoCard.dom_target.html(template(emp_white_page));
         LogUtils.cardLoaded(EmployeeInfoCard.name, EmployeeInfoCard.dom_target);
     },
 

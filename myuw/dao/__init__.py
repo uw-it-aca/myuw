@@ -1,7 +1,7 @@
 import logging
 import os
 from django.conf import settings
-from uw_sws.dao import SWS_DAO
+from uw_sws import DAO as SWS_DAO
 from userservice.user import UserService
 from myuw.util.settings import get_disable_actions_when_override
 
@@ -40,7 +40,7 @@ def is_action_disabled():
 
 
 def is_using_file_dao():
-    return SWS_DAO().get_implementation().is_mock()
+    return SWS_DAO.get_implementation().is_mock()
 
 
 def is_thrive_viewer(uwnetid, population):
