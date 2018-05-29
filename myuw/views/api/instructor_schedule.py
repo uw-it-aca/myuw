@@ -20,13 +20,15 @@ from myuw.dao.canvas import get_canvas_course_url, sws_section_label
 from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
-from myuw.dao.instructor_schedule import (get_instructor_schedule_by_term,
+from myuw.dao.instructor_schedule import (
+    get_instructor_schedule_by_term, check_section_instructor,
     get_limit_estimate_enrollment_for_section, get_instructor_section,
-    get_primary_section, check_section_instructor)
+    get_primary_section)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.registration import get_active_registrations_for_section
-from myuw.dao.term import (get_current_quarter, is_past, is_future,
+from myuw.dao.term import (
+    get_current_quarter, is_past, is_future,
     get_previous_number_quarters, get_future_number_quarters)
 from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
