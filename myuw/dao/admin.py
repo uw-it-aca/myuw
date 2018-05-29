@@ -23,6 +23,7 @@ def _search_groups(uwnetid):
 
             if gr.name == MYUW_ADMIN_GROUP:
                 is_admin = True
+                override = True
                 break
 
             if gr.name == MYUW_OVERRIDE_GROUP:
