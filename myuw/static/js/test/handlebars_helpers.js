@@ -19,6 +19,11 @@ describe('Handlebar-helpers', function(){
             var output = template();
             assert.equal(output, '(555) 555-5555');
         });
+        it("formatted from +1 555 555-5555", function() {
+            var template = Handlebars.compile("{{formatPhoneNumber '+1 555 555-5555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
         it("formatted from 555 555-5555", function() {
             var template = Handlebars.compile("{{formatPhoneNumber '555 555-5555' }}");
             var output = template();
@@ -494,6 +499,14 @@ describe('Handlebar-helpers', function(){
             assert.equal(output, '’17');
         });
 
+    });
+
+    describe("titleCaseName", function() {
+        it ("all upper case", function() {
+            var template = Handlebars.compile("{{titleCaseName 'JAMES AVERAGE STAFF'}}");
+            var output = template();
+            assert.equal(output, "James Average Staff");
+        });
     });
 
     describe("toTitleCase", function() {

@@ -1,0 +1,47 @@
+{"DisplayName":"JAMES BOTHELL STUDENT",
+"EduPersonAffiliations":["member",
+                         "student",
+                         "alum",
+                         "staff",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"JAMES BOTHELL",
+"RegisteredName":"JAMES BOTHELL STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"35443",
+"UWNetID":"jbothell",
+"UWRegID":"FE36CCB8F66711D5BE060004AC494FCD",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"133456789",
+        "EmployeeWhitePages":{
+            "Addresses": [],
+            "EmailAddresses":["jbothell@uw.edu"],
+            "Faxes":[],
+            "Mobiles":[],
+            "Phones": [],
+            "Pagers":[],
+            "Name" : "Bothell, James",
+            "Positions":[],
+            "PublishInDirectory": false,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment": null,
+        "MailStop": null},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1233334",
+        "StudentSystemKey":"000083856",
+        "StudentWhitePages":{
+            "Class":null,
+            "Departments":[],
+            "Email":null,
+            "Name":null,
+            "Phone":null,
+            "PublishInDirectory":false}
+    }
+  }
+}
