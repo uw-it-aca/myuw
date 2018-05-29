@@ -113,6 +113,11 @@ describe('Handlebar-helpers', function(){
             var output = template();
             assert.equal(output, 'Mon, Mar 4');
         });
+        it ("work for a timezone datetime", function() {
+            var template = Handlebars.compile("{{toFriendlyDate '2018-06-07 06:59:59 UTC+0000'}}");
+            var output = template();
+            assert.equal(output, 'Wed, Jun 6');
+        });
         it ("empty date", function() {
             var template = Handlebars.compile("{{toFriendlyDate ''}}");
             var output = template();
