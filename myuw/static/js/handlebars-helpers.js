@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 // used on profile student_info, directory_info
 Handlebars.registerHelper("formatPhoneNumber", function(value) {
     if (arguments.length === 0 || value === undefined || value.length === 0) {
