@@ -1,0 +1,41 @@
+{"DisplayName":"Ellen Retired Staff",
+"EduPersonAffiliations":["member"],
+"IsTestEntity":false,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"Ellen",
+"RegisteredName":"Ellen Retired Staff",
+"RegisteredSurname":"Retired Staff",
+"UIDNumber":"1326",
+"UWNetID":"retirestaff",
+"UWRegID":"10000000000000000000000000000034",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+   "AlumPersonAffiliation":{"DevelopmentID":"0000343434"},
+   "EmployeePersonAffiliation":{
+       "EmployeeID":"100000034",
+       "EmployeeWhitePages":{
+            "Addresses": [],
+            "EmailAddresses":[],
+            "Faxes":["+1 206 221-1000"],
+            "Mobiles":[],
+            "Phones": ["+1 206 685-1234"],
+            "Pagers":[],
+            "Name" : null,
+            "Positions":[],
+            "PublishInDirectory": false,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment": "UW Benefits Office",
+        "MailStop" : "359556"},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1000034",
+        "StudentSystemKey":"000000034",
+        "StudentWhitePages":{
+            "Class":null,
+            "Departments":[],
+            "Email":null,
+            "Name":null,
+            "Phone":null,
+            "PublishInDirectory":false}
+}}}

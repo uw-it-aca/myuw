@@ -1,7 +1,12 @@
+/*jshint esversion: 6 */
+
 // used on profile student_info, directory_info
 Handlebars.registerHelper("formatPhoneNumber", function(value) {
     if (arguments.length === 0 || value === undefined || value.length === 0) {
         return '';
+    }
+    if (value.match(/^\+1 /)) {
+        value = value.substring(3);
     }
     var regexp = /^(\d{3})([ -\.]?)(\d{3})([ -\.]?)(\d{4})$/;
     var number = value.match(regexp);
@@ -123,6 +128,9 @@ Handlebars.registerHelper("termNoYear", function(term) {
     return str;
 });
 
+Handlebars.registerHelper('titleCaseName', function(str) {
+    return str.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ');
+});
 
 Handlebars.registerHelper('toTitleCase', function(term_str) {
     return titilizeTerm(term_str);

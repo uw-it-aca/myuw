@@ -165,6 +165,11 @@ class OpenInstSectionDetails(OpenAPI):
             enrollment_threads[regid] = enrollment_thread
             name_email_thread.start()
             enrollment_thread.start()
+
+            email1 = None
+            if len(person.email_addresses):
+                email1 = person.email_addresses[0]
+
             reg = {
                     'full_name': person.display_name,
                     'netid': person.uwnetid,
@@ -174,7 +179,7 @@ class OpenInstSectionDetails(OpenAPI):
                     'is_auditor': registration.is_auditor,
                     'is_independent_start': registration.is_independent_start,
                     'class_level': person.student_class,
-                    'email': person.email1,
+                    'email': email1,
                     'url_key': get_url_key_for_regid(person.uwregid),
                 }
 
