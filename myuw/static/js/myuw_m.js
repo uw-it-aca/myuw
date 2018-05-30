@@ -227,6 +227,7 @@ var resetCardRenderCalled = function() {
 var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label) {
     var log_label = label==="" ? "" : " " + label;
     div_toggled.toggleClass("slide-show");
+    div_toggled.toggleClass("slide-hide");
     div_toggled.css("display",
                     div_toggled.css("display") === 'none' ? '' : 'none');
 
