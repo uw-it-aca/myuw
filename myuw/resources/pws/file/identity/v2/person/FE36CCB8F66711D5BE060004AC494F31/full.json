@@ -1,0 +1,48 @@
+{"DisplayName":"JAMES NEW STUDENT",
+"EduPersonAffiliations":["member",
+"student",
+"alum",
+"staff",
+"employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"JAMES NEW",
+"RegisteredName":"JAMES NEW STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"35443",
+"UWNetID":"jnew",
+"UWRegID":"FE36CCB8F66711D5BE060004AC494F31",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"133456789",
+        "EmployeeWhitePages":{
+            "Addresses": [],
+            "EmailAddresses":[],
+            "Faxes":[],
+            "Mobiles":[],
+            "Phones": [],
+            "Pagers":[],
+            "Name" : null,
+            "Positions":[],
+            "PublishInDirectory": false,
+            "TouchDials":[],
+            "VoiceMails":[]
+        },
+        "HomeDepartment": null,
+        "MailStop":null},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1233334",
+        "StudentSystemKey":"000083856",
+        "StudentWhitePages":{
+            "Class":"Freshman",
+            "Departments":["Pre Major (Arts & Sciences)"],
+            "Email": "jnew@uw.edu",
+            "Name": "New, James",
+            "Phone":"+1 949 391-1234",
+            "PublishInDirectory": true}
+    }
+  }
+}

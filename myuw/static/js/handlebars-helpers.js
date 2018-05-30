@@ -1,7 +1,12 @@
+/*jshint esversion: 6 */
+
 // used on profile student_info, directory_info
 Handlebars.registerHelper("formatPhoneNumber", function(value) {
     if (arguments.length === 0 || value === undefined || value.length === 0) {
         return '';
+    }
+    if (value.match(/^\+1 /)) {
+        value = value.substring(3);
     }
     var regexp = /^(\d{3})([ -\.]?)(\d{3})([ -\.]?)(\d{4})$/;
     var number = value.match(regexp);
@@ -18,24 +23,14 @@ Handlebars.registerHelper("strToInt", function(str) {
 });
 
 (function() {
-
-    function parse_date(str) {
-        // After MUWM-3672, we're not using browser based parsing anymore.  Too many quirks.
-        var date = Date.parse(str);
-        if (!date){
-            date = date_from_string(date);
-        }
-        return date;
-    }
-
     // used on course card
     Handlebars.registerHelper("toMonthDay", function(str) {
-        return moment(parse_date(str)).format("MMM D");
+        return moment(str).format("MMM D");
     });
 
     // used on Library card
     Handlebars.registerHelper("toFromNowDate", function(str) {
-        return moment(parse_date(str)).fromNow();
+        return moment(str).fromNow();
     });
 
     // used on Grade, Library card
@@ -43,14 +38,14 @@ Handlebars.registerHelper("strToInt", function(str) {
         if (date_str === undefined || date_str.length === 0) {
             return "";
         }
-        return moment(parse_date(date_str)).format("ddd, MMM D");
+        return moment(date_str).format("ddd, MMM D");
     });
 
     Handlebars.registerHelper("toFriendlyDateVerbose", function(date_str) {
         if (date_str === undefined || date_str.length === 0) {
             return "";
         }
-        return moment(parse_date(date_str)).format("dddd, MMMM D");
+        return moment(date_str).format("dddd, MMMM D");
     });
 })();
 
@@ -133,6 +128,9 @@ Handlebars.registerHelper("termNoYear", function(term) {
     return str;
 });
 
+Handlebars.registerHelper('titleCaseName', function(str) {
+    return str.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ');
+});
 
 Handlebars.registerHelper('toTitleCase', function(term_str) {
     return titilizeTerm(term_str);
