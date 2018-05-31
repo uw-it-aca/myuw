@@ -14,8 +14,8 @@ class TestSetting(TestCase):
 
     def test_default(self):
         with self.settings(TRUMBA_CALENDAR_TIMEZONE='America/Los_Angeles',
-                           MAILMAN_COURSEREQUEST_RECIPIENT=None,
-                           GOOGLE_SEARCH_KEY=None,
+                           MAILMAN_COURSEREQUEST_RECIPIENT="",
+                           GOOGLE_SEARCH_KEY="",
                            MYUW_USER_SERVLET_URL=legacy_url,
                            LOGOUT_URL="/user_logout",
                            MYUWCLASS="myuwclass.asp?cid=",
@@ -25,8 +25,8 @@ class TestSetting(TestCase):
                            MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True,
                            MYUW_ENABLED_FEATURES=[]):
             self.assertEqual(get_calendar_time_zone(), 'America/Los_Angeles')
-            self.assertIsNone(get_mailman_courserequest_recipient())
-            self.assertIsNone(get_google_search_key())
+            self.assertEqual(get_mailman_courserequest_recipient(), "")
+            self.assertEqual(get_google_search_key(), "")
             self.assertEqual(get_legacy_url(), legacy_url)
             self.assertEqual(get_logout_url(), "/user_logout")
             self.assertEqual(get_myuwclass_url(), "myuwclass.asp?cid=")
