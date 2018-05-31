@@ -42,6 +42,15 @@ def log_session(netid, request):
         pass
 
     try:
+        x_forwarded_for = request.META.get('X-Forwarded-For')
+        if x_forwarded_for:
+            log_entry['originating-ip'] = x_forwarded_for  # .split(',')[0]
+        else:
+            log_entry['client_ip'] = request.META.get('REMOTE_ADDR')
+    except Exception:
+        pass
+
+    try:
         log_entry['campus'] = get_base_campus(request)
     except Exception:
         pass
