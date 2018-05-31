@@ -38,21 +38,25 @@ def log_session(netid, request):
     try:
         is_mobile = request.is_mobile or request.is_tablet
         log_entry['is_mobile'] = bool(is_mobile)
-    except Exception:
+    except Exception as ex:
+        logger.warning("is_mobile ==> %s" % ex)
         pass
 
     try:
         x_forwarded_for = request.META.get('X-Forwarded-For')
         if x_forwarded_for:
-            log_entry['originating-ip'] = x_forwarded_for  # .split(',')[0]
+            # originating-ip
+            log_entry['ip'] = x_forwarded_for  # .split(',')[0]
         else:
-            log_entry['client_ip'] = request.META.get('REMOTE_ADDR')
-    except Exception:
+            log_entry['ip'] = request.META.get('REMOTE_ADDR')
+    except Exception as ex:
+        logger.warning("ip ==> %s" % ex)
         pass
 
     try:
         log_entry['campus'] = get_base_campus(request)
-    except Exception:
+    except Exception as ex:
+        logger.warning("get_base_campus ==> %s" % ex)
         pass
     logger.info(json.dumps(log_entry))
 
