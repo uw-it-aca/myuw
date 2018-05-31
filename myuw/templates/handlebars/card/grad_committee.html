@@ -3,6 +3,7 @@
 
     <div aria-labeledby="graduate_committees" class="card">
         <h3>Your Committees</h3>
+        {{#unless has_errors}}
         <div class="card-badge-container" id="committee-reqs">
             <ul class="card-list">
                 {{#each committees}}
@@ -22,6 +23,9 @@
                     {{/each}}
             </ul>
         </div>
+        {{else}}
+        <p>has error</p>
+        {{/unless}}
         <div class="clearfix">
             <div class="card-badge-action pull-right">
                 <a href="http://www.grad.uw.edu/mygrad/student.htm" data-linklabel="MyGrad">Go to MyGrad</a>

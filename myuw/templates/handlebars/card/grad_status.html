@@ -3,7 +3,7 @@
 
     <div aria-labeledby="graduate_status" class="card">
         <h3>Graduate Request Status</h3>
-
+        {{#unless has_errors}}
         <!-- petitions -->
         {{#if petitions}}
             <div class="card-badge-container" id="petition-reqs">
@@ -104,7 +104,9 @@
             </div>
         {{/if}}
         <!-- end degrees -->
-
+        {{else}}
+        <p>has error</p>
+        {{/unless}}
         <div class="clearfix">
             <div class="card-badge-action pull-right">
                 <a href="http://www.grad.uw.edu/mygrad/student.htm" data-linklabel="MyGrad">Go to MyGrad</a>
