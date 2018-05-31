@@ -3,7 +3,7 @@ from uw_canvas.enrollments import Enrollments
 from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
 from uw_canvas.models import CanvasCourse, CanvasSection
-from restclients_core.exceptions import DataFailureException
+from restclients_core.exceptions import DataFailureException, ImproperlyConfigured
 from myuw.dao.pws import get_regid_of_current_user
 
 logger = logging.getLogger(__name__)
@@ -52,15 +52,16 @@ def get_canvas_course_from_section(sws_section):
     except DataFailureException as err:
         if err.status == 404:
             return None
-
-        raise
+        raise ValueError
 
 
 def get_canvas_course_url(sws_section, person):
     if sws_section.is_independent_study:
         sws_section.independent_study_instructor_regid = person.uwregid
-
-    canvas_course = get_canvas_course_from_section(sws_section)
+    try:
+        canvas_course = get_canvas_course_from_section(sws_section)
+    except ValueError:
+        return "error"
     if canvas_course:
         return canvas_course.course_url
 

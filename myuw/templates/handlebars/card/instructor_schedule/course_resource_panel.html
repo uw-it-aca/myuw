@@ -36,6 +36,8 @@
                             <li class="clearfix">
                                 {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
                             </li>
+                        {{else}}
+                        <p>Email list error</p>
                         {{/if}}
 
                         {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}

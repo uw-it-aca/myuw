@@ -47,7 +47,7 @@
 
                     {{#if grading_period_is_open}}
                         <div class="card-badge-value">
-                            {{#if grading_status}}
+                            {{#not_equal grading_status 'error'}}
                             {{#if grading_status.all_grades_submitted}}
                                     <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by {{grading_status.submitted_by}} on <span class="text-nowrap">{{ grading_status.submitted_relative_date }}</span>
                             {{else}}
@@ -73,7 +73,9 @@
                                 {{/if}}
                             {{/if}}
                             <a href="https://itconnect.uw.edu/learn/tools/gradepage/" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" class="gradepage_help_link" target="_blank" data-linklabel="GradePage Help"><i class="fa fa-question-circle" aria-hidden="true"></i></a>
-                            {{/if}}
+                            {{else}}
+                            <p>Has error</p>
+                            {{/not_equal}}
                                 <div class="myuw-note">Grade submission closes <strong>{{grade_submission_deadline_date}}</strong>{{#unless deadline_in_24_hours}} ({{grade_submission_relative_deadline}}){{/unless}}
                             </div>
                         </div>
