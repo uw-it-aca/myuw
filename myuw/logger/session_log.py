@@ -8,6 +8,10 @@ logger = logging.getLogger('session')
 
 
 def log_session(netid, request):
+    logger.info(json.dumps(get_log_entry(netid, request)))
+
+
+def get_log_entry(netid, request):
     affiliations = get_all_affiliations(request)
     log_entry = {'netid': netid,
                  'session_key': get_request_session_key(request),
@@ -58,11 +62,11 @@ def log_session(netid, request):
     except Exception as ex:
         logger.warning("get_base_campus ==> %s" % ex)
         pass
-    logger.info(json.dumps(log_entry))
+    return log_entry
 
 
 def get_request_session_key(request):
     if is_using_file_dao():
         return ""
     session_key = request.session.session_key
-    return hashlib.md5(session_key.encode('utf-8')).hexdigest()
+    return hashlib.md5(session_key.encode('utf8')).hexdigest()
