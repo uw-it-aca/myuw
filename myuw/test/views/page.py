@@ -69,25 +69,27 @@ class TestPageMethods(MyuwApiTest):
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_instructor(self):
-        url = reverse("myuw_home")
-        self.set_user('bill')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context["banner_messages"], [])
-        self.assertEquals(response.context["display_onboard_message"], True)
-        self.assertEquals(response.context["display_pop_up"], True)
-        self.assertEquals(response.context["disable_actions"], False)
-        self.assertIsNotNone(response.context["card_display_dates"])
-        self.assertIsNotNone(response.context["user"]["affiliations"])
-        self.assertEquals(response.context["user"]['email_forward_url'],
-                          'http://alpine.washington.edu')
-        self.assertIsNone(response.context['google_search_key'])
-        self.assertIsNotNone(response.context['enabled_features'])
+        with self.settings(MYUW_ENABLED_FEATURES=['a']):
+            url = reverse("myuw_home")
+            self.set_user('bill')
+            response = self.client.get(url)
+            self.assertEquals(response.status_code, 200)
+            self.assertEquals(response.context["banner_messages"], [])
+            self.assertEquals(response.context["display_onboard_message"],
+                              True)
+            self.assertEquals(response.context["display_pop_up"], True)
+            self.assertEquals(response.context["disable_actions"], False)
+            self.assertIsNotNone(response.context["card_display_dates"])
+            self.assertIsNotNone(response.context["user"]["affiliations"])
+            self.assertEquals(response.context["user"]['email_forward_url'],
+                              'http://alpine.washington.edu')
+            self.assertIsNone(response.context['google_search_key'])
+            self.assertIsNotNone(response.context['enabled_features'])
 
-        self.set_user('billpce')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+            self.set_user('billpce')
+            response = self.client.get(url)
+            self.assertEquals(response.status_code, 200)
 
-        self.set_user('billseata')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 200)
+            self.set_user('billseata')
+            response = self.client.get(url)
+            self.assertEquals(response.status_code, 200)
