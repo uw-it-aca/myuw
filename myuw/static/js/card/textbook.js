@@ -56,7 +56,14 @@ var TextbookCard = {
             $("#TextbookCard").hide();
             return;
         }
-        TextbookCard.dom_target.html(CardWithError.render("Textbooks"));
+        TextbookCard._render_with_context({has_error: true})
+    },
+
+    _render_with_context: function (context){
+        var source = $("#textbook_card").html();
+        var template = Handlebars.compile(source);
+        var raw = template(context);
+        TextbookCard.dom_target.html(raw);
     },
 
     _render: function () {
@@ -99,10 +106,7 @@ var TextbookCard = {
                              "summer_term": course_data.summer_term,
                              "sections": section_book_data};
 
-        var source = $("#textbook_card").html();
-        var template = Handlebars.compile(source);
-        var raw = template(template_data);
-        TextbookCard.dom_target.html(raw);
+        TextbookCard._render_with_context(template_data);
         TextBooks.rendered_once = true;
         LogUtils.cardLoaded(TextbookCard.name, TextbookCard.dom_target);
         TextbookCard.add_events(term);
