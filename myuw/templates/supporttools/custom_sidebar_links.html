@@ -37,9 +37,9 @@
             <li><a href="{% url 'restclients_proxy' 'pws' 'identity/v2/photo' %}">{{ restclients_pws_link|default:"ID Photo Search" }}</a></li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'gws' 'index.html' as url %}
-        {% if url %}
-            <li><a href="{{ url }}">UW Groups Web Service</a></li>
+        {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
+        {% if gws_url %}
+            <li><a href="{{ gws_url }}">{{ restclients_gws_link|default:"Search Groups Web Service" }}</a></li>
         {% endif %}
 
         {% url 'restclients_proxy' 'canvas' '' as url %}
