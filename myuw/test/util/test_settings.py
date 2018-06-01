@@ -10,6 +10,9 @@ from myuw.util.settings import get_calendar_time_zone,\
 legacy_url = "https://myuw.washington.edu/"
 
 
+legacy_url = "https://myuw.washington.edu/"
+
+
 class TestSetting(TestCase):
 
     def test_default(self):
