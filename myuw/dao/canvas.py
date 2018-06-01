@@ -20,7 +20,7 @@ def get_canvas_active_enrollments(request):
 def _get_canvas_active_enrollments_for_regid(regid):
     return Enrollments().get_enrollments_for_regid(
         regid,
-        {'type': ['StudentEnrollment'],
+        {'type': ['StudentEnrollment'], 
          'state': ['active']},
         include_courses=False)
 
