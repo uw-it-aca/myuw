@@ -52,7 +52,7 @@ setup(
         'UW-RestClients-Trumba<1.0,>=0.3',
         'UW-RestClients-CoDa',
         'UW-RestClients-Sdbmyuw',
-        'UW-RestClients-Django-Utils>=1.3,<2.0',
+        'UW-RestClients-Django-Utils>=1.3.1,<2.0',
         'UW-HX-Toolkit==1.03',
         'django-userservice>=2.0.2,<3.0',
         'Django-SupportTools>=2.0.3,<3.0',
