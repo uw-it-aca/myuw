@@ -1,7 +1,8 @@
 import logging
 import os
+import io
 from django.conf import settings
-from uw_sws.dao import SWS_DAO
+from uw_sws import DAO as SWS_DAO
 from userservice.user import UserService
 
 
@@ -28,7 +29,7 @@ def get_netid_of_original_user():
 
 
 def is_using_file_dao():
-    return SWS_DAO().get_implementation().is_mock()
+    return SWS_DAO.get_implementation().is_mock()
 
 
 def is_thrive_viewer(uwnetid, population):
@@ -50,10 +51,11 @@ def _get_file_path(settings_key, filename):
 
 
 def is_netid_in_list(username, file_path):
-    with open(file_path) as data_source:
+    netid = username.decode('utf8')
+    with io.open(file_path, 'r', encoding='utf8') as data_source:
         for line in data_source:
             try:
-                if line.rstrip() == username:
+                if line.rstrip() == netid:
                     return True
             except Exception as ex:
                 logger.error("%s: %s==%s", ex, line, username)

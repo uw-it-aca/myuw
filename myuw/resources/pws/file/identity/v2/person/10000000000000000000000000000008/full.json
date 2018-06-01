@@ -1,0 +1,40 @@
+{
+"DisplayName":"Tacoma Faculty",
+"EduPersonAffiliations":["member",
+                         "alum",
+                         "faculty",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"TACOMA",
+"RegisteredName":"TACOMA FACULTY",
+"RegisteredSurname":"FACULTY",
+"UIDNumber":"35443",
+"UWNetID":"billtac",
+"UWRegID":"10000000000000000000000000000008",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"100000008",
+        "EmployeeWhitePages":{
+            "Addresses":[],
+            "EmailAddresses":["billtac@uw.edu"],
+            "Faxes":[],
+            "Mobiles":[],
+            "Name":"Tacoma, Bill",
+            "Pagers":[],
+            "Phones":[],
+            "Positions":[
+                {"EWPDept":"History",
+                 "EWPTitle":"Tac: Professor",
+                 "Primary":true}],
+            "PublishInDirectory":false,
+            "TouchDials":[],
+            "VoiceMails":[]
+        },
+        "HomeDepartment":"Tac: Math",
+        "MailStop":"358450"}
+      }
+}

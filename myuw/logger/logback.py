@@ -42,7 +42,7 @@ def get_logging_userid():
     actual_userid = get_netid_of_original_user()
     log_format = 'base_user: %s acting_user: %s is_override: %s'
     try:
-        if override_userid:
+        if override_userid != actual_userid:
             log_userid = log_format % (actual_userid, override_userid, 'true')
         else:
             log_userid = log_format % (actual_userid, actual_userid, 'false')

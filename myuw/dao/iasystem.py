@@ -147,10 +147,13 @@ def json_for_evaluation(request, evaluations, section):
                         "get course %s instructor eid(%s) ==> %s",
                         section.section_label(), eid, ex)
                     continue
+
                 instructor_json = {}
                 instructor_json['instructor_name'] = instructor.display_name
-                instructor_json['instructor_title'] = instructor.title1
+                instructor_json['instructor_title'] =\
+                    get_primary_position_title(instructor.positions)
                 json_item['instructors'].append(instructor_json)
+
             json_data.append(json_item)
 
     return json_data
@@ -159,3 +162,10 @@ def json_for_evaluation(request, evaluations, section):
 def datetime_str(localized_datetime):
     fmt = '%Y-%m-%d %H:%M:%S %Z%z'
     return localized_datetime.strftime(fmt)
+
+
+def get_primary_position_title(positions):
+    for position in positions:
+        if position.is_primary:
+            return position.title
+    return None
