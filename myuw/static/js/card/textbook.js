@@ -56,7 +56,7 @@ var TextbookCard = {
             $("#TextbookCard").hide();
             return;
         }
-        TextbookCard._render_with_context({has_errors: true})
+        TextbookCard._render_with_context({has_errors: true});
     },
 
     _render_with_context: function (context){
