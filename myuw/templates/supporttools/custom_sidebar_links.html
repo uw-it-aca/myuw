@@ -42,11 +42,6 @@
             <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
-        {% if idcard_url %}
-            <li><a href="{{ idcard_url }}">{{ restclients_pws_link|default:"ID Photo Search" }}</a> (append /regid)</li>
-        {% endif %}
-
         {% url 'restclients_proxy' 'canvas' '' as url %}
         {% if url %}
             <li><a href="{{ url }}">Canvas Web Service</a> <span class="text-muted">unavailable</span></li>
@@ -60,6 +55,11 @@
         {% url 'restclients_proxy' 'iasystem' 'index.html' as ias_url %}
         {% if ias_url %}
             <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
+        {% if idcard_url %}
+            <li><a href="{{ idcard_url }}">{{ restclients_pws_link|default:"ID Photo Search" }}</a></li>
         {% endif %}
 
         {% url 'restclients_proxy' 'libcurrics' 'index.html' as libcurrics_url %}
