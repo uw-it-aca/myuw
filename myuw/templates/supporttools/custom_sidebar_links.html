@@ -27,6 +27,11 @@
     <h3>Web Services</h3>
     <ul>
 
+        {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
+        {% if gws_url %}
+            <li><a href="{{ gws_url }}">{{ restclients_gws_link|default:"Search Groups Web Service" }}</a></li>
+        {% endif %}
+
         {% url 'restclients_proxy' 'sws' 'student/v5.json' as sws_url %}
         {% if sws_url %}
             <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
@@ -35,17 +40,13 @@
         {% url 'restclients_proxy' 'pws' 'identity/v2.json' as pws_url %}
         {% if pws_url %}
             <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
-            <li><a href="{% url 'restclients_proxy' 'pws' 'identity/v2/photo' %}">{{ restclients_pws_link|default:"ID Photo Search" }}</a></li>
-        {% endif %}
 
-        {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
-        {% if gws_url %}
-            <li><a href="{{ gws_url }}">{{ restclients_gws_link|default:"Search Groups Web Service" }}</a></li>
+            <li><a href="{% url 'restclients_proxy' 'pws' 'identity/v2/photo' %}">{{ restclients_pws_link|default:"ID Photo Search" }}</a> <span class="text-muted">unavailable</span></li>
         {% endif %}
 
         {% url 'restclients_proxy' 'canvas' '' as url %}
         {% if url %}
-            <li><a href="{{ url }}">Canvas Web Service</a></li>
+            <li><a href="{{ url }}">Canvas Web Service</a> <span class="text-muted">unavailable</span></li>
         {% endif %}
 
         {% url 'restclients_proxy' 'grad' 'index.html' as grad_url %}
