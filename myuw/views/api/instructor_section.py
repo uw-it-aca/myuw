@@ -20,7 +20,6 @@ from myuw.dao.instructor_schedule import \
 from myuw.dao.pws import get_person_of_current_user, get_url_key_for_regid,\
     get_person_by_regid as get_pws_person_by_regid
 from myuw.logger.logresp import log_success_response
-from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI

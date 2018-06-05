@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 @login_required
-@admin_required('MYUW_ADMIN_GROUP')
+@admin_required
 def popular_links(request, page):
     uwnetid = get_netid_of_current_user(request)
     if request.POST:

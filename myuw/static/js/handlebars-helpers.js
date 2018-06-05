@@ -33,7 +33,7 @@ Handlebars.registerHelper("strToInt", function(str) {
         return moment(str).fromNow();
     });
 
-    // used on Grade, Library card
+    // On Grade, Library, Course, tuition, medicine password
     Handlebars.registerHelper("toFriendlyDate", function(date_str) {
         if (date_str === undefined || date_str.length === 0) {
             return "";

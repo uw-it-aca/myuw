@@ -1,6 +1,5 @@
 from django.conf import settings
 from django import template
-from myuw.util.thread import PrefetchThread
 from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.library import library_resource_prefetch
 from myuw.dao.gws import group_prefetch
@@ -11,6 +10,8 @@ from myuw.dao.term import current_terms_prefetch
 from myuw.dao.uwnetid import subscriptions_prefetch
 from myuw.dao.canvas import canvas_prefetch
 from myuw.dao.user_pref import migration_preference_prefetch
+from myuw.util.settings import get_enabled_features
+from myuw.util.thread import PrefetchThread
 
 
 def prefetch(request, prefetch_methods):
@@ -68,10 +69,6 @@ def prefetch_resources(request,
         prefetch_methods.extend(password_prefetch())
 
     prefetch(request, prefetch_methods)
-
-
-def get_enabled_features():
-    return getattr(settings, "MYUW_ENABLED_FEATURES", [])
 
 
 def set_admin_wrapper_template(context):
