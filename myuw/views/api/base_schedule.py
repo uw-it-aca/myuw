@@ -78,7 +78,7 @@ def load_schedule(request, schedule, summer_term=""):
     canvas_enrollments = {}
     try:
         canvas_enrollments = get_canvas_active_enrollments(request)
-    except Exception as ex:
+    except Exception:
         log_exception(
             logger, 'load_schedule', traceback.format_exc())
         pass
@@ -115,7 +115,7 @@ def load_schedule(request, schedule, summer_term=""):
             try:
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
-            except Exception as ex:
+            except Exception:
                 log_exception(
                     logger, 'load_schedule', traceback.format_exc())
                 pass
@@ -149,17 +149,12 @@ def load_schedule(request, schedule, summer_term=""):
                         mdata["building_name"] = building.name
 
                 for instructor in mdata["instructors"]:
-                    if (
-                            not instructor["email1"] and
-                            not instructor["email2"] and
-                            not instructor["phone1"] and
-                            not instructor["phone2"] and
-                            not instructor["voicemail"] and
-                            not instructor["fax"] and
-                            not instructor["touchdial"] and
-                            not instructor["address1"] and
-                            not instructor["address2"]
-                            ):
+                    if (len(instructor["email_addresses"]) == 0 and
+                            len(instructor["phones"]) == 0 and
+                            len(instructor["voice_mails"]) == 0 and
+                            len(instructor["faxes"]) == 0 and
+                            len(instructor["touch_dials"]) == 0 and
+                            len(instructor["addresses"]) == 0):
                         instructor["whitepages_publish"] = False
                 meeting_index += 1
             except IndexError as ex:

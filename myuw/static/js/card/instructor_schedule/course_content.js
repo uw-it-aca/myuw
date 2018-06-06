@@ -22,6 +22,7 @@ var InstructorCourseCardContent = {
     },
 
     add_events: function(card, term) {
+
         $(".show_map", card).on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');

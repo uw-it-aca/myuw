@@ -2,38 +2,40 @@
     {% tplhandlebars "reg_holds_tmpl" %}
 
 <div class="card-badge-container" title="Registration Holds">
-    <div class="card-badge card-critical-alert" role="status">
-    <!--
-    <ul title="Registration Holds" style="list-style-type: none; padding-left: 0;">
-    <li>
-    -->
-        <div class="reg-holds-container clearfix">
-            {{#unless myplan_peak_load }}
+
+    <div class="card-badge" role="status">
+        <div class="reg-holds-container">
+            <div class="clearfix">
+                {{!-- Show left label during non-peak load time. Else align the HOLD link to the left --}}
+                {{#unless myplan_peak_load }}
                 <div class="pull-left">
                     <h4 class="card-badge-label pull-left">Holds</h4>
                 </div>
-                <div class="pull-right">
-            {{else}}
-                <div class="pull-left">
-            {{/unless}}
 
-                <div class="card-badge-value">
-                    <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
-                        <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
-                           class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
-                           aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
-                           href="#"
-                           title="Expand and show holds details"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
-                    </span>
-                    <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
-                        <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
-                           class="reg_disclosure{{#if card}}_{{card}}{{/if}}"
-                           aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
-                           href="#"
-                           title="Collapse and hide holds details"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
-                    </span>
+                <div class="pull-right">
+                {{else}}
+                <div class="pull-left">
+                {{/unless}}
+
+                    <div class="card-badge-value">
+                        <span id="show_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}">
+                            <a id="show_reg_holds{{#if card}}_{{card}}{{/if}}"
+                               class="reg_disclosure{{#if card}}_{{card}}{{/if}} text-danger"
+                               aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
+                               href="#"
+                               title="Expand and show holds details"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                        </span>
+                        <span id="hide_reg_holds_wrapper{{#if card}}_{{card}}{{/if}}" hidden aria-hidden="true">
+                            <a id="hide_reg_holds{{#if card}}_{{card}}{{/if}}"
+                               class="reg_disclosure{{#if card}}_{{card}}{{/if}} text-danger"
+                               aria-controls="reg_holds{{#if card}}_{{card}}{{/if}}"
+                               href="#"
+                               title="Collapse and hide holds details"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                        </span>
+                    </div>
                 </div>
             </div>
+            {{!-- end clearfix --}}
 
             <div id="reg_holds{{#if card}}_{{card}}{{/if}}"
                  class="slide-hide reg_holds_disc"
@@ -49,12 +51,10 @@
                     </ul>
                 </div>
             </div>
+
         </div>
     </div>
-    <!--
-    </li>
-    </ul>
-    -->
+
 </div>
 
 {% endtplhandlebars %}

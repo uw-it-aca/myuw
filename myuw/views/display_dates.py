@@ -26,7 +26,7 @@ DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
 
 
 @login_required
-@admin_required('USERSERVICE_ADMIN_GROUP')
+@admin_required
 def override(request):
     logger = logging.getLogger(__name__)
 

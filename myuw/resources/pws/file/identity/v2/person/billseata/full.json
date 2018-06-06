@@ -1,0 +1,49 @@
+{
+"DisplayName":"Seattle Ta",
+"EduPersonAffiliations":["member",
+"alum",
+"ta",
+"employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"SEATTLE",
+"RegisteredName":"SEATTLE TA",
+"RegisteredSurname":"TA",
+"UIDNumber":"35443",
+"UWNetID":"billseata",
+"UWRegID":"10000000000000000000000000000009",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"100000009",
+        "EmployeeWhitePages":{
+            "Addresses":[],
+            "EmailAddresses":["billseata@uw.edu"],
+            "Faxes":["+1 206 123-4321"],
+            "Mobiles":[],
+            "Name":"Ta, Bill Seattle",
+            "Pagers":[],
+            "Phones":[],
+            "Positions":[
+                {"EWPDept":"CAS: History: Admin JM Student",
+                 "EWPTitle":"Reader\/Grader (NE H UAW ASE)",
+                 "Primary":true}],
+            "PublishInDirectory":true,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment":"CAS: History: Admin JM Student",
+        "MailStop":"353560"},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"8938640",
+        "StudentSystemKey":"000223560",
+        "StudentWhitePages":{"Class":"Graduate",
+                             "Departments":["History"],
+                             "Email":"billseata@uw.edu",
+                             "Name":"Ta, Bill Sea",
+                             "Phone":"+1 206 123-1234",
+                             "PublishInDirectory":true}
+    }
+  }
+}
