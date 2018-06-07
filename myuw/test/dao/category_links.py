@@ -3,9 +3,9 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
     Res_Links, Resource_Links, pin_category, delete_categor_pin
+from myuw.dao.exceptions import InvalidResourceCategory
 from myuw.models.res_category_link import ResCategoryLink
 from myuw.test import get_request_with_user
-from myuw.exceptions import InvalidResourceCategory
 import re
 
 

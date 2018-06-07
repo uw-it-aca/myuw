@@ -1,0 +1,58 @@
+{
+"DisplayName":"Bothell Faculty",
+"EduPersonAffiliations":["member",
+                         "alum",
+                         "faculty",
+                         "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"BOTHELL",
+"RegisteredName":"BOTHELL FACULTY",
+"RegisteredSurname":"FACULTY",
+"UIDNumber":"35443",
+"UWNetID":"billbot",
+"UWRegID":"10000000000000000000000000000007",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+        "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+        "EmployeePersonAffiliation":{
+        "EmployeeID":"100000007",
+        "EmployeeWhitePages":{
+            "Addresses":["4333 Brooklyn Ave NE, Bothell, WA 98195"],
+            "EmailAddresses":["billbot@uw.edu"],
+            "Faxes":[],
+            "Mobiles":[],
+            "Name":"Bothell, Bill",
+            "Pagers":[],
+            "Phones":["+1 206 123-1234",
+                      "+1 206 543-1234"],
+            "Positions":[
+                {"EWPDept":"UWB: School of Nursing and Health Studies",
+                 "EWPTitle":"Senior Lecturer",
+                 "Primary":true},
+                {"EWPDept":"School of Nursing and Health Studies, Bothell",
+                 "EWPTitle":"Senior Lecturer, full-time",
+                 "Primary":false},
+                {"EWPDept":"Bioethics and Humanities",
+                 "EWPTitle":"Adjunct Lecturer",
+                 "Primary":false}],
+            "PublishInDirectory":true,
+            "TouchDials":[],
+            "VoiceMails":[]},
+            "HomeDepartment":"UWB: School of Nursing and Health Studies",
+            "MailStop":"358532"},
+        "StudentPersonAffiliation":{
+            "StudentNumber":"1000007",
+            "StudentSystemKey":"000000007",
+            "StudentWhitePages":{
+                "Class":null,
+                "Departments":[],
+                "Email":null,
+                "Name":null,
+                "Phone":null,
+                "PublishInDirectory":false
+            }
+         }
+     }
+}

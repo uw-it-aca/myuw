@@ -2,46 +2,44 @@ from datetime import date, datetime, timedelta
 from django.test import TestCase
 from django.conf import settings
 from django.test.utils import override_settings
-from myuw.dao.grad import get_degree_by_regid,\
-    get_leave_by_regid, get_committee_by_regid, committee_to_json,\
-    get_petition_by_regid, leave_to_json, petition_to_json,\
-    is_before_eof_2weeks_since_decision_date, degree_to_json
-from myuw.test import get_request_with_date, get_request
+from myuw.dao.grad import get_grad_degree_for_current_user,\
+    get_grad_committee_for_current_user, get_grad_leave_for_current_user,\
+    get_grad_petition_for_current_user, leave_to_json, petition_to_json,\
+    is_before_eof_2weeks_since_decision_date, degree_to_json,\
+    committee_to_json
+from myuw.test import get_request_with_date, get_request_with_user
 from uw_grad.util import fdao_grad_override
 
 
 @fdao_grad_override
 class TestDaoGrad(TestCase):
-    def setUp(self):
-        get_request()
 
     def test_get_grad_committee(self):
-        committee_reqs = get_committee_by_regid(
-            '10000000000000000000000000000002')
+        req = get_request_with_user("seagrad")
+        committee_reqs = get_grad_committee_for_current_user(req)
         self.assertIsNotNone(committee_reqs)
         self.assertEquals(len(committee_reqs), 3)
+
         json_data = committee_to_json(committee_reqs)
         self.assertIsNotNone(json_data)
         self.assertEquals(len(json_data), 3)
         self.assertEquals(len(json_data[1]['members']), 3)
         self.assertEquals(len(json_data[2]['members']), 4)
 
-        committee_reqs = get_committee_by_regid(
-            '10000000000000000000000000000003')
+        req = get_request_with_user("botgrad")
+        committee_reqs = get_grad_committee_for_current_user(req)
         self.assertEquals(len(committee_reqs), 0)
         self.assertIsNone(committee_to_json(committee_reqs))
 
     def test_get_grad_degree(self):
-        now_request = get_request()
-
-        degree_reqs = get_degree_by_regid(
-            '10000000000000000000000000000004')
+        req = get_request_with_user("tacgrad")
+        degree_reqs = get_grad_degree_for_current_user(req)
         self.assertIsNotNone(degree_reqs)
         self.assertEquals(len(degree_reqs), 0)
-        self.assertIsNone(degree_to_json(degree_reqs, now_request))
+        self.assertIsNone(degree_to_json(degree_reqs, req))
 
-        degree_reqs = get_degree_by_regid(
-            '10000000000000000000000000000002')
+        req = get_request_with_user("seagrad")
+        degree_reqs = get_grad_degree_for_current_user(req)
         self.assertIsNotNone(degree_reqs)
         self.assertEquals(len(degree_reqs), 8)
 
@@ -103,15 +101,17 @@ class TestDaoGrad(TestCase):
                 datetime(2013, 6, 10, 0, 0, 0)))
 
     def test_get_grad_leave(self):
-        now_request = get_request()
-        leave_reqs = get_leave_by_regid('10000000000000000000000000000003')
+        req = get_request_with_user("botgrad")
+        leave_reqs = get_grad_leave_for_current_user(req)
         self.assertIsNotNone(leave_reqs)
         self.assertEquals(len(leave_reqs), 0)
-        self.assertIsNone(leave_to_json(leave_reqs, now_request))
+        self.assertIsNone(leave_to_json(leave_reqs, req))
 
-        leave_reqs = get_leave_by_regid('10000000000000000000000000000002')
+        req = get_request_with_user("seagrad")
+        leave_reqs = get_grad_leave_for_current_user(req)
         self.assertIsNotNone(leave_reqs)
         self.assertEquals(len(leave_reqs), 5)
+
         now_request = get_request_with_date("2012-12-07")
         json_data = leave_to_json(leave_reqs, now_request)
         self.assertEquals(len(json_data), 5)
@@ -182,7 +182,8 @@ class TestDaoGrad(TestCase):
         self.assertEquals(leave["status"], "Requested")
         # requested always shows
 
-        leave_reqs = get_leave_by_regid('10000000000000000000000000000004')
+        req = get_request_with_user("tacgrad")
+        leave_reqs = get_grad_leave_for_current_user(req)
         self.assertIsNotNone(leave_reqs)
         self.assertEquals(len(leave_reqs), 7)
         now_request = get_request_with_date("2014-06-19")
@@ -190,15 +191,13 @@ class TestDaoGrad(TestCase):
         self.assertIsNone(json_data, 0)
 
     def test_get_grad_petition(self):
-        now_request = get_request()
-
-        petition_reqs = get_petition_by_regid(
-            '10000000000000000000000000000003')
+        req = get_request_with_user("botgrad")
+        petition_reqs = get_grad_petition_for_current_user(req)
         self.assertEquals(len(petition_reqs), 0)
-        self.assertIsNone(petition_to_json(petition_reqs, now_request))
+        self.assertIsNone(petition_to_json(petition_reqs, req))
 
-        petition_reqs = get_petition_by_regid(
-            '10000000000000000000000000000002')
+        req = get_request_with_user("seagrad")
+        petition_reqs = get_grad_petition_for_current_user(req)
         self.assertIsNotNone(petition_reqs)
         self.assertEquals(len(petition_reqs), 7)
 

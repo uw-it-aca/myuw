@@ -14,7 +14,7 @@
             <ul class="myuw-eval-multi-list">
                 {{#each instructors}}
                     <li class="myuw-eval-multi-list-item">
-                        <span class="myuw-eval-name">{{instructor_name}}</span>
+                        <span class="myuw-eval-name">{{titleCaseName instructor_name}}</span>
                             {{#if instructor_title}}
                         <div class="myuw-eval-title">{{instructor_title}}</div>
                         {{/if}}
@@ -29,7 +29,7 @@
             <ul class="myuw-eval-list">
                 {{#each instructors}}
                     <li class="myuw-eval-list-item">
-                        <a class="myuw-eval-link" href="{{ ../url }}" target="_blank"><span class="myuw-eval-name"><span class="myuw-eval-name">{{instructor_name}}</span></a>
+                        <a class="myuw-eval-link" href="{{ ../url }}" target="_blank"><span class="myuw-eval-name"><span class="myuw-eval-name">{{titleCaseName instructor_name}}</span></a>
                         {{#if instructor_title}}
                             <div class="myuw-eval-title">{{instructor_title}}</div>
                         {{/if}}
