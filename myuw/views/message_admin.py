@@ -5,7 +5,6 @@ from myuw.logger.logback import log_info
 from myuw.dao import get_netid_of_original_user
 from myuw.dao.term import get_comparison_datetime
 from myuw.dao.messages import clean_html
-from authz_group import Group
 from django.utils import timezone
 from datetime import timedelta, datetime
 from django.shortcuts import render, redirect
@@ -18,7 +17,7 @@ logger = logging.getLogger(__name__)
 
 
 @login_required
-@admin_required('MYUW_ADMIN_GROUP')
+@admin_required
 def manage_messages(request):
     context = {}
     if request.POST:

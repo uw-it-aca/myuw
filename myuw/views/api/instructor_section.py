@@ -20,7 +20,6 @@ from myuw.dao.instructor_schedule import \
 from myuw.dao.pws import get_person_of_current_user, get_url_key_for_regid,\
     get_person_by_regid as get_pws_person_by_regid
 from myuw.logger.logresp import log_success_response
-from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
@@ -165,6 +164,11 @@ class OpenInstSectionDetails(OpenAPI):
             enrollment_threads[regid] = enrollment_thread
             name_email_thread.start()
             enrollment_thread.start()
+
+            email1 = None
+            if len(person.email_addresses):
+                email1 = person.email_addresses[0]
+
             reg = {
                     'full_name': person.display_name,
                     'netid': person.uwnetid,
@@ -174,7 +178,7 @@ class OpenInstSectionDetails(OpenAPI):
                     'is_auditor': registration.is_auditor,
                     'is_independent_start': registration.is_independent_start,
                     'class_level': person.student_class,
-                    'email': person.email1,
+                    'email': email1,
                     'url_key': get_url_key_for_regid(person.uwregid),
                 }
 

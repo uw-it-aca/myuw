@@ -7,7 +7,7 @@ from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 from myuw.dao.category_links import (
     Resource_Links, pin_category, delete_categor_pin)
-from myuw.exceptions import InvalidResourceCategory
+from myuw.dao.exceptions import InvalidResourceCategory
 from myuw.models import ResourceCategoryPin
 
 logger = logging.getLogger(__name__)
