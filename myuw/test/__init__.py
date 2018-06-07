@@ -1,7 +1,7 @@
 from django.test.utils import override_settings
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
-from userservice.user import UserServiceMiddleware
+from userservice.user import UserServiceMiddleware, UserService
 from uw_gws.utilities import fdao_gws_override
 from uw_pws.util import fdao_pws_override
 from uw_sws.util import fdao_sws_override
@@ -20,6 +20,13 @@ from restclients_core.util.decorators import use_mock
 
 EMAILBACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 email_backend_override = override_settings(EMAIL_BACKEND=EMAILBACKEND)
+VALIDATION_MODULE = "myuw.authorization.validate_netid"
+OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
+ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
+auth_override = override_settings(
+    USERSERVICE_VALIDATION_MODULE=VALIDATION_MODULE,
+    USERSERVICE_OVERRIDE_AUTH_MODULE=OVERRIDE_AUTH_MODULE,
+    RESTCLIENTS_ADMIN_AUTH_MODULE=ADMIN_AUTH_MODULE)
 
 
 def get_request():
@@ -43,7 +50,12 @@ def get_request_with_user(username, now_request=None):
     if now_request is None:
         now_request = get_request()
     now_request.user = get_user(username)
+    UserServiceMiddleware().process_request(now_request)
     return now_request
+
+
+def set_override_user(username):
+    UserService().set_override_user(username)
 
 
 def get_user(username):

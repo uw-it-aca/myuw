@@ -1,0 +1,42 @@
+{ "DisplayName" : "BILL AVERAGE TEACHER",
+  "EduPersonAffiliations" : [
+      "member",
+      "alum",
+      "staff",
+      "employee"
+  ],
+  "IsTestEntity" : false,
+  "PersonAffiliations" : {
+      "AlumPersonAffiliation" : {
+          "DevelopmentID" : "0000995897" },
+      "EmployeePersonAffiliation" : {
+          "EmployeeID" : "123456782",
+          "EmployeeWhitePages" : {
+              "Addresses": ["Seattle, WA 98105"],
+              "EmailAddresses":["bill100@uw.edu"],
+              "Faxes":[],
+              "Mobiles":[],
+              "Phones": ["+1 206 555-1235"],
+              "Pagers":["+1 425-555-1237"],
+              "Name" : "Teacher, Bill Average",
+              "Positions":[{
+                  "EWPDept":"Family Medicine",
+                  "EWPTitle":"Dept Admin",
+                  "Primary":true}],
+              "PublishInDirectory": true,
+              "TouchDials":[],
+              "VoiceMails":[]},
+          "HomeDepartment":"Family Medicine",
+          "MailStop" : "354744"
+        }
+    },
+  "PriorUWNetIDs" : [],
+  "PriorUWRegIDs" : [],
+  "RegisteredFirstMiddleName" : "BILL100 AVERAGE",
+  "RegisteredName" : "BILL100 TEACHER",
+  "RegisteredSurname" : "TEACHER",
+  "UIDNumber" : "35343",
+  "UWNetID" : "bill100",
+  "UWRegID" : "FBB38FE46A7C11D5A4AE0004AC494100",
+  "WhitepagesPublish" : true
+}

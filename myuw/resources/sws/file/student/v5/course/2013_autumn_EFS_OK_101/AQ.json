@@ -53,7 +53,7 @@
             "DelegateLevel": "department",
             "Person": {
                 "Href": "/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
-                "Name": "BUSCH,CAROLYN J",
+                "Name": "see pws",
                 "RegID": "260A0DEC95CB11D78BAA000629C31437"
             }
         },
@@ -61,7 +61,7 @@
             "DelegateLevel": "curriculum",
             "Person": {
                 "Href": "/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
-                "Name": "BUSCH,CAROLYN J",
+                "Name": "see pws",
                 "RegID": "260A0DEC95CB11D78BAA000629C31437"
             }
         }
@@ -110,7 +110,7 @@
                     },
                     "Person": {
                         "Href": "/student/v5/person/260A0DEC95CB11D78BAA000629C31437.json",
-                        "Name": "ROMPOGREN,JUSTINA C",
+                        "Name": "see pws",
                         "RegID": "260A0DEC95CB11D78BAA000629C31437"
                     },
                     "TSPrint": true

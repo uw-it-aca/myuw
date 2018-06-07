@@ -124,6 +124,8 @@ class IASystemDaoTest(TestCase):
         json_data = json_for_evaluation(now_request, evals, None)
         self.assertIsNotNone(json_data)
         self.assertEqual(len(json_data), 1)
+        self.assertEqual(json_data[0]['instructors'][0]['instructor_title'],
+                         u'Teaching Assistant')
         self.assertEqual(json_data[0]['close_date'],
                          "2013-03-23 07:59:59 UTC+0000")
         # after close date

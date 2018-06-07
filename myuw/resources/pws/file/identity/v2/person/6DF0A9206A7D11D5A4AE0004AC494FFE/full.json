@@ -1,0 +1,41 @@
+{"DisplayName":"Jim Bags",
+"EduPersonAffiliations":["member","student","alum","staff","employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"Jim",
+"RegisteredName":"Bags",
+"RegisteredSurname":"WINSLOWE",
+"UIDNumber":"56375",
+"UWNetID":"mwinslowe",
+"UWRegID":"6DF0A9206A7D11D5A4AE0004AC494FFE",
+"WhitepagesPublish":true,
+"PersonAffiliations":{
+    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"123456789",
+        "EmployeeWhitePages":{
+            "Addresses": [],
+            "EmailAddresses":[],
+            "Faxes":[],
+            "Mobiles":[],
+            "Phones": [],
+            "Pagers":[],
+            "Name" : null,
+            "Positions":[],
+            "PublishInDirectory": true,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment":"Math",
+        "MailStop":null},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1443336",
+        "StudentSystemKey":"000083857",
+        "StudentWhitePages":{
+            "Class":null,
+            "Departments":["Math"],
+            "Email":null,
+            "Name":null,
+            "Phone":null,
+            "PublishInDirectory":true}
+}}}

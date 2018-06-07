@@ -65,16 +65,7 @@ class TestBannerMessageDAO(TestCase):
 
         request = get_request_with_date('2013-04-06')
         request = get_request_with_user('javerage', request)
-
-        by_settings = 'authz_group.authz_implementation.settings.Settings'
-        with self.settings(AUTHZ_GROUP_BACKEND=by_settings,
-                           AUTHZ_GROUP_MEMBERS={"uw_test_group": []}):
-                self.assertEquals(len(get_current_messages(request)), 0)
-
-        with_javerage = {"uw_test_group": ["javerage"]}
-        with self.settings(AUTHZ_GROUP_BACKEND=by_settings,
-                           AUTHZ_GROUP_MEMBERS=with_javerage):
-                self.assertEquals(len(get_current_messages(request)), 1)
+        self.assertEquals(len(get_current_messages(request)), 1)
 
     def test_html_cleanup(self):
         out = clean_html('Awesome: <i class="fa fa-bullhorn"></i>')

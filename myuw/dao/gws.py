@@ -1,6 +1,5 @@
 """
-The Member class encapsulates the interactions
-with the UW Affiliation Group API resource
+dealing with the UW Affiliation Groups
 """
 
 import logging
@@ -8,10 +7,8 @@ try:
     from sets import Set as set, ImmutableSet as frozenset
 except ImportError:
     pass
-from django.conf import settings
-from authz_group import Group
 from uw_gws import GWS
-from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import is_employee
 from myuw.dao.uwnetid import is_clinician, is_faculty
 
@@ -188,17 +185,3 @@ def no_major_affiliations(request):
     return (not is_applicant(request) and
             not is_regular_employee(request) and
             not is_student(request))
-
-
-def is_in_admin_group(group_key):
-    if not hasattr(settings, group_key):
-        print('You must have a group defined as your admin group.')
-        print('Configure that using %s="foo_group"' % group_key)
-        raise Exception("Missing %s in settings" % group_key)
-
-    actual_user = get_netid_of_original_user()
-    if not actual_user:
-        raise Exception("No user in session")
-
-    group_name = getattr(settings, group_key)
-    return Group().is_member_of_group(actual_user, group_name)

@@ -32,6 +32,7 @@ var RequestEmailLists = {
         if (data.total_course_wo_list > 1) {
             data.multi_sections_wo_list = true;
         }
+        data.is_override_and_disable_actions = window.user.is_override_and_disable_actions;
         var term = data.year + ',' + data.quarter;
         var source   = $("#request_email_lists_tmpl").html();
         var template = Handlebars.compile(source);
