@@ -304,3 +304,15 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(response.status_code, 404)
         all = HiddenLink.objects.all()
         self.assertEqual(len(all), 1)
+
+    def test_disable_action(self):
+        with self.settings(DEBUG=False,
+                           MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True):
+            self.set_user('javerage')
+            self.set_userservice_override('bill')
+            url = reverse('myuw_manage_links')
+            data = json.dumps({'type': 'custom',
+                               'url': 'www.washington.edu'})
+            response = self.client.post(url, data,
+                                        content_type='application_json')
+            self.assertEqual(response.status_code, 401)

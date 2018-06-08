@@ -4,9 +4,11 @@ import io
 from django.conf import settings
 from uw_sws import DAO as SWS_DAO
 from userservice.user import UserService
+from myuw.util.settings import get_disable_actions_when_override
 
 
 logger = logging.getLogger(__name__)
+disable_actions_when_override = get_disable_actions_when_override()
 
 
 def get_netid_of_current_user(request=None):
@@ -26,6 +28,16 @@ def get_netid_of_original_user():
     return the actual authenticated user
     """
     return UserService().get_original_user()
+
+
+def is_action_disabled():
+    """
+    return True if overriding and
+    MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE is True
+    """
+    overrider = UserService().get_override_user()
+    disable_actions_when_override = get_disable_actions_when_override()
+    return disable_actions_when_override and overrider is not None
 
 
 def is_using_file_dao():

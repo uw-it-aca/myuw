@@ -1,6 +1,6 @@
 import os
 import csv
-from myuw.exceptions import InvalidAffiliationDataFile
+from myuw.dao.exceptions import InvalidAffiliationDataFile
 
 
 def get_data_for_affiliations(model=None, file=None, affiliations=None,

@@ -20,6 +20,9 @@ def get_cache_time(service, url):
             return ONE_DAY
         return FIFTEEN_MINS
 
+    if "gws" == service:
+        return FIFTEEN_MINS
+
     if "pws" == service:
         return ONE_HOUR
 
