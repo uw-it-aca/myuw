@@ -25,3 +25,26 @@ def get_logout_url():
 
 def get_myuwclass_url():
     return getattr(settings, "MYUWCLASS", "myuwclass.asp?cid=")
+
+
+def get_myuw_admin_group():
+    return getattr(settings, "MYUW_ADMIN_GROUP",
+                   'u_astratst_myuw_test-support-admin')
+
+
+def get_myuw_override_group():
+    return getattr(settings, "MYUW_OVERRIDE_GROUP",
+                   'u_astratst_myuw_test-support-impersonate')
+
+
+def get_myuw_astra_group_stem():
+    return getattr(settings, "MYUW_ASTRA_GROUP_STEM",
+                   'u_astratst_myuw')
+
+
+def get_disable_actions_when_override():
+    return getattr(settings, "MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE", True)
+
+
+def get_enabled_features():
+    return getattr(settings, "MYUW_ENABLED_FEATURES", [])

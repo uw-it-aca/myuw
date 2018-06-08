@@ -33,7 +33,7 @@ Handlebars.registerHelper("strToInt", function(str) {
         return moment(str).fromNow();
     });
 
-    // used on Grade, Library card
+    // On Grade, Library, Course, tuition, medicine password
     Handlebars.registerHelper("toFriendlyDate", function(date_str) {
         if (date_str === undefined || date_str.length === 0) {
             return "";
@@ -129,7 +129,9 @@ Handlebars.registerHelper("termNoYear", function(term) {
 });
 
 Handlebars.registerHelper('titleCaseName', function(str) {
-    return str.split(' ').map(w => w[0].toUpperCase() + w.substr(1).toLowerCase()).join(' ');
+    return str.split(' ').map(function(w) {
+        return w[0].toUpperCase() + w.substr(1).toLowerCase();
+    }).join(' ');
 });
 
 Handlebars.registerHelper('toTitleCase', function(term_str) {

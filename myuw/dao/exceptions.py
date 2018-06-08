@@ -26,3 +26,11 @@ class CourseRequestEmailRecipientNotFound(Exception):
 class IndeterminateCampusException(Exception):
     """Cannot determine campus from registrations or PWS"""
     pass
+
+
+class InvalidAffiliationDataFile(Exception):
+    pass
+
+
+class InvalidResourceCategory(Exception):
+    pass
