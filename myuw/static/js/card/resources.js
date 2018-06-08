@@ -13,7 +13,7 @@ var ResourcesCard = {
             return;
         }
         WSData.fetch_resource_data(ResourcesCard.render_upon_data,
-                                  ResourcesCard.render_error,
+                                   ResourcesCard.render_error,
                                    undefined,
                                    true);
     },
