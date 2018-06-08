@@ -180,7 +180,8 @@ var QuickLinksCard = {
         var source = $("#quicklinks").html();
         var template = Handlebars.compile(source);
         return template({
-            'links': window.quicklink_data
+            'links': window.quicklink_data,
+            'disable_actions': window.user.is_override_and_disable_actions
         });
     },
 
@@ -204,6 +205,9 @@ var QuickLinksCard = {
         QuickLinksCard.opened_panels[caller] = true;
     },
     add_events: function() {
+        if(window.user.is_override_and_disable_actions) {
+            return;
+        }
         if (QuickLinksCard.events_added) {
             return;
         }

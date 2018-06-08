@@ -13,7 +13,7 @@ MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
 
 
 @login_required
-@admin_required('MYUW_ADMIN_GROUP')
+@admin_required
 def create_notice(request):
     context = {}
     if request.POST and _save_notice(request, context):
@@ -24,7 +24,7 @@ def create_notice(request):
 
 
 @login_required
-@admin_required('MYUW_ADMIN_GROUP')
+@admin_required
 def edit_notice(request, notice_id):
     context = {}
     set_admin_wrapper_template(context)
@@ -41,7 +41,7 @@ def edit_notice(request, notice_id):
 
 
 @login_required
-@admin_required('MYUW_ADMIN_GROUP')
+@admin_required
 def list_notices(request):
     context = {}
     set_admin_wrapper_template(context)

@@ -1,0 +1,22 @@
+{
+  "schemas": ["urn:mace:washington.edu:schemas:groups:1.0"],
+  "meta": {
+    "resourceType": "search",
+    "version": "v3.0",
+    "totalResults": 1,
+    "searchParameters": {
+    "stem":"u_astratst_myuw",
+    "scope":"all"
+    ,"member":"javerage",
+    "type":"effective"
+    },
+    "selfRef": "https://iam-ws.u.washington.edu:7443/group_sws/v3/search?member=javerage&type=effective&stem=u_astratst_myuw&scope=all",
+    "timestamp": 1525473236384
+  },
+  "data": [
+    {"regid":"25cee0b7874e4b4180e0caf824e9da7e", "displayName":"u_astratst_myuw_test-support-admin",
+      "id":"u_astratst_myuw_test-support-admin",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/u_astratst_myuw_test-support-admin"
+    }
+  ]
+}
