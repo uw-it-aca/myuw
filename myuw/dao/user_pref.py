@@ -38,20 +38,6 @@ def set_no_onboard_message(request):
     return pref
 
 
-def set_preference_to_new_myuw(request):
-    pref = MigrationPreference.set_use_legacy(get_user_model(request),
-                                              use_legacy_site=False)
-    _set_migration_preference(request, pref)
-    return pref
-
-
-def set_preference_to_old_myuw(request):
-    pref = MigrationPreference.set_use_legacy(get_user_model(request),
-                                              use_legacy_site=True)
-    _set_migration_preference(request, pref)
-    return pref
-
-
 def turn_off_pop_up(request):
     pref = MigrationPreference.turn_off_pop_up(get_user_model(request))
     _set_migration_preference(request, pref)
