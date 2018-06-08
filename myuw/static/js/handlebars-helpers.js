@@ -130,7 +130,7 @@ Handlebars.registerHelper("termNoYear", function(term) {
 
 Handlebars.registerHelper('titleCaseName', function(str) {
     return str.split(' ').map(function(w) {
-        return w[0].toUpperCase() + w.substr(1).toLowerCase()
+        return w[0].toUpperCase() + w.substr(1).toLowerCase();
     }).join(' ');
 });
 
