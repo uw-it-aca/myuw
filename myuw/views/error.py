@@ -2,7 +2,9 @@ import sys
 from django.http import HttpResponse
 from restclients_core.exceptions import (DataFailureException, InvalidNetID,
                                          InvalidRegID)
-from myuw.dao.exceptions import NotSectionInstructorException
+from myuw.dao.exceptions import NotSectionInstructorException,\
+    InvalidResourceCategory
+from myuw.models import ResourceCategoryPin
 from uw_sws.exceptions import InvalidSectionID
 from myuw.logger.logresp import log_err
 from myuw.views.exceptions import DisabledAction, NotInstructorError,\
@@ -82,7 +84,9 @@ def handle_exception(logger, timer, stack_trace):
        isinstance(exc_value, InvalidRegID):
         return invalid_session()
 
-    if isinstance(exc_value, InvalidInputFormData):
+    if (isinstance(exc_value, InvalidInputFormData) or
+            isinstance(exc_value, InvalidResourceCategory) or
+            isinstance(exc_value, ResourceCategoryPin.DoesNotExist)):
         return invalid_input_data()
 
     if isinstance(exc_value, InvalidSectionID):
@@ -91,7 +95,7 @@ def handle_exception(logger, timer, stack_trace):
     if isinstance(exc_value, NotSectionInstructorException):
         return not_section_instructor()
 
-    if isinstance(exc_value, DataFailureException) and\
-            (exc_value.status == 400 or exc_value.status == 404):
+    if (isinstance(exc_value, DataFailureException) and
+            (exc_value.status == 400 or exc_value.status == 404)):
         return data_not_found()
     return data_error()
