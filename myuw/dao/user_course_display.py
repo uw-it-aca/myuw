@@ -3,9 +3,6 @@ This module accesses the DB table object UserCourseDisplay
 """
 import logging
 from myuw.models import UserCourseDisplay
-from myuw.dao.instructor_schedule import check_section_instructor,\
-    get_section_by_label
-from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
@@ -56,7 +53,7 @@ def set_course_display_pref(request, schedule):
 
         _set_section_colorid(section, color_id)
 
-    _clean_up_dropped_sections(user, existing_color_dict)
+    # _clean_up_dropped_sections(user, existing_color_dict)
 
 
 def _get_next_color(colors_taken):
@@ -114,25 +111,3 @@ def _clean_up_dropped_sections(user, existing_color_dict):
         for section_label in existing_color_dict.keys():
             UserCourseDisplay.delete_section_display(
                 user, section_label)
-
-
-def set_pin_on_teaching_page(request,
-                             section_label,
-                             pin=True):
-    """
-    if pin=True, pin the section on teaching page
-    if pin=False, unpin the section from teaching page
-    @except InvalidSectionID
-    @except NotSectionInstructorException
-    @except UserCourseDisplay.DoesNotExist
-    """
-    section = get_section_by_label(section_label)
-    check_section_instructor(section, get_person_of_current_user(request))
-
-    # not to pin a primary section
-    if section.is_primary_section:
-        return False
-
-    UserCourseDisplay.set_pin(get_user_model(request),
-                              section_label, pin)
-    return True
