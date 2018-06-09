@@ -33,7 +33,6 @@ def set_course_display_pref(request, schedule):
         if section_label in existing_color_dict:
             # exists in DB table
             color_id = existing_color_dict[section_label]
-            del existing_color_dict[section_label]
             _record_primary_colors(primary_color_dict, section, color_id)
 
         else:
@@ -52,8 +51,6 @@ def set_course_display_pref(request, schedule):
             _save_section_color(user, section, color_id)
 
         _set_section_colorid(section, color_id)
-
-    # _clean_up_dropped_sections(user, existing_color_dict)
 
 
 def _get_next_color(colors_taken):
@@ -101,13 +98,3 @@ def _set_section_colorid(section, color_id):
         section.color_id = color_id
     else:
         section.color_id = "%sa" % color_id
-
-
-def _clean_up_dropped_sections(user, existing_color_dict):
-    """
-    Delete the remaining objects in existing_color_dict
-    """
-    if existing_color_dict:
-        for section_label in existing_color_dict.keys():
-            UserCourseDisplay.delete_section_display(
-                user, section_label)
