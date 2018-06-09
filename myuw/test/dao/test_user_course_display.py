@@ -2,7 +2,7 @@ from django.test import TransactionTestCase
 from django.conf import settings
 from userservice.user import UserServiceMiddleware
 from uw_sws.exceptions import InvalidSectionID
-from myuw.models import UserCourseDisplay
+from myuw.models import UserCourseDisplay, User
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.registration import get_schedule_by_term
@@ -140,10 +140,20 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 7)
 
-        # test delete a record
-        UserCourseDisplay.delete_section_display(
-            get_user_model(req),
-            sections[6].section_label())
+        user = get_user_model(req)
+
+        # test color correction
+        UserCourseDisplay.set_color(user, sections[6].section_label(), 5)
+        self.assertEqual(UserCourseDisplay.get_section_display(
+            user, sections[6].section_label()).color_id, 5)
+
+        set_course_display_pref(req, schedule)
+        self.assertEqual(schedule.sections[6].color_id, '4a')
+
+        # test delete
+        deleted = UserCourseDisplay.delete_section_display(
+            user, schedule.sections[4].section_label())
+        self.assertIsNotNone(deleted)
         records = UserCourseDisplay.objects.all()
         self.assertEqual(len(records), 6)
 

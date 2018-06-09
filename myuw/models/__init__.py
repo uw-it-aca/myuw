@@ -300,7 +300,7 @@ class UserCourseDisplay(models.Model):
 
     @classmethod
     def delete_section_display(cls, user, section_label):
-        UserCourseDisplay.objects.filter(
+        return UserCourseDisplay.objects.filter(
             user=user, section_label=section_label).delete()
 
     @classmethod
