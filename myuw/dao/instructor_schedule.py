@@ -14,12 +14,22 @@ from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import get_current_quarter, get_comparison_datetime
+from myuw.dao.user_course_display import set_course_display_pref
 
 
 logger = logging.getLogger(__name__)
 
 
 def get_instructor_schedule_by_term(request, term):
+    id = "instchedule%d%s" % (term.year, term.quarter)
+    if not hasattr(request, id):
+        inst_schedule = __get_instructor_schedule_by_term(request, term)
+        set_course_display_pref(request, inst_schedule)
+        request.id = inst_schedule
+    return request.id
+
+
+def __get_instructor_schedule_by_term(request, term):
     """
     Return the sections (ordered by course abbr, number, section id)
     the current user is instructing in the given term/quarter
@@ -128,7 +138,7 @@ def get_instructor_section(request, section_id,
             linked = thread.response
             if linked:
                 schedule.sections.append(linked)
-
+    set_course_display_pref(request, schedule)
     return schedule
 
 
