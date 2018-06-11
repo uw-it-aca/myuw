@@ -61,12 +61,13 @@
 
             &:last-child { margin: 0; }
 
-            .myuw-photo-list-image {
-                background-color: #eee;
+            .myuw-photo-list-img-wrapper {
+                width: 120px;
+                height: 150px;
                 position: relative;
+                background-color: #eee;
             }
-
-            .myuw-photo-list-image:before {
+            .myuw-photo-list-img-wrapper::before {
                 content: "\f2be";
                 font-family: "FontAwesome";
                 position: absolute;
@@ -78,7 +79,9 @@
                 color: #aaa;
             }
 
-            .myuw-photo-list-content {  }
+            .myuw-photo-list-image {
+                position: relative;
+            }
 
         }
 
