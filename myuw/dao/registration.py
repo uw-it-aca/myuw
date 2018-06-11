@@ -8,6 +8,7 @@ from uw_libraries.subject_guides import get_subject_guide_for_section_params
 from uw_sws.registration import get_active_registrations_by_section,\
     get_schedule_by_regid_and_term
 from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.user_course_display import set_course_display_pref
 
 
 logger = logging.getLogger(__name__)
@@ -22,12 +23,14 @@ def get_schedule_by_term(request, term):
     regid = get_regid_of_current_user(request)
     id = "myuwschedule%d%s" % (term.year, term.quarter)
     if not hasattr(request, id):
-        request.id = get_schedule_by_regid_and_term(
+        student_schedule = get_schedule_by_regid_and_term(
             regid,
             term,
             non_time_schedule_instructors=False,
             per_section_prefetch_callback=myuw_section_prefetch,
             transcriptable_course="all")
+        set_course_display_pref(request, student_schedule)
+        request.id = student_schedule
     return request.id
 
 
