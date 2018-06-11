@@ -4,7 +4,6 @@ from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
-from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.pws import get_regid_of_current_user
@@ -61,8 +60,6 @@ def load_schedule(request, schedule, summer_term=""):
     json_data = schedule.json_data()
 
     json_data["summer_term"] = summer_term
-
-    set_course_display_pref(request, schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
