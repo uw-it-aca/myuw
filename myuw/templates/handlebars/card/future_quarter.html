@@ -21,7 +21,9 @@
     </div>
     {{/each}}
 {{else}}
-    <p>ERROR</p>
+    <div class="card" style="position:relative;"  data-name="FutureCard" data-type="card">
+		<p class="text-danger" style="margin-top:1em;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your registration information right now. Please try again later.</p>
+    </div>
 {{/unless}}
 </div>
 
