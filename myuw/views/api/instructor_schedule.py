@@ -17,7 +17,6 @@ from uw_gradepage.grading_status import get_grading_status
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
-from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
@@ -241,8 +240,6 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         schedule.term.is_grading_period_open()
     json_data["grading_period_is_past"] =\
         schedule.term.is_grading_period_past()
-
-    set_course_display_pref(request, schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
