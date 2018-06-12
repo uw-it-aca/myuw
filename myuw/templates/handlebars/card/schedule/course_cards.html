@@ -15,15 +15,22 @@
 
         <div class="fade-in">
             <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-                <h4><span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>&nbsp;<span class="meeting-type c{{color_id}}Color">{{ucfirst meetings.0.type}}</span>
+                <h4>
+                    <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
+
+                    <span class="meeting-type c{{color_id}}Color">{{ucfirst meetings.0.type}}</span>
+
+                    <br>
+
+                    {{#if is_primary_section }}
+                        {{#if for_credit}}
+                            <span class="credit-info c{{color_id}}Color"> {{credits}} CR</span>
+                        {{/if}}
+                    {{/if}}
+
                     <span class="shortTitle" style="display:block;">{{ course_title }}</span>
 
-                    {{#if cc_display_dates}}
-                    <span class="offterm-date" style="display:block;">Dates: {{toMonthDay start_date}} – {{toMonthDay end_date}}</span>
-                    {{/if}}
-                    {{#if on_standby}}
-                    <span class="offterm-date" style="display:block;">Your status: On Standby</span>
-                    {{/if}}
+                    <!--  -->
                 </h4>
 
                 <div id="course_card_content{{index}}">
