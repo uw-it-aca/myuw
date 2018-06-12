@@ -126,9 +126,10 @@
                 <ol class="unstyled-list grid-view">
                     {{#each sections.0.registrations}}
                         <li id="studentphoto_{{ regid }}">
-                            <img class="classlist-photo myuw-photo-list-image"
-                                 src="/photo/{{ url_key }}">
-
+                            <div class="myuw-photo-list-img-wrapper">
+                                <img class="classlist-photo myuw-photo-list-image"
+                                 src="/photo/{{ url_key }}" width="120px" height="150px">
+                             </div>
                             <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
                         </li>
                     {{/each}}
