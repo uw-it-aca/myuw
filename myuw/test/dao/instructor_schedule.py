@@ -40,6 +40,12 @@ class TestInstructorSchedule(TestCase):
         term = get_current_quarter(request)
         schedule = get_instructor_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 6)
+        self.assertEqual(schedule.sections[0].color_id, 1)
+        self.assertEqual(schedule.sections[1].color_id, 2)
+        self.assertEqual(schedule.sections[2].color_id, '2a')
+        self.assertEqual(schedule.sections[3].color_id, '2a')
+        self.assertEqual(schedule.sections[4].color_id, 3)
+        self.assertEqual(schedule.sections[5].color_id, 4)
 
         # current quarter TA schedule
         request = get_request_with_user('billseata')

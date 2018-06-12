@@ -1,7 +1,7 @@
 import traceback
 import logging
 from myuw.dao import is_action_disabled
-from myuw.dao.user_course_display import set_pin_on_teaching_page
+from myuw.dao.instructor_mini_course_card import set_pin_on_teaching_page
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response, log_msg_with_request
 from myuw.views.api import ProtectedAPI
