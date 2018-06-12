@@ -14,11 +14,6 @@ def get_google_search_key():
     return getattr(settings, "GOOGLE_SEARCH_KEY", None)
 
 
-def get_legacy_url():
-    return getattr(settings, "MYUW_USER_SERVLET_URL",
-                   "https://myuw.washington.edu/servlet/user")
-
-
 def get_logout_url():
     return getattr(settings, "LOGOUT_URL", "/user_logout")
 

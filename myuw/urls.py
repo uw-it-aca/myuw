@@ -15,7 +15,6 @@ from myuw.views.category import category
 from myuw.views.display_dates import override
 from myuw.views.message_admin import manage_messages
 from myuw.views.link_admin import popular_links
-from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
 from myuw.views.academics import academics
@@ -229,8 +228,6 @@ urlpatterns += [
     url(r'^api/v1/resources/pinned/$',
         PinnedResources.as_view(),
         name="myuw_resources_pinned_api"),
-    url(r'^choose/new', new_site, name="myuw_pref_new_site"),
-    url(r'^choose/legacy', old_site, name="myuw_pref_old_site"),
     url(r'^academics/?$', academics, name="myuw_academics_page"),
     url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'^profile/?$', profile, name="myuw_profile_page"),
