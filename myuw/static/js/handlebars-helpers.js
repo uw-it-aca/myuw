@@ -482,3 +482,11 @@ Handlebars.registerHelper('not_empty', function(array1, array2, options) {
     }
     return options.inverse(this);
 });
+
+Handlebars.registerHelper('toSummerTermLabel', function(label){
+    var strings = label.split("-");
+
+    strings[1] = strings[1].charAt(0).toUpperCase() + strings[1].slice(1);
+
+    return strings[0] + "-" + strings[1];
+});

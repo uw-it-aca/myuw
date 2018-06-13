@@ -1,12 +1,15 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_content_panel" %}
-              
+{{#if summer_term}}
+        <span>Summer {{toSummerTermLabel summer_term}} </span>
+{{/if}}
+
 {{#if hide_course_details}}
     {{#if has_eval}}
     <div class="myuw-course-eval" id="course_eval{{index}}" >
     </div>
     {{/if}}
-                    
+
     <div id="course_details{{index}}" class="slide-hide"
          aria-label="Additional course resources"
          rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
@@ -24,7 +27,7 @@
             </div>
         {{else}}
             <div class="no-instructors"><strong>No instructor information available</strong></div>
-         {{/if}}
+        {{/if}}
 
     </div>
     <div class="card-disclosure">

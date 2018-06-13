@@ -19,13 +19,13 @@ var LoadCourseEval = {
             section = course_sections[index];
             section.year = course_data.year;
             section.quarter = course_data.quarter;
-            section.summer_term = course_data.summer_term;
+            section.request_summer_term = course_data.summer_term;
 
             CourseCardContentPanel.render(section, fetched_eval_data);
         }
         LoadCourseEval.add_events(course_data.quarter);
     },
-    
+
     add_events: function(quarter) {
         $(".toggle_course_card_disclosure_" + quarter).on("click", function(ev) {
             ev.preventDefault();
