@@ -5,6 +5,7 @@ ADD myuw/VERSION /app/myuw/
 RUN pip install mysqlclient
 ADD setup.py /app/
 ADD requirements.txt /app/
+RUN pip install -r requirements.txt
 ADD . /app/
 ENV DB sqlite3
 RUN django-admin.py startproject project .
