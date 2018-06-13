@@ -256,7 +256,6 @@ WSData = {
 
                 this.year = course_data.year;
                 this.quarter = course_data.quarter;
-                this.summer_term = course_data.summer_term;
                 this.future_term = course_data.future_term;
                 this.past_term = course_data.past_term;
 
