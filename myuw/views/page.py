@@ -21,8 +21,7 @@ from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response,\
     log_msg_with_request
 from myuw.logger.session_log import log_session
-from myuw.util.settings import get_google_search_key,\
-    get_legacy_url, get_logout_url
+from myuw.util.settings import get_google_search_key, get_logout_url
 from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import invalid_session
 
@@ -60,10 +59,6 @@ def page(request,
             return failure
 
     user_pref = get_migration_preference(request)
-
-    if user_pref.use_legacy_site:
-        return redirect_to_legacy_site()
-
     log_session(netid, request)
     affiliations = get_all_affiliations(request)
 
@@ -122,10 +117,6 @@ def try_prefetch(request):
         context["webservice_outage"] = True
         return render(request, template, context)
     return
-
-
-def redirect_to_legacy_site():
-    return HttpResponseRedirect(get_legacy_url())
 
 
 def logout(request):
