@@ -103,7 +103,7 @@ def _save_section_color(user, section, color_id):
             logger.error("%s (%s %s color_id: %d)", ex, user,
                          section_label=section_label,
                          color_id=color_idex)
-            if '1062, "Duplicate entry ' not in str(e):
+            if '1062, "Duplicate entry ' not in str(ex):
                 raise
 
 
