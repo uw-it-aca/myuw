@@ -2,6 +2,7 @@
 This module accesses the DB table object UserCourseDisplay
 """
 import logging
+from django.db import IntegrityError
 from myuw.models import UserCourseDisplay
 from myuw.dao.user import get_user_model
 
@@ -91,14 +92,19 @@ def _save_section_color(user, section, color_id):
     Store the color of the section in DB
     """
     section_label = section.section_label()
-    if UserCourseDisplay.exists_section_display(user, section_label):
-        _update_color(user, section_label, color_id)
-        return
-    UserCourseDisplay.objects.create(user=user,
-                                     year=section.term.year,
-                                     quarter=section.term.quarter,
-                                     section_label=section_label,
-                                     color_id=color_id)
+    if not UserCourseDisplay.exists_section_display(user, section_label):
+        try:
+            UserCourseDisplay.objects.create(user=user,
+                                             year=section.term.year,
+                                             quarter=section.term.quarter,
+                                             section_label=section_label,
+                                             color_id=color_id)
+        except IntegrityError as ex:
+            logger.error("%s (%s %s color_id: %d)", ex, user,
+                         section_label=section_label,
+                         color_id=color_idex)
+            if '1062, "Duplicate entry ' not in str(ex):
+                raise
 
 
 def _update_color(user, section_label, color_id):
