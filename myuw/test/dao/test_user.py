@@ -1,6 +1,6 @@
 from django.test import TransactionTestCase
 from myuw.models import User
-from myuw.dao.user import get_user_model, get_updated_user
+from myuw.dao.user import get_user_model
 from myuw.test import fdao_pws_override, get_request_with_user
 
 
