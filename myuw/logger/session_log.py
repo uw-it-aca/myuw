@@ -15,6 +15,7 @@ def get_log_entry(netid, request):
     affiliations = get_all_affiliations(request)
     log_entry = {'netid': netid,
                  'session_key': get_request_session_key(request),
+                 'referer': request.META.get('HTTP_REFERER'),
                  'class_level': affiliations["class_level"],
                  'is_applicant': affiliations["applicant"],
                  'is_ugrad': affiliations["undergrad"],
