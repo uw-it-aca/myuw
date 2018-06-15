@@ -9,7 +9,7 @@ from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.dao.user import get_user_model
 from myuw.dao.user_course_display import set_course_display_pref,\
-    _get_next_color, _save_section_color
+    _get_next_color, _update_color
 from myuw.test import get_request_with_user, get_request_with_date
 
 
@@ -56,7 +56,7 @@ class TestUserCourseDisplayDao(TransactionTestCase):
         self.assertIsNotNone(str(records[0]))
 
         # change existing color
-        _save_section_color(user, sections[0], 5)
+        _update_color(user, "2013,spring,TRAIN,100/A", 5)
         record = UserCourseDisplay.get_section_display(
             user=user, section_label="2013,spring,TRAIN,100/A")
         self.assertEqual(record.color_id, 5)
