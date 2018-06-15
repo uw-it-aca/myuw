@@ -50,6 +50,7 @@ var SummaryScheduleCard = {
 
     _render: function () {
         Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
+        Handlebars.registerPartial('summary_section', $("#summary_section").html());
         var term = SummaryScheduleCard.term;
         var instructed_course_data = WSData.instructed_course_data(term, false);
         var source = $("#instructor_summary_schedule").html();
@@ -110,7 +111,11 @@ var SummaryScheduleCard = {
                 }
             });
         });
-    }
+    },
+
+    group_sections_by_summer_term: function (sections) {
+
+    },
 };
 
 /* node.js exports */
