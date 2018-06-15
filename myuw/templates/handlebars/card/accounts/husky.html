@@ -78,7 +78,9 @@
 		{{/if}}<!-- End of Tacoma affil    -->
     </div>
     {{else}}
-    <div>Card Error</div>
+    <div>
+	    <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if you want to add funds, try the <a href="https://hfs.uw.edu/olco/Secure/AccountSummary.aspx" data-linklabel="Husky account information" style="text-decoration:underline;" target="_blank">UW HFS site</a>.</p>
+    </div>
     {{/unless}}
 </div>
 {% endtplhandlebars %}

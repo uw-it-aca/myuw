@@ -4,7 +4,7 @@
     <div class="myuw-card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
 
         <h3 class="myuw-card-title">Student Profile</h3>
-
+		{{#unless has_error}}
         <div vocab="http://schema.org/" typeof="Person">
 
             <div class="myuw-card-section">
@@ -196,6 +196,10 @@
             </div>
 
          </div>
+        {{else}}
+        <!-- WIP: Student profile error -->
+		<p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your information right now. Please try again later.</p> 
+        {{/unless}}
     </div>
 
 {% endtplhandlebars %}

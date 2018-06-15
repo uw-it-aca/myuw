@@ -41,6 +41,7 @@
     {{/each}}
 </div>
 {{else}}
-<p>Has Error</p>
+<p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Some course links are not available right now. In the meantime, try  
+ <a href="https://canvas.uw.edu/" data-linklabel="Canvas LMS" style="text-decoration:underline;" target="_blank">Canvas LMS </a> or <a href="https://catalyst.uw.edu/" data-linklabel="Catalyst" style="text-decoration:underline;" target="_blank">Catalyst Web Tools</a>.</p>
 {{/unless}}
 {% endtplhandlebars %}

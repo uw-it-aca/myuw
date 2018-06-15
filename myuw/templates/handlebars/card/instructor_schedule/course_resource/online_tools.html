@@ -4,7 +4,7 @@
     <li class="clearfix">
         <span class="card-badge-value">
             {{#equal canvas_url 'error'}}
-            <p>Canvas Error</p>
+            <p><a href="https://canvas.uw.edu/" data-linklabel="Canvas LMS" target="_blank">Canvas LMS Home page</a></p>
             {{else}}
             <a href="{{ canvas_url }}" class="course_canvas_site" target="_blank"
                rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
