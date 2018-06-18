@@ -47,10 +47,7 @@ class TestTerm(TestCase):
 
     def test_is_future(self):
         term = get_specific_term(2013, "summer")
-        self.assertEqual(term.year, 2013)
-        self.assertEqual(term.quarter, "summer")
-        now_request = get_request()
-        now_request.session = {}
+        now_request = get_request_with_date("2013-04-15")
         self.assertTrue(is_future(term, now_request))
 
     def test_default_date(self):
