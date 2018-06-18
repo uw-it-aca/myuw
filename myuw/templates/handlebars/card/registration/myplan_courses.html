@@ -17,10 +17,10 @@
                 <div>
                     <h5>Ready for registration</h5>
                     <ul class="courses-ready-list">
-                        {{ #each plan_data.courses }} <!--Course-->
+                        {{#each plan_data.courses }} <!--Course-->
                             <li>
-                            {{ #if registrations_available }}
-                                {{ curriculum_abbr }} {{ course_number }}
+                            {{#if registrations_available }}
+                                <h6 style="font-size: inherit;">{{ curriculum_abbr }} {{ course_number }}</h6>
                                 <table class="reg-status-table table table-condensed table-borderless borderless" style="border-width: 0;">
                                     <thead class="sr-only">
                                         <tr>
@@ -30,15 +30,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{ #each sections }} <!--Section-->
+                                        {{#each sections }} <!--Section-->
                                              <tr class="reg-status-table-row">
-                                                 <td>{{ section_id }}</td>
                                                  {{#each section_data.meetings}}
-                                                      {{#if days_tbd }}
-                                                          Days and times to be arranged<br/>
-                                                      {{else}}
-                                                          <td>
-                                                              {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
+                                                    <td>
+                                                        <span{{#unless @first }} class="sr-only"{{/unless}}><span class="sr-only">Section </span>{{ ../section_id }}</span>
+                                                    </td>
+                                                    {{#if days_tbd }}
+                                                        <td colspan="2">Days and times to be arranged</td>
+                                                    {{else}}
+                                                        <td>
+                                                            {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
                                                               meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
                                                               meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
                                                               meeting_days.thursday}}<abbr title="Thursday">Th</abbr>{{/if}}{{#if
@@ -46,11 +48,11 @@
                                                               meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
                                                               meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
                                                           </td>
-                                                          <td>{{formatTime start_time}} - {{formatTimeAMPM end_time}}</td>
+                                                          <td>{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}</td>
                                                       {{/if}}
                                                   {{/each}}
                                              </tr>
-                                         {{ /each }} <!--Section end-->
+                                         {{/each }} <!--Section end-->
                                     </tbody>
                                 </table>
                             {{/if}}
@@ -64,13 +66,13 @@
                  <div>
                      <h5>Not ready for registration</h5>
                      <ul class="courses-not-ready-list">
-                        {{ #each plan_data.courses }}
+                        {{#each plan_data.courses }}
                         <li>
-                            {{ #unless registrations_available }}
-                            {{ curriculum_abbr }} {{ course_number }} <br />
-                            {{ /unless }}
+                            {{#unless registrations_available }}
+                            {{ curriculum_abbr }} {{ course_number }} <br/>
+                            {{/unless }}
                         </li>
-                         {{ /each}}
+                         {{/each}}
                      </ul>
                  </div>
             {{/if}}
@@ -89,6 +91,8 @@
                href="#">Hide {{reg_next_quarter}} {{reg_next_year}} plan</a>
         </span>
     </div>
+
+
 {{/if}}
 
 {% endtplhandlebars %}

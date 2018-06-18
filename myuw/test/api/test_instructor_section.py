@@ -71,10 +71,49 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(
             len(data['sections'][0]['grade_submission_delegates']), 1)
 
+        self.assertEqual(len(data['sections'][0]['registrations']), 4)
+
+        netid_counts = {}
+
+        for registration in data['sections'][0]['registrations']:
+            if registration["netid"] in netid_counts:
+                netid_counts[registration["netid"]] = netid_counts[
+                    registration["netid"]] + 1
+            else:
+                netid_counts[registration["netid"]] = 1
+
+        self.assertEqual(netid_counts["javg001"], 2)
+
         self.assertGreater(len(data['related_terms']), 3)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
         self.assertEqual(data['related_terms'][5]['year'], 2013)
+
+    def test_billpce_section(self):
+        request = get_request()
+        get_request_with_user('billpce', request)
+
+        section_id = '2013,winter,PSYCH,203/A'
+        resp = InstSectionDetails().get(request, section_id=section_id)
+        self.assertEqual(resp.status_code, 200)
+
+        data = json.loads(resp.content)
+        self.assertEqual(data['sections'][0]['is_independent_start'], True)
+
+        self.assertIn('start_date', data['sections'][0]['registrations'][0])
+        self.assertEqual(len(data['sections'][0]['registrations']), 3)
+
+        reg = data['sections'][0]['registrations'][0]
+        self.assertEqual(reg['start_date'], '02/22/2013')
+        self.assertEqual(reg['end_date'], '11/14/2013')
+
+        reg = data['sections'][0]['registrations'][1]
+        self.assertEqual(reg['start_date'], '01/01/2013')
+        self.assertEqual(reg['end_date'], '12/13/2013')
+
+        reg = data['sections'][0]['registrations'][2]
+        self.assertEqual(reg['start_date'], '')
+        self.assertEqual(reg['end_date'], '')
 
     def test_invalid_section(self):
         request = get_request()

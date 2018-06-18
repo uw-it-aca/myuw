@@ -17,6 +17,7 @@ from uw_mailman.instructor_term_list import\
 from myuw.util.thread import ThreadWithResponse
 from myuw.util.settings import get_mailman_courserequest_recipient
 from myuw.logger.logback import log_info
+from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
 
 
@@ -179,7 +180,7 @@ def get_total_course_wo_list(secondary_section_lists):
 EMAIL_SUBJECT = 'instructor Mailman request'
 
 
-def request_mailman_lists(requestor_uwnetid,
+def request_mailman_lists(request,
                           single_section_labels):
     """
     Required settings:
@@ -187,6 +188,7 @@ def request_mailman_lists(requestor_uwnetid,
       EMAIL_PORT
       MAILMAN_COURSEREQUEST_RECIPIENT
     """
+    requestor_uwnetid = get_netid_of_current_user(request)
     message_body, num_sections_found = get_message_body(
         requestor_uwnetid, single_section_labels)
 

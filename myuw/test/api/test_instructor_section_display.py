@@ -20,23 +20,50 @@ class TestInstSectDetails(MyuwApiTest):
         records = UserCourseDisplay.objects.all()
         self.assertEquals(len(records), 6)
 
-        req = get_request_with_user('bill')
         section_id = '2013,spring,PHYS,121/AC'
-        resp = PinMinicard().get(req, section_label=section_id)
+        resp = self.get_response_by_reverse(
+            "myuw_inst_section_display_pin_mini",
+            kwargs={'section_label': section_id})
         self.assertEqual(resp.content, '{"done": true}')
 
-        resp = CloseMinicard().get(req, section_label=section_id)
+        resp = self.get_response_by_reverse(
+            "myuw_inst_section_display_close_mini",
+            kwargs={'section_label': section_id})
         self.assertEqual(resp.content, '{"done": true}')
 
         # test InvalidSectionID
         section_id = '2013,spring,PHYS,121/'
-        resp = PinMinicard().get(req, section_label=section_id)
+        resp = self.get_response_by_reverse(
+            "myuw_inst_section_display_pin_mini",
+            kwargs={'section_label': section_id})
         self.assertEqual(resp.status_code, 400)
 
-        resp = CloseMinicard().get(req, section_label=section_id)
+        resp = self.get_response_by_reverse(
+            "myuw_inst_section_display_close_mini",
+            kwargs={'section_label': section_id})
         self.assertEqual(resp.status_code, 400)
 
-        # test DoesNotExist in DB
+        # test with a section DoesNotExist in DB
         section_id = '2013,spring,PHYS,121/AB'
-        resp = PinMinicard().get(req, section_label=section_id)
+        resp = self.get_response_by_reverse(
+            "myuw_inst_section_display_pin_mini",
+            kwargs={'section_label': section_id})
         self.assertEqual(resp.status_code, 543)
+
+    def test_close_mini_card_when_override(self):
+        self.set_user('javerage')
+        self.set_userservice_override("bill")
+        section_id = '2013,spring,PHYS,121/AC'
+        resp = self.get_response_by_reverse(
+            "myuw_inst_section_display_close_mini",
+            kwargs={'section_label': section_id})
+        self.assertEqual(resp.status_code, 401)
+
+    def test_pin_mini_card_when_override(self):
+        self.set_user('javerage')
+        self.set_userservice_override("bill")
+        section_id = '2013,spring,PHYS,121/AC'
+        resp = self.get_response_by_reverse(
+            "myuw_inst_section_display_pin_mini",
+            kwargs={'section_label': section_id})
+        self.assertEqual(resp.status_code, 401)

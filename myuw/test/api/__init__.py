@@ -2,8 +2,10 @@ import os
 from unittest2 import skipIf
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.test import TransactionTestCase, Client
+from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.test import TransactionTestCase
+from userservice.user import UserServiceMiddleware
 from myuw.test import (get_user, get_user_pass, fdao_uwnetid_override,
                        fdao_sws_override, fdao_subject_guide_override,
                        fdao_mylib_override, fdao_ias_override,
@@ -12,6 +14,9 @@ from myuw.test import (get_user, get_user_pass, fdao_uwnetid_override,
                        fdao_bookstore_override, fdao_canvas_override,
                        fdao_mailman_override, fdao_upass_override)
 from django.urls import NoReverseMatch
+
+VALIDATE = "myuw.authorization.validate_netid"
+OVERRIDE = "myuw.authorization.can_override_user"
 
 
 def missing_url(name, kwargs=None):
@@ -54,10 +59,23 @@ standard_test_override = override_settings(
 @standard_test_override
 class MyuwApiTest(TransactionTestCase):
 
-    def set_user(self, user):
-        get_user(user)
-        self.client.login(username=user,
-                          password=get_user_pass(user))
+    def setUp(self):
+        """
+        By default enforce_csrf_checks is False
+        """
+        self.client = Client()
+        self.request = RequestFactory().get("/")
+        self.middleware = UserServiceMiddleware()
+
+    def set_user(self, username):
+        self.request.user = get_user(username)
+        self.client.login(username=username,
+                          password=get_user_pass(username))
+        self.process_request()
+
+    def process_request(self):
+        self.request.session = self.client.session
+        self.middleware.process_request(self.request)
 
     def set_date(self, date):
         session = self.client.session
@@ -75,3 +93,13 @@ class MyuwApiTest(TransactionTestCase):
                     section['section_id'] == section_id:
                 return section
         self.fail('Did not find course %s %s %s' % (abbr, number, section_id))
+
+    def set_userservice_override(self, username):
+        with self.settings(DEBUG=False,
+                           USERSERVICE_VALIDATION_MODULE=VALIDATE,
+                           USERSERVICE_OVERRIDE_AUTH_MODULE=OVERRIDE):
+
+            resp = self.client.post(reverse("userservice_override"),
+                                    {"override_as": username})
+            self.assertEquals(resp.status_code, 200)
+            self.process_request()

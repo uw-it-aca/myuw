@@ -22,7 +22,7 @@ class TestRegistrationsDao(TestCase):
                           get_schedule_by_term,
                           request, term)
 
-    def testget_schedule_by_term_by_term(self):
+    def test_get_schedule_by_term(self):
         request = get_request_with_user('javerage')
         term = Term()
         term.year = 2013
@@ -30,6 +30,8 @@ class TestRegistrationsDao(TestCase):
         schedule = get_schedule_by_term(request, term)
         self.assertIsNotNone(schedule)
         self.assertEqual(len(schedule.sections), 2)
+        self.assertEqual(schedule.sections[0].color_id, 1)
+        self.assertEqual(schedule.sections[1].color_id, 2)
 
         request = get_request_with_user('javerage',
                                         get_request_with_date("2013-04-01"))

@@ -70,6 +70,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'userservice.user.UserServiceMiddleware',
+    'rc_django.middleware.EnableServiceDegradationMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -102,6 +104,7 @@ elif os.environ['DB'] == "mysql":
             'NAME': 'myuw',
             'USER': 'myuw',
             'PASSWORD': 'my_pass',
+            'PORT': 3306,
         }
     }
 
@@ -135,8 +138,3 @@ COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
-USERSERVICE_ADMIN_GROUP = "u_x"
-MYUW_ADMIN_GROUP = 'u_x'
-RESTCLIENTS_ADMIN_GROUP = 'u_x'
-AUTHZ_GROUP_BACKEND = 'authz_group.authz_implementation.all_ok.AllOK'
-MAILMAN_COURSEREQUEST_RECIPIENT = ""

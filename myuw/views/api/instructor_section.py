@@ -1,11 +1,11 @@
 import re
 import logging
 import traceback
+from datetime import date, datetime
 from blti import BLTI
 from django.conf import settings
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-
 from myuw.dao import coda
 from myuw.views.error import \
     handle_exception, not_instructor_error, data_not_found
@@ -20,7 +20,6 @@ from myuw.dao.instructor_schedule import \
 from myuw.dao.pws import get_person_of_current_user, get_url_key_for_regid,\
     get_person_by_regid as get_pws_person_by_regid
 from myuw.logger.logresp import log_success_response
-from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
@@ -166,37 +165,60 @@ class OpenInstSectionDetails(OpenAPI):
             name_email_thread.start()
             enrollment_thread.start()
 
-            registrations[regid] = {
-                'full_name': person.display_name,
-                'netid': person.uwnetid,
-                'regid': person.uwregid,
-                'student_number': person.student_number,
-                'credits': registration.credits,
-                'is_auditor': registration.is_auditor,
-                'class_level': person.student_class,
-                'email': person.email1,
-                'url_key': get_url_key_for_regid(person.uwregid),
-            }
+            email1 = None
+            if len(person.email_addresses):
+                email1 = person.email_addresses[0]
+
+            reg = {
+                    'full_name': person.display_name,
+                    'netid': person.uwnetid,
+                    'regid': person.uwregid,
+                    'student_number': person.student_number,
+                    'credits': registration.credits,
+                    'is_auditor': registration.is_auditor,
+                    'is_independent_start': registration.is_independent_start,
+                    'class_level': person.student_class,
+                    'email': email1,
+                    'url_key': get_url_key_for_regid(person.uwregid),
+                }
+
+            for field in ["start_date", "end_date"]:
+                if registration.is_independent_start:
+                    date = getattr(registration, field)
+                    reg[field] = date.strftime("%m/%d/%Y")
+                else:
+                    reg[field] = ""
+
+            if regid not in registrations:
+                registrations[regid] = [reg]
+            else:
+                registrations[regid].append(reg)
 
         registration_list = []
         for regid in name_threads:
             thread = name_threads[regid]
             thread.join()
-            registrations[regid]["first_name"] = thread.response["first_name"]
-            registrations[regid]["surname"] = thread.response["surname"]
-            registrations[regid]["email"] = thread.response["email"]
+
+            for reg in registrations[regid]:
+                reg["first_name"] = thread.response["first_name"]
+                reg["surname"] = thread.response["surname"]
+                reg["email"] = thread.response["email"]
 
             thread = enrollment_threads[regid]
             thread.join()
             if thread.response:
-                registrations[regid]["majors"] = thread.response["majors"]
-                registrations[regid]["class_level"] =\
-                    thread.response["class_level"]
+
+                for reg in registrations[regid]:
+                    reg["majors"] = thread.response["majors"]
+                    reg["class_level"] =\
+                        thread.response["class_level"]
 
                 code = get_code_for_class_level(thread.response["class_level"])
-                registrations[regid]['class_code'] = code
 
-            registration_list.append(registrations[regid])
+                for reg in registrations[regid]:
+                    reg['class_code'] = code
+
+            registration_list.extend(registrations[regid])
         section_data["registrations"] = registration_list
 
     def get_person_info(self, regid):

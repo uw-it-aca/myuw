@@ -15,7 +15,6 @@ describe('EmployeeInfoCard', function(){
                 ]
             });
 
-            window.enabled_features = { 'employee_profile': false };
             EmployeeInfoCard.dom_target = $('#' + render_id);
 
         });
@@ -39,21 +38,20 @@ describe('EmployeeInfoCard', function(){
             });
 
             Global.Environment.ajax_stub({
-                '/api/v1/directory/': 'api/v1/directory/index-bill.json'
+                '/api/v1/directory/': 'api/v1/directory/bill.json'
             });
 
             $(window).on("myuw:card_load", function () {
                 done();
             });
 
-            window.enabled_features = { 'employee_profile': true };
             window.user.employee = true;
             EmployeeInfoCard.dom_target = $('#' + render_id);
             EmployeeInfoCard.render_init();
         });
         it("Should render instructor card", function() {
             assert.equal(EmployeeInfoCard.dom_target.find('span[property="telephone"]').first().html(),
-                         '(206) 555-1235');
+                         '(206) 333-3333');
         });
         it("UW Seattle instructor", function() {
             assert.equal(EmployeeInfoCard.dom_target.find('.card-related-messages a').attr('href'),
@@ -79,14 +77,13 @@ describe('EmployeeInfoCard', function(){
 
             WSData._directory_data = null;
             Global.Environment.ajax_stub({
-                '/api/v1/directory/': 'api/v1/directory/index-billtac.json'
+                '/api/v1/directory/': 'api/v1/directory/billtac.json'
             });
 
             $(window).on("myuw:card_load", function () {
                 done();
             });
 
-            window.enabled_features = { 'employee_profile': true };
             window.user.employee = true;
             window.user.tacoma = true;
 

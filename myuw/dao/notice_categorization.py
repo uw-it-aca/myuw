@@ -545,5 +545,10 @@ NOTICE_CATEGORIES = {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_aidhold_title'],
         "critical": False
+    },
+    "MyUWNotice_Banner": {
+        "myuw_category": "MyUW Banner Notice",
+        "location_tags": ['notice_banner'],
+        "critical": False
     }
 }

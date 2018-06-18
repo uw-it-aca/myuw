@@ -13,7 +13,7 @@ var ResourcesCard = {
             return;
         }
         WSData.fetch_resource_data(ResourcesCard.render_upon_data,
-                                  ResourcesCard.render_error,
+                                   ResourcesCard.render_error,
                                    undefined,
                                    true);
     },
@@ -50,6 +50,9 @@ var ResourcesCard = {
 
     init_events: function () {
         $(".category-pin, .category-unpin").click(function(ev){
+            if(window.user.is_override_and_disable_actions) {
+                return false;
+            }
             var cat_id = $(ev.target).val(),
                 pin = true;
             if ($(ev.target).attr('class').indexOf('unpin') > -1){

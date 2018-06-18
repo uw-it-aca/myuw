@@ -1,19 +1,12 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
-from myuw.dao.user_pref import set_preference_to_old_myuw
 from myuw.test import get_request_with_user
 from myuw.test.api import MyuwApiTest, require_url
 
 
-redirect_to_legacy_url = "https://myuw.washington.edu/servlet/user"
-old_valid_url = "http://some-test-server/myuw"
-override_servlet_url = override_settings(MYUW_USER_SERVLET_URL=old_valid_url)
-
-
 @require_url('myuw_home')
-@override_servlet_url
-class TestLoginRedirects(MyuwApiTest):
+class TestLogins(MyuwApiTest):
 
     _mobile_args = {
         'HTTP_USER_AGENT': ("Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 "
@@ -31,45 +24,32 @@ class TestLoginRedirects(MyuwApiTest):
     def get_home_mobile(self):
         return self.client.get(reverse('myuw_home'), **self._mobile_args)
 
-    def test_student_mobile(self):
+    def test_mobile_login(self):
         self.set_user('jnew')
         response = self.get_home_mobile()
-
-        valid_url = reverse("myuw_home")
         self.assertEquals(response.status_code, 200)
 
-    def test_non_student_mobile(self):
-        del settings.MYUW_USER_SERVLET_URL
         self.set_user('japplicant')
         response = self.get_home_mobile()
         self.assertEquals(response.status_code, 200)
 
-    def test_non_student_non_optin_mobile(self):
         self.set_user('curgrad')
         response = self.get_home_mobile()
         self.assertEquals(response.status_code, 200)
 
-    def test_random_desktop_user(self):
-        url = reverse("myuw_home")
+    def test_desktop_login(self):
         self.set_user('nobody')
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 
-        self.set_user('jnew')
+        self.set_user("jbothell")
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 
-        regid = "jbothell"
+        self.set_user("faculty")
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 
-    def test_set_legacy_preferences(self):
-        username = "faculty"
-        self.set_user(username)
-        req = get_request_with_user(username)
-        set_preference_to_old_myuw(req)
-
-        self.set_user(username)
+        self.set_user('staff')
         response = self.get_home_desktop()
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.get("Location"), redirect_to_legacy_url)
+        self.assertEquals(response.status_code, 200)

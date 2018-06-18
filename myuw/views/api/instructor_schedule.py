@@ -17,21 +17,22 @@ from uw_gradepage.grading_status import get_grading_status
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
-from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
-    get_instructor_schedule_by_term, get_limit_estimate_enrollment_for_section,
-    get_instructor_section, get_primary_section, check_section_instructor)
+    get_instructor_schedule_by_term, check_section_instructor,
+    get_limit_estimate_enrollment_for_section, get_instructor_section,
+    get_primary_section)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
-    get_current_quarter, is_past, is_future, get_previous_number_quarters,
-    get_future_number_quarters)
+    get_current_quarter, is_past, is_future,
+    get_previous_number_quarters, get_future_number_quarters)
 from myuw.logger.logresp import log_success_response
 from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
+from myuw.util.settings import get_myuwclass_url
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI, prefetch_resources
 from myuw.views.api.base_schedule import irregular_start_end
@@ -233,12 +234,11 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     json_data["past_term"] = is_past(schedule.term, request)
     json_data["future_term"] = is_future(schedule.term, request)
 
+    # the override datetime doesn't affect these
     json_data["grading_period_is_open"] =\
         schedule.term.is_grading_period_open()
     json_data["grading_period_is_past"] =\
         schedule.term.is_grading_period_past()
-
-    set_course_display_pref(request, schedule)
 
     buildings = get_buildings_by_schedule(schedule)
 
@@ -252,9 +252,14 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data["section_type"] = section.section_type
         section_data["color_id"] = section.color_id
         section_data["mini_card"] = section.pin_on_teaching
+        section_data['is_independent_start'] = section.is_independent_start
 
         section_data["section_label"] =\
             safe_label(section.section_label())
+
+        if section.eos_cid:
+            section_data["myuwclass_url"] = "%s%s" % (get_myuwclass_url(),
+                                                      section.eos_cid)
 
         if section.is_primary_section:
             if section.linked_section_urls:
@@ -325,17 +330,12 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                         mdata["building_name"] = building.name
 
                 for instructor in mdata["instructors"]:
-                    if (
-                            not instructor["email1"] and
-                            not instructor["email2"] and
-                            not instructor["phone1"] and
-                            not instructor["phone2"] and
-                            not instructor["voicemail"] and
-                            not instructor["fax"] and
-                            not instructor["touchdial"] and
-                            not instructor["address1"] and
-                            not instructor["address2"]
-                            ):
+                    if (len(instructor["email_addresses"]) == 0 and
+                            len(instructor["phones"]) == 0 and
+                            len(instructor["voice_mails"]) == 0 and
+                            len(instructor["faxes"]) == 0 and
+                            len(instructor["touch_dials"]) == 0 and
+                            len(instructor["addresses"]) == 0):
                         instructor["whitepages_publish"] = False
                 meeting_index += 1
             except IndexError as ex:

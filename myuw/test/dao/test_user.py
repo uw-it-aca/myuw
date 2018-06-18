@@ -14,10 +14,11 @@ class TestUserDao(TransactionTestCase):
             a = req.get("myuw_user_model")
 
         user = get_user_model(req)
+        self.assertIsNotNone(str(user))
         self.assertIsNotNone(req.myuw_user_model)
         self.assertEqual(user.uwnetid, "javerage")
+
         self.assertTrue(user.is_netid_changed("jav"))
-        self.assertIsNotNone(str(user))
         last_visit = user.last_visit
 
         # second time use the myuw_user_model in req
@@ -26,7 +27,7 @@ class TestUserDao(TransactionTestCase):
 
         # doesn't change last_visit value
         self.assertTrue(User.exists("javerage"))
-        user = User.get_user_by_netid("javerage")
+        user = get_user_model(req)
         self.assertEqual(user.last_visit, last_visit)
 
         # netid change, update last_visit value

@@ -19,6 +19,11 @@ describe('Handlebar-helpers', function(){
             var output = template();
             assert.equal(output, '(555) 555-5555');
         });
+        it("formatted from +1 555 555-5555", function() {
+            var template = Handlebars.compile("{{formatPhoneNumber '+1 555 555-5555' }}");
+            var output = template();
+            assert.equal(output, '(555) 555-5555');
+        });
         it("formatted from 555 555-5555", function() {
             var template = Handlebars.compile("{{formatPhoneNumber '555 555-5555' }}");
             var output = template();
@@ -107,6 +112,11 @@ describe('Handlebar-helpers', function(){
             var template = Handlebars.compile("{{toFriendlyDate '2013-03-04 13:30'}}");
             var output = template();
             assert.equal(output, 'Mon, Mar 4');
+        });
+        it ("work for a timezone datetime", function() {
+            var template = Handlebars.compile("{{toFriendlyDate '2018-06-07 06:59:59 UTC+0000'}}");
+            var output = template();
+            assert.equal(output, 'Thu, Jun 7');
         });
         it ("empty date", function() {
             var template = Handlebars.compile("{{toFriendlyDate ''}}");
@@ -494,6 +504,14 @@ describe('Handlebar-helpers', function(){
             assert.equal(output, '’17');
         });
 
+    });
+
+    describe("titleCaseName", function() {
+        it ("all upper case", function() {
+            var template = Handlebars.compile("{{titleCaseName 'JAMES AVERAGE STAFF'}}");
+            var output = template();
+            assert.equal(output, "James Average Staff");
+        });
     });
 
     describe("toTitleCase", function() {

@@ -12,16 +12,19 @@ var NoticeBanner = {
         if (notice_data.length > 0) {
             var source = $("#notice_banner").html();
             var template = Handlebars.compile(source);
-            var notices = Notices._get_critical(WSData.notice_data());
-            notices = Notices.sort_notices_by_start_date(notices);
+            var critical_notices = Notices._get_critical(WSData.notice_data());
+            critical_notices = Notices.sort_notices_by_start_date(critical_notices);
 
-            $.each(notices, function(idx, notice){
+            $.each(critical_notices, function(idx, notice){
                 notice.icon_class = NoticeBanner.get_icon_class_for_category(notice.category);
             });
+            NoticeBanner._split_notice_titles(critical_notices);
+
+            var notices = Notices.get_notice_page_notices(true);
             NoticeBanner._split_notice_titles(notices);
 
             var html = template({
-                "total_unread": Notices.get_unread_non_critical_count(),
+                "critical_notices": critical_notices,
                 "notices": notices
             });
             NoticeBanner.dom_target.html(html);
@@ -45,17 +48,16 @@ var NoticeBanner = {
             notice.notice_title = notice_title_html;
             notice.notice_body = notice_body_html;
         });
-        return notices;
     },
 
 
     _init_events: function () {
-        $(".crit-notice-title").on("click", function(e) {
-            NoticeBanner._mark_read(e.target);
-            var notice_id = $(e.target).parents(".notice-container").first().attr('id');
+        $(".js-notice-link").on("click", function(e) {
+            NoticeBanner._mark_read(e.currentTarget);
+            var notice_id = $(e.currentTarget).parents(".notice-container").first().attr('id');
             var aria_div = $("#"+notice_id+"_div");
+            var aria_focus = $("#"+notice_id+"_focus");
             var aria_a = $(e.currentTarget);
-
 
             if(aria_div.attr('aria-hidden') === "true"){
                 // Remove hidden first to keep it from interfering with Bootstrap.
@@ -67,8 +69,8 @@ var NoticeBanner = {
                     aria_a.attr('aria-expanded', true);
 
                     // Set focus on div
-                    aria_div.attr('tabindex', 0);
-                    aria_div.focus();
+                    aria_focus.attr('tabindex', 0);
+                    aria_focus.focus();
                 }, 300);
             } else {
                 window.setTimeout(function() {
@@ -78,7 +80,7 @@ var NoticeBanner = {
                     aria_a.attr('aria-expanded', false);
 
                     // Remove tabindex
-                    aria_div.removeAttr('tabindex');
+                    aria_focus.removeAttr('tabindex');
                 }, 300);
             }
 
@@ -89,12 +91,13 @@ var NoticeBanner = {
         // Looks backwards because class isn't removed until elm is shown,
         // which happens long after click event fires,
         // if has class element was just shown
-        if($(elm).parent().hasClass('collapsed')){
+        if($(elm).hasClass('collapsed')){
             var notice_id = $(elm).parents(".notice-container").first().attr('id');
             WSData.mark_notices_read([notice_id]);
-            var new_tag = $(elm).parent().siblings(".new-status").first();
-            new_tag.hide();
-
+            var new_tag = $("#"+notice_id).find( ".new-status" ).first();
+            if (new_tag.length > 0) {
+                new_tag.hide();
+            }
         }
     },
 

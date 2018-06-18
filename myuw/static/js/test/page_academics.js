@@ -208,4 +208,15 @@ describe("AcademicsPage", function() {
         assert.equal($('div[id="academics_sidebar_cards"]').length, 1);
         assert.equal($('div[id="academics_sidebar_cards"]').contents().length, 0);
     });
+
+    it('Test resizing', function() {
+        window.innerWidth = 1200;
+        Academics.make_html();
+        assert.equal(Academics.is_desktop, true);
+
+        window.innerWidth = 700;
+        $(window).trigger('resize');
+        assert.equal(Academics.is_desktop, false);
+    });
+
 });

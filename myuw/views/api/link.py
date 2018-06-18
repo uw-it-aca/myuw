@@ -1,10 +1,11 @@
-from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_protect
 import logging
 import json
 import re
 from django.db import transaction, IntegrityError
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
 from restclients_core.exceptions import DataFailureException
+from myuw.dao import is_action_disabled
 from myuw.dao.quicklinks import (
     get_quicklink_data, get_link_label, add_custom_link, delete_custom_link,
     edit_custom_link, add_hidden_link, delete_hidden_link,
@@ -13,7 +14,8 @@ from myuw.models import PopularLink, VisitedLinkNew, CustomLink, HiddenLink
 from myuw.logger.logresp import log_msg_with_request
 from myuw.logger.timer import Timer
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import data_not_found, invalid_input_data
+from myuw.views.error import data_not_found, invalid_input_data,\
+    disabled_action_error
 
 logger = logging.getLogger(__name__)
 
@@ -21,6 +23,9 @@ logger = logging.getLogger(__name__)
 class ManageLinks(ProtectedAPI):
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
+        if is_action_disabled():
+            return disabled_action_error()
+
         timer = Timer()
         try:
             data = json.loads(request.body)
@@ -30,14 +35,17 @@ class ManageLinks(ProtectedAPI):
         def clean(field):
             if field not in data:
                 return True
+            pre = data[field]
             data[field] = data[field].strip()
-            if "" == data[field]:
+            if "" == data[field] and "" != pre:
                 return False
             return True
 
-        for field in ("label", "url"):
-            if not clean(field):
-                return invalid_input_data()
+        if not clean("url"):
+            return invalid_input_data()
+
+        if 'label' in data:
+            data['label'] = data['label'].strip()
 
         link = None
         if "type" not in data:

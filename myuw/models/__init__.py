@@ -105,7 +105,10 @@ class UserNotices(models.Model):
         notice_hash = hashlib.md5()
         notice_hash.update(notice.notice_type.encode('utf-8'))
         notice_hash.update(notice.notice_category.encode('utf-8'))
-        notice_hash.update(notice.notice_content.encode('utf-8'))
+        try:
+            notice_hash.update(notice.notice_content.encode('utf-8'))
+        except AttributeError:
+            notice_hash.update(notice.get_notice_content().encode('utf-8'))
         return notice_hash.hexdigest()
 
     @staticmethod
@@ -297,9 +300,8 @@ class UserCourseDisplay(models.Model):
 
     @classmethod
     def delete_section_display(cls, user, section_label):
-        obj = UserCourseDisplay.objects.get(
-            user=user, section_label=section_label)
-        obj.delete()
+        return UserCourseDisplay.objects.filter(
+            user=user, section_label=section_label).delete()
 
     @classmethod
     def get_section_display(cls, user, section_label):

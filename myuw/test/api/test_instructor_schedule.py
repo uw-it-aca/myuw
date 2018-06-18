@@ -23,8 +23,11 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
 
         resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
+        self.assertTrue(data['grading_period_is_open'])
+        self.assertFalse(data['grading_period_is_past'])
 
         self.assertEqual(len(data['sections']), 6)
+
         section1 = data['sections'][0]
         self.assertEqual(section1['lib_subj_guide'],
                          'http://guides.lib.uw.edu/research')
@@ -179,6 +182,7 @@ class TestInstructorSection(MyuwApiTest):
         section1 = data['sections'][0]
         self.assertFalse('cc_display_dates' in section1)
         self.assertFalse(section1['sln'] == 0)
+        self.assertEqual(section1['eos_cid'], None)
 
         now_request = get_request_with_user('billpce')
         schedule = get_current_quarter_instructor_schedule(now_request)
@@ -187,10 +191,14 @@ class TestInstructorSection(MyuwApiTest):
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 5)
         section1 = data['sections'][0]
+        self.assertEqual(section1['section_label'], "2013_spring_AAES_150_A")
         self.assertTrue(section1['cc_display_dates'])
         self.assertTrue(section1['sln'] == 0)
-        section1 = data['sections'][1]
-        self.assertTrue(section1['evaluation']["eval_not_exist"])
+        self.assertEqual(section1['eos_cid'], 116872)
+        self.assertIsNotNone(section1['myuwclass_url'])
+
+        section2 = data['sections'][1]
+        self.assertTrue(section2['evaluation']["eval_not_exist"])
 
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
