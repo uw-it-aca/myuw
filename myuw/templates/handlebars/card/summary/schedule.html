@@ -21,9 +21,35 @@
                            data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a>
                     </div>
                 {{/if}}
+
+             {{#if is_summer}}
+             <h4>
+                 Full-Term
+             </h4>
+                {{#each full_term}}
+                    {{> summary_section }}
+               {{/each}}
+
+             <h4>
+                 A-Term
+             </h4>
+                {{#each a_term}}
+                    {{> summary_section }}
+               {{/each}}
+
+             <h4>
+                 B-Term
+             </h4>
+                {{#each b_term}}
+                    {{> summary_section }}
+               {{/each}}
+
+
+             {{else}}
                 {{#each sections}}
                     {{> summary_section }}
                {{/each}}
+             {{/if}}
                <div class="future-quarter-links" style="margin-top:16px;">
                    <a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a>
                </div>

@@ -55,14 +55,43 @@ var SummaryScheduleCard = {
         var instructed_course_data = WSData.instructed_course_data(term, false);
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
+
+        var a_term = [];
+        var b_term = [];
+        var full_term = [];
+        var is_summer = instructed_course_data.quarter === "summer";
+
+        if(is_summer){
+            for(var i = 0; i < instructed_course_data.sections.length; i++){
+                switch (instructed_course_data.sections[i].summer_term){
+                    case "A-term":
+                        a_term.push(instructed_course_data.sections[i]);
+                        break;
+                    case "B-term":
+                        b_term.push(instructed_course_data.sections[i]);
+                        break;
+                    case "Full-term":
+                        full_term.push(instructed_course_data.sections[i]);
+                        break;
+                }
+            }
+        }
+
         var data = {
             first_day_quarter: instructed_course_data.term.first_day_quarter,
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
-            section_count: instructed_course_data.sections.length
+            section_count: instructed_course_data.sections.length,
+            a_term: a_term,
+            b_term: b_term,
+            full_term: full_term,
+            is_summer: is_summer
         };
+
+        console.log(data)
+
         var raw = courses_template(data);
         SummaryScheduleCard.dom_target.html(raw);
         SummaryScheduleCard.add_events(term);
