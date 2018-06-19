@@ -6,9 +6,18 @@ var InstructorCourseCardContent = {
         var source = $("#instructor_course_card_content_panel").html();
         var template = Handlebars.compile(source);
         var card = $('#instructor_course_card_content' + index);
-        var term = c_section.year + ',' + c_section.quarter.toLowerCase();
+        var quarter = c_section.quarter.toLowerCase();
+        if (c_section.is_primary_section &&
+            !c_section.final_exam.no_exam_or_nontraditional &&
+            !c_section.final_exam.is_confirmed &&
+            c_section.sln) {
+            if (quarter === 'summer') {
+                c_section.display_no_final_period = true;
+            } else {
+                c_section.display_confirm_final_link = true;
+            }
+        }
         var raw = template(c_section);
-
         card.html(raw);
 
         InstructorCourseSchePanel.render(c_section);
@@ -18,6 +27,7 @@ var InstructorCourseCardContent = {
             CourseInstructorPanel.render(c_section);
         }
 
+        var term = c_section.year + ',' + quarter;
         InstructorCourseCardContent.add_events(card, term);
     },
 
