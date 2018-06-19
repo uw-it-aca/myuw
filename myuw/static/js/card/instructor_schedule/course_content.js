@@ -12,7 +12,7 @@ var InstructorCourseCardContent = {
             !c_section.final_exam.is_confirmed &&
             c_section.sln) {
             if (quarter === 'summer') {
-                c_section.display_no_final_period = true;
+                c_section.final_exam.display_no_final_period = true;
             } else {
                 c_section.display_confirm_final_link = true;
             }
