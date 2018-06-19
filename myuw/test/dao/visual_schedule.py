@@ -696,17 +696,15 @@ class TestVisualSchedule(TestCase):
 
         a_trimmed = _trim_summer_term(consolidated, 'a-term')
         b_trimmed = _trim_summer_term(consolidated, 'b-term')
-        self.assertEqual(len(a_trimmed), 3)
-        self.assertTrue(a_trimmed[2].is_finals)
-        self.assertEqual(len(b_trimmed), 3)
-        self.assertTrue(b_trimmed[2].is_finals)
+        self.assertEqual(len(a_trimmed), 2)
+        self.assertEqual(len(b_trimmed), 2)
 
     def test_future_summer(self):
         request = get_request_with_user('javerage',
                                         get_request_with_date("2013-03-01"))
         term = get_term_from_quarter_string("2013,summer")
         future_schedule = get_future_visual_schedule(request, term, "a-term")
-        self.assertEqual(len(future_schedule), 3)
+        self.assertEqual(len(future_schedule), 2)
 
     def test_future_regular(self):
         request = get_request_with_user('javerage',
