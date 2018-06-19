@@ -90,8 +90,6 @@ var SummaryScheduleCard = {
             is_summer: is_summer
         };
 
-        console.log(data)
-
         var raw = courses_template(data);
         SummaryScheduleCard.dom_target.html(raw);
         SummaryScheduleCard.add_events(term);
