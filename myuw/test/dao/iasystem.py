@@ -3,13 +3,14 @@ import pytz
 from django.test import TestCase
 from django.conf import settings
 from django.test.utils import override_settings
-from uw_sws.models import Section, Term
+from uw_sws.models import Section
 from uw_iasystem.evaluation import get_evaluation_by_id
 from uw_sws.section import get_section_by_label
 from myuw.dao.iasystem import json_for_evaluation, _get_evaluations_domain,\
     _get_evaluations_by_section_and_student, summer_term_overlaped,\
     get_evaluation_by_section_and_instructor
 from myuw.dao.registration import get_schedule_by_term
+from myuw.dao.term import get_current_quarter
 from myuw.test import fdao_pws_override, fdao_sws_override, fdao_ias_override,\
     get_request_with_date, get_request_with_user, get_request
 
@@ -35,15 +36,12 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(_get_evaluations_domain(section), "Seattle")
 
     def test_summer_term_overlaped(self):
-        term = Term()
-        term.year = 2013
-        term.quarter = "summer"
         section = Section()
         section.summer_term = "A-term"
-        section.term = term
-
         now_request = get_request_with_user(
             'javerage', get_request_with_date("2013-07-10"))
+        term = get_current_quarter(now_request)
+        section.term = term
         self.assertTrue(summer_term_overlaped(now_request, section))
         section.summer_term = "Full-term"
         self.assertFalse(summer_term_overlaped(now_request, section))
@@ -58,10 +56,9 @@ class IASystemDaoTest(TestCase):
         self.assertTrue(summer_term_overlaped(now_request, '-'))
 
     def test_get_evaluations_by_section(self):
-        req = get_request_with_user('javerage')
-        term = Term()
-        term.year = 2013
-        term.quarter = "summer"
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-07-01"))
+        term = get_current_quarter(req)
         section = Section()
         section.summer_term = "A-term"
         section.term = term
@@ -134,10 +131,9 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(len(json_data), 0)
 
     def test_multiple_instructors(self):
-        req = get_request_with_user('javerage')
-        term = Term()
-        term.year = 2013
-        term.quarter = "summer"
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-08-01"))
+        term = get_current_quarter(req)
         schedule = get_schedule_by_term(req, term)
         evals = None
         for section in schedule.sections:
@@ -165,10 +161,9 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(evals[0].instructor_ids[2], 123456798)
 
     def test_multiple_evals(self):
-        req = get_request_with_user('javerage')
-        term = Term()
-        term.year = 2013
-        term.quarter = "spring"
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-04-01"))
+        term = get_current_quarter(req)
         schedule = get_schedule_by_term(req, term)
         evals = None
         for section in schedule.sections:
