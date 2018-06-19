@@ -718,8 +718,6 @@ def _trim_summer_term(schedule, summer_term):
         if period.summer_term is not None:
             if period.summer_term.lower() == summer_term:
                 term_periods.append(period)
-        elif period.is_finals:
-            term_periods.append(period)
     return term_periods
 
 
