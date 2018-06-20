@@ -24,24 +24,31 @@
 
 
              {{#if is_summer}}
+
+                {{#if full_term }}
                  <div class="myuw-card-subheader">
                      Full-Term
                  </div>
                    {{#each full_term}}
                         {{> summary_section }}
                    {{/each}}
+                {{/if }}
 
 
+                {{#if a_term }}
                  <div class="myuw-card-subheader">
                      A-Term
                  </div>
                    {{#each a_term}}
                         {{> summary_section }}
                    {{/each}}
+                {{/if }}
 
+                {{#if b_term }}
                  <div class="myuw-card-subheader">
                      B-Term
                  </div>
+                {{/if }}
 
                    {{#each b_term}}
                         {{> summary_section }}
