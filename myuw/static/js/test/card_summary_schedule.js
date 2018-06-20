@@ -12,6 +12,7 @@ describe('SummaryScheduleCard', function(){
             templates: [
                 'myuw/templates/handlebars/card/summary/section_panel.html',
                 'myuw/templates/handlebars/card/summary/schedule.html',
+                'myuw/templates/handlebars/card/summary/schedule_section.html'
             ]
         });
 
@@ -52,7 +53,8 @@ describe('SummaryScheduleCard', function(){
             ],
             templates: [
                 'myuw/templates/handlebars/card/summary/section_panel.html',
-                'myuw/templates/handlebars/card/summary/schedule.html'
+                'myuw/templates/handlebars/card/summary/schedule.html',
+                'myuw/templates/handlebars/card/summary/schedule_section.html'
             ]
         });
 
