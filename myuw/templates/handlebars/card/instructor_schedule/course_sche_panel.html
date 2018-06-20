@@ -81,7 +81,11 @@
                                         </tbody>
                                     </table>
                                 {{else}}
-                                    <span>Day and time to be arranged.</span>
+                                    {{#if display_no_final_period}}
+                                        <span>No final exam period during summer quarter.</span>
+                                    {{else}}
+                                        <span>Day and time to be arranged.</span>
+                                    {{/if}}
                                 {{/if}}
                             {{/if}}
                         {{/with}}
@@ -89,15 +93,9 @@
                         <span>No Final Exam Scheduled.</span>
                     {{/if}}
 
-                    {{#if is_primary_section}}
-                        {{#unless final_exam.no_exam_or_nontraditional}}
-                            {{#unless final_exam.is_confirmed}}
-                                {{#if sln}}
-                                    <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid="
-                                    target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
-                                {{/if}}
-                            {{/unless}}
-                        {{/unless}}
+                    {{#if display_confirm_final_link}}
+                        <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid="
+                           target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
                     {{/if}}
                 </div>
             </div>
