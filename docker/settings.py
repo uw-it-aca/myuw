@@ -88,8 +88,9 @@ elif os.environ['DB'] == "mysql":
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'myuw',
-            'USER': 'myuw',
-            'PASSWORD': 'my_pass',
+            'USER': 'root',
+            'HOST': 'db',
+            'PASSWORD': 'docker',
             'PORT': 3306,
         }
     }
@@ -121,7 +122,7 @@ STATICFILES_FINDERS = (
 )
 
 COMPRESS_ENABLED = False
-COMPRESS_ROOT = "compress_root"
+COMPRESS_ROOT = "/static/"
 STATIC_ROOT = "/static/"
 
 # Test the memcached cache code
