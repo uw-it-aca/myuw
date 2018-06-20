@@ -22,30 +22,30 @@
                     </div>
                 {{/if}}
 
+
              {{#if is_summer}}
+                 <div class="myuw-card-subheader">
+                     Full-Term
+                 </div>
+                   {{#each full_term}}
+                        {{> summary_section }}
+                   {{/each}}
 
-             <h4 class="category-sub-header">
-                 Full-Term
-             </h4>
-                {{#each full_term}}
-                    {{> summary_section }}
-               {{/each}}
 
+                 <div class="myuw-card-subheader">
+                     A-Term
+                 </div>
+                   {{#each a_term}}
+                        {{> summary_section }}
+                   {{/each}}
 
-             <h4 class="category-sub-header">
-                 A-Term
-             </h4>
-                {{#each a_term}}
-                    {{> summary_section }}
-               {{/each}}
+                 <div class="myuw-card-subheader">
+                     B-Term
+                 </div>
 
-             <h4>
-                 B-Term
-             </h4>
-                {{#each b_term}}
-                    {{> summary_section }}
-               {{/each}}
-
+                   {{#each b_term}}
+                        {{> summary_section }}
+                   {{/each}}
 
              {{else}}
                 {{#each sections}}
