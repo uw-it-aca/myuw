@@ -7,10 +7,9 @@ var InstructorCourseCardContent = {
         var template = Handlebars.compile(source);
         var card = $('#instructor_course_card_content' + index);
         var quarter = c_section.quarter.toLowerCase();
-        if (c_section.is_primary_section &&
+        if (c_section.is_primary_section && c_section.final_exam &&
             !c_section.final_exam.no_exam_or_nontraditional &&
-            !c_section.final_exam.is_confirmed &&
-            c_section.sln) {
+            !c_section.final_exam.is_confirmed && c_section.sln) {
             if (quarter === 'summer') {
                 c_section.final_exam.display_no_final_period = true;
             } else {
