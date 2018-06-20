@@ -43,9 +43,9 @@
                 {{/if}}
 
                 <td class="course-meeting">
-                    <!-- if meeting type other than the section type -->
-                    <span class="myuw-course-meeting-type c{{color_id}}Color">Fake</span>
-                    <!-- endif -->
+                    {{#if display_type}}
+                        <span class="myuw-course-meeting-type c{{../color_id}}Color">{{type}}</span>
+                    {{/if}}
                 </td>
             {{/if}}
         </tr>
