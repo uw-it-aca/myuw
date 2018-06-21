@@ -122,11 +122,11 @@ describe('SortBySummerSubTerm', function(){
 
     Summary.SummaryScheduleCard.sort_sections_by_sub_term(data, instructed_course_data);
 
-    assert.equals(typeof data.a_term, typeof []);
-    assert.equals(typeof data.b_term, typeof []);
-    assert.equals(typeof data.full_term, typeof []);
+    assert.equal(typeof data.a_term, typeof []);
+    assert.equal(typeof data.b_term, typeof []);
+    assert.equal(typeof data.full_term, typeof []);
 
-    assert.equals(data.a_term.length, 3);
-    assert.equals(data.b_term.length, 5);
-    assert.equals(data.full_term, 1);
+    assert.equal(data.a_term.length, 3);
+    assert.equal(data.b_term.length, 5);
+    assert.equal(data.full_term.length, 1);
 });
