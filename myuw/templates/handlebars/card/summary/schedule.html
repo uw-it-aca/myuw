@@ -2,7 +2,7 @@
     {% tplhandlebars "instructor_summary_schedule" %}
     <div class="myuw-card teaching-schedule-summary" data-type="card"
          data-name="SummaryScheduleCard" data-identifier="{{ title }}">
-         <h4 style="position:relative;">
+         <div style="position:relative;">
             <h3 class="myuw-card-title">
               {{capitalizeString quarter}} {{year}} Teaching Schedule
             </h3>
@@ -26,9 +26,9 @@
              {{#if is_summer}}
 
                 {{#if full_term }}
-                 <div class="myuw-card-subheader">
+                 <h4 class="myuw-card-heading">
                      Full-Term
-                 </div>
+                 </h4>
                    {{#each full_term}}
                         {{> summary_section }}
                    {{/each}}
@@ -36,18 +36,18 @@
 
 
                 {{#if a_term }}
-                 <div class="myuw-card-subheader">
+                 <h4 class="myuw-card-heading">
                      A-Term
-                 </div>
+                 </h4>
                    {{#each a_term}}
                         {{> summary_section }}
                    {{/each}}
                 {{/if }}
 
                 {{#if b_term }}
-                 <div class="myuw-card-subheader">
+                 <h4 class="myuw-card-heading">
                      B-Term
-                 </div>
+                 </h4>
                 {{/if }}
 
                    {{#each b_term}}
