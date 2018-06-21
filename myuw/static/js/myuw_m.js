@@ -195,9 +195,9 @@ var capitalizeString = function(string) {
     if (string === undefined) {
         return;
     }
-    if (string.match(/^[ab]-term$/gi)) {
+    if (string.match(/^(full|[ab])-term$/gi)) {
         value = string.split("-");
-        return value[0].toUpperCase() + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
+        return value[0].charAt(0).toUpperCase() + value[0].slice(1) + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
     }
     if (!string) {
         return "";
