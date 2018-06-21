@@ -1,4 +1,5 @@
 var Global = require("./global.js");
+var SumSchedCard = require("./myuw/static/js/card/summary/schedule.js")
 
 describe('SummaryScheduleCard', function(){
     before(function (done) {
@@ -81,4 +82,48 @@ describe('SummaryScheduleCard', function(){
             assert.equal(SummaryScheduleCard.dom_target.find('.myuw-card-section').length, 0);
         });
     });
+});
+
+
+describe('SortBySummerSubTerm', function(){
+    var data = {};
+    var instructed_course_data = {};
+    instructed_course_data.sections = [];
+
+    for(var i = 0; i < 3; i++) {
+        instructed_course_data.sections.push({
+            'summer_term': 'A-term'
+        })
+    }
+
+    for(var i = 0; i < 5; i++){
+        instructed_course_data.sections.push({
+            'summer_term': 'B-term'
+        })
+    }
+
+    for(var i = 0; i < 1; i++){
+        instructed_course_data.sections.push({
+            'summer_term': 'Full-term'
+        })
+    }
+
+
+    Global.Environment.init({
+        render_id: render_id,
+        scripts: [
+            "myuw/static/js/card/summary/schedule.js",
+        ],
+        templates: []
+    });
+
+    SumSchedCard.sort_sections_by_sub_term(data, instructed_course_data);
+
+    assert.equals(typeof data.a_term, typeof []);
+    assert.equals(typeof data.b_term, typeof []);
+    assert.equals(typeof data.full_term, typeof []);
+
+    assert.equals(data.a_term.length, 3);
+    assert.equals(data.b_term.length, 5);
+    assert.equals(data.full_term, 1);
 });
