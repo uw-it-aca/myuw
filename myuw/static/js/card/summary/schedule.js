@@ -149,10 +149,6 @@ var SummaryScheduleCard = {
             });
         });
     },
-
-    group_sections_by_summer_term: function (sections) {
-
-    },
 };
 
 /* node.js exports */

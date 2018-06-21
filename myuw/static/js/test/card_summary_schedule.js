@@ -1,5 +1,5 @@
 var Global = require("./global.js");
-var SumSchedCard = require("./myuw/static/js/card/summary/schedule.js")
+var SumSchedCard = require("../card/summary/schedule.js")
 
 describe('SummaryScheduleCard', function(){
     before(function (done) {
