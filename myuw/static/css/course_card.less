@@ -61,15 +61,21 @@ c8a #473EC5;
     margin-top: 8px;
 }
 
+.myuw-course-meeting-type {
+    padding: 2px 4px 2px 4px;
+    border: 1px solid #eee;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
 .course-meta {
     position: absolute;
     top: 0;
     right: 0;
 
-    .course-meeting-type {
+    .myuw-course-meeting-type {
         margin-left: 16px;
-        padding: 2px 4px 2px 4px;
-        border: 1px solid #eee;
     }
 
     .myuw-close-card {
@@ -87,7 +93,6 @@ c8a #473EC5;
 */
 
 .table-course-schedule {
-    width: 100%;
     border: 0;
 
     td {
@@ -96,8 +101,8 @@ c8a #473EC5;
 
         &:last-child { padding-right: 0; }
 
-        &.course-final-date { width: 4.5em; }
-        &.course-days { text-align:left; width: 4.5em; }
+        &.course-final-date { width: 7.5em; }
+        &.course-days { text-align:left; width: 7.5em; }
         &.course-section {
             .section-id {
                 font-weight: bold;
@@ -145,11 +150,20 @@ c8a #473EC5;
 /* Secondary Section list on Teaching Page */
 .table-course-schedule.secondary-sections-list {
     margin-bottom: 16px;
+    width: 100%;
 
     td {
         &.course-section { width: 9%; }
         &.course-sln { width: 16%; }
         &.course-days, &.course-time { width:auto; }
+    }
+}
+
+/* Schedule on Homepage Teaching Schedule Summary */
+.table-course-schedule.summary-schedule {
+    width: 100%;
+    td {
+        &.course-days { width: 4.5em; }
     }
 }
 
