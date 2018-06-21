@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from restclients_core.exceptions import DataFailureException
 from uw_sws.exceptions import InvalidSectionID
-from myuw.dao import get_netid_of_current_user
+from myuw.dao import get_netid_of_current_user, is_action_disabled
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.instructor_schedule import check_section_instructor
@@ -16,8 +16,9 @@ from myuw.dao.mailman import (
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg_with_request
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import (
-    handle_exception, not_instructor_error, InvalidInputFormData)
+from myuw.views.exceptions import DisabledAction, NotInstructorError,\
+    InvalidInputFormData
+from myuw.views.error import handle_exception
 from uw_sws.section import get_section_by_label
 from myuw.views.api import unescape_curriculum_abbr
 
@@ -30,26 +31,27 @@ class Emaillist(ProtectedAPI):
         """
         GET returns 200 with email lists for the course
         """
-        year = kwargs.get("year")
-        quarter = kwargs.get("quarter")
-        curriculum_abbr = kwargs.get("curriculum_abbr")
-        course_number = kwargs.get("course_number")
-        section_id = kwargs.get("section_id")
         timer = Timer()
         try:
+            year = kwargs.get("year")
+            quarter = kwargs.get("quarter")
+            curriculum_abbr = kwargs.get("curriculum_abbr")
+            course_number = kwargs.get("course_number")
+            section_id = kwargs.get("section_id")
             cur_abb = unescape_curriculum_abbr(curriculum_abbr)
             section_label = "%s,%s,%s,%s/%s" % (year,
                                                 quarter.lower(),
                                                 cur_abb.upper(),
                                                 course_number,
                                                 section_id)
+
             if not is_emaillist_authorized(request, section_label):
-                return not_instructor_error()
+                raise NotInstructorError(
+                    "Not an instructor when checking emaillist for %s" %
+                    section_label)
 
             email_list_json = get_course_email_lists(
-                year, quarter, cur_abb,
-                course_number, section_id, True)
-
+                year, quarter, cur_abb, course_number, section_id, True)
             log_msg_with_request(logger, timer, request,
                                  "Checked emaillist for %s" % section_label)
             return self.json_response(email_list_json)
@@ -60,22 +62,26 @@ class Emaillist(ProtectedAPI):
     def post(self, request, *args, **kwargs):
         timer = Timer()
         try:
-            uwnetid = get_netid_of_current_user(request)
             single_section_labels = get_input(request)
-            if not validate_is_instructor(request, single_section_labels):
-                logger.error("%s is not an instructor",
-                             uwnetid)
-                return not_instructor_error()
-
             if len(single_section_labels) == 0:
                 resp = {"none_selected": True}
             else:
-                resp = request_mailman_lists(uwnetid,
-                                             single_section_labels)
-            log_msg_with_request(
-                logger, timer, request,
-                "Request emaillist for %s ==> %s" % (
-                    single_section_labels, resp))
+
+                if is_action_disabled():
+                    raise DisabledAction(
+                        "Request emaillist w. Overriding for %s" %
+                        single_section_labels)
+
+                if not validate_is_instructor(request, single_section_labels):
+                    raise NotInstructorError(
+                        "Not an instructor when requesting emaillist for %s" %
+                        single_section_labels)
+
+                resp = request_mailman_lists(request, single_section_labels)
+
+            log_msg_with_request(logger, timer, request,
+                                 "Request emaillist for %s ==> %s" % (
+                                     single_section_labels, resp))
 
             return self.json_response(resp)
         except Exception as ex:

@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from restclients_core.exceptions import DataFailureException
+from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
@@ -12,7 +13,7 @@ from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import get_user_model
+from myuw.dao.user import get_updated_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
@@ -20,8 +21,7 @@ from myuw.logger.logback import log_exception
 from myuw.logger.logresp import log_invalid_netid_response,\
     log_msg_with_request
 from myuw.logger.session_log import log_session
-from myuw.util.settings import get_google_search_key,\
-    get_legacy_url, get_logout_url
+from myuw.util.settings import get_google_search_key, get_logout_url
 from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import invalid_session
 
@@ -40,7 +40,7 @@ def page(request,
 
     timer = Timer()
     try:
-        user = get_user_model(request)
+        user = get_updated_user(request)
     except Exception as ex:
         logger.error(ex)
         log_invalid_netid_response(logger, timer)
@@ -59,10 +59,6 @@ def page(request,
             return failure
 
     user_pref = get_migration_preference(request)
-
-    if user_pref.use_legacy_site:
-        return redirect_to_legacy_site()
-
     log_session(netid, request)
     affiliations = get_all_affiliations(request)
 
@@ -72,6 +68,7 @@ def page(request,
     context["banner_messages"] = get_current_messages(request)
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
+    context["disable_actions"] = is_action_disabled()
     context["card_display_dates"] = get_card_visibilty_date_values(request)
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
@@ -120,10 +117,6 @@ def try_prefetch(request):
         context["webservice_outage"] = True
         return render(request, template, context)
     return
-
-
-def redirect_to_legacy_site():
-    return HttpResponseRedirect(get_legacy_url())
 
 
 def logout(request):

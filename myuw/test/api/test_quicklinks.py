@@ -230,13 +230,15 @@ class TestQuickLinksAPI(MyuwApiTest):
                            })
 
         response = self.client.post(url, data, content_type='application_json')
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 200)
 
         all = CustomLink.objects.all()
         self.assertEquals(len(all), 1)
         link = all[0]
-        self.assertEquals(link.url, 'http://example.com')
-        self.assertEquals(link.label, 'Just example')
+        self.assertEquals(link.url, 'http://www.washington.edu/'
+                                    'classroom/SMI+401')
+        self.assertEquals(link.label, 'http://www.washington.edu/'
+                                      'classroom/SMI+401')
 
     def test_remove_link(self):
         CustomLink.objects.all().delete()
@@ -302,3 +304,15 @@ class TestQuickLinksAPI(MyuwApiTest):
         self.assertEquals(response.status_code, 404)
         all = HiddenLink.objects.all()
         self.assertEqual(len(all), 1)
+
+    def test_disable_action(self):
+        with self.settings(DEBUG=False,
+                           MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True):
+            self.set_user('javerage')
+            self.set_userservice_override('bill')
+            url = reverse('myuw_manage_links')
+            data = json.dumps({'type': 'custom',
+                               'url': 'www.washington.edu'})
+            response = self.client.post(url, data,
+                                        content_type='application_json')
+            self.assertEqual(response.status_code, 401)

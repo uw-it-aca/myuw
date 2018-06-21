@@ -348,6 +348,7 @@ label { font-weight: normal; margin-bottom: auto; }
             }
 		}
 	}
+	.override-banner {background-color: #ffbc24;color:#000;} //Gold banner
 }
 
 .message-dialog {
@@ -363,40 +364,8 @@ label { font-weight: normal; margin-bottom: auto; }
 	}
 }
 
-/*** notice banner - critical notices on landing page ***/
-@media @under992 {
-    #app_notices { border-bottom: 1px solid #ddd; }
-}
 
-#app_notices { position: relative;
 
-    .notice-header { font-size: @font-header-smaller; line-height: 50px; margin: 0 auto; position: relative;font-weight: 600;
-        a {font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; color: #444;}
-        .no-critical { color: #85754d; }
-    }
-    .critical-notices-container {margin-top: 0; margin-bottom: 15px;padding-left: 0;
-	    .notice-content-list { font-weight: normal; padding-left: 1px; list-style: none;
-
-	        .notice-content-list-item {margin-bottom: .3em;background-color: @notice-bg;
-				.notice-category-icon {float:left;background-color:#fff;}
-				.fa-usd {padding-left: 3px;}
-		        .notice-title /*not h3*/ {font-size:15px; line-height:20px;color:#4d66ca;padding-left:18px;display:block;background-color:#fff;padding-bottom:5px;cursor: pointer;
-					&:hover {text-decoration: underline;}
-			        &:active, a:focus {text-decoration: none;}
-		        }
-				.new-status {padding: 0 3px; background: #f5d300; float: right; border-radius: 4px;margin-right: 20px; font-size: 12px;}
-		        .notice-body-with-title {padding: 10px 18px;display:inline-block;}
-		        .notice-body-without-title { }
-		        .notice-list {padding-top:5px;}
-			}
-
-	    }
-    }
-
-    .other-notices-link {}
-    .notice-unread { /*background-color: white; color:#444;*/ font-weight:normal; /*border:1px solid #444;*/ position: absolute; right: 15px; top: 50%; margin-top: -5px; }
-    .notice-information { font-size: 11px; font-weight:normal; display: block; white-space: nowrap; margin-top: -15px; line-height: normal; }
-}
 
 /*** academic calendar banner ***/
 .acal-break-icon {color: @icon-break-color; font-size:.7em; line-height: 20px; vertical-align: text-top;} // for both banner & acal landing page
@@ -600,11 +569,13 @@ label { font-weight: normal; margin-bottom: auto; }
         .card-content {  }
 
         .card-critical-alert {
-            // background: rgb(240,219,208); padding: 8px; color: #af4b1a;
-            margin-bottom: 1em;
-            text-align: left;
+            background: rgb(240,219,208);
+            padding: 8px;
+            color: #af4b1a;
+            margin-bottom: 16px;
+            text-align: center;
 
-            i {font-size: 1.5em; vertical-align: middle; margin-right: .2em;}
+            i { font-size: 1.5em; vertical-align: middle; margin-right: .2em; }
             a { color: #a94442; text-decoration: underline; }
         }
 
@@ -845,18 +816,18 @@ label { font-weight: normal; margin-bottom: auto; }
     }
 
     .application-card {
-	.myuw-header-msg {
-	    margin-top: -8px;
-	    margin-bottom: 16px;
-	}
-	// Application card Resources section header:
-	.resources-header {
-	    margin-top: 15px;
-            margin-bottom: 5px;
-	}
-	.list-leading {
-	    li { margin-top: 3px; margin-bottom: 4px;}
-	}
+    	.myuw-header-msg {
+    	    margin-top: -8px;
+    	    margin-bottom: 16px;
+    	}
+    	// Application card Resources section header:
+    	.resources-header {
+    	    margin-top: 15px;
+                margin-bottom: 5px;
+    	}
+    	.list-leading {
+    	    li { margin-top: 3px; margin-bottom: 4px;}
+    	}
     }
 
     // Grades card
@@ -1053,12 +1024,17 @@ label { font-weight: normal; margin-bottom: auto; }
     #RegStatusCard, #SummerRegStatusCardA, #SummerRegStatusCard1, #TuitionCard {
         .reg-date {font-weight: bold;}
         .card {
-            .card-critical-alert {margin-bottom: 0;}
             .pending-major {
                 .card-badge-value {line-height: 20px; margin:7px 0;font-size: 17px;}
             }
+
             .card-badge-container {
-// STUFF PATRICK ADDED //
+
+                /* Override apdding from .card-badge */
+                .card-badge.card-critical-alert {
+                    padding: 8px;
+                }
+
                 .reg-holds-container {
                     .card-badge-label {
                         line-height: 0px;
@@ -1069,21 +1045,24 @@ label { font-weight: normal; margin-bottom: auto; }
                         line-height: 20px;
                         i {font-size: 1em; padding-right: 4px;}
                     }
-                    .reg_holds_disc {
-                        background: rgba(255, 140, 138, 0.16);
-                        margin-left: -10px;
-                        margin-right: -20px;
-                        margin-top: 28px;
-                        .reg-holds {
-                            padding: 10px;
-                            margin-top: 8px;
-                            .reg-holds-list {
-                                    list-style: none;
-                                    padding: 0;
-                                    color:#a94442;
-                                    a {color:#913f16; text-decoration: none;}
-                                    li { margin-bottom: 1em; }
-                            }
+                }
+
+                .reg_holds_disc {
+                    background: rgba(255, 140, 138, 0.16);
+                    margin-top: 8px;
+                    clear: both;
+
+                    .reg-holds {
+                        padding: 16px;
+                        .reg-holds-list {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            color: #000;
+
+                            li { margin-bottom: 1em; }
+
+                            > li:last-child { margin-bottom: 0; }
                         }
                     }
                 }
@@ -1180,10 +1159,10 @@ label { font-weight: normal; margin-bottom: auto; }
     	    .reg_resources_disc {
     		    h4 {font-weight:500; margin-bottom: 3px;}
     		    .card-badge-label {padding-bottom:5px;}
-    		    .reg-status-table {margin-left:10px; margin-bottom: 10px;
+    		    .reg-status-table { margin-bottom: 10px;
     			    .reg-status-table-row {
     				    td {padding:0px;}
-                        td:nth-child(1) {width: 15%;}
+                        td:nth-child(1) {width: 15%; padding-left: 16px; }
                         td:nth-child(2) {width: 20%;}
                         td:nth-child(3) {width: 40%;}
     			    }
@@ -1358,9 +1337,10 @@ label { font-weight: normal; margin-bottom: auto; }
 
         .card {
             h4 { font-family: 'encode_sans_normalbold', sans-serif; font-weight: 600; font-size: @font-header-small; color: @darktan; margin-bottom: 1em;
-				.meeting-type {float: right; font-size: 12px; font-family: 'Open Sans', sans-serif; font-weight: normal; text-transform: uppercase; padding:2px 4px 2px 4px;border: 1px solid #eee;}
-                .shortTitle { font-family: 'Roboto', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
-                .offterm-date { font-size: 14px; font-family:'Roboto', sans-serif; color: #444 !important; line-height: 1.5;  }
+				.meeting-type {float: right; margin-top: 3px; font-size: 12px; font-family: 'Open Sans', sans-serif; font-weight: normal; text-transform: uppercase; padding:2px 4px 2px 4px;border: 1px solid #eee;}
+				.credit-info {clear: right; float: right; margin-top: 5px; font-size: 12px; font-family: 'Open Sans', sans-serif; font-weight: normal; text-transform: uppercase; border: none;}            
+				.shortTitle { font-family: 'Open Sans', sans-serif; font-weight: 400; color: #444 !important; font-size: 16px !important; margin-top: 5px; }
+                .offterm-date { font-family: 'Open Sans', sans-serif; font-size: 14px; font-weight: 400; color: #444 !important; line-height: 1.5;  }
             }
 
             h5 { font-family: 'Roboto', sans-serif; font-weight: 500; color: @darktan; margin-top: 1.5em; margin-bottom: .5em; font-size: 16px;  }
@@ -1399,7 +1379,7 @@ label { font-weight: normal; margin-bottom: auto; }
 				ol {padding: 0px;}
 			}
 
-			.table-course-schedule { margin-top: 20px;margin-bottom: 15px;
+			.table-course-schedule {margin-bottom: 20px;
 				.tbody-course-schedule {
 					.course-schedule-row {text-align: center;
 						.course-tbd {font-size:12px; width:64%;}
@@ -1784,13 +1764,9 @@ label { font-weight: normal; margin-bottom: auto; }
     .seven-day span.final-date {
       font-size: 85%;
     }
-    /*
-    .six-day:last-child, .five-day:last-child {
-    	border-right: none;
 
-    }*/
     .six-day:first-child,
-    seven-day:first-child,
+    .seven-day:first-child,
     .five-day:first-child {
       border-left: 2px groove #eeeeee;
     }
@@ -1800,7 +1776,10 @@ label { font-weight: normal; margin-bottom: auto; }
     	border-left: 1px solid #ddd;
     	border-right: 1px solid #ddd;
     }
+	.six-day:last-child, .five-day:last-child {
+    	border-right: none;
 
+    }
     .day-col {
       position: relative;
       height: 92%;
@@ -2105,8 +2084,8 @@ label { font-weight: normal; margin-bottom: auto; }
 	    }
 
 		.toggle {
-			float: right;
-			display:inline-block;
+			text-align: right;
+
 		}
 
 		// handle quarter begins in notices

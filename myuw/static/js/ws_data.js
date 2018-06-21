@@ -920,6 +920,7 @@ WSData = {
             return;
         }
         if (data.sections[0].instructors !== undefined) {
+            // already normalized
             return;
         }
 
@@ -1587,11 +1588,11 @@ WSData = {
     },
 
     clear_cache: function(){
-        Object.assign(WSData, JSON.parse(JSON.stringify(WSData.default_data)));
+        $.extend(WSData, JSON.parse(JSON.stringify(WSData.default_data)));
     }
 };
 
-Object.assign(WSData, JSON.parse(JSON.stringify(WSData.default_data)));
+$.extend(WSData, JSON.parse(JSON.stringify(WSData.default_data)));
 
 /* node.js exports */
 if (typeof exports === "undefined") {

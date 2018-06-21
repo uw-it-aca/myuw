@@ -1,7 +1,6 @@
 from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.term import get_current_quarter, get_current_summer_term
 from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *
@@ -185,7 +184,6 @@ def _set_student_sections(student_schedule):
 
 
 def _get_visual_schedule_from_schedule(schedule, request):
-    set_course_display_pref(request, schedule)
     _add_dates_to_sections(schedule)
     if _is_split_summer(schedule):
         _adjust_off_term_dates(schedule)
@@ -720,8 +718,6 @@ def _trim_summer_term(schedule, summer_term):
         if period.summer_term is not None:
             if period.summer_term.lower() == summer_term:
                 term_periods.append(period)
-        elif period.is_finals:
-            term_periods.append(period)
     return term_periods
 
 

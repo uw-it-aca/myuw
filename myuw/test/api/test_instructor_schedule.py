@@ -23,8 +23,11 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
 
         resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
+        self.assertTrue(data['grading_period_is_open'])
+        self.assertFalse(data['grading_period_is_past'])
 
         self.assertEqual(len(data['sections']), 6)
+
         section1 = data['sections'][0]
         self.assertEqual(section1['lib_subj_guide'],
                          'http://guides.lib.uw.edu/research')

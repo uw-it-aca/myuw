@@ -1,10 +1,10 @@
 from django.test import TestCase
 from django.conf import settings
 from restclients_core.exceptions import DataFailureException
-from uw_sws.models import Term
 from uw_sws.section import get_section_by_label
 from myuw.dao.registration import get_schedule_by_term,\
     get_active_registrations_for_section
+from myuw.dao.term import get_current_quarter
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_user, get_request_with_date
 
@@ -14,27 +14,28 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
 class TestRegistrationsDao(TestCase):
 
     def test_data_failure_exception(self):
-        request = get_request_with_user('javerage')
-        term = Term()
-        term.year = 2014
-        term.quarter = "autumn"
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2014-10-01"))
+        term = get_current_quarter(request)
         self.assertRaises(DataFailureException,
                           get_schedule_by_term,
                           request, term)
 
-    def testget_schedule_by_term_by_term(self):
-        request = get_request_with_user('javerage')
-        term = Term()
-        term.year = 2013
-        term.quarter = "autumn"
+    def test_get_schedule_by_term(self):
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-10-01"))
+        term = get_current_quarter(request)
         schedule = get_schedule_by_term(request, term)
         self.assertIsNotNone(schedule)
         self.assertEqual(len(schedule.sections), 2)
+        self.assertEqual(schedule.sections[0].color_id, 1)
+        self.assertEqual(schedule.sections[1].color_id, 2)
 
         request = get_request_with_user('javerage',
                                         get_request_with_date("2013-04-01"))
+        term = get_current_quarter(request)
         schedule = get_schedule_by_term(request, term)
-        self.assertEqual(len(schedule.sections), 2)
+        self.assertEqual(len(schedule.sections), 5)
 
     def test_get_active_registrations_for_section(self):
         section = get_section_by_label("2013,autumn,MUSEUM,700/A")
@@ -52,3 +53,19 @@ class TestRegistrationsDao(TestCase):
         self.assertEqual(len(reg), 2)
         enrolled_student = reg[0].person
         self.assertEqual(enrolled_student.uwnetid, "javg003")
+
+    def test_get_future_schedule(self):
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2014-02-01"))
+        term = get_current_quarter(request)
+        schedule = get_schedule_by_term(request, term)
+        self.assertEqual(len(schedule.sections), 5)
+
+        self.assertEqual(schedule.sections[2].section_label(),
+                         "2014,winter,PHYS,122/A")
+        self.assertEqual(len(schedule.sections[2].meetings), 2)
+        self.assertEqual(len(schedule.sections[2].meetings[0].instructors), 4)
+        instructor = schedule.sections[2].meetings[0].instructors[2]
+        self.assertEqual(instructor.display_name, "J. Average Student")
+        instructor = schedule.sections[2].meetings[0].instructors[3]
+        self.assertEqual(instructor.display_name, "Seattle Faculty")

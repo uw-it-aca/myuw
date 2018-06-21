@@ -80,6 +80,10 @@
                                 <th>Credits</th>
                                 <th>Class</th>
                                 <th>Major</th>
+                                {{#if sections.0.is_independent_start}}
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                {{/if}}
                                 <th><span class="sr-only">Email</span></th>
                             </tr>
                         </thead>
@@ -103,6 +107,10 @@
                                         {{/if}}
                                     {{/each}}
                                 </td>
+                                {{#if @root.sections.0.is_independent_start}}
+                                <td>{{ start_date }}</td>
+                                <td>{{ end_date }}</td>
+                                {{/if}}
                                 <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
                             </tr>
                             {{/each}}
@@ -118,9 +126,10 @@
                 <ol class="unstyled-list grid-view">
                     {{#each sections.0.registrations}}
                         <li id="studentphoto_{{ regid }}">
-                            <img class="classlist-photo myuw-photo-list-image"
-                                 src="/photo/{{ url_key }}">
-
+                            <div class="myuw-photo-list-img-wrapper">
+                                <img class="classlist-photo myuw-photo-list-image"
+                                 src="/photo/{{ url_key }}" width="120px" height="150px">
+                             </div>
                             <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
                         </li>
                     {{/each}}

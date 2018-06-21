@@ -15,7 +15,6 @@ from myuw.views.category import category
 from myuw.views.display_dates import override
 from myuw.views.message_admin import manage_messages
 from myuw.views.link_admin import popular_links
-from myuw.views.choose import new_site, old_site
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
 from myuw.views.academics import academics
@@ -61,6 +60,7 @@ from myuw.views.api.hx_toolkit import HxToolkitMessage, HxToolkitWeekMessage, \
 from myuw.views.api.resources import (ResourcesList,
                                       ResourcesPin,
                                       PinnedResources)
+from myuw.views.notice_admin import create_notice, edit_notice, list_notices
 
 
 urlpatterns = []
@@ -79,6 +79,10 @@ urlpatterns += [
     url(r'admin/dates', override, name="myuw_date_override"
         ),
     url(r'admin/messages', manage_messages, name="myuw_manage_messages"),
+    url(r'admin/notices/(?P<notice_id>[0-9]+)', edit_notice,
+        name="myuw_edit_notices"),
+    url(r'admin/notice_create', create_notice, name="myuw_create_notice"),
+    url(r'admin/notices', list_notices, name="myuw_manage_notices"),
     url(r'admin/links/(?P<page>[0-9]+)', popular_links,
         name="myuw_popular_links_paged"),
     url(r'admin/links', popular_links, {'page': 1},
@@ -224,8 +228,6 @@ urlpatterns += [
     url(r'^api/v1/resources/pinned/$',
         PinnedResources.as_view(),
         name="myuw_resources_pinned_api"),
-    url(r'^choose/new', new_site, name="myuw_pref_new_site"),
-    url(r'^choose/legacy', old_site, name="myuw_pref_old_site"),
     url(r'^academics/?$', academics, name="myuw_academics_page"),
     url(r'^accounts/?$', accounts, name="myuw_accounts_page"),
     url(r'^profile/?$', profile, name="myuw_profile_page"),

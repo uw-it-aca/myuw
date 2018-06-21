@@ -2,10 +2,8 @@
 This module accesses the DB table object UserCourseDisplay
 """
 import logging
+from django.db import IntegrityError
 from myuw.models import UserCourseDisplay
-from myuw.dao.instructor_schedule import check_section_instructor,\
-    get_section_by_label
-from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
@@ -35,8 +33,10 @@ def set_course_display_pref(request, schedule):
 
         if section_label in existing_color_dict:
             # exists in DB table
-            color_id = existing_color_dict[section_label]
-            del existing_color_dict[section_label]
+            existing_color_id = existing_color_dict[section_label]
+            color_id = _validated_color(user, primary_color_dict,
+                                        section, existing_color_id)
+
             _record_primary_colors(primary_color_dict, section, color_id)
 
         else:
@@ -51,12 +51,9 @@ def set_course_display_pref(request, schedule):
             else:
                 color_id = _get_next_color(colors_taken)
                 _record_primary_colors(primary_color_dict, section, color_id)
-
             _save_section_color(user, section, color_id)
 
-        _set_section_colorid(section, color_id)
-
-    _clean_up_dropped_sections(user, existing_color_dict)
+        section.color_id = _make_colorid(section, color_id)
 
 
 def _get_next_color(colors_taken):
@@ -69,6 +66,12 @@ def _get_next_color(colors_taken):
         if new_color not in colors_taken:
             colors_taken.append(new_color)
             return new_color
+
+
+def _make_colorid(section, color_id):
+    if section.is_primary_section:
+        return color_id
+    return "%sa" % color_id
 
 
 def _record_primary_colors(primary_color_dict, section, color_id):
@@ -89,50 +92,30 @@ def _save_section_color(user, section, color_id):
     Store the color of the section in DB
     """
     section_label = section.section_label()
-    if UserCourseDisplay.exists_section_display(user, section_label):
-        UserCourseDisplay.set_color(user, section_label, color_id)
-        return
-    UserCourseDisplay.objects.create(user=user,
-                                     year=section.term.year,
-                                     quarter=section.term.quarter,
-                                     section_label=section_label,
-                                     color_id=color_id)
+    if not UserCourseDisplay.exists_section_display(user, section_label):
+        try:
+            UserCourseDisplay.objects.create(user=user,
+                                             year=section.term.year,
+                                             quarter=section.term.quarter,
+                                             section_label=section_label,
+                                             color_id=color_id)
+        except IntegrityError as ex:
+            logger.error("%s (%s %s color_id: %d)", ex, user,
+                         section_label=section_label,
+                         color_id=color_idex)
+            if '1062, "Duplicate entry ' not in str(ex):
+                raise
 
 
-def _set_section_colorid(section, color_id):
-    if section.is_primary_section:
-        section.color_id = color_id
-    else:
-        section.color_id = "%sa" % color_id
+def _update_color(user, section_label, color_id):
+    UserCourseDisplay.set_color(user, section_label, color_id)
 
 
-def _clean_up_dropped_sections(user, existing_color_dict):
-    """
-    Delete the remaining objects in existing_color_dict
-    """
-    if existing_color_dict:
-        for section_label in existing_color_dict.keys():
-            UserCourseDisplay.delete_section_display(
-                user, section_label)
-
-
-def set_pin_on_teaching_page(request,
-                             section_label,
-                             pin=True):
-    """
-    if pin=True, pin the section on teaching page
-    if pin=False, unpin the section from teaching page
-    @except InvalidSectionID
-    @except NotSectionInstructorException
-    @except UserCourseDisplay.DoesNotExist
-    """
-    section = get_section_by_label(section_label)
-    check_section_instructor(section, get_person_of_current_user(request))
-
-    # not to pin a primary section
-    if section.is_primary_section:
-        return False
-
-    UserCourseDisplay.set_pin(get_user_model(request),
-                              section_label, pin)
-    return True
+def _validated_color(user, primary_color_dict,
+                     sec_section, existing_color_id):
+    primary_section_label = sec_section.primary_section_label()
+    primary_color_id = primary_color_dict.get(primary_section_label, None)
+    if primary_color_id and primary_color_id != existing_color_id:
+        _update_color(user, sec_section.section_label(), primary_color_id)
+        return primary_color_id
+    return existing_color_id

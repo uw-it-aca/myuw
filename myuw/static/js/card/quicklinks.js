@@ -59,7 +59,8 @@ var QuickLinksCard = {
         $("#quicklink_saving").show();
         QuickLinksCard._add_link({
             type: "custom",
-            url: $("#myuw-custom-qlink").val().trim()
+            url: $("#myuw-custom-qlink").val().trim(),
+            label: $("#myuw-custom-qlink-label").val().trim()
         });
     },
     custom_edit: function(ev) {
@@ -84,10 +85,12 @@ var QuickLinksCard = {
                 $("#edit-"+field+"-required").hide();
             }
         }
-        validate("label");
         validate("url");
 
         var label = $("#custom-link-edit-label").val().trim();
+        if(label === ""){
+            label = $("#custom-link-edit-url").val();
+        }
 
         var csrf_token = $("input[name=csrfmiddlewaretoken]")[0].value;
         var values = {
@@ -177,7 +180,8 @@ var QuickLinksCard = {
         var source = $("#quicklinks").html();
         var template = Handlebars.compile(source);
         return template({
-            'links': window.quicklink_data
+            'links': window.quicklink_data,
+            'disable_actions': window.user.is_override_and_disable_actions
         });
     },
 
@@ -201,6 +205,9 @@ var QuickLinksCard = {
         QuickLinksCard.opened_panels[caller] = true;
     },
     add_events: function() {
+        if(window.user.is_override_and_disable_actions) {
+            return;
+        }
         if (QuickLinksCard.events_added) {
             return;
         }

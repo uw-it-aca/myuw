@@ -4,9 +4,9 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao.library import _get_account_by_uwnetid
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.registration import get_schedule_by_term
-from uw_sws.models import Term
+from myuw.dao.term import get_current_quarter
 from myuw.test import fdao_pws_override, fdao_sws_override,\
-    get_request_with_user
+    get_request_with_user, get_request_with_date
 
 
 @fdao_pws_override
@@ -24,10 +24,9 @@ class TestLibrary(TestCase):
                           "123notarealuser")
 
     def test_get_subject_guide_bothell(self):
-        req = get_request_with_user('jbothell')
-        term = Term()
-        term.year = 2013
-        term.quarter = "spring"
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2013-04-01"))
+        term = get_current_quarter(req)
         schedule = get_schedule_by_term(req, term)
         for section in schedule.sections:
             # has subject guide link
@@ -44,10 +43,9 @@ class TestLibrary(TestCase):
                     "http://guides.lib.uw.edu/bothell/")
 
     def test_get_subject_guide_seattle(self):
-        req = get_request_with_user('javerage')
-        term = Term()
-        term.year = 2013
-        term.quarter = "spring"
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-04-01"))
+        term = get_current_quarter(req)
         schedule = get_schedule_by_term(req, term)
         for section in schedule.sections:
             # 404, general guide link
@@ -73,10 +71,9 @@ class TestLibrary(TestCase):
                                "s=research/physics_astronomy"))
 
     def test_get_subject_guide_tacoma(self):
-        req = get_request_with_user('eight')
-        term = Term()
-        term.year = 2013
-        term.quarter = "spring"
+        req = get_request_with_user('eight',
+                                    get_request_with_date("2013-04-01"))
+        term = get_current_quarter(req)
         schedule = get_schedule_by_term(req, term)
         for section in schedule.sections:
             # 404, general guide link
