@@ -1,5 +1,5 @@
 var Global = require("./global.js");
-var SumSchedCard = require("../card/summary/schedule.js")
+var Summary = require("../card/summary/schedule.js");
 
 describe('SummaryScheduleCard', function(){
     before(function (done) {
@@ -84,7 +84,6 @@ describe('SummaryScheduleCard', function(){
     });
 });
 
-
 describe('SortBySummerSubTerm', function(){
     var data = {};
     var instructed_course_data = {};
@@ -108,16 +107,7 @@ describe('SortBySummerSubTerm', function(){
         })
     }
 
-
-    Global.Environment.init({
-        render_id: render_id,
-        scripts: [
-            "myuw/static/js/card/summary/schedule.js",
-        ],
-        templates: []
-    });
-
-    SumSchedCard.sort_sections_by_sub_term(data, instructed_course_data);
+    Summary.SummaryScheduleCard.sort_sections_by_sub_term(data, instructed_course_data);
 
     assert.equals(typeof data.a_term, typeof []);
     assert.equals(typeof data.b_term, typeof []);
