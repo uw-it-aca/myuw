@@ -8,20 +8,27 @@ var AcadCalSnippet = {
             AcadCalSnippet.dom_target.hide();
             return;
         }
-        WSData.fetch_current_academic_calendar_events(AcadCalSnippet.render);
+        WSData.fetch_current_academic_calendar_events(AcadCalSnippet.render,
+                                                      AcadCalSnippet.render_error);
     },
 
     render: function () {
         var calendar_data = WSData.current_academic_calendar_data();
 
         if (calendar_data.length > 0) {
-            var source = $("#calendar_snippet").html();
-            var template = Handlebars.compile(source);
-
             var events = AcadCalSnippet.refine_event_fields(calendar_data);
-            var html = template({events: events});
-            AcadCalSnippet.dom_target.html(html);
+            AcadCalSnippet.render_with_context({events: events});
         }
+    },
+    render_error: function() {
+        AcadCalSnippet.render_with_context({has_error: true});
+    },
+
+    render_with_context: function (context) {
+        var source = $("#calendar_snippet").html();
+        var template = Handlebars.compile(source);
+        var html = template(context);
+        AcadCalSnippet.dom_target.html(html);
     },
 
     refine_event_fields: function(events) {
