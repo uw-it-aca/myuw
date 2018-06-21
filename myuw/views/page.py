@@ -13,7 +13,7 @@ from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import get_user_model
+from myuw.dao.user import get_updated_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
@@ -40,7 +40,7 @@ def page(request,
 
     timer = Timer()
     try:
-        user = get_user_model(request)
+        user = get_updated_user(request)
     except Exception as ex:
         logger.error(ex)
         log_invalid_netid_response(logger, timer)
