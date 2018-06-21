@@ -85,6 +85,19 @@ describe('SummaryScheduleCard', function(){
 });
 
 describe('SortBySummerSubTerm', function(){
+    var render_id = 'sub_term_unittest';
+
+    Global.Environment.init({
+        render_id: render_id,
+        scripts: [
+            "myuw/static/js/card/summary/schedule.js",
+        ],
+        templates: [
+            'myuw/templates/handlebars/card/summary/section_panel.html',
+            'myuw/templates/handlebars/card/summary/schedule.html',
+            'myuw/templates/handlebars/card/summary/schedule_section.html'
+        ]
+    });
     var data = {};
     var instructed_course_data = {};
     instructed_course_data.sections = [];
