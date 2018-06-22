@@ -717,9 +717,9 @@ def _trim_summer_term(schedule, summer_term):
     term_periods = []
     print >>sys.stderr, summer_term
     print "Period Terms:"
+    print >>sys.stderr, schedule.json_data()
     for period in schedule:
         print >>sys.stderr, period.summer_term
-        print >>sys.stderr, period.curriculum_abbr + str(period.course_number)
         if period.summer_term is not None:
             if (period.summer_term.lower() == summer_term or
                     period.summer_term.lower() == "full-term"):
