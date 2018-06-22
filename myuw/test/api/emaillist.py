@@ -158,6 +158,7 @@ class TestEmaillistApi(MyuwApiTest):
 
     def test_override_primary_instructor_secondary_post(self):
         with self.settings(DEBUG=False,
+                           MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True,
                            MAILMAN_COURSEREQUEST_RECIPIENT="",
                            USERSERVICE_VALIDATION_MODULE=VALIDATE,
                            USERSERVICE_OVERRIDE_AUTH_MODULE=OVERRIDE):
