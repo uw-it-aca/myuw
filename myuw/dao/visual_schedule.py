@@ -551,7 +551,7 @@ def _is_split_summer(schedule):
         return False
     split = False
     for section in schedule.sections:
-        if section.summer_term != "Full-term":
+        if section.summer_term == "Full-term":
             return True
 
 
@@ -717,9 +717,9 @@ def _trim_summer_term(schedule, summer_term):
     term_periods = []
     print >>sys.stderr, summer_term
     print "Period Terms:"
-    print >>sys.stderr, schedule.json_data()
+
     for period in schedule:
-        print >>sys.stderr, period.summer_term
+        print >>sys.stderr, period.json_data()
         if period.summer_term is not None:
             if (period.summer_term.lower() == summer_term or
                     period.summer_term.lower() == "full-term"):
