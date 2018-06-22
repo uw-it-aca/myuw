@@ -1,29 +1,13 @@
 version: '3'
 
 services:
-  db:
-    image: mysql:5.5
-    ports:
-     - 3306
-    environment:
-      MYSQL_ROOT_PASSWORD: docker
-      MYSQL_DATABASE: myuw
-      MYSQL_USER: myuw
-      MYSQL_PASSWORD: my_pass
   web:
     build: .
-    restart: on-failure
+    command: bash -c "pip install -r requirements.txt && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./myuw:/app/myuw
       - ./docker:/app/myuw/project
     ports:
-      - "8000:80"
+      - "8000:8000"
     environment:
       REMOTE_USER: 'javerage'
-      DB: 'mysql'
-    depends_on:
-      - db
-    deploy:
-      restart_policy:
-        condition: on-failure
-        delay: 5s
