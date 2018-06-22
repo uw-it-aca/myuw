@@ -7,6 +7,7 @@ from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
+import sys
 
 
 def get_schedule_json(visual_schedule, term, summer_term=None):
@@ -714,7 +715,11 @@ def _add_dates_to_sections(schedule):
 
 def _trim_summer_term(schedule, summer_term):
     term_periods = []
+    print >>sys.stderr, summer_term
+    print "Period Terms:"
     for period in schedule:
+        print >>sys.stderr, period.summer_term
+        print >>sys.stderr, period.curriculum_abbr + str(period.course_number)
         if period.summer_term is not None:
             if (period.summer_term.lower() == summer_term or
                     period.summer_term.lower() == "full-term"):
