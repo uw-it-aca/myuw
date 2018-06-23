@@ -26,6 +26,7 @@ class TestSeenInstructor(TransactionTestCase):
         term = get_specific_term(2013, "autumn")
         remove_seen_instructors_for_prior_terms(term)
         self.assertEqual(is_seen_instructor('bill'), True)
+        self.assertTrue(is_instructor(req))
 
     def test_remove_instructors_prior_years(self):
         add_seen_instructor('bill', 2012, "autumn")
