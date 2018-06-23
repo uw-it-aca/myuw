@@ -9,7 +9,7 @@ from myuw.dao.gws import is_alumni, is_alum_asso, is_regular_employee,\
     is_pce_student, is_student_employee, is_staff_employee,\
     is_seattle_student, is_bothell_student, is_tacoma_student,\
     is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations
-from myuw.dao.instructor_schedule import is_instructor
+from myuw.dao.instructor import is_instructor
 from myuw.dao.pws import get_employee_campus, is_employee
 from myuw.dao.term import get_current_quarter
 from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
