@@ -256,9 +256,9 @@ WSData = {
 
                 this.year = course_data.year;
                 this.quarter = course_data.quarter;
-                this.summer_term = course_data.summer_term;
                 this.future_term = course_data.future_term;
                 this.past_term = course_data.past_term;
+                this.request_summer_term = course_data.summer_term;
 
                 this.registration_start = course_data.term.registration_periods[0].start;
                 this.time_schedule_published = course_data.term.time_schedule_published;

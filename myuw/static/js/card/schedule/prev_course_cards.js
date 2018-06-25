@@ -65,7 +65,6 @@ var PrevTermCourseCards = {
                 section.index += term_label;
                 section.year = term_course_data.year;
                 section.quarter = quarter;
-                section.summer_term = term_course_data.summer_term;
             }
 
             term_course_data.display_term = true;

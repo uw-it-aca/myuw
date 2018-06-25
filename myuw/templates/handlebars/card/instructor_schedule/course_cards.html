@@ -31,7 +31,7 @@
                                     <span class="myuw-meta myuw-muted">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation ../quarter }}+{{ ../year }}&SLN={{ sln }}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
                                 {{/if}}
                                 {{#if section_type}}
-                                    <span class="myuw-meta course-meeting-type c{{color_id}}Color">{{section_type}}</span>
+                                    <span class="myuw-meta myuw-course-meeting-type c{{color_id}}Color">{{section_type}}</span>
                                 {{/if}}
                                 {{#if mini_card}}
                                     <button type="button" class="close-mini-card myuw-close-card" cabb="{{curriculum_abbr}}" cnum="{{course_number }}" sid="{{section_id}}" aria-label="Hide section" title="Hide course section"><i class="fa fa-times" aria-hidden="true"></i></button>
