@@ -32,9 +32,10 @@ var LoadCourseEval = {
             var card = $(ev.target).closest("[data-type='card']");
             var item_index = this.getAttribute("aria-controls");
             var div = $("#" + item_index);
-            var expose = $("#show_" + item_index + "_wrapper");
-            var hide = $("#hide_"  + item_index + "_wrapper");
+            var expose = $("#show_" + item_index);
+            var hide = $("#hide_"  + item_index);
             toggle_card_disclosure(card, div, expose, hide, item_index);
+
         });
     }
 };
