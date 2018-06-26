@@ -550,7 +550,7 @@ def _is_split_summer(schedule):
         return False
     split = False
     for section in schedule.sections:
-        if section.summer_term != "Full-term":
+        if section.summer_term == "Full-term":
             return True
 
 
