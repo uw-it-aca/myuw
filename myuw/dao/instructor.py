@@ -1,30 +1,44 @@
+import logging
 from myuw.models import SeenInstructor
-from myuw.dao.term import get_prev_num_terms
+from uw_sws.section import get_last_section_by_instructor_and_terms
+from myuw.dao.pws import get_person_of_current_user
+from myuw.dao.term import get_term_before, get_previous_quarter
+
+logger = logging.getLogger(__name__)
 
 
-def is_seen_instructor(uwnetid):
-    qset = SeenInstructor.objects.filter(uwnetid=uwnetid)
-    return qset.count() > 0
+def is_instructor_prefetch():
+    def _method(request):
+        is_instructor(request)
+    return [_method]
 
 
-def add_seen_instructor(uwnetid, term):
-    SeenInstructor.objects.update_or_create(
-        uwnetid=uwnetid, year=term.year, quarter=term.quarter)
+def is_instructor(request):
+    """
+    Determines if user is an instructor of the request's term
+    """
+    if hasattr(request, "myuw_is_instructor"):
+        return request.myuw_is_instructor
 
+    person = get_person_of_current_user(request)
+    user_netid = person.uwnetid
+    if SeenInstructor.is_seen_instructor(user_netid):
+        request.myuw_is_instructor = True
+        return True
 
-def remove_seen_instructors_for_term(term):
-    SeenInstructor.objects.filter(
-        year=term.year,
-        quarter=term.quarter
-    ).delete()
+    request.myuw_is_instructor = False
+    term = get_term_before(get_previous_quarter(request))
+    section = get_last_section_by_instructor_and_terms(
+        person, term, 4, transcriptable_course='all',
+        delete_flag=['active', 'suspended'])
 
-
-def remove_seen_instructors_for_prior_terms(term):
-    for term in get_prev_num_terms(term, 4):
-        remove_seen_instructors_for_term(term)
-
-    remove_seen_instructors_for_prior_years(term.year)
-
-
-def remove_seen_instructors_for_prior_years(year):
-    SeenInstructor.objects.filter(year__lte=year).delete()
+    if section:
+        request.myuw_is_instructor = True
+        quarter = section.term.quarter
+        year = section.term.year
+        try:
+            SeenInstructor.add_seen_instructor(user_netid, year, quarter)
+        except Exception as ex:
+            logger.error("add_seen_instructor(%s, %s, %s) ==> %s",
+                         user_netid, year, quarter, ex)
+    return request.myuw_is_instructor

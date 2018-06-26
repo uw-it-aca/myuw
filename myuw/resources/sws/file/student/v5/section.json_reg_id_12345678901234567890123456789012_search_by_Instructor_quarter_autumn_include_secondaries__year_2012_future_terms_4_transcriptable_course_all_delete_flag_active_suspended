@@ -1,0 +1,25 @@
+{"Current":
+{"Href":"\/student\/v5\/section.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&reg_id=12345678901234567890123456789012&search_by=Instructor&include_secondaries=on&delete_flag=&page_size=10&page_start=1",
+"CourseNumber":null,
+"CurriculumAbbreviation":null,
+"DeleteFlag":null,
+"IncludeSecondaries":null,
+"PageSize":"10",
+"PageStart":"1",
+"Quarter":"spring",
+"RegID":"12345678901234567890123456789012",
+"SearchBy":"Instructor",
+"Year":"2013"},
+"Next":null,
+"PageSize":"10",
+"PageStart":"1",
+"Previous":null,
+"Sections":[
+ {"Href":"\/student\/v5\/course\/2013,spring,ACCTG,508\/A.json",
+  "CourseNumber":"508",
+  "CurriculumAbbreviation":"ACCTG",
+  "Quarter":"spring",
+  "SectionID":"A",
+  "Year":"2013"}
+],
+"TotalCount":1}

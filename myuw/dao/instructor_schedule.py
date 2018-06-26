@@ -10,7 +10,6 @@ from uw_sws.section import get_sections_by_instructor_and_term,\
 from uw_sws.section_status import get_section_status_by_label
 from myuw.util.thread import ThreadWithResponse
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.instructor import is_seen_instructor, add_seen_instructor
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import get_current_quarter, get_comparison_datetime
@@ -41,15 +40,15 @@ def __get_instructor_schedule_by_term(request, term):
     # turn on the checking for future quarters
     term.check_time_schedule_published = term.is_future(
         get_comparison_datetime(request))
-    section_references = _get_instructor_sections(person, term)
+    section_references = get_instructor_sections(person, term)
     schedule.sections = _get_sections_by_section_reference(section_references,
                                                            term)
     return schedule
 
 
-def _get_instructor_sections(person, term,
-                             future_terms=0,
-                             include_secondaries=True):
+def get_instructor_sections(person, term,
+                            future_terms=0,
+                            include_secondaries=True):
     """
     @return a uw_sws.models.ClassSchedule object
     Return the actively enrolled sections for the current user
@@ -161,44 +160,6 @@ def get_linked_section(url, instructor_regid):
 def get_limit_estimate_enrollment_for_section(section):
     section_status = get_section_status_by_label(section.section_label())
     return section_status.limit_estimated_enrollment
-
-
-def is_instructor(request):
-    """
-    Determines if user is an instructor of the request's term
-    """
-    if hasattr(request, "myuw_is_instructor"):
-        return request.myuw_is_instructor
-
-    try:
-        person = get_person_of_current_user(request)
-        user_netid = person.uwnetid
-        if is_seen_instructor(user_netid):
-            request.myuw_is_instructor = True
-            return True
-
-        term = get_current_quarter(request)
-        sections = _get_instructor_sections(person,
-                                            term,
-                                            future_terms=2,
-                                            include_secondaries=False)
-        if len(sections) > 0:
-            add_seen_instructor(user_netid, term)
-            request.myuw_is_instructor = True
-            return True
-        request.myuw_is_instructor = False
-        return False
-    except DataFailureException as err:
-        if err.status == 404:
-            request.myuw_is_instructor = False
-            return False
-        raise
-
-
-def is_instructor_prefetch():
-    def _method(request):
-        is_instructor(request)
-    return [_method]
 
 
 def check_section_instructor(section, person):
