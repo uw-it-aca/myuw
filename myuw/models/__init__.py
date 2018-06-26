@@ -155,6 +155,26 @@ class SeenInstructor(models.Model):
                         ),
                        )
 
+    @staticmethod
+    def add_seen_instructor(netid, year, quarter):
+        SeenInstructor.objects.update_or_create(uwnetid=netid,
+                                                quarter=quarter,
+                                                year=year)
+
+    @staticmethod
+    def delete_seen_instructor(netid, year, quarter):
+        SeenInstructor.objects.filter(uwnetid=netid,
+                                      quarter=quarter,
+                                      year=year).delete()
+
+    @staticmethod
+    def is_seen_instructor(netid):
+        return SeenInstructor.objects.filter(uwnetid=netid).exists()
+
+    @staticmethod
+    def remove_seen_instructors_yrs_before(year):
+        SeenInstructor.objects.filter(year__lt=year).delete()
+
 
 class UserMigrationPreference(models.Model):
     username = models.CharField(max_length=20, db_index=True, unique=True)

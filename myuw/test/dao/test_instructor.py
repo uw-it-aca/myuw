@@ -1,27 +1,26 @@
 from django.test import TransactionTestCase
-from myuw.dao.instructor import is_instructor, add_seen_instructor,\
-    is_seen_instructor, remove_seen_instructors_yrs_before
-from myuw.dao.term import get_specific_term
+from myuw.models import SeenInstructor
+from myuw.dao.instructor import is_instructor
 from myuw.test import get_request_with_user, get_request_with_date
 
 
 class TestSeenInstructor(TransactionTestCase):
     def test_non_instructorness(self):
-        self.assertFalse(is_seen_instructor('bill'))
+        self.assertFalse(SeenInstructor.is_seen_instructor('bill'))
 
     def test_is_seen_instructor(self):
-        add_seen_instructor('bill', 2012, "autumn")
-        self.assertTrue(is_seen_instructor('bill'))
+        SeenInstructor.add_seen_instructor('bill', 2012, "autumn")
+        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
 
     def test_remove_seen_instructors_yrs_before(self):
-        add_seen_instructor('bill', 2012, "autumn")
-        self.assertTrue(is_seen_instructor('bill'))
-        remove_seen_instructors_yrs_before(2013)
-        self.assertFalse(is_seen_instructor('bill'))
+        SeenInstructor.add_seen_instructor('bill', 2012, "autumn")
+        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
+        SeenInstructor.remove_seen_instructors_yrs_before(2013)
+        self.assertFalse(SeenInstructor.is_seen_instructor('bill'))
 
-        add_seen_instructor('bill', 2013, "winter")
-        remove_seen_instructors_yrs_before(2013)
-        self.assertTrue(is_seen_instructor('bill'))
+        SeenInstructor.add_seen_instructor('bill', 2013, "winter")
+        SeenInstructor.remove_seen_instructors_yrs_before(2013)
+        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
 
     def test_instructor_3_term_before(self):
         req = get_request_with_user('bill',
