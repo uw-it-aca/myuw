@@ -1,34 +1,50 @@
 from django.test import TransactionTestCase
-from myuw.dao.instructor import add_seen_instructor, is_seen_instructor,\
-    remove_seen_instructors_for_term, remove_seen_instructors_for_prior_terms,\
-    remove_seen_instructors_for_prior_years
-from myuw.dao.term import get_specific_term
+from myuw.models import SeenInstructor
+from myuw.dao.instructor import is_instructor
+from myuw.test import get_request_with_user, get_request_with_date
 
 
 class TestSeenInstructor(TransactionTestCase):
     def test_non_instructorness(self):
-        self.assertEqual(is_seen_instructor('bill'), False)
+        self.assertFalse(SeenInstructor.is_seen_instructor('bill'))
 
-    def test_add_seen_instructor(self):
-        term = get_specific_term(2013, "summer")
-        add_seen_instructor('bill', term)
-        self.assertEqual(is_seen_instructor('bill'), True)
+    def test_is_seen_instructor(self):
+        SeenInstructor.add_seen_instructor('bill', 2012, "autumn")
+        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
 
-    def test_remove_instructors_for_term(self):
-        term = get_specific_term(2013, "summer")
-        add_seen_instructor('bill', term)
-        remove_seen_instructors_for_term(term)
-        self.assertEqual(is_seen_instructor('bill'), False)
+    def test_remove_seen_instructors_yrs_before(self):
+        SeenInstructor.add_seen_instructor('bill', 2012, "autumn")
+        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
+        SeenInstructor.remove_seen_instructors_yrs_before(2013)
+        self.assertFalse(SeenInstructor.is_seen_instructor('bill'))
 
-    def test_remove_instructors_prior_terms(self):
-        term = get_specific_term(2012, "summer")
-        add_seen_instructor('bill', term)
-        term2 = get_specific_term(2013, "autumn")
-        remove_seen_instructors_for_prior_terms(term2)
-        self.assertEqual(is_seen_instructor('bill'), False)
+        SeenInstructor.add_seen_instructor('bill', 2013, "winter")
+        SeenInstructor.remove_seen_instructors_yrs_before(2013)
+        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
 
-    def test_remove_instructors_prior_years(self):
-        term = get_specific_term(2012, "summer")
-        add_seen_instructor('bill', term)
-        remove_seen_instructors_for_prior_years(2013)
-        self.assertEqual(is_seen_instructor('bill'), False)
+    def test_instructor_3_term_before(self):
+        req = get_request_with_user('bill',
+                                    get_request_with_date("2014-04-10"))
+        self.assertFalse(hasattr(req, "myuw_is_instructor"))
+        self.assertFalse(is_instructor(req))
+        self.assertFalse(req.myuw_is_instructor)
+
+    def test_is_instructor(self):
+        req = get_request_with_user('bill',
+                                    get_request_with_date("2013-04-10"))
+        self.assertTrue(is_instructor(req))
+        # get the one cached in the req
+        self.assertTrue(is_instructor(req))
+
+        # taught in last term
+        req = get_request_with_user('billsea',
+                                    get_request_with_date("2014-01-10"))
+        self.assertTrue(is_instructor(req))
+
+        req = get_request_with_user('billseata',
+                                    get_request_with_date("2013-04-10"))
+        self.assertTrue(is_instructor(req))
+
+        req = get_request_with_user('billpce',
+                                    get_request_with_date("2013-04-10"))
+        self.assertTrue(is_instructor(req))

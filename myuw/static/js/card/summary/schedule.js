@@ -47,8 +47,10 @@ var SummaryScheduleCard = {
         SummaryScheduleCard._render_with_context({has_error: true});
     },
 
-    _render_with_context: function(context){
+    _render_with_context: function (context){
         Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
+        Handlebars.registerPartial('summary_section', $("#summary_section").html());
+
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
         var raw = courses_template(context);
@@ -56,18 +58,54 @@ var SummaryScheduleCard = {
     },
 
     _render: function () {
+        var data = {};
         var term = SummaryScheduleCard.term;
         var instructed_course_data = WSData.instructed_course_data(term, false);
-        var data = {
+
+
+        var is_summer = instructed_course_data.quarter === "summer";
+
+        if(is_summer){
+            this.sort_sections_by_sub_term(data, instructed_course_data);
+        }
+
+        $.extend(data , {
             first_day_quarter: instructed_course_data.term.first_day_quarter,
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
             sections: instructed_course_data.sections,
-            section_count: instructed_course_data.sections.length
-        };
+            section_count: instructed_course_data.sections.length,
+            is_summer: is_summer
+        });
         SummaryScheduleCard._render_with_context(data);
         SummaryScheduleCard.add_events(term);
+    },
+
+    sort_sections_by_sub_term : function(data, instructed_course_data){
+        var a_term = [];
+        var b_term = [];
+        var full_term = [];
+
+        for(var i = 0; i < instructed_course_data.sections.length; i++){
+            switch (instructed_course_data.sections[i].summer_term){
+                case "A-term":
+                    a_term.push(instructed_course_data.sections[i]);
+                    break;
+                case "B-term":
+                    b_term.push(instructed_course_data.sections[i]);
+                    break;
+                case "Full-term":
+                    full_term.push(instructed_course_data.sections[i]);
+                    break;
+            }
+        }
+
+        $.extend(data, {
+            a_term: a_term,
+            b_term: b_term,
+            full_term: full_term,
+        });
     },
 
     add_events: function(term) {
@@ -113,7 +151,7 @@ var SummaryScheduleCard = {
                 }
             });
         });
-    }
+    },
 };
 
 /* node.js exports */

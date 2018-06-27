@@ -9,7 +9,7 @@ class TestLinks(MyuwApiTest):
         self.set_user('javerage')
         response = self.get_response_by_reverse(
             'myuw_links_api',
-            kwargs={'category_id': 'academics'})
+            kwargs={'category_id': 'pageacademics'})
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
