@@ -263,6 +263,7 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, label) {
         div_toggled.attr("aria-hidden", "true");
         div_toggled.attr("tabindex", "-1");
 //        div_toggled.attr("hidden", true);
+        a_expose.focus();
         window.myuw_log.log_card(card, "collapse"+log_label);
     })
 };

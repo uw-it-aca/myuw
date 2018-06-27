@@ -29,10 +29,10 @@
                     {{/each}}
                     </ul>
                     {{#if needs_disclosure}}
-                        <div id="events_card_more" class="slide-hide"
-                             aria-hidden="true" hidden aria-expanded="false"
+                        <div id="events_card_more" class="collapse"
+                             aria-hidden="true"
                              aria-label="Additional events"
-                             style="display: none;" tabindex="-1">
+                             tabindex="-1">
                             <ul class="myuw-events-list">
                                 {{#each grouped_events_hide}}
                                     <li class="myuw-events-list-item">
@@ -61,20 +61,16 @@
                             {{/if}}
                         </div>
                         <div class="card-disclosure">
-                            <span id="show_event_resources_wrapper">
-                                <span id="show_event_resources_label"
-                                      class="sr-only">Show {{hidden_event_count}} more {{pluralize hidden_event_count 'event' 'events'}}</span>
-                                <a class="toggle_event_card_resources" aria-controls="events_card_more"
-                                   aria-labelledby="show_event_resources_label" href="#"
-                                   title="Expand to show additional events">SHOW ({{hidden_event_count}}) MORE</a>
-                            </span>
-                            <span id="hide_event_resources_wrapper" hidden aria-hidden="true">
-                                <span id="hide_event_resources_label"
-                                      class="sr-only">Hide {{hidden_event_count}} more {{pluralize hidden_event_count 'event' 'events'}}</span>
-                                <a class="toggle_event_card_resources" aria-controls="events_card_more"
-                                   aria-labelledby="hide_event_resources_label" href="#"
-                                   title="Hide additional event resources">SHOW LESS</a>
-                            </span>
+                            <a id="toggle_event_card_resources" role="button" href="#events_card_more" title="Expand to show additional events"
+                                aria-controls="events_card_more"
+                                data-toggle="collapse"
+                                data-expanded-title="Hide additional events"
+                                data-expanded-text="SHOW LESS"
+                                data-expanded-label="Hide {{hidden_event_count}} more {{pluralize hidden_event_count 'event' 'events'}}"
+                                data-hidden-title="Show additional events"
+                                data-hidden-text="SHOW ({{hidden_event_count}}) MORE"
+                                data-hidden-label="Show {{hidden_event_count}} more {{pluralize hidden_event_count 'event' 'events'}}"
+                                >SHOW ({{hidden_event_count}}) MORE</a>
                         </div>
                     {{else}}
                             {{#if multi_cal}}
