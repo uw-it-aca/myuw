@@ -23,15 +23,15 @@
                 {{/if }}
             {{/each }}
         </ul>
+	        {{#unless no_book_assigned}}
+	            <div class="destination-arrow">
+	                <a class="show_textbooks" id="show_term_textbooks" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}" title="View textbooks" aria-label="View textbook details for this quarter" ><i role="presentation" class="fa fa-chevron-right"></i></a>
+	            </div>
+	        {{/unless}}
         {{else}}
         <p class="text-danger" style="margin-top:1em;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW are cannot load textbook information right now. Please try again later.</p>
         {{/unless}}
 
-        {{#unless no_book_assigned}}
-            <div class="destination-arrow">
-                <a class="show_textbooks" id="show_term_textbooks" href="/textbooks/{{year}},{{quarter}}{{#if summer_term}},{{toLowerCase summer_term}}{{/if}}" title="View textbooks" aria-label="View textbook details for this quarter" ><i role="presentation" class="fa fa-chevron-right"></i></a>
-            </div>
-        {{/unless}}
     </div>
 </div>
 
