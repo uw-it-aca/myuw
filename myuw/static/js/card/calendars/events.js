@@ -102,7 +102,6 @@ var EventsCard = {
             var card = $(ev.target).closest("[data-type='card']");
             var div = $("#events_card_more");
             var toggle = $("#toggle_event_card_resources");
-//            var hide = $("#hide_event_resources_wrapper");
             toggle_card_disclosure(card, div, toggle, "");
         });
     },
