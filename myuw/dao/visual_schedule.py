@@ -7,6 +7,7 @@ from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
+import sys
 
 
 def get_schedule_json(visual_schedule, term, summer_term=None):
@@ -104,22 +105,24 @@ def _get_off_term_trimmed(visual_schedule):
 
 def get_future_visual_schedule(request, term, summer_term=None):
     schedule = _get_combined_future_schedule(request, term)
-    if schedule is not None:
-        visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
-        if summer_term is not None:
-            visual_schedule = _trim_summer_term(visual_schedule, summer_term)
-
-        return visual_schedule
+    vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
+    return vs
 
 
 def get_current_visual_schedule(request):
     schedule = _get_combined_schedule(request)
+    summer_term = get_current_summer_term(request)
+    vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
+    return vs
+
+
+def get_visual_schedule_from_schedule(request, schedule, summer_term=None):
     if schedule is not None:
-        schedule = _get_visual_schedule_from_schedule(schedule, request)
-        summer_term = get_current_summer_term(request)
-        if summer_term:
-            schedule = _trim_summer_term(schedule, summer_term)
-        return schedule
+        visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
+        if summer_term and _is_split_summer(schedule):
+            visual_schedule = _trim_summer_term(visual_schedule, summer_term)
+
+        return visual_schedule
 
 
 def _get_combined_schedule(request):
@@ -548,9 +551,8 @@ def _trim_section_before(section, date):
 def _is_split_summer(schedule):
     if schedule.term.quarter != 'summer':
         return False
-    split = False
     for section in schedule.sections:
-        if section.summer_term != "Full-term":
+        if section.summer_term == "Full-term":
             return True
 
 
@@ -714,9 +716,14 @@ def _add_dates_to_sections(schedule):
 
 def _trim_summer_term(schedule, summer_term):
     term_periods = []
+    print >>sys.stderr, summer_term
+    print "Period Terms:"
+
     for period in schedule:
+        print >>sys.stderr, period.json_data()
         if period.summer_term is not None:
-            if period.summer_term.lower() == summer_term:
+            if (period.summer_term.lower() == summer_term or
+                    period.summer_term.lower() == "full-term"):
                 term_periods.append(period)
     return term_periods
 
