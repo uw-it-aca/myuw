@@ -13,11 +13,13 @@ from myuw.dao.visual_schedule import _get_visual_schedule_from_schedule, \
     _get_latest_meeting_day, _get_earliest_start_from_period, \
     _get_latest_end_from_period, trim_section_meetings, \
     trim_weeks_no_meetings, _get_off_term_trimmed, _adjust_off_term_dates, \
-    _add_qtr_start_data_to_weeks, _remove_empty_periods, _adjust_period_dates
+    _add_qtr_start_data_to_weeks, _remove_empty_periods, \
+    _adjust_period_dates, get_visual_schedule_from_schedule
 from myuw.test import fdao_sws_override, fdao_pws_override, \
     get_request, get_request_with_user, get_request_with_date
 import datetime
 import copy
+from myuw.dao.term import get_current_summer_term
 
 
 @fdao_pws_override
@@ -908,3 +910,71 @@ class TestVisualSchedule(TestCase):
         _add_weekend_meeting_data(consolidated)
         _adjust_period_dates(consolidated)
         self.assertEqual(len(consolidated), 2)
+
+    def test_summer_full_only(self):
+        mwf_mtg = SectionMeeting()
+        mwf_mtg.meets_monday = True
+        mwf_mtg.meets_wednesday = True
+        mwf_mtg.meets_friday = True
+
+        section1 = Section()
+        section1.curriculum_abbr = 'SOF DEV'
+        section1.course_number = 115
+        section1.section_id = 'A'
+        section1.meetings = [mwf_mtg]
+        section1.summer_term = "Full-term"
+
+        section2 = Section()
+        section2.curriculum_abbr = 'ASD'
+        section2.course_number = 115
+        section2.section_id = 'A'
+        section2.meetings = [mwf_mtg]
+        section2.summer_term = "Full-term"
+
+        term = get_term_from_quarter_string("2013,summer")
+        schedule = ClassSchedule()
+        schedule.term = term
+        schedule.sections = [section1, section2]
+
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-07-01"))
+        summer_term = get_current_summer_term(request)
+        vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
+        self.assertEqual(len(vs), 2)
+        self.assertEqual(len(vs[0].sections), 2)
+
+    def test_summer_full_and_a(self):
+            mwf_mtg = SectionMeeting()
+            mwf_mtg.meets_monday = True
+            mwf_mtg.meets_wednesday = True
+            mwf_mtg.meets_friday = True
+
+            section1 = Section()
+            section1.curriculum_abbr = 'SOF DEV'
+            section1.course_number = 115
+            section1.section_id = 'A'
+            section1.meetings = [mwf_mtg]
+            section1.summer_term = "a-term"
+
+            section2 = Section()
+            section2.curriculum_abbr = 'ASD'
+            section2.course_number = 115
+            section2.section_id = 'A'
+            section2.meetings = [mwf_mtg]
+            section2.summer_term = "Full-term"
+
+            term = get_term_from_quarter_string("2013,summer")
+            schedule = ClassSchedule()
+            schedule.term = term
+            schedule.sections = [section1, section2]
+
+            request = get_request_with_user('javerage',
+                                            get_request_with_date(
+                                                "2013-07-01"))
+
+            summer_term = get_current_summer_term(request)
+            vs = get_visual_schedule_from_schedule(request, schedule,
+                                                   summer_term)
+            self.assertEqual(len(vs), 2)
+            self.assertEqual(len(vs[0].sections), 2)
+            self.assertEqual(vs[0].end_date, datetime.date(2013, 7, 19))
