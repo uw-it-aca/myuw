@@ -51,19 +51,23 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(resp.status_code, 543)
 
     def test_close_mini_card_when_override(self):
-        self.set_user('javerage')
-        self.set_userservice_override("bill")
-        section_id = '2013,spring,PHYS,121/AC'
-        resp = self.get_response_by_reverse(
-            "myuw_inst_section_display_close_mini",
-            kwargs={'section_label': section_id})
-        self.assertEqual(resp.status_code, 401)
+        with self.settings(DEBUG=False,
+                           MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True):
+            self.set_user('javerage')
+            self.set_userservice_override("bill")
+            section_id = '2013,spring,PHYS,121/AC'
+            resp = self.get_response_by_reverse(
+                "myuw_inst_section_display_close_mini",
+                kwargs={'section_label': section_id})
+            self.assertEqual(resp.status_code, 401)
 
     def test_pin_mini_card_when_override(self):
-        self.set_user('javerage')
-        self.set_userservice_override("bill")
-        section_id = '2013,spring,PHYS,121/AC'
-        resp = self.get_response_by_reverse(
-            "myuw_inst_section_display_pin_mini",
-            kwargs={'section_label': section_id})
-        self.assertEqual(resp.status_code, 401)
+        with self.settings(DEBUG=False,
+                           MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True):
+            self.set_user('javerage')
+            self.set_userservice_override("bill")
+            section_id = '2013,spring,PHYS,121/AC'
+            resp = self.get_response_by_reverse(
+                "myuw_inst_section_display_pin_mini",
+                kwargs={'section_label': section_id})
+            self.assertEqual(resp.status_code, 401)

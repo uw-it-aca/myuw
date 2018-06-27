@@ -1,12 +1,12 @@
 {% load templatetag_handlebars %}
     {% tplhandlebars "course_card_content_panel" %}
-              
+
 {{#if hide_course_details}}
     {{#if has_eval}}
     <div class="myuw-course-eval" id="course_eval{{index}}" >
     </div>
     {{/if}}
-                    
+
     <div id="course_details{{index}}" class="slide-hide"
          aria-label="Additional course resources"
          rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
@@ -59,14 +59,14 @@
             </div>
         </div>
         <div class="card-disclosure">
-            <span id="show_course_details{{index}}_wrapper">
+            <span id="show_instructors{{index}}_wrapper">
                 <a class="toggle_course_card_disclosure_{{quarter}}"
                    id="show_instructors{{index}}"
                    href="#"
                    aria-controls="instructors{{index}}"
                    title="Expand to show instructor contact information">Show instructors</a>
             </span>
-            <span id="hide_course_details{{index}}_wrapper"
+            <span id="hide_instructors{{index}}_wrapper"
                   hidden aria-hidden="true">
                 <a class="toggle_course_card_disclosure_{{quarter}}"
                    id="hide_instructors{{index}}"

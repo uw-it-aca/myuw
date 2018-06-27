@@ -19,7 +19,7 @@ class TestCategoryLinks(TestCase):
 
     def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
-        self.assertEquals(len(all_links), 212)
+        self.assertEquals(len(all_links), 55)
         val = URLValidator()
         for link in all_links:
             try:
@@ -51,17 +51,17 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 22)
+        self.assertEquals(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 21)
+        self.assertEquals(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 21)
+        self.assertEquals(len(links), 0)
 
     def test_grad_category(self):
         category_id = ResCategoryLink()._concat_id("Student & Campus Life")
@@ -73,17 +73,17 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "seattle",
                                                   affi)
-        self.assertEquals(len(links), 24)
+        self.assertEquals(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "bothell",
                                                   affi)
-        self.assertEquals(len(links), 23)
+        self.assertEquals(len(links), 0)
 
         links = _get_links_by_category_and_campus(category_id,
                                                   "tacoma",
                                                   affi)
-        self.assertEquals(len(links), 23)
+        self.assertEquals(len(links), 0)
 
     def test_pce_links(self):
         category_id = ResCategoryLink()._concat_id("Student & Campus Life")
@@ -95,7 +95,7 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "",
                                                   affi)
-        self.assertEquals(len(links), 6)
+        self.assertEquals(len(links), 0)
 
     def test_fyp_links(self):
         category_id = ResCategoryLink()._concat_id("Student & Campus Life")
@@ -107,7 +107,7 @@ class TestCategoryLinks(TestCase):
         links = _get_links_by_category_and_campus(category_id,
                                                   "",
                                                   affi)
-        self.assertEquals(len(links), 7)
+        self.assertEquals(len(links), 0)
 
     def test_get_all_grouped(self):
         req = get_request_with_user("javerage")
