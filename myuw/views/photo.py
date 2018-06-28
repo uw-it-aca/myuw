@@ -3,6 +3,7 @@ from myuw.dao.pws import get_idcard_photo
 from myuw.views.error import data_error, data_not_found
 from django.http import HttpResponse, StreamingHttpResponse
 from restclients_core.exceptions import DataFailureException
+from django.contrib.auth.decorators import login_required
 
 
 @login_required

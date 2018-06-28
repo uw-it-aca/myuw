@@ -24,6 +24,7 @@ from myuw.logger.session_log import log_session
 from myuw.util.settings import get_google_search_key, get_logout_url
 from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import invalid_session
+from django.contrib.auth.decorators import login_required
 
 
 logger = logging.getLogger(__name__)

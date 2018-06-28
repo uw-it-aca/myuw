@@ -7,6 +7,7 @@ from myuw.dao import is_action_disabled, get_netid_of_current_user
 from myuw.dao.user import get_user_model
 from myuw.models import VisitedLinkNew
 from myuw.views import prefetch_resources
+from django.contrib.auth.decorators import login_required
 try:
     from urllib.parse import unquote
 except ImportError:

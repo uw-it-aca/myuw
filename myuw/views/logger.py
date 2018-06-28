@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 import logging
 from myuw.logger.logresp import log_msg_with_request
+from django.contrib.auth.decorators import login_required
 
 
 logger = logging.getLogger(__name__)
