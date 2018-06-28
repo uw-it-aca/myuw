@@ -14,6 +14,7 @@ matrix:
       - 2.7
     before_script:
       - mkdir ~/shared
+      - apt-get install libxml2-dev libxmlsec1-dev
       - pip install MySQL-python
       - pip install awscli
       - pip install coverage
