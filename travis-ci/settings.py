@@ -126,3 +126,14 @@ COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+
+MOCK_SAML_ATTRIBUTES = {
+    'uwnetid': ['javerage'],
+    'affiliations': ['student', 'member'],
+    'eppn': ['javerage@washington.edu'],
+    'scopedAffiliations': ['student@washington.edu', 'member@washington.edu'],
+    'isMemberOf': ['u_test_group', 'u_test_another_group'],
+}
+
+from django.core.urlresolvers import reverse_lazy
+LOGIN_URL = reverse_lazy('saml_login')

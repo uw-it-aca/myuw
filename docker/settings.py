@@ -171,3 +171,14 @@ SUPPORTTOOLS_PARENT_APP = "MyUW"
 SUPPORTTOOLS_PARENT_APP_URL = "/"
 
 REMOTE_USER_FORMAT = "uwnetid"
+
+MOCK_SAML_ATTRIBUTES = {
+    'uwnetid': ['javerage'],
+    'affiliations': ['student', 'member'],
+    'eppn': ['javerage@washington.edu'],
+    'scopedAffiliations': ['student@washington.edu', 'member@washington.edu'],
+    'isMemberOf': ['u_test_group', 'u_test_another_group'],
+}
+
+from django.core.urlresolvers import reverse_lazy
+LOGIN_URL = reverse_lazy('saml_login')
