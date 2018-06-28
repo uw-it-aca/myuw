@@ -5,6 +5,7 @@ from django.http import HttpResponse, StreamingHttpResponse
 from restclients_core.exceptions import DataFailureException
 
 
+@login_required
 def show_photo(request, url_key):
     regid = get_regid_for_url_key(url_key)
 

@@ -19,6 +19,7 @@ logger = logging.getLogger(__name__)
 ignored_links = set()
 
 
+@login_required
 def outbound_link(request):
     url = request.GET.get('u', '')
     if not re.match('^https?://', url):

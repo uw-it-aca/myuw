@@ -120,6 +120,7 @@ def try_prefetch(request):
     return
 
 
+@login_required
 def logout(request):
     # Expires current myuw session
     django_logout(request)
