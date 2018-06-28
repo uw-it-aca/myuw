@@ -20,13 +20,17 @@ class TestInstructor(TransactionTestCase):
         req = get_request_with_user('bill')
         user = get_user_model(req)
         sectionref = get_most_recent_sectionref_by_instructor(req)
+        # add
         set_instructor(user, sectionref)
         self.assertTrue(is_instructor(req))
+        # update
         set_instructor(user, sectionref)
-        obj = Instructor.objects.get(user=user)
-        self.assertEqual(obj.json_data()['quarter'], 'spring')
-        self.assertEqual(obj.json_data()['year'], 2013)
-        self.assertIsNotNone(str(obj))
+        records = Instructor.objects.all()
+        self.assertEqual(len(records), 1)
+        data = records[0].json_data()
+        self.assertEqual(data['quarter'], 'spring')
+        self.assertEqual(data['year'], 2013)
+        self.assertIsNotNone(str(records[0]))
 
         Instructor.delete_seen_instructor(user, 2013, 'spring')
         self.assertEqual(len(Instructor.objects.all()), 0)
