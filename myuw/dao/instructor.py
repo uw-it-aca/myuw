@@ -27,16 +27,20 @@ def is_instructor(request):
         return True
 
     request.myuw_is_instructor = False
-    term = get_term_before(get_previous_quarter(request))
-    person = get_person_of_current_user(request)
-    section = get_last_section_by_instructor_and_terms(
-        person, term, 4, transcriptable_course='all',
-        delete_flag=['active', 'suspended'])
-
+    section = get_most_recent_section_by_instructor(request)
     if section:
         request.myuw_is_instructor = True
         set_instructor(user, section)
     return request.myuw_is_instructor
+
+
+def get_most_recent_section_by_instructor(request):
+    term = get_term_before(get_previous_quarter(request))
+    person = get_person_of_current_user(request)
+    return get_last_section_by_instructor_and_terms(
+        person, term, 4,
+        transcriptable_course='all',
+        delete_flag=['active', 'suspended'])
 
 
 def set_instructor(user, section):
