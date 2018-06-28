@@ -220,37 +220,35 @@ var RegStatusCard = {
 
     _add_events: function(summer_label) {
 
-        var card_disclosure_class, holds_class, unready_courses;
+        var card_disclosure_id, holds_class, unready_courses;
         if (summer_label) {
-            card_disclosure_class = ".show_myplan_courses_"+summer_label;
+            card_disclosure_id = "#toggle_myplan_courses_"+summer_label;
             holds_class = ".reg_disclosure_"+summer_label;
             unready_courses = ".myplan_unready_courses_disclosure_"+summer_label;
         }
         else {
-            card_disclosure_class = ".show_myplan_courses";
+            card_disclosure_id = "#toggle_myplan_courses";
             holds_class = ".reg_disclosure";
             unready_courses = ".myplan_unready_courses_disclosure";
         }
 
         // show myplan courses
         (function(summer_card_label) {
-            $('body').on('click', card_disclosure_class, function (ev) {
+            $('body').on('click', card_disclosure_id, function (ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
-                var div, expose, hide;
+                var div, expose;
                 if (summer_card_label) {
                     // summer reg card
                     div = $("#myplan_courses_"+summer_card_label);
-                    expose = $("#show_myplan_courses_wrapper_"+summer_card_label);
-                    hide = $("#hide_myplan_courses_wrapper_"+summer_card_label);
+                    expose = $("#toggle_myplan_courses_"+summer_card_label);
                 }
                 else {
                     div = $("#myplan_courses");
-                    expose = $("#show_myplan_courses_wrapper");
-                    hide = $("#hide_myplan_courses_wrapper");
+                    expose = $("#toggle_myplan_courses");
                 }
-                toggle_card_disclosure(card, div, expose, hide, "myplan_courses");
+                toggle_card_disclosure(card, div, expose, "myplan_courses");
             });
 
             // show myplan unready course details
