@@ -4,6 +4,7 @@
 <h3 id="future_quarters" class="sr-only">Upcoming quarters you are registered for</h3>
 
 <div aria-labelledby="future_quarters">
+{{#unless has_error}}
     {{#each terms}}
     <div class="card" style="position:relative;"  data-name="FutureCard" data-type="card" data-identifier="{{ quarter }} {{ year }}{{#if summer_term}} {{ summer_term }} {{/if}}">
         <div class="fade-in">
@@ -19,6 +20,11 @@
         </div>
     </div>
     {{/each}}
+{{else}}
+    <div class="card" style="position:relative;"  data-name="FutureCard" data-type="card">
+		<p class="text-danger" style="margin-top:1em;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your registration information right now. Please try again later.</p>
+    </div>
+{{/unless}}
 </div>
 
 {% endtplhandlebars %}

@@ -14,8 +14,6 @@ var EventsCard = {
     },
 
     _render: function () {
-        var source = $("#events_card_content").html();
-        var template = Handlebars.compile(source);
         var event_data = WSData.dept_event_data();
         var active_events = 0;
         var active_name_url = [];
@@ -51,22 +49,29 @@ var EventsCard = {
                 cal_links.push(event_data.active_cals[key2]);
             }
         }
+        var context = {
+            grouped_events_display: grouped_events[0],
+            grouped_events_hide: grouped_events[1],
+            hidden_event_count: grouped_events[1].length,
+            has_events: event_data.events.length > 0,
+            needs_disclosure: needs_disclosure,
+            multi_active: active_name_url.length > 1,
+            active_events: active_events,
+            active_name_url: active_name_url,
+            active_count: active_name_url.length,
+            multi_cal: multi_cal,
+            cal_links: cal_links
+        };
 
-        EventsCard.dom_target.html(template({display_card: true,
-                                             grouped_events_display: grouped_events[0],
-                                             grouped_events_hide: grouped_events[1],
-                                             hidden_event_count: grouped_events[1].length,
-                                             has_events: event_data.events.length > 0,
-                                             needs_disclosure: needs_disclosure,
-                                             multi_active: active_name_url.length > 1,
-                                             active_events: active_events,
-                                             active_name_url: active_name_url,
-                                             active_count: active_name_url.length,
-                                             multi_cal: multi_cal,
-                                             cal_links: cal_links
-                                        }));
+        EventsCard._render_with_context(context);
         EventsCard.add_events();
         LogUtils.cardLoaded(EventsCard.name, EventsCard.dom_target);
+    },
+
+    _render_with_context: function (context) {
+        var source = $("#events_card_content").html();
+        var template = Handlebars.compile(source);
+        EventsCard.dom_target.html(template(context));
     },
 
     _has_all_data: function () {
@@ -108,7 +113,7 @@ var EventsCard = {
     },
 
     show_error: function() {
-        EventsCard.dom_target.hide();
+        EventsCard._render_with_context({has_error: true});
     }
 };
 

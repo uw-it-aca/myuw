@@ -3,6 +3,7 @@
 
     <div aria-labeledby="graduate_committees" class="card">
         <h3>Your Committees</h3>
+        {{#unless has_errors}}
         <div class="card-badge-container" id="committee-reqs">
             <ul class="card-list">
                 {{#each committees}}
@@ -24,8 +25,10 @@
         </div>
         <div class="clearfix">
             <div class="card-badge-action pull-right">
-                <a href="http://www.grad.uw.edu/mygrad/student.htm" data-linklabel="MyGrad">Go to MyGrad</a>
+                <a href="http://www.grad.uw.edu/mygrad/student.htm" data-linklabel="MyGrad" target="_blank">Go to MyGrad</a>
             </div>
-        </div>
+        {{else}}
+        <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>An error occurred and MyUW cannot load your committees information right now. In the meantime, try the <a href="http://grad.uw.edu/for-students-and-post-docs/mygrad-program/" data-linklabel="MyGrad" style="text-decoration:underline;" target="_blank">MyGrad program page</a>.</p>
+        {{/unless}}
     </div>
     {% endtplhandlebars %}
