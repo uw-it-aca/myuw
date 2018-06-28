@@ -27,14 +27,14 @@ def is_instructor(request):
         return True
 
     request.myuw_is_instructor = False
-    section = get_most_recent_section_by_instructor(request)
-    if section:
+    sectionref = get_most_recent_sectionref_by_instructor(request)
+    if sectionref:
         request.myuw_is_instructor = True
-        set_instructor(user, section)
+        set_instructor(user, sectionref)
     return request.myuw_is_instructor
 
 
-def get_most_recent_section_by_instructor(request):
+def get_most_recent_sectionref_by_instructor(request):
     term = get_term_before(get_previous_quarter(request))
     person = get_person_of_current_user(request)
     return get_last_section_by_instructor_and_terms(
@@ -43,9 +43,9 @@ def get_most_recent_section_by_instructor(request):
         delete_flag=['active', 'suspended'])
 
 
-def set_instructor(user, section):
-    quarter = section.term.quarter
-    year = section.term.year
+def set_instructor(user, sectionref):
+    quarter = sectionref.term.quarter
+    year = sectionref.term.year
     try:
         Instructor.add_seen_instructor(user, year, quarter)
     except Exception as ex:
