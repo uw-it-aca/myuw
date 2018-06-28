@@ -1,3 +1,4 @@
+<<<<<<< 30f306c3125e104982f236eafffc60f60eddac17
 addons:
   artifacts:
     s3_region: "us-west-2"
@@ -63,4 +64,37 @@ matrix:
       - coveralls --merge=js-coverage.json
       - aws s3 rm --recursive s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
 
+=======
+sudo: require
+language: python
+services:
+  - memcached
+  - mysql
+python:
+  - "2.7"
+  # - "3.6"
+env:
+  matrix:
+    - DB=sqlite3
+    # - DB=mysql
+install:
+  - sudo apt-get install -qq python-dev libxml2-dev libxmlsec1-dev
+  - STATIC_DEPS=true pip install -r requirements.txt
+before_script:
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
+  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
+  - if [ "$TRAVIS_PYTHON_VERSION" = "2.7" ] ; then pip install MySQL-python; fi
+  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ] ; then pip install mysqlclient; fi
+
+  - pip install coverage
+  - pip install python-coveralls
+  - pip install pycodestyle
+  - npm install
+  - gem install coveralls-lcov
+  - cp travis-ci/manage.py manage.py
+  - python -m compileall myuw/
+  - python manage.py migrate
+  - npm list
+>>>>>>> Copying dependencies from uw-django-saml2 .travis.yml
 
