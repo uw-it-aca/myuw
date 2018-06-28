@@ -27,7 +27,7 @@ class TestInstructor(TransactionTestCase):
         self.assertEqual(obj.json_data()['quarter'], 'spring')
         self.assertEqual(obj.json_data()['year'], 2013)
         self.assertIsNotNone(str(obj))
-        
+
         Instructor.delete_seen_instructor(user, 2013, 'spring')
         self.assertEqual(len(Instructor.objects.all()), 0)
 
