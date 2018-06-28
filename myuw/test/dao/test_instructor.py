@@ -22,7 +22,7 @@ class TestInstructor(TransactionTestCase):
         sectionref = get_most_recent_sectionref_by_instructor(req)
         set_instructor(user, sectionref)
         self.assertTrue(is_instructor(req))
-
+        set_instructor(user, sectionref)
         obj = Instructor.objects.get(user=user)
         self.assertEqual(obj.json_data()['quarter'], 'spring')
         self.assertEqual(obj.json_data()['year'], 2013)
