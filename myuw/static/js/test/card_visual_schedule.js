@@ -58,24 +58,6 @@ describe("VisualScheduleCard", function() {
         });
     });
 
-        describe('card hides', function() {
-        before(function (done) {
-            Global.Environment.ajax_stub_restore();
-            VisualScheduleCard.dom_target.html("");
-            VisualScheduleCard.term = 'current';
-            VisualScheduleCard.render_init();
-            done();
-        });
-
-        it('for netid eight', function () {
-            var $schedule = VisualScheduleCard.dom_target.find('.visual-schedule');
-            assert.equal($schedule.length, 0);
-        });
-        after(function () {
-            Global.Environment.ajax_stub_restore();
-            VisualScheduleCard.dom_target.html("");
-        });
-    });
 
     //describe('_get_default_period', function() {
     //    it('should get the default period', function() {
