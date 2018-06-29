@@ -220,15 +220,15 @@ var RegStatusCard = {
 
     _add_events: function(summer_label) {
 
-        var card_disclosure_id, holds_class, unready_courses;
+        var card_disclosure_id, holds, unready_courses;
         if (summer_label) {
             card_disclosure_id = "#toggle_myplan_courses_"+summer_label;
-            holds_class = ".reg_disclosure_"+summer_label;
+            holds = "#toggle_reg_holds_"+summer_label;
             unready_courses = "#toggle_unready_courses_"+summer_label;
         }
         else {
             card_disclosure_id = "#toggle_myplan_courses";
-            holds_class = ".reg_disclosure";
+            holds = "#toggle_reg_holds";
             unready_courses = "#toggle_unready_courses";
         }
 
@@ -269,22 +269,20 @@ var RegStatusCard = {
             });
 
             // show hold details
-            $('body').on('click', holds_class, function (ev) {
+            $('body').on('click', holds, function (ev) {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
-                var div, expose, hide;
+                var div, expose;
                 if (summer_card_label) {
                     div = $("#reg_holds_"+summer_card_label);
-                    expose = $("#show_reg_holds_wrapper_"+summer_card_label);
-                    hide = $("#hide_reg_holds_wrapper_"+summer_card_label);
+                    expose = $("#toggle_reg_holds_"+summer_card_label);
                 }
                 else {
                     div = $("#reg_holds");
-                    expose = $("#show_reg_holds_wrapper");
-                    hide = $("#hide_reg_holds_wrapper");
+                    expose = $("#toggle_reg_holds");
                 }
-                toggle_card_disclosure(card, div, expose, hide, "reg_holds");
+                toggle_card_disclosure(card, div, expose, "reg_holds");
             });
 
         })(summer_label);
