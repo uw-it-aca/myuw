@@ -16,22 +16,16 @@
                         <li class="courses-not-ready">{{ plan_data.unready_count }} not ready
 
                             {{#unless plan_data.has_sections }}
-                                <a target="_blank"
-                                   href="{{plan_data.myplan_href}}">Add Sections</a>
+                                <a target="_blank" href="{{plan_data.myplan_href}}">Add Sections</a>
                             {{else }}
-                                <span id="show_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}">
-                                    <a href="#"
-                                       aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
-                                       title="Expand to show courses not ready"
-                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">See details</a>
-                                </span>
-
-                                <span id="hide_unready_courses_wrapper{{#if card }}_{{card}}{{/if}}" hidden aria-hidden="true">
-                                    <a href="#"
-                                       aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
-                                       title="Collapse to hide courses not ready"
-                                       class="myplan_unready_courses_disclosure{{#if card }}_{{card}}{{/if}}">Hide details</a>
-                                </span>
+                                <a id="toggle_unready_courses{{#if card }}_{{card}}{{/if}}" href="#myplan_unready_courses{{#if card }}_{{card}}{{/if}}" title="Expand to show courses not ready" role="button"
+                                aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
+                                aria-expanded="false"
+                                data-toggle="collapse"
+                                data-expanded-title="Collapse to hide courses not ready"
+                                data-expanded-text="Hide details"
+                                data-hidden-title="Expand to show courses not ready"
+                                data-hidden-text="See details">See details</a>
                             {{/unless}}
                         </li>
                     {{/if}}
@@ -41,10 +35,9 @@
     </div>
 
     <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
-         class="slide-hide course-not-ready-details"
+         class="collapse course-not-ready-details"
          aria-label="Courses not ready for registration"
-         hidden aria-hidden="true" aria-expanded="false"
-         style="display: none;" tabindex="-1">
+         aria-hidden="true" aria-expanded="false" tabindex="-1">
         <h4>Not ready for registration</h4>
         <ul id="courses_not_ready_list" class="courses-not-ready-list">
             {{#each plan_data.courses }}

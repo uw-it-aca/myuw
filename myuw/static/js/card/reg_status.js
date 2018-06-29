@@ -224,12 +224,12 @@ var RegStatusCard = {
         if (summer_label) {
             card_disclosure_id = "#toggle_myplan_courses_"+summer_label;
             holds_class = ".reg_disclosure_"+summer_label;
-            unready_courses = ".myplan_unready_courses_disclosure_"+summer_label;
+            unready_courses = "#toggle_unready_courses_"+summer_label;
         }
         else {
             card_disclosure_id = "#toggle_myplan_courses";
             holds_class = ".reg_disclosure";
-            unready_courses = ".myplan_unready_courses_disclosure";
+            unready_courses = "#toggle_unready_courses";
         }
 
         // show myplan courses
@@ -256,18 +256,16 @@ var RegStatusCard = {
                 ev.preventDefault();
                 var card = $(ev.target).closest("[data-type='card']");
 
-                var div, expose, hide;
+                var div, expose;
                 if (summer_card_label) {
                     div = $("#myplan_unready_courses_"+summer_card_label);
-                    expose = $("#show_unready_courses_wrapper_"+summer_card_label);
-                    hide = $("#hide_unready_courses_wrapper_"+summer_card_label);
+                    expose = $("#toggle_unready_courses_"+summer_card_label);
                 }
                 else {
                     div = $("#myplan_unready_courses");
-                    expose = $("#show_unready_courses_wrapper");
-                    hide = $("#hide_unready_courses_wrapper");
+                    expose = $("#toggle_unready_courses");
                 }
-                toggle_card_disclosure(card, div, expose, hide, "myplan_unready_courses");
+                toggle_card_disclosure(card, div, expose, "myplan_unready_courses");
             });
 
             // show hold details
