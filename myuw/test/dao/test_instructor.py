@@ -1,26 +1,51 @@
 from django.test import TransactionTestCase
-from myuw.models import SeenInstructor
-from myuw.dao.instructor import is_instructor
-from myuw.test import get_request_with_user, get_request_with_date
+from uw_sws.models import SectionReference
+from myuw.models import Instructor
+from myuw.dao.instructor import is_instructor, set_instructor,\
+    get_most_recent_sectionref_by_instructor
+from myuw.dao.user import get_user_model
+from myuw.test import get_request_with_user, get_request_with_date,\
+    fdao_pws_override, fdao_sws_override
 
 
-class TestSeenInstructor(TransactionTestCase):
+@fdao_pws_override
+@fdao_sws_override
+class TestInstructor(TransactionTestCase):
     def test_non_instructorness(self):
-        self.assertFalse(SeenInstructor.is_seen_instructor('bill'))
+        req = get_request_with_user('bill')
+        user = get_user_model(req)
+        self.assertFalse(Instructor.is_seen_instructor(user))
 
-    def test_is_seen_instructor(self):
-        SeenInstructor.add_seen_instructor('bill', 2012, "autumn")
-        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
+    def test_set_instructor(self):
+        req = get_request_with_user('bill')
+        user = get_user_model(req)
+        sectionref = get_most_recent_sectionref_by_instructor(req)
+        # add
+        set_instructor(user, sectionref)
+        self.assertTrue(is_instructor(req))
+        # update
+        set_instructor(user, sectionref)
+        records = Instructor.objects.all()
+        self.assertEqual(len(records), 1)
+        data = records[0].json_data()
+        self.assertEqual(data['quarter'], 'spring')
+        self.assertEqual(data['year'], 2013)
+        self.assertIsNotNone(str(records[0]))
+
+        Instructor.delete_seen_instructor(user, 2013, 'spring')
+        self.assertEqual(len(Instructor.objects.all()), 0)
 
     def test_remove_seen_instructors_yrs_before(self):
-        SeenInstructor.add_seen_instructor('bill', 2012, "autumn")
-        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
-        SeenInstructor.remove_seen_instructors_yrs_before(2013)
-        self.assertFalse(SeenInstructor.is_seen_instructor('bill'))
+        req = get_request_with_user('bill')
+        user = get_user_model(req)
+        Instructor.add_seen_instructor(user, 2012, "autumn")
+        self.assertTrue(Instructor.is_seen_instructor(user))
+        Instructor.remove_seen_instructors_yrs_before(2013)
+        self.assertFalse(Instructor.is_seen_instructor(user))
 
-        SeenInstructor.add_seen_instructor('bill', 2013, "winter")
-        SeenInstructor.remove_seen_instructors_yrs_before(2013)
-        self.assertTrue(SeenInstructor.is_seen_instructor('bill'))
+        Instructor.add_seen_instructor(user, 2013, "winter")
+        Instructor.remove_seen_instructors_yrs_before(2013)
+        self.assertTrue(Instructor.is_seen_instructor(user))
 
     def test_instructor_3_term_before(self):
         req = get_request_with_user('bill',
