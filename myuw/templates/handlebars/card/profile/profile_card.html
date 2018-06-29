@@ -1,17 +1,10 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "common_profile_card" %}
 <div class="common-profile" style="position:relative;">
-	{{#unless has_error}}
-	<div>
 	<h2 class="heading-profile">
 	        {{#if has_preferred}}{{display_name}} <span>({{full_name}})</span>&nbsp;<span><a href="https://identity.uw.edu/" title="Manage your preferred name" data-linklabel="Manage preferred name - Identity.UW"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Manage your preferred name</span></a></span></h2>
 	        {{else}}
 	        {{full_name}}&nbsp;<span><a href="https://identity.uw.edu/" title="Manage your preferred name" data-linklabel="Manage preferred name - Identity.UW"><span class="sr-only">Manage your preferred name</span><i class="fa fa-pencil" aria-hidden="true"></i></a></span></h2>
 	        {{/if}}
-	</div>
-	{{else}}
-    <!-- WIP:Profile Name error -->
-	<p class="text-danger" style="margin-bottom:0.5em;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Profile -- Error loading content</p> 
-    {{/unless}}
 </div>
 {% endtplhandlebars %}
