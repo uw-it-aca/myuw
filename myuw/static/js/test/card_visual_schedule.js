@@ -60,6 +60,8 @@ describe("VisualScheduleCard", function() {
 
         describe('card hides', function() {
         before(function (done) {
+            Global.Environment.ajax_stub_restore();
+            VisualScheduleCard.dom_target.html("");
             VisualScheduleCard.term = 'current';
             VisualScheduleCard.render_init();
             done();
