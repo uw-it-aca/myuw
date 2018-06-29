@@ -3,7 +3,6 @@
 
 <div class="myuw-card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
     <h3 class="myuw-card-title">Employee Profile</h3>
-    {{#unless has_error}}
     <div class="directory-information myuw-card-section" vocab="http://schema.org/" typeof="Person">
 
         {{#if position1}}
@@ -106,9 +105,5 @@
             </div>
         </div>
     </div>
-    {{else}}
-    <!-- WIP: Employee profile error -->
-    <div><p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and MyUW cannot load your profile information right now. In the meantime, try <a href="https://wd5.myworkday.com/uw/d/home.htmld" data-linklabel="Workday" target="_blank">Workday</a> if you need to change your address or the <a href="http://www.washington.edu/home/peopledir/" data-linklabel="UW Directory" target="_blank">UW directory</a> if you need to change your directory settings.</p></div>
-    {{/unless}}
 </div>
 {% endtplhandlebars %}
