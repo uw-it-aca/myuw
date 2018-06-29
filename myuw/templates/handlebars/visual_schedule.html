@@ -9,7 +9,6 @@
 		</div>
 		{{/each}}
 	    </div>
-
 	    <div {{#if has_6_days}}class="six-day"{{else}}class="five-day"{{/if}}>
 		<div class="day-label">MON</div>
 		<div class="day-col hours-{{total_hours}}">
@@ -55,7 +54,7 @@
     <!-- begin - if there are meetings with times to be arranged -->
     {{#if courses_meeting_tbd }}
     <div class="courseTBD">
-	<h6>No meeting time specified:</h6>
+	<h6>No meeting time specified:</h6> 
 	{{#each courses_meeting_tbd }}
 	<a href="/visual/{{section_index}}" class="show_section_details {{curriculum}}_{{course_number}}{{section_id}}" rel="{{section_index}}">
 	    <div class="c{{color_id}} visual-course pull-left">
