@@ -47,7 +47,6 @@ describe("VisualScheduleCard", function() {
 
         it('for netid eight', function () {
             var $schedule = VisualScheduleCard.dom_target.find('.visual-schedule');
-            //console.log($schedule.html());
             assert.equal($schedule.length, 1);
             assert.equal($schedule.find('> .five-day').length, 5);
             assert.equal($schedule.find('> .five-day').eq(0).find('.visual-course').length, 1);
@@ -55,8 +54,10 @@ describe("VisualScheduleCard", function() {
         });
         after(function () {
             Global.Environment.ajax_stub_restore();
+            VisualScheduleCard.dom_target.html("");
         });
     });
+
 
     //describe('_get_default_period', function() {
     //    it('should get the default period', function() {
