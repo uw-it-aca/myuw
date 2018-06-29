@@ -71,6 +71,8 @@
                 "Text": "..W...S"
             },
             "DaysOfWeekToBeArranged": false,
+            "EOS_EndDate": "2013-06-12",
+            "EOS_StartDate": "2013-04-03",
             "EndTime": "21:00:00",
             "Instructors": [
                 {
@@ -104,6 +106,8 @@
                 "Text": "......."
             },
             "DaysOfWeekToBeArranged": false,
+            "EOS_EndDate": "2013-05-29",
+            "EOS_StartDate": "2013-05-29",
             "EndTime": "",
             "Instructors": [
                 {
