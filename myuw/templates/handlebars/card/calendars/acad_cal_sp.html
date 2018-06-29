@@ -13,9 +13,9 @@
 	        {{ /each }}
 	    </ul>
    </div>
-    {{else}}
+	<div class="view-all"><a href="/academic_calendar/" title="Navigate to Notices">View all events</a></div>
+	{{else}}
     <p class="text-danger" style="margin-top:1em;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and MyUW cannot display calendar data right now. Please try again later.</p>
     {{/unless}}
-	<div class="view-all"><a href="/academic_calendar/" title="Navigate to Notices">View all events</a></div>
 </div>
 {% endtplhandlebars %}
