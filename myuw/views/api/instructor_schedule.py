@@ -241,7 +241,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         schedule.term.is_grading_period_past()
 
     buildings = get_buildings_by_schedule(schedule)
-
+    json_data["has_eos_dates"] = False
     section_index = 0
     course_resource_threads = []
     for section in schedule.sections:
@@ -318,10 +318,19 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                 section_data["final_exam"]["building_name"] = building.name
 
         # Also backfill the meeting building data
+        section_data["has_eos_dates"] = False
         meeting_index = 0
         for meeting in section.meetings:
+            mdata = section_data["meetings"][meeting_index]
+            if meeting.eos_start_date is not None:
+                if not section_data["has_eos_dates"]:
+                    section_data["has_eos_dates"] = True
+
+                mdata["start_end_same"] = False
+                if mdata["eos_start_date"] == mdata["eos_end_date"]:
+                    mdata["start_end_same"] = True
+
             try:
-                mdata = section_data["meetings"][meeting_index]
                 if not mdata["building_tbd"]:
                     building = buildings[mdata["building"]]
                     if building is not None:
@@ -340,6 +349,9 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                 meeting_index += 1
             except IndexError as ex:
                 pass
+        if section_data["has_eos_dates"]:
+            if not json_data["has_eos_dates"]:
+                json_data["has_eos_dates"] = True
 
         if section_callback:
             section_callback(section, section_data)
