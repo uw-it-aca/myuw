@@ -82,6 +82,7 @@ def load_schedule(request, schedule, summer_term=""):
 
     section_index = 0
     course_url_threads = []
+    json_data["has_eos_dates"] = False
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         section_index += 1
@@ -134,10 +135,19 @@ def load_schedule(request, schedule, summer_term=""):
                 section_data["final_exam"]["building_name"] = building.name
 
         # Also backfill the meeting building data
+        section_data["has_eos_dates"] = False
         meeting_index = 0
         for meeting in section.meetings:
+            mdata = section_data["meetings"][meeting_index]
+
+            if meeting.eos_start_date is not None:
+                if not section_data["has_eos_dates"]:
+                    section_data["has_eos_dates"] = True
+
+                mdata["start_end_same"] = False
+                if mdata["eos_start_date"] == mdata["eos_end_date"]:
+                    mdata["start_end_same"] = True
             try:
-                mdata = section_data["meetings"][meeting_index]
                 if not mdata["building_tbd"]:
                     building = buildings[mdata["building"]]
                     if building is not None:
@@ -156,6 +166,9 @@ def load_schedule(request, schedule, summer_term=""):
                 meeting_index += 1
             except IndexError as ex:
                 pass
+        if section_data["has_eos_dates"]:
+            if not json_data["has_eos_dates"]:
+                json_data["has_eos_dates"] = True
 
     for t in course_url_threads:
         t.join()

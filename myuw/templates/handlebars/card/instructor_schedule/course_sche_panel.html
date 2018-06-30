@@ -23,6 +23,10 @@
                 <table class="table-course-schedule">
                     <thead class="sr-only">
                         <tr>
+                            {{#if has_eos_dates}}
+                                <th>Date(s)</th>
+                            {{/if}}
+
                             <th>Day(s)</th>
                             <th>Time</th>
                             <th>Location</th>
@@ -32,10 +36,12 @@
                     <tbody class="tbody-course-schedule">
                         {{#each meetings}}
                         <tr class="course-schedule-row">
+                            {{#if ../has_eos_dates}}
+                                <td>{{#if eos_start_date}}{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}{{/if}}</td>
+                            {{/if}}
+
                             {{#if wont_meet}}
-                                <!-- waiting on sws
-                                <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
-                                -->
+                                <td colspan="2" class="text-muted course-tbd">The class won't meet</td>
                             {{else}}
                                 {{#if days_tbd}}
                                     <td colspan="2" class="course-tbd">Days and times to be arranged.</td>

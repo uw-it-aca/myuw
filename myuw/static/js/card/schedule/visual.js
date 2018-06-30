@@ -62,6 +62,8 @@ var VisualScheduleCard = {
             //                       (instructed_course_data &&
             //                        instructed_course_data.has_early_fall_start)),
             is_pce: window.user.pce,
+            has_eos_dates: false,
+            eos_sections: [],
             total_sections: course_data.sections.length,
             quarter: term.quarter,
             year: term.year,
@@ -90,8 +92,20 @@ var VisualScheduleCard = {
         var set_meeting = function(course_data) {
             $.each(course_data.sections, function(section_index) {
                 var section = this;
+                section.has_eos_dates = false;
                 $.each(section.meetings, function(){
                     var meeting = this;
+
+                    if(meeting.eos_start_date) {
+                        if(!section.has_eos_dates) {
+                            section.has_eos_dates = true;
+                        }
+                    }
+                    meeting.start_end_same = false;
+                    if(meeting.eos_start_date === meeting.eos_end_date) {
+                        meeting.start_end_same = true;
+                    }
+
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
                     var seen = false;
                     if (!meeting.days_tbd && has_meetings && meeting.start_time) {
@@ -167,7 +181,16 @@ var VisualScheduleCard = {
                         }
                     }
                 });
+
+                if(section.has_eos_dates) {
+                    visual_data.eos_sections.push(section);
+                    if(!visual_data.has_eos_dates) {
+                        visual_data.has_eos_dates = true;
+                    }
+                }
+
             });
+
         };
         var day, day_index, i, height, top;
 

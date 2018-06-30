@@ -167,9 +167,13 @@ class TestSchedule(MyuwApiTest):
                                                  '2013-04-01 00:00:01')
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
+        self.assertTrue(data["has_eos_dates"])
         section = self.get_section(data, 'BIGDATA', '230', 'A')
         self.assertTrue(section["cc_display_dates"])
         self.assertFalse(section["on_standby"])
+        self.assertTrue(section["has_eos_dates"])
+        self.assertFalse(section["meetings"][0]["start_end_same"])
+        self.assertTrue(section["meetings"][1]["start_end_same"])
 
     def test_on_standby_status(self):
         response = self.get_current_schedule_res('jeos',
