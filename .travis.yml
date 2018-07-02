@@ -93,7 +93,6 @@ before_script:
   - npm install
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
-  - python -m compileall myuw/
   - python manage.py migrate
   - npm list
 >>>>>>> Copying dependencies from uw-django-saml2 .travis.yml
