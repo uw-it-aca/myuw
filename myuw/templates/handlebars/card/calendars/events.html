@@ -1,11 +1,10 @@
 {% load templatetag_handlebars %}
 {% tplhandlebars "events_card_content" %}
-
-    {{#if display_card}}
     <div aria-labelledby="my_events" data-name="EventsCard" data-type="card">
         <div class="card">
             <div class="fade-in myuw-events">
                 <h3>Events</h3>
+                {{#unless has_error}}
                 {{#if has_events}}
                     <div class="myuw-events-info">Showing events in the next 14 days.</div>
                     <ul class="myuw-events-list">
@@ -107,8 +106,10 @@
                     {{/if}}
                     <!-- end if -->
                 {{/if}}
+                {{else}}
+                <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>An error occurred and MyUW cannot load event information right now. Please try again later.</p>
+                {{/unless}}
             </div>
         </div>
     </div>
-    {{/if}}
 {% endtplhandlebars %}
