@@ -3,7 +3,7 @@
 
     <div aria-labeledby="graduate_status" class="card">
         <h3>Graduate Request Status</h3>
-
+        {{#unless has_errors}}
         <!-- petitions -->
         {{#if petitions}}
             <div class="card-badge-container" id="petition-reqs">
@@ -107,8 +107,11 @@
 
         <div class="clearfix">
             <div class="card-badge-action pull-right">
-                <a href="http://www.grad.uw.edu/mygrad/student.htm" data-linklabel="MyGrad">Go to MyGrad</a>
+                <a href="http://www.grad.uw.edu/mygrad/student.htm" data-linklabel="MyGrad" target="_blank">Go to MyGrad</a>
             </div>
         </div>
+        {{else}}
+        <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your graduate request information right now. In the meantime, try the <a href="http://grad.uw.edu/for-students-and-post-docs/mygrad-program/" data-linklabel="MyGrad" target="_blank">MyGrad program page</a>.</p>
+        {{/unless}}
     </div>
     {% endtplhandlebars %}

@@ -16,12 +16,15 @@ var HfsSeaCard = {
 
     _render: function () {
         var hfs_data = WSData.hfs_data();
+        HfsSeaCard._render_with_context(hfs_data);
+        LogUtils.cardLoaded(HfsSeaCard.name, HfsSeaCard.dom_target);
+
+    },
+    _render_with_context: function(context) {
         var source = $("#sea_hfs_card").html();
         var template = Handlebars.compile(source);
 
-        HfsSeaCard.dom_target.html(template(hfs_data));
-        LogUtils.cardLoaded(HfsSeaCard.name, HfsSeaCard.dom_target);
-
+        HfsSeaCard.dom_target.html(template(context));
     },
 
     _has_all_data: function () {
@@ -36,8 +39,7 @@ var HfsSeaCard = {
             remove_card(HfsSeaCard.dom_target);
             return;
         }
-        var raw = CardWithError.render("HFS Card");
-        HfsSeaCard.dom_target.html(raw);
+        HfsSeaCard._render_with_context({has_error: true});
     }
 };
 

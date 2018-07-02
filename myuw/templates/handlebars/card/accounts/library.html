@@ -4,7 +4,7 @@
     <div class="card clearfix"  data-name="LibraryCard" data-type="card">
 
         <h3>Library Account</h3>
-
+        {{#unless has_error}}
         {{#if holds_ready}}
             <div class="card-noncritical-alert" role="status">
                 <i aria-hidden="true" class="fa fa-info-circle"></i><span class="sr-only">You have items ready!</span> <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank" data-linklabel="Library Account Requests">{{holds_ready}} requested {{pluralize holds_ready "item" "items"}} ready</a>
@@ -59,6 +59,8 @@
                 <span class="btn btn-default card-action-btn pull-right"><a href="http://search.lib.uw.edu/account" target="_blank" data-linklabel="Your Library Account">Access library account</a></span>
             </div>
         </div>
-
+    {{else}}
+    <div><p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your library account information right now. In the meantime, try the <a href="http://www.lib.washington.edu/" data-linklabel="UW Libraries" target="_blank">UW Libraries page</a>.</p></div>
+    {{/unless}}
     </div>
     {% endtplhandlebars %}
