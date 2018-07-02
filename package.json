@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "jquery": "latest",
+    "moment": "latest",
+    "sinon": "latest",
+    "datejs": "latest",
+    "mocha": "latest",
+    "istanbul": "latest",
+    "coveralls": "latest"
+  }
+}
