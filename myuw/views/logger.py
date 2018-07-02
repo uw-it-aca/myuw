@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
+
 @login_required
 def log_interaction(request, interaction_type):
     if interaction_type is not None:
