@@ -5,6 +5,8 @@ var VisualScheduleCard = {
     ck_student_schedule: false,
     ck_instructor_schedule: false,
     day_label_offset: 0,
+    shown_am_marker: false,
+    day_template: false,
 
     should_hide: function() {
         if (window.user.student || window.user.instructor) {

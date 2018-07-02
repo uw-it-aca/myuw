@@ -7,13 +7,11 @@ describe("VisualScheduleCard", function() {
         Global.Environment.init({
             render_id: render_id,
             scripts: [
-                "myuw/static/js/visual_schedule.js",
                 "myuw/static/js/card/schedule/visual.js",
                 "myuw/static/js/card/schedule/final_panel.js",
                 "myuw/static/js/card/schedule/sp_final.js"
             ],
             templates: [
-                'myuw/templates/handlebars/visual_schedule.html',
                 'myuw/templates/handlebars/card/schedule/visual.html',
                 'myuw/templates/handlebars/card/schedule/visual_day.html',
                 'myuw/templates/handlebars/card/schedule/final_day.html',
