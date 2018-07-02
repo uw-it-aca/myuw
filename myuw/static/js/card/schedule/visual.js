@@ -20,7 +20,7 @@ var VisualScheduleCard = {
         }
         WSData.fetch_visual_schedule_term(VisualScheduleCard.term,
                                           VisualScheduleCard.render_handler,
-                                          VisualScheduleCard.render_handler);
+                                          VisualScheduleCard._render_error);
     },
 
     hide_card: function(){

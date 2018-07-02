@@ -4,6 +4,7 @@
     <div id="app_notices" class="myuw-card notices-summary">
 
         <h3 class="myuw-card-title">Notices</h3>
+        {{#unless has_error}}
 
         {{ #unless critical_notices }}{{ #unless notices }}
         <p>You do not have any notices at this time.</p>
@@ -46,6 +47,9 @@
         {{ #not_empty critical_notices notices }}
         </ul>
         {{ /not_empty }}
+    {{else}}
+    <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your notices right now. Please try again later.</p>
+    {{/unless}}
 
     </div>
 {% endtplhandlebars %}

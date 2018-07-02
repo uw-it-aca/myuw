@@ -14,10 +14,14 @@ var LibraryCard = {
         LibraryCard._render(WSData.library_data());
     },
 
-    _render: function (library_data) {
+    _render_with_context: function(context){
         var source = $("#library_card_content").html();
         var template = Handlebars.compile(source);
-        LibraryCard.dom_target.html(template(library_data));
+        LibraryCard.dom_target.html(template(context));
+    },
+
+    _render: function (library_data) {
+        LibraryCard._render_with_context(library_data);
         LogUtils.cardLoaded(LibraryCard.name, LibraryCard.dom_target);
     },
 
@@ -33,8 +37,7 @@ var LibraryCard = {
             LibraryCard._render({});
             return;
         }
-        var raw = CardWithError.render("Library Account");
-        LibraryCard.dom_target.html(raw);
+        LibraryCard._render_with_context({has_error: true});
     }
 
 };

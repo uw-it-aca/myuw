@@ -18,9 +18,13 @@ var GradStatusCard = {
         GradStatusCard._render(WSData.mygrad_data());
     },
 
-    _render: function (mygrad_data) {
+    _render_with_context: function (context){
         var source = $("#gradstatus_card_content").html();
         var template = Handlebars.compile(source);
+        GradStatusCard.dom_target.html(template(context));
+    },
+
+    _render: function (mygrad_data) {
         if (!mygrad_data.degrees && !mygrad_data.leaves && !mygrad_data.petitions) {
             GradStatusCard.dom_target.hide();
             return;
@@ -40,7 +44,7 @@ var GradStatusCard = {
                 }
             }
         }
-        GradStatusCard.dom_target.html(template(mygrad_data));
+        GradStatusCard._render_with_context(mygrad_data);
     },
 
     _has_all_data: function () {
@@ -52,7 +56,7 @@ var GradStatusCard = {
 
     render_error: function(status) {
         var raw = CardWithError.render("Graduate Request Status");
-        GradStatusCard.dom_target.html(raw);
+        GradStatusCard._render_with_context({has_errors: true});
     }
 
 };
