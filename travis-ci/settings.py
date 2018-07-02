@@ -129,10 +129,11 @@ RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
 
 MOCK_SAML_ATTRIBUTES = {
     'uwnetid': ['javerage'],
-    'affiliations': ['student', 'member'],
+    'affiliations': ['student', 'member', 'alum', 'staff', 'employee'],
     'eppn': ['javerage@washington.edu'],
     'scopedAffiliations': ['student@washington.edu', 'member@washington.edu'],
-    'isMemberOf': ['u_test_group', 'u_test_another_group'],
+    'isMemberOf': ['u_test_group', 'u_test_another_group',
+                   'u_astratest_myuw_test-support-admin'],
 }
 
 from django.core.urlresolvers import reverse_lazy
