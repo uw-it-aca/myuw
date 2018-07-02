@@ -22,31 +22,20 @@ before_script:
   - pip install coverage
   - pip install python-coveralls
   - pip install pycodestyle
-  - npm install jquery
-  - npm install moment
-  - npm install moment-timezone
-  - npm install datejs
-  - npm install -g jshint
-  - npm install -g mocha
-  - npm install -g istanbul
-  - npm install jsdom
-  - npm install sinon
-  - npm install coveralls
+  - npm install
   - gem install coveralls-lcov
   - cp travis-ci/manage.py manage.py
   - python manage.py migrate
+  - npm list
 
 script:
-  - which mocha
-  - which _mocha
-  - which istanbul
   - pycodestyle myuw/ --exclude=migrations,myuw/static
   # Find </br> tags
   - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
   - grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1
-  - jshint myuw/static/js/  --verbose
-  - mocha myuw/static/js/test/ --recursive
-  - istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" _mocha -- -R spec myuw/static/js/test/
+  - npm run jshint myuw/static/js/  --verbose
+  - npm run mocha myuw/static/js/test/ --recursive
+  - npm run istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" _mocha -- -R spec myuw/static/js/test/
   - FORCE_VIEW_TESTS=1 coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
   - coveralls-lcov -v -n coverage/lcov.info > js-coverage.json
 after_script:
