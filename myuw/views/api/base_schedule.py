@@ -169,6 +169,8 @@ def load_schedule(request, schedule, summer_term=""):
         if section_data["has_eos_dates"]:
             if not json_data["has_eos_dates"]:
                 json_data["has_eos_dates"] = True
+            section_data["meetings"] = sort_pce_section_meetings(
+                section_data["meetings"])
 
     for t in course_url_threads:
         t.join()
@@ -197,3 +199,18 @@ def irregular_start_end(term, pce_course_data, summer_term):
                 term.last_final_exam_date != pce_course_data.end_date)
     return (term.first_day_quarter != pce_course_data.start_date or
             term.last_final_exam_date != pce_course_data.end_date)
+
+
+def sort_pce_section_meetings(section_meetings_json_data):
+    """
+    Sort meeting by meeting_type and eos_start_date
+    """
+    ret_list = sorted(section_meetings_json_data,
+                      key=itemgetter('eos_start_date'))
+    # add section index
+    index = 0
+    for meeting in ret_list:
+        meeting["index"] = index
+        index = index + 1
+
+    return ret_list

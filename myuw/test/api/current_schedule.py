@@ -173,7 +173,14 @@ class TestSchedule(MyuwApiTest):
         self.assertFalse(section["on_standby"])
         self.assertTrue(section["has_eos_dates"])
         self.assertFalse(section["meetings"][0]["start_end_same"])
-        self.assertTrue(section["meetings"][1]["start_end_same"])
+        self.assertTrue(section["meetings"][2]["start_end_same"])
+        self.assertEqual(section['meetings'][0]['eos_start_date'],
+                         '2013-04-03')
+        self.assertEqual(section['meetings'][1]['eos_start_date'],
+                         '2013-05-11')
+        self.assertEqual(section['meetings'][2]['eos_start_date'],
+                         '2013-05-29')
+
 
     def test_on_standby_status(self):
         response = self.get_current_schedule_res('jeos',
