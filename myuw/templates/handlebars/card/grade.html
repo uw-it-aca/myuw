@@ -5,7 +5,7 @@
     <div class="card clearfix"  data-name="GradeCard" data-type="card">
 
         <h3>Final Grades</h3>
-
+        {{#unless has_error}}
         {{#if display_note}}
         <span class="official-note">These grades are not official until midnight on {{toFriendlyDate term.grade_submission_deadline}}.</span>
         {{/if}}
@@ -55,7 +55,9 @@
                 data-hidden-text="SHOW MORE"
                 data-hidden-label="Show links related to final grades">SHOW MORE</a>
         </div>
-
+        {{else}}
+        <p class="text-danger" style="margin-top:1em;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your grade information right now. Please try again later.</p>
+        {{/unless}}
     </div>
 {{/if}}
 {% endtplhandlebars %}

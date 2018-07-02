@@ -3,15 +3,24 @@ var NoticeBanner = {
 
     render_init: function(dom_taget) {
         NoticeBanner.dom_target  = dom_taget;
-        WSData.fetch_notice_data(NoticeBanner.render);
+        WSData.fetch_notice_data(NoticeBanner.render, NoticeBanner.render_error);
+    },
+
+    render_error: function() {
+        NoticeBanner.render_with_context({has_error: true});
+    },
+
+    render_with_context: function(context) {
+        var source = $("#notice_banner").html();
+        var template = Handlebars.compile(source);
+        var html = template(context);
+        NoticeBanner.dom_target.html(html);
     },
 
     render: function () {
         var notice_data = WSData.notice_data();
 
         if (notice_data.length > 0) {
-            var source = $("#notice_banner").html();
-            var template = Handlebars.compile(source);
             var critical_notices = Notices._get_critical(WSData.notice_data());
             critical_notices = Notices.sort_notices_by_start_date(critical_notices);
 
@@ -23,11 +32,10 @@ var NoticeBanner = {
             var notices = Notices.get_notice_page_notices(true);
             NoticeBanner._split_notice_titles(notices);
 
-            var html = template({
+            NoticeBanner.render_with_context({
                 "critical_notices": critical_notices,
                 "notices": notices
             });
-            NoticeBanner.dom_target.html(html);
             NoticeBanner._init_events();
         }
     },

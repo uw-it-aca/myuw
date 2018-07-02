@@ -5,7 +5,7 @@ from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
-from myuw.dao.instructor_schedule import is_instructor,\
+from myuw.dao.instructor_schedule import\
     get_instructor_schedule_by_term, get_section_by_label,\
     get_limit_estimate_enrollment_for_section, _set_section_from_url,\
     get_instructor_section, get_primary_section, check_section_instructor
@@ -18,21 +18,6 @@ from userservice.user import UserServiceMiddleware
 @fdao_sws_override
 @fdao_pws_override
 class TestInstructorSchedule(TestCase):
-    def test_is_instructor(self):
-        request = get_request_with_user('bill')
-        self.assertFalse(hasattr(request, "myuw_is_instructor"))
-        self.assertTrue(is_instructor(request))
-        self.assertTrue(hasattr(request, "myuw_is_instructor"))
-        self.assertTrue(is_instructor(request))
-
-        request = get_request_with_user('billsea')
-        self.assertTrue(is_instructor(request))
-
-        request = get_request_with_user('billseata')
-        self.assertTrue(is_instructor(request))
-
-        request = get_request_with_user('billpce')
-        self.assertTrue(is_instructor(request))
 
     def test_get_instructor_schedule_by_term(self):
         # current quarter instructor schedule

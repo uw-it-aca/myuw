@@ -3,7 +3,7 @@ from django import template
 from myuw.dao.enrollment import enrollment_prefetch
 from myuw.dao.library import library_resource_prefetch
 from myuw.dao.gws import group_prefetch
-from myuw.dao.instructor_schedule import is_instructor_prefetch
+from myuw.dao.instructor import is_instructor_prefetch
 from myuw.dao.pws import person_prefetch
 from myuw.dao.password import password_prefetch
 from myuw.dao.term import current_terms_prefetch
