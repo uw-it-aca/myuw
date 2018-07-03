@@ -185,6 +185,18 @@ var VisualScheduleCard = {
                 });
 
                 if(section.has_eos_dates) {
+                    // sort the meeting by eos_start_date
+                    section.meetings.sort(function(m1, m2) {
+                        var date1 = moment(m1.eos_start_date);
+                        var date2 = moment(m2.eos_start_date);
+                        if(date1 < date2) {
+                            return -1;
+                        }
+                        if(date1 > date2) {
+                            return 1;
+                        }
+                        return 0;
+                    });
                     visual_data.eos_sections.push(section);
                     if(!visual_data.has_eos_dates) {
                         visual_data.has_eos_dates = true;
