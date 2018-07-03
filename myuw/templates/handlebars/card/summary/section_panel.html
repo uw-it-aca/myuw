@@ -8,7 +8,7 @@
             <div class="section-meta">
                 <span class="myuw-meta course-meeting-type">{{ meetings.0.type }}</span>
                 {{#if sln}}
-                <span class="myuw-meta myuw-muted course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{sln}}" title="Time Schedule for SLN {{sln}}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
+                    <span class="myuw-meta myuw-muted course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{sln}}" title="Time Schedule for SLN {{sln}}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
                 {{/if}}
             </div>
         </div>
@@ -18,6 +18,9 @@
                 <table class="table-course-schedule summary-schedule">
                     <thead class="sr-only">
                         <tr>
+                            {{#if @root.has_eos_dates}}
+                                <th>Date(s)</th>
+                            {{/if}}
                             <th>Day(s)</th>
                             <th>Time</th>
                             <th>Location</th>
@@ -30,21 +33,28 @@
 
                         {{#each meetings}}
                             <tr class="course-schedule-row">
+
                                 {{#if ../under_disclosure}}
-                                <td class="course-section">
-                                    {{#if @first }}
-                                        <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a class="pin_mini_card_{{ @root.year }}_{{ @root.quarter}} " href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../index }}#{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}" cabb="{{ ../curriculum_abbr }}" cnum="{{ ../course_number }}" sid="{{ ../section_id }}">{{../section_id}}</a></div>
+                                    <td class="course-section">
+                                        {{#if @first }}
+                                            <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a class="pin_mini_card_{{ @root.year }}_{{ @root.quarter}} " href="/teaching/{{ @root.year }},{{ @root.quarter }},{{ ../index }}#{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}" cabb="{{ ../curriculum_abbr }}" cnum="{{ ../course_number }}" sid="{{ ../section_id }}">{{../section_id}}</a></div>
 
-                                             {{#if ../sln}}<span class="course-sln myuw-muted"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a></span>{{/if}}
-                                    {{/if}}
-                                </td>
+                                            {{#if ../sln}}<span class="course-sln myuw-muted"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation @root.quarter }}+{{ @root.year }}&SLN={{ ../sln }}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a></span>{{/if}}
+                                        {{/if}}
+                                    </td>
 
-                                <td class="course-type">{{ shorten_meeting_type type }}</td>
+                                    <td class="course-type">{{ shorten_meeting_type type }}</td>
 
                                 {{/if}}
 
-                                {{#if days_tbd }}
-                                    <td colspan="3" class="text-muted course-tbd">Days and times to be arranged</td>
+                                {{#if @root.has_eos_dates}}
+                                    <td class="meeting-dates">{{#if eos_start_date}}{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}{{/if}}</td>
+                                {{/if}}
+
+                                {{#if wont_meet}}
+                                    <td colspan="3" class="text-muted course-tbd">The class won't meet</td>
+                                {{else if days_tbd }}
+                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged</td>
                                 {{else if no_meeting}}
                                     <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
                                 {{else}}

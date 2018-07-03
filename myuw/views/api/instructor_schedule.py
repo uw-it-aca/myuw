@@ -35,7 +35,8 @@ from myuw.logger.timer import Timer
 from myuw.util.settings import get_myuwclass_url
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI, prefetch_resources
-from myuw.views.api.base_schedule import irregular_start_end
+from myuw.views.api.base_schedule import irregular_start_end,\
+    sort_pce_section_meetings
 from myuw.views.decorators import blti_admin_required
 from blti import BLTI
 
@@ -352,6 +353,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         if section_data["has_eos_dates"]:
             if not json_data["has_eos_dates"]:
                 json_data["has_eos_dates"] = True
+            section_data["meetings"] = sort_pce_section_meetings(
+                section_data["meetings"])
 
         if section_callback:
             section_callback(section, section_data)

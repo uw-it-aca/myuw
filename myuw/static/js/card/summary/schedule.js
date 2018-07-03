@@ -49,8 +49,8 @@ var SummaryScheduleCard = {
     },
 
     _render: function () {
-        Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
         Handlebars.registerPartial('summary_section', $("#summary_section").html());
+        Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
 
         var data = {};
         var term = SummaryScheduleCard.term;
@@ -69,6 +69,7 @@ var SummaryScheduleCard = {
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
+            has_eos_dates: instructed_course_data.has_eos_dates,
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
             is_summer: is_summer

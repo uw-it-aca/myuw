@@ -204,7 +204,13 @@ class TestInstructorSection(MyuwApiTest):
         section3 = data['sections'][2]
         self.assertTrue(section3["has_eos_dates"])
         self.assertFalse(section3["meetings"][0]["start_end_same"])
-        self.assertTrue(section3["meetings"][1]["start_end_same"])
+        self.assertTrue(section3["meetings"][2]["start_end_same"])
+        self.assertEqual(section3['meetings'][0]['eos_start_date'],
+                         '2013-04-03')
+        self.assertEqual(section3['meetings'][1]['eos_start_date'],
+                         '2013-05-11')
+        self.assertEqual(section3['meetings'][2]['eos_start_date'],
+                         '2013-05-29')
 
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
