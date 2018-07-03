@@ -1,8 +1,9 @@
 sudo: false
 language: python
 cache:
-  - pip
-  - bundler
+  directories:
+    - ~/.cache/pip
+    - node_modules
 services:
   - memcached
   - mysql
@@ -11,8 +12,8 @@ python:
   # - "3.6"
 env:
   matrix:
-    - DB=sqlite3
-    # - DB=mysql
+    - TEST=nodejs
+    - TEST=python
 before_script:
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
