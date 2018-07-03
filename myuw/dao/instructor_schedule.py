@@ -34,35 +34,26 @@ def __get_instructor_schedule_by_term(request, term):
     the current user is instructing in the given term/quarter
     """
     person = get_person_of_current_user(request)
+    if person is None or term is None:
+        return None
+
     schedule = ClassSchedule()
     schedule.person = person
     schedule.term = term
     # turn on the checking for future quarters
     term.check_time_schedule_published = term.is_future(
         get_comparison_datetime(request))
-    section_references = get_instructor_sections(person, term)
+    section_references = get_sections_by_instructor_and_term(
+        person,
+        term,
+        future_terms=0,
+        include_secondaries=True,
+        transcriptable_course='all',
+        delete_flag=['active', 'suspended'])
+
     schedule.sections = _get_sections_by_section_reference(section_references,
                                                            term)
     return schedule
-
-
-def get_instructor_sections(person, term,
-                            future_terms=0,
-                            include_secondaries=True):
-    """
-    @return a uw_sws.models.ClassSchedule object
-    Return the actively enrolled sections for the current user
-    in the given term/quarter
-    """
-    if person is None or term is None:
-        return None
-    return get_sections_by_instructor_and_term(
-        person,
-        term,
-        future_terms=future_terms,
-        include_secondaries=include_secondaries,
-        transcriptable_course='all',
-        delete_flag=['active', 'suspended'])
 
 
 def _get_sections_by_section_reference(section_references, term):
@@ -103,14 +94,18 @@ def _set_section_from_url(section_url, term):
     return None
 
 
-def get_instructor_section(request, section_id,
+def get_instructor_section(request,
+                           section_id,
                            include_registrations=False,
                            include_linked_sections=False):
     """
-    Return requested section instructor is teaching
+    Return the section that the instructor is teaching
     """
     schedule = ClassSchedule()
     person = get_person_of_current_user(request)
+    if person is None:
+        return None
+
     instructor_regid = person.uwregid
     schedule.person = person
     schedule.sections = []

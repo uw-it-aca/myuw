@@ -5,7 +5,7 @@ from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
-from myuw.dao.instructor_schedule import get_instructor_sections,\
+from myuw.dao.instructor_schedule import\
     get_instructor_schedule_by_term, get_section_by_label,\
     get_limit_estimate_enrollment_for_section, _set_section_from_url,\
     get_instructor_section, get_primary_section, check_section_instructor

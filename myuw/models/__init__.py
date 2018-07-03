@@ -176,9 +176,45 @@ class SeenInstructor(models.Model):
         SeenInstructor.objects.filter(year__lt=year).delete()
 
 
-class UserMigrationPreference(models.Model):
-    username = models.CharField(max_length=20, db_index=True, unique=True)
-    use_legacy_site = models.BooleanField(default=False)
+class Instructor(models.Model):
+    user = models.OneToOneField('User', on_delete=models.CASCADE)
+    year = models.PositiveSmallIntegerField(db_index=True)
+    quarter = models.CharField(max_length=10, db_index=True)
+
+    @staticmethod
+    def add_seen_instructor(user, year, quarter):
+        Instructor.objects.update_or_create(user=user,
+                                            quarter=quarter,
+                                            year=year)
+
+    @staticmethod
+    def delete_seen_instructor(user, year, quarter):
+        Instructor.objects.filter(user=user,
+                                  quarter=quarter,
+                                  year=year).delete()
+
+    @staticmethod
+    def is_seen_instructor(user):
+        return Instructor.objects.filter(user=user).exists()
+
+    @staticmethod
+    def remove_seen_instructors_yrs_before(year):
+        Instructor.objects.filter(year__lt=year).delete()
+
+    def json_data(self):
+        return {
+            "user": self.user.json_data(),
+            "year": self.year,
+            "quarter": self.quarter
+        }
+
+    def __str__(self):
+        return json.dumps(self.json_data(), default=str)
+
+    class Meta(object):
+        app_label = 'myuw'
+        db_table = 'myuw_known_instructors'
+        unique_together = ("user", "year", "quarter")
 
 
 class VisitedLinkNew(models.Model):

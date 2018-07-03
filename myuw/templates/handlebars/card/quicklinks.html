@@ -2,6 +2,7 @@
 {% tplhandlebars "quicklinks" %}
 <div class="card clearfix"  data-name="QuickLinks" data-type="card">
     <h3>Quick Links</h3>
+    {{#unless has_error}}
     <div class="myuw-qlinks">
         <div class="myuw-qlinks-active">
             <ul class="unstyled-list myuw-qlinks-active-list">
@@ -94,6 +95,11 @@
             </div>
         </div>
     </div>
+    {{else}}
+    <div>
+	    <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your information right now. Please try again later.</p>
+    </div>
+    {{/unless}}
 </div>
 
 {% endtplhandlebars %}

@@ -44,19 +44,24 @@ var SummaryScheduleCard = {
             $("#SummaryScheduleCard").hide();
             return;
         }
-        var raw = CardWithError.render("Schedule Summary");
-        InstructorCourseCards.dom_target.html(raw);
+        SummaryScheduleCard._render_with_context({has_error: true});
     },
 
-    _render: function () {
+    _render_with_context: function (context){
         Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
         Handlebars.registerPartial('summary_section', $("#summary_section").html());
 
+        var source = $("#instructor_summary_schedule").html();
+        var courses_template = Handlebars.compile(source);
+        var raw = courses_template(context);
+        SummaryScheduleCard.dom_target.html(raw);
+    },
+
+    _render: function () {
         var data = {};
         var term = SummaryScheduleCard.term;
         var instructed_course_data = WSData.instructed_course_data(term, false);
-        var source = $("#instructor_summary_schedule").html();
-        var courses_template = Handlebars.compile(source);
+
 
         var is_summer = instructed_course_data.quarter === "summer";
 
@@ -73,9 +78,7 @@ var SummaryScheduleCard = {
             section_count: instructed_course_data.sections.length,
             is_summer: is_summer
         });
-
-        var raw = courses_template(data);
-        SummaryScheduleCard.dom_target.html(raw);
+        SummaryScheduleCard._render_with_context(data);
         SummaryScheduleCard.add_events(term);
     },
 
