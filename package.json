@@ -14,6 +14,7 @@
   "scripts": {
     "jshint": "jshint",
     "mocha": "mocha",
-    "istanbul": "istanbul"
+    "istanbul": "istanbul",
+    "test": "istanbul cover --include-all-sources -x '**/vendor/**' -x '**/site-packages/**' ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/"
   }
 }
