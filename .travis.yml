@@ -21,13 +21,15 @@ matrix:
       - python manage.py migrate
     script:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
-      - coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw FORCE_VIEW_TESTS=1
+      - FORCE_VIEW_TESTS=1 coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
 #     - coveralls-lcov -v -n coverage/lcov.info > js-coverage.json
     after_script:
 #     - coveralls --merge=js-coverage.json
       - coveralls
 # TODO: send coveralls to S3/lambda and merge
   - language: node_js
+    node_js:
+      - node
     cache:
       directories:
         - node_modules
