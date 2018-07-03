@@ -1,44 +1,42 @@
 sudo: false
-language: python
-cache:
-  directories:
-    - ~/.cache/pip
-    - node_modules
-services:
-  - memcached
-python:
-  - "2.7"
-  # - "3.6"
-env:
-  matrix:
-    - TEST=nodejs
-    - TEST=python
-before_script:
-#  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
-#  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
-#  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
-  - if [ "$TEST" = "python" ]; then pip install MySQL-python; fi
-#  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ] ; then pip install mysqlclient; fi
-
-  - if [ "$TEST" = "python" ]; then pip install coverage; fi
-  - if [ "$TEST" = "python" ]; then pip install python-coveralls; fi
-  - if [ "$TEST" = "python" ]; then pip install pycodestyle; fi
-  - if [ "$TEST" = "nodejs" ]; then npm install; fi
-  - if [ "$TEST" = "python" ]; then gem install coveralls-lcov; fi
-  - if [ "$TEST" = "python" ]; then cp travis-ci/manage.py manage.py; fi
-  - if [ "$TEST" = "python" ]; then python manage.py migrate; fi
-  - if [ "$TEST" = "nodejs" ]; then npm list; fi
-
-script:
-  - if [ "$TEST" = "python" ]; then pycodestyle myuw/ --exclude=migrations,myuw/static; fi
-  # Find </br> tags
-  - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
-  - grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1
-  - if [ "$TEST" = "nodejs" ]; then npm run jshint myuw/static/js/  --verbose; fi
-  - if [ "$TEST" = "nodejs" ]; then npm run test; fi
-  - if [ "$TEST" = "python" ]; then FORCE_VIEW_TESTS=1 coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw; fi
- # - coveralls-lcov -v -n coverage/lcov.info > js-coverage.json
-after_script:
-#  - coveralls --merge=js-coverage.json
-   - if[ "$TEST" = "python" ]; then coveralls; fi
-notifications:
+matrix:
+  include:
+  - language: python
+    cache: pip
+    services:
+      - memcached
+    python:
+      - 2.7
+#     - "3.6"
+    before_script:
+#     - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
+#     - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
+#     - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
+      - pip install MySQL-python
+      - pip install coverage
+      - pip install python-coveralls
+      - pip install pycodestyle
+      - gem install coveralls-lcov
+      - cp travis-ci/manage.py manage.py
+      - python manage.py migrate
+    script:
+      - pycodestyle myuw/ --exclude=migrations,myuw/static
+      - coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw FORCE_VIEW_TESTS=1
+#     - coveralls-lcov -v -n coverage/lcov.info > js-coverage.json
+    after_script:
+#     - coveralls --merge=js-coverage.json
+      - coveralls
+# TODO: send coveralls to S3/lambda and merge
+  - language: node_js
+    cache:
+      directories:
+        - node_modules
+    before_script:
+      - npm install
+      - npm list
+    script:
+      - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
+      - grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1
+      - npm run jshint myuw/static/js/  --verbose
+      - npm run test
+# TODO: send coveralls to S3/lambda and merge
