@@ -203,7 +203,7 @@ def irregular_start_end(term, pce_course_data, summer_term):
 
 def sort_pce_section_meetings(section_meetings_json_data):
     """
-    Sort meeting by meeting_type and eos_start_date
+    Sort meeting by eos_start_date
     """
     ret_list = sorted(section_meetings_json_data,
                       key=itemgetter('eos_start_date'))
