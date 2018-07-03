@@ -73,3 +73,8 @@ share/
 
 node_modules/
 .idea/
+
+*.[1-9]
+*.new
+*.old
+*.pyc
