@@ -7,27 +7,27 @@
     <h3 id="quarter-info">{{ titleFormatTerm term_string }} Schedule</h3>
         <span class="sr-only">Final exam schedule and Visual Schedule</span>
     </h3>
- 
+    
     {{#if has_eos_dates}}
-        <div class="courseTBD" style="margin-top: 30px; margin-bottom: -5px">
-            {{#each eos_sections}}
-	        <h4>{{curriculum_abbr}} {{course_number}} {{ section_id }} meeting times:</h4>
-                {{#each meetings}}
-                    <span>
-                        {{#if eos_start_date}}
-                            {{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}
-
-                            {{#if wont_meet}}
-                                No meeting
-                            {{else}}
-                                {{#if start_time}}{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}{{/if}}
-                            {{/if}}
-                        {{/if}}
-                    </span>
-                {{/each}}
+        <div style="margin-top: 30px; margin-bottom: 25px">
+        {{#each eos_sections}}
+            <p><i>{{curriculum_abbr}} {{course_number}} {{ section_id }} meeting times:&nbsp;
+            {{#each meetings}}
+                <span>{{#not_first @index}},&nbsp;{{/not_first}}
+                    {{#if eos_start_date}}
+                        {{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}
+                        {{#if wont_meet}}
+                            (No meeting)
+                        {{else}}
+                            {{#if start_time}}({{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}){{/if}}
+                        {{/if}} 
+                    {{/if}}
+                </span>
             {{/each}}
+            </i></p>    
+        {{/each}}
 	</div>
-    {{/if}}
+    {{/if}} 
     
     
     <!--  SR-only Final exam schedule tabular data -->
