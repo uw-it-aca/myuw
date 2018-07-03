@@ -1,5 +1,10 @@
 sudo: false
 language: python
+cache:
+  - pip
+  - bundler
+  directories:
+    - $HOME/node_modules/
 services:
   - memcached
   - mysql
