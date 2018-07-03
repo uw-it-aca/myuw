@@ -76,22 +76,6 @@
     "LimitEstimateEnrollment": 200,
     "LimitEstimateEnrollmentIndicator": "limit",
     "LinkedSectionTypes": [
-        {
-            "LinkedSections": [
-                {
-                    "IsPrimarySection": false,
-                    "Section": {
-                        "CourseNumber": "306",
-                        "CurriculumAbbreviation": "COM",
-                        "Href": "/student/v5/course/3013,autumn,COM,306/AA.json",
-                        "Quarter": "autumn",
-                        "SectionID": "AA",
-                        "Year": 2013
-                    }
-                }
-            ],
-            "Type": "quiz"
-        }
     ],
     "MaximumCredit": "",
     "MaximumTermCredit": "",

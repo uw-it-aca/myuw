@@ -126,6 +126,7 @@ def get_section_email_lists(section,
     """
     @param section: a valid sws.Section object
     """
+    # print section.joint_section_urls
     is_primary_section = section.is_primary_section
     json_data = {
         "year": section.term.year,
@@ -166,6 +167,7 @@ def get_section_email_lists(section,
                         get_section_secondary_combined_list(section)
     json_data["has_lists"] = (json_data.get("has_secondary_lists") or
                               json_data["section_list"]["list_exists"])
+    # print json_data
     return json_data
 
 
