@@ -1,0 +1,14 @@
+phases:
+  install:
+    commands:
+      - pip install -r requirements.txt
+      - pip install coverage
+      - pip install python-coveralls
+      - pip install pycodestyle
+  pre_build:
+    commands:
+      - cp travis-ci/manage.py manage.py
+      - python manage.py migrate
+  build:
+    commands:
+      - python manage.py migrate
