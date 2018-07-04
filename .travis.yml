@@ -63,6 +63,6 @@ matrix:
       - mv ~/shared/.coverage .coverage
       - mv ~/shared/js-coverage.json js-coverage.json
       - coveralls --merge=js-coverage.json
-      - aws s3 rm s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
+      - aws s3 rm --recursive s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
 
 
