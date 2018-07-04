@@ -1,3 +1,5 @@
+version: 0.2
+
 phases:
   install:
     commands:
@@ -11,4 +13,4 @@ phases:
       - python manage.py migrate
   build:
     commands:
-      - python manage.py migrate
+      - python manage.py test myuw
