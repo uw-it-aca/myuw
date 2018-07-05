@@ -162,6 +162,7 @@ class TestSchedule(MyuwApiTest):
         section = self.get_section(data, 'BIGDATA', '220', 'A')
         self.assertEquals(section['start_date'], '2013-01-16')
         self.assertEquals(section['end_date'], '2013-03-20')
+        self.assertEqual(section["section_type"], 'CLS')
 
         response = self.get_current_schedule_res('jeos',
                                                  '2013-04-01 00:00:01')

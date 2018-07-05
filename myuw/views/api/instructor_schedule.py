@@ -249,8 +249,10 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data = json_data["sections"][section_index]
         section_data["index"] = section_index
         section_index += 1
+        if not section_data["section_type"]:
+            if len(section.meetings) > 0:
+                section_data["section_type"] = section.meetings[0].meeting_type
 
-        section_data["section_type"] = section.section_type
         section_data["color_id"] = section.color_id
         section_data["mini_card"] = section.pin_on_teaching
         section_data['is_independent_start'] = section.is_independent_start

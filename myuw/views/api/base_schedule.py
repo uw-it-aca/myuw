@@ -89,6 +89,10 @@ def load_schedule(request, schedule, summer_term=""):
 
         section_data["color_id"] = section.color_id
 
+        if not section_data["section_type"]:
+            if len(section.meetings) > 0:
+                section_data["section_type"] = section.meetings[0].meeting_type
+
         if section.is_early_fall_start():
             section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True

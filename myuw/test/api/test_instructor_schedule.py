@@ -202,6 +202,7 @@ class TestInstructorSection(MyuwApiTest):
         section2 = data['sections'][1]
         self.assertTrue(section2['evaluation']["eval_not_exist"])
         section3 = data['sections'][2]
+        self.assertEqual(section3["section_type"], 'CLS')
         self.assertTrue(section3["has_eos_dates"])
         self.assertFalse(section3["meetings"][0]["start_end_same"])
         self.assertTrue(section3["meetings"][2]["start_end_same"])
