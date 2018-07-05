@@ -138,3 +138,5 @@ MOCK_SAML_ATTRIBUTES = {
 
 from django.core.urlresolvers import reverse_lazy
 LOGIN_URL = reverse_lazy('saml_login')
+
+LOGOUT_URL = reverse_lazy('saml_logout')
