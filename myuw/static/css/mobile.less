@@ -1385,7 +1385,7 @@ label { font-weight: normal; margin-bottom: auto; }
 
 			.table-course-schedule {margin-bottom: 20px;
 				.tbody-course-schedule {
-					.course-schedule-row {text-align: center; 
+					.course-schedule-row {text-align: center;
     					@media @under550 {display:flex; flex-wrap:wrap; justify-content: space-between;}
     					.meeting-dates {
         				    @media @under550 {text-align: left; display:block; width:100%; flex:auto; margin-bottom: -8px;}
@@ -1624,6 +1624,7 @@ label { font-weight: normal; margin-bottom: auto; }
 
         ul { list-style: none; padding-left: 0; }
     }
+
 	// Visual schedule: text above the grid
 	.summer-dates {
 		font-size:.85em;
@@ -1631,15 +1632,12 @@ label { font-weight: normal; margin-bottom: auto; }
 		margin-bottom: 1.25em;
 	}
     .meeting-eos-sessions {
-        display: flex;
-        align-items: baseline;
-		margin-top: 30px;
-		margin-bottom: 25px;
-		h4 {font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: italic; line-height: 20px; }
-		ol {margin-left: 0; padding-left: 0; list-style-type: none; display: inline; }
-		li {display: inline; }
+		margin-bottom: 16px;
+		h4 { display: inline; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: inherit; }
+		ol { margin: 0; padding: 0; list-style-type: none; display: inline; }
+		li { display: inline; }
     }
-    
+
     // visual schedule-period control
     .schedule-period-module {
 	    margin-bottom: 1em;
