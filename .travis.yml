@@ -12,11 +12,7 @@ matrix:
       - memcached
     python:
       - 2.7
-#     - "3.6"
     before_script:
-#     - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
-#     - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
-#     - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
       - mkdir ~/shared
       - pip install MySQL-python
       - pip install awscli
