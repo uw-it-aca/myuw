@@ -2,7 +2,7 @@ from django.test import TransactionTestCase
 from uw_sws.models import SectionReference
 from myuw.models import Instructor
 from myuw.dao.instructor import is_instructor, set_instructor,\
-    get_most_recent_sectionref_by_instructor
+    get_most_recent_sectionref_by_instructor, get_search_param
 from myuw.dao.user import get_user_model
 from myuw.test import get_request_with_user, get_request_with_date,\
     fdao_pws_override, fdao_sws_override
@@ -73,3 +73,25 @@ class TestInstructor(TransactionTestCase):
         req = get_request_with_user('billpce',
                                     get_request_with_date("2013-04-10"))
         self.assertTrue(is_instructor(req))
+
+    def test_get_search_param(self):
+        request = get_request_with_user('bill',
+                                        get_request_with_date("2013-04-10"))
+        term, future_terms = get_search_param(request, True)
+        self.assertEqual(term.year, 2012)
+        self.assertEqual(term.quarter, 'autumn')
+        self.assertEqual(future_terms, 4)
+
+        request = get_request_with_user('bill',
+                                        get_request_with_date("2018-04-10"))
+        term, future_terms = get_search_param(request, False)
+        self.assertEqual(term.year, 2012)
+        self.assertEqual(term.quarter, 'spring')
+        self.assertEqual(future_terms, 26)
+
+        request = get_request_with_user('bill',
+                                        get_request_with_date("2018-07-10"))
+        term, future_terms = get_search_param(request, False)
+        self.assertEqual(term.year, 2012)
+        self.assertEqual(term.quarter, 'summer')
+        self.assertEqual(future_terms, 25)
