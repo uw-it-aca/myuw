@@ -6,6 +6,8 @@
 @phablet: ~"screen and (min-width: 768px)";
 @under992: ~"screen and (max-width: 991px)";
 @desktop: ~"screen and (min-width: 992px)";
+@under550: ~"screen and (max-width: 549px)";
+
 
 /*** less variables ***/
 @myuw: #efe2cd;
@@ -1384,8 +1386,16 @@ label { font-weight: normal; margin-bottom: auto; }
 			.table-course-schedule {margin-bottom: 20px;
 				.tbody-course-schedule {
 					.course-schedule-row {text-align: center;
+    					@media @under550 {display:flex; flex-wrap:wrap; justify-content: space-between;}
+    					.meeting-dates {
+        				    @media @under550 {text-align: left; display:block; width:100%; flex:auto; margin-bottom: -8px;}
+        				    @media @over550 {text-align: left; width:26%;}
+        				}
 						.course-tbd {font-size:12px; width:64%;}
-						.course-days {width:20%;}
+						.course-days {
+    						width:20%;
+    						@media @under550 {padding-left: 0px;}
+                        }
 						.course-time {width:44%}
 						.course-location {width:36%;}
 						.course-loc-tbd {font-size:12px;min-width:36%;}
@@ -1614,12 +1624,14 @@ label { font-weight: normal; margin-bottom: auto; }
 
         ul { list-style: none; padding-left: 0; }
     }
+
 	// Visual schedule: text above the grid
-	.summer-dates {
-		font-size:.85em;
-		color: #555;
-		margin-bottom: 1.25em;
-	}
+    .meeting-eos-sessions {
+		margin-bottom: 16px;
+		h4 { display: inline; font-family: 'Open Sans', sans-serif; font-size: 14px; line-height: inherit; }
+		ol { margin: 0; padding: 0; list-style-type: none; display: inline; }
+		li { display: inline; }
+    }
 
     // visual schedule-period control
     .schedule-period-module {
