@@ -2,16 +2,19 @@ addons:
   artifacts:
     s3_region: "us-west-2"
 
-dist: trusty
-sudo: false
 matrix:
   include:
   - language: python
+    sudo: true
+    dist: trusty
     cache: pip
     services:
       - memcached
     python:
       - 2.7
+    install:
+      - sudo apt-get install libxml2-dev libxmlsec1-dev
+      - pip install -r requirements.txt
     before_script:
       - mkdir ~/shared
       - pip install MySQL-python
@@ -28,6 +31,8 @@ matrix:
       - aws s3 sync ~/shared s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
 
   - language: node_js
+    sudo: false
+    dist: trusty
     node_js:
       - node
     cache:
@@ -61,5 +66,3 @@ matrix:
       - mv ~/shared/js-coverage.json js-coverage.json
       - coveralls --merge=js-coverage.json
       - aws s3 rm --recursive s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
-
-

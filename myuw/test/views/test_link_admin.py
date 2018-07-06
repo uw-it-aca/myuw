@@ -1,11 +1,14 @@
 from unittest2 import skipIf
 from django.core.urlresolvers import reverse
 from django.test import Client
+from django.test.utils import override_settings
 from myuw.views.link_admin import popular_links
 from myuw.test.api import missing_url, require_url, MyuwApiTest
+from django.core.urlresolvers import reverse_lazy
 
 
 @require_url('myuw_popular_links')
+@override_settings(LOGIN_URL=reverse_lazy('saml_login'))
 class TestViewsLinkAdmin(MyuwApiTest):
 
     @skipIf(missing_url("myuw_popular_links"),
@@ -26,7 +29,7 @@ class TestViewsLinkAdmin(MyuwApiTest):
         response = self.client.post(url)
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response["Location"],
-                          '/accounts/login/?next=/admin/links')
+                          '/saml/login?next=/admin/links')
 
     @skipIf(missing_url("myuw_popular_links"),
             "myuw_popular_links urls not configured")

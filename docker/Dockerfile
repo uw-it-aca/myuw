@@ -22,7 +22,9 @@ RUN yum -y update && \
     wget \
     zlib-dev \
     python-devel \
-    mod_wsgi
+    mod_wsgi \
+    libxml2-dev \
+    libxmlsec1-dev
 
 # Install setuptools + pip
 RUN cd /tmp && \
