@@ -1,43 +1,65 @@
+addons:
+  artifacts:
+    s3_region: "us-west-2"
+
+dist: trusty
 sudo: false
-language: python
-services:
-  - memcached
-  - mysql
-python:
-  - "2.7"
-  # - "3.6"
-env:
-  matrix:
-    - DB=sqlite3
-    # - DB=mysql
-install:
-  - pip install -r requirements.txt
-before_script:
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
-  - if [ "$TRAVIS_PYTHON_VERSION" = "2.7" ] ; then pip install MySQL-python; fi
-  - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ] ; then pip install mysqlclient; fi
+matrix:
+  include:
+  - language: python
+    cache: pip
+    services:
+      - memcached
+    python:
+      - 2.7
+    before_script:
+      - mkdir ~/shared
+      - pip install MySQL-python
+      - pip install awscli
+      - pip install coverage
+      - pip install python-coveralls
+      - pip install pycodestyle
+      - cp travis-ci/manage.py manage.py
+      - python manage.py migrate
+    script:
+      - pycodestyle myuw/ --exclude=migrations,myuw/static
+      - FORCE_VIEW_TESTS=1 COVERAGE_FILE=~/shared/.coverage coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
+    after_script:
+      - aws s3 sync ~/shared s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
 
-  - pip install coverage
-  - pip install python-coveralls
-  - pip install pycodestyle
-  - npm install
-  - gem install coveralls-lcov
-  - cp travis-ci/manage.py manage.py
-  - python manage.py migrate
-  - npm list
+  - language: node_js
+    node_js:
+      - node
+    cache:
+      directories:
+        - node_modules
+    before_script:
+      - mkdir ~/shared
+      - npm install
+      - gem install coveralls-lcov
+      - npm list
+      - pip install --user awscli
+    script:
+      - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
+      - grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1
+      - npm run jshint myuw/static/js/  --verbose
+      - npm run test
+      - coveralls-lcov -v -n coverage/lcov.info > ~/shared/js-coverage.json
+    after_script:
+      - aws s3 sync ~/shared s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
 
-script:
-  - pycodestyle myuw/ --exclude=migrations,myuw/static
-  # Find </br> tags
-  - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
-  - grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1
-  - npm run jshint myuw/static/js/  --verbose
-  - npm run mocha myuw/static/js/test/ --recursive
-  - npm run test
-  - FORCE_VIEW_TESTS=1 coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
-  - coveralls-lcov -v -n coverage/lcov.info > js-coverage.json
-after_script:
-  - coveralls --merge=js-coverage.json
-notifications:
+  - stage: Deploy Coveralls
+    language: python
+    python:
+      - 2.7
+    install:
+      - pip install awscli
+      - pip install python-coveralls
+    script:
+      - aws s3 sync s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER ~/shared
+      - mv ~/shared/.coverage .coverage
+      - mv ~/shared/js-coverage.json js-coverage.json
+      - coveralls --merge=js-coverage.json
+      - aws s3 rm --recursive s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
+
+
