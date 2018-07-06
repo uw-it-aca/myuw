@@ -30,6 +30,14 @@
             "Quarter": "autumn",
             "SectionID": "A",
             "Year": 2013
+        },
+        {
+           "Href":"\/student\/v5\/course\/2013,autumn,WETLAND,100/A.json",
+           "CurriculumAbbreviation": "WETLAND",
+           "CourseNumber": "100",
+           "SectionID": "A",
+           "Quarter":"autumn",
+           "Year":2013
         }
     ],
     "TotalCount": 1
