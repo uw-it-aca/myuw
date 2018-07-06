@@ -53,7 +53,7 @@
 
 
                                 {{#if wont_meet}}
-                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>The class won't meet</td>
+                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>Class does not meet</td>
                                 {{else if days_tbd }}
                                     <td colspan="2" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>Days and times to be arranged</td>
                                 {{else if no_meeting}}

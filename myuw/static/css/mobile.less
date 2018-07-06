@@ -1398,10 +1398,12 @@ label { font-weight: normal; margin-bottom: auto; }
         				    @media @under550 {text-align: left; display:block; width:100%; flex:auto; margin-bottom: -8px;}
         				    @media @over550 {text-align: left; width:26%;}
         				}
-						.course-tbd { width:64%; text-align: left;}
+						.course-tbd { width:64%; text-align: left;
+                            @media @under550 { padding-left: 0px;}
+                        }
 						.course-days {
     						width:20%;
-    						@media @under550 {padding-left: 0px;}
+    						@media @under550 { padding-left: 0px;}
                         }
 						.course-time {width:44%}
 						.course-location {width:36%;}
