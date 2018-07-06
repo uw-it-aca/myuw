@@ -691,7 +691,8 @@ label { font-weight: normal; margin-bottom: auto; }
         // override bootstrap table styles
         .table {
             tr {
-                td:first-child { padding-left: 0; }
+                td:first-child,
+                th:first-child { padding-left: 0; }
             }
             td { border: none; }
         }
@@ -1383,15 +1384,21 @@ label { font-weight: normal; margin-bottom: auto; }
                 h5 {margin-top: 0;}
 			}
 
-			.table-course-schedule {margin-bottom: 20px;
+			.table-course-schedule {
+                margin-bottom: 20px;
+
 				.tbody-course-schedule {
+
+                    /* Reset from bootstrap */
+                    th { border: none; padding: 5px 5px 5px 0; }
+
 					.course-schedule-row {text-align: center;
     					@media @under550 {display:flex; flex-wrap:wrap; justify-content: space-between;}
     					.meeting-dates {
         				    @media @under550 {text-align: left; display:block; width:100%; flex:auto; margin-bottom: -8px;}
         				    @media @over550 {text-align: left; width:26%;}
         				}
-						.course-tbd {font-size:12px; width:64%;}
+						.course-tbd { width:64%; text-align: left;}
 						.course-days {
     						width:20%;
     						@media @under550 {padding-left: 0px;}
