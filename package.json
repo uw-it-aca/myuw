@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "jquery": "latest",
+    "moment": "latest",
+    "sinon": "latest",
+    "datejs": "latest",
+    "mocha": "latest",
+    "jshint": "latest",
+    "istanbul": "latest",
+    "coveralls": "latest",
+    "jsdom": "latest",
+    "moment-timezone": "latest"
+  },
+  "scripts": {
+    "jshint": "jshint",
+    "mocha": "mocha",
+    "istanbul": "istanbul",
+    "test": "istanbul cover --include-all-sources -x '**/vendor/**' -x '**/site-packages/**' ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/"
+  }
+}
