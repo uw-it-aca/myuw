@@ -7,17 +7,20 @@ var UwnetidCard = {
     },
 
     render_error: function() {
-        UwnetidCard.dom_target.html(CardWithError.render("UW NetID"));
+        UwnetidCard._render_with_context({has_error: true});
+    },
+
+    _render_with_context: function(context){
+        var source   = $("#uwnetid_accounts_card").html();
+        var template = Handlebars.compile(source);
+        var compiled = template(context);
+        UwnetidCard.dom_target.html(compiled);
     },
 
     render: function() {
         var data = WSData.profile_data().password;
         data.display_2fa = window.user.pmt_2fa;
-
-        var source   = $("#uwnetid_accounts_card").html();
-        var template = Handlebars.compile(source);
-        var compiled = template(data);
-        UwnetidCard.dom_target.html(compiled);
+        UwnetidCard._render_with_context(data);
         LogUtils.cardLoaded(UwnetidCard.name, UwnetidCard.dom_target);
     }
 };

@@ -14,16 +14,20 @@ var HuskyCard = {
         HuskyCard._render();
     },
 
-    _render: function () {
-        var hfs_data = WSData.hfs_data();
+    _render_with_context: function(context){
         var source = $("#husky_card_content").html();
         var template = Handlebars.compile(source);
+        HuskyCard.dom_target.html(template(context));
+    },
+
+    _render: function () {
+        var hfs_data = WSData.hfs_data();
         hfs_data.is_tacoma = window.user.tacoma_affil || window.user.tacoma;
         if (!hfs_data.student_husky_card &&
             !hfs_data.employee_husky_card) {
             remove_card(HuskyCard.dom_target);
         } else {
-            HuskyCard.dom_target.html(template(hfs_data));
+            HuskyCard._render_with_context(hfs_data);
             LogUtils.cardLoaded(HuskyCard.name, HuskyCard.dom_target);
         }
     },
@@ -40,8 +44,7 @@ var HuskyCard = {
             remove_card(HuskyCard.dom_target);
             return;
         }
-        var raw = CardWithError.render("Husky Card");
-        HuskyCard.dom_target.html(raw);
+        HuskyCard._render_with_context({has_error: true});
     }
 };
 

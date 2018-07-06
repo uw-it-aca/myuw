@@ -18,9 +18,12 @@ var GradCommitteeCard = {
         GradCommitteeCard._render(WSData.mygrad_data());
     },
 
-    _render: function (mygrad_data) {
+    _render_with_context: function (context){
         var source = $("#gradcommittee_card_content").html();
         var template = Handlebars.compile(source);
+        GradCommitteeCard.dom_target.html(template(context));
+    },
+    _render: function (mygrad_data) {
         if (!mygrad_data.committees) {
             GradCommitteeCard.dom_target.hide();
             return;
@@ -30,7 +33,7 @@ var GradCommitteeCard = {
             return;
         }
 
-        GradCommitteeCard.dom_target.html(template(mygrad_data));
+        GradCommitteeCard._render_with_context(mygrad_data);
     },
 
     _has_all_data: function () {
@@ -42,7 +45,7 @@ var GradCommitteeCard = {
 
     render_error: function(status) {
         var raw = CardWithError.render("Your Committees");
-        GradCommitteeCard.dom_target.html(raw);
+        GradCommitteeCard._render_with_context({has_errors: true});
     }
 
 };

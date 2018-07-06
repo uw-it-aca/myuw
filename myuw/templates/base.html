@@ -112,10 +112,14 @@
                     </div>
 
                     <div class="myuw-search-links">
-
+                        {% if user.email_error %}
+						<a href="https://itconnect.uw.edu/connect/email/" class="myuw-iconlink" style="color:#ffaeae;" title="UW email services" target="_blank"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span>Email error</span></a>
+                        {% else %}
                         {% if user.email_forward_url %}
                         <a href="{{ user.email_forward_url }}" class="myuw-iconlink" target="_blank" title="Open {{ user.email_forward_title }} in new tab"><i class="fa fa-envelope" aria-hidden="true"></i><span>Email</span></a>
                         {% endif %}
+                        {% endif %}
+
 
                         <button id="search_toggle" class="myuw-iconlink" role=”search” aria-controls="app_search" aria-expanded="false" aria-haspopup="true" aria-label="Open search area" data-toggle="collapse" data-target="#app_search"><i class="fa fa-search fa-flip-horizontal"></i><span>Search</span></button>
 
@@ -350,6 +354,7 @@
         <script src="{% static 'js/resources.js' %}"></script>
         <script src="{% static 'js/banner/email.js' %}"></script>
         <script src="{% static 'js/banner/notice.js' %}"></script>
+        <script src="{% static 'js/card/no_course.js' %}"></script>
         <script src="{% static 'js/card/error.js' %}"></script>
         <script src="{% static 'js/card/grade.js' %}"></script>
         <script src="{% static 'js/card/fin_aid.js' %}"></script>

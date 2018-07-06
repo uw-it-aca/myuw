@@ -111,6 +111,7 @@ def set_section_grading_status(section, person):
     except Exception:
         log_exception(
             logger, 'get_section_grading_status', traceback.format_exc())
+        return "error"
 
 
 def set_section_evaluation(section, person):
