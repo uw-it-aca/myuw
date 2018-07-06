@@ -34,6 +34,7 @@ setup(
         'django-blti==0.6',
         'unittest2',
         'python-binary-memcached',
+        'UW-Django-SAML2',
         'UW-RestClients-Core==0.9.6',
         'UW-RestClients-SWS<2.0,>=1.6.7',
         'UW-RestClients-PWS<2.0,>=1.0.1',

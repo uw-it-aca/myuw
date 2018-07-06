@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^logging', include('django_client_logger.urls')),
     url(r'^logging', include('rc_django.urls')),
     url(r'^', include('myuw.urls')),
+    url(r'^saml/', include('uw_saml.urls')),
 ]
