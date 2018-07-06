@@ -38,6 +38,17 @@
 
             {{else}}
                 {{#unless has_lists}}
+                    {{#if has_joint}}
+                    <div class="mailman_joint_create">
+                        <p>
+                            <strong>Request a single email list for:</strong>
+                        </p>
+                        <input type="radio">{{ course_abbr }} {{course_number}} {{section_id}} and {{#each joint_sections}} {{ course_abbr }} {{ course_number }} {{ section_id }} {{/each}}, {{ capitalizeString quarter }} {{ year }}
+                        <br />
+                        </input>
+                        <input type="radio">{{ course_abbr }} {{course_number}} {{section_id}}, {{ capitalizeString quarter }} {{ year }}</input>
+                    </div>
+                    {{else}}
                     <div class="mailman_simple_create">
                         {{#unless section_list.list_exists}}
                             <p>
@@ -58,6 +69,7 @@
                                    name="section_single_{{section_list.section_id}}" value="{{section_list.section_label}}"/>
                         {{/unless}}
                     </div>
+                    {{/if}}
                 {{/unless}}
 
                 {{#unless no_secondary_section }}

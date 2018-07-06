@@ -19,6 +19,7 @@ from myuw.util.settings import get_mailman_courserequest_recipient
 from myuw.logger.logback import log_info
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
+from uw_sws.section import get_joint_sections
 
 
 logger = logging.getLogger(__name__)
@@ -137,6 +138,17 @@ def get_section_email_lists(section,
         "has_multiple_sections": False,
         "total_course_wo_list": 0,
         }
+
+    if len(section.joint_section_urls):
+        joint_sections = get_joint_sections(section)
+        json_data['joint_sections'] = []
+        json_data['has_joint'] = True
+        for joint_section in joint_sections:
+            joint_course = {"course_abbr": joint_section.curriculum_abbr,
+                            "course_number": joint_section.course_number,
+                            "section_id": joint_section.section_id}
+            json_data['joint_sections'].append(joint_course)
+
     json_data["section_list"] = get_single_section_list(section)
 
     if not json_data["section_list"]["list_exists"]:
