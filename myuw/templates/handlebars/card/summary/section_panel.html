@@ -18,13 +18,10 @@
                 <table class="table-course-schedule summary-schedule">
                     <thead class="sr-only">
                         <tr>
-                            {{#if @root.has_eos_dates}}
-                                <th>Date(s)</th>
-                            {{/if}}
-                            <th>Day(s)</th>
-                            <th>Time</th>
-                            <th>Location</th>
-                            <th>Enrollment</th>
+                            <th id="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}">Day(s)</th>
+                            <th id="time-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}">Time</th>
+                            <th id="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}">Location</th>
+                            <th id="enrollment-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}">Enrollment</th>
                         </tr>
                     </thead>
 
@@ -47,29 +44,33 @@
 
                                 {{/if}}
 
-                                {{#if @root.has_eos_dates}}
-                                    <td class="meeting-dates">{{#if eos_start_date}}{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}{{/if}}</td>
+                                {{#if eos_start_date}}
+                                <!-- Insert spanning header row, restart new TR -->
+                                        <th id="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}" colspan="4" scope="colgroup" class="meeting-dates">{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}</th>
+                                    </tr>
+                                    <tr class="course-schedule-row">
                                 {{/if}}
 
+
                                 {{#if wont_meet}}
-                                    <td colspan="3" class="text-muted course-tbd">The class won't meet</td>
+                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>The class won't meet</td>
                                 {{else if days_tbd }}
-                                    <td colspan="2" class="text-muted course-tbd">Days and times to be arranged</td>
+                                    <td colspan="2" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>Days and times to be arranged</td>
                                 {{else if no_meeting}}
-                                    <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
+                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>No classroom meeting: online learning</td>
                                 {{else}}
                                     {% include "handlebars/card/schedule/course_sche_col_days.html" %}
                                 {{/if}}
 
                                 {{#unless no_meeting}}
                                     {{#if building_tbd}}
-                                        <td class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
+                                        <td {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}} class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
                                     {{else}}
                                         {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                                     {{/if}}
                                 {{/unless}}
 
-                                <td class="course-enrollment">
+                                <td class="course-enrollment" {{#if eos_start_date}}headers="enrollment-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}"{{/if}}>
                                     {{#if @first }}
                                         {{#if is_prev_term_enrollment}}0<!-- the current_enrollment value is of previous term -->{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                         {{else}}
