@@ -37,7 +37,8 @@ def is_instructor(request):
 
 
 def get_most_recent_sectionref_by_instructor(request):
-    term, number_of_future_terms = get_search_param(request, is_using_file_dao())
+    term, number_of_future_terms = get_search_param(
+        request, is_using_file_dao())
     person = get_person_of_current_user(request)
     return get_last_section_by_instructor_and_terms(
         person, term, number_of_future_terms,
