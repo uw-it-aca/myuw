@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('myuw', '0006_seeninstructor'),
+        ('myuw', '0005_banner_messages_affiliation_data'),
     ]
 
     operations = [
