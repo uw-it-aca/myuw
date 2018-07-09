@@ -245,7 +245,7 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, label) {
         div_toggled.attr("tabindex", "0");
         div_toggled.focus();
         window.myuw_log.log_card(card, "expand"+log_label);
-    })
+    });
 
     // fires when element has been hidden
     div_toggled.on('hidden.bs.collapse', function() {
@@ -265,7 +265,7 @@ var toggle_card_disclosure = function(card, div_toggled, a_expose, label) {
 //        div_toggled.attr("hidden", true);
         a_expose.focus();
         window.myuw_log.log_card(card, "collapse"+log_label);
-    })
+    });
 };
 
 var register_link_recorder = function() {
