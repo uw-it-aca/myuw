@@ -15,7 +15,7 @@ services:
     restart: on-failure
     volumes:
       - ./myuw:/app/myuw
-      - ./docker:/app/myuw/project
+      - ./docker:/app/project
     ports:
       - "8000:80"
     environment:
