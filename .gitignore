@@ -70,3 +70,11 @@ db.sqlite3
 
 pip-selfcheck.json
 share/
+
+node_modules/
+.idea/
+
+*.[1-9]
+*.new
+*.old
+*.pyc

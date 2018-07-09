@@ -143,39 +143,6 @@ class SeenRegistration(models.Model):
         db_table = "myuw_mobile_seenregistration"
 
 
-class SeenInstructor(models.Model):
-    uwnetid = models.SlugField(max_length=16,
-                               db_index=True)
-    year = models.PositiveSmallIntegerField(db_index=True)
-    quarter = models.CharField(max_length=10, db_index=True)
-
-    unique_together = (("uwnetid",
-                        "year",
-                        "quarter"
-                        ),
-                       )
-
-    @staticmethod
-    def add_seen_instructor(netid, year, quarter):
-        SeenInstructor.objects.update_or_create(uwnetid=netid,
-                                                quarter=quarter,
-                                                year=year)
-
-    @staticmethod
-    def delete_seen_instructor(netid, year, quarter):
-        SeenInstructor.objects.filter(uwnetid=netid,
-                                      quarter=quarter,
-                                      year=year).delete()
-
-    @staticmethod
-    def is_seen_instructor(netid):
-        return SeenInstructor.objects.filter(uwnetid=netid).exists()
-
-    @staticmethod
-    def remove_seen_instructors_yrs_before(year):
-        SeenInstructor.objects.filter(year__lt=year).delete()
-
-
 class Instructor(models.Model):
     user = models.OneToOneField('User', on_delete=models.CASCADE)
     year = models.PositiveSmallIntegerField(db_index=True)
