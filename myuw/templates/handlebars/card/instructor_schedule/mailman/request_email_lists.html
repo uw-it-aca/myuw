@@ -43,10 +43,12 @@
                         <p>
                             <strong>Request a single email list for:</strong>
                         </p>
-                        <input type="radio">{{ course_abbr }} {{course_number}} {{section_id}} and {{#each joint_sections}} {{ course_abbr }} {{ course_number }} {{ section_id }} {{/each}}, {{ capitalizeString quarter }} {{ year }}
+                        <input type="radio" name="section_joint_{{section_list.section_id}}" value="{{joint_section_list.section_label}}">{{ course_abbr }} {{course_number}} {{section_id}} and {{#each joint_sections}} {{ course_abbr }} {{ course_number }} {{ section_id }} {{/each}}, {{ capitalizeString quarter }} {{ year }}
+                        <label>Mailing list address: {{joint_section_list.list_address}}@uw.edu</label>
                         <br />
                         </input>
-                        <input type="radio">{{ course_abbr }} {{course_number}} {{section_id}}, {{ capitalizeString quarter }} {{ year }}</input>
+                        <input type="radio" name="section_single_{{section_list.section_id}}" value="{{section_list.section_label}}">{{ course_abbr }} {{course_number}} {{section_id}}, {{ capitalizeString quarter }} {{ year }}</input>
+                        <label>Mailing list address: {{section_list.list_address}}@uw.edu</label>
                     </div>
                     {{else}}
                     <div class="mailman_simple_create">

@@ -76,6 +76,31 @@ def get_single_section_list(section):
                                   section.term.year)
 
 
+def get_joint_course_list(curriculum_abbr, course_number, section_id,
+                           quarter, year):
+    exists = exists_course_list(curriculum_abbr, course_number,
+                                section_id, quarter, year, True)
+
+    data = get_list_json(
+        exists, get_course_list_name(curriculum_abbr, course_number,
+                                     section_id, quarter, year, True))
+    data["section_id"] = section_id
+    data["section_label"] = get_section_label(
+        curriculum_abbr, course_number, section_id, quarter, year)
+    return data
+
+
+def get_joint_section_list(section):
+    """
+    @return json of the joint section email list info
+    """
+    return get_joint_course_list(section.curriculum_abbr,
+                                  section.course_number,
+                                  section.section_id,
+                                  section.term.quarter,
+                                  section.term.year)
+
+
 def get_section_id(url):
     return re.sub(section_id_ext_pattern, r'\1',
                   url, flags=re.IGNORECASE)
@@ -143,6 +168,7 @@ def get_section_email_lists(section,
         joint_sections = get_joint_sections(section)
         json_data['joint_sections'] = []
         json_data['has_joint'] = True
+        json_data["joint_section_list"] = get_joint_section_list(section)
         for joint_section in joint_sections:
             joint_course = {"course_abbr": joint_section.curriculum_abbr,
                             "course_number": joint_section.course_number,
