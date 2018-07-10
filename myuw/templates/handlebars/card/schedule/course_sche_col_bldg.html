@@ -1,5 +1,5 @@
 {% verbatim %}
-<td class="course-location" {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>
+<td class="course-location" {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>
     {{#if latitude}}
        <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps" title="Map {{building_name}}">{{/if}}{{building}}{{#if latitude}}</a>
     {{/if}}

@@ -1,6 +1,6 @@
 {% verbatim %}
     {{#if start_time}}
-        <td class="course-days" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>
+        <td class="course-days" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>
             {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
             meeting_days.tuesday}}<abbr title="Tuesday">T</abbr>{{/if}}{{#if
             meeting_days.wednesday}}<abbr title="Wednesday">W</abbr>{{/if}}{{#if
@@ -9,6 +9,6 @@
             meeting_days.saturday}}<abbr title="Saturday">Sa</abbr>{{/if}}{{#if
             meeting_days.sunday}}<abbr title="Sunday">Su</abbr>{{/if}}
         </td>
-        <td class="course-time" {{#if eos_start_date}}headers="time-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}</td>
+        <td class="course-time" {{#if eos_start_date}}headers="time-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}</td>
     {{/if}}
 {% endverbatim %}

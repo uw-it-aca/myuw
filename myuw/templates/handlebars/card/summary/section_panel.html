@@ -46,25 +46,25 @@
 
                                 {{#if eos_start_date}}
                                 <!-- Insert spanning header row, restart new TR -->
-                                        <th id="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}" colspan="4" scope="colgroup" class="meeting-dates">{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}</th>
+                                        <th id="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}" colspan="4" scope="colgroup" class="meeting-dates">{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}</th>
                                     </tr>
                                     <tr class="course-schedule-row">
                                 {{/if}}
 
 
                                 {{#if wont_meet}}
-                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>Class does not meet</td>
+                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Class does not meet</td>
                                 {{else if days_tbd }}
-                                    <td colspan="2" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>Days and times to be arranged</td>
+                                    <td colspan="2" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Days and times to be arranged</td>
                                 {{else if no_meeting}}
-                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}}>No classroom meeting: online learning</td>
+                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>No classroom meeting: online learning</td>
                                 {{else}}
                                     {% include "handlebars/card/schedule/course_sche_col_days.html" %}
                                 {{/if}}
 
                                 {{#unless no_meeting}}
                                     {{#if building_tbd}}
-                                        <td {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-{{eos_start_date}}{{#unless start_end_same}}-{{eos_end_date}}{{/unless}}"{{/if}} class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
+                                        <td {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}} class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
                                     {{else}}
                                         {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
                                     {{/if}}
