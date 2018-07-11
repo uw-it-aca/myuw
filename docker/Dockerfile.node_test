@@ -1,0 +1,5 @@
+FROM node:10.5.0
+WORKDIR /usr/src/app
+ADD package.json ./
+RUN npm install
+
