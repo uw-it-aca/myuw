@@ -48,7 +48,7 @@ setup(
         'UW-RestClients-UWNetID>=0.8,<1.0',
         'UW-RestClients-Grad<2.0,>=1.0',
         'UW-RestClients-Bookstore>=0.5.2',
-        'UW-RestClients-Mailman>0.2<1.0',
+        'UW-RestClients-Mailman>=0.2.1<1.0',
         'UW-RestClients-MyPlan<1.0',
         'UW-RestClients-Trumba<1.0,>=0.3',
         'UW-RestClients-CoDa',
