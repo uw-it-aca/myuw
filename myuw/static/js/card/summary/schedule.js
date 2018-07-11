@@ -96,7 +96,7 @@ var SummaryScheduleCard = {
                 case "B-term":
                     b_term.push(instructed_course_data.sections[i]);
                     break;
-                case "Full-term":
+                default:
                     full_term.push(instructed_course_data.sections[i]);
                     break;
             }
