@@ -62,26 +62,26 @@ class Emaillist(ProtectedAPI):
     def post(self, request, *args, **kwargs):
         timer = Timer()
         try:
-            single_section_labels = get_input(request)
-            if len(single_section_labels) == 0:
+            section_labels = get_input(request)
+            if len(section_labels) == 0:
                 resp = {"none_selected": True}
             else:
 
                 if is_action_disabled():
                     raise DisabledAction(
                         "Request emaillist w. Overriding for %s" %
-                        single_section_labels)
+                        section_labels)
 
-                if not validate_is_instructor(request, single_section_labels):
+                if not validate_is_instructor(request, section_labels):
                     raise NotInstructorError(
                         "Not an instructor when requesting emaillist for %s" %
-                        single_section_labels)
+                        section_labels)
 
-                resp = request_mailman_lists(request, single_section_labels)
+                resp = request_mailman_lists(request, section_labels)
 
             log_msg_with_request(logger, timer, request,
                                  "Request emaillist for %s ==> %s" % (
-                                     single_section_labels, resp))
+                                     section_labels, resp))
 
             return self.json_response(resp)
         except Exception as ex:
@@ -89,23 +89,25 @@ class Emaillist(ProtectedAPI):
 
 
 def get_input(request):
-    single_section_labels = []
+    section_labels = []
     for key in request.POST:
-        if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key):
+        if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key) or \
+                re.match(r'^[a-z]+_joint_[A-Z][A-Z0-9]?$', key):
             section_label = request.POST[key]
 
-            if section_id_matched(key, section_label) and\
+            if section_id_matched(key, section_label) and \
                     is_valid_section_label(section_label):
-                single_section_labels.append(request.POST[key])
+                section_labels.append(request.POST[key])
                 continue
 
             logger.error("Invalid section label (%s) in the form input",
                          section_label)
             raise InvalidInputFormData
-    return single_section_labels
+    return section_labels
 
 
 SINGLE_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_single_([A-Z][A-Z0-9]?)$'
+JOINT_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_joint_([A-Z][A-Z0-9]?)$'
 
 
 def section_id_matched(key, value):
@@ -113,10 +115,16 @@ def section_id_matched(key, value):
     key and value Strings
     """
     try:
-        section_id = re.sub(SINGLE_SECTION_SELECTION_KEY_PATTERN,
-                            r'\1',
-                            key,
-                            flags=re.IGNORECASE)
+        (section_id, sub_count) = re.subn(SINGLE_SECTION_SELECTION_KEY_PATTERN,
+                                          r'\1',
+                                          key,
+                                          flags=re.IGNORECASE)
+        if sub_count == 0:
+            section_id = re.sub(JOINT_SECTION_SELECTION_KEY_PATTERN,
+                                r'\1',
+                                key,
+                                flags=re.IGNORECASE)
+            print section_id
         section_label_pattern = (r"^\d{4},[a-z]+,[ &A-Z]+,\d+/" +
                                  section_id + "$")
         return re.match(section_label_pattern, value,
