@@ -106,7 +106,7 @@ def get_email_forwarding_for_current_user(request):
     return get_subscriptions(request).get(uforwarding_id)
 
 
-def  get_subscriptions(request):
+def get_subscriptions(request):
     if hasattr(request, "myuwnetid_subscriptions"):
         return request.myuwnetid_subscriptions
 

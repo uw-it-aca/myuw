@@ -77,7 +77,7 @@ def get_single_section_list(section):
 
 
 def get_joint_course_list(curriculum_abbr, course_number, section_id,
-                           quarter, year):
+                          quarter, year):
     exists = exists_course_list(curriculum_abbr, course_number,
                                 section_id, quarter, year, True)
 
@@ -95,10 +95,10 @@ def get_joint_section_list(section):
     @return json of the joint section email list info
     """
     return get_joint_course_list(section.curriculum_abbr,
-                                  section.course_number,
-                                  section.section_id,
-                                  section.term.quarter,
-                                  section.term.year)
+                                 section.course_number,
+                                 section.section_id,
+                                 section.term.quarter,
+                                 section.term.year)
 
 
 def get_section_id(url):
