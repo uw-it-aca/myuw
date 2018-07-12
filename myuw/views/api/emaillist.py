@@ -124,7 +124,6 @@ def section_id_matched(key, value):
                                 r'\1',
                                 key,
                                 flags=re.IGNORECASE)
-            print section_id
         section_label_pattern = (r"^\d{4},[a-z]+,[ &A-Z]+,\d+/" +
                                  section_id + "$")
         return re.match(section_label_pattern, value,
