@@ -97,16 +97,10 @@ var VisualScheduleCard = {
                 section.has_eos_dates = false;
                 $.each(section.meetings, function(){
                     var meeting = this;
-
-                    if(meeting.eos_start_date) {
-                        if(!section.has_eos_dates) {
-                            section.has_eos_dates = true;
-                        }
+                    if (meeting.eos_start_date && !section.has_eos_dates) {
+                        section.has_eos_dates = true;
                     }
-                    meeting.start_end_same = false;
-                    if(meeting.eos_start_date === meeting.eos_end_date) {
-                        meeting.start_end_same = true;
-                    }
+                    meeting.start_end_same = (meeting.eos_start_date === meeting.eos_end_date);
 
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
                     var seen = false;
@@ -185,19 +179,9 @@ var VisualScheduleCard = {
                 });
 
                 if(section.has_eos_dates) {
-                    // sort the meeting by eos_start_date
-                    section.meetings.sort(function(m1, m2) {
-                        var date1 = moment(m1.eos_start_date);
-                        var date2 = moment(m2.eos_start_date);
-                        if(date1 < date2) {
-                            return -1;
-                        }
-                        if(date1 > date2) {
-                            return 1;
-                        }
-                        return 0;
-                    });
+                    section.meetings = sort_meetings_by_start_date(section.meetings);
                     visual_data.eos_sections.push(section);
+
                     if(!visual_data.has_eos_dates) {
                         visual_data.has_eos_dates = true;
                     }
