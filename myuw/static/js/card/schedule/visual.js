@@ -179,7 +179,7 @@ var VisualScheduleCard = {
                 });
 
                 if(section.has_eos_dates) {
-                    section.meetings = sort_meetings_by_start_date(section.meetings);
+                    sort_meetings_by_start_date(section.meetings);
                     visual_data.eos_sections.push(section);
 
                     if(!visual_data.has_eos_dates) {

@@ -210,8 +210,8 @@ var capitalizeString = function(string) {
 };
 
 var sort_meetings_by_start_date = function (section_meetings) {
-    // sort the meeting by eos_start_date
-    return section_meetings.sort(function(m1, m2) {
+    // sort the section meeting by eos_start_date
+    section_meetings.sort(function(m1, m2) {
         var date1 = moment(m1.eos_start_date);
         var date2 = moment(m2.eos_start_date);
         if(date1 < date2) {
