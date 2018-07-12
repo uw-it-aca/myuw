@@ -209,6 +209,21 @@ var capitalizeString = function(string) {
                           });
 };
 
+var sort_meetings_by_start_date = function (section_meetings) {
+    // sort the section meeting by eos_start_date
+    section_meetings.sort(function(m1, m2) {
+        var date1 = moment(m1.eos_start_date);
+        var date2 = moment(m2.eos_start_date);
+        if(date1 < date2) {
+            return -1;
+        }
+        if(date1 > date2) {
+            return 1;
+        }
+        return 0;
+    });
+};
+
 var init_modal_events = function () {
     Modal.add_events();
 };
@@ -393,3 +408,4 @@ exports.renderedCardOnce = renderedCardOnce;
 exports.resetCardRenderCalled = resetCardRenderCalled;
 exports.safe_label = safe_label;
 exports.titilizeTerm = titilizeTerm;
+exports.sort_meetings_by_start_date = sort_meetings_by_start_date;

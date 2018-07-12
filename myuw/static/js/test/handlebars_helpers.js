@@ -1,7 +1,7 @@
 Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
 moment = require("../../vendor/js/moment.2.18.1.min.js");
 require("datejs");
-require("../visual_schedule.js");
+require("../card/schedule/visual.js");
 require("../handlebars-helpers.js");
 
 

@@ -190,6 +190,8 @@ class TestInstructorSection(MyuwApiTest):
         resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
         self.assertEqual(len(data['sections']), 5)
+        self.assertTrue(data["has_eos_dates"])
+
         section1 = data['sections'][0]
         self.assertEqual(section1['section_label'], "2013_spring_AAES_150_A")
         self.assertTrue(section1['cc_display_dates'])
@@ -199,12 +201,23 @@ class TestInstructorSection(MyuwApiTest):
 
         section2 = data['sections'][1]
         self.assertTrue(section2['evaluation']["eval_not_exist"])
+        section3 = data['sections'][2]
+        self.assertEqual(section3["section_type"], 'CLS')
+        self.assertTrue(section3["has_eos_dates"])
+        self.assertFalse(section3["meetings"][0]["start_end_same"])
+        self.assertTrue(section3["meetings"][2]["start_end_same"])
+        self.assertEqual(section3['meetings'][0]['eos_start_date'],
+                         '2013-04-03')
+        self.assertEqual(section3['meetings'][1]['eos_start_date'],
+                         '2013-05-11')
+        self.assertEqual(section3['meetings'][2]['eos_start_date'],
+                         '2013-05-29')
 
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
         resp = InstScheCurQuar().get(request)
         data = json.loads(resp.content)
-        self.assertEqual(len(data['sections']), 1)
+        self.assertEqual(len(data['sections']), 2)
         self.assertEqual(data['sections'][0]['current_enrollment'], 1)
         self.assertEqual(data['sections'][0]['enrollment_student_name'],
                          "Student1, Jake Average")

@@ -43,7 +43,7 @@ class TestInstructorSchedule(TestCase):
                                         get_request_with_date("2013-10-01"))
         term = get_current_quarter(request)
         schedule = get_instructor_schedule_by_term(request, term)
-        self.assertEqual(len(schedule.sections), 1)
+        self.assertEqual(len(schedule.sections), 2)
         self.assertEqual(schedule.sections[0].current_enrollment, 3)
 
         # unpublished term
