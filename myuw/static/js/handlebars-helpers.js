@@ -252,7 +252,7 @@ Handlebars.registerHelper("formatPrice", function(price) {
 
 Handlebars.registerHelper('format_schedule_hour', function(hour, position) {
     if (parseInt(hour, 10) === 12) {
-        VisualSchedule.shown_am_marker = true;
+        VisualScheduleCard.shown_am_marker = true;
         return hour + "p";
     }
     else if (hour > 12) {
@@ -282,12 +282,12 @@ Handlebars.registerHelper("formatDateAsFinalsDay", function(date_str, days_back)
 
 
 Handlebars.registerHelper('time_percentage', function(time, start, end) {
-    return VisualSchedule.get_scaled_percentage(time, start, end);
+    return VisualScheduleCard.get_scaled_percentage(time, start, end);
 });
 
 Handlebars.registerHelper('time_percentage_height', function(start, end, min, max) {
-    var top = VisualSchedule.get_scaled_percentage(start, min, max);
-    var bottom = VisualSchedule.get_scaled_percentage(end, min, max);
+    var top = VisualScheduleCard.get_scaled_percentage(start, min, max);
+    var bottom = VisualScheduleCard.get_scaled_percentage(end, min, max);
 
     return bottom-top;
 });
@@ -297,25 +297,25 @@ Handlebars.registerHelper('to_percent', function(decimal){
 });
 
 Handlebars.registerHelper('show_days_meetings', function(list, start_time, end_time) {
-    if (!VisualSchedule.day_template) {
+    if (!VisualScheduleCard.day_template) {
         var day_source = $("#visual_schedule_day").html();
         var _day_template = Handlebars.compile(day_source);
 
-        VisualSchedule.day_template = _day_template;
+        VisualScheduleCard.day_template = _day_template;
     }
 
-    return new Handlebars.SafeString(VisualSchedule.day_template({ meetings: list, start_time: start_time, end_time: end_time }));
+    return new Handlebars.SafeString(VisualScheduleCard.day_template({ meetings: list, start_time: start_time, end_time: end_time }));
 });
 
 Handlebars.registerHelper('show_days_finals', function(list, start_time, end_time, term) {
-    if (!VisualSchedule.day_template) {
+    if (!VisualScheduleCard.day_template) {
         var day_source = $("#finals_schedule_day").html();
         var _day_template = Handlebars.compile(day_source);
 
-        VisualSchedule.day_template = _day_template;
+        VisualScheduleCard.day_template = _day_template;
     }
 
-    return new Handlebars.SafeString(VisualSchedule.day_template({ meetings: list, start_time: start_time, end_time: end_time, term: term }));
+    return new Handlebars.SafeString(VisualScheduleCard.day_template({ meetings: list, start_time: start_time, end_time: end_time, term: term }));
 });
 
 Handlebars.registerHelper('show_card_days_meetings', function(list, start_time, end_time) {

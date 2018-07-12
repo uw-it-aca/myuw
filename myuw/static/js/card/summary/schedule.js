@@ -48,8 +48,8 @@ var SummaryScheduleCard = {
     },
 
     _render_with_context: function (context){
-        Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
         Handlebars.registerPartial('summary_section', $("#summary_section").html());
+        Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
 
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
@@ -74,6 +74,7 @@ var SummaryScheduleCard = {
             quarter: instructed_course_data.quarter,
             year: instructed_course_data.year,
             future_term: instructed_course_data.future_term,
+            has_eos_dates: instructed_course_data.has_eos_dates,
             sections: instructed_course_data.sections,
             section_count: instructed_course_data.sections.length,
             is_summer: is_summer
@@ -95,7 +96,7 @@ var SummaryScheduleCard = {
                 case "B-term":
                     b_term.push(instructed_course_data.sections[i]);
                     break;
-                case "Full-term":
+                default:
                     full_term.push(instructed_course_data.sections[i]);
                     break;
             }

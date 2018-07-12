@@ -71,6 +71,8 @@
                 "Text": "..W...S"
             },
             "DaysOfWeekToBeArranged": false,
+            "EOS_EndDate": "2013-06-12",
+            "EOS_StartDate": "2013-04-03",
             "EndTime": "21:00:00",
             "Instructors": [
                 {
@@ -104,6 +106,43 @@
                 "Text": "......."
             },
             "DaysOfWeekToBeArranged": false,
+            "EOS_EndDate": "2013-05-29",
+            "EOS_StartDate": "2013-05-29",
+            "EndTime": "",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "1",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/2017,spring,BIGDATA,230,A,10000000000000000000000000000011"
+                    },
+                    "PercentInvolve": "",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": null,
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": false
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "NON",
+            "RoomNumber": "",
+            "RoomToBeArranged": false,
+            "StartTime": ""
+        },
+        {
+            "Building": "",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [],
+                "Text": "......."
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EOS_EndDate": "2013-05-15",
+            "EOS_StartDate": "2013-05-11",
             "EndTime": "",
             "Instructors": [
                 {
