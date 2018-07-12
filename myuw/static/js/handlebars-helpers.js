@@ -154,9 +154,11 @@ Handlebars.registerHelper("titleFormatTerm", function(term) {
 
 // Google maps gets very confused by some characters in map urls
 Handlebars.registerHelper("encodeForMaps", function(str) {
-    str = str.replace(/ \(/g, " - ");
-    str = str.replace(/[\)&]/g, "");
-    str = encodeURIComponent(str);
+    if (str) {
+        str = str.replace(/ \(/g, " - ");
+        str = str.replace(/[\)&]/g, "");
+        str = encodeURIComponent(str);
+    }
     return str;
 });
 
