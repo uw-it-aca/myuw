@@ -79,7 +79,6 @@ def page(request,
                 c_user['email_forward_url'] = get_service_url_for_address(
                     my_uwemail_forwarding.fwd)
             except EmailServiceUrlException:
-                c_user['email_error'] = True
                 c_user['login_url'] = None
                 c_user['title'] = None
                 c_user['icon'] = None
@@ -87,6 +86,8 @@ def page(request,
                     my_uwemail_forwarding.fwd))
 
     except Exception:
+        c_user = context["user"]
+        c_user['email_error'] = True
         log_exception(logger,
                       'get_email_forwarding_for_current_user',
                       traceback.format_exc())
