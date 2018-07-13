@@ -102,13 +102,12 @@ var EventsCard = {
     },
 
     add_events: function() {
-        $(".toggle_event_card_resources").on("click", function(ev) {
+        $("#toggle_event_card_resources").on("click", function(ev) {
             ev.preventDefault();
             var card = $(ev.target).closest("[data-type='card']");
             var div = $("#events_card_more");
-            var expose = $("#show_event_resources_wrapper");
-            var hide = $("#hide_event_resources_wrapper");
-            toggle_card_disclosure(card, div, expose, hide, "");
+            var toggle = $("#toggle_event_card_resources");
+            toggle_card_disclosure(card, div, toggle, "");
         });
     },
 

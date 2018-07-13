@@ -82,11 +82,16 @@ def load_schedule(request, schedule, summer_term=""):
 
     section_index = 0
     course_url_threads = []
+    json_data["has_eos_dates"] = False
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         section_index += 1
 
         section_data["color_id"] = section.color_id
+
+        if not section_data["section_type"]:
+            if len(section.meetings) > 0:
+                section_data["section_type"] = section.meetings[0].meeting_type
 
         if section.is_early_fall_start():
             section_data["cc_display_dates"] = True
@@ -134,12 +139,21 @@ def load_schedule(request, schedule, summer_term=""):
                 section_data["final_exam"]["building_name"] = building.name
 
         # Also backfill the meeting building data
+        section_data["has_eos_dates"] = False
         meeting_index = 0
         for meeting in section.meetings:
+            mdata = section_data["meetings"][meeting_index]
+
+            if meeting.eos_start_date is not None:
+                if not section_data["has_eos_dates"]:
+                    section_data["has_eos_dates"] = True
+
+                mdata["start_end_same"] = False
+                if mdata["eos_start_date"] == mdata["eos_end_date"]:
+                    mdata["start_end_same"] = True
             try:
-                mdata = section_data["meetings"][meeting_index]
-                if not mdata["building_tbd"]:
-                    building = buildings[mdata["building"]]
+                if not mdata["building_tbd"] and len(mdata["building"]):
+                    building = buildings.get(mdata["building"])
                     if building is not None:
                         mdata["latitude"] = building.latitude
                         mdata["longitude"] = building.longitude
@@ -156,6 +170,11 @@ def load_schedule(request, schedule, summer_term=""):
                 meeting_index += 1
             except IndexError as ex:
                 pass
+        if section_data["has_eos_dates"]:
+            if not json_data["has_eos_dates"]:
+                json_data["has_eos_dates"] = True
+            section_data["meetings"] = sort_pce_section_meetings(
+                section_data["meetings"])
 
     for t in course_url_threads:
         t.join()
@@ -184,3 +203,18 @@ def irregular_start_end(term, pce_course_data, summer_term):
                 term.last_final_exam_date != pce_course_data.end_date)
     return (term.first_day_quarter != pce_course_data.start_date or
             term.last_final_exam_date != pce_course_data.end_date)
+
+
+def sort_pce_section_meetings(section_meetings_json_data):
+    """
+    Sort meeting by eos_start_date
+    """
+    ret_list = sorted(section_meetings_json_data,
+                      key=itemgetter('eos_start_date'))
+    # add section index
+    index = 0
+    for meeting in ret_list:
+        meeting["index"] = index
+        index = index + 1
+
+    return ret_list

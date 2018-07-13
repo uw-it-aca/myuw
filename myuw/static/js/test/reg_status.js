@@ -34,10 +34,10 @@ describe('RegStatusCard', function(){
 
 
             Global.Environment.ajax_stub({
-                '/api/v1/oquarters/': 'api/v1/oquarters/2013,spring/javerage,2013-04-15-00:00:01,no-reg.json',
+                '/api/v1/oquarters/': 'api/v1/oquarters/2013,spring/javerage,2013-04-15-00-00-01,no-reg.json',
                 '/api/v1/notices/': 'api/v1/notices/index.json',
                 '/api/v1/profile/': 'api/v1/profile/javerage.json',
-                '/api/v1/myplan/2013/Autumn': 'api/v1/myplan/2013/Autumn/javerage,2013-04-15-00:00:01.json',
+                '/api/v1/myplan/2013/Autumn': 'api/v1/myplan/2013/Autumn/javerage,2013-04-15-00-00-01.json',
             });
 
             $(window).on("myuw:card_load", function () {

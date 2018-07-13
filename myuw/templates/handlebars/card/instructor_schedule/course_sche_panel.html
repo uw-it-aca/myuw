@@ -23,42 +23,45 @@
                 <table class="table-course-schedule">
                     <thead class="sr-only">
                         <tr>
-                            <th>Day(s)</th>
-                            <th>Time</th>
-                            <th>Location</th>
-                            <th>Meeting Type</th>
+                            {{#if has_eos_dates}}
+                                <th>Date(s)</th>
+                            {{/if}}
+                            <th {{#if has_eos_dates}}id="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Day(s)</th>
+                            <th {{#if has_eos_dates}}id="time-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Time</th>
+                            <th {{#if has_eos_dates}}id="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Location</th>
+                            <th {{#if has_eos_dates}}id="meeting-type-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Meeting Type</th>
                         </tr>
                     </thead>
                     <tbody class="tbody-course-schedule">
                         {{#each meetings}}
                         <tr class="course-schedule-row">
-                            {{#if wont_meet}}
-                                <!-- waiting on sws
-                                <td colspan="2" class="text-muted course-tbd">No meeting day on ... </td>
-                                -->
-                            {{else}}
-                                {{#if days_tbd}}
-                                    <td colspan="2" class="course-tbd">Days and times to be arranged.</td>
-                                    {{else if no_meeting}}
-                                    <td colspan="3" class="course-tbd">No classroom meeting: online learning</td>
-                                    {{else}}
-                                    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
-                                {{/if}}
-
-                                {{#unless no_meeting}}
-                                    {{#if building_tbd}}
-                                        <td class="text-muted course-loc-tbd" colspan="2">Room to be arranged.</td>
-                                        {{else}}
-                                        {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
-                                    {{/if}}
-                                {{/unless}}
-
-                                <td class="course-meeting">
-                                    {{#if display_type}}
-                                        <span class="myuw-course-meeting-type c{{../color_id}}Color">{{shorten_meeting_type type}}</span>
-                                    {{/if}}
-                                </td>
+                            {{#if ../has_eos_dates}}
+                                <th class="meeting-dates" id="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}">{{#if eos_start_date}}<span class="text-nowrap">{{toMonthDay eos_start_date}}{{#if start_end_same}}</span>{{ else }} &ndash;</span> <span class="text-nowrap">{{toMonthDay eos_end_date}}</span>{{/if}}{{/if}}</th>
                             {{/if}}
+
+                            {{#if wont_meet}}
+                                <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Class does not meet</td>
+                            {{else if days_tbd}}
+                                <td colspan="2" class="course-tbd" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Days and times to be arranged</td>
+                            {{else if no_meeting}}
+                                <td colspan="3" class="course-tbd" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>No classroom meeting: online learning</td>
+                            {{else}}
+                                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                            {{/if}}
+
+                            {{#unless no_meeting}}
+                                {{#if building_tbd}}
+                                    <td class="text-muted course-loc-tbd" {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Room to be arranged</td>
+                                {{else}}
+                                    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                {{/if}}
+                            {{/unless}}
+
+                            <td class="course-meeting" {{#if eos_start_date}}headers="meeting-type-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>
+                                {{#if display_type}}
+                                    <span class="myuw-course-meeting-type c{{../color_id}}Color">{{shorten_meeting_type type}}</span>
+                                {{/if}}
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>

@@ -28,6 +28,9 @@
                             <tr>
                                 <th>Section</th>
                                 <th>Section Type</th>
+                                {{#if @root.has_eos_dates}}
+                                    <th>Date(s)</th>
+                                {{/if}}
                                 <th>Day(s)</th>
                                 <th>Time</th>
                                 <th>Location</th>
@@ -37,7 +40,7 @@
 
                             <tbody class="tbody-course-schedule">
                             {{#each linked_secondaries}}
-                            {{> summary_section_panel }}
+                                {{> summary_section_panel }}
                             {{/each}}
                             </tbody>
                         </table>
