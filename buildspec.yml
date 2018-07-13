@@ -3,9 +3,13 @@ version: 0.2
 phases:
   install:
     commands:
+      - mkdir myuw_env
+      - cp -R . /tmp/myuw_env
+      - cp -R /tmp/myuw_env ./myuw_env
+      - rm -rf myuw_env/myuw_env
       - pip install virtualenv
-      - virtualenv myuw
-      - cd myuw
+      - virtualenv myuw_env
+      - cd myuw_env
       - . bin/activate
       - pip install -r requirements.txt
       - pip install coverage
