@@ -38,6 +38,14 @@
             "Quarter": "summer",
             "SectionID": "C",
             "Year": 2013
+        },
+        {
+            "Href":"/student/v5/course/2013,summer,EDIT,120/C.json",
+            "CourseNumber":"120",
+            "CurriculumAbbreviation":"EDIT",
+            "Quarter":"summer",
+            "SectionID":"C",
+            "Year":2013
         }
     ],
     "TotalCount": 2

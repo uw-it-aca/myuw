@@ -110,13 +110,12 @@ var GradeCard = {
     },
 
     add_events: function(term) {
-        $(".toggle_grade_card_resources").on("click", function(ev) {
+        $("#toggle_grade_card_resources").on("click", function(ev) {
             ev.preventDefault();
             var card = $(ev.target).closest("[data-type='card']");
             var div = $("#grade_card_resources");
-            var expose = $("#show_grade_resources_wrapper");
-            var hide = $("#hide_grade_resources_wrapper");
-            toggle_card_disclosure(card, div, expose, hide, "");
+            var expose = $("#toggle_grade_card_resources");
+            toggle_card_disclosure(card, div, expose, "");
         });
     },
 };

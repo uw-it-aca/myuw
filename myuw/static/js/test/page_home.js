@@ -9,7 +9,6 @@ describe("HomePage", function() {
                 "myuw/static/js/banner/notice.js",
                 "myuw/static/js/textbooks.js",
                 "myuw/static/js/notices.js",
-                "myuw/static/js/visual_schedule.js",
                 "myuw/static/js/resources.js",
                 "myuw/static/js/cards.js",
                 "myuw/static/js/card/resources.js",

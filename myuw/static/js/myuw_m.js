@@ -209,6 +209,21 @@ var capitalizeString = function(string) {
                           });
 };
 
+var sort_meetings_by_start_date = function (section_meetings) {
+    // sort the section meeting by eos_start_date
+    section_meetings.sort(function(m1, m2) {
+        var date1 = moment(m1.eos_start_date);
+        var date2 = moment(m2.eos_start_date);
+        if(date1 < date2) {
+            return -1;
+        }
+        if(date1 > date2) {
+            return 1;
+        }
+        return 0;
+    });
+};
+
 var init_modal_events = function () {
     Modal.add_events();
 };
@@ -224,42 +239,48 @@ var resetCardRenderCalled = function() {
     OutageCard.reset();
 };
 
-var toggle_card_disclosure = function(card, div_toggled, a_expose, a_hide, label) {
+var toggle_card_disclosure = function(card, div_toggled, a_expose, label) {
     var log_label = label==="" ? "" : " " + label;
-    div_toggled.toggleClass("slide-show");
-    div_toggled.toggleClass("slide-hide");
-    div_toggled.css("display",
-                    div_toggled.css("display") === 'none' ? '' : 'none');
 
-    if (div_toggled.hasClass("slide-show")) {
-        window.setTimeout(function() {
-            div_toggled.show();
-            a_expose.attr("hidden", true);
-            a_expose.attr("aria-hidden", true);
-            a_hide.attr("hidden", false);
-            a_hide.attr("aria-hidden", false);
-            div_toggled.attr("aria-expanded", true);
-            div_toggled.attr("aria-hidden", false);
-            div_toggled.attr("hidden", false);
-            div_toggled.attr("tabindex", "0");
-            div_toggled.focus();
-        }, 0);
+    // fires when element has been made visible.
+    div_toggled.on('shown.bs.collapse', function() {
+
+        // toggle text and attributes of toggle element
+        if (a_expose.attr("data-expanded-title") !== undefined) {
+            a_expose.attr("title", a_expose.attr("data-expanded-title"));
+        }
+        if (a_expose.attr("data-expanded-label") !== undefined) {
+            a_expose.attr("aria-label", a_expose.attr("data-expanded-label"));
+        }
+        if (a_expose.attr("data-expanded-text") !== undefined) {
+            a_expose.text( a_expose.attr("data-expanded-text"));
+        }
+
+        div_toggled.attr("aria-hidden", "false");
+        div_toggled.attr("tabindex", "0");
+        div_toggled.focus();
         window.myuw_log.log_card(card, "expand"+log_label);
-    }
-    else {
-        window.setTimeout(function() {
-            div_toggled.hide();
-            a_expose.attr("hidden", false);
-            a_expose.attr("aria-hidden", false);
-            a_hide.attr("hidden", true);
-            a_hide.attr("aria-hidden", true);
-            div_toggled.attr("aria-expanded", false);
-            div_toggled.attr("aria-hidden", true);
-            div_toggled.attr("tabindex", "-1");
-            div_toggled.attr("hidden", true);
-        }, 700);
+    });
+
+    // fires when element has been hidden
+    div_toggled.on('hidden.bs.collapse', function() {
+
+        // toggle text and attributes of toggle element
+        if (a_expose.attr("data-hidden-title") !== undefined){
+            a_expose.attr("title", a_expose.attr("data-hidden-title"));
+        }
+        if (a_expose.attr("data-hidden-label") !== undefined){
+            a_expose.attr("aria-label", a_expose.attr("data-hidden-label"));
+        }
+        if (a_expose.attr("data-hidden-text") !== undefined){
+            a_expose.text( a_expose.attr("data-hidden-text" ));
+        }
+        div_toggled.attr("aria-hidden", "true");
+        div_toggled.attr("tabindex", "-1");
+//        div_toggled.attr("hidden", true);
+        a_expose.focus();
         window.myuw_log.log_card(card, "collapse"+log_label);
-    }
+    });
 };
 
 var register_link_recorder = function() {
@@ -387,3 +408,4 @@ exports.renderedCardOnce = renderedCardOnce;
 exports.resetCardRenderCalled = resetCardRenderCalled;
 exports.safe_label = safe_label;
 exports.titilizeTerm = titilizeTerm;
+exports.sort_meetings_by_start_date = sort_meetings_by_start_date;

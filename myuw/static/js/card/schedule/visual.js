@@ -5,6 +5,8 @@ var VisualScheduleCard = {
     ck_student_schedule: false,
     ck_instructor_schedule: false,
     day_label_offset: 0,
+    shown_am_marker: false,
+    day_template: false,
 
     should_hide: function() {
         if (window.user.student || window.user.instructor) {
@@ -62,6 +64,8 @@ var VisualScheduleCard = {
             //                       (instructed_course_data &&
             //                        instructed_course_data.has_early_fall_start)),
             is_pce: window.user.pce,
+            has_eos_dates: false,
+            eos_sections: [],
             total_sections: course_data.sections.length,
             quarter: term.quarter,
             year: term.year,
@@ -90,8 +94,14 @@ var VisualScheduleCard = {
         var set_meeting = function(course_data) {
             $.each(course_data.sections, function(section_index) {
                 var section = this;
+                section.has_eos_dates = false;
                 $.each(section.meetings, function(){
                     var meeting = this;
+                    if (meeting.eos_start_date && !section.has_eos_dates) {
+                        section.has_eos_dates = true;
+                    }
+                    meeting.start_end_same = (meeting.eos_start_date === meeting.eos_end_date);
+
                     var has_meetings = VisualScheduleCard._meeting_has_meetings(meeting);
                     var seen = false;
                     if (!meeting.days_tbd && has_meetings && meeting.start_time) {
@@ -167,7 +177,18 @@ var VisualScheduleCard = {
                         }
                     }
                 });
+
+                if(section.has_eos_dates) {
+                    sort_meetings_by_start_date(section.meetings);
+                    visual_data.eos_sections.push(section);
+
+                    if(!visual_data.has_eos_dates) {
+                        visual_data.has_eos_dates = true;
+                    }
+                }
+
             });
+
         };
         var day, day_index, i, height, top;
 
