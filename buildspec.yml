@@ -8,6 +8,7 @@ phases:
       - virtualenv /tmp/myuw_env
       - cd /tmp/myuw_env
       - . bin/activate
+      - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
       - pip install -r requirements.txt
       - pip install coverage
       - pip install python-coveralls
@@ -18,4 +19,17 @@ phases:
       - python manage.py migrate
   build:
     commands:
+      - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
+  post_build:
+    commands:
+      - mkdir /tmp/output_dir/
+      - ARTIFACT_NAME=$(git rev-parse --abbrev-ref HEAD)_$(git rev-parse HEAD)
+      - tar czf /tmp/output_dir/$ARTIFACT_NAME.tar.gz /tmp/myuw_env
+      - ls -l
+      - pwd
+artifacts:
+  files:
+    - '*'
+  discard-paths: yes
+  base-directory: /tmp/output_dir/
