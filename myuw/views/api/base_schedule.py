@@ -152,8 +152,8 @@ def load_schedule(request, schedule, summer_term=""):
                 if mdata["eos_start_date"] == mdata["eos_end_date"]:
                     mdata["start_end_same"] = True
             try:
-                if not mdata["building_tbd"]:
-                    building = buildings[mdata["building"]]
+                if not mdata["building_tbd"] and len(mdata["building"]):
+                    building = buildings.get(mdata["building"])
                     if building is not None:
                         mdata["latitude"] = building.latitude
                         mdata["longitude"] = building.longitude
