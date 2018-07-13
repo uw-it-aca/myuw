@@ -3,6 +3,9 @@ version: 0.2
 phases:
   install:
     commands:
+      - virtualenv myuw
+      - cd myuw
+      - . bin/activate
       - pip install -r requirements.txt
       - pip install coverage
       - pip install python-coveralls
