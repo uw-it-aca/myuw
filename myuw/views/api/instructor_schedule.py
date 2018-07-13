@@ -335,8 +335,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                     mdata["start_end_same"] = True
 
             try:
-                if not mdata["building_tbd"]:
-                    building = buildings[mdata["building"]]
+                if not mdata["building_tbd"] and len(mdata["building"]):
+                    building = buildings.get(mdata["building"])
                     if building is not None:
                         mdata["latitude"] = building.latitude
                         mdata["longitude"] = building.longitude
