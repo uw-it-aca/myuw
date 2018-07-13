@@ -31,8 +31,6 @@
                     <ul>
                         <li>An email confirmation will be sent to {{ netid }}@uw.edu</li>
                         <li>Mailing lists may take up to 24 hours to activate</li>
-                        <li>Learn more: <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                              rel="help" target="_blank" data-linklabel="Mailman Help">Mailman help documentation</a></li>
                     </ul>
                 </div>
 
@@ -59,6 +57,9 @@
                                 <p class="help-block small">Mailing list address: {{section_list.list_address}}@uw.edu</p>
                             </div>
                         </fieldset>
+
+                        <div class="">Need more email lists for this class? <a class="mailman_advanced_toggle" href="#">Request multiple email lists.</a></div>
+
                     </div>
                     {{else}}
                     <div class="mailman_simple_create">
@@ -74,8 +75,6 @@
                             <ul>
                                 <li>Mailing list address: {{section_list.list_address}}@uw.edu</li>
                                 <li>Mailing list will stay synced with the official class list</li>
-                                <li>Learn more: <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                                      rel="help" target="_blank" data-linklabel="Mailman Help">Mailman help documentation</a></li>
                             </ul>
                             <input type="hidden" id="section_single_{{section_list.section_id}}"
                                    name="section_single_{{section_list.section_id}}" value="{{section_list.section_label}}"/>
@@ -185,6 +184,8 @@
             </div>
 
             <div class="modal-footer">
+                <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                      rel="help" target="_blank" data-linklabel="Mailman Help" style="margin-right: 1em;">Mailman help</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 {{#unless request_sent }}
                 <button type="submit" class="btn btn-primary" form="request_emaillist_form" value="Create Mailing Lists">Submit</button>
