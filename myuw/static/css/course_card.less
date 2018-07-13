@@ -95,14 +95,20 @@ c8a #473EC5;
 .table-course-schedule {
     border: 0;
 
+    th.meeting-dates {
+        padding: 0 16px 8px 0;
+        font-weight: normal;
+        vertical-align: top;
+    }
+
+
     td {
         padding: 0 8px 8px 0;
         vertical-align: top;
 
         &:last-child { padding-right: 0; }
-
         &.course-final-date { width: 7.5em; }
-        &.course-days { text-align:left; width: 7.5em; }
+        &.course-days { text-align:left; padding-right: 20px}
         &.course-section {
             .section-id {
                 font-weight: bold;
@@ -130,8 +136,9 @@ c8a #473EC5;
                 color: #777;
             }
         }
+        &.course-loc-tbd {  }
         &.course-enrollment {
-            width: 6em;
+        //    width: 6em;
             text-align: right;
 
             .course_class_list {
@@ -162,6 +169,12 @@ c8a #473EC5;
 /* Schedule on Homepage Teaching Schedule Summary */
 .table-course-schedule.summary-schedule {
     width: 100%;
+
+    th.meeting-dates {
+        font-weight: normal;
+        font-style: italic;
+        padding-bottom: 0;
+    }
     td {
         &.course-days { width: 4.5em; }
     }
