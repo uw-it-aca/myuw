@@ -1,3 +1,17 @@
+{"Current":{"Href":"\/student\/v5\/person.json?reg_id=&net_id=&student_number=&employee_id=&student_system_key=&verbose=&page_size=10&page_start=1",
+"EmployeeID":null,
+"HasDisability":null,
+"NetID":null,
+"PageSize":"10",
+"PageStart":"1",
+"RegID":"",
+"StudentNumber":null,
+"StudentSystemKey":null,
+"Verbose":false},
+"Next":null,
+"PageSize":"10",
+"PageStart":"1",
+"Persons":[
 {
     "BirthDate": "1993-12-10",
     "DirectoryRelease": null,
@@ -26,5 +40,6 @@
     "UWNetID": "billpce",
     "Veteran": null,
     "VisaType": null
-}
-
+}],
+"Previous":null,
+"TotalCount":1}

@@ -1,5 +1,4 @@
-from django.test import TestCase
-from django.conf import settings
+from django.test import TransactionTestCase
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request, get_request_with_user
@@ -7,7 +6,7 @@ from myuw.test import fdao_sws_override, fdao_pws_override,\
 
 @fdao_pws_override
 @fdao_sws_override
-class TestAffilliations(TestCase):
+class TestAffilliationDao(TransactionTestCase):
     def setUp(self):
         get_request()
 
@@ -92,10 +91,22 @@ class TestAffilliations(TestCase):
         self.assertFalse(affiliations.get('undergrad_c2'))
         self.assertTrue(affiliations.get('grad_c2'))
 
+    def test_is_visa(self):
         now_request = get_request_with_user('jpce')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('undergrad_c2'))
-        self.assertFalse(affiliations.get('grad_c2'))
+        self.assertTrue(affiliations.get('is_J1'))
+
+        now_request = get_request_with_user('jinter')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get('is_F1'))
+
+        now_request = get_request_with_user('botgrad')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get('is_J1'))
+
+        now_request = get_request_with_user('tacgrad')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get('is_F1'))
 
     def test_is_2fa_permitted(self):
         now_request = get_request_with_user('javerage')

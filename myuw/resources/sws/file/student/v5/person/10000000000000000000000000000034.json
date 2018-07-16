@@ -16,33 +16,33 @@
     "DirectoryRelease": null,
     "Email": null,
     "EmployeeID": "",
-    "FirstName": "BILL AVERAGE",
+    "FirstName": "ELLEN",
     "Gender": null,
     "LastEnrolled": null,
-    "LastName": "TEACHER",
+    "LastName": "Retired Staff",
     "LocalAddress": null,
     "LocalPhone": null,
     "Notices": {
-        "Href": "/student/v5/notice/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
-        "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+        "Href": "/student/v5/notice/10000000000000000000000000000034.json",
+        "RegID": "10000000000000000000000000000034"
     },
     "PermanentAddress": null,
     "PermanentPhone": null,
     "PersonFinancial": {
-        "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE/financial.json",
-        "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+        "Href": "/student/v5/person/10000000000000000000000000000034/financial.json",
+        "RegID": "10000000000000000000000000000034"
     },
-    "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE",
-    "RegisteredName": "BILL AVERAGE TEACHER",
+    "RegID": "10000000000000000000000000000034",
+    "RegisteredName": "Ellen Retired Staff",
     "Resident": null,
-    "StudentName": "BILL AVERAGE TEACHER",
-    "StudentNumber": null,
-    "StudentSystemKey": null,
+    "StudentName": "Ellen Retired Staff",
+    "StudentNumber": "1000034",
+    "StudentSystemKey": "000000034",
     "TestScore": {
-        "Href": "/student/v5/testscore/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
-        "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
+        "Href": "/student/v5/testscore/10000000000000000000000000000034.json",
+        "RegID": "10000000000000000000000000000034"
     },
-    "UWNetID": "bill",
+    "UWNetID": "retirestaff",
     "Veteran": null,
     "VisaType": null
 }],

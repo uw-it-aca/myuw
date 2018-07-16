@@ -16,6 +16,7 @@ from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, is_faculty,\
     is_past_grad, is_past_undergrad, is_past_pce, is_retired_staff,\
     is_past_clinician, is_past_faculty, is_past_staff
+from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 
 
@@ -54,6 +55,8 @@ def get_all_affiliations(request):
     ["official_pce"]: waiting on sws to add a field in Enrollment.
     ["alum_asso"]: alumni association member
     ["class_level"]: current term class level
+    ["is_F1"]: F1 international student
+    ["is_J1"]: J1 international student
     ["no_1st_class_affi"]: not applicant, employee, student, instructor
 
     The following are secondary affiliations (without 1st_class_aff):
@@ -77,14 +80,24 @@ def get_all_affiliations(request):
     is_undergrad = is_undergrad_student(request)
     is_hxt_viewer = get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
                                       is_fy_stud, is_aut_xfer, is_win_xfer)
+    is_stud = is_student(request)
+    is_F1 = False
+    is_J1 = False
+    if is_stud:
+        sws_person = get_profile_of_current_user(request)
+        is_F1 = sws_person.is_F1()
+        is_J1 = sws_person.is_J1()
+
     data = {"class_level": None,
             "grad": is_grad_student(request),
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
-            "student": is_student(request),
+            "student": is_stud,
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
+            "is_F1": is_F1,
+            "is_J1": is_J1,
             "staff_employee": is_staff_employee(request),
             "stud_employee": is_student_employee(request),
             "employee": is_regular_employee(request),

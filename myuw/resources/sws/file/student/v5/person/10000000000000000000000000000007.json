@@ -1,29 +1,50 @@
-{
-    "BirthDate": "1993-12-10",
+{"Current":{"Href":"\/student\/v5\/person.json?reg_id=&net_id=&student_number=&employee_id=&student_system_key=&verbose=&page_size=10&page_start=1",
+"EmployeeID":null,
+"HasDisability":null,
+"NetID":null,
+"PageSize":"10",
+"PageStart":"1",
+"RegID":"",
+"StudentNumber":null,
+"StudentSystemKey":null,
+"Verbose":false},
+"Next":null,
+"PageSize":"10",
+"PageStart":"1",
+"Persons":[{
+    "BirthDate": null,
     "DirectoryRelease": null,
-    "Email": "billbot@uw.edu",
-    "EmployeeID": "100000007",
-    "FirstName": "BILL BOTHELL",
+    "Email": null,
+    "EmployeeID": "",
+    "FirstName": "BILL BOT",
     "Gender": null,
     "LastEnrolled": null,
-    "LastName": "INSTRUCTOR",
+    "LastName": "TEACHER",
     "LocalAddress": null,
     "LocalPhone": null,
     "Notices": {
+        "Href": "/student/v5/notice/10000000000000000000000000000007.json",
+        "RegID": "10000000000000000000000000000007"
     },
     "PermanentAddress": null,
     "PermanentPhone": null,
     "PersonFinancial": {
+        "Href": "/student/v5/person/10000000000000000000000000000007/financial.json",
+        "RegID": "10000000000000000000000000000007"
     },
-    "RegID": "10000000000000000000000000000011",
-    "RegisteredName": "BILL BOTHELL INSTRUCTOR",
+    "RegID": "10000000000000000000000000000007",
+    "RegisteredName": "BILL BOTE TEACHER",
     "Resident": null,
-    "StudentName": "BILL BOTHELL INSTRUCTOR",
-    "StudentNumber": null,
-    "StudentSystemKey": null,
+    "StudentName": "BILL BOT TEACHER",
+    "StudentNumber": "1000007",
+    "StudentSystemKey": "000000007",
     "TestScore": {
+        "Href": "/student/v5/testscore/10000000000000000000000000000007.json",
+        "RegID": "10000000000000000000000000000007"
     },
     "UWNetID": "billbot",
     "Veteran": null,
     "VisaType": null
-}
+}],
+"Previous":null,
+"TotalCount":1}
