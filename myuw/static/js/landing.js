@@ -72,6 +72,10 @@ var Landing = {
             TacomaApplicationCard
         ];
 
+        if (window.user.is_j1 || window.user.is_f1) {
+            desktop_body_cards.push(InterStudentCard);
+        }
+
         if(window.user.employee &&
            !window.user.student &&
            !window.user.instructor||
