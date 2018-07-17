@@ -55,8 +55,9 @@ def get_all_affiliations(request):
     ["official_pce"]: waiting on sws to add a field in Enrollment.
     ["alum_asso"]: alumni association member
     ["class_level"]: current term class level
-    ["is_F1"]: F1 international student
-    ["is_J1"]: J1 international student
+    ["F1"]: F1 international student
+    ["J1"]: J1 international student
+    ["intl_stud"]: F1 or J1 international student
     ["no_1st_class_affi"]: not applicant, employee, student, instructor
 
     The following are secondary affiliations (without 1st_class_aff):
@@ -96,8 +97,9 @@ def get_all_affiliations(request):
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
-            "is_F1": is_F1,
-            "is_J1": is_J1,
+            "F1": is_F1,
+            "J1": is_J1,
+            "intl_stud": is_F1 or is_J1,
             "staff_employee": is_staff_employee(request),
             "stud_employee": is_student_employee(request),
             "employee": is_regular_employee(request),

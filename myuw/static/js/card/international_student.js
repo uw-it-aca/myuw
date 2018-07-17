@@ -3,7 +3,7 @@ var InterStudentCard = {
     dom_target: undefined,
 
     render_init: function() {
-        if (!window.user.is_j1 && !window.user.is_f1) {
+        if (!window.user.intl_stud) {
             $("#InterStudentCard").hide();
             return;
         }
@@ -12,8 +12,9 @@ var InterStudentCard = {
 
     _render: function () {
         var data = {
-            is_f1: window.user.is_f1,
-            is_j1: window.user.is_j1,
+            is_f1: window.user.f1,
+            is_j1: window.user.j1,
+            is_intl_stud: window.user.intl_stud,
             seattle: window.user.seattle,
             bothell: window.user.bothell,
             tacoma: window.user.tacoma

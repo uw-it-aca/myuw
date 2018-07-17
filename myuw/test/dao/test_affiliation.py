@@ -91,22 +91,26 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertFalse(affiliations.get('undergrad_c2'))
         self.assertTrue(affiliations.get('grad_c2'))
 
-    def test_is_visa(self):
+    def test_visa_type(self):
         now_request = get_request_with_user('jpce')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('is_J1'))
+        self.assertTrue(affiliations.get('J1'))
+        self.assertTrue(affiliations.get("intl_stud"))
 
         now_request = get_request_with_user('jinter')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('is_F1'))
+        self.assertTrue(affiliations.get('F1'))
+        self.assertTrue(affiliations.get("intl_stud"))
 
         now_request = get_request_with_user('botgrad')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('is_J1'))
+        self.assertTrue(affiliations.get('J1'))
+        self.assertTrue(affiliations.get("intl_stud"))
 
         now_request = get_request_with_user('tacgrad')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('is_F1'))
+        self.assertTrue(affiliations.get('F1'))
+        self.assertTrue(affiliations.get("intl_stud"))
 
     def test_is_2fa_permitted(self):
         now_request = get_request_with_user('javerage')
