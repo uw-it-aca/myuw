@@ -61,37 +61,38 @@ class Emaillist(ProtectedAPI):
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
         timer = Timer()
-        # try:
-        (single_section_labels, joint_section_labels) = get_input(request)
-        if len(single_section_labels) == 0 == len(joint_section_labels):
-            resp = {"none_selected": True}
-        else:
+        try:
+            (single_section_labels, joint_section_labels) = get_input(request)
+            if len(single_section_labels) == 0 == len(joint_section_labels):
+                resp = {"none_selected": True}
+            else:
 
-            if is_action_disabled():
-                raise DisabledAction(
-                    "Request emaillist w. Overriding for "
-                    "single :%s and joint:%s" %
-                    (single_section_labels, joint_section_labels))
+                if is_action_disabled():
+                    raise DisabledAction(
+                        "Request emaillist w. Overriding for "
+                        "single :%s and joint:%s" %
+                        (single_section_labels, joint_section_labels))
 
-            if not validate_is_instructor(request,
-                                          single_section_labels,
-                                          joint_section_labels):
-                raise NotInstructorError(
-                    "Not an instructor when requesting emaillist for"
-                    "single :%s and joint:%s" %
-                    (single_section_labels, joint_section_labels))
+                if not validate_is_instructor(request,
+                                              single_section_labels,
+                                              joint_section_labels):
+                    raise NotInstructorError(
+                        "Not an instructor when requesting emaillist for"
+                        "single :%s and joint:%s" %
+                        (single_section_labels, joint_section_labels))
 
-            resp = request_mailman_lists(request,
-                                         single_section_labels,
-                                         joint_section_labels)
+                resp = request_mailman_lists(request,
+                                             single_section_labels,
+                                             joint_section_labels)
 
-        # log_msg_with_request(logger, timer, request,
-        #                      "Request emaillist for %s ==> %s" % (
-        #                          section_labels, resp))
+            log_msg_with_request(logger, timer, request,
+                                 "Request emaillist for %s, %s ==> %s" % (
+                                     single_section_labels,
+                                     joint_section_labels, resp))
 
-        return self.json_response(resp)
-        # except Exception as ex:
-        #     return handle_exception(logger, timer, traceback)
+            return self.json_response(resp)
+        except Exception as ex:
+            return handle_exception(logger, timer, traceback)
 
 
 def get_input(request):

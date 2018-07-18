@@ -260,7 +260,6 @@ def request_mailman_lists(request,
                   [recipient],
                   fail_silently=False)
         ret_data["request_sent"] = True
-
     return ret_data
 
 
