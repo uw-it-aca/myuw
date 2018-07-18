@@ -36,7 +36,7 @@ setup(
         'python-binary-memcached',
         'UW-Django-SAML2',
         'UW-RestClients-Core==0.9.6',
-        'UW-RestClients-SWS<2.0,>=1.7.1',
+        'UW-RestClients-SWS<2.0,>=1.7.2',
         'UW-RestClients-PWS<2.0,>=1.0.1',
         'UW-RestClients-HFS<1.0',
         'UW-RestClients-GWS>=1.0,<2.0',
