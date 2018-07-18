@@ -169,5 +169,7 @@ class TestQuickLinkDAO(TransactionTestCase):
 
         qls = get_quicklink_data(req)
         self.assertEquals(qls['recent_links'][0]['label'], "ISS1")
-        self.assertEquals(qls['default_links'][-1]['label'],
+        self.assertEquals(qls['default_links'][12]['label'],
                           "International Student Services")
+        self.assertEquals(qls['default_links'][13]['label'],
+                          "Change Student Address")
