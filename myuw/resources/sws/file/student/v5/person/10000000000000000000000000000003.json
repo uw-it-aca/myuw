@@ -1,17 +1,3 @@
-{"Current":{"Href":"\/student\/v5\/person.json?reg_id=&net_id=&student_number=&employee_id=&student_system_key=&verbose=&page_size=10&page_start=1",
-"EmployeeID":null,
-"HasDisability":null,
-"NetID":null,
-"PageSize":"10",
-"PageStart":"1",
-"RegID":"10000000000000000000000000000003",
-"StudentNumber":null,
-"StudentSystemKey":null,
-"Verbose":false},
-"Next":null,
-"PageSize":"10",
-"PageStart":"1",
-"Persons":[
 {
 "BirthDate":"1961-10-26",
 "DirectoryRelease":true,
@@ -53,6 +39,4 @@
 "UWNetID":"botgrad",
 "Veteran":{"Code":"0",
            "Description":null},
-"VisaType":"J1"}],
-"Previous":null,
-"TotalCount":1}
+"VisaType":"J1"}
