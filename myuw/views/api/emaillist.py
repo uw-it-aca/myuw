@@ -19,7 +19,7 @@ from myuw.views.api import ProtectedAPI
 from myuw.views.exceptions import DisabledAction, NotInstructorError,\
     InvalidInputFormData
 from myuw.views.error import handle_exception
-from uw_sws.section import get_section_by_label
+from uw_sws.section import get_section_by_label, get_joint_sections
 from myuw.views.api import unescape_curriculum_abbr
 
 logger = logging.getLogger(__name__)
@@ -61,49 +61,61 @@ class Emaillist(ProtectedAPI):
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
         timer = Timer()
-        try:
-            section_labels = get_input(request)
-            if len(section_labels) == 0:
-                resp = {"none_selected": True}
-            else:
+        # try:
+        (single_section_labels, joint_section_labels) = get_input(request)
+        if len(single_section_labels) == 0 == len(joint_section_labels):
+            resp = {"none_selected": True}
+        else:
 
-                if is_action_disabled():
-                    raise DisabledAction(
-                        "Request emaillist w. Overriding for %s" %
-                        section_labels)
+            if is_action_disabled():
+                raise DisabledAction(
+                    "Request emaillist w. Overriding for "
+                    "single :%s and joint:%s" %
+                    (single_section_labels, joint_section_labels))
 
-                if not validate_is_instructor(request, section_labels):
-                    raise NotInstructorError(
-                        "Not an instructor when requesting emaillist for %s" %
-                        section_labels)
+            if not validate_is_instructor(request,
+                                          single_section_labels,
+                                          joint_section_labels):
+                raise NotInstructorError(
+                    "Not an instructor when requesting emaillist for"
+                    "single :%s and joint:%s" %
+                    (single_section_labels, joint_section_labels))
 
-                resp = request_mailman_lists(request, section_labels)
+            resp = request_mailman_lists(request,
+                                         single_section_labels,
+                                         joint_section_labels)
 
-            log_msg_with_request(logger, timer, request,
-                                 "Request emaillist for %s ==> %s" % (
-                                     section_labels, resp))
+        # log_msg_with_request(logger, timer, request,
+        #                      "Request emaillist for %s ==> %s" % (
+        #                          section_labels, resp))
 
-            return self.json_response(resp)
-        except Exception as ex:
-            return handle_exception(logger, timer, traceback)
+        return self.json_response(resp)
+        # except Exception as ex:
+        #     return handle_exception(logger, timer, traceback)
 
 
 def get_input(request):
-    section_labels = []
+    single_section_labels = []
+    joint_section_labels = []
     for key in request.POST:
-        if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key) or \
-                re.match(r'^[a-z]+_joint_[A-Z][A-Z0-9]?$', key):
-            section_label = request.POST[key]
+        if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key):
+            single_section_labels.append(_get_section_label(request, key))
+        if re.match(r'^[a-z]+_joint_[A-Z][A-Z0-9]?$', key):
+            joint_section_labels.append(_get_section_label(request, key))
 
-            if section_id_matched(key, section_label) and \
-                    is_valid_section_label(section_label):
-                section_labels.append(request.POST[key])
-                continue
+    return single_section_labels, joint_section_labels
 
-            logger.error("Invalid section label (%s) in the form input",
-                         section_label)
-            raise InvalidInputFormData
-    return section_labels
+
+def _get_section_label(request, key):
+    section_label = request.POST[key]
+
+    if section_id_matched(key, section_label) and \
+            is_valid_section_label(section_label):
+        return section_label
+
+    logger.error("Invalid section label (%s) in the form input",
+                 section_label)
+    raise InvalidInputFormData
 
 
 SINGLE_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_single_([A-Z][A-Z0-9]?)$'
@@ -132,12 +144,16 @@ def section_id_matched(key, value):
         return False
 
 
-def validate_is_instructor(request, section_labels):
+def validate_is_instructor(request, single_section_labels,
+                           joint_section_labels):
     """
     returns true if user is instructor/authorized submitter of **all** labels
     """
-    for section_label in section_labels:
+    for section_label in single_section_labels:
         if is_emaillist_authorized(request, section_label) is False:
+            return False
+    for section_label in joint_section_labels:
+        if is_joint_emaillist_authorized(request, section_label) is False:
             return False
     return True
 
@@ -160,6 +176,41 @@ def is_emaillist_authorized(request, section_label):
         logger.error("%s is_emaillist_authorized(%s) ==> NotSectionInstructor",
                      uwnetid, section_label)
         return False
+    except DataFailureException as err:
+        if err.status == 404:
+            return False
+        raise
+    except Exception as ex:
+        raise
+
+
+def is_joint_emaillist_authorized(request, section_label):
+    """
+    Determines if user is authorized to create mailing lists for that section:
+    Instructor of section OR instructor of primary section
+    """
+    person = get_person_of_current_user(request)
+    uwnetid = person.uwnetid
+    section = get_section_by_label(section_label)
+    try:
+        check_section_instructor(section, person)
+        return True
+    except InvalidSectionID:
+        logger.error("%s is_emaillist_authorized(%s) ==> InvalidSectionLabel",
+                     uwnetid, section_label)
+        return False
+    except NotSectionInstructorException:
+        if len(section.joint_section_urls):
+            joint_sections = get_joint_sections(section)
+            is_joint_instructor = False
+            for joint_section in joint_sections:
+                try:
+                    check_section_instructor(joint_sections, person)
+                    is_joint_instructor = True
+                except NotSectionInstructorException:
+                    pass
+            if is_joint_instructor:
+                return True
     except DataFailureException as err:
         if err.status == 404:
             return False

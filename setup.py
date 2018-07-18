@@ -57,7 +57,7 @@ setup(
         'django-userservice>=2.0.2,<3.0',
         'Django-SupportTools>=2.0.4,<3.0',
         'Django-Safe-EmailBackend>=0.1,<1.0',
-        'UW-HX-Toolkit==1.03',
+        'UW-HX-Toolkit==1.04',
         'django_mobileesp',
         'yajl',
         'bleach',

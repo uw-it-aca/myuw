@@ -7,7 +7,7 @@ from myuw.dao.mailman import get_list_json,\
     get_single_course_list, get_single_section_list, get_section_id,\
     get_all_secondary_section_lists, get_section_email_lists,\
     get_section_label, get_course_email_lists, request_mailman_lists,\
-    get_message_body, _get_single_line, _get_quarter_code
+    get_single_message_body, _get_single_line, _get_quarter_code
 from myuw.test import fdao_sws_override, fdao_mailman_override, get_request,\
     get_request_with_user, email_backend_override
 
@@ -172,15 +172,15 @@ class TestMailmanDao(TestCase):
     def test__get_single_line(self):
         self.assertEqual(
             _get_single_line(get_section_by_label(
-                    '2013,spring,PHYS,122/A')),
+                '2013,spring,PHYS,122/A')),
             u'phys122a_sp13 2 2013 17983\n')
 
     def test_get_message_body(self):
-        body, num1 = get_message_body('billsea',
-                                      ['2013,spring,PHYS,122/A',
-                                       '2013,spring,PHYS,122/AA',
-                                       '2013,spring,PHYS,122/AB',
-                                       '2013,spring,PHYS,122/AH'])
+        body, num1 = get_single_message_body('billsea',
+                                             ['2013,spring,PHYS,122/A',
+                                              '2013,spring,PHYS,122/AA',
+                                              '2013,spring,PHYS,122/AB',
+                                              '2013,spring,PHYS,122/AH'])
         self.assertEqual(num1, 3)
         self.assertEqual(body,
                          (u'billsea\n' +

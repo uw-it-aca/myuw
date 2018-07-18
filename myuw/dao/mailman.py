@@ -219,7 +219,8 @@ EMAIL_SUBJECT = 'instructor Mailman request'
 
 
 def request_mailman_lists(request,
-                          single_section_labels):
+                          single_section_labels,
+                          joint_section_lables):
     """
     Required settings:
       EMAIL_HOST
@@ -227,11 +228,24 @@ def request_mailman_lists(request,
       MAILMAN_COURSEREQUEST_RECIPIENT
     """
     requestor_uwnetid = get_netid_of_current_user(request)
-    message_body, num_sections_found = get_message_body(
+    single_message_body, num_sections_found = get_single_message_body(
         requestor_uwnetid, single_section_labels)
 
-    ret_data = {"total_lists_requested": num_sections_found}
+    joint_message_body, joint_num_sections_found = \
+        get_joint_message_body(requestor_uwnetid, joint_section_lables)
 
+    message_body = None
+    if single_message_body.count("\n") > 1:
+        message_body = single_message_body
+    if joint_message_body.count("\n") > 1:
+        # remove first netid line if both single and joint requests are made
+        if message_body is not None:
+            message_body += joint_message_body.split("\n")[1:]
+        else:
+            message_body = joint_message_body
+
+    ret_data = {"total_lists_requested":
+                num_sections_found + joint_num_sections_found}
     if num_sections_found == 0:
         ret_data["request_sent"] = False
     else:
@@ -250,8 +264,8 @@ def request_mailman_lists(request,
     return ret_data
 
 
-def get_message_body(requestor_uwnetid,
-                     single_section_labels):
+def get_single_message_body(requestor_uwnetid,
+                            single_section_labels):
     """
     subject: "instructor Mailman request"
     message body:
@@ -282,6 +296,37 @@ def get_message_body(requestor_uwnetid,
     return message_body, num_sections_found
 
 
+def get_joint_message_body(requestor_uwnetid, joint_section_labels):
+    """
+    subject: "instructor Mailman request"
+    message body:
+    <requestor_netid>
+    <joint_list_address> <quarter_code> YYYY <sln1>
+    <joint_list_address> <quarter_code> YYYY <sln2>
+    """
+    message_body = "%s\n" % requestor_uwnetid
+    num_sections_found = 0
+
+    threads = []
+    for section_label in joint_section_labels:
+        thread = ThreadWithResponse(target=get_section_by_label,
+                                    args=(section_label,))
+        thread.start()
+        threads.append(thread)
+
+    for thrd in threads:
+        thrd.join()
+        if thrd.exception is None:
+            section = thrd.response
+            num_sections_found += 1
+            message_body += _get_joint_line(section)
+        else:
+            logger.error("%s", thread.exception)
+    log_info(logger, "For %s ==request emaillist message body==> %s" %
+             (joint_section_labels, message_body.splitlines()))
+    return message_body, num_sections_found
+
+
 def _get_single_line(section):
     """
     <list_address> <quarter_code> YYYY <sln>
@@ -291,6 +336,27 @@ def _get_single_line(section):
         _get_quarter_code(section.term.quarter),
         section.term.year,
         section.sln)
+
+
+def _get_joint_line(section):
+    """
+    <list_address> <quarter_code> YYYY <sln>
+    """
+    joint_slns = [section.sln]
+    for section in get_joint_sections(section):
+        joint_slns.append(section.sln)
+
+    sln_string = " ".join(map(str, joint_slns))
+    return "%s %s %s %s\n" % (
+        get_course_list_name(section.curriculum_abbr,
+                             section.course_number,
+                             section.section_id,
+                             section.term.quarter,
+                             section.term.year,
+                             True),
+        _get_quarter_code(section.term.quarter),
+        section.term.year,
+        sln_string)
 
 
 QUARTER_CODES = {
