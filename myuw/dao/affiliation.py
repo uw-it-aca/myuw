@@ -16,6 +16,7 @@ from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, is_faculty,\
     is_past_grad, is_past_undergrad, is_past_pce, is_retired_staff,\
     is_past_clinician, is_past_faculty, is_past_staff
+from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 
 
@@ -54,6 +55,9 @@ def get_all_affiliations(request):
     ["official_pce"]: waiting on sws to add a field in Enrollment.
     ["alum_asso"]: alumni association member
     ["class_level"]: current term class level
+    ["F1"]: F1 international student
+    ["J1"]: J1 international student
+    ["intl_stud"]: F1 or J1 international student
     ["no_1st_class_affi"]: not applicant, employee, student, instructor
 
     The following are secondary affiliations (without 1st_class_aff):
@@ -85,6 +89,9 @@ def get_all_affiliations(request):
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
+            "F1": False,
+            "J1": False,
+            "intl_stud": False,
             "staff_employee": is_staff_employee(request),
             "stud_employee": is_student_employee(request),
             "employee": is_regular_employee(request),
@@ -116,18 +123,26 @@ def get_all_affiliations(request):
     if data["student"]:
         data["class_level"] = get_class_level(request)
 
+        try:
+            sws_person = get_profile_of_current_user(request)
+            data["F1"] = sws_person.is_F1()
+            data["J1"] = sws_person.is_J1()
+            data["intl_stud"] = data["F1"] or data["J1"]
+        except Exception as ex:
+            logger.error(ex)
+
         # determine student campus based on current and future enrollments
         try:
             campuses = get_main_campus(request)
-        except IndeterminateCampusException:
-            pass
+        except IndeterminateCampusException as e:
+            logger.error(e)
 
     if len(campuses) == 0 and is_employee(request):
         # determine employee primary campus based on their mailstop
         try:
             campuses = [get_employee_campus(request)]
-        except IndeterminateCampusException:
-            pass
+        except IndeterminateCampusException as e1:
+            logger.error(e1)
 
     data.update(_get_official_campuses(campuses))
     request.myuw_user_affiliations = data

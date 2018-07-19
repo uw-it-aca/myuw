@@ -112,7 +112,8 @@ def try_prefetch(request):
                            prefetch_migration_preference=True,
                            prefetch_enrollment=True,
                            prefetch_group=True,
-                           prefetch_instructor=True)
+                           prefetch_instructor=True,
+                           prefetch_sws_person=True)
     except DataFailureException:
         log_exception(logger,
                       "prefetch_resources",

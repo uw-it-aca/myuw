@@ -1,0 +1,35 @@
+{
+    "BirthDate": null,
+    "DirectoryRelease": null,
+    "Email": null,
+    "EmployeeID": "",
+    "FirstName": "Joseph Average",
+    "Gender": null,
+    "LastEnrolled": null,
+    "LastName": "Alumnus",
+    "LocalAddress": null,
+    "LocalPhone": null,
+    "Notices": {
+        "Href": "/student/v5/notice/10000000000000000000000000000016.json",
+        "RegID": "10000000000000000000000000000016"
+    },
+    "PermanentAddress": null,
+    "PermanentPhone": null,
+    "PersonFinancial": {
+        "Href": "/student/v5/person/10000000000000000000000000000016/financial.json",
+        "RegID": "10000000000000000000000000000016"
+    },
+    "RegID": "10000000000000000000000000000016",
+    "RegisteredName": "Joseph Average Alumnus",
+    "Resident": null,
+    "StudentName": "Joseph Average Alumnus",
+    "StudentNumber": "1000016",
+    "StudentSystemKey": "000000016",
+    "TestScore": {
+        "Href": "/student/v5/testscore/10000000000000000000000000000016.json",
+        "RegID": "10000000000000000000000000000016"
+    },
+    "UWNetID": "jalum",
+    "Veteran": null,
+    "VisaType": null
+}

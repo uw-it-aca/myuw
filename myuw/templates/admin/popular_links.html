@@ -54,6 +54,12 @@
                     <strong>PCE</strong><br/>
                     <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce' {% if checked.is_pce %}checked="checked"{% endif %}> PCE</label>
                 </div>
+                <br />
+                <div>
+                    <strong>International students</strong><br/>
+                    <label class="checkbox-inline"><input type='checkbox' name='intl_stud' value='intl_stud' {% if checked.is_intl_stud %}checked="checked"{% endif %}> International students (visa type F1 or J1)</label>
+                </div>
+
                 <div style="text-align: right;padding-top:15px;">
                      <button type="submit" class="btn btn-primary">Filter</button>
                 </div>
@@ -142,6 +148,12 @@
                     <strong>PCE</strong><br/>
                     <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce'> PCE</label>
                     </div>
+                    <br />
+                    <div>
+                    <strong>International students</strong><br/>
+                    <label class="checkbox-inline"><input type='checkbox' name='intl_stud' value='intl_stud'> International students (visa type F1 or J1)</label>
+                    </div>
+
                     <input class="btn btn-primary" type="submit" value="add"/>
             </form>
             </div>
@@ -176,9 +188,14 @@
                     <div>
                     <strong>PCE</strong><br/>
                     <label class="checkbox-inline"><input type='checkbox' name='pce' value='pce'> PCE</label>
-
-            <br />
-            <br />
+                    </div>
+                    <br />
+                    <div>
+                    <strong>International students</strong><br/>
+                    <label class="checkbox-inline"><input type='checkbox' name='intl_stud' value='intl_stud'> International students (visa type F1 or J1)</label>
+                    </div>
+                    <br />
+                    <br />
             <form action='{{ request.path }}' method="POST">
             {% csrf_token %}
          

@@ -2,10 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 import logging
+from myuw.models import VisitedLinkNew, PopularLink
 from myuw.dao import get_netid_of_current_user
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
-from myuw.models import VisitedLinkNew, PopularLink
 
 
 PAGE_SIZE = 10
@@ -32,6 +32,10 @@ def popular_links(request, page):
             if 'pce' in request.POST and request.POST['pce'] == "pce":
                 create_args['pce'] = True
 
+            if ('intl_stud' in request.POST and
+                    request.POST['intl_stud'] == "intl_stud"):
+                create_args['intl_stud'] = True
+
             PopularLink.objects.create(**create_args)
             logger.info("popular link added.  user: %s, link: %s" %
                         (uwnetid, request.POST['url']))
@@ -51,7 +55,7 @@ def popular_links(request, page):
         existing_lookup.add(link.url)
     kwargs = {}
     filter_kwargs = {}
-    for field in ('campus', 'affiliation', 'pce'):
+    for field in ('campus', 'affiliation', 'pce', 'intl_stud'):
         if field in request.GET:
             value = request.GET[field]
             kwargs['is_'+value] = True
