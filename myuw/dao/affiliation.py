@@ -135,7 +135,7 @@ def get_all_affiliations(request):
         try:
             campuses = get_main_campus(request)
         except IndeterminateCampusException:
-           pass
+            pass
 
     if len(campuses) == 0 and is_employee(request):
         # determine employee primary campus based on their mailstop
