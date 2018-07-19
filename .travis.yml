@@ -28,7 +28,7 @@ matrix:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - FORCE_VIEW_TESTS=1 COVERAGE_FILE=~/shared/.coverage coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
     after_script:
-      - aws s3 sync ~/shared s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
+    # - aws s3 sync ~/shared s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
 
   - language: node_js
     sudo: false
@@ -51,7 +51,7 @@ matrix:
       - npm run test
       - coveralls-lcov -v -n coverage/lcov.info > ~/shared/js-coverage.json
     after_script:
-      - aws s3 sync ~/shared s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
+    # - aws s3 sync ~/shared s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
 
   - stage: Deploy Coveralls
     language: python
@@ -61,8 +61,8 @@ matrix:
       - pip install awscli
       - pip install python-coveralls
     script:
-      - aws s3 sync s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER ~/shared
+    # - aws s3 sync s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER ~/shared
       - mv ~/shared/.coverage .coverage
       - mv ~/shared/js-coverage.json js-coverage.json
       - coveralls --merge=js-coverage.json
-      - aws s3 rm --recursive s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
+    # - aws s3 rm --recursive s3://$S3_BUCKET_NAME/$TRAVIS_BUILD_NUMBER
