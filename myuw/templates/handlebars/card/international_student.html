@@ -5,7 +5,7 @@
         International Student
     </h3>
 	<div class="links-container">
-            <h4 class="myuw-card-heading">Visa Rules and Status</h4>
+            <h4 class="myuw-card-heading">Visa and Immigration Rules</h4>
             <ul class="unstyled-list">
                 {{#if is_seattle}}
 				<li><a href="https://iss.washington.edu/travel-visas/" target="_blank" data-linklabel="Travel & visas for Int'l students">Travel and Visas - travel signature </a></li>
@@ -40,7 +40,7 @@
         <div class="links-container">
             <h4 class="myuw-card-heading">Academic Support</h4>
             <ul class="unstyled-list">
-                {{#if is_seattle}}
+				{{#if is_seattle}}
 				<li><a href="http://depts.washington.edu/aspuw/clue/home/" target="_blank" data-linklabel="Center for Learning and Undergraduate Enrichment (CLUE)">Center for Learning and Undergraduate Enrichment (CLUE)</a></li>
 				<li><a href="http://depts.washington.edu/owrc" target="_blank" data-linklabel="Odegaard Writing & Research Center">Odegaard Writing & Research Center </a></li>
 				<li><a href="http://aep.washington.edu/" target="_blank" data-linklabel="Academic English Program">Academic English Program</a></li>
@@ -57,6 +57,15 @@
 				{{/if}}
             </ul>
         </div>
+
+		{{#if is_seattle}}
+		<div class="links-container">
+            <h4 class="myuw-card-heading">Social Events</h4>
+            <ul class="unstyled-list">
+				<li><a href="http://www.fiuts.org/events" target="_blank" data-linklabel="FIUT Event Calendar">Foundation for International Understanding Through Students (FIUTS) Event Calendar</a></li>
+			</ul>
+        </div>
+        {{/if}}
 
 </div>
 {% endtplhandlebars %}
