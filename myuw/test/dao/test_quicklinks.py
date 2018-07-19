@@ -170,9 +170,9 @@ class TestQuickLinkDAO(TransactionTestCase):
         l1 = VisitedLinkNew.objects.create(**link_data)
 
         qls = get_quicklink_data(req)
-        self.assertEquals(qls['recent_links'][0]['label'], "ISS1")
-        self.assertEquals(qls['default_links'][0]['label'],
-                          "International Student Services (ISS)")
+        self.assertEqual(qls['recent_links'][0]['label'], "ISS1")
+        self.assertEqual(qls['default_links'][0]['label'],
+                         "International Student Services (ISS)")
         self.assertTrue(
             'students/uwnetid/address.asp' in qls['default_links'][12]['url'])
 
@@ -180,12 +180,12 @@ class TestQuickLinkDAO(TransactionTestCase):
         username = "botgrad"
         req = get_request_with_user(username)
         bot_qls = get_quicklink_data(req)
-        self.assertEquals(bot_qls['default_links'][0]['url'],
-                          "http://www.uwb.edu/cie")
+        self.assertEqual(bot_qls['default_links'][0]['url'],
+                         "http://www.uwb.edu/cie")
 
     def test_tac_quicklinks(self):
         username = "tacgrad"
         req = get_request_with_user(username)
         tac_qls = get_quicklink_data(req)
-        self.assertEquals(tac_qls['default_links'][0]['label'],
-                          "International Student and Scholar Services (ISSS)")
+        self.assertEqual(tac_qls['default_links'][0]['label'],
+                         "International Student and Scholar Services (ISSS)")
