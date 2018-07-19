@@ -41,6 +41,8 @@ class TestQuickLinkDAO(TransactionTestCase):
 
         plink = PopularLink.objects.create(url=u2)
         self.assertTrue(get_popular_link_by_id(plink.pk))
+        self.assertIsNotNone(plink.json_data())
+        self.assertIsNotNone(str(plink))
 
         data = get_quicklink_data(req)
         recent = _get_recent(data)
