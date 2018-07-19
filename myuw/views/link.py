@@ -38,7 +38,7 @@ def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
     user = get_user_model(request)
-    prefetch_resources(request, prefetch_group=True)
+    prefetch_resources(request, prefetch_group=True, prefetch_sws_person=True)
 
     if label:
         label = unquote(label)

@@ -116,6 +116,8 @@ class TestAffilliationDao(TransactionTestCase):
         now_request = get_request_with_user('javerage')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get('2fa_permitted'))
+        self.assertFalse(affiliations.get('F1'))
+        self.assertFalse(affiliations.get("intl_stud"))
 
     def test_official_campus(self):
         now_request = get_request_with_user('jbothell')
