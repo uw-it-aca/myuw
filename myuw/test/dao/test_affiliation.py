@@ -112,6 +112,12 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations.get('F1'))
         self.assertTrue(affiliations.get("intl_stud"))
 
+    def test_error_case(self):
+        now_request = get_request_with_user('jerror')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get('student'))
+        self.assertFalse(affiliations.get('intl_stud'))
+
     def test_is_2fa_permitted(self):
         now_request = get_request_with_user('javerage')
         affiliations = get_all_affiliations(now_request)
