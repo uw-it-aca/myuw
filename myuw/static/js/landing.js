@@ -72,9 +72,9 @@ var Landing = {
             TacomaApplicationCard
         ];
 
-        // if (window.user.intl_stud) {
-        //    desktop_body_cards.push(InterStudentCard);
-        // }
+        if (window.user.intl_stud) {
+            desktop_body_cards.push(InterStudentCard);
+        }
 
         if(window.user.employee &&
            !window.user.student &&
@@ -154,9 +154,9 @@ var Landing = {
             mobile_cards.push(HRPayrollCard);
         }
 
-        // if (window.user.intl_stud) {
-        //    desktop_body_cards.push(InterStudentCard);
-        // }
+        if (window.user.intl_stud) {
+            desktop_body_cards.push(InterStudentCard);
+        }
 
         if(window.user.retiree) {
             mobile_cards.push(RetireAssoCard);
