@@ -10,9 +10,9 @@ var TeachingResourcesCard = {
         var source = $("#teaching_resources_card").html();
         var template = Handlebars.compile(source);
         TeachingResourcesCard.dom_target.html(template({
-            'seattle_affil': window.user.seattle_emp,
-            'bothell_affil': window.user.bothell_emp,
-            'tacoma_affil': window.user.tacoma_emp
+            seattle_affil: (window.user.seattle_affil || window.user.seattle),
+            bothell_affil: (window.user.bothell_affil || window.user.bothell),
+            tacoma_affil: (window.user.tacoma_affil || window.user.tacoma)
         }));
     },
 };

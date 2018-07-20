@@ -25,9 +25,6 @@ class TestPwsDao(TestCase):
         req = get_request_with_user('seagrad')
         self.assertEqual(get_regid_of_current_user(req),
                          u'10000000000000000000000000000002')
-        self.assertTrue(is_employee(req))
-        self.assertTrue(is_student(req))
-        self.assertTrue(is_bothell_employee(req))
 
     def test_get_person_of_current_user(self):
         req = get_request_with_user('javerage')
