@@ -74,13 +74,8 @@ def get_all_affiliations(request):
         return request.myuw_user_affiliations
 
     not_major_affi = no_major_affiliations(request)
-    is_fy_stud = is_fyp(request)
-    is_aut_xfer = is_aut_transfer(request)
-    is_win_xfer = is_win_transfer(request)
-    is_sea_stud = is_seattle_student(request)
-    is_undergrad = is_undergrad_student(request)
-    is_hxt_viewer = get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
-                                      is_fy_stud, is_aut_xfer, is_win_xfer)
+    (is_aut_xfer, is_fy_stud, is_win_xfer, is_sea_stud,
+     is_undergrad, is_hxt_viewer) = get_is_hxt_viewer(request)
     data = {"class_level": None,
             "grad": is_grad_student(request),
             "undergrad": is_undergrad,
@@ -189,15 +184,20 @@ def get_base_campus(affiliations):
     return campus
 
 
-def get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
-                      is_fyp, is_aut_transfer, is_win_transfer):
+def get_is_hxt_viewer(request):
+    is_fy_stud = is_fyp(request)
+    is_aut_xfer = is_aut_transfer(request)
+    is_win_xfer = is_win_transfer(request)
+    is_sea_stud = is_seattle_student(request)
+    is_undergrad = is_undergrad_student(request)
     is_viewer = False
-    if is_sea_stud and is_undergrad and not is_fyp:
+    if is_sea_stud and is_undergrad and not is_fy_stud:
         term = get_current_quarter(request)
         if term.quarter == 'winter':
-            is_viewer = not is_win_transfer
+            is_viewer = not is_win_xfer
         elif term.quarter == 'autumn':
-            is_viewer = not is_aut_transfer
+            is_viewer = not is_aut_xfer
         else:
             is_viewer = True
-    return is_viewer
+    return (is_aut_xfer, is_fy_stud, is_win_xfer, is_sea_stud,
+            is_undergrad, is_viewer)
