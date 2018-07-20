@@ -278,10 +278,14 @@ def get_base_campus(affiliations):
     Return one currently enrolled campus.
     If not exist, return one affiliated campus.
     """
-    if affiliations.get("seattle") is True:
+    is_stud = affiliations["student"]
+    if (is_stud and affiliations.get("seattle") is True or
+            affiliations.get("official_seattle") is True):
         return "seattle"
-    if affiliations.get("bothell") is True:
+    if (is_stud and affiliations.get("bothell") is True or
+            affiliations.get("official_bothell") is True):
         return "bothell"
-    if affiliations.get("tacoma") is True:
+    if (is_stud and affiliations.get("tacoma") is True or
+            affiliations.get("official_tacoma") is True):
         return "tacoma"
     return ""
