@@ -23,6 +23,7 @@ def get_log_entry(netid, request):
                  'is_pce': affiliations["pce"],
                  'undergrad_c2': affiliations["undergrad_c2"],
                  'grad_c2': affiliations["grad_c2"],
+                 'intl_stud': affiliations["intl_stud"],
                  'fyp': affiliations["fyp"],
                  'aut_transfer': affiliations["aut_transfer"],
                  'win_transfer': affiliations["win_transfer"],
