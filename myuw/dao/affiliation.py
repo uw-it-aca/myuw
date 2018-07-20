@@ -41,17 +41,11 @@ def get_all_affiliations(request):
     ["undergrad_c2"]: True if the user takes UW PCE undergrad courses
 
     ["seattle"]: True if the user is an UW Seattle student
-                 in the current quarter.
     ["bothell"]: True if the user is an UW Bothell student
-                 in the current quarter.
     ["tacoma"]: True if the user is an UW Tacoma student
-                in the current quarter.
-    ["official_seattle"]: True if the user is an UW Seattle student
-                 according to the SWS Enrollment.
-    ["official_bothell"]: True if the user is an UW Bothell student
-                 according to the SWS Enrollment.
-    ["official_tacoma"]: True if the user is an UW Tacoma student
-                according to the SWS Enrollment.
+    ["official_seattle"]: True if the user is Seattle employee
+    ["official_bothell"]: True if the user is Bothell employee
+    ["official_tacoma"]: True if the user is Tacoma employee
     ["official_pce"]: waiting on sws to add a field in Enrollment.
     ["alum_asso"]: alumni association member
     ["class_level"]: current term class level
@@ -126,62 +120,28 @@ def get_all_affiliations(request):
         except Exception as ex:
             logger.error(ex)
 
-        # determine student campus based on current and future enrollments
+        # enhance student campus with current and future enrollments
         try:
             campuses = get_main_campus(request)
+            if len(campuses) > 0:
+                data['seattle'] = data['seattle'] or ('Seattle' in campuses)
+                data['bothell'] = data['bothell'] or ('Bothell' in campuses)
+                data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
         except IndeterminateCampusException:
             pass
 
-    if len(campuses) == 0 and is_employee(request):
+    if is_employee(request):
         # determine employee primary campus based on their mailstop
         try:
-            campuses = [get_employee_campus(request)]
+            employee_campus = get_employee_campus(request)
+            data['official_seattle'] = ('Seattle' == employee_campus)
+            data['official_bothell'] = ('Bothell' == employee_campus)
+            data['official_tacoma'] = ('Tacoma' == employee_campus)
         except IndeterminateCampusException:
             pass
 
-    data.update(_get_official_campuses(campuses))
     request.myuw_user_affiliations = data
     return data
-
-
-def _get_official_campuses(campuses):
-    official_campuses = {'official_seattle': False,
-                         'official_bothell': False,
-                         'official_tacoma': False}
-    if 'Bothell' in campuses:
-        official_campuses['official_bothell'] = True
-    if 'Seattle' in campuses:
-        official_campuses['official_seattle'] = True
-    if 'Tacoma' in campuses:
-        official_campuses['official_tacoma'] = True
-    return official_campuses
-
-
-def get_base_campus(affiliations):
-    """
-    Return one currently enrolled campus.
-    If not exist, return one affiliated campus.
-    """
-    campus = ""
-    try:
-        if affiliations["official_seattle"]:
-            campus = "seattle"
-        if affiliations["official_bothell"]:
-            campus = "bothell"
-        if affiliations["official_tacoma"]:
-            campus = "tacoma"
-    except KeyError:
-        try:
-            if affiliations["seattle"]:
-                campus = "seattle"
-            if affiliations["bothell"]:
-                campus = "bothell"
-            if affiliations["tacoma"]:
-                campus = "tacoma"
-        except KeyError:
-            campus = ""
-            pass
-    return campus
 
 
 def get_is_hxt_viewer(request):
