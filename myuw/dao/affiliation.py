@@ -144,29 +144,6 @@ def get_all_affiliations(request):
     return data
 
 
-def get_base_campus(affiliations):
-    """
-    Return one currently enrolled campus.
-    If not exist, return one affiliated campus.
-    """
-    campus = ""
-    if affiliations["student"]:
-        if affiliations.get("seattle") is True:
-            campus = "seattle"
-        if affiliations.get("bothell") is True:
-            campus = "bothell"
-        if affiliations.get("tacoma") is True:
-            campus = "tacoma"
-    else:
-        if affiliations.get("official_seattle") is True:
-            campus = "seattle"
-        if affiliations.get("official_bothell") is True:
-            campus = "bothell"
-        if affiliations.get("official_tacoma") is True:
-            campus = "tacoma"
-    return campus
-
-
 def get_is_hxt_viewer(request):
     is_fy_stud = is_fyp(request)
     is_aut_xfer = is_aut_transfer(request)

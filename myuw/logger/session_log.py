@@ -2,7 +2,7 @@ import hashlib
 import json
 import logging
 from myuw.dao import is_using_file_dao
-from myuw.dao.affiliation import get_all_affiliations, get_base_campus
+from myuw.dao.affiliation import get_all_affiliations
 
 logger = logging.getLogger('session')
 
@@ -60,12 +60,6 @@ def get_log_entry(netid, request):
             log_entry['ip'] = request.META.get('REMOTE_ADDR')
     except Exception as ex:
         logger.warning("ip ==> %s" % ex)
-        pass
-
-    try:
-        log_entry['campus'] = get_base_campus(request)
-    except Exception as ex:
-        logger.warning("get_base_campus ==> %s" % ex)
         pass
     return log_entry
 
