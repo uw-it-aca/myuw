@@ -7,9 +7,9 @@ var HRPayrollCard = {
         var template = Handlebars.compile(source);
         var data = {
             card_name: HRPayrollCard.name,
-            is_seattle: window.user.seattle_emp),
-            is_bothell: window.user.bothell_emp),
-            is_tacoma: window.user.tacoma_emp),
+            is_seattle: window.user.seattle_emp,
+            is_bothell: window.user.bothell_emp,
+            is_tacoma: window.user.tacoma_emp,
             is_faculty: window.user.faculty,
             is_stud_employee: window.user.stud_employee,
             truncate_view: (window.user.retiree || window.user.past_employee)
