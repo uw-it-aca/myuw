@@ -40,3 +40,15 @@ class TestSessionLog(TestCase):
         self.assertFalse(entry['is_past_stud'])
         self.assertFalse(entry['bot_campus'])
         self.assertFalse(entry['tac_campus'])
+
+        netid = 'jinter'
+        req = get_request_with_user(netid)
+        req.META['REMOTE_ADDR'] = '127.0.0.1'
+        entry = get_log_entry(netid, req)
+        self.assertEquals(entry['ip'], '127.0.0.1')
+
+        req.META['X-Forwarded-For'] = '127.0.0.2'
+        entry = get_log_entry(netid, req)
+        self.assertEqual(entry['ip'], '127.0.0.2')
+        self.assertTrue(entry['is_student'])
+        self.assertTrue(entry['intl_stud'])
