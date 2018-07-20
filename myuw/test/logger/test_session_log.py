@@ -24,6 +24,7 @@ class TestSessionLog(TestCase):
         entry = get_log_entry(netid, req)
         self.assertEqual(entry['ip'], '127.0.0.2')
 
+        self.assertTrue(entry['sea_campus'])
         self.assertEqual(entry['netid'], 'javerage')
         self.assertEqual(entry['class_level'], 'SENIOR')
         self.assertTrue(entry['is_ugrad'])
@@ -37,12 +38,8 @@ class TestSessionLog(TestCase):
         self.assertFalse(entry['is_retired_staff'])
         self.assertFalse(entry['is_past_employee'])
         self.assertFalse(entry['is_past_stud'])
-        self.assertTrue(entry['sea_stud'])
-        self.assertFalse(entry['bot_stud'])
-        self.assertFalse(entry['tac_stud'])
-        self.assertTrue(entry['sea_emp'])
-        self.assertFalse(entry['bot_emp'])
-        self.assertFalse(entry['tac_emp'])
+        self.assertFalse(entry['bot_campus'])
+        self.assertFalse(entry['tac_campus'])
 
         netid = 'jinter'
         req = get_request_with_user(netid)

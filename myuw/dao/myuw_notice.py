@@ -24,13 +24,13 @@ def get_myuw_notices_for_user(request):
         if not(notice.is_bothell or notice.is_seattle or notice.is_tacoma):
             campus_notices.append(notice)
             pass
-        if notice.is_seattle and affiliations['seattle']:
+        if notice.is_seattle and affiliations['official_seattle']:
             campus_notices.append(notice)
             pass
-        if notice.is_tacoma and affiliations['tacoma']:
+        if notice.is_tacoma and affiliations['official_tacoma']:
             campus_notices.append(notice)
             pass
-        if notice.is_bothell and affiliations['bothell']:
+        if notice.is_bothell and affiliations['official_bothell']:
             campus_notices.append(notice)
             pass
 

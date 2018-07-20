@@ -18,25 +18,37 @@ describe('TeachingResourceLinksCard', function(){
             TeachingResourcesCard.dom_target = $('#' + render_id);
         });
         it("render seattle links", function() {
-            window.user.seattle_emp = true;
-            window.user.tacoma_emp = false;
-            window.user.bothell_emp = false;
+            window.user.seattle_affil = true;
+            window.user.seattle = true;
+            window.user.tacoma_affil = false;
+            window.user.tacoma = false;
+            window.user.bothell_affil = false;
+            window.user.bothell = false;
+
             TeachingResourcesCard.render_init();
             assert.equal(TeachingResourcesCard.dom_target.find('a[href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwmain"]').length, 1);
             assert.equal(TeachingResourcesCard.dom_target.find('a[href="https://uw.iasystem.org/faculty"]').length, 1);
         });
         it("render tacoma links", function() {
-            window.user.seattle_emp = false;
-            window.user.tacoma_emp = true;
-            window.user.bothell_emp = false;
+            window.user.seattle_affil = false;
+            window.user.seattle = false;
+            window.user.tacoma_affil = true;
+            window.user.tacoma = true;
+            window.user.bothell_affil = false;
+            window.user.bothell = false;
+
             TeachingResourcesCard.render_init();
             assert.equal(TeachingResourcesCard.dom_target.find('a[href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwtacoma"]').length, 1);
             assert.equal(TeachingResourcesCard.dom_target.find('a[href="https://uwt.iasystem.org/faculty"]').length, 1);
         });
         it("render bothell links", function() {
-            window.user.seattle_emp = false;
-            window.user.tacoma_emp = false;
-            window.user.bothell_emp = true;
+            window.user.seattle_affil = false;
+            window.user.seattle = false;
+            window.user.tacoma_affil = false;
+            window.user.tacoma = false;
+            window.user.bothell_affil = true;
+            window.user.bothell = true;
+
             TeachingResourcesCard.render_init();
             assert.equal(TeachingResourcesCard.dom_target.find('a[href="http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwbothell"]').length, 1);
             assert.equal(TeachingResourcesCard.dom_target.find('a[href="https://uwb.iasystem.org/faculty"]').length, 1);

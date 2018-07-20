@@ -2,7 +2,7 @@ import hashlib
 import json
 import logging
 from myuw.dao import is_using_file_dao
-from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao.affiliation import get_all_affiliations, get_base_campus
 
 logger = logging.getLogger('session')
 
@@ -37,12 +37,9 @@ def get_log_entry(netid, request):
                  'is_retired_staff': affiliations["retiree"],
                  'is_past_employee': affiliations["past_employee"],
                  'is_past_stud': affiliations["past_stud"],
-                 'sea_stud': affiliations.get('seattle', False),
-                 'bot_stud': affiliations.get('bothell', False),
-                 'tac_stud': affiliations.get('tacoma', False),
-                 'sea_emp': affiliations.get('official_seattle', False),
-                 'bot_emp': affiliations.get('official_bothell', False),
-                 'tac_emp': affiliations.get('official_tacoma', False),
+                 'sea_campus': affiliations['official_seattle'],
+                 'bot_campus': affiliations['official_bothell'],
+                 'tac_campus': affiliations['official_tacoma'],
                  }
     try:
         is_mobile = request.is_mobile or request.is_tablet
@@ -60,6 +57,12 @@ def get_log_entry(netid, request):
             log_entry['ip'] = request.META.get('REMOTE_ADDR')
     except Exception as ex:
         logger.warning("ip ==> %s" % ex)
+        pass
+
+    try:
+        log_entry['campus'] = get_base_campus(request)
+    except Exception as ex:
+        logger.warning("get_base_campus ==> %s" % ex)
         pass
     return log_entry
 
