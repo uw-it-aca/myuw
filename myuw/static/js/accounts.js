@@ -85,7 +85,6 @@ var AccountsPage = {
 
         if((window.user.undergrad ||
             window.user.grad) &&
-           (window.user.seattle_affil ||
             window.user.seattle)) {
             cards.push(HfsSeaCard);
         }

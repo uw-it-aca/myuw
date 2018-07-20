@@ -37,9 +37,12 @@ def get_log_entry(netid, request):
                  'is_retired_staff': affiliations["retiree"],
                  'is_past_employee': affiliations["past_employee"],
                  'is_past_stud': affiliations["past_stud"],
-                 'sea_campus': affiliations['official_seattle'],
-                 'bot_campus': affiliations['official_bothell'],
-                 'tac_campus': affiliations['official_tacoma'],
+                 'sea_stud': affiliations.get('seattle', False),
+                 'bot_stud': affiliations.get('bothell', False),
+                 'tac_stud': affiliations.get('tacoma', False),
+                 'sea_emp': affiliations.get('official_seattle', False),
+                 'bot_emp': affiliations.get('official_bothell', False),
+                 'tac_emp': affiliations.get('official_tacoma', False),
                  }
     try:
         is_mobile = request.is_mobile or request.is_tablet

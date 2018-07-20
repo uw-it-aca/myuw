@@ -12,9 +12,9 @@ var TeachingSection = {
         var template = Handlebars.compile(teaching_source);
 
         $("#main-content").html(template({
-            'seattle_affil': (window.user.seattle_affil || window.user.seattle),
-            'bothell_affil': (window.user.bothell_affil || window.user.bothell),
-            'tacoma_affil': (window.user.tacoma_affil || window.user.tacoma)
+            'seattle_affil': window.user.seattle_emp,
+            'bothell_affil': window.user.bothell_emp,
+            'tacoma_affil': window.user.tacoma_emp
         }));
 
         TeachingSection.load_cards_for_viewport();
