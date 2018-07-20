@@ -134,15 +134,15 @@ def get_all_affiliations(request):
         # determine student campus based on current and future enrollments
         try:
             campuses = get_main_campus(request)
-        except IndeterminateCampusException as e:
-            logger.error(e)
+        except IndeterminateCampusException:
+            pass
 
     if len(campuses) == 0 and is_employee(request):
         # determine employee primary campus based on their mailstop
         try:
             campuses = [get_employee_campus(request)]
-        except IndeterminateCampusException as e1:
-            logger.error(e1)
+        except IndeterminateCampusException:
+            pass
 
     data.update(_get_official_campuses(campuses))
     request.myuw_user_affiliations = data

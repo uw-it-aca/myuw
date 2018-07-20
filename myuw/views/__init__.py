@@ -71,7 +71,7 @@ def prefetch_resources(request,
         prefetch_methods.extend(password_prefetch())
 
     if prefetch_sws_person:
-        sws_person_prefetch()
+        prefetch_methods.extend(sws_person_prefetch())
 
     prefetch(request, prefetch_methods)
 
