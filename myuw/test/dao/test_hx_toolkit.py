@@ -1,10 +1,11 @@
 from datetime import datetime
 from django.test import TestCase
+from myuw.dao.affiliation import get_is_hxt_viewer
+from myuw.dao.hx_toolkit_dao import _get_week_between, _make_start_sunday, \
+    _get_phase_by_term
+from myuw.dao.term import get_current_quarter
 from myuw.test import (get_request_with_date, get_request_with_user,
                        get_request, fdao_uwnetid_override)
-from myuw.dao.term import get_current_quarter
-from myuw.dao.hx_toolkit_dao import _get_week_between, _make_start_sunday, \
-    _get_phase_by_term, get_is_hxt_viewer
 
 
 @fdao_uwnetid_override
@@ -60,36 +61,36 @@ class TestHXTDao(TestCase):
 
     def test_is_hxt_viewer(self):
         request = get_request_with_user('javerage')
-        self.assertTrue(get_is_hxt_viewer(request))
+        self.assertTrue(get_is_hxt_viewer(request)[5])
 
         # not-sea
-        request = get_request_with_user('jtacoma')
-        self.assertFalse(get_is_hxt_viewer(request))
+        request = get_request_with_user('tacgrad')
+        self.assertFalse(get_is_hxt_viewer(request)[5])
 
         # not-ugrad
-        request = get_request_with_user('jgrad')
-        self.assertFalse(get_is_hxt_viewer(request))
+        request = get_request_with_user('botgrad')
+        self.assertFalse(get_is_hxt_viewer(request)[5])
 
         # fyp
         request = get_request_with_user('jnew')
-        self.assertFalse(get_is_hxt_viewer(request))
+        self.assertFalse(get_is_hxt_viewer(request)[5])
 
         # au transfer in au
         request = get_request_with_user('javg001',
                                         get_request_with_date("2017-09-18"))
-        self.assertFalse(get_is_hxt_viewer(request))
+        self.assertFalse(get_is_hxt_viewer(request)[5])
 
         # au transfter outside au
         request = get_request_with_user('javg001',
                                         get_request_with_date("2017-02-18"))
-        self.assertTrue(get_is_hxt_viewer(request))
+        self.assertTrue(get_is_hxt_viewer(request)[5])
 
         # wi transfer in wi
         request = get_request_with_user('javg002',
                                         get_request_with_date("2017-02-18"))
-        self.assertFalse(get_is_hxt_viewer(request))
+        self.assertFalse(get_is_hxt_viewer(request)[5])
 
         # wi transfter outside wi
         request = get_request_with_user('javg002',
                                         get_request_with_date("2017-09-18"))
-        self.assertTrue(get_is_hxt_viewer(request))
+        self.assertTrue(get_is_hxt_viewer(request)[5])
