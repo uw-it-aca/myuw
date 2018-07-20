@@ -10,10 +10,6 @@ class TestAffilliationDao(TransactionTestCase):
     def setUp(self):
         get_request()
 
-    def test_eos_enrollment(self):
-        now_request = get_request_with_user('jeos')
-        affiliations = get_all_affiliations(now_request)
-
     def test_fyp(self):
         now_request = get_request_with_user('jnew')
         affiliations = get_all_affiliations(now_request)
@@ -35,11 +31,6 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertFalse(affiliations['aut_transfer'])
         self.assertTrue(affiliations['win_transfer'])
 
-    def test_is_faculty(self):
-        now_request = get_request_with_user('bill')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations['faculty'])
-
     def test_is_clinician(self):
         now_request = get_request_with_user('eight')
         affiliations = get_all_affiliations(now_request)
@@ -49,6 +40,13 @@ class TestAffilliationDao(TransactionTestCase):
         now_request = get_request_with_user('bill')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['instructor'])
+
+    def test_is_faculty(self):
+        now_request = get_request_with_user('billtac')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations['faculty'])
+        self.assertTrue(affiliations.get("alum_asso"))
+        self.assertTrue(affiliations.get("official_tacoma"))
 
     def test_is_alumni(self):
         now_request = get_request_with_user('jalum')
@@ -65,15 +63,6 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations["past_stud"])
         self.assertTrue(affiliations["no_1st_class_affi"])
 
-    def test_is_grad_stud_employee(self):
-        now_request = get_request_with_user('billseata')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get("grad"))
-        self.assertTrue(affiliations.get("student"))
-        self.assertTrue(affiliations.get("seattle"))
-        self.assertTrue(affiliations.get("instructor"))
-        self.assertTrue(affiliations.get("stud_employee"))
-
     def test_is_pce_stud(self):
         now_request = get_request_with_user('jpce')
         affiliations = get_all_affiliations(now_request)
@@ -84,33 +73,17 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations.get("student"))
         self.assertTrue(affiliations.get("seattle"))
         self.assertFalse(affiliations.get("official_pce"))
+        self.assertTrue(affiliations.get('J1'))
+        self.assertTrue(affiliations.get("intl_stud"))
 
+    def test_jinter(self):
         now_request = get_request_with_user('jinter')
         affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get('F1'))
+        self.assertTrue(affiliations.get("intl_stud"))
         self.assertTrue(affiliations.get('pce'))
         self.assertFalse(affiliations.get('undergrad_c2'))
         self.assertTrue(affiliations.get('grad_c2'))
-
-    def test_visa_type(self):
-        now_request = get_request_with_user('jpce')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('J1'))
-        self.assertTrue(affiliations.get("intl_stud"))
-
-        now_request = get_request_with_user('jinter')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('F1'))
-        self.assertTrue(affiliations.get("intl_stud"))
-
-        now_request = get_request_with_user('botgrad')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('J1'))
-        self.assertTrue(affiliations.get("intl_stud"))
-
-        now_request = get_request_with_user('tacgrad')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get('F1'))
-        self.assertTrue(affiliations.get("intl_stud"))
 
     def test_error_case(self):
         now_request = get_request_with_user('jerror')
@@ -125,32 +98,61 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertFalse(affiliations.get('F1'))
         self.assertFalse(affiliations.get("intl_stud"))
 
-    def test_official_campus(self):
+    def test_student_campus(self):
+        now_request = get_request_with_user('javerage')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("seattle"))
+
         now_request = get_request_with_user('jbothell')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("bothell"))
-        self.assertTrue(affiliations.get("official_bothell"))
 
         now_request = get_request_with_user('eight')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get("official_tacoma"))
+        self.assertTrue(affiliations.get("tacoma"))
 
+    def test_is_grad_stud_employee(self):
         now_request = get_request_with_user('billseata')
         affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("grad"))
+        self.assertTrue(affiliations.get("student"))
+        self.assertTrue(affiliations.get("seattle"))
+        self.assertTrue(affiliations.get("instructor"))
+        self.assertTrue(affiliations.get("stud_employee"))
+        self.assertTrue(affiliations.get("seattle"))
         self.assertTrue(affiliations.get("official_seattle"))
 
-        now_request = get_request_with_user('billbot')
+    def test_botgrad(self):
+        now_request = get_request_with_user('botgrad')
         affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("grad"))
+        self.assertTrue(affiliations.get("bothell"))
         self.assertTrue(affiliations.get("official_bothell"))
+        self.assertTrue(affiliations.get('J1'))
+        self.assertTrue(affiliations.get("intl_stud"))
 
-        now_request = get_request_with_user('billsea')
+    def test_tacgrad(self):
+        now_request = get_request_with_user('tacgrad')
         affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations.get("official_seattle"))
-
-        now_request = get_request_with_user('billtac')
-        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("grad"))
+        self.assertTrue(affiliations.get("tacoma"))
         self.assertTrue(affiliations.get("official_tacoma"))
+        self.assertTrue(affiliations.get('F1'))
+        self.assertTrue(affiliations.get("intl_stud"))
 
+    def test_employee(self):
         now_request = get_request_with_user('staff')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("official_seattle"))
+
+    def test_eos_enrollment(self):
+        now_request = get_request_with_user('jeos')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("seattle"))
+        self.assertTrue(affiliations.get("undergrad_c2"))
+
+    def test_stud_empl_campuses(self):
+        now_request = get_request_with_user('seagrad')
+        affiliations = get_all_affiliations(now_request)
+        self.assertTrue(affiliations.get("seattle"))
+        self.assertTrue(affiliations.get("official_bothell"))
