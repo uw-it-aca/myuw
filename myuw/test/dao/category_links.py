@@ -149,3 +149,15 @@ class TestCategoryLinks(TestCase):
         self.assertEqual(len(links), 9)
         self.assertEqual(links[8]['category_name'],
                          'Services for Faculty and Staff')
+
+        req = get_request_with_user('billbot')
+        links = Resource_Links().get_all_grouped_links(req)
+        self.assertEqual(len(links), 9)
+        self.assertEqual(links[8]['category_name'],
+                         'Services for Faculty and Staff')
+
+        req = get_request_with_user('billtac')
+        links = Resource_Links().get_all_grouped_links(req)
+        self.assertEqual(len(links), 9)
+        self.assertEqual(links[8]['category_name'],
+                         'Services for Faculty and Staff')
