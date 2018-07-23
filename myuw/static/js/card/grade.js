@@ -43,11 +43,11 @@ var GradeCard = {
     },
 
     render_error: function() {
-        // var course_error_code = WSData.course_data_error_code(GradeCard.term);
-        // if (course_error_code === null || course_error_code === 404) {
-        //     $("#GradeCard").hide();
-        //     return;
-        // }
+        var course_error_code = WSData.course_data_error_code(GradeCard.term);
+        if (course_error_code === null || course_error_code === 404) {
+             $("#GradeCard").hide();
+             return;
+        }
         GradeCard._render_with_context({has_error: true,
                                        display_grade_card: true});
     },

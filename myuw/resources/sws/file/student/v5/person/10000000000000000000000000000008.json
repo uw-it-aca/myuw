@@ -1,0 +1,35 @@
+{
+    "BirthDate": null,
+    "DirectoryRelease": null,
+    "Email": null,
+    "EmployeeID": "",
+    "FirstName": "BILL TAC",
+    "Gender": null,
+    "LastEnrolled": null,
+    "LastName": "TEACHER",
+    "LocalAddress": null,
+    "LocalPhone": null,
+    "Notices": {
+        "Href": "/student/v5/notice/10000000000000000000000000000008.json",
+        "RegID": "10000000000000000000000000000008"
+    },
+    "PermanentAddress": null,
+    "PermanentPhone": null,
+    "PersonFinancial": {
+        "Href": "/student/v5/person/10000000000000000000000000000008/financial.json",
+        "RegID": "10000000000000000000000000000008"
+    },
+    "RegID": "10000000000000000000000000000008",
+    "RegisteredName": "BILL TAC TEACHER",
+    "Resident": null,
+    "StudentName": "BILL TAC TEACHER",
+    "StudentNumber": null,
+    "StudentSystemKey": null,
+    "TestScore": {
+        "Href": "/student/v5/testscore/10000000000000000000000000000008.json",
+        "RegID": "10000000000000000000000000000008"
+    },
+    "UWNetID": "billtac",
+    "Veteran": null,
+    "VisaType": null
+}

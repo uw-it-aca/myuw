@@ -16,6 +16,7 @@ from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, is_faculty,\
     is_past_grad, is_past_undergrad, is_past_pce, is_retired_staff,\
     is_past_clinician, is_past_faculty, is_past_staff
+from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 
 
@@ -40,20 +41,17 @@ def get_all_affiliations(request):
     ["undergrad_c2"]: True if the user takes UW PCE undergrad courses
 
     ["seattle"]: True if the user is an UW Seattle student
-                 in the current quarter.
     ["bothell"]: True if the user is an UW Bothell student
-                 in the current quarter.
     ["tacoma"]: True if the user is an UW Tacoma student
-                in the current quarter.
-    ["official_seattle"]: True if the user is an UW Seattle student
-                 according to the SWS Enrollment.
-    ["official_bothell"]: True if the user is an UW Bothell student
-                 according to the SWS Enrollment.
-    ["official_tacoma"]: True if the user is an UW Tacoma student
-                according to the SWS Enrollment.
+    ["official_seattle"]: True if the user is Seattle employee
+    ["official_bothell"]: True if the user is Bothell employee
+    ["official_tacoma"]: True if the user is Tacoma employee
     ["official_pce"]: waiting on sws to add a field in Enrollment.
     ["alum_asso"]: alumni association member
     ["class_level"]: current term class level
+    ["F1"]: F1 international student
+    ["J1"]: J1 international student
+    ["intl_stud"]: F1 or J1 international student
     ["no_1st_class_affi"]: not applicant, employee, student, instructor
 
     The following are secondary affiliations (without 1st_class_aff):
@@ -70,13 +68,8 @@ def get_all_affiliations(request):
         return request.myuw_user_affiliations
 
     not_major_affi = no_major_affiliations(request)
-    is_fy_stud = is_fyp(request)
-    is_aut_xfer = is_aut_transfer(request)
-    is_win_xfer = is_win_transfer(request)
-    is_sea_stud = is_seattle_student(request)
-    is_undergrad = is_undergrad_student(request)
-    is_hxt_viewer = get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
-                                      is_fy_stud, is_aut_xfer, is_win_xfer)
+    (is_aut_xfer, is_fy_stud, is_win_xfer, is_sea_stud,
+     is_undergrad, is_hxt_viewer) = get_is_hxt_viewer(request)
     data = {"class_level": None,
             "grad": is_grad_student(request),
             "undergrad": is_undergrad,
@@ -85,6 +78,9 @@ def get_all_affiliations(request):
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
+            "F1": False,
+            "J1": False,
+            "intl_stud": False,
             "staff_employee": is_staff_employee(request),
             "stud_employee": is_student_employee(request),
             "employee": is_regular_employee(request),
@@ -116,73 +112,52 @@ def get_all_affiliations(request):
     if data["student"]:
         data["class_level"] = get_class_level(request)
 
-        # determine student campus based on current and future enrollments
+        try:
+            sws_person = get_profile_of_current_user(request)
+            data["F1"] = sws_person.is_F1()
+            data["J1"] = sws_person.is_J1()
+            data["intl_stud"] = data["F1"] or data["J1"]
+        except Exception as ex:
+            logger.error(ex)
+
+        # enhance student campus with current and future enrollments
         try:
             campuses = get_main_campus(request)
+            if len(campuses) > 0:
+                data['seattle'] = data['seattle'] or ('Seattle' in campuses)
+                data['bothell'] = data['bothell'] or ('Bothell' in campuses)
+                data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
         except IndeterminateCampusException:
             pass
 
-    if len(campuses) == 0 and is_employee(request):
+    if is_employee(request):
         # determine employee primary campus based on their mailstop
         try:
-            campuses = [get_employee_campus(request)]
+            employee_campus = get_employee_campus(request)
+            data['official_seattle'] = ('Seattle' == employee_campus)
+            data['official_bothell'] = ('Bothell' == employee_campus)
+            data['official_tacoma'] = ('Tacoma' == employee_campus)
         except IndeterminateCampusException:
             pass
 
-    data.update(_get_official_campuses(campuses))
     request.myuw_user_affiliations = data
     return data
 
 
-def _get_official_campuses(campuses):
-    official_campuses = {'official_seattle': False,
-                         'official_bothell': False,
-                         'official_tacoma': False}
-    if 'Bothell' in campuses:
-        official_campuses['official_bothell'] = True
-    if 'Seattle' in campuses:
-        official_campuses['official_seattle'] = True
-    if 'Tacoma' in campuses:
-        official_campuses['official_tacoma'] = True
-    return official_campuses
-
-
-def get_base_campus(affiliations):
-    """
-    Return one currently enrolled campus.
-    If not exist, return one affiliated campus.
-    """
-    campus = ""
-    try:
-        if affiliations["official_seattle"]:
-            campus = "seattle"
-        if affiliations["official_bothell"]:
-            campus = "bothell"
-        if affiliations["official_tacoma"]:
-            campus = "tacoma"
-    except KeyError:
-        try:
-            if affiliations["seattle"]:
-                campus = "seattle"
-            if affiliations["bothell"]:
-                campus = "bothell"
-            if affiliations["tacoma"]:
-                campus = "tacoma"
-        except KeyError:
-            campus = ""
-            pass
-    return campus
-
-
-def get_is_hxt_viewer(request, is_undergrad, is_sea_stud,
-                      is_fyp, is_aut_transfer, is_win_transfer):
+def get_is_hxt_viewer(request):
+    is_fy_stud = is_fyp(request)
+    is_aut_xfer = is_aut_transfer(request)
+    is_win_xfer = is_win_transfer(request)
+    is_sea_stud = is_seattle_student(request)
+    is_undergrad = is_undergrad_student(request)
     is_viewer = False
-    if is_sea_stud and is_undergrad and not is_fyp:
+    if is_sea_stud and is_undergrad and not is_fy_stud:
         term = get_current_quarter(request)
         if term.quarter == 'winter':
-            is_viewer = not is_win_transfer
+            is_viewer = not is_win_xfer
         elif term.quarter == 'autumn':
-            is_viewer = not is_aut_transfer
+            is_viewer = not is_aut_xfer
         else:
             is_viewer = True
-    return is_viewer
+    return (is_aut_xfer, is_fy_stud, is_win_xfer, is_sea_stud,
+            is_undergrad, is_viewer)
