@@ -20,14 +20,14 @@
         "Zip":""},
 "LocalPhone":null,
 "PermanentAddress":{
-        "City":"Bellevue",
-        "Country":"United States",
-        "Line1":"1645 140th Ave NE",
-        "Line2":"APT 980",
+        "City":"Beijing",
+        "Country":"China",
+        "Line1":"Haidian Huangzhuang",
+        "Line2":"908-102",
         "PostalCode":"",
-        "State":"WA",
-        "Zip":"98005-1234"},
-"PermanentPhone":"4255556789",
+        "State":"Hebei",
+        "Zip":"100086"},
+"PermanentPhone":"861062567003",
 "RegID":"10000000000000000000000000000004",
 "Resident":null,
 "StudentName":"Student,Tacoma Graduate",
@@ -39,4 +39,4 @@
 "UWNetID":"tacgrad",
 "Veteran":{"Code":"0",
            "Description":null},
-"VisaType":null}
+"VisaType":"F1"}

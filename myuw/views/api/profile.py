@@ -31,7 +31,8 @@ class MyProfile(ProtectedAPI):
             prefetch_resources(request,
                                prefetch_group=True,
                                prefetch_enrollment=True,
-                               prefetch_password=True)
+                               prefetch_password=True,
+                               prefetch_sws_person=True)
 
             if is_student(request):
                 response = get_student_profile(request)

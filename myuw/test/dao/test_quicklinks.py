@@ -2,6 +2,7 @@ from django.test import TransactionTestCase
 from myuw.models import VisitedLinkNew, CustomLink, PopularLink, User
 from myuw.test import get_request_with_user
 from myuw.dao.user import get_user_model
+from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.quicklinks import get_quicklink_data, get_link_label,\
     add_custom_link, delete_custom_link, edit_custom_link,\
     add_hidden_link, delete_hidden_link, get_popular_link_by_id,\
@@ -40,6 +41,8 @@ class TestQuickLinkDAO(TransactionTestCase):
 
         plink = PopularLink.objects.create(url=u2)
         self.assertTrue(get_popular_link_by_id(plink.pk))
+        self.assertIsNotNone(plink.json_data())
+        self.assertIsNotNone(str(plink))
 
         data = get_quicklink_data(req)
         recent = _get_recent(data)
@@ -130,3 +133,58 @@ class TestQuickLinkDAO(TransactionTestCase):
         link2 = edit_custom_link(req, link1.pk, url2, label2)
         self.assertIsNotNone(link2)
         self.assertEquals(link2.label, label2)
+
+    def test_get_quicklink_data(self):
+        data = {
+            "affiliation": "student",
+            "url": "http://iss1.washington.edu/",
+            "label": "ISS1",
+            "campus": "seattle",
+            "pce": False,
+            "affiliation": "{intl_stud: True}",
+            }
+        plink = PopularLink.objects.create(**data)
+
+        username = "jinter"
+        req = get_request_with_user(username)
+        affiliations = get_all_affiliations(req)
+        user = get_user_model(req)
+        link_data = {
+            "user": user,
+            "url": "http://iss.washington.edu/",
+            "label": "ISS1",
+            "is_anonymous": False,
+            "is_student": affiliations.get('student', False),
+            "is_undegrad": affiliations.get('undergrad', False),
+            "is_grad_student": affiliations.get('grad', False),
+            "is_employee": affiliations.get('employee', False),
+            "is_faculty": affiliations.get('faculty', False),
+            "is_seattle": affiliations.get('seattle', False),
+            "is_tacoma": affiliations.get('tacoma', False),
+            "is_bothell": affiliations.get('bothell', False),
+            "is_pce": affiliations.get('pce', False),
+            "is_student_employee": affiliations.get('stud_employee',
+                                                    False),
+            "is_intl_stud": affiliations.get('intl_stud', False)
+        }
+        l1 = VisitedLinkNew.objects.create(**link_data)
+
+        qls = get_quicklink_data(req)
+        self.assertEqual(qls['recent_links'][0]['label'], "ISS1")
+
+        self.assertEqual(qls['default_links'][0]['label'],
+                         "International Student Services (ISS)")
+
+    def test_bot_quicklinks(self):
+        username = "botgrad"
+        req = get_request_with_user(username)
+        bot_qls = get_quicklink_data(req)
+        self.assertEqual(bot_qls['default_links'][0]['url'],
+                         "http://www.uwb.edu/cie")
+
+    def test_tac_quicklinks(self):
+        username = "tacgrad"
+        req = get_request_with_user(username)
+        tac_qls = get_quicklink_data(req)
+        self.assertEqual(tac_qls['default_links'][0]['label'],
+                         "International Student and Scholar Services (ISSS)")
