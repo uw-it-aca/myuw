@@ -12,10 +12,10 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
+        migrations.AlterField(
             model_name='popularlink',
-            name='intl_stud',
-            field=models.BooleanField(default=False),
+            name='affiliation',
+            field=models.CharField(max_length=256, null=True),
         ),
         migrations.AddField(
             model_name='visitedlinknew',
