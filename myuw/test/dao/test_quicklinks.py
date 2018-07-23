@@ -191,6 +191,6 @@ class TestQuickLinkDAO(TransactionTestCase):
         req = get_request_with_user(username)
         tac_qls = get_quicklink_data(req)
         self.assertEqual(tac_qls['default_links'][0]['label'],
-                         "Request Address/Phone Number Update")
+                         "Change Address/Phone Number")
         self.assertEqual(tac_qls['default_links'][1]['label'],
                          "International Student and Scholar Services (ISSS)")
