@@ -3,7 +3,7 @@ import os
 from django.db.models import Q
 from myuw.models import ResourceCategoryPin
 from myuw.models.res_category_link import ResCategoryLink
-from myuw.dao.affiliation import get_all_affiliations, get_base_campus
+from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import get_user_model
 from myuw.dao.exceptions import InvalidResourceCategory
 
@@ -271,3 +271,21 @@ def delete_categor_pin(request, category_id):
         get(user=user, resource_category_id=category_id)
     if pinned:
         pinned.delete()
+
+
+def get_base_campus(affiliations):
+    """
+    Return one currently enrolled campus.
+    If not exist, return one affiliated campus.
+    """
+    is_stud = affiliations["student"]
+    if (is_stud and affiliations.get("seattle") is True or
+            affiliations.get("official_seattle") is True):
+        return "seattle"
+    if (is_stud and affiliations.get("bothell") is True or
+            affiliations.get("official_bothell") is True):
+        return "bothell"
+    if (is_stud and affiliations.get("tacoma") is True or
+            affiliations.get("official_tacoma") is True):
+        return "tacoma"
+    return ""
