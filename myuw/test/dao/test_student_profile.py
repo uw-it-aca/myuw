@@ -18,6 +18,10 @@ class TestStudentProfile(TestCase):
         self.assertEquals(len(majors[1]['majors']), 3)
         self.assertEquals(len(majors[2]['majors']), 2)
 
+        req = get_request_with_user('eight',
+                                    get_request_with_date("2016-04-01"))
+        self.assertIsNone(get_cur_future_enrollments(req))
+
     def test_get_minors_for_terms(self):
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))

@@ -199,6 +199,7 @@ class VisitedLinkNew(models.Model):
     is_bothell = models.BooleanField(default=False)
     is_pce = models.BooleanField(default=False)
     is_student_employee = models.BooleanField(default=False)
+    is_intl_stud = models.BooleanField(default=False)
 
     user = models.ForeignKey('User', on_delete=models.PROTECT)
     visit_date = models.DateTimeField(db_index=True, auto_now_add=True)

@@ -2,10 +2,10 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 import logging
+from myuw.models import VisitedLinkNew, PopularLink
 from myuw.dao import get_netid_of_current_user
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
-from myuw.models import VisitedLinkNew, PopularLink
 
 
 PAGE_SIZE = 10
