@@ -7,6 +7,9 @@ Affiliation: definition
  grad_c2: takes UW PCE grad courses
  undergrad_c2: takes UW PCE undergrad courses
  student: current UW student (grad, undergrad, or pce).
+ F1: F1 visa international student
+ J1: J1 visa international student
+ intl_stud: F1 or J1 international student
  employee: current uw employee NOT student employee.
  faculty: current faculty.
  staff_employee: current a staff
