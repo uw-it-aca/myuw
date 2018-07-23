@@ -1,0 +1,35 @@
+{
+    "BirthDate": null,
+    "DirectoryRelease": null,
+    "Email": null,
+    "EmployeeID": "",
+    "FirstName": "BILL SEA",
+    "Gender": null,
+    "LastEnrolled": null,
+    "LastName": "TEACHER",
+    "LocalAddress": null,
+    "LocalPhone": null,
+    "Notices": {
+        "Href": "/student/v5/notice/10000000000000000000000000000006.json",
+        "RegID": "10000000000000000000000000000006"
+    },
+    "PermanentAddress": null,
+    "PermanentPhone": null,
+    "PersonFinancial": {
+        "Href": "/student/v5/person/10000000000000000000000000000006/financial.json",
+        "RegID": "10000000000000000000000000000006"
+    },
+    "RegID": "10000000000000000000000000000006",
+    "RegisteredName": "BILL AVERAGE TEACHER",
+    "Resident": null,
+    "StudentName": "BILL AVERAGE TEACHER",
+    "StudentNumber": null,
+    "StudentSystemKey": null,
+    "TestScore": {
+        "Href": "/student/v5/testscore/10000000000000000000000000000006.json",
+        "RegID": "10000000000000000000000000000006"
+    },
+    "UWNetID": "billsea",
+    "Veteran": null,
+    "VisaType": null
+}

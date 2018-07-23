@@ -142,3 +142,22 @@ class TestCategoryLinks(TestCase):
 
         with self.assertRaises(InvalidResourceCategory):
             pin_category(req, 'foobar')
+
+    def test_staff_links(self):
+        req = get_request_with_user('bill')
+        links = Resource_Links().get_all_grouped_links(req)
+        self.assertEqual(len(links), 9)
+        self.assertEqual(links[8]['category_name'],
+                         'Services for Faculty and Staff')
+
+        req = get_request_with_user('billbot')
+        links = Resource_Links().get_all_grouped_links(req)
+        self.assertEqual(len(links), 9)
+        self.assertEqual(links[8]['category_name'],
+                         'Services for Faculty and Staff')
+
+        req = get_request_with_user('billtac')
+        links = Resource_Links().get_all_grouped_links(req)
+        self.assertEqual(len(links), 9)
+        self.assertEqual(links[8]['category_name'],
+                         'Services for Faculty and Staff')
