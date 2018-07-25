@@ -98,18 +98,22 @@ class Emaillist(ProtectedAPI):
 def get_input(request):
     single_section_labels = []
     joint_section_labels = []
-    for key in request.POST:
-        if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key):
-            single_section_labels.append(_get_section_label(request, key))
-        if re.match(r'^[a-z]+_joint_[A-Z][A-Z0-9]?$', key):
-            joint_section_labels.append(_get_section_label(request, key))
+    if "section_joint_list" in request.POST:
+        if request.POST["section_joint_list"] == "joint":
+            for key in request.POST:
+                if re.match(r'^[a-z]+_id_[A-Z][A-Z0-9]?$', key):
+                    joint_section_labels.append(
+                        _get_section_label(request, key))
+    else:
+        for key in request.POST:
+            if re.match(r'^[a-z]+_single_[A-Z][A-Z0-9]?$', key):
+                single_section_labels.append(_get_section_label(request, key))
 
     return single_section_labels, joint_section_labels
 
 
 def _get_section_label(request, key):
     section_label = request.POST[key]
-
     if section_id_matched(key, section_label) and \
             is_valid_section_label(section_label):
         return section_label
@@ -120,7 +124,7 @@ def _get_section_label(request, key):
 
 
 SINGLE_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_single_([A-Z][A-Z0-9]?)$'
-JOINT_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_joint_([A-Z][A-Z0-9]?)$'
+JOINT_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_id_([A-Z][A-Z0-9]?)$'
 
 
 def section_id_matched(key, value):
