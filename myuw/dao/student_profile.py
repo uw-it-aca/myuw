@@ -15,6 +15,12 @@ from myuw.dao.term import get_current_and_next_quarters
 logger = logging.getLogger(__name__)
 
 
+def sws_person_prefetch():
+    def _method(request):
+        return get_profile_of_current_user(request)
+    return [_method]
+
+
 def get_profile_of_current_user(request):
     """
     Return uw_sws.models.SwsPerson object
@@ -46,7 +52,6 @@ def get_student_profile(request):
         response['campus'] = 'Bothell'
 
     get_academic_info(request, response)
-
     return response
 
 

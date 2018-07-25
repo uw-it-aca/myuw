@@ -38,7 +38,7 @@ def save_visited_link(request):
     url = request.GET.get('u', '')
     label = request.GET.get('l', None)
     user = get_user_model(request)
-    prefetch_resources(request, prefetch_group=True)
+    prefetch_resources(request, prefetch_group=True, prefetch_sws_person=True)
 
     if label:
         label = unquote(label)
@@ -57,6 +57,7 @@ def save_visited_link(request):
                  "is_tacoma": affiliations.get('tacoma', False),
                  "is_bothell": affiliations.get('bothell', False),
                  "is_pce": affiliations.get('pce', False),
+                 "is_intl_stud": affiliations.get('intl_stud', False),
                  "is_student_employee": affiliations.get('stud_employee',
                                                          False)
                  }
