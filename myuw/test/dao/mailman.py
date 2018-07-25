@@ -195,7 +195,7 @@ class TestMailmanDao(TestCase):
             resp = request_mailman_lists(req,
                                          ['2013,spring,PHYS,122/A',
                                           '2013,spring,PHYS,122/AA',
-                                          '2013,spring,PHYS,122/AB'])
+                                          '2013,spring,PHYS,122/AB'], [])
             self.assertEqual(resp, {"request_sent": True,
                                     'total_lists_requested': 3})
             self.assertEqual(len(mail.outbox), 1)
