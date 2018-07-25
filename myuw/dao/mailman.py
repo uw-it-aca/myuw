@@ -230,7 +230,6 @@ def request_mailman_lists(request,
     requestor_uwnetid = get_netid_of_current_user(request)
     single_message_body, num_sections_found = get_single_message_body(
         requestor_uwnetid, single_section_labels)
-
     joint_message_body, joint_num_sections_found = \
         get_joint_message_body(requestor_uwnetid, joint_section_lables)
 
@@ -246,14 +245,13 @@ def request_mailman_lists(request,
 
     ret_data = {"total_lists_requested":
                 num_sections_found + joint_num_sections_found}
-    if num_sections_found == 0:
+    if num_sections_found + joint_num_sections_found == 0:
         ret_data["request_sent"] = False
     else:
         recipient = get_mailman_courserequest_recipient()
         if recipient is None:
             raise CourseRequestEmailRecipientNotFound
         sender = "%s@uw.edu" % requestor_uwnetid
-
         send_mail(EMAIL_SUBJECT,
                   message_body,
                   sender,
