@@ -204,3 +204,20 @@ class TestMailmanDao(TestCase):
             self.assertEqual(mail.outbox[0].from_email, "billsea@uw.edu")
             self.assertEqual(mail.outbox[0].to, ['dummy@uw.edu'])
             self.assertTrue(len(mail.outbox[0].body) > 0)
+
+
+    def test_request_joint_mailman_lists(self):
+        with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
+            req = get_request_with_user('billjoint')
+            self.assertEquals(len(mail.outbox), 0)
+            resp = request_mailman_lists(req, [], ['2013,autumn,POL S,306/A'])
+            self.assertEqual(resp, {"request_sent": True,
+                                    'total_lists_requested': 1})
+            self.assertEqual(len(mail.outbox), 1)
+            self.assertEqual(mail.outbox[0].subject,
+                             'instructor Mailman request')
+            self.assertEqual(mail.outbox[0].from_email, "billjoint@uw.edu")
+            self.assertEqual(mail.outbox[0].to, ['dummy@uw.edu'])
+            joint_msg = "billjoint\nmulti_com306a_au13 4 2013 25769 18778\n"
+            self.assertEqual(mail.outbox[0].body, joint_msg)
+            self.assertTrue(len(mail.outbox[0].body) > 0)
