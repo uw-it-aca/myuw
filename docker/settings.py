@@ -49,24 +49,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 
 import os
-if os.environ['DB'] == "sqlite3":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-elif os.environ['DB'] == "mysql":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'myuw',
-            'USER': 'root',
-            'HOST': 'db',
-            'PASSWORD': 'docker',
-            'PORT': 3306,
-        }
-    }
+}
 
 LANGUAGE_CODE = 'en-us'
 
