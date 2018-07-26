@@ -1,5 +1,6 @@
 from myuw.test.api import missing_url, MyuwApiTest
 from django.test.client import RequestFactory
+from myuw.models.myuw_notice import MyuwNotice
 from myuw.views.notice_admin import _get_datetime, _save_notice
 from datetime import datetime
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
@@ -30,6 +31,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'action': 'save',
             'title': 'The Title',
             'content': "<p>Foobar</p>",
+            'affil': 'is_intl_stud',
+            'campus': 'is_seattle',
             'start_date': "2018-05-25 12:05",
             'end_date': "2018-05-26 12:05",
             'notice_type': 'Foo',
@@ -38,6 +41,12 @@ class TestNoticeAdmin(MyuwApiTest):
         request = rf.post('', notice_context)
         saved = _save_notice(request, {})
         self.assertTrue(saved)
+        entries = MyuwNotice.objects.all()
+        self.assertEqual(len(entries), 1)
+        self.assertIsNotNone(entries[0].json_data())
+        self.assertIsNotNone(entries[0].get_notice_content())
+        self.assertTrue(entries[0].is_intl_stud)
+        self.assertTrue(entries[0].is_seattle)
 
         # end before start
         notice_context = {
