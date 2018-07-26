@@ -205,7 +205,6 @@ class TestMailmanDao(TestCase):
             self.assertEqual(mail.outbox[0].to, ['dummy@uw.edu'])
             self.assertTrue(len(mail.outbox[0].body) > 0)
 
-
     def test_request_joint_mailman_lists(self):
         with self.settings(MAILMAN_COURSEREQUEST_RECIPIENT='dummy@uw.edu'):
             req = get_request_with_user('billjoint')
