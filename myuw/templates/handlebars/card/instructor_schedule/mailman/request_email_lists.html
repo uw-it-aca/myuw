@@ -44,7 +44,7 @@
                             <div class="radio">
                                 <label for="joint-section_joint_{{section_list.section_id}}">
                                     <input type="radio" name="section_joint_list" id="joint-section_joint_{{section_list.section_id}}" value="joint" checked />
-                                    {{ course_abbr }} {{course_number}} {{section_id}} and {{#each joint_sections}} {{ course_abbr }} {{ course_number }} {{ section_id }}{{/each}}, {{ capitalizeString quarter }} {{ year }}
+                                    {{ course_abbr }} {{course_number}} {{section_id}} + {{#each joint_sections}}{{ course_abbr }} {{ course_number }} {{ section_id }}{{#unless @last}} + {{/unless}}{{/each}}
                                 </label>
                                 <p class="help-block small">Mailing list address: {{joint_section_list.list_address}}@uw.edu</p>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="radio">
                                 <label for="joint-section_single_{{section_list.section_id}}">
                                     <input type="radio" name="section_joint_list" id="joint-section_single_{{section_list.section_id}}" value="single" />
-                                    {{ course_abbr }} {{course_number}} {{section_id}}, {{ capitalizeString quarter }} {{ year }}
+                                    {{ course_abbr }} {{course_number}} {{section_id}}
                                 </label>
                                 <p class="help-block small">Mailing list address: {{section_list.list_address}}@uw.edu</p>
                             </div>
