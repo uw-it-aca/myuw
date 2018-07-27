@@ -25,6 +25,6 @@ phases:
       - python manage.py test myuw
 artifacts:
   files:
-    - '*'
+    - '**/*'
   discard-paths: yes
   base-directory: /tmp/myuw_env/
