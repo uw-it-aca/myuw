@@ -22,6 +22,8 @@ var GradCommitteeCard = {
         var source = $("#gradcommittee_card_content").html();
         var template = Handlebars.compile(source);
         GradCommitteeCard.dom_target.html(template(context));
+        LogUtils.cardLoaded(GradCommitteeCard.name, GradCommitteeCard.dom_target);
+
     },
     _render: function (mygrad_data) {
         if (!mygrad_data.committees) {
