@@ -13,11 +13,23 @@
             "NoticeType": "IntlStuCheckin"
         },
         {
-            "NoticeAttributes": [],
+            "NoticeAttributes": [
+            {
+               "Name": "DisplayBegin",
+               "DataType": "date",
+               "Value": "20130401"
+            },
+            {
+               "Name": "DisplayEnd",
+               "DataType": "date",
+               "Value": "20130501"
+            }
+            ],
             "NoticeCategory": "StudentGEN",
-            "NoticeContent": "This is the ferpa notice.",
+            "NoticeContent": "<span class=\"notice-title\">FERPA</span><span class=\"notice-body-with-title\">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, your directory information may be released unless you inform the Registrar's Office. For further details check the <a href=\"http://www.washington.edu/students/reg/ferpa.html\">Family Educational Rights and Privacy Act web site</a>.</span>",
             "NoticeType": "FERPA"
         },
+
         {
             "NoticeAttributes": [],
             "NoticeCategory": "StudentALR",
