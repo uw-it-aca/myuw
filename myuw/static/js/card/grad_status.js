@@ -22,21 +22,27 @@ var GradStatusCard = {
         var source = $("#gradstatus_card_content").html();
         var template = Handlebars.compile(source);
         GradStatusCard.dom_target.html(template(context));
+        LogUtils.cardLoaded(GradStatusCard.name, GradStatusCard.dom_target);
     },
 
     _render: function (mygrad_data) {
-        if (!mygrad_data.degrees && !mygrad_data.leaves && !mygrad_data.petitions) {
+        if (!mygrad_data.degrees &&
+            !mygrad_data.leaves &&
+            !mygrad_data.petitions) {
             GradStatusCard.dom_target.hide();
             return;
         }
-        if (mygrad_data.degree_err && mygrad_data.leave_err && mygrad_data.petit_err) {
+        if (mygrad_data.degree_err &&
+            mygrad_data.leave_err &&
+            mygrad_data.petit_err) {
             GradStatusCard.render_error();
             return;
         }
 
         if (mygrad_data.petitions !== null) {
             for (var i = 0; i < mygrad_data.petitions.length; i += 1) {
-                if (mygrad_data.petitions[i].dept_recommend === "Pending" || mygrad_data.petitions[i].dept_recommend === "Withdraw") {
+                if (mygrad_data.petitions[i].dept_recommend === "Pending" ||
+                    mygrad_data.petitions[i].dept_recommend === "Withdraw") {
                     mygrad_data.petitions[i].gradschool_decision = null;
                 }
                 if (mygrad_data.petitions[i].gradschool_decision === "Approved") {
