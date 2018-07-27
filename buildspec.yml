@@ -23,14 +23,8 @@ phases:
     commands:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
-  post_build:
-    commands:
-      - mkdir /tmp/output_dir/
-      - tar czf /tmp/output_dir/$CODEBUILD_BUILD_ID.tar.gz .
-      - ls -l
-      - pwd
 artifacts:
   files:
     - '*'
   discard-paths: yes
-  base-directory: /tmp/output_dir/
+  base-directory: /tmp/myuw_env/
