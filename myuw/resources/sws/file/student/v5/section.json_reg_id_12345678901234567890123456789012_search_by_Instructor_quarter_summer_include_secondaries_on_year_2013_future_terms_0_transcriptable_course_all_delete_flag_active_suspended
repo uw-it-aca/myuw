@@ -1,0 +1,20 @@
+{
+"Current":
+    {"Href":"\/student\/v5\/section.json?year=2013&quarter=spring&curriculum_abbreviation=&course_number=&reg_id=12345678901234567890123456789012&search_by=Instructor&include_secondaries=on&delete_flag=&page_size=10&page_start=1",
+    "CourseNumber":null,
+    "CurriculumAbbreviation":null,
+    "DeleteFlag":null,
+    "IncludeSecondaries":null,
+    "PageSize":"10",
+    "PageStart":"1",
+    "Quarter":"summer",
+    "RegID":"12345678901234567890123456789012",
+    "SearchBy":"Instructor",
+    "TranscriptableCourse":"yes",
+    "Year":"2013"},
+"Next":null,
+"PageSize":"10",
+"PageStart":"1",
+"Previous":null,
+"Sections":[],
+"TotalCount":0}
