@@ -1,0 +1,33 @@
+[
+    {
+        "Term":{"Quarter":"Spring","Year":2013},
+        "RegistrationHref":"http://example.com/RegistrationHref",
+        "MyPlanHref":"http://example.com/MyPlan",
+        "AuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit",
+        "PlanAuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/plan",
+        "DegreeAuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree",
+        "CourseSearchHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/course",
+        "RegisteredCoursesCount":3,
+        "RegisteredSectionsCount":3,
+        "Courses":[
+            {
+                "CurriculumAbbreviation":"B BIO",
+                "CourseNumber":"180",
+                "RegistrationAvailable":false,
+                "Sections":[{"SectionId":"A"}]
+            },
+            {
+                "CurriculumAbbreviation":"ELCBUS",
+                "CourseNumber":"451",
+                "RegistrationAvailable":false,
+                "Sections":[{"SectionId":"A"}]
+            },
+            {
+                "CurriculumAbbreviation":"TRAIN",
+                "CourseNumber":"101",
+                "RegistrationAvailable":false,
+                "Sections":[{"SectionId":"A"}]
+            }
+        ]
+    }
+]
