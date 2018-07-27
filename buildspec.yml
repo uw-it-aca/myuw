@@ -21,7 +21,7 @@ phases:
       - python manage.py migrate
   build:
     commands:
-      - rm requirements.txt && pip freeze > requirements.txt 
+      - rm requirements.txt && pip freeze | grep -v "MyUW==0.0.1" > requirements.txt 
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
 artifacts:
