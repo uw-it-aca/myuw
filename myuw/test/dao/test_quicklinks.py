@@ -41,6 +41,8 @@ class TestQuickLinkDAO(TransactionTestCase):
 
         plink = PopularLink.objects.create(url=u2)
         self.assertTrue(get_popular_link_by_id(plink.pk))
+        self.assertIsNotNone(plink.json_data())
+        self.assertIsNotNone(str(plink))
 
         data = get_quicklink_data(req)
         recent = _get_recent(data)
@@ -139,7 +141,7 @@ class TestQuickLinkDAO(TransactionTestCase):
             "label": "ISS1",
             "campus": "seattle",
             "pce": False,
-            "intl_stud": True,
+            "affiliation": "{intl_stud: True}",
             }
         plink = PopularLink.objects.create(**data)
 
@@ -168,8 +170,21 @@ class TestQuickLinkDAO(TransactionTestCase):
         l1 = VisitedLinkNew.objects.create(**link_data)
 
         qls = get_quicklink_data(req)
-        self.assertEquals(qls['recent_links'][0]['label'], "ISS1")
-        self.assertEquals(qls['default_links'][12]['label'],
-                          "International Student Services")
-        self.assertEquals(qls['default_links'][13]['label'],
-                          "Change Student Address")
+        self.assertEqual(qls['recent_links'][0]['label'], "ISS1")
+
+        self.assertEqual(qls['default_links'][0]['label'],
+                         "International Student Services (ISS)")
+
+    def test_bot_quicklinks(self):
+        username = "botgrad"
+        req = get_request_with_user(username)
+        bot_qls = get_quicklink_data(req)
+        self.assertEqual(bot_qls['default_links'][0]['url'],
+                         "http://www.uwb.edu/cie")
+
+    def test_tac_quicklinks(self):
+        username = "tacgrad"
+        req = get_request_with_user(username)
+        tac_qls = get_quicklink_data(req)
+        self.assertEqual(tac_qls['default_links'][0]['label'],
+                         "International Student and Scholar Services (ISSS)")
