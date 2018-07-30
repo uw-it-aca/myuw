@@ -28,7 +28,7 @@ phases:
       - docker build -t myuw_dev_web:$IMAGE_TAG .
   post_build:
     commands:
-      - sed -i -e 's/CODEBUILD_TAG/$IMAGE_TAG/g' /tmp/myuw_env/i
+      - sed -i -e 's/IMAGE_TAG/$IMAGE_TAG/g' /tmp/myuw_env/Dockerrun.aws.json
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG
 artifacts:
   files:
