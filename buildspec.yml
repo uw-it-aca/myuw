@@ -23,7 +23,7 @@ phases:
     commands:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
-      - docker build -t myuw_dev_web:$CODEBUILD_BUILD_ID
+      - docker build -t myuw_dev_web:$CODEBUILD_BUILD_ID .
   post_build:
     commands:
       - sed -i -e 's/CODEBUILD_TAG/$CODEBUILD_BUILD_ID/g' /tmp/myuw_env/i
