@@ -23,7 +23,7 @@ phases:
     commands:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
-      - $IMAGE_TAG = $(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
+      - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
       - docker build -t myuw_dev_web:$IMAGE_TAG .
   post_build:
     commands:
