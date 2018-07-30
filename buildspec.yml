@@ -3,6 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
+      - aws ecr get-login
       - $(aws ecr get-login)
       - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG .
       - sed -i -e 's/IMAGE_TAG/$IMAGE_TAG/g' /tmp/myuw_env/Dockerrun.aws.json
