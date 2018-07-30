@@ -23,11 +23,11 @@ phases:
     commands:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
-      - docker build -t myuw_dev_web:$CODEBUILD_BUILD_ID .
+      - docker build -t myuw_dev_web:$CODEBUILD_SOURCE_VERSION .
   post_build:
     commands:
-      - sed -i -e 's/CODEBUILD_TAG/$CODEBUILD_BUILD_ID/g' /tmp/myuw_env/i
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$CODEBUILD_BUILD_ID
+      - sed -i -e 's/CODEBUILD_TAG/$CODEBUILD_SOURCE_VERSION/g' /tmp/myuw_env/i
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$CODEBUILD_SOURCE_VERSION
 artifacts:
   files:
     - '**/*'
