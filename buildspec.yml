@@ -4,9 +4,6 @@ phases:
   install:
     commands:
       - $(aws ecr get-login  --no-include-email)
-      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG .
-      - sed -i -e 's/IMAGE_TAG/$IMAGE_TAG/g' /tmp/myuw_env/Dockerrun.aws.json
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG
       - cp -R . /tmp/myuw_env/
       - pip install virtualenv
       - virtualenv /tmp/myuw_env
@@ -29,6 +26,11 @@ phases:
       - python manage.py test myuw
       - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
       - rm -rf project/ && rm manage.py
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG .
+  post-build:
+    commands:
+      - sed -i -e 's/IMAGE_TAG/$IMAGE_TAG/g' /tmp/myuw_env/Dockerrun.aws.json
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG
 artifacts:
   files:
     - 'Dockerrun.aws.json'
