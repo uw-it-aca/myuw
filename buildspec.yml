@@ -25,7 +25,7 @@ phases:
       - python manage.py test myuw
       - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
       - rm -rf project/ && rm manage.py
-      - docker build -t myuw_dev_web:$IMAGE_TAG .
+      - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG .
   post_build:
     commands:
       - sed -i -e 's/IMAGE_TAG/$IMAGE_TAG/g' /tmp/myuw_env/Dockerrun.aws.json
