@@ -3,7 +3,6 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG
       - cp -R . /tmp/myuw_env/
       - pip install virtualenv
       - virtualenv /tmp/myuw_env
