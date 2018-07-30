@@ -1,0 +1,19 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+      "Name": "ezturner/myuw_dev_web:IMAGE_TAG"
+  },
+  "Ports": [
+    {"ContainerPort":"8000"}
+  ],
+  "Volumes": [
+    {
+      "HostDirectory":"~/myuw",
+      "ContainerDirectory":"/app/myuw"
+    },
+    {
+      "HostDirectory":"~/project",
+      "ContainerDirectory":"/app/project"
+    }
+  ]
+}
