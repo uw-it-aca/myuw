@@ -24,7 +24,7 @@ phases:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
       - docker build -t myuw_dev_web:$CODEBUILD_BUILD_ID
-  post-build:
+  post_build:
     commands:
       - sed -i -e 's/CODEBUILD_TAG/$CODEBUILD_BUILD_ID/g' /tmp/myuw_env/i
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$CODEBUILD_BUILD_ID
