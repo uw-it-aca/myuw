@@ -11,3 +11,6 @@ ADD . /app/
 ENV DB sqlite3
 RUN django-admin.py startproject project .
 ADD docker /app/project/
+ENV REMOTE_USER javerage
+RUN python manage.py migrate
+CMD ["python", "manage.py", "runserver", "0:8000"]
