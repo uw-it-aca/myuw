@@ -31,7 +31,7 @@ phases:
       - KEY_NAME=$IMAGE_TAG
       - REPO_URL=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - ECR_LOGIN=`aws ecr get-login`
-      - AUTH_TOKEN=`echo ECR_LOGIN | sed -r 's/-p ([0-9A-z]*==)/'`
+      - AUTH_TOKEN=`echo ECR_LOGIN | sed -r 's/-p ([0-9A-z]*==)/\1/'`
       - EMAIL=none
       - sed -i -e "s/EMAIL/$EMAIL/g" docker/.config
       - sed -i -e "s/AUTH_TOKEN/$AUTH_TOKEN/g" docker/.config
