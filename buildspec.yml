@@ -25,11 +25,14 @@ phases:
 #      - pycodestyle myuw/ --exclude=migrations,myuw/static
 #      - python manage.py test myuw
       - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
+      - KEY_NAME=$IMAGE_TAG
+      - aws s3 cp s3://myuw-codebuild/$KEY_NAME - | aws ecr get-login  --no-include-email
 #      - rm -rf project/ && rm manage.py
       - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG .
   post_build:
     commands:
       - sed -i -e "s/IMAGE_TAG/$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com\/myuw_dev_web:$IMAGE_TAG/g" /tmp/myuw_env/Dockerrun.aws.json
+      - sed -i -e "s/KEY_NAME/$KEY_NAME/g" /tmp/myuw_env/Dockerrun.aws.json
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG
 artifacts:
   files:

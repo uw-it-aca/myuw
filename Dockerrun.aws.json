@@ -1,19 +1,24 @@
 {
   "AWSEBDockerrunVersion": 1,
   "Image": {
-      "Name": "IMAGE_TAG"
+      "Name": "IMAGE_TAG",
+      "Update": "true"
   },
   "Ports": [
     {"ContainerPort":"8000"}
   ],
   "Volumes": [
     {
-      "HostDirectory":"~/myuw",
+      "HostDirectory":"/var/app/current/myuw",
       "ContainerDirectory":"/app/myuw"
     },
     {
-      "HostDirectory":"~/project",
+      "HostDirectory":"/var/app/current/project",
       "ContainerDirectory":"/app/project"
     }
-  ]
+  ],
+  "Authentication": {
+    "Bucket": "myuw-codebuild",
+    "Key": "KEY_NAME"
+  }
 }
