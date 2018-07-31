@@ -23,6 +23,7 @@ class MyuwNotice(models.Model):
     is_applicant = models.BooleanField(default=False)
     is_grad = models.BooleanField(default=False)
     is_grad_c2 = models.BooleanField(default=False)
+    is_intl_stud = models.BooleanField(default=False)
     is_pce = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
     is_undergrad = models.BooleanField(default=False)
