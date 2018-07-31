@@ -8,14 +8,6 @@
     {"ContainerPort":"8000"}
   ],
   "Volumes": [
-    {
-      "HostDirectory":"/var/app/current/myuw",
-      "ContainerDirectory":"/app/myuw"
-    },
-    {
-      "HostDirectory":"/var/app/current/project",
-      "ContainerDirectory":"/app/project"
-    }
   ],
   "Authentication": {
     "Bucket": "myuw-pipeline-bucket",
