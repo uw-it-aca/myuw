@@ -59,7 +59,7 @@ describe('InterStudentCard', function(){
         assert.equal(InterStudentCard.dom_target.find('a[href="https://www.uwb.edu/cie/current-students/immigration-documents"]').length, 1);
     });
 
-    it("Render for bothell J1 students", function() {
+    it("Render for tacoma intl students", function() {
         window.user.tacoma = true;
         InterStudentCard.render_init();
         assert.equal(InterStudentCard.dom_target.find('ul.unstyled-list').length, 2);
