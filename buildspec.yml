@@ -7,6 +7,8 @@ phases:
 #      - pip install virtualenv
 #      - virtualenv /tmp/myuw_env
       - cd /tmp/myuw_env
+      - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
+      - REPO_URL=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
 #      - . bin/activate
 #      - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
 #      - pip install -r requirements.txt
@@ -27,9 +29,7 @@ phases:
       - docker build -t $REPO_URL/myuw_dev_web:$IMAGE_TAG .
   post_build:
     commands:
-      - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
       - KEY_NAME=$IMAGE_TAG
-      - REPO_URL=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - ECR_LOGIN=`aws ecr get-login`
       - AUTH_TOKEN=`echo ECR_LOGIN | sed -r 's/-p ([0-9A-z]*==)/\1/'`
       - EMAIL=none
