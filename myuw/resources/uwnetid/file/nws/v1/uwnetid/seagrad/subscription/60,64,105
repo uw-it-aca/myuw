@@ -88,7 +88,7 @@
         "Activate"
       ],
       "dataField": "FWD",
-      "dataValue": "seagrad@exchange.washington.edu",
+      "dataValue": "seagrad@uwmedres.org",
       "permits": [
         {
           "type": "permit",
