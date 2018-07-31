@@ -4,13 +4,13 @@ phases:
   install:
     commands:
       - $(aws ecr get-login  --no-include-email)
-      - cp -R . /tmp/myuw_env/
+#      - cp -R . /tmp/myuw_env/
       - pip install virtualenv
       - virtualenv /tmp/myuw_env
       - cd /tmp/myuw_env
       - . bin/activate
-      - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
-      - pip install -r requirements.txt
+#      - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
+#      - pip install -r requirements.txt
       - pip install coverage
       - pip install python-coveralls
       - pip install pycodestyle
@@ -23,7 +23,7 @@ phases:
   build:
     commands:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
-      - python manage.py test myuw
+#      - python manage.py test myuw
       - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
       - rm -rf project/ && rm manage.py
       - docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/myuw_dev_web:$IMAGE_TAG .
