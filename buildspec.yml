@@ -34,7 +34,9 @@ phases:
       - AUTH_TOKEN=`echo $ECR_LOGIN | sed -r 's/-p ([0-9A-z]*==)/\1/'`
       - EMAIL=none
       - sed -i -e "s/EMAIL/$EMAIL/g" docker/.config
-      - sed -i -e "s/AUTH_TOKEN/$AUTH_TOKEN/g" docker/.config
+      - echo $EMAIL && echo ECR_LOGIN
+      - echo $AUTH_TOKEN
+      - sed -i -e "s@AUTH_TOKEN@$AUTH_TOKEN@g" docker/.config
       - sed -i -e "s/REPO_URL/$REPO_URL/g" docker/.config
       - aws s3 cp docker/.config s3://myuw-pipeline-bucket/$KEY_NAME
       - $(aws ecr get-login  --no-include-email)
