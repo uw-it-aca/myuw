@@ -60,7 +60,7 @@ elif os.getenv('DB', "sqlite3") == "mysql":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': os.getenv("RDS_HOSTNAME", "localhost")
+            'HOST': os.getenv("RDS_HOSTNAME", "localhost"),
             'NAME': os.getenv("RDS_DB_NAME", "myuw"),
             'USER': os.getenv("RDS_USERNAME", "myuw"),
             'PASSWORD': os.getenv("RDS_PASSWORD", "my_pass"),
