@@ -43,5 +43,6 @@ phases:
       - docker push $REPO_URL/myuw_dev_web:$IMAGE_TAG
 artifacts:
   files:
-    - '**/*'
+    - 'Dockerrun.aws.json'
+    - '.ebextensions/*'
   base-directory: /tmp/myuw_env/
