@@ -170,6 +170,9 @@ def get_section_email_lists(section,
         json_data['has_joint'] = True
         json_data["joint_section_list"] = get_joint_section_list(section)
         for joint_section in joint_sections:
+            joint_list = get_joint_section_list(joint_section)
+            if joint_list['list_exists']:
+                json_data["joint_section_list"] = joint_list
             joint_course = {"course_abbr": joint_section.curriculum_abbr,
                             "course_number": joint_section.course_number,
                             "section_id": joint_section.section_id}
