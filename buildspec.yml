@@ -44,4 +44,5 @@ phases:
 artifacts:
   files:
     - 'Dockerrun.aws.json'
+    - '.ebexentsions/*'
   base-directory: /tmp/myuw_env/
