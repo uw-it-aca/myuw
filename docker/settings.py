@@ -49,12 +49,28 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 
 import os
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if os.getenv('DB', "sqlite3") == "sqlite3":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+elif os.getenv('DB', "sqlite3") == "mysql":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': os.getenv("RDS_HOSTNAME", "localhost")
+            'NAME': os.getenv("RDS_DB_NAME", "myuw"),
+            'USER': os.getenv("RDS_USERNAME", "myuw"),
+            'PASSWORD': os.getenv("RDS_PASSWORD", "my_pass"),
+        }
+    }
+
+
+if os.getenv('CACHE', "none") == "memcached":
+    RESTCLIENTS_DAO_CACHE_CLASS='myuw.util.cache_implementation.MyUWMemcachedCache'
+    RESTCLIENTS_MEMCACHED_SERVERS = (os.getenv('CACHE_NODE_0', "") + os.getenv('CACHE_PORT', "11211"), os.getenv('CACHE_NODE_1', "") + os.getenv('CACHE_PORT', "11211"),)
 
 LANGUAGE_CODE = 'en-us'
 
@@ -108,9 +124,6 @@ MYUW_ENABLED_FEATURES = []
 EMAIL_BACKEND = "saferecipient.EmailBackend"
 MAILMAN_COURSEREQUEST_RECIPIENT = ""
 
-RESTCLIENTS_TEST_MEMCACHED = True
-RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
-USER_AGENTS_CACHE = None
 
 # Thrive required settings
 MEDIA_ROOT = "/statics/hx_images"
