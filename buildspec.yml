@@ -19,7 +19,7 @@ phases:
     commands:
       - django-admin.py startproject project .
       - rm project/settings.py && rm project/urls.py
-      - cp docker/settings.py project/settings.py && cp docker/urls.py project/urls.py
+      - cp travis-ci/settings.py project/settings.py && cp travis-ci/urls.py project/urls.py
       - python manage.py migrate
   build:
     commands:
