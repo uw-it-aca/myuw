@@ -1,45 +1,46 @@
-FROM centos
+FROM ubuntu
 WORKDIR /app/
-ADD web/start.sh /start.sh
+ADD docker/web/start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir /app/logs
-RUN yum -y --setopt=tsflags=nodocs update && \
-    yum -y --setopt=tsflags=nodocs install httpd && \
-    yum clean all
+RUN apt-get -y update && \
+    apt-get -y install apache2 && \
+    apt-get clean all
 
-# Install yum dependencies
-RUN yum -y update && \
-    yum groupinstall -y development && \
-    yum install -y \
-    bzip2-devel \
+# Install system dependencies
+RUN apt-get -y update && \
+    apt-get install -y \
     git \
     hostname \
     openssl \
-    openssl-devel \
-    sqlite-devel \
+    sqlite3 \
     sudo \
     tar \
+    curl \
     wget \
-    zlib-dev \
-    python-devel \
-    mod_wsgi \
+    python-setuptools \
+    build-essential\
+    python-dev \
+    libapache2-mod-wsgi \
     libxml2-dev \
-    libxmlsec1-dev
+    libxmlsec1-dev \
+    python-pip \
+    libmysqlclient-dev
 
-# Install setuptools + pip
-RUN cd /tmp && \
-    curl https://bootstrap.pypa.io/get-pip.py | python - && \
-    pip install setuptools
+RUN pip install --upgrade pip
 ENV PYTHONUNBUFFERED 1
-ADD ../myuw/VERSION /app/myuw/
-RUN yum install -y mysql-devel
+ADD myuw/VERSION /app/myuw/
 RUN pip install mysqlclient
-ADD ../setup.py /app/
-ADD ../requirements.txt /app/
+ADD setup.py /app/
+ADD requirements.txt /app/
 RUN pip install -r requirements.txt
-ADD web/httpd.conf /tmp/httpd.conf
-RUN cat /tmp/httpd.conf > /etc/httpd/conf/httpd.conf
-ADD .. /app/
+ADD /docker/web/apache2.conf /tmp/apache2.conf
+RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ && \
+    rm -rf /etc/apache2/sites-enabled/ && mkdir /etc/apache2/sites-enabled/ && \
+    rm /etc/apache2/apache2.conf && \
+    cp /tmp/apache2.conf /etc/apache2/apache2.conf &&\
+    mkdir /etc/apache2/logs
+ADD . /app/
 ENV DB sqlite3
 RUN django-admin.py startproject project .
 ADD docker /app/project/

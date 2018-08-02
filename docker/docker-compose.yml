@@ -14,13 +14,16 @@ services:
     build: ..
     restart: on-failure
     volumes:
-      - ./myuw:/app/myuw
-      - ./docker:/app/project
+      - ../myuw:/app/myuw
+      - ../docker:/app/project
     ports:
       - "8000:80"
     environment:
-      REMOTE_USER: 'javerage'
       DB: 'mysql'
+      RDS_PASSWORD: my_pass
+      RDS_USER: myuw
+      RDS_HOSTNAME: db
+      RDS_DATABASE: myuw
     depends_on:
       - db
     deploy:
