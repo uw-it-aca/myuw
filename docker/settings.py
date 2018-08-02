@@ -46,7 +46,7 @@ AUTHENTICATION_BACKENDS = [
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
-
+RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211')
 
 import os
 if os.getenv('DB', "sqlite3") == "sqlite3":
