@@ -5,7 +5,7 @@
       "Update": "true"
   },
   "Ports": [
-    {"ContainerPort":"8000"}
+    {"ContainerPort":"80"}
   ],
   "Volumes": [
   ],
