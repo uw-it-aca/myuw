@@ -71,7 +71,7 @@ elif os.getenv('DB', "sqlite3") == "mysql":
 
 if os.getenv('CACHE', "none") == "memcached":
     RESTCLIENTS_DAO_CACHE_CLASS='myuw.util.cache_implementation.MyUWMemcachedCache'
-    RESTCLIENTS_MEMCACHED_SERVERS = (os.getenv('CACHE_NODE_0', "") + os.getenv('CACHE_PORT', "11211"), os.getenv('CACHE_NODE_1', "") + os.getenv('CACHE_PORT', "11211"),)
+    RESTCLIENTS_MEMCACHED_SERVERS = (os.getenv('CACHE_NODE_0', "") + ":" + os.getenv('CACHE_PORT', "11211"), os.getenv('CACHE_NODE_1', "") + ":" + os.getenv('CACHE_PORT', "11211"),)
 
 LANGUAGE_CODE = 'en-us'
 
