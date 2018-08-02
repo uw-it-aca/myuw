@@ -39,7 +39,8 @@ RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ 
     rm -rf /etc/apache2/sites-enabled/ && mkdir /etc/apache2/sites-enabled/ && \
     rm /etc/apache2/apache2.conf && \
     cp /tmp/apache2.conf /etc/apache2/apache2.conf &&\
-    mkdir /etc/apache2/logs
+    mkdir /etc/apache2/logs && \
+    mkdir /app/logs
 ADD . /app/
 ENV DB sqlite3
 RUN django-admin.py startproject project .
