@@ -155,6 +155,7 @@ LOGIN_URL = reverse_lazy('saml_login')
 
 LOGOUT_URL = reverse_lazy('saml_logout')
 
+"""
 
 LOGGING = {
     'version': 1,
@@ -313,3 +314,4 @@ LOGGING = {
         },
     }
 }
+"""
