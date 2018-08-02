@@ -153,3 +153,114 @@ from django.core.urlresolvers import reverse_lazy
 LOGIN_URL = reverse_lazy('saml_login')
 
 LOGOUT_URL = reverse_lazy('saml_logout')
+
+# logging configfrom boto3.session import Session
+boto3_session = Session(region_name='us-west-2')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'myuw': {
+            'format': '%(levelname)-4s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+    },
+    'handlers': {
+        'watchtower': {
+            'level': 'DEBUG',
+            'class': 'watchtower.CloudWatchLogHandler',
+                     'boto3_session': boto3_session,
+                     'log_group': os.getenv("CW_GROUP", ""),
+                     'stream_name': os.getenv("CW_STREAM", "localhost"),
+            'formatter': 'aws',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['watchtower''],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'restclients_core': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'rc_django': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': False,
+         },
+        'uw_sws': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'uw_iasystem': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.util.performance': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.views.choose': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.banner_message': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.resources.pin': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.instructor_section_display': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.logger': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.notices.seen': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+           'propagate': True,
+        },
+        'card': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'link': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'session': {
+            'handlers': ['watchtower'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    }
+}
