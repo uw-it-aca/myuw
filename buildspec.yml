@@ -26,7 +26,6 @@ phases:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
       - rm -rf project/ && rm manage.py
-      - docker build -t $REPO_URL/myuw_dev_web:$IMAGE_TAG  .
   post_build:
     commands:
       - KEY_NAME=$IMAGE_TAG
