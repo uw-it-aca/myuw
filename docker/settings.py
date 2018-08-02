@@ -99,7 +99,6 @@ COMPRESS_ENABLED = False
 COMPRESS_ROOT = "/static/"
 STATIC_ROOT = "/static/"
 
-# Test the memcached cache code
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

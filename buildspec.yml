@@ -4,29 +4,29 @@ phases:
   install:
     commands:
       - cp -R . /tmp/myuw_env/
-#      - pip install virtualenv
-#      - virtualenv /tmp/myuw_env
+      - pip install virtualenv
+      - virtualenv /tmp/myuw_env
       - cd /tmp/myuw_env
       - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
       - REPO_URL=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
-#      - . bin/activate
-#      - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
-#      - pip install -r requirements.txt
-#      - pip install coverage
-#      - pip install python-coveralls
-#      - pip install pycodestyle
+      - . bin/activate
+      - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
+      - pip install -r requirements.txt
+      - pip install coverage
+      - pip install python-coveralls
+      - pip install pycodestyle
   pre_build:
     commands:
-#      - django-admin.py startproject project .
-#      - rm project/settings.py && rm project/urls.py
-#      - cp docker/settings.py project/settings.py && cp docker/urls.py project/urls.py
-#      - python manage.py migrate
+      - django-admin.py startproject project .
+      - rm project/settings.py && rm project/urls.py
+      - cp docker/settings.py project/settings.py && cp docker/urls.py project/urls.py
+      - python manage.py migrate
   build:
     commands:
-#      - pycodestyle myuw/ --exclude=migrations,myuw/static
-#      - python manage.py test myuw
-#      - rm -rf project/ && rm manage.py
-      - docker build -t $REPO_URL/myuw_dev_web:$IMAGE_TAG .
+      - pycodestyle myuw/ --exclude=migrations,myuw/static
+      - python manage.py test myuw
+      - rm -rf project/ && rm manage.py
+      - docker build -t $REPO_URL/myuw_dev_web:$IMAGE_TAG  -f /docker/Dockerfile .
   post_build:
     commands:
       - KEY_NAME=$IMAGE_TAG
