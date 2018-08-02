@@ -27,6 +27,7 @@ def get_log_entry(netid, request):
                  'fyp': affiliations["fyp"],
                  'aut_transfer': affiliations["aut_transfer"],
                  'win_transfer': affiliations["win_transfer"],
+                 'hxt_viewer': affiliations["hxt_viewer"],
                  'is_student': affiliations["student"],
                  'is_staff': affiliations["staff_employee"],
                  'is_faculty': affiliations["faculty"],
