@@ -183,7 +183,7 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['watchtower''],
+            'handlers': ['watchtower'],
             'level': 'ERROR',
             'propagate': True,
         },
