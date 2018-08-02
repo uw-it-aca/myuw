@@ -153,3 +153,170 @@ from django.core.urlresolvers import reverse_lazy
 LOGIN_URL = reverse_lazy('saml_login')
 
 LOGOUT_URL = reverse_lazy('saml_logout')
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'myuw': {
+            'format': '%(levelname)-4s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'myuw': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/myuw-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+        'pref': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/pref-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+        'card': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/card-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+        'link': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/link-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+        'notice': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/notice-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+        'session': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/session-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+        'performance': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/view_performance-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+        'restclients_timing_log': {
+            'level': 'INFO',
+            'class': 'permissions_logging.DateNameFileHandler',
+            'filename': '/data/myuw/logs/restclients_timing-%Y-%m-%d',
+            'permissions': 0o664,
+            'formatter': 'myuw',
+        },
+
+        'console':{
+            'level': 'ERROR',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins', 'console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'restclients_core': {
+            'handlers': ['restclients_timing_log'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'rc_django': {
+            'handlers': ['restclients_timing_log'],
+            'level': 'INFO',
+            'propagate': False,
+         },
+        'uw_sws': {
+            'handlers': ['restclients_timing_log'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'uw_iasystem': {
+            'handlers': ['restclients_timing_log'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.util.performance': {
+            'handlers': ['performance'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.views.choose': {
+            'handlers': ['pref'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.banner_message': {
+            'handlers': ['pref'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.resources.pin': {
+            'handlers': ['pref'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.instructor_section_display': {
+            'handlers': ['pref'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.logger': {
+            'handlers': ['link'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw.views.api.notices.seen': {
+            'handlers': ['notice'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myuw': {
+            'handlers': ['myuw'],
+            'level': 'INFO',
+           'propagate': True,
+        },
+        'card': {
+            'handlers': ['card'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'link': {
+            'handlers': ['link'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'session': {
+            'handlers': ['session'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    }
+}
