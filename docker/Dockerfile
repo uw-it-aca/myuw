@@ -18,17 +18,16 @@ RUN apt-get -y update && \
     tar \
     curl \
     wget \
-    python3-setuptools \
+    python-setuptools \
     build-essential\
-    python3-dev \
+    python-dev \
     libapache2-mod-wsgi \
     libxml2-dev \
     libxmlsec1-dev \
-    python3-pip \
+    python-pip \
     libmysqlclient-dev
 
-RUN pip3 install --upgrade pip
-RUN pip install boto3 watchtower
+RUN pip install --upgrade pip
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
 RUN pip install mysqlclient
