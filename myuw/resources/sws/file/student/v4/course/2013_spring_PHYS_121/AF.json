@@ -52,7 +52,7 @@
     },
   "Registrations" : { "CourseNumber" : "121",
       "CurriculumAbbreviation" : "PHYS",
-      "Href" : "/student/v4/registration.json?year=2013&quarter=spring&curriculum_abbreviation=PHYS&course_number=121§ion_id=AF®_id=&is_active=on&instructor_reg_id=",
+      "Href" : "/student/v4/registration.json?year=2013&quarter=spring&curriculum_abbreviation=PHYS&course_number=121&section_id=AF®_id=&is_active=on&instructor_reg_id=",
       "InstructorRegID" : null,
       "IsActive" : "on",
       "PageSize" : null,
