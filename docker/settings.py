@@ -171,6 +171,11 @@ LOGGING = {
             'format': '%(levelname)-4s %(asctime)s %(message)s [%(name)s]',
             'datefmt': '%d %H:%M:%S',
         },
+        'aws': {
+            # you can add specific format for aws here
+            'format': u"%(asctime)s [%(levelname)-8s] %(message)s",
+            'datefmt': "%Y-%m-%d %H:%M:%S"
+        }
     },
     'handlers': {
         'watchtower': {
