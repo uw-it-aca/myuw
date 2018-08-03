@@ -154,6 +154,7 @@ LOGIN_URL = reverse_lazy('saml_login')
 
 LOGOUT_URL = reverse_lazy('saml_logout')
 
+from boto3.session import Session
 # logging configfrom boto3.session import Session
 boto3_session = Session(region_name='us-west-2')
 
