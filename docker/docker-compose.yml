@@ -19,14 +19,22 @@ services:
     ports:
       - "8000:80"
     environment:
-      DB: 'mysql'
+      DB: mysql
       RDS_PASSWORD: my_pass
       RDS_USER: myuw
       RDS_HOSTNAME: db
       RDS_DATABASE: myuw
+      CACHE: memcached
+      CACHE_NODE_0: cache:11211
+      CACHE_NODE_1: cache:11211
+      LOG: none
     depends_on:
       - db
     deploy:
       restart_policy:
         condition: on-failure
         delay: 5s
+  cache:
+    image: memcached
+    ports:
+      - 11211
