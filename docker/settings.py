@@ -269,5 +269,10 @@ if os.getenv('LOG', 'none') == "CloudWatch":
                 'level': 'INFO',
                 'propagate': True,
             },
+            '': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            }
         }
     }
