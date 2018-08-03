@@ -18,16 +18,16 @@ RUN apt-get -y update && \
     tar \
     curl \
     wget \
-    python-setuptools \
+    python3-setuptools \
     build-essential\
-    python-dev \
+    python3-dev \
     libapache2-mod-wsgi \
     libxml2-dev \
     libxmlsec1-dev \
-    python-pip \
+    python3-pip \
     libmysqlclient-dev
 
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 RUN pip install boto3 watchtower
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
