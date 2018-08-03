@@ -39,7 +39,7 @@
         "PageSize": null,
         "SectionID": "A",
         "InstructorRegID": null,
-        "Href": "/student/v4/registration.json?year=2013&quarter=summer&curriculum_abbreviation=TRAIN&course_number=102§ion_id=A®_id=&is_active=on&instructor_reg_id=",
+        "Href": "/student/v4/registration.json?year=2013&quarter=summer&curriculum_abbreviation=TRAIN&course_number=102&section_id=A®_id=&is_active=on&instructor_reg_id=",
         "Year": "2013",
         "RegID": null,
         "PageStart": null,
