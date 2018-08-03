@@ -3,6 +3,7 @@ This module provides affiliations of the current user
 """
 
 import logging
+from myuw.dao import is_hx_toolkit_viewer
 from myuw.dao.enrollment import get_main_campus, get_class_level
 from myuw.dao.gws import is_alumni, is_alum_asso, is_regular_employee,\
     is_student, is_grad_student, is_undergrad_student,\
@@ -150,14 +151,15 @@ def get_is_hxt_viewer(request):
     is_win_xfer = is_win_transfer(request)
     is_sea_stud = is_seattle_student(request)
     is_undergrad = is_undergrad_student(request)
-    is_viewer = False
-    if is_sea_stud and is_undergrad and not is_fy_stud:
-        term = get_current_quarter(request)
-        if term.quarter == 'winter':
-            is_viewer = not is_win_xfer
-        elif term.quarter == 'autumn':
-            is_viewer = not is_aut_xfer
-        else:
-            is_viewer = True
+    is_viewer = is_hx_toolkit_viewer(request)
+    if not is_viewer:
+        if is_sea_stud and is_undergrad and not is_fy_stud:
+            term = get_current_quarter(request)
+            if term.quarter == 'winter':
+                is_viewer = not is_win_xfer
+            elif term.quarter == 'autumn':
+                is_viewer = not is_aut_xfer
+            else:
+                is_viewer = True
     return (is_aut_xfer, is_fy_stud, is_win_xfer, is_sea_stud,
             is_undergrad, is_viewer)
