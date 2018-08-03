@@ -7,7 +7,7 @@ RUN pip install mysqlclient
 ADD setup.py /app/
 ADD requirements.txt /app/
 RUN pip install -r requirements.txt
-RUN pip install boto3
+RUN pip install boto3 watchtower
 ADD . /app/
 ENV DB sqlite3
 RUN django-admin.py startproject project .
