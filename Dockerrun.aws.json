@@ -8,6 +8,10 @@
     {"ContainerPort":"80"}
   ],
   "Volumes": [
+    {
+      "HostDirectory": "/tmp/is_leader",
+      "ContainerDirectory": "/tmp/is_leader"
+    }
   ],
   "Authentication": {
     "Bucket": "myuw-pipeline-bucket",
