@@ -28,6 +28,7 @@ RUN apt-get -y update && \
     libmysqlclient-dev
 
 RUN pip install --upgrade pip
+RUN pip install boto3
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
 RUN pip install mysqlclient
