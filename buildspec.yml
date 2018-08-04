@@ -4,8 +4,6 @@ phases:
   install:
     commands:
       - pip install virtualenv
-      - virtualenv /tmp/myuw_env
-      - . bin/activate
       - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
       - pip install -r requirements.txt
       - pip install coverage
