@@ -3,12 +3,8 @@ version: 0.2
 phases:
   install:
     commands:
-      - cp -R . /tmp/myuw_env/
       - pip install virtualenv
       - virtualenv /tmp/myuw_env
-      - cd /tmp/myuw_env
-      - IMAGE_TAG=$(echo $CODEBUILD_INITIATOR | sed 's/[/]/-/')
-      - REPO_URL=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - . bin/activate
       - apt-get update && apt-get install -y libxml2-dev libxmlsec1-dev
       - pip install -r requirements.txt
@@ -25,24 +21,3 @@ phases:
     commands:
       - pycodestyle myuw/ --exclude=migrations,myuw/static
       - python manage.py test myuw
-      - rm -rf project/ && rm manage.py
-      - docker build -t $REPO_URL/myuw_dev_web:$IMAGE_TAG -f docker/Dockerfile .
-  post_build:
-    commands:
-      - KEY_NAME=$IMAGE_TAG
-      - ECR_LOGIN=`aws ecr get-login`
-      - AUTH_TOKEN=`echo $ECR_LOGIN | sed -r 's/-p ([0-9A-z]*==)/\1/'`
-      - EMAIL=none
-      - sed -i -e "s/EMAIL/$EMAIL/g" docker/aws_conf
-      - sed -i -e "s@AUTH_TOKEN@$AUTH_TOKEN@g" docker/aws_conf
-      - sed -i -e "s/REPO_URL/$REPO_URL/g" docker/aws_conf
-      - aws s3 cp docker/aws_conf s3://myuw-pipeline-bucket/$KEY_NAME
-      - $(aws ecr get-login  --no-include-email)
-      - sed -i -e "s/IMAGE_TAG/$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com\/myuw_dev_web:$IMAGE_TAG/g" /tmp/myuw_env/Dockerrun.aws.json
-      - sed -i -e "s/KEY_NAME/$KEY_NAME/g" /tmp/myuw_env/Dockerrun.aws.json
-      - docker push $REPO_URL/myuw_dev_web:$IMAGE_TAG
-artifacts:
-  files:
-    - 'Dockerrun.aws.json'
-    - '.ebextensions/*'
-  base-directory: /tmp/myuw_env/
