@@ -35,6 +35,8 @@ RUN pip install mysqlclient
 ADD setup.py /app/
 ADD requirements.txt /app/
 RUN pip install -r requirements.txt
+RUN pip uninstall -y uw-restclients-sws
+RUN pip install -e git+https://github.com/uw-it-aca/uw-restclients-sws@bug/mock-memcached-error#egg=uw-restclients-sws
 ADD /docker/web/apache2.conf /tmp/apache2.conf
 RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ && \
     rm -rf /etc/apache2/sites-enabled/ && mkdir /etc/apache2/sites-enabled/ && \
@@ -43,6 +45,6 @@ RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ 
     mkdir /etc/apache2/logs
 ADD . /app/
 ENV DB sqlite3
-RUN django-admin.py startproject project .
+RUN rm -rf project/ && rm manage.py && django-admin.py startproject project .
 ADD docker /app/project/
 CMD ["/start.sh"]
