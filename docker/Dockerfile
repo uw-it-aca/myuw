@@ -45,6 +45,6 @@ RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ 
     mkdir /etc/apache2/logs
 ADD . /app/
 ENV DB sqlite3
-RUN rm -rf project/ && rm manage.py && django-admin.py startproject project .
+RUN rm -rf project/ && rm -f manage.py && django-admin.py startproject project .
 ADD docker /app/project/
 CMD ["/start.sh"]
