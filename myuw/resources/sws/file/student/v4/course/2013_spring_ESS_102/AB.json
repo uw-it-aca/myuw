@@ -70,7 +70,7 @@
     "Registrations": {
         "CourseNumber": "102",
         "CurriculumAbbreviation": "ESS",
-        "Href": "/student/v4/registration.json?year=2013&quarter=spring&curriculum_abbreviation=ESS&course_number=102&section_id=AB®_id=&is_active=on&instructor_reg_id=",
+        "Href": "/student/v4/registration.json?year=2013&quarter=spring&curriculum_abbreviation=ESS&course_number=102§ion_id=AB®_id=&is_active=on&instructor_reg_id=",
         "InstructorRegID": null,
         "IsActive": "on",
         "PageSize": null,
