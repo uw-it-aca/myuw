@@ -182,9 +182,9 @@ if os.getenv('LOG', 'none') == "CloudWatch":
             'watchtower': {
                 'level': 'DEBUG',
                 'class': 'watchtower.CloudWatchLogHandler',
-                        'boto3_session': boto3_session,
-                        'log_group': os.getenv("CW_GROUP", ""),
-                        'stream_name': os.getenv("CW_STREAM", "localhost"),
+                'boto3_session': boto3_session,
+                'log_group': os.getenv("CW_GROUP", ""),
+                'stream_name': os.getenv("CW_STREAM", "localhost"),
                 'formatter': 'aws',
             },
         },
@@ -271,7 +271,7 @@ if os.getenv('LOG', 'none') == "CloudWatch":
             },
             '': {
                 'handlers': ['watchtower'],
-                'level': 'INFO',
+                'level': 'ERROR',
                 'propagate': True,
             }
         }
