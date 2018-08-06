@@ -16,6 +16,7 @@ describe("HomePage", function() {
                 "myuw/static/js/card/alumni.js",
                 "myuw/static/js/card/calendars/acad_cal_sp.js",
                 "myuw/static/js/card/calendars/events.js",
+                "myuw/static/js/card/international_student.js",
                 "myuw/static/js/card/loading.js",
                 "myuw/static/js/card/husky_experience.js",
                 "myuw/static/js/card/future_quarter.js",
@@ -147,6 +148,24 @@ describe("HomePage", function() {
                           EventsCard,
                           ResourcesCard,
                           ResourcesExploreCard]);
+    });
+
+    it('Desktop for international student should have', function() {
+        window.innerWidth = 800;
+        window.user.netid = "jinter";
+        window.user.student = true;
+        window.user.intl_stud = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards[21].name, "IntlStudCard");
+    });
+
+    it('Mobile for international student should have', function() {
+        window.innerWidth = 767;
+        window.user.netid = "jinter";
+        window.user.student = true;
+        window.user.intl_stud = true;
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.equal(mobile_cards[24].name, "IntlStudCard");
     });
 
     it('Desktop for alumni should have', function() {

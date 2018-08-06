@@ -1,7 +1,6 @@
 import math
 import datetime
 from myuw.dao.term import get_current_quarter, get_comparison_date
-from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from hx_toolkit.file_dao import get_rendered_article_by_id, \
     get_article_by_phase_quarter_week, get_article_links_by_category
 
