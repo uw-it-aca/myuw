@@ -73,7 +73,7 @@ var Landing = {
         ];
 
         if (window.user.intl_stud) {
-            desktop_body_cards.push(InterStudentCard);
+            desktop_body_cards.push(IntlStudCard);
         }
 
         if(window.user.employee &&
@@ -146,16 +146,16 @@ var Landing = {
             EventsCard
         ];
 
+        if (window.user.intl_stud) {
+            mobile_cards.push(IntlStudCard);
+        }
+
         if(window.user.employee &&
            !window.user.student &&
            !window.user.instructor &&
            !window.user.applicant ||
            window.user.past_employee) {
             mobile_cards.push(HRPayrollCard);
-        }
-
-        if (window.user.intl_stud) {
-            desktop_body_cards.push(InterStudentCard);
         }
 
         if(window.user.retiree) {

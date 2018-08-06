@@ -110,7 +110,7 @@ var Environment = {
                 retiree: false,
                 past_stud: false,
                 past_employee: false,
-
+                intl_stud: false,
             };
         }
 

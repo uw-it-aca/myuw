@@ -44,8 +44,15 @@ def is_using_file_dao():
     return SWS_DAO.get_implementation().is_mock()
 
 
+def is_hx_toolkit_viewer(request):
+    file_path = _get_file_path("MYUW_DATA_PATH",
+                               "hx_toolkit_list.txt")
+    uwnetid = get_netid_of_current_user(request)
+    return is_netid_in_list(uwnetid, file_path)
+
+
 def is_thrive_viewer(uwnetid, population):
-    file_path = _get_file_path("MYUW_MANDATORY_SWITCH_PATH",
+    file_path = _get_file_path("MYUW_DATA_PATH",
                                population + "_list.txt")
     return is_netid_in_list(uwnetid, file_path)
 
