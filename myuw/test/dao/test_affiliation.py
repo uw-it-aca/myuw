@@ -1,5 +1,5 @@
 from django.test import TransactionTestCase
-from myuw.dao.affiliation import get_all_affiliations
+from myuw.dao.affiliation import get_all_affiliations, get_is_hxt_viewer
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request, get_request_with_user
 
@@ -30,6 +30,10 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertFalse(affiliations['fyp'])
         self.assertFalse(affiliations['aut_transfer'])
         self.assertTrue(affiliations['win_transfer'])
+
+    def test_get_is_hxt_viewer(self):
+        request = get_request_with_user('staff')
+        self.assertTrue(get_is_hxt_viewer(request)[5])
 
     def test_is_clinician(self):
         now_request = get_request_with_user('eight')

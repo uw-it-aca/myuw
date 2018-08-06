@@ -10,6 +10,9 @@ class TestEmailServiceUrl(TestCase):
     def test_(self):
         netids = [('javerage', "http://gmail.uw.edu"),
                   ('retirestaff', "http://outlook.com/myuw.net"),
+                  ('jeos', "https://exchange.uwmedicine.org"),
+                  ('jpce', "https://mail.uwmed.org"),
+                  ('seagrad', "https://mail.uwmed.org"),
                   ('javg001', "http://alpine.washington.edu"),
                   ('javg002', "https://outlook.office365.com/uw.edu"),
                   ('javg003', "https://mail.google.com"),
