@@ -9,10 +9,8 @@ if [ -f /tmp/is_leader ]; then
 fi
 
 pip install -r requirements.txt
-pip uninstall -y uw-restclients-sws
-pip install -e git+https://github.com/uw-it-aca/uw-restclients-sws@bug/mock-memcached-error#egg=uw-restclients-sws
-pip uninstall -y uw-restclients-django-utils
-pip install -e git+https://github.com/uw-it-aca/uw-restclients-django-utils@bug/mock-memcached-error#egg=uw-restclients-django-utils
+pip uninstall -y uw-restclients-core
+pip install -e git+https://github.com/uw-it-aca/uw-restclients-core@bug/memcached-mock-error#egg=uw-restclients-core
 
 rm -rf /static/
 python manage.py collectstatic
