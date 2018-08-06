@@ -105,11 +105,14 @@ var Environment = {
                 tacoma: false,
                 tacoma_emp: false,
                 undergrad: false,
+                grad: false,
                 is_hxt_viewer: false,
                 no_1st_class_affi: false,
                 retiree: false,
                 past_stud: false,
                 past_employee: false,
+                f1: false,
+                j1: false,
                 intl_stud: false,
             };
         }
