@@ -1,0 +1,214 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 1,
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "306",
+        "CurriculumAbbreviation": "COM",
+        "Href": "/student/v5/course/3013,autumn,COM,306.json",
+        "Quarter": "autumn",
+        "Year": 2013
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Explores how society and culture are both represented in and shaped by communication technologies and media content. Media include film, advertising, news, entertainment television, talk shows, and the Internet. Explores how media represent and affect individual identity, values, and political engagement. Offered: jointly with COM 306.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "MEDIA, SOC & POL ID",
+    "CourseTitleLong": "Media, Society, and Political Identity I&S",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 200,
+    "Curriculum": {
+        "CollegeName": "ARTS & SCI",
+        "DepartmentAbbreviation": "COM",
+        "TimeScheduleLinkAbbreviation": "polisci"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EOS_CID": null,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "",
+    "FeeBudget": "",
+    "FeeType": "",
+    "FinalExam": {
+        "Building": "ARC",
+        "Date": "2013-06-04",
+        "EndTime": "12:20",
+        "FinalExamBuilding": {
+            "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=ARC&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+        },
+        "MeetingStatus": "2",
+        "RoomNumber": "147",
+        "StartTime": "10:30"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": true,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": "",
+    "IsIndependentStart": false,
+    "JointSections": [
+        {
+            "CourseNumber": "306",
+            "CurriculumAbbreviation": "POL S",
+            "Href": "/student/v5/course/2013,autumn,POL%20S,306/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2013
+        }
+    ],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 200,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [
+    ],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "ARC",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Tuesday"
+                    },
+                    {
+                        "Name": "Thursday"
+                    }
+                ],
+                "Text": " T T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "11:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "",
+                    "GradeRoster": {
+                        "Href": "/student/v5/graderoster/3013,autumn,COM,306,A,603E79066A7D11D5A4AE0004AC494FFE"
+                    },
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494888.json",
+                        "Name": "Bill Joint",
+                        "RegID": "FBB38FE46A7C11D5A4AE0004AC494888"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=ARC&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "147",
+            "RoomToBeArranged": false,
+            "StartTime": "10:00"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "5.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "306",
+        "CurriculumAbbreviation": "COM",
+        "Href": "/student/v5/course/3013,autumn,COM,306/A.json",
+        "Quarter": "autumn",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "306",
+        "CurriculumAbbreviation": "COM",
+        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=COM&course_number=306&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "RepositoryTimeStamp": "6/7/2013 11:12:45 AM",
+    "ResearchCredit": false,
+    "RoomCapacity": 305,
+    "SLN": "18778",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": true,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "1000.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/3013,autumn.json",
+        "Quarter": "autumn",
+        "Year": 2013
+    },
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "OVERLOADS ARE AVAILABLE ON A LIMITED BASIS - SEE"
+                },
+                {
+                    "Text": "FACULTY/TAs FOR ADD CODES BEGINNING PERIOD 3."
+                }
+            ]
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "COM MAJORS: COUNTS FOR FIELD D,"
+                },
+                {
+                    "Text": "AMERICAN POLITICS"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Offered jointly with COM 306 A"
+                }
+            ]
+        }
+    }
+}
