@@ -43,6 +43,10 @@ class TestSessionLog(TestCase):
         self.assertTrue(entry['sea_emp'])
         self.assertFalse(entry['bot_emp'])
         self.assertFalse(entry['tac_emp'])
+        self.assertFalse(entry['fyp'])
+        self.assertFalse(entry['aut_transfer'])
+        self.assertFalse(entry['win_transfer'])
+        self.assertTrue(entry['hxt_viewer'])
 
         netid = 'jinter'
         req = get_request_with_user(netid)
