@@ -31,13 +31,37 @@
                     <ul>
                         <li>An email confirmation will be sent to {{ netid }}@uw.edu</li>
                         <li>Mailing lists may take up to 24 hours to activate</li>
-                        <li>Learn more: <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                              rel="help" target="_blank" data-linklabel="Mailman Help">Mailman help documentation</a></li>
                     </ul>
                 </div>
 
             {{else}}
                 {{#unless has_lists}}
+                    {{#if has_joint}}
+                    <div class="mailman_joint_create">
+                        <fieldset>
+                            <legend>Request a single email list for:</legend>
+
+                            <div class="radio">
+                                <label for="joint-section_joint_{{section_list.section_id}}">
+                                    <input type="radio" name="section_joint_list" id="joint-section_joint_{{section_list.section_id}}" value="joint" checked />
+                                    {{ course_abbr }} {{course_number}} {{section_id}} + {{#each joint_sections}}{{ course_abbr }} {{ course_number }} {{ section_id }}{{#unless @last}} + {{/unless}}{{/each}}
+                                </label>
+                                <p class="help-block small">Mailing list address: {{joint_section_list.list_address}}@uw.edu</p>
+                            </div>
+
+                            <div class="radio">
+                                <label for="joint-section_single_{{section_list.section_id}}">
+                                    <input type="radio" name="section_joint_list" id="joint-section_single_{{section_list.section_id}}" value="single" />
+                                    {{ course_abbr }} {{course_number}} {{section_id}}
+                                </label>
+                                <p class="help-block small">Mailing list address: {{section_list.list_address}}@uw.edu</p>
+                            </div>
+                            <input type="hidden" id="section_id_{{section_list.section_id}}"
+                                   name="section_id_{{section_list.section_id}}" value="{{section_list.section_label}}"/>
+                        </fieldset>
+
+                    </div>
+                    {{else}}
                     <div class="mailman_simple_create">
                         {{#unless section_list.list_exists}}
                             <p>
@@ -51,13 +75,12 @@
                             <ul>
                                 <li>Mailing list address: {{section_list.list_address}}@uw.edu</li>
                                 <li>Mailing list will stay synced with the official class list</li>
-                                <li>Learn more: <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-                                      rel="help" target="_blank" data-linklabel="Mailman Help">Mailman help documentation</a></li>
                             </ul>
                             <input type="hidden" id="section_single_{{section_list.section_id}}"
                                    name="section_single_{{section_list.section_id}}" value="{{section_list.section_label}}"/>
                         {{/unless}}
                     </div>
+                    {{/if}}
                 {{/unless}}
 
                 {{#unless no_secondary_section }}
@@ -161,6 +184,8 @@
             </div>
 
             <div class="modal-footer">
+                <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+                      rel="help" target="_blank" data-linklabel="Mailman Help" style="margin-right: 1em;">Mailman help</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 {{#unless request_sent }}
                 <button type="submit" class="btn btn-primary" form="request_emaillist_form" value="Create Mailing Lists">Submit</button>

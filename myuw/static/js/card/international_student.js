@@ -1,13 +1,13 @@
-var InterStudentCard = {
-    name: 'InterStudentCard',
+var IntlStudCard = {
+    name: 'IntlStudCard',
     dom_target: undefined,
 
     render_init: function() {
         if (!window.user.intl_stud) {
-            $("#InterStudentCard").hide();
+            $("#IntlStudCard").hide();
             return;
         }
-        InterStudentCard._render();
+        IntlStudCard._render();
     },
 
     _render: function () {
@@ -19,15 +19,15 @@ var InterStudentCard = {
             bothell: window.user.bothell,
             tacoma: window.user.tacoma
             };
-        InterStudentCard._render_with_context(data);
-        LogUtils.cardLoaded(InterStudentCard.name, InterStudentCard.dom_target);
+        IntlStudCard._render_with_context(data);
+        LogUtils.cardLoaded(IntlStudCard.name, IntlStudCard.dom_target);
     },
 
     _render_with_context: function (context){
         var source = $("#international_student_card_content").html();
         var internationalStudents_template = Handlebars.compile(source);
         var raw = internationalStudents_template(context);
-        InterStudentCard.dom_target.html(raw);
+        IntlStudCard.dom_target.html(raw);
     },
 };
 
@@ -35,4 +35,4 @@ var InterStudentCard = {
 if (typeof exports === "undefined") {
     var exports = {};
 }
-exports.InterStudentCard = InterStudentCard;
+exports.IntlStudCard = IntlStudCard;

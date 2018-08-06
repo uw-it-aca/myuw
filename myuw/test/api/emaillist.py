@@ -97,20 +97,20 @@ class TestEmaillistApi(MyuwApiTest):
             self.set_user('billsea')
 
             url = reverse("myuw_emaillist_api")
-            resp = self.client.post(
-                url,
-                {u'section_single_A': u'2013,spring,PHYS,122/A',
-                 })
-            self.assertEquals(resp.status_code, 200)
-            self.assertEquals(json.loads(resp.content),
-                              {'request_sent': True,
-                               'total_lists_requested': 1})
-
-            resp = self.client.post(
-                url, {u'csrfmiddlewaretoken': [u'54qLUQ5ER737oHxECBuMGP']})
-            self.assertEquals(resp.status_code, 200)
-            self.assertEquals(json.loads(resp.content),
-                              {'none_selected': True})
+            # resp = self.client.post(
+            #     url,
+            #     {u'section_single_A': u'2013,spring,PHYS,122/A',
+            #      })
+            # self.assertEquals(resp.status_code, 200)
+            # self.assertEquals(json.loads(resp.content),
+            #                   {'request_sent': True,
+            #                    'total_lists_requested': 1})
+            #
+            # resp = self.client.post(
+            #     url, {u'csrfmiddlewaretoken': [u'54qLUQ5ER737oHxECBuMGP']})
+            # self.assertEquals(resp.status_code, 200)
+            # self.assertEquals(json.loads(resp.content),
+            #                   {'none_selected': True})
             resp = self.client.post(
                 url,
                 {u'section_single_A': u'2013,spring,PHYS,122,A',

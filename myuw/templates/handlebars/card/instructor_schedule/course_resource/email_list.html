@@ -14,6 +14,9 @@
                 <a href="{{section_list.list_admin_url}}" target="_blank" class="course-manage-email" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{section_list.section_id}}">Manage</a>
             {{/if}}
 
+        {{else if joint_section_list.list_exists}}
+                <span>{{joint_section_list.list_address}}@uw.edu</span>
+                <a href="{{joint_section_list.list_admin_url}}" target="_blank" class="course-manage-email" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{joint_section_list.section_id}}">Manage</a>
         {{else}}
             {{#if has_secondary_lists}}
                 <span class="card-badge-value"><a href="#" class="manage_email_list" data-toggle="modal" data-target="#popup_emaillist_{{../section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Manage mailing lists</a></span>
