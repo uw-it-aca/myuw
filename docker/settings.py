@@ -23,7 +23,8 @@ INSTALLED_APPS = [
     'django_client_logger',
     'supporttools',
     'blti',
-    'hx_toolkit'
+    'hx_toolkit',
+    'uw_saml'
 ]
 
 MIDDLEWARE = [
@@ -315,3 +316,9 @@ if os.getenv("AUTH", "mock") == "SAML":
             'wantAssertionsEncrypted': False,
                 }
     }
+
+
+
+from django.core.urlresolvers import reverse_lazy
+LOGIN_URL = reverse_lazy('saml_login')
+LOGOUT_URL = reverse_lazy('saml_logout')
