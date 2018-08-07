@@ -276,3 +276,42 @@ if os.getenv('LOG', 'none') == "CloudWatch":
             }
         }
     }
+
+CLUSTER_CNAME = os.getenv("CLUSTER_CNAME", "localhost")
+
+if os.getenv("AUTH", "mock") == "SAML":
+    UW_SAML = {
+        'strict': True,
+        'debug': True,
+        'sp': {
+            'entityId': CLUSTER_CNAME + '/saml',
+            'assertionConsumerService': {
+                'url': CLUSTER_CNAME + '/saml/sso',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
+            },
+            'singleLogoutService': {
+                'url': CLUSTER_CNAME + '/saml/logout',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+            },
+            'NameIDFormat': 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+            'x509cert': os.getenv("SP_CERT", ""),
+                },
+        'idp': {
+            'entityId': 'urn:mace:incommon:washington.edu',
+            'singleSignOnService': {
+                'url': 'https://idp.u.washington.edu/idp/profile/SAML2/Redirect/SSO',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+            },
+            'singleLogoutService': {
+                'url': 'https://idp.u.washington.edu/idp/logout',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+            },
+            'x509cert': os.getenv("SP_CERT", ""),
+        },
+        'security': {
+            'authnRequestsSigned': False,
+            'wantMessagesSigned': True,
+            'wantAssertionsSigned': False,
+            'wantAssertionsEncrypted': False,
+                }
+    }
