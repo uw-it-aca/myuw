@@ -18,11 +18,11 @@
                     <div class="fade-in">
                         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
                             <h3 class="myuw-card-title">
-                                <span class="myuw-course-abbrtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span>
+                                <a name="{{ course_abbr_slug }}-{{course_number}}-{{section_id}}"><span class="myuw-course-abbrtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span></a>
                               <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
                                 <span class="myuw-course-shortname">{{course_title}}</span>
-                                {{#if has_joint}}
-                                    <span class="myuw-course-joint myuw-muted">Offered jointly with {{#each joint_sections}}<a href="#">{{ course_abbr }} {{ course_number }} {{ section_id }}</a>{{#unless @last}}, {{/unless}}{{/each}}</span>
+                                {{#if email_list.has_joint}}
+                                    <span class="myuw-course-joint myuw-muted">Offered jointly with {{#each email_list.joint_sections}}<a href="#{{ course_abbr_slug }}-{{ course_number }}-{{ section_id }}">{{ course_abbr }} {{ course_number }} {{ section_id }}</a>{{#unless @last}}, {{/unless}}{{/each}}</span>
                                 {{/if}}
                             </h3>
 
