@@ -2,7 +2,7 @@
     {% tplhandlebars "instructor_course_sche_panel" %}
 
 <div class="myuw-card-section">
-{{#if summer_term}}
+    {{#if summer_term}}
     <div class="row">
         <div class="col-sm-3">
             <h4 class="myuw-card-row-heading">Summer Term</h4>
@@ -13,7 +13,21 @@
             </div>
         </div>
     </div>
-{{/if}}
+    {{/if}}
+
+    {{#if cc_display_dates}}
+    <div class="row">
+        <div class="col-sm-3">
+            <h4 class="myuw-card-row-heading">Date</h4>
+        </div>
+        <div class="col-sm-9">
+            <div class="myuw-card-row-content">
+                {{toMonthDay start_date}} &ndash; {{toMonthDay end_date}}
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
     <div class="row">
         <div class="col-sm-3">
             <h4 class="myuw-card-row-heading">Meeting Time</h4>
