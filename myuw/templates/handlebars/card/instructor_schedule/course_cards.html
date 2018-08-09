@@ -17,8 +17,8 @@
                     {{/if}}
                     <div class="fade-in">
                         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-                            <h3 class="myuw-card-title">
-                                <a name="{{ course_abbr_slug }}-{{course_number}}-{{section_id}}"><span class="myuw-course-abbrtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span></a>
+                            <h3 class="myuw-card-title" id="{{ course_abbr_slug }}-{{course_number}}-{{section_id}}">
+                                <span class="myuw-course-abbrtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span>
                               <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
                                 <span class="myuw-course-shortname">{{course_title}}</span>
                                 {{#if has_joint }}
@@ -28,7 +28,7 @@
                                         {{#if is_ior}}
                                             <a href="#{{ course_abbr_slug }}-{{ course_number }}-{{ section_id }}">{{ course_abbr }} {{ course_number }} {{ section_id }}</a>{{#unless @last}}, {{/unless}}
                                         {{else}}
-                                        <button data-toggle="popover" data-content="You are not an IOR of this class, should you be one?">{{ course_abbr }} {{ course_number }} {{ section_id }}</button>{{#unless @last}}, {{/unless}}
+                                            <a role="button" tabindex="0" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="You are not an instructor of record for {{ course_abbr }} {{ course_number }} {{ section_id }}. Contact your Time Schedule Coordinator and ask to be added as an instructor of record.">{{ course_abbr }} {{ course_number }} {{ section_id }} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="sr-only">(Warning: Not listed as an instructor or record)</span></a>{{#unless @last}}, {{/unless}}
                                         {{/if}}
                                         {{/each}}
                                     </span>
