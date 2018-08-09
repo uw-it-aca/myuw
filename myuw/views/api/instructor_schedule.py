@@ -9,6 +9,7 @@ from myuw.views.error import (
 import logging
 from operator import itemgetter
 from restclients_core.exceptions import DataFailureException
+from uw_gradepage.grading_status import get_grading_status
 from uw_iasystem.exceptions import TermEvalNotCreated
 from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
@@ -37,8 +38,8 @@ from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI, ProtectedAPI, prefetch_resources
 from myuw.views.api.base_schedule import irregular_start_end,\
     sort_pce_section_meetings
-from myuw.views.decorators import blti_admin_required
-from blti import BLTI
+from uw_sws.section import get_joint_sections
+from myuw.dao.pws import get_person_of_current_user
 
 logger = logging.getLogger(__name__)
 EARLY_FALL_START = "EARLY FALL START"
@@ -246,6 +247,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
     json_data["has_eos_dates"] = False
     section_index = 0
     course_resource_threads = []
+    current_user = get_person_of_current_user(request)
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         section_data["index"] = section_index
@@ -360,6 +362,20 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                 json_data["has_eos_dates"] = True
             section_data["meetings"] = sort_pce_section_meetings(
                 section_data["meetings"])
+        if len(section.joint_section_urls):
+            joint_sections = get_joint_sections(section)
+            section_data['joint_sections'] = []
+            section_data['has_joint'] = True
+            for joint_section in joint_sections:
+                joint_course = {
+                    "course_abbr": joint_section.curriculum_abbr,
+                    "course_number": joint_section.course_number,
+                    "section_id": joint_section.section_id,
+                    "course_abbr_slug":
+                        joint_section.curriculum_abbr.replace(" ", "-"),
+                    "is_ior": joint_section.is_instructor(current_user)
+                }
+                section_data['joint_sections'].append(joint_course)
 
         if section_callback:
             section_callback(section, section_data)

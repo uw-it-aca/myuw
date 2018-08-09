@@ -21,8 +21,17 @@
                                 <a name="{{ course_abbr_slug }}-{{course_number}}-{{section_id}}"><span class="myuw-course-abbrtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span></a>
                               <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
                                 <span class="myuw-course-shortname">{{course_title}}</span>
-                                {{#if email_list.has_joint}}
-                                    <span class="myuw-course-joint myuw-muted">Offered jointly with {{#each email_list.joint_sections}}<a href="#{{ course_abbr_slug }}-{{ course_number }}-{{ section_id }}">{{ course_abbr }} {{ course_number }} {{ section_id }}</a>{{#unless @last}}, {{/unless}}{{/each}}</span>
+                                {{#if has_joint }}
+                                    <span class="myuw-course-joint myuw-muted">
+                                        Offered jointly with
+                                        {{#each joint_sections}}
+                                        {{#if is_ior}}
+                                            <a href="#{{ course_abbr_slug }}-{{ course_number }}-{{ section_id }}">{{ course_abbr }} {{ course_number }} {{ section_id }}</a>{{#unless @last}}, {{/unless}}
+                                        {{else}}
+                                        <button data-toggle="popover" data-content="You are not an IOR of this class, should you be one?">{{ course_abbr }} {{ course_number }} {{ section_id }}</button>{{#unless @last}}, {{/unless}}
+                                        {{/if}}
+                                        {{/each}}
+                                    </span>
                                 {{/if}}
                             </h3>
 

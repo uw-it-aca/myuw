@@ -308,6 +308,9 @@ var record_link_click = function(ev) {
     if (!href) {
         href = target.attr('href');
     }
+    if (href === undefined){
+        return;
+    }
 
     if (!href.match('^https?://')) {
         return;
