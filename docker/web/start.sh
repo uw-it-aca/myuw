@@ -9,8 +9,6 @@ if [ -f /tmp/is_leader ]; then
 fi
 
 pip install -r requirements.txt
-pip uninstall -y uw-restclients-core
-pip install -e git+https://github.com/uw-it-aca/uw-restclients-core@bug/memcached-mock-error#egg=uw-restclients-core
 
 rm -rf /static/
 python manage.py collectstatic
