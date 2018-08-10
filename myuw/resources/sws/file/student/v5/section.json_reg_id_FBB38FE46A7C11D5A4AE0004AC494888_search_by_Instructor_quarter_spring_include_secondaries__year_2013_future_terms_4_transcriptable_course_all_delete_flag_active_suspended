@@ -1,0 +1,44 @@
+{
+    "Current": {
+        "ChangedSinceDate": null,
+        "CourseNumber": null,
+        "CurriculumAbbreviation": null,
+        "DeleteFlag": null,
+        "FacilityCode": null,
+        "FutureTerms": 0,
+        "Href": "/student/v5/section.json?year=2013&quarter=autumn&future_terms=0&curriculum_abbreviation=&course_number=&reg_id=FBB38FE46A7C11D5A4AE0004AC494888&search_by=Instructor&include_secondaries=on&delete_flag=&changed_since_date=&transcriptable_course=yes&page_size=130&page_start=1&facility_code=&room_number=&sln=",
+        "IncludeSecondaries": true,
+        "PageSize": "130",
+        "PageStart": "1",
+        "Quarter": "summer",
+        "RegID": "FBB38FE46A7C11D5A4AE0004AC494888",
+        "RoomNumber": null,
+        "SLN": null,
+        "SearchBy": "Instructor",
+        "TranscriptableCourse": "yes",
+        "Year": "2013"
+    },
+    "Next": null,
+    "PageSize": "130",
+    "PageStart": "1",
+    "Previous": null,
+    "Sections": [
+        {
+            "CourseNumber": "306",
+            "CurriculumAbbreviation": "POL S",
+            "Href": "/student/v5/course/2013,autumn,POL%20S,306/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "306",
+            "CurriculumAbbreviation": "COM",
+            "Href": "/student/v5/course/2013,autumn,COM,306/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2013
+        }
+    ],
+    "TotalCount": 1
+}
