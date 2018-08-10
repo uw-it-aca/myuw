@@ -21,7 +21,7 @@ from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
     get_instructor_schedule_by_term, check_section_instructor,
-    get_limit_estimate_enrollment_for_section, get_instructor_section,
+    get_section_status_by_label, get_instructor_section,
     get_primary_section)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
@@ -136,6 +136,13 @@ def set_section_evaluation(section, person):
 
 def set_course_resources(section_data, section, person):
     threads = []
+
+    t = ThreadWithResponse(
+        target=get_enrollment_status_for_section,
+        args=(section, section_data))
+    t.start()
+    threads.append((t, None, section_data))
+
     t = ThreadWithResponse(target=get_canvas_course_url,
                            args=(section, person))
     t.start()
@@ -180,28 +187,41 @@ def set_course_resources(section_data, section, person):
         t.start()
         threads.append((t, 'final_exam', section_data))
 
-    if not hasattr(section, 'limit_estimate_enrollment'):
-        t = ThreadWithResponse(
-            target=get_limit_estimate_enrollment_for_section,
-            args=(section,))
-        t.start()
-        threads.append((t, 'limit_estimate_enrollment', section_data))
-
     for t, k, d in threads:
         t.join()
         if t.exception is None:
-            d[k] = t.response
+            if d is not None and k is not None:
+                d[k] = t.response
         else:
             logger.error("%s: %s" % (k, t.exception))
+
+
+def get_enrollment_status_for_section(section, section_json):
+    try:
+        status = get_section_status_by_label(section.section_label())
+        # MUWM-3999
+        section_json["current_enrollment"] = status.current_enrollment
+        section_json["limit_estimated_enrollment"] =\
+            status.limit_estimated_enrollment
+
+        if (status.current_enrollment and section.sln and
+                section.is_independent_study):
+            set_indep_study_section_enrollments(section, section_json)
+
+        return True
+    except DataFailureException as ex:
+        if ex.status != 404:
+            raise
+    except Exception:
+        log_exception(logger,
+                      'get_status_for_section',
+                      traceback.format_exc())
 
 
 def set_indep_study_section_enrollments(section, section_json_data):
     """
     for the instructor (current user)
     """
-    if (not section.sln or not section.current_enrollment or
-            not section.is_independent_study):
-        return
     try:
         registrations = get_active_registrations_for_section(
             section, section_json_data['independent_study_instructor_regid'])
@@ -280,8 +300,6 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             section_data['is_independent_study'] = True
             section_data['independent_study_instructor_regid'] =\
                 schedule.person.uwregid
-
-            set_indep_study_section_enrollments(section, section_data)
         else:
             section_data['is_independent_study'] = False
 
