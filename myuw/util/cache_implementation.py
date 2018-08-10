@@ -18,6 +18,8 @@ def get_cache_time(service, url):
     if "sws" == service:
         if re.match('^/student/v5/term', url):
             return ONE_DAY
+        if re.match('^/student/v5/course/', url):
+            return ONE_HOUR
         return FIFTEEN_MINS
 
     if "gws" == service:

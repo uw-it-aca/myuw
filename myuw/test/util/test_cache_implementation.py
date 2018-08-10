@@ -25,41 +25,41 @@ class TestCustomCachePolicy(TestCase):
 
     def test_get_cache_time(self):
         self.assertEquals(get_cache_time(
-                "myplan", "/api/plan/"), FIVE_SECONDS)
+            "myplan", "/api/plan/"), FIVE_SECONDS)
 
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
+            "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/term/current.json"), ONE_DAY)
+            "sws", "/student/v5/term/current.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/course"), FIFTEEN_MINS)
+            "sws", "/student/v5/course/"), ONE_HOUR)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
+            "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/notice"), FIFTEEN_MINS)
+            "sws", "/student/v5/notice"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/registration"), FIFTEEN_MINS)
+            "sws", "/student/v5/registration"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/section"), FIFTEEN_MINS)
+            "sws", "/student/v5/section"), FIFTEEN_MINS)
 
         self.assertEquals(get_cache_time(
-                "gws", "/group_sws/v3"), FIFTEEN_MINS)
+            "gws", "/group_sws/v3"), FIFTEEN_MINS)
 
         self.assertEquals(get_cache_time(
-                "pws", "/nws/v1/uwnetid"), ONE_HOUR)
+            "pws", "/nws/v1/uwnetid"), ONE_HOUR)
         self.assertEquals(get_cache_time(
-                "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR)
+            "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR)
 
         self.assertEquals(get_cache_time(
-                "grad", "/services/students"), FOUR_HOURS)
+            "grad", "/services/students"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem_uw", "/uw/api/v1/evaluation"), FOUR_HOURS)
+            "iasystem_uw", "/uw/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem_uwb", "/uwb/api/v1/evaluation"), FOUR_HOURS)
+            "iasystem_uwb", "/uwb/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem_uwt", "/uwt/api/v1/evaluation"), FOUR_HOURS)
+            "iasystem_uwt", "/uwt/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "digitlib", "/php/currics/service.php"), FOUR_HOURS)
+            "digitlib", "/php/currics/service.php"), FOUR_HOURS)
 
     def test_sws_default_policies(self):
         with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=CACHE):
@@ -223,7 +223,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/course/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=16))
+                                      timedelta(minutes=66))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/course/xx', {})
             self.assertEquals(response, None)
