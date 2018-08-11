@@ -143,6 +143,12 @@ var InstructorCourseCards = {
     add_events: function(term) {
         $('[data-toggle="popover"]').popover();
 
+        $(document).on('click', 'a[href^="#"]', function (event) {
+            event.preventDefault();
+            $('html,body').animate({scrollTop:
+                $($.attr(this, 'href')).offset().top},'slow');
+        });
+
         $(".course_website").on("click", function(ev) {
             var course_id = ev.currentTarget.getAttribute("rel");
             course_id = course_id.replace(/[^a-z0-9]/gi, '_');
