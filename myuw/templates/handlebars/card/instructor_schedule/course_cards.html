@@ -17,14 +17,23 @@
                     {{/if}}
                     <div class="fade-in">
                         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-                            <h3 class="myuw-card-title">
+                            <h3 class="myuw-card-title" id="{{ course_abbr_slug }}-{{course_number}}-{{section_id}}">
                                 <span class="myuw-course-abbrtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span>
                               <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
                                 <span class="myuw-course-shortname">{{course_title}}</span>
+                                {{#if has_joint }}
+                                    <span class="myuw-course-joint myuw-muted">
+                                        Offered jointly with
+                                        {{#each joint_sections}}
+                                        {{#if is_ior}}
+                                            <a href="#{{ course_abbr_slug }}-{{ course_number }}-{{ section_id }}">{{ course_abbr }} {{ course_number }} {{ section_id }}</a>{{#unless @last}}, {{/unless}}
+                                        {{else}}
+                                            <a role="button" tabindex="0" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="You are not an instructor of record for {{ course_abbr }} {{ course_number }} {{ section_id }}. Contact your Time Schedule Coordinator and ask to be added as an instructor of record.">{{ course_abbr }} {{ course_number }} {{ section_id }} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="sr-only">(Warning: Not listed as an instructor or record)</span></a>{{#unless @last}}, {{/unless}}
+                                        {{/if}}
+                                        {{/each}}
+                                    </span>
+                                {{/if}}
                             </h3>
-                            {{#if cc_display_dates}}
-                                <span class="offterm-date" style="display:block;">Date: {{toMonthDay start_date}} - {{toMonthDay end_date}}</span>
-                            {{/if}}
 
                             <div class="course-meta">
                                 {{# if sln}}
