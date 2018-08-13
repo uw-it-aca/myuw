@@ -141,7 +141,10 @@ var InstructorCourseCards = {
     },
 
     add_events: function(term) {
-        $('[data-toggle="popover"]').popover();
+        try{
+            $('[data-toggle="popover"]').popover();
+        }
+        catch(err){}
 
         $(document).on('click', 'a[href^="#"]', function (event) {
             event.preventDefault();
