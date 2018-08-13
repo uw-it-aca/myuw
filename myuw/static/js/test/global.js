@@ -33,7 +33,7 @@ var Environment = {
         global.sinon  = require("sinon");
         global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
         global.dom = dom;
-        var HandlebarsHelpers = require("../handlebars-helpers.js")
+        var HandlebarsHelpers = require("../handlebars-helpers.js");
 
         // set up client environment
         window.user = Environment._get_user(config);

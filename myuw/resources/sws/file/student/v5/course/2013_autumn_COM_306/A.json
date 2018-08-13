@@ -70,6 +70,14 @@
             "Quarter": "autumn",
             "SectionID": "A",
             "Year": 2013
+        },
+        {
+            "CourseNumber": "306",
+            "CurriculumAbbreviation": "CSE",
+            "Href": "/student/v5/course/2013,autumn,CSE,306/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2013
         }
     ],
     "LMSOwnership": null,
