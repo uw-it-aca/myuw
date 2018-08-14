@@ -14,10 +14,12 @@ def check_memory():
 
         for obj in objects:
             if type(obj) in obj_count:
-                obj_count[type(obj)] += 1
+                obj_count[str(type(obj))] += 1
+            else:
+                obj_count[str(type(obj))] = 1
 
-        logger.log(json.dumps(obj_count, indent=4, sort_keys=True))
-        sleep(60)
+        logger.error(json.dumps(obj_count, indent=4, sort_keys=True))
+        sleep(5)
 
 
 def start_memory_thread():
