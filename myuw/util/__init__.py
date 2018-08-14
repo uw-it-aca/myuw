@@ -15,6 +15,7 @@ def check_memory():
         obj_count[type(obj)] += 1
       
     logger.log(json.dumps(obj_count, indent=4, sort_keys=True)
+    thread.sleep(60)
 
 
 
