@@ -13,7 +13,7 @@ def check_memory():
         obj_count = {}
 
         for obj in objects:
-            if type(obj) in obj_count:
+            if str(type(obj)) in obj_count:
                 obj_count[str(type(obj))] += 1
             else:
                 obj_count[str(type(obj))] = 1
