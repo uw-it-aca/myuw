@@ -16,7 +16,7 @@ def check_memory():
         for obj in objects:
             if str(type(obj)) in obj_count:
                 obj_count[str(type(obj))][0] += 1 
-                obj_count[str(type(obj))][0] +=  sys.getsizeof(obj) 
+                obj_count[str(type(obj))][1] +=  sys.getsizeof(obj) 
             else:
                 obj_count[str(type(obj))] = [1, sys.getsizeof(obj)]
 
