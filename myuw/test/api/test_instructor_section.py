@@ -30,9 +30,9 @@ class TestInstSectDetails(MyuwApiTest):
             data['sections'][0]['registrations'][0]['linked_sections'],
             'AA AB')
         self.assertEqual(
-            data['sections'][0]['registrations'][0]['first_name'], "June")
+            data['sections'][0]['registrations'][0]['first_name'], "Zune")
         self.assertEqual(
-            data['sections'][0]['registrations'][0]['surname'], "Student3")
+            data['sections'][0]['registrations'][0]['surname'], "Student2")
         self.assertEqual(
             data['sections'][0]['registrations'][0]['credits'], "3")
         self.assertEqual(
