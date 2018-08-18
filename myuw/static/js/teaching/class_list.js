@@ -90,6 +90,7 @@ var PhotoClassList = {
             PhotoClassList.render();
         }).val(window.section_data.section);
 
+        $("#course_stats_popover").popover("show");
     },
 
     sort_students: function(registrations, key) {
