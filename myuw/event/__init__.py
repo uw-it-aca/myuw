@@ -114,7 +114,7 @@ class EventHandler(object):
 
     def validate(self):
         """
-        how does this diff from django-aws-message/aws_message/gather 
+        dupplicate with django-aws-message/aws_message/gather
         SNS.validate()?
         """
         try:
