@@ -32,7 +32,11 @@ class TestCustomCachePolicy(TestCase):
         self.assertEquals(get_cache_time(
             "sws", "/student/v5/term/current.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
-            "sws", "/student/v5/course/"), ONE_HOUR)
+            "sws", "/student/v5/course/.../status.json"), ONE_HOUR)
+        self.assertEquals(get_cache_time(
+            "sws", "/student/v5/course/"), FIFTEEN_MINS * 2)
+        self.assertEquals(get_cache_time(
+            "sws", "/student/v5/person/"), ONE_HOUR)
         self.assertEquals(get_cache_time(
             "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
