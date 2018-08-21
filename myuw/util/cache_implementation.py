@@ -1,5 +1,6 @@
 import logging
 import re
+from base64 import b64encode
 from bmemcached.exceptions import MemcachedException
 from django.conf import settings
 from rc_django.cache_implementation import MemcachedCache, TimedCache
@@ -56,18 +57,31 @@ class MyUWMemcachedCache(MemcachedCache):
             raise DataFailureException(url, 555, "MyUWMemcachedCache")
         return get_cache_time(service, url)
 
-    def delete_cached_value(self, service, url):
+    def update_cache(self, service, url, new_value):
         client = self._get_client()
         key = self._get_key(service, url)
         try:
             value = client.get(key)
-            logger.info("CACHE KEY: %s DATA: %s", key, data)
+        except MemcachedException as ex:
+            logger.info("Get from cache(key=%s) ==> %s", key, ex)
+            return
 
-            if value:
-                client.delete(key)
+        if value:
+            logger.info("IN cache (key: %s, %s)", key, value)
+            client.delete(key)
+            # may raise MemcachedException
+        else:
+            logger.info("NOT IN cache (key: %s)", key)
 
-        except bmemcached.exceptions.MemcachedException as ex:
-            logger.warning("delete_cached_value(%s) ==> '%s'", key, ex)
+        data = json.dumps({
+            "status": 200,
+            "b64_data": b64encode(new_value),
+            "headers": {}})
+        time_to_store = self.get_cache_expiration_time(service, url)
+        client.set(key, data, time=time_to_store)
+        # may raise MemcachedException
+        logger.info("MemCached set with key '%s', %d seconds",
+                    key, time_to_store)
 
 
 class MyUWCache(TimedCache):

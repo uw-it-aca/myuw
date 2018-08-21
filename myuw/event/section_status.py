@@ -8,7 +8,7 @@ from datetime import timedelta
 from django.utils import timezone
 from dateutil.parser import parse
 from aws_message.processor import InnerMessageProcessor, ProcessorException
-from myuw.event import clear_cached_sws_entry
+from myuw.event import update_cached_sws_entry
 
 
 logger = logging.getLogger(__name__)
@@ -38,15 +38,16 @@ class SectionStatusProcessor(InnerMessageProcessor):
                 logger.info("DISCARD (EventDate: %s)", modified)
                 return
 
-            if 'Href' in json_data:
-                status_url = json_data['Href']
-                # /v5/course/2018,autumn,SOC,225/A/status.json
+            status_url = json_data.get('Href')
+            # /v5/course/2018,autumn,SOC,225/A/status.json
 
-                # current = json_data['Current']
-                self.clear_cache(status_url)
-                logger.info("Message %s is processed!", json_data)
+            new_value = json_data.get('Current')
 
-    def clear_cache(self, status_url, time_stamp):
-        url = "/student/%s" % status_url
-        clear_cached_sws_entry(url)
-        logger.info("Cleared section status from cache (%s)", url)
+            if status_url and new_value:
+                url = "/student/%s" % status_url
+                try:
+                    update_cached_sws_entry(url, new_value)
+                except Exception as e:
+                    msg = "FAILED to update cache(url=%s) ==> %s" & (url, e)
+                    logger.error(msg)
+                    raise SectionStatusProcessorException(msg)
