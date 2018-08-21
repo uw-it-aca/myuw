@@ -12,7 +12,7 @@ from myuw.event import clear_cached_sws_entry
 
 
 logger = logging.getLogger(__name__)
-message_freshness = timedelta(hours=1)
+message_freshness = timedelta(days=1)
 QUEUE_SETTINGS_NAME = 'SECTION_SATSUS_V1'
 
 
@@ -34,9 +34,8 @@ class SectionStatusProcessor(InnerMessageProcessor):
         """
         if 'EventDate' in json_data:
             modified = parse(json_data['EventDate'])
-            # 2018-08-12T14:18:41.3136155-07:00
             if modified <= (timezone.now() - message_freshness):
-                logger.info("Discard old message: %s" % json_data)
+                logger.info("DISCARD (EventDate: %s)", modified)
                 return
 
             if 'Href' in json_data:
