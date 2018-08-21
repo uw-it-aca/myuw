@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from myuw.event. section_status import SectionStatusEventHandler
+from myuw.event. section_status import SectionStatusProcessor
 from aws_message.gather import Gather, GatherException
 
 
@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            Gather(processor=SectionStatusEventHandler).gather_events()
+            Gather(processor=SectionStatusProcessor()).gather_events()
         except GatherException as err:
             raise CommandError(err)
         except Exception as err:
