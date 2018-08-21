@@ -58,30 +58,38 @@ class MyUWMemcachedCache(MemcachedCache):
             raise DataFailureException(url, 555, "MyUWMemcachedCache")
         return get_cache_time(service, url)
 
-    def update_cache(self, service, url, new_value):
+    def update_cache(self, service, url, new_json_data):
         client = self._get_client()
         key = self._get_key(service, url)
+        logger.info("UUUUUU cache(key=%s)", key)
+
+        # clear existing data
         try:
             value = client.get(key)
+
+            if value:
+                logger.info("IN cache (key: %s, %s)", key, value)
+                client.delete(key)
+                # may raise MemcachedException
+            else:
+                logger.info("NOT IN cache (key: %s)", key)
+
         except MemcachedException as ex:
-            logger.info("Get from cache(key=%s) ==> %s", key, ex)
+            logger.info("Failed to clear existing data(key=%s) ==> %s",
+                        key, ex)
             return
 
-        if value:
-            logger.info("IN cache (key: %s, %s)", key, value)
-            client.delete(key)
-            # may raise MemcachedException
-        else:
-            logger.info("NOT IN cache (key: %s)", key)
-
+        # store new value in cache
         data = json.dumps({
             "status": 200,
-            "b64_data": b64encode(new_value),
+            "b64_data": b64encode(json.dumps(new_json_data)),
             "headers": {}})
+
         time_to_store = self.get_cache_expiration_time(service, url)
+
         client.set(key, data, time=time_to_store)
         # may raise MemcachedException
-        logger.info("MemCached set with key '%s', %d seconds",
+        logger.info("MemCached SET with key %s for %d seconds",
                     key, time_to_store)
 
 
