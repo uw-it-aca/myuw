@@ -1,6 +1,7 @@
 import json
 from django.test import TestCase
-from myuw.event.section_status import SectionStatusEventHandler
+from django.conf import settings
+from myuw.event.section_status import SectionStatusProcessor
 
 
 M1 = {
@@ -48,11 +49,22 @@ M1 = {
 }
 
 
-class TestSectionStatusEventHandler(TestCase):
+class TestSectionStatusProcessor(TestCase):
 
     def test_process_message_content(self):
-        try:
-            event_hdlr = SectionStatusEventHandler(json.dumps(M1, default=str))
-            event_hdlr.process()
-        except Exception as ex:
-            Assert.Fail(ex)
+        with self.settings(AWS_SQS={
+                'SECTION_SATSUS_V1': {
+                    'ACCOUNT_NUMBER': '123456789012',
+                    'QUEUE': 'uw-mock-1',
+                    'REGION': 'us-east-1',
+                    'KEY_ID': 'XXXXXXXXXXXXXXXX',
+                    'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',
+                    'VISIBILITY_TIMEOUT': 10,
+                    'MESSAGE_GATHER_SIZE': 10,
+                    'VALIDATE_SNS_SIGNATURE': False,
+                    'PAYLOAD_SETTINGS': {}}}):
+            try:
+                event_hdlr = SectionStatusProcessor()
+                event_hdlr.process(M1)
+            except Exception as ex:
+                self.fail(ex)

@@ -35,7 +35,7 @@ setup(
         'unittest2',
         'python-binary-memcached',
         'UW-Django-SAML2>=0.4.5,<1',
-        'django-aws-message>=0.3,<1',
+        'django-aws-message==0.25',
         'UW-RestClients-Core==0.9.6',
         'UW-RestClients-SWS<2.0,>=1.7.3',
         'UW-RestClients-PWS<2.0,>=1.0.1',
