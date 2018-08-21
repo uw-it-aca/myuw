@@ -6,5 +6,5 @@ myuwcache = MyUWMemcachedCache()
 SWS_SERVICE_NAME = SWS_DAO().service_name
 
 
-def update_cached_sws_entry(url, new_value):
+def update_sws_entry_in_cache(url, new_value):
     myuwcache.update_cache(SWS_SERVICE_NAME, url, new_value)

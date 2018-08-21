@@ -8,7 +8,7 @@ from datetime import timedelta
 from django.utils import timezone
 from dateutil.parser import parse
 from aws_message.processor import InnerMessageProcessor, ProcessorException
-from myuw.event import update_cached_sws_entry
+from myuw.event import update_sws_entry_in_cache
 
 
 logger = logging.getLogger(__name__)
@@ -46,8 +46,9 @@ class SectionStatusProcessor(InnerMessageProcessor):
             if status_url and new_value:
                 url = "/student/%s" % status_url
                 try:
-                    update_cached_sws_entry(url, new_value)
+                    logger.info("TO UPDATE cache (%s, %s)", url, new_value)
+                    update_sws_entry_in_cache(url, new_value)
                 except Exception as e:
-                    msg = "FAILED to update cache(url=%s) ==> %s" & (url, e)
+                    msg = "FAILED to update cache(url=%s) ==> %s" % (url, e)
                     logger.error(msg)
                     raise SectionStatusProcessorException(msg)
