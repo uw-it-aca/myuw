@@ -1,4 +1,5 @@
 import logging
+import json
 import re
 from base64 import b64encode
 from bmemcached.exceptions import MemcachedException
