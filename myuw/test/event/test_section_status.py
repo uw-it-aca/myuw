@@ -65,6 +65,6 @@ class TestSectionStatusProcessor(TestCase):
                     'PAYLOAD_SETTINGS': {}}}):
             try:
                 event_hdlr = SectionStatusProcessor()
-                event_hdlr.process(M1)
+                event_hdlr.process_inner_message(M1)
             except Exception as ex:
                 self.fail(ex)

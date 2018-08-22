@@ -39,12 +39,12 @@ class SectionStatusProcessor(InnerMessageProcessor):
                 return
 
             status_url = json_data.get('Href')
-            # /v5/course/2018,autumn,SOC,225/A/status.json
+            # ie, /v5/course/2018,autumn,SOC,225/A/status.json
 
             new_value = json_data.get('Current')
 
             if status_url and new_value:
-                url = "/student/%s" % status_url
+                url = "/student%s" % status_url
                 try:
                     logger.info("TO UPDATE cache (%s, %s)", url, new_value)
                     update_sws_entry_in_cache(url, new_value)
