@@ -61,7 +61,6 @@ class MyUWMemcachedCache(MemcachedCache):
     def update_cache(self, service, url, new_json_data):
         client = self._get_client()
         key = self._get_key(service, url)
-        logger.info("UUUUUU cache(key=%s)", key)
 
         # clear existing data
         try:

@@ -35,7 +35,8 @@ class SectionStatusProcessor(InnerMessageProcessor):
         if 'EventDate' in json_data:
             modified = parse(json_data['EventDate'])
             if modified <= (timezone.now() - message_freshness):
-                logger.info("DISCARD (EventDate: %s)", modified)
+                logger.info("DISCARD (EventDate: %s)",
+                            modified, json_data['EventID'])
                 return
 
             status_url = json_data.get('Href')
@@ -46,7 +47,6 @@ class SectionStatusProcessor(InnerMessageProcessor):
             if status_url and new_value:
                 url = "/student%s" % status_url
                 try:
-                    logger.info("TO UPDATE cache (%s, %s)", url, new_value)
                     update_sws_entry_in_cache(url, new_value)
                 except Exception as e:
                     msg = "FAILED to update cache(url=%s) ==> %s" % (url, e)
