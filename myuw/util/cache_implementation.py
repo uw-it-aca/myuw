@@ -67,9 +67,9 @@ class MyUWMemcachedCache(MemcachedCache):
             value = client.get(key)
 
             if value:
-                logger.info("IN cache (key: %s, %s)", key, value)
                 client.delete(key)
                 # may raise MemcachedException
+                logger.info("IN cache (key: %s), DELETED", key)
             else:
                 logger.info("NOT IN cache (key: %s)", key)
 
