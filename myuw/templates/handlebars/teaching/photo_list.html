@@ -17,6 +17,16 @@
                     <span class="myuw-meta">SLN {{ sections.0.sln }}</span>
                 </div>
 
+                {{#if current_or_future}}
+                    {{#if sections.0.current_student_majors}}
+                        <div id="course_stats_popover" class="myuw-minicard-overlay myuw-minicard-overlay-bottom-right">
+                            <h4 class="myuw-card-heading">Statistics for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}</h4>
+                            <p>{{sections.0.current_student_majors.0.percent_students}}% of your students are {{ toTitleCase sections.0.current_student_majors.0.major }} majors.</p>
+                            <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more statistics for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}</a>
+                        </div>
+                    {{/if}}
+                {{/if}}
+
                 <br/>
 
                 <div id="classlist_controls" class="myuw-photo-list-controls">
@@ -51,14 +61,6 @@
                         </div>
                     </div>
                 </div>
-
-                {{#if current_or_future}}
-                    {{#if sections.0.current_student_majors}}
-                        <div id="course_stats_popover" class="class-list-course-stats" data-toggle="popover" data-trigger="manual" data-placement="bottom" data-html="true" data-content="<strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more course stats</a>">
-                        </div>
-                    {{/if}}
-                {{/if}}
-
             </div>
 
             <div id="classlist_table_view" class="js-tab-panel"
