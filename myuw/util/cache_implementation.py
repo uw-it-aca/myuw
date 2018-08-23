@@ -3,6 +3,7 @@ import json
 import re
 from base64 import b64encode
 from bmemcached.exceptions import MemcachedException
+from dateutil.parser import parse
 from django.conf import settings
 from rc_django.cache_implementation import MemcachedCache, TimedCache
 from restclients_core.exceptions import DataFailureException
@@ -58,7 +59,7 @@ class MyUWMemcachedCache(MemcachedCache):
             raise DataFailureException(url, 555, "MyUWMemcachedCache")
         return get_cache_time(service, url)
 
-    def update_cache(self, service, url, new_json_data):
+    def update_cache(self, service, url, new_json_data, time_stamp):
         client = self._get_client()
         key = self._get_key(service, url)
 
@@ -67,9 +68,16 @@ class MyUWMemcachedCache(MemcachedCache):
             value = client.get(key)
 
             if value:
-                client.delete(key)
-                # may raise MemcachedException
-                logger.info("IN cache (key: %s), DELETED", key)
+
+                data = json.loads(value)
+                if "time_stamp" in data:
+                    cached_time_stamp = parse(data["time_stamp"])
+                    if time_stamp > cached_time_stamp:
+                        client.delete(key)
+                        # may raise MemcachedException
+                        logger.info("IN cache (key: %s), older DELETE", key)
+                    else:
+                        logger.info("IN cache (key: %s), newer KEEP", key)
             else:
                 logger.info("NOT IN cache (key: %s)", key)
 
@@ -82,7 +90,9 @@ class MyUWMemcachedCache(MemcachedCache):
         data = json.dumps({
             "status": 200,
             "b64_data": b64encode(json.dumps(new_json_data)),
-            "headers": {}})
+            "headers": {},
+            "time_stamp": str(time_stamp)
+        })
 
         time_to_store = self.get_cache_expiration_time(service, url)
 

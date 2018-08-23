@@ -47,7 +47,7 @@ class SectionStatusProcessor(InnerMessageProcessor):
             if status_url and new_value:
                 url = "/student%s" % status_url
                 try:
-                    update_sws_entry_in_cache(url, new_value)
+                    update_sws_entry_in_cache(url, new_value, modified)
                 except Exception as e:
                     msg = "FAILED to update cache(url=%s) ==> %s" % (url, e)
                     logger.error(msg)

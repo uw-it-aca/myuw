@@ -55,7 +55,7 @@ setup(
         'UW-RestClients-Trumba<1.0,>=0.3',
         'UW-RestClients-CoDa',
         'UW-RestClients-Sdbmyuw',
-        'UW-RestClients-Django-Utils>=1.3.5,<2.0',
+        'UW-RestClients-Django-Utils>=1.3.7,<2.0',
         'django-userservice>=2.0.2,<3.0',
         'Django-SupportTools>=2.0.4,<3.0',
         'Django-Safe-EmailBackend>=0.1,<1.0',
