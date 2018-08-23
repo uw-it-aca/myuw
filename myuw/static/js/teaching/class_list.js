@@ -89,8 +89,6 @@ var PhotoClassList = {
             window.section_data.section = $(this).val();
             PhotoClassList.render();
         }).val(window.section_data.section);
-
-        $("#course_stats_popover").popover("show");
     },
 
     sort_students: function(registrations, key) {
