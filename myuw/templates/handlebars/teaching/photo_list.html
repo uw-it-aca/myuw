@@ -42,8 +42,9 @@
                             </div>
                         </div>
 
-                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort">
-                            Sort by:&nbsp;&nbsp;<select id="sort_list">
+                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort form-inline">
+                            <label for="sort_list">Sort by:</label>
+                            <select id="sort_list" class="form-control">
                                 <option value="surname,first_name" selected="selected">Last Name</option>
                                     <option value="first_name,surname">First Name</option>
                                     <option value="netid">UW NetID</option>
@@ -54,6 +55,12 @@
                                     {{/if}}
                             </select>
                         </div>
+
+                        <span>
+                            <button type="button" class="btn btn-default myuw-button">
+                                <i class="fa fa-square-o" aria-hidden="true"></i> Show Students from Joint Sections
+                            </button>
+                        </span>
                     </div>
                     <div class="controls-row-2">
                         <div class="myuw-photo-list-controls-actions">
