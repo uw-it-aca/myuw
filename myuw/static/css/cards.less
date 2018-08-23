@@ -1,12 +1,15 @@
 @import (reference) "boilerplate.less";
 
-/*** cards ***/
 
+
+/*** Mixins ***/
 .myuw-card-style-mixin() {
     background: #fff;
     box-shadow: 0 1px 3px rgba(34,25,25,.15);
     border: 1px solid #ddd;
 }
+
+/*** cards ***/
 
 .myuw-card {
 
@@ -325,4 +328,21 @@
         white-space: nowrap;
     }
 
+}
+
+
+.myuw-minicard-overlay {
+    .myuw-card-style-mixin;
+    padding: 16px;
+    max-width: 285px;
+
+    & > .myuw-card-heading {
+        margin-top: 0;
+    }
+}
+
+.myuw-minicard-overlay-bottom-right {
+    position: fixed;
+    bottom: 2px;
+    right: 2px;
 }
