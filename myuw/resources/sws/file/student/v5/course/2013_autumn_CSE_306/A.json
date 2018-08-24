@@ -4,13 +4,13 @@
     "ClassWebsiteUrl": null,
     "Course": {
         "CourseNumber": "306",
-        "CurriculumAbbreviation": "COM",
-        "Href": "/student/v5/course/3013,autumn,COM,306.json",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/course/3013,autumn,CSE,306.json",
         "Quarter": "autumn",
         "Year": 2013
     },
     "CourseCampus": "Seattle",
-    "CourseDescription": "Explores how society and culture are both represented in and shaped by communication technologies and media content. Media include film, advertising, news, entertainment television, talk shows, and the Internet. Explores how media represent and affect individual identity, values, and political engagement. Offered: jointly with COM 306.",
+    "CourseDescription": "Explores how society and culture are both represented in and shaped by CSEmunication technologies and media content. Media include film, advertising, news, entertainment television, talk shows, and the Internet. Explores how media represent and affect individual identity, values, and political engagement. Offered: jointly with CSE 306.",
     "CourseHasVariableContent": false,
     "CourseTitle": "MEDIA, SOC & POL ID",
     "CourseTitleLong": "Media, Society, and Political Identity I&S",
@@ -18,7 +18,7 @@
     "CurrentEnrollment": 200,
     "Curriculum": {
         "CollegeName": "ARTS & SCI",
-        "DepartmentAbbreviation": "COM",
+        "DepartmentAbbreviation": "CSE",
         "TimeScheduleLinkAbbreviation": "polisci"
     },
     "DeleteFlag": "active",
@@ -49,7 +49,7 @@
     "FinancialAidEligibleDisplay": "",
     "GeneralEducationRequirements": {
         "Diversity": false,
-        "EnglishComposition": false,
+        "EnglishCSEposition": false,
         "IndividualsAndSocieties": true,
         "NaturalWorld": false,
         "QuantitativeAndSymbolicReasoning": false,
@@ -67,14 +67,6 @@
             "CourseNumber": "306",
             "CurriculumAbbreviation": "POL S",
             "Href": "/student/v5/course/2013,autumn,POL%20S,306/A.json",
-            "Quarter": "autumn",
-            "SectionID": "A",
-            "Year": 2013
-        },
-        {
-            "CourseNumber": "306",
-            "CurriculumAbbreviation": "CSE",
-            "Href": "/student/v5/course/2013,autumn,CSE,306/A.json",
             "Quarter": "autumn",
             "SectionID": "A",
             "Year": 2013
@@ -108,13 +100,13 @@
                 {
                     "FacultySequenceNumber": "",
                     "GradeRoster": {
-                        "Href": "/student/v5/graderoster/3013,autumn,COM,306,A,603E79066A7D11D5A4AE0004AC494FFE"
+                        "Href": "/student/v5/graderoster/3013,autumn,CSE,306,A,603E79066A7D11D5A4AE0004AC494FFE"
                     },
                     "PercentInvolve": "100",
                     "Person": {
-                        "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494888.json",
+                        "Href": "/student/v5/person/FBB38FE46A7C11D5A4AE0004AC494FFE.json",
                         "Name": "Bill Joint",
-                        "RegID": "FBB38FE46A7C11D5A4AE0004AC494888"
+                        "RegID": "FBB38FE46A7C11D5A4AE0004AC494FFE"
                     },
                     "TSPrint": true
                 }
@@ -133,13 +125,13 @@
     "MinimumTermCredit": "5.0",
     "OnlineLearningType": {
         "Code": "00",
-        "Description": "No online learning component"
+        "Description": "No online learning CSEponent"
     },
     "PrimaryLMS": null,
     "PrimarySection": {
         "CourseNumber": "306",
-        "CurriculumAbbreviation": "COM",
-        "Href": "/student/v5/course/3013,autumn,COM,306/A.json",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/course/3013,autumn,CSE,306/A.json",
         "Quarter": "autumn",
         "SectionID": "A",
         "Year": 2013
@@ -147,8 +139,8 @@
     "Registrations": {
         "ChangedSinceDate": "",
         "CourseNumber": "306",
-        "CurriculumAbbreviation": "COM",
-        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=COM&course_number=306&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "CurriculumAbbreviation": "CSE",
+        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=CSE&course_number=306&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
         "InstructorRegID": null,
         "IsActive": true,
         "PageSize": "",
@@ -163,7 +155,7 @@
     "RepositoryTimeStamp": "6/7/2013 11:12:45 AM",
     "ResearchCredit": false,
     "RoomCapacity": 305,
-    "SLN": "12430",
+    "SLN": "18778",
     "SameVariableContentAs": [],
     "SecondaryGradingOption": true,
     "SectionID": "A",
@@ -178,14 +170,14 @@
         "Quarter": "autumn",
         "Year": 2013
     },
-    "TimeScheduleComments": {
-        "CollegeComments": {
+    "TimeScheduleCSEments": {
+        "CollegeCSEments": {
             "Lines": []
         },
-        "CourseComments": {
+        "CourseCSEments": {
             "Lines": []
         },
-        "CurriculumComments": {
+        "CurriculumCSEments": {
             "Lines": [
                 {
                     "Text": "OVERLOADS ARE AVAILABLE ON A LIMITED BASIS - SEE"
@@ -195,26 +187,26 @@
                 }
             ]
         },
-        "DepartmentComments": {
+        "DepartmentCSEments": {
             "Lines": []
         },
-        "InstituteComments": {
+        "InstituteCSEments": {
             "Lines": []
         },
-        "SectionComments": {
+        "SectionCSEments": {
             "Lines": [
                 {
-                    "Text": "COM MAJORS: COUNTS FOR FIELD D,"
+                    "Text": "CSE MAJORS: COUNTS FOR FIELD D,"
                 },
                 {
                     "Text": "AMERICAN POLITICS"
                 }
             ]
         },
-        "TimeScheduleGeneratedComments": {
+        "TimeScheduleGeneratedCSEments": {
             "Lines": [
                 {
-                    "Text": "Offered jointly with COM 306 A"
+                    "Text": "Offered jointly with CSE 306 A"
                 }
             ]
         }

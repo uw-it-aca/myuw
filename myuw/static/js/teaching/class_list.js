@@ -33,7 +33,7 @@ var PhotoClassList = {
         var registrations = data.sections[0].registrations;
 
         data.sections[0].registrations = PhotoClassList.sort_students(
-            registrations, 'surname,name');
+            registrations, 'surname,first_name');
 
         if (window.section_data.hasOwnProperty('available_sections') &&
                 window.section_data.available_sections.length > 1) {
