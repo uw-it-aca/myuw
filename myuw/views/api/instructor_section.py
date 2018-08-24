@@ -152,7 +152,8 @@ class OpenInstSectionDetails(OpenAPI):
         registration_list = self._get_reg_for_section(section.registrations)
         section_data["registrations"] = registration_list
         for joint_section in section_data["joint_sections"]:
-            joint_section["registrations"] = self._get_reg_for_section(joint_section["registrations"])
+            joint_section["registrations"] = \
+                self._get_reg_for_section(joint_section["registrations"])
 
     def _get_reg_for_section(self, registration_list):
         registrations = {}
@@ -227,7 +228,6 @@ class OpenInstSectionDetails(OpenAPI):
 
             registration_list.extend(registrations[regid])
         return registration_list
-
 
     def get_person_info(self, regid):
         sws_person = get_person_by_regid(regid)
