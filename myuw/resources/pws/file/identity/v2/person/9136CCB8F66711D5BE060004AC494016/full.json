@@ -25,6 +25,7 @@
         "EmployeePersonAffiliation": {
             "EmployeeID": "123456789",
             "EmployeeWhitePages": {
+                "EmailAddresses":["foo@bar.com"],
                 "Address1": null,
                 "Address2": null,
                 "Department1": null,
