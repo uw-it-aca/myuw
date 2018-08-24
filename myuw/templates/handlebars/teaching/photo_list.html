@@ -54,6 +54,10 @@
                                     {{/if}}
                             </select>
                         </div>
+                        <div>
+                            <input type="checkbox" id="toggle_joint" />
+                            <label for="toggle_joint">Display joint section registrations</label>
+                        </div>
                     </div>
                     <div class="controls-row-2">
                         <div class="myuw-photo-list-controls-actions">
@@ -90,7 +94,7 @@
                         </thead>
                         <tbody id="student_sort">
                             {{#each sections.0.registrations}}
-                            <tr id="student_{{regid}}">
+                            <tr id="student_{{regid}}" {{#if is_joint}}class="joint"{{/if}}>
                                 <td>{{ student_number }}</td>
                                 <td>{{ netid }}</td>
                                 <td>{{ surname }}</td>
