@@ -41,7 +41,6 @@ setup(
         'UW-RestClients-PWS<2.0,>=1.0.1',
         'UW-RestClients-HFS<1.0',
         'UW-RestClients-GWS>=1.0,<2.0',
-        'uw-restclients-KWS>=0.2,<1',
         'UW-RestClients-GradePage<1.0,>=0.1.1',
         'UW-RestClients-Libraries<1.0',
         'UW-RestClients-IASystem>=0.3.1,<1.0',
