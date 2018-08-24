@@ -5,7 +5,7 @@ from myuw.event.section_status import SectionStatusProcessor
 
 
 M1 = {
-    "EventID": "0298557a-26fc-49af-9f39-522823e00f2a",
+    "EventID": "...",
     "Href": "/v5/course/2018,autumn,HCDE,210/A/status.json",
     "EventDate": "2018-08-12T16:39:08.2704415-07:00",
     "Previous": {
@@ -55,8 +55,8 @@ class TestSectionStatusProcessor(TestCase):
         with self.settings(AWS_SQS={
                 'SECTION_SATSUS_V1': {
                     'ACCOUNT_NUMBER': '123456789012',
-                    'QUEUE': 'uw-mock-1',
-                    'REGION': 'us-east-1',
+                    'QUEUE': 'xxxxxxxxxx',
+                    'REGION': 'xxxx',
                     'KEY_ID': 'XXXXXXXXXXXXXXXX',
                     'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',
                     'VISIBILITY_TIMEOUT': 10,
