@@ -30,6 +30,23 @@ var PhotoClassList = {
         var source = $("#photo_class_list").html();
         var template = Handlebars.compile(source);
         var data = WSData.instructed_section_details();
+
+
+        if("joint_sections" in data.sections[0]){
+            var joint_registrations = [];
+            $.each(data.sections[0].joint_sections, function(idx, joint_section){
+                // Mark joint section registrations as such
+                $.each(joint_section.registrations, function(r_id, registration){
+                    registration.is_joint = true;
+                });
+                joint_registrations =
+                    joint_registrations.concat(joint_section.registrations);
+            });
+            // Add joint reg into main section reg
+            data.sections[0].registrations =
+                data.sections[0].registrations.concat(joint_registrations);
+        }
+
         var registrations = data.sections[0].registrations;
 
         data.sections[0].registrations = PhotoClassList.sort_students(
@@ -59,6 +76,16 @@ var PhotoClassList = {
             }
 
             $("#student_sort").html(new_body.html());
+        });
+
+        $(".joint").hide();
+        $("#toggle_joint").on("change", function(e) {
+            if(this.checked){
+                $(".joint").show();
+            } else {
+                $(".joint").hide();
+            }
+
         });
 
         $("#list_view").on("click", function(e) {

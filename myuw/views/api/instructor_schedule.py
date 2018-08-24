@@ -373,7 +373,10 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                     "section_id": joint_section.section_id,
                     "course_abbr_slug":
                         joint_section.curriculum_abbr.replace(" ", "-"),
-                    "is_ior": joint_section.is_instructor(current_user)
+                    "is_ior": joint_section.is_instructor(current_user),
+                    "registrations":
+                        get_active_registrations_for_section(joint_section,
+                                                             None)
                 }
                 section_data['joint_sections'].append(joint_course)
 

@@ -12,6 +12,7 @@ from myuw.views.error import \
 from restclients_core.exceptions import DataFailureException
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.person import get_person_by_regid
+from uw_sws.section import get_joint_sections
 from myuw.dao.canvas import sws_section_label
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.enrollment import get_code_for_class_level
@@ -147,11 +148,18 @@ class OpenInstSectionDetails(OpenAPI):
             return
 
         self.processed_primary = True
+
+        registration_list = self._get_reg_for_section(section.registrations)
+        section_data["registrations"] = registration_list
+        for joint_section in section_data["joint_sections"]:
+            joint_section["registrations"] = \
+                self._get_reg_for_section(joint_section["registrations"])
+
+    def _get_reg_for_section(self, registration_list):
         registrations = {}
         name_threads = {}
         enrollment_threads = {}
-
-        for registration in section.registrations:
+        for registration in registration_list:
             person = registration.person  # pws person
             regid = person.uwregid
 
@@ -219,7 +227,7 @@ class OpenInstSectionDetails(OpenAPI):
                     reg['class_code'] = code
 
             registration_list.extend(registrations[regid])
-        section_data["registrations"] = registration_list
+        return registration_list
 
     def get_person_info(self, regid):
         sws_person = get_person_by_regid(regid)

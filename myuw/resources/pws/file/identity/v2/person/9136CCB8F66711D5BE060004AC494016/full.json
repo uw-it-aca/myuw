@@ -25,6 +25,7 @@
         "EmployeePersonAffiliation": {
             "EmployeeID": "123456789",
             "EmployeeWhitePages": {
+                "EmailAddresses":["foo@bar.com"],
                 "Address1": null,
                 "Address2": null,
                 "Department1": null,
@@ -48,7 +49,7 @@
             "StudentNumber": "1033016",
             "StudentSystemKey": "000083856",
             "StudentWhitePages": {
-                "Class": null,
+                "Class": "Freshman",
                 "Department1": null,
                 "Department2": null,
                 "Department3": null,
