@@ -134,13 +134,10 @@ class TestInstSectDetails(MyuwApiTest):
 
         section_id = '2013,autumn,COM,306/A'
         resp = InstSectionDetails().get(request, section_id=section_id)
-        print resp.status_code
-        # sec_details = OpenInstSectionDetails()
-        # sec_details.processed_primary = False
-        # section = get_section_by_label("2013,autumn,COM,306/A")
-        # section_data = {}
-        # sec_details.per_section_data(section, section_data)
-        # print section_data
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections'][0]['joint_sections']), 2)
+        self.assertEqual(len(data['sections'][0]['joint_sections'][0]
+                             ['registrations']), 3)
 
 
 @override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",
