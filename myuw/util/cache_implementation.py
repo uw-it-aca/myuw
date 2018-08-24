@@ -78,6 +78,7 @@ class MyUWMemcachedCache(MemcachedCache):
                         logger.info("IN cache (key: %s), older DELETE", key)
                     else:
                         logger.info("IN cache (key: %s), newer KEEP", key)
+                        return
             else:
                 logger.info("NOT IN cache (key: %s)", key)
 
