@@ -51,13 +51,16 @@
                                     <option value="class_code,surname,first_name">Class</option>
                                     <option value="credits,surname,first_name">Credits</option>
                                     {{#if sections.0.has_linked_sections}}
-                                        <option value="linked_sections,surname,first_name">Section</option>
+                                    <option value="linked_sections,surname,first_name">Section</option>
                                     {{/if}}
                             </select>
                         </div>
 
                         <span>
-                            <button type="button" class="btn btn-default myuw-button">
+                            <button type="button" class="btn btn-default myuw-button" aria-pressed="false">
+                                <!-- if checked
+                                <i class="fa fa-check-square" aria-hidden="true"></i>
+                                -->
                                 <i class="fa fa-square-o" aria-hidden="true"></i> Show Students from Joint Sections
                             </button>
                         </span>
