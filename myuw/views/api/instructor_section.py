@@ -151,9 +151,12 @@ class OpenInstSectionDetails(OpenAPI):
 
         registration_list = self._get_reg_for_section(section.registrations)
         section_data["registrations"] = registration_list
-        for joint_section in section_data["joint_sections"]:
-            joint_section["registrations"] = \
-                self._get_reg_for_section(joint_section["registrations"])
+        try:
+            for joint_section in section_data["joint_sections"]:
+                joint_section["registrations"] = \
+                    self._get_reg_for_section(joint_section["registrations"])
+        except KeyError:
+            pass
 
     def _get_reg_for_section(self, registration_list):
         registrations = {}

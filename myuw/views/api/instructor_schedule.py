@@ -423,12 +423,9 @@ class InstScheCurQuar(InstSche):
                 status 543: data error
         """
         timer = Timer()
-        try:
-            return self.make_http_resp(timer,
-                                       get_current_quarter(request),
-                                       request)
-        except Exception:
-            return handle_exception(logger, timer, traceback)
+        return self.make_http_resp(timer,
+                                   get_current_quarter(request),
+                                   request)
 
 
 class InstScheQuar(InstSche):
