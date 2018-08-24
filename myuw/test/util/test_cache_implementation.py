@@ -299,7 +299,7 @@ class TestCustomCachePolicy(TestCase):
                 data = json.loads(c_entry)
                 self.assertTrue("time_stamp" in data)
                 cached_time_stamp = parse(data["time_stamp"])
-                self.assertTrue(cached_time_stamp< timezone.now())
+                self.assertTrue(cached_time_stamp < timezone.now())
             except DataFailureException as ex:
                 self.assertEquals(ex.msg, "MyUWMemcachedCache")
 
