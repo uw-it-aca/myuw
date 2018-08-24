@@ -217,7 +217,6 @@ class TestMailmanDao(TestCase):
                              'instructor Mailman request')
             self.assertEqual(mail.outbox[0].from_email, "billjoint@uw.edu")
             self.assertEqual(mail.outbox[0].to, ['dummy@uw.edu'])
-            joint_msg = "billjoint\nmulti_cse306a_au13 4" \
-                        " 2013 25769 18778 18778\n"
-            self.assertEqual(mail.outbox[0].body, joint_msg)
+            m = u'billjoint\nmulti_cse306a_au13 4 2013 25769 12430 18778\n'
+            self.assertEqual(mail.outbox[0].body, m)
             self.assertTrue(len(mail.outbox[0].body) > 0)
