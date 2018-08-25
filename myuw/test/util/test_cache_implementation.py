@@ -2,7 +2,6 @@ from datetime import timedelta
 from unittest2 import skipIf
 from django.test import TestCase
 from django.conf import settings
-from django.utils import timezone
 from restclients_core.models import MockHTTP
 from rc_django.models import CacheEntryTimed
 from restclients_core.exceptions import DataFailureException
@@ -279,34 +278,8 @@ class TestCustomCachePolicy(TestCase):
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
 
-    @skipIf(not getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False),
-            "Needs configuration to test memcached cache")
     def test_myuwmemcachedcache(self):
         with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=MEMCACHE):
             cache = MyUWMemcachedCache()
-            c_entry = cache.getCache(
-                'sws', '/student/v5/term/2013,summer.json', {})
-            self.assertIsNone(c_entry)
-            try:
-                c_entry = cache.update_cache(
-                    'sws',
-                    '/student/v5/term/2013,summer.json',
-                    {'Updare': True},
-                    timezone.now())
-                c_entry = cache.getCache(
-                    'sws', '/student/v5/term/2013,summer.json', {})
-                self.assertIsNotNone(c_entry)
-                data = json.loads(c_entry)
-                self.assertTrue("time_stamp" in data)
-                cached_time_stamp = parse(data["time_stamp"])
-                self.assertTrue(cached_time_stamp < timezone.now())
-            except DataFailureException as ex:
-                self.assertEquals(ex.msg, "MyUWMemcachedCache")
-
-            sws = SWS_DAO()
-            response = None
-            try:
-                response = sws.getURL('/student/v5/term/2013,summer.json', {})
-            except DataFailureException as ex:
-                self.assertEquals(ex.msg, "MyUWMemcachedCache")
-                self.assertIsNone(response)
+            self.assertEquals(cache.get_cache_expiration_time(
+                'sws', '/student/v5/term/2013,summer.json'), ONE_DAY)
