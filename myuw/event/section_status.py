@@ -35,8 +35,8 @@ class SectionStatusProcessor(InnerMessageProcessor):
         if 'EventDate' in json_data:
             modified = parse(json_data['EventDate'])
             if modified <= (timezone.now() - message_freshness):
-                logger.info("DISCARD Event (Date: %s, ID: %s)",
-                            modified, json_data['EventID'])
+                logger.debug("DISCARD Event (Date: %s, ID: %s)",
+                             modified, json_data['EventID'])
                 return
 
             status_url = json_data.get('Href')
