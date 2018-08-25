@@ -8,7 +8,6 @@ FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
 FOUR_HOURS = 60 * 60 * 4
 ONE_DAY = 60 * 60 * 24
-logger = logging.getLogger(__name__)
 
 
 def get_cache_time(service, url):
