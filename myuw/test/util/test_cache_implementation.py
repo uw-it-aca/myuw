@@ -32,9 +32,9 @@ class TestCustomCachePolicy(TestCase):
         self.assertEquals(get_cache_time(
             "sws", "/student/v5/term/current.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
-            "sws", "/student/v5/course/.../status.json"), ONE_HOUR)
+            "sws", "/student/v5/course/.../status.json"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-            "sws", "/student/v5/course/"), FIFTEEN_MINS * 2)
+            "sws", "/student/v5/course/"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
             "sws", "/student/v5/person/"), ONE_HOUR)
         self.assertEquals(get_cache_time(
@@ -227,7 +227,7 @@ class TestCustomCachePolicy(TestCase):
                 service="sws", url="/student/v5/course/xx")
             orig_time_saved = cache_entry.time_saved
             cache_entry.time_saved = (orig_time_saved -
-                                      timedelta(minutes=66))
+                                      timedelta(minutes=16))
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/course/xx', {})
             self.assertEquals(response, None)

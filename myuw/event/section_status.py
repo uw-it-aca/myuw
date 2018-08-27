@@ -12,7 +12,7 @@ from myuw.event import update_sws_entry_in_cache
 
 
 logger = logging.getLogger(__name__)
-message_freshness = timedelta(hours=1)
+message_freshness = timedelta(hours=4)
 QUEUE_SETTINGS_NAME = 'SECTION_SATSUS_V1'
 
 

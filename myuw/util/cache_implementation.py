@@ -23,8 +23,8 @@ def get_cache_time(service, url):
 
         if re.match(r'^/student/v5/course/', url):
             if re.match(r'^/student/v5/course/.*/status.json$', url):
-                return ONE_HOUR
-            return FIFTEEN_MINS * 2
+                return FOUR_HOURS
+            return FIFTEEN_MINS
 
         return FIFTEEN_MINS
 
