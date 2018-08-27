@@ -5,9 +5,8 @@ from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
-from myuw.dao.instructor_schedule import\
-    get_instructor_schedule_by_term, get_section_by_label,\
-    get_limit_estimate_enrollment_for_section, _set_section_from_url,\
+from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
+    get_section_by_label, _set_section_from_url,\
     get_instructor_section, get_primary_section, check_section_instructor
 from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.pws import get_person_of_current_user
@@ -145,19 +144,6 @@ class TestInstructorSchedule(TestCase):
                           check_section_instructor, ess_section, billsea)
         self.assertRaises(NotSectionInstructorException,
                           check_section_instructor, cse_section, bill)
-
-    def test_get_limit_estimate_enrollment_for_section(self):
-        term = Term()
-        term.year = 2013
-        term.quarter = 'spring'
-        section = Section()
-        section.term = term
-        section.curriculum_abbr = 'TRAIN'
-        section.course_number = 101
-        section.section_id = 'A'
-
-        limit = get_limit_estimate_enrollment_for_section(section)
-        self.assertEqual(limit, 5)
 
     def test_get_primary_section(self):
         secondary_section = get_section_by_label('2017,autumn,CSE,154/AA')
