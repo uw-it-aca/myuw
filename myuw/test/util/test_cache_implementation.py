@@ -64,6 +64,10 @@ class TestCustomCachePolicy(TestCase):
             "iasystem_uwt", "/uwt/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
             "digitlib", "/php/currics/service.php"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+            "kws", "/key/v1/encryption/"), ONE_DAY * 30)
+        self.assertEquals(get_cache_time(
+            "kws", "/key/v1/type/"), ONE_DAY * 7)
 
     def test_sws_default_policies(self):
         with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=CACHE):

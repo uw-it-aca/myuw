@@ -1,6 +1,7 @@
 import json
 from django.test import TestCase
 from django.conf import settings
+from django.utils import timezone
 from myuw.event.section_status import SectionStatusProcessor
 
 
@@ -63,8 +64,10 @@ class TestSectionStatusProcessor(TestCase):
                     'MESSAGE_GATHER_SIZE': 10,
                     'VALIDATE_SNS_SIGNATURE': False,
                     'PAYLOAD_SETTINGS': {}}}):
-            try:
-                event_hdlr = SectionStatusProcessor()
-                event_hdlr.process_inner_message(M1)
-            except Exception as ex:
-                self.fail(ex)
+
+            event_hdlr = SectionStatusProcessor()
+            # discard the event
+            event_hdlr.process_inner_message(M1)
+
+            M1["EventDate"] = str(timezone.now())
+            event_hdlr.process_inner_message(M1)

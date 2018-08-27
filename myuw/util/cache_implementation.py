@@ -29,7 +29,7 @@ def get_cache_time(service, url):
         return FIFTEEN_MINS
 
     if "kws" == service:
-        if re.match(r'^"/key/v1/encryption/', url):
+        if re.match(r'^/key/v1/encryption/', url):
             return ONE_DAY * 30
         return ONE_DAY * 7
 
