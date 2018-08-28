@@ -29,10 +29,10 @@
 
                 <br/>
 
-                <div id="classlist_controls" class="myuw-photo-list-controls">
+                <div id="classlist_controls" class="myuw-photo-list-controls row">
 
-                    <div class="controls-row-1">
-                        <div class="myuw-photo-list-controls-view" role="tablist" aria-label="Views">
+
+                        <div class="myuw-photo-list-controls-view col-sm-3" role="tablist" aria-label="Views">
                             <div class="myuw-tab">
                                 <a id="list_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_table_view" aria-selected="true"><i class="fa fa-table" aria-hidden="true"></i>Table</a>
                             </div>
@@ -42,8 +42,8 @@
                             </div>
                         </div>
 
-                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort form-inline">
-                            <label for="sort_list">Sort by:</label>
+                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort form-inline col-sm-6">
+                            <label for="sort_list">Sort: </label>
                             <select id="sort_list" class="form-control">
                                 <option value="surname,first_name" selected="selected">Last Name</option>
                                     <option value="first_name,surname">First Name</option>
@@ -54,18 +54,13 @@
                                     <option value="linked_sections,surname,first_name">Section</option>
                                     {{/if}}
                             </select>
+
+                            <button id="toggle_joint" type="button" class="btn btn-default myuw-button" aria-pressed="false" title="Show students from joint sections"><i class="fa fa-square-o" aria-hidden="true"></i> Joint Section Students</button>
                         </div>
-                        <span>
-                            <button id="toggle_joint" type="button" class="btn btn-default myuw-button" aria-pressed="false">
-                                <i class="fa fa-square-o" aria-hidden="true"></i> Show Students from Joint Sections
-                            </button>
-                        </span>
-                    </div>
-                    <div class="controls-row-2">
-                        <div class="myuw-photo-list-controls-actions">
+
+                        <div class="myuw-photo-list-controls-actions col-sm-3">
                             <a href="#" id="download_class_list" class="myuw-iconlink"><i class="fa fa-download"></i>Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print myuw-iconlink"><i class="fa fa-print"></i>Print</a>
                         </div>
-                    </div>
                 </div>
             </div>
 
