@@ -9,6 +9,7 @@ from myuw.test import get_request, get_request_with_user, get_request_with_date
 from myuw.views.api.instructor_section import OpenInstSectionDetails
 from uw_sws.section import get_section_by_label, get_joint_sections
 
+
 @fdao_sws_override
 @fdao_pws_override
 class TestInstSectDetails(MyuwApiTest):
