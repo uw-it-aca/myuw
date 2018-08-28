@@ -8,7 +8,6 @@ from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from myuw.test import get_request, get_request_with_user, get_request_with_date
 
 
-
 @fdao_sws_override
 @fdao_pws_override
 class TestInstSectDetails(MyuwApiTest):
