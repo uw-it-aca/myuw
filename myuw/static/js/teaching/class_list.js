@@ -80,7 +80,7 @@ var PhotoClassList = {
 
         $(".joint").hide();
         $("#toggle_joint").on("click", function(e) {
-            if($("#toggle_joint").attr("aria-pressed") == "false"){
+            if($("#toggle_joint").attr("aria-pressed") === "false"){
                 $("#toggle_joint").attr("aria-pressed", "true");
                 $("#toggle_joint .fa").removeClass("fa-square-o").addClass("fa-check-square");
                 $(".joint").show();
