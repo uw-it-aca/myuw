@@ -132,7 +132,7 @@
 
                 <ol class="unstyled-list grid-view">
                     {{#each sections.0.registrations}}
-                        <li id="studentphoto_{{ regid }}">
+                        <li id="studentphoto_{{ regid }}" {{#if is_joint}}class="joint"{{/if}}>
                             <div class="myuw-photo-list-img-wrapper">
                                 <img class="classlist-photo myuw-photo-list-image"
                                  src="/photo/{{ url_key }}" width="120px" height="150px">

@@ -6,8 +6,7 @@ from myuw.views.api.instructor_section import InstSectionDetails,\
     LTIInstSectionDetails
 from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from myuw.test import get_request, get_request_with_user, get_request_with_date
-from myuw.views.api.instructor_section import OpenInstSectionDetails
-from uw_sws.section import get_section_by_label, get_joint_sections
+
 
 
 @fdao_sws_override
