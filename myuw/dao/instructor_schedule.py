@@ -152,11 +152,6 @@ def get_linked_section(url, instructor_regid):
         return
 
 
-def get_limit_estimate_enrollment_for_section(section):
-    section_status = get_section_status_by_label(section.section_label())
-    return section_status.limit_estimated_enrollment
-
-
 def check_section_instructor(section, person):
     if not section.is_instructor(person):
         if section.is_primary_section:
