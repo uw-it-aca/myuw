@@ -30,7 +30,7 @@ setup(
         'beautifulsoup4',
         'urllib3==1.23',
         'django-templatetag-handlebars',
-        'django_client_logger>=1.2,<2.0',
+        'django_client_logger>=1.3,<2.0',
         'django-blti==0.6',
         'unittest2',
         'UW-Django-SAML2>=0.4.5,<1.0',
