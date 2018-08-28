@@ -1,7 +1,6 @@
 import re
-from django.conf import settings
-from rc_django.cache_implementation import MemcachedCache, TimedCache
-from restclients_core.exceptions import DataFailureException
+from rc_django.cache_implementation import TimedCache
+from rc_django.cache_implementation.memcache import MemcachedCache
 
 
 FIVE_SECONDS = 5
@@ -16,9 +15,23 @@ def get_cache_time(service, url):
         return FIVE_SECONDS
 
     if "sws" == service:
-        if re.match('^/student/v5/term', url):
+        if re.match(r'^/student/v5/term/', url):
             return ONE_DAY
+
+        if re.match(r'^/student/v5/person/', url):
+            return ONE_HOUR
+
+        if re.match(r'^/student/v5/course/', url):
+            if re.match(r'^/student/v5/course/.*/status.json$', url):
+                return FOUR_HOURS
+            return FIFTEEN_MINS
+
         return FIFTEEN_MINS
+
+    if "kws" == service:
+        if re.match(r'^/key/v1/encryption/', url):
+            return ONE_DAY * 30
+        return ONE_DAY * 7
 
     if "gws" == service:
         return FIFTEEN_MINS
@@ -35,8 +48,6 @@ def get_cache_time(service, url):
 class MyUWMemcachedCache(MemcachedCache):
 
     def get_cache_expiration_time(self, service, url):
-        if getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False):
-            raise DataFailureException(url, 555, "MyUWMemcachedCache")
         return get_cache_time(service, url)
 
 
@@ -48,24 +59,3 @@ class MyUWCache(TimedCache):
 
     def processResponse(self, service, url, response):
         return self._process_response(service, url, response)
-
-
-class TestingMemoryCache(object):
-    cache = {}
-
-    def getCache(self, service, url, headers):
-        key = self._get_key(service, url)
-        if key in TestingMemoryCache.cache:
-            return {"response": TestingMemoryCache.cache[key]}
-        return None
-
-    def processResponse(self, service, url, response):
-        key = self._get_key(service, url)
-        TestingMemoryCache.cache[key] = response
-
-    def _get_key(self, service, url):
-        return "%s__%s" % (service, url)
-
-    @classmethod
-    def clear_cache(cls):
-        TestingMemoryCache.cache = {}
