@@ -2,13 +2,34 @@ from django.test import TestCase
 from django.test.client import Client
 from django.test.utils import override_settings
 from myuw.test.api import missing_url, get_user, get_user_pass
-from myuw.util.cache_implementation import TestingMemoryCache
+from myuw.util.cache_implementation import MemcachedCache
 from django.core.urlresolvers import reverse
 from unittest2 import skipIf
 import time
 
 
-CACHE_DAO = 'myuw.util.cache_implementation.TestingMemoryCache'
+class TestingMemoryCache(MemcachedCache):
+    cache = {}
+
+    def getCache(self, service, url, headers):
+        key = self._get_key(service, url)
+        if key in TestingMemoryCache.cache:
+            return {"response": TestingMemoryCache.cache[key]}
+        return None
+
+    def processResponse(self, service, url, response):
+        key = self._get_key(service, url)
+        TestingMemoryCache.cache[key] = response
+
+    def _get_key(self, service, url):
+        return "%s__%s" % (service, url)
+
+    @classmethod
+    def clear_cache(cls):
+        TestingMemoryCache.cache = {}
+
+
+CACHE_DAO = 'myuw.test.speed.TestingMemoryCache'
 FDAO_SWS = 'restclients.dao_implementation.sws.File'
 Session = 'django.contrib.sessions.middleware.SessionMiddleware'
 Common = 'django.middleware.common.CommonMiddleware'
@@ -59,4 +80,4 @@ class TestPageSpeeds(TestCase):
         # enough time to generate the view!
         # Adding a little more - travis-ci is right on the line at 2.0
         # Adding a little more - travis with mysql just over 2.5, sqlite good
-        self.assertLess(delta, 3.5)
+        self.assertLess(delta, 3.0)

@@ -25,41 +25,49 @@ class TestCustomCachePolicy(TestCase):
 
     def test_get_cache_time(self):
         self.assertEquals(get_cache_time(
-                "myplan", "/api/plan/"), FIVE_SECONDS)
+            "myplan", "/api/plan/"), FIVE_SECONDS)
 
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
+            "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/term/current.json"), ONE_DAY)
+            "sws", "/student/v5/term/current.json"), ONE_DAY)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/course"), FIFTEEN_MINS)
+            "sws", "/student/v5/course/.../status.json"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
+            "sws", "/student/v5/course/"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/notice"), FIFTEEN_MINS)
+            "sws", "/student/v5/person/"), ONE_HOUR)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/registration"), FIFTEEN_MINS)
+            "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
         self.assertEquals(get_cache_time(
-                "sws", "/student/v5/section"), FIFTEEN_MINS)
+            "sws", "/student/v5/notice"), FIFTEEN_MINS)
+        self.assertEquals(get_cache_time(
+            "sws", "/student/v5/registration"), FIFTEEN_MINS)
+        self.assertEquals(get_cache_time(
+            "sws", "/student/v5/section"), FIFTEEN_MINS)
 
         self.assertEquals(get_cache_time(
-                "gws", "/group_sws/v3"), FIFTEEN_MINS)
+            "gws", "/group_sws/v3"), FIFTEEN_MINS)
 
         self.assertEquals(get_cache_time(
-                "pws", "/nws/v1/uwnetid"), ONE_HOUR)
+            "pws", "/nws/v1/uwnetid"), ONE_HOUR)
         self.assertEquals(get_cache_time(
-                "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR)
+            "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR)
 
         self.assertEquals(get_cache_time(
-                "grad", "/services/students"), FOUR_HOURS)
+            "grad", "/services/students"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem_uw", "/uw/api/v1/evaluation"), FOUR_HOURS)
+            "iasystem_uw", "/uw/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem_uwb", "/uwb/api/v1/evaluation"), FOUR_HOURS)
+            "iasystem_uwb", "/uwb/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "iasystem_uwt", "/uwt/api/v1/evaluation"), FOUR_HOURS)
+            "iasystem_uwt", "/uwt/api/v1/evaluation"), FOUR_HOURS)
         self.assertEquals(get_cache_time(
-                "digitlib", "/php/currics/service.php"), FOUR_HOURS)
+            "digitlib", "/php/currics/service.php"), FOUR_HOURS)
+        self.assertEquals(get_cache_time(
+            "kws", "/key/v1/encryption/"), ONE_DAY * 30)
+        self.assertEquals(get_cache_time(
+            "kws", "/key/v1/type/"), ONE_DAY * 7)
 
     def test_sws_default_policies(self):
         with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=CACHE):
@@ -274,18 +282,8 @@ class TestCustomCachePolicy(TestCase):
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
 
-    @skipIf(not getattr(settings, 'RESTCLIENTS_TEST_MEMCACHED', False),
-            "Needs configuration to test memcached cache")
-    def test_calling_myuw_get_cache_expiration_time(self):
+    def test_myuwmemcachedcache(self):
         with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=MEMCACHE):
             cache = MyUWMemcachedCache()
-            c_entry = cache.getCache(
-                'sws', '/student/v5/term/2013,summer.json', {})
-            self.assertIsNone(c_entry)
-            sws = SWS_DAO()
-            response = None
-            try:
-                response = sws.getURL('/student/v5/term/2013,summer.json', {})
-            except DataFailureException as ex:
-                self.assertEquals(ex.msg, "MyUWMemcachedCache")
-                self.assertIsNone(response)
+            self.assertEquals(cache.get_cache_expiration_time(
+                'sws', '/student/v5/term/2013,summer.json'), ONE_DAY)

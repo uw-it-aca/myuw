@@ -111,6 +111,9 @@ class TestInstructorTermSchedule(MyuwApiTest):
         self.assertEqual(final["building"], 'ARC')
         self.assertEqual(final["room"], '147')
 
+        self.assertEqual(primary_section["current_enrollment"], 107)
+        self.assertEqual(primary_section["limit_estimated_enrollment"], 220)
+
         secondary_section = data['sections'][1]
         self.assertEqual(secondary_section["section_label"],
                          "2017_autumn_CSE_154_AA")
