@@ -42,22 +42,23 @@
                             </div>
                         </div>
 
-                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort form-inline col-sm-6">
-                            <label for="sort_list">Sort: </label>
-                            <select id="sort_list" class="form-control">
-                                <option value="surname,first_name" selected="selected">Last Name</option>
-                                    <option value="first_name,surname">First Name</option>
-                                    <option value="netid">UW NetID</option>
-                                    <option value="class_code,surname,first_name">Class</option>
-                                    <option value="credits,surname,first_name">Credits</option>
-                                    {{#if sections.0.has_linked_sections}}
-                                    <option value="linked_sections,surname,first_name">Section</option>
-                                    {{/if}}
-                            </select>
-
+                        <div class="myuw-photo-list-controls-sort-wrap col-sm-6">
+                            <div id="class-list-sort-controls" class="form-inline">
+                                <label for="sort_list">Sort: </label>
+                                <select id="sort_list" class="form-control">
+                                    <option value="surname,first_name" selected="selected">Last Name</option>
+                                        <option value="first_name,surname">First Name</option>
+                                        <option value="netid">UW NetID</option>
+                                        <option value="class_code,surname,first_name">Class</option>
+                                        <option value="credits,surname,first_name">Credits</option>
+                                        {{#if sections.0.has_linked_sections}}
+                                        <option value="linked_sections,surname,first_name">Section</option>
+                                        {{/if}}
+                                </select>
+                            </div>
                             <button id="toggle_joint" type="button" class="btn btn-default myuw-button" aria-pressed="false" title="Show students from joint sections"><i class="fa fa-square-o" aria-hidden="true"></i> Joint Section Students</button>
                         </div>
-
+                        
                         <div class="myuw-photo-list-controls-actions col-sm-3">
                             <a href="#" id="download_class_list" class="myuw-iconlink"><i class="fa fa-download"></i>Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print myuw-iconlink"><i class="fa fa-print"></i>Print</a>
                         </div>

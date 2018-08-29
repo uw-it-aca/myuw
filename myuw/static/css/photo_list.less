@@ -19,11 +19,20 @@
 
     .myuw-photo-list-controls {
 
-        .myuw-photo-list-controls-sort {
+        .myuw-photo-list-controls-sort-wrap {
             margin: 16px 0;
             white-space: nowrap;
             @media @two-column { margin-top: -6px; }
 
+            .form-inline {
+                display: inline-block;
+            }
+
+            .form-inline[hidden="hidden"],
+            .form-inline[aria-hidden="true"] {
+                display: none;
+            }
+            
             #sort_list {
                 display: inline-block;
                 width: auto;
