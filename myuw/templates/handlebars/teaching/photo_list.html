@@ -54,8 +54,9 @@
                                     <option value="linked_sections,surname,first_name">Section</option>
                                     {{/if}}
                             </select>
-
+                            {{#if sections.0.has_joint}}
                             <button id="toggle_joint" type="button" class="btn btn-default myuw-button" aria-pressed="false" title="Show students from joint sections"><i class="fa fa-square-o" aria-hidden="true"></i> Joint Section Students</button>
+                            {{/if}}
                         </div>
 
                         <div class="myuw-photo-list-controls-actions col-sm-3">
