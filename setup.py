@@ -53,7 +53,7 @@ setup(
         'UW-RestClients-UPass>=0.2,<1.0',
         'UW-RestClients-UWNetID>=0.8,<1.0',
         'UW-RestClients-Sdbmyuw',
-        'UW-RestClients-Django-Utils>=1.4,<2.0',
+        'UW-RestClients-Django-Utils>=1.5,<2.0',
         'django-userservice>=2.0.2,<3.0',
         'Django-SupportTools>=2.0.4,<3.0',
         'Django-Safe-EmailBackend>=0.1,<1.0',
