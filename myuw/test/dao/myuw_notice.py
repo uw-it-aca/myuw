@@ -86,11 +86,25 @@ class TestMyuwNotice(TestCase):
                             end=datetime(2018, 6, 20, 10, 0, 0),
                             is_student=True)
         notice.save()
+        notice = MyuwNotice(title="Test Intl",
+                            content="Notice Content Five",
+                            notice_type="Banner",
+                            notice_category="Student",
+                            start=datetime(2018, 6, 8, 10, 0, 0),
+                            end=datetime(2018, 6, 20, 10, 0, 0),
+                            is_intl_stud=True)
+        notice.save()
         request = get_request_with_date("2018-06-09")
         get_request_with_user('javerage', request)
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "Test")
+
+        request = get_request_with_date("2018-06-09")
+        get_request_with_user('jinter', request)
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 2)
+        self.assertEqual(notices[1].title, "Test Intl")
 
     def test_no_affil(self):
             notice = MyuwNotice(title="Alert",

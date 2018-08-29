@@ -44,7 +44,8 @@ def get_myuw_notices_for_user(request):
                 notice.is_clinician or notice.is_employee or
                 notice.is_faculty or notice.is_instructor or
                 notice.is_past_employee or notice.is_retiree or
-                notice.is_staff_employee or notice.is_stud_employee):
+                notice.is_staff_employee or notice.is_stud_employee or
+                notice.is_intl_stud):
             user_notices.append(notice)
             continue
         if notice.is_past_student and affiliations["past_stud"]:
