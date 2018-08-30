@@ -46,13 +46,13 @@
                             <div id="class-list-sort-controls" class="form-inline">
                                 <label for="sort_list">Sort: </label>
                                 <select id="sort_list" class="form-control">
-                                    <option value="surname,first_name" selected="selected">Last Name</option>
+                                        <option value="surname,first_name" selected="selected">Last Name</option>
                                         <option value="first_name,surname">First Name</option>
                                         <option value="netid">UW NetID</option>
-                                        <option value="class_code,surname,first_name">Class</option>
-                                        <option value="credits,surname,first_name">Credits</option>
+                                        <option value="class_code">Class</option>
+                                        <option value="credits">Credits</option>
                                         {{#if sections.0.has_linked_sections}}
-                                        <option value="linked_sections,surname,first_name">Section</option>
+                                        <option value="linked_sections">Section</option>
                                         {{/if}}
                                 </select>
                             </div>
