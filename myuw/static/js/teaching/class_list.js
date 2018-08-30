@@ -229,8 +229,7 @@ var PhotoClassList = {
     },
 
     build_download: function(data) {
-        var registrations = PhotoClassList.sort_students(
-            data.registrations, 'surname,first_name');
+        var registrations = PhotoClassList.sort_last(data.registrations);
         var add_qz_sect = data.has_linked_sections;
         var lines = [];
         var header = ["StudentNo","UWNetID","LastName","FirstName"];
