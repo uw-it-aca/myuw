@@ -17,12 +17,22 @@
                     <span class="myuw-meta">SLN {{ sections.0.sln }}</span>
                 </div>
 
+                {{#if current_or_future}}
+                    {{#if sections.0.current_student_majors}}
+                        <div id="course_stats_popover" class="myuw-minicard-overlay myuw-minicard-overlay-bottom-right">
+                            <h4 class="myuw-card-heading">Statistics for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}</h4>
+                            <p>{{sections.0.current_student_majors.0.percent_students}}% of your students are {{ toTitleCase sections.0.current_student_majors.0.major }} majors.</p>
+                            <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more statistics for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}</a>
+                        </div>
+                    {{/if}}
+                {{/if}}
+
                 <br/>
 
-                <div id="classlist_controls" class="myuw-photo-list-controls">
+                <div id="classlist_controls" class="myuw-photo-list-controls row">
 
-                    <div class="controls-row-1">
-                        <div class="myuw-photo-list-controls-view" role="tablist" aria-label="Views">
+
+                        <div class="myuw-photo-list-controls-view col-sm-3" role="tablist" aria-label="Views">
                             <div class="myuw-tab">
                                 <a id="list_view" href="#" class="myuw-iconlink myuw-tab-label" role="tab" aria-controls="classlist_table_view" aria-selected="true"><i class="fa fa-table" aria-hidden="true"></i>Table</a>
                             </div>
@@ -32,34 +42,29 @@
                             </div>
                         </div>
 
-                        <div id="class-list-sort-controls" class="myuw-photo-list-controls-sort">
-                            Sort by:&nbsp;&nbsp;<select id="sort_list">
-                                <option value="surname,first_name" selected="selected">Last Name</option>
-                                    <option value="first_name,surname">First Name</option>
-                                    <option value="netid">UW NetID</option>
-                                    <option value="class_code,surname,first_name">Class</option>
-                                    <option value="credits,surname,first_name">Credits</option>
-                                    {{#if sections.0.has_linked_sections}}
-                                        <option value="linked_sections,surname,first_name">Section</option>
-                                    {{/if}}
-                            </select>
+                        <div class="myuw-photo-list-controls-sort-wrap col-sm-6">
+                            <div id="class-list-sort-controls" class="form-inline">
+                                <label for="sort_list">Sort: </label>
+                                <select id="sort_list" class="form-control">
+                                        <option value="surname,first_name" selected="selected">Last Name</option>
+                                        <option value="first_name,surname">First Name</option>
+                                        <option value="netid">UW NetID</option>
+                                        <option value="class_code">Class</option>
+                                        <option value="credits">Credits</option>
+                                        {{#if sections.0.has_linked_sections}}
+                                        <option value="linked_sections">Section</option>
+                                        {{/if}}
+                                </select>
+                            </div>
+                            {{#if sections.0.has_joint}}
+                            <button id="toggle_joint" type="button" class="btn btn-default myuw-button" aria-pressed="false" title="Show students from joint sections"><i class="fa fa-square-o" aria-hidden="true"></i> Joint Section Students</button>
+                            {{/if}}
                         </div>
-                    </div>
-                    <div class="controls-row-2">
-                        <div class="myuw-photo-list-controls-actions">
+
+                        <div class="myuw-photo-list-controls-actions col-sm-3">
                             <a href="#" id="download_class_list" class="myuw-iconlink"><i class="fa fa-download"></i>Download (CSV)</a> <a href="javascript:window.print()" class="classlist-print myuw-iconlink"><i class="fa fa-print"></i>Print</a>
                         </div>
-                    </div>
                 </div>
-
-                {{#if current_or_future}}
-                    {{#if sections.0.current_student_majors}}
-                        <div class="class-list-course-stats">
-                            <strong>Course Stats:</strong> {{sections.0.current_student_majors.0.percent_students}}% {{ toTitleCase sections.0.current_student_majors.0.major }} majors. <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more course stats</a>
-                        </div>
-                    {{/if}}
-                {{/if}}
-
             </div>
 
             <div id="classlist_table_view" class="js-tab-panel"
@@ -89,7 +94,7 @@
                         </thead>
                         <tbody id="student_sort">
                             {{#each sections.0.registrations}}
-                            <tr id="student_{{regid}}">
+                            <tr id="student_{{regid}}" {{#if is_joint}}class="joint"{{/if}}>
                                 <td>{{ student_number }}</td>
                                 <td>{{ netid }}</td>
                                 <td>{{ surname }}</td>
@@ -125,7 +130,7 @@
 
                 <ol class="unstyled-list grid-view">
                     {{#each sections.0.registrations}}
-                        <li id="studentphoto_{{ regid }}">
+                        <li id="studentphoto_{{ regid }}" {{#if is_joint}}class="joint"{{/if}}>
                             <div class="myuw-photo-list-img-wrapper">
                                 <img class="classlist-photo myuw-photo-list-image"
                                  src="/photo/{{ url_key }}" width="120px" height="150px">

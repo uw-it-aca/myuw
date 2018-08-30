@@ -30,9 +30,9 @@ class TestInstSectDetails(MyuwApiTest):
             data['sections'][0]['registrations'][0]['linked_sections'],
             'AA AB')
         self.assertEqual(
-            data['sections'][0]['registrations'][0]['first_name'], "June")
+            data['sections'][0]['registrations'][0]['first_name'], "Zune")
         self.assertEqual(
-            data['sections'][0]['registrations'][0]['surname'], "Student3")
+            data['sections'][0]['registrations'][0]['surname'], "Student2")
         self.assertEqual(
             data['sections'][0]['registrations'][0]['credits'], "3")
         self.assertEqual(
@@ -126,6 +126,17 @@ class TestInstSectDetails(MyuwApiTest):
         section_id = '12345'
         resp = InstSectionDetails().get(request, section_id=section_id)
         self.assertEqual(resp.status_code, 400)
+
+    def test_joint_classlists(self):
+        request = get_request_with_date("2013-11-15")
+        get_request_with_user('billjoint', request)
+
+        section_id = '2013,autumn,COM,306/A'
+        resp = InstSectionDetails().get(request, section_id=section_id)
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections'][0]['joint_sections']), 2)
+        self.assertEqual(len(data['sections'][0]['joint_sections'][0]
+                             ['registrations']), 3)
 
 
 @override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",
