@@ -38,21 +38,21 @@ describe("PhotoClassList", function() {
             var data = [{"surname": "Student2",
                          "credits": "2.0",
                          "class": "FRESHMAN",
-                         "name": "Jane",
+                         "first_name": "Jane",
                          "netid": "javg003",
                          "class_code": 1,
                          "email": "javg003@uw.edu"},
                         {"surname": "Student2",
                          "credits": "2.0",
                          "class": "JUNIOR",
-                         "name": "Jade",
+                         "first_name": "Jade",
                          "netid": "javg002",
                          "class_code": 3,
                          "email": "javg002@uw.edu"},
                         {"surname": "Student1",
                          "credits": "2.0",
                          "class": "SOPHOMORE",
-                         "name": "Jake",
+                         "first_name": "Jake",
                          "netid": "javg001",
                          "class_code": 2,
                          "email": "javg001@uw.edu"}];
@@ -60,12 +60,12 @@ describe("PhotoClassList", function() {
             assert.equal(sorted[0].surname, "Student1");
             assert.equal(sorted[1].surname, "Student2");
             assert.equal(sorted[2].surname, "Student2");
-            var sorted = PhotoClassList.sort_students(data, 'surname,name');
+            var sorted = PhotoClassList.sort_last(data);
             assert.equal(sorted[0].surname, "Student1");
             assert.equal(sorted[1].surname, "Student2");
-            assert.equal(sorted[1].name, "Jade");
+            assert.equal(sorted[1].first_name, "Jade");
             assert.equal(sorted[2].surname, "Student2");
-            assert.equal(sorted[2].name, "Jane");
+            assert.equal(sorted[2].first_name, "Jane");
             var sorted = PhotoClassList.sort_registrations(data, 'class_code');
             assert.equal(sorted[0].class, "FRESHMAN");
             assert.equal(sorted[1].class, "SOPHOMORE");

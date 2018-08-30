@@ -30,10 +30,27 @@ var PhotoClassList = {
         var source = $("#photo_class_list").html();
         var template = Handlebars.compile(source);
         var data = WSData.instructed_section_details();
+
+
+        if("joint_sections" in data.sections[0]){
+            var joint_registrations = [];
+            $.each(data.sections[0].joint_sections, function(idx, joint_section){
+                // Mark joint section registrations as such
+                $.each(joint_section.registrations, function(r_id, registration){
+                    registration.is_joint = true;
+                });
+                joint_registrations =
+                    joint_registrations.concat(joint_section.registrations);
+            });
+            // Add joint reg into main section reg
+            data.sections[0].registrations =
+                data.sections[0].registrations.concat(joint_registrations);
+        }
+
         var registrations = data.sections[0].registrations;
 
-        data.sections[0].registrations = PhotoClassList.sort_students(
-            registrations, 'surname,name');
+        data.sections[0].registrations = PhotoClassList.sort_last(
+            registrations);
 
         if (window.section_data.hasOwnProperty('available_sections') &&
                 window.section_data.available_sections.length > 1) {
@@ -48,8 +65,15 @@ var PhotoClassList = {
         $("#sort_list").on("change", function() {
             var data = WSData.instructed_section_details();
             var registrations = data.sections[0].registrations;
-            var sorted = PhotoClassList.sort_students(registrations,
+            var sorted;
+            if(this.value === "first_name,surname"){
+                sorted = PhotoClassList.sort_first(registrations);
+            }else if(this.value === "surname,first_name"){
+                sorted = PhotoClassList.sort_last(registrations);
+            }else{
+                sorted = PhotoClassList.sort_students(registrations,
                                                       this.value);
+            }
 
             var new_body = $("<div>");
             for (var i = 0; i < sorted.length; i++) {
@@ -59,6 +83,20 @@ var PhotoClassList = {
             }
 
             $("#student_sort").html(new_body.html());
+        });
+
+        $(".joint").hide();
+        $("#toggle_joint").on("click", function(e) {
+            if($("#toggle_joint").attr("aria-pressed") === "false"){
+                $("#toggle_joint").attr("aria-pressed", "true");
+                $("#toggle_joint .fa").removeClass("fa-square-o").addClass("fa-check-square");
+                $(".joint").show();
+            } else {
+                $("#toggle_joint").attr("aria-pressed", "false");
+                $("#toggle_joint .fa").removeClass("fa-check-square").addClass("fa-square-o");
+                $(".joint").hide();
+            }
+
         });
 
         $("#list_view").on("click", function(e) {
@@ -89,18 +127,49 @@ var PhotoClassList = {
             window.section_data.section = $(this).val();
             PhotoClassList.render();
         }).val(window.section_data.section);
+    },
 
+
+    sort_first: function(registrations){
+        var sorted = registrations.sort(function(a, b){
+            if (a.first_name < b.first_name){
+                return -1;
+            } else if(a.first_name > b.first_name){
+                return 1;
+            }
+            if (a.surname < b.surname){
+                return -1;
+            } else if(a.surname > b.surname){
+                return 1;
+            }
+            return 0;
+        });
+
+        return sorted;
+    },
+
+    sort_last: function(registrations){
+        var sorted = registrations.sort(function(a, b){
+            if (a.surname < b.surname){
+                return -1;
+            } else if(a.surname > b.surname){
+                return 1;
+            }
+            if (a.first_name < b.first_name){
+                return -1;
+            } else if(a.first_name > b.first_name){
+                return 1;
+            }
+            return 0;
+        });
+        return sorted;
     },
 
     sort_students: function(registrations, key) {
-        var fields = key.split(',');
         if (!registrations || !registrations.length) {
             return null;
         }
-        for (var i = fields.length-1; i >= 0; i--) {
-            registrations = PhotoClassList.sort_registrations(registrations,
-                                                              fields[i]);
-        }
+        registrations = PhotoClassList.sort_registrations(registrations, key);
         return registrations;
     },
 
@@ -160,8 +229,7 @@ var PhotoClassList = {
     },
 
     build_download: function(data) {
-        var registrations = PhotoClassList.sort_students(
-            data.registrations, 'surname,first_name');
+        var registrations = PhotoClassList.sort_last(data.registrations);
         var add_qz_sect = data.has_linked_sections;
         var lines = [];
         var header = ["StudentNo","UWNetID","LastName","FirstName"];
