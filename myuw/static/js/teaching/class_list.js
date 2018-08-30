@@ -131,43 +131,37 @@ var PhotoClassList = {
 
 
     sort_first: function(registrations){
-        console.log('asd');
-        console.log(registrations);
         var sorted = registrations.sort(function(a, b){
-            if (a['first_name'] < b['first_name']){
+            if (a.first_name < b.first_name){
                 return -1;
-            } else if(a['first_name'] > b['first_name']){
+            } else if(a.first_name > b.first_name){
                 return 1;
             }
-            if (a['surname'] < b['surname']){
+            if (a.surname < b.surname){
                 return -1;
-            } else if(a['surname'] > b['surname']){
+            } else if(a.surname > b.surname){
                 return 1;
             }
             return 0;
         });
 
-        console.log(sorted);
         return sorted;
     },
 
     sort_last: function(registrations){
-        console.log('qwe');
-        console.log(registrations);
         var sorted = registrations.sort(function(a, b){
-            if (a['surname'] < b['surname']){
+            if (a.surname < b.surname){
                 return -1;
-            } else if(a['surname'] > b['surname']){
+            } else if(a.surname > b.surname){
                 return 1;
             }
-            if (a['first_name'] < b['first_name']){
+            if (a.first_name < b.first_name){
                 return -1;
-            } else if(a['first_name'] > b['first_name']){
+            } else if(a.first_name > b.first_name){
                 return 1;
             }
             return 0;
         });
-        console.log(sorted);
         return sorted;
     },
 
