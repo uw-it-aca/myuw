@@ -5,6 +5,7 @@ from myuw.views.notice_admin import _get_datetime, _save_notice
 from datetime import datetime
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
 from myuw.test import get_request_with_user, get_request_with_date
+from myuw.test.dao.myuw_notice import get_datetime_with_tz
 
 
 class TestNoticeAdmin(MyuwApiTest):
@@ -122,8 +123,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'action': 'save',
             'title': 'The Title',
             'content': "Foo",
-            'start_date': "2018-05-05 12:05",
-            'end_date': "2018-05-26 12:05",
+            'start_date': "2013-03-27T13:00:00+00:00",
+            'end_date': "2013-05-06T23:13:00+00:00",
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
@@ -138,7 +139,6 @@ class TestNoticeAdmin(MyuwApiTest):
         request = rf.post('', notice_context)
         _save_notice(request, {}, 1)
 
-        request = get_request_with_date("2018-05-09")
-        get_request_with_user('javerage', request)
+        request = get_request_with_user('javerage')
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(notices[0].content, 'Bar')
