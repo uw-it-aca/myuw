@@ -1,12 +1,15 @@
 @import (reference) "boilerplate.less";
 
-/*** cards ***/
 
+
+/*** Mixins ***/
 .myuw-card-style-mixin() {
     background: #fff;
     box-shadow: 0 1px 3px rgba(34,25,25,.15);
     border: 1px solid #ddd;
 }
+
+/*** cards ***/
 
 .myuw-card {
 
@@ -42,16 +45,6 @@
     .card-btn {
         @media @two-column { position: absolute; top: 12px; right: 10px;}
     }
-
-	/* Big button  */
-	.myuw-btn-big {
-		    padding: 16px 20px;
-		    margin-top: 0;
-			font-family:'Roboto', sans-serif;
-            font-weight: 400;
-            font-size: 16px;
-            color: #444;
-	}
 
     /*** Card Title and Subheadings ***/
     .myuw-card-title {
@@ -325,4 +318,21 @@
         white-space: nowrap;
     }
 
+}
+
+
+.myuw-minicard-overlay {
+    .myuw-card-style-mixin;
+    padding: 16px;
+    max-width: 285px;
+
+    & > .myuw-card-heading {
+        margin-top: 0;
+    }
+}
+
+.myuw-minicard-overlay-bottom-right {
+    position: fixed;
+    bottom: 2px;
+    right: 2px;
 }
