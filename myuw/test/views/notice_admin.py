@@ -21,6 +21,10 @@ class TestNoticeAdmin(MyuwApiTest):
         dt = datetime(2018, 5, 8, 15, 28)
         self.assertEqual(_get_datetime(string), dt)
 
+        string = "2013-03-28 10:00:00+00:00"
+        dt = get_datetime_with_tz(2013, 3, 28, 3)
+        self.assertEqual(_get_datetime(string), dt)
+
     def test_save_new_notice(self):
         rf = RequestFactory()
         request = rf.post('', {})
@@ -141,4 +145,5 @@ class TestNoticeAdmin(MyuwApiTest):
 
         request = get_request_with_user('javerage')
         notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].content, 'Bar')
