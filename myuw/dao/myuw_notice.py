@@ -6,21 +6,13 @@ from myuw.dao.term import get_comparison_datetime_with_tz
 def get_myuw_notices_for_user(request):
     date = get_comparison_datetime_with_tz(request)
     fetched_notices = MyuwNotice.objects.filter(start__lte=date)
-    active_notices = []
-
-    for notice in fetched_notices:
-
-        if notice.end is None:
-            active_notices.append(notice)
-            continue
-        if notice.end is not None:
-            if notice.end >= date:
-                active_notices.append(notice)
-
     affiliations = get_all_affiliations(request)
 
     user_notices = []
-    for notice in active_notices:
+    for notice in fetched_notices:
+
+        if notice.end is not None and notice.end < date:
+            continue
 
         # If campus is not set show to all campuses
         if (not (notice.is_bothell or

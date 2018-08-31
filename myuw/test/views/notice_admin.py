@@ -134,16 +134,16 @@ class TestNoticeAdmin(MyuwApiTest):
         }
         rf = RequestFactory()
         request = rf.post('', notice_context)
-        saved = _save_notice(request, {})
-        self.assertTrue(saved)
+        self.assertTrue(_save_notice(request, {}))
 
         notice_context['content'] = "Bar"
         notice_context['action'] = 'edit'
 
         request = rf.post('', notice_context)
-        _save_notice(request, {}, 1)
+        self.assertTrue(_save_notice(request, {}, notice_id=1))
 
-        request = get_request_with_user('javerage')
+        request = get_request_with_date("2013-04-09")
+        request = get_request_with_user('javerage', request)
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].content, 'Bar')
