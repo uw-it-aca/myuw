@@ -59,6 +59,7 @@ setup(
         'Django-Safe-EmailBackend>=0.1,<1.0',
         'UW-HX-Toolkit==1.04',
         'django_mobileesp',
+        'python-dateutil',
         'yajl',
         'bleach',
     ],
