@@ -160,7 +160,6 @@ def _save_notice(request, context, notice_id=None):
 
 def _get_datetime(dt_string):
     try:
-        dt = parse(dt_string)
+        return parse(dt_string)
     except ValueError:
-        dt = None
-    return dt
+        return None

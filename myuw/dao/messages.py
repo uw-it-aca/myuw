@@ -8,10 +8,10 @@ from myuw.dao import is_netid_in_list, get_netid_of_current_user,\
     is_using_file_dao
 from myuw.dao.admin import is_admin
 from myuw.dao.gws import gws
-from myuw.dao.term import get_comparison_datetime
+from myuw.dao.term import get_comparison_datetime_with_tz
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
-from django.utils import timezone
+
 
 MESSAGE_ALLOWED_TAGS = bleach.sanitizer.ALLOWED_TAGS + ["span", "h1", "h2",
                                                         "h3", "h4"]
@@ -21,11 +21,8 @@ MESSAGE_ALLOWED_STYLES = ["font-size", "color"]
 
 
 def get_current_messages(request):
-    current_date = get_comparison_datetime(request)
+    current_date = get_comparison_datetime_with_tz(request)
     affiliations = get_all_affiliations(request)
-
-    current_date = timezone.make_aware(current_date)
-
     messages = get_data_for_affiliations(model=BannerMessage,
                                          affiliations=affiliations,
                                          start__lte=current_date,

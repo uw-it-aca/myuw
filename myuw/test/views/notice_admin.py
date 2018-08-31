@@ -38,17 +38,18 @@ class TestNoticeAdmin(MyuwApiTest):
             'content': "<p>Foobar</p>",
             'affil': 'is_intl_stud',
             'campus': 'is_seattle',
-            'start_date': "2018-05-25 12:05",
-            'end_date': "2018-05-26 12:05",
+            'start_date': get_datetime_with_tz(2018, 5, 25, 12),
+            'end_date': get_datetime_with_tz(2018, 5, 26, 12),
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
         request = rf.post('', notice_context)
-        saved = _save_notice(request, {})
-        self.assertTrue(saved)
+        self.assertTrue(_save_notice(request, {}))
+
         entries = MyuwNotice.objects.all()
         self.assertEqual(len(entries), 1)
         self.assertIsNotNone(entries[0].json_data())
+        self.assertIsNotNone(str(entries[0]))
         self.assertIsNotNone(entries[0].get_notice_content())
         self.assertTrue(entries[0].is_intl_stud)
         self.assertTrue(entries[0].is_seattle)
@@ -58,15 +59,14 @@ class TestNoticeAdmin(MyuwApiTest):
             'action': 'save',
             'title': 'The Title',
             'content': "<p>Foobar</p>",
-            'start_date': "2018-05-25 12:05",
-            'end_date': "2017-05-26 12:05",
+            'start_date': "2018-05-25T12:05:00+00:00",
+            'end_date': "2017-05-26T12:05:00+00:00",
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
         request = rf.post('', notice_context)
         context = {}
-        saved = _save_notice(request, context)
-        self.assertFalse(saved)
+        self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['date_error'])
 
         # no start
@@ -74,14 +74,13 @@ class TestNoticeAdmin(MyuwApiTest):
             'action': 'save',
             'title': 'The Title',
             'content': "<p>Foobar</p>",
-            'end_date': "2017-05-26 12:05",
+            'end_date': "2017-05-26T12:05:00+00:00",
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
         request = rf.post('', notice_context)
         context = {}
-        saved = _save_notice(request, context)
-        self.assertFalse(saved)
+        self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['start_error'])
 
         # Missing Attrs
@@ -90,8 +89,7 @@ class TestNoticeAdmin(MyuwApiTest):
         }
         request = rf.post('', notice_context)
         context = {}
-        saved = _save_notice(request, context)
-        self.assertFalse(saved)
+        self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['start_error'])
         self.assertTrue(context['type_error'])
         self.assertTrue(context['category_error'])
@@ -103,8 +101,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'action': 'save',
             'title': '<b>The</b> <p>Title</p>',
             'content': "<p>allowed tag</p> <script>not allowed</script>",
-            'start_date': "2018-05-05 12:05",
-            'end_date': "2018-05-26 12:05",
+            'start_date': "2018-05-05T12:05:00+00:00",
+            'end_date': "2018-05-26T12:05:00+00:00",
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
@@ -125,7 +123,7 @@ class TestNoticeAdmin(MyuwApiTest):
     def test_edit_notice(self):
         notice_context = {
             'action': 'save',
-            'title': 'The Title',
+            'title': 'Test Edit',
             'content': "Foo",
             'start_date': "2013-03-27T13:00:00+00:00",
             'end_date': "2013-05-06T23:13:00+00:00",
@@ -136,11 +134,16 @@ class TestNoticeAdmin(MyuwApiTest):
         request = rf.post('', notice_context)
         self.assertTrue(_save_notice(request, {}))
 
-        notice_context['content'] = "Bar"
         notice_context['action'] = 'edit'
+        notice_context['content'] = "Bar"
+        notice_context['title'] = 'Edited'
+
+        entries = MyuwNotice.objects.all()
+        self.assertEqual(len(entries), 1)
 
         request = rf.post('', notice_context)
-        self.assertTrue(_save_notice(request, {}, notice_id=1))
+        self.assertTrue(_save_notice(request, {},
+                                     notice_id=entries[0].id))
 
         request = get_request_with_date("2013-04-09")
         request = get_request_with_user('javerage', request)

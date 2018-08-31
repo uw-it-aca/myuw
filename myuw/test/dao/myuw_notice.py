@@ -1,7 +1,6 @@
 # -*- coding: utf8 -*-
 from django.test import TransactionTestCase
 from datetime import datetime
-import pytz
 from django.utils import timezone
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
 from myuw.dao.notice_mapping import categorize_notices
@@ -10,9 +9,7 @@ from myuw.models.myuw_notice import MyuwNotice
 
 
 def get_datetime_with_tz(year, month, day, hour):
-    local_tz = timezone.get_current_timezone()
-    return local_tz.localize(
-        datetime(year, month, day, hour, 0, 0)).astimezone(pytz.utc)
+    return timezone.make_aware(datetime(year, month, day, hour, 0, 0))
 
 
 class TestMyuwNotice(TransactionTestCase):

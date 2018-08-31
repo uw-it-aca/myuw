@@ -1,28 +1,25 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from myuw.models import BannerMessage
 from myuw.dao.messages import get_current_messages, clean_html
 from myuw.test import get_request_with_user, get_request_with_date
-
-from datetime import datetime, tzinfo
-import pytz
+from myuw.test.dao.myuw_notice import get_datetime_with_tz
 
 
-class TestBannerMessageDAO(TestCase):
+class TestBannerMessageDAO(TransactionTestCase):
     def test_get_current(self):
-        BannerMessage.objects.all().delete()
-
-        BannerMessage.objects.create(start=datetime(2013, 4, 5),
-                                     end=datetime(2013, 4, 7),
+        BannerMessage.objects.create(start=get_datetime_with_tz(2013, 4, 5, 0),
+                                     end=get_datetime_with_tz(2013, 4, 7, 0),
                                      message_title='test title',
                                      message_body='test body',
                                      affiliation='student',
                                      is_published=True)
 
-        b2 = BannerMessage.objects.create(start=datetime(2011, 4, 5),
-                                          end=datetime(2019, 4, 7),
-                                          message_title='not current',
-                                          message_body='not published',
-                                          is_published=False)
+        b2 = BannerMessage.objects.create(
+            start=get_datetime_with_tz(2011, 4, 5, 0),
+            end=get_datetime_with_tz(2019, 4, 7, 0),
+            message_title='not current',
+            message_body='not published',
+            is_published=False)
 
         request = get_request_with_date('2013-04-04 00:00:00')
         request = get_request_with_user('javerage', request)
@@ -54,14 +51,13 @@ class TestBannerMessageDAO(TestCase):
         self.assertEquals(len(get_current_messages(request)), 0)
 
     def test_group_filter(self):
-        BannerMessage.objects.all().delete()
-
-        BannerMessage.objects.create(start=datetime(2013, 4, 5),
-                                     end=datetime(2013, 4, 7),
-                                     message_title='test title',
-                                     message_body='test body',
-                                     group_id='uw_test_group',
-                                     is_published=True)
+        BannerMessage.objects.create(
+            start=get_datetime_with_tz(2013, 4, 5, 0),
+            end=get_datetime_with_tz(2013, 4, 7,0),
+            message_title='test title',
+            message_body='test body',
+            group_id='uw_test_group',
+            is_published=True)
 
         request = get_request_with_date('2013-04-06')
         request = get_request_with_user('javerage', request)
