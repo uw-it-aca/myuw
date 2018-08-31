@@ -53,7 +53,7 @@ class TestBannerMessageDAO(TransactionTestCase):
     def test_group_filter(self):
         BannerMessage.objects.create(
             start=get_datetime_with_tz(2013, 4, 5, 0),
-            end=get_datetime_with_tz(2013, 4, 7,0),
+            end=get_datetime_with_tz(2013, 4, 7, 0),
             message_title='test title',
             message_body='test body',
             group_id='uw_test_group',
