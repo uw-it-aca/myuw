@@ -47,7 +47,7 @@ setup(
         'UW-RestClients-HFS<1.0',
         'UW-RestClients-IASystem>=0.3.1,<1.0',
         'UW-RestClients-Libraries<1.0',
-        'UW-RestClients-PWS<2.0,>=1.0.1',
+        'UW-RestClients-PWS<2.0,>=1.0.2',
         'UW-RestClients-SWS<2.0,>=1.7.3',
         'UW-RestClients-Trumba<1.0,>=0.3',
         'UW-RestClients-UPass>=0.2,<1.0',
