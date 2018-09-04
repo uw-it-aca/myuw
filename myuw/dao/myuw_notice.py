@@ -12,21 +12,51 @@ def get_myuw_notices_for_user(request):
     for notice in fetched_notices:
 
         if notice.end is not None and notice.end < date:
+            # exclude those past display time window
             continue
 
-        # If campus is not set show to all campuses
-        if (not (notice.is_bothell or
-                 notice.is_seattle or
-                 notice.is_tacoma) or
-                notice.is_seattle and affiliations['seattle'] or
-                notice.is_bothell and affiliations['bothell'] or
-                notice.is_tacoma and affiliations['tacoma']):
-            campus_matched = True
-        else:
+        if for_all_affi(notice):
+            if (is_stud_campus_matched(notice, affiliations) or
+                    is_employee_campus_matched(notice, affiliations)):
+                user_notices.append(notice)
             continue
 
-        # If no affiliation is required
-        if not (notice.is_alumni or notice.is_applicant or
+        if student_affiliation_matched(notice, affiliations):
+            if is_stud_campus_matched(notice, affiliations):
+                user_notices.append(notice)
+            continue
+
+        if employee_affiliation_matched(notice, affiliations):
+            if is_employee_campus_matched(notice, affiliations):
+                user_notices.append(notice)
+            continue
+
+    return user_notices
+
+
+def campus_neutral(notice):
+    return not (notice.is_bothell or notice.is_seattle or notice.is_tacoma)
+
+
+def is_stud_campus_matched(notice, affiliations):
+    return (campus_neutral(notice) or
+            notice.is_seattle and affiliations['seattle'] or
+            notice.is_bothell and affiliations['bothell'] or
+            notice.is_tacoma and affiliations['tacoma'])
+
+
+def is_employee_campus_matched(notice, affiliations):
+    return (campus_neutral(notice) or
+            notice.is_seattle and affiliations['official_seattle'] or
+            notice.is_bothell and affiliations['official_bothell'] or
+            notice.is_tacoma and affiliations['official_tacoma'])
+
+
+def for_all_affi(notice):
+    """
+    no affiliation is selected
+    """
+    return not (notice.is_alumni or notice.is_applicant or
                 notice.is_grad or notice.is_grad_c2 or
                 notice.is_pce or notice.is_student or
                 notice.is_undergrad or notice.is_undergrad_c2 or
@@ -35,23 +65,29 @@ def get_myuw_notices_for_user(request):
                 notice.is_faculty or notice.is_instructor or
                 notice.is_past_employee or notice.is_retiree or
                 notice.is_staff_employee or notice.is_stud_employee or
-                notice.is_intl_stud):
-            user_notices.append(notice)
-            continue
+                notice.is_intl_stud)
 
-        if notice.is_past_student and affiliations["past_stud"]:
-            user_notices.append(notice)
-            continue
 
-        for key in affiliations:
-            # exclude campuses
-            if key == 'seattle' or key == 'bothell' or key == 'tacoma':
-                continue
-            try:
-                if getattr(notice, "is_" + key) and affiliations[key]:
-                    user_notices.append(notice)
-                    continue
-            except AttributeError:
-                pass
+def student_affiliation_matched(notice, affiliations):
+    return (notice.is_applicant and affiliations["applicant"] or
+            notice.is_grad and affiliations["grad"] or
+            notice.is_grad_c2 and affiliations["grad_c2"] or
+            notice.is_intl_stud and affiliations["intl_stud"] or
+            notice.is_pce and affiliations["pce"] or
+            notice.is_student and affiliations["student"] or
+            notice.is_undergrad and affiliations["undergrad"] or
+            notice.is_undergrad_c2 and affiliations["undergrad_c2"] or
+            notice.is_past_student and affiliations["past_stud"] or
+            notice.is_fyp and affiliations["fyp"] or
+            notice.is_alumni and affiliations["alumni"])
 
-    return user_notices
+
+def employee_affiliation_matched(notice, affiliations):
+    return (notice.is_clinician and affiliations["clinician"] or
+            notice.is_employee and affiliations["employee"] or
+            notice.is_faculty and affiliations["faculty"] or
+            notice.is_instructor and affiliations["instructor"] or
+            notice.is_staff_employee and affiliations["staff_employee"] or
+            notice.is_stud_employee and affiliations["stud_employee"] or
+            notice.is_past_employee and affiliations["past_employee"] or
+            notice.is_retiree and affiliations["retiree"])
