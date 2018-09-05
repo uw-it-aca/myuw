@@ -119,8 +119,8 @@ class TestMyuwNotice(TransactionTestCase):
                             content="For all users",
                             notice_type="Banner",
                             notice_category="All",
-                            start=get_datetime_with_tz(2018, 6, 8, 10),
-                            end=get_datetime_with_tz(2018, 6, 20, 10),
+                            start=get_datetime_with_tz(2013, 6, 8, 10),
+                            end=get_datetime_with_tz(2013, 6, 20, 10),
                             is_seattle=False,
                             is_bothell=False,
                             is_tacoma=False)
@@ -130,24 +130,24 @@ class TestMyuwNotice(TransactionTestCase):
                             content="For all instructors",
                             notice_type="Banner",
                             notice_category="Instructor",
-                            start=get_datetime_with_tz(2018, 6, 8, 10),
-                            end=get_datetime_with_tz(2018, 6, 20, 10),
+                            start=get_datetime_with_tz(2013, 6, 8, 10),
+                            end=get_datetime_with_tz(2013, 6, 20, 10),
                             is_instructor=True)
         notice.save()
         notice = MyuwNotice(title="For all student",
                             content="For all student",
                             notice_type="Banner",
                             notice_category="Student",
-                            start=get_datetime_with_tz(2018, 6, 8, 10),
-                            end=get_datetime_with_tz(2018, 6, 20, 10),
+                            start=get_datetime_with_tz(2013, 6, 8, 10),
+                            end=get_datetime_with_tz(2013, 6, 20, 10),
                             is_student=True)
         notice.save()
         notice = MyuwNotice(title="For bothell intl students",
                             content="For bothell Intl students",
                             notice_type="Banner",
                             notice_category="Student",
-                            start=get_datetime_with_tz(2018, 6, 8, 10),
-                            end=get_datetime_with_tz(2018, 6, 20, 10),
+                            start=get_datetime_with_tz(2013, 6, 8, 10),
+                            end=get_datetime_with_tz(2013, 6, 20, 10),
                             is_bothell=True,
                             is_intl_stud=True)
         notice.save()
@@ -155,27 +155,35 @@ class TestMyuwNotice(TransactionTestCase):
                             content="For Seattle staff",
                             notice_type="Banner",
                             notice_category="Employee",
-                            start=get_datetime_with_tz(2018, 6, 8, 10),
-                            end=get_datetime_with_tz(2018, 6, 20, 10),
+                            start=get_datetime_with_tz(2013, 6, 8, 10),
+                            end=get_datetime_with_tz(2013, 6, 20, 10),
                             is_seattle=True,
                             is_staff_employee=True)
         notice.save()
+        notice = MyuwNotice(title="For alumni",
+                            content="For alumni",
+                            notice_type="Banner",
+                            notice_category="Alumni",
+                            start=get_datetime_with_tz(2013, 6, 8, 10),
+                            end=get_datetime_with_tz(2013, 6, 20, 10),
+                            is_alumni=True)
+        notice.save()
 
-        request = get_request_with_date("2018-06-09")
+        request = get_request_with_date("2013-06-09")
         get_request_with_user('javerage', request)
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 2)
         self.assertEqual(notices[0].title, "For all users")
         self.assertEqual(notices[1].title, "For all student")
 
-        request = get_request_with_date("2018-06-09")
+        request = get_request_with_date("2013-06-09")
         get_request_with_user('staff', request)
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 2)
         self.assertEqual(notices[0].title, "For all users")
         self.assertEqual(notices[1].title, "For Seattle staff")
 
-        request = get_request_with_date("2018-06-09")
+        request = get_request_with_date("2013-06-09")
         get_request_with_user('botgrad', request)
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 3)
@@ -183,7 +191,14 @@ class TestMyuwNotice(TransactionTestCase):
         self.assertEqual(notices[1].title, "For all student")
         self.assertEqual(notices[2].title, "For bothell intl students")
 
-        request = get_request_with_date("2018-06-09")
+        request = get_request_with_date("2013-06-09")
+        get_request_with_user('jalum', request)
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 2)
+        self.assertEqual(notices[0].title, "For all users")
+        self.assertEqual(notices[1].title, "For alumni")
+
+        request = get_request_with_date("2013-06-09")
         get_request_with_user('none', request)
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
@@ -194,8 +209,8 @@ class TestMyuwNotice(TransactionTestCase):
                             content="Notice Content Five",
                             notice_type="Banner",
                             notice_category="MyUWNotice",
-                            start=get_datetime_with_tz(2018, 6, 8, 10),
-                            end=get_datetime_with_tz(2018, 6, 20, 10),
+                            start=get_datetime_with_tz(2013, 6, 8, 10),
+                            end=get_datetime_with_tz(2013, 6, 20, 10),
                             is_student=True)
         categorized = categorize_notices([notice])
         self.assertEqual(len(categorized), 1)

@@ -83,11 +83,9 @@ def student_affiliation_matched(notice, affiliations):
 
 
 def employee_affiliation_matched(notice, affiliations):
-    return (notice.is_clinician and affiliations["clinician"] or
-            notice.is_employee and affiliations["employee"] or
-            notice.is_faculty and affiliations["faculty"] or
-            notice.is_instructor and affiliations["instructor"] or
-            notice.is_staff_employee and affiliations["staff_employee"] or
-            notice.is_stud_employee and affiliations["stud_employee"] or
-            notice.is_past_employee and affiliations["past_employee"] or
-            notice.is_retiree and affiliations["retiree"])
+    keys = ["clinician", "employee", "faculty", "instructor",
+            "staff_employee", "stud_employee", "past_employee", "retiree"]
+    for key in keys:
+        if getattr(notice, "is_" + key) and affiliations[key]:
+            return True
+    return False
