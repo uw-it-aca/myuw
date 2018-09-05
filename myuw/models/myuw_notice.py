@@ -1,3 +1,4 @@
+import json
 from django.db import models
 
 
@@ -52,3 +53,36 @@ class MyuwNotice(models.Model):
 
     def get_notice_content(self):
         return self.title + self.content
+
+    def __str__(self):
+        data = {"title": self.title,
+                "content": self.content,
+                "notice_type": self.notice_type,
+                "notice_category": self.notice_category,
+                "start": self.start.isoformat(),
+                "end": self.end.isoformat(),
+                "last_edit_by": self.last_edit_by,
+                "last_edit_date": self.last_edit_date.isoformat(),
+                "is_bothell": self.is_bothell,
+                "is_seattle": self.is_seattle,
+                "is_tacoma": self.is_tacoma,
+                "is_alumni": self.is_alumni,
+                "is_applicant": self.is_applicant,
+                "is_grad": self.is_grad,
+                "is_grad_c2": self.is_grad_c2,
+                "is_intl_stud": self.is_intl_stud,
+                "is_pce": self.is_pce,
+                "is_student": self.is_student,
+                "is_undergrad": self.is_undergrad,
+                "is_undergrad_c": self.is_undergrad_c2,
+                "is_fyp": self.is_fyp,
+                "is_past_student": self.is_past_student,
+                "is_clinician": self.is_clinician,
+                "is_employee": self.is_employee,
+                "is_faculty": self.is_faculty,
+                "is_instructor": self.is_instructor,
+                "is_past_employee": self.is_past_employee,
+                "is_retiree": self.is_retiree,
+                "is_staff_employee": self.is_staff_employee,
+                "is_stud_employee": self.is_stud_employee}
+        return json.dumps(data, default=str)
