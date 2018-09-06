@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 import logging
 from myuw.models.myuw_notice import MyuwNotice
-from datetime import datetime
+from dateutil.parser import parse
 
 
 logger = logging.getLogger(__name__)
@@ -160,7 +160,6 @@ def _save_notice(request, context, notice_id=None):
 
 def _get_datetime(dt_string):
     try:
-        dt = datetime.strptime(dt_string, "%Y-%m-%d %H:%M")
+        return parse(dt_string)
     except ValueError:
-        dt = None
-    return dt
+        return None
