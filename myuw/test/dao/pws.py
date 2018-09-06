@@ -12,9 +12,8 @@ from myuw.test import fdao_pws_override, get_request_with_user
 class TestPwsDao(TestCase):
 
     def test_no_entity_netid(self):
-        self.assertRaises(InvalidNetID,
-                          pws.get_person_by_netid,
-                          "thisisnotarealnetid")
+        self.assertRaises(InvalidNetID, pws.get_person_by_netid, "0")
+        # netid max length is 128 now
 
     def test_no_pws_person_netid(self):
         req = get_request_with_user('nobody')

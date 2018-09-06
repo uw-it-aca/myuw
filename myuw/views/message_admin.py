@@ -1,16 +1,16 @@
+import re
+import logging
+from datetime import timedelta, datetime
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from dateutil.parser import parse
 from myuw.models import BannerMessage
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 from myuw.logger.logback import log_info
 from myuw.dao import get_netid_of_original_user
-from myuw.dao.term import get_comparison_datetime
+from myuw.dao.term import get_comparison_datetime_with_tz
 from myuw.dao.messages import clean_html
-from django.utils import timezone
-from datetime import timedelta, datetime
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-import re
-import logging
 
 
 logger = logging.getLogger(__name__)
@@ -30,7 +30,7 @@ def manage_messages(request):
 
     messages = BannerMessage.objects.all().order_by('-end', '-start')
 
-    used_now = timezone.make_aware(get_comparison_datetime(request))
+    used_now = get_comparison_datetime_with_tz(request)
     for message in messages:
         if message.start <= used_now <= message.end:
             message.is_current = True
@@ -84,9 +84,9 @@ def _save_new_message(request, context):
         datetimestr = (_get_string(request.POST.get(name, '')) + " " +
                        _get_string(request.POST.get("%s_time" % name, '')))
         try:
-            return datetime.strptime(datetimestr, "%Y-%m-%d %H:%M")
+            return parse(datetimestr)
         except ValueError:
-            return
+            return None
 
     start = _get_date('start')
     end = _get_date('end')
