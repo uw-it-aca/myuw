@@ -200,8 +200,9 @@ def set_course_resources(section_data, section, person):
 def get_enrollment_status_for_section(section, section_json):
     try:
         status = get_section_status_by_label(section.section_label())
-        # MUWM-3999
-        section_json["current_enrollment"] = status.current_enrollment
+        if not is_joint_section(section):
+            # MUWM-3954, MUWM-3999
+            section_json["current_enrollment"] = status.current_enrollment
         section_json["limit_estimated_enrollment"] =\
             status.limit_estimated_enrollment
 
@@ -522,3 +523,7 @@ def _set_current_or_future(term, request, section):
     current_term = get_current_quarter(request)
 
     section['current_or_future'] = current_term <= term
+
+
+def is_joint_section(section):
+    return len(section.joint_section_urls) > 0
