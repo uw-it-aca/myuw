@@ -253,4 +253,3 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(len(data['sections']), 2)
         self.assertEqual(data['sections'][0]['current_enrollment'], 18)
         self.assertEqual(data['sections'][1]['current_enrollment'], 3)
-
