@@ -381,7 +381,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
                 json_data["has_eos_dates"] = True
             section_data["meetings"] = sort_pce_section_meetings(
                 section_data["meetings"])
-        if len(section.joint_section_urls):
+        if is_joint_section(section):
             joint_sections = get_joint_sections(section)
             section_data['joint_sections'] = []
             section_data['has_joint'] = True
