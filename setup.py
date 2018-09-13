@@ -34,7 +34,7 @@ setup(
         'django-blti==0.6',
         'unittest2',
         'UW-Django-SAML2>=0.4.5,<1.0',
-        'django-aws-message>=1.0,<2.0',
+        'django-aws-message==1.0',
         'UW-RestClients-Core==0.9.6',
         'UW-RestClients-Bookstore>=0.5.3',
         'UW-RestClients-Canvas>=0.7.2,<1.0',

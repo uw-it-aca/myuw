@@ -53,18 +53,17 @@ M1 = {
 class TestSectionStatusProcessor(TestCase):
 
     def test_process_message_content(self):
-        with self.settings(AWS_SQS={
-                'SECTION_SATSUS_V1': {
-                    'ACCOUNT_NUMBER': '123456789012',
-                    'QUEUE': 'xxxxxxxxxx',
-                    'REGION': 'xxxx',
-                    'KEY_ID': 'XXXXXXXXXXXXXXXX',
-                    'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',
-                    'VISIBILITY_TIMEOUT': 10,
-                    'MESSAGE_GATHER_SIZE': 10,
-                    'VALIDATE_SNS_SIGNATURE': False,
-                    'PAYLOAD_SETTINGS': {}}}):
-
+        with self.settings(RESTCLIENTS_MEMCACHED_SERVERS=('localhost:11211',),
+                           AWS_SQS={'SECTION_SATSUS_V1': {
+                               'ACCOUNT_NUMBER': '123456789012',
+                               'QUEUE': 'xxxxxxxxxx',
+                               'REGION': 'xxxx',
+                               'KEY_ID': 'XXXXXXXXXXXXXXXX',
+                               'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',
+                               'VISIBILITY_TIMEOUT': 10,
+                               'MESSAGE_GATHER_SIZE': 10,
+                               'VALIDATE_SNS_SIGNATURE': False,
+                               'PAYLOAD_SETTINGS': {}}}):
             event_hdlr = SectionStatusProcessor()
             # discard the event
             event_hdlr.process_inner_message(M1)
