@@ -244,3 +244,12 @@ class TestInstructorSection(MyuwApiTest):
                          '2017_autumn_EDC_I_552_A')
         self.assertEqual(data['sections'][0]['curriculum_abbr'],
                          'EDC&I')
+
+    def test_billpce_joint_sections(self):
+        request = get_request_with_user(
+            'billpce', get_request_with_date("2018-02-01"))
+        resp = InstScheCurQuar().get(request)
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections']), 2)
+        self.assertEqual(data['sections'][0]['current_enrollment'], 18)
+        self.assertEqual(data['sections'][1]['current_enrollment'], 3)
