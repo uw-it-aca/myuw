@@ -29,8 +29,12 @@ def get_week_by_request(request):
 
 def _get_week_between(term, now):
     start = term.first_day_quarter
+    print start
     start = _make_start_sunday(start)
+    print start, now
     diff = now - start
+    diff = diff + datetime.timedelta(1)
+    print diff, diff.days/7.0, int(math.ceil(diff.days/7.0))
 
     if diff.days > 0:
         week = int(math.ceil(diff.days/7.0))
@@ -40,6 +44,7 @@ def _get_week_between(term, now):
     else:
         # round down when negative
         week = int(math.floor(diff.days/7.0))
+    print "week", week
     return week
 
 
