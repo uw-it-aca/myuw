@@ -33,6 +33,7 @@ def _get_week_between(term, now):
     diff = now - start
 
     if diff.days > 0:
+        diff = diff + datetime.timedelta(1)
         week = int(math.ceil(diff.days/7.0))
     elif diff.days == 0:
         # first week of qtr will be week 1
