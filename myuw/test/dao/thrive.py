@@ -1,10 +1,7 @@
 from django.test import TestCase
 import datetime
 import csv
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import StringIO
 from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
     _make_thrive_payload, get_current_message, get_previous_messages,\
     get_target_group, is_fyp, is_aut_transfer, is_win_transfer, TARGET_FYP,\

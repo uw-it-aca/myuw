@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from userservice.user import UserService
 from myuw.models import MigrationPreference, User
 from myuw.test import get_request_with_user

@@ -51,7 +51,7 @@ def get_subject_guide_by_section(section):
             get_default = True
         else:
             logger.error("get_subject_guide for %s ==> %s" %
-                         (section_logid, ex))
+                         (section_logid, str(ex)))
             raise
 
     if get_default:

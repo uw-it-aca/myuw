@@ -1,5 +1,5 @@
 import json
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from myuw.dao.user import get_user_model
 from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
 from myuw.views.api.link import get_link_data

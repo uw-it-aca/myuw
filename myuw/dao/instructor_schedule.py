@@ -144,7 +144,7 @@ def get_linked_section(url, instructor_regid):
             linked.registrations = get_active_registrations_for_section(
                 linked, instructor_regid)
         except DataFailureException as ex:
-            logger.error("get_linked_section(%s)==>%s", url, ex)
+            logger.error("get_linked_section(%s)==>%s", url, str(ex))
             linked.registrations = []
 
         return linked

@@ -62,7 +62,7 @@ def get_cur_future_enrollments(request):
     except Exception as ex:
         logger.error(
             "%s get_enrollments: %s" % (get_netid_of_current_user(request),
-                                        ex))
+                                        str(ex)))
         return None
 
 

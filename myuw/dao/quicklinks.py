@@ -115,7 +115,7 @@ def add_custom_link(request, url, link_label=None):
         except Exception as ex:
             logger.error("%s add_custom_link(%s, %s) ==> %s",
                          get_netid_of_current_user(request), url,
-                         link_label, ex)
+                         link_label, str(ex))
     return None
 
 
@@ -125,7 +125,7 @@ def delete_custom_link(request, link_id):
         return link.delete()
     except Exception as ex:
         logger.error("%s delete_custom_link(%s) ==> %s",
-                     get_netid_of_current_user(request), link_id, ex)
+                     get_netid_of_current_user(request), link_id, str(ex))
     return None
 
 
@@ -140,7 +140,7 @@ def edit_custom_link(request, link_id, new_url, new_label=None):
     except Exception as ex:
         logger.error("%s edit_custom_link(%s, %s, %s) ==> %s",
                      get_netid_of_current_user(request), link_id,
-                     new_url, new_label, ex)
+                     new_url, new_label, str(ex))
     return None
 
 
@@ -162,7 +162,7 @@ def add_hidden_link(request, url):
             return get_hidden_link_by_url(request, url)
         except Exception as ex:
             logger.error("%s add_hidden_link(%s) ==> %s",
-                         get_netid_of_current_user(request), url, ex)
+                         get_netid_of_current_user(request), url, str(ex))
     return None
 
 
@@ -172,7 +172,7 @@ def delete_hidden_link(request, link_id):
         return link.delete()
     except Exception as ex:
         logger.error("%s delete_hidden_link(%s) ==> %s",
-                     get_netid_of_current_user(request), link_id, ex)
+                     get_netid_of_current_user(request), link_id, str(ex))
     return None
 
 

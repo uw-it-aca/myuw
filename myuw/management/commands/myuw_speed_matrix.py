@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.test.client import Client
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.conf import settings
 from myuw.urls import urlpatterns
 from myuw.test.api import get_user, get_user_pass

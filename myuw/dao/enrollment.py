@@ -91,10 +91,10 @@ def get_main_campus(request):
                 if major.campus and major.campus not in campuses:
                     campuses.append(major.campus)
     except DataFailureException as ex:
-        logger.error("get_main_campus: %s" % ex)
+        logger.error("get_main_campus: %s" % str(ex))
         raise IndeterminateCampusException()
     except Exception as ex:
-        logger.error("get_main_campus: %s" % ex)
+        logger.error("get_main_campus: %s" % str(ex))
         pass
     return campuses
 

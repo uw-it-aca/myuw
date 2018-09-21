@@ -1,11 +1,11 @@
+from unittest import skipIf
+import time
+from django.urls import reverse
 from django.test import TestCase
 from django.test.client import Client
 from django.test.utils import override_settings
 from myuw.test.api import missing_url, get_user, get_user_pass
 from myuw.util.cache_implementation import MemcachedCache
-from django.core.urlresolvers import reverse
-from unittest2 import skipIf
-import time
 
 
 class TestingMemoryCache(MemcachedCache):

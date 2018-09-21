@@ -147,6 +147,7 @@ class TestCategoryLinks(TestCase):
         req = get_request_with_user('bill')
         links = Resource_Links().get_all_grouped_links(req)
         self.assertEqual(len(links), 9)
+        print(links[8])
         self.assertEqual(links[8]['category_name'],
                          'Services for Faculty and Staff')
 

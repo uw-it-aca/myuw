@@ -23,6 +23,6 @@ def get_user_model(request):
         try:
             request.myuw_user_model = User.get_user_by_netid(
                 get_netid_of_current_user(request))
-        except User.DoesNotExist as ex:
+        except User.DoesNotExist:
             return get_updated_user(request)
     return request.myuw_user_model

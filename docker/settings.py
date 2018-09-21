@@ -1,35 +1,13 @@
-"""
-Django settings for project project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-
 ALLOWED_HOSTS = ['*']
 
 
-
-
-# Application definition
-
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,9 +23,9 @@ INSTALLED_APPS = (
     'supporttools',
     'blti',
     'hx_toolkit'
-)
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,23 +35,17 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'userservice.user.UserServiceMiddleware',
     'django_mobileesp.middleware.UserAgentDetectionMiddleware'
-)
+]
 
 
-AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.RemoteUserBackend',
-
-)
-
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+]
 
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 import os
 if os.environ['DB'] == "sqlite3":
@@ -94,9 +66,6 @@ elif os.environ['DB'] == "mysql":
             'PORT': 3306,
         }
     }
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -128,9 +97,6 @@ STATIC_ROOT = "/static/"
 # Test the memcached cache code
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
-USERSERVICE_ADMIN_GROUP = ' '
-RESTCLIENTS_ADMIN_GROUP = ''
-
 
 TEMPLATES = [
     {
@@ -148,23 +114,27 @@ TEMPLATES = [
     }
 ]
 # MYUW_PREFETCH_THREADING = True
-MYUW_ENABLED_FEATURES = ['instructor_schedule', 'employee_profile']
+MYUW_ENABLED_FEATURES = []
 
+EMAIL_BACKEND = "saferecipient.EmailBackend"
 MAILMAN_COURSEREQUEST_RECIPIENT = ""
+
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
 
 
 # Thrive required settings
-
 MEDIA_ROOT = "/statics/hx_images"
 MEDIA_URL = "/uploaded_images/"
-
 THRIVE_OUTPUT = "/hx_toolkit_output"
 
 USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
+MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
+MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
+MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
+MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
 
 #Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"

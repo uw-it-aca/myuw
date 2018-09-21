@@ -1,7 +1,7 @@
+import logging
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from django.core.urlresolvers import reverse
-import logging
+from django.urls import reverse
 from myuw.models import VisitedLinkNew, PopularLink
 from myuw.dao import get_netid_of_current_user
 from myuw.views.decorators import admin_required

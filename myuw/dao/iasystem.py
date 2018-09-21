@@ -145,7 +145,7 @@ def json_for_evaluation(request, evaluations, section):
                 except Exception as ex:
                     logger.error(
                         "get course %s instructor eid(%s) ==> %s",
-                        section.section_label(), eid, ex)
+                        section.section_label(), eid, str(ex))
                     continue
 
                 instructor_json = {}

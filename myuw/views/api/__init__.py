@@ -1,4 +1,4 @@
-import simplejson as json
+import json
 import re
 from django.http import HttpResponse
 from django.views import View
@@ -30,7 +30,7 @@ class OpenAPI(View):
     Default MyUW API class, does not require AuthN.
     """
     def json_response(self, content='', status=200):
-        return HttpResponse(json.dumps(content, default=json_serializer),
+        return HttpResponse(json.dumps(content, default=str),
                             status=status,
                             content_type='application/json')
 

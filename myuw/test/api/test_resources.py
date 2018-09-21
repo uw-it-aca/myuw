@@ -1,5 +1,5 @@
 import json
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from myuw.dao.user import get_user_model
 from myuw.models import ResourceCategoryPin
 from myuw.test import get_request_with_user
