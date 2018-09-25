@@ -54,9 +54,9 @@ class TestRegistrationsDao(TestCase):
         enrolled_student = reg[0].person
         self.assertEqual(enrolled_student.uwnetid, "javg003")
 
-    def test_get_future_schedule(self):
+    def test_tsprint_false_instructor(self):
         request = get_request_with_user('javerage',
-                                        get_request_with_date("2014-02-01"))
+                                        get_request_with_date("2014-01-01"))
         term = get_current_quarter(request)
         schedule = get_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 5)
@@ -65,7 +65,12 @@ class TestRegistrationsDao(TestCase):
                          "2014,winter,PHYS,122/A")
         self.assertEqual(len(schedule.sections[2].meetings), 2)
         self.assertEqual(len(schedule.sections[2].meetings[0].instructors), 4)
+        instructor = schedule.sections[2].meetings[0].instructors[1]
+        self.assertEqual(instructor.display_name, u'BOTHELL GRADUATE STUDENT')
+
         instructor = schedule.sections[2].meetings[0].instructors[2]
-        self.assertEqual(instructor.display_name, "J. Average Student")
+        self.assertEqual(instructor.display_name, u'J. Average Student')
+
         instructor = schedule.sections[2].meetings[0].instructors[3]
-        self.assertEqual(instructor.display_name, "Seattle Faculty")
+        self.assertEqual(instructor.display_name, u'Seattle Faculty')
+        self.assertEqual(len(schedule.sections[2].meetings[1].instructors), 4)
