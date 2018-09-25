@@ -3,7 +3,7 @@ from django.test.utils import override_settings
 from restclients_core.exceptions import DataFailureException
 from myuw.test.api import MyuwApiTest, fdao_sws_override, fdao_pws_override
 from myuw.views.api.instructor_section import InstSectionDetails,\
-    LTIInstSectionDetails
+    LTIInstSectionDetails, is_withdrew, is_status_drop_or_pending
 from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from myuw.test import get_request, get_request_with_user, get_request_with_date
 
@@ -11,6 +11,15 @@ from myuw.test import get_request, get_request_with_user, get_request_with_date
 @fdao_sws_override
 @fdao_pws_override
 class TestInstSectDetails(MyuwApiTest):
+
+    def test_is_withdrew(self):
+        self.assertTrue(is_withdrew("W"))
+        self.assertTrue(is_withdrew("W6"))
+        self.assertFalse(is_withdrew("X"))
+
+    def test_is_status_drop_or_pending(self):
+        self.assertTrue(is_status_drop_or_pending("Pending added to class"))
+        self.assertTrue(is_status_drop_or_pending("DROPPED FROM CLASS"))
 
     def test_billsea_section(self):
         now_request = get_request()
@@ -28,7 +37,7 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(len(data['sections'][0]['registrations']), 3)
         self.assertEqual(
             data['sections'][0]['registrations'][0]['linked_sections'],
-            'AA AB')
+            'AB')
         self.assertEqual(
             data['sections'][0]['registrations'][0]['first_name'], "Zune")
         self.assertEqual(
@@ -46,7 +55,7 @@ class TestInstSectDetails(MyuwApiTest):
             len(data['sections'][0]['registrations'][0]['majors']), 1)
         self.assertEqual(
             data['sections'][0]['registrations'][1]['linked_sections'],
-            'AA AC')
+            'AC')
         self.assertEqual(
             len(data['sections'][0]['registrations'][1]['majors']), 1)
         self.assertEqual(data['sections'][0]['total_linked_secondaries'], 4)
@@ -71,7 +80,7 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(
             len(data['sections'][0]['grade_submission_delegates']), 1)
 
-        self.assertEqual(len(data['sections'][0]['registrations']), 4)
+        self.assertEqual(len(data['sections'][0]['registrations']), 2)
 
         netid_counts = {}
 
@@ -82,7 +91,7 @@ class TestInstSectDetails(MyuwApiTest):
             else:
                 netid_counts[registration["netid"]] = 1
 
-        self.assertEqual(netid_counts["javg001"], 2)
+        self.assertEqual(netid_counts["javg001"], 1)
 
         self.assertGreater(len(data['related_terms']), 3)
         self.assertEqual(data['related_terms'][
@@ -115,9 +124,17 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(reg['start_date'], '')
         self.assertEqual(reg['end_date'], '')
 
+    def test_billpce_with_pending_reg(self):
+        request = get_request_with_date("2013-11-15")
+        get_request_with_user('billpce', request)
+        section_id = '2013,autumn,MUSEUM,700/A'
+        resp = InstSectionDetails().get(request, section_id=section_id)
+        self.assertEqual(resp.status_code, 200)
+        data = json.loads(resp.content)
+        self.assertEqual(len(data['sections']), 1)
+
     def test_invalid_section(self):
-        request = get_request()
-        get_request_with_user('bill', request)
+        request = get_request_with_user('bill')
 
         section_id = ''
         resp = InstSectionDetails().get(request, section_id=section_id)
