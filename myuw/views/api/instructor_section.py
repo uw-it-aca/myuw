@@ -16,7 +16,8 @@ from uw_sws.section import get_joint_sections
 from myuw.dao.canvas import sws_section_label
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.enrollment import get_code_for_class_level
-from myuw.dao.instructor_schedule import get_instructor_section
+from myuw.dao.instructor_schedule import get_instructor_section,\
+    check_section_instructor
 from myuw.dao.pws import get_url_key_for_regid
 from myuw.logger.logresp import log_success_response
 from myuw.logger.timer import Timer
