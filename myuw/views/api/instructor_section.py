@@ -88,6 +88,11 @@ class OpenInstSectionDetails(OpenAPI):
                                           include_linked_sections=True)
         # with the student registration and secondary section data
 
+        try:
+            self.is_authorized_for_section(request, schedule)
+        except NotSectionInstructorException:
+            return not_instructor_error()
+
         self.term = schedule.term
         resp_data = load_schedule(request, schedule,
                                   section_callback=self.per_section_data)
@@ -122,6 +127,9 @@ class OpenInstSectionDetails(OpenAPI):
 
     def validate_section_id(self, request, section_id):
         return section_id
+
+    def is_authorized_for_section(self, request, schedule):
+        raise NotSectionInstructorException()
 
     def add_linked_section_data(self, resp_data):
         sections_for_user = {}  # {regid: [section_id,]}
@@ -271,15 +279,22 @@ class OpenInstSectionDetails(OpenAPI):
                 "class_level": enrollment.class_level}
 
 
+
 @method_decorator(login_required, name='dispatch')
 class InstSectionDetails(OpenInstSectionDetails):
     """
     api: api/v1/instructor_section_details/section_id
     """
+    def is_authorized_for_section(self, request, schedule):
+        if len(schedule.sections):
+            check_section_instructor(schedule.sections[0], schedule.person)
 
 
 @method_decorator(blti_admin_required, name='dispatch')
 class LTIInstSectionDetails(OpenInstSectionDetails):
+
+    def is_authorized_for_section(self, request, schedule):
+        pass
 
     def validate_section_id(self, request, section_id):
         blti_data = BLTI().get_session(request)
