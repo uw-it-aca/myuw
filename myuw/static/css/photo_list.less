@@ -2,11 +2,12 @@
 
 .myuw-photo-list {
 
+    margin-bottom: 11rem;
+
     @media @two-column {
         margin-top: 0;
         margin-left: -16px;
         margin-right: -16px;
-        margin-bottom: 16px;
         padding: 16px !important;
     }
 
@@ -32,7 +33,7 @@
             .form-inline[aria-hidden="true"] {
                 display: none;
             }
-            
+
             #sort_list {
                 display: inline-block;
                 width: auto;
@@ -103,7 +104,8 @@
     @media @print { border: none;
 
         .myuw-card { border: none; }
-        .myuw-photo-list-controls { display: none !important; }
+        .myuw-photo-list-controls,
+        .myuw-minicard-overlay { display: none !important; }
 
         ol.grid-view {
 
