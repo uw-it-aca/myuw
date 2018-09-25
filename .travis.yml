@@ -21,7 +21,7 @@ before_script:
   - if [ "$TRAVIS_PYTHON_VERSION" = "3.6" ] ; then pip install mysqlclient; fi
 
   - pip install coverage
-  - pip install python-coveralls
+  - pip install coveralls
   - pip install pycodestyle
   - npm install jquery
   - npm install moment
