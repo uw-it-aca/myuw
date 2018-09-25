@@ -23,16 +23,9 @@ def get_schedule_by_term(request, term):
     regid = get_regid_of_current_user(request)
     id = "myuwschedule%d%s" % (term.year, term.quarter)
     if not hasattr(request, id):
-        if term.is_current(get_comparison_datetime(request)):
-            non_tsp = True  # include_instructor_not_on_time_schedule
-
-        else:
-            non_tsp = False
-
         student_schedule = get_schedule_by_regid_and_term(
             regid,
             term,
-            non_time_schedule_instructors=non_tsp,
             per_section_prefetch_callback=myuw_section_prefetch,
             transcriptable_course="all")
         set_course_display_pref(request, student_schedule)
