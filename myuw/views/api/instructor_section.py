@@ -16,10 +16,9 @@ from uw_sws.section import get_joint_sections
 from myuw.dao.canvas import sws_section_label
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.enrollment import get_code_for_class_level
-from myuw.dao.instructor_schedule import \
-    check_section_instructor, get_instructor_section
-from myuw.dao.pws import get_person_of_current_user, get_url_key_for_regid,\
-    get_person_by_regid as get_pws_person_by_regid
+from myuw.dao.instructor_schedule import get_instructor_section,\
+    check_section_instructor
+from myuw.dao.pws import get_url_key_for_regid
 from myuw.logger.logresp import log_success_response
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
@@ -29,6 +28,13 @@ from myuw.views.api.instructor_schedule import load_schedule, \
     _set_current_or_future
 
 logger = logging.getLogger(__name__)
+withdrew_grade_pattern = re.compile(r'^W')
+
+
+def is_registration_to_exclude(registration):
+    return (registration.is_withdrew() or
+            registration.is_pending_status() or
+            registration.is_dropped_status())
 
 
 class OpenInstSectionDetails(OpenAPI):
@@ -60,16 +66,16 @@ class OpenInstSectionDetails(OpenAPI):
             status 404: no schedule found (teaching no courses)
         """
         self.processed_primary = False
-        self.person = get_person_of_current_user(request)  # pws
-
         try:
             section_id = self.validate_section_id(request, section_id)
         except NotSectionInstructorException:
             return not_instructor_error()
 
-        schedule = get_instructor_section(request, section_id,
+        schedule = get_instructor_section(request,
+                                          section_id,
                                           include_registrations=True,
                                           include_linked_sections=True)
+        # with the student registration and secondary section data
 
         try:
             self.is_authorized_for_section(request, schedule)
@@ -142,6 +148,9 @@ class OpenInstSectionDetails(OpenAPI):
         if self.processed_primary:
             registrations = []
             for registration in section.registrations:
+
+                if is_registration_to_exclude(registration):
+                    continue
                 registrations.append(registration.person.uwregid)
 
             section_data["registrations"] = registrations
@@ -163,6 +172,10 @@ class OpenInstSectionDetails(OpenAPI):
         name_threads = {}
         enrollment_threads = {}
         for registration in registration_list:
+
+            if is_registration_to_exclude(registration):
+                continue
+
             person = registration.person  # pws person
             regid = person.uwregid
 
@@ -211,6 +224,7 @@ class OpenInstSectionDetails(OpenAPI):
             thread.join()
 
             for reg in registrations[regid]:
+
                 reg["first_name"] = thread.response["first_name"]
                 reg["surname"] = thread.response["surname"]
                 reg["email"] = thread.response["email"]
@@ -245,6 +259,7 @@ class OpenInstSectionDetails(OpenAPI):
 
     def get_enrollments(self, regid):
         enrollment = get_enrollment_by_regid_and_term(regid, self.term)
+
         majors = []
         for major in enrollment.majors:
             majors.append(major.json_data())
@@ -258,16 +273,14 @@ class InstSectionDetails(OpenInstSectionDetails):
     """
     api: api/v1/instructor_section_details/section_id
     """
-
     def is_authorized_for_section(self, request, schedule):
-        try:
+        if len(schedule.sections):
             check_section_instructor(schedule.sections[0], schedule.person)
-        except IndexError:
-            pass
 
 
 @method_decorator(blti_admin_required, name='dispatch')
 class LTIInstSectionDetails(OpenInstSectionDetails):
+
     def is_authorized_for_section(self, request, schedule):
         pass
 
@@ -279,8 +292,4 @@ class LTIInstSectionDetails(OpenInstSectionDetails):
             raise NotSectionInstructorException
 
         (sws_section_id, instructor_regid) = sws_section_label(section_id)
-
-        if instructor_regid is not None:
-            self.person = get_pws_person_by_regid(instructor_regid)
-
         return sws_section_id

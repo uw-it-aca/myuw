@@ -153,6 +153,9 @@ def get_linked_section(url, instructor_regid):
 
 
 def check_section_instructor(section, person):
+    """
+    raise NotSectionInstructorException if person is not lised as an instructor
+    """
     if not section.is_instructor(person):
         if section.is_primary_section:
             raise NotSectionInstructorException(
