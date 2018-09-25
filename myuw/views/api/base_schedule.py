@@ -6,7 +6,7 @@ from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
 from myuw.dao.library import get_subject_guide_by_section
-from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
@@ -22,13 +22,18 @@ logger = logging.getLogger(__name__)
 
 
 class StudClasSche(ProtectedAPI):
+
     def dispatch(self, request, *args, **kwargs):
-        self.regid = get_regid_of_current_user(request)
-        prefetch_resources(request,
-                           prefetch_enrollment=True,
-                           prefetch_library=True,
-                           prefetch_canvas=True)
-        return super(StudClasSche, self).dispatch(request, *args, **kwargs)
+        try:
+            person = get_person_of_current_user(request)
+            prefetch_resources(request,
+                               prefetch_enrollment=True,
+                               prefetch_library=True,
+                               prefetch_canvas=True)
+            return super(StudClasSche, self).dispatch(request, *args, **kwargs)
+        except Exception:
+            log_exception(
+                logger, 'StudClasSche.dispatch', traceback.format_exc())
 
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
