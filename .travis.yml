@@ -19,7 +19,7 @@ before_script:
   - if [ "$DB" = "mysql" ] ; then pip install mysqlclient; fi
 
   - pip install coverage
-  - pip install python-coveralls
+  - pip install coveralls
   - pip install pycodestyle
   - npm install jquery
   - npm install moment
