@@ -280,7 +280,6 @@ class OpenInstSectionDetails(OpenAPI):
                 "class_level": enrollment.class_level}
 
 
-
 @method_decorator(login_required, name='dispatch')
 class InstSectionDetails(OpenInstSectionDetails):
     """
