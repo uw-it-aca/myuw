@@ -52,7 +52,7 @@ class TestCustomCachePolicy(TestCase):
         self.assertEquals(get_cache_time(
             "pws", "/nws/v1/uwnetid"), ONE_HOUR)
         self.assertEquals(get_cache_time(
-            "uwnetid", "/nws/v1/uwnetid"), ONE_HOUR)
+            "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
 
         self.assertEquals(get_cache_time(
             "grad", "/services/students"), FOUR_HOURS)
