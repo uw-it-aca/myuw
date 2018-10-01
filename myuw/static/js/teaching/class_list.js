@@ -241,6 +241,9 @@ var PhotoClassList = {
 
         for (i = 0; i < registrations.length; i++) {
             var reg = registrations[i];
+            if (reg.is_joint){ //MUWM-4371
+                continue;
+            }
             var fields = ["\t" + reg.student_number,  // MUWM-3978
                           reg.netid,
                           reg.surname,
