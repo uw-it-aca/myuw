@@ -33,6 +33,14 @@
         },
         {
             "CourseNumber": "306",
+            "CurriculumAbbreviation": "POL S",
+            "Href": "/student/v5/course/2013,autumn,POL%20S,306/AB.json",
+            "Quarter": "autumn",
+            "SectionID": "AB",
+            "Year": 2013
+        },
+        {
+            "CourseNumber": "306",
             "CurriculumAbbreviation": "COM",
             "Href": "/student/v5/course/2013,autumn,COM,306/A.json",
             "Quarter": "autumn",
@@ -40,5 +48,5 @@
             "Year": 2013
         }
     ],
-    "TotalCount": 2
+    "TotalCount": 3
 }
