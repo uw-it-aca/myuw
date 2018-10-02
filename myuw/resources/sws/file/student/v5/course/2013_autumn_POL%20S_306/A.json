@@ -84,6 +84,22 @@
     "LimitEstimateEnrollment": 200,
     "LimitEstimateEnrollmentIndicator": "limit",
     "LinkedSectionTypes": [
+        {
+            "LinkedSections": [
+                {
+                    "IsPrimarySection": false,
+                    "Section": {
+                        "CourseNumber": "306",
+                        "CurriculumAbbreviation": "POL S",
+                        "Href": "/student/v5/course/2013,autumn,POL%20S,306/AB.json",
+                        "Quarter": "autumn",
+                        "SectionID": "AB",
+                        "Year": 2013
+                    }
+                }
+            ],
+            "Type": "quiz"
+        }
     ],
     "MaximumCredit": "",
     "MaximumTermCredit": "",
