@@ -38,7 +38,11 @@ var PhotoClassList = {
                 // Mark joint section registrations as such
                 $.each(joint_section.registrations, function(r_id, registration){
                     registration.is_joint = true;
+                    registration.joint_curric = joint_section.course_abbr;
+                    registration.joint_course_number = joint_section.course_number;
+                    registration.joint_section_id = joint_section.section_id;
                 });
+
                 joint_registrations =
                     joint_registrations.concat(joint_section.registrations);
             });

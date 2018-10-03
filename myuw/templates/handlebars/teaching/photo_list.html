@@ -52,7 +52,7 @@
                                         <option value="class_code">Class</option>
                                         <option value="credits">Credits</option>
                                         {{#if sections.0.has_linked_sections}}
-                                        <option value="linked_sections">Section</option>
+                                        <option value="linked_sections">Linked Secondary Section</option>
                                         {{/if}}
                                 </select>
                             </div>
@@ -80,7 +80,10 @@
                                 <th>Last Name</th>
                                 <th>First Name</th>
                                 {{#if sections.0.has_linked_sections}}
-                                    <th title="linked secondary sections">Section</th>
+                                    <th title="linked secondary sections">Linked Secondary Section</th>
+                                {{/if}}
+                                {{#if sections.0.has_joint}}
+                                    <th title="linked secondary sections">Joint Section</th>
                                 {{/if}}
                                 <th>Credits</th>
                                 <th>Class</th>
@@ -101,6 +104,11 @@
                                 <td>{{ first_name }}</td>
                                 {{#if @root.sections.0.has_linked_sections}}
                                     <td>{{ linked_sections }}</td>
+                                {{/if}}
+                                {{#if is_joint}}
+                                    <td>{{ joint_curric }} {{ joint_course_number }} {{ joint_section_id }}</td>
+                                {{else}}
+                                <td>--</td>
                                 {{/if}}
                                 <td>
                                     {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
