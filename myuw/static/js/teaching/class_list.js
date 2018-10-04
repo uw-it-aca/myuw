@@ -90,15 +90,18 @@ var PhotoClassList = {
         });
 
         $(".joint").hide();
+        $(".joint-col").hide();
         $("#toggle_joint").on("click", function(e) {
             if($("#toggle_joint").attr("aria-pressed") === "false"){
                 $("#toggle_joint").attr("aria-pressed", "true");
                 $("#toggle_joint .fa").removeClass("fa-square-o").addClass("fa-check-square");
                 $(".joint").show();
+                $(".joint-col").show();
             } else {
                 $("#toggle_joint").attr("aria-pressed", "false");
                 $("#toggle_joint .fa").removeClass("fa-check-square").addClass("fa-square-o");
                 $(".joint").hide();
+                $(".joint-col").hide();
             }
 
         });

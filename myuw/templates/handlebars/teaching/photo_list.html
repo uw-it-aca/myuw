@@ -83,7 +83,7 @@
                                     <th title="linked secondary sections">Linked Secondary Section</th>
                                 {{/if}}
                                 {{#if sections.0.has_joint}}
-                                    <th title="linked secondary sections">Joint Section</th>
+                                    <th title="linked secondary sections" class="joint-col">Joint Section</th>
                                 {{/if}}
                                 <th>Credits</th>
                                 <th>Class</th>
@@ -106,11 +106,13 @@
                                     <td>{{ linked_sections }}</td>
                                 {{/if}}
                                 {{#if ../sections.0.has_joint}}
-                                    {{#if is_joint}}
-                                        <td>{{ joint_curric }} {{ joint_course_number }} {{ joint_section_id }}</td>
-                                    {{else}}
-                                    <td>{{ ../sections.0.curriculum_abbr }} {{ ../sections.0.course_number }} {{ ../sections.0.section_id }}</td>
-                                    {{/if}}
+                                    <td class="joint-col">
+                                        {{#if is_joint}}
+                                        {{ joint_curric }} {{ joint_course_number }} {{ joint_section_id }}
+                                        {{else}}
+                                        {{ ../sections.0.curriculum_abbr }} {{ ../sections.0.course_number }} {{ ../sections.0.section_id }}
+                                        {{/if}}
+                                    </td>
                                 {{/if}}
                                 <td>
                                     {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
