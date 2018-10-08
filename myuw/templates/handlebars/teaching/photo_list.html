@@ -57,7 +57,7 @@
                                 </select>
                             </div>
                             {{#if sections.0.has_joint}}
-                            <button id="toggle_joint" type="button" class="btn btn-default myuw-button" aria-pressed="false" title="Show students from joint sections"><i class="fa fa-square-o" aria-hidden="true"></i> Joint Section Students</button>
+                            <button id="toggle_joint" type="button" class="btn btn-default myuw-button" aria-pressed="false" title="Show students from joint courses"><i class="fa fa-square-o" aria-hidden="true"></i> Joint Course Students</button>
                             {{/if}}
                         </div>
 
@@ -79,11 +79,11 @@
                                 <th>UW NetID</th>
                                 <th>Last Name</th>
                                 <th>First Name</th>
-                                {{#if sections.0.has_linked_sections}}
-                                    <th title="linked secondary sections">Linked Secondary Section</th>
-                                {{/if}}
                                 {{#if sections.0.has_joint}}
-                                    <th title="linked secondary sections" class="joint-col">Joint Section</th>
+                                    <th class="joint-col">Joint Course</th>
+                                {{/if}}
+                                {{#if sections.0.has_linked_sections}}
+                                    <th>Secondary Section</th>
                                 {{/if}}
                                 <th>Credits</th>
                                 <th>Class</th>
@@ -102,9 +102,6 @@
                                 <td>{{ netid }}</td>
                                 <td>{{ surname }}</td>
                                 <td>{{ first_name }}</td>
-                                {{#if @root.sections.0.has_linked_sections}}
-                                    <td>{{ linked_sections }}</td>
-                                {{/if}}
                                 {{#if ../sections.0.has_joint}}
                                     <td class="joint-col">
                                         {{#if is_joint}}
@@ -113,6 +110,9 @@
                                         {{ ../sections.0.curriculum_abbr }} {{ ../sections.0.course_number }} {{ ../sections.0.section_id }}
                                         {{/if}}
                                     </td>
+                                {{/if}}
+                                {{#if @root.sections.0.has_linked_sections}}
+                                    <td>{{ linked_sections }}</td>
                                 {{/if}}
                                 <td>
                                     {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
