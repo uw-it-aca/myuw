@@ -54,6 +54,6 @@ class SectionStatusProcessor(InnerMessageProcessor):
                         logger.error(msg)
                         raise SectionStatusProcessorException(msg)
         except Exception as e:
-            msg = "FAILED to process event" % str(json_data)
+            msg = "FAILED to process event with exception: %s" % str(e)
             logger.error(msg)
             raise SectionStatusProcessorException(msg)
