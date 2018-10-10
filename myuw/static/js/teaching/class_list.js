@@ -38,7 +38,11 @@ var PhotoClassList = {
                 // Mark joint section registrations as such
                 $.each(joint_section.registrations, function(r_id, registration){
                     registration.is_joint = true;
+                    registration.joint_curric = joint_section.course_abbr;
+                    registration.joint_course_number = joint_section.course_number;
+                    registration.joint_section_id = joint_section.section_id;
                 });
+
                 joint_registrations =
                     joint_registrations.concat(joint_section.registrations);
             });
@@ -86,15 +90,18 @@ var PhotoClassList = {
         });
 
         $(".joint").hide();
+        $(".joint-col").hide();
         $("#toggle_joint").on("click", function(e) {
             if($("#toggle_joint").attr("aria-pressed") === "false"){
                 $("#toggle_joint").attr("aria-pressed", "true");
                 $("#toggle_joint .fa").removeClass("fa-square-o").addClass("fa-check-square");
                 $(".joint").show();
+                $(".joint-col").show();
             } else {
                 $("#toggle_joint").attr("aria-pressed", "false");
                 $("#toggle_joint .fa").removeClass("fa-check-square").addClass("fa-square-o");
                 $(".joint").hide();
+                $(".joint-col").hide();
             }
 
         });

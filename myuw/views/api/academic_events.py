@@ -78,7 +78,7 @@ class AcademicEvents(ProtectedAPI):
             "end": end,
             "year": year,
             "quarter": quarter,
-            "category": category,
+            "category": category.to_ical(),
             "myuw_categories": categories,
             "event_url": event_url,
             "is_all_day": is_all_day,
