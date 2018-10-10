@@ -32,23 +32,28 @@ class SectionStatusProcessor(InnerMessageProcessor):
         """
         Each status change message body contains a single event
         """
-        if 'EventDate' in json_data:
-            modified = parse(json_data['EventDate'])
-            if modified <= (timezone.now() - message_freshness):
-                logger.debug("DISCARD Event (Date: %s, ID: %s)",
-                             modified, json_data['EventID'])
-                return
+        try:
+            if 'EventDate' in json_data:
+                modified = parse(json_data['EventDate'])
+                if modified <= (timezone.now() - message_freshness):
+                    logger.debug("DISCARD Event (Date: %s, ID: %s)",
+                                modified, json_data['EventID'])
+                    return
 
-            status_url = json_data.get('Href')
-            # ie, /v5/course/2018,autumn,SOC,225/A/status.json
+                status_url = json_data.get('Href')
+                # ie, /v5/course/2018,autumn,SOC,225/A/status.json
 
-            new_value = json_data.get('Current')
+                new_value = json_data.get('Current')
 
-            if status_url and new_value:
-                url = "/student%s" % status_url
-                try:
-                    update_sws_entry_in_cache(url, new_value, modified)
-                except Exception as e:
-                    msg = "FAILED to update cache(url=%s) ==> %s" % (url, e)
-                    logger.error(msg)
-                    raise SectionStatusProcessorException(msg)
+                if status_url and new_value:
+                    url = "/student%s" % status_url
+                    try:
+                        update_sws_entry_in_cache(url, new_value, modified)
+                    except Exception as e:
+                        msg = "FAILED to update cache(url=%s) ==> %s" % (url, e)
+                        logger.error(msg)
+                        raise SectionStatusProcessorException(msg)
+        except Exception as e:
+            msg = "FAILED to process event" % str(json_data)
+            logger.error(msg)
+            raise SectionStatusProcessorException(msg)
