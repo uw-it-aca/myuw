@@ -62,44 +62,11 @@
     "IndependentStudy": false,
     "InstituteName": "",
     "IsIndependentStart": false,
-    "JointSections": [
-        {
-            "CourseNumber": "306",
-            "CurriculumAbbreviation": "COM",
-            "Href": "/student/v5/course/2013,autumn,COM,306/A.json",
-            "Quarter": "autumn",
-            "SectionID": "A",
-            "Year": 2013
-        },
-        {
-            "CourseNumber": "306",
-            "CurriculumAbbreviation": "CSE",
-            "Href": "/student/v5/course/2013,autumn,CSE,306/A.json",
-            "Quarter": "autumn",
-            "SectionID": "A",
-            "Year": 2013
-        }
-    ],
+    "JointSections": [],
     "LMSOwnership": null,
     "LimitEstimateEnrollment": 200,
     "LimitEstimateEnrollmentIndicator": "limit",
     "LinkedSectionTypes": [
-        {
-            "LinkedSections": [
-                {
-                    "IsPrimarySection": false,
-                    "Section": {
-                        "CourseNumber": "306",
-                        "CurriculumAbbreviation": "POL S",
-                        "Href": "/student/v5/course/2013,autumn,POL%20S,306/AB.json",
-                        "Quarter": "autumn",
-                        "SectionID": "AB",
-                        "Year": 2013
-                    }
-                }
-            ],
-            "Type": "quiz"
-        }
     ],
     "MaximumCredit": "",
     "MaximumTermCredit": "",
@@ -164,14 +131,14 @@
         "ChangedSinceDate": "",
         "CourseNumber": "306",
         "CurriculumAbbreviation": "POL S",
-        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=POL%20S&course_number=306&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "Href": "/student/v5/registration.json?year=2013&quarter=autumn&curriculum_abbreviation=POL%20S&course_number=306&section_id=AB&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
         "InstructorRegID": null,
         "IsActive": true,
         "PageSize": "",
         "PageStart": "",
         "Quarter": "autumn",
         "RegID": null,
-        "SectionID": "A",
+        "SectionID": "AB",
         "TranscriptableCourse": "",
         "Verbose": false,
         "Year": 2013
@@ -182,7 +149,7 @@
     "SLN": "25769",
     "SameVariableContentAs": [],
     "SecondaryGradingOption": true,
-    "SectionID": "A",
+    "SectionID": "AB",
     "SectionType": "lecture",
     "SelfRegistrationAllowed": true,
     "ServiceLearning": false,
