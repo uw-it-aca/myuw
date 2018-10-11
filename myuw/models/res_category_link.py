@@ -1,3 +1,4 @@
+import json
 from django.db import models
 
 
@@ -74,6 +75,19 @@ class ResCategoryLink(models.Model):
         concat = long_name.lower()
         concat = "".join(c for c in concat if c.isalpha())
         return concat
+
+    def __str__(self):
+        data = {"title": self.title,
+                "url": self.url,
+                "affiliation": self.affiliation,
+                "pce": self.pce,
+                "campus": self.campus,
+                "category_id": self.category_id,
+                "category_name": self.category_name,
+                "sub_category": self.sub_category,
+                "subcategory_id": self.subcategory_id,
+                "new_tab": self.new_tab}
+        return json.dumps(data, default=str)
 
     class Meta:
         db_table = "myuw_res_category_links"

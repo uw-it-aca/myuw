@@ -1,5 +1,6 @@
 import csv
 import os
+from copy import deepcopy
 from django.db.models import Q
 from myuw.models import ResourceCategoryPin
 from myuw.models.res_category_link import ResCategoryLink
@@ -150,14 +151,17 @@ class Resource_Links(MyuwLink):
         return category_list
 
     def _filter_pinned(self, links):
+        # python 3 RuntimeError: dictionary changed size during iteration
+        # Add deepcopy. Fang 2018/10/11
+
         # remove unpinned subcats
-        for category in links:
-            for subcat in links[category]['subcategories'].keys():
+        for category in deepcopy(links):
+            for subcat in deepcopy(links[category]['subcategories']).keys():
                 if not links[category]['subcategories'][subcat]['is_pinned']:
                     del links[category]['subcategories'][subcat]
 
         # remove cats w/o subcat
-        for category in links.keys():
+        for category in deepcopy(links).keys():
             subcat = links[category]['subcategories']
             if len(subcat) == 0:
                 del links[category]
