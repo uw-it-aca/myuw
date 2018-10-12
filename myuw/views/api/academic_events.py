@@ -3,7 +3,8 @@ from myuw.views.error import handle_exception
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from myuw.dao.instructor import is_instructor
-from myuw.dao.term import get_comparison_date, get_current_quarter
+from myuw.dao.term import get_comparison_date, get_current_quarter, \
+    get_previous_quarter, get_future_number_quarters
 from uw_trumba import get_calendar_by_name
 from uw_sws.term import get_term_after
 from datetime import timedelta, date, datetime
@@ -61,16 +62,22 @@ class AcademicEvents(ProtectedAPI):
             return handle_exception(logger, timer, traceback)
 
     def json_for_event(self, event, request):
-        year, quarter = self.parse_year_quarter(event)
+        year, quarter = self.parse_year_quarter(event, request)
         # MUWM-4033 if event in current quarter use that year/qtr as backup
         if None in (year, quarter):
             year, quarter = self._get_year_qtr_from_cur_term(event, request)
         start, end = self.parse_dates(event)
+        print start, year, quarter
         category = self.parse_category(event)
         categories = self.parse_myuw_categories(event)
         event_url = self.parse_event_url(event)
 
         is_all_day = self.parse_event_is_all_day(event)
+        try:
+            quarter = quarter.capitalize()
+        except AttributeError:
+            quarter = "Break"
+            pass
 
         return {
             "summary": event.get('summary'),
@@ -128,27 +135,33 @@ class AcademicEvents(ProtectedAPI):
     def event_end_date(self, event):
         return self.get_end_date(event) - timedelta(days=1)
 
-    def parse_year_quarter(self, event):
-        desc = event.get('description')
-
+    def parse_year_quarter(self, event, request):
+        """
+         MUWM-4382 Will not use year/quarter fields, will map dates to term
+         assumes all events will fall -1 to +3 quarters of current
+        """
+        start = self.get_start_date(event)
+        current_term = get_current_quarter(request)
         year = None
         quarter = None
-        if not desc:
-            return year, quarter
-
-        matches = re.match(r".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
-        if matches:
-            year = matches.group(1)
-            quarter = matches.group(2)
-
+        if start < current_term.first_day_quarter:
+            print 'prev'
+            prev_term = get_previous_quarter(request)
+            if not start <= prev_term.first_day_quarter:
+                year = prev_term.year
+                quarter = prev_term.quarter
+        elif start > current_term.last_final_exam_date:
+            future_terms = get_future_number_quarters(request, 3)
+            for term in future_terms:
+                if start > term.last_final_exam_date:
+                    continue
+                if start >= term.first_day_quarter:
+                    year = term.year
+                    quarter = term.quarter
         else:
-            matches = re.match(r".*Year: (\d{4}).*", desc)
-            if matches:
-                year = matches.group(1)
+            year = current_term.year
+            quarter = current_term.quarter
 
-        override = event.get('override_quarter')
-        if override:
-            quarter = override
         return year, quarter
 
     def format_datetime(self, dt):
