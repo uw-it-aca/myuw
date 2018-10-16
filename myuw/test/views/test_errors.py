@@ -33,8 +33,9 @@ class TestViewsError(MyuwApiTest):
         self.assertEquals(response.status_code, 405)
 
     def test_invalid_future_term(self):
-        response = invalid_future_term()
-        self.assertEquals(response.content, b'Invalid requested future term')
+        response = invalid_future_term("2013,spring")
+        self.assertEquals(response.content,
+                          b'Invalid requested future term 2013,spring')
         self.assertEquals(response.status_code, 410)
 
     def test_data_error(self):
