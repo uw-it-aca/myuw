@@ -13,7 +13,9 @@ var InstructorCourseCardContent = {
             if (quarter === 'summer') {
                 c_section.final_exam.display_no_final_period = true;
             } else {
-                c_section.display_confirm_final_link = true;
+                if(c_section.course_campus === "Seattle"){
+                    c_section.display_confirm_final_link = true;
+                }
             }
         }
         var raw = template(c_section);
