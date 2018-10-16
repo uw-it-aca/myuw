@@ -40,7 +40,7 @@ def get_cache_time(service, url):
         return ONE_HOUR
 
     if "uwnetid" == service:
-        return ONE_HOUR
+        return FOUR_HOURS
 
     return FOUR_HOURS
 
