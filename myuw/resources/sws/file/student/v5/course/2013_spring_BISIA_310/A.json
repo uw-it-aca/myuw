@@ -36,7 +36,7 @@
         "FinalExamBuilding": {
             "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=UW2&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
         },
-        "MeetingStatus": "3",
+        "MeetingStatus": "0",
         "RoomNumber": "031",
         "StartTime": "15:30"
     },
