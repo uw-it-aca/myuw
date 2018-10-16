@@ -12,8 +12,8 @@ def __log_resptime(timer, action_message):
 
 
 def log_page_view(timer, request, template_name):
-    msg = json.dumps({"page": template_name,
-                      "session_key": hash_session_key(request)})
+    msg = json.dumps({'page': template_name,
+                      'session_key': hash_session_key(request)})
     if timer:
         __log_resptime(timer, msg)
     else:
@@ -22,15 +22,15 @@ def log_page_view(timer, request, template_name):
 
 def log_api_call(timer, request, message):
     __log_resptime(timer,
-                   json.dumps({"api": message,
-                               "session_key": hash_session_key(request)}))
+                   json.dumps({'api': message,
+                               'session_key': hash_session_key(request)}))
 
 
 def log_interaction(request, interaction_type):
     if interaction_type:
         resp_logger.info(json.dumps(
-            {"client-side interaction": interaction_type,
-             "session_key": hash_session_key(request)}))
+            {'client-side interaction': interaction_type,
+             'session_key': hash_session_key(request)}))
 
 
 def log_err(logger, timer, exc_info):

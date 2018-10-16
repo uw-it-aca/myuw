@@ -7,7 +7,7 @@ logger = logging.getLogger('session')
 
 
 def log_session(netid, request):
-    logger.info(json.dumps(get_log_entry(netid, request)))
+    logger.info(json.dumps(get_log_entry(netid, request), sort_keys=True))
 
 
 def get_log_entry(netid, request):
