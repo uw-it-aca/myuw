@@ -3,7 +3,7 @@ import time
 import traceback
 from myuw.dao.hfs import get_account_balances_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -24,7 +24,7 @@ class HfsBalances(ProtectedAPI):
             balances = get_account_balances_for_current_user(request)
 
             resp_json = balances.json_data(use_custom_date_format=True)
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get Hfs Account Balances")
             return self.json_response(resp_json)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)

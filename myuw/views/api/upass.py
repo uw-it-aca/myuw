@@ -1,7 +1,7 @@
 import logging
 import traceback
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.dao.upass import get_upass
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
@@ -17,7 +17,7 @@ class UPass(ProtectedAPI):
         timer = Timer()
         try:
             status_json = get_upass(request)
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get UPass")
             return self.json_response(status_json)
         except Exception:
             return handle_exception(logger, timer, traceback)

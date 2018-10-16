@@ -5,7 +5,7 @@ from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 from myuw.views import prefetch_resources
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ class DepartmentalCalendar(ProtectedAPI):
                                prefetch_group=True,
                                prefetch_enrollment=True)
             response = api_request(request)
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get DepartmentalCalendar")
             return self.json_response(response)
         except Exception:
             return handle_exception(logger, timer, traceback)

@@ -30,7 +30,7 @@ from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
     get_current_quarter, is_past, is_future,
     get_previous_number_quarters, get_future_number_quarters)
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.logger.logback import log_exception
 from myuw.logger.timer import Timer
 from myuw.util.settings import get_myuwclass_url
@@ -70,7 +70,9 @@ class InstSche(ProtectedAPI):
         for thread in threads:
             thread.join()
 
-        log_success_response(logger, timer)
+        log_api_call(timer, request,
+                     "Get Instructor Schedule for {},{}".format(
+                         term.year, term.quarter))
         return self.json_response(resp_data)
 
 
@@ -459,10 +461,10 @@ class InstScheQuar(InstSche):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
+        timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term", None)
-        timer = Timer()
         try:
             smr_term = ""
             if summer_term and len(summer_term) > 1:
@@ -501,7 +503,8 @@ class InstSect(ProtectedAPI):
             return not_instructor_error()
 
         resp_data = load_schedule(request, schedule)
-        log_success_response(logger, timer)
+        log_api_call(timer, request,
+                     "Get Instructor Section for {}".format(section_id))
         return self.json_response(resp_data)
 
     def get(self, request, *args, **kwargs):

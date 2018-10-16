@@ -1,6 +1,6 @@
 import logging
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.dao.applications import get_applications
 from myuw.views.api import ProtectedAPI
 
@@ -21,6 +21,6 @@ class Applications(ProtectedAPI):
 
         response = get_applications(request)
 
-        log_success_response(logger, timer)
+        log_api_call(timer, request, "Get Applications")
 
         return self.json_response(response)

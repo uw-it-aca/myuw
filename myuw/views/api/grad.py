@@ -7,7 +7,7 @@ from myuw.dao.grad import (
     get_grad_leave_for_current_user, get_grad_petition_for_current_user,
     degree_to_json, committee_to_json, leave_to_json, petition_to_json)
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg, log_success_response
+from myuw.logger.logresp import log_msg, log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 
@@ -67,7 +67,8 @@ class MyGrad(ProtectedAPI):
                 if ex.status != 404:
                     json_ret["petit_err"] = ex.status
 
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get My Grad")
+
             return self.json_response(json_ret)
         except Exception:
             return handle_exception(logger, timer, traceback)

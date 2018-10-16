@@ -1,21 +1,36 @@
+import json
+import logging
 from myuw.logger.logback import log_info, log_time, log_exception_with_timer
-from myuw.logger.session_log import get_request_session_key
+from myuw.logger.session_log import hash_session_key
+
+resp_logger = logging.getLogger(__name__)
 
 
-def log_msg_with_request(logger, timer, request, msg='fulfilled'):
+def __log_resptime(timer, action_message):
+    resp_logger.info("{} Time={} seconds".format(action_message,
+                                                 timer.get_elapsed()))
+
+
+def log_page_view(timer, request, template_name):
+    msg = json.dumps({"page": template_name,
+                      "session_key": hash_session_key(request)})
     if timer:
-        log_time(logger,
-                 "session_key:%s, %s" % (
-                     get_request_session_key(request), msg),
-                 timer)
+        __log_resptime(timer, msg)
     else:
-        log_info(logger,
-                 "session_key:%s, %s" % (get_request_session_key(request),
-                                         msg))
+        resp_logger.info(msg)
 
 
-def log_success_response(logger, timer):
-    log_time(logger, 'fulfilled', timer)
+def log_api_call(timer, request, message):
+    __log_resptime(timer,
+                   json.dumps({"api": message,
+                               "session_key": hash_session_key(request)}))
+
+
+def log_interaction(request, interaction_type):
+    if interaction_type:
+        resp_logger.info(json.dumps(
+            {"client-side interaction": interaction_type,
+             "session_key": hash_session_key(request)}))
 
 
 def log_err(logger, timer, exc_info):

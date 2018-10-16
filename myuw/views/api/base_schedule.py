@@ -10,8 +10,7 @@ from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.logger.logresp import (log_data_not_found_response,
-                                 log_success_response, log_msg)
+from myuw.logger.logresp import log_data_not_found_response, log_api_call
 from myuw.logger.logback import log_exception
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
@@ -52,7 +51,9 @@ class StudClasSche(ProtectedAPI):
             return data_not_found()
 
         resp_data = load_schedule(request, schedule, summer_term)
-        log_success_response(logger, timer)
+        log_api_call(timer, request,
+                     "Get Student Schedule {},{}".format(term.year,
+                                                         term.quarter))
         return self.json_response(resp_data)
 
 

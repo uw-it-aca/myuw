@@ -61,8 +61,9 @@ def invalid_method():
     return _make_response(HTTP_METHOD_NOT_ALLOWED, "Method not allowed")
 
 
-def invalid_future_term():
-    return _make_response(HTTP_GONE, "Invalid requested future term")
+def invalid_future_term(msg):
+    return _make_response(HTTP_GONE,
+                          "Invalid requested future term {}".format(msg))
 
 
 def data_error():

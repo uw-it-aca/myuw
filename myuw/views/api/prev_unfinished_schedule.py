@@ -4,8 +4,7 @@ from myuw.dao.enrollment import get_prev_enrollments_with_open_sections
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_previous_number_quarters
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import (
-    log_msg, log_success_response, log_data_not_found_response)
+from myuw.logger.logresp import log_api_call, log_data_not_found_response
 from myuw.views import prefetch_resources
 from myuw.views.api.base_schedule import StudClasSche, load_schedule
 from myuw.views.error import handle_exception, data_not_found
@@ -45,7 +44,8 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
                 return data_not_found()
 
             resp_data = self.make_resp_json(request, enrollment_dict)
-            log_success_response(logger, timer)
+            log_api_call(timer, request,
+                         "Get StudUnfinishedPrevQuarClasSche")
             return self.json_response(resp_data)
         except Exception:
             return handle_exception(logger, timer, traceback)

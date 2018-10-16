@@ -1,7 +1,6 @@
 import hashlib
 import json
 import logging
-from myuw.dao import is_using_file_dao
 from myuw.dao.affiliation import get_all_affiliations
 
 logger = logging.getLogger('session')
@@ -14,7 +13,7 @@ def log_session(netid, request):
 def get_log_entry(netid, request):
     affiliations = get_all_affiliations(request)
     log_entry = {'netid': netid,
-                 'session_key': get_request_session_key(request),
+                 'session_key': hash_session_key(request),
                  'referer': request.META.get('HTTP_REFERER'),
                  'class_level': affiliations["class_level"],
                  'is_applicant': affiliations["applicant"],
@@ -65,8 +64,10 @@ def get_log_entry(netid, request):
     return log_entry
 
 
-def get_request_session_key(request):
-    if is_using_file_dao():
-        return ""
-    session_key = request.session.session_key
-    return hashlib.md5(session_key.encode('utf8')).hexdigest()
+def hash_session_key(request):
+    try:
+        session_key = request.session.session_key
+        return hashlib.md5(session_key.encode('utf8')).hexdigest()
+    except Exception:
+        pass
+    return ""

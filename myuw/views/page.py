@@ -18,8 +18,7 @@ from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logback import log_exception
-from myuw.logger.logresp import log_invalid_netid_response,\
-    log_msg_with_request
+from myuw.logger.logresp import log_invalid_netid_response, log_page_view
 from myuw.logger.session_log import log_session
 from myuw.util.settings import get_google_search_key, get_logout_url
 from myuw.views import prefetch_resources, get_enabled_features
@@ -55,7 +54,7 @@ def page(request,
 
     if prefetch:
         # Some pages need to prefetch before this point
-        failure = try_prefetch(request)
+        failure = try_prefetch(request, template, context)
         if failure:
             return failure
 
@@ -102,11 +101,11 @@ def page(request,
     if add_quicklink_context:
         _add_quicklink_context(request, context)
 
-    log_msg_with_request(logger, timer, request)
+    log_page_view(timer, request, template)
     return render(request, template, context)
 
 
-def try_prefetch(request):
+def try_prefetch(request, template, context):
     try:
         prefetch_resources(request,
                            prefetch_migration_preference=True,
