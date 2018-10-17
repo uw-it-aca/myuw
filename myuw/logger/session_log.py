@@ -1,6 +1,7 @@
 import hashlib
 import json
 import logging
+from django_user_agents.utils import get_user_agent
 from myuw.dao.affiliation import get_all_affiliations
 
 logger = logging.getLogger('session')
@@ -45,7 +46,8 @@ def get_log_entry(netid, request):
                  'tac_emp': affiliations.get('official_tacoma', False),
                  }
     try:
-        is_mobile = request.is_mobile or request.is_tablet
+        user_agent = get_user_agent(request)
+        is_mobile = (user_agent.is_mobile or user_agent.is_tablet)
         log_entry['is_mobile'] = bool(is_mobile)
     except Exception as ex:
         logger.warning("is_mobile ==> %s" % ex)
