@@ -4,9 +4,11 @@ from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_success_response
 from myuw.dao.instructor import is_instructor
 from myuw.dao.term import get_comparison_date, get_current_quarter, \
-    get_previous_quarter, get_future_number_quarters
+    get_previous_quarter, get_future_number_quarters, \
+    get_bod_specific_quarter, get_eod_specific_quarter, get_future_num_terms
 from uw_trumba import get_calendar_by_name
-from uw_sws.term import get_term_after
+from icalendar import Event
+from uw_sws.term import get_term_after, get_specific_term
 from datetime import timedelta, date, datetime
 import re
 import json
@@ -42,13 +44,13 @@ class AcademicEvents(ProtectedAPI):
                     event.add("calendar_name", cal_names[index])
                     raw_events.append(event)
                 index = index + 1
+            raw_events = self.add_term_breaks(raw_events)
 
             raw_events = self.sort_events(raw_events)
 
             raw_events = self.categorize_events(raw_events)
 
             raw_events = self.filter_past_events(request, raw_events)
-
             if current:
                 raw_events = self.filter_non_current(request, raw_events)
             else:
@@ -67,7 +69,6 @@ class AcademicEvents(ProtectedAPI):
         if None in (year, quarter):
             year, quarter = self._get_year_qtr_from_cur_term(event, request)
         start, end = self.parse_dates(event)
-        print start, year, quarter
         category = self.parse_category(event)
         categories = self.parse_myuw_categories(event)
         event_url = self.parse_event_url(event)
@@ -145,7 +146,6 @@ class AcademicEvents(ProtectedAPI):
         year = None
         quarter = None
         if start < current_term.first_day_quarter:
-            print 'prev'
             prev_term = get_previous_quarter(request)
             if not start <= prev_term.first_day_quarter:
                 year = prev_term.year
@@ -164,11 +164,37 @@ class AcademicEvents(ProtectedAPI):
 
         return year, quarter
 
+    def get_event_year_quarter(self, event):
+        desc = event.get('description')
+
+        year = None
+        quarter = None
+        if not desc:
+            return year, quarter
+
+        matches = re.match(r".*Year: (\d{4})\s+Quarter: (\w+).*", desc)
+        if matches:
+            year = matches.group(1)
+            quarter = matches.group(2)
+
+        else:
+            matches = re.match(r".*Year: (\d{4}).*", desc)
+            if matches:
+                year = matches.group(1)
+
+        override = event.get('override_quarter')
+        if override:
+            quarter = override
+        return year, quarter
+
     def format_datetime(self, dt):
         return self.format_native_datetime(dt.dt)
 
     def format_native_datetime(self, dt):
-        return str(dt)
+        try:
+            return str(dt.date())
+        except AttributeError:
+            return str(dt)
 
     def categorize_events(self, events):
         for event in events:
@@ -208,6 +234,9 @@ class AcademicEvents(ProtectedAPI):
                                     flags=re.IGNORECASE):
                 categories["breaks"] = True
                 categories["term_breaks"] = True
+        if 'myuw_break' == calendar_name:
+            categories["breaks"] = True
+            categories["term_breaks"] = True
 
         return categories
 
@@ -318,3 +347,38 @@ class AcademicEvents(ProtectedAPI):
 
         # If all of our events were in the first 3 days...
         return round1
+
+    def add_term_breaks(self, events):
+        term_tuples = []
+        for event in events:
+            term_tuples.append(self.get_event_year_quarter(event))
+        unique_terms = list(set(term_tuples))
+
+        qtr_map = {"Autumn": 0,
+                   "Winter": 1,
+                   "Spring": 2,
+                   "Summer": 3}
+
+        if len(unique_terms) > 1:
+            unique_terms.sort(key=lambda tup: tup[0])
+            unique_terms.sort(key=lambda tup: qtr_map[tup[1]])
+
+        for (year, quarter) in unique_terms:
+            term = get_specific_term(year, quarter)
+            break_start = term.get_end_of_the_term() + timedelta(days=1)
+
+            next_term = get_future_num_terms(term, 1)[0]
+            break_end = next_term.get_bod_first_day() - timedelta(days=1)
+
+            break_string = "%s Break" % next_term.quarter.capitalize()
+
+            break_event = Event()
+            break_event.add('dtstart', break_start)
+            break_event.add('dtend', break_end)
+            break_event.add('categories', 'break')
+            break_event.add('uid', '')
+            break_event.add('calendar_name', 'myuw_break')
+            break_event.add('summary', break_string)
+            events.append(break_event)
+
+        return events

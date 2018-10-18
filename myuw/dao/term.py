@@ -378,6 +378,15 @@ def get_eod_specific_quarter(year, quarter):
     return get_specific_term(year, quarter).get_eod_grade_submission()
 
 
+def get_bod_specific_quarter(year, quarter):
+    """
+    Return the datetime object of the beginning of day of first day of quarter
+    for the term of the give year and quarter.
+    Only the summer full term is relevant.
+    """
+    return get_specific_term(year, quarter).get_bod_first_day()
+
+
 def get_eod_specific_quarter_after(year, quarter):
     """
     Return the datetime object of the end of day on grade submission deadline

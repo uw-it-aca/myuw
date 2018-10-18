@@ -45,7 +45,7 @@ var AcademicCalendarCard = {
                 events: []
             };
 
-            if (ev.myuw_categories.term_breaks) {
+            if (ev.myuw_categories.term_breaks || ev.quarter === "Break") {
                 group_name = group_name+"-break";
                 new_group.term_break = true;
 
