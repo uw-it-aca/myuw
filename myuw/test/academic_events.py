@@ -8,8 +8,6 @@ from myuw.test import get_request_with_date
 class TestAcademicEvents(TestCase):
     def test_parsers(self):
         obj = AcademicEvents()
-
-        cal = Calendar()
         event = Event()
 
         event.add('dtstart', date(2014, 12, 5))
@@ -21,19 +19,20 @@ class TestAcademicEvents(TestCase):
         self.assertEquals(start, "2014-12-05")
         self.assertEquals(end, "2014-12-05")
 
-        year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, None)
-        self.assertEquals(quarter, None)
+        request = get_request_with_date("2014-12-05")
+        year, quarter = obj.parse_year_quarter(event, request)
+        self.assertEquals(year, 2014)
+        self.assertEquals(quarter, "autumn")
 
-        event['description'] = '  Year: 2018 '
-        year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, '2018')
-        self.assertEquals(quarter, None)
+        request = get_request_with_date("2014-09-05")
+        year, quarter = obj.parse_year_quarter(event, request)
+        self.assertEquals(year, 2014)
+        self.assertEquals(quarter, "autumn")
 
-        event['description'] = '  Year: 2018\nQuarter: Winter\nMore Content'
-        year, quarter = obj.parse_year_quarter(event)
-        self.assertEquals(year, '2018')
-        self.assertEquals(quarter, 'Winter')
+        request = get_request_with_date("2015-02-05")
+        year, quarter = obj.parse_year_quarter(event, request)
+        self.assertEquals(year, 2014)
+        self.assertEquals(quarter, "autumn")
 
     def test_categorize_event(self):
         event = Event()
