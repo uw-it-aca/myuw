@@ -11,6 +11,7 @@ env:
     # - DB=mysql
 install:
   - sudo apt-get install libxml2-dev libxmlsec1-dev
+  - pip install pyyaml ua-parser user-agents
   - pip install -e .
 before_script:
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
@@ -18,7 +19,6 @@ before_script:
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
   - if [ "$DB" = "mysql" ] ; then pip install mysqlclient; fi
 
-  - pip install pyyaml ua-parser user-agents
   - pip install coverage
   - pip install coveralls
   - pip install pycodestyle
