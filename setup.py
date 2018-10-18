@@ -56,7 +56,7 @@ setup(
         'Django-Safe-EmailBackend<2.0',
         'django_client_logger<3.0',
         'UW-HX-Toolkit<3.0',
-        'django-blti<2.0',
+        'django-blti<3.0',
         'python-dateutil',
         'yajl',
         'bleach',
