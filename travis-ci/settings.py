@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents',
     'compressor',
     'templatetag_handlebars',
     'django_client_logger',
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'userservice.user.UserServiceMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
     'rc_django.middleware.EnableServiceDegradationMiddleware',
 ]
 
@@ -107,6 +109,7 @@ MYUW_ENABLED_FEATURES = []
 
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+USER_AGENTS_CACHE = None
 
 USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"

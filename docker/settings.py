@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents',
     'compressor',
     'rc_django',
     'templatetag_handlebars',
@@ -34,7 +35,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'userservice.user.UserServiceMiddleware',
-    'django_mobileesp.middleware.UserAgentDetectionMiddleware'
+    'django_user_agents.middleware.UserAgentMiddleware'
 ]
 
 
@@ -109,6 +110,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_user_agents.utils.django_user_agents',
             ],
         }
     }
@@ -121,7 +123,7 @@ MAILMAN_COURSEREQUEST_RECIPIENT = ""
 
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
-
+USER_AGENTS_CACHE = None
 
 # Thrive required settings
 MEDIA_ROOT = "/statics/hx_images"
