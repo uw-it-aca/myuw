@@ -75,6 +75,7 @@ var AcademicCalendarCard = {
         });
         $("#acal-events-wrapper").attr("aria-labelledby", "myuw-events-filter-all");
         $(".acal-page-event").show();
+        AcademicCalendarCard.toggle_period_visibility();
     },
     filter_breaks: function() {
         $(".myuw-selected-button").removeClass("myuw-selected-button");
@@ -89,17 +90,29 @@ var AcademicCalendarCard = {
 
         $(".acal-page-event").hide();
         $(".acal-page-event-break").show();
-    },
-    filter_classes: function() {
-        $(".myuw-selected-button").removeClass("myuw-selected-button");
-        $("#myuw-event-filter-classes").addClass("myuw-selected-button");
-        $(".acal-page-event").hide();
-        $(".acal-page-event-class").show();
+        AcademicCalendarCard.toggle_period_visibility();
     },
 
     add_events: function() {
         $("#myuw-event-filter-all").click(AcademicCalendarCard.filter_all);
         $("#myuw-event-filter-breaks").click(AcademicCalendarCard.filter_breaks);
         $("#myuw-event-filter-classes").click(AcademicCalendarCard.filter_classes);
+    },
+
+    toggle_period_visibility: function() {
+        var periods = $('div.card');
+        $.each(periods, function(idx, period){
+            var has_visible = false;
+            $.each($(period).find('li'), function(idx, event){
+                if($(event).css("display") !== "none"){
+                    has_visible = true;
+                }
+            });
+            if(has_visible){
+                $(period).show();
+            } else {
+                $(period).hide();
+            }
+        });
     }
 };
