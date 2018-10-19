@@ -30,11 +30,11 @@ logger = logging.getLogger(__name__)
 
 
 def page(request,
+         template,
          context=None,
-         template='index.html',
          prefetch=True,
          add_quicklink_context=False):
-
+    print(template)
     if context is None:
         context = {}
 

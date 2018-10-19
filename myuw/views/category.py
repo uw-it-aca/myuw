@@ -8,4 +8,4 @@ def category(request, category=None, topic=None):
         'category': category,
         'topic': topic
     }
-    return page(request, context=context, template='category.html')
+    return page(request, 'category.html', context=context)
