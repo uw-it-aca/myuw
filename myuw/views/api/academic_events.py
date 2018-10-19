@@ -351,7 +351,9 @@ class AcademicEvents(ProtectedAPI):
     def add_term_breaks(self, events):
         term_tuples = []
         for event in events:
-            term_tuples.append(self.get_event_year_quarter(event))
+            term_tuple = self.get_event_year_quarter(event)
+            if None not in term_tuple:
+                term_tuples.append(term_tuple)
         unique_terms = list(set(term_tuples))
 
         qtr_map = {"Autumn": 0,
