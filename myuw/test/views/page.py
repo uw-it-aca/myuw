@@ -1,14 +1,9 @@
 from unittest import skipIf
-from django.test.utils import override_settings
 from django.urls import reverse
 from django.test.client import RequestFactory
 from myuw.test.api import missing_url, MyuwApiTest
 
 
-legacy_url = "http://some-test-server/myuw"
-
-
-@override_settings(MYUW_USER_SERVLET_URL=legacy_url)
 class TestPageMethods(MyuwApiTest):
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")

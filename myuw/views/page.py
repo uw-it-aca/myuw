@@ -34,7 +34,6 @@ def page(request,
          context=None,
          prefetch=True,
          add_quicklink_context=False):
-    print(template)
     if context is None:
         context = {}
 

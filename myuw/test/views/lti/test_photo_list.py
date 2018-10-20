@@ -1,15 +1,12 @@
 from unittest import skipIf
-from django.test.utils import override_settings
 from django.urls import reverse
+from django.test.utils import override_settings
 from django.test import RequestFactory
 from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.test.api import missing_url
 from myuw.test.views.lti import MyuwLTITest
 
-legacy_url = "http://some-test-server/myuw"
 
-
-@override_settings(MYUW_USER_SERVLET_URL=legacy_url)
 class TestLTILaunch(MyuwLTITest):
     @skipIf(missing_url('myuw_lti_photo_list'), 'myuw urls not configured')
     def test_lti_launch(self):
