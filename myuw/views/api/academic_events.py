@@ -151,7 +151,7 @@ class AcademicEvents(ProtectedAPI):
                 year = prev_term.year
                 quarter = prev_term.quarter
         elif start > current_term.last_final_exam_date:
-            future_terms = get_future_number_quarters(request, 3)
+            future_terms = get_future_number_quarters(request, 4)
             for term in future_terms:
                 if start > term.last_final_exam_date:
                     continue

@@ -18,55 +18,56 @@ def get_current_quarter_instructor_schedule(request):
 class TestInstructorCurrentSchedule(MyuwApiTest):
 
     def test_bill_current_term(self):
-        now_request = get_request_with_user('bill')
-        schedule = get_current_quarter_instructor_schedule(now_request)
+        with self.settings(MYUW_PRIOR_INSTRUCTED_TERM_YEARS=1):
+            now_request = get_request_with_user('bill')
+            schedule = get_current_quarter_instructor_schedule(now_request)
 
-        resp = InstScheCurQuar().get(now_request)
-        data = json.loads(resp.content)
-        self.assertTrue(data['grading_period_is_open'])
-        self.assertFalse(data['grading_period_is_past'])
+            resp = InstScheCurQuar().get(now_request)
+            data = json.loads(resp.content)
+            self.assertTrue(data['grading_period_is_open'])
+            self.assertFalse(data['grading_period_is_past'])
 
-        self.assertEqual(len(data['sections']), 6)
+            self.assertEqual(len(data['sections']), 6)
 
-        section1 = data['sections'][0]
-        self.assertEqual(section1['lib_subj_guide'],
-                         'http://guides.lib.uw.edu/research')
-        self.assertEqual(section1['curriculum_abbr'], "ESS")
-        self.assertEqual(section1['canvas_url'],
-                         'https://canvas.uw.edu/courses/149651')
-        self.assertEqual(section1['limit_estimate_enrollment'], 15)
-        self.assertEqual(section1['final_exam']['latitude'], 47.656645546715)
-        self.assertEqual(
-            section1["email_list"]['section_list']['list_address'],
-            'ess102a_sp13')
+            section1 = data['sections'][0]
+            self.assertEqual(section1['lib_subj_guide'],
+                             'http://guides.lib.uw.edu/research')
+            self.assertEqual(section1['curriculum_abbr'], "ESS")
+            self.assertEqual(section1['canvas_url'],
+                             'https://canvas.uw.edu/courses/149651')
+            self.assertEqual(section1['limit_estimate_enrollment'], 15)
+            self.assertEqual(section1['final_exam']['latitude'], 47.656645546715)
+            self.assertEqual(
+                section1["email_list"]['section_list']['list_address'],
+                'ess102a_sp13')
 
-        section3 = data['sections'][2]
-        self.assertEqual(section3["color_id"], "2a")
-        self.assertFalse(section3["mini_card"])
-        self.assertFalse(section3.get("no_2nd_registration"))
-        self.assertFalse(section3.get("cc_display_dates"))
-        self.assertFalse(section3.get("early_fall_start"))
-        self.assertFalse(section3.get("has_early_fall_start"))
+            section3 = data['sections'][2]
+            self.assertEqual(section3["color_id"], "2a")
+            self.assertFalse(section3["mini_card"])
+            self.assertFalse(section3.get("no_2nd_registration"))
+            self.assertFalse(section3.get("cc_display_dates"))
+            self.assertFalse(section3.get("early_fall_start"))
+            self.assertFalse(section3.get("has_early_fall_start"))
 
-        section6 = data['sections'][5]
-        self.assertTrue(section6['current_or_future'])
-        self.assertEqual(section6['canvas_url'],
-                         'https://canvas.uw.edu/courses/149651')
-        self.assertEqual(len(section6['grade_submission_delegates']), 1)
-        self.assertEqual(
-            len(data['sections'][4]['grade_submission_delegates']), 1)
-        self.assertGreater(len(data['related_terms']), 3)
-        self.assertEqual(
-            section6["email_list"]['section_list']['list_address'],
-            'train101a_sp13')
+            section6 = data['sections'][5]
+            self.assertTrue(section6['current_or_future'])
+            self.assertEqual(section6['canvas_url'],
+                             'https://canvas.uw.edu/courses/149651')
+            self.assertEqual(len(section6['grade_submission_delegates']), 1)
+            self.assertEqual(
+                len(data['sections'][4]['grade_submission_delegates']), 1)
+            self.assertGreater(len(data['related_terms']), 3)
+            self.assertEqual(
+                section6["email_list"]['section_list']['list_address'],
+                'train101a_sp13')
 
-        self.assertGreater(len(data['related_terms']), 2)
-        self.assertEqual(data['related_terms'][
-            len(data['related_terms']) - 3]['quarter'], 'Spring')
-        self.assertEqual(data['related_terms'][5]['year'], 2013)
+            self.assertGreater(len(data['related_terms']), 2)
+            self.assertEqual(data['related_terms'][
+                len(data['related_terms']) - 3]['quarter'], 'Spring')
+            self.assertEqual(data['related_terms'][5]['year'], 2013)
 
-        self.assertEqual(data['sections'][1]['failure_rate'],
-                         0.01790613718411552)
+            self.assertEqual(data['sections'][1]['failure_rate'],
+                             0.01790613718411552)
 
 
 @require_url('myuw_instructor_schedule_api',
@@ -133,27 +134,28 @@ class TestInstructorTermSchedule(MyuwApiTest):
 
 class TestInstructorSection(MyuwApiTest):
     def test_bill_section(self):
-        now_request = get_request_with_user('bill')
+        with self.settings(MYUW_PRIOR_INSTRUCTED_TERM_YEARS=1):
+            now_request = get_request_with_user('bill')
 
-        section_id = '2013,spring,ESS,102/A'
-        resp = InstSect().get(now_request, section_id=section_id)
-        data = json.loads(resp.content)
+            section_id = '2013,spring,ESS,102/A'
+            resp = InstSect().get(now_request, section_id=section_id)
+            data = json.loads(resp.content)
 
-        self.assertEqual(len(data['sections']), 1)
-        self.assertEqual(
-            data['sections'][0]['limit_estimate_enrollment'], 15)
-        self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'],
-            47.656645546715)
-        self.assertEqual(data['sections'][0]['canvas_url'],
-                         'https://canvas.uw.edu/courses/149651')
-        self.assertEqual(
-            len(data['sections'][0]['grade_submission_delegates']), 1)
+            self.assertEqual(len(data['sections']), 1)
+            self.assertEqual(
+                data['sections'][0]['limit_estimate_enrollment'], 15)
+            self.assertEqual(
+                data['sections'][0]['final_exam']['latitude'],
+                47.656645546715)
+            self.assertEqual(data['sections'][0]['canvas_url'],
+                             'https://canvas.uw.edu/courses/149651')
+            self.assertEqual(
+                len(data['sections'][0]['grade_submission_delegates']), 1)
 
-        self.assertGreater(len(data['related_terms']), 3)
-        self.assertEqual(data['related_terms'][
-            len(data['related_terms']) - 3]['quarter'], 'Spring')
-        self.assertEqual(data['related_terms'][5]['year'], 2013)
+            self.assertGreater(len(data['related_terms']), 3)
+            self.assertEqual(data['related_terms'][
+                len(data['related_terms']) - 3]['quarter'], 'Spring')
+            self.assertEqual(data['related_terms'][5]['year'], 2013)
 
     def test_non_section(self):
         now_request = get_request_with_user('bill')

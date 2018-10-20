@@ -61,42 +61,43 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(data['sections'][0]['total_linked_secondaries'], 4)
 
     def test_bill_section(self):
-        request = get_request()
-        get_request_with_user('bill', request)
+        with self.settings(MYUW_PRIOR_INSTRUCTED_TERM_YEARS=1):
+            request = get_request()
+            get_request_with_user('bill', request)
 
-        section_id = '2013,spring,ESS,102/A'
-        resp = InstSectionDetails().get(request, section_id=section_id)
-        self.assertEqual(resp.status_code, 200)
+            section_id = '2013,spring,ESS,102/A'
+            resp = InstSectionDetails().get(request, section_id=section_id)
+            self.assertEqual(resp.status_code, 200)
 
-        data = json.loads(resp.content)
-        self.assertEqual(len(data['sections']), 2)
-        self.assertEqual(
-            data['sections'][0]['limit_estimate_enrollment'], 15)
-        self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'],
-            47.656645546715)
-        self.assertEqual(data['sections'][0]['canvas_url'],
-                         'https://canvas.uw.edu/courses/149651')
-        self.assertEqual(
-            len(data['sections'][0]['grade_submission_delegates']), 1)
+            data = json.loads(resp.content)
+            self.assertEqual(len(data['sections']), 2)
+            self.assertEqual(
+                data['sections'][0]['limit_estimate_enrollment'], 15)
+            self.assertEqual(
+                data['sections'][0]['final_exam']['latitude'],
+                47.656645546715)
+            self.assertEqual(data['sections'][0]['canvas_url'],
+                             'https://canvas.uw.edu/courses/149651')
+            self.assertEqual(
+                len(data['sections'][0]['grade_submission_delegates']), 1)
 
-        self.assertEqual(len(data['sections'][0]['registrations']), 2)
+            self.assertEqual(len(data['sections'][0]['registrations']), 2)
 
-        netid_counts = {}
+            netid_counts = {}
 
-        for registration in data['sections'][0]['registrations']:
-            if registration["netid"] in netid_counts:
-                netid_counts[registration["netid"]] = netid_counts[
-                    registration["netid"]] + 1
-            else:
-                netid_counts[registration["netid"]] = 1
+            for registration in data['sections'][0]['registrations']:
+                if registration["netid"] in netid_counts:
+                    netid_counts[registration["netid"]] = netid_counts[
+                        registration["netid"]] + 1
+                else:
+                    netid_counts[registration["netid"]] = 1
 
-        self.assertEqual(netid_counts["javg001"], 1)
+            self.assertEqual(netid_counts["javg001"], 1)
 
-        self.assertGreater(len(data['related_terms']), 3)
-        self.assertEqual(data['related_terms'][
-            len(data['related_terms']) - 3]['quarter'], 'Spring')
-        self.assertEqual(data['related_terms'][5]['year'], 2013)
+            self.assertGreater(len(data['related_terms']), 3)
+            self.assertEqual(data['related_terms'][
+                len(data['related_terms']) - 3]['quarter'], 'Spring')
+            self.assertEqual(data['related_terms'][5]['year'], 2013)
 
     def test_billpce_section(self):
         request = get_request()
@@ -160,29 +161,30 @@ class TestInstSectDetails(MyuwApiTest):
                    BLTI_AES_IV=b"1111111111111111")
 class TestLTIInstructorSectionDetails(MyuwLTITest):
     def test_bill_section(self):
-        request = get_lti_request()
+        with self.settings(MYUW_PRIOR_INSTRUCTED_TERM_YEARS=1):
+            request = get_lti_request()
 
-        section_id = '2013-spring-ESS-102-A'
-        resp = LTIInstSectionDetails().get(request, section_id=section_id)
+            section_id = '2013-spring-ESS-102-A'
+            resp = LTIInstSectionDetails().get(request, section_id=section_id)
 
-        self.assertEqual(resp.status_code, 200)
+            self.assertEqual(resp.status_code, 200)
 
-        data = json.loads(resp.content)
-        self.assertEqual(len(data['sections']), 2)
-        self.assertEqual(
-            data['sections'][0]['limit_estimate_enrollment'], 15)
-        self.assertEqual(
-            data['sections'][0]['final_exam']['latitude'],
-            47.656645546715)
-        self.assertEqual(data['sections'][0]['canvas_url'],
-                         'https://canvas.uw.edu/courses/149651')
-        self.assertEqual(
-            len(data['sections'][0]['grade_submission_delegates']), 1)
+            data = json.loads(resp.content)
+            self.assertEqual(len(data['sections']), 2)
+            self.assertEqual(
+                data['sections'][0]['limit_estimate_enrollment'], 15)
+            self.assertEqual(
+                data['sections'][0]['final_exam']['latitude'],
+                47.656645546715)
+            self.assertEqual(data['sections'][0]['canvas_url'],
+                             'https://canvas.uw.edu/courses/149651')
+            self.assertEqual(
+                len(data['sections'][0]['grade_submission_delegates']), 1)
 
-        self.assertGreater(len(data['related_terms']), 3)
-        self.assertEqual(data['related_terms'][
-            len(data['related_terms']) - 3]['quarter'], 'Spring')
-        self.assertEqual(data['related_terms'][5]['year'], 2013)
+            self.assertGreater(len(data['related_terms']), 3)
+            self.assertEqual(data['related_terms'][
+                len(data['related_terms']) - 3]['quarter'], 'Spring')
+            self.assertEqual(data['related_terms'][5]['year'], 2013)
 
     def test_invalid_section(self):
         request = get_lti_request()
