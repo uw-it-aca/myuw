@@ -36,7 +36,8 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
             self.assertEqual(section1['canvas_url'],
                              'https://canvas.uw.edu/courses/149651')
             self.assertEqual(section1['limit_estimate_enrollment'], 15)
-            self.assertEqual(section1['final_exam']['latitude'], 47.656645546715)
+            self.assertEqual(section1['final_exam']['latitude'],
+                             47.656645546715)
             self.assertEqual(
                 section1["email_list"]['section_list']['list_address'],
                 'ess102a_sp13')

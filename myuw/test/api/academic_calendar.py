@@ -72,7 +72,7 @@ class TestCalendarAPI(MyuwApiTest):
         response = self.get_cal_current()
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
-        for item  in data:
+        for item in data:
             print item
         self.assertEquals(len(data), 4)
         self.assertEquals(data[0]["category"],
