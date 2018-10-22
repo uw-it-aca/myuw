@@ -35,7 +35,8 @@ ADD ../myuw/VERSION /app/myuw/
 RUN yum install -y mysql-devel
 RUN pip install mysqlclient
 ADD ../setup.py /app/
-RUN pip install -e .
+ADD ../requirements.txt /app/
+RUN pip install -r requirements.txt
 ADD web/httpd.conf /tmp/httpd.conf
 RUN cat /tmp/httpd.conf > /etc/httpd/conf/httpd.conf
 ADD .. /app/
