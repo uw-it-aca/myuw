@@ -12,7 +12,7 @@ env:
 install:
   - sudo apt-get install libxml2-dev libxmlsec1-dev
   - pip install pyyaml ua-parser user-agents
-  - pip install requirements.txt
+  - pip install -r requirements.txt
 before_script:
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
   - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
