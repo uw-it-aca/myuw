@@ -25,8 +25,8 @@ def log_api_call(timer, request, message):
                                'session_key': hash_session_key(request)}))
 
 
-def log_interaction(request, interaction_type):
-    if interaction_type:
+def log_client_side_action(request, interaction_type):
+    if interaction_type is not None:
         resp_logger.info(json.dumps(
             {'client-side interaction': interaction_type,
              'session_key': hash_session_key(request)}))
