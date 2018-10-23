@@ -21,13 +21,13 @@ class MyuwLink:
         if csv_filename:
             self.csv_filename = csv_filename
         self.links = []
-        path = os.path.join(
-            os.path.dirname(__file__),
-            '..', 'data', self.csv_filename)
+        path = os.path.join(os.path.dirname(__file__),
+                            '..', 'data', self.csv_filename)
 
-        with open(path) as csvfile:
+        with open(path, 'r', encoding="ISO-8859-1") as csvfile:
             reader = csv.reader(csvfile, delimiter=',', quotechar='"')
             for row in reader:
+                # print(', '.join(row))
                 category = row[0]
                 if category == 'Category':
                     continue
