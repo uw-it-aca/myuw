@@ -16,7 +16,7 @@ from uw_mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import ThreadWithResponse
 from myuw.util.settings import get_mailman_courserequest_recipient
-from myuw.logger.logback import log_info
+from myuw.logger.logresp import log_info
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
 from uw_sws.section import get_joint_sections

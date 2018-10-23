@@ -7,7 +7,7 @@ from dateutil.parser import parse
 from myuw.models import BannerMessage
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
-from myuw.logger.logback import log_info
+from myuw.logger.logresp import log_info
 from myuw.dao import get_netid_of_original_user
 from myuw.dao.term import get_comparison_datetime_with_tz
 from myuw.dao.messages import clean_html

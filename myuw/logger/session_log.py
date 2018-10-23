@@ -2,13 +2,16 @@ import hashlib
 import json
 import logging
 from django_user_agents.utils import get_user_agent
+from myuw.dao import get_netid_of_original_user, get_netid_of_current_user
 from myuw.dao.affiliation import get_all_affiliations
 
 logger = logging.getLogger('session')
 
 
 def log_session(netid, request):
-    logger.info(json.dumps(get_log_entry(netid, request), sort_keys=True))
+    logger.info("{} {}".format(get_userid(),
+                               json.dumps(get_log_entry(netid, request),
+                                          sort_keys=True)))
 
 
 def get_log_entry(netid, request):
@@ -73,3 +76,26 @@ def hash_session_key(request):
     except Exception:
         pass
     return ""
+
+
+def get_userid():
+    """
+    Return <actual user netid> acting_as: <override user netid> if
+    the user is acting as someone else, otherwise
+    <actual user netid> no_override: <actual user netid>
+    """
+    override_userid = get_netid_of_current_user()
+    actual_userid = get_netid_of_original_user()
+    log_format = 'base_user: {} acting_user: {} is_override: {} - '
+    try:
+        if override_userid != actual_userid:
+            log_userid = log_format.format(actual_userid,
+                                           override_userid,
+                                           'true')
+        else:
+            log_userid = log_format.format(actual_userid,
+                                           actual_userid,
+                                           'false')
+    except TypeError:
+        return None
+    return log_userid

@@ -30,8 +30,7 @@ from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
     get_current_quarter, is_past, is_future,
     get_previous_number_quarters, get_future_number_quarters)
-from myuw.logger.logresp import log_api_call
-from myuw.logger.logback import log_exception
+from myuw.logger.logresp import log_api_call, log_exception
 from myuw.logger.timer import Timer
 from myuw.util.settings import get_myuwclass_url
 from myuw.util.thread import Thread, ThreadWithResponse

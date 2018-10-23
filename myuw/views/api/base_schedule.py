@@ -10,8 +10,8 @@ from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.logger.logresp import log_data_not_found_response, log_api_call
-from myuw.logger.logback import log_exception
+from myuw.logger.logresp import (
+    log_data_not_found_response, log_api_call, log_exception)
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 from myuw.views import prefetch_resources

@@ -17,8 +17,8 @@ from myuw.dao.user import get_updated_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logback import log_exception
-from myuw.logger.logresp import log_invalid_netid_response, log_page_view
+from myuw.logger.logresp import (
+    log_invalid_netid_response, log_page_view, log_exception)
 from myuw.logger.session_log import log_session
 from myuw.util.settings import get_google_search_key, get_logout_url
 from myuw.views import prefetch_resources, get_enabled_features
