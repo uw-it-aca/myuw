@@ -58,7 +58,7 @@ def page(request,
             return failure
 
     user_pref = get_migration_preference(request)
-    log_session(netid, request)
+    log_session(request)
     affiliations = get_all_affiliations(request)
 
     context["home_url"] = "/"

@@ -8,16 +8,15 @@ from myuw.dao.affiliation import get_all_affiliations
 logger = logging.getLogger('session')
 
 
-def log_session(netid, request):
+def log_session(request):
     logger.info("{} {}".format(get_userid(),
-                               json.dumps(get_log_entry(netid, request),
+                               json.dumps(get_log_entry(request),
                                           sort_keys=True)))
 
 
-def get_log_entry(netid, request):
+def get_log_entry(request):
     affiliations = get_all_affiliations(request)
-    log_entry = {'netid': netid,
-                 'session_key': hash_session_key(request),
+    log_entry = {'session_key': hash_session_key(request),
                  'referer': request.META.get('HTTP_REFERER'),
                  'class_level': affiliations["class_level"],
                  'is_applicant': affiliations["applicant"],
@@ -53,7 +52,7 @@ def get_log_entry(netid, request):
         is_mobile = (user_agent.is_mobile or user_agent.is_tablet)
         log_entry['is_mobile'] = bool(is_mobile)
     except Exception as ex:
-        logger.warning("is_mobile ==> %s" % ex)
+        logger.warning("is_mobile ==> {}".format(str(ex)))
         pass
 
     try:
@@ -64,7 +63,7 @@ def get_log_entry(netid, request):
         else:
             log_entry['ip'] = request.META.get('REMOTE_ADDR')
     except Exception as ex:
-        logger.warning("ip ==> %s" % ex)
+        logger.warning("ip ==> {}".format(str(ex)))
         pass
     return log_entry
 
@@ -86,16 +85,11 @@ def get_userid():
     """
     override_userid = get_netid_of_current_user()
     actual_userid = get_netid_of_original_user()
-    log_format = 'base_user: {} acting_user: {} is_override: {} - '
+    log_format = 'orig_netid: {}, acting_netid: {}, is_override: {},'
     try:
-        if override_userid != actual_userid:
-            log_userid = log_format.format(actual_userid,
-                                           override_userid,
-                                           'true')
-        else:
-            log_userid = log_format.format(actual_userid,
-                                           actual_userid,
-                                           'false')
-    except TypeError:
-        return None
-    return log_userid
+        return log_format.format(actual_userid,
+                                 override_userid,
+                                 (override_userid != actual_userid))
+    except Exception as ex:
+        logger.warning("get_userid ==> {}".format(str(ex)))
+        return ""
