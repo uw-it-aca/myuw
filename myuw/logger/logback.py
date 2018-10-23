@@ -24,8 +24,8 @@ def log_info(logger, message):
 
 def log_time(logger, action_message, timer):
     log_info(logger,
-             "{} Time={} seconds".format(action_message,
-                                         timer.get_elapsed()))
+             "{}. Time={} seconds".format(action_message,
+                                          timer.get_elapsed()))
 
 
 def get_logging_userid():
@@ -36,7 +36,7 @@ def get_logging_userid():
     """
     override_userid = get_netid_of_current_user()
     actual_userid = get_netid_of_original_user()
-    log_format = 'base_user: {} acting_user: {} is_override: {}'
+    log_format = 'base_user: {} acting_user: {} is_override: {}. '
     try:
         if override_userid != actual_userid:
             log_userid = log_format.format(actual_userid,
