@@ -14,7 +14,7 @@ def get_building_by_code(code):
         os.path.dirname(__file__),
         '..', 'data', 'buildings.json')
 
-    f = open(path)
+    f = open(path, 'r', encoding='utf8')
     building_data = yajl.loads(f.read())
 
     if code in building_data:

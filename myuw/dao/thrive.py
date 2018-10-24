@@ -1,7 +1,7 @@
 import csv
-import os
 import datetime
 import logging
+import os
 from myuw.dao import is_thrive_viewer, get_netid_of_current_user
 from myuw.dao.term import get_comparison_date, get_current_quarter,\
     get_bod_current_term_class_start
@@ -91,7 +91,7 @@ def _get_messages_for_quarter_dates(dates, term, target):
         os.path.dirname(__file__),
         '..', 'data', "%s_%s" % (target, 'thrive_content.csv'))
     rows = {}
-    with open(path) as csvfile:
+    with open(path, 'r', encoding='utf8') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         # skip headers
         next(reader)

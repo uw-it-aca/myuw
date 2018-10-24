@@ -9,12 +9,16 @@ logger = logging.getLogger('session')
 
 
 def log_session(request):
-    data = {'session_key': hash_session_key(request),
+    logger.info("{}, {}, {}".format(get_userid(),
+                                    json.dumps(_get_session_data(request)),
+                                    json.dumps(_get_affi(request))))
+
+
+def _get_session_data(request):
+    return {'session_key': hash_session_key(request),
             'ip': get_ip(request),
             'is_mobile': is_mobile(request),
             'referer': request.META.get('HTTP_REFERER')}
-    logger.info("{}, {}, {}".format(get_userid(), json.dumps(data),
-                                    json.dumps(_get_affi(request))))
 
 
 def _get_affi(request):

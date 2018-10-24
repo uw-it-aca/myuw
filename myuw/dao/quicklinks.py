@@ -82,7 +82,7 @@ def get_link_label(link):
         data = {}
         path = os.path.join(os.path.dirname(__file__), '..', 'data',
                             "custom_link_labels.csv")
-        with open(path) as csvfile:
+        with open(path, 'r', encoding='utf8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 data[row['url']] = row['label']

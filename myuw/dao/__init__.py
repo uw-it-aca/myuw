@@ -1,4 +1,3 @@
-import io
 import logging
 import os
 from django.conf import settings
@@ -70,7 +69,7 @@ def _get_file_path(settings_key, filename):
 
 
 def is_netid_in_list(username, file_path):
-    with io.open(file_path, 'r', encoding='utf8') as data_source:
+    with open(file_path, 'r', encoding='utf8') as data_source:
         for line in data_source:
             try:
                 if line.rstrip() == username:
