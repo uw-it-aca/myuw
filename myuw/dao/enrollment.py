@@ -4,12 +4,12 @@ the SWS Enrollment resource.
 """
 import datetime
 import logging
-from uw_sws.enrollment import enrollment_search_by_regid,\
-    get_enrollment_history_by_regid
-from myuw.dao.term import (get_current_quarter,
-                           get_current_and_next_quarters,
-                           get_previous_number_quarters,
-                           get_comparison_date)
+from copy import deepcopy
+from uw_sws.enrollment import (
+    enrollment_search_by_regid, get_enrollment_history_by_regid)
+from myuw.dao.term import (
+    get_current_quarter, get_current_and_next_quarters,
+    get_previous_number_quarters, get_comparison_date)
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.pws import get_regid_of_current_user
@@ -129,7 +129,7 @@ def remove_finished(request, result_dict):
         enrollment = result_dict.get(prev_term)
         if enrollment.has_unfinished_pce_course():
             unf_pce_sections = enrollment.unf_pce_courses
-            for label in list(unf_pce_sections):
+            for label in deepcopy(unf_pce_sections):
                 section = unf_pce_sections[label]
                 if is_ended(request, section.end_date):
                     del unf_pce_sections[label]
