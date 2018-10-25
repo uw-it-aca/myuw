@@ -365,7 +365,7 @@ class AcademicEvents(ProtectedAPI):
 
         for (year, quarter) in unique_terms:
             term = get_specific_term(year, quarter)
-            break_start = term.get_end_of_the_term() + timedelta(days=1)
+            break_start = term.get_end_of_the_term()
 
             next_term = get_future_num_terms(term, 1)[0]
             break_end = next_term.get_bod_first_day() - timedelta(days=1)
