@@ -3,7 +3,7 @@
     <div class="instructor-term-selection">
         <div role="tablist" class="instructor-term-tabs myuw-pagetabs">
             {{#each tab_terms}}
-                <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="instructor-term-{{toLowerCase quarter}}-{{year}}" {{# if matching_term}}class="myuw-tab myuw-tab-selected" {{else}}class="myuw-tab"{{/if}}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}" {{# if matching_term}}aria-selected="true" {{else}} aria-selected="false"{{/if}}>{{quarter}} {{short_year year}}</a></div>
+                <div data-tab-type="instructor-term-nav" data-term="{{year}},{{toLowerCase quarter}}" role="tab" aria-controls="instructor-term-{{toLowerCase quarter}}-{{year}}" {{#if matching_term}}class="myuw-tab myuw-tab-selected" {{else}}class="myuw-tab"{{/if}}><a class="myuw-tab-label tab-nav-terms" href="#" data-term="{{year}},{{toLowerCase quarter}}" {{#if matching_term}}aria-selected="true" {{else}} aria-selected="false"{{/if}}>{{quarter}} {{short_year year}}</a></div>
             {{/each}}
         </div>
 
