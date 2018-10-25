@@ -55,7 +55,6 @@ class AcademicEvents(ProtectedAPI):
                 raw_events = self.filter_non_current(request, raw_events)
             else:
                 raw_events = self.filter_too_future_events(request, raw_events)
-
             for event in raw_events:
                 events.append(self.json_for_event(event, request))
             log_success_response(logger, timer)
@@ -113,7 +112,7 @@ class AcademicEvents(ProtectedAPI):
         return False
 
     def parse_category(self, event):
-        return event.get('categories')
+        return event.get('categories').to_ical()
 
     def parse_event_url(self, event):
         uid = event.get('uid')
@@ -161,7 +160,6 @@ class AcademicEvents(ProtectedAPI):
         else:
             year = current_term.year
             quarter = current_term.quarter
-
         return year, quarter
 
     def get_event_year_quarter(self, event):
@@ -377,7 +375,7 @@ class AcademicEvents(ProtectedAPI):
             break_event = Event()
             break_event.add('dtstart', break_start)
             break_event.add('dtend', break_end)
-            break_event.add('categories', 'break')
+            break_event.add('categories', ['break'])
             break_event.add('uid', '')
             break_event.add('calendar_name', 'myuw_break')
             break_event.add('summary', break_string)
