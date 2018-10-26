@@ -22,14 +22,14 @@
                 {{#if myuw_categories.term_breaks}}
                    <div class="acal-page-event acal-page-event-break">
                        <div class="acal-page-term-break">
-                           <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
+                           <div class="acal-page-event-title"><h3 class="acal-break">{{ summary }}</h3></div>
                            <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
                        </div>
                    </div>
                 {{else}}
                 <li class="acal-page-event-list-item acal-page-event {{#if myuw_categories.breaks }}acal-page-event-break{{/if}}{{#if myuw_categories.classes}}acal-page-event-class{{/if}}">
 	                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
-	                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
+	                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} BREAK ITEM<a href="{{ event_url }}">{{ summary }}</a></div>
                 </li>
                 {{/if}}
             {{/each}}
