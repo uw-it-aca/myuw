@@ -1,4 +1,5 @@
 import logging
+import traceback
 from django.core.management.base import BaseCommand, CommandError
 from myuw.event.section_status import SectionStatusProcessor
 from myuw.logger.timer import Timer
@@ -17,4 +18,4 @@ class Command(BaseCommand):
             Gather(processor=SectionStatusProcessor()).gather_events()
             logger.info("Total Time: {} seconds".format(timer.get_elapsed()))
         except Exception as err:
-            raise CommandError("Cause: {}".format(str(err)))
+            raise CommandError("Cause: {}".format(traceback.format_exc()))
