@@ -15,6 +15,6 @@ class Command(BaseCommand):
         timer = Timer()
         try:
             Gather(processor=SectionStatusProcessor()).gather_events()
-            logger.info("Total Time: %f seconds",  timer.get_elapsed())
+            logger.info("Total Time: {} seconds".format(timer.get_elapsed()))
         except Exception as err:
-            raise CommandError("Cause: %s" % err)
+            raise CommandError("Cause: {}".format(str(err)))
