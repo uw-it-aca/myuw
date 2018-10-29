@@ -62,6 +62,7 @@ setup(
         'python-dateutil',
         'yajl',
         'bleach',
+        'icalendar==4.0.3'
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),
