@@ -15,7 +15,7 @@
 </div>
 
 
-<div id="acal-events-wrapper" class="acal-page-events" aria-labelledby="myuw-event-filter-all" tabindex="0">
+<div id="acal-events-wrapper" class="acal-page-event" aria-labelledby="myuw-event-filter-all" tabindex="0">
     {{#each terms }}
         {{#if term_break }}
             {{ #each events }}
@@ -27,10 +27,12 @@
                        </div>
                    </div>
                 {{else}}
-                <li class="acal-page-event-list-item acal-page-event {{#if myuw_categories.breaks }}acal-page-event-break{{/if}}{{#if myuw_categories.classes}}acal-page-event-class{{/if}}">
-	                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
-	                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} BREAK ITEM<a href="{{ event_url }}">{{ summary }}</a></div>
-                </li>
+	            <ul class="acal-page-event-break-list">
+                    <li class="acal-page-event-list-item acal-page-event-break">
+    	                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
+    	                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
+                    </li>
+	            </ul>
                 {{/if}}
             {{/each}}
         {{else}}
@@ -39,7 +41,7 @@
 	            <h3 class="acal-quarters">{{ quarter }} {{ year }}</h3>
 	            <ul class="acal-page-event-list">
 	                {{ #each events }}
-	                    <li class="acal-page-event-list-item acal-page-event {{#if myuw_categories.breaks }}acal-page-event-break{{/if}}{{#if myuw_categories.classes}}acal-page-event-class{{/if}}">
+	                    <li class="acal-page-event-list-item acal-page-event-class">
 	                        <div class="acal-page-event-date"><strong>{{ acal_page_date_format start end }}</strong></div>
 	                        <div class="acal-page-event-title">{{#if myuw_categories.breaks }}<i class="fa fa-circle acal-break-icon" aria-hidden="true"></i> {{/if}} <a href="{{ event_url }}">{{ summary }}</a></div>
 	                    </li>

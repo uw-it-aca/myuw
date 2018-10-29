@@ -468,6 +468,7 @@ label { font-weight: normal; margin-bottom: auto; }
 
 }
 
+
 /* Search results */
 #search_content {
 
@@ -537,6 +538,7 @@ label { font-weight: normal; margin-bottom: auto; }
 
 #app_content { min-height: 250px;
 
+
     // cards
     .card {
 
@@ -592,18 +594,6 @@ label { font-weight: normal; margin-bottom: auto; }
         }
         .reg_status_table th { border-top: none !important; }
         .reg_status_table td { border-top: none !important; }
-
-// Academic Calendar Page // 
-
-.acal-break {
-    font-family: 'encode_sans_normalbold', sans-serif;
-    font-weight: 600;
-    font-size: @font-header-small;
-    margin-top: 10px;
-    margin-bottom: 16px;
-    color: @darktan; 
-}
-
 
 
 // Redundant remove? //
@@ -2136,17 +2126,30 @@ label { font-weight: normal; margin-bottom: auto; }
 				#myuw-event-filter-breaks, #myuw-event-filter-all, #myuw-event-filter-classes {font-size:15px;}
 				.myuw-selected-button {color: #fff; background-color:#4f318c;border-color: #4f318c;}
 			}
-			.acal-page-events {
-				.acal-page-term-break {padding: 0 0 20px 0;text-align:center;}
+			.acal-page-event {
+				.acal-page-term-break {padding: 0 0 20px 0; text-align:center; margin-bottom: 10px;
+    				.acal-page-event-title {margin: 0; width: 99%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+                            h3.acal-break {
+                                font-family: 'encode_sans_normalbold', sans-serif;
+                                font-weight: 600;
+                                font-size: 24px;
+                                margin-top: 10px;
+                                margin-bottom: 4px;
+                                color: @darktan; 
+                            }
+                    }
+				}
+				.acal-page-event-break-list { list-style-type: none;padding-left: 0; margin-top:-15px;
+                    @media @phablet {padding-left: 16px;}
+					.acal-page-event-break {margin-bottom: 32px;}
+                }
 				.acal-page-event-list { list-style-type: none;padding-left: 0;
 					.acal-page-event-list-item { margin-bottom:10px;
-						.acal-page-event-date {}
-						.acal-page-event-title {margin: 0; width: 99%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+						.acal-page-event-date {}						
 					}
 				}
 			}
 		}
-
 }
 
 /** Mailman Dialogs **/
