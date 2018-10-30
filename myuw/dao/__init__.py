@@ -75,6 +75,6 @@ def is_netid_in_list(username, file_path):
                 if line.rstrip() == username:
                     return True
             except Exception as ex:
-                logger.error("%s: %s==%s", str(ex), line, username)
+                logger.error("{}: {}=?={}".format(str(ex), line, username))
 
     return False

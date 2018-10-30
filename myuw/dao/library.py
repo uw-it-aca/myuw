@@ -36,10 +36,10 @@ def get_subject_guide_by_section(section):
         return None
     get_default = False
     section_campus = section.course_campus.lower()
-    section_logid = "(%s %s %s, %s)" % (section.curriculum_abbr,
-                                        section.course_number,
-                                        section.section_id,
-                                        section_campus)
+    section_logid = "({} {} {}, {})".format(section.curriculum_abbr,
+                                            section.course_number,
+                                            section.section_id,
+                                            section_campus)
     try:
         subject_guide = get_subject_guide_for_section(section)
         if subject_guide.is_default_guide:
@@ -50,8 +50,8 @@ def get_subject_guide_by_section(section):
         if ex.status == 404:
             get_default = True
         else:
-            logger.error("get_subject_guide for %s ==> %s" %
-                         (section_logid, str(ex)))
+            logger.error("get_subject_guide for {} ==> {}".format(
+                section_logid, str(ex)))
             raise
 
     if get_default:

@@ -2,8 +2,10 @@
 This module accesses the DB table object UserCourseDisplay
 """
 import logging
+import traceback
 from django.db import IntegrityError
 from myuw.models import UserCourseDisplay
+from myuw.logger.logresp import log_exception
 from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
@@ -71,7 +73,7 @@ def _get_next_color(colors_taken):
 def _make_colorid(section, color_id):
     if section.is_primary_section:
         return color_id
-    return "%sa" % color_id
+    return "{}a".format(color_id)
 
 
 def _record_primary_colors(primary_color_dict, section, color_id):
@@ -100,8 +102,10 @@ def _save_section_color(user, section, color_id):
                                              section_label=section_label,
                                              color_id=color_id)
         except IntegrityError as ex:
-            logger.error("%s (%s %s color_id: %d)", str(ex), user,
-                         section_label, color_id)
+            log_exception(logger,
+                          "Failed to create ({} {} color_id: {}) in DB".format(
+                              user, section_label, color_id),
+                          traceback.format_exc())
             if '1062, "Duplicate entry ' not in str(ex):
                 raise
 

@@ -60,9 +60,8 @@ def get_cur_future_enrollments(request):
         terms = get_current_and_next_quarters(request, 4)
         return terms, get_enrollments_of_terms(request, terms)
     except Exception as ex:
-        logger.error(
-            "%s get_enrollments: %s" % (get_netid_of_current_user(request),
-                                        str(ex)))
+        logger.error("{} get_enrollments: {}".format(
+            get_netid_of_current_user(request), str(ex)))
         return None
 
 

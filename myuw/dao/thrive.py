@@ -89,7 +89,7 @@ def get_previous_messages(request):
 def _get_messages_for_quarter_dates(dates, term, target):
     path = os.path.join(
         os.path.dirname(__file__),
-        '..', 'data', "%s_%s" % (target, 'thrive_content.csv'))
+        '..', 'data', "{}_{}".format(target, 'thrive_content.csv'))
     rows = {}
     with open(path, 'r', encoding='utf8') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')

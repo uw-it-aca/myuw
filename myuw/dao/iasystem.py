@@ -83,12 +83,12 @@ def in_coursevel_fetch_window(request):
     default show window range of course eval
     """
     now = get_comparison_datetime(request)
-    logger.debug("Is %s in_coursevel_fetch_window (%s, %s)=>%s" % (
-            now,
-            _get_default_show_start(request),
-            _get_default_show_end(request),
-            (now >= _get_default_show_start(request) and
-             now < _get_default_show_end(request))))
+    logger.debug("Is {} in_coursevel_fetch_window ({}, {})=>{}".format(
+        now,
+        _get_default_show_start(request),
+        _get_default_show_end(request),
+        (now >= _get_default_show_start(request) and
+         now < _get_default_show_end(request))))
     return (now >= _get_default_show_start(request) and
             now < _get_default_show_end(request))
 
@@ -144,8 +144,8 @@ def json_for_evaluation(request, evaluations, section):
                     instructor = get_person_by_employee_id(eid)
                 except Exception as ex:
                     logger.error(
-                        "get course %s instructor eid(%s) ==> %s",
-                        section.section_label(), eid, str(ex))
+                        "get course {} instructor eid({}) ==> {}".format(
+                            section.section_label(), eid, str(ex)))
                     continue
 
                 instructor_json = {}

@@ -49,7 +49,7 @@ def _search_groups(uwnetid):
                                    type="effective")
     if group_refs:
         for gr in group_refs:
-            name = "%s" % gr.name
+            name = str(gr.name)
             if name in RELEVANT_GROUPS:
                 group_names.add(name)
     return group_names
