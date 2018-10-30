@@ -1,6 +1,7 @@
 import json
+from copy import deepcopy
 from django.test import TestCase
-from django.conf import settings
+from django.test.utils import override_settings
 from django.utils import timezone
 from myuw.event.section_status import SectionStatusProcessor
 
@@ -48,25 +49,35 @@ M1 = {
         "SpaceAvailable": 12,
         "Status": "open"}
 }
+override = override_settings(
+    RESTCLIENTS_MEMCACHED_SERVERS=('localhost:11211',),
+    AWS_SQS={'SECTION_SATSUS_V1': {
+        'TOPIC_ARN': "arn:aws:sqs:us-xxxx-1:123456789012:xxxxxxxx",
+        'KEY_ID': 'XXXXXXXXXXXXXXXX',
+        'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',
+        'VISIBILITY_TIMEOUT': 10,
+        'MESSAGE_GATHER_SIZE': 10,
+        'VALIDATE_SNS_SIGNATURE': False,
+        'PAYLOAD_SETTINGS': {}}})
 
 
+@override
 class TestSectionStatusProcessor(TestCase):
 
-    def test_process_message_content(self):
-        with self.settings(RESTCLIENTS_MEMCACHED_SERVERS=('localhost:11211',),
-                           AWS_SQS={'SECTION_SATSUS_V1': {
-                               'ACCOUNT_NUMBER': '123456789012',
-                               'QUEUE': 'xxxxxxxxxx',
-                               'REGION': 'xxxx',
-                               'KEY_ID': 'XXXXXXXXXXXXXXXX',
-                               'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',
-                               'VISIBILITY_TIMEOUT': 10,
-                               'MESSAGE_GATHER_SIZE': 10,
-                               'VALIDATE_SNS_SIGNATURE': False,
-                               'PAYLOAD_SETTINGS': {}}}):
-            event_hdlr = SectionStatusProcessor()
-            # discard the event
-            event_hdlr.process_inner_message(M1)
+    def test_message_validation(self):
+        event_hdlr = SectionStatusProcessor()
+        self.assertFalse(event_hdlr.validate_inner_message(M1))
 
-            M1["EventDate"] = str(timezone.now())
-            event_hdlr.process_inner_message(M1)
+        m1 = deepcopy(M1)
+        m1.pop('Href')
+        self.assertFalse(event_hdlr.validate_inner_message(m1))
+
+        m2 = deepcopy(M1)
+        m2.pop("Current")
+        self.assertFalse(event_hdlr.validate_inner_message(m2))
+
+    def test_process_message_content(self):
+        event_hdlr = SectionStatusProcessor()
+        M1["EventDate"] = str(timezone.now())
+        self.assertTrue(event_hdlr.validate_inner_message(M1))
+        event_hdlr.process_inner_message(M1)

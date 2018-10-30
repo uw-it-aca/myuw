@@ -12,7 +12,7 @@ from myuw.event import update_sws_entry_in_cache
 
 
 logger = logging.getLogger(__name__)
-message_freshness = timedelta(hours=4)
+MESSAGE_FRESHNESS = timedelta(hours=4)
 QUEUE_SETTINGS_NAME = 'SECTION_SATSUS_V1'
 
 
@@ -24,31 +24,42 @@ class SectionStatusProcessor(InnerMessageProcessor):
 
     EXCEPTION_CLASS = SectionStatusProcessorException
 
-    def __init__(self):
-        super(SectionStatusProcessor, self).__init__(
-            logger, queue_settings_name=QUEUE_SETTINGS_NAME)
+    def __init__(self, queue_settings_name=QUEUE_SETTINGS_NAME):
+        super(SectionStatusProcessor, self).__init__(logger,
+                                                     queue_settings_name)
+
+    def validate_inner_message(self, message):
+        """
+        Will be called before process_inner_message.
+        return False if json_data in the message body misses any
+        necessary data element and the message should be deleted.
+        """
+        json_data = message
+        if 'EventDate' not in json_data:
+            return False
+
+        self.modified = parse(json_data['EventDate'])
+        if self.modified <= (timezone.now() - MESSAGE_FRESHNESS):
+            logger.debug("DISCARD Old message {}".format(json_data))
+            return False
+
+        if ('Current' not in json_data or 'Href' not in json_data or
+                json_data.get('Current') is None or
+                json_data.get('Href') is None):
+            logger.error("DISCARD Bad message {}".format(json_data))
+            return False
+
+        return True
 
     def process_inner_message(self, json_data):
-        """
-        Each status change message body contains a single event
-        """
-        if 'EventDate' in json_data:
-            modified = parse(json_data['EventDate'])
-            if modified <= (timezone.now() - message_freshness):
-                logger.debug("DISCARD Event (Date: %s, ID: %s)",
-                             modified, json_data['EventID'])
-                return
+        # json_data['Href']: /v5/course/2018,autumn,SOC,225/A/status.json
+        url = "/student%s" % json_data['Href']
+        new_value = json_data['Current']
 
-            status_url = json_data.get('Href')
-            # ie, /v5/course/2018,autumn,SOC,225/A/status.json
-
-            new_value = json_data.get('Current')
-
-            if status_url and new_value:
-                url = "/student%s" % status_url
-                try:
-                    update_sws_entry_in_cache(url, new_value, modified)
-                except Exception as e:
-                    msg = "FAILED to update cache(url=%s) ==> %s" % (url, e)
-                    logger.error(msg)
-                    raise SectionStatusProcessorException(msg)
+        try:
+            update_sws_entry_in_cache(url, new_value, self.modified)
+        except Exception as e:
+            msg = "{} when update cache for {} with {}".format(
+                str(e), url, new_value)
+            logger.error(msg)
+            raise SectionStatusProcessorException(msg)
