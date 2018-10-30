@@ -5,9 +5,11 @@ https://wiki.cac.washington.edu/x/sNFdB
 
 import logging
 from datetime import timedelta
+import traceback
 from django.utils import timezone
 from dateutil.parser import parse
 from aws_message.processor import InnerMessageProcessor, ProcessorException
+from myuw.logger.logresp import log_exception
 from myuw.event import update_sws_entry_in_cache
 
 
@@ -58,8 +60,8 @@ class SectionStatusProcessor(InnerMessageProcessor):
 
         try:
             update_sws_entry_in_cache(url, new_value, self.modified)
-        except Exception as e:
-            msg = "{} when update cache for {} with {}".format(
-                str(e), url, new_value)
-            logger.error(msg)
+        except Exception:
+            msg = "Updating memcache failed on {}, {}".format(url,
+                                                              new_value)
+            log_exception(logger, msg, traceback.format_exc())
             raise SectionStatusProcessorException(msg)
