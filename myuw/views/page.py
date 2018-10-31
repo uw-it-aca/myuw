@@ -80,7 +80,7 @@ def page(request,
                 c_user['login_url'] = None
                 c_user['title'] = None
                 c_user['icon'] = None
-                logger.info('No Mail Url: %s' % (
+                logger.info('No Mail Url: {}'.format(
                     my_uwemail_forwarding.fwd))
 
     except Exception:

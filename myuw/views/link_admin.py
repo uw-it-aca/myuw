@@ -33,16 +33,16 @@ def popular_links(request, page):
                 create_args['pce'] = True
 
             PopularLink.objects.create(**create_args)
-            logger.info("popular link added.  user: %s, link: %s" %
-                        (uwnetid, request.POST['url']))
+            logger.info("popular link added.  user: {}, link: {}".format(
+                uwnetid, request.POST['url']))
 
         if 'remove_popular' in request.POST:
             for popular_id in request.POST.getlist('remove_popular'):
                 link = PopularLink.objects.get(pk=popular_id)
                 url = link.url
                 link.delete()
-                logger.error("popular link removed.  user: %s, link:  %s" %
-                             (uwnetid, url))
+                logger.error("popular link removed. user: {}, link: {}".format(
+                    uwnetid, url))
 
     curated_popular = PopularLink.objects.all()
     existing_lookup = set()
@@ -55,11 +55,11 @@ def popular_links(request, page):
         if field in request.GET:
             value = request.GET[field]
             kwargs['is_'+value] = True
-            if value != 'any_%s' % field:
+            if value != 'any_{}'.format(field):
                 filter_kwargs['is_'+value] = True
                 kwargs[field] = value
         else:
-            kwargs['is_any_%s' % field] = True
+            kwargs['is_any_{}'.format(field)] = True
 
     # typo in the original model creation.  patching here to avoid a
     # db migration

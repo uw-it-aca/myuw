@@ -49,12 +49,12 @@ class MyPlan(ProtectedAPI):
                         has_sections = True
                         curriculum = course["curriculum_abbr"].upper()
                         section_id = section["section_id"].upper()
-                        label = "%s,%s,%s,%s/%s" % (year,
-                                                    quarter.lower(),
-                                                    curriculum,
-                                                    course["course_number"],
-                                                    section_id
-                                                    )
+                        label = "{},{},{},{}/{}".format(
+                            year,
+                            quarter.lower(),
+                            curriculum,
+                            course["course_number"],
+                            section_id)
 
                         sws_section = get_section_by_label(label)
                         section["section_data"] = sws_section.json_data()

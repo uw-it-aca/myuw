@@ -73,8 +73,8 @@ def load_schedule(request, schedule, summer_term=""):
         enrollment = get_enrollment_for_term(request, schedule.term)
         pce_sections = enrollment.unf_pce_courses
     except Exception as ex:
-        logger.error("find enrolled off term sections (%s %d): %s",
-                     schedule.term.quarter, schedule.term.year, ex)
+        logger.error("find enrolled off term sections ({} {}): {}".format(
+                     schedule.term.quarter, schedule.term.year, str(ex)))
         pce_sections = {}
         pass
 

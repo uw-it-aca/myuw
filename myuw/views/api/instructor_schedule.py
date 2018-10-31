@@ -78,7 +78,7 @@ class InstSche(ProtectedAPI):
 def set_classroom_info_url(meeting):
     if len(meeting.building) and meeting.building != "*" and\
             len(meeting.room_number) and meeting.room_number != "*":
-        return 'http://www.washington.edu/classroom/%s+%s' % (
+        return 'http://www.washington.edu/classroom/{}+{}'.format(
             meeting.building, meeting.room_number)
     return None
 
@@ -195,7 +195,7 @@ def set_course_resources(section_data, section, person):
             if d is not None and k is not None:
                 d[k] = t.response
         else:
-            logger.error("%s: %s" % (k, t.exception))
+            logger.error("{}: {}".format(k, t.exception))
 
 
 def get_enrollment_status_for_section(section, section_json):
@@ -234,7 +234,8 @@ def set_indep_study_section_enrollments(section, section_json_data):
         if total_enrollment == 1:
             person = registrations[0].person
             section_json_data['enrollment_student_name'] =\
-                "%s, %s" % (person.surname.title(), person.first_name.title())
+                "{}, {}".format(person.surname.title(),
+                                person.first_name.title())
     except DataFailureException as ex:
         if ex.status == 404:
             section_json_data['current_enrollment'] = 0
@@ -288,8 +289,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             safe_label(section.section_label())
 
         if section.eos_cid:
-            section_data["myuwclass_url"] = "%s%s" % (get_myuwclass_url(),
-                                                      section.eos_cid)
+            section_data["myuwclass_url"] = "{}{}".format(get_myuwclass_url(),
+                                                          section.eos_cid)
 
         if section.is_primary_section:
             if section.linked_section_urls:

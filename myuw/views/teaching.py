@@ -36,5 +36,5 @@ def get_context(year, quarter, section=None):
                              "quarter": quarter},
             }
     if section:
-        context["section"] = "%s,%s,%s" % (year, quarter, section)
+        context["section"] = "{},{},{}".format(year, quarter, section)
     return context
