@@ -68,7 +68,7 @@ class Command(BaseCommand):
                     resp = client.get(reverse(pattern.name))
                     t1 = time.time()
 
-                    return "%s" % (t1-t0)
+                    return str(t1-t0)
 
                 values.append(run_it())
 

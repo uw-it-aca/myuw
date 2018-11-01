@@ -37,8 +37,8 @@ def not_instructor_error():
                           "Access Forbidden to Non Instructor")
 
 
-def invalid_session():
-    return _make_response(HTTP_BAD_REQUEST, "No valid userid in session")
+def unknown_uwnetid():
+    return _make_response(HTTP_BAD_REQUEST, "Unrecognized user")
 
 
 def invalid_input_data():
@@ -83,7 +83,7 @@ def handle_exception(logger, timer, stack_trace):
 
     if isinstance(exc_value, InvalidNetID) or\
        isinstance(exc_value, InvalidRegID):
-        return invalid_session()
+        return unknown_uwnetid()
 
     if (isinstance(exc_value, InvalidInputFormData) or
             isinstance(exc_value, InvalidResourceCategory) or

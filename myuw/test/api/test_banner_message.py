@@ -27,7 +27,7 @@ class TestBannerMessage(MyuwApiTest):
     def test_close_banner_msg_error_case(self):
         self.set_user('0000')
         resp = self.get_response_by_reverse('myuw_close_banner_message')
-        self.assertEqual(resp.content, b'No valid userid in session')
+        self.assertEqual(resp.content, b'Unrecognized user')
 
     def test_turn_off_pop_up(self):
         self.set_user('bill')
@@ -37,7 +37,7 @@ class TestBannerMessage(MyuwApiTest):
     def test_turn_off_pop_up_error_case(self):
         self.set_user('0000')
         resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
-        self.assertEqual(resp.content, b'No valid userid in session')
+        self.assertEqual(resp.content, b'Unrecognized user')
 
     def test_close_banner_msg_when_override(self):
         with self.settings(DEBUG=False,

@@ -8,7 +8,7 @@ from datetime import timedelta
 import traceback
 from django.utils import timezone
 from dateutil.parser import parse
-from aws_message.processor import InnerMessageProcessor, ProcessorException
+from aws_message.processor import MessageBodyProcessor, ProcessorException
 from myuw.logger.logresp import log_exception
 from myuw.event import update_sws_entry_in_cache
 
@@ -22,7 +22,7 @@ class SectionStatusProcessorException(ProcessorException):
     pass
 
 
-class SectionStatusProcessor(InnerMessageProcessor):
+class SectionStatusProcessor(MessageBodyProcessor):
 
     EXCEPTION_CLASS = SectionStatusProcessorException
 
@@ -30,33 +30,33 @@ class SectionStatusProcessor(InnerMessageProcessor):
         super(SectionStatusProcessor, self).__init__(logger,
                                                      queue_settings_name)
 
-    def validate_inner_message(self, message):
+    def validate_message_body(self, payload):
         """
-        Will be called before process_inner_message.
-        return False if json_data in the message body misses any
-        necessary data element and the message should be deleted.
+        This method will be called before process_message_body.
+        Return False if payload json data misses any necessary
+        data element and the message will be skipped.
         """
-        json_data = message
-        if 'EventDate' not in json_data:
+        if 'EventDate' not in payload:
             return False
 
-        self.modified = parse(json_data['EventDate'])
+        self.modified = parse(payload['EventDate'])
         if self.modified <= (timezone.now() - MESSAGE_FRESHNESS):
-            logger.debug("DISCARD Old message {}".format(json_data))
+            logger.debug("DISCARD Old message {}".format(payload))
             return False
 
-        if ('Current' not in json_data or 'Href' not in json_data or
-                json_data.get('Current') is None or
-                json_data.get('Href') is None):
-            logger.error("DISCARD Bad message {}".format(json_data))
+        if ('Current' not in payload or
+                not len(payload.get('Current')) or
+                'Href' not in payload or
+                not len(payload.get('Href'))):
+            logger.error("DISCARD Bad message {}".format(payload))
             return False
 
         return True
 
-    def process_inner_message(self, json_data):
-        # json_data['Href']: /v5/course/2018,autumn,SOC,225/A/status.json
-        url = "/student%s" % json_data['Href']
-        new_value = json_data['Current']
+    def process_message_body(self, payload):
+        # payload['Href']: /v5/course/2018,autumn,SOC,225/A/status.json
+        url = "/student{}".format(payload['Href'])
+        new_value = payload['Current']
 
         try:
             update_sws_entry_in_cache(url, new_value, self.modified)
