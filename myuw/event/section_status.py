@@ -30,7 +30,7 @@ class SectionStatusProcessor(InnerMessageProcessor):
         super(SectionStatusProcessor, self).__init__(logger,
                                                      queue_settings_name)
 
-    def validate_inner_message(self, message):
+    def validate_message_body(self, message):
         """
         Will be called before process_inner_message.
         return False if json_data in the message body misses any
@@ -53,7 +53,7 @@ class SectionStatusProcessor(InnerMessageProcessor):
 
         return True
 
-    def process_inner_message(self, json_data):
+    def process_message_body(self, json_data):
         # json_data['Href']: /v5/course/2018,autumn,SOC,225/A/status.json
         url = "/student%s" % json_data['Href']
         new_value = json_data['Current']
