@@ -195,7 +195,7 @@ def set_course_resources(section_data, section, person):
             if d is not None and k is not None:
                 d[k] = t.response
         else:
-            logger.error("{}: {}".format(k, t.exception))
+            logger.error("{}: {}".format(k, str(t.exception)))
 
 
 def get_enrollment_status_for_section(section, section_json):

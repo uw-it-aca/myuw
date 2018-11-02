@@ -67,7 +67,7 @@ def _delete_message(request):
     title = message.message_title
 
     message.delete()
-    log_info(logger, "Message deleted.  Title: {}" % title)
+    log_info(logger, "Message deleted.  Title: {}".format(title))
     return True
 
 
@@ -82,8 +82,8 @@ def _save_new_message(request, context):
 
     def _get_date(name):
         datetimestr = (_get_string(request.POST.get(name, '')) + " " +
-                       _get_string(request.POST.get("{}_time".format(name,
-                                                                     ''))))
+                       _get_string(request.POST.get("{}_time".format(name),
+                                                    '')))
         try:
             return parse(datetimestr)
         except ValueError:
