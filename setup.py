@@ -30,7 +30,7 @@ setup(
         'urllib3==1.23',
         'python-dateutil',
         'django-templatetag-handlebars',
-        'UW-Django-SAML2<2.0',
+        'UW-Django-SAML2>=1.2,<2.0',
         'django-aws-message>=1.4,<2.0',
         'UW-RestClients-Core<2.0',
         'UW-RestClients-Bookstore<2.0',
