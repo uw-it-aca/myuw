@@ -1,4 +1,5 @@
 import logging
+import traceback
 from myuw.util.thread import Thread
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
@@ -15,7 +16,6 @@ from myuw.logger.logresp import (
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 from myuw.views import prefetch_resources
-import traceback
 
 logger = logging.getLogger(__name__)
 
@@ -82,8 +82,8 @@ def load_schedule(request, schedule, summer_term=""):
     try:
         canvas_enrollments = get_canvas_active_enrollments(request)
     except Exception:
-        log_exception(
-            logger, 'load_schedule', traceback.format_exc(chain=False))
+        log_exception(logger, 'load_schedule',
+                      traceback.format_exc(chain=False))
         pass
 
     section_index = 0
@@ -124,8 +124,8 @@ def load_schedule(request, schedule, summer_term=""):
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
             except Exception:
-                log_exception(
-                    logger, 'load_schedule', traceback.format_exc(chain=False))
+                log_exception(logger, 'load_schedule',
+                              traceback.format_exc(chain=False))
                 pass
 
         try:

@@ -216,8 +216,7 @@ def get_enrollment_status_for_section(section, section_json):
         if ex.status != 404:
             raise
     except Exception:
-        log_exception(logger,
-                      'get_status_for_section',
+        log_exception(logger, 'get_status_for_section',
                       traceback.format_exc(chain=False))
 
 
@@ -242,8 +241,7 @@ def set_indep_study_section_enrollments(section, section_json_data):
         else:
             raise
     except Exception:
-        log_exception(logger,
-                      'set_indep_study_section_enrollments',
+        log_exception(logger, 'set_indep_study_section_enrollments',
                       traceback.format_exc(chain=False))
 
 
