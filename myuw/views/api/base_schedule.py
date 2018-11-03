@@ -31,8 +31,8 @@ class StudClasSche(ProtectedAPI):
                                prefetch_canvas=True)
             return super(StudClasSche, self).dispatch(request, *args, **kwargs)
         except Exception:
-            log_exception(
-                logger, 'StudClasSche.dispatch', traceback.format_exc())
+            log_exception(logger, 'StudClasSche.dispatch',
+                          traceback.format_exc(chain=False))
 
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
@@ -83,7 +83,7 @@ def load_schedule(request, schedule, summer_term=""):
         canvas_enrollments = get_canvas_active_enrollments(request)
     except Exception:
         log_exception(
-            logger, 'load_schedule', traceback.format_exc())
+            logger, 'load_schedule', traceback.format_exc(chain=False))
         pass
 
     section_index = 0
@@ -125,7 +125,7 @@ def load_schedule(request, schedule, summer_term=""):
                     get_subject_guide_by_section(section)
             except Exception:
                 log_exception(
-                    logger, 'load_schedule', traceback.format_exc())
+                    logger, 'load_schedule', traceback.format_exc(chain=False))
                 pass
 
         try:

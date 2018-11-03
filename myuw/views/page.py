@@ -88,7 +88,7 @@ def page(request,
         c_user['email_error'] = True
         log_exception(logger,
                       'get_email_forwarding_for_current_user',
-                      traceback.format_exc())
+                      traceback.format_exc(chain=False))
         pass
 
     add_term_data_to_context(request, context)
@@ -115,7 +115,7 @@ def try_prefetch(request, template, context):
     except DataFailureException:
         log_exception(logger,
                       "prefetch_resources",
-                      traceback.format_exc())
+                      traceback.format_exc(chain=False))
         context["webservice_outage"] = True
         return render(request, template, context)
     return

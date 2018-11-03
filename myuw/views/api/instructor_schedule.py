@@ -89,8 +89,8 @@ def set_secondary_final_exam(secondary_section):
         if primary_section and primary_section.final_exam:
             return primary_section.final_exam.json_data()
     except Exception:
-        log_exception(
-            logger, 'set_secondary_final_exam', traceback.format_exc())
+        log_exception(logger, 'set_secondary_final_exam',
+                      traceback.format_exc(chain=False))
     return secondary_section.final_exam.json_data()
 
 
@@ -111,8 +111,8 @@ def set_section_grading_status(section, person):
         else:
             raise
     except Exception:
-        log_exception(
-            logger, 'get_section_grading_status', traceback.format_exc())
+        log_exception(logger, 'get_section_grading_status',
+                      traceback.format_exc(chain=False))
         return "error"
 
 
@@ -132,8 +132,8 @@ def set_section_evaluation(section, person):
             return {'eval_not_exist': True}
 
         if ex.status != 404:
-            log_exception(
-                logger, 'set_section_evaluation', traceback.format_exc())
+            log_exception(logger, 'set_section_evaluation',
+                          traceback.format_exc(chain=False))
 
 
 def set_course_resources(section_data, section, person):
@@ -218,7 +218,7 @@ def get_enrollment_status_for_section(section, section_json):
     except Exception:
         log_exception(logger,
                       'get_status_for_section',
-                      traceback.format_exc())
+                      traceback.format_exc(chain=False))
 
 
 def set_indep_study_section_enrollments(section, section_json_data):
@@ -244,7 +244,7 @@ def set_indep_study_section_enrollments(section, section_json_data):
     except Exception:
         log_exception(logger,
                       'set_indep_study_section_enrollments',
-                      traceback.format_exc())
+                      traceback.format_exc(chain=False))
 
 
 def safe_label(label):

@@ -105,7 +105,7 @@ def _save_section_color(user, section, color_id):
             log_exception(logger,
                           "Failed to create ({} {} color_id: {}) in DB".format(
                               user, section_label, color_id),
-                          traceback.format_exc())
+                          traceback.format_exc(chain=False))
             if '1062, "Duplicate entry ' not in str(ex):
                 raise
 
