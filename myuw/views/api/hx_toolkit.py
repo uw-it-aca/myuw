@@ -19,9 +19,9 @@ class HxToolkitMessage(ProtectedAPI):
         article_id = kwargs.get('article_id')
 
         article = get_rendered_article_by_id(article_id)
-        log_api_call(timer, request,
-                     "Get HxToolkitMessage {}".format(article_id))
         if article:
+            log_api_call(timer, request,
+                         "Get HxToolkitMessage {}".format(article_id))
             return self.html_response(article)
         else:
             return data_not_found()
@@ -37,8 +37,8 @@ class HxToolkitWeekMessage(ProtectedAPI):
         """
         timer = Timer()
         article = get_article_of_week_by_request(request)
-        log_api_call(timer, request, "Get HxToolkitWeekMessage")
         if article:
+            log_api_call(timer, request, "Get HxToolkitWeekMessage")
             return self.html_response(article)
         else:
             return data_not_found()
