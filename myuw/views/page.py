@@ -76,12 +76,10 @@ def page(request,
             try:
                 c_user['email_forward_url'] = get_service_url_for_address(
                     my_uwemail_forwarding.fwd)
-            except EmailServiceUrlException as ex:
-                c_user['login_url'] = None
-                c_user['title'] = None
-                c_user['icon'] = None
-                logger.info('No email url for {}: {}'.format(
-                    my_uwemail_forwarding.fwd, str(ex)))
+            except EmailServiceUrlException:
+                c_user['email_forward_url'] = None
+                logger.info('No email url for {}'.format(
+                    my_uwemail_forwarding.fwd))
 
     except Exception:
         c_user = context["user"]
