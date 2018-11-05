@@ -76,18 +76,17 @@ def page(request,
             try:
                 c_user['email_forward_url'] = get_service_url_for_address(
                     my_uwemail_forwarding.fwd)
-            except EmailServiceUrlException:
+            except EmailServiceUrlException as ex:
                 c_user['login_url'] = None
                 c_user['title'] = None
                 c_user['icon'] = None
-                logger.info('No Mail Url: {}'.format(
-                    my_uwemail_forwarding.fwd))
+                logger.info('No email url for {}: {}'.format(
+                    my_uwemail_forwarding.fwd, str(ex)))
 
     except Exception:
         c_user = context["user"]
         c_user['email_error'] = True
-        log_exception(logger,
-                      'get_email_forwarding_for_current_user',
+        log_exception(logger, 'get_email_forwarding_for_current_user',
                       traceback.format_exc(chain=False))
         pass
 
@@ -113,8 +112,7 @@ def try_prefetch(request, template, context):
                            prefetch_instructor=True,
                            prefetch_sws_person=True)
     except DataFailureException:
-        log_exception(logger,
-                      "prefetch_resources",
+        log_exception(logger, "prefetch_resources",
                       traceback.format_exc(chain=False))
         context["webservice_outage"] = True
         return render(request, template, context)
