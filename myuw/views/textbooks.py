@@ -10,4 +10,4 @@ def textbooks(request, term=None, textbook=None):
         'textbook': textbook
     }
 
-    return page(request, context=context, template='textbooks.html')
+    return page(request, 'textbooks.html', context=context)

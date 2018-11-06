@@ -1,24 +1,8 @@
-"""
-Django settings for project project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATES = [
@@ -38,56 +22,50 @@ TEMPLATES = [
     },
 ]
 
-
-
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_user_agents',
     'compressor',
     'templatetag_handlebars',
-    'myuw',
-    'userservice',
     'django_client_logger',
+    'userservice',
     'rc_django',
-    'blti'
-)
+    'supporttools',
+    'blti',
+    'hx_toolkit',
+    'myuw.apps.MyUWConfig',
+]
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.PersistentRemoteUserMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'userservice.user.UserServiceMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
     'rc_django.middleware.EnableServiceDegradationMiddleware',
-)
+]
 
-AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.RemoteUserBackend',
 #    'django.contrib.auth.backends.ModelBackend',
-)
-
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+]
 
 ROOT_URLCONF = 'travis-ci.urls'
 
 WSGI_APPLICATION = 'travis-ci.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -95,9 +73,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -109,11 +84,8 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -124,8 +96,23 @@ STATICFILES_FINDERS = (
 
 COMPRESS_ENABLED = False
 COMPRESS_ROOT = "compress_root"
+
+# EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+EMAIL_BACKEND = "saferecipient.EmailBackend"
+
+MEDIA_ROOT = "/statics/hx_images"
+MEDIA_URL = "/uploaded_images/"
+THRIVE_OUTPUT = "/hx_toolkit_output"
+
+MYUW_ENABLED_FEATURES = []
+
 RESTCLIENTS_TEST_MEMCACHED = True
 RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+USER_AGENTS_CACHE = None
+
+USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
+USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
+RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
 
 MOCK_SAML_ATTRIBUTES = {
     'uwnetid': ['javerage'],
@@ -136,7 +123,8 @@ MOCK_SAML_ATTRIBUTES = {
                    'u_astratest_myuw_test-support-admin'],
 }
 
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 LOGIN_URL = reverse_lazy('saml_login')
-
 LOGOUT_URL = reverse_lazy('saml_logout')
+
+REMOTE_USER_FORMAT = "uwnetid"

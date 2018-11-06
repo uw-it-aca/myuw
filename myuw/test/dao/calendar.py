@@ -1,6 +1,6 @@
 import json
 import pytz
-from unittest2 import skipIf
+from unittest import skipIf
 from datetime import date, datetime
 from django.test import TestCase
 from myuw.dao.calendar import get_events

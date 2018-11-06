@@ -14,7 +14,7 @@ from myuw.dao.mailman import (
     get_course_email_lists, request_mailman_lists, is_valid_section_label,
     get_section_by_label)
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg_with_request
+from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.exceptions import DisabledAction, NotInstructorError,\
     InvalidInputFormData
@@ -39,21 +39,21 @@ class Emaillist(ProtectedAPI):
             course_number = kwargs.get("course_number")
             section_id = kwargs.get("section_id")
             cur_abb = unescape_curriculum_abbr(curriculum_abbr)
-            section_label = "%s,%s,%s,%s/%s" % (year,
-                                                quarter.lower(),
-                                                cur_abb.upper(),
-                                                course_number,
-                                                section_id)
+            section_label = "{},{},{},{}/{}".format(year,
+                                                    quarter.lower(),
+                                                    cur_abb.upper(),
+                                                    course_number,
+                                                    section_id)
 
             if not is_emaillist_authorized(request, section_label):
                 raise NotInstructorError(
-                    "Not an instructor when checking emaillist for %s" %
-                    section_label)
+                    "Not instructor can't get emaillist for {}".format(
+                        section_label))
 
             email_list_json = get_course_email_lists(
                 year, quarter, cur_abb, course_number, section_id, True)
-            log_msg_with_request(logger, timer, request,
-                                 "Checked emaillist for %s" % section_label)
+            log_api_call(timer, request,
+                         "Get emaillist for {}".format(section_label))
             return self.json_response(email_list_json)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -69,26 +69,29 @@ class Emaillist(ProtectedAPI):
 
                 if is_action_disabled():
                     raise DisabledAction(
-                        "Request emaillist w. Overriding for "
-                        "single :%s and joint:%s" %
-                        (single_section_labels, joint_section_labels))
+                        "Overriding can't request emaillist for "
+                        "single :{} and joint:{}".format(
+                            single_section_labels,
+                            joint_section_labels))
 
                 if not validate_is_instructor(request,
                                               single_section_labels,
                                               joint_section_labels):
                     raise NotInstructorError(
-                        "Not an instructor when requesting emaillist for"
-                        "single :%s and joint:%s" %
-                        (single_section_labels, joint_section_labels))
+                        "Not instructor can't request emaillist for"
+                        "single :{} and joint:{}".format(
+                            single_section_labels,
+                            joint_section_labels))
 
                 resp = request_mailman_lists(request,
                                              single_section_labels,
                                              joint_section_labels)
 
-            log_msg_with_request(logger, timer, request,
-                                 "Request emaillist for %s, %s ==> %s" % (
-                                     single_section_labels,
-                                     joint_section_labels, resp))
+            log_api_call(timer, request,
+                         "Create/Request emaillist for {}, {} ==> {}".format(
+                             single_section_labels,
+                             joint_section_labels,
+                             resp))
 
             return self.json_response(resp)
         except Exception as ex:
@@ -119,10 +122,9 @@ def _get_section_label(request, key):
     if section_id_matched(key, section_label) and \
             is_valid_section_label(section_label):
         return section_label
-
-    logger.error("Invalid section label (%s) in the form input",
-                 section_label)
-    raise InvalidInputFormData
+    raise InvalidInputFormData(
+        "Invalid section label ({}) in emaillist form input".format(
+            section_label))
 
 
 SINGLE_SECTION_SELECTION_KEY_PATTERN = r'^[a-z]+_single_([A-Z][A-Z0-9]?)$'
@@ -176,12 +178,13 @@ def is_emaillist_authorized(request, section_label):
         check_section_instructor(get_section_by_label(section_label), person)
         return True
     except InvalidSectionID:
-        logger.error("%s is_emaillist_authorized(%s) ==> InvalidSectionLabel",
-                     uwnetid, section_label)
+        logger.error("{} is_emaillist_authorized({}) InvalidSectionID".format(
+                     uwnetid, section_label))
         return False
     except NotSectionInstructorException:
-        logger.error("%s is_emaillist_authorized(%s) ==> NotSectionInstructor",
-                     uwnetid, section_label)
+        logger.error(
+            "{} is_emaillist_authorized({}) ==> NotSectionInstructor".format(
+                uwnetid, section_label))
         return False
     except DataFailureException as err:
         if err.status == 404:
@@ -203,8 +206,9 @@ def is_joint_emaillist_authorized(request, section_label):
         check_section_instructor(section, person)
         return True
     except InvalidSectionID:
-        logger.error("%s is_emaillist_authorized(%s) ==> InvalidSectionLabel",
-                     uwnetid, section_label)
+        logger.error(
+            "{} is_joint_emaillist_authorized({}) InvalidSectionID".format(
+                uwnetid, section_label))
         return False
     except NotSectionInstructorException:
         if len(section.joint_section_urls):

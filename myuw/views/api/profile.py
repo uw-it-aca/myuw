@@ -6,7 +6,7 @@ from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.password import get_pw_json
 from myuw.dao.student_profile import get_applicant_profile, get_student_profile
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_msg
+from myuw.logger.logresp import log_api_call, log_msg
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from restclients_core.exceptions import DataFailureException
@@ -50,9 +50,9 @@ class MyProfile(ProtectedAPI):
             try:
                 response['password'] = get_pw_json(request)
             except Exception as ex:
-                logger.error("%s get_pw_json: %s" % (netid, ex))
+                logger.error("{} get_pw_json: {}".format(netid, str(ex)))
 
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get Applicant/Student Profile")
             return self.json_response(response)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)

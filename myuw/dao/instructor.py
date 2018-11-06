@@ -52,8 +52,8 @@ def set_instructor(user, sectionref):
     try:
         Instructor.add_seen_instructor(user, year, quarter)
     except Exception as ex:
-        logger.error("add_seen_instructor(%s, %s, %s) ==> %s",
-                     user.uwnetid, year, quarter, ex)
+        logger.error("add_seen_instructor({}, {}, {}) ==> {}".format(
+                     user.uwnetid, year, quarter, str(ex)))
 
 
 def get_search_param(request, is_mock):

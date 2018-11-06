@@ -17,13 +17,12 @@ from myuw.dao.user import get_updated_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logback import log_exception
-from myuw.logger.logresp import log_invalid_netid_response,\
-    log_msg_with_request
+from myuw.logger.logresp import (
+    log_invalid_netid_response, log_page_view, log_exception)
 from myuw.logger.session_log import log_session
 from myuw.util.settings import get_google_search_key, get_logout_url
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import invalid_session
+from myuw.views.error import unknown_uwnetid
 from django.contrib.auth.decorators import login_required
 
 
@@ -31,11 +30,10 @@ logger = logging.getLogger(__name__)
 
 
 def page(request,
+         template,
          context=None,
-         template='index.html',
          prefetch=True,
          add_quicklink_context=False):
-
     if context is None:
         context = {}
 
@@ -43,9 +41,9 @@ def page(request,
     try:
         user = get_updated_user(request)
     except Exception as ex:
-        logger.error(ex)
+        logger.error(str(ex))
         log_invalid_netid_response(logger, timer)
-        return invalid_session()
+        return unknown_uwnetid()
 
     netid = user.uwnetid
     context["user"] = {
@@ -55,12 +53,12 @@ def page(request,
 
     if prefetch:
         # Some pages need to prefetch before this point
-        failure = try_prefetch(request)
+        failure = try_prefetch(request, template, context)
         if failure:
             return failure
 
     user_pref = get_migration_preference(request)
-    log_session(netid, request)
+    log_session(request)
     affiliations = get_all_affiliations(request)
 
     context["home_url"] = "/"
@@ -79,18 +77,15 @@ def page(request,
                 c_user['email_forward_url'] = get_service_url_for_address(
                     my_uwemail_forwarding.fwd)
             except EmailServiceUrlException:
-                c_user['login_url'] = None
-                c_user['title'] = None
-                c_user['icon'] = None
-                logger.info('No Mail Url: %s' % (
+                c_user['email_forward_url'] = None
+                logger.info('No email url for {}'.format(
                     my_uwemail_forwarding.fwd))
 
     except Exception:
         c_user = context["user"]
         c_user['email_error'] = True
-        log_exception(logger,
-                      'get_email_forwarding_for_current_user',
-                      traceback.format_exc())
+        log_exception(logger, 'get_email_forwarding_for_current_user',
+                      traceback.format_exc(chain=False))
         pass
 
     add_term_data_to_context(request, context)
@@ -102,11 +97,11 @@ def page(request,
     if add_quicklink_context:
         _add_quicklink_context(request, context)
 
-    log_msg_with_request(logger, timer, request)
+    log_page_view(timer, request, template)
     return render(request, template, context)
 
 
-def try_prefetch(request):
+def try_prefetch(request, template, context):
     try:
         prefetch_resources(request,
                            prefetch_migration_preference=True,
@@ -115,9 +110,8 @@ def try_prefetch(request):
                            prefetch_instructor=True,
                            prefetch_sws_person=True)
     except DataFailureException:
-        log_exception(logger,
-                      "prefetch_resources",
-                      traceback.format_exc())
+        log_exception(logger, "prefetch_resources",
+                      traceback.format_exc(chain=False))
         context["webservice_outage"] = True
         return render(request, template, context)
     return

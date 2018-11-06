@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TransactionTestCase
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from myuw.dao.category_links import _get_links_by_category_and_campus, \
@@ -9,13 +9,10 @@ from myuw.test import get_request_with_user
 import re
 
 
-class TestCategoryLinks(TestCase):
+class TestCategoryLinks(TransactionTestCase):
 
     def _test_ascii(self, s):
-        try:
-            s.decode('ascii')  # python 2
-        except AttributeError:
-            s.encode('ascii')  # python 3
+        s.encode('ascii')  # python 3
 
     def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
@@ -147,17 +144,17 @@ class TestCategoryLinks(TestCase):
         req = get_request_with_user('bill')
         links = Resource_Links().get_all_grouped_links(req)
         self.assertEqual(len(links), 9)
-        self.assertEqual(links[8]['category_name'],
+        self.assertEqual(links[2]['category_name'],
                          'Services for Faculty and Staff')
 
         req = get_request_with_user('billbot')
         links = Resource_Links().get_all_grouped_links(req)
         self.assertEqual(len(links), 9)
-        self.assertEqual(links[8]['category_name'],
+        self.assertEqual(links[2]['category_name'],
                          'Services for Faculty and Staff')
 
         req = get_request_with_user('billtac')
         links = Resource_Links().get_all_grouped_links(req)
         self.assertEqual(len(links), 9)
-        self.assertEqual(links[8]['category_name'],
+        self.assertEqual(links[2]['category_name'],
                          'Services for Faculty and Staff')

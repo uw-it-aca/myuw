@@ -1,15 +1,12 @@
-from unittest2 import skipIf
+from unittest import skipIf
+from django.urls import reverse
 from django.test.utils import override_settings
-from django.core.urlresolvers import reverse
 from django.test import RequestFactory
 from myuw.views.lti.photo_list import LTIPhotoList
 from myuw.test.api import missing_url
 from myuw.test.views.lti import MyuwLTITest
 
-legacy_url = "http://some-test-server/myuw"
 
-
-@override_settings(MYUW_USER_SERVLET_URL=legacy_url)
 class TestLTILaunch(MyuwLTITest):
     @skipIf(missing_url('myuw_lti_photo_list'), 'myuw urls not configured')
     def test_lti_launch(self):
@@ -18,13 +15,13 @@ class TestLTILaunch(MyuwLTITest):
         # Invalid http method
         response = self.client.get(
             url, HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 405)
+        self.assertEquals(response.status_code, 401)
 
         # Invalid launch payload
         response = self.client.post(
                 url, data={},
                 HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 401)
 
 
 @override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",

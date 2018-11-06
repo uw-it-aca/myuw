@@ -64,11 +64,12 @@ def _load_data_from_file(file_name):
     all_data = []
 
     path = os.path.join(os.path.dirname(__file__), '..', 'data', file_name)
-    with open(path) as csvfile:
+    with open(path, 'r', encoding='utf8') as csvfile:
         reader = csv.DictReader(csvfile)
         for name in ('campus', 'affiliation', 'pce'):
             if name not in reader.fieldnames:
-                raise InvalidAffiliationDataFile("Missing header: %s" % name)
+                raise InvalidAffiliationDataFile(
+                    "Missing header: {}".format(name))
 
         for row in reader:
             campus = row['campus']
@@ -88,7 +89,8 @@ def _load_data_from_file(file_name):
             elif "" == pce or "all" == pce:
                 is_pce = None
             else:
-                raise InvalidAffiliationDataFile("Bad pce data: %s" % pce)
+                raise InvalidAffiliationDataFile(
+                    "Bad pce data: {}".format(pce))
 
             all_data.append({
                 'campus': campus,

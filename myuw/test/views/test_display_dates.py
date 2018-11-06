@@ -1,5 +1,5 @@
-from unittest2 import skipIf
-from django.core.urlresolvers import reverse
+from unittest import skipIf
+from django.urls import reverse
 from django.test import Client
 from myuw.views.display_dates import override
 from myuw.test.api import missing_url, require_url, MyuwApiTest

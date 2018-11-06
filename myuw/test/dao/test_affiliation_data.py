@@ -1,5 +1,5 @@
 import os
-from unittest2 import TestCase
+from unittest import TestCase
 from myuw.dao.affiliation_data import (_load_data_from_file,
                                        get_data_for_affiliations)
 from myuw.dao.exceptions import InvalidAffiliationDataFile

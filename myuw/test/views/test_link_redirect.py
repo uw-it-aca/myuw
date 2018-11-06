@@ -1,9 +1,9 @@
 from myuw.test.api import missing_url, require_url, MyuwApiTest
 from myuw.models import VisitedLinkNew
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test.utils import override_settings
 from django.test import Client
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 
 @require_url('myuw_home')

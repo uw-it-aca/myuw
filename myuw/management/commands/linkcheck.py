@@ -46,8 +46,8 @@ def check_and_format_link(link, ignore=[200]):
 
     else:
         campus = make_campus_human_readable(link.campus)
-        fmt = (link.title, campus, link.url, result)
-        return 'Link Title: %s, %s, URL: %s returned %s' % fmt
+        return 'Link Title: {}, {}, URL: {} returned {}'.format(
+            link.title, campus, link.url, result)
 
 
 def get_http_status(url):

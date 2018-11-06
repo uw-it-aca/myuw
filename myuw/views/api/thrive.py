@@ -1,8 +1,7 @@
 import logging
 from myuw.logger.timer import Timer
 from myuw.dao.thrive import get_current_message, get_previous_messages
-from myuw.logger.logresp import (
-    log_data_not_found_response, log_success_response)
+from myuw.logger.logresp import log_data_not_found_response, log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 
@@ -29,5 +28,5 @@ class ThriveMessages(ProtectedAPI):
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
-        log_success_response(logger, timer)
+        log_api_call(timer, request, "Get ThriveMessages")
         return self.json_response(message)

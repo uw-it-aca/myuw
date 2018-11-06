@@ -18,4 +18,4 @@ def future_quarters(request, quarter):
         'future_term': quarter,
         'term_data': term_data
     }
-    return page(request, context=context, template='future_quarters.html')
+    return page(request, 'future_quarters.html', context=context)

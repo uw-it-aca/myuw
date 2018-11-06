@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.test.utils import override_settings
-from myuw.logger.session_log import log_session, get_log_entry
+from myuw.logger.session_log import log_session, _get_affi,\
+    get_userid, _get_session_data
 from myuw.test import get_request_with_user
 
 UserService = 'userservice.user.UserServiceMiddleware'
@@ -11,20 +12,25 @@ class TestSessionLog(TestCase):
     def test_mywm_2436(self):
         netid = 'javerage'
         req = get_request_with_user(netid)
-        log_session(netid, req)
+        log_session(req)
 
-    def test_get_log_entry(self):
+    def test__get_affi(self):
         netid = 'javerage'
         req = get_request_with_user(netid)
+
+        users = get_userid()
+        self.assertTrue("orig_netid: javerage" in users)
+        self.assertTrue("is_override: False" in users)
+
         req.META['REMOTE_ADDR'] = '127.0.0.1'
-        entry = get_log_entry(netid, req)
+        entry = _get_session_data(req)
         self.assertEquals(entry['ip'], '127.0.0.1')
 
         req.META['X-Forwarded-For'] = '127.0.0.2'
-        entry = get_log_entry(netid, req)
+        entry = _get_session_data(req)
         self.assertEqual(entry['ip'], '127.0.0.2')
 
-        self.assertEqual(entry['netid'], 'javerage')
+        entry = _get_affi(req)
         self.assertEqual(entry['class_level'], 'SENIOR')
         self.assertTrue(entry['is_ugrad'])
         self.assertTrue(entry['is_pce'])
@@ -50,12 +56,11 @@ class TestSessionLog(TestCase):
 
         netid = 'jinter'
         req = get_request_with_user(netid)
-        req.META['REMOTE_ADDR'] = '127.0.0.1'
-        entry = get_log_entry(netid, req)
-        self.assertEquals(entry['ip'], '127.0.0.1')
-
-        req.META['X-Forwarded-For'] = '127.0.0.2'
-        entry = get_log_entry(netid, req)
-        self.assertEqual(entry['ip'], '127.0.0.2')
-        self.assertTrue(entry['is_student'])
+        entry = _get_affi(req)
         self.assertTrue(entry['intl_stud'])
+
+        netid = 'jalum'
+        req = get_request_with_user(netid)
+        entry = _get_affi(req)
+        self.assertTrue(entry['is_alumni'])
+        self.assertTrue(entry['is_past_stud'])

@@ -37,8 +37,8 @@ def not_instructor_error():
                           "Access Forbidden to Non Instructor")
 
 
-def invalid_session():
-    return _make_response(HTTP_BAD_REQUEST, "No valid userid in session")
+def unknown_uwnetid():
+    return _make_response(HTTP_BAD_REQUEST, "Unrecognized user")
 
 
 def invalid_input_data():
@@ -61,8 +61,9 @@ def invalid_method():
     return _make_response(HTTP_METHOD_NOT_ALLOWED, "Method not allowed")
 
 
-def invalid_future_term():
-    return _make_response(HTTP_GONE, "Invalid requested future term")
+def invalid_future_term(msg):
+    return _make_response(HTTP_GONE,
+                          "Invalid requested future term {}".format(msg))
 
 
 def data_error():
@@ -70,8 +71,8 @@ def data_error():
                           "Data not available due to an error")
 
 
-def handle_exception(logger, timer, stack_trace):
-    log_err(logger, timer, stack_trace.format_exc())
+def handle_exception(logger, timer, stack_traces):
+    log_err(logger, timer, stack_traces.format_exc(chain=False))
     exc_type, exc_value, exc_traceback = sys.exc_info()
 
     if isinstance(exc_value, DisabledAction):
@@ -82,7 +83,7 @@ def handle_exception(logger, timer, stack_trace):
 
     if isinstance(exc_value, InvalidNetID) or\
        isinstance(exc_value, InvalidRegID):
-        return invalid_session()
+        return unknown_uwnetid()
 
     if (isinstance(exc_value, InvalidInputFormData) or
             isinstance(exc_value, InvalidResourceCategory) or

@@ -9,7 +9,7 @@ from myuw.dao.notice import mark_notices_read_for_current_user
 from myuw.dao.notice_mapping import get_json_for_notices
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response, log_msg_with_request
+from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -32,7 +32,7 @@ class Notices(ProtectedAPI):
             notice_json = get_json_for_notices(
                 request, get_notices_for_current_user(request))
 
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get Notices")
             return self.json_response(notice_json)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -55,9 +55,10 @@ class Notices(ProtectedAPI):
         return _associate_short_to_long(notice_json)
 
     def put(self, request, *args, **kwargs):
+        timer = Timer()
         if not is_action_disabled():
             notice_hashes = json.loads(request.body).get('notice_hashes', None)
             mark_notices_read_for_current_user(request, notice_hashes)
-            log_msg_with_request(action_logger, None, request,
-                                 "Read notice %s" % notice_hashes)
+            log_api_call(timer, request,
+                         "Put: Read notice {}".format(notice_hashes))
         return self.json_response()

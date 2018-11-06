@@ -122,7 +122,7 @@ def get_all_affiliations(request):
             data["J1"] = sws_person.is_J1()
             data["intl_stud"] = data["F1"] or data["J1"]
         except Exception as ex:
-            logger.error(ex)
+            logger.error(str(ex))
 
         # enhance student campus with current and future enrollments
         try:

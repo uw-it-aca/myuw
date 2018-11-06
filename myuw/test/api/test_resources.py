@@ -1,5 +1,5 @@
 import json
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from myuw.dao.user import get_user_model
 from myuw.models import ResourceCategoryPin
 from myuw.test import get_request_with_user
@@ -15,9 +15,9 @@ class TestResources(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
         self.assertEqual(len(data), 9)
-        self.assertEqual(data[0]["category_id"],
+        self.assertEqual(data[1]["category_id"],
                          "emailandaccountsandidentity")
-        self.assertEqual(data[8]["category_id"],
+        self.assertEqual(data[2]["category_id"],
                          "servicesforfacultyandstaff")
 
     def test_pin_resource(self):

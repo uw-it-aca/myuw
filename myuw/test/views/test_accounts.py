@@ -5,9 +5,9 @@ from myuw.test.api import missing_url, MyuwApiTest
 
 class TestAcademicsMethods(MyuwApiTest):
 
-    @skipIf(missing_url("myuw_academics_page"), "myuw urls not configured")
+    @skipIf(missing_url("myuw_accounts_page"), "myuw urls not configured")
     def test_student_access(self):
-        url = reverse("myuw_academics_page")
+        url = reverse("myuw_accounts_page")
         self.set_user('javerage')
         response = self.client.get(
             url,

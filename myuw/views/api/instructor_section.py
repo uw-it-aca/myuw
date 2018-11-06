@@ -19,7 +19,7 @@ from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.instructor_schedule import get_instructor_section,\
     check_section_instructor
 from myuw.dao.pws import get_url_key_for_regid
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
@@ -31,22 +31,10 @@ logger = logging.getLogger(__name__)
 withdrew_grade_pattern = re.compile(r'^W')
 
 
-def is_withdrew(grade):
-    return withdrew_grade_pattern.match(grade)
-
-
-def is_status_drop_or_pending(request_status):
-    return (len(request_status) and
-            (request_status.lower() == "pending added to class" or
-             request_status.lower() == "dropped from class"))
-
-
 def is_registration_to_exclude(registration):
-    return (is_withdrew(registration.grade) or
-            is_status_drop_or_pending(registration.request_status))
-    # When switch to uw_sws 2.0.2:
-    # registration.is_withdrew() or
-    # registration.is_pending_status() or registration.is_dropped_status()
+    return (registration.is_withdrew() or
+            registration.is_pending_status() or
+            registration.is_dropped_status())
 
 
 class OpenInstSectionDetails(OpenAPI):
@@ -65,8 +53,8 @@ class OpenInstSectionDetails(OpenAPI):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
-        section_id = kwargs.get('section_id')
         timer = Timer()
+        section_id = kwargs.get('section_id')
         try:
             return self.make_http_resp(timer, request, section_id)
         except Exception as ex:
@@ -122,7 +110,9 @@ class OpenInstSectionDetails(OpenAPI):
             thread.join()
 
         self.add_linked_section_data(resp_data)
-        log_success_response(logger, timer)
+        log_api_call(timer, request,
+                     "Get Instructor Section Details for {}".format(
+                         section_id))
 
         return self.json_response(resp_data)
 

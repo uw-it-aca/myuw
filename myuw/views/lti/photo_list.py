@@ -1,12 +1,10 @@
+import re
 from django.utils.decorators import method_decorator
 from blti.views import BLTILaunchView
-from myuw.dao.canvas import get_viewable_course_sections
-from myuw.util.performance import log_response_time
 from restclients_core.exceptions import DataFailureException
-import re
+from myuw.dao.canvas import get_viewable_course_sections
 
 
-@method_decorator(log_response_time, name='dispatch')
 class LTIPhotoList(BLTILaunchView):
     template_name = 'lti/photo_list.html'
     authorized_role = 'admin'

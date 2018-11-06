@@ -24,12 +24,12 @@ class TestInstSectDetails(MyuwApiTest):
         resp = self.get_response_by_reverse(
             "myuw_inst_section_display_pin_mini",
             kwargs={'section_label': section_id})
-        self.assertEqual(resp.content, '{"done": true}')
+        self.assertEqual(resp.content, b'{"done": true}')
 
         resp = self.get_response_by_reverse(
             "myuw_inst_section_display_close_mini",
             kwargs={'section_label': section_id})
-        self.assertEqual(resp.content, '{"done": true}')
+        self.assertEqual(resp.content, b'{"done": true}')
 
         # test InvalidSectionID
         section_id = '2013,spring,PHYS,121/'

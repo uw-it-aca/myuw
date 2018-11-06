@@ -7,8 +7,7 @@ from uw_sws.section import get_section_by_label
 from myuw.dao.card_display_dates import during_myplan_peak_load
 from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import (
-    log_success_response, log_msg, log_data_not_found_response, log_err)
+from myuw.logger.logresp import log_api_call, log_err
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -50,12 +49,12 @@ class MyPlan(ProtectedAPI):
                         has_sections = True
                         curriculum = course["curriculum_abbr"].upper()
                         section_id = section["section_id"].upper()
-                        label = "%s,%s,%s,%s/%s" % (year,
-                                                    quarter.lower(),
-                                                    curriculum,
-                                                    course["course_number"],
-                                                    section_id
-                                                    )
+                        label = "{},{},{},{}/{}".format(
+                            year,
+                            quarter.lower(),
+                            curriculum,
+                            course["course_number"],
+                            section_id)
 
                         sws_section = get_section_by_label(label)
                         section["section_data"] = sws_section.json_data()
@@ -71,8 +70,8 @@ class MyPlan(ProtectedAPI):
             base_json["terms"][0]["unready_count"] = unready_count
             base_json["terms"][0]["has_sections"] = has_sections
 
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get MyPlan")
             return self.json_response(base_json)
         except Exception:
-            log_err(logger, timer, traceback.format_exc())
+            log_err(logger, timer, traceback.format_exc(chain=False))
             return self.json_response([])

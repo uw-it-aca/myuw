@@ -1,6 +1,6 @@
 import os
-from unittest2 import skipIf
-from django.core.urlresolvers import reverse
+from unittest import skipIf
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.test import TransactionTestCase, Client
 from django.test.client import RequestFactory
@@ -45,15 +45,15 @@ XFrame = 'django.middleware.clickjacking.XFrameOptionsMiddleware'
 UserService = 'userservice.user.UserServiceMiddleware'
 AUTH_BACKEND = 'django.contrib.auth.backends.ModelBackend'
 standard_test_override = override_settings(
-    MIDDLEWARE_CLASSES=(Session,
-                        Common,
-                        CsrfView,
-                        Auth,
-                        RemoteUser,
-                        Message,
-                        XFrame,
-                        UserService,),
-    AUTHENTICATION_BACKENDS=(AUTH_BACKEND,))
+    MIDDLEWARE=[Session,
+                Common,
+                CsrfView,
+                Auth,
+                RemoteUser,
+                Message,
+                XFrame,
+                UserService],
+    AUTHENTICATION_BACKENDS=[AUTH_BACKEND])
 
 
 @standard_test_override
