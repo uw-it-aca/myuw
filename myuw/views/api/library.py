@@ -2,7 +2,7 @@ import logging
 import traceback
 from myuw.dao.library import get_account_info_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -24,7 +24,8 @@ class MyLibInfo(ProtectedAPI):
 
             resp_json = myaccount.json_data(
                 use_abbr_week_month_day_format=True)
-            log_success_response(logger, timer)
+
+            log_api_call(timer, request, "Get My Library Account")
             return self.json_response(resp_json)
         except Exception:
             return handle_exception(logger, timer, traceback)

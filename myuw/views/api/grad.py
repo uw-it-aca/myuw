@@ -7,7 +7,7 @@ from myuw.dao.grad import (
     get_grad_leave_for_current_user, get_grad_petition_for_current_user,
     degree_to_json, committee_to_json, leave_to_json, petition_to_json)
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg, log_success_response
+from myuw.logger.logresp import log_msg, log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 
@@ -38,36 +38,37 @@ class MyGrad(ProtectedAPI):
                 committee_reqs = get_grad_committee_for_current_user(request)
                 json_ret["committees"] = committee_to_json(committee_reqs)
             except DataFailureException as ex:
-                logger.error(ex)
                 if ex.status != 404:
                     json_ret["comm_err"] = ex.status
+                    logger.error(str(ex))
 
             try:
                 degree_reqs = get_grad_degree_for_current_user(request)
                 json_ret["degrees"] = degree_to_json(degree_reqs, request)
             except DataFailureException as ex:
-                logger.error(ex)
                 if ex.status != 404:
                     json_ret["degree_err"] = ex.status
+                    logger.error(str(ex))
 
             try:
                 leave_reqs = get_grad_leave_for_current_user(request)
                 json_ret["leaves"] = leave_to_json(leave_reqs, request)
             except DataFailureException as ex:
-                logger.error(ex)
                 if ex.status != 404:
                     json_ret["leave_err"] = ex.status
+                    logger.error(str(ex))
 
             try:
                 petition_reqs = get_grad_petition_for_current_user(request)
                 json_ret["petitions"] = petition_to_json(
                     petition_reqs, request)
             except DataFailureException as ex:
-                logger.error(ex)
                 if ex.status != 404:
                     json_ret["petit_err"] = ex.status
+                    logger.error(str(ex))
 
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get My Grad")
+
             return self.json_response(json_ret)
         except Exception:
             return handle_exception(logger, timer, traceback)

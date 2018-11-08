@@ -132,7 +132,7 @@ def get_subscriptions(request):
                 # True|False
 
     except DataFailureException as ex:
-        logger.error("uwnetid_subscriptions %s ==> %s", netid, ex)
+        logger.error("uwnetid_subscriptions {} ==> {}".format(netid, str(ex)))
 
     request.myuwnetid_subscriptions = subs_dict
     return subs_dict

@@ -1,21 +1,35 @@
-from myuw.logger.logback import log_info, log_time, log_exception_with_timer
-from myuw.logger.session_log import get_request_session_key
+import json
+import logging
+from myuw.logger.session_log import hash_session_key, get_userid
+
+resp_logger = logging.getLogger(__name__)
 
 
-def log_msg_with_request(logger, timer, request, msg='fulfilled'):
+def __log_resptime(timer, action_message):
+    resp_logger.info("{} Time={} seconds".format(action_message,
+                                                 timer.get_elapsed()))
+
+
+def log_page_view(timer, request, template_name):
+    msg = json.dumps({'page': template_name,
+                      'session_key': hash_session_key(request)})
     if timer:
-        log_time(logger,
-                 "session_key:%s, %s" % (
-                     get_request_session_key(request), msg),
-                 timer)
+        __log_resptime(timer, msg)
     else:
-        log_info(logger,
-                 "session_key:%s, %s" % (get_request_session_key(request),
-                                         msg))
+        resp_logger.info(msg)
 
 
-def log_success_response(logger, timer):
-    log_time(logger, 'fulfilled', timer)
+def log_api_call(timer, request, message):
+    __log_resptime(timer,
+                   json.dumps({'api': message,
+                               'session_key': hash_session_key(request)}))
+
+
+def log_client_side_action(request, interaction_type):
+    if interaction_type is not None:
+        resp_logger.info(json.dumps(
+            {'client-side interaction': interaction_type,
+             'session_key': hash_session_key(request)}))
 
 
 def log_err(logger, timer, exc_info):
@@ -23,20 +37,38 @@ def log_err(logger, timer, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    log_exception_with_timer(logger, timer, exc_info)
+    logger.error("{}, {}. Time={} seconds".format(get_userid(),
+                                                  exc_info.splitlines(),
+                                                  timer.get_elapsed()))
 
 
-def log_msg(logger, timer, msg):
-    log_time(logger, msg, timer)
+def log_exception(logger, action, exc_info):
+    """
+    exc_info is a string containing
+    the full stack trace, the exception type and value
+    """
+    logger.error("{}, {} => {} ".format(get_userid(),
+                                        action,
+                                        exc_info.splitlines()))
+
+
+def log_info(logger, message):
+    logger.info("{}, {}".format(get_userid(), message))
 
 
 def log_data_not_found_response(logger, timer):
-    log_time(logger, 'Data not found', timer)
+    log_msg(logger, timer, 'Data not found')
 
 
 def log_invalid_netid_response(logger, timer):
-    log_time(logger, 'Invalid netid, abort', timer)
+    log_msg(logger, timer, 'Invalid netid, abort')
 
 
 def log_invalid_regid_response(logger, timer):
-    log_time(logger, 'Invalid regid, abort', timer)
+    log_msg(logger, timer, 'Invalid regid, abort')
+
+
+def log_msg(logger, timer, action_message):
+    log_info(logger,
+             "{}. Time={} seconds".format(action_message,
+                                          timer.get_elapsed()))

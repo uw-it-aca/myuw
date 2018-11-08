@@ -6,12 +6,6 @@ from myuw.util.settings import get_calendar_time_zone, get_myuwclass_url,\
     get_disable_actions_when_override, get_enabled_features, get_logout_url
 
 
-legacy_url = "https://myuw.washington.edu/"
-
-
-legacy_url = "https://myuw.washington.edu/"
-
-
 class TestSetting(TestCase):
 
     def test_default(self):

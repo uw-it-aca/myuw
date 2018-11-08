@@ -7,7 +7,7 @@ def teaching(request,
              year=None,
              quarter=None):
     context = get_context(year, quarter)
-    return page(request, context, template='teaching.html')
+    return page(request, 'teaching.html', context=context)
 
 
 @page_view
@@ -16,7 +16,7 @@ def teaching_section(request,
                      quarter,
                      section):
     context = get_context(year, quarter, section)
-    return page(request, context, template='teaching_section.html')
+    return page(request, 'teaching_section.html', context=context)
 
 
 @page_view
@@ -25,7 +25,7 @@ def student_photo_list(request,
                        quarter,
                        section):
     context = get_context(year, quarter, section)
-    return page(request, context, template='teaching/photo_list.html')
+    return page(request, 'teaching/photo_list.html', context=context)
 
 
 def get_context(year, quarter, section=None):
@@ -36,5 +36,5 @@ def get_context(year, quarter, section=None):
                              "quarter": quarter},
             }
     if section:
-        context["section"] = "%s,%s,%s" % (year, quarter, section)
+        context["section"] = "{},{},{}".format(year, quarter, section)
     return context

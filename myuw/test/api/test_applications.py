@@ -21,6 +21,8 @@ class TestApplications(MyuwApiTest):
         return self.get_response_by_reverse('myuw_applications_api')
 
     def test_applications(self):
+        response = self.get_applications_response("javerage")
+        self.assertEqual(response.status_code, 404)
 
         response = self.get_applications_response("japplicant")
         applications = json.loads(response.content)

@@ -5,7 +5,7 @@ from myuw.dao.registered_term import (
     get_registered_future_quarters, should_highlight_future_quarters)
 from myuw.dao.term import get_next_non_summer_quarter
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -56,7 +56,7 @@ class RegisteredFutureQuarters(ProtectedAPI):
             highlight = should_highlight_future_quarters(
                 future_quarters, request)
             resp_data["highlight_future_quarters"] = highlight
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get RegisteredFutureQuarters")
             return self.json_response(resp_data)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)

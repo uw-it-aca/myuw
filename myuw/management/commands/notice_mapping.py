@@ -3,9 +3,9 @@ import logging
 from django.core.management.base import BaseCommand, CommandError
 
 
-output_format = "    \"%s\": {\n        \"myuw_category\": \"%s\",\n" +\
-    "        \"location_tags\": %s,\n" +\
-    "        \"critical\": %s\n    },\n"
+output_format = "    \"{}\": {\n        \"myuw_category\": \"{}\",\n" +\
+    "        \"location_tags\": {},\n" +\
+    "        \"critical\": {}\n    },\n"
 
 
 class Command(BaseCommand):
@@ -40,8 +40,9 @@ class Command(BaseCommand):
                     myuw_category = row[3]
                     critical = row[4]
                     location_tags = self._get_location_tags(row[5])
-                    string = output_format % (myuw_id, myuw_category,
-                                              location_tags, len(critical) > 0)
+                    string = output_format.format(
+                        myuw_id, myuw_category, location_tags,
+                        len(critical) > 0)
                     output_string = output_string + string
             output_string = output_string[:-2] + "\n}\n"
             f = open(outfile, 'w')

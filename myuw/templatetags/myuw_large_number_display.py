@@ -13,6 +13,6 @@ def large_number(value):
     for l in labels:
         value //= 1000
         if value < 1000:
-            return "%s%s" % (value, l)
+            return "{}{}".format(value, l)
 
-    return "%s%s" % (value, l)
+    return "{}{}".format(value, l)

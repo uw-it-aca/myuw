@@ -30,8 +30,7 @@ from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
     get_current_quarter, is_past, is_future,
     get_previous_number_quarters, get_future_number_quarters)
-from myuw.logger.logresp import log_success_response
-from myuw.logger.logback import log_exception
+from myuw.logger.logresp import log_api_call, log_exception
 from myuw.logger.timer import Timer
 from myuw.util.settings import get_myuwclass_url
 from myuw.util.thread import Thread, ThreadWithResponse
@@ -70,14 +69,16 @@ class InstSche(ProtectedAPI):
         for thread in threads:
             thread.join()
 
-        log_success_response(logger, timer)
+        log_api_call(timer, request,
+                     "Get Instructor Schedule for {},{}".format(
+                         term.year, term.quarter))
         return self.json_response(resp_data)
 
 
 def set_classroom_info_url(meeting):
     if len(meeting.building) and meeting.building != "*" and\
             len(meeting.room_number) and meeting.room_number != "*":
-        return 'http://www.washington.edu/classroom/%s+%s' % (
+        return 'http://www.washington.edu/classroom/{}+{}'.format(
             meeting.building, meeting.room_number)
     return None
 
@@ -88,8 +89,8 @@ def set_secondary_final_exam(secondary_section):
         if primary_section and primary_section.final_exam:
             return primary_section.final_exam.json_data()
     except Exception:
-        log_exception(
-            logger, 'set_secondary_final_exam', traceback.format_exc())
+        log_exception(logger, 'set_secondary_final_exam',
+                      traceback.format_exc(chain=False))
     return secondary_section.final_exam.json_data()
 
 
@@ -110,8 +111,8 @@ def set_section_grading_status(section, person):
         else:
             raise
     except Exception:
-        log_exception(
-            logger, 'get_section_grading_status', traceback.format_exc())
+        log_exception(logger, 'get_section_grading_status',
+                      traceback.format_exc(chain=False))
         return "error"
 
 
@@ -131,8 +132,8 @@ def set_section_evaluation(section, person):
             return {'eval_not_exist': True}
 
         if ex.status != 404:
-            log_exception(
-                logger, 'set_section_evaluation', traceback.format_exc())
+            log_exception(logger, 'set_section_evaluation',
+                          traceback.format_exc(chain=False))
 
 
 def set_course_resources(section_data, section, person):
@@ -194,7 +195,7 @@ def set_course_resources(section_data, section, person):
             if d is not None and k is not None:
                 d[k] = t.response
         else:
-            logger.error("%s: %s" % (k, t.exception))
+            logger.error("{}: {}".format(k, str(t.exception)))
 
 
 def get_enrollment_status_for_section(section, section_json):
@@ -215,9 +216,8 @@ def get_enrollment_status_for_section(section, section_json):
         if ex.status != 404:
             raise
     except Exception:
-        log_exception(logger,
-                      'get_status_for_section',
-                      traceback.format_exc())
+        log_exception(logger, 'get_status_for_section',
+                      traceback.format_exc(chain=False))
 
 
 def set_indep_study_section_enrollments(section, section_json_data):
@@ -233,16 +233,16 @@ def set_indep_study_section_enrollments(section, section_json_data):
         if total_enrollment == 1:
             person = registrations[0].person
             section_json_data['enrollment_student_name'] =\
-                "%s, %s" % (person.surname.title(), person.first_name.title())
+                "{}, {}".format(person.surname.title(),
+                                person.first_name.title())
     except DataFailureException as ex:
         if ex.status == 404:
             section_json_data['current_enrollment'] = 0
         else:
             raise
     except Exception:
-        log_exception(logger,
-                      'set_indep_study_section_enrollments',
-                      traceback.format_exc())
+        log_exception(logger, 'set_indep_study_section_enrollments',
+                      traceback.format_exc(chain=False))
 
 
 def safe_label(label):
@@ -287,8 +287,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             safe_label(section.section_label())
 
         if section.eos_cid:
-            section_data["myuwclass_url"] = "%s%s" % (get_myuwclass_url(),
-                                                      section.eos_cid)
+            section_data["myuwclass_url"] = "{}{}".format(get_myuwclass_url(),
+                                                          section.eos_cid)
 
         if section.is_primary_section:
             if section.linked_section_urls:
@@ -459,10 +459,10 @@ class InstScheQuar(InstSche):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
+        timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term", None)
-        timer = Timer()
         try:
             smr_term = ""
             if summer_term and len(summer_term) > 1:
@@ -501,7 +501,8 @@ class InstSect(ProtectedAPI):
             return not_instructor_error()
 
         resp_data = load_schedule(request, schedule)
-        log_success_response(logger, timer)
+        log_api_call(timer, request,
+                     "Get Instructor Section for {}".format(section_id))
         return self.json_response(resp_data)
 
     def get(self, request, *args, **kwargs):

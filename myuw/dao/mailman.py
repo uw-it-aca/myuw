@@ -16,7 +16,7 @@ from uw_mailman.instructor_term_list import\
     get_instructor_term_list_name, exists_instructor_term_list
 from myuw.util.thread import ThreadWithResponse
 from myuw.util.settings import get_mailman_courserequest_recipient
-from myuw.logger.logback import log_info
+from myuw.logger.logresp import log_info
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.exceptions import CourseRequestEmailRecipientNotFound
 from uw_sws.section import get_joint_sections
@@ -48,8 +48,8 @@ def get_section_secondary_combined_list(primary_section):
 
 def get_section_label(curriculum_abbr, course_number,
                       section_id, quarter, year):
-    return "%s,%s,%s,%s/%s" % (
-        year, quarter.lower(), curriculum_abbr, course_number, section_id)
+    return "{},{},{},{}/{}".format(year, quarter.lower(),
+                                   curriculum_abbr, course_number, section_id)
 
 
 def get_single_course_list(curriculum_abbr, course_number, section_id,
@@ -128,13 +128,14 @@ def get_all_secondary_section_lists(primary_section):
             if thread.exception is None:
                 secondaries.append(thread.response)
             else:
-                logger.error("get_single_course_list(%s,%s,%s,%s,%s)==>%s ",
-                             primary_section.curriculum_abbr,
-                             primary_section.course_number,
-                             section_id,
-                             primary_section.term.quarter,
-                             primary_section.term.year,
-                             thread.exception)
+                logger.error(
+                    "get_single_course_list({},{},{},{},{})==>{}".format(
+                        primary_section.curriculum_abbr,
+                        primary_section.course_number,
+                        section_id,
+                        primary_section.term.quarter,
+                        primary_section.term.year,
+                        thread.exception))
     return secondaries
 
 
@@ -258,7 +259,7 @@ def request_mailman_lists(request,
         recipient = get_mailman_courserequest_recipient()
         if recipient is None:
             raise CourseRequestEmailRecipientNotFound
-        sender = "%s@uw.edu" % requestor_uwnetid
+        sender = "{}@uw.edu".format(requestor_uwnetid)
         send_mail(EMAIL_SUBJECT,
                   message_body,
                   sender,
@@ -277,7 +278,7 @@ def get_single_message_body(requestor_uwnetid,
     <list_address> <quarter_code> YYYY <sln>
     <list_address> <quarter_code> YYYY <sln>
     """
-    message_body = "%s\n" % requestor_uwnetid
+    message_body = "{}\n".format(requestor_uwnetid)
     num_sections_found = 0
 
     threads = []
@@ -294,9 +295,9 @@ def get_single_message_body(requestor_uwnetid,
             num_sections_found += 1
             message_body += _get_single_line(section)
         else:
-            logger.error("%s", thread.exception)
-    log_info(logger, "For %s ==request emaillist message body==> %s" %
-             (single_section_labels, message_body.splitlines()))
+            logger.error(str(thread.exception))
+    log_info(logger, "For {} ==request emaillist message body==> {}".format(
+        single_section_labels, message_body.splitlines()))
     return message_body, num_sections_found
 
 
@@ -308,7 +309,7 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
     <joint_list_address> <quarter_code> YYYY <sln1>
     <joint_list_address> <quarter_code> YYYY <sln2>
     """
-    message_body = "%s\n" % requestor_uwnetid
+    message_body = "{}\n".format(requestor_uwnetid)
     num_sections_found = 0
 
     threads = []
@@ -325,9 +326,9 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
             num_sections_found += 1
             message_body += _get_joint_line(section)
         else:
-            logger.error("%s", thread.exception)
-    log_info(logger, "For %s ==request emaillist message body==> %s" %
-             (joint_section_labels, message_body.splitlines()))
+            logger.error(str(thread.exception))
+    log_info(logger, "For {} ==request emaillist message body==> {}".format(
+        joint_section_labels, message_body.splitlines()))
     return message_body, num_sections_found
 
 
@@ -335,11 +336,10 @@ def _get_single_line(section):
     """
     <list_address> <quarter_code> YYYY <sln>
     """
-    return "%s %s %s %s\n" % (
-        get_section_list_name(section),
-        _get_quarter_code(section.term.quarter),
-        section.term.year,
-        section.sln)
+    return "{} {} {} {}\n".format(get_section_list_name(section),
+                                  _get_quarter_code(section.term.quarter),
+                                  section.term.year,
+                                  section.sln)
 
 
 def _get_joint_line(section):
@@ -351,7 +351,7 @@ def _get_joint_line(section):
         joint_slns.append(section.sln)
 
     sln_string = " ".join(map(str, joint_slns))
-    return "%s %s %s %s\n" % (
+    return "{} {} {} {}\n".format(
         get_course_list_name(section.curriculum_abbr,
                              section.course_number,
                              section.section_id,

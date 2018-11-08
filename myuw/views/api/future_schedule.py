@@ -3,7 +3,6 @@ import traceback
 from myuw.dao.term import get_specific_term, is_past
 from myuw.dao.card_display_dates import in_show_grades_period
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg
 from myuw.views.api.base_schedule import StudClasSche
 from myuw.views.error import invalid_future_term, handle_exception
 
@@ -25,10 +24,10 @@ class StudClasScheFutureQuar(StudClasSche):
                 status 404: no schedule found (not registered)
                 status 543: data error
         """
+        timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term", None)
-        timer = Timer()
         try:
             smr_term = ""
             if summer_term and len(summer_term) > 1:
@@ -38,10 +37,8 @@ class StudClasScheFutureQuar(StudClasSche):
 
             if is_past(request_term, request):
                 if not in_show_grades_period(request_term, request):
-                    log_msg(logger, timer, "Future term has pasted")
-                    return invalid_future_term()
+                    return invalid_future_term("{},{}".format(year, quarter))
 
-            return self.make_http_resp(timer, request_term,
-                                       request, smr_term)
+            return self.make_http_resp(timer, request_term, request, smr_term)
         except Exception:
             return handle_exception(logger, timer, traceback)

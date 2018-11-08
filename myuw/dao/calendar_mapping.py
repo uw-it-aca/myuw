@@ -93,7 +93,7 @@ def _get_calendars_by_name_and_type(major_name, major_type):
     path = os.path.join(
         os.path.dirname(__file__),
         '..', 'data', 'calendar_major_mapping.csv')
-    with open(path) as csvfile:
+    with open(path, 'r', encoding='utf8') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for row in reader:
             degree_name = row[degree_column].strip()

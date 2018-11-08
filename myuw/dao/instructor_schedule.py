@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 def get_instructor_schedule_by_term(request, term):
-    id = "instchedule%d%s" % (term.year, term.quarter)
+    id = "instchedule{}{}".format(term.year, term.quarter)
     if not hasattr(request, id):
         inst_schedule = __get_instructor_schedule_by_term(request, term)
         set_course_display_pref(request, inst_schedule)
@@ -144,7 +144,7 @@ def get_linked_section(url, instructor_regid):
             linked.registrations = get_active_registrations_for_section(
                 linked, instructor_regid)
         except DataFailureException as ex:
-            logger.error("get_linked_section(%s)==>%s", url, ex)
+            logger.error("get_linked_section({})==>{}".format(url, str(ex)))
             linked.registrations = []
 
         return linked
@@ -159,12 +159,12 @@ def check_section_instructor(section, person):
     if not section.is_instructor(person):
         if section.is_primary_section:
             raise NotSectionInstructorException(
-                "%s Not Instructor for %s" % (person.uwnetid,
-                                              section.section_label()))
+                "{} Not Instructor for {}".format(
+                    person.uwnetid, section.section_label()))
         primary_section = get_section_by_label(section.primary_section_label())
         if not primary_section.is_instructor(person):
             raise NotSectionInstructorException(
-                "%s Not Instructor for %s" % (
+                "{} Not Instructor for {}".format(
                     person.uwnetid, primary_section.section_label()))
 
 

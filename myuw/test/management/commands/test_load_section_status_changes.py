@@ -1,7 +1,8 @@
-import time
 from django.test import TestCase
 from django.core.management import call_command
 from django.core.management.base import CommandError
+
+ARN = "arn:aws:sqs:us-xxxx-1:123456789012:uw-eval-myuw"
 
 
 class TestLoadSectionStatus(TestCase):
@@ -9,9 +10,7 @@ class TestLoadSectionStatus(TestCase):
     def test_run(self):
         with self.settings(AWS_SQS={
                 'SECTION_SATSUS_V1': {
-                    'ACCOUNT_NUMBER': '123456789012',
-                    'QUEUE': 'xxxxxxxxxx',
-                    'REGION': 'xxxx',
+                    'QUEUE_ARN': ARN,
                     'KEY_ID': 'XXXXXXXXXXXXXXXX',
                     'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',
                     'VISIBILITY_TIMEOUT': 10,

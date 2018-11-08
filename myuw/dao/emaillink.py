@@ -14,13 +14,13 @@ def get_service_url_for_address(address):
         os.path.dirname(__file__),
         '..', 'data', 'forward_mapping.csv')
 
-    with open(path) as csvfile:
+    with open(path, 'r', encoding='utf8') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"')
         # skip header
         next(reader)
         for row in reader:
             try:
-                if re.match(r'.*[@\.]%s$' % row[0], address, re.I):
+                if re.match(r'.*[@\.]{}$'.format(row[0]), address, re.I):
                     return row[1]
             except TypeError:
                 raise EmailServiceUrlException("Non-string address")

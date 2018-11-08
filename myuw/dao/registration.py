@@ -21,7 +21,7 @@ def get_schedule_by_term(request, term):
     in the given term/quarter
     """
     regid = get_regid_of_current_user(request)
-    id = "myuwschedule%d%s" % (term.year, term.quarter)
+    id = "myuwschedule{}{}".format(term.year, term.quarter)
     if not hasattr(request, id):
         student_schedule = get_schedule_by_regid_and_term(
             regid,
@@ -42,7 +42,7 @@ def myuw_section_prefetch(data):
               data["SectionID"]
               ]
 
-    key = "library-%s-%s-%s-%s-%s" % (tuple(params))
+    key = "library-{}-{}-{}-{}-{}".format(tuple(params))
     method = generic_prefetch(get_subject_guide_for_section_params,
                               params)
 

@@ -5,14 +5,16 @@ https://wiki.cac.washington.edu/x/sNFdB
 
 import logging
 from datetime import timedelta
+import traceback
 from django.utils import timezone
 from dateutil.parser import parse
-from aws_message.processor import InnerMessageProcessor, ProcessorException
+from aws_message.processor import MessageBodyProcessor, ProcessorException
+from myuw.logger.logresp import log_exception
 from myuw.event import update_sws_entry_in_cache
 
 
 logger = logging.getLogger(__name__)
-message_freshness = timedelta(hours=4)
+MESSAGE_FRESHNESS = timedelta(hours=4)
 QUEUE_SETTINGS_NAME = 'SECTION_SATSUS_V1'
 
 
@@ -20,35 +22,46 @@ class SectionStatusProcessorException(ProcessorException):
     pass
 
 
-class SectionStatusProcessor(InnerMessageProcessor):
+class SectionStatusProcessor(MessageBodyProcessor):
 
     EXCEPTION_CLASS = SectionStatusProcessorException
 
-    def __init__(self):
-        super(SectionStatusProcessor, self).__init__(
-            logger, queue_settings_name=QUEUE_SETTINGS_NAME)
+    def __init__(self, queue_settings_name=QUEUE_SETTINGS_NAME):
+        super(SectionStatusProcessor, self).__init__(logger,
+                                                     queue_settings_name)
 
-    def process_inner_message(self, json_data):
+    def validate_message_body(self, payload):
         """
-        Each status change message body contains a single event
+        This method will be called before process_message_body.
+        Return False if payload json data misses any necessary
+        data element and the message will be skipped.
         """
-        if 'EventDate' in json_data:
-            modified = parse(json_data['EventDate'])
-            if modified <= (timezone.now() - message_freshness):
-                logger.debug("DISCARD Event (Date: %s, ID: %s)",
-                             modified, json_data['EventID'])
-                return
+        if 'EventDate' not in payload:
+            return False
 
-            status_url = json_data.get('Href')
-            # ie, /v5/course/2018,autumn,SOC,225/A/status.json
+        self.modified = parse(payload['EventDate'])
+        if self.modified <= (timezone.now() - MESSAGE_FRESHNESS):
+            logger.debug("DISCARD Old message {}".format(payload))
+            return False
 
-            new_value = json_data.get('Current')
+        if ('Current' not in payload or
+                not len(payload.get('Current')) or
+                'Href' not in payload or
+                not len(payload.get('Href'))):
+            logger.error("DISCARD Bad message {}".format(payload))
+            return False
 
-            if status_url and new_value:
-                url = "/student%s" % status_url
-                try:
-                    update_sws_entry_in_cache(url, new_value, modified)
-                except Exception as e:
-                    msg = "FAILED to update cache(url=%s) ==> %s" % (url, e)
-                    logger.error(msg)
-                    raise SectionStatusProcessorException(msg)
+        return True
+
+    def process_message_body(self, payload):
+        # payload['Href']: /v5/course/2018,autumn,SOC,225/A/status.json
+        url = "/student{}".format(payload['Href'])
+        new_value = payload['Current']
+
+        try:
+            update_sws_entry_in_cache(url, new_value, self.modified)
+        except Exception:
+            msg = "Updating memcache failed on {}, {}".format(url,
+                                                              new_value)
+            log_exception(logger, msg, traceback.format_exc())
+            raise SectionStatusProcessorException(msg)

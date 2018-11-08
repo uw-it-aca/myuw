@@ -106,11 +106,11 @@ def add_session_context(request, context):
     for val in DATE_KEYS:
         if val in request.session:
             if request.session[val] is True:
-                context["%s_true" % val] = True
+                context["{}_true".format(val)] = True
             else:
-                context["%s_false" % val] = True
+                context["{}_false".format(val)] = True
         else:
-            context["%s_unset" % val] = True
+            context["{}_unset".format(val)] = True
 
     now_request = RequestFactory().get("/")
     now_request.session = {}

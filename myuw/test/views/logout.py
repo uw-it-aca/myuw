@@ -1,6 +1,6 @@
-from unittest2 import skipIf
+from unittest import skipIf
 from django.test.utils import override_settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from myuw.util.settings import get_logout_url
 from myuw.test.api import missing_url, MyuwApiTest
 from myuw.test.views import get_desktop_args

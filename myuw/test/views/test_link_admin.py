@@ -1,10 +1,10 @@
-from unittest2 import skipIf
-from django.core.urlresolvers import reverse
+from unittest import skipIf
+from django.urls import reverse
 from django.test import Client
 from django.test.utils import override_settings
 from myuw.views.link_admin import popular_links
 from myuw.test.api import missing_url, require_url, MyuwApiTest
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 
 @require_url('myuw_popular_links')

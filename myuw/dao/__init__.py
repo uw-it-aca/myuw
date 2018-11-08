@@ -1,6 +1,5 @@
 import logging
 import os
-import io
 from django.conf import settings
 from uw_sws import DAO as SWS_DAO
 from userservice.user import UserService
@@ -70,13 +69,12 @@ def _get_file_path(settings_key, filename):
 
 
 def is_netid_in_list(username, file_path):
-    netid = username.decode('utf8')
-    with io.open(file_path, 'r', encoding='utf8') as data_source:
+    with open(file_path, 'r', encoding='utf8') as data_source:
         for line in data_source:
             try:
-                if line.rstrip() == netid:
+                if line.rstrip() == username:
                     return True
             except Exception as ex:
-                logger.error("%s: %s==%s", ex, line, username)
+                logger.error("{}: {}=?={}".format(str(ex), line, username))
 
     return False
