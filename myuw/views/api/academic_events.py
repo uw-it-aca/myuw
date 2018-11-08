@@ -1,16 +1,16 @@
-from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception
-from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_success_response
-from myuw.dao.instructor import is_instructor
-from myuw.dao.term import get_comparison_date, get_current_quarter
-from uw_trumba import get_calendar_by_name
-from uw_sws.term import get_term_after
 from datetime import timedelta, date, datetime
 import re
 import json
 import logging
 import traceback
+from myuw.views.api import ProtectedAPI
+from myuw.views.error import handle_exception
+from myuw.logger.timer import Timer
+from myuw.logger.logresp import log_api_call
+from myuw.dao.instructor import is_instructor
+from myuw.dao.term import get_comparison_date, get_current_quarter
+from uw_trumba import get_calendar_by_name
+from uw_sws.term import get_term_after
 
 CURRENT_LIST_MAX_DAYS = 3
 logger = logging.getLogger(__name__)
@@ -55,7 +55,7 @@ class AcademicEvents(ProtectedAPI):
 
             for event in raw_events:
                 events.append(self.json_for_event(event, request))
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get AcademicEvents")
             return self.json_response(events)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -117,7 +117,7 @@ class AcademicEvents(ProtectedAPI):
         event_id = matches.group(1)
 
         url = ("http://www.washington.edu/calendar/academic/"
-               "?trumbaEmbed=view%%3Devent%%26eventid%%3D%s" % (event_id))
+               "?trumbaEmbed=view%%3Devent%%26eventid%%3D{}".format(event_id))
 
         return url
 

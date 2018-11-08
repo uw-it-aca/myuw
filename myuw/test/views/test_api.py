@@ -1,9 +1,9 @@
-from unittest2 import skipIf
-from django.core.urlresolvers import reverse
+import json
+from unittest import skipIf
+from django.urls import reverse
 from myuw.views.api import OpenAPI
 from myuw.test.api import missing_url, MyuwApiTest
 from datetime import datetime
-import simplejson as json
 
 
 class TestDispatchErrorCases(MyuwApiTest):
@@ -37,4 +37,4 @@ class TestJSONResponse(MyuwApiTest):
 
         response = OpenAPI().json_response(datetime(2013, 1, 1, 0, 0, 0))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(json.loads(response.content), '2013-01-01T00:00:00')
+        self.assertEquals(json.loads(response.content), '2013-01-01 00:00:00')

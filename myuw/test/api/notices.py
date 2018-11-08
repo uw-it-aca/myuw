@@ -1,6 +1,6 @@
+import json
 from myuw.test.api import MyuwApiTest, require_url
-from django.core.urlresolvers import reverse
-import simplejson as json
+from django.urls import reverse
 
 
 @require_url('myuw_notices_api')

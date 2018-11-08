@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from myuw.authorization import can_override_user, is_myuw_admin
 from blti import BLTI, BLTIException
-from blti.validators import BLTIRoles
+from blti.validators import Roles
 
 BLTI_USER_LOGIN = 'custom_canvas_user_login_id'
 

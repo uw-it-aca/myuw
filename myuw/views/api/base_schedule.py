@@ -1,4 +1,5 @@
 import logging
+import traceback
 from myuw.util.thread import Thread
 from operator import itemgetter
 from myuw.dao.building import get_buildings_by_schedule
@@ -10,13 +11,11 @@ from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
-from myuw.logger.logresp import (log_data_not_found_response,
-                                 log_success_response, log_msg)
-from myuw.logger.logback import log_exception
+from myuw.logger.logresp import (
+    log_data_not_found_response, log_api_call, log_exception)
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found
 from myuw.views import prefetch_resources
-import traceback
 
 logger = logging.getLogger(__name__)
 
@@ -32,8 +31,8 @@ class StudClasSche(ProtectedAPI):
                                prefetch_canvas=True)
             return super(StudClasSche, self).dispatch(request, *args, **kwargs)
         except Exception:
-            log_exception(
-                logger, 'StudClasSche.dispatch', traceback.format_exc())
+            log_exception(logger, 'StudClasSche.dispatch',
+                          traceback.format_exc(chain=False))
 
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
@@ -52,7 +51,9 @@ class StudClasSche(ProtectedAPI):
             return data_not_found()
 
         resp_data = load_schedule(request, schedule, summer_term)
-        log_success_response(logger, timer)
+        log_api_call(timer, request,
+                     "Get Student Schedule {},{}".format(term.year,
+                                                         term.quarter))
         return self.json_response(resp_data)
 
 
@@ -72,8 +73,8 @@ def load_schedule(request, schedule, summer_term=""):
         enrollment = get_enrollment_for_term(request, schedule.term)
         pce_sections = enrollment.unf_pce_courses
     except Exception as ex:
-        logger.error("find enrolled off term sections (%s %d): %s",
-                     schedule.term.quarter, schedule.term.year, ex)
+        logger.error("find enrolled off term sections ({} {}): {}".format(
+                     schedule.term.quarter, schedule.term.year, str(ex)))
         pce_sections = {}
         pass
 
@@ -81,8 +82,8 @@ def load_schedule(request, schedule, summer_term=""):
     try:
         canvas_enrollments = get_canvas_active_enrollments(request)
     except Exception:
-        log_exception(
-            logger, 'load_schedule', traceback.format_exc())
+        log_exception(logger, 'load_schedule',
+                      traceback.format_exc(chain=False))
         pass
 
     section_index = 0
@@ -123,8 +124,8 @@ def load_schedule(request, schedule, summer_term=""):
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
             except Exception:
-                log_exception(
-                    logger, 'load_schedule', traceback.format_exc())
+                log_exception(logger, 'load_schedule',
+                              traceback.format_exc(chain=False))
                 pass
 
         try:

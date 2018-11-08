@@ -5,7 +5,7 @@ from myuw.dao.notice import get_tuition_due_date
 from myuw.dao.pws import is_student
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
-    log_data_not_found_response, log_msg, log_success_response)
+    log_data_not_found_response, log_msg, log_api_call)
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import data_not_found, handle_exception
 
@@ -33,7 +33,7 @@ class Finance(ProtectedAPI):
             response = balances.json_data()
             response['tuition_due'] = str(date)
 
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get Student Account Balances")
             return self.json_response(response)
         except Exception:
             return handle_exception(logger, timer, traceback)

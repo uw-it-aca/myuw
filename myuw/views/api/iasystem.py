@@ -10,7 +10,7 @@ from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.dao.iasystem import (
     get_evaluations_by_section, json_for_evaluation, in_coursevel_fetch_window)
 from myuw.logger.logresp import (
-    log_data_not_found_response, log_msg, log_success_response)
+    log_data_not_found_response, log_msg, log_api_call)
 from myuw.logger.timer import Timer
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
@@ -52,13 +52,16 @@ class IASystem(ProtectedAPI):
 
             filter_schedule_sections_by_summer_term(schedule, summer_term)
             if len(schedule.sections) == 0:
-                log_data_not_found_response(logger, time)
+                log_data_not_found_response(logger, timer)
                 return data_not_found()
 
             resp_data = load_course_eval(request, schedule, summer_term)
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get IASystem")
             return self.json_response(resp_data)
-        except Exception:
+        except Exception as ex:
+            if (isinstance(ex, DataFailureException) and ex.status == 400):
+                log_data_not_found_response(logger, timer)
+                return data_not_found()
             return handle_exception(logger, timer, traceback)
 
 

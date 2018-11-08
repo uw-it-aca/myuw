@@ -1,9 +1,10 @@
 import json
 from django.test.utils import override_settings
 from restclients_core.exceptions import DataFailureException
+from uw_sws.models import Registration
 from myuw.test.api import MyuwApiTest, fdao_sws_override, fdao_pws_override
 from myuw.views.api.instructor_section import InstSectionDetails,\
-    LTIInstSectionDetails, is_withdrew, is_status_drop_or_pending
+    LTIInstSectionDetails, is_registration_to_exclude
 from myuw.test.views.lti import get_lti_request, MyuwLTITest
 from myuw.test import get_request, get_request_with_user, get_request_with_date
 
@@ -12,14 +13,19 @@ from myuw.test import get_request, get_request_with_user, get_request_with_date
 @fdao_pws_override
 class TestInstSectDetails(MyuwApiTest):
 
-    def test_is_withdrew(self):
-        self.assertTrue(is_withdrew("W"))
-        self.assertTrue(is_withdrew("W6"))
-        self.assertFalse(is_withdrew("X"))
+    def test_is_registration_to_exclude(self):
+        reg = Registration()
+        reg.grade = "W"
+        self.assertTrue(is_registration_to_exclude(reg))
+        reg.grade = "W6"
+        self.assertTrue(is_registration_to_exclude(reg))
+        reg.grade = "X"
+        self.assertFalse(is_registration_to_exclude(reg))
 
-    def test_is_status_drop_or_pending(self):
-        self.assertTrue(is_status_drop_or_pending("Pending added to class"))
-        self.assertTrue(is_status_drop_or_pending("DROPPED FROM CLASS"))
+        reg.request_status = "Pending added to class"
+        self.assertTrue(is_registration_to_exclude(reg))
+        reg.request_status = "DROPPED FROM CLASS"
+        self.assertTrue(is_registration_to_exclude(reg))
 
     def test_billsea_section(self):
         now_request = get_request()

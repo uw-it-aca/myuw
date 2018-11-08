@@ -1,17 +1,15 @@
 import logging
 import traceback
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_msg_with_request,\
-    log_data_not_found_response, log_msg, log_success_response
+from myuw.logger.logresp import log_api_call
 from myuw.dao import is_action_disabled
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import data_not_found, handle_exception
+from myuw.views.error import handle_exception
 from myuw.dao.category_links import (
     Resource_Links, pin_category, delete_categor_pin)
 from myuw.views.exceptions import DisabledAction
 
 logger = logging.getLogger(__name__)
-post_logger = logging.getLogger("myuw.views.api.resources.pin")
 
 
 class ResourcesList(ProtectedAPI):
@@ -27,7 +25,7 @@ class ResourcesList(ProtectedAPI):
         try:
             links = Resource_Links()
             grouped = links.get_all_grouped_links(request)
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get ResourcesList")
             return self.json_response(grouped)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -46,14 +44,14 @@ class ResourcesPin(ProtectedAPI):
         category_id = kwargs['category_id'].lower()
         try:
             if is_action_disabled():
-                raise DisabledAction("Pin category %s w. Overriding" %
-                                     category_id)
+                raise DisabledAction("Overriding can't Pin category {}".format(
+                    category_id))
 
             pin_category(request, category_id)
+            log_api_call(timer, request,
+                         "Pin category {}".format(category_id))
         except Exception:
             return handle_exception(logger, timer, traceback)
-        log_msg_with_request(post_logger, timer, request,
-                             "Pin category %s" % category_id)
         return self.html_response("")
 
     def delete(self, request, *args, **kwargs):
@@ -65,13 +63,13 @@ class ResourcesPin(ProtectedAPI):
         try:
             if is_action_disabled():
                 raise DisabledAction(
-                    "Unpin category %s w. Overriding" % category_id)
+                    "Overriding can't Unpin category {}".format(category_id))
 
             delete_categor_pin(request, category_id)
+            log_api_call(timer, request,
+                         "Unpin category {}".format(category_id))
         except Exception:
             return handle_exception(logger, timer, traceback)
-        log_msg_with_request(post_logger, timer, request,
-                             "Unpin category %s" % category_id)
         return self.html_response("")
 
 
@@ -87,7 +85,7 @@ class PinnedResources(ProtectedAPI):
         try:
             links = Resource_Links()
             grouped = links.get_pinned_links(request)
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get PinnedResources")
             return self.json_response(grouped)
         except Exception:
             return handle_exception(logger, timer, traceback)

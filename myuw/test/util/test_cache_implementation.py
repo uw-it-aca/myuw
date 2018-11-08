@@ -1,5 +1,5 @@
 from datetime import timedelta
-from unittest2 import skipIf
+from unittest import skipIf
 from django.test import TestCase
 from django.conf import settings
 from restclients_core.models import MockHTTP

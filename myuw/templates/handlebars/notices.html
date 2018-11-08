@@ -1,3 +1,4 @@
+{% load user_agents %}
 {% load templatetag_handlebars %}
     {% tplhandlebars "notices" %}
 
@@ -33,7 +34,7 @@
             <!-- collapsy 1 -->
             <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true" style="display: none;">
                 <div class="row">
-                    {% if request.is_mobile %}
+                    {% if request|is_mobile %}
                     <div class="col-md-12">
                     {% else %}
                     <div class="col-md-10 col-md-offset-1">
@@ -86,7 +87,7 @@
         <!-- collapsy 2 content -->
         <div id="collapseTwo" class="slide-hide" aria-hidden="true" style="display: none;">
             <div class="row">
-                {% if request.is_mobile %}
+                {% if request|is_mobile %}
                 <div class="col-md-12">
                 {% else %}
                 <div class="col-md-10 col-md-offset-1">
@@ -141,7 +142,7 @@
                     <!-- collapsy 3 content -->
                     <div id="collapseThree" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            {% if request.is_mobile %}
+                            {% if request|is_mobile %}
                             <div class="col-md-12">
                             {% else %}
                             <div class="col-md-10 col-md-offset-1">
@@ -195,7 +196,7 @@
                     <!-- collapsy 4 content -->
                     <div id="collapseFour" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            {% if request.is_mobile %}
+                            {% if request|is_mobile %}
                             <div class="col-md-12">
                             {% else %}
                             <div class="col-md-10 col-md-offset-1">
@@ -251,7 +252,7 @@
                 <!-- collapsy 5 content -->
                 <div id="collapseFive" class="slide-hide" aria-hidden="true" style="display: none;">
                     <div class="row">
-                        {% if request.is_mobile %}
+                        {% if request|is_mobile %}
                         <div class="col-md-12">
                         {% else %}
                         <div class="col-md-10 col-md-offset-1">
@@ -306,7 +307,7 @@
               <!-- collapsy legal content -->
               <div id="collapseSix" class="slide-hide" aria-hidden="true" style="display: none;">
                   <div class="row">
-                      {% if request.is_mobile %}
+                      {% if request|is_mobile %}
                           <div class="col-md-12">
                       {% else %}
                           <div class="col-md-10 col-md-offset-1">

@@ -82,7 +82,7 @@ def get_link_label(link):
         data = {}
         path = os.path.join(os.path.dirname(__file__), '..', 'data',
                             "custom_link_labels.csv")
-        with open(path) as csvfile:
+        with open(path, 'r', encoding='utf8') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 data[row['url']] = row['label']
@@ -113,9 +113,8 @@ def add_custom_link(request, url, link_label=None):
         try:
             return get_custom_link_by_url(request, url)
         except Exception as ex:
-            logger.error("%s add_custom_link(%s, %s) ==> %s",
-                         get_netid_of_current_user(request), url,
-                         link_label, ex)
+            logger.error("{} add_custom_link({}, {}) ==> {}".format(
+                get_netid_of_current_user(request), url, link_label, str(ex)))
     return None
 
 
@@ -124,8 +123,8 @@ def delete_custom_link(request, link_id):
         link = get_custom_link_by_id(request, link_id)
         return link.delete()
     except Exception as ex:
-        logger.error("%s delete_custom_link(%s) ==> %s",
-                     get_netid_of_current_user(request), link_id, ex)
+        logger.error("{} delete_custom_link({}) ==> {}".format(
+            get_netid_of_current_user(request), link_id, str(ex)))
     return None
 
 
@@ -138,9 +137,9 @@ def edit_custom_link(request, link_id, new_url, new_label=None):
         link.save()
         return link
     except Exception as ex:
-        logger.error("%s edit_custom_link(%s, %s, %s) ==> %s",
-                     get_netid_of_current_user(request), link_id,
-                     new_url, new_label, ex)
+        logger.error("{} edit_custom_link({}, {}, {}) ==> {}".format(
+            get_netid_of_current_user(request), link_id,
+            new_url, new_label, str(ex)))
     return None
 
 
@@ -161,8 +160,8 @@ def add_hidden_link(request, url):
         try:
             return get_hidden_link_by_url(request, url)
         except Exception as ex:
-            logger.error("%s add_hidden_link(%s) ==> %s",
-                         get_netid_of_current_user(request), url, ex)
+            logger.error("{} add_hidden_link({}) ==> {}".format(
+                get_netid_of_current_user(request), url, str(ex)))
     return None
 
 
@@ -171,8 +170,8 @@ def delete_hidden_link(request, link_id):
         link = get_hidden_link_by_id(request, link_id)
         return link.delete()
     except Exception as ex:
-        logger.error("%s delete_hidden_link(%s) ==> %s",
-                     get_netid_of_current_user(request), link_id, ex)
+        logger.error("{} delete_hidden_link({}) ==> {}".format(
+            get_netid_of_current_user(request), link_id, str(ex)))
     return None
 
 

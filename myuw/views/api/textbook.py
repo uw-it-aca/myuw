@@ -10,7 +10,7 @@ from myuw.dao.textbook import get_textbook_by_schedule
 from myuw.dao.textbook import get_order_url_by_schedule
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
-    log_success_response, log_msg, log_data_not_found_response)
+    log_api_call, log_msg, log_data_not_found_response)
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception, data_not_found, data_error
@@ -26,15 +26,15 @@ class Textbook(ProtectedAPI):
         """
         GET returns 200 with textbooks for the given quarter
         """
+        timer = Timer()
         current_date = get_comparison_datetime(request)
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term")
 
-        return self.respond(request, year, quarter, summer_term)
+        return self.respond(timer, request, year, quarter, summer_term)
 
-    def respond(self, request, year, quarter, summer_term):
-        timer = Timer()
+    def respond(self, timer, request, year, quarter, summer_term):
         try:
             prefetch_resources(request)
             by_sln = {}
@@ -65,7 +65,8 @@ class Textbook(ProtectedAPI):
                 log_data_not_found_response(logger, timer)
                 return data_not_found()
 
-            log_success_response(logger, timer)
+            log_api_call(timer, request, "Get Textbook for {}.{}".format(
+                year, quarter))
             return self.json_response(by_sln)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -108,7 +109,7 @@ class TextbookCur(Textbook):
             summer_term = ""
             if term.quarter == "summer":
                 summer_term = get_current_summer_term(request)
-            return self.respond(request, term.year,
+            return self.respond(timer, request, term.year,
                                 term.quarter, summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)

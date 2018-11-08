@@ -9,11 +9,11 @@
                     <div class="contact-info-container">
                         <div><strong>{{full_name}}</strong></div>
 
-                        {{# if whitepages_publish}}
+                        {{#if whitepages_publish}}
                             <span class="my-text-muted" style="display: block;">{{title1}}</span>
                             <span style="display: block;"><a href="mailto:{{email1}}">{{email1}}</a></span>
                             <span style="display: block;"><a href="tel:+1{{phone1}}">{{formatPhoneNumber phone1}}</a></span>
-                            {{# if phone2}}
+                            {{#if phone2}}
                                 <span style="display: block;"><a href="tel:+1{{phone2}}">{{formatPhoneNumber phone2}}</a></span>
                             {{/if}}
                             <span style="display: block;">{{address1}}</span>
