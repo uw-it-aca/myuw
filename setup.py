@@ -27,7 +27,7 @@ setup(
         'ordereddict',
         'django-compressor==2.2',
         'beautifulsoup4',
-        'urllib3==1.23',
+        'urllib3>1.24',
         'python-dateutil',
         'django-templatetag-handlebars',
         'UW-Django-SAML2>1.2,<2.0',
