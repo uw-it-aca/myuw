@@ -31,7 +31,7 @@ setup(
         'python-dateutil',
         'django-templatetag-handlebars',
         'UW-Django-SAML2<2.0',
-        'django-aws-message<2.0',
+        'django-aws-message>=1.5.1,<2.0',
         'UW-RestClients-Core<2.0',
         'UW-RestClients-Bookstore<2.0',
         'UW-RestClients-Canvas<2.0',
