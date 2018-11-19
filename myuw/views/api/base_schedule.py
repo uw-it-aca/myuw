@@ -2,6 +2,7 @@ import logging
 import traceback
 from myuw.util.thread import Thread
 from operator import itemgetter
+from restclients_core.exceptions import InvalidNetID
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import (get_canvas_active_enrollments,
                              canvas_course_is_available)
@@ -11,10 +12,11 @@ from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.schedule import (
     get_schedule_by_term, filter_schedule_sections_by_summer_term)
 from myuw.dao.registered_term import get_current_summer_term_in_schedule
+from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_data_not_found_response, log_api_call, log_exception)
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import data_not_found
+from myuw.views.error import data_not_found, unknown_uwnetid, handle_exception
 from myuw.views import prefetch_resources
 
 logger = logging.getLogger(__name__)
@@ -23,16 +25,20 @@ logger = logging.getLogger(__name__)
 class StudClasSche(ProtectedAPI):
 
     def dispatch(self, request, *args, **kwargs):
+        timer = Timer()
         try:
             person = get_person_of_current_user(request)
+        except InvalidNetID:
+            return unknown_uwnetid()
+
+        try:
             prefetch_resources(request,
                                prefetch_enrollment=True,
                                prefetch_library=True,
                                prefetch_canvas=True)
             return super(StudClasSche, self).dispatch(request, *args, **kwargs)
         except Exception:
-            log_exception(logger, 'StudClasSche.dispatch',
-                          traceback.format_exc(chain=False))
+            handle_exception(logger, timer, traceback)
 
     def make_http_resp(self, timer, term, request, summer_term=None):
         """
