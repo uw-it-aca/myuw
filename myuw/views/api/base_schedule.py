@@ -74,14 +74,17 @@ def load_schedule(request, schedule, summer_term=""):
     json_data["summer_term"] = summer_term
 
     buildings = get_buildings_by_schedule(schedule)
-
+    pce_sections = {}
     try:
         enrollment = get_enrollment_for_term(request, schedule.term)
-        pce_sections = enrollment.unf_pce_courses
-    except Exception as ex:
-        logger.error("find enrolled off term sections ({} {}): {}".format(
-                     schedule.term.quarter, schedule.term.year, str(ex)))
-        pce_sections = {}
+        if enrollment is not None:
+            pce_sections = enrollment.unf_pce_courses
+    except Exception:
+        log_exception(
+            logger,
+            "find enrolled off term sections ({} {})".format(
+                schedule.term.quarter, schedule.term.year),
+            traceback.format_exc(chain=False))
         pass
 
     canvas_enrollments = {}
