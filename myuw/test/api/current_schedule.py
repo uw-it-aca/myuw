@@ -16,7 +16,6 @@ class TestSchedule(MyuwApiTest):
         return self.get_response_by_reverse('myuw_current_schedule')
 
     def test_javerage_current_term(self):
-
         response = self.get_current_schedule_res('javerage')
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
@@ -39,13 +38,11 @@ class TestSchedule(MyuwApiTest):
         self.assertNotIn('canvas_url', train)
 
     def test_none_current_term(self):
-
         response = self.get_current_schedule_res('none')
         self.assertEquals(response.status_code, 404)
         self.assertEquals(response.content, b'Data not found')
 
     def test_eight_current_term(self):
-
         response = self.get_current_schedule_res('eight')
         self.assertEquals(response.status_code, 200)
 
@@ -77,12 +74,10 @@ class TestSchedule(MyuwApiTest):
             'http://guides.lib.uw.edu/bothell/businternational')
 
     def test_missing_current_term(self):
-
         response = self.get_current_schedule_res('jerror')
         self.assertEquals(response.status_code, 543)
 
     def test_summer_terms(self):
-
         response = self.get_current_schedule_res('javerage',
                                                  '2013-07-06 00:00:01')
         self.assertEquals(response.status_code, 200)
@@ -203,3 +198,7 @@ class TestSchedule(MyuwApiTest):
         response = self.get_current_schedule_res('staff',
                                                  '2013-4-25 00:00:01')
         self.assertEquals(response.status_code, 404)
+
+    def test_invalid_user(self):
+        response = self.get_response_by_reverse('myuw_current_schedule')
+        self.assertEquals(response.status_code, 400)

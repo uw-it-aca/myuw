@@ -41,8 +41,7 @@ def page(request,
     try:
         user = get_updated_user(request)
     except Exception as ex:
-        logger.error(str(ex))
-        log_invalid_netid_response(logger, timer)
+        log_exception(logger, str(ex), traceback.format_exc(chain=False))
         return unknown_uwnetid()
 
     netid = user.uwnetid

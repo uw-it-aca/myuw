@@ -82,10 +82,10 @@ def get_userid():
     the user is acting as someone else, otherwise
     <actual user netid> no_override: <actual user netid>
     """
-    override_userid = get_netid_of_current_user()
-    actual_userid = get_netid_of_original_user()
     log_format = 'orig_netid: {}, acting_netid: {}, is_override: {}'
     try:
+        override_userid = get_netid_of_current_user()
+        actual_userid = get_netid_of_original_user()
         return log_format.format(actual_userid,
                                  override_userid,
                                  override_userid != actual_userid)
