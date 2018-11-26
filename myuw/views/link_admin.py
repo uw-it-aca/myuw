@@ -7,7 +7,6 @@ from myuw.dao import get_netid_of_current_user
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
-
 PAGE_SIZE = 10
 MAX_PAGE = 5
 logger = logging.getLogger(__name__)
@@ -41,7 +40,7 @@ def popular_links(request, page):
                 link = PopularLink.objects.get(pk=popular_id)
                 url = link.url
                 link.delete()
-                logger.error("popular link removed. user: {}, link: {}".format(
+                logger.info("popular link removed. user: {}, link: {}".format(
                     uwnetid, url))
 
     curated_popular = PopularLink.objects.all()
