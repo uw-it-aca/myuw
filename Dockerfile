@@ -13,4 +13,4 @@ ENV DB sqlite3
 RUN django-admin.py startproject project .
 ADD docker /app/project/
 ENV REMOTE_USER javerage
-CMD ["python", "manage.py", "runserver", "0:8000"]
+CMD ["python", "manage.py", "runserver", "0:80"]
