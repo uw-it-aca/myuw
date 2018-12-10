@@ -3,7 +3,7 @@ WORKDIR /app/
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
 RUN apt-get update && apt-get install -qq python-dev libxml2-dev libxmlsec1-dev
-RUN pip3 install mysqlclient
+RUN pip install mysqlclient
 ADD setup.py /app/
 ADD requirements.txt /app/
 RUN pip3 install -r requirements.txt

@@ -20,7 +20,7 @@ RUN apt-get -y update && \
     wget \
     python-setuptools \
     build-essential\
-    python-dev \
+    python3.6-dev \
     libapache2-mod-wsgi \
     libxml2-dev \
     libxmlsec1-dev \
