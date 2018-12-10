@@ -1,4 +1,4 @@
-FROM python:2.7
+FROM python:3.6
 WORKDIR /app/
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
