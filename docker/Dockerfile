@@ -27,14 +27,16 @@ RUN apt-get -y update && \
     python-pip \
     libmysqlclient-dev
 
-RUN pip install --upgrade pip
-RUN pip install boto3 watchtower
+RUN wget https://bootstrap.pypa.io/get-pip.py
+RUN python3 get-pip.py
+RUN pip3 install --upgrade pip
+RUN pip3 install boto3 watchtower
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
 RUN pip install mysqlclient
 ADD setup.py /app/
 ADD requirements.txt /app/
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 ADD /docker/web/apache2.conf /tmp/apache2.conf
 RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ && \
     rm -rf /etc/apache2/sites-enabled/ && mkdir /etc/apache2/sites-enabled/ && \
