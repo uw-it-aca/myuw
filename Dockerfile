@@ -3,10 +3,10 @@ WORKDIR /app/
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
 RUN apt-get update && apt-get install -qq python-dev libxml2-dev libxmlsec1-dev
-RUN pip install mysqlclient
+RUN pip3 install mysqlclient
 ADD setup.py /app/
 ADD requirements.txt /app/
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 RUN pip install boto3 watchtower
 ADD . /app/
 ENV DB sqlite3
