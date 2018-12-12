@@ -2,6 +2,7 @@
 # Remove any existing httpd data
 rm -rf /run/httpd/* /tmp/httpd*
 
+source "/app/bin/activate"
 
 # Check if we're the leader using ElasticBeanstalk's methods
 python3 manage.py migrate
