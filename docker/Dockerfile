@@ -4,7 +4,7 @@ ADD docker/web/start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir /app/logs
 RUN apt-get -y update && \
-    apt-get -y install apache2 && \
+    apt-get -y install apache2 apache2-mpm-worker apache2-threaded-dev && \
     apt-get clean all
 
 # Install system dependencies
@@ -21,7 +21,6 @@ RUN apt-get -y update && \
     python-setuptools \
     build-essential\
     python3.6-dev \
-    libapache2-mod-wsgi \
     libxml2-dev \
     libxmlsec1-dev \
     python-pip \
@@ -30,6 +29,7 @@ RUN apt-get -y update && \
 RUN wget https://bootstrap.pypa.io/get-pip.py
 RUN python3 get-pip.py
 RUN pip3 install --upgrade pip
+RUN pip3 install mod_wsgi
 RUN pip3 install boto3 watchtower
 ENV PYTHONUNBUFFERED 1
 ADD myuw/VERSION /app/myuw/
