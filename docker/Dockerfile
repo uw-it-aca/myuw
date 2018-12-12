@@ -44,4 +44,4 @@ ADD . /app/
 ENV DB sqlite3
 RUN . /app/bin/activate && rm -rf project/ && rm -f manage.py && django-admin.py startproject project .
 ADD docker /app/project/
-CMD ["start.sh" ]
+CMD ["/start.sh" ]
