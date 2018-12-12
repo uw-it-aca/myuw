@@ -4,7 +4,7 @@ ADD docker/web/start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir /app/logs
 RUN apt-get -y update && \
-    apt-get -y install apache2 apache2-mpm-worker apache2-threaded-dev && \
+    apt-get -y install apache2 apache2-dev && \
     apt-get clean all
 
 # Install system dependencies
