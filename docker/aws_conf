@@ -1,9 +1,0 @@
-{
-  "auths" :
-  {
-    "REPO_URL": {
-      "auth" : "AUTH_TOKEN",
-      "email" : "EMAIL"
-    }
-  }
-}
