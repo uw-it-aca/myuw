@@ -1,46 +1,47 @@
-FROM centos
+FROM ubuntu
 WORKDIR /app/
-ADD web/start.sh /start.sh
+ADD docker/web/start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir /app/logs
-RUN yum -y --setopt=tsflags=nodocs update && \
-    yum -y --setopt=tsflags=nodocs install httpd && \
-    yum clean all
+RUN apt-get -y update && \
+    apt-get -y install apache2 apache2-dev && \
+    apt-get clean all
 
-# Install yum dependencies
-RUN yum -y update && \
-    yum groupinstall -y development && \
-    yum install -y \
-    bzip2-devel \
+# Install system dependencies
+RUN apt-get -y update && \
+    apt-get install -y \
     git \
     hostname \
     openssl \
-    openssl-devel \
-    sqlite-devel \
+    sqlite3 \
     sudo \
     tar \
+    curl \
     wget \
-    zlib-dev \
-    python-devel \
-    mod_wsgi \
+    python-setuptools \
+    build-essential\
+    python3.6-dev \
+    python3-venv \
     libxml2-dev \
-    libxmlsec1-dev
+    libxmlsec1-dev \
+    python-pip \
+    libmysqlclient-dev
 
-# Install setuptools + pip
-RUN cd /tmp && \
-    curl https://bootstrap.pypa.io/get-pip.py | python - && \
-    pip install setuptools
+RUN python3 -m venv /app/
+RUN . /app/bin/activate && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py && pip3 install --upgrade pip && pip install mod_wsgi && pip install boto3 watchtower && pip install mysqlclient
 ENV PYTHONUNBUFFERED 1
-ADD ../myuw/VERSION /app/myuw/
-RUN yum install -y mysql-devel
-RUN pip install mysqlclient
-ADD ../setup.py /app/
-ADD ../requirements.txt /app/
-RUN pip install -r requirements.txt
-ADD web/httpd.conf /tmp/httpd.conf
-RUN cat /tmp/httpd.conf > /etc/httpd/conf/httpd.conf
-ADD .. /app/
+ADD myuw/VERSION /app/myuw/
+ADD setup.py /app/
+ADD requirements.txt /app/
+RUN . /app/bin/activate && pip install -r requirements.txt
+ADD /docker/web/apache2.conf /tmp/apache2.conf
+RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ && \
+    rm -rf /etc/apache2/sites-enabled/ && mkdir /etc/apache2/sites-enabled/ && \
+    rm /etc/apache2/apache2.conf && \
+    cp /tmp/apache2.conf /etc/apache2/apache2.conf &&\
+    mkdir /etc/apache2/logs
+ADD . /app/
 ENV DB sqlite3
-RUN django-admin.py startproject project .
+RUN . /app/bin/activate && rm -rf project/ && rm -f manage.py && django-admin.py startproject project .
 ADD docker /app/project/
-CMD ["/start.sh"]
+CMD ["/start.sh" ]
