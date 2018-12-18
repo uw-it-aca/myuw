@@ -1,8 +1,6 @@
-FROM ubuntu
+FROM acait/django-container:python3
 WORKDIR /app/
-ADD docker/web/start.sh /start.sh
-RUN chmod +x /start.sh
-RUN mkdir /app/logs
+ENV PYTHONUNBUFFERED 1
 RUN apt-get -y update && \
     apt-get -y install apache2 apache2-dev && \
     apt-get clean all
@@ -29,7 +27,9 @@ RUN apt-get -y update && \
 
 RUN python3 -m venv /app/
 RUN . /app/bin/activate && wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py && pip3 install --upgrade pip && pip install mod_wsgi && pip install boto3 watchtower && pip install mysqlclient
-ENV PYTHONUNBUFFERED 1
+ADD docker/web/start.sh /start.sh
+RUN chmod +x /start.sh
+RUN mkdir /app/logs
 ADD myuw/VERSION /app/myuw/
 ADD setup.py /app/
 ADD requirements.txt /app/
