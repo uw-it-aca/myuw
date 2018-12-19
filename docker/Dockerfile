@@ -1,7 +1,5 @@
 FROM acait/django-container:python3
 RUN apt-get install mysql-client -y
-ADD docker/web/start.sh /start.sh
-RUN chmod +x /start.sh
 RUN mkdir /app/logs
 ADD myuw/VERSION /app/myuw/
 ADD setup.py /app/
@@ -16,4 +14,6 @@ RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ 
 ADD . /app/
 ENV DB sqlite3
 ADD docker /app/project/
+ADD docker/web/start.sh /start.sh
+RUN chmod +x /start.sh
 CMD ["/start.sh" ]
