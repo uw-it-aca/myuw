@@ -4,7 +4,11 @@ rm -rf /run/httpd/* /tmp/httpd*
 
 source "/app/bin/activate"
 
-# Check if we're the leader using ElasticBeanstalk's methods
+if [$DB == "mysql" && $ENV == "dev"]
+then
+  mysql -u $DATABASE_USER -p $DATABASE_PASSWORD --execute="create database $BRANCH"
+fi
+
 python3 manage.py migrate
 
 pip3 install -r requirements.txt
