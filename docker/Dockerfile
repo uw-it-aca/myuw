@@ -1,4 +1,5 @@
 FROM acait/django-container:python3
+RUN apt-get install mysql-client -y
 ADD docker/web/start.sh /start.sh
 RUN chmod +x /start.sh
 RUN mkdir /app/logs
