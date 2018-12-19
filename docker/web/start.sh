@@ -4,7 +4,7 @@ rm -rf /run/httpd/* /tmp/httpd*
 
 source "/app/bin/activate"
 
-if [ "$DB" == "mysql" && "$ENV" == "dev" ]
+if [ "$DB" == "mysql" ] && [ "$ENV" == "dev" ]
 then
   mysql -u $DATABASE_USER -p $DATABASE_PASSWORD -h $DATABASE_HOSTNAME --execute="create database $BRANCH"
 fi
