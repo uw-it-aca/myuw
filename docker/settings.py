@@ -4,7 +4,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-INSTALLED_APPS = +[
+INSTALLED_APPS += [
     'compressor',
     'rc_django',
     'templatetag_handlebars',
@@ -13,11 +13,10 @@ INSTALLED_APPS = +[
     'django_client_logger',
     'supporttools',
     'blti',
-    'hx_toolkit',
-    'uw_saml'
+    'hx_toolkit'
 ]
 
-MIDDLEWARE = +[
+MIDDLEWARE += [
     'userservice.user.UserServiceMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware'
 ]
