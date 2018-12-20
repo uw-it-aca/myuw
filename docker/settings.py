@@ -23,7 +23,8 @@ INSTALLED_APPS = [
     'django_client_logger',
     'supporttools',
     'blti',
-    'hx_toolkit'
+    'hx_toolkit',
+    'uw_saml'
 ]
 
 MIDDLEWARE = [
@@ -46,27 +47,31 @@ AUTHENTICATION_BACKENDS = [
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
-
+RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211')
 
 import os
-if os.environ['DB'] == "sqlite3":
+if os.getenv('DB', "sqlite3") == "sqlite3":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
-elif os.environ['DB'] == "mysql":
+elif os.getenv('DB', "sqlite3") == "mysql":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'myuw',
-            'USER': 'root',
-            'HOST': 'db',
-            'PASSWORD': 'docker',
-            'PORT': 3306,
+            'HOST': os.getenv("RDS_HOSTNAME", "localhost"),
+            'NAME': os.getenv("RDS_DB_NAME", "myuw"),
+            'USER': os.getenv("RDS_USERNAME", "myuw"),
+            'PASSWORD': os.getenv("RDS_PASSWORD", "my_pass"),
         }
     }
+
+
+if os.getenv('CACHE', "none") == "memcached":
+    RESTCLIENTS_DAO_CACHE_CLASS='myuw.util.cache_implementation.MyUWMemcachedCache'
+    RESTCLIENTS_MEMCACHED_SERVERS = (os.getenv('CACHE_NODE_0', "") + ":" + os.getenv('CACHE_PORT', "11211"), os.getenv('CACHE_NODE_1', "") + ":" + os.getenv('CACHE_PORT', "11211"),)
 
 LANGUAGE_CODE = 'en-us'
 
@@ -82,8 +87,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
-
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -94,10 +97,7 @@ STATICFILES_FINDERS = (
 COMPRESS_ENABLED = False
 COMPRESS_ROOT = "/static/"
 STATIC_ROOT = "/static/"
-
-# Test the memcached cache code
-RESTCLIENTS_TEST_MEMCACHED = True
-RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
+STATIC_URL = '/static/'
 
 TEMPLATES = [
     {
@@ -120,9 +120,6 @@ MYUW_ENABLED_FEATURES = []
 EMAIL_BACKEND = "saferecipient.EmailBackend"
 MAILMAN_COURSEREQUEST_RECIPIENT = ""
 
-RESTCLIENTS_TEST_MEMCACHED = True
-RESTCLIENTS_MEMCACHED_SERVERS = ('localhost:11211', )
-USER_AGENTS_CACHE = None
 
 # Thrive required settings
 MEDIA_ROOT = "/statics/hx_images"
@@ -152,7 +149,169 @@ MOCK_SAML_ATTRIBUTES = {
                    'u_astratest_myuw_test-support-admin'],
 }
 
-from django.core.urlresolvers import reverse_lazy
-LOGIN_URL = reverse_lazy('saml_login')
+from boto3.session import Session
+# logging configfrom boto3.session import Session
+boto3_session = Session(region_name='us-west-2')
 
-LOGOUT_URL = reverse_lazy('saml_logout')
+
+if os.getenv('LOG', 'none') == "CloudWatch":
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'filters': {
+            'require_debug_false': {
+                '()': 'django.utils.log.RequireDebugFalse'
+            }
+        },
+        'formatters': {
+            'myuw': {
+                'format': '%(levelname)-4s %(asctime)s %(message)s [%(name)s]',
+                'datefmt': '%d %H:%M:%S',
+            },
+            'aws': {
+                # you can add specific format for aws here
+                'format': u"%(asctime)s [%(levelname)-8s] %(message)s",
+                'datefmt': "%Y-%m-%d %H:%M:%S"
+            }
+        },
+        'handlers': {
+            'watchtower': {
+                'level': 'DEBUG',
+                'class': 'watchtower.CloudWatchLogHandler',
+                'boto3_session': boto3_session,
+                'log_group': os.getenv("CW_GROUP", ""),
+                'stream_name': os.getenv("CW_STREAM", "localhost"),
+                'formatter': 'aws',
+            },
+        },
+        'loggers': {
+            'django.request': {
+                'handlers': ['watchtower'],
+                'level': 'ERROR',
+                'propagate': True,
+            },
+            'restclients_core': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'rc_django': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'uw_sws': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'uw_iasystem': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'myuw.util.performance': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'myuw.views.choose': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'myuw.views.api.banner_message': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'myuw.views.api.resources.pin': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'myuw.views.api.instructor_section_display': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'myuw.views.logger': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'myuw.views.api.notices.seen': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'myuw': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+            'propagate': True,
+            },
+            'card': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'link': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            'session': {
+                'handlers': ['watchtower'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+            '': {
+                'handlers': ['watchtower'],
+                'level': 'WARNING',
+                'propagate': True,
+            }
+        }
+    }
+
+CLUSTER_CNAME = os.getenv("CLUSTER_CNAME", "localhost")
+
+if os.getenv("AUTH", "mock") == "SAML":
+    UW_SAML = {
+        'strict': True,
+        'debug': True,
+        'sp': {
+            'entityId': CLUSTER_CNAME + '/saml',
+            'assertionConsumerService': {
+                'url': CLUSTER_CNAME + '/saml/sso',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST'
+            },
+            'singleLogoutService': {
+                'url': CLUSTER_CNAME + '/saml/logout',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+            },
+            'NameIDFormat': 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+            'x509cert': os.getenv("SP_CERT", ""),
+                },
+        'idp': {
+            'entityId': 'urn:mace:incommon:washington.edu',
+            'singleSignOnService': {
+                'url': 'https://idp.u.washington.edu/idp/profile/SAML2/Redirect/SSO',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+            },
+            'singleLogoutService': {
+                'url': 'https://idp.u.washington.edu/idp/logout',
+                'binding': 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+            },
+            'x509cert': os.getenv("SP_CERT", ""),
+        },
+        'security': {
+            'authnRequestsSigned': False,
+            'wantMessagesSigned': True,
+            'wantAssertionsSigned': False,
+            'wantAssertionsEncrypted': False,
+                }
+    }
+
+    from django.core.urlresolvers import reverse_lazy
+    LOGIN_URL = reverse_lazy('saml_login')
+    LOGOUT_URL = reverse_lazy('saml_logout')
