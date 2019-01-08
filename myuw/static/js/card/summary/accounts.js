@@ -37,14 +37,14 @@ var AccountSummaryCard = {
         LogUtils.cardLoaded('AccountSummaryCard', AccountSummaryCard.dom_target);
     },
 
-    get_weeks_apart: function(qs_date, date2) {
+    get_weeks_apart: function(qs_date, test_date) {
+        // qs_date: quarter start date
         var one_day_ms = 24 * 3600 * 1000;
         var one_week_ms = one_day_ms * 7;
         var t1 = qs_date.getTime(); // milliseconds since January 1, 1970
         var qs_day_of_week = qs_date.getDay();
         var qs_prev_sunday = t1 - (one_day_ms * qs_day_of_week);
-        var t2 = date2.getTime();
-
+        var t2 = test_date.getTime();
         if (t2 < qs_prev_sunday) {
             return 0;
         } else {
