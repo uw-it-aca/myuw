@@ -110,8 +110,6 @@ describe('AccountSummaryCard', function() {
 
     it("all", function() {
         // test if hfs and library are both rendered
-        console.log(AccountSummaryCard.dom_target.find('.myuw-week-counter').length);
-        console.log(AccountSummaryCard.dom_target.find('.myuw-account-summaries').length);
         assert.equal(AccountSummaryCard.dom_target.find('.myuw-account-summaries > a').length, 4);
     });
 
