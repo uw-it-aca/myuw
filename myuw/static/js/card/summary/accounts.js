@@ -37,49 +37,19 @@ var AccountSummaryCard = {
         LogUtils.cardLoaded('AccountSummaryCard', AccountSummaryCard.dom_target);
     },
 
-    get_weeks_apart: function(date1, date2) {
-        var total_weeks = 0;
-        var test_date;
-        if (date2 < date1) {
-            return total_weeks;
+    get_weeks_apart: function(qs_date, test_date) {
+        // qs_date: quarter start date
+        var one_day_ms = 24 * 3600 * 1000;
+        var one_week_ms = one_day_ms * 7;
+        var t1 = qs_date.getTime(); // milliseconds since January 1, 1970
+        var qs_day_of_week = qs_date.getDay();
+        var qs_prev_sunday = t1 - (one_day_ms * qs_day_of_week);
+        var t2 = test_date.getTime();
+        if (t2 < qs_prev_sunday) {
+            return 0;
+        } else {
+            return parseInt((t2 - qs_prev_sunday) / one_week_ms) + 1;
         }
-        if (AccountSummaryCard._dates_equal(date1, date2)) {
-            return 1;
-        }
-
-        test_date = new Date(date1.getFullYear(), date1.getMonth(), date1.getDate());
-        var original_monday_week = true;
-        if (test_date.getDay() !== 1) {
-            original_monday_week = false;
-            total_weeks++;
-
-            var day_of_week = test_date.getDay();
-            if (day_of_week === 0) {
-                day_of_week = 7;
-            }
-            test_date.setDate(test_date.getDate() + 7 - day_of_week);
-
-            if (test_date > date2) {
-                return total_weeks;
-            }
-        }
-
-        while (true) {
-            if (original_monday_week) {
-                if (AccountSummaryCard._dates_equal(test_date, date2)) {
-                    return total_weeks+1;
-                }
-            }
-            if (test_date >= date2) {
-                return total_weeks;
-            }
-            test_date.setDate(test_date.getDate() + 7);
-            total_weeks++;
-        }
-    },
-
-    _dates_equal: function(date1, date2) {
-        return !(date1 > date2 || date1 < date2);
     }
 };
 
