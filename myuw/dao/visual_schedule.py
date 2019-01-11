@@ -670,12 +670,12 @@ def get_schedule_bounds(schedule):
     for section in schedule.sections:
         if start is None:
             start = section.start_date
-        elif start > section.start_date:
+        elif section.start_date is not None and start > section.start_date:
             start = section.start_date
 
         if end is None:
             end = section.end_date
-        elif end < section.end_date:
+        elif section.end_date is not None and end < section.end_date:
             end = section.end_date
 
     # set start to first sunday
