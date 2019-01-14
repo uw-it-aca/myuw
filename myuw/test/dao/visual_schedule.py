@@ -979,10 +979,7 @@ class TestVisualSchedule(TestCase):
             self.assertEqual(len(vs[0].sections), 2)
             self.assertEqual(vs[0].end_date, datetime.date(2013, 7, 19))
 
-
     def test_add_dates_to_sections(self):
-
-
         section1 = Section()
         section1.curriculum_abbr = 'ASD'
         section1.course_number = 123
@@ -997,13 +994,11 @@ class TestVisualSchedule(TestCase):
         section2.start_date = datetime.date(2017, 10, 2)
         section2.end_date = None
 
-
         schedule = ClassSchedule()
         schedule.sections = [section1, section2]
 
         schedules = []
         schedules.append(schedule)
-
 
         end_schedule = ClassSchedule()
 
@@ -1034,6 +1029,7 @@ class TestVisualSchedule(TestCase):
         _add_dates_to_sections(schedule)
 
         for x in range(0, len(schedules)):
-            self.assertEqual(schedules[x], end_schedules[x])
-
-
+            for y in range(0, len(schedules[x].sections)):
+                self.assertEqual(
+                    schedules[x].sections[y].end_date,
+                    end_schedules[x].sections[y].end_date)
