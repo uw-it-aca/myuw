@@ -978,3 +978,62 @@ class TestVisualSchedule(TestCase):
             self.assertEqual(len(vs), 2)
             self.assertEqual(len(vs[0].sections), 2)
             self.assertEqual(vs[0].end_date, datetime.date(2013, 7, 19))
+
+
+    def test_add_dates_to_sections(self):
+
+
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2017, 10, 2)
+        section1.end_date = datetime.date(2017, 10, 20)
+
+        section2 = Section()
+        section2.curriculum_abbr = 'QWE'
+        section2.course_number = 456
+        section2.section_id = 'A'
+        section2.start_date = datetime.date(2017, 10, 2)
+        section2.end_date = None
+
+
+        schedule = ClassSchedule()
+        schedule.sections = [section1, section2]
+
+        schedules = []
+        schedules.append(schedule)
+
+
+        end_schedule = ClassSchedule()
+
+        term = get_term_from_quarter_string("2013,summer")
+        schedule.term = term
+
+        end_section1 = Section()
+        end_section1.curriculum_abbr = 'ASD'
+        end_section1.course_number = 123
+        end_section1.section_id = 'A'
+        end_section1.start_date = datetime.date(2017, 10, 2)
+        end_section1.end_date = term.last_day_instruction
+
+        end_section2 = Section()
+        end_section2.curriculum_abbr = 'QWE'
+        end_section2.course_number = 456
+        end_section2.section_id = 'A'
+        end_section2.start_date = datetime.date(2017, 10, 2)
+        end_section2.end_date = term.last_day_instruction
+
+        end_schedule = ClassSchedule()
+        end_schedule.sections = [section1, section2]
+
+        end_schedules = []
+
+        end_schedules.append(end_schedule)
+
+        _add_dates_to_sections(schedule)
+
+        for x in range(0, len(schedules)):
+            self.assertEqual(schedules[x], end_schedules[x])
+
+
