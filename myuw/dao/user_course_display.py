@@ -51,8 +51,6 @@ def set_course_display_pref(request, schedule):
                 color_id = primary_color_dict[primary_label]
             else:
                 color_id, colors_taken = _get_next_color(colors_taken)
-                log_info(logger,
-                         "{} Color {}".format(section_label, color_id))
                 _record_primary_colors(primary_color_dict, section, color_id)
             _save_section_color(user, section, color_id)
 
