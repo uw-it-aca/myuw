@@ -5,7 +5,7 @@ import logging
 import traceback
 from django.db import IntegrityError
 from myuw.models import UserCourseDisplay
-from myuw.logger.logresp import log_exception, log_info
+from myuw.logger.logresp import log_info
 from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
@@ -21,7 +21,6 @@ def set_course_display_pref(request, schedule):
         UserCourseDisplay.get_course_display(user,
                                              schedule.term.year,
                                              schedule.term.quarter)
-    log_info(logger, "Color Taken {}".format(colors_taken))
     primary_color_dict = {}
     # record primary colors used {section_labels: color_id}
 
@@ -105,12 +104,12 @@ def _save_section_color(user, section, color_id):
                                              quarter=section.term.quarter,
                                              section_label=section_label,
                                              color_id=color_id)
-        except IntegrityError as ex:
-            log_exception(logger,
-                          "Failed to create ({} {} color_id: {}) in DB".format(
-                              user, section_label, color_id),
-                          traceback.format_exc(chain=False))
-            if '1062, "Duplicate entry ' not in str(ex):
+        except Exception as ex:
+            err = str(ex)
+            log_info(logger,
+                     "{} when create ({} color_id: {}) in DB".format(
+                         err, section_label, color_id))
+            if '1062, "Duplicate entry ' not in err:
                 raise
 
 
