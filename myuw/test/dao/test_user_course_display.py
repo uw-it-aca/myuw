@@ -15,21 +15,105 @@ from myuw.test import get_request_with_user, get_request_with_date
 
 class TestUserCourseDisplayDao(TransactionTestCase):
 
+    def test_get_course_display(self):
+        user = User().get_user('test')
+        for i in range(17, 41, 1):
+            new_color = i % 8
+            if new_color == 0:
+                new_color = 8
+            UserCourseDisplay.objects.create(
+                user=user,
+                year=2013,
+                quarter='spring',
+                section_label='2013,spr,A,{:d}/A'.format(i),
+                color_id=new_color)
+        existing_color_dict, colors_taken, pin_on_teaching_2nds =\
+            UserCourseDisplay.get_course_display(user, 2013, 'spring')
+
+        for i in range(17, 24):
+            self.assertEqual(
+                existing_color_dict['2013,spr,A,{:d}/A'.format(i)], i % 8)
+        self.assertEqual(existing_color_dict['2013,spr,A,24/A'.format(i)], 8)
+        for i in range(25, 32):
+            self.assertEqual(
+                existing_color_dict['2013,spr,A,{:d}/A'.format(i)], i % 8)
+        self.assertEqual(existing_color_dict['2013,spr,A,32/A'.format(i)], 8)
+        for i in range(33, 40):
+            self.assertEqual(
+                existing_color_dict['2013,spr,A,{:d}/A'.format(i)], i % 8)
+        self.assertEqual(existing_color_dict['2013,spr,A,40/A'.format(i)], 8)
+
+        self.assertEqual(colors_taken[:8],
+                         [1, 2, 3, 4, 5, 6, 7, 8])
+        self.assertEqual(colors_taken[8:16],
+                         [1, 2, 3, 4, 5, 6, 7, 8])
+        self.assertEqual(colors_taken[16:24],
+                         [1, 2, 3, 4, 5, 6, 7, 8])
+
     def test_get_next_color(self):
         colors_taken = []
-        self.assertEqual(_get_next_color(colors_taken), 1)
-        self.assertEqual(_get_next_color(colors_taken), 2)
-        self.assertEqual(_get_next_color(colors_taken), 3)
-        self.assertEqual(_get_next_color(colors_taken), 4)
-        self.assertEqual(_get_next_color(colors_taken), 5)
-        self.assertEqual(_get_next_color(colors_taken), 6)
-        self.assertEqual(_get_next_color(colors_taken), 7)
-        self.assertEqual(_get_next_color(colors_taken), 8)
-        self.assertEqual(_get_next_color(colors_taken), 1)
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 1)
+        self.assertEqual(colors_taken, [1])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 2)
+        self.assertEqual(colors_taken, [1, 2])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 3)
+        self.assertEqual(colors_taken, [1, 2, 3])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 4)
+        self.assertEqual(colors_taken, [1, 2, 3, 4])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 5)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 6)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5, 6])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 7)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5, 6, 7])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 8)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5, 6, 7, 8])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 1)
+        self.assertEqual(colors_taken, [1])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 2)
+        self.assertEqual(colors_taken, [1, 2])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 3)
+        self.assertEqual(colors_taken, [1, 2, 3])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 4)
+        self.assertEqual(colors_taken, [1, 2, 3, 4])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 5)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 6)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5, 6])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 7)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5, 6, 7])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 8)
+        self.assertEqual(colors_taken, [1, 2, 3, 4, 5, 6, 7, 8])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 1)
+        self.assertEqual(colors_taken, [1])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 2)
+        self.assertEqual(colors_taken, [1, 2])
 
         colors_taken = [1, 3, 4]
-        self.assertEqual(_get_next_color(colors_taken), 2)
-        self.assertEqual(_get_next_color(colors_taken), 5)
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 2)
+        self.assertEqual(colors_taken, [1, 3, 4, 2])
+        color_id, colors_taken = _get_next_color(colors_taken)
+        self.assertEqual(color_id, 5)
+        self.assertEqual(colors_taken, [1, 3, 4, 2, 5])
 
     def test_student_schedule(self):
         req = get_request_with_user("javerage")

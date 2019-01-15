@@ -302,19 +302,25 @@ class UserCourseDisplay(models.Model):
 
     @classmethod
     def get_course_display(cls, user, year, quarter):
-        objs = UserCourseDisplay.objects.filter(user=user,
-                                                year=year,
-                                                quarter=quarter)
+        objs = UserCourseDisplay.objects.filter(
+            user=user, year=year, quarter=quarter).order_by('section_label')
         pin_on_teaching = []  # section_labels
         color_dict = {}  # section_labels: color_id
         colors_taken = []  # a list of color_ids
+        prev_colorid = 0
         for record in objs:
             if record.pin_on_teaching_page is True:
                 pin_on_teaching.append(record.section_label)
+
             color_dict[record.section_label] = record.color_id
+
             if record.color_id not in colors_taken:
                 colors_taken.append(record.color_id)
-
+                prev_colorid = record.color_id
+            else:
+                if record.color_id != prev_colorid:
+                    colors_taken.append(record.color_id)
+                    prev_colorid = record.color_id
         return color_dict, colors_taken, pin_on_teaching
 
     @classmethod
@@ -357,6 +363,9 @@ class UserCourseDisplay(models.Model):
             "color_id": self.color_id,
             "pin_on_teaching_page": self.pin_on_teaching_page
         }
+
+    def __init__(self, *args, **kwargs):
+        super(UserCourseDisplay, self).__init__(*args, **kwargs)
 
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
