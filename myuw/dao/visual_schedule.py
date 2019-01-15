@@ -695,20 +695,19 @@ def _add_dates_to_sections(schedule):
     Adds term start/end dates to sections that do not have them (ie non-PCE)
     """
     for section in schedule.sections:
+
         if section.start_date is None:
-            if section.summer_term == "":
-                section.start_date = schedule.term.first_day_quarter
-                section.end_date = schedule.term.last_day_instruction
+            if section.summer_term == "B-term":
+                section.start_date = schedule.term.bterm_first_date
             else:
-                if section.summer_term == "A-term":
-                    section.start_date = schedule.term.first_day_quarter
-                    section.end_date = schedule.term.aterm_last_date
-                elif section.summer_term == "B-term":
-                    section.start_date = schedule.term.bterm_first_date
-                    section.end_date = schedule.term.last_day_instruction
-                else:
-                    section.start_date = schedule.term.first_day_quarter
-                    section.end_date = schedule.term.last_day_instruction
+                section.start_date = schedule.term.first_day_quarter
+
+        if section.end_date is None:
+
+            if section.summer_term == "A-term":
+                section.end_date = schedule.term.aterm_last_date
+            else:
+                section.end_date = schedule.term.last_day_instruction
 
     return schedule
 

@@ -5,7 +5,7 @@ import logging
 import traceback
 from django.db import IntegrityError
 from myuw.models import UserCourseDisplay
-from myuw.logger.logresp import log_exception
+from myuw.logger.logresp import log_info
 from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
@@ -21,7 +21,6 @@ def set_course_display_pref(request, schedule):
         UserCourseDisplay.get_course_display(user,
                                              schedule.term.year,
                                              schedule.term.quarter)
-
     primary_color_dict = {}
     # record primary colors used {section_labels: color_id}
 
@@ -51,7 +50,7 @@ def set_course_display_pref(request, schedule):
             if primary_label in primary_color_dict:
                 color_id = primary_color_dict[primary_label]
             else:
-                color_id = _get_next_color(colors_taken)
+                color_id, colors_taken = _get_next_color(colors_taken)
                 _record_primary_colors(primary_color_dict, section, color_id)
             _save_section_color(user, section, color_id)
 
@@ -62,12 +61,14 @@ def _get_next_color(colors_taken):
     """
     Return the next available color in the eight color list
     """
-    if len(colors_taken) == TOTAL_COURSE_COLORS:
-        colors_taken = []
+    times = int(len(colors_taken) / TOTAL_COURSE_COLORS)
+    if len(colors_taken) >= TOTAL_COURSE_COLORS:
+        colors_taken = colors_taken[TOTAL_COURSE_COLORS * times:]
+
     for new_color in range(1, TOTAL_COURSE_COLORS + 1, 1):
         if new_color not in colors_taken:
             colors_taken.append(new_color)
-            return new_color
+            return new_color, colors_taken
 
 
 def _make_colorid(section, color_id):
@@ -101,12 +102,12 @@ def _save_section_color(user, section, color_id):
                                              quarter=section.term.quarter,
                                              section_label=section_label,
                                              color_id=color_id)
-        except IntegrityError as ex:
-            log_exception(logger,
-                          "Failed to create ({} {} color_id: {}) in DB".format(
-                              user, section_label, color_id),
-                          traceback.format_exc(chain=False))
-            if '1062, "Duplicate entry ' not in str(ex):
+        except Exception as ex:
+            err = str(ex)
+            log_info(logger,
+                     "{} when create ({} color_id: {}) in DB".format(
+                         err, section_label, color_id))
+            if '1062, "Duplicate entry ' not in err:
                 raise
 
 
