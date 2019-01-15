@@ -5,7 +5,7 @@ import logging
 import traceback
 from django.db import IntegrityError
 from myuw.models import UserCourseDisplay
-from myuw.logger.logresp import log_exception
+from myuw.logger.logresp import log_exception, log_info
 from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
@@ -21,7 +21,7 @@ def set_course_display_pref(request, schedule):
         UserCourseDisplay.get_course_display(user,
                                              schedule.term.year,
                                              schedule.term.quarter)
-
+    log_info(logger, "Color Taken {}".format(colors_taken))
     primary_color_dict = {}
     # record primary colors used {section_labels: color_id}
 
@@ -51,7 +51,9 @@ def set_course_display_pref(request, schedule):
             if primary_label in primary_color_dict:
                 color_id = primary_color_dict[primary_label]
             else:
-                color_id = _get_next_color(colors_taken)
+                color_id, colors_taken = _get_next_color(colors_taken)
+                log_info(logger,
+                         "{} Color {}".format(section_label, color_id))
                 _record_primary_colors(primary_color_dict, section, color_id)
             _save_section_color(user, section, color_id)
 
@@ -62,12 +64,14 @@ def _get_next_color(colors_taken):
     """
     Return the next available color in the eight color list
     """
-    if len(colors_taken) == TOTAL_COURSE_COLORS:
-        colors_taken = []
+    times = int(len(colors_taken) / TOTAL_COURSE_COLORS)
+    if len(colors_taken) >= TOTAL_COURSE_COLORS:
+        colors_taken = colors_taken[TOTAL_COURSE_COLORS * times:]
+
     for new_color in range(1, TOTAL_COURSE_COLORS + 1, 1):
         if new_color not in colors_taken:
             colors_taken.append(new_color)
-            return new_color
+            return new_color, colors_taken
 
 
 def _make_colorid(section, color_id):
