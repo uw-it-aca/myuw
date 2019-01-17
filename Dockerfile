@@ -1,18 +1,20 @@
-FROM python:3.6
-WORKDIR /app/
-ENV PYTHONUNBUFFERED 1
+FROM acait/django-container:python3
+RUN apt-get install mysql-client -y
+RUN mkdir /app/logs
 ADD myuw/VERSION /app/myuw/
-RUN apt-get update && apt-get install -qq python-dev libxml2-dev libxmlsec1-dev
-RUN pip install mysqlclient
 ADD setup.py /app/
 ADD requirements.txt /app/
-RUN pip3 install -r requirements.txt
-RUN pip install boto3 watchtower
+RUN . /app/bin/activate && pip install -r requirements.txt
+ADD /docker/web/apache2.conf /tmp/apache2.conf
+RUN rm -rf /etc/apache2/sites-available/ && mkdir /etc/apache2/sites-available/ && \
+    rm -rf /etc/apache2/sites-enabled/ && mkdir /etc/apache2/sites-enabled/ && \
+    rm /etc/apache2/apache2.conf && \
+    cp /tmp/apache2.conf /etc/apache2/apache2.conf &&\
+    mkdir /etc/apache2/logs
 ADD . /app/
 ENV DB sqlite3
-RUN django-admin.py startproject project .
 ADD docker /app/project/
-ENV REMOTE_USER javerage
-ADD docker/dev_start.sh /app/dev_start.sh
-RUN chmod +x /app/dev_start.sh
-CMD /app/dev_start.sh
+ADD docker/web/start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/start.sh" ]
+
