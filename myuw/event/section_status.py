@@ -44,10 +44,10 @@ class SectionStatusProcessor(MessageBodyProcessor):
             logger.debug("DISCARD Old message {}".format(payload))
             return False
 
-        if ('Current' not in payload or
-                not len(payload.get('Current')) or
-                'Href' not in payload or
-                not len(payload.get('Href'))):
+        if (payload.get('Current') is None or
+                len(payload.get('Current')) == 0 or
+                payload.get('Href') is None or
+                len(payload.get('Href')) == 0):
             logger.error("DISCARD Bad message {}".format(payload))
             return False
 
