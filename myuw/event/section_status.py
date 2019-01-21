@@ -36,7 +36,8 @@ class SectionStatusProcessor(MessageBodyProcessor):
         Return False if payload json data misses any necessary
         data element and the message will be skipped.
         """
-        if 'EventDate' not in payload:
+        if (payload is None or
+                payload.get('EventDate') is None):
             return False
 
         self.modified = parse(payload['EventDate'])
