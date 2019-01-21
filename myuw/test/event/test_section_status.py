@@ -66,8 +66,18 @@ class TestSectionStatusProcessor(TestCase):
 
     def test_message_validation(self):
         event_hdlr = SectionStatusProcessor()
+        self.assertFalse(event_hdlr.validate_message_body(None))
+        self.assertFalse(event_hdlr.validate_message_body({}))
+        self.assertFalse(event_hdlr.validate_message_body({"EventDate": None}))
         self.assertFalse(event_hdlr.validate_message_body(M1))
-
+        self.assertFalse(event_hdlr.validate_message_body(
+            {"EventDate": str(timezone.now())}))
+        self.assertFalse(event_hdlr.validate_message_body(
+            {"EventDate": str(timezone.now()),
+             "Current": {}}))
+        self.assertFalse(event_hdlr.validate_message_body(
+            {"EventDate": str(timezone.now()),
+             "Current": None}))
         m1 = deepcopy(M1)
         m1.pop('Href')
         self.assertFalse(event_hdlr.validate_message_body(m1))
