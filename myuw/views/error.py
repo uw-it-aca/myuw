@@ -38,7 +38,10 @@ def not_instructor_error():
 
 
 def unknown_uwnetid():
-    return _make_response(HTTP_BAD_REQUEST, "Unrecognized user")
+    return _make_response(
+        HTTP_BAD_REQUEST,
+        "Your data is not in Person Web Service. "
+        "If you have just created your UW NetID, please come back in an hour.")
 
 
 def invalid_input_data():
