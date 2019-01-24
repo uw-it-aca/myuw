@@ -38,7 +38,12 @@ def not_instructor_error():
 
 
 def unknown_uwnetid():
-    return _make_response(HTTP_BAD_REQUEST, "Unrecognized user")
+    return _make_response(
+        HTTP_BAD_REQUEST,
+        "MyUW cannot find data for this user account "
+        "in the person registry services. "
+        "If you have just created your UW NetID, "
+        "please try signing in to MyUW again in one hour.")
 
 
 def invalid_input_data():
