@@ -24,20 +24,20 @@ class TestBannerMessage(MyuwApiTest):
         pref = MigrationPreference.objects.get(user=user)
         self.assertIsNotNone(str(pref))
 
-    def test_close_banner_msg_error_case(self):
+    def test_invalid_user_msg_error_case(self):
         self.set_user('0000')
+        err_msg = (b'Your data is not in Person Web Service. '
+                   b'If you have just created your UW NetID, '
+                   b'please come back in an hour.')
         resp = self.get_response_by_reverse('myuw_close_banner_message')
-        self.assertEqual(resp.content, b'Unrecognized user')
+        self.assertEqual(resp.content, err_msg)
+        resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
+        self.assertEqual(resp.content, err_msg)
 
     def test_turn_off_pop_up(self):
         self.set_user('bill')
         resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
         self.assertEqual(resp.content, b'{"done": true}')
-
-    def test_turn_off_pop_up_error_case(self):
-        self.set_user('0000')
-        resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
-        self.assertEqual(resp.content, b'Unrecognized user')
 
     def test_close_banner_msg_when_override(self):
         with self.settings(DEBUG=False,
