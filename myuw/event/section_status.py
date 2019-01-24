@@ -36,7 +36,8 @@ class SectionStatusProcessor(MessageBodyProcessor):
         Return False if payload json data misses any necessary
         data element and the message will be skipped.
         """
-        if 'EventDate' not in payload:
+        if (payload is None or
+                payload.get('EventDate') is None):
             return False
 
         self.modified = parse(payload['EventDate'])
@@ -44,10 +45,10 @@ class SectionStatusProcessor(MessageBodyProcessor):
             logger.debug("DISCARD Old message {}".format(payload))
             return False
 
-        if ('Current' not in payload or
-                not len(payload.get('Current')) or
-                'Href' not in payload or
-                not len(payload.get('Href'))):
+        if (payload.get('Current') is None or
+                len(payload.get('Current')) == 0 or
+                payload.get('Href') is None or
+                len(payload.get('Href')) == 0):
             logger.error("DISCARD Bad message {}".format(payload))
             return False
 

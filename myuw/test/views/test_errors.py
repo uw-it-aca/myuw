@@ -19,7 +19,12 @@ class TestViewsError(MyuwApiTest):
 
     def test_unknown_uwnetid(self):
         response = unknown_uwnetid()
-        self.assertEquals(response.content, b'Unrecognized user')
+        self.assertEquals(
+            response.content,
+            (b'MyUW cannot find data for this user account '
+             b'in the person registry services. '
+             b'If you have just created your UW NetID, '
+             b'please try signing in to MyUW again in one hour.'))
         self.assertEquals(response.status_code, 400)
 
     def test_invalid_input_data(self):
