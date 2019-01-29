@@ -57,6 +57,7 @@ MIDDLEWARE = [
     'userservice.user.UserServiceMiddleware',
     'django_user_agents.middleware.UserAgentMiddleware',
     'rc_django.middleware.EnableServiceDegradationMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
