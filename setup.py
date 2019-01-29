@@ -24,6 +24,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'Django>=2.0.8,<2.1',
+        'django-htmlmin',
         'ordereddict',
         'django-compressor==2.2',
         'beautifulsoup4',
