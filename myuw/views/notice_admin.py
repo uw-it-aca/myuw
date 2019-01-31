@@ -17,7 +17,7 @@ MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
 def create_notice(request):
     context = {}
     if request.POST and _save_notice(request, context):
-            return redirect('myuw_manage_notices')
+        return redirect('myuw_manage_notices')
     set_admin_wrapper_template(context)
     context['action'] = "save"
     return render(request, "admin/notice_edit.html", context)
