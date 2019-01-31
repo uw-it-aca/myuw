@@ -483,116 +483,116 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(consolidated[3].end_date, datetime.date(2013, 8, 23))
 
     def test_summer_term_schedule_pce_beyond_term(self):
-            term = get_term_from_quarter_string("2013,summer")
-            get_request_with_user('javerage',
-                                  get_request_with_date("2013-08-01"))
+        term = get_term_from_quarter_string("2013,summer")
+        get_request_with_user('javerage',
+                              get_request_with_date("2013-08-01"))
 
-            section1 = Section()
-            section1.curriculum_abbr = 'ASD'
-            section1.course_number = 123
-            section1.section_id = 'A'
-            section1.start_date = datetime.date(2013, 6, 2)
-            section1.end_date = datetime.date(2013, 9, 4)
-            section1.term = term
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2013, 6, 2)
+        section1.end_date = datetime.date(2013, 9, 4)
+        section1.term = term
 
-            s1_meetings = SectionMeeting()
-            s1_meetings.meets_monday = True
-            s1_meetings.meets_friday = True
-            section1.meetings = [s1_meetings]
+        s1_meetings = SectionMeeting()
+        s1_meetings.meets_monday = True
+        s1_meetings.meets_friday = True
+        section1.meetings = [s1_meetings]
 
-            request = get_request_with_user('javerage')
-            schedule = get_schedule_by_term(request, term)
-            schedule.sections.append(section1)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
+        schedule.sections.append(section1)
 
-            consolidated = _get_visual_schedule_from_schedule(schedule,
-                                                              request)
+        consolidated = _get_visual_schedule_from_schedule(schedule,
+                                                          request)
 
-            self.assertEqual(len(consolidated), 5)
+        self.assertEqual(len(consolidated), 5)
 
-            self.assertEqual(consolidated[0].start_date,
-                             datetime.date(2013, 6, 24))
-            self.assertEqual(consolidated[3].end_date,
-                             datetime.date(2013, 8, 23))
+        self.assertEqual(consolidated[0].start_date,
+                         datetime.date(2013, 6, 24))
+        self.assertEqual(consolidated[3].end_date,
+                         datetime.date(2013, 8, 23))
 
-            # ensure section exists in each week
-            for week in consolidated:
-                found_match = False
-                for section in week.sections:
-                    if _sections_are_same(section, section1):
-                        found_match = True
-                self.assertTrue(found_match)
+        # ensure section exists in each week
+        for week in consolidated:
+            found_match = False
+            for section in week.sections:
+                if _sections_are_same(section, section1):
+                    found_match = True
+            self.assertTrue(found_match)
 
     def test_summer_term_schedule_pce(self):
-            term = get_term_from_quarter_string("2013,summer")
-            get_request_with_user('javerage',
-                                  get_request_with_date("2013-08-01"))
+        term = get_term_from_quarter_string("2013,summer")
+        get_request_with_user('javerage',
+                              get_request_with_date("2013-08-01"))
 
-            section1 = Section()
-            section1.curriculum_abbr = 'ASD'
-            section1.course_number = 123
-            section1.section_id = 'A'
-            section1.start_date = datetime.date(2013, 7, 10)
-            section1.end_date = datetime.date(2013, 8, 4)
-            section1.meetings = []
-            section1.term = term
+        section1 = Section()
+        section1.curriculum_abbr = 'ASD'
+        section1.course_number = 123
+        section1.section_id = 'A'
+        section1.start_date = datetime.date(2013, 7, 10)
+        section1.end_date = datetime.date(2013, 8, 4)
+        section1.meetings = []
+        section1.term = term
 
-            request = get_request_with_user('javerage')
-            schedule = get_schedule_by_term(request, term)
-            schedule.sections.append(section1)
+        request = get_request_with_user('javerage')
+        schedule = get_schedule_by_term(request, term)
+        schedule.sections.append(section1)
 
-            consolidated = _get_visual_schedule_from_schedule(schedule,
-                                                              request)
+        consolidated = _get_visual_schedule_from_schedule(schedule,
+                                                          request)
 
-            self.assertEqual(len(consolidated), 7)
+        self.assertEqual(len(consolidated), 7)
 
-            self.assertEqual(consolidated[0].start_date,
-                             datetime.date(2013, 6, 24))
-            self.assertEqual(consolidated[0].end_date,
-                             datetime.date(2013, 7, 5))
+        self.assertEqual(consolidated[0].start_date,
+                         datetime.date(2013, 6, 24))
+        self.assertEqual(consolidated[0].end_date,
+                         datetime.date(2013, 7, 5))
 
-            self.assertEqual(consolidated[1].start_date,
-                             datetime.date(2013, 7, 8))
-            self.assertEqual(consolidated[1].end_date,
-                             datetime.date(2013, 7, 19))
+        self.assertEqual(consolidated[1].start_date,
+                         datetime.date(2013, 7, 8))
+        self.assertEqual(consolidated[1].end_date,
+                         datetime.date(2013, 7, 19))
 
-            self.assertEqual(consolidated[2].start_date,
-                             datetime.date(2013, 7, 22))
-            self.assertEqual(consolidated[2].end_date,
-                             datetime.date(2013, 7, 24))
+        self.assertEqual(consolidated[2].start_date,
+                         datetime.date(2013, 7, 22))
+        self.assertEqual(consolidated[2].end_date,
+                         datetime.date(2013, 7, 24))
 
-            self.assertEqual(consolidated[3].start_date,
-                             datetime.date(2013, 7, 25))
-            self.assertEqual(consolidated[3].end_date,
-                             datetime.date(2013, 7, 26))
+        self.assertEqual(consolidated[3].start_date,
+                         datetime.date(2013, 7, 25))
+        self.assertEqual(consolidated[3].end_date,
+                         datetime.date(2013, 7, 26))
 
-            self.assertEqual(consolidated[4].start_date,
-                             datetime.date(2013, 7, 29))
-            self.assertEqual(consolidated[4].end_date,
-                             datetime.date(2013, 8, 9))
+        self.assertEqual(consolidated[4].start_date,
+                         datetime.date(2013, 7, 29))
+        self.assertEqual(consolidated[4].end_date,
+                         datetime.date(2013, 8, 9))
 
-            self.assertEqual(consolidated[5].start_date,
-                             datetime.date(2013, 8, 12))
-            self.assertEqual(consolidated[5].end_date,
-                             datetime.date(2013, 8, 23))
+        self.assertEqual(consolidated[5].start_date,
+                         datetime.date(2013, 8, 12))
+        self.assertEqual(consolidated[5].end_date,
+                         datetime.date(2013, 8, 23))
 
-            pce_weeks = [consolidated[index] for index in [1, 2, 3, 4]]
-            non_pce_weeks = [consolidated[index] for index in [0, 5]]
+        pce_weeks = [consolidated[index] for index in [1, 2, 3, 4]]
+        non_pce_weeks = [consolidated[index] for index in [0, 5]]
 
-            # ensure section exists in each week
-            for week in pce_weeks:
-                found_match = False
-                for section in week.sections:
-                    if _sections_are_same(section, section1):
-                        found_match = True
-                self.assertTrue(found_match)
+        # ensure section exists in each week
+        for week in pce_weeks:
+            found_match = False
+            for section in week.sections:
+                if _sections_are_same(section, section1):
+                    found_match = True
+            self.assertTrue(found_match)
 
-            # ensure section doesn't exist in each week
-            for week in non_pce_weeks:
-                found_match = False
-                for section in week.sections:
-                    if _sections_are_same(section, section1):
-                        found_match = True
-                self.assertFalse(found_match)
+        # ensure section doesn't exist in each week
+        for week in non_pce_weeks:
+            found_match = False
+            for section in week.sections:
+                if _sections_are_same(section, section1):
+                    found_match = True
+            self.assertFalse(found_match)
 
     def test_efs_schedule(self):
         term = get_term_from_quarter_string("2013,autumn")
@@ -944,40 +944,40 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(vs[0].sections), 2)
 
     def test_summer_full_and_a(self):
-            mwf_mtg = SectionMeeting()
-            mwf_mtg.meets_monday = True
-            mwf_mtg.meets_wednesday = True
-            mwf_mtg.meets_friday = True
+        mwf_mtg = SectionMeeting()
+        mwf_mtg.meets_monday = True
+        mwf_mtg.meets_wednesday = True
+        mwf_mtg.meets_friday = True
 
-            section1 = Section()
-            section1.curriculum_abbr = 'SOF DEV'
-            section1.course_number = 115
-            section1.section_id = 'A'
-            section1.meetings = [mwf_mtg]
-            section1.summer_term = "a-term"
+        section1 = Section()
+        section1.curriculum_abbr = 'SOF DEV'
+        section1.course_number = 115
+        section1.section_id = 'A'
+        section1.meetings = [mwf_mtg]
+        section1.summer_term = "a-term"
 
-            section2 = Section()
-            section2.curriculum_abbr = 'ASD'
-            section2.course_number = 115
-            section2.section_id = 'A'
-            section2.meetings = [mwf_mtg]
-            section2.summer_term = "Full-term"
+        section2 = Section()
+        section2.curriculum_abbr = 'ASD'
+        section2.course_number = 115
+        section2.section_id = 'A'
+        section2.meetings = [mwf_mtg]
+        section2.summer_term = "Full-term"
 
-            term = get_term_from_quarter_string("2013,summer")
-            schedule = ClassSchedule()
-            schedule.term = term
-            schedule.sections = [section1, section2]
+        term = get_term_from_quarter_string("2013,summer")
+        schedule = ClassSchedule()
+        schedule.term = term
+        schedule.sections = [section1, section2]
 
-            request = get_request_with_user('javerage',
-                                            get_request_with_date(
-                                                "2013-07-01"))
+        request = get_request_with_user('javerage',
+                                        get_request_with_date(
+                                            "2013-07-01"))
 
-            summer_term = get_current_summer_term(request)
-            vs = get_visual_schedule_from_schedule(request, schedule,
-                                                   summer_term)
-            self.assertEqual(len(vs), 2)
-            self.assertEqual(len(vs[0].sections), 2)
-            self.assertEqual(vs[0].end_date, datetime.date(2013, 7, 19))
+        summer_term = get_current_summer_term(request)
+        vs = get_visual_schedule_from_schedule(request, schedule,
+                                               summer_term)
+        self.assertEqual(len(vs), 2)
+        self.assertEqual(len(vs[0].sections), 2)
+        self.assertEqual(vs[0].end_date, datetime.date(2013, 7, 19))
 
     def test_add_dates_to_sections(self):
         section1 = Section()
