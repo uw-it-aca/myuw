@@ -117,7 +117,7 @@ class AcademicEvents(ProtectedAPI):
         event_id = matches.group(1)
 
         url = ("http://www.washington.edu/calendar/academic/"
-               "?trumbaEmbed=view%%3Devent%%26eventid%%3D{}".format(event_id))
+               "?trumbaEmbed=view%3Devent%26eventid%3D{}".format(event_id))
 
         return url
 
