@@ -13,10 +13,5 @@ fi
 
 python3 manage.py migrate
 
-pip3 install -r requirements.txt
-
-rm -rf /static/
-python3 manage.py collectstatic
-
 # Start Apache server in foreground
 exec /usr/sbin/apachectl -DFOREGROUND
