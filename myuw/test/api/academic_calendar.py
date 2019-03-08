@@ -1,3 +1,4 @@
+from urllib.request import urlopen
 from myuw.test.api import require_url, MyuwApiTest
 import json
 
@@ -40,6 +41,10 @@ class TestCalendarAPI(MyuwApiTest):
         self.assertEquals(len(data), 3)
         for event in data:
             self.assertNotEqual(event["summary"], "Memorial Day (no classes)")
+
+        # test MUWM_4485,
+        follow_link = urlopen(data[0]["event_url"])
+        self.assertEquals(follow_link.reason, "OK")
 
     def test_current_events(self):
         self.set_user('javerage')
