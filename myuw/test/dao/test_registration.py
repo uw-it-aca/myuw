@@ -72,5 +72,4 @@ class TestRegistrationsDao(TestCase):
         self.assertEqual(instructor.display_name, u'J. Average Student')
 
         instructor = schedule.sections[2].meetings[0].instructors[3]
-        self.assertEqual(instructor.display_name, u'Seattle Faculty')
         self.assertEqual(len(schedule.sections[2].meetings[1].instructors), 4)
