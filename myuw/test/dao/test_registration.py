@@ -65,11 +65,4 @@ class TestRegistrationsDao(TestCase):
                          "2014,winter,PHYS,122/A")
         self.assertEqual(len(schedule.sections[2].meetings), 2)
         self.assertEqual(len(schedule.sections[2].meetings[0].instructors), 1)
-        instructor = schedule.sections[2].meetings[0].instructors[1]
-        self.assertEqual(instructor.display_name, u'BOTHELL GRADUATE STUDENT')
-
-        instructor = schedule.sections[2].meetings[0].instructors[2]
-        self.assertEqual(instructor.display_name, u'J. Average Student')
-
-        instructor = schedule.sections[2].meetings[0].instructors[3]
-        self.assertEqual(len(schedule.sections[2].meetings[1].instructors), 4)
+        self.assertEqual(len(schedule.sections[2].meetings[1].instructors), 1)
