@@ -27,7 +27,8 @@ def get_schedule_by_term(request, term):
             regid,
             term,
             per_section_prefetch_callback=myuw_section_prefetch,
-            transcriptable_course="all")
+            transcriptable_course="all",
+        include_instructor_not_on_time_schedule=False)
         set_course_display_pref(request, student_schedule)
         request.id = student_schedule
     return request.id
