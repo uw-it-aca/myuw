@@ -61,11 +61,21 @@ class TestRegistrationsDao(TestCase):
         schedule = get_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 5)
 
-        self.assertEqual(schedule.sections[2].section_label(),
+        PHYS_122_a = schedule.sections[2]
+        self.assertEqual(PHYS_122_a.section_label(),
                          "2014,winter,PHYS,122/A")
-        self.assertEqual(len(schedule.sections[2].meetings), 2)
-        self.assertEqual(len(schedule.sections[2].meetings[0].instructors), 2)
-        instructor = schedule.sections[2].meetings[0].instructors[1]
-        self.assertEqual(instructor.display_name, u'J. Average Student')
+        self.assertEqual(len(PHYS_122_a.meetings), 2)
 
-        self.assertEqual(len(schedule.sections[2].meetings[1].instructors), 2)
+        meeting0_instructors = PHYS_122_a.meetings[0].instructors
+        self.assertEqual(len(meeting0_instructors), 2)
+        self.assertEqual(meeting0_instructors[0].display_name,
+                         "SEATTLE GRADUATE STUDENT")
+        self.assertEqual(meeting0_instructors[1].display_name,
+                         "J. Average Student")
+
+        meeting1_instructors = PHYS_122_a.meetings[1].instructors
+        self.assertEqual(len(meeting1_instructors), 2)
+        self.assertEqual(meeting1_instructors[0].display_name,
+                         "SEATTLE GRADUATE STUDENT")
+        self.assertEqual(meeting1_instructors[1].display_name,
+                         "Seattle Faculty")
