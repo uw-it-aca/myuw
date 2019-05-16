@@ -2,6 +2,7 @@
 This module provides access to uw_sws registration module
 """
 
+from copy import deepcopy
 import logging
 from restclients_core.thread import generic_prefetch
 from uw_libraries.subject_guides import get_subject_guide_for_section_params
@@ -32,7 +33,7 @@ def get_schedule_by_term(request, term):
         for section in student_schedule.sections:
             if not section.is_independent_study:
                 for meeting in section.meetings:
-                    for instructor in meeting.instructors:
+                    for instructor in deepcopy(meeting.instructors):
                         if not instructor.TSPrint:
                             meeting.instructors.remove(instructor)
         set_course_display_pref(request, student_schedule)
