@@ -53,7 +53,7 @@ var PrevTermCourseCards = {
         if (results.length === 1) {
             $("#PrevTermCourseCards1").hide();
         }
-        for (i = 0; i < results.length; i++) {
+        for (var i = 0; i < results.length; i++) {
             var term_course_data = results[i];
             WSData.process_term_course_data(term_course_data);
             WSData._normalize_instructors(term_course_data);
@@ -76,7 +76,7 @@ var PrevTermCourseCards = {
             }
             PrevTermCourseCards.dom_target.html(raw);
 
-            for (index = 0; index < course_sections.length; index++) {
+            for (var index = 0; index < course_sections.length; index++) {
                 CourseCardContentPanel.render(course_sections[index], false);
             }
             LoadCourseEval.add_events(quarter);
