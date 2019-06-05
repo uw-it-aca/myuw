@@ -162,7 +162,7 @@ var QuickLinksCard = {
             var replace_ids = ['#popular_qlinks', '.myuw-qlinks-active', '.myuw-qlinks-recent',
                                '#custom-link-edit', '#custom_qlinks'];
             var i = 0;
-            for (i = 0; i < replace_ids.length; i++) {
+            for (var i = 0; i < replace_ids.length; i++) {
                 var id = replace_ids[i];
                 $(id).html(html.find(id).html());
             }

@@ -87,7 +87,7 @@ var RegStatusCard = {
         var i, j, attribute;
 
         // Get estimated registration date for the quarter
-        for (i = 0; i < est_reg_date_notices.length; i++) {
+        for (var i = 0; i < est_reg_date_notices.length; i++) {
             var notice = est_reg_date_notices[i];
             var registration_date = null;
 
@@ -127,7 +127,7 @@ var RegStatusCard = {
             year = next_term_data.year;
 
             var terms = WSData.oquarter_data().terms;
-            for (i = 0; i < terms.length; i++) {
+            for (var i = 0; i < terms.length; i++) {
                 var term = terms[i];
                 if ((term.quarter === quarter) && term.section_count) {
                     has_registration = true;
@@ -176,7 +176,7 @@ var RegStatusCard = {
         var pending_majors = [];
 
         var retrieve_quarter_degrees = function(degrees, degree_type) {
-            for (i = 0; i < degrees.length; i++) {
+            for (var i = 0; i < degrees.length; i++) {
                 if (degrees[i].quarter.toUpperCase() === quarter.toUpperCase() && degrees[i].year === year) {
                     if (degrees[i].degrees_modified && !degrees[i].has_only_dropped) {
                         return degrees[i][degree_type];

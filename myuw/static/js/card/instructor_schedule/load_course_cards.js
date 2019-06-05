@@ -92,7 +92,7 @@ var InstructorCourseCards = {
             tab_terms = [],
             number_to_add = 0;
 
-        for (i = 0; i < course_data.related_terms.length; i++) {
+        for (var i = 0; i < course_data.related_terms.length; i++) {
             if (course_data.related_terms[i].is_current) {
                 number_to_add = 4;
             }

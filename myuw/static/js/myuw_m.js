@@ -180,7 +180,7 @@ var titilizeTerm = function (term) {
     var i;
     var pieces = term.split(/ |, |,/);
     var string = "";
-    for (i = 0; i < pieces.length; i += 1) {
+    for (var i = 0; i < pieces.length; i += 1) {
         if (i > 0) {
             string += " ";
         }

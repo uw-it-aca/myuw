@@ -3,7 +3,7 @@ var CourseInstructorPanel = {
     render: function (c_section) {
         var i, ii;
         if (c_section.instructors && c_section.instructors.length > 0) {
-            for (i = 0; i < c_section.instructors.length; i++) {
+            for (var i = 0; i < c_section.instructors.length; i++) {
                 var instructor = c_section.instructors[i];
 
                 if (instructor.addresses.length > 0) {

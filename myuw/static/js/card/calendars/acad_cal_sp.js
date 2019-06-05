@@ -33,7 +33,7 @@ var AcadCalSnippet = {
 
     refine_event_fields: function(events) {
         var i;
-        for (i = 0; i < events.length; i++) {
+        for (var i = 0; i < events.length; i++) {
             var ev = events[i];
             if (ev.is_all_day) {
                 delete(ev.end);

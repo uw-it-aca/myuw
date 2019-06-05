@@ -69,7 +69,7 @@ WSData = {
             callback,
             args;
 
-        for (i = 0; i < WSData._success_callbacks[url].length; i++) {
+        for (var i = 0; i < WSData._success_callbacks[url].length; i++) {
             callback = WSData._success_callbacks[url][i];
             args = WSData._callback_args[url][i];
 
@@ -88,7 +88,7 @@ WSData = {
             callback,
             args;
 
-        for (i = 0; i < WSData._error_callbacks[url].length; i++) {
+        for (var i = 0; i < WSData._error_callbacks[url].length; i++) {
             callback = WSData._error_callbacks[url][i];
             args = WSData._callback_args[url][i];
 

@@ -85,7 +85,7 @@ var Notices = {
 
             if (expanded) {
                 expanded = false;
-                for (i = 0; i < blocks.length; i++) {
+                for (var i = 0; i < blocks.length; i++) {
                     block = blocks[i];
                     if (block.css('display') !== 'none') {
                         Notices._hide_section(block, get_link_for_block(block));
@@ -96,7 +96,7 @@ var Notices = {
                 }, 700);
             } else if (!expanded) {
                 expanded = true;
-                for (i = 0; i < blocks.length; i++) {
+                for (var i = 0; i < blocks.length; i++) {
                     block = blocks[i];
                     if (block.css('display') === 'none') {
                         Notices._show_section(block, get_link_for_block(block));
@@ -178,7 +178,7 @@ var Notices = {
             notice,
             notices = WSData.notice_data(),
             filtered_notices = [];
-        for (i = 0; i < notices.length; i += 1) {
+        for (var i = 0; i < notices.length; i += 1) {
             notice = notices[i];
             if (notice.category === category) {
                 filtered_notices.push(notice);
@@ -197,7 +197,7 @@ var Notices = {
             notice_tags,
             notices = WSData.notice_data(),
             filtered_notices = [];
-        for (i = 0; i < notices.length; i += 1) {
+        for (var i = 0; i < notices.length; i += 1) {
             notice_tags = notices[i].location_tags;
             if (notice_tags === null) {
                 continue;
@@ -237,7 +237,7 @@ var Notices = {
 
         today = Notices._get_utc_date(new Date());
 
-        for (i = 0; i < notices.length; i += 1) {
+        for (var i = 0; i < notices.length; i += 1) {
             notice = notices[i];
             var notice_has_date = false;
             if (notice.attributes !== null && notice.attributes.length > 0) {
@@ -294,7 +294,7 @@ var Notices = {
     get_unread_non_critical_count: function() {
         var all_non_critical = [];
         var all_notices = Notices.get_notice_page_notices();
-        for (i = 0; i < all_notices.length; i++) {
+        for (var i = 0; i < all_notices.length; i++) {
             if (!all_notices[i].is_critical) {
                 all_non_critical.push(all_notices[i]);
             }
@@ -307,7 +307,7 @@ var Notices = {
         var i,
             category_counts = {},
             notices = WSData.notice_data();
-        for (i = 0; i < notices.length; i += 1) {
+        for (var i = 0; i < notices.length; i += 1) {
             if (!notices[i].is_read && notices[i].category !== null) {
                 if (notices[i].category in category_counts) {
                     category_counts[notices[i].category] += 1;
@@ -321,7 +321,7 @@ var Notices = {
 
     _get_unread_count: function (notices) {
         var unread_count = 0;
-        for (i = 0; i < notices.length; i += 1) {
+        for (var i = 0; i < notices.length; i += 1) {
             notice = notices[i];
             if (!notice.is_read && notice.category !== "not a notice") {
                     unread_count += 1;
@@ -336,7 +336,7 @@ var Notices = {
 
     _get_notices_by_criticality: function(notices, is_critical, exclude_sws_category) {
         var filtered_notices = [];
-        for (i = 0; i < notices.length; i += 1) {
+        for (var i = 0; i < notices.length; i += 1) {
             var notice = notices[i];
             if (exclude_sws_category === 'undefined' ||
                 notice.sws_category !== exclude_sws_category) {

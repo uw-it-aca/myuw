@@ -359,7 +359,7 @@ var LogUtils = {
         var new_visible_cards = {};
         var i, len;
 
-        for (i = 0, len = cards.length; i < len; i++) {
+        for (var i = 0, len = cards.length; i < len; i++) {
             var card = cards[i];
             var card_name = LogUtils.get_card_name(card);
 
@@ -383,7 +383,7 @@ var LogUtils = {
 
         var newly_offscreen_keys = {};
         var key;
-        for (i = 0, len = offscreen.length; i < len; i++) {
+        for (var i = 0, len = offscreen.length; i < len; i++) {
             key = LogUtils.get_card_name(offscreen[i]);
             newly_offscreen_keys[key] = true;
         }
@@ -407,12 +407,12 @@ var LogUtils = {
         var i,
             len,
             card;
-        for (i = 0, len = changes.scrolled_in.length; i < len; i++) {
+        for (var i = 0, len = changes.scrolled_in.length; i < len; i++) {
             window.myuw_log.log_card(changes.scrolled_in[i].card, "view", {
                 rand: changes.scrolled_in[i].rand
             });
         }
-        for (i = 0, len = changes.scrolled_out.length; i < len; i++) {
+        for (var i = 0, len = changes.scrolled_out.length; i < len; i++) {
             card = changes.scrolled_out[i].card;
             window.myuw_log.log_card(card, "time_viewed", {
                 time_visible: ((new Date().getTime()) - changes.scrolled_out[i].first_onscreen) / 1000,

@@ -246,7 +246,7 @@ var PhotoClassList = {
         header.push("Credits","Class","Major","Email");
         lines.push(header.join(","));
 
-        for (i = 0; i < registrations.length; i++) {
+        for (var i = 0; i < registrations.length; i++) {
             var reg = registrations[i];
             if (reg.is_joint){ //MUWM-4371
                 continue;

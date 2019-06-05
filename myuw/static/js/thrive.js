@@ -46,7 +46,7 @@ var ThriveMessages = {
         var group = [];
         var i;
 
-        for (i = 0; i < messages.length; i += 1) {
+        for (var i = 0; i < messages.length; i += 1) {
             if (i > 0 && i % per_row === 0) {
                 groups.push(group);
                 group = [];

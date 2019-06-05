@@ -89,7 +89,7 @@ var EventsCard = {
             idx = 0,
             i = 0;
 
-        for (i = 0; i < event_data.length; i++){
+        for (var i = 0; i < event_data.length; i++){
             var event = event_data[i];
 
             if (i < 6) {
