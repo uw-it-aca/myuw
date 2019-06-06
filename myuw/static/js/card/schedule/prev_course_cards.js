@@ -53,14 +53,14 @@ var PrevTermCourseCards = {
         if (results.length === 1) {
             $("#PrevTermCourseCards1").hide();
         }
-        for (i = 0; i < results.length; i++) {
+        for (var i = 0; i < results.length; i++) {
             var term_course_data = results[i];
             WSData.process_term_course_data(term_course_data);
             WSData._normalize_instructors(term_course_data);
             var term_label = term_course_data.term.label.replace(/,/g, '_');
             var quarter = term_course_data.quarter;
             var course_sections = term_course_data.sections;
-            for (index = 0; index < course_sections.length; index++) {
+            for (var index = 0; index < course_sections.length; index++) {
                 section = course_sections[index];
                 section.index += term_label;
                 section.year = term_course_data.year;
@@ -76,8 +76,8 @@ var PrevTermCourseCards = {
             }
             PrevTermCourseCards.dom_target.html(raw);
 
-            for (index = 0; index < course_sections.length; index++) {
-                CourseCardContentPanel.render(course_sections[index], false);
+            for (var e = 0; e < course_sections.length; e++) {
+                CourseCardContentPanel.render(course_sections[e], false);
             }
             LoadCourseEval.add_events(quarter);
             CourseCards.add_events(term_label);
