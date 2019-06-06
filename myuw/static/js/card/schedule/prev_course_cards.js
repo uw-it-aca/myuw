@@ -76,8 +76,8 @@ var PrevTermCourseCards = {
             }
             PrevTermCourseCards.dom_target.html(raw);
 
-            for (var index = 0; index < course_sections.length; index++) {
-                CourseCardContentPanel.render(course_sections[index], false);
+            for (var e = 0; e < course_sections.length; e++) {
+                CourseCardContentPanel.render(course_sections[e], false);
             }
             LoadCourseEval.add_events(quarter);
             CourseCards.add_events(term_label);
