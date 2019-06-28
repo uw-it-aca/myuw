@@ -88,6 +88,7 @@ function addElement(strAlertTitle,strAlertLink,strAlertColor,strAlertMessage)
   wrapperDiv.setAttribute('class', strAlertColor + ' alert alert-block');
 
   var alertBoxTextDiv = document.createElement('div');
+  alertBoxTextDiv.setAttribute('class','myuw-wrapper');
 
   var alertIcon = document.createElement('i');
   alertIcon.setAttribute('class', 'fa fa-exclamation-triangle fa-3x');
