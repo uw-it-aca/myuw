@@ -85,7 +85,7 @@ function addElement(strAlertTitle,strAlertLink,strAlertColor,strAlertMessage)
 
   var wrapperDiv = document.createElement('div');
   wrapperDiv.setAttribute('id','uwalert-alert-message');
-  wrapperDiv.setAttribute('class', strAlertColor + ' alert alert-block');
+  wrapperDiv.setAttribute('class', strAlertColor + ' uwalert alert-block');
 
   var alertBoxTextDiv = document.createElement('div');
   alertBoxTextDiv.setAttribute('class','myuw-wrapper');
