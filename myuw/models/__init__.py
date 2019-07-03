@@ -44,7 +44,11 @@ class User(models.Model):
 
     @classmethod
     def get_user(cls, uwnetid, prior_netids=[]):
-        if User.exists(uwnetid):
+
+        users = User.objects.get(uwnetid=uwnetid)
+
+        if (len(users) > 0 and users[0].last_visit
+                - timezone.now() >= timedelta(minutes=5)):
             return User.update(uwnetid, uwnetid)
 
         # no entry for the current netid
