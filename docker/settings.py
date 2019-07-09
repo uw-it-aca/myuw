@@ -2,7 +2,6 @@ from .base_settings import *
 
 ALLOWED_HOSTS = ['*']
 
-
 INSTALLED_APPS += [
     'compressor',
     'rc_django',
@@ -12,7 +11,8 @@ INSTALLED_APPS += [
     'django_client_logger',
     'supporttools',
     'blti',
-    'hx_toolkit'
+    'hx_toolkit',
+    'django_user_agents'
 ]
 
 MIDDLEWARE += [
@@ -83,3 +83,6 @@ TEMPLATES = [
         },
     },
 ]
+
+if os.getenv("ENV") == "localdev":
+    DEBUG = True
