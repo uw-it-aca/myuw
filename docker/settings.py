@@ -48,6 +48,10 @@ STATIC_ROOT = "/static"
 STATIC_URL = '/static/'
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
+
+if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
+    COMPRESS_ENABLED = False
+
 COMPRESS_ROOT = "/static"
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
