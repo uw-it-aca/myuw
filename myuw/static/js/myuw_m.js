@@ -121,6 +121,7 @@ $(window.document).ready(function() {
         console.log(search_text);
         console.log(event);
         preventDefault();
+        return;
     });
 });
 
