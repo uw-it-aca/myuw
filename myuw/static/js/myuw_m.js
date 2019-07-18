@@ -118,8 +118,7 @@ $(window.document).ready(function() {
     $('.uw-search').on('submit', function(event){
         var search_text = $('#search-nav').val();
         ga('send', 'pageview', '/search?q=' + encodeURI(search_text));
-        console.log(search_text);
-        console.log(event);
+        window.location.href = 'https://washington.edu/search/?q=' + encodeURI(search_text);
         event.preventDefault();
         return;
     });
