@@ -117,10 +117,10 @@ $(window.document).ready(function() {
 
     $('.uw-search').on('submit', function(event){
         var search_text = $('#search-nav').val();
-        ga('send', 'pageview', '/serach?q=' + search_text);
+        ga('send', 'pageview', '/search?q=' + encodeURI(search_text));
         console.log(search_text);
         console.log(event);
-        preventDefault();
+        event.preventDefault();
         return;
     });
 });
