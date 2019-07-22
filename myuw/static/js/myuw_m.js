@@ -114,6 +114,14 @@ $(window.document).ready(function() {
             error: function(xhr, status, error) { }
         });
     }
+
+    $('.uw-search').on('submit', function(event){
+        var search_text = $('#search-nav').val();
+        ga('send', 'pageview', '/search?q=' + encodeURI(search_text));
+        window.location.href = 'https://washington.edu/search/?q=' + encodeURI(search_text);
+        event.preventDefault();
+        return;
+    });
 });
 
 var showLoading = function() {
@@ -334,6 +342,8 @@ var myuwFeatureEnabled = function(feature) {
     return (window.enabled_features.hasOwnProperty(feature) &&
             window.enabled_features[feature]);
 };
+
+
 
 var getUrlParameter = function (name) {
     var url = window.location.href;
