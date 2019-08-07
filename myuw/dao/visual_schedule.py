@@ -8,7 +8,6 @@ from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
-import json
 
 
 def get_schedule_json(visual_schedule, term, summer_term=None):
