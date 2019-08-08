@@ -49,7 +49,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertFalse(section3.get("has_early_fall_start"))
 
         section6 = data['sections'][5]
-        self.assertTrue(section6['current_or_future'])
+        self.assertTrue(section6['current'])
         self.assertEqual(section6['canvas_url'],
                          'https://canvas.uw.edu/courses/149651')
         self.assertEqual(len(section6['grade_submission_delegates']), 1)
@@ -89,7 +89,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
         response = self.get_schedule(year=2013, quarter='winter')
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertFalse(data['sections'][0]['current_or_future'])
+        self.assertFalse(data['sections'][0]['current'])
 
     def test_having_secondary_sections_case(self):
         now_request = get_request_with_user(

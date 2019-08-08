@@ -59,7 +59,7 @@ class InstSche(ProtectedAPI):
 
         for section in resp_data['sections']:
 
-            _set_current_or_future(term, request, section)
+            _set_current(term, request, section)
             t = Thread(target=coda.get_course_card_details,
                        args=(section['section_label'],
                              section,))
@@ -520,10 +520,10 @@ class InstSect(ProtectedAPI):
             return handle_exception(logger, timer, traceback)
 
 
-def _set_current_or_future(term, request, section):
+def _set_current(term, request, section):
     current_term = get_current_quarter(request)
 
-    section['current_or_future'] = current_term <= term
+    section['current'] = current_term == term
 
 
 def is_joint_section(section):
