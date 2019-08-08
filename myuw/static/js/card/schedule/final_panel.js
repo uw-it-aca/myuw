@@ -177,9 +177,9 @@ var FinalExamSchedule = {
             if (end_minutes > visual_data.latest_ending) {
                 visual_data.latest_ending = end_minutes;
             }
-
             var exam_info = {
                 is_meeting: true,
+		is_instructor: section.is_teaching,
                 start: start_minutes,
                 end: end_minutes,
                 color_id: section.color_id,
@@ -193,7 +193,7 @@ var FinalExamSchedule = {
                 building_name: final_exam.building_name,
                 latitude: final_exam.latitude,
                 longitude: final_exam.longitude,
-                is_instructor: section.is_instructor,
+                is_instructor: section.is_teaching,
                 is_confirmed: final_exam.is_confirmed,
                 quarter: term.quarter,
                 year: term.year,

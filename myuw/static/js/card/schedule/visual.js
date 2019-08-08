@@ -172,7 +172,8 @@ var VisualScheduleCard = {
                                 curriculum: section.curriculum_abbr,
                                 course_number: section.course_number,
                                 section_id: section.section_id,
-                                section_index: section_index
+                                section_index: section_index,
+				is_instructor: section.is_teaching
                             });
                         }
                     }
