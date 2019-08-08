@@ -78,7 +78,7 @@ describe("ProfilePage for student and employee", function() {
         assert.equal($('div[id="CommonProfileCard"]').length, 1);
         assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
         assert.equal($('div[id="StudentInfoCard"]').length, 1);
-        assert.equal($('div[id="HelpLinksCard"]').length, 0);
+        assert.equal($('div[id="HelpLinksCard"]').length, 1);
     });
 });
 
@@ -159,7 +159,7 @@ describe("ProfilePage for applicant and employee", function() {
         assert.equal($('div[id="CommonProfileCard"]').length, 1);
         assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
         assert.equal($('div[id="ApplicantProfileCard"]').length, 1);
-        assert.equal($('div[id="HelpLinksCard"]').length, 0);
+        assert.equal($('div[id="HelpLinksCard"]').length, 1);
     });
 });
 
@@ -241,7 +241,7 @@ describe("ProfilePage for student and student employee", function() {
         assert.equal($('div[id="CommonProfileCard"]').length, 1);
         assert.equal($('div[id="EmployeeInfoCard"]').length, 1);
         assert.equal($('div[id="StudentInfoCard"]').length, 1);
-        assert.equal($('div[id="HelpLinksCard"]').length, 0);
+        assert.equal($('div[id="HelpLinksCard"]').length, 1);
     });
 
     it('Test resizing', function() {
