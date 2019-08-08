@@ -27,39 +27,25 @@ var ProfilePage = {
     },
 
     load_cards_for_viewport: function() {
-        if (get_is_desktop()) {
-            ProfilePage._load_desktop_cards();
-        } else {
-            ProfilePage._load_mobile_cards();
-        }
+        ProfilePage._load_cards();
     },
 
-    _load_desktop_cards: function() {
+    _load_cards: function() {
         ProfilePage._reset_content_divs();
-        var desktop_body_cards = [
+        var body_cards = [
             CommonProfileCard,
             EmployeeInfoCard,
             StudentInfoCard,
             ApplicantProfileCard
         ];
-        var desktop_sidebar_cards = [
+        var sidebar_cards = [
             ProfileHelpLinksCard
         ];
 
-        Cards.load_cards_in_order(desktop_body_cards, $("#profile_content_cards"));
-        Cards.load_cards_in_order(desktop_sidebar_cards, $("#profile_sidebar_cards"));
+        Cards.load_cards_in_order(body_cards, $("#profile_content_cards"));
+        Cards.load_cards_in_order(sidebar_cards, $("#profile_sidebar_cards"));
     },
 
-    _load_mobile_cards: function() {
-        ProfilePage._reset_content_divs();
-        var mobile_cards = [
-            CommonProfileCard,
-            EmployeeInfoCard,
-            StudentInfoCard,
-            ApplicantProfileCard
-        ];
-        Cards.load_cards_in_order(mobile_cards, $("#profile_content_cards"));
-    },
 
     _reset_content_divs: function() {
         $("#profile_content_cards").html('');
