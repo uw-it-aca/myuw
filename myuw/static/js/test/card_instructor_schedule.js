@@ -163,7 +163,6 @@ describe('InstructorScheduleCards for billpce 2013 spring', function(){
         assert.equal($('div[id="instructor_course_resource0"]').length, 1);
         assert.equal($('a[class="course_class_list"]').length, 5);
         assert.equal($('a[class="myuw-iconlink course-classlist-download download_classlist_csv"]').length, 5);
-        assert.equal($('a[data-linklabel="Course Dashboard for AAES 150 A"]').length, 1);
         assert.equal($('a[class="myuwclass"]').length, 3);
         assert.equal($('a[class="myuwclass"]')[0].getAttribute("rel"), "AAES 150 A");
     });

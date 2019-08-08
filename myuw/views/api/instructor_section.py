@@ -25,7 +25,7 @@ from myuw.util.thread import Thread, ThreadWithResponse
 from myuw.views.api import OpenAPI
 from myuw.views.decorators import blti_admin_required
 from myuw.views.api.instructor_schedule import load_schedule, \
-    _set_current_or_future
+    _set_current
 
 logger = logging.getLogger(__name__)
 withdrew_grade_pattern = re.compile(r'^W')
@@ -86,7 +86,7 @@ class OpenInstSectionDetails(OpenAPI):
         resp_data = load_schedule(request, schedule,
                                   section_callback=self.per_section_data)
 
-        _set_current_or_future(self.term, request, resp_data)
+        _set_current(self.term, request, resp_data)
 
         # Concurrently fetch section data and ICD data
         threads = []
@@ -97,7 +97,7 @@ class OpenInstSectionDetails(OpenAPI):
         t.start()
 
         for section in resp_data['sections']:
-            _set_current_or_future(schedule.term, request, section)
+            _set_current(schedule.term, request, section)
 
             t = Thread(target=coda.get_classlist_details,
                        args=(section['section_label'],
