@@ -5,7 +5,7 @@
     {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
 
     {{#unless mini_card}}
-        {{#if current_or_future}}
+        {{#if current}}
             {% include "handlebars/card/instructor_schedule/course_resource/course_stats.html" %}
         {{/if}}
     {{/unless}}
