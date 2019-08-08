@@ -179,7 +179,6 @@ var FinalExamSchedule = {
             }
             var exam_info = {
                 is_meeting: true,
-		is_instructor: section.is_teaching,
                 start: start_minutes,
                 end: end_minutes,
                 color_id: section.color_id,
