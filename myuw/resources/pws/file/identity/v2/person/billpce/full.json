@@ -1,8 +1,8 @@
 {"DisplayName":"BILL Pce Instructor",
 "EduPersonAffiliations":["member",
-"alum",
-"faculty",
-"employee"],
+                         "alum",
+                         "faculty",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -14,9 +14,12 @@
 "UWRegID":"10000000000000000000000000000011",
 "WhitepagesPublish": true,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"100000011",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses":
                 ["237 Denny, C-3175, 4333 Brooklyn Ave NE, Seattle, WA 98195"],

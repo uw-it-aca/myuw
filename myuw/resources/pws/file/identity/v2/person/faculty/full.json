@@ -15,9 +15,12 @@
 "UWRegID":"10000000000000000000000000000005",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"123456789",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses": [],
             "EmailAddresses":["faculty@uw.edu"],

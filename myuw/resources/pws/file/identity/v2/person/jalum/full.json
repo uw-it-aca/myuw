@@ -11,10 +11,13 @@
 "UWRegID":"10000000000000000000000000000016",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000000016"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000000016",
+        "AlumAffiliationState":"current"},
     "StudentPersonAffiliation":{
         "StudentNumber":"1000016",
         "StudentSystemKey":"000000016",
+        "StudentAffiliationState":"prior",
         "StudentWhitePages":{
             "Class":null,
             "Departments":[],

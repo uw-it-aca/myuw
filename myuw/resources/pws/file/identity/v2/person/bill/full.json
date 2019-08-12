@@ -8,9 +8,11 @@
   "IsTestEntity" : false,
   "PersonAffiliations" : {
       "AlumPersonAffiliation" : {
-          "DevelopmentID" : "0000995897" },
+          "DevelopmentID" : "0000995897",
+          "AlumAffiliationState":"current"},
       "EmployeePersonAffiliation" : {
           "EmployeeID" : "123456782",
+          "EmployeeAffiliationState": "current",
           "EmployeeWhitePages" : {
               "Addresses": ["Seattle, WA 98105"],
               "EmailAddresses":["bill@uw.edu"],
