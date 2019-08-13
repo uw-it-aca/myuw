@@ -85,13 +85,18 @@ def get_student_system_key_of_current_user(request):
 
 def is_alumni(request):
     person = get_person_of_current_user(request)
-    return (isinstance(person, Person) and person.is_alum is True and
+    return (isinstance(person, Person) and
+            person.is_alum is True and
             person.is_alum_state_current())
 
 
 def is_employee(request):
+    """
+    Current faculty, staff, and student employees
+    """
     person = get_person_of_current_user(request)
-    return (isinstance(person, Person) and person.is_employee is True and
+    return (isinstance(person, Person) and
+            person.is_employee is True and
             person.is_emp_state_current())
 
 
@@ -107,6 +112,9 @@ def is_student(request):
 
 
 def is_faculty(request):
+    """
+    UW faculty members who are currently employed.
+    """
     person = get_person_of_current_user(request)
     return isinstance(person, Person) and person.is_faculty is True
 
@@ -129,9 +137,9 @@ def is_tacoma_employee(request):
 
 def is_seattle_employee(request):
     person = get_person_of_current_user(request)
-    return isinstance(person, Person) and person.mailstop and\
-        not is_tacoma_employee(request) and\
-        not is_bothell_employee(request)
+    return (isinstance(person, Person) and person.mailstop and
+            not is_tacoma_employee(request) and
+            not is_bothell_employee(request))
 
 
 def is_prior_employee(request):
@@ -141,7 +149,9 @@ def is_prior_employee(request):
 
 def is_prior_student(request):
     person = get_person_of_current_user(request)
-    return isinstance(person, Person) and person.is_stud_state_prior()
+    return (isinstance(person, Person) and
+            person.is_stud_state_prior() and
+            is_student(request) is False)
 
 
 def is_retiree(request):

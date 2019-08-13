@@ -7,7 +7,7 @@ from myuw.dao import is_hx_toolkit_viewer
 from myuw.dao.enrollment import get_main_campus, get_class_level
 from myuw.dao.gws import (
     is_clinician, is_regular_employee, is_staff_employee, is_student_employee,
-    is_student, is_grad_student, is_undergrad_student, is_clinician,
+    is_alum_asso, is_student, is_grad_student, is_undergrad_student,
     is_pce_student, is_seattle_student, is_bothell_student, is_tacoma_student,
     is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations)
 from myuw.dao.instructor import is_instructor
@@ -57,6 +57,7 @@ def get_all_affiliations(request):
     The following are secondary affiliations (without 1st_class_aff):
     ["alumni"]: True if the user is currently an UW alumni and NOT
                 current student, employee, applicant
+    ["alum_asso"]: alumni association member
     ["retiree"]: True if the user is a retired staff  and NOT
                 current applicant, student, employee
     ["past_employee"]: True if the user is a former employee and NOT
@@ -98,6 +99,7 @@ def get_all_affiliations(request):
             "official_bothell": False,
             "official_tacoma": False,
             "hxt_viewer": is_hxt_viewer,
+            "alum_asso": is_alum_asso(request),
             "alumni": is_alumni(request) and not_major_affi,
             "retiree": is_retiree(request) and not_major_affi,
             "past_employee": is_prior_employee(request) and not_major_affi,

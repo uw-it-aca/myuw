@@ -4,7 +4,6 @@ with the UW Netid Web Service
 """
 
 import logging
-from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.models import Subscription
 from uw_uwnetid.subscription import get_netid_subscriptions
 from uw_uwnetid.subscription_60 import is_current_alumni, is_current_staff,\
@@ -60,8 +59,9 @@ def get_subscriptions(request):
                 subs_dict[twofa_id] = subs.permitted
                 # True|False
 
-    except DataFailureException as ex:
-        logger.error("uwnetid_subscriptions {} ==> {}".format(netid, str(ex)))
+    except Exception as ex:
+        logger.error("uwnetid_subscriptions {0} ==> {1}".format(
+            netid, str(ex)))
 
     request.myuwnetid_subscriptions = subs_dict
     return subs_dict
