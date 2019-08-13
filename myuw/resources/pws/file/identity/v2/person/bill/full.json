@@ -33,9 +33,19 @@
               "TouchDials":[],
               "VoiceMails":["+1 425 222-2222"]},
           "HomeDepartment":"Family Medicine",
-          "MailStop" : "354744"
-        }
-    },
+          "MailStop" : "354744"},
+      "StudentPersonAffiliation": {
+          "StudentNumber": "0111111",
+          "StudentSystemKey": "000111111",
+          "StudentAffiliationState":"prior",
+          "StudentWhitePages": {
+              "Name": "Teacher, Bill",
+              "Phone":null,
+              "Email":null,
+              "PublishInDirectory":false,
+              "Class":null,
+              "Departments":[]}}
+  },
   "PriorUWNetIDs" : [],
   "PriorUWRegIDs" : [],
   "RegisteredFirstMiddleName" : "BILL AVERAGE",

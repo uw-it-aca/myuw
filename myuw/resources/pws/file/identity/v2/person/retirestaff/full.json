@@ -1,5 +1,7 @@
-{"DisplayName":"Ellen Retired Staff",
-"EduPersonAffiliations":["member"],
+{
+"DisplayName":"Ellen Retired Staff",
+"EduPersonAffiliations":["alum",
+                         "member"],
 "IsTestEntity":false,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -44,5 +46,5 @@
             "Email":null,
             "Name":null,
             "Phone":null,
-            "PublishInDirectory":false}
-}}}
+            "PublishInDirectory":false}}
+}}

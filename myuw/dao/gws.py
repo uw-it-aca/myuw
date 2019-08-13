@@ -10,14 +10,13 @@ except ImportError:
 from uw_gws import GWS
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import is_employee
-from myuw.dao.uwnetid import is_clinician, is_faculty
 
 
 logger = logging.getLogger(__name__)
 gws = GWS()
 
-alumni = 'uw_affiliation_alumni'
-alumni_asso = 'uw_affiliation_alumni-association-members'
+medicine_wf = 'uw_affiliation_uw-medicine-workforce'
+medicine_aff = 'uw_affiliation_uw-medicine-affiliate'
 applicant = 'uw_affiliation_applicant'
 staff = 'uw_affiliation_staff-employee'
 stud_emp = 'uw_affiliation_student-employee'
@@ -30,10 +29,8 @@ grad_prof = 'uw_affiliation_graduate'  # grace 90 days
 pce = 'uw_affiliation_extension-student'
 grad_c2 = 'uw_affiliation_continuum-student_graduate'
 undergrad_c2 = 'uw_affiliation_continuum-student_undergraduate'
-all_groups = [alumni, alumni_asso,
-              applicant, staff, stud_emp,
-              bot_stud, sea_stud, tac_stud,
-              undergrad, grad_prof, grad,
+all_groups = [medicine_wf, medicine_aff, applicant, staff, stud_emp,
+              bot_stud, sea_stud, tac_stud, undergrad, grad_prof, grad,
               pce, grad_c2, undergrad_c2]
 RELEVANT_GROUPS = frozenset(all_groups)
 
@@ -68,18 +65,12 @@ def group_prefetch():
     return [_method]
 
 
-def is_alumni(request):
+def is_clinician(request):
     """
-    In Advancement database (grace 30 days)
+    As UW Medicine Workforce
     """
-    return alumni in get_groups(request)
-
-
-def is_alum_asso(request):
-    """
-    A current alumni association member
-    """
-    return alumni_asso in get_groups(request)
+    return (medicine_wf in get_groups(request) or
+            medicine_aff in get_groups(request))
 
 
 def is_seattle_student(request):

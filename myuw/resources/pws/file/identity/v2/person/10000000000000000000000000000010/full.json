@@ -16,6 +16,7 @@
      "StudentPersonAffiliation": {
         "StudentNumber":"1000010",
         "StudentSystemKey":"001000010",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{
             "Class":"Non-Matric",
             "Departments":["Non Matriculated"],
@@ -23,6 +24,21 @@
             "Name":"Nonmatric, Jane",
             "Phone":"+1 224 800-9010",
             "PublishInDirectory":true}
-        }
+      },
+      "EmployeePersonAffiliation":{
+          "EmployeeID":"100000010",
+          "EmployeeAffiliationState": "prior",
+          "EmployeeWhitePages":{
+              "Addresses":[],
+              "EmailAddresses":[],
+              "Faxes":[],
+              "Mobiles":[],
+              "Name":"Sea, Grad",
+              "Pagers":[],
+              "Phones":[],
+              "Positions":[],
+              "PublishInDirectory":false,
+              "TouchDials":[],
+              "VoiceMails":[]}}
     }
 }

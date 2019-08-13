@@ -1,7 +1,7 @@
 {"DisplayName":"SEATTLE GRADUATE STUDENT",
 "EduPersonAffiliations":["member",
-"student",
-"employee"],
+                         "student",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -15,6 +15,7 @@
 "PersonAffiliations":{
   "EmployeePersonAffiliation":{
      "EmployeeID":"100000012",
+     "EmployeeAffiliationState": "current",
      "EmployeeWhitePages":{
          "Addresses":[],
          "EmailAddresses":["curgrad@uw.edu"],
@@ -34,6 +35,7 @@
   "StudentPersonAffiliation":{
       "StudentNumber":"1000012",
       "StudentSystemKey":"1000012",
+      "StudentAffiliationState":"current",
       "StudentWhitePages":{
           "Class": "Graduate",
           "Departments":["Statistics"],

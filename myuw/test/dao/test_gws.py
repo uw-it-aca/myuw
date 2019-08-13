@@ -1,11 +1,11 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.gws import is_alumni, is_alum_asso, is_seattle_student,\
-    is_bothell_student, is_tacoma_student, is_grad_and_prof_student,\
-    is_grad_student, is_undergrad_student, is_student,\
-    is_pce_student, is_grad_c2, is_undergrad_c2,\
-    is_student_employee, is_staff_employee, is_regular_employee,\
-    is_applicant, no_major_affiliations, get_groups
+from myuw.dao.gws import (
+    is_clinician, is_seattle_student, is_bothell_student, is_tacoma_student,
+    is_grad_and_prof_student, is_grad_student, is_undergrad_student,
+    is_student, is_pce_student, is_grad_c2, is_undergrad_c2,
+    is_student_employee, is_staff_employee, is_regular_employee,
+    is_applicant, no_major_affiliations, get_groups)
 from myuw.test import fdao_gws_override, get_request_with_user
 
 
@@ -58,9 +58,8 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_regular_employee(req))
         self.assertTrue(is_staff_employee(req))
 
-        req = get_request_with_user('jalum')
-        self.assertFalse(is_regular_employee(req))
-        self.assertTrue(is_alumni(req))
+        req = get_request_with_user('bill')
+        self.assertTrue(is_clinician(req))
 
         req = get_request_with_user('nobody')
         self.assertTrue(no_major_affiliations(req))

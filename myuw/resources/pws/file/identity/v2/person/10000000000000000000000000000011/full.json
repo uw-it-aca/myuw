@@ -44,6 +44,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1000011",
         "StudentSystemKey":"000000011",
+        "StudentAffiliationState":"prior",
         "StudentWhitePages":{
             "Class":null,
             "Departments":[],

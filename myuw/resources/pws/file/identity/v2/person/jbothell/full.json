@@ -15,9 +15,12 @@
 "UWRegID":"FE36CCB8F66711D5BE060004AC494FCD",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"133456789",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses": [],
             "EmailAddresses":["jbothell@uw.edu"],
@@ -35,6 +38,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1233334",
         "StudentSystemKey":"000083856",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{
             "Class":null,
             "Departments":["Math"],

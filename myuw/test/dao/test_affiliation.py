@@ -35,35 +35,30 @@ class TestAffilliationDao(TransactionTestCase):
         request = get_request_with_user('staff')
         self.assertTrue(get_is_hxt_viewer(request)[5])
 
-    def test_is_clinician(self):
-        now_request = get_request_with_user('eight')
-        affiliations = get_all_affiliations(now_request)
-        self.assertTrue(affiliations['clinician'])
-
     def test_is_instructor(self):
         now_request = get_request_with_user('bill')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['instructor'])
+        self.assertTrue(affiliations['clinician'])
 
     def test_is_faculty(self):
         now_request = get_request_with_user('billtac')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['faculty'])
-        self.assertTrue(affiliations.get("alum_asso"))
         self.assertTrue(affiliations.get("official_tacoma"))
 
     def test_is_alumni(self):
         now_request = get_request_with_user('jalum')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations["alumni"])
-        self.assertTrue(affiliations["past_stud"])
         self.assertTrue(affiliations["no_1st_class_affi"])
+        self.assertTrue(affiliations["past_stud"])
+        self.assertTrue(affiliations["past_employee"])
 
     def test_is_retiree(self):
         now_request = get_request_with_user('retirestaff')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations["retiree"])
-        self.assertTrue(affiliations["past_employee"])
         self.assertTrue(affiliations["past_stud"])
         self.assertTrue(affiliations["no_1st_class_affi"])
 
