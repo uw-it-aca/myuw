@@ -50,7 +50,8 @@ class MyProfile(ProtectedAPI):
             try:
                 response['password'] = get_pw_json(request)
             except Exception as ex:
-                logger.error("{} get_pw_json: {}".format(netid, str(ex)))
+                logger.error("get_password({0}): {1}".format(
+                    netid, str(ex)))
 
             log_api_call(timer, request, "Get Applicant/Student Profile")
             return self.json_response(response)

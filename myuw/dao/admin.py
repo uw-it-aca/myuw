@@ -14,6 +14,7 @@ MYUW_ASTRA_GROUP_STEM = get_myuw_astra_group_stem()
 def _search_groups(uwnetid):
     group_refs = gws.search_groups(member=uwnetid,
                                    stem=MYUW_ASTRA_GROUP_STEM,
+                                   name="",
                                    scope="all",
                                    type="effective")
     is_admin = False

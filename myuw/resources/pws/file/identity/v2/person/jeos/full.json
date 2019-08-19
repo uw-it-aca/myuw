@@ -1,19 +1,26 @@
-{"DisplayName":"JAMES AVERAGE STUDENT",
-"EduPersonAffiliations":["member","student","alum","staff","employee"],
+{"DisplayName":"JAMES EOS STUDENT",
+"EduPersonAffiliations":["member",
+                         "student",
+                         "alum",
+                         "staff",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
-"RegisteredFirstMiddleName":"JAMES AVERAGE",
-"RegisteredName":"JAMES AVERAGE STUDENT",
+"RegisteredFirstMiddleName":"JAMES EOS",
+"RegisteredName":"JAMES EOS STUDENT",
 "RegisteredSurname":"STUDENT",
 "UIDNumber":"35443",
 "UWNetID":"jeos",
 "UWRegID":"55555333366711D5BE060004AC494FFE",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"100000055",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses": [],
             "EmailAddresses":["jeos@uw.edu"],
@@ -35,12 +42,13 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1000055",
         "StudentSystemKey":"001000055",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{
             "Class":"Senior",
             "Departments":["Computer Science",
                            "Anthropology"],
             "Email":"jeos@uw.edu",
-            "Name":"JAMES AVERAGE",
+            "Name":"JAMES EOS",
             "Phone":"+1 206 123-1234",
             "PublishInDirectory": false}
 }}}

@@ -1,6 +1,7 @@
 {
 "DisplayName":"J. Average Applicant",
-"EduPersonAffiliations":["affiliate", "employee"],
+"EduPersonAffiliations":["affiliate",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -15,6 +16,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1033002",
         "StudentSystemKey":"000000007",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{
             "Class":null,
             "Departments":[],
@@ -22,5 +24,22 @@
             "Name":null,
             "Phone":null,
             "PublishInDirectory":false}
-    }
+    },
+    "EmployeeWhitePages":{
+         "EmployeeID":"100000091",
+         "EmployeeAffiliationState": "current",
+         "Addresses":[],
+         "EmailAddresses":["japplicant@uw.edu"],
+         "Faxes":[],
+         "Mobiles":[],
+         "Name":"Applicant, James",
+         "Pagers":[],
+         "Phones":[],
+         "Positions":[
+             {"EWPDept":"CAS: Statistics",
+              "EWPTitle":"Office Assistant",
+              "Primary":true}],
+         "PublishInDirectory":false,
+         "TouchDials":[],
+         "VoiceMails":[]}
 }}

@@ -15,9 +15,12 @@
 "UWRegID":"10000000000000000000000000000007",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-        "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+        "AlumPersonAffiliation":{
+            "DevelopmentID":"0000773877",
+            "AlumAffiliationState":"current"},
         "EmployeePersonAffiliation":{
         "EmployeeID":"100000007",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses":["4333 Brooklyn Ave NE, Bothell, WA 98195"],
             "EmailAddresses":["billbot@uw.edu"],
@@ -45,6 +48,7 @@
         "StudentPersonAffiliation":{
             "StudentNumber":"1000007",
             "StudentSystemKey":"000000007",
+            "StudentAffiliationState":"prior",
             "StudentWhitePages":{
                 "Class":null,
                 "Departments":[],
