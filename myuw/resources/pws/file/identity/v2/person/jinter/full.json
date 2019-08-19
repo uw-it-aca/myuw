@@ -17,9 +17,12 @@
 "UWRegID":"9136CCB8F66711D5BE060004AC494F31",
 "WhitepagesPublish":false,
 "PersonAffiliations":
-   {"AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+   {"AlumPersonAffiliation":{
+       "DevelopmentID":"0000773877",
+       "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"100456789",
+        "EmployeeAffiliationState":"current",
         "EmployeeWhitePages": {
             "Addresses": [],
             "EmailAddresses":[],
@@ -37,6 +40,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1233334",
         "StudentSystemKey":"000083856",
+        "StudentAffiliationState":"current",
         "StudentWhitePages": {
             "Class":null,
             "Departments":[],

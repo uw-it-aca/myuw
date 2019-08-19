@@ -1,10 +1,6 @@
 from django.test import TestCase
-from myuw.dao.uwnetid import (is_staff, is_faculty, get_subscriptions,
-                              get_email_forwarding_for_current_user,
-                              is_clinician, is_2fa_permitted,
-                              is_retired_staff, is_alumni, is_past_staff,
-                              is_past_faculty, is_past_clinician,
-                              is_past_undergrad, is_past_grad, is_past_pce)
+from myuw.dao.uwnetid import (
+    get_subscriptions, get_email_forwarding_for_current_user, is_2fa_permitted)
 from myuw.test import get_request_with_user, fdao_uwnetid_override
 
 
@@ -33,9 +29,6 @@ class TestUWNetidDao(TestCase):
 
     def test_get_subscriptions(self):
         req = get_request_with_user('javerage')
-        self.assertFalse(is_clinician(req))
-        self.assertFalse(is_faculty(req))
-        self.assertFalse(is_staff(req))
         self.assertTrue(is_2fa_permitted(req))
 
     def test_is_2fa_permitted(self):
@@ -44,40 +37,3 @@ class TestUWNetidDao(TestCase):
 
         req = get_request_with_user('jbothell')
         self.assertFalse(is_2fa_permitted(req))
-
-    def test_clinician(self):
-        req = get_request_with_user('staff')
-        self.assertTrue(is_clinician(req))
-
-    def test_faculty(self):
-        req = get_request_with_user('bill')
-        self.assertTrue(is_faculty(req))
-        self.assertTrue(is_past_grad(req))
-        self.assertTrue(is_alumni(req))
-
-    def test_staff(self):
-        req = get_request_with_user('staff')
-        self.assertTrue(is_staff(req))
-        self.assertFalse(is_past_grad(req))
-        self.assertFalse(is_past_undergrad(req))
-        self.assertFalse(is_past_pce(req))
-
-        req = get_request_with_user('japplicant')
-        self.assertTrue(is_staff(req))
-
-    def test_retiree(self):
-        req = get_request_with_user('retirestaff')
-        self.assertFalse(is_staff(req))
-        self.assertTrue(is_past_grad(req))
-        self.assertTrue(is_past_undergrad(req))
-        self.assertTrue(is_past_pce(req))
-        self.assertTrue(is_retired_staff(req))
-
-    def test_alumni(self):
-        req = get_request_with_user('javerage')
-        self.assertTrue(is_alumni(req))
-        self.assertTrue(is_past_pce(req))
-
-        req = get_request_with_user('jalum')
-        self.assertTrue(is_alumni(req))
-        self.assertTrue(is_past_undergrad(req))

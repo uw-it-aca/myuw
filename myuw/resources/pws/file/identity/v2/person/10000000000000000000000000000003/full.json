@@ -15,6 +15,7 @@
 "PersonAffiliations":{
   "EmployeePersonAffiliation":{
      "EmployeeID":"100000003",
+     "EmployeeAffiliationState": "current",
      "EmployeeWhitePages":{
          "Addresses":[],
          "EmailAddresses":["botgrad@uw.edu"],
@@ -35,6 +36,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1000003",
         "StudentSystemKey":"001000003",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{
             "Class":"Graduate",
             "Departments":["BOT: History"],

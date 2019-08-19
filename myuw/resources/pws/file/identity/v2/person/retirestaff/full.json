@@ -1,5 +1,7 @@
-{"DisplayName":"Ellen Retired Staff",
-"EduPersonAffiliations":["member"],
+{
+"DisplayName":"Ellen Retired Staff",
+"EduPersonAffiliations":["alum",
+                         "member"],
 "IsTestEntity":false,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -11,9 +13,12 @@
 "UWRegID":"10000000000000000000000000000034",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-   "AlumPersonAffiliation":{"DevelopmentID":"0000343434"},
+   "AlumPersonAffiliation":{
+       "DevelopmentID":"0000343434",
+       "AlumAffiliationState":"current"},
    "EmployeePersonAffiliation":{
        "EmployeeID":"100000034",
+       "EmployeeAffiliationState": "current",
        "EmployeeWhitePages":{
             "Addresses": [],
             "EmailAddresses":[],
@@ -22,7 +27,10 @@
             "Phones": ["+1 206 685-1234"],
             "Pagers":[],
             "Name" : null,
-            "Positions":[],
+            "Positions":[{
+              "EWPDept":"University of Washington",
+              "EWPTitle":"Retiree",
+              "Primary":true}],
             "PublishInDirectory": false,
             "TouchDials":[],
             "VoiceMails":[]},
@@ -31,11 +39,12 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1000034",
         "StudentSystemKey":"000000034",
+        "StudentAffiliationState":"prior",
         "StudentWhitePages":{
             "Class":null,
             "Departments":[],
             "Email":null,
             "Name":null,
             "Phone":null,
-            "PublishInDirectory":false}
-}}}
+            "PublishInDirectory":false}}
+}}

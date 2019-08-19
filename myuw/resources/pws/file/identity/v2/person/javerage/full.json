@@ -1,4 +1,5 @@
-{"DisplayName":"J. Average Student",
+{
+"DisplayName":"J. Average Student",
 "EduPersonAffiliations":["member","student","alum","staff","employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
@@ -11,9 +12,13 @@
 "UWRegID":"9136CCB8F66711D5BE060004AC494FFE",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"
+    },
     "EmployeePersonAffiliation":{
         "EmployeeID":"123456789",
+        "EmployeeAffiliationState":"current",
         "EmployeeWhitePages":{
             "Addresses": [],
             "EmailAddresses":["javerage@uw.edu"],
@@ -35,6 +40,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1033334",
         "StudentSystemKey":"000083856",
+        "StudentAffiliationState":"current",
         "StudentWhitePages": {
             "Class": "Senior",
             "Departments":["Computer Science",

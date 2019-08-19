@@ -15,6 +15,7 @@
 "PersonAffiliations":{
   "EmployeePersonAffiliation":{
      "EmployeeID":"100000004",
+     "EmployeeAffiliationState":"current",
      "EmployeeWhitePages":{
          "Addresses": [],
             "EmailAddresses":[],
@@ -32,6 +33,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1000004",
         "StudentSystemKey":"001000004",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{
             "Class":"Senior",
             "Departments":[],
