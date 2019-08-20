@@ -1,8 +1,8 @@
 {"DisplayName":"JAMES AVERAGE STAFF",
 "EduPersonAffiliations":["member",
-"alum",
-"staff",
-"employee"],
+                         "alum",
+                         "staff",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -14,9 +14,12 @@
 "UWRegID":"10000000000000000000000000000001",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"100000001",
+        "EmployeeAffiliationState":"current",
         "EmployeeWhitePages":{
             "Addresses": [],
             "EmailAddresses":[],

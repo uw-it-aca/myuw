@@ -1,9 +1,9 @@
 {
 "DisplayName":"Seattle Ta",
 "EduPersonAffiliations":["member",
-"alum",
-"ta",
-"employee"],
+                         "alum",
+                         "ta",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -15,9 +15,12 @@
 "UWRegID":"10000000000000000000000000000009",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"100000009",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses":[],
             "EmailAddresses":["billseata@uw.edu"],
@@ -38,6 +41,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"8938640",
         "StudentSystemKey":"000223560",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{"Class":"Graduate",
                              "Departments":["History"],
                              "Email":"billseata@uw.edu",

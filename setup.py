@@ -44,7 +44,7 @@ setup(
         'UW-RestClients-Libraries<2.0',
         'UW-RestClients-Mailman<2.0',
         'UW-RestClients-MyPlan<2.0',
-        'UW-RestClients-PWS<3.0',
+        'UW-RestClients-PWS>=2.0.4,<3.0',
         'UW-RestClients-SWS<3.0',
         'UW-RestClients-Sdbmyuw<2.0',
         'UW-RestClients-Trumba<2.0',

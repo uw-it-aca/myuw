@@ -15,9 +15,12 @@
 "UWRegID":"10000000000000000000000000000008",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"100000008",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses":[],
             "EmailAddresses":["billtac@uw.edu"],
