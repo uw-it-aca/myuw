@@ -16,9 +16,12 @@
 "UWRegID":"10000000000000000000000000000006",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-        "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+        "AlumPersonAffiliation":{
+            "DevelopmentID":"0000773877",
+            "AlumAffiliationState":"current"},
         "EmployeePersonAffiliation":{
             "EmployeeID":"100000006",
+            "EmployeeAffiliationState":"current",
             "EmployeeWhitePages":{
                 "Addresses": [],
                 "EmailAddresses":["billsea@uw.edu"],

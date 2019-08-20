@@ -15,6 +15,7 @@
 "PersonAffiliations":{
   "EmployeePersonAffiliation":{
      "EmployeeID":"100000002",
+     "EmployeeAffiliationState": "current",
      "EmployeeWhitePages":{
          "Addresses":["4333 Brooklyn Ave NE, Bothell, WA 98195"],
          "EmailAddresses":["seagrad@uw.edu"],
@@ -37,6 +38,7 @@
   "StudentPersonAffiliation":{
       "StudentNumber":"1000002",
       "StudentSystemKey":"001000002",
+      "StudentAffiliationState":"current",
       "StudentWhitePages":{
           "Class":"Master",
           "Departments":["Computer Science",

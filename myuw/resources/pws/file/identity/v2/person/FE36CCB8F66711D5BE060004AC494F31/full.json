@@ -1,9 +1,9 @@
 {"DisplayName":"JAMES NEW STUDENT",
 "EduPersonAffiliations":["member",
-"student",
-"alum",
-"staff",
-"employee"],
+                         "student",
+                         "alum",
+                         "staff",
+                         "employee"],
 "IsTestEntity":true,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
@@ -15,9 +15,12 @@
 "UWRegID":"FE36CCB8F66711D5BE060004AC494F31",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000773877"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
     "EmployeePersonAffiliation":{
         "EmployeeID":"133456789",
+        "EmployeeAffiliationState": "current",
         "EmployeeWhitePages":{
             "Addresses": [],
             "EmailAddresses":[],
@@ -26,7 +29,9 @@
             "Phones": [],
             "Pagers":[],
             "Name" : null,
-            "Positions":[],
+            "Positions":[{"EWPDept":"CAS: Statistics JM Student",
+                          "EWPTitle":"Teaching Assistant (E S UAW ASE)",
+                          "Primary":true}],
             "PublishInDirectory": false,
             "TouchDials":[],
             "VoiceMails":[]
@@ -36,6 +41,7 @@
     "StudentPersonAffiliation":{
         "StudentNumber":"1233334",
         "StudentSystemKey":"000083856",
+        "StudentAffiliationState":"current",
         "StudentWhitePages":{
             "Class":"Freshman",
             "Departments":["Pre Major (Arts & Sciences)"],

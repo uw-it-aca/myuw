@@ -5,18 +5,18 @@ This module provides affiliations of the current user
 import logging
 from myuw.dao import is_hx_toolkit_viewer
 from myuw.dao.enrollment import get_main_campus, get_class_level
-from myuw.dao.gws import is_alumni, is_alum_asso, is_regular_employee,\
-    is_student, is_grad_student, is_undergrad_student,\
-    is_pce_student, is_student_employee, is_staff_employee,\
-    is_seattle_student, is_bothell_student, is_tacoma_student,\
-    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations
+from myuw.dao.gws import (
+    is_clinician, is_regular_employee, is_staff_employee, is_student_employee,
+    is_alum_asso, is_student, is_grad_student, is_undergrad_student,
+    is_pce_student, is_seattle_student, is_bothell_student, is_tacoma_student,
+    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations)
 from myuw.dao.instructor import is_instructor
-from myuw.dao.pws import get_employee_campus, is_employee
+from myuw.dao.pws import (
+    get_employee_campus, is_employee, is_faculty, is_prior_employee,
+    is_prior_student, is_retiree, is_alumni)
 from myuw.dao.term import get_current_quarter
 from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
-from myuw.dao.uwnetid import is_clinician, is_2fa_permitted, is_faculty,\
-    is_past_grad, is_past_undergrad, is_past_pce, is_retired_staff,\
-    is_past_clinician, is_past_faculty, is_past_staff
+from myuw.dao.uwnetid import is_2fa_permitted
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.exceptions import IndeterminateCampusException
 
@@ -48,7 +48,6 @@ def get_all_affiliations(request):
     ["official_bothell"]: True if the user is Bothell employee
     ["official_tacoma"]: True if the user is Tacoma employee
     ["official_pce"]: waiting on sws to add a field in Enrollment.
-    ["alum_asso"]: alumni association member
     ["class_level"]: current term class level
     ["F1"]: F1 international student
     ["J1"]: J1 international student
@@ -58,6 +57,7 @@ def get_all_affiliations(request):
     The following are secondary affiliations (without 1st_class_aff):
     ["alumni"]: True if the user is currently an UW alumni and NOT
                 current student, employee, applicant
+    ["alum_asso"]: alumni association member
     ["retiree"]: True if the user is a retired staff  and NOT
                 current applicant, student, employee
     ["past_employee"]: True if the user is a former employee and NOT
@@ -101,13 +101,9 @@ def get_all_affiliations(request):
             "hxt_viewer": is_hxt_viewer,
             "alum_asso": is_alum_asso(request),
             "alumni": is_alumni(request) and not_major_affi,
-            "retiree": is_retired_staff(request) and not_major_affi,
-            "past_employee": (is_past_staff(request) or
-                              is_past_faculty(request) or
-                              is_past_clinician(request)) and not_major_affi,
-            "past_stud": (is_past_grad(request) or
-                          is_past_undergrad(request) or
-                          is_past_pce(request)) and not_major_affi,
+            "retiree": is_retiree(request) and not_major_affi,
+            "past_employee": is_prior_employee(request) and not_major_affi,
+            "past_stud": is_prior_student(request) and not_major_affi,
             "no_1st_class_affi": not_major_affi,
             }
 

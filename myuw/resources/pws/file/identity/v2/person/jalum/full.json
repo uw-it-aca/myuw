@@ -11,10 +11,30 @@
 "UWRegID":"10000000000000000000000000000016",
 "WhitepagesPublish":false,
 "PersonAffiliations":{
-    "AlumPersonAffiliation":{"DevelopmentID":"0000000016"},
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000000016",
+        "AlumAffiliationState":"current"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"800000016",
+        "EmployeeAffiliationState":"prior",
+        "HomeDepartment":"ISCHL: Reader/Grader - Hourly JM Student",
+        "MailStop":"352840",
+        "EmployeeWhitePages":{
+            "Name":null,
+            "PublishInDirectory":false,
+            "Phones":[],
+            "EmailAddresses":[],
+            "Positions":[],
+            "Addresses":[],
+            "VoiceMails":[],
+            "TouchDials":[],
+            "Faxes":[],
+            "Mobiles":[],
+            "Pagers":[]}},
     "StudentPersonAffiliation":{
         "StudentNumber":"1000016",
         "StudentSystemKey":"000000016",
+        "StudentAffiliationState":"prior",
         "StudentWhitePages":{
             "Class":null,
             "Departments":[],

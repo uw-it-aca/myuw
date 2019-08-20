@@ -19,6 +19,12 @@
       "displayName":"UW Staff Employees",
       "id":"uw_affiliation_staff-employee",
       "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_staff-employee"
+    },
+    {
+     "id":"uw_affiliation_wwami-medical-resident",
+     "regid":"00ce8ac4aace4275b690ecbe668c5114",
+     "displayName":"Current WWAMI area Medical Residents",
+     "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_wwami-medical-resident"
     }
   ]
 }
