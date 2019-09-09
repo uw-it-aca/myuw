@@ -198,8 +198,8 @@ def get_reg_data(now, request):
 
 def is_term_myplan_peak(now, term, data):
     now_date = now.date()
-    if now_date >= term.registration_period1_start.date() and\
-            now_date <= term.registration_period1_end.date():
+    if (now_date >= term.registration_period1_start and
+            now_date <= term.registration_period1_end):
         peak_start_time = datetime(now.year, now.month, now.day, 5, 30, 0)
         peak_end_time = datetime(now.year, now.month, now.day, 6, 30, 0)
         if (now >= peak_start_time and now <= peak_end_time):
@@ -215,6 +215,7 @@ def get_term_reg_data(now, term, data):
     if not (data["myplan_peak_load"] is True):
         data["myplan_peak_load"] = is_term_myplan_peak(now, term, data)
 
+    now = now.date()
     if term.quarter == "summer":
         if now >= term.registration_period1_start - timedelta(days=7) and\
                 now < term.registration_period1_start + timedelta(days=7):
