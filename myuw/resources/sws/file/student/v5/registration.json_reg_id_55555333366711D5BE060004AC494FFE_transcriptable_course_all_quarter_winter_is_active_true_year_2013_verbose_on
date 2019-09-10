@@ -1,0 +1,65 @@
+{
+    "Current": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "",
+        "CurriculumAbbreviation": null,
+        "Href": "/student/v5/registration.json?year=2013&quarter=winter&curriculum_abbreviation=&course_number=&section_id=&reg_id=55555333366711D5BE060004AC494FFE&is_active=&instructor_reg_id=&verbose=&changed_since_date=&transcriptable_course=all&page_start=&page_size=10",
+        "InstructorRegID": "",
+        "IsActive": false,
+        "PageSize": "10",
+        "PageStart": null,
+        "Quarter": "winter",
+        "RegID": "55555333366711D5BE060004AC494FFE",
+        "SectionID": "",
+        "TranscriptableCourse": "all",
+        "Verbose": false,
+        "Year": 2013
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": null,
+    "Previous": null,
+    "Registrations": [
+    {
+    "AccessDateRangeEnd": "03/10/2014",
+    "AccessDateRangeStart": "12/28/2012",
+    "Auditor": false,
+    "Credits": "0.0",
+    "DuplicateCode": "",
+    "EducationUnitType": "CEU",
+    "EndDate": "03/20/2013",
+    "FeeBaseType": "",
+    "Grade": "SC",
+    "GradeDate": "3/22/2013 3:44:00 PM",
+    "GradeDocumentID": "",
+    "GradingSystem": "SCUSC",
+    "HonorsCourse": false,
+    "Href": "/student/v5/registration/2013,winter,BIGDATA,220,A,55555333366711D5BE060004AC494FFE,.json",
+    "Instructor": null,
+    "IsActive": true,
+    "IsCredit": false,
+    "IsIndependentStart": false,
+    "Metadata": "RegistrationSourceLocation=EOS;",
+    "Person": {
+        "Href": "/student/v5/person/55555333366711D5BE060004AC494FFE.json",
+        "Name": "Jessie Eos",
+        "RegID": "55555333366711D5BE060004AC494FFE"
+    },
+    "RepeatCourse": false,
+    "RepositoryTimeStamp": "3/28/2013 1:16:05 PM",
+    "RequestDate": "2012-12-16",
+    "RequestStatus": "Added to class",
+    "Section": {
+        "CourseNumber": "220",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/course/2013,winter,BIGDATA,220/A.json",
+        "Quarter": "winter",
+        "SectionID": "A",
+        "Year": 2013
+    },
+    "StartDate": "01/16/2013",
+    "VariableCredit": false,
+    "WritingCourse": false}
+    ],
+    "TotalCount": 1
+}
