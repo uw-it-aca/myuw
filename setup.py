@@ -53,7 +53,7 @@ setup(
         'Django-Template-Preprocess>=1.0.2,<2.0',
         'django-userservice<4.0',
         'UW-RestClients-Django-Utils<3.0',
-        'Django-SupportTools<4.0',
+        'Django-SupportTools==3.3',
         'Django-Safe-EmailBackend<2.0',
         'django_client_logger<3.0',
         'UW-HX-Toolkit<3.0',
