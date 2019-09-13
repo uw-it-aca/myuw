@@ -56,7 +56,7 @@ setup(
         'Django-SupportTools<4.0',
         'Django-Safe-EmailBackend<2.0',
         'django_client_logger<3.0',
-        'UW-HX-Toolkit<3.0',
+        'UW-HX-Toolkit<2.1',
         'django-blti<3.0',
         'yajl',
         'bleach',
