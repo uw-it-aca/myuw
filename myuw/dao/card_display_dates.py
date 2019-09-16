@@ -56,7 +56,7 @@ def get_values_by_date(now, request):
         "is_before_end_of_finals_week":
             is_before_eof_finals_week(now, request),
         "is_before_end_of_registration_display_period":
-             reg_data["after_start"],
+            reg_data["after_start"],
         "is_before_end_of_summer_reg_display_periodA":
             reg_data["after_summerA_start"],
         "is_before_end_of_summer_reg_display_period1":
