@@ -119,15 +119,6 @@ def is_before_last_day_of_classes(now, request):
     return now < get_eod_current_term_last_instruction(request)
 
 
-def is_after_last_day_of_classes(now, request):
-    """
-    @return true if it is on or after the last day of classes
-    """
-    logger.debug("{} is_after_last_day_of_classes ==> {}".format(
-        now, (not is_before_last_day_of_classes(now, request))))
-    return not is_before_last_day_of_classes(now, request)
-
-
 def is_before_eof_finals_week(now, request):
     """
     @return true if it is before the end of the last day of finalsweek
