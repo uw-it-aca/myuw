@@ -89,6 +89,9 @@ function addElement(strAlertTitle,strAlertLink,strAlertColor,strAlertMessage)
 
   var alertBoxTextDiv = document.createElement('div');
 
+  // MYUW override... set this container class to align outer column
+  alertBoxTextDiv.setAttribute('class', 'myuw-wrapper');
+
   var alertIcon = document.createElement('i');
   alertIcon.setAttribute('class', 'fa fa-exclamation-triangle fa-3x');
 
