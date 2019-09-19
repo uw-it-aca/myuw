@@ -149,7 +149,8 @@ def _get_all_events(dept_cals):
                 event.event_url = parse_event_url(event, cal_base_url, cal_id)
                 event.cal_id = cal_id
                 event.base_url = cal_base_url
-                event.cal_title = calendar.get('x-wr-calname').to_ical()
+                event.cal_title = calendar.get(
+                    'x-wr-calname').to_ical().decode("utf-8")
                 events.append(event)
         except DataFailureException:
             pass
