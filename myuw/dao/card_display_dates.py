@@ -37,35 +37,36 @@ def get_values_by_date(now, request):
     now is a datetime object of 1 second after the beginning of the day.
     """
     last_term = get_previous_quarter(request)
-
+    reg_data = get_reg_data(now, request)
     return {
         "is_after_7d_before_last_instruction":
             is_after_7d_before_last_instruction(now, request),
         "is_after_grade_submission_deadline":
             is_before_bof_term(now, request),
         "is_after_last_day_of_classes":
-            is_after_last_day_of_classes(now, request),
+            not is_before_last_day_of_classes(now, request),
         "is_after_start_of_registration_display_period":
-            is_after_bof_and_before_eof_reg_period(now, request),
+            reg_data["after_start"],
         "is_after_start_of_summer_reg_display_period1":
-            is_after_bof_and_before_eof_summer_reg_period1(now, request),
+            reg_data["after_summer1_start"],
         "is_after_start_of_summer_reg_display_periodA":
-            is_after_bof_and_before_eof_summer_reg_periodA(now, request),
+            reg_data["after_summerA_start"],
         "is_before_eof_7days_of_term":
             is_before_eof_7d_after_class_start(now, request),
         "is_before_end_of_finals_week":
             is_before_eof_finals_week(now, request),
         "is_before_end_of_registration_display_period":
-            is_after_bof_and_before_eof_reg_period(now, request),
+            reg_data["after_start"],
         "is_before_end_of_summer_reg_display_periodA":
-            is_after_bof_and_before_eof_summer_reg_periodA(now, request),
+            reg_data["after_summerA_start"],
         "is_before_end_of_summer_reg_display_period1":
-            is_after_bof_and_before_eof_summer_reg_period1(now, request),
+            reg_data["after_summer1_start"],
         "is_before_first_day_of_term":
             is_before_bof_term(now, request),
         "is_before_last_day_of_classes":
             is_before_last_day_of_classes(now, request),
         "myplan_peak_load": during_myplan_peak_load(now, request),
+        "reg_period1_started": reg_data["period1_started"],
         "is_summer": is_in_summer_quarter(request),
         "is_after_summer_b": is_in_summer_b_term(request),
         "current_summer_term": "{},summer".format(last_term.year),
@@ -118,15 +119,6 @@ def is_before_last_day_of_classes(now, request):
     return now < get_eod_current_term_last_instruction(request)
 
 
-def is_after_last_day_of_classes(now, request):
-    """
-    @return true if it is on or after the last day of classes
-    """
-    logger.debug("{} is_after_last_day_of_classes ==> {}".format(
-        now, (not is_before_last_day_of_classes(now, request))))
-    return not is_before_last_day_of_classes(now, request)
-
-
 def is_before_eof_finals_week(now, request):
     """
     @return true if it is before the end of the last day of finalsweek
@@ -135,33 +127,6 @@ def is_before_eof_finals_week(now, request):
         now, get_eod_current_term_last_final_exam(request),
         now < get_eod_current_term_last_final_exam(request)))
     return now < get_eod_current_term_last_final_exam(request)
-
-
-def is_after_bof_and_before_eof_reg_period(now, request):
-    """
-    @return true if it is after the begining of registration display period,
-    and before the end of registration display period.
-    """
-    reg_data = get_reg_data(now, request)
-    return reg_data["after_start"]
-
-
-def is_after_bof_and_before_eof_summer_reg_period1(now, request):
-    """
-    @return true if it is after the begining of registration display period1,
-    and before the end of registration display period1.
-    """
-    reg_data = get_reg_data(now, request)
-    return reg_data["after_summer1_start"]
-
-
-def is_after_bof_and_before_eof_summer_reg_periodA(now, request):
-    """
-    @return true if it is after the begining of registration display periodA,
-    and before the end of registration display periodA.
-    """
-    reg_data = get_reg_data(now, request)
-    return reg_data["after_summerA_start"]
 
 
 def during_myplan_peak_load(now, request):
@@ -181,6 +146,7 @@ def get_reg_data(now, request):
         "after_start": False,
         "after_summer1_start": False,
         "after_summerA_start": False,
+        "period1_started": False,
         "myplan_peak_load": False
     }
     next_term = get_next_quarter(request)
@@ -221,16 +187,22 @@ def get_term_reg_data(now, term, data):
                 now < term.registration_period1_start + timedelta(days=7):
             data["after_summerA_start"] = True
             data["before_summerA_end"] = True
+            if now >= term.registration_period1_start:
+                data["period1_started"] = True
 
         elif now >= term.registration_period1_start + timedelta(days=7) and\
                 now < term.registration_period2_start + timedelta(days=7):
             data["after_summer1_start"] = True
             data["before_summer1_end"] = True
+            if now >= term.registration_period1_start:
+                data["period1_started"] = True
     else:
         if now >= term.registration_period1_start - timedelta(days=14) and\
                 now < term.registration_period2_start + timedelta(days=7):
             data["after_start"] = True
             data["before_end"] = True
+            if now >= term.registration_period1_start:
+                data["period1_started"] = True
 
 
 def set_js_overrides(request, values):
