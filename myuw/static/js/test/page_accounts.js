@@ -60,7 +60,7 @@ describe("AccountsPage", function() {
 
         it('should handle past student affiliation', function() {
             var student_order = [
-	        MedicineAccountsCard,
+                MedicineAccountsCard,
                 HuskyCard,
                 LibraryCard,
                 UwnetidCard
@@ -118,7 +118,7 @@ describe("AccountsPage", function() {
 
         it('should handle past employee affiliation', function() {
             var employee_order = [
-		MedicineAccountsCard,
+                MedicineAccountsCard,
                 HuskyCard,
                 LibraryCard,
                 UwnetidCard
@@ -145,8 +145,8 @@ describe("AccountsPage", function() {
 
         it('should handle no affiliation', function() {
             var default_order = [
-		MedicineAccountsCard,
-		LibraryCard,
+                MedicineAccountsCard,
+                LibraryCard,
                 UwnetidCard
             ];
             var card_order = AccountsPage._get_card_order_by_affiliation();
