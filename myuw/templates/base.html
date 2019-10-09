@@ -208,7 +208,7 @@
                             {% if user.affiliations.student or user.affiliations.applicant %}
                             <li role="none"><a {% if is_myuw_academics_page %}class="active"{% endif %} href="/academics/" role="menuitem"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Academics</a></li>
                             {% endif %}
-                            {% if user.affiliations.hxt_viewer %}
+                            {% if user.affiliations.undergrad and user.affiliations.seattle %}
                             <li role="none"><a {% if is_myuw_husky_experience_page %}class="active"{% endif %} href="/husky_experience/" role="menuitem"><i class="fa fa-paw" aria-hidden="true"></i>Husky Experience</a></li>
                             {% endif %}
 
