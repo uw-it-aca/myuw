@@ -9,11 +9,7 @@ from myuw.dao.card_display_dates import get_card_visibilty_date_values,\
     in_show_grades_period, is_before_bof_term,\
     is_before_eof_7d_after_class_start,\
     is_after_7d_before_last_instruction, is_before_last_day_of_classes,\
-    is_after_last_day_of_classes, is_before_eof_finals_week, \
-    is_after_bof_and_before_eof_reg_period,\
-    is_after_bof_and_before_eof_summer_reg_period1,\
-    is_after_bof_and_before_eof_summer_reg_periodA,\
-    during_myplan_peak_load
+    is_before_eof_finals_week, during_myplan_peak_load
 from myuw.test import fdao_sws_override, get_request_with_date, get_request
 
 
@@ -237,32 +233,24 @@ class TestDisplayValues(TestCase):
 
     def test_day_before_last_day_of_classes(self):
 
-        now_request = get_request_with_date('2013-06-06')
-        values = get_card_visibilty_date_values(now_request)
+        values = self.get_visibility_for_date('2013-06-06')
         self.assertFalse(values["is_after_grade_submission_deadline"])
         self.assertFalse(values["is_after_last_day_of_classes"])
         self.assertTrue(
             values["is_after_start_of_registration_display_period"])
         self.assertTrue(values["is_before_end_of_finals_week"])
         self.assertTrue(values["is_before_last_day_of_classes"])
-        self.assertTrue(
-            values["is_before_end_of_registration_display_period"])
-        now = get_comparison_datetime(now_request)
-        self.assertTrue(is_before_last_day_of_classes(now, now_request))
-        self.assertTrue(
-            is_after_bof_and_before_eof_reg_period(now, now_request))
+        self.assertTrue(values["is_before_end_of_registration_display_period"])
+        self.assertTrue(values["is_before_last_day_of_classes"])
+        self.assertTrue(values["is_before_end_of_registration_display_period"])
 
         # winter
-        now_request = get_request_with_date('2013-03-14')
-        now = get_comparison_datetime(now_request)
-        self.assertTrue(
-            is_before_last_day_of_classes(now, now_request))
-        self.assertFalse(
-            is_after_last_day_of_classes(now, now_request))
+        values = self.get_visibility_for_date('2013-03-14')
+        self.assertTrue(values["is_before_last_day_of_classes"])
+        self.assertFalse(values["is_after_last_day_of_classes"])
 
     def test_day_on_last_day_of_classes(self):
-        now_request = get_request_with_date('2013-06-07')
-        values = get_card_visibilty_date_values(now_request)
+        values = self.get_visibility_for_date('2013-06-07')
         self.assertFalse(values["is_after_grade_submission_deadline"])
         self.assertFalse(values["is_after_last_day_of_classes"])
         self.assertTrue(
@@ -272,13 +260,11 @@ class TestDisplayValues(TestCase):
         self.assertTrue(values["is_before_last_day_of_classes"])
         self.assertTrue(
             values["is_before_end_of_registration_display_period"])
-        now = get_comparison_datetime(now_request)
+
+        self.assertTrue(values["is_before_last_day_of_classes"])
+        self.assertFalse(values["is_after_last_day_of_classes"])
         self.assertTrue(
-            is_before_last_day_of_classes(now, now_request))
-        self.assertFalse(
-            is_after_last_day_of_classes(now, now_request))
-        self.assertTrue(
-            is_after_bof_and_before_eof_reg_period(now, now_request))
+            values["is_after_start_of_registration_display_period"])
 
     def test_day_after_last_day_of_classes(self):
         values = self.get_visibility_for_date('2013-06-08')
@@ -292,13 +278,10 @@ class TestDisplayValues(TestCase):
         self.assertTrue(
             values["is_before_end_of_registration_display_period"])
 
-        # 2013 winter after
-        now_request = get_request_with_date('2013-03-16')
-        now = get_comparison_datetime(now_request)
-        self.assertTrue(
-            is_after_last_day_of_classes(now, now_request))
-        self.assertFalse(
-            is_before_last_day_of_classes(now, now_request))
+        # 2013 winter after last_day of classes
+        values = self.get_visibility_for_date('2013-06-16')
+        self.assertFalse(values["is_before_last_day_of_classes"])
+        self.assertTrue(values["is_after_last_day_of_classes"])
 
     def test_last_final_exam_day(self):
         # spring
@@ -336,21 +319,9 @@ class TestDisplayValues(TestCase):
         now = get_comparison_datetime(now_request)
         self.assertFalse(is_before_eof_finals_week(now, now_request))
 
-    def test_13_days_before_period1_registration(self):
+    def test_14_days_before_period1_registration(self):
         # Using winter term dates, because spring/summer dates
         # are too close together
-        values = self.get_visibility_for_date('2013-02-02')
-        self.assertFalse(values["is_after_grade_submission_deadline"])
-        self.assertFalse(values["is_after_last_day_of_classes"])
-        self.assertTrue(
-            values["is_after_start_of_registration_display_period"])
-        self.assertTrue(values["is_before_end_of_finals_week"])
-        # This is a poorly named value - it's really last day + 1
-        self.assertTrue(values["is_before_last_day_of_classes"])
-        self.assertTrue(
-            values["is_before_end_of_registration_display_period"])
-
-    def test_14_days_before_period1_registration(self):
         values = self.get_visibility_for_date('2013-02-01')
         self.assertFalse(values["is_after_grade_submission_deadline"])
         self.assertFalse(values["is_after_last_day_of_classes"])
@@ -397,6 +368,33 @@ class TestDisplayValues(TestCase):
         self.assertTrue(values["is_before_last_day_of_classes"])
         self.assertFalse(
             values["is_before_end_of_registration_display_period"])
+
+    def test_reg_period1_started(self):
+        # spring
+        values = self.get_visibility_for_date('2013-02-14')
+        self.assertFalse(values["reg_period1_started"])
+
+        values = self.get_visibility_for_date('2013-02-15')
+        self.assertTrue(values["reg_period1_started"])
+
+        values = self.get_visibility_for_date('2013-03-10')
+        self.assertTrue(values["reg_period1_started"])
+
+        values = self.get_visibility_for_date('2013-03-11')
+        self.assertFalse(values["reg_period1_started"])
+
+        # summer
+        values = self.get_visibility_for_date('2013-04-14')
+        self.assertFalse(values["reg_period1_started"])
+
+        values = self.get_visibility_for_date('2013-04-15')
+        self.assertTrue(values["reg_period1_started"])
+
+        values = self.get_visibility_for_date('2013-06-30')
+        self.assertTrue(values["reg_period1_started"])
+
+        values = self.get_visibility_for_date('2013-07-01')
+        self.assertFalse(values["reg_period1_started"])
 
     def test_day_of_grade_submission_deadline(self):
         # We need to test in winter, because spring's grade submission
