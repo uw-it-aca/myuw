@@ -2,7 +2,7 @@ import csv
 import logging
 from django.core.management.base import BaseCommand, CommandError
 
-
+logger = logging.getLogger("commands")
 output_format = "    \"{}\": {\n        \"myuw_category\": \"{}\",\n" +\
     "        \"location_tags\": {},\n" +\
     "        \"critical\": {}\n    },\n"
@@ -29,9 +29,10 @@ class Command(BaseCommand):
             csv_path = options['spreadsheet-csv-path']
             outfile = options['outfile']
             output_string = "NOTICE_CATEGORIES = {\n"
-            with open(csv_path, "rb") as f_obj:
-                reader = csv.reader(f_obj)
-                for row in reader:
+            reader = csv.reader(open(csv_path, 'r',
+                                     encoding='utf8'), delimiter=',')
+            for row in reader:
+                try:
                     myuw_id = row[2]
                     if myuw_id is None or len(myuw_id) == 0 or\
                             myuw_id.startswith("MYUW"):
@@ -44,6 +45,8 @@ class Command(BaseCommand):
                         myuw_id, myuw_category, location_tags,
                         len(critical) > 0)
                     output_string = output_string + string
+                except Exception as ex:
+                    logger.error("{} in line: {}".format(str(ex), row))
             output_string = output_string[:-2] + "\n}\n"
             f = open(outfile, 'w')
             f.write(output_string)
