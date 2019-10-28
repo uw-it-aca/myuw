@@ -4,16 +4,6 @@ NOTICE_CATEGORIES = {
         "location_tags": ['notices_holds', 'reg_card_holds'],
         "critical": True
     },
-    "StudentALR_IntlStuCheckIn": {
-        "myuw_category": "Holds",
-        "location_tags": ['notices_holds', 'reg_card_holds'],
-        "critical": True
-    },
-    "StudentALR_IntlStuCheckIn": {
-        "myuw_category": "Holds",
-        "location_tags": ['notices_holds', 'reg_card_holds'],
-        "critical": True
-    },
     "StudentALR_AdminHolds": {
         "myuw_category": "Holds",
         "location_tags": ['notices_holds', 'reg_card_holds'],
@@ -29,15 +19,9 @@ NOTICE_CATEGORIES = {
         "location_tags": ['reg_card_messages'],
         "critical": True
     },
-    "StudentGEN_DegreeAppl": {
-        "myuw_category": "Graduation",
-        "location_tags": [],
-        "critical": True
-    },
     "StudentDAD_TuitDue": {
         "myuw_category": "Fees & Finances",
-        "location_tags": ['tuition_due_date', 'finance_card',
-                          'notice_date_sort'],
+        "location_tags": ['tuition_due_date', 'finance_card', 'notice_date_sort'],
         "critical": True
     },
     "StudentDAD_EstPd1RegDate": {
@@ -47,26 +31,6 @@ NOTICE_CATEGORIES = {
     },
     "StudentDAD_IntlStuRegCutoffDate": {
         "myuw_category": "Visa",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuRegCutoffDate": {
-        "myuw_category": "Visa",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuRegCutoffDate": {
-        "myuw_category": "Visa",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuFTRegCutoffDate": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": True
-    },
-    "StudentDAD_IntlStuFTRegCutoffDate": {
-        "myuw_category": "Registration",
         "location_tags": ['notices_date_sort'],
         "critical": True
     },
@@ -150,6 +114,11 @@ NOTICE_CATEGORIES = {
         "location_tags": [],
         "critical": False
     },
+    "StudentGEN_DegreeAppl": {
+        "myuw_category": "Graduation",
+        "location_tags": [],
+        "critical": True
+    },
     "StudentDAD_QtrBegin": {
         "myuw_category": "not a notice",
         "location_tags": ['notices_date_sort', 'quarter_begins'],
@@ -160,36 +129,6 @@ NOTICE_CATEGORIES = {
         "location_tags": ['notices_date_sort'],
         "critical": False
     },
-    "StudentDAD_LastDayRegWOChgFee": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayRegWOChgFee": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayRegWOChgFee": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayRegChgFee": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayRegChgFee": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayRegChgFee": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
     "StudentDAD_LastDayRegChgFee": {
         "myuw_category": "Registration",
         "location_tags": ['notices_date_sort'],
@@ -200,42 +139,7 @@ NOTICE_CATEGORIES = {
         "location_tags": ['notices_date_sort'],
         "critical": False
     },
-    "StudentDAD_LastDayChgIns": {
-        "myuw_category": "Insurance",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
     "StudentDAD_LastDayDropNoRecord": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayDropNoRecord": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayDropNoRecord": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayDropNoRecord": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAuditOpt": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAuditOpt": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAuditOpt": {
         "myuw_category": "Registration",
         "location_tags": ['notices_date_sort'],
         "critical": False
@@ -250,36 +154,6 @@ NOTICE_CATEGORIES = {
         "location_tags": ['notices_date_sort'],
         "critical": False
     },
-    "StudentDAD_LastDayWOAnnualDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayWOAnnualDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayWOAnnualDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
     "StudentDAD_LastDayDrop": {
         "myuw_category": "Registration",
         "location_tags": ['notices_date_sort'],
@@ -290,47 +164,7 @@ NOTICE_CATEGORIES = {
         "location_tags": ['notices_date_sort'],
         "critical": False
     },
-    "StudentDAD_LastDayAdd": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAdd": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAdd": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
     "StudentDAD_LastDayAnnualDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAnnualDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAnnualDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayAnnualDrop": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayChgGradeOpt": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayChgGradeOpt": {
         "myuw_category": "Registration",
         "location_tags": ['notices_date_sort'],
         "critical": False
@@ -350,21 +184,6 @@ NOTICE_CATEGORIES = {
         "location_tags": ['notices_date_sort'],
         "critical": False
     },
-    "StudentDAD_LastDayWithdraw": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayWithdraw": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
-    "StudentDAD_LastDayWithdraw": {
-        "myuw_category": "Registration",
-        "location_tags": ['notices_date_sort'],
-        "critical": False
-    },
     "StudentDAD_Commencement": {
         "myuw_category": "not a notice",
         "location_tags": [],
@@ -373,11 +192,6 @@ NOTICE_CATEGORIES = {
     "NewStudentGEN_ThankYouRemark": {
         "myuw_category": "Admission",
         "location_tags": ['checklist_thankyou'],
-        "critical": False
-    },
-    "NewStudentCLIST_IntendedMajor": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
         "critical": False
     },
     "NewStudentCLIST_IntendedMajor": {
@@ -507,8 +321,7 @@ NOTICE_CATEGORIES = {
     },
     "StudentFinAid_SummerAidAvailShort": {
         "myuw_category": "Fees & Finances",
-        "location_tags": ['tuition_summeraid_avail_title',
-                          'reg_summeraid_avail_title'],
+        "location_tags": ['tuition_summeraid_avail_title', 'reg_summeraid_avail_title'],
         "critical": False
     },
     "StudentFinAid_AcceptRejectAwardShort": {
