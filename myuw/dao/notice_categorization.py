@@ -19,6 +19,11 @@ NOTICE_CATEGORIES = {
         "location_tags": ['reg_card_messages'],
         "critical": True
     },
+    "StudentGEN_FERPA": {
+        "myuw_category": "Legal",
+        "location_tags": ['notices_legal'],
+        "critical": False
+    },
     "StudentDAD_TuitDue": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_due_date', 'finance_card', 'notice_date_sort'],
@@ -83,11 +88,6 @@ NOTICE_CATEGORIES = {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_aidhold'],
         "critical": True
-    },
-    "StudentGEN_FERPA": {
-        "myuw_category": "Legal",
-        "location_tags": ['notices_legal'],
-        "critical": False
     },
     "StudentGEN_RIAA": {
         "myuw_category": "Legal",
