@@ -36,7 +36,8 @@ NOTICE_CATEGORIES = {
     },
     "StudentDAD_TuitDue": {
         "myuw_category": "Fees & Finances",
-        "location_tags": ['tuition_due_date', 'finance_card', 'notice_date_sort'],
+        "location_tags": ['tuition_due_date', 'finance_card',
+                          'notice_date_sort'],
         "critical": True
     },
     "StudentDAD_EstPd1RegDate": {
@@ -506,7 +507,8 @@ NOTICE_CATEGORIES = {
     },
     "StudentFinAid_SummerAidAvailShort": {
         "myuw_category": "Fees & Finances",
-        "location_tags": ['tuition_summeraid_avail_title', 'reg_summeraid_avail_title'],
+        "location_tags": ['tuition_summeraid_avail_title',
+                          'reg_summeraid_avail_title'],
         "critical": False
     },
     "StudentFinAid_AcceptRejectAwardShort": {
@@ -542,6 +544,11 @@ NOTICE_CATEGORIES = {
     "StudentFinAid_AidHoldShort": {
         "myuw_category": "Fees & Finances",
         "location_tags": ['tuition_aidhold_title'],
+        "critical": False
+    },
+    "MyUWNotice_Banner": {
+        "myuw_category": "MyUW Banner Notice",
+        "location_tags": ['notice_banner'],
         "critical": False
     }
 }
