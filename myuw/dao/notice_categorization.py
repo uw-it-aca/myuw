@@ -24,6 +24,36 @@ NOTICE_CATEGORIES = {
         "location_tags": ['notices_date_sort'],
         "critical": True
     },
+    "studentgen_ferpa": {
+        "myuw_category": "Legal",
+        "location_tags": ['notices_legal'],
+        "critical": False
+    },
+    "studentgen_riaa": {
+        "myuw_category": "Legal",
+        "location_tags": ['notices_legal'],
+        "critical": False
+    },
+    "studentgen_acctbalance": {
+        "myuw_category": "not a notice",
+        "location_tags": ['tuition_balance', 'finance_card'],
+        "critical": False
+    },
+    "studentgen_acctbaleonote": {
+        "myuw_category": "Fees & Finances",
+        "location_tags": ['pce_tuition_dup', 'finance_card'],
+        "critical": False
+    },
+    "studentgen_intendedmajors": {
+        "myuw_category": "Academics",
+        "location_tags": ['academics_card'],
+        "critical": False
+    },
+    "studentgen_majors": {
+        "myuw_category": "not a notice",
+        "location_tags": [],
+        "critical": False
+    },
     "studentgen_degreeappl": {
         "myuw_category": "Graduation",
         "location_tags": [],
@@ -124,36 +154,6 @@ NOTICE_CATEGORIES = {
         "myuw_category": "Registration",
         "location_tags": ['notices_date_sort'],
         "critical": True
-    },
-    "studentgen_ferpa": {
-        "myuw_category": "Legal",
-        "location_tags": ['notices_legal'],
-        "critical": False
-    },
-    "studentgen_riaa": {
-        "myuw_category": "Legal",
-        "location_tags": ['notices_legal'],
-        "critical": False
-    },
-    "studentgen_acctbalance": {
-        "myuw_category": "not a notice",
-        "location_tags": ['tuition_balance', 'finance_card'],
-        "critical": False
-    },
-    "studentgen_acctbaleonote": {
-        "myuw_category": "Fees & Finances",
-        "location_tags": ['pce_tuition_dup', 'finance_card'],
-        "critical": False
-    },
-    "studentgen_intendedmajors": {
-        "myuw_category": "Academics",
-        "location_tags": ['academics_card'],
-        "critical": False
-    },
-    "studentgen_majors": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
-        "critical": False
     },
     "newstudentgen_thankyouremark": {
         "myuw_category": "Admission",
