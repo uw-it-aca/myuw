@@ -26,7 +26,6 @@ class Command(BaseCommand):
         parser.add_argument('outfile')
 
     def handle(self, *args, **options):
-        seen_category_keys = set()
         try:
             csv_path = options['spreadsheet-csv-path']
             categories = []
@@ -38,9 +37,6 @@ class Command(BaseCommand):
                     myuw_id = row[2].replace(" ", "")
                     if myuw_id is None or len(myuw_id) == 0:
                         continue
-                    if myuw_id in seen_category_keys:
-                        continue
-                    seen_category_keys.add(myuw_id)
                     item = item_format.format(row[3],
                                               self._get_location_tags(row[5]),
                                               len(row[4]) > 0)
