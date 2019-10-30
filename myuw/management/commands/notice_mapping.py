@@ -29,6 +29,7 @@ class Command(BaseCommand):
         seen_category_keys = set()
         try:
             csv_path = options['spreadsheet-csv-path']
+            seen_category_keys = set()
             categories = []
             reader = csv.reader(open(csv_path, 'r', encoding='utf8'),
                                 delimiter=',')
@@ -41,6 +42,8 @@ class Command(BaseCommand):
                     if myuw_id in seen_category_keys:
                         continue
                     seen_category_keys.add(myuw_id)
+                    # row[3]: myuw_category
+                    # row[4]: critical
                     item = item_format.format(row[3],
                                               self._get_location_tags(row[5]),
                                               len(row[4]) > 0)
