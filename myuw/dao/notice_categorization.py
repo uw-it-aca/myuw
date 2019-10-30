@@ -205,6 +205,11 @@ NOTICE_CATEGORIES = {
         "location_tags": ['checklist_measles_after'],
         "critical": False
     },
+    "newstudentclist_intendedmajor": {
+        "myuw_category": "not a notice",
+        "location_tags": [],
+        "critical": False
+    },
     "newstudentclist_finaid": {
         "myuw_category": "not a notice",
         "location_tags": [],
@@ -213,11 +218,6 @@ NOTICE_CATEGORIES = {
     "newstudentclist_emailservices": {
         "myuw_category": "Admission",
         "location_tags": ['checklist_email'],
-        "critical": False
-    },
-    "newstudentclist_intendedmajor": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
         "critical": False
     },
     "newstudentfoot_fiuts": {
