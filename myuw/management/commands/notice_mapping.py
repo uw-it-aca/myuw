@@ -45,7 +45,7 @@ class Command(BaseCommand):
                                               self._get_location_tags(row[5]),
                                               len(row[4]) > 0)
                     categories.append("    \"{0}\": {1}\n{2}\n{3}".format(
-                        myuw_id, "{", item, "    }"))
+                        myuw_id.lower(), "{", item, "    }"))
                 except Exception as ex:
                     logger.error("{} in line: {}".format(str(ex), row))
 
