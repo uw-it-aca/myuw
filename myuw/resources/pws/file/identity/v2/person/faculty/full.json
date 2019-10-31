@@ -4,7 +4,7 @@
                          "alum",
                          "faculty",
                          "employee"],
-"IsTestEntity":true,
+"IsTestEntity":false,
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
 "RegisteredFirstMiddleName":"JAMES",
