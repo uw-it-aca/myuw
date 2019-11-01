@@ -44,17 +44,10 @@
 
                                 <dt>Price </dt>
                                 <dd>
-                                    {{#if lowest_price }}
+                                    {{#if lowest_price}}
                                     {{#if highest_price}}
                                         ${{formatPrice lowest_price}} to ${{formatPrice highest}}
 
-                                    {{else }}
-                                    {{else }}
-                                        {{#if price }}
-                                            ${{formatPrice price}}
-                                        {{else }}
-                                        *
-                                        {{/if}}
                                     {{/if }}
                                     {{/if }}
 
