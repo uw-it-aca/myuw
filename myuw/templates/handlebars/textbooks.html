@@ -46,7 +46,7 @@
                                 <dd>
                                     {{#if lowest_price}}
                                     {{#if highest_price}}
-                                        ${{formatPrice lowest_price}} to ${{formatPrice highest_price}}
+				       <p> ${{formatPrice lowest_price}} to ${{formatPrice highest_price}} </p>
 
                                     {{/if }}
                                     {{/if }}
@@ -134,7 +134,7 @@
                             <dd>
                             {{#if lowest_price}}
                             {{#if highest_price}}
-                                ${{formatPrice lowest_price}} to ${{formatPrice highest_price}}
+			        <p> ${{formatPrice lowest_price}} to ${{formatPrice highest_price}} </p>
 
                                 <p>Visit <a target=_blank href="{{#if order_url }}{{order_url}}{{else}}http://www.ubookstore.com/adoption-search{{/if}}">ubookstore.com</a> for pricing on all available formats.</p>
                             {{/if }}
