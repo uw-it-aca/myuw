@@ -5,6 +5,8 @@
                 "authors": [{"name":"Mcdermott"}],
                 "price":58.00,
                 "used_price":20.00,
+                "lowest_price": 20.00,
+                "highest_price": 58.00,
                 "required":true,
                 "notes":null,
                 "cover_image": null
