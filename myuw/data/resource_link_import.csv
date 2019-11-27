@@ -20,6 +20,7 @@ Academics,Registration,all,,,http://www.washington.edu/students/crscat/,Course C
 Academics,Registration,all,https://myplan.uw.edu/student/myplan/mplogin/netid?rd=/student/myplan/dars,Check Your Degree Progress (DARS),,,,,,,no
 Academics,Registration,all,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/,MyPlan,,,,,,,no
 Academics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
+Academics,Registration,all,https://prereqmap.uw.edu/,Prereq Map,,,,,,,no
 Academics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Registration,,,,,,,no
 Academics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,no
 Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
@@ -123,7 +124,6 @@ Libraries,Library Resources,all,,,http://lib.washington.edu/,UW Libraries,http:/
 Libraries,Library Resources,all,http://search.lib.uw.edu/account,Your Library Account,,,,,,,no
 Libraries,Library Resources,all,http://guides.lib.uw.edu/az.php,Articles and Research Databases,,,,,,,no
 Libraries,Library Resources,all,http://guides.lib.uw.edu/research/ejournals,Electronic Journals,,,,,,,no
-Libraries,Library Resources,all,https://eres.lib.washington.edu/,Electronic Course Reserves,,,,,,,no
 Libraries,Library Resources,all,http://lib.washington.edu/types,UW Libraries: Start Your Research,,,,,,,no
 Libraries,Library Resources,all,http://offcampus.lib.washington.edu/login?url=http://ncbi.nlm.nih.gov/pubmed?myncbishare=uwonline,PubMed,,,,,,,no
 Libraries,Library Resources,all,http://hsl.uw.edu/toolkits/care-provider,Care Provider Toolkit,,,,,,,no
