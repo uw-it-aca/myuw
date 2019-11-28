@@ -48,7 +48,7 @@
                 <a href="/accounts/">Library Item Due <span>{{ toFromNowDate library.next_due }}</span></a>
                 {{else}}
                     {{#if library.holds_ready }}
-                        <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank" data-linklabel="Library Account Requests">Library {{ pluralize library.holds_ready "Item" "Items" }} Ready<span>{{ library.holds_ready }} {{ pluralize library.holds_ready "item" "items" }} ready</span></a>
+                        <a href="https://search.lib.uw.edu/account" target="_blank" data-linklabel="Library Account Requests">Library {{ pluralize library.holds_ready "Item" "Items" }} Ready<span>{{ library.holds_ready }} {{ pluralize library.holds_ready "item" "items" }} ready</span></a>
                     {{/if}}
                 {{/if}}
               {{/if}}
