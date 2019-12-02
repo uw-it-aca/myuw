@@ -52,6 +52,7 @@ def get_all_affiliations(request):
     ["F1"]: F1 international student
     ["J1"]: J1 international student
     ["intl_stud"]: F1 or J1 international student
+    ["hxt_viewer"]: Husky Experience Toolkit viewer
     ["no_1st_class_affi"]: not applicant, employee, student, instructor
 
     The following are secondary affiliations (without 1st_class_aff):
