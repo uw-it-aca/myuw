@@ -42,24 +42,18 @@
                                 <dd>{{name}}</dd>
                                 {{/each}}
 
-                                <dt>New </dt>
+                                <dt>Price </dt>
                                 <dd>
-                                    {{#if price}}
-                                ${{formatPrice price}}
-                                    {{else}}
-                                    *
-                                    {{/if}}
-                                </dd>
+                                    {{#if lowest_price}}
+                                    {{#if highest_price}}
+				       <p> ${{formatPrice lowest_price}} to ${{formatPrice highest_price}} </p>
 
-                                <dt>Used</dt>
-                                <dd>
-                                    {{#if used_price}}
-                                    ${{formatPrice used_price}}
-                                    {{else}}
-                                    *
-                                    {{/if}}
-                                </dd>
+                                    {{/if }}
+                                    {{/if }}
 
+                                    <p>Visit <a target=_blank href="{{#if order_url }}{{order_url}}{{else}}http://www.ubookstore.com/adoption-search{{/if}}">ubookstore.com</a> for pricing on all available formats.</p>
+                                </dd>
+                                
                                 {{#if notes}}
                                 <dt>Notes</dt>
                                     <dd>{{notes}}</dd>
@@ -121,35 +115,33 @@
                 {{#eachWithIndex books}}
                     <div id="books{{../sln}}" class="clearfix book-image {{#if @root.collapse_sections}}collapse{{/if}}" >
                         <h4 class="book-title">{{title}}</h4>
+                        
                         {{#if cover_image_url}}
-                        <div class="book-cover pull-left"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" /></div>
+                        <div class="book-cover pull-left">
+                            <img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{cover_image_url}}" alt="{{title}} book cover" width="80px" />
+                        </div>
                         {{else}}
                         <div class="no-book-cover pull-left" title="No cover image available">No Image Available</div>
                         {{/if}}
 
-                        <dl class="dl-books">
+                        <dl class="dl-books pull-left" style="width:68%;">
                             <dt>Author</dt>
                             {{#each authors}}
                             <dd>{{name}}</dd>
                             {{/each}}
 
-                            <dt>New </dt>
+                            <dt>Price </dt>
                             <dd>
-                                {{#if price}}
-                            ${{formatPrice price}}
-                                {{else}}
-                                *
-                                {{/if}}
+                            {{#if lowest_price}}
+                            {{#if highest_price}}
+			        <p> ${{formatPrice lowest_price}} to ${{formatPrice highest_price}} </p>
+
+                                <p>Visit <a target=_blank href="{{#if order_url }}{{order_url}}{{else}}http://www.ubookstore.com/adoption-search{{/if}}">ubookstore.com</a> for pricing on all available formats.</p>
+                            {{/if }}
+                            {{/if }}
+
                             </dd>
 
-                            <dt>Used</dt>
-                            <dd>
-                                {{#if used_price}}
-                                ${{formatPrice used_price}}
-                                {{else}}
-                                *
-                                {{/if}}
-                            </dd>
 
                             {{#if notes}}
                             <dt>Notes</dt>
