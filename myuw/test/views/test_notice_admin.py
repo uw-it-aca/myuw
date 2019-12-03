@@ -6,7 +6,7 @@ from myuw.views.notice_admin import _get_datetime, _save_notice
 from datetime import datetime
 from myuw.dao.myuw_notice import get_myuw_notices_for_user
 from myuw.test import get_request_with_user, get_request_with_date
-from myuw.test.dao.myuw_notice import get_datetime_with_tz
+from myuw.test.dao.test_myuw_notice import get_datetime_with_tz
 
 
 class TestNoticeAdmin(MyuwApiTest):
