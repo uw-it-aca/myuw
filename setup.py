@@ -40,7 +40,7 @@ setup(
         'UW-RestClients-GradePage<2.0',
         'UW-RestClients-GWS<3.0',
         'UW-RestClients-HFS<2.0',
-        'UW-RestClients-IASystem<2.0',
+        'UW-RestClients-IASystem>=1.1,<2.0',
         'UW-RestClients-Libraries<2.0',
         'UW-RestClients-Mailman<2.0',
         'UW-RestClients-MyPlan<2.0',
