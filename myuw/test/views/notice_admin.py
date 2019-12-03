@@ -1,3 +1,4 @@
+import json
 from myuw.test.api import missing_url, MyuwApiTest
 from django.test.client import RequestFactory
 from myuw.models.myuw_notice import MyuwNotice
@@ -41,7 +42,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'start_date': get_datetime_with_tz(2018, 5, 25, 12),
             'end_date': get_datetime_with_tz(2018, 5, 26, 12),
             'notice_type': 'Foo',
-            'notice_category': 'Bar'
+            'notice_category': 'Bar',
+            'target_group': 'uw_group'
         }
         request = rf.post('', notice_context)
         self.assertTrue(_save_notice(request, {}))
@@ -49,6 +51,7 @@ class TestNoticeAdmin(MyuwApiTest):
         entries = MyuwNotice.objects.all()
         self.assertEqual(len(entries), 1)
         self.assertIsNotNone(entries[0].json_data())
+        self.assertEqual(entries[0].target_group, "uw_group")
         self.assertIsNotNone(str(entries[0]))
         self.assertIsNotNone(entries[0].get_notice_content())
         self.assertTrue(entries[0].is_intl_stud)
@@ -128,7 +131,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'start_date': "2013-03-27T13:00:00+00:00",
             'end_date': "2013-05-06T23:13:00+00:00",
             'notice_type': 'Foo',
-            'notice_category': 'Bar'
+            'notice_category': 'Bar',
+            'target_group': 'uw_group'
         }
         rf = RequestFactory()
         request = rf.post('', notice_context)
@@ -150,3 +154,4 @@ class TestNoticeAdmin(MyuwApiTest):
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].content, 'Bar')
+        self.assertEqual(notices[0].target_group, 'uw_group')
