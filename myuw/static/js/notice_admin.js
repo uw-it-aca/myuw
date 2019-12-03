@@ -14,7 +14,7 @@ var NoticeAdmin = {
     },
 
     form_action: function(notice_group_value) {
-        if (notice_group_value.length == 0) {
+        if (notice_group_value.length === 0) {
             $('input[name="campus"]').prop('disabled', false);
             $('input[name="affil"]').prop('disabled', false);
         } else {
@@ -30,6 +30,6 @@ var NoticeAdmin = {
 
         $('#notice_group').on('input', function() {
             NoticeAdmin.form_action($(this).val());
-        })
+        });
     }
 };
