@@ -51,11 +51,11 @@ class TestNoticeAdmin(MyuwApiTest):
         entries = MyuwNotice.objects.all()
         self.assertEqual(len(entries), 1)
         self.assertIsNotNone(entries[0].json_data())
-        self.assertEqual(entries[0].target_group, "uw_group")
         self.assertIsNotNone(str(entries[0]))
         self.assertIsNotNone(entries[0].get_notice_content())
         self.assertTrue(entries[0].is_intl_stud)
         self.assertTrue(entries[0].is_seattle)
+        self.assertTrue(entries[0].has_target_group())
 
         # end before start
         notice_context = {

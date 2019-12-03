@@ -44,6 +44,9 @@ class MyuwNotice(models.Model):
 
     target_group = models.TextField(null=True, blank=True)
 
+    def has_target_group(self):
+        return self.target_group is not None and len(self.target_group)
+
     def json_data(self, include_abbr_week_month_day_format=False):
         # Returns dict in same format as SDB Notices
         notice_format = u"<span class=\"notice-title\">{}</span>" \
