@@ -225,12 +225,13 @@ class TestMyuwNotice(TransactionTestCase):
                             end=get_datetime_with_tz(2018, 5, 10, 10),
                             target_group='u_astratst_myuw_test-support-admin')
         notice.save()
-        request = get_request_with_date("2018-05-09")
-        get_request_with_user('bill', request)
+        request = get_request_with_user(
+            'bill', get_request_with_date("2018-05-09"))
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "Goo")
 
-        request = get_request_with_user('jalum')
+        request = get_request_with_user(
+            'jalum', get_request_with_date("2018-05-09"))
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 0)
