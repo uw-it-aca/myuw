@@ -230,3 +230,7 @@ class TestMyuwNotice(TransactionTestCase):
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "Goo")
+
+        request = get_request_with_user('jalum')
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 0)

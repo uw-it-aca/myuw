@@ -17,8 +17,8 @@ def get_myuw_notices_for_user(request):
             continue
 
         if notice.has_target_group():
-            is_effective_member(request, notice.target_group)
-            user_notices.append(notice)
+            if is_effective_member(request, notice.target_group):
+                user_notices.append(notice)
             continue
 
         if for_all_affi(notice):
