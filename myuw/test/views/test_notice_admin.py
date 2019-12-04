@@ -132,7 +132,7 @@ class TestNoticeAdmin(MyuwApiTest):
             'end_date': "2013-05-06T23:13:00+00:00",
             'notice_type': 'Foo',
             'notice_category': 'Bar',
-            'target_group': 'uw_group'
+            'target_group': 'u_astratst_myuw_test-support-admin'
         }
         rf = RequestFactory()
         request = rf.post('', notice_context)
@@ -154,4 +154,5 @@ class TestNoticeAdmin(MyuwApiTest):
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].content, 'Bar')
-        self.assertEqual(notices[0].target_group, 'uw_group')
+        self.assertEqual(notices[0].target_group,
+                         'u_astratst_myuw_test-support-admin')
