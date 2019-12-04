@@ -4,6 +4,8 @@
               "title":"History Of Archaeological Thought (2e 06)",
               "authors":[{"name":"Trigger" }],
               "price":45.00,
+              "lowest_price": 45.00,
+              "highest_price": 45.00,
               "used_price":null,
               "required":true,
               "notes":"required",
