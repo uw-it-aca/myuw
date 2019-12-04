@@ -2,7 +2,7 @@ from django.test import TransactionTestCase
 from myuw.models import BannerMessage
 from myuw.dao.messages import get_current_messages, clean_html
 from myuw.test import get_request_with_user, get_request_with_date
-from myuw.test.dao.myuw_notice import get_datetime_with_tz
+from myuw.test.dao.test_myuw_notice import get_datetime_with_tz
 
 
 class TestBannerMessageDAO(TransactionTestCase):
