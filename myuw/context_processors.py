@@ -1,8 +1,10 @@
 def is_hybrid(request):
-    """ Checks request header for MyUW-Hybrid and returns true or false.
-    """
-    is_hybrid = False
-    try request.META['HTTP_MYUW_HYBRID']:
-        is_hybrid = True
+    
+    try:
+       hybridapp = request.META['HTTP_MYUW_HYBRID']
     except:
-        return is_hybrid
+        hybridapp = False
+
+    return {
+        'is_hybrid': hybridapp
+    }
