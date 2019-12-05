@@ -77,121 +77,7 @@
 
     <body>
         {% csrf_token %}
-
-        {% if disable_actions %}
-            {% block actions_disabled_banner %}
-            <div class="app-messages" id="actions_disabled_banner" aria-labelledby="actions_disabled_banner-label" role="complementary">
-                <div class="override-banner message-banner">
-                    <h2 class="sr-only" id="actions_disabled_banner-label">Notes for MyUW support staff:</h2>
-                    <div class="message-text myuw-wrapper">
-                        <p class="message"><strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and no actions will be saved. &nbsp;&nbsp;<a href="/support" style="font-weight:normal; color:#003399;">Back to MyUW Support tool</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            {% endblock %}
-        {% endif %}
-
-        {% block header %}
-        <div id="top"></div>
-        <div id="app_search" class="myuw-search collapse">
-            <div class="myuw-wrapper">
-                <form action="/search" method="get" class="uw-search">
-                    <label class="sr-only" for="search-nav">Search the UW website</label>
-                    <input id="search-nav" name="q" type="text" placeholder="Search the UW website">
-                    <button type="submit" value="Search" style="background-image: url({% static 'images/search.svg' %});">Search</button>
-                </form>
-            </div>
-        </div>
-
-        <div role="banner" aria-labelledby="myuw-banner-label">
-            <h1 class="sr-only" id="myuw-banner-label">MyUW</h1>
-            <div class="myuw-thin-bar">
-                <div class="myuw-wrapper">
-
-                    <div class="myuw-netid">
-                        <a href="/profile/"><i class="icon-user icon-user-female" aria-hidden="true"></i><span>{{ user.netid }}</span></a>
-                    </div>
-
-                    <div class="myuw-search-links">
-                        {% if user.email_error %}
-						<a href="https://itconnect.uw.edu/connect/email/" class="myuw-iconlink" style="color:#ffaeae;" title="UW email services" target="_blank"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span>Email error</span></a>
-                        {% else %}
-                        {% if user.email_forward_url %}
-                        <a href="{{ user.email_forward_url }}" class="myuw-iconlink" target="_blank" title="Open your email in new tab"><i class="fa fa-envelope" aria-hidden="true"></i><span>Email</span></a>
-                        {% endif %}
-                        {% endif %}
-
-
-                        <button id="search_toggle" class="myuw-iconlink" role=”search” aria-controls="app_search" aria-expanded="false" aria-haspopup="true" aria-label="Open search area" data-toggle="collapse" data-target="#app_search"><i class="fa fa-search fa-flip-horizontal"></i><span>Search</span></button>
-
-                        <a href="{% settings_value "LOGOUT_URL" %}" class="myuw-iconlink"><i class="fa fa-sign-out" aria-hidden="true" style="font-size: 15px;"></i><span>Sign Out</span></a>
-
-                    </div>
-
-                </div>
-            </div>
-            {% endblock %}
-
-
-            {% block mobile_navigation %}
-            <div class="myuw-navigation">
-                <div class="myuw-wrapper" style="background-image: url({% static 'images/w-logo-white.png' %})">
-                    <div class="myuw-title"><a href="/" aria-label="MyUW Home">MyUW</a></div>
-                    <div id="menu_toggle_wrapper" class="myuw-title-button">
-                        <button id="menu_toggle" aria-controls="main_menu" aria-haspopup="true" aria-expanded="false">
-                            <span class="fa-stack fa-md" aria-hidden="true">
-                                <i class="fa fa-square-o fa-stack-2x"></i>
-                                <i class="fa fa-bars fa-stack-1x"></i>
-                            </span>
-                            <span class="sr-only">Main Menu</span>
-                        </button>
-                        <h2>{% if page_title == "Home" %}MyUW<span class="sr-only"> Home</span>{% else %}{{page_title}}{% endif %}</h2>
-                    </div>
-                </div>
-            </div>
-            {% endblock %}
-        </div>
-
-        {% block desktop_banner %}
-        <!-- message banner (desktop only) -->
-        <div class="myuw-banner-desktop app-messages" id="app_messages_desktop" aria-labelledby="app_messages_desktop_label" role="complementary">
-            <div class="message-banner">
-                {% if banner_messages %}
-                <h2 class="sr-only" id="app_messages_desktop_label">MyUW Announcements</h2>
-                <div id="message_banner_location">
-                    <div id="messages" class="message-text myuw-wrapper">
-                        {% for message in banner_messages %}
-                        <div class="message">
-                            <p>{{ message.message_body|safe }}</p>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
-           </div>
-        </div>
-        <!-- end message banner -->
-        {% endblock %}
-
-	{% if display_onboard_message %}
-	{% block desktop_tour_banner %}
-        <!-- Tour banner message (Desktop only) -->
-        <div class="myuw-banner-desktop app-messages" id="tour_messages_desktop" aria-labelledby="tour_messages_desktop_label" role="complementary">
-            <div class="message-banner">
-                <h2 class="sr-only" id="tour_messages_desktop_label">MyUW Announcements</h2>
-                    <div class="message-text myuw-wrapper">
-                        <div class="message">
-                            <p>New here? <a href="#" data-toggle="modal" data-target="#tour_modal">See MyUW at a glance </a></p>
-                        </div>
-                    </div>
-               		<button id="banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message" aria-controls="tour_messages_desktop"><span aria-hidden="true">&times;</span></button>
-           </div>
-        </div>
-        <!-- end message banner -->
-        {% endblock %}
-        {% endif %}
-
+        
         <div class="myuw-body" style="border:solid 5px red;">
             <div class="myuw-wrapper">
 
@@ -293,24 +179,6 @@
 
             </div>
         </div>
-
-        <!-- footer -->
-        {% block footer %}
-        <div id="app_footer">
-            <div class="footer-bar" role="contentinfo">
-                <div class="myuw-wrapper footer-links" style="position:relative;">
-                    <ul class="footer-links-list myuw-inline-list">
-                        <li class="footer-links-list-item">
-                            <a href="mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20{{ user.netid }}">
-                                <i class="fa fa-envelope" role="presentation"></i>Contact
-                            </a>
-                        </li><li class="footer-links-list-item"><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW Help</a></li><li class="footer-links-list-item myuw-hidden-desktop"><a href="/logout">Sign Out</a></li><li class="footer-links-list-item"><a href="http://www.washington.edu/online/terms/">Terms</a></li><li class="footer-links-list-item"><a href="http://www.washington.edu/online/privacy/">Privacy</a></li></ul>
-                    <div style="clear:both;">&copy; {% now "Y" %} University of Washington</div>
-                </div>
-            </div>
-        </div>
-        {% endblock %}
-        <!-- /footer -->
 
         <!-- dev bar -->
 
