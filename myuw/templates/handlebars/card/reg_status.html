@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "reg_status_card" %}
+{% verbatim %}
+<script id="reg_status_card" type="text/x-handlebars-template">
 
 <div id="RegStatusCard" data-name="RegistrationCard"
      data-type="card" data-identifier="{{reg_next_quarter}}{{reg_next_year}}">
@@ -85,4 +85,5 @@
 </div>
 
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

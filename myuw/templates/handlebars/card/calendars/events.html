@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "events_card_content" %}
+{% verbatim %}
+<script id="events_card_content" type="text/x-handlebars-template">
     <div aria-labelledby="my_events" data-name="EventsCard" data-type="card">
         <div class="card">
             <div class="fade-in myuw-events">
@@ -108,4 +108,5 @@
             </div>
         </div>
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

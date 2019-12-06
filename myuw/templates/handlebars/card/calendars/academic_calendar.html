@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "calendar_events" %}
+{% verbatim %}
+<script id="calendar_events" type="text/x-handlebars-template">
 
 <h3 id="acal-page-filters-label" class="sr-only">Filter Calendar Events</h3>
 <div class="center-block btn-group btn-group-justified acal-page-filters" role="tablist" aria-labelledby="acal-page-filters-label">
@@ -39,4 +39,5 @@
         {{/if}}
     {{ /each }}
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

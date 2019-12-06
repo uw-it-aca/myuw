@@ -1,6 +1,5 @@
-{% load templatetag_handlebars %}
-    {% verbatim %}
-
+{% verbatim %}
+<script id="email_list" type="text/x-handlebars-template">
 {{#with email_list}}
     <span class="inst-course-label">Email List:&nbsp;&nbsp;</span>
 
@@ -30,5 +29,5 @@
         {{/if}}
 
 {{/with}}
-
-    {% endverbatim %}
+</script>
+{% endverbatim %}

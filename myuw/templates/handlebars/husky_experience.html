@@ -1,6 +1,5 @@
-{% load templatetag_handlebars %}
-{% load static %}
-{% tplhandlebars "husky_experience_page" %}
+{% verbatim %}
+<script id="husky_experience_page" type="text/x-handlebars-template">
 
 <div class="container huskyx-container">
     <div class="huskyx-main">
@@ -17,8 +16,8 @@
                                 </p>
                             </div>
                             <div class="col-sm-5">
-                                <img class="huskyx-diagram" src="{% static '/images/HX_dimensions-1.0x.png' %}"
-                                srcset="{% static '/images/HX_dimensions-1.0x.png' %} 1x, {% static '/images/HX_dimensions-1.5x.png' %} 1.5x, {% static '/images/HX_dimensions-2.0x.png' %} 2x"
+                                <img class="huskyx-diagram" src="{{ static '/images/HX_dimensions-1.0x.png' }}"
+                                srcset="{{ static '/images/HX_dimensions-1.0x.png' }} 1x, {{ static '/images/HX_dimensions-1.5x.png' }} 1.5x, {{ static '/images/HX_dimensions-2.0x.png' }} 2x"
                                 sizes="300px"
                                 alt="Husky Experience dimensions diagram" longdesc="" />
                             </div>
@@ -87,4 +86,5 @@
 </div>
 
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

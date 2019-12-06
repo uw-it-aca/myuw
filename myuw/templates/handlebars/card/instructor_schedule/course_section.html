@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_section_card_panel" %}
+{% verbatim %}
+<script id="instructor_section_card_panel" type="text/x-handlebars-template">
 
 <div class="instructor_cards">
     <h3 id="your_courses" class="sr-only">Course you are instructing {{ucfirst quarter}} {{year}}</h3>
@@ -39,4 +39,5 @@
         {{/each}}
     </div>
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

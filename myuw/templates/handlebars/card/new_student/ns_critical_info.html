@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "ns_critical_info" %}
+{% verbatim %}
+<script id="ns_critical_info" type="text/x-handlebars-template">
     <div id="UpdateCriticalInfo" class="card clearfix" data-name="NS-CriticalInfo" data-type="card">
         <h3>Update Critical Information</h3>
         {{ #each notices }}
@@ -17,4 +17,5 @@
         </div>
         {{ /unless }}
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

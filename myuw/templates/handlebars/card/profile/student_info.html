@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "student_info_card" %}
+{% verbatim %}
+<script id="student_info_card" type="text/x-handlebars-template">
 
     <div class="myuw-card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
 
@@ -197,4 +197,5 @@
          </div>
     </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

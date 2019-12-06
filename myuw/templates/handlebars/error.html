@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "error_header" %}
+{% verbatim %}
+<script id="error_header" type="text/x-handlebars-template">
 <div class="alert alert-error server-error">
     <div class="error-title"><i class="icon-exclamation-sign pull-left icon-huge"></i>Uh-oh...</div>
  There was a problem connecting to MyUW Mobile. Please bear with us as we resolve the issue. If the problem persists please contact us or use the full site.
@@ -8,7 +8,10 @@
     </div>
 </div>
 
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}
 
-    {% tplhandlebars "error_body" %}
-    {% endtplhandlebars %}
+{% verbatim %}
+<script id="error_body" type="text/x-handlebars-template">
+</script>
+{% endverbatim %}

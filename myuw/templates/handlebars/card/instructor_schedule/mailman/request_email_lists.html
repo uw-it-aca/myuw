@@ -1,10 +1,10 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "request_email_lists_tmpl" %}
+{% verbatim %}
+<script id="request_email_lists_tmpl" type="text/x-handlebars-template">
 
 
 <div class="myuw-modal modal-dialog" role="document">
     <div class="modal-content">
-        <form role="form" id="request_emaillist_form" method="POST">{% csrf_token %}
+        <form role="form" id="request_emaillist_form" method="POST">{% endverbatim %}{% csrf_token %}{% verbatim %}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
@@ -194,4 +194,5 @@
         </form>
     </div>
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

@@ -1,5 +1,5 @@
 {% verbatim %}
-
+<script id="course_sche_col_bldg" type="text/x-handlebars-template">
 {{#if eos_start_date}}
     <td class="course-location" headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}">
 {{else}}
@@ -18,4 +18,5 @@
         {{/if}}
     {{/if}}
 </td>
+</script>
 {% endverbatim %}

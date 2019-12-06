@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "secondary_section_panel" %}
+{% verbatim %}
+<script id="secondary_section_panel" type="text/x-handlebars-template">
 
     {{#each meetings}}
         <tr class="course-schedule-row">
@@ -29,14 +29,14 @@
             {{else if no_meeting}}
                 <td colspan="3" class="text-muted course-tbd">No classroom meeting: online learning</td>
             {{else}}
-                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                {{> course_sche_col_days }}
             {{/if}}
 
             {{#unless no_meeting}}
                 {{#if building_tbd}}
                     <td class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
                 {{else}}
-                    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                    {{> course_sche_col_bldg }}
                 {{/if}}
             {{/unless}}
 
@@ -57,4 +57,5 @@
         </tr>
     {{/each}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

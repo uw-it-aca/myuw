@@ -1,6 +1,5 @@
-{% load user_agents %}
-{% load templatetag_handlebars %}
-    {% tplhandlebars "notices" %}
+{% verbatim %}
+<script id="notices" type="text/x-handlebars-template">
 
 <div class="container notices-container">
     <h2 id="main" class="heading-page">Notices</h2>
@@ -34,11 +33,11 @@
             <!-- collapsy 1 -->
             <div id="collapseOne" class="slide-hide clearfix" aria-hidden="true" style="display: none;">
                 <div class="row">
-                    {% if request|is_mobile %}
+                    {{ #if_mobile }}
                     <div class="col-md-12">
-                    {% else %}
+                    {{ else }}
                     <div class="col-md-10 col-md-offset-1">
-                    {% endif %}
+                    {{ /if_mobile }}
 
                     <div class="disclosure-content">
                         <ul class="notices_list">
@@ -87,11 +86,11 @@
         <!-- collapsy 2 content -->
         <div id="collapseTwo" class="slide-hide" aria-hidden="true" style="display: none;">
             <div class="row">
-                {% if request|is_mobile %}
+                {{ #if_mobile }}
                 <div class="col-md-12">
-                {% else %}
+                {{ else }}
                 <div class="col-md-10 col-md-offset-1">
-                {% endif %}
+                {{ /if_mobile }}
 
                 <div class="disclosure-content">
                     <ul class="notices_list">
@@ -142,11 +141,11 @@
                     <!-- collapsy 3 content -->
                     <div id="collapseThree" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            {% if request|is_mobile %}
+                            {{ #if_mobile }}
                             <div class="col-md-12">
-                            {% else %}
+                            {{ else }}
                             <div class="col-md-10 col-md-offset-1">
-                            {% endif %}
+                            {{ /if_mobile }}
                             <div class="disclosure-content">
                                     <ul class="notices_list">
                                         {{# each week.notices }}
@@ -196,11 +195,11 @@
                     <!-- collapsy 4 content -->
                     <div id="collapseFour" class="slide-hide" aria-hidden="true" style="display: none;">
                         <div class="row">
-                            {% if request|is_mobile %}
+                            {{ #if_mobile }}
                             <div class="col-md-12">
-                            {% else %}
+                            {{ else }}
                             <div class="col-md-10 col-md-offset-1">
-                            {% endif %}
+                            {{ /if_mobile }}
                             <div class="disclosure-content">
                                 <ul class="notices_list">
                                     {{# each next_week.notices }}
@@ -252,11 +251,11 @@
                 <!-- collapsy 5 content -->
                 <div id="collapseFive" class="slide-hide" aria-hidden="true" style="display: none;">
                     <div class="row">
-                        {% if request|is_mobile %}
+                        {{ #if_mobile }}
                         <div class="col-md-12">
-                        {% else %}
+                        {{ else }}
                         <div class="col-md-10 col-md-offset-1">
-                        {% endif %}
+                        {{ /if_mobile }}
 
                         <div class="disclosure-content">
                             <ul class="notices_list">
@@ -307,11 +306,11 @@
               <!-- collapsy legal content -->
               <div id="collapseSix" class="slide-hide" aria-hidden="true" style="display: none;">
                   <div class="row">
-                      {% if request|is_mobile %}
+                      {{ #if_mobile }}
                           <div class="col-md-12">
-                      {% else %}
+                      {{ else }}
                           <div class="col-md-10 col-md-offset-1">
-                      {% endif %}
+                      {{ /if_mobile }}
                       <div class="disclosure-content">
                           <ul class="notices_list">
                               {{# each legal.notices }}
@@ -346,4 +345,5 @@
 </div>
 <!-- end notices container  -->
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

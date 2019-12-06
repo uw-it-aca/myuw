@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "teaching_resources_card" %}
+{% verbatim %}
+<script id="teaching_resources_card" type="text/x-handlebars-template">
     <div class="myuw-canvas myuw-aside-links"  data-name="TeachingResourcesCard" data-type="card">
         <h3 class="myuw-canvas-title">Course Materials</h3>
         <ul class="unstyled-list">
@@ -25,4 +25,5 @@
             <li><a href="http://teaching.pce.uw.edu/" rel="">UW PCE Instructor Resources</a></li>
         </ul>
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

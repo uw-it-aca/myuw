@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "reg_resources_tmpl" %}
+{% verbatim %}
+<script id="reg_resources_tmpl" type="text/x-handlebars-template">
 
     {{#if registration_is_open}}
     <div class="card-actions-wrapper">
@@ -104,4 +104,5 @@
     </ul>
 </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

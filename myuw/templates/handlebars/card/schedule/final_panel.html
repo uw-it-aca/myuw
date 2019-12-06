@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "final_exam_schedule_content" %}
+{% verbatim %}
+<script id="final_exam_schedule_content" type="text/x-handlebars-template">
     {{#if show_title}}
         <h4 style="margin-top:20px; margin-bottom: 15px;">Final Exam Schedule</h4>
     {{/if}}
@@ -104,4 +104,5 @@
         <!-- end - if there are meetings with times to be arranged -->
     {{/if}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

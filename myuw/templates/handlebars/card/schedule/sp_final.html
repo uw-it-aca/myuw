@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "final_exam_card_content" %}
+{% verbatim %}
+<script id="final_exam_card_content" type="text/x-handlebars-template">
 {{#if sections}}
 
 <div class="card" data-name="FinalExamCard" data-type="card">
@@ -10,4 +10,5 @@
 </div>
 
 {{/if}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

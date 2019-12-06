@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_summary_schedule" %}
+{% verbatim %}
+<script id="instructor_summary_schedule" type="text/x-handlebars-template">
     <div class="myuw-card teaching-schedule-summary" data-type="card"
          data-name="SummaryScheduleCard" data-identifier="{{ title }}">
          <div style="position:relative;">
@@ -71,4 +71,5 @@
              {{/unless}}
         </div>
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

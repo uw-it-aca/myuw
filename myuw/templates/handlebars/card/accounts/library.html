@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "library_card_content" %}
+{% verbatim %}
+<script id="library_card_content" type="text/x-handlebars-template">
 
     <div class="card clearfix"  data-name="LibraryCard" data-type="card">
 
@@ -63,4 +63,5 @@
     <div><p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your library account information right now. In the meantime, try the <a href="http://www.lib.washington.edu/" data-linklabel="UW Libraries" target="_blank">UW Libraries page</a>.</p></div>
     {{/unless}}
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

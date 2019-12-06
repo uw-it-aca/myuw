@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "final_exam_schedule_card_day" %}
+{% verbatim %}
+<script id="final_exam_schedule_card_day" type="text/x-handlebars-template">
 
 {{#each meetings}}
     {{#unless is_meeting}}
@@ -48,4 +48,5 @@
     {{/unless}}
 {{/each}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

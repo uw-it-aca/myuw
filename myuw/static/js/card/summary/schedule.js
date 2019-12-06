@@ -50,7 +50,8 @@ var SummaryScheduleCard = {
     _render_with_context: function (context){
         Handlebars.registerPartial('summary_section', $("#summary_section").html());
         Handlebars.registerPartial('summary_section_panel', $("#summary_section_panel").html());
-
+        Handlebars.registerPartial('course_sche_col_days', $("#course_sche_col_days").html());
+        Handlebars.registerPartial('course_sche_col_bldg', $("#course_sche_col_bldg").html());
         var source = $("#instructor_summary_schedule").html();
         var courses_template = Handlebars.compile(source);
         var raw = courses_template(context);

@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "calendar_snippet" %}
+{% verbatim %}
+<script id="calendar_snippet" type="text/x-handlebars-template">
 
 <div id="app_acal" class="myuw-card">
     <h2 class="myuw-card-title">Academic Calendar</h2>
@@ -18,4 +18,5 @@
     <p class="text-danger" style="margin-top:1em;"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and MyUW cannot display calendar data right now. In the meantime, try the <a href="http://www.washington.edu/students/reg/calendar.html" data-linklabel="UW Academic Calendars" target="_blank">UW Academic calendars page</a>.</p>
     {{/unless}}
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

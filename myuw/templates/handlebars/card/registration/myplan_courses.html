@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "myplan_courses_tmpl" %}
+{% verbatim %}
+<script id="myplan_courses_tmpl" type="text/x-handlebars-template">
 
 {{#if plan_data.courses}}
     <div id="myplan_courses{{#if card}}_{{card}}{{/if}}"
@@ -96,4 +96,5 @@
 
 {{/if}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

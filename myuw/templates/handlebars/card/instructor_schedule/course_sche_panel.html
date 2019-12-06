@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_course_sche_panel" %}
+{% verbatim %}
+<script id="instructor_course_sche_panel" type="text/x-handlebars-template">
 
 <div class="myuw-card-section">
     {{#if summer_term}}
@@ -60,14 +60,14 @@
                             {{else if no_meeting}}
                                 <td colspan="3" class="course-tbd" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>No classroom meeting: online learning</td>
                             {{else}}
-                                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{> course_sche_col_days }}
                             {{/if}}
 
                             {{#unless no_meeting}}
                                 {{#if building_tbd}}
                                     <td class="text-muted course-loc-tbd" {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Room to be arranged</td>
                                 {{else}}
-                                    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                    {{> course_sche_col_bldg }}
                                 {{/if}}
                             {{/unless}}
 
@@ -113,7 +113,7 @@
                                             <td class="course-final-date">{{ toFriendlyDate start_date }}</td>
                                             <td class="course-time">{{ formatDateAsTime start_date }} &ndash; {{ formatDateAsTimeAMPM end_date }}</td>
 
-                                            {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                            {{> course_sche_col_bldg }}
                                         </tbody>
                                     </table>
                                 {{else}}
@@ -138,4 +138,5 @@
         </div>
     {{/unless}}
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

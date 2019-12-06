@@ -1,4 +1,5 @@
 {% verbatim %}
+<script id="course_sche_col_days" type="text/x-handlebars-template">
     {{#if start_time}}
         <td class="course-days" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>
             {{#if meeting_days.monday}}<abbr title="Monday">M</abbr>{{/if}}{{#if
@@ -11,4 +12,5 @@
         </td>
         <td class="course-time" {{#if eos_start_date}}headers="time-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>{{formatTime start_time}} &ndash; {{formatTimeAMPM end_time}}</td>
     {{/if}}
+</script>
 {% endverbatim %}

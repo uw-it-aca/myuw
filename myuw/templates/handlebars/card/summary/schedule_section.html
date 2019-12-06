@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "summary_section" %}
+{% verbatim %}
+<script id="summary_section" type="text/x-handlebars-template">
 
     {{#unless under_disclosure}}
     <div class="myuw-card-section-fulldivider">
@@ -52,4 +52,5 @@
         {{/if}}
     </div>
     {{/unless}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

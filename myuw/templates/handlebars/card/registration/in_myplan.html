@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "in_myplan_tmpl" %}
+{% verbatim %}
+<script id="in_myplan_tmpl" type="text/x-handlebars-template">
 
 <div class="card-badge-container">
 
@@ -86,4 +86,5 @@
  <!-- WIP: MyPlan inline error message
 <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your information right now. Please try <a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" data-linklabel="MyPlan" target="_blank">MyPlan</a>.</p> -->
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

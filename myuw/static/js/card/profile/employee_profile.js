@@ -26,6 +26,7 @@ var EmployeeInfoCard = {
 
     _render: function () {
         var emp_white_page = WSData.directory_data();
+        Handlebars.registerPartial('workday_link', $("#workday_link").html());
         var source = $("#emp_white_page_card").html();
         var template = Handlebars.compile(source);
         var i;

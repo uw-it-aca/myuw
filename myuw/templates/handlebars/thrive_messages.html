@@ -1,5 +1,5 @@
-	{% load templatetag_handlebars %}
-    {% tplhandlebars "thrive_messages" %}
+	{% verbatim %}
+<script id="thrive_messages" type="text/x-handlebars-template">
     <div class="container thrive-messages">
       <h2 id="main" class="heading-page">
           {{#if target_fyp}}
@@ -24,4 +24,5 @@
       </div>
       {{/each}}
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

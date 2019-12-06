@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "course_card_content_panel" %}
+{% verbatim %}
+<script id="course_card_content_panel" type="text/x-handlebars-template">
 
 {{#if hide_course_details}}
     {{#if has_eval}}
@@ -71,4 +71,5 @@
     {{/if}}
 {{/if}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

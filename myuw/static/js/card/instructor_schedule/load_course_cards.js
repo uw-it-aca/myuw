@@ -83,6 +83,7 @@ var InstructorCourseCards = {
     },
 
     _render: function () {
+        Handlebars.registerPartial('term_panel', $("#term_panel").html());
         var term = InstructorCourseCards.term;
         var course_data = WSData.instructed_course_data(term, true);
         var source = $("#instructor_course_card_list").html();

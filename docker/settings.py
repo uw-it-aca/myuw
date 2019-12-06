@@ -5,7 +5,6 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS += [
     'compressor',
     'rc_django',
-    'templatetag_handlebars',
     'myuw',
     'userservice',
     'django_client_logger',

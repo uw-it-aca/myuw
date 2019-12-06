@@ -3,6 +3,7 @@ var HRPayrollCard = {
     dom_target: undefined,
 
     render_init: function() {
+        Handlebars.registerPartial('workday_link', $("#workday_link").html());
         var source   = $("#hr_payroll_card").html();
         var template = Handlebars.compile(source);
         var data = {

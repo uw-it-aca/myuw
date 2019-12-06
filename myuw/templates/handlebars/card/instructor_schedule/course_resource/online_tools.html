@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% verbatim %}
+{% verbatim %}
+<script id="online_tools" type="text/x-handlebars-template">
 {{#if canvas_url}}
     <li class="clearfix">
         <span class="card-badge-value">
@@ -11,4 +11,5 @@
                data-linklabel="Course Canvas: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></span></li>
             {{/equal}}
 {{/if}}
-    {% endverbatim %}
+</script>
+{% endverbatim %}

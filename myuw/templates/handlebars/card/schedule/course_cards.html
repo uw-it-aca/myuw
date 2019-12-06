@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "course_card_list" %}
+{% verbatim %}
+<script id="course_card_list" type="text/x-handlebars-template">
 {{#unless has_error}}
 {{#if display_term}}
     <h3 id="prev_qtr_heading" class="prev-qtr-heading">Continuing courses from {{ucfirst quarter}} {{year}}</h3>
@@ -46,4 +46,5 @@
 <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Some course links are not available right now. In the meantime, try  
  <a href="https://canvas.uw.edu/" data-linklabel="Canvas LMS" target="_blank">Canvas LMS</a>.</p>
 {{/unless}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

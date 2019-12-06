@@ -1,6 +1,8 @@
 var InstructorCourseSchePanel = {
 
     render: function (c_section) {
+        Handlebars.registerPartial('course_sche_col_days', $("#course_sche_col_days").html());
+        Handlebars.registerPartial('course_sche_col_bldg', $("#course_sche_col_bldg").html());
         var source = $("#instructor_course_sche_panel").html();
         var template = Handlebars.compile(source);
         c_section.netid = window.user.netid;

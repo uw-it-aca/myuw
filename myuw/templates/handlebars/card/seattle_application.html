@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "seattle_application_card" %}
+{% verbatim %}
+<script id="seattle_application_card" type="text/x-handlebars-template">
 <div class="myuw-card application-card">
 {{#if is_returning}}
     <h3 class="myuw-card-title">
@@ -105,4 +105,5 @@
     </div>
 {{/if}}
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

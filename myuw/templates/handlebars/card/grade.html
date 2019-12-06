@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "grade_card_content" %}
+{% verbatim %}
+<script id="grade_card_content" type="text/x-handlebars-template">
 
 {{#if display_grade_card}}
     <div class="card clearfix"  data-name="GradeCard" data-type="card">
@@ -60,4 +60,5 @@
         {{/unless}}
     </div>
 {{/if}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "quicklinks" %}
+{% verbatim %}
+<script id="quicklinks" type="text/x-handlebars-template">
 <div class="card clearfix"  data-name="QuickLinks" data-type="card">
     <h3>Quick Links</h3>
     {{#unless has_error}}
@@ -102,4 +102,5 @@
     {{/unless}}
 </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}
