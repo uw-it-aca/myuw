@@ -1,10 +1,7 @@
+# Determins if the requesting device is a native hybrid app (android/ios)
+
 def is_hybrid(request):
     
-    try:
-       hybridapp = request.META['HTTP_MYUW_HYBRID']
-    except:
-        hybridapp = False
-
     return {
-        'is_hybrid': hybridapp
+        'is_hybrid': 'HTTP_MYUW_HYBRID' in request.META  
     }
