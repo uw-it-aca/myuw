@@ -1,7 +1,7 @@
-FROM acait/django-container:1.0
+FROM acait/django-container:1.0.10
 
 USER root
-RUN apt-get update && apt-get install mysql-client -y
+RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
 USER acait
 
 ADD --chown=acait:acait myuw/VERSION /app/myuw/
@@ -12,7 +12,7 @@ ADD . /app/
 
 ADD docker /app/project/
 
-
+RUN . /app/bin/activate && pip install mysqlclient
 RUN . /app/bin/activate && pip install nodeenv && nodeenv -p &&\
     npm install -g npm &&\
     ./bin/npm install less -g &&\

@@ -84,5 +84,7 @@ TEMPLATES = [
     },
 ]
 
+RESTCLIENTS_GWS_HOST = "https://groups.uw.edu"
+
 if os.getenv("ENV") == "localdev":
     DEBUG = True
