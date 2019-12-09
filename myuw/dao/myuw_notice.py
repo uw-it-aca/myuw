@@ -1,5 +1,6 @@
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.models.myuw_notice import MyuwNotice
+from myuw.dao.gws import is_effective_member
 from myuw.dao.term import get_comparison_datetime_with_tz
 
 
@@ -13,6 +14,11 @@ def get_myuw_notices_for_user(request):
 
         if notice.end is not None and notice.end < date:
             # exclude those past display time window
+            continue
+
+        if notice.has_target_group():
+            if is_effective_member(request, notice.target_group):
+                user_notices.append(notice)
             continue
 
         if for_all_affi(notice):

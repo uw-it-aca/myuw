@@ -1,6 +1,5 @@
 import json
 from myuw.views.api.base_schedule import irregular_start_end
-from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
 
 

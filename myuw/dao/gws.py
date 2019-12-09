@@ -200,3 +200,8 @@ def no_major_affiliations(request):
     return (not is_applicant(request) and
             not is_regular_employee(request) and
             not is_student(request))
+
+
+def is_effective_member(request, group_id):
+    return gws.is_effective_member(group_id,
+                                   get_netid_of_current_user(request))
