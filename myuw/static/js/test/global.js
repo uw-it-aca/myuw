@@ -154,12 +154,7 @@ var Environment = {
     },
     _read_template: function (template_file) {
         var template_path = Environment._abs_path(template_file);
-        var raw = fs.readFileSync(template_path).toString();
-        var template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
-            .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
-                     '<script id="$1" type="text/x-handlebars-template">')
-            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/,
-                     '</script>')
+        var template = fs.readFileSync(template_path).toString()
             .replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
 
         while (true) {
@@ -172,7 +167,6 @@ var Environment = {
                 break;
             }
         }
-
         return template;
     },
     _load_template: function(template_file) {
