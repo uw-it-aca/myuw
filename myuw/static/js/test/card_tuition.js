@@ -13,6 +13,7 @@ describe('TuitionCard', function(){
                     "myuw/static/js/card/accounts/tuition.js"
                 ],
                 templates: [
+                    'myuw/templates/handlebars/card/accounts/tuition_resources.html',
                     'myuw/templates/handlebars/card/accounts/tuition.html',
                     'myuw/templates/handlebars/card/error.html'
                 ]

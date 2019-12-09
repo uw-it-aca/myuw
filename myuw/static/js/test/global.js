@@ -37,6 +37,8 @@ var Environment = {
 
         // set up client environment
         window.user = Environment._get_user(config);
+        window.is_mobile = false;
+        window.static_url = '';
 
         // default test term
         window.term = {};
@@ -188,8 +190,8 @@ describe("Global Test Environment", function () {
         assert(t.indexOf('endtplhandlebars') < 0, 'end handlebars block stripped');
         assert(t.indexOf('verbatim') < 0, 'verbatim stripped');
         assert(t.indexOf('endverbatim') < 0, 'endverbatim stripped');
-        assert(t.indexOf('show_course_textbook') > 0, 'first inclusion');
-        assert(t.indexOf('list_admin_url') > 0, 'second inclusion');
+        assert(t.indexOf('show_course_textbook') < 0, 'first inclusion');
+        assert(t.indexOf('list_admin_url') < 0, 'second inclusion');
         assert.equal(true, true);
     });
 });

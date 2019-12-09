@@ -11,6 +11,7 @@ describe('EmployeeInfoCard', function(){
                     "myuw/static/js/card/profile/employee_profile.js"
                 ],
                 templates: [
+                    'myuw/templates/handlebars/card/workday_link.html',
                     'myuw/templates/handlebars/card/profile/employee_profile.html'
                 ]
             });
@@ -30,9 +31,10 @@ describe('EmployeeInfoCard', function(){
             Global.Environment.init({
                 render_id: render_id,
                 scripts: [
-                    "myuw/static/js/card/profile/employee_profile.js"
+                    'myuw/static/js/card/profile/employee_profile.js'
                 ],
                 templates: [
+                    'myuw/templates/handlebars/card/workday_link.html',
                     'myuw/templates/handlebars/card/profile/employee_profile.html'
                 ]
             });
@@ -71,6 +73,7 @@ describe('EmployeeInfoCard', function(){
                     "myuw/static/js/card/profile/employee_profile.js"
                 ],
                 templates: [
+                    'myuw/templates/handlebars/card/workday_link.html',
                     'myuw/templates/handlebars/card/profile/employee_profile.html'
                 ]
             });

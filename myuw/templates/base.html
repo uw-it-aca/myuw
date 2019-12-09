@@ -406,14 +406,16 @@
         <script src="{% static 'js/card/summary/future_schedule.js' %}"></script>
         <script src="{% static 'js/teaching/class_list.js' %}"></script>
         {% endcompress %}
+        <script>
+            window.static_url = "{% get_static_prefix %}";
+            window.is_mobile = {% if request.user_agent.is_mobile %}true{% else %}false{% endif %};
+        </script>
 
         {% block extra_js %}{% endblock %}
 
         {% if not has_less_compiled %}
         <!-- less js -->
         <script>
-            is_mobile = {% if request.user_agent.is_mobile %}true{% else %}false{% endif %};
-            static_url = "{% get_static_prefix %}";
             less = {
                 logLevel: 1,
             }

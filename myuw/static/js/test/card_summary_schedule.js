@@ -11,6 +11,8 @@ describe('SummaryScheduleCard', function(){
                 "myuw/static/js/card/summary/schedule.js",
             ],
             templates: [
+                'myuw/templates/handlebars/card/schedule/course_sche_col_days.html',
+                'myuw/templates/handlebars/card/schedule/course_sche_col_bldg.html',
                 'myuw/templates/handlebars/card/summary/section_panel.html',
                 'myuw/templates/handlebars/card/summary/schedule.html',
                 'myuw/templates/handlebars/card/summary/schedule_section.html'
@@ -53,6 +55,8 @@ describe('SummaryScheduleCard', function(){
                 "myuw/static/js/card/summary/schedule.js",
             ],
             templates: [
+                'myuw/templates/handlebars/card/schedule/course_sche_col_days.html',
+                'myuw/templates/handlebars/card/schedule/course_sche_col_bldg.html',
                 'myuw/templates/handlebars/card/summary/section_panel.html',
                 'myuw/templates/handlebars/card/summary/schedule.html',
                 'myuw/templates/handlebars/card/summary/schedule_section.html'
@@ -93,6 +97,8 @@ describe('SortBySummerSubTerm', function(){
             "myuw/static/js/card/summary/schedule.js",
         ],
         templates: [
+            'myuw/templates/handlebars/card/schedule/course_sche_col_days.html',
+            'myuw/templates/handlebars/card/schedule/course_sche_col_bldg.html',
             'myuw/templates/handlebars/card/summary/section_panel.html',
             'myuw/templates/handlebars/card/summary/schedule.html',
             'myuw/templates/handlebars/card/summary/schedule_section.html'

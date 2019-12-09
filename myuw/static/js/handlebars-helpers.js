@@ -486,7 +486,7 @@ Handlebars.registerHelper('not_empty', function(array1, array2, options) {
 });
 
 Handlebars.registerHelper('if_mobile', function() {
-    return (is_mobile) ? options.fn(this) : options.inverse(this);
+    return (window.is_mobile) ? options.fn(this) : options.inverse(this);
 });
 
 Handlebars.registerHelper('protocol', function(url) {
@@ -494,5 +494,5 @@ Handlebars.registerHelper('protocol', function(url) {
 });
 
 Handlebars.registerHelper('static', function(path) {
-    return static_url + path;
+    return window.static_url + path;
 });

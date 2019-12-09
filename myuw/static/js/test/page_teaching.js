@@ -24,6 +24,8 @@ describe("TeachingPage", function() {
                 'myuw/templates/handlebars/card/instructor_schedule/course_content.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_section.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/course_class_list.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/class_website.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_sche_panel.html',
                 'myuw/templates/handlebars/card/instructor_schedule/secondaries.html',
                 'myuw/templates/handlebars/card/instructor_schedule/secondary_section_panel.html',
@@ -82,7 +84,7 @@ describe("TeachingPage", function() {
         assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
         assert.equal($('div[id="TeachingResourcesCard"]')[0].getAttribute("style"), null);
     });
-    
+
     it('Mobile for billsea', function() {
         window.innerWidth = 767;
         Teaching.make_html();
@@ -90,10 +92,10 @@ describe("TeachingPage", function() {
         assert.equal($('h2[id="main-content-label"]').length, 1);
         assert.equal($('div[id="InstructorCourseCards"]').length, 1);
         assert.equal($('div[id="InstructorCourseCards"]')[0].getAttribute("style"), null);
-        
+
         assert.equal($('div[id="TeachingResourcesCard"]').length, 1);
         assert.equal($('div[id="TeachingResourcesCard"]')[0].getAttribute("style"), null);
-        
+
         assert.equal($('div[id="teaching_accounts_cards"]').length, 1);
         assert.equal($('div[id="teaching_accounts_cards"]').contents().length, 0);
     });
