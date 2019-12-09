@@ -715,4 +715,21 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe('if_mobile', function(){
+        var template = Handlebars.compile("{{#if_mobile}}Is mobile{{else}}Is not mobile{{/if_mobile}}");
+        var output = template();
+        assert.equal(output, 'Is not mobile');
+    });
+
+    describe('protocol', function(){
+        var template = Handlebars.compile("{{protocol 'test.edu/img/test.png'}}");
+        var output = template();
+        assert.equal(output, 'about://test.edu/img/test.png');
+    });
+
+    describe('static', function(){
+        var template = Handlebars.compile("{{static '/img/test.png'}}");
+        var output = template();
+        assert.equal(output, 'http://static/path/img/test.png');
+    });
 });

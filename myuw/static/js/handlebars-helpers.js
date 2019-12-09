@@ -485,7 +485,7 @@ Handlebars.registerHelper('not_empty', function(array1, array2, options) {
     return options.inverse(this);
 });
 
-Handlebars.registerHelper('if_mobile', function() {
+Handlebars.registerHelper('if_mobile', function(options) {
     return (window.is_mobile) ? options.fn(this) : options.inverse(this);
 });
 

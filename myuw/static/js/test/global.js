@@ -38,7 +38,7 @@ var Environment = {
         // set up client environment
         window.user = Environment._get_user(config);
         window.is_mobile = false;
-        window.static_url = '';
+        window.static_url = 'http://static/path';
 
         // default test term
         window.term = {};
