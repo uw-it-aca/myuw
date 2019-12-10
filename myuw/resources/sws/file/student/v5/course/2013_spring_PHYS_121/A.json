@@ -1,8 +1,49 @@
 {
-	"GradingSystem":"standard",
-	"CourseTitle":"MECHANICS",
-	"Auditors":"0",
-	"FinalExam":
+    "TimeMaskException": false,
+    "BlockRegistrationChildren": [],
+    "BlockRegistrationParents": [],
+    "EOS_CID": null,
+    "IsIndependentStart": false,
+    "PrimaryLMS": null,
+    "LMSOwnership": null,
+    "OnlineLearningType": {
+        "Description": "No online learning component",
+        "Code": "00"},
+    "StartDate": "",
+    "SecondaryGradingOption": false,
+    "SectionType": "lecture",
+    "ServiceLearning": false,
+    "ResearchCredit": false,
+    "MinimumTermCredit": "5.0",
+    "MaximumTermCredit": "",
+    "MaximumCredit": "",
+    "SameVariableContentAs": [],
+    "CourseHasVariableContent": false,
+    "JointSections": [],
+    "AddCodeRequired": false,
+    "FeeType": "01",
+    "FeeBudget": "069372",
+    "FeeAmount": "40.0",
+    "Curriculum": {
+        "TimeScheduleLinkAbbreviation": "phys",
+        "CollegeName": "ARTS & SCI",
+        "DepartmentAbbreviation": "PHYS"
+    },
+    "ClassWebsiteUrl": null,
+    "CreditControl": "fixed credit",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Description": null,
+        "Code": null
+    },
+    "EndDate": "",
+    "GradingSystem":"standard",
+    "CourseTitle":"MECHANICS",
+    "HonorsCourse": false,
+    "InstituteName": null,
+    "Metadata": "SectionSourceKey=SDB;",
+    "Auditors":"0",
+    "FinalExam":
 	{
 		"Building":"",
 		"MeetingStatus":"0",
@@ -22,10 +63,6 @@
 	},
 	"CourseDescription":"Basic principles of mechanics and experiments in mechanics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 114 and PHYS 121. Prerequisite: either MATH 124 or MATH 134, which may be taken concurrently; recommended: one year high school physics. Offered: AWSpS.",
 	"LimitEstimateEnrollmentIndicator":"limit",
-	"Curriculum":
-	{
-		"TimeScheduleLinkAbbreviation":"phys"
-	},
 	"HonorsCourse":false,
 	"Term":
 	{
@@ -35,8 +72,12 @@
 	},
 	"LimitEstimateEnrollment":"220",
 	"CourseTitleLong":"MECHANICS",
-	"DuplicateEnrollmentAllowed":false,
+	"DuplicateEnrollmentAllowed":true,
 	"CourseCampus":"Seattle",
+    "SelfRegistrationAllowed": true,
+    "StudentCreditHours": " 955.0",
+    "LimitEstimateEnrollmentIndicator": "limit",
+
 	"Registrations":
 	{
 		"CurriculumAbbreviation":"PHYS",

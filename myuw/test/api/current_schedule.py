@@ -33,9 +33,6 @@ class TestSchedule(MyuwApiTest):
             '?s=research/physics_astronomy'
         )
 
-        train = self.get_section(data, 'TRAIN', '101', 'A')
-        self.assertNotIn('canvas_url', train)
-
     def test_none_current_term(self):
         response = self.get_current_schedule_res('none')
         self.assertEquals(response.status_code, 404)

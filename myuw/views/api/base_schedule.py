@@ -4,8 +4,8 @@ from myuw.util.thread import Thread
 from operator import itemgetter
 from restclients_core.exceptions import InvalidNetID
 from myuw.dao.building import get_buildings_by_schedule
-from myuw.dao.canvas import (get_canvas_active_enrollments,
-                             canvas_course_is_available)
+from myuw.dao.canvas import (
+    get_canvas_active_enrollments, set_section_canvas_course_urls)
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.pws import get_person_of_current_user
@@ -63,11 +63,6 @@ class StudClasSche(ProtectedAPI):
         return self.json_response(resp_data)
 
 
-def set_course_url(section_data, enrollment):
-    if canvas_course_is_available(enrollment.course_id):
-        section_data["canvas_url"] = enrollment.course_url
-
-
 def load_schedule(request, schedule, summer_term=""):
     json_data = schedule.json_data()
 
@@ -80,20 +75,20 @@ def load_schedule(request, schedule, summer_term=""):
         if enrollment is not None:
             pce_sections = enrollment.unf_pce_courses
     except Exception:
-        log_exception(
-            logger,
-            "find enrolled off term sections ({} {})".format(
-                schedule.term.quarter, schedule.term.year),
-            traceback.format_exc(chain=False))
-        pass
-
-    canvas_enrollments = {}
-    try:
-        canvas_enrollments = get_canvas_active_enrollments(request)
-    except Exception:
-        log_exception(logger, 'load_schedule',
+        log_exception(logger,
+                      "find enrolled off term sections ({} {})".format(
+                          schedule.term.quarter, schedule.term.year),
                       traceback.format_exc(chain=False))
         pass
+
+    if len(schedule.sections):
+        try:
+            set_section_canvas_course_urls(
+                get_canvas_active_enrollments(request), schedule)
+        except Exception:
+            log_exception(logger, 'get_canvas_active_enrollments',
+                          traceback.format_exc(chain=False))
+            pass
 
     section_index = 0
     course_url_threads = []
@@ -101,6 +96,11 @@ def load_schedule(request, schedule, summer_term=""):
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         section_index += 1
+
+        try:
+            section_data["canvas_url"] = section.canvas_course_url
+        except Exception:
+            pass
 
         section_data["color_id"] = section.color_id
 
@@ -136,14 +136,6 @@ def load_schedule(request, schedule, summer_term=""):
                 log_exception(logger, 'load_schedule',
                               traceback.format_exc(chain=False))
                 pass
-
-        try:
-            enrollment = canvas_enrollments[section.section_label()]
-            t = Thread(target=set_course_url, args=(section_data, enrollment))
-            course_url_threads.append(t)
-            t.start()
-        except KeyError:
-            pass
 
         # MUWM-596
         if section.final_exam and section.final_exam.building:
