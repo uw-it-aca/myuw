@@ -5,7 +5,6 @@ from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
 from uw_canvas.models import CanvasCourse, CanvasSection
 from restclients_core.exceptions import DataFailureException
-from myuw.dao import is_using_file_dao
 from myuw.dao.pws import get_regid_of_current_user
 
 logger = logging.getLogger(__name__)

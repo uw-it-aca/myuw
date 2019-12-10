@@ -51,11 +51,11 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(arctic['lib_subj_guide'],
                           'http://guides.lib.uw.edu/tacoma/art')
 
-        phys121a = self.get_section(data, 'PHYS' , '121', 'A')
+        phys121a = self.get_section(data, 'PHYS', '121', 'A')
         self.assertEquals(phys121a['canvas_url'],
                           'https://test.edu/courses/249652')
 
-        phys121ac = self.get_section(data, 'PHYS' , '121', 'AC')
+        phys121ac = self.get_section(data, 'PHYS', '121', 'AC')
         self.assertEquals(phys121ac['canvas_url'],
                           'https://test.edu/courses/249652')
 
