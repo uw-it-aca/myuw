@@ -1,9 +1,8 @@
 from django.test import TestCase
 from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls,
-    _get_secondary_section_label, canvas_course_is_available,
-    get_canvas_course_from_section, get_canvas_course_url, sws_section_label,
-    get_viewable_course_sections)
+    _get_secondary_section_label, get_canvas_course_from_section,
+    get_canvas_course_url, sws_section_label, get_viewable_course_sections)
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
 from myuw.dao.term import get_current_quarter
@@ -36,19 +35,19 @@ class TestCanvas(TestCase):
         set_section_canvas_course_urls(canvas_active_enrollments,
                                        schedule)
         section1 = schedule.sections[0]
-        self.assertEquals(section1.section_label,
+        self.assertEquals(section1.section_label(),
                           "2013,spring,PHYS,121/A")
         self.assertEquals(section1.canvas_course_url,
                           'https://test.edu/courses/249652')
 
         section2 = schedule.sections[1]
-        self.assertEquals(section2.section_label,
+        self.assertEquals(section2.section_label(),
                           "2013,spring,PHYS,121/AC")
         self.assertEquals(section2.canvas_course_url,
                           'https://test.edu/courses/249652')
 
         section3 = schedule.sections[2]
-        self.assertEquals(section3.section_label,
+        self.assertEquals(section3.section_label(),
                           "2013,spring,PHYS,121/AQ")
         self.assertEquals(section3.canvas_course_url,
                           'https://test.edu/courses/249652')

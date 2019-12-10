@@ -91,17 +91,10 @@ def load_schedule(request, schedule, summer_term=""):
             pass
 
     section_index = 0
-    course_url_threads = []
     json_data["has_eos_dates"] = False
     for section in schedule.sections:
         section_data = json_data["sections"][section_index]
         section_index += 1
-
-        try:
-            section_data["canvas_url"] = section.canvas_course_url
-        except Exception:
-            pass
-
         section_data["color_id"] = section.color_id
 
         if not section_data["section_type"]:
@@ -127,13 +120,18 @@ def load_schedule(request, schedule, summer_term=""):
                     section_data["is_ended"] = is_ended(request,
                                                         pce_course.end_date)
 
+        try:
+            section_data["canvas_url"] = section.canvas_course_url
+        except Exception:
+            pass
+
         # if section.is_primary_section:
         if section.sln:
             try:
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
             except Exception:
-                log_exception(logger, 'load_schedule',
+                log_exception(logger, 'get_subject_guide_by_section',
                               traceback.format_exc(chain=False))
                 pass
 
@@ -177,14 +175,12 @@ def load_schedule(request, schedule, summer_term=""):
                 meeting_index += 1
             except IndexError as ex:
                 pass
+
         if section_data["has_eos_dates"]:
             if not json_data["has_eos_dates"]:
                 json_data["has_eos_dates"] = True
             section_data["meetings"] = sort_pce_section_meetings(
                 section_data["meetings"])
-
-    for t in course_url_threads:
-        t.join()
 
     # MUWM-443
     json_data["sections"] = sorted(json_data["sections"],

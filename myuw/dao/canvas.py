@@ -32,8 +32,7 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule):
     """
     section_labels = set()
     for section in schedule.sections:
-        section.section_label = section.section_label()
-        section_labels.add(section.section_label)
+        section_labels.add(section.section_label())
 
     canvas_links = {}
     for enrollment in canvas_active_enrollments:
@@ -43,7 +42,7 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule):
 
     sws_labels = sorted(canvas_links.keys())
     for section in schedule.sections:
-        section_label = section.section_label
+        section_label = section.section_label()
         if (not section.is_ind_study() and
                 len(section.linked_section_urls)):
             section_label = _get_secondary_section_label(
@@ -76,15 +75,6 @@ def get_canvas_course_url(sws_section, person):
         return "error"
     if canvas_course:
         return canvas_course.course_url
-
-
-def canvas_course_is_available(canvas_id):
-    try:
-        course = Courses().get_course(canvas_id)
-        return course.workflow_state.lower() in ['available', 'concluded']
-    except DataFailureException as ex:
-        if ex.status == 404:
-            return False
 
 
 def sws_section_label(sis_id):

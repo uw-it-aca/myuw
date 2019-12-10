@@ -22,7 +22,6 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(data["term"]["year"], 2013)
         self.assertEquals(data["term"]["quarter"], 'Spring')
         self.assertEquals(len(data["sections"]), 5)
-
         phys = self.get_section(data, 'PHYS', '121', 'A')
 
         self.assertEquals(phys['canvas_url'],
@@ -51,6 +50,14 @@ class TestSchedule(MyuwApiTest):
         arctic = self.get_section(data, 'ARCTIC', '200', 'A')
         self.assertEquals(arctic['lib_subj_guide'],
                           'http://guides.lib.uw.edu/tacoma/art')
+
+        phys121a = self.get_section(data, 'PHYS' , '121', 'A')
+        self.assertEquals(phys121a['canvas_url'],
+                          'https://test.edu/courses/249652')
+
+        phys121ac = self.get_section(data, 'PHYS' , '121', 'AC')
+        self.assertEquals(phys121ac['canvas_url'],
+                          'https://test.edu/courses/249652')
 
     def test_jbothell_current_term(self):
         response = self.get_current_schedule_res('jbothell')
