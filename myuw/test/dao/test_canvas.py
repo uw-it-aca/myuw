@@ -1,7 +1,7 @@
 from django.test import TestCase
 from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls,
-    _get_secondary_section_label, get_canvas_course_from_section,
+    get_canvas_course_from_section,
     get_canvas_course_url, sws_section_label, get_viewable_course_sections)
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
@@ -14,16 +14,6 @@ from myuw.test import fdao_sws_override, get_request_with_user, get_request
 class TestCanvas(TestCase):
     def setUp(self):
         get_request()
-
-    def test_get_secondary_section_label(self):
-        lable_list = ['2013,spring,PHYS,121/AC',
-                      '2013,spring,PHYS,121/AQ',
-                      '2013,spring,TRAIN,100/A']
-        self.assertEquals(_get_secondary_section_label(
-            "2013,spring,PHYS,121/A", lable_list),
-            '2013,spring,PHYS,121/AC')
-        self.assertEquals(_get_secondary_section_label(
-            "2013,spring,PHYS,121/C", lable_list), None)
 
     def test_get_canvas_active_enrollments(self):
         req = get_request_with_user("eight")

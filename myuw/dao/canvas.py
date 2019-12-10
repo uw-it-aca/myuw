@@ -33,26 +33,16 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule):
     for section in schedule.sections:
         section_labels.add(section.section_label())
 
-    canvas_links = {}
+    canvas_links = {}  # sis_course_id: canvas course_url
     for enrollment in canvas_active_enrollments:
         (sws_label, inst_regid) = sws_section_label(enrollment.sis_section_id)
         if sws_label is not None and sws_label in section_labels:
-            canvas_links[sws_label] = enrollment.course_url
+            if enrollment.sis_course_id not in canvas_links:
+                canvas_links[enrollment.sis_course_id] = enrollment.course_url
 
-    sws_labels = sorted(canvas_links.keys())
     for section in schedule.sections:
-        section_label = section.section_label()
-        if (not section.is_ind_study() and
-                len(section.linked_section_urls)):
-            section_label = _get_secondary_section_label(
-                section_label, sws_labels)
-        section.canvas_course_url = canvas_links.get(section_label)
-
-
-def _get_secondary_section_label(primary_section_label, sws_labels):
-    for label in sws_labels:
-        if search(primary_section_label, label):
-            return label
+        section.canvas_course_url = canvas_links.get(
+            section.canvas_course_sis_id())
 
 
 def get_canvas_course_from_section(sws_section):
