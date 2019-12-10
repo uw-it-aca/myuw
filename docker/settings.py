@@ -79,6 +79,7 @@ TEMPLATES = [
                 'supporttools.context_processors.supportools_globals',
                 'supporttools.context_processors.has_less_compiled',
                 'supporttools.context_processors.has_google_analytics',
+                'myuw.context_processors.is_hybrid',
             ],
         },
     },

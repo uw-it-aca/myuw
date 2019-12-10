@@ -215,3 +215,23 @@ class TestMyuwNotice(TransactionTestCase):
         categorized = categorize_notices([notice])
         self.assertEqual(len(categorized), 1)
         self.assertEqual(categorized[0].location_tags, ['notice_banner'])
+
+    def test_target_group(self):
+        notice = MyuwNotice(title="Goo",
+                            content="Notice Content",
+                            notice_type="Banner",
+                            notice_category="MyUWNotice",
+                            start=get_datetime_with_tz(2018, 5, 8, 10),
+                            end=get_datetime_with_tz(2018, 5, 10, 10),
+                            target_group='u_astratst_myuw_test-support-admin')
+        notice.save()
+        request = get_request_with_user(
+            'bill', get_request_with_date("2018-05-09"))
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 1)
+        self.assertEqual(notices[0].title, "Goo")
+
+        request = get_request_with_user(
+            'jalum', get_request_with_date("2018-05-09"))
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 0)

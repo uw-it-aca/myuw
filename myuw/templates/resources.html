@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends is_hybrid|yesno:"base_hybrid.html,base.html" %}
 {% load set_context %}
 {% load static %}
 {% load compress %}
