@@ -37,7 +37,7 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 404)
         self.assertEquals(response.content, b'Data not found')
 
-    def test_eight_current_term(self):
+    def test_canvas_url(self):
         response = self.get_current_schedule_res('eight')
         self.assertEquals(response.status_code, 200)
 
@@ -58,6 +58,12 @@ class TestSchedule(MyuwApiTest):
         phys121ac = self.get_section(data, 'PHYS', '121', 'AC')
         self.assertEquals(phys121ac['canvas_url'],
                           'https://test.edu/courses/249652')
+
+        response = self.get_current_schedule_res('jpce')
+        data = json.loads(response.content)
+        self.assertEquals(len(data["sections"]), 5)
+        for sec_data in data["sections"]:
+            self.assertNotIn('canvas_url', sec_data)
 
     def test_jbothell_current_term(self):
         response = self.get_current_schedule_res('jbothell')
