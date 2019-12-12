@@ -68,7 +68,7 @@ class TestLibrary(TestCase):
                     section.section_id == 'A'):
                 self.assertEquals(
                     get_subject_guide_by_section(section),
-                    "%s?%s".format("http://guides.lib.uw.edu/friendly.php",
+                    "{}?{}".format("http://guides.lib.uw.edu/friendly.php",
                                    "s=research/physics_astronomy"))
 
             if (section.curriculum_abbr == 'PHYS' and
