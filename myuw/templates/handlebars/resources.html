@@ -8,7 +8,7 @@
                 <h3 class="myuw-heading-page">On this page</h3>
                 <ol class="resources-toc unstyled-list">
                     {{#each categories}}
-                    <li><a href="#{{ category_id }}">{{ category_name }}</a></li>
+                    <li><a href="#{{category_id}}">{{category_name}}</a></li>
                     {{/each}}
                 </ol>
             </div>
@@ -21,10 +21,10 @@
             {{#each categories}}
             <div class="row">
                 <div class="col-md-12">
-                    <h3 id="{{ category_id }}">{{ category_name }}</h3>
+                    <h3 id="{{category_id}}">{{category_name}}</h3>
 
                     <div class="uw-resources-columns">
-                    {{#each subcategories }}
+                    {{#each subcategories}}
                         <div class="uw-resources-canvas-wrapper">
                             <div class="myuw-canvas">
                                 {{> resource_content}}

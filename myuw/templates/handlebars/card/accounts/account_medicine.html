@@ -8,13 +8,13 @@
 
     {{#unless has_error}}
     <p>This password is for UW Medicine applications like Epic, ORCA, MINDscape, AMC network, etc.</p>
-    {{#if med_pw_expired }}
+    {{#if med_pw_expired}}
         <div class="pw-exp">
 	    <p class="pw-exp-date password-alert">Password expired on {{toFriendlyDate expires_med}}.
 		<a href="https://services.uwmedicine.org/passwordportal/login.htm" data-linklabel="Change UW Medicine Password" class="password-alert"><br>Change your password to regain access.</a>
             </p>
 	</div><!-- .pw-exp -->
-    {{ else }}
+    {{else}}
         <div class="card-badge clearfix">
             <div class="pull-left pw-exp">
                 <h4 class="pw-exp-date">Password expiration</h4>

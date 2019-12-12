@@ -7,25 +7,25 @@
     </div>
 
     {{#unless mini_card}}
-        {{> course_grading }}
+        {{> course_grading}}
     {{else}}
         {{#if allows_secondary_grading}}
             {{#if evaluation.eval_not_exist}}<div class="last">{{/if}}
-            {{> course_grading }}
+            {{> course_grading}}
             {{#if evaluation.eval_not_exist}}</div>{{/if}}
         {{/if}}
     {{/unless}}
 
     {{#unless mini_card}}
-        {{> course_eval }}
+        {{> course_eval}}
     {{else}}
         {{#unless evaluation.eval_not_exist}}
-            {{> course_eval }}
+            {{> course_eval}}
         {{/unless}}
     {{/unless}}
 
     {{#if linked_secondaries}}
-       {{> secondaries }}
+       {{> secondaries}}
     {{/if}}
 
 </script>
