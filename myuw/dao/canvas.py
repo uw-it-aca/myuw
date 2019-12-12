@@ -1,5 +1,4 @@
 import logging
-from re import search
 from uw_canvas.enrollments import Enrollments
 from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
@@ -37,8 +36,9 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule):
     for enrollment in canvas_active_enrollments:
         (sws_label, inst_regid) = sws_section_label(enrollment.sis_section_id)
         if sws_label is not None and sws_label in section_labels:
-            if enrollment.sis_course_id not in canvas_links:
-                canvas_links[enrollment.sis_course_id] = enrollment.course_url
+            sis_course_id = enrollment.sis_course_id
+            if sis_course_id not in canvas_links:
+                canvas_links[sis_course_id] = enrollment.course_url
 
     for section in schedule.sections:
         section.canvas_course_url = canvas_links.get(

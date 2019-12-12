@@ -42,6 +42,11 @@ class TestCanvas(TestCase):
         self.assertEquals(section3.canvas_course_url,
                           'https://test.edu/courses/249652')
 
+        section8 = schedule.sections[7]
+        self.assertEquals(section8.section_label(),
+                          "2013,spring,ARCTIC,200/A")
+        self.assertIsNone(section8.canvas_course_url)
+
     def test_get_canvas_course_url(self):
         person = Person()
         person.uwnetid = "javerage"
