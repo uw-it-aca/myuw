@@ -1,0 +1,9 @@
+{
+ "status":500,
+ "headers":{
+     "InnerExceptions":null,
+     "StackTrace":null,
+     "StatusCode":"500",
+     "StatusDescription":"<h1>Server Error (500)</h1>."
+     }
+}
