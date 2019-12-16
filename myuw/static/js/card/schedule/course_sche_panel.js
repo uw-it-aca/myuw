@@ -9,7 +9,7 @@ var CourseSchePanel = {
 
         c_section.netid = window.user.netid;
         if (c_section.meetings.length > 0) {
-            for (i = 0; i < c_section.meetings.length; i++) {
+            for (var i = 0; i < c_section.meetings.length; i++) {
                 c_section.meetings[i].curriculum_abbr = c_section.curriculum_abbr;
                 c_section.meetings[i].course_number = c_section.course_number;
                 c_section.meetings[i].section_id = c_section.section_id;
