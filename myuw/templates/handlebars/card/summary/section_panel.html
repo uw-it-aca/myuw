@@ -34,9 +34,9 @@
                                 {{#if ../under_disclosure}}
                                     <td class="course-section">
                                         {{#if @first}}
-                                            <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a class="pin_mini_card_{{@root.year}}_{{@root.quarter}} " href="/teaching/{{@root.year}},{{@root.quarter}},{{../index}}#{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}}" cabb="{{../curriculum_abbr}}" cnum="{{../course_number}}" sid="{{../section_id}}">{{../section_id}}</a></div>
+                                            <div class="section-id"><div class="c{{../color_id}} minirectangle" aria-hidden="true"></div><a class="pin_mini_card_{{@root.year}}_{{@root.quarter}} " href="/teaching/{{@root.year}},{{@root.quarter}},{{../index}}#{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}" cabb="{{curriculum_abbr}}" cnum="{{course_number}}" sid="{{section_id}}">{{section_id}}</a></div>
 
-                                            {{#if ../sln}}<span class="course-sln myuw-muted"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{get_quarter_abbreviation @root.quarter}}+{{@root.year}}&SLN={{../sln}}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{../curriculum_abbr}} {{../course_number}} {{../section_id}}">{{../sln}}</a></span>{{/if}}
+                                            {{#if ../sln}}<span class="course-sln myuw-muted"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{get_quarter_abbreviation @root.quarter}}+{{@root.year}}&SLN={{../sln}}" title="Time Schedule for SLN {{../sln}}" target="_blank" data-linklabel="SLN {{../sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{../sln}}</a></span>{{/if}}
                                         {{/if}}
                                     </td>
 
@@ -46,37 +46,37 @@
 
                                 {{#if eos_start_date}}
                                 <!-- Insert spanning header row, restart new TR -->
-                                        <th id="{{@root.year}}-{{@root.quarter}}-{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}}-meeting-{{index}}" colspan="4" scope="colgroup" class="meeting-dates">{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}</th>
+                                        <th id="{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}" colspan="4" scope="colgroup" class="meeting-dates">{{toMonthDay eos_start_date}}{{#unless start_end_same}} &ndash; {{toMonthDay eos_end_date}}{{/unless}}</th>
                                     </tr>
                                     <tr class="course-schedule-row">
                                 {{/if}}
 
 
                                 {{#if wont_meet}}
-                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{@root.year}}-{{@root.quarter}}-{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}}-meeting-{{index}}"{{/if}}>Class does not meet</td>
+                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>Class does not meet</td>
                                 {{else if days_tbd}}
-                                    <td colspan="2" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{@root.year}}-{{@root.quarter}}-{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}}-meeting-{{index}}"{{/if}}>Days and times to be arranged</td>
+                                    <td colspan="2" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>Days and times to be arranged</td>
                                 {{else if no_meeting}}
-                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{@root.year}}-{{@root.quarter}}-{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}}-meeting-{{index}}"{{/if}}>No classroom meeting: online learning</td>
+                                    <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>No classroom meeting: online learning</td>
                                 {{else}}
                                     {{> course_sche_col_days}}
                                 {{/if}}
 
                                 {{#unless no_meeting}}
                                     {{#if building_tbd}}
-                                        <td {{#if eos_start_date}}headers="location-{{@root.year}}-{{@root.quarter}}-{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}}-meeting-{{index}}"{{/if}} class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
+                                        <td {{#if eos_start_date}}headers="location-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}} class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
                                     {{else}}
                                         {{> course_sche_col_bldg}}
                                     {{/if}}
                                 {{/unless}}
 
-                                <td class="course-enrollment" {{#if eos_start_date}}headers="enrollment-{{@root.year}}-{{@root.quarter}}-{{toAnchorName ../curriculum_abbr}}-{{../course_number}}-{{../section_id}}"{{/if}}>
+                                <td class="course-enrollment" {{#if eos_start_date}}headers="enrollment-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}"{{/if}}>
                                     {{#if @first}}
                                         {{#if is_prev_term_enrollment}}0<!-- the current_enrollment value is of previous term -->{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                         {{else}}
                                             {{#unless ../current_enrollment}}0{{#unless ../is_independent_study}}&nbsp;of&nbsp;{{../limit_estimate_enrollment}}{{/unless}}
                                             {{else}}
-                                                <a target="_blank" href="/teaching/{{@root.year}},{{@root.quarter}},{{../curriculum_abbr}},{{../course_number}}/{{../section_id}}/students" title="View class list" class="course_class_list" rel="{{section_label}}">{{../current_enrollment}}{{#unless ../is_independent_study}}<span class="myuw-ratio-expanded"> of </span><span class="myuw-ratio-minimized" aria-hidden="true">/</span>{{../limit_estimate_enrollment}}{{/unless}}</a>
+                                                <a target="_blank" href="/teaching/{{@root.year}},{{@root.quarter}},{{curriculum_abbr}},{{course_number}}/{{section_id}}/students" title="View class list" class="course_class_list" rel="{{section_label}}">{{../current_enrollment}}{{#unless ../is_independent_study}}<span class="myuw-ratio-expanded"> of </span><span class="myuw-ratio-minimized" aria-hidden="true">/</span>{{../limit_estimate_enrollment}}{{/unless}}</a>
                                             {{/unless}}
                                         {{/if}}
                                     {{/if}}
