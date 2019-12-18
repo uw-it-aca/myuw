@@ -63,12 +63,20 @@ class TestLibrary(TestCase):
                     "http://guides.lib.uw.edu/friendly.php?s=research/pnw")
 
             # has subject guide link
-            if section.curriculum_abbr == 'PHYS' and\
-                    section.course_number == '121':
+            if (section.curriculum_abbr == 'PHYS' and
+                    section.course_number == '121' and
+                    section.section_id == 'A'):
                 self.assertEquals(
                     get_subject_guide_by_section(section),
-                    "%s?%s" % ("http://guides.lib.uw.edu/friendly.php",
-                               "s=research/physics_astronomy"))
+                    "{}?{}".format("http://guides.lib.uw.edu/friendly.php",
+                                   "s=research/physics_astronomy"))
+
+            if (section.curriculum_abbr == 'PHYS' and
+                    section.course_number == '121' and
+                    section.section_id == 'AQ'):
+                self.assertRaises(DataFailureException,
+                                  get_subject_guide_by_section,
+                                  section)
 
     def test_get_subject_guide_tacoma(self):
         req = get_request_with_user('eight',
