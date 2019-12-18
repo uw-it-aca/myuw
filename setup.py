@@ -34,7 +34,7 @@ setup(
         'django-aws-message>=1.5.1,<2.0',
         'UW-RestClients-Core>=1.2.1,<2.0',
         'UW-RestClients-Bookstore>=1.0.4,<2.0',
-        'UW-RestClients-Canvas<2.0',
+        'UW-RestClients-Canvas>=1.1.8,<2.0',
         'UW-RestClients-CoDa<2.0',
         'UW-RestClients-Grad<2.0',
         'UW-RestClients-GradePage<2.0',

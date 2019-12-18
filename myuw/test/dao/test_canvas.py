@@ -1,11 +1,12 @@
 from django.test import TestCase
 from myuw.dao.canvas import (
-    get_canvas_active_enrollments, canvas_course_is_available,
-    get_canvas_course_from_section, get_canvas_course_url, sws_section_label,
-    get_viewable_course_sections)
+    get_canvas_active_enrollments, set_section_canvas_course_urls,
+    get_canvas_course_from_section,
+    get_canvas_course_url, sws_section_label, get_viewable_course_sections)
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
 from myuw.dao.term import get_current_quarter
+from myuw.dao.registration import get_schedule_by_term
 from myuw.test import fdao_sws_override, get_request_with_user, get_request
 
 
@@ -14,27 +15,37 @@ class TestCanvas(TestCase):
     def setUp(self):
         get_request()
 
-    def test_crosslinks(self):
+    def test_get_canvas_active_enrollments(self):
         req = get_request_with_user("eight")
-        self.assertFalse(hasattr(req, "canvas_act_enrollments"))
-        data = get_canvas_active_enrollments(req)
+        schedule = get_schedule_by_term(req, get_current_quarter(req))
+
+        canvas_active_enrollments = get_canvas_active_enrollments(req)
         self.assertIsNotNone(req.canvas_act_enrollments)
 
-        physics = data['2013,spring,PHYS,121/A']
-        self.assertEquals(physics.course_url,
-                          'https://canvas.uw.edu/courses/249652')
+        set_section_canvas_course_urls(canvas_active_enrollments,
+                                       schedule)
+        section1 = schedule.sections[0]
+        self.assertEquals(section1.section_label(),
+                          "2013,spring,PHYS,121/A")
+        self.assertEquals(section1.canvas_course_url,
+                          'https://test.edu/courses/249652')
 
-        self.assertTrue(canvas_course_is_available(physics.course_id))
+        section2 = schedule.sections[1]
+        self.assertEquals(section2.section_label(),
+                          "2013,spring,PHYS,121/AC")
+        self.assertEquals(section2.canvas_course_url,
+                          'https://test.edu/courses/249652')
 
-        has_section_b = '2013,spring,TRAIN,100/B' in data
-        self.assertTrue(has_section_b)
+        section3 = schedule.sections[2]
+        self.assertEquals(section3.section_label(),
+                          "2013,spring,PHYS,121/AQ")
+        self.assertEquals(section3.canvas_course_url,
+                          'https://test.edu/courses/249652')
 
-        has_section_a = '2013,spring,TRAIN,100/A' in data
-        self.assertTrue(has_section_a)
-
-        train = data['2013,spring,TRAIN,100/A']
-        self.assertEquals(train.course_url,
-                          'https://canvas.uw.edu/courses/249650')
+        section8 = schedule.sections[7]
+        self.assertEquals(section8.section_label(),
+                          "2013,spring,ARCTIC,200/A")
+        self.assertIsNone(section8.canvas_course_url)
 
     def test_get_canvas_course_url(self):
         person = Person()

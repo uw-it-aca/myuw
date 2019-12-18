@@ -9,40 +9,40 @@ from myuw.dao.pws import get_regid_of_current_user
 logger = logging.getLogger(__name__)
 
 
-def get_canvas_active_enrollments(request):
-    if not hasattr(request, "canvas_act_enrollments"):
-        request.canvas_act_enrollments = _enrollments_dict_by_sws_label(
-            _get_canvas_active_enrollments_for_regid(
-                get_regid_of_current_user(request)))
-    return request.canvas_act_enrollments
-
-
-def _get_canvas_active_enrollments_for_regid(regid):
-    return Enrollments().get_enrollments_for_regid(
-        regid,
-        {'type': ['StudentEnrollment'],
-         'state': ['active']},
-        include_courses=False)
-
-
-def _enrollments_dict_by_sws_label(enrollments):
-    """
-    Returns active canvas enrollments for the current user.
-    Raises: DataFailureException
-    """
-    enrollments_dict = {}
-    for enrollment in enrollments:
-        (sws_label, inst_regid) = sws_section_label(enrollment.sis_section_id)
-        if sws_label is not None:
-            enrollments_dict[sws_label] = enrollment
-
-    return enrollments_dict
-
-
 def canvas_prefetch():
     def _method(request):
         return get_canvas_active_enrollments(request)
     return [_method]
+
+
+def get_canvas_active_enrollments(request):
+    if not hasattr(request, "canvas_act_enrollments"):
+        request.canvas_act_enrollments = (
+            Enrollments().get_enrollments_for_regid(
+                get_regid_of_current_user(request),
+                {'type': ['StudentEnrollment'], 'state': ['active']}))
+    return request.canvas_act_enrollments
+
+
+def set_section_canvas_course_urls(canvas_active_enrollments, schedule):
+    """
+    Set canvas_course_url in schedule.sections
+    """
+    section_labels = set()
+    for section in schedule.sections:
+        section_labels.add(section.section_label())
+
+    canvas_links = {}  # sis_course_id: canvas course_url
+    for enrollment in canvas_active_enrollments:
+        (sws_label, inst_regid) = sws_section_label(enrollment.sis_section_id)
+        if sws_label is not None and sws_label in section_labels:
+            sis_course_id = enrollment.sis_course_id
+            if sis_course_id not in canvas_links:
+                canvas_links[sis_course_id] = enrollment.course_url
+
+    for section in schedule.sections:
+        section.canvas_course_url = canvas_links.get(
+            section.canvas_course_sis_id())
 
 
 def get_canvas_course_from_section(sws_section):
@@ -64,15 +64,6 @@ def get_canvas_course_url(sws_section, person):
         return "error"
     if canvas_course:
         return canvas_course.course_url
-
-
-def canvas_course_is_available(canvas_id):
-    try:
-        course = Courses().get_course(canvas_id)
-        return course.workflow_state.lower() in ['available', 'concluded']
-    except DataFailureException as ex:
-        if ex.status == 404:
-            return False
 
 
 def sws_section_label(sis_id):
