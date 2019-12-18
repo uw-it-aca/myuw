@@ -40,6 +40,8 @@
         <link href="{% static 'css/huskyx.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/resources.less' %}" rel="stylesheet" type="text/less">
         <link href="{% static 'css/notices.less' %}" rel="stylesheet" type="text/less">
+        <!-- hybrid overrides -->
+        <link href="{% static 'css/hybrid.less' %}" rel="stylesheet" type="text/less">
         {% endcompress %}
 
        <!-- google fonts -->
@@ -78,7 +80,7 @@
     <body>
         {% csrf_token %}
         
-        <div class="myuw-body" style="border:solid 5px red;">
+        <div class="myuw-body">
             <div class="myuw-wrapper">
 
                 <!-- app_navigation -->
@@ -150,24 +152,6 @@
                 </div>
                 <!-- end message banner -->
                 {% endblock %}
-
-                {% if display_onboard_message %}
-		{% block mobile_tour_banner %}
-		<!-- Tour message banner (mobile only)-->
-		<div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="tour_messages_mobile_label" role="complementary">
-		    <div class="message-banner" style="margin-top:-17px;">
-		        <h2 class="sr-only" id="tour_messages_mobile_label">MyUW Announcements</h2>
-		            <div class="message-text myuw-wrapper">
-		                <div class="message">
-		                    <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal"> See MyUW at a glance </a></p>
-		                </div>
-		            </div>
-			<button id="mobile_banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message" aria-controls="tour_messages_mobile"><span aria-hidden="true">&times;</span></button>
-		    </div>
-		</div>
-		<!-- end message banner -->
-		{% endblock %}
-                {% endif %}
 
                 <div class="myuw-content">
                     <!-- app_content -->
