@@ -4,5 +4,5 @@
 def is_hybrid(request):
 
     return {
-        'is_hybrid': 'HTTP_MYUW_HYBRID' in request.META
+        'is_hybrid': 'MyUW_Hybrid/1.0' in request.META['HTTP_USER_AGENT']
     }
