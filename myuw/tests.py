@@ -13,7 +13,6 @@ from myuw.test.dao.building import TestBuildings
 from myuw.test.dao.category_links import TestCategoryLinks
 from myuw.test.dao.enrollment import TestDaoEnrollment
 from myuw.test.dao.finance import TestFinance
-from myuw.test.dao.canvas import TestCanvas
 from myuw.test.dao.card_display_dates import TestDisplayValues
 from myuw.test.dao.grad import TestDaoGrad
 from myuw.test.dao.hfs import TestHFS as TestDaoHFS
@@ -53,5 +52,3 @@ from myuw.test.views.test_api import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
 from myuw.test.speed import TestPageSpeeds
 from myuw.test.dao.visual_schedule import TestVisualSchedule
-from myuw.test.views.notice_admin import TestNoticeAdmin
-from myuw.test.dao.myuw_notice import TestMyuwNotice

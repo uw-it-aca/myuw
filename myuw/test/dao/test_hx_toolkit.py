@@ -1,8 +1,9 @@
 from datetime import datetime
 from django.test import TestCase
 from myuw.dao.affiliation import get_is_hxt_viewer
-from myuw.dao.hx_toolkit_dao import _get_week_between, _make_start_sunday, \
-    _get_phase_by_term
+from myuw.dao.hx_toolkit_dao import (
+    _get_week_between, _make_start_sunday, _get_phase_by_term,
+    get_article_links, get_article_of_week_by_request, get_week_by_request)
 from myuw.dao.term import get_current_quarter
 from myuw.test import (get_request_with_date, get_request_with_user,
                        get_request, fdao_uwnetid_override)
@@ -94,3 +95,13 @@ class TestHXTDao(TestCase):
         request = get_request_with_user('javg002',
                                         get_request_with_date("2017-09-18"))
         self.assertTrue(get_is_hxt_viewer(request)[5])
+
+    def test_get_article_links(self):
+        links = get_article_links()
+        self.assertEqual(len(links), 4)
+
+    def test_get_article_of_week_by_request(self):
+        request = get_request_with_user('javerage')
+        self.assertEqual(get_week_by_request(request), 3)
+        article = get_article_of_week_by_request(request)
+        self.assertIsNotNone(article)

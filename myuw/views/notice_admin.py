@@ -114,6 +114,7 @@ def _save_notice(request, context, notice_id=None):
         has_error = True
         context['content_error'] = True
 
+    target_group = request.POST.get('target_group')
     campus_list = request.POST.getlist('campus')
     affil_list = request.POST.getlist('affil')
     if not has_error:
@@ -123,13 +124,15 @@ def _save_notice(request, context, notice_id=None):
                                 notice_type=notice_type,
                                 notice_category=notice_category,
                                 start=start_date,
-                                end=end_date)
+                                end=end_date,
+                                target_group=target_group)
             for campus in campus_list:
                 setattr(notice, campus, True)
 
             for affil in affil_list:
                 setattr(notice, affil, True)
             notice.save()
+
         elif form_action == "edit":
             notice = MyuwNotice.objects.get(id=notice_id)
             notice.title = title
@@ -138,6 +141,7 @@ def _save_notice(request, context, notice_id=None):
             notice.notice_category = notice_category
             notice.start = start_date
             notice.end = end_date
+            notice.target_group = target_group
 
             # reset filters
             fields = MyuwNotice._meta.get_fields()

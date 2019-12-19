@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends is_hybrid|yesno:"base_hybrid.html,base.html" %}
 {% load static %}
 {% load compress %}
 {% load set_context %}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-
+    
     <div id="main-content" role="main" aria-labelledby="main-content-label"></div>
     <div id="static-links"></div>
 
