@@ -194,8 +194,6 @@ var Landing = {
         }
         if (window.user.student) {
             mobile_cards.push(TextbookCard);
-        }
-        if (window.user.student) {
             mobile_cards.push(FutureQuarterCard1);
             mobile_cards.push(SummerRegStatusCard1);
         }
