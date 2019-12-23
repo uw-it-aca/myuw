@@ -7,8 +7,8 @@
         "type": "TeacherEnrollment",
         "course_section_id": 225705,
         "course_id": 149650,
-        "sis_course_id": "2013-spring-TRAIN-100-B",
-        "sis_section_id": "2013-spring-TRAIN-100-B--",
+        "sis_course_id": "2013-spring-TRAIN-101-A",
+        "sis_section_id": "2013-spring-TRAIN-101-AA",
         "html_url": "https://test.edu/courses/149650/users/496168",
         "user": {
             "login_id": "eight",
