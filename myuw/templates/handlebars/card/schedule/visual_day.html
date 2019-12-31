@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "visual_schedule_card_day" %}
+{% verbatim %}
+<script id="visual_schedule_card_day" type="text/x-handlebars-template">
 {{#each meetings}}
     <div>
     {{#unless is_meeting}}
@@ -16,7 +16,7 @@
 		Room TBD
 		{{else}}
 		{{#if latitude}}
-		<a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building }})&z=18" class="show_visual_map" rel="{{building}}" data-linklabel="{{ building }} - Google Maps">
+		<a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building}})&z=18" class="show_visual_map" rel="{{building}}" data-linklabel="{{building}} - Google Maps">
 		    {{/if}}
 		    {{building}} {{room}}
 		    {{#if latitude}}</a>{{/if}}
@@ -28,4 +28,5 @@
    </div>
 {{/each}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

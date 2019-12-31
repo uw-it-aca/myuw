@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_course_card_content_panel" %}
+{% verbatim %}
+<script id="instructor_course_card_content_panel" type="text/x-handlebars-template">
 
     <div id="instructor_sche_on_course_card{{index}}">
     </div>
@@ -7,25 +7,26 @@
     </div>
 
     {{#unless mini_card}}
-        {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+        {{> course_grading}}
     {{else}}
         {{#if allows_secondary_grading}}
             {{#if evaluation.eval_not_exist}}<div class="last">{{/if}}
-            {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+            {{> course_grading}}
             {{#if evaluation.eval_not_exist}}</div>{{/if}}
         {{/if}}
     {{/unless}}
 
     {{#unless mini_card}}
-        {% include "handlebars/card/instructor_schedule/course_eval.html" %}
+        {{> course_eval}}
     {{else}}
         {{#unless evaluation.eval_not_exist}}
-            {% include "handlebars/card/instructor_schedule/course_eval.html" %}
+            {{> course_eval}}
         {{/unless}}
     {{/unless}}
 
     {{#if linked_secondaries}}
-       {% include "handlebars/card/instructor_schedule/secondaries.html" %}
+       {{> secondaries}}
     {{/if}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

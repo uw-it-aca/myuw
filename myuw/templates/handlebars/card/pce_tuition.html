@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "pce_tuition_card" %}
+{% verbatim %}
+<script id="pce_tuition_card" type="text/x-handlebars-template">
     <div class="row">
         <div class="col-xs-12">
             <div class="card">
@@ -33,7 +33,7 @@
                                 <div class="col-xs-6">
                                     <div class="card-badge">
                                         <span class="card-badge-label">You owe</span>
-                                        <span class="card-badge-value text-danger">${{ pce_accbalance }}</span>
+                                        <span class="card-badge-value text-danger">${{pce_accbalance}}</span>
                                         <span class="card-badge-label"><a href="http://f2.washington.edu/fm/sfs/tuition/payment">Pay tuition</a></span>
                                     </div>
                                 </div>
@@ -49,9 +49,9 @@
 
                         <div class="card-related-messages">
                             <p><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" data-linklabel="Tuition Release Authorization">Authorize release of your tuition account and financial aid information</a> to your parents or other third parties.</p>
-                            {{ #each pce_tuition_dup }}
-                            <p>{{{ this.notice_content }}}</p>
-                            {{ /each }}
+                            {{#each pce_tuition_dup}}
+                            <p>{{{this.notice_content}}}</p>
+                            {{/each}}
                         </div>
                     </div>
                    <div class="col-xs-1 nav-card-arrow" style="text-align:center;">
@@ -61,4 +61,5 @@
             </div>
        </div>
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

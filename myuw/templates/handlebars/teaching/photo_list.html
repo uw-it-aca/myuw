@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "photo_class_list" %}
+{% verbatim %}
+<script id="photo_class_list" type="text/x-handlebars-template">
 
 <div class="container">
 
@@ -8,21 +8,21 @@
             <div class="myuw-card-wrapper">
                 {{#if available_sections}}
                     <div style="float:right;">
-                        <select id="available_sections">{{#each available_sections}}<option value="{{ section_id }}">{{ name }}</option>{{/each}}</select>
+                        <select id="available_sections">{{#each available_sections}}<option value="{{section_id}}">{{name}}</option>{{/each}}</select>
                     </div>
                 {{/if}}
-                <h3 class="scheduleHeading myuw-card-title">{{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}, {{ toTitleCase quarter }} {{ year }}</h3>
+                <h3 class="scheduleHeading myuw-card-title">{{sections.0.curriculum_abbr}} {{sections.0.course_number}} {{sections.0.section_id}}, {{toTitleCase quarter}} {{year}}</h3>
 
                 <div class="course-meta">
-                    <span class="myuw-meta">SLN {{ sections.0.sln }}</span>
+                    <span class="myuw-meta">SLN {{sections.0.sln}}</span>
                 </div>
 
                 {{#if current}}
                     {{#if sections.0.current_student_majors}}
                         <div id="course_stats_popover" class="myuw-minicard-overlay myuw-minicard-overlay-bottom-right">
-                            <h4 class="myuw-card-heading">Statistics for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}</h4>
-                            <p>{{sections.0.current_student_majors.0.percent_students}}% of your students are {{ toTitleCase sections.0.current_student_majors.0.major }} majors.</p>
-                            <a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ sections.0.curriculum_abbr }}-{{ sections.0.course_number }}-{{ sections.0.section_id }}" target="_blank" data-linklabel="Course Dashboard for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}" rel="{{year}}_{{quarter}}_{{ sections.0.curriculum_abbr }}_{{ sections.0.course_number }}_{{ sections.0.section_id }}">View more statistics for {{ sections.0.curriculum_abbr }} {{ sections.0.course_number }} {{ sections.0.section_id }}</a>
+                            <h4 class="myuw-card-heading">Statistics for {{sections.0.curriculum_abbr}} {{sections.0.course_number}} {{sections.0.section_id}}</h4>
+                            <p>{{sections.0.current_student_majors.0.percent_students}}% of your students are {{toTitleCase sections.0.current_student_majors.0.major}} majors.</p>
+                            <a href="https://coda.uw.edu/#{{year}}-{{quarter}}-{{sections.0.curriculum_abbr}}-{{sections.0.course_number}}-{{sections.0.section_id}}" target="_blank" data-linklabel="Course Dashboard for {{sections.0.curriculum_abbr}} {{sections.0.course_number}} {{sections.0.section_id}}" rel="{{year}}_{{quarter}}_{{sections.0.curriculum_abbr}}_{{sections.0.course_number}}_{{sections.0.section_id}}">View more statistics for {{sections.0.curriculum_abbr}} {{sections.0.course_number}} {{sections.0.section_id}}</a>
                         </div>
                     {{/if}}
                 {{/if}}
@@ -98,26 +98,26 @@
                         <tbody id="student_sort">
                             {{#each sections.0.registrations}}
                             <tr id="student_{{regid}}" {{#if is_joint}}class="joint"{{/if}}>
-                                <td>{{ student_number }}</td>
-                                <td>{{ netid }}</td>
-                                <td>{{ surname }}</td>
-                                <td>{{ first_name }}</td>
+                                <td>{{student_number}}</td>
+                                <td>{{netid}}</td>
+                                <td>{{surname}}</td>
+                                <td>{{first_name}}</td>
                                 {{#if ../sections.0.has_joint}}
                                     <td class="joint-col">
                                         {{#if is_joint}}
-                                        {{ joint_curric }} {{ joint_course_number }} {{ joint_section_id }}
+                                        {{joint_curric}} {{joint_course_number}} {{joint_section_id}}
                                         {{else}}
-                                        {{ ../sections.0.curriculum_abbr }} {{ ../sections.0.course_number }} {{ ../sections.0.section_id }}
+                                        {{../sections.0.curriculum_abbr}} {{../sections.0.course_number}} {{../sections.0.section_id}}
                                         {{/if}}
                                     </td>
                                 {{/if}}
                                 {{#if @root.sections.0.has_linked_sections}}
-                                    <td>{{ linked_sections }}</td>
+                                    <td>{{linked_sections}}</td>
                                 {{/if}}
                                 <td>
-                                    {{#if is_auditor}}Audit{{else}}{{ credits }}{{/if}}
+                                    {{#if is_auditor}}Audit{{else}}{{credits}}{{/if}}
                                 </td>
-                                <td>{{ucfirst class_level }}</td>
+                                <td>{{ucfirst class_level}}</td>
                                 <td>{{#each majors}}
                                         {{#if name}}
                                         {{ucfirst name}}{{#unless @last}},&nbsp;{{/unless}}
@@ -125,8 +125,8 @@
                                     {{/each}}
                                 </td>
                                 {{#if @root.sections.0.is_independent_start}}
-                                <td>{{ start_date }}</td>
-                                <td>{{ end_date }}</td>
+                                <td>{{start_date}}</td>
+                                <td>{{end_date}}</td>
                                 {{/if}}
                                 <td><a href="mailto:{{email}}" title="Email {{name}} {{surname}}"><i class="fa fa-envelope-o" aria-hidden="true"></i><span class="sr-only">{{email}}</span></a></td>
                             </tr>
@@ -142,10 +142,10 @@
 
                 <ol class="unstyled-list grid-view">
                     {{#each sections.0.registrations}}
-                        <li id="studentphoto_{{ regid }}" {{#if is_joint}}class="joint"{{/if}}>
+                        <li id="studentphoto_{{regid}}" {{#if is_joint}}class="joint"{{/if}}>
                             <div class="myuw-photo-list-img-wrapper">
                                 <img class="classlist-photo myuw-photo-list-image"
-                                 src="/photo/{{ url_key }}" width="120px" height="150px">
+                                 src="/photo/{{url_key}}" width="120px" height="150px">
                              </div>
                             <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
                         </li>
@@ -156,4 +156,5 @@
         </div>
     </div>
 </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

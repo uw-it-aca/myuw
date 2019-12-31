@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "future" %}
+{% verbatim %}
+<script id="future" type="text/x-handlebars-template">
 
 <div class="container future-quarter-container">
     <h2 id="main" class="heading-page">Preview {{titleFormatTerm term}}</h2>
@@ -8,4 +8,5 @@
 	<div id="landing_accounts" class="col-md-4"><!-- accounts column --></div>
     </div>
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

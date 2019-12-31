@@ -1,11 +1,12 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "card_is_loading" %}
+{% verbatim %}
+<script id="card_is_loading" type="text/x-handlebars-template">
   <div class="row">
     <div class="col-xs-12">
         <div class="card" style="text-align:center; min-height:60px;">
-            <!--<h3>Loading {{ card_name }} card ...</h3>-->
+            <!--<h3>Loading {{card_name}} card ...</h3>-->
             <div style="line-height:60px;"><i class="fa fa-cog fa-spin" style="color:#ddd;"></i></div>
         </div>
     </div>
   </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

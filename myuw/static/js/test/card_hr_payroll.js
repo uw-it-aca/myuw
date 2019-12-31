@@ -11,6 +11,7 @@ describe('HRPayrollCard', function(){
                     "myuw/static/js/card/accounts/hr_payroll_card.js"
                 ],
                 templates: [
+                    'myuw/templates/handlebars/card/workday_link.html',
                     'myuw/templates/handlebars/card/accounts/hr_payroll_card.html'
                 ]
             });

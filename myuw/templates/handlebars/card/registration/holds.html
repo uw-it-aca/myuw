@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "reg_holds_tmpl" %}
+{% verbatim %}
+<script id="reg_holds_tmpl" type="text/x-handlebars-template">
 
 <div class="card-badge-container" title="Registration Holds">
 
@@ -7,7 +7,7 @@
         <div class="reg-holds-container">
             <div class="clearfix">
                 {{!-- Show left label during non-peak load time. Else align the HOLD link to the left --}}
-                {{#unless myplan_peak_load }}
+                {{#unless myplan_peak_load}}
                 <div class="pull-left">
                     <h4 class="card-badge-label pull-left">Holds</h4>
                 </div>
@@ -24,9 +24,9 @@
                            aria-expanded="false"
                            data-toggle="collapse"
                            data-expanded-title="Collapse and hide holds details"
-                           data-expanded-text='Hide {{ hold_count }} {{ pluralize hold_count "hold" "holds" }}'
+                           data-expanded-text='Hide {{hold_count}} {{pluralize hold_count "hold" "holds"}}'
                            data-hidden-title="Expand and show holds details"
-                           data-hidden-text='{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}'>{{ hold_count }} {{ pluralize hold_count "hold" "holds" }}</a>
+                           data-hidden-text='{{hold_count}} {{pluralize hold_count "hold" "holds"}}'>{{hold_count}} {{pluralize hold_count "hold" "holds"}}</a>
                     </div>
                 </div>
             </div>
@@ -40,9 +40,9 @@
                     <div class="reg-holds">
                         <h4 class="sr-only">Registration and/or Transcript Holds</h4>
                         <ul class="reg-holds-list">
-                            {{#each reg_holds }}
-                                <li>{{{ notice_content }}}</li>
-                            {{/each }}
+                            {{#each reg_holds}}
+                                <li>{{{notice_content}}}</li>
+                            {{/each}}
                         </ul>
                     </div>
                 </div>
@@ -53,4 +53,5 @@
 
 </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

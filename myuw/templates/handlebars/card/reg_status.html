@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "reg_status_card" %}
+{% verbatim %}
+<script id="reg_status_card" type="text/x-handlebars-template">
 
 <div id="RegStatusCard" data-name="RegistrationCard"
      data-type="card" data-identifier="{{reg_next_quarter}}{{reg_next_year}}">
@@ -10,12 +10,12 @@
 
             {{#if est_reg_date}}
                 {{#unless is_my_1st_reg_day}}
-                    {{> notice_est_reg_date }}
+                    {{> notice_est_reg_date}}
                 {{/unless}}
             {{/if}}
 
             {{#if hold_count}}
-                {{> reg_holds }}
+                {{> reg_holds}}
             {{/if}}
 
 
@@ -25,7 +25,7 @@
                         <div class="card-badge clearfix">
                             <div>
                                 <div class="pull-left" style="display:inline-block;">
-                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_majors "Major" "Majors"}} Beginning<br>{{@root.reg_next_quarter}}</h4>
+                                    <h4 class="card-badge-label">{{pluralize_by_size ../pending_majors "Major" "Majors"}} Beginning<br>{{@root.reg_next_quarter}}</h4>
                                 </div>
                                 <div class="pull-right">
                                     <div class="card-badge-value">
@@ -46,7 +46,7 @@
                         <div class="card-badge clearfix">
                             <div>
                                 <div class="pull-left" style="display:inline-block;">
-                                    <h4 class="card-badge-label">{{ pluralize_by_size ../pending_minors "Minor" "Minors"}} Beginning<br>{{@root.reg_next_quarter}}</h4>
+                                    <h4 class="card-badge-label">{{pluralize_by_size ../pending_minors "Minor" "Minors"}} Beginning<br>{{@root.reg_next_quarter}}</h4>
                                 </div>
                                 <div class="pull-right">
                                     <div class="card-badge-value">
@@ -62,7 +62,7 @@
 
 
             {{#if plan_data}}
-                {{> in_myplan }}
+                {{> in_myplan}}
             {{/if}}
 
             {{#if est_reg_date}}
@@ -71,18 +71,19 @@
                 {{/if}}
             {{/if}}
 
-            {{> reg_resources }}
+            {{> reg_resources}}
 
-            {{#if finaid_notices }}
-                {{> reg_finaid_notices }}
+            {{#if finaid_notices}}
+                {{> reg_finaid_notices}}
             {{/if}}
 
             {{#if plan_data}}
-                {{> myplan_courses }}
+                {{> myplan_courses}}
             {{/if}} 
         </div>
     </div>
 </div>
 
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

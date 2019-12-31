@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "events_card_content" %}
+{% verbatim %}
+<script id="events_card_content" type="text/x-handlebars-template">
     <div aria-labelledby="my_events" data-name="EventsCard" data-type="card">
         <div class="card">
             <div class="fade-in myuw-events">
@@ -17,7 +17,7 @@
                                 {{else}}
                                     <span class="myuw-events-time">{{start_time}}</span>&nbsp;
                                 {{/if}}
-                                <span class="myuw-events-title"><a href="{{ event_url }}">{{summary}}</a></span>
+                                <span class="myuw-events-title"><a href="{{event_url}}">{{summary}}</a></span>
                             </div>
                             {{#if event_location}}
                                 <span class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{event_location}}</em></span>
@@ -36,7 +36,7 @@
                                 {{#each grouped_events_hide}}
                                     <li class="myuw-events-list-item">
                                         <span class="myuw-events-date">{{acal_page_date_format start_date end_date}}</span>
-                                        <span class="myuw-events-time">{{start_time}}</span>&nbsp;<span class="myuw-events-title"><a href="{{ event_url }}">{{summary}}</a></span>
+                                        <span class="myuw-events-time">{{start_time}}</span>&nbsp;<span class="myuw-events-title"><a href="{{event_url}}">{{summary}}</a></span>
                                         {{#if event_location}}
                                             <span class="myuw-events-location"><em><i class="fa fa-location-arrow"></i> {{event_location}}</em></span>
                                         {{else}}
@@ -49,13 +49,13 @@
                                 <div class="myuw-events-calendar-link-sml"> See all events from:
                                     <ul class="myuw-events-cal-list">
                                         {{#each cal_links}}
-                                            <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{title}}</a></li>
+                                            <li class="myuw-events-cal-list-item"><a href="{{url}}">{{title}}</a></li>
                                         {{/each}}
                                     </ul>
                                 </div>
                             {{else}}
                                 {{#each cal_links}}
-                                    <div class="myuw-events-calendar-link"> See all events from <a href="{{ url }}">{{title}}</a> calendar.</div>
+                                    <div class="myuw-events-calendar-link"> See all events from <a href="{{url}}">{{title}}</a> calendar.</div>
                                 {{/each}}
                             {{/if}}
                         </div>
@@ -76,13 +76,13 @@
                                 <div class="myuw-events-calendar-link-sml"> See all events from:
                                     <ul class="myuw-events-cal-list">
                                         {{#each cal_links}}
-                                            <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{title}}</a></li>
+                                            <li class="myuw-events-cal-list-item"><a href="{{url}}">{{title}}</a></li>
                                         {{/each}}
                                     </ul>
                                 </div>
                             {{else}}
                                 {{#each cal_links}}
-                                    <div class="myuw-events-calendar-link"> See all events from <a href="{{ url }}">{{title}}</a> calendar.</div>
+                                    <div class="myuw-events-calendar-link"> See all events from <a href="{{url}}">{{title}}</a> calendar.</div>
                                 {{/each}}
                             {{/if}}
                     {{/if}}
@@ -93,12 +93,12 @@
                             No events in the next 14 days. <strong>{{active_events}}</strong> {{pluralize active_events 'event' 'events'}} from {{active_count}} calendars in the next 30 days.
                             <ul class="myuw-events-cal-list">
                                 {{#each active_name_url}}
-                                    <li class="myuw-events-cal-list-item"><a href="{{ url }}">{{title}}</a></li>
+                                    <li class="myuw-events-cal-list-item"><a href="{{url}}">{{title}}</a></li>
                                 {{/each}}
                             </ul>
                         </ div>
                     {{else}}
-                        <div class="myuw-events-calendar-link">No events in the next 14 days. <strong>{{active_events}}</strong> {{pluralize active_events 'event' 'events'}} from {{#each active_name_url}}<a href="{{ url }}">{{title}}</a>{{/each}} in the next 30 days.</div>
+                        <div class="myuw-events-calendar-link">No events in the next 14 days. <strong>{{active_events}}</strong> {{pluralize active_events 'event' 'events'}} from {{#each active_name_url}}<a href="{{url}}">{{title}}</a>{{/each}} in the next 30 days.</div>
                     {{/if}}
                     <!-- end if -->
                 {{/if}}
@@ -108,4 +108,5 @@
             </div>
         </div>
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

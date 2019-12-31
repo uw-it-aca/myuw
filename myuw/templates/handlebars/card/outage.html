@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "outage_card_content" %}
+{% verbatim %}
+<script id="outage_card_content" type="text/x-handlebars-template">
 
     <div class="card clearfix" data-name="OutageCard" data-type="card">
 	    <div class="position:relative;">
@@ -28,4 +28,5 @@
 			</div>
 		</div>
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

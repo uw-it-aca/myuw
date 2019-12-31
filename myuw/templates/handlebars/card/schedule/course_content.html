@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "course_card_content_panel" %}
+{% verbatim %}
+<script id="course_card_content_panel" type="text/x-handlebars-template">
 
 {{#if hide_course_details}}
     {{#if has_eval}}
@@ -9,7 +9,7 @@
 
     <div id="course_details{{index}}" class="collapse"
          aria-label="Additional course resources"
-         rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+         rel="{{curriculum_abbr}} {{course_number}} {{section_id}}"
          aria-hidden="true" aria-expanded="false"
          tabindex = "-1">
 
@@ -48,7 +48,7 @@
     {{#if instructors}}
         <div id="instructors{{index}}" class="collapse"
              aria-label="Course instructor information"
-             rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
+             rel="{{curriculum_abbr}} {{course_number}} {{section_id}}"
              tabindex="-1">
             <div id="course_instructor{{index}}">
             </div>
@@ -71,4 +71,5 @@
     {{/if}}
 {{/if}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

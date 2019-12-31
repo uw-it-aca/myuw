@@ -29,7 +29,6 @@ setup(
         'beautifulsoup4',
         'urllib3>1.24',
         'python-dateutil',
-        'django-templatetag-handlebars',
         'UW-Django-SAML2<2.0',
         'django-aws-message>=1.5.1,<2.0',
         'UW-RestClients-Core>=1.2.1,<2.0',

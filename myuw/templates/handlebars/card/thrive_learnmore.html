@@ -1,17 +1,18 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "thrive_learnmore" %}
+{% verbatim %}
+<script id="thrive_learnmore" type="text/x-handlebars-template">
             {{#if try_this}}
             <h4>Try This</h4>
-            <p>{{{ try_this }}}</p>
+            <p>{{{try_this}}}</p>
             {{/if}}
             {{#if urls}}
                 <h4>Learn More</h4>
                 <ul>
                 {{#each urls}}
                     <li>
-                        <a href="{{ href }}" target="_blank">{{ title }}</a>
+                        <a href="{{href}}" target="_blank">{{title}}</a>
                     </li>
                 {{/each}}
                 </ul>
             {{/if}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

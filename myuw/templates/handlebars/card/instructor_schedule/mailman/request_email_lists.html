@@ -1,10 +1,10 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "request_email_lists_tmpl" %}
+{% verbatim %}
+<script id="request_email_lists_tmpl" type="text/x-handlebars-template">
 
 
 <div class="myuw-modal modal-dialog" role="document">
     <div class="modal-content">
-        <form role="form" id="request_emaillist_form" method="POST">{% csrf_token %}
+        <form role="form" id="request_emaillist_form" method="POST">{% endverbatim %}{% csrf_token %}{% verbatim %}
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 
@@ -21,7 +21,7 @@
             </div>
             <div class="modal-body">
 
-            {{#if request_sent }}
+            {{#if request_sent}}
                 <div class="mailman-create-success">
                     <div class="text-center">
                         <strong class="text-success"><i class="fa fa-check" aria-hidden="true"></i> Request submitted</strong>
@@ -29,7 +29,7 @@
 
                     <p>Please note:</p>
                     <ul>
-                        <li>An email confirmation will be sent to {{ netid }}@uw.edu</li>
+                        <li>An email confirmation will be sent to {{netid}}@uw.edu</li>
                         <li>Mailing lists may take up to 24 hours to activate</li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@
                             <div class="radio">
                                 <label for="joint-section_joint_{{section_list.section_id}}">
                                     <input type="radio" name="section_joint_list" id="joint-section_joint_{{section_list.section_id}}" value="joint" checked />
-                                    {{ course_abbr }} {{course_number}} {{section_id}} + {{#each joint_sections}}{{ course_abbr }} {{ course_number }} {{ section_id }}{{#unless @last}} + {{/unless}}{{/each}}
+                                    {{course_abbr}} {{course_number}} {{section_id}} + {{#each joint_sections}}{{course_abbr}} {{course_number}} {{section_id}}{{#unless @last}} + {{/unless}}{{/each}}
                                 </label>
                                 <p class="help-block small">Mailing list address: {{joint_section_list.list_address}}@uw.edu</p>
                             </div>
@@ -52,7 +52,7 @@
                             <div class="radio">
                                 <label for="joint-section_single_{{section_list.section_id}}">
                                     <input type="radio" name="section_joint_list" id="joint-section_single_{{section_list.section_id}}" value="single" />
-                                    {{ course_abbr }} {{course_number}} {{section_id}}
+                                    {{course_abbr}} {{course_number}} {{section_id}}
                                 </label>
                                 <p class="help-block small">Mailing list address: {{section_list.list_address}}@uw.edu</p>
                             </div>
@@ -65,8 +65,8 @@
                     <div class="mailman_simple_create">
                         {{#unless section_list.list_exists}}
                             <p>
-                                <strong>Request a single email list for {{ course_abbr }} {{course_number}} {{section_id}}, {{ capitalizeString quarter }} {{ year }}.</strong>
-                                {{#unless no_secondary_section }}{{#unless has_lists}}
+                                <strong>Request a single email list for {{course_abbr}} {{course_number}} {{section_id}}, {{capitalizeString quarter}} {{year}}.</strong>
+                                {{#unless no_secondary_section}}{{#unless has_lists}}
                                 <br/>
                                 <span class="small">Need more email lists for this class? <a class="mailman_advanced_toggle" href="#">Request multiple email lists.</a></span>
                                 {{/unless}}{{/unless}}
@@ -83,7 +83,7 @@
                     {{/if}}
                 {{/unless}}
 
-                {{#unless no_secondary_section }}
+                {{#unless no_secondary_section}}
                     <!-- if there are secondary sections, Hide advanced view if no lists exist -->
 
                     <div class="mailman_advanced_create" {{#unless has_lists}}style="display:none"{{/unless}}>
@@ -119,11 +119,11 @@
                                                 <input type="checkbox" disabled="true" id="section_single_{{section_list.section_id}}">
                                             </td>
                                             <td>
-                                                <label class="text-muted" for="section_single_{{section_list.section_id}}">{{ course_abbr }} {{course_number}} {{section_list.section_id}}</label>
+                                                <label class="text-muted" for="section_single_{{section_list.section_id}}">{{course_abbr}} {{course_number}} {{section_list.section_id}}</label>
                                             </td>
                                             <td class="text-muted myuw-note">List already exists</td>
 
-                                        {{ else }}
+                                        {{else}}
                                             <td>
                                                 <input type="checkbox"
                                                        id="section_single_{{section_list.section_id}}"
@@ -134,7 +134,7 @@
                                             <td>
                                                 <label for="section_single_{{section_list.section_id}}"
                                                        title="primary section">
-                                                    {{ course_abbr }} {{course_number}} {{section_list.section_id}}
+                                                    {{course_abbr}} {{course_number}} {{section_list.section_id}}
                                                 </label>
                                             </td>
                                             <td></td>
@@ -173,7 +173,7 @@
                     </div>
 
 
-                   {{#unless has_lists }}
+                   {{#unless has_lists}}
                         <a class="mailman_simple_toggle"  style="display: none" href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back: request a single mailing list</a>
                     {{/unless}}
 
@@ -187,11 +187,12 @@
                 <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
                       rel="help" target="_blank" data-linklabel="Mailman Help" style="margin-right: 1em;">Mailman help</a>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                {{#unless request_sent }}
+                {{#unless request_sent}}
                 <button type="submit" class="btn btn-primary" form="request_emaillist_form" value="Create Mailing Lists">Submit</button>
                 {{/unless}}
             </div>
         </form>
     </div>
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

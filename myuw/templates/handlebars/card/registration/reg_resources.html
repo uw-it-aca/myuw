@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "reg_resources_tmpl" %}
+{% verbatim %}
+<script id="reg_resources_tmpl" type="text/x-handlebars-template">
 
     {{#if registration_is_open}}
     <div class="card-actions-wrapper">
@@ -95,7 +95,7 @@
         <li>
             <a target="_blank"
             {{#if plan_data}}
-                href="{{ plan_data.degree_audit_href }}"
+                href="{{plan_data.degree_audit_href}}"
             {{else}}
                 href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree"
             {{/if}}>Audit your degree (DARS)</a>
@@ -104,4 +104,5 @@
     </ul>
 </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}
