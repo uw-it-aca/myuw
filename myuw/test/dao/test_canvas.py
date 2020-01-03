@@ -64,7 +64,8 @@ class TestCanvas(TestCase):
         self.assertIsNotNone(req.canvas_act_enrollments)
         set_section_canvas_course_urls(canvas_active_enrollments,
                                        schedule, req)
-        self.assertIsNone(schedule.sections[0].canvas_course_url)
+        with self.assertRaises(AttributeError):
+            a = schedule.sections[0].canvas_course_url
 
     def test_get_canvas_course_url(self):
         person = Person()

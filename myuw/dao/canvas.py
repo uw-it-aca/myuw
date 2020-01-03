@@ -60,7 +60,7 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
             if not section.term.is_past(now):
                 log_exception(logger, "Possible registration data error",
                               traceback.format_exc(chain=False))
-            section.canvas_course_url = None
+            pass
 
 
 def get_canvas_course_from_section(sws_section):
