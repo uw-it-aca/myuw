@@ -23,7 +23,7 @@ class TestCanvas(TestCase):
         self.assertIsNotNone(req.canvas_act_enrollments)
 
         set_section_canvas_course_urls(canvas_active_enrollments,
-                                       schedule)
+                                       schedule, req)
         section1 = schedule.sections[0]
         self.assertEquals(section1.section_label(),
                           "2013,spring,PHYS,121/A")

@@ -1,11 +1,13 @@
 import logging
 import re
+from uw_sws.exceptions import InvalidCanvasIndependentStudyCourse
 from uw_canvas.enrollments import Enrollments
 from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
 from uw_canvas.models import CanvasCourse, CanvasSection
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.term import get_comparison_datetime
 
 logger = logging.getLogger(__name__)
 
@@ -25,10 +27,12 @@ def get_canvas_active_enrollments(request):
     return request.canvas_act_enrollments
 
 
-def set_section_canvas_course_urls(canvas_active_enrollments, schedule):
+def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
+                                   request):
     """
     Set canvas_course_url in schedule.sections
     """
+    now = get_comparison_datetime(request)
     section_labels = set()
     for section in schedule.sections:
         section_labels.add(section.section_label())
@@ -42,8 +46,14 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule):
                 canvas_links[sis_course_id] = enrollment.course_url
 
     for section in schedule.sections:
-        section.canvas_course_url = canvas_links.get(
-            section.canvas_course_sis_id())
+        try:
+            section.canvas_course_url = canvas_links.get(
+                section.canvas_course_sis_id())
+        except InvalidCanvasIndependentStudyCourse:
+            # prior quarter's course has NO independent_study_instructor
+            # 2020/01/02
+            if not section.term.is_past(now):
+                raise
 
 
 def get_canvas_course_from_section(sws_section):
