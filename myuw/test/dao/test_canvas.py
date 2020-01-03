@@ -3,11 +3,14 @@ from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls,
     get_canvas_course_from_section,
     get_canvas_course_url, sws_section_label, get_viewable_course_sections)
+from uw_sws.exceptions import InvalidCanvasIndependentStudyCourse
 from uw_sws.models import Person
 from uw_sws.section import get_section_by_label
 from myuw.dao.term import get_current_quarter
 from myuw.dao.registration import get_schedule_by_term
-from myuw.test import fdao_sws_override, get_request_with_user, get_request
+from myuw.test import (
+    fdao_sws_override, get_request_with_user, get_request,
+    get_request_with_date)
 
 
 @fdao_sws_override
@@ -54,6 +57,17 @@ class TestCanvas(TestCase):
         section = schedule.sections[4]
         self.assertEquals(section.section_label(), "2013,spring,TRAIN,101/A")
         self.assertIsNotNone(section.canvas_course_url)
+
+        req = get_request_with_user("jeos",
+                                    get_request_with_date("2013-10-01"))
+        schedule = get_schedule_by_term(req, get_current_quarter(req))
+        canvas_active_enrollments = get_canvas_active_enrollments(req)
+        self.assertIsNotNone(req.canvas_act_enrollments)
+        self.assertRaises(InvalidCanvasIndependentStudyCourse,
+                          set_section_canvas_course_urls,
+                          canvas_active_enrollments,
+                          schedule, req)
+
 
     def test_get_canvas_course_url(self):
         person = Person()
