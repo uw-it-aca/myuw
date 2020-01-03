@@ -15,18 +15,30 @@ describe('InstructorScheduleCards for 2013 summer', function(){
                 "myuw/static/js/card/schedule/instructor_panel.js"
             ],
             templates: [
+                'myuw/templates/handlebars/card/instructor_schedule/course_grading.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_cards.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_content.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_grading.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_eval.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/course_class_list.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/course_stats.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/class_website.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/email_list.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/online_tools.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/textbooks.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_section.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_sche_panel.html',
                 'myuw/templates/handlebars/card/instructor_schedule/secondaries.html',
                 'myuw/templates/handlebars/card/instructor_schedule/secondary_section_panel.html',
+                'myuw/templates/handlebars/card/instructor_schedule/term_panel.html',
+                'myuw/templates/handlebars/card/schedule/course_sche_col_days.html',
+                'myuw/templates/handlebars/card/schedule/course_sche_col_bldg.html',
                 'myuw/templates/handlebars/card/schedule/instructor_panel.html'
             ]
         });
     });
-    
+
     beforeEach(function (){
         Global.Environment.ajax_stub('api/v1/instructor_schedule/2013-summer');
 
@@ -118,16 +130,27 @@ describe('InstructorScheduleCards for billpce 2013 spring', function(){
             templates: [
                 'myuw/templates/handlebars/card/instructor_schedule/course_cards.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_content.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_grading.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_eval.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_resource_panel.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/course_class_list.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/course_stats.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/class_website.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/email_list.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/online_tools.html',
+                'myuw/templates/handlebars/card/instructor_schedule/course_resource/textbooks.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_section.html',
                 'myuw/templates/handlebars/card/instructor_schedule/course_sche_panel.html',
                 'myuw/templates/handlebars/card/instructor_schedule/secondaries.html',
                 'myuw/templates/handlebars/card/instructor_schedule/secondary_section_panel.html',
+                'myuw/templates/handlebars/card/instructor_schedule/term_panel.html',
+                'myuw/templates/handlebars/card/schedule/course_sche_col_days.html',
+                'myuw/templates/handlebars/card/schedule/course_sche_col_bldg.html',
                 'myuw/templates/handlebars/card/schedule/instructor_panel.html'
             ]
         });
     });
-    
+
     beforeEach(function (){
         Global.Environment.ajax_stub('api/v1/instructor_schedule/billpce-2013-spring');
 

@@ -1,7 +1,7 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "emp_white_page_card" %}
+{% verbatim %}
+<script id="emp_white_page_card" type="text/x-handlebars-template">
 
-<div class="myuw-card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{ title }}">
+<div class="myuw-card" data-type="card" data-name="DirectoryInfoCard" data-identifier="{{title}}">
     <h3 class="myuw-card-title">Employee Profile</h3>
     <div class="directory-information myuw-card-section" vocab="http://schema.org/" typeof="Person">
 
@@ -83,9 +83,7 @@
 
         <div class="row">
             <div class="col-sm-offset-3 col-sm-9">
-                {% with link_text="Manage profile in Workday" extra_class="workday-link" %}
-                    {% include "workday_link.html" %}
-                {% endwith %}
+                {{> workday_link link_text="Manage profile in Workday" extra_class="workday-link"}}
             </div>
         </div>
     </div>
@@ -97,7 +95,7 @@
             </div>
             <div class="col-sm-9">
 
-                <p>{{#if publish_in_emp_directory}}Name, position, work contact information are published.{{else}}Not published.{{/if }}<br/>
+                <p>{{#if publish_in_emp_directory}}Name, position, work contact information are published.{{else}}Not published.{{/if}}<br/>
                     <a href="https://identity.uw.edu/">Change directory settings</a></p>
 
                 <p class="card-related-messages">Search for faculty, staff, and students in the {{#if is_tacoma}}<a href="http://directory.tacoma.uw.edu/">UW Tacoma Directory</a>{{else}}<a href="https://www.washington.edu/home/peopledir/">UW Directory</a>{{/if}}.</p>
@@ -106,4 +104,5 @@
         </div>
     </div>
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

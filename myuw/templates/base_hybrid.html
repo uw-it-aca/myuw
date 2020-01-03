@@ -73,8 +73,6 @@
                       "Please set document mode to 10 or higher, or switch to another browser.");
             }
         </script>
-
-        {% load templatetag_handlebars %}
     </head>
 
     <body>
@@ -172,7 +170,7 @@
         <script src="{% static 'vendor/js/popper-1.12.9.min.js' %}"></script>
         <script src="{% static 'vendor/js/jquery.cookie-1.4.1.min.js' %}"></script>
         <script src="{% static 'vendor/js/ios-orientationchange-fix.min.js' %}"></script>
-        <script src="{% static 'vendor/js/handlebars-v4.0.5.js' %}"></script>
+        <script src="{% static 'vendor/js/handlebars-v4.5.3.js' %}"></script>
         <script src="{% static 'vendor/js/jquery.history-1.8.0.min.js' %}"></script>
         <script src="{% static 'vendor/js/jquery.ba-dotimeout-1.0.js' %}"></script>
         <script src="{% static 'vendor/js/moment.2.18.1.min.js' %}"></script>
@@ -260,6 +258,10 @@
         <script src="{% static 'js/card/summary/future_schedule.js' %}"></script>
         <script src="{% static 'js/teaching/class_list.js' %}"></script>
         {% endcompress %}
+        <script>
+            window.static_url = "{% get_static_prefix %}";
+            window.is_mobile = {% if request.user_agent.is_mobile %}true{% else %}false{% endif %};
+        </script>
 
         {% block extra_js %}{% endblock %}
 

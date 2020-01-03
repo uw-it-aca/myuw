@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "card_with_no_course" %}
+{% verbatim %}
+<script id="card_with_no_course" type="text/x-handlebars-template">
 
 <div style="display: none;" class="no_courses_dupe_blocker"></div>
 <div class="card"  data-name="NoCourseCard" data-type="card">
@@ -9,4 +9,5 @@
     <p>If you are interested in registration, <a href="../resource/academics">view registration resources</a>.</p>
 </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

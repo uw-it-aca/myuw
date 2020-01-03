@@ -1,18 +1,19 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "resource_content" %}
+{% verbatim %}
+<script id="resource_content" type="text/x-handlebars-template">
 
 
     <div class="resources-block">
-        <h4 class="myuw-canvas-title myuw-card-title">{{ subcat_name }}</h4>
+        <h4 class="myuw-canvas-title myuw-card-title">{{subcat_name}}</h4>
         <div class="resources-pin">
-            <button type="button" class="myuw-muted category-pin{{#if is_pinned}} hidden{{/if}}" value="{{ subcat_id }}" aria-label="Pin {{ subcat_name }} resources to home page">Pin to home</button>
-            <button type="button" class="myuw-muted category-unpin{{#unless is_pinned}} hidden{{/unless}}" value="{{ subcat_id }}" aria-label="Remove {{ subcat_name }} resources from home page">Unpin</button>
+            <button type="button" class="myuw-muted category-pin{{#if is_pinned}} hidden{{/if}}" value="{{subcat_id}}" aria-label="Pin {{subcat_name}} resources to home page">Pin to home</button>
+            <button type="button" class="myuw-muted category-unpin{{#unless is_pinned}} hidden{{/unless}}" value="{{subcat_id}}" aria-label="Remove {{subcat_name}} resources from home page">Unpin</button>
         </div>
         <ul class="unstyled-list">
             {{#each links}}
-            <li><a href="{{ url }}">{{ title }}</a></li>
+            <li><a href="{{url}}">{{title}}</a></li>
             {{/each}}
         </ul>
     </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}
