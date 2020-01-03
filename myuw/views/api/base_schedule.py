@@ -1,6 +1,5 @@
 import logging
 import traceback
-from myuw.util.thread import Thread
 from operator import itemgetter
 from restclients_core.exceptions import InvalidNetID
 from myuw.dao.building import get_buildings_by_schedule

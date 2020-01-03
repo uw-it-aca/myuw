@@ -1,11 +1,13 @@
 import logging
 import re
-from uw_sws.exceptions import InvalidCanvasIndependentStudyCourse
+import traceback
+from restclients_core.exceptions import DataFailureException
 from uw_canvas.enrollments import Enrollments
 from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
 from uw_canvas.models import CanvasCourse, CanvasSection
-from restclients_core.exceptions import DataFailureException
+from uw_sws.exceptions import InvalidCanvasIndependentStudyCourse
+from myuw.logger.logresp import log_exception
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_comparison_datetime
 
@@ -50,10 +52,15 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
             section.canvas_course_url = canvas_links.get(
                 section.canvas_course_sis_id())
         except InvalidCanvasIndependentStudyCourse:
-            # prior quarter's course has NO independent_study_instructor
-            # 2020/01/02
+            # REQ3132940 known SWS issue:
+            # prior quarter's registration data has
+            # no independent study instructor.
+            # If independent_study_instructor being None occurs
+            # in current or future quarter, likely is a data error.
             if not section.term.is_past(now):
-                raise
+                log_exception(logger, "Possible registration data error",
+                              traceback.format_exc(chain=False))
+            section.canvas_course_url = None
 
 
 def get_canvas_course_from_section(sws_section):
