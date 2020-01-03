@@ -1,0 +1,40 @@
+[
+    {
+        "associated_user_id": null,
+        "course_id": 249652,
+        "course_section_id": 425707,
+        "sis_course_id": "2013-autumn-MUSEUM-700-A",
+        "sis_section_id": "2013-autumn-MUSEUM-700-A--",
+        "id": 15741787,
+        "limit_privileges_to_course_section": false,
+        "root_account_id": 83919,
+        "type": "StudentEnrollment",
+        "updated_at": "2013-12-18T21:41:03Z",
+        "user_id": 496168,
+        "enrollment_state": "active",
+        "role": "StudentEnrollment",
+        "last_activity_at": null,
+        "total_activity_time": 50,
+        "grades": {
+            "html_url": "https://test.edu/courses/249652/grades/496164",
+            "current_grade": null,
+            "current_score": 57.13,
+            "final_grade": null,
+            "final_score": 54.04,
+            "unposted_current_score": 57.13,
+            "unposted_current_grade": null,
+            "unposted_final_score": 54.04
+        },
+        "html_url": "https://test.edu/courses/249652/users/496164",
+        "user": {
+            "login_id": "jeos",
+            "sis_user_id": "55555333366711D5BE060004AC494FFE",
+            "sortable_name": "STUDENT, EOS AVERAGE",
+            "short_name": "JAMES EOS STUDENT",
+            "id": 496168,
+            "name": "JAMES EOS STUDENT",
+            "sis_login_id": "jeos"
+        }
+    }
+
+]
