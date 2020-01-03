@@ -286,40 +286,6 @@
         </script>
         {% endif %}
         {% include 'logger.html' %}
-
-
-
-        {% block tour-page-modal %}
-        <!-- MyUW Tour modal -->
-        <div id="tour-page-modal"></div>
-        <div class="myuw-tour-modal-desktop myuw-modal modal fade" id="tour_modal" tabindex="-1" role="dialog" aria-labelledby="tour_modal_label" aria-describedby="tour_modal_description" aria-hidden="true" aria-modal="true">
-            <div class="modal-dialog message-dialog" role="document">
-
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button id="tour_modal_close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="tour_modal_label">Welcome! Here's MyUW at a glance</h3>
-                    </div>
-                    <div class="modal-body">
-			<div style="margin-top:16px;">
-			    <picture>
-				<source media="(min-width: 1024px)" srcset="{% static '/images/myuw-tour-1.0x.png' %} 1x, {% static '/images/myuw-tour-2.0x.png' %} 2x" sizes="570px" >
-				    <source srcset="{% static '/images/myuw-tour-mobile-1.0x.png' %} 1x, {% static '/images/myuw-tour-mobile-2.0x.png' %}  2x" >
-					<img src="{% static '/images/myuw-tour-1.0x.png' %}" alt="MyUW Home page screenshot highlighting the email link, the Accounts page, and UW resources page. The Account page is for managing Husky card, U-Pass, library, UW NetID account. UW resources page is for an index of UW resources link" style="max-width:100%;display:block; margin-left:auto; margin-right:auto;border:1px #eee solid;">
-			    </picture>
-			</div>
-
-                        <p style="margin-top:16px;">Watch a video tour of <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/" target="_blank" title="MyUW video tour for instructors" data-linklabel="MyUW video for Instructors">MyUW for Instructors</a>, <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/" target="_blank" title="MyUW video tour for staff" data-linklabel="MyUW video for staff">for staff</a>, or <a href="https://www.youtube.com/watch?v=K7GoUc32TMs&t=5s&list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&index=1" target="_blank" title="MyUW video tour for students" data-linklabel="MyUW video for students">for students</a>. <br><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated" target="_blank" title="MyUW Help Center in IT Connect"  data-linklabel="MyUW Help Center">Visit the MyUW help guide for more information</a>.
-                        </p>
-                    </div><!-- end modal body -->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end modal code -->
-        {% endblock %}
-
+        
     </body>
 </html>
