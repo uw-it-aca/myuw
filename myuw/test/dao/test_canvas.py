@@ -68,7 +68,6 @@ class TestCanvas(TestCase):
                           canvas_active_enrollments,
                           schedule, req)
 
-
     def test_get_canvas_course_url(self):
         person = Person()
         person.uwnetid = "javerage"
