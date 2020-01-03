@@ -1,6 +1,5 @@
 import logging
 import traceback
-from myuw.util.thread import Thread
 from operator import itemgetter
 from restclients_core.exceptions import InvalidNetID
 from myuw.dao.building import get_buildings_by_schedule
@@ -84,7 +83,7 @@ def load_schedule(request, schedule, summer_term=""):
     if len(schedule.sections):
         try:
             set_section_canvas_course_urls(
-                get_canvas_active_enrollments(request), schedule)
+                get_canvas_active_enrollments(request), schedule, request)
         except Exception:
             log_exception(logger, 'get_canvas_active_enrollments',
                           traceback.format_exc(chain=False))
