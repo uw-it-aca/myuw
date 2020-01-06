@@ -73,6 +73,16 @@
                       "Please set document mode to 10 or higher, or switch to another browser.");
             }
         </script>
+        
+        <script>
+        function goToByScroll(id){
+            // wait 5 sec before scrolling - page needs to load fully
+            setTimeout(function () {
+                $('html,body').animate({scrollTop: $('#'+id).offset().top},'fast');
+            }, 5000); 
+        }
+        </script>
+
     </head>
 
     <body>
