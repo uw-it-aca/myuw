@@ -10,9 +10,11 @@ expired django sessions in a single run
 """
 
 import logging
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
 from django.utils import timezone
+from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
 DEL_SIZE = 10000
@@ -21,10 +23,19 @@ DEL_SIZE = 10000
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
+        limit = self.get_limit()
         try:
+            timer = Timer()
             qs = Session.objects.filter(
-                expire_date__lt=timezone.now())[0:DEL_SIZE]
+                expire_date__lt=timezone.now())[0:limit]
             if qs.exists():
                 qs.delete()
+            logger.info(
+                "clear_expired_sessions, Time={} seconds".format(
+                    timer.get_elapsed()))
         except Exception as ex:
             logger.error(str(ex))
+
+    def get_limit(self):
+        num = getattr(settings, 'DEL_SESSION_NUM', None)
+        return int(num) if num else DEL_SIZE
