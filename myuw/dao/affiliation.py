@@ -33,6 +33,8 @@ def get_all_affiliations(request):
     ["faculty"]: True if the user is currently faculty.
     ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
+    ["enrolled_stud"]: True if the student is enrolled in current or
+                       future quarters.
     ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
@@ -77,6 +79,7 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
             "student": is_student(request),
+            "enrolled_stud": False,
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
@@ -125,6 +128,7 @@ def get_all_affiliations(request):
         try:
             campuses = get_main_campus(request)
             if len(campuses) > 0:
+                data["enrolled_stud"] = True
                 data['seattle'] = data['seattle'] or ('Seattle' in campuses)
                 data['bothell'] = data['bothell'] or ('Bothell' in campuses)
                 data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
