@@ -4,7 +4,9 @@ This module provides affiliations of the current user
 
 import logging
 from myuw.dao import is_hx_toolkit_viewer
-from myuw.dao.enrollment import get_main_campus, get_class_level
+from myuw.dao.exceptions import IndeterminateCampusException
+from myuw.dao.enrollment import (
+    get_main_campus, get_class_level, is_registered_current_or_future)
 from myuw.dao.gws import (
     is_clinician, is_regular_employee, is_staff_employee, is_student_employee,
     is_alum_asso, is_student, is_grad_student, is_undergrad_student,
@@ -18,8 +20,6 @@ from myuw.dao.term import get_current_quarter
 from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from myuw.dao.uwnetid import is_2fa_permitted
 from myuw.dao.student_profile import get_profile_of_current_user
-from myuw.dao.exceptions import IndeterminateCampusException
-
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +33,7 @@ def get_all_affiliations(request):
     ["faculty"]: True if the user is currently faculty.
     ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
-    ["enrolled_stud"]: True if the student is enrolled in current or
+    ["registered_stud"]: True if the student is registered in current or
                        future quarters.
     ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
@@ -79,7 +79,7 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
             "student": is_student(request),
-            "enrolled_stud": False,
+            "registered_stud": is_registered_current_or_future(request),
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
@@ -125,15 +125,12 @@ def get_all_affiliations(request):
             logger.error(str(ex))
 
         # enhance student campus with current and future enrollments
-        try:
-            campuses = get_main_campus(request)
-            if len(campuses) > 0:
-                data["enrolled_stud"] = True
-                data['seattle'] = data['seattle'] or ('Seattle' in campuses)
-                data['bothell'] = data['bothell'] or ('Bothell' in campuses)
-                data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
-        except IndeterminateCampusException:
-            pass
+        campuses = get_main_campus(request)
+        if len(campuses) > 0:
+            data["enrolled_stud"] = True
+            data['seattle'] = data['seattle'] or ('Seattle' in campuses)
+            data['bothell'] = data['bothell'] or ('Bothell' in campuses)
+            data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
 
     if is_employee(request):
         # determine employee primary campus based on their mailstop

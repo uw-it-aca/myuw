@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.utils import override_settings
 from myuw.logger.session_log import log_session, _get_affi,\
-    get_userid, _get_session_data
+    get_userids, _get_session_data
 from myuw.test import get_request_with_user
 
 UserService = 'userservice.user.UserServiceMiddleware'
@@ -10,17 +10,16 @@ UserService = 'userservice.user.UserServiceMiddleware'
 @override_settings(MIDDLEWARE_CLASSES=(UserService))
 class TestSessionLog(TestCase):
     def test_mywm_2436(self):
-        netid = 'javerage'
-        req = get_request_with_user(netid)
+        req = get_request_with_user('javerage')
         log_session(req)
 
     def test__get_affi(self):
-        netid = 'javerage'
-        req = get_request_with_user(netid)
-
-        users = get_userid()
-        self.assertTrue("orig_netid: javerage" in users)
-        self.assertTrue("is_override: False" in users)
+        req = get_request_with_user('javerage')
+        self.assertEqual(
+            get_userids(),
+            "{} {}".format(
+                "orig_netid: javerage, acting_netid: javerage,",
+                "is_override: False"))
 
         req.META['REMOTE_ADDR'] = '127.0.0.1'
         entry = _get_session_data(req)
@@ -54,13 +53,11 @@ class TestSessionLog(TestCase):
         self.assertFalse(entry['win_transfer'])
         self.assertTrue(entry['hxt_viewer'])
 
-        netid = 'jinter'
-        req = get_request_with_user(netid)
+        req = get_request_with_user('jinter')
         entry = _get_affi(req)
         self.assertTrue(entry['intl_stud'])
 
-        netid = 'jalum'
-        req = get_request_with_user(netid)
+        req = get_request_with_user('jalum')
         entry = _get_affi(req)
         self.assertTrue(entry['is_alumni'])
         self.assertTrue(entry['is_past_stud'])
