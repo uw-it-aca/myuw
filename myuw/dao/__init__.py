@@ -35,13 +35,13 @@ def get_userids(request=None):
     the user is acting as someone else, otherwise
     <actual user netid> no_override: <actual user netid>
     """
-    format = 'orig_netid: {}, acting_netid: {}, is_override: {}'
+    lformat = 'orig_netid: {}, acting_netid: {}, is_override: {}'
     try:
         override_userid = get_netid_of_current_user(request)
         actual_userid = get_netid_of_original_user()
-        return format.format(actual_userid,
-                             override_userid,
-                             override_userid != actual_userid)
+        return lformat.format(actual_userid,
+                              override_userid,
+                              override_userid != actual_userid)
     except Exception as ex:
         logger.warning("get_userids ==> {}".format(str(ex)))
     return ""
