@@ -156,7 +156,7 @@ class TestDaoEnrollment(TestCase):
                                     get_request_with_date("2013-04-10"))
         self.assertTrue(is_registered_current_or_future(req))
 
-        req = get_request_with_user('javerage',
+        req = get_request_with_user('bill',
                                     get_request_with_date("2019-01-10"))
         self.assertFalse(is_registered_current_or_future(req))
 
@@ -187,6 +187,10 @@ class TestDaoEnrollment(TestCase):
 
         req = get_request_with_user('jeos',
                                     get_request_with_date("2013-04-10"))
+        campus = get_main_campus(req)
+        self.assertEqual(len(campus), 0)
+
+        req = get_request_with_user('bill')
         campus = get_main_campus(req)
         self.assertEqual(len(campus), 0)
 

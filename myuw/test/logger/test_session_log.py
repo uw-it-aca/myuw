@@ -14,6 +14,8 @@ class TestSessionLog(TestCase):
         log_session(req)
 
     def test__get_affi(self):
+        self.assertEqual(get_userids(), "")
+
         req = get_request_with_user('javerage')
         self.assertEqual(
             get_userids(),

@@ -79,7 +79,7 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
             "student": is_student(request),
-            "registered_stud": is_registered_current_or_future(request),
+            "registered_stud": False,
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
@@ -115,7 +115,7 @@ def get_all_affiliations(request):
 
     if data["student"]:
         data["class_level"] = get_class_level(request)
-
+        data["registered_stud"] = is_registered_current_or_future(request)
         try:
             sws_person = get_profile_of_current_user(request)
             data["F1"] = sws_person.is_F1()
