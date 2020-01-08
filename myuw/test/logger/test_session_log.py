@@ -13,16 +13,18 @@ class TestSessionLog(TestCase):
         req = get_request_with_user('javerage')
         log_session(req)
 
-    def test__get_affi(self):
-        self.assertEqual(get_userids(), "")
-
+    def test_get_userids(self):
         req = get_request_with_user('javerage')
         self.assertEqual(
             get_userids(),
             "{} {}".format(
                 "orig_netid: javerage, acting_netid: javerage,",
                 "is_override: False"))
+        req.user = None
+        self.assertEqual(get_userids(req), "")
 
+    def test__get_affi(self):
+        req = get_request_with_user('javerage')
         req.META['REMOTE_ADDR'] = '127.0.0.1'
         entry = _get_session_data(req)
         self.assertEquals(entry['ip'], '127.0.0.1')
