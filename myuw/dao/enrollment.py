@@ -79,17 +79,13 @@ def get_prev_enrollments_with_open_sections(request, num_of_prev_terms):
     return remove_finished(request, result_dict)
 
 
-def is_registered_current_or_future(request):
+def is_registered_current_quarter(request):
     try:
-        result_dict = get_enrollments_of_terms(
-            request, get_current_and_next_quarters(request, 2))
-        for term in result_dict.keys():
-            enrollment = result_dict.get(term)
-            if enrollment.is_registered:
-                return True
+        enrollment = get_current_quarter_enrollment(request)
+        return enrollment is not None and enrollment.is_registered
     except Exception:
         logger.error("{}, {} => {} ".format(
-            get_userids(request), "is_registered_current_or_future",
+            get_userids(request), "is_registered_current_quarter",
             traceback.format_exc(chain=False)))
     return False
 
