@@ -4,7 +4,7 @@ from myuw.dao.term import (
     get_current_quarter, get_previous_quarter,
     get_next_quarter, get_term_before, get_term_after)
 from myuw.dao.enrollment import (
-    get_current_quarter_enrollment, is_registered_current_or_future,
+    get_current_quarter_enrollment, is_registered_current_quarter,
     get_enrollment_for_term, get_enrollments_of_terms,
     get_prev_enrollments_with_open_sections, is_ended,
     get_main_campus, enrollment_history, get_class_level)
@@ -151,14 +151,14 @@ class TestDaoEnrollment(TestCase):
         self.assertFalse(is_ended(req, None))
         self.assertFalse(is_ended(req, ""))
 
-    def test_is_registered_current_or_future(self):
+    def test_is_registered_current_quarter(self):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-10"))
-        self.assertTrue(is_registered_current_or_future(req))
+        self.assertTrue(is_registered_current_quarter(req))
 
         req = get_request_with_user('bill',
                                     get_request_with_date("2019-01-10"))
-        self.assertFalse(is_registered_current_or_future(req))
+        self.assertFalse(is_registered_current_quarter(req))
 
     def test_get_main_campus(self):
         req = get_request_with_user('javerage',
