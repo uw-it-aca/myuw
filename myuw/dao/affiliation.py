@@ -33,8 +33,7 @@ def get_all_affiliations(request):
     ["faculty"]: True if the user is currently faculty.
     ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
-    ["registered_stud"]: True if the student is registered in current or
-                       future quarters.
+    ["registered_stud"]: True if the student is registered in current quarter.
     ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
