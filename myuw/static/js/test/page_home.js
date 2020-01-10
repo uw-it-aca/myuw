@@ -67,6 +67,7 @@ describe("HomePage", function() {
             year: "2013"
         };
         window.user.student = false;
+        window.user.registered_stud = false;
         window.user.instructor = false;
         window.user.applicant = false;
         window.user.is_hxt_viewer = false;
@@ -100,6 +101,7 @@ describe("HomePage", function() {
         window.innerWidth = 800;
         window.user.netid = "eight";
         window.user.student = true;
+        window.user.registered_stud = true;
         var desktop_body_cards = Landing._get_desktop_body_cards();
         assert.deepEqual(desktop_body_cards,
                          [OutageCard,
@@ -216,6 +218,7 @@ describe("HomePage", function() {
         window.innerWidth = 800;
         window.user.netid = "jinter";
         window.user.student = true;
+        window.user.registered_stud = true;
         window.user.intl_stud = true;
         var desktop_body_cards = Landing._get_desktop_body_cards();
         assert.deepEqual(desktop_body_cards,
@@ -272,6 +275,7 @@ describe("HomePage", function() {
     it('Mobile cards for students', function() {
         window.user.netid = "eight";
         window.user.student = true;
+        window.user.registered_stud = true;
         var mobile_cards = Landing._get_mobile_cards();
         assert.deepEqual(mobile_cards,
                          [QuickLinksCard,
@@ -324,6 +328,7 @@ describe("HomePage", function() {
     it('Mobile for international student', function() {
         window.user.netid = "jinter";
         window.user.student = true;
+        window.user.registered_stud = true;
         window.user.intl_stud = true;
         var mobile_cards = Landing._get_mobile_cards();
         assert.deepEqual(mobile_cards,
