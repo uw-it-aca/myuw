@@ -1,6 +1,7 @@
 import json
 import logging
-from myuw.logger.session_log import hash_session_key, get_userid
+from myuw.logger.session_log import hash_session_key
+from myuw.dao import get_userids
 
 resp_logger = logging.getLogger(__name__)
 
@@ -37,7 +38,7 @@ def log_err(logger, timer, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    logger.error("{}, {}. Time={} seconds".format(get_userid(),
+    logger.error("{}, {}. Time={} seconds".format(get_userids(),
                                                   exc_info.splitlines(),
                                                   timer.get_elapsed()))
 
@@ -47,13 +48,13 @@ def log_exception(logger, action, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    logger.error("{}, {} => {} ".format(get_userid(),
+    logger.error("{}, {} => {} ".format(get_userids(),
                                         action,
                                         exc_info.splitlines()))
 
 
 def log_info(logger, message):
-    logger.info("{}, {}".format(get_userid(), message))
+    logger.info("{}, {}".format(get_userids(), message))
 
 
 def log_data_not_found_response(logger, timer):

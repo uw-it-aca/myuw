@@ -7,7 +7,7 @@ from uw_canvas.sections import Sections
 from uw_canvas.courses import Courses
 from uw_canvas.models import CanvasCourse, CanvasSection
 from uw_sws.exceptions import InvalidCanvasIndependentStudyCourse
-from myuw.logger.logresp import log_exception
+from myuw.dao import get_userids
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import get_comparison_datetime
 
@@ -58,8 +58,10 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
             # If independent_study_instructor being None occurs
             # in current or future quarter, likely is a data error.
             if not section.term.is_past(now):
-                log_exception(logger, "Possible registration data error",
-                              traceback.format_exc(chain=False))
+                logger.error("{}, {} => {} ".format(
+                    get_userids(request),
+                    "Possible registration data error",
+                    traceback.format_exc(chain=False)))
             pass
 
 

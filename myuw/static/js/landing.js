@@ -82,7 +82,7 @@ var Landing = {
             desktop_body_cards.push(SummaryScheduleCard);
         }
 
-        if (window.user.student || window.user.instructor) {
+        if (window.user.registered_stud || window.user.instructor) {
             desktop_body_cards.push(VisualScheduleCard);
         }
 
@@ -189,7 +189,7 @@ var Landing = {
             mobile_cards.push(FutureSummaryScheduleCard);
         }
 
-        if (window.user.student || window.user.instructor) {
+        if (window.user.registered_stud || window.user.instructor) {
             mobile_cards.push(VisualScheduleCard);
         }
         if (window.user.student) {
