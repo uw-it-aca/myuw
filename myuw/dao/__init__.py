@@ -29,6 +29,24 @@ def get_netid_of_original_user():
     return UserService().get_original_user()
 
 
+def get_userids(request=None):
+    """
+    Return <actual user netid> acting_as: <override user netid> if
+    the user is acting as someone else, otherwise
+    <actual user netid> no_override: <actual user netid>
+    """
+    lformat = 'orig_netid: {}, acting_netid: {}, is_override: {}'
+    try:
+        override_userid = get_netid_of_current_user(request)
+        actual_userid = get_netid_of_original_user()
+        return lformat.format(actual_userid,
+                              override_userid,
+                              override_userid != actual_userid)
+    except Exception as ex:
+        logger.warning("get_userids ==> {}".format(str(ex)))
+    return ""
+
+
 def is_action_disabled():
     """
     return True if overriding and
