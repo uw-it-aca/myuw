@@ -9,20 +9,23 @@ from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
 from myuw.dao.user import get_updated_user
+from myuw.util.settings import get_prod_url_pattern
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_invalid_netid_response, log_page_view, log_exception)
 from myuw.logger.session_log import log_session
-from myuw.util.settings import get_google_search_key, get_logout_url
+from myuw.util.settings import (
+    get_google_search_key, get_logout_url, get_prod_url_pattern)
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import unknown_uwnetid
+from myuw.views.error import unknown_uwnetid, no_access
 from django.contrib.auth.decorators import login_required
 
 
@@ -43,6 +46,9 @@ def page(request,
     except Exception as ex:
         log_exception(logger, str(ex), traceback.format_exc(chain=False))
         return unknown_uwnetid()
+
+    if not can_access_myuw(request):
+        return no_access()
 
     netid = user.uwnetid
     context["user"] = {
@@ -130,3 +136,9 @@ def _add_quicklink_context(request, context):
 
     for key in link_data:
         context[key] = link_data[key]
+
+
+def can_access_myuw(request):
+    url = request.build_absolute_uri()
+    return (re.match(get_prod_url_pattern(), url) is not None or
+            in_myuw_test_access_group(request))
