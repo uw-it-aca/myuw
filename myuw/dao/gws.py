@@ -9,7 +9,7 @@ except ImportError:
     pass
 from uw_gws import GWS
 from myuw.util.settings import get_myuw_test_access_group
-from myuw.dao import get_netid_of_current_user
+from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
 from myuw.dao.pws import is_employee
 
 
@@ -211,4 +211,5 @@ def is_effective_member(request, group_id):
 def in_myuw_test_access_group(request):
     test_access_group = get_myuw_test_access_group()
     return (test_access_group is None or
-            is_effective_member(request, get_myuw_test_access_group()))
+            gws.is_effective_member(get_myuw_test_access_group(),
+                                    get_netid_of_original_user(request)))
