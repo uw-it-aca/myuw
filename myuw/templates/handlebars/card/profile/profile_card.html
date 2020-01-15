@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "common_profile_card" %}
+{% verbatim %}
+<script id="common_profile_card" type="text/x-handlebars-template">
 <div class="common-profile" style="position:relative;">
 	<h2 class="heading-profile">
 	        {{#if has_preferred}}{{display_name}} <span>({{full_name}})</span>&nbsp;<span><a href="https://identity.uw.edu/" title="Manage your preferred name" data-linklabel="Manage preferred name - Identity.UW"><i class="fa fa-pencil" aria-hidden="true"></i><span class="sr-only">Manage your preferred name</span></a></span></h2>
@@ -7,4 +7,5 @@
 	        {{full_name}}&nbsp;<span><a href="https://identity.uw.edu/" title="Manage your preferred name" data-linklabel="Manage preferred name - Identity.UW"><span class="sr-only">Manage your preferred name</span><i class="fa fa-pencil" aria-hidden="true"></i></a></span></h2>
 	        {{/if}}
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

@@ -484,3 +484,15 @@ Handlebars.registerHelper('not_empty', function(array1, array2, options) {
     }
     return options.inverse(this);
 });
+
+Handlebars.registerHelper('if_mobile', function(options) {
+    return (window.is_mobile) ? options.fn(this) : options.inverse(this);
+});
+
+Handlebars.registerHelper('protocol', function(url) {
+    return window.location.protocol + '//' + url;
+});
+
+Handlebars.registerHelper('static', function(path) {
+    return window.static_url + path;
+});

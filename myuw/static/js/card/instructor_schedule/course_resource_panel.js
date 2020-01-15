@@ -11,6 +11,12 @@ var InstructorCourseResourcePanel = {
             c_section.display_resources = true;
         }
 
+        Handlebars.registerPartial('course_class_list', $("#course_class_list").html());
+        Handlebars.registerPartial('course_stats', $("#course_stats").html());
+        Handlebars.registerPartial('class_website', $("#class_website").html());
+        Handlebars.registerPartial('email_list', $("#email_list").html());
+        Handlebars.registerPartial('online_tools', $("#online_tools").html());
+        Handlebars.registerPartial('textbooks', $("#textbooks").html());
         var source = $("#instructor_course_resource_panel").html();
         var template = Handlebars.compile(source);
         var raw = template(c_section);

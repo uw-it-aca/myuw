@@ -1,6 +1,5 @@
-{% load templatetag_handlebars %}
-
-    {% verbatim %}
+{% verbatim %}
+<script id="course_class_list" type="text/x-handlebars-template">
     <div class="myuw-card-section">
         <div class="row">
             <div class="col-sm-3">
@@ -12,21 +11,21 @@
                     <div class="card-badge-value">
                         {{#if is_prev_term_enrollment}}
                             <div>
-                                <p>Registration opens {{ toMonthDay registration_start }} at 6:00 AM PST.</p>
-                                <p>({{ current_enrollment }} of {{ limit_estimate_enrollment }} students registered for course in {{ toTitleCase quarter }} {{ prev_enrollment_year }})</p>
+                                <p>Registration opens {{toMonthDay registration_start}} at 6:00 AM PST.</p>
+                                <p>({{current_enrollment}} of {{limit_estimate_enrollment}} students registered for course in {{toTitleCase quarter}} {{prev_enrollment_year}})</p>
                             </div>
                         {{else}}
                             {{#if enrollment_student_name}}
-                                <span>{{ enrollment_student_name }}</span> <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ toUrlSafe curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{section_label}}">View student</a>
+                                <span>{{enrollment_student_name}}</span> <a target="_blank" href="/teaching/{{year}},{{quarter}},{{toUrlSafe curriculum_abbr}},{{course_number}}/{{section_id}}/students" class="course_class_list" rel="{{section_label}}">View student</a>
                             {{else}}
-                                <span>{{ current_enrollment }}{{#unless is_independent_study}} of {{ limit_estimate_enrollment }}{{/unless}}</span>
-                                {{#if current_enrollment }}
+                                <span>{{current_enrollment}}{{#unless is_independent_study}} of {{limit_estimate_enrollment}}{{/unless}}</span>
+                                {{#if current_enrollment}}
                                   {{#if no_2nd_registration}}
                                     <span title="There is no enrollment/registration data for secondary sections once the course work has been posted to transcripts" class="myuw-muted course_class_list">Class list not available</span>
                                   {{else}}
-                                    <a target="_blank" href="/teaching/{{ year }},{{ quarter }},{{ toUrlSafe curriculum_abbr }},{{ course_number }}/{{ section_id }}/students" class="course_class_list" rel="{{section_label}}">View class list</a>
+                                    <a target="_blank" href="/teaching/{{year}},{{quarter}},{{toUrlSafe curriculum_abbr}},{{course_number}}/{{section_id}}/students" class="course_class_list" rel="{{section_label}}">View class list</a>
                                     <a href="#" class="myuw-iconlink course-classlist-download download_classlist_csv"
-                                       rel="{{ curriculum_abbr }}_{{ course_number }}_{{ section_id }}"><i class="fa fa-download"></i>Download (CSV)</a>
+                                       rel="{{curriculum_abbr}}_{{course_number}}_{{section_id}}"><i class="fa fa-download"></i>Download (CSV)</a>
                                   {{/if}}
                                 {{/if}}
                             {{/if}}
@@ -36,4 +35,5 @@
             </div>
         </div>
     </div>
-    {% endverbatim %}
+</script>
+{% endverbatim %}

@@ -29,7 +29,7 @@ before_script:
   - npm install -g jshint
   - npm install -g mocha
   - npm install -g istanbul
-  - npm install jsdom
+  - npm install jsdom@15.2.1
   - npm install sinon
   - npm install coveralls
   - gem install coveralls-lcov

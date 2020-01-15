@@ -53,6 +53,7 @@ var TuitionCard = {
         };
     },
     _render_with_context: function(context) {
+        Handlebars.registerPartial("tuition_resources", $("#tuition_resources").html());
         var source = $("#tuition_card").html();
         var template = Handlebars.compile(source);
         var raw = template(context);

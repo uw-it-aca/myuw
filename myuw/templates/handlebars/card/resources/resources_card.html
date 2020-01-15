@@ -1,10 +1,11 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "resources_card" %}
-    <div class="myuw-card resources-card" data-name="ResourcesCard" data-identifier="{{ subcat_name }}">
+{% verbatim %}
+<script id="resources_card" type="text/x-handlebars-template">
+    <div class="myuw-card resources-card" data-name="ResourcesCard" data-identifier="{{subcat_name}}">
         <div style="position:relative;">
             <span>UW Resources</span>
 
-            {{> resource_content }}
+            {{> resource_content}}
         </div>
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

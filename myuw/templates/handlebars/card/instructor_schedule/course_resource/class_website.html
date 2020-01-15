@@ -1,14 +1,13 @@
-{% load templatetag_handlebars %}
-    {% verbatim %}
-
+{% verbatim %}
+<script id="class_website" type="text/x-handlebars-template">
         {{#if class_website_url}}
             <li class="clearfix">
                 <span class="inst-course-label">Website:&nbsp;&nbsp;</span>
                 <span class="card-badge-value">
-                    <a class="course_website" href="{{ class_website_url }}" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" target="_blank" data-linklabel="Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}">View class website</a>
+                    <a class="course_website" href="{{class_website_url}}" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank" data-linklabel="Course Website: {{curriculum_abbr}} {{course_number}} {{section_id}}">View class website</a>
 
                     {{#unless past_term}}
-                        <span class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{ quarter }}+{{ year }}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Update Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Update</a></span>
+                        <span class="course-website-update"><a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{sln}}&amp;chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" data-linklabel="Update Course Website: {{curriculum_abbr}} {{course_number}} {{section_id}}">Update</a></span>
                     {{/unless}}
                 </span>
             </li>
@@ -22,11 +21,11 @@
                 {{#if sln}}
                     <li class="clearfix">
                         <span class="inst-course-label">Website:&nbsp;&nbsp;</span>
-                        <a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{ quarter }}+{{ year }}&amp;sln={{ sln }}&amp;chanid=11" rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}" data-linklabel="Add Course Website: {{ curriculum_abbr }} {{course_number}} {{section_id}}" title="Add a website for your course">Add</a>
+                        <a class="course_website_update" href="javascript:void(0);" data-href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter={{quarter}}+{{year}}&amp;sln={{sln}}&amp;chanid=11" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" data-linklabel="Add Course Website: {{curriculum_abbr}} {{course_number}} {{section_id}}" title="Add a website for your course">Add</a>
                         <div class="myuw-note add-delay-message">A link to the course Canvas is automatically shown to students. Changes to the course website may take up to one hour to display on MyUW.</div>
                     </li>
                 {{/if}}
             {{/if}}
         {{/if}}
-
-    {% endverbatim %}
+</script>
+{% endverbatim %}

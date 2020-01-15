@@ -1,7 +1,7 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "student_info_card" %}
+{% verbatim %}
+<script id="student_info_card" type="text/x-handlebars-template">
 
-    <div class="myuw-card" data-type="card" data-name="StudentInfoCard" data-identifier="{{ title }}">
+    <div class="myuw-card" data-type="card" data-name="StudentInfoCard" data-identifier="{{title}}">
 
         <h3 class="myuw-card-title">Student Profile</h3>
         <div vocab="http://schema.org/" typeof="Person">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-sm-9">
                         <div class="myuw-card-row-content">
-                            <div>{{ class_level }}</div>
+                            <div>{{class_level}}</div>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                         {{else}}
                                             {{#if degrees_modified}}
                                                 <li>
-                                                    Beginning {{ toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
+                                                    Beginning {{toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
                                                     {{#each majors}}
                                                         {{full_name}}{{#unless @last}},{{/unless}}
                                                     {{else}}
@@ -85,7 +85,7 @@
                                     {{else}}
                                         {{#if degrees_modified}}
                                             <li>
-                                                Beginning {{ toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
+                                                Beginning {{toTitleCase quarter}} {{year}}:&nbsp;&nbsp;
                                                 {{#each minors}}
                                                     {{full_name}}{{#unless @last}},{{/unless}}
                                                 {{else}}
@@ -197,4 +197,5 @@
          </div>
     </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

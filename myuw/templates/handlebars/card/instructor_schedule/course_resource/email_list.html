@@ -1,12 +1,11 @@
-{% load templatetag_handlebars %}
-    {% verbatim %}
-
+{% verbatim %}
+<script id="email_list" type="text/x-handlebars-template">
 {{#with email_list}}
     <span class="inst-course-label">Email List:&nbsp;&nbsp;</span>
 
         {{#if section_list.list_exists}}
             {{#if has_multiple_sections}}
-                <span class="card-badge-value"><a href="#" class="manage_email_list" data-toggle="modal" data-target="#popup_emaillist_{{../section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Manage mailing lists</a></span>
+                <span class="card-badge-value"><a href="#" class="manage_email_list" data-toggle="modal" data-target="#popup_emaillist_{{../section_label}}" rel="{{course_abbr}}_{{course_number}}_{{section_id}}">Manage mailing lists</a></span>
 
                 <div id="popup_emaillist_{{../section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage_emaillist_{{../section_label}}"></div>
             {{else}}
@@ -19,16 +18,16 @@
                 <a href="{{joint_section_list.list_admin_url}}" target="_blank" class="course-manage-email" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{joint_section_list.section_id}}">Manage</a>
         {{else}}
             {{#if has_secondary_lists}}
-                <span class="card-badge-value"><a href="#" class="manage_email_list" data-toggle="modal" data-target="#popup_emaillist_{{../section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Manage mailing lists</a></span>
+                <span class="card-badge-value"><a href="#" class="manage_email_list" data-toggle="modal" data-target="#popup_emaillist_{{../section_label}}" rel="{{course_abbr}}_{{course_number}}_{{section_id}}">Manage mailing lists</a></span>
 
                 <div id="popup_emaillist_{{../section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="manage_emaillist_{{../section_label}}"></div>
             {{else}}
-                <span class="card-badge-value"><a href="#" class="create_email_list" data-toggle="modal" data-target="#popup_emaillist_{{../section_label}}" rel="{{ course_abbr }}_{{course_number}}_{{section_id}}">Create mailing list</a></span>
+                <span class="card-badge-value"><a href="#" class="create_email_list" data-toggle="modal" data-target="#popup_emaillist_{{../section_label}}" rel="{{course_abbr}}_{{course_number}}_{{section_id}}">Create mailing list</a></span>
 
                 <div id="popup_emaillist_{{../section_label}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="request_emaillist_{{../section_label}}"></div>
             {{/if}}
         {{/if}}
 
 {{/with}}
-
-    {% endverbatim %}
+</script>
+{% endverbatim %}

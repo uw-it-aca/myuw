@@ -1,10 +1,10 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "summary_section" %}
+{% verbatim %}
+<script id="summary_section" type="text/x-handlebars-template">
 
     {{#unless under_disclosure}}
     <div class="myuw-card-section-fulldivider">
         <div class="row">
-            {{> summary_section_panel }}
+            {{> summary_section_panel}}
         </div>
 
         {{#if linked_secondaries}}
@@ -16,12 +16,12 @@
                            role="button" aria-controls="secondary_{{section_label}}"
                            aria-expanded="false" data-toggle="collapse" title="Show/Hide secondary sections"><i
                                 class="fa fa-caret-right" aria-hidden="true"></i>Secondary sections for
-                            {{ curriculum_abbr }} {{course_number}} {{section_id}}</a>
+                            {{curriculum_abbr}} {{course_number}} {{section_id}}</a>
                     </div>
 
                     <div id="secondary_{{section_label}}" class="collapse secondary-section-disclosure"
-                         rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-                         aria-label="Secondary sections for {{ curriculum_abbr }} {{course_number}} {{section_id}}">
+                         rel="{{curriculum_abbr}} {{course_number}} {{section_id}}"
+                         aria-label="Secondary sections for {{curriculum_abbr}} {{course_number}} {{section_id}}">
 
                         <table class="table-course-schedule summary-schedule">
                             <thead class="sr-only">
@@ -40,7 +40,7 @@
 
                             <tbody class="tbody-course-schedule">
                             {{#each linked_secondaries}}
-                                {{> summary_section_panel }}
+                                {{> summary_section_panel}}
                             {{/each}}
                             </tbody>
                         </table>
@@ -52,4 +52,5 @@
         {{/if}}
     </div>
     {{/unless}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}
