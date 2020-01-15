@@ -29,12 +29,9 @@ class Command(BaseCommand):
         for ddelta in range(begin_delta, 0, -1):
             timer = Timer()
             cut_off_dt = now - timedelta(days=ddelta)
-            try:
-                qset = Session.objects.filter(expire_date__lt=cut_off_dt)
-                if qset.exists():
-                    qset.delete()
-                    logger.info(log_format.format(cut_off_dt.date(),
-                                                  timer.get_elapsed()))
-                    time.sleep(5)
-            except Exception as ex:
-                logger.error(str(ex))
+            qset = Session.objects.filter(expire_date__lt=cut_off_dt)
+            if qset.exists():
+                qset.delete()
+                logger.info(log_format.format(cut_off_dt.date(),
+                                              timer.get_elapsed()))
+                time.sleep(5)
