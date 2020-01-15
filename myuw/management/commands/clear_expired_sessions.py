@@ -11,6 +11,7 @@ expired django sessions in a single run
 
 import logging
 from datetime import timedelta
+import time
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
 from django.utils import timezone
@@ -34,6 +35,6 @@ class Command(BaseCommand):
                     qset.delete()
                     logger.info(log_format.format(cut_off_dt.date(),
                                                   timer.get_elapsed()))
-
+                    time.sleep(5)
             except Exception as ex:
                 logger.error(str(ex))
