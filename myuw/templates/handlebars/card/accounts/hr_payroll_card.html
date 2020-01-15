@@ -1,14 +1,12 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "hr_payroll_card" %}
+{% verbatim %}
+<script id="hr_payroll_card" type="text/x-handlebars-template">
 <div class="myuw-card hr-payroll-card" style="position:relative;">
     <h3 class="myuw-card-title">HR and Payroll</h3>
 
     <div>
         <h4 class="sr-only">Workday</h4>
         <div class="">
-        {% with link_text="Sign in to Workday" extra_class="btn btn-default card-action-btn myuw-button" %}
-        {% include "workday_link.html" %}
-        {% endwith %}
+        {{> workday_link link_text="Sign in to Workday" extra_class="btn btn-default card-action-btn myuw-button"}}
      	</div>
         <p class="myuw-text-small">Workday is the University’s cloud-based HR/payroll operations system.</p>
         <p class="myuw-text-small">*Please note: The Medical Centers continue to use Kronos for time-tracking and payroll.</p>
@@ -45,4 +43,5 @@
     </div>
 {{/unless}}
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

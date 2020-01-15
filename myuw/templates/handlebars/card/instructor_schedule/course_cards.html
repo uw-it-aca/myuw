@@ -1,8 +1,8 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_course_card_list" %}
+{% verbatim %}
+<script id="instructor_course_card_list" type="text/x-handlebars-template">
 
 <div class="instructor_cards">
-    {% include "handlebars/card/instructor_schedule/term_panel.html" %}
+    {{> term_panel}}
 
     <div id="instructor-term-{{toLowerCase quarter}}-{{year}}" class="instructor-term-cards" aria-labelledby="instructor-term-label">
         <h3 id="instructor-term-label" class="sr-only">Courses you are instructing {{ucfirst quarter}} {{year}}</h3>
@@ -11,24 +11,24 @@
             {{#unless under_disclosure}}
                 <div class="myuw-card instructor-course-card" style="position:relative;" data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
                     {{#if mini_card}}
-                        <div class="c{{ color_id }}LeftBorder"></div>
+                        <div class="c{{color_id}}LeftBorder"></div>
                     {{else}}
-                        <div class="c{{ color_id }}Border"></div>
+                        <div class="c{{color_id}}Border"></div>
                     {{/if}}
                     <div class="fade-in">
                         <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
-                            <h3 class="myuw-card-title" id="{{ course_abbr_slug }}-{{course_number}}-{{section_id}}">
+                            <h3 class="myuw-card-title" id="{{course_abbr_slug}}-{{course_number}}-{{section_id}}">
                                 <span class="myuw-course-abbrtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span>
                               <!--    {{#if ../future_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}}{{#if ../past_term}} ({{capitalizeString ../../quarter}} {{../../year}}){{/if}} -->
                                 <span class="myuw-course-shortname">{{course_title}}</span>
-                                {{#if has_joint }}
+                                {{#if has_joint}}
                                     <span class="myuw-course-joint myuw-muted">
                                         Offered jointly with
                                         {{#each joint_sections}}
                                         {{#if is_ior}}
-                                            <a href="#{{ course_abbr_slug }}-{{ course_number }}-{{ section_id }}">{{ course_abbr }} {{ course_number }} {{ section_id }}</a>{{#unless @last}}, {{/unless}}
+                                            <a href="#{{course_abbr_slug}}-{{course_number}}-{{section_id}}">{{course_abbr}} {{course_number}} {{section_id}}</a>{{#unless @last}}, {{/unless}}
                                         {{else}}
-                                            <a role="button" tabindex="0" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="You are not an instructor of record for {{ course_abbr }} {{ course_number }} {{ section_id }}. Contact your Time Schedule Coordinator and ask to be added as an instructor of record.">{{ course_abbr }} {{ course_number }} {{ section_id }} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="sr-only">(Warning: Not listed as an instructor or record)</span></a>{{#unless @last}}, {{/unless}}
+                                            <a role="button" tabindex="0" data-trigger="focus" data-toggle="popover" data-placement="top" data-content="You are not an instructor of record for {{course_abbr}} {{course_number}} {{section_id}}. Contact your Time Schedule Coordinator and ask to be added as an instructor of record.">{{course_abbr}} {{course_number}} {{section_id}} <i class="fa fa-exclamation-triangle" aria-hidden="true"></i><span class="sr-only">(Warning: Not listed as an instructor or record)</span></a>{{#unless @last}}, {{/unless}}
                                         {{/if}}
                                         {{/each}}
                                     </span>
@@ -37,13 +37,13 @@
 
                             <div class="course-meta">
                                 {{#if sln}}
-                                    <span class="myuw-meta myuw-muted">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{ get_quarter_abbreviation ../quarter }}+{{ ../year }}&SLN={{ sln }}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
+                                    <span class="myuw-meta myuw-muted">SLN <a href="https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{get_quarter_abbreviation ../quarter}}+{{../year}}&SLN={{sln}}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
                                 {{/if}}
                                 {{#if section_type}}
                                     <span class="myuw-meta myuw-course-meeting-type c{{color_id}}Color">{{section_type}}</span>
                                 {{/if}}
                                 {{#if mini_card}}
-                                    <button type="button" class="close-mini-card myuw-close-card" cabb="{{curriculum_abbr}}" cnum="{{course_number }}" sid="{{section_id}}" aria-label="Hide section" title="Hide course section"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    <button type="button" class="close-mini-card myuw-close-card" cabb="{{curriculum_abbr}}" cnum="{{course_number}}" sid="{{section_id}}" aria-label="Hide section" title="Hide course section"><i class="fa fa-times" aria-hidden="true"></i></button>
                                 {{/if}}
                             </div>
 
@@ -55,4 +55,5 @@
         {{/each}}
     </div>
  </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

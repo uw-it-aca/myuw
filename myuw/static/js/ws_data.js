@@ -933,6 +933,10 @@ WSData = {
             var meeting_index = 0;
             for (meeting_index = 0; meeting_index < section.meetings.length; meeting_index++) {
                 var meeting = section.meetings[meeting_index];
+                meeting.curriculum_abbr = section.curriculum_abbr;
+                meeting.course_number = section.course_number;
+                meeting.section_id = section.section_id;
+
                 var instructor_index = 0;
                 for (instructor_index = 0; instructor_index < meeting.instructors.length; instructor_index++) {
                     var instructor = meeting.instructors[instructor_index];

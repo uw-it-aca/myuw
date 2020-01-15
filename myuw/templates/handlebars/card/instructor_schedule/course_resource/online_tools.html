@@ -1,14 +1,15 @@
-{% load templatetag_handlebars %}
-    {% verbatim %}
+{% verbatim %}
+<script id="online_tools" type="text/x-handlebars-template">
 {{#if canvas_url}}
     <li class="clearfix">
         <span class="card-badge-value">
             {{#equal canvas_url 'error'}}
             <p><a href="https://canvas.uw.edu/" data-linklabel="Canvas LMS" target="_blank">Canvas LMS Home page</a></p>
             {{else}}
-            <a href="{{ canvas_url }}" class="course_canvas_site" target="_blank"
-               rel="{{ curriculum_abbr }} {{course_number}} {{section_id}}"
-               data-linklabel="Course Canvas: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Course Canvas</a></span></li>
+            <a href="{{canvas_url}}" class="course_canvas_site" target="_blank"
+               rel="{{curriculum_abbr}} {{course_number}} {{section_id}}"
+               data-linklabel="Course Canvas: {{curriculum_abbr}} {{course_number}} {{section_id}}">Course Canvas</a></span></li>
             {{/equal}}
 {{/if}}
-    {% endverbatim %}
+</script>
+{% endverbatim %}

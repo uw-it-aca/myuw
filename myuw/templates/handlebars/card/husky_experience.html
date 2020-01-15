@@ -1,6 +1,7 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "husky_experience" %}
-    <div class="myuw-card myuw-card-article" data-type="card" data-name="HuskyExperienceToolkit" data-identifier="{{ title }}">
-        {{{ article_html }}}
+{% verbatim %}
+<script id="husky_experience" type="text/x-handlebars-template">
+    <div class="myuw-card myuw-card-article" data-type="card" data-name="HuskyExperienceToolkit" data-identifier="{{title}}">
+        {{{article_html}}}
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}
