@@ -20,9 +20,9 @@
                             <span>Closed {{evaluation.eval_close_date_display}}{{#if evaluation.response_rate_percent}} with a {{evaluation.response_rate_percent}}% response rate{{/if}}.</span>
                         </li>
 
-                        {{#if evaluation.report_url}}
+                        {{#if evaluation.eval_url}}
                           <li>
-                              <a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a>
+                              <a href="{{evaluation.eval_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a>
                           </li>
                         {{/if}}
                       {{/if}}
@@ -57,8 +57,8 @@
                           <li class="evaluation-schedule">Report Available {{evaluation.report_available_date_display}}</li>
                         {{/if}}
 
-                        {{#if evaluation.report_url}}
-                          <li><a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
+                        {{#if evaluation.eval_url}}
+                          <li><a href="{{evaluation.eval_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
                         {{/if}}
 
                         <li><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
