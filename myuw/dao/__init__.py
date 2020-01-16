@@ -22,11 +22,16 @@ def get_netid_of_current_user(request=None):
     return request.myuwnetid
 
 
-def get_netid_of_original_user():
+def get_netid_of_original_user(request=None):
     """
     return the actual authenticated user
     """
-    return UserService().get_original_user()
+    if request is None:
+        return UserService().get_original_user()
+
+    if not hasattr(request, "myuw_orig_netid"):
+        request.myuw_orig_netid = UserService().get_original_user()
+    return request.myuw_orig_netid
 
 
 def get_userids(request=None):
@@ -38,7 +43,7 @@ def get_userids(request=None):
     lformat = 'orig_netid: {}, acting_netid: {}, is_override: {}'
     try:
         override_userid = get_netid_of_current_user(request)
-        actual_userid = get_netid_of_original_user()
+        actual_userid = get_netid_of_original_user(request)
         return lformat.format(actual_userid,
                               override_userid,
                               override_userid != actual_userid)
