@@ -40,10 +40,18 @@ def not_instructor_error():
 def unknown_uwnetid():
     return _make_response(
         HTTP_BAD_REQUEST,
-        "MyUW cannot find data for this user account "
+        "<p>MyUW cannot find data for this user account "
         "in the person registry services. "
         "If you have just created your UW NetID, "
-        "please try signing in to MyUW again in one hour.")
+        "please try signing in to MyUW again in one hour.</p>")
+
+
+def no_access():
+    return _make_response(
+        UNAUTHORIZED_ERROR,
+        "<p>This is a test environment of MyUW, "
+        "its access is limited to specific people. "
+        "To request access, please contact the UW-IT Service Center.</p>")
 
 
 def invalid_input_data():

@@ -1,3 +1,4 @@
+import re
 from django.conf import settings
 
 
@@ -16,6 +17,11 @@ def get_google_search_key():
 
 def get_logout_url():
     return getattr(settings, "LOGOUT_URL", "/user_logout")
+
+
+def get_prod_url_pattern():
+    domain = getattr(settings, "MYUW_PROD_URL", "")
+    return re.compile(domain)
 
 
 def get_myuwclass_url():
@@ -43,3 +49,7 @@ def get_disable_actions_when_override():
 
 def get_enabled_features():
     return getattr(settings, "MYUW_ENABLED_FEATURES", [])
+
+
+def get_myuw_test_access_group():
+    return getattr(settings, "MYUW_TEST_ACCESS_GROUP", None)

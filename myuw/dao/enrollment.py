@@ -4,16 +4,16 @@ the SWS Enrollment resource.
 """
 import datetime
 import logging
+import traceback
 from copy import deepcopy
 from uw_sws.enrollment import (
     enrollment_search_by_regid, get_enrollment_history_by_regid)
+from myuw.dao import get_userids
 from myuw.dao.term import (
     get_current_quarter, get_current_and_next_quarters,
     get_previous_number_quarters, get_comparison_date)
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.pws import get_regid_of_current_user
-
 
 CLASS_CODES = {
     "FRESHMAN": 1,
@@ -79,6 +79,17 @@ def get_prev_enrollments_with_open_sections(request, num_of_prev_terms):
     return remove_finished(request, result_dict)
 
 
+def is_registered_current_quarter(request):
+    try:
+        enrollment = get_current_quarter_enrollment(request)
+        return enrollment is not None and enrollment.is_registered
+    except Exception:
+        logger.error("{}, {} => {} ".format(
+            get_userids(request), "is_registered_current_quarter",
+            traceback.format_exc(chain=False)))
+    return False
+
+
 def get_main_campus(request):
     campuses = []
     try:
@@ -90,12 +101,10 @@ def get_main_campus(request):
             for major in enrollment.majors:
                 if major.campus and major.campus not in campuses:
                     campuses.append(major.campus)
-    except DataFailureException as ex:
-        logger.error("get_main_campus: {}".format(str(ex)))
-        raise IndeterminateCampusException()
-    except Exception as ex:
-        logger.error("get_main_campus: {}".format(str(ex)))
-        pass
+    except Exception:
+        logger.error("{}, {} => {} ".format(
+            get_userids(request), "get_main_campus",
+            traceback.format_exc(chain=False)))
     return campuses
 
 
