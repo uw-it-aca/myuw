@@ -6,7 +6,7 @@ from myuw.dao.gws import (
     is_student, is_pce_student, is_grad_c2, is_undergrad_c2,
     is_student_employee, is_staff_employee, is_regular_employee,
     is_alum_asso, is_applicant, no_major_affiliations, get_groups,
-    is_effective_member)
+    is_effective_member, in_myuw_test_access_group)
 from myuw.test import fdao_gws_override, get_request_with_user
 
 
@@ -89,3 +89,14 @@ class TestPwsDao(TestCase):
         req = get_request_with_user('bill')
         self.assertTrue(
             is_effective_member(req, 'u_astratst_myuw_test-support-admin'))
+
+    def test_in_myuw_test_access_group(self):
+        self.assertTrue(in_myuw_test_access_group(
+            get_request_with_user("anyone")))
+
+        with self.settings(
+                MYUW_TEST_ACCESS_GROUP='u_astratst_myuw_test-support-admin'):
+            self.assertTrue(in_myuw_test_access_group(
+                get_request_with_user("javerage")))
+            self.assertFalse(in_myuw_test_access_group(
+                get_request_with_user("eight")))
