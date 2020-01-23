@@ -10,32 +10,28 @@ expired django sessions in a single run
 """
 
 import logging
-from django.conf import settings
+from datetime import timedelta
+import time
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
 from django.utils import timezone
 from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
-DEL_SIZE = 10000
+begin_delta = 1920
+log_format = "Deleted django sessions expired before {}, Time={} seconds"
 
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        limit = self.get_limit()
-        try:
+        now = timezone.now()
+        for ddelta in range(begin_delta, 0, -1):
             timer = Timer()
-            qs = Session.objects.filter(
-                expire_date__lt=timezone.now())[0:limit]
-            if qs.exists():
-                qs.delete()
-            logger.info(
-                "clear_expired_sessions, Time={} seconds".format(
-                    timer.get_elapsed()))
-        except Exception as ex:
-            logger.error(str(ex))
-
-    def get_limit(self):
-        num = getattr(settings, 'DEL_SESSION_NUM', None)
-        return int(num) if num else DEL_SIZE
+            cut_off_dt = now - timedelta(days=ddelta)
+            qset = Session.objects.filter(expire_date__lt=cut_off_dt)
+            if qset.exists():
+                qset.delete()
+                logger.info(log_format.format(cut_off_dt.date(),
+                                              timer.get_elapsed()))
+                time.sleep(5)
