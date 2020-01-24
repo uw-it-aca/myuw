@@ -213,3 +213,19 @@ def in_myuw_test_access_group(request):
     return (test_access_group is None or
             gws.is_effective_member(get_myuw_test_access_group(),
                                     get_netid_of_original_user(request)))
+
+
+def in_fyp_group(request):
+    return is_effective_member(request, "u_myuwgroup_fyp")
+
+
+def in_au_xfer_group(request):
+    return is_effective_member(request, "u_myuwgroup_auxfer")
+
+
+def in_wi_xfer_group(request):
+    return is_effective_member(request, "u_myuwgroup_wixfer")
+
+
+def in_hxtoolkit_group(request):
+    return is_effective_member(request, "u_myuwgroup_hxtoolkit")
