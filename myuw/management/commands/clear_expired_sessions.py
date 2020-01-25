@@ -38,19 +38,31 @@ class Command(BaseCommand):
             day_session_count = Session.objects.filter(
                 expire_date__lt=cut_off_dt).count()
             if day_session_count > 10000:
-                # further split into 4 hour chunks
-                for hdelta in range(20, 0, -4):
+                start_hr, inc_hrs = get_cut_off_params(day_session_count)
+                for hdelta in range(start_hr, 0, inc_hrs):
                     dthour = cut_off_dt - timedelta(hours=hdelta)
-                    self.run_delete(dthour)
+                    run_delete(dthour)
 
-            self.run_delete(cut_off_dt)
+            run_delete(cut_off_dt)
 
-    def run_delete(self, cut_off_dt):
-        qset = Session.objects.filter(expire_date__lt=cut_off_dt)
-        if qset.exists():
-            timer = Timer()
-            qset.delete()
-            logger.info(log_format.format(
-                cut_off_dt.strftime("%Y-%m-%d %H:%M:%S"),
-                timer.get_elapsed()))
-            time.sleep(3)
+
+def get_cut_off_params(day_session_count):
+    if day_session_count <= 50000:
+        # further split into 6 sets
+        return 20, -4
+    if day_session_count <= 100000:
+        # further split into 12 sets
+        return 22, -2
+    # further split into 24 sets
+    return 23, -1
+
+
+def run_delete(cut_off_dt):
+    qset = Session.objects.filter(expire_date__lt=cut_off_dt)
+    if qset.exists():
+        timer = Timer()
+        qset.delete()
+        logger.info(log_format.format(
+            cut_off_dt.strftime("%Y-%m-%d %H:%M:%S"),
+            timer.get_elapsed()))
+        time.sleep(3)
