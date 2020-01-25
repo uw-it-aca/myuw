@@ -18,15 +18,21 @@ from django.utils import timezone
 from myuw.logger.timer import Timer
 
 logger = logging.getLogger(__name__)
-begin_delta = 1920
 log_format = "Deleted django sessions expired before {}, Time={} seconds"
 
 
 class Command(BaseCommand):
 
+    def add_arguments(self, parser):
+        parser.add_argument('total_days', type=int,
+                            help="param1: total_days")
+        # total_days: the total number of days back where
+        #             the earliest expired sessions exist
+
     def handle(self, *args, **options):
+        total_days = options['total_days']
         now = timezone.now()
-        for ddelta in range(begin_delta, 0, -1):
+        for ddelta in range(total_days, 0, -1):
             timer = Timer()
             cut_off_dt = now - timedelta(days=ddelta)
             qset = Session.objects.filter(expire_date__lt=cut_off_dt)

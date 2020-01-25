@@ -27,7 +27,7 @@ class Command(BaseCommand):
                     netid = line.rstrip()
                     if netid == "uw_netid":
                         continue
-                    gws.add_members(group_id, netid)
+                    gws.add_members(group_id, [netid])
                     counter += 1
                 except Exception as ex:
                     logger.error("{}: {}".format(str(ex), line))
