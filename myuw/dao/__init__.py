@@ -76,15 +76,3 @@ def _get_file_path(settings_key, filename):
                                              "..", "data",
                                              filename))
     return file_path
-
-
-def is_netid_in_list(username, file_path):
-    with open(file_path, 'r', encoding='utf8') as data_source:
-        for line in data_source:
-            try:
-                if line.rstrip() == username:
-                    return True
-            except Exception as ex:
-                logger.error("{}: {}=?={}".format(str(ex), line, username))
-
-    return False
