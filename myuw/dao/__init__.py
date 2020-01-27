@@ -66,19 +66,6 @@ def is_using_file_dao():
     return SWS_DAO.get_implementation().is_mock()
 
 
-def is_hx_toolkit_viewer(request):
-    file_path = _get_file_path("MYUW_DATA_PATH",
-                               "hx_toolkit_list.txt")
-    uwnetid = get_netid_of_current_user(request)
-    return is_netid_in_list(uwnetid, file_path)
-
-
-def is_thrive_viewer(uwnetid, population):
-    file_path = _get_file_path("MYUW_DATA_PATH",
-                               population + "_list.txt")
-    return is_netid_in_list(uwnetid, file_path)
-
-
 def _get_file_path(settings_key, filename):
     file_path = getattr(settings, settings_key, None)
     if file_path:
@@ -89,15 +76,3 @@ def _get_file_path(settings_key, filename):
                                              "..", "data",
                                              filename))
     return file_path
-
-
-def is_netid_in_list(username, file_path):
-    with open(file_path, 'r', encoding='utf8') as data_source:
-        for line in data_source:
-            try:
-                if line.rstrip() == username:
-                    return True
-            except Exception as ex:
-                logger.error("{}: {}=?={}".format(str(ex), line, username))
-
-    return False
