@@ -19,7 +19,11 @@ class TestClearSessions(TestCase):
                 session_key="a{}".format(i),
                 session_data="a{}".format(i),
                 expire_date=timezone.now() - timedelta(days=1))
+        self.assertEqual(Session.objects.filter(
+            expire_date__lt=timezone.now()).count(), 10001)
         call_command('clear_expired_sessions', 1)
+        self.assertEqual(Session.objects.filter(
+            expire_date__lt=timezone.now()).count(), 0)
 
     def test_get_cut_off_params(self):
         start_hr, inc_hrs = get_cut_off_params(49999)
