@@ -5,8 +5,8 @@ The django clearsessions commend internally calls:
 which could lock the DB table for a long time when
 having a large number of records to delete.
 
-To prevent the job running forever, we only delete a limit number of
-expired django sessions in a single run
+To prevent the DB table being locked, we delete a limit number of
+sessions each time.
 """
 
 import logging
