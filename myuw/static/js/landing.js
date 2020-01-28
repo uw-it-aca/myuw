@@ -98,7 +98,7 @@ var Landing = {
             desktop_body_cards.push(FutureQuarterCard1);
             desktop_body_cards.push(SummerRegStatusCard1);
         }
-        if (window.user.applicant) {
+        if (window.user.applicant && !window.user.registered_stud) {
             desktop_body_cards.push(SeattleApplicationCard);
             desktop_body_cards.push(BothellApplicationCard);
             desktop_body_cards.push(TacomaApplicationCard);
@@ -111,6 +111,7 @@ var Landing = {
         if(window.user.employee &&
            !window.user.student &&
            !window.user.instructor||
+           window.user.retiree ||
            window.user.past_employee) {
             desktop_body_cards.push(HRPayrollCard);
         }
@@ -155,7 +156,8 @@ var Landing = {
         if (window.user.is_hxt_viewer) {
             mobile_cards.push(HuskyExperienceCard);
         }
-        if (window.user.applicant) {
+
+        if (window.user.applicant && !window.user.registered_stud) {
             mobile_cards.push(SeattleApplicationCard);
             mobile_cards.push(BothellApplicationCard);
             mobile_cards.push(TacomaApplicationCard);
@@ -208,6 +210,7 @@ var Landing = {
            !window.user.student &&
            !window.user.instructor &&
            !window.user.applicant ||
+           window.user.retiree ||
            window.user.past_employee) {
             mobile_cards.push(HRPayrollCard);
         }
