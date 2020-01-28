@@ -2,47 +2,28 @@ import csv
 import datetime
 import logging
 import os
-from myuw.dao import is_thrive_viewer, get_netid_of_current_user
+from myuw.dao.gws import in_fyp_group, in_au_xfer_group, in_wi_xfer_group
 from myuw.dao.term import get_comparison_date, get_current_quarter,\
     get_bod_current_term_class_start
 
-
 logger = logging.getLogger(__name__)
-CACHE_ID = "thrive_target"
 TARGET_FYP = "fyp"
 TARGET_AUT_TRANSFER = "au_xfer"
 TARGET_WIN_TRANSFER = "wi_xfer"
-target_groups = [TARGET_AUT_TRANSFER,
-                 TARGET_WIN_TRANSFER,
-                 TARGET_FYP]
-# the order says the priority
 
 
 def get_target_group(request):
-    if hasattr(request, CACHE_ID):
-        return request.CACHE_ID
-
-    uwnetid = get_netid_of_current_user(request)
-    for target in target_groups:
-        try:
-            if is_thrive_viewer(uwnetid, target):
-                request.CACHE_ID = target
-                return target
-        except Exception:
-            pass
+    try:
+        # the order says the priority
+        if in_au_xfer_group(request):
+            return TARGET_AUT_TRANSFER
+        if in_wi_xfer_group(request):
+            return TARGET_WIN_TRANSFER
+        if in_fyp_group(request):
+            return TARGET_FYP
+    except Exception:
+        pass
     return None
-
-
-def is_fyp(request):
-    return TARGET_FYP == get_target_group(request)
-
-
-def is_aut_transfer(request):
-    return TARGET_AUT_TRANSFER == get_target_group(request)
-
-
-def is_win_transfer(request):
-    return TARGET_WIN_TRANSFER == get_target_group(request)
 
 
 def get_current_message(request):

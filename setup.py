@@ -37,7 +37,7 @@ setup(
         'UW-RestClients-CoDa<2.0',
         'UW-RestClients-Grad<2.0',
         'UW-RestClients-GradePage<2.0',
-        'UW-RestClients-GWS<3.0',
+        'UW-RestClients-GWS>=2.2.5,<3.0',
         'UW-RestClients-HFS<2.0',
         'UW-RestClients-IASystem>=1.1,<2.0',
         'UW-RestClients-Libraries<2.0',
