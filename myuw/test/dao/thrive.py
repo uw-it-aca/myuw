@@ -2,10 +2,10 @@ from django.test import TestCase
 import datetime
 import csv
 from io import StringIO
-from myuw.dao.thrive import _get_offset, _make_urls, _is_displayed, \
-    _make_thrive_payload, get_current_message, get_previous_messages,\
-    get_target_group, is_fyp, is_aut_transfer, is_win_transfer, TARGET_FYP,\
-    TARGET_AUT_TRANSFER, TARGET_WIN_TRANSFER
+from myuw.dao.thrive import (
+    TARGET_FYP, TARGET_AUT_TRANSFER, TARGET_WIN_TRANSFER,
+    _get_offset, _make_urls, _is_displayed, _make_thrive_payload,
+    get_current_message, get_previous_messages, get_target_group)
 from uw_sws.models import Term
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user, get_request
@@ -19,21 +19,21 @@ class TestThrive(TestCase):
         self.assertIsNone(get_target_group(get_request()))
 
         request = get_request_with_user('jnew', get_request())
-        self.assertTrue(is_fyp(request))
+        self.assertEqual(get_target_group(request), "fyp")
 
         request = get_request_with_user('javg001', get_request())
-        self.assertTrue(is_aut_transfer(request))
+        self.assertEqual(get_target_group(request), "au_xfer")
 
         request = get_request_with_user('javg002', get_request())
-        self.assertTrue(is_win_transfer(request))
+        self.assertEqual(get_target_group(request), "wi_xfer")
 
         request = get_request_with_user('javg003', get_request())
-        self.assertTrue(is_aut_transfer(request))
-        self.assertFalse(is_fyp(request))
+        self.assertEqual(get_target_group(request), "au_xfer")
+        self.assertFalse(get_target_group(request) == "fyp")
 
         request = get_request_with_user('javg004', get_request())
-        self.assertTrue(is_win_transfer(request))
-        self.assertFalse(is_aut_transfer(request))
+        self.assertEqual(get_target_group(request), "wi_xfer")
+        self.assertFalse(get_target_group(request) == "au_xfer")
 
     def test_get_current_message(self):
         request = get_request_with_user('jnew',
