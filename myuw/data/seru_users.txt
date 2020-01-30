@@ -1,3 +1,0 @@
-javerage
-jinter
-seagrad
