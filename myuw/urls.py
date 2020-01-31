@@ -10,7 +10,6 @@ from myuw.views.thrive_messages import thrive_messages
 from myuw.views.academic_calendar import academic_calendar
 from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
-from myuw.views.api.applications import Applications
 from myuw.views.category import category
 from myuw.views.display_dates import override
 from myuw.views.message_admin import manage_messages
@@ -23,6 +22,8 @@ from myuw.views.profile import profile
 from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
 from myuw.views.resources import resources
+from myuw.views.api.affiliation import Affiliation
+from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
@@ -99,6 +100,9 @@ urlpatterns += [
     re_path(r'^api/v1/academic_events/current/$',
             AcademicEvents.as_view(), {'current': True},
             name="myuw_academic_calendar_current"),
+    re_path(r'^api/v1/affiliation$',
+            Affiliation.as_view(),
+            name="myuw_affiliation"),
     re_path(r'^api/v1/book/current/?$',
             TextbookCur.as_view(),
             name="myuw_current_book"),
