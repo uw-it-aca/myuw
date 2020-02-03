@@ -100,7 +100,7 @@ urlpatterns += [
     re_path(r'^api/v1/academic_events/current/$',
             AcademicEvents.as_view(), {'current': True},
             name="myuw_academic_calendar_current"),
-    re_path(r'^api/v1/affiliation$',
+    re_path(r'^api/v1/affiliation/?$',
             Affiliation.as_view(),
             name="myuw_affiliation"),
     re_path(r'^api/v1/book/current/?$',
