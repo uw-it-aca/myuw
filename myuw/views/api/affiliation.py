@@ -1,19 +1,17 @@
 import logging
 import traceback
-from django.utils.decorators import method_decorator
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.user import get_updated_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call, log_exception
 from myuw.views import prefetch_resources
 from myuw.views.error import handle_exception, unknown_uwnetid
-from myuw.views.api import OpenAPI
+from myuw.views.api import ProtectedAPI
 
 logger = logging.getLogger(__name__)
 
 
-# @method_decorator()
-class Affiliation(OpenAPI):
+class Affiliation(ProtectedAPI):
 
     def get(self, request, *args, **kwargs):
         """
