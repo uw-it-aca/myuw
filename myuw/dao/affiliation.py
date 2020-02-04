@@ -3,7 +3,6 @@ This module provides affiliations of the current user
 """
 
 import logging
-from myuw.dao import is_hx_toolkit_viewer
 from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.enrollment import (
     get_main_campus, get_class_level, is_registered_current_quarter)
@@ -11,13 +10,13 @@ from myuw.dao.gws import (
     is_clinician, is_regular_employee, is_staff_employee, is_student_employee,
     is_alum_asso, is_student, is_grad_student, is_undergrad_student,
     is_pce_student, is_seattle_student, is_bothell_student, is_tacoma_student,
-    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations)
+    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations,
+    in_fyp_group, in_au_xfer_group, in_wi_xfer_group, in_hxtoolkit_group)
 from myuw.dao.instructor import is_instructor
 from myuw.dao.pws import (
     get_employee_campus, is_employee, is_faculty, is_prior_employee,
     is_prior_student, is_retiree, is_alumni)
 from myuw.dao.term import get_current_quarter
-from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from myuw.dao.uwnetid import is_2fa_permitted
 from myuw.dao.student_profile import get_profile_of_current_user
 
@@ -146,12 +145,12 @@ def get_all_affiliations(request):
 
 
 def get_is_hxt_viewer(request):
-    is_fy_stud = is_fyp(request)
-    is_aut_xfer = is_aut_transfer(request)
-    is_win_xfer = is_win_transfer(request)
+    is_fy_stud = in_fyp_group(request)
+    is_aut_xfer = in_au_xfer_group(request)
+    is_win_xfer = in_wi_xfer_group(request)
     is_sea_stud = is_seattle_student(request)
     is_undergrad = is_undergrad_student(request)
-    is_viewer = is_hx_toolkit_viewer(request)
+    is_viewer = in_hxtoolkit_group(request)
     if not is_viewer:
         if is_sea_stud and is_undergrad and not is_fy_stud:
             term = get_current_quarter(request)

@@ -162,6 +162,9 @@ describe("HomePage", function() {
                          [QuickLinksCard,
                           AcadCalSnippet,
                           EventsCard]);
+        window.user.registered_stud = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 3);
     });
 
     it('Desktop cards for hxt_viewer', function() {
@@ -254,6 +257,10 @@ describe("HomePage", function() {
                           EventsCard,
                           ResourcesCard,
                           ResourcesExploreCard]);
+
+        window.user.registered_stud = true;
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.equal(mobile_cards.length, 6);
     });
 
     it('Mobile cards for instructor', function() {
@@ -430,38 +437,46 @@ describe("HomePage", function() {
 
         window.user.netid = "javerage";
         window.user.student = false;
-        window.user.retiree = true;
         window.user.past_employee = true;
 
         Landing.make_html();
         assert.equal(Landing.is_desktop, true);
         assert.equal($('div[id="HRPayrollCard"]').length, 1);
-        assert.equal($('div[id="RetireAssoCard"]').length, 1);
         assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
         assert.equal($('div[id="UwnetidCard"]').length, 1);
         assert.equal($('div[id="QuickLinksCard"]').length, 1);
         assert.equal($('div[id="AcadCalSnippet"]').length, 1);
         assert.equal($('div[id="EventsCard"]').length, 1);
+
+        window.user.past_employee = false;
+        window.user.retiree = true;
+        Landing.make_html();
+        assert.equal($('div[id="HRPayrollCard"]').length, 1);
+        assert.equal($('div[id="RetireAssoCard"]').length, 1);
     });
 
     it('Mobile for past employee should have', function() {
         window.innerWidth = 767;
 
-        window.user.netid = "javerage";
+        window.user.netid = "retiree";
         window.user.is_hxt_viewer = false;
         window.user.student = false;
-        window.user.retiree = true;
         window.user.past_employee = true;
 
         Landing.make_html();
         assert.equal(Landing.is_desktop, false);
         assert.equal($('div[id="HRPayrollCard"]').length, 1);
-        assert.equal($('div[id="RetireAssoCard"]').length, 1);
         assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
         assert.equal($('div[id="UwnetidCard"]').length, 1);
         assert.equal($('div[id="QuickLinksCard"]').length, 1);
         assert.equal($('div[id="AcadCalSnippet"]').length, 1);
         assert.equal($('div[id="EventsCard"]').length, 1);
+
+        window.user.retiree = true;
+        window.user.past_employee = false;
+        Landing.make_html();
+        assert.equal($('div[id="HRPayrollCard"]').length, 1);
+        assert.equal($('div[id="RetireAssoCard"]').length, 1);
     });
 
     it('Test resizing', function() {
