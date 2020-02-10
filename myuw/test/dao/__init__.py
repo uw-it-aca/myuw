@@ -3,8 +3,7 @@ from django.test.client import RequestFactory
 from userservice.user import UserServiceMiddleware, UserService
 from myuw.dao import (
     get_netid_of_current_user, get_netid_of_original_user,
-    is_using_file_dao, is_thrive_viewer, is_action_disabled,
-    is_hx_toolkit_viewer)
+    is_using_file_dao, is_action_disabled)
 from myuw.test import (
     fdao_sws_override, fdao_pws_override,
     get_request, get_request_with_user, set_override_user)
@@ -33,15 +32,6 @@ class TestDaoInit(MyuwApiTest):
 
     def test_is_using_file_dao(self):
         self.assertTrue(is_using_file_dao())
-
-    def test_is_hx_toolkit_viewer(self):
-        request = get_request_with_user("staff")
-        self.assertTrue(is_hx_toolkit_viewer(request))
-
-    def test_is_thrive_viewer(self):
-        self.assertTrue(is_thrive_viewer("jnew", "fyp"))
-        self.assertTrue(is_thrive_viewer("javg001", "au_xfer"))
-        self.assertTrue(is_thrive_viewer("javg002", "wi_xfer"))
 
     def test_is_action_disabled(self):
         with self.settings(DEBUG=False,
