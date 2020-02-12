@@ -11,6 +11,12 @@ var InstructorCourseResourcePanel = {
             c_section.display_resources = true;
         }
 
+        if (c_section.past_term &&
+            (c_section.is_independent_study ||
+             !c_section.is_primary_section)) {
+            c_section.use_legacy_link = true;
+        }
+
         Handlebars.registerPartial('course_class_list', $("#course_class_list").html());
         Handlebars.registerPartial('course_stats', $("#course_stats").html());
         Handlebars.registerPartial('class_website', $("#class_website").html());
