@@ -90,15 +90,6 @@ var InstructorCourseResourcePanel = {
             return false;
         });
 
-        $(".myclass_list", panel).on("click", function(ev) {
-            var target = ev.currentTarget;
-            var course_id = safe_label(target.getAttribute("rel"));
-            WSData.log_interaction("view_myclass_list_"+course_id, term);
-            window.open(target.getAttribute('data-href'),
-                        'open_course_classlist',
-                        'width=700,height=400');
-        });
-
     },
 
     get_section_label: function(term, target) {
