@@ -17,7 +17,7 @@ class Affiliation(ProtectedAPI):
         """
         Performs actions on resource at /api/v1/affiliation/.
         GET returns 200 with the current user's affiliation
-        @return status 401: no valid authentication token
+        @return status 403: no valid authentication token
                 status 543: data error
         """
         timer = Timer()

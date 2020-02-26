@@ -12,8 +12,7 @@ from myuw.views.exceptions import DisabledAction, NotInstructorError,\
 
 
 HTTP_BAD_REQUEST = 400
-UNAUTHORIZED_ERROR = 401
-NOT_INSTRUCTOR_ERROR = 403
+UNAUTHORIZED_ERROR = 403
 HTTP_NOT_FOUND = 404
 HTTP_METHOD_NOT_ALLOWED = 405
 HTTP_GONE = 410
@@ -32,8 +31,16 @@ def disabled_action_error():
                           "Action Disabled while overriding users")
 
 
+def no_access():
+    return _make_response(
+        UNAUTHORIZED_ERROR,
+        "<p>This is a test environment of MyUW, "
+        "its access is limited to specific people. "
+        "To request access, please contact the UW-IT Service Center.</p>")
+
+
 def not_instructor_error():
-    return _make_response(NOT_INSTRUCTOR_ERROR,
+    return _make_response(UNAUTHORIZED_ERROR,
                           "Access Forbidden to Non Instructor")
 
 
@@ -44,14 +51,6 @@ def unknown_uwnetid():
         "in the person registry services. "
         "If you have just created your UW NetID, "
         "please try signing in to MyUW again in one hour.</p>")
-
-
-def no_access():
-    return _make_response(
-        UNAUTHORIZED_ERROR,
-        "<p>This is a test environment of MyUW, "
-        "its access is limited to specific people. "
-        "To request access, please contact the UW-IT Service Center.</p>")
 
 
 def invalid_input_data():

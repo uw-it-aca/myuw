@@ -2,16 +2,15 @@ import re
 from rc_django.cache_implementation import TimedCache
 from rc_django.cache_implementation.memcache import MemcachedCache
 
-
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
-FOUR_HOURS = 60 * 60 * 4
-ONE_DAY = 60 * 60 * 24
+FOUR_HOURS = ONE_HOUR * 4
+ONE_DAY = ONE_HOUR * 24
 
 
 def get_cache_time(service, url):
-    if "myplan" == service:
+    if "myplan" == service or "uw_idp" == service:
         return FIVE_SECONDS
 
     if "sws" == service:
