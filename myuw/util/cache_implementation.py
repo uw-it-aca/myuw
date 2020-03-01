@@ -10,7 +10,7 @@ ONE_DAY = ONE_HOUR * 24
 
 
 def get_cache_time(service, url):
-    if "myplan" == service or "uw_idp" == service:
+    if "myplan" == service:
         return FIVE_SECONDS
 
     if "sws" == service:
@@ -31,6 +31,9 @@ def get_cache_time(service, url):
         if re.match(r'^/key/v1/encryption/', url):
             return ONE_DAY * 30
         return ONE_DAY * 7
+
+    if "uw_idp" == service:
+        return ONE_DAY
 
     if "gws" == service:
         return FIFTEEN_MINS

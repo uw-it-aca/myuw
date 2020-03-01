@@ -16,14 +16,12 @@ def log_session(request):
 
 def _get_session_data(request):
     try:
-        ua_string = request.META['HTTP_USER_AGENT'].decode('utf-8', 'ignore')
-    except Exception:
+        ua_string = request.META['HTTP_USER_AGENT']
+    except KeyError:
         ua_string = ""
-
     return {'session_key': hash_session_key(request),
             'ip': get_ip(request),
             'is_native': 'MyUW_Hybrid/1.0' in ua_string,
-            'is_android': "Android " in ua_string,
             'is_mobile': is_mobile(request),
             'referer': request.META.get('HTTP_REFERER')}
 
