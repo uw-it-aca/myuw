@@ -4,7 +4,7 @@ from myuw.dao.admin import can_override, is_admin
 from myuw.dao import pws
 
 INVALID_STRING = "Username not a valid netid"
-NO_USER = "No override user supplied"
+NO_USER = "No override user supplied, please enter a UWNetID"
 
 
 def validate_netid(username):
