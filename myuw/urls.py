@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.urls import re_path
 from django.contrib.auth.decorators import login_required
+from myuw.views import pagetest
 from myuw.views.page import logout
 from myuw.views.index import index
 from myuw.views.teaching import teaching, teaching_section, student_photo_list
@@ -77,6 +78,7 @@ if settings.DEBUG:
     ]
 
 urlpatterns += [
+    re_path(r'pagetest', pagetest, name="pagetest"),
     re_path(r'admin/dates', override, name="myuw_date_override"),
     re_path(r'admin/messages', manage_messages, name="myuw_manage_messages"),
     re_path(r'admin/notices/(?P<notice_id>[0-9]+)', edit_notice,

@@ -75,6 +75,10 @@ def prefetch_resources(request,
 
     prefetch(request, prefetch_methods)
 
+from django.http import HttpResponse
+
+def pagetest(request):
+    return HttpResponse("Hello!") 
 
 def set_admin_wrapper_template(context):
     try:
