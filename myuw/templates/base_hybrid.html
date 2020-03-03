@@ -82,7 +82,10 @@
         <div class="myuw-body">
             <div class="myuw-wrapper">
                 
-                <div>idToken: {{ request.META.HTTP_AUTHORIZATION }}</div>
+                <ul>
+                    <li>idToken: {{ request.META.HTTP_AUTHORIZATION }}</li>
+                    <li>deviceID: {{ request.META.HTTP_BLAH }}</li>
+                </ul>
 
                 <!-- app_navigation -->
                 {% block app_navigation %}
