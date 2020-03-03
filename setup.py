@@ -29,7 +29,7 @@ setup(
         'beautifulsoup4',
         'urllib3>1.24',
         'python-dateutil',
-        'UW-Django-SAML2==1.3.9',
+        'UW-Django-SAML2<2.0',
         'django-aws-message>=1.5.1,<2.0',
         'UW-RestClients-Core>=1.2.1,<2.0',
         'UW-RestClients-Bookstore>=1.0.4,<2.0',
@@ -63,7 +63,7 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
-        'python3-saml==1.7.0'
+        'lxml==4.4.2'
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),
