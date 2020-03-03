@@ -19,11 +19,14 @@ def _get_session_data(request):
         ua_string = request.META['HTTP_USER_AGENT']
     except KeyError:
         ua_string = ""
-    return {'session_key': hash_session_key(request),
-            'ip': get_ip(request),
-            'is_native': 'MyUW_Hybrid/1.0' in ua_string,
-            'is_mobile': is_mobile(request),
-            'referer': request.META.get('HTTP_REFERER')}
+    ret_val = {'session_key': hash_session_key(request),
+               'ip': get_ip(request),
+               'is_native': 'MyUW_Hybrid/1.0' in ua_string,
+               'is_mobile': is_mobile(request),
+               'referer': request.META.get('HTTP_REFERER')}
+    if ret_val['is_native']:
+        ret_val['uuid'] = request.session.get('uw_uuid')
+    return ret_val
 
 
 def _get_affi(request):
