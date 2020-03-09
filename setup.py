@@ -63,7 +63,7 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
-        'lxml==4.4.2'
+        'lxml==4.2.6'
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),
