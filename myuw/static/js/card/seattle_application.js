@@ -28,7 +28,8 @@ var SeattleApplicationCard = {
             }
         }
 
-        if (typeof seattle_application === 'undefined'){
+        if (typeof seattle_application === 'undefined' ||
+            seattle_application.no_ug_app){
             this.render_error();
             return;
         }
