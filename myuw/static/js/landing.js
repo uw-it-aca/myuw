@@ -98,7 +98,7 @@ var Landing = {
             desktop_body_cards.push(FutureQuarterCard1);
             desktop_body_cards.push(SummerRegStatusCard1);
         }
-        if (window.user.applicant && !window.user.registered_stud) {
+        if (window.user.applicant) {
             desktop_body_cards.push(SeattleApplicationCard);
             desktop_body_cards.push(BothellApplicationCard);
             desktop_body_cards.push(TacomaApplicationCard);
