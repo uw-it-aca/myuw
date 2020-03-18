@@ -243,7 +243,8 @@ class VisitedLinkNew(models.Model):
                                'all': 0}
             by_url[url]['users'] += item['num_users']
             by_url[url]['all'] += item['all']
-            by_url[url]['labels'].append(item['label'])
+            by_url[url]['labels'].append(
+                "" if item['label'] is None else item['label'])
 
         values = []
         for url in by_url:
