@@ -25,7 +25,7 @@ class TestCustomCachePolicy(TestCase):
 
     def test_get_cache_time(self):
         self.assertEquals(get_cache_time(
-            "uw_idp", "/idp/profile/oidc/"), ONE_DAY)
+            "uw_idp", "/idp/profile/oidc/keyset"), ONE_DAY * 30)
 
         self.assertEquals(get_cache_time(
             "myplan", "/api/plan/"), FIVE_SECONDS)
