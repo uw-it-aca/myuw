@@ -123,8 +123,12 @@ class TestLink(MyuwApiTest):
                                       is_student=True, is_seattle=True)
         VisitedLinkNew.objects.create(user=user2, url=TEST_URLS[0], label="x",
                                       is_seattle=True)
+        VisitedLinkNew.objects.create(user=user2, url=TEST_URLS[0], label=None,
+                                      is_seattle=True)
+        VisitedLinkNew.objects.create(user=user3, url=TEST_URLS[0], label=None,
+                                      is_seattle=True)
 
-        VisitedLinkNew.objects.create(user=user1, url=TEST_URLS[1], label="x",
+        VisitedLinkNew.objects.create(user=user1, url=TEST_URLS[1], label=None,
                                       is_student=True, is_seattle=True)
         VisitedLinkNew.objects.create(user=user2, url=TEST_URLS[1], label="x",
                                       is_seattle=True)
@@ -133,10 +137,10 @@ class TestLink(MyuwApiTest):
 
         popular_links = VisitedLinkNew.get_popular()
         self.assertEquals(len(popular_links), 2)
-        self.assertEquals(popular_links[0]['url'], TEST_URLS[1])
-        self.assertEquals(popular_links[0]['popularity'], 6)
-        self.assertEquals(popular_links[0]['labels'], ['x', 'y'])
+        self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
+        self.assertEquals(popular_links[0]['popularity'], 12)
+        self.assertEquals(popular_links[0]['labels'], ['', 'x'])
 
-        self.assertEquals(popular_links[1]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[1]['popularity'], 2)
-        self.assertEquals(popular_links[1]['labels'], ['x'])
+        self.assertEquals(popular_links[1]['url'], TEST_URLS[1])
+        self.assertEquals(popular_links[1]['popularity'], 9)
+        self.assertEquals(popular_links[1]['labels'], ['', 'x', 'y'])
