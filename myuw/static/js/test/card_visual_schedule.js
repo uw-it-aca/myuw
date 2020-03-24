@@ -24,6 +24,30 @@ describe("VisualScheduleCard", function() {
         done();
     });
 
+    describe('card hides', function() {
+        before(function (done) {
+            Global.Environment.ajax_stub({
+            });
+
+
+            VisualScheduleCard.term = 'current';
+            VisualScheduleCard.render_init();
+
+            // Fire done even after a second since card won't load
+            window.setTimeout(function(){
+                done();
+                }, 1000)
+        });
+
+        it('hides', function () {
+            assert.equal(VisualScheduleCard.dom_target.find('#quarter-info').length, 0);
+        });
+        after(function () {
+            Global.Environment.ajax_stub_restore();
+            VisualScheduleCard.dom_target.html("");
+        });
+    });
+
     describe('card renders', function() {
         before(function (done) {
             Global.Environment.ajax_stub({
@@ -45,6 +69,7 @@ describe("VisualScheduleCard", function() {
 
         it('for netid eight', function () {
             var $schedule = VisualScheduleCard.dom_target.find('.visual-schedule');
+            assert.equal(VisualScheduleCard.dom_target.find('#quarter-info').length, 1);
             assert.equal($schedule.length, 1);
             assert.equal($schedule.find('> .five-day').length, 5);
             assert.equal($schedule.find('> .five-day').eq(0).find('.visual-course').length, 1);
