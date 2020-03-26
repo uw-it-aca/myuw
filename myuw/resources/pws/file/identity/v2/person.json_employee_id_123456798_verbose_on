@@ -1,20 +1,60 @@
 {
-    "Persons": [
-        {
-            "PersonFullURI": {
-                "DisplayName": "Jim Bags Winslow",
-                "Href": "/identity/v2/person/260A0DEC95CB11D78BAA000629C31437/full.json",
-                "RegisteredName":"Jim Bags Winslow",
-                "UWNetID": "mwinslowe",
-                "UWRegID": "260A0DEC95CB11D78BAA000629C31437"
-            },
-            "PersonURI": {
-                "DisplayName": "Jim Bags Winslow ",
-                "Href": "/identity/v2/person/260A0DEC95CB11D78BAA000629C31437.json",
-                "RegisteredName":"Jim Bags Winslow",
-                "UWNetID": "mwinslowe",
-                "UWRegID": "260A0DEC95CB11D78BAA000629C31437"
-            }
-        }
-    ]
+  "Previous": null,
+  "Next": null,
+  "Persons":[{
+    "DisplayName": "Jim Bags Lowe",
+    "EduPersonAffiliations": [
+        "member",
+        "student",
+        "alum",
+        "staff",
+        "employee"
+    ],
+    "IsTestEntity": true,
+    "PriorUWNetIDs": [],
+    "PriorUWRegIDs": [],
+    "RegisteredFirstMiddleName": "Jim",
+    "RegisteredName": "Bags",
+    "RegisteredSurname": "Lowe",
+    "UIDNumber": "56375",
+    "UWNetID": "mwinslowe",
+    "UWRegID": "260A0DEC95CB11D78BAA000629C31437",
+    "WhitepagesPublish": true,
+    "PersonAffiliations": {
+        "AlumPersonAffiliation": {
+            "DevelopmentID": "0000773877"
+        },
+        "EmployeePersonAffiliation": {
+            "EmployeeID": "987654321",
+            "EmployeeWhitePages": {
+                "Addresses": [],
+                "EmailAddresses":[],
+                "Faxes":[],
+                "Mobiles":[],
+                "Phones": [],
+                "Pagers":[],
+                "Name" : null,
+                "Positions":[],
+                "PublishInDirectory": true,
+                "TouchDials":[],
+                "VoiceMails":[]},
+            "HomeDepartment": "Math",
+            "MailStop": null
+        },
+        "StudentPersonAffiliation": {
+            "StudentNumber": "1443336",
+            "StudentSystemKey": "000083857",
+            "StudentWhitePages": {
+                "Class": null,
+                "Departments":["Math"],
+                "Email": null,
+                "Name": null,
+                "Phone": null,
+                "PublishInDirectory": true}}
+    }
+   }
+  ],
+  "PageStart": "1",
+  "PageSize": "10",
+  "TotalCount": 1
 }
