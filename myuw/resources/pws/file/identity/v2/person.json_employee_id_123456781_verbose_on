@@ -1,20 +1,61 @@
 {
-    "Persons": [
-        {
-            "PersonFullURI": {
-                "DisplayName": "Eight Average Student",
-                "Href": "/identity/v2/person/12345678901234567890123456789012/full.json",
-                "RegisteredName":"Eight Average Student",
-                "UWNetID": "eight",
-                "UWRegID": "12345678901234567890123456789012"
-            },
-            "PersonURI": {
-                "DisplayName": "James Average Student",
-                "RegisteredName":"Eight Average Student",
-                "Href": "/identity/v2/person/12345678901234567890123456789012.json",
-                "UWNetID": "eight",
-                "UWRegID": "12345678901234567890123456789012"
-            }
-        }
-    ]
+"Next": null,
+"Persons":[{
+ "DisplayName":"EIGHT CLASS STUDENT",
+ "EduPersonAffiliations":["member",
+                          "student",
+                          "alum",
+                          "staff",
+                          "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"EIGHT CLASS",
+"RegisteredName":"EIGHT CLASS STUDENT",
+"RegisteredSurname":"STUDENT",
+"UIDNumber":"97802",
+"UWNetID":"eight",
+"UWRegID":"12345678901234567890123456789012",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"123456781",
+        "EmployeeAffiliationState": "current",
+        "EmployeeWhitePages":{
+            "Addresses": [],
+            "EmailAddresses":[],
+            "Faxes":[],
+            "Mobiles":[],
+            "Phones": ["+1 206 111-1234",
+                       "+1 425 555-1236"],
+            "Pagers":[],
+            "Name" : "Eight, Student",
+            "Positions":[{ "EWPDept":"Statistics JM Student",
+                           "EWPTitle":"Teaching Assistant",
+                           "Primary":true}],
+            "PublishInDirectory": true,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment":"Statistics",
+        "MailStop" : "354322"},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1443336",
+        "StudentSystemKey":"000083857",
+        "StudentAffiliationState":"current",
+        "StudentWhitePages":{
+            "Class":"Junior",
+            "Departments":["Statistics"],
+            "Email":"eight@uw.edu",
+            "Name":"Eight, Student",
+            "Phone": "+1 206 123-1234",
+            "PublishInDirectory": false}}
+     }
+   }
+  ],
+  "PageStart": "1",
+  "PageSize": "10",
+  "TotalCount": 1
 }
