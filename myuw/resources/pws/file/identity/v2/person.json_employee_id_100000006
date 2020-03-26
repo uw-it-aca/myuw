@@ -1,0 +1,17 @@
+{
+    "Persons": [
+            {"PersonFullURI": {
+                "DisplayName": "Bill Sea Teacher",
+                "Href": "/identity/v2/person/10000000000000000000000000000006/full.json",
+                "RegisteredName":"Bill Sea Teacher",
+                "UWNetID": "billsea",
+                "UWRegID": "10000000000000000000000000000006"
+            },
+            "PersonURI": {
+                "DisplayName": "Bill Sea Teacher",
+                "Href": "/identity/v2/person/10000000000000000000000000000006.json",
+                "UWNetID": "billsea",
+                "RegisteredName":"Bill Sea Teacher",
+                "UWRegID": "10000000000000000000000000000006"}
+            }]
+}
