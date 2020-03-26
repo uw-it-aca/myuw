@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class User(models.Model):
-    uwnetid = models.SlugField(max_length=32,
+    uwnetid = models.SlugField(max_length=16,
                                db_index=True,
                                unique=True)
     last_visit = models.DateTimeField(editable=True)
@@ -243,7 +243,8 @@ class VisitedLinkNew(models.Model):
                                'all': 0}
             by_url[url]['users'] += item['num_users']
             by_url[url]['all'] += item['all']
-            by_url[url]['labels'].append(item['label'])
+            by_url[url]['labels'].append(
+                "" if item['label'] is None else item['label'])
 
         values = []
         for url in by_url:
