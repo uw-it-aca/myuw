@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "manage_email_lists_tmpl" %}
+{% verbatim %}
+<script id="manage_email_lists_tmpl" type="text/x-handlebars-template">
 
 <div class="myuw-modal modal-dialog view-email-lists" role="document">
     <div class="modal-content">
@@ -20,7 +20,7 @@
             {{/if}}
 
             {{#unless is_primary}}
-                {{ #if section_list.list_admin_url }}
+                {{#if section_list.list_admin_url}}
                 <div class="clearfix">
                     <div class="pull-left">
                         <span>{{course_abbr}} {{course_number}} {{section_list.section_id}}</span>
@@ -31,7 +31,7 @@
                         <a href="{{section_list.list_admin_url}}" target="_blank" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{section_list.section_id}}">Manage</a>
                     </div>
                 </div>
-                {{ /if }}
+                {{/if}}
             {{/unless}}
 
             {{#if is_primary}}
@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{ #if section_list.list_admin_url }}
+                    {{#if section_list.list_admin_url}}
                     <tr>
                         <td>
                         {{course_abbr}} {{course_number}} {{section_list.section_id}}
@@ -54,7 +54,7 @@
                         </td>
                         <td><a href="{{section_list.list_admin_url}}" target="_blank" data-linklabel="Manage Email List for {{course_abbr}} {{course_number}} {{section_list.section_id}}">Manage</a></td>
                     </tr>
-                    {{ /if }}
+                    {{/if}}
 
                     {{#each secondary_section_lists}}
                     {{#if list_exists}}
@@ -83,4 +83,5 @@
     </div>
 </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

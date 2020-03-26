@@ -74,9 +74,7 @@ var AccountsPage = {
             cards.push(TuitionCard);
         }
 
-        if(window.user.student || window.user.employee) {
-            cards.push(MedicineAccountsCard);
-        }
+        cards.push(MedicineAccountsCard);
 
         if(window.user.student || window.user.past_stud ||
            window.user.employee || window.user.past_employee) {

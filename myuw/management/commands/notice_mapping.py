@@ -1,11 +1,12 @@
 import csv
 import logging
+import json
 from django.core.management.base import BaseCommand, CommandError
 
-
-output_format = "    \"{}\": {\n        \"myuw_category\": \"{}\",\n" +\
-    "        \"location_tags\": {},\n" +\
-    "        \"critical\": {}\n    },\n"
+logger = logging.getLogger("commands")
+item_format = ("        \"myuw_category\": \"{}\",\n" +
+               "        \"location_tags\": {},\n" +
+               "        \"critical\": {}")
 
 
 class Command(BaseCommand):
@@ -25,26 +26,36 @@ class Command(BaseCommand):
         parser.add_argument('outfile')
 
     def handle(self, *args, **options):
+        seen_category_keys = set()
         try:
             csv_path = options['spreadsheet-csv-path']
-            outfile = options['outfile']
-            output_string = "NOTICE_CATEGORIES = {\n"
-            with open(csv_path, "rb") as f_obj:
-                reader = csv.reader(f_obj)
-                for row in reader:
-                    myuw_id = row[2]
-                    if myuw_id is None or len(myuw_id) == 0 or\
-                            myuw_id.startswith("MYUW"):
+            seen_category_keys = set()
+            categories = []
+            reader = csv.reader(open(csv_path, 'r', encoding='utf8'),
+                                delimiter=',')
+            next(reader)
+            for row in reader:
+                try:
+                    myuw_id = row[2].replace(" ", "")
+                    if myuw_id is None or len(myuw_id) == 0:
                         continue
+                    if myuw_id in seen_category_keys:
+                        continue
+                    seen_category_keys.add(myuw_id)
+                    # row[3]: myuw_category
+                    # row[4]: critical
+                    item = item_format.format(row[3],
+                                              self._get_location_tags(row[5]),
+                                              len(row[4]) > 0)
+                    categories.append("    \"{0}\": {1}\n{2}\n{3}".format(
+                        myuw_id.lower(), "{", item, "    }"))
+                except Exception as ex:
+                    logger.error("{} in line: {}".format(str(ex), row))
 
-                    myuw_category = row[3]
-                    critical = row[4]
-                    location_tags = self._get_location_tags(row[5])
-                    string = output_format.format(
-                        myuw_id, myuw_category, location_tags,
-                        len(critical) > 0)
-                    output_string = output_string + string
-            output_string = output_string[:-2] + "\n}\n"
+            output_string = "NOTICE_CATEGORIES = {0}{1}\n{2}".format(
+                "{\n", ",\n".join(categories), "}\n")
+
+            outfile = options['outfile']
             f = open(outfile, 'w')
             f.write(output_string)
             f.close()

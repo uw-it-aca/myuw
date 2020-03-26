@@ -3,8 +3,8 @@ from django.urls import reverse
 from django.test import Client
 from django.test.utils import override_settings
 from userservice.user import UserService
-from myuw.views.api.emaillist import Emaillist, section_id_matched,\
-    is_emaillist_authorized
+from myuw.views.api.emaillist import (
+    section_id_matched, is_emaillist_authorized)
 from myuw.test import get_request, get_request_with_user, get_user,\
     email_backend_override, set_override_user
 from myuw.test.api import MyuwApiTest, require_url,\

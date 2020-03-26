@@ -66,7 +66,7 @@ class TestNotices(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 31)
+        self.assertEquals(len(data), 35)
         for el in data:
             if el["category"] == "Registration" and\
                     'est_reg_date' in el["location_tags"]:
@@ -78,7 +78,7 @@ class TestNotices(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-        self.assertEquals(len(data), 31)
+        self.assertEquals(len(data), 35)
         for el in data:
             if el["category"] == "Registration" and\
                     'est_reg_date' in el["location_tags"]:

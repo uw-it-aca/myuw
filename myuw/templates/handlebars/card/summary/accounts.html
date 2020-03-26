@@ -1,28 +1,28 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "account_summary_card" %}
+{% verbatim %}
+<script id="account_summary_card" type="text/x-handlebars-template">
     <!-- accounts summary ticker -->
     <div class="myuw-account-banner">
 
-        {{#with term }}
+        {{#with term}}
         <!-- week counter -->
         <div class="myuw-week-counter">
             <a href="/academic_calendar/">
                 <!-- show current quarter -->
                 <i class="fa fa-calendar" aria-hidden="true"></i>
-                {{#if is_break }}
-                    {{#if spans_years }}
-                    {{ year }} / {{ break_year}}
+                {{#if is_break}}
+                    {{#if spans_years}}
+                    {{year}} / {{break_year}}
                     {{else}}
                     {{year}}
                     {{/if}}
                 {{else}}
-                    {{ ucfirst quarter }} {{year}}
+                    {{ucfirst quarter}} {{year}}
                 {{/if}}
                 <span>
                 <!-- display if finals, break, or week of the quarter -->
-                {{#if is_finals }}Finals Week{{/if}}
-                {{#if is_break }}{{ucfirst break_quarter}} Break{{/if}}
-                {{#if ../during_term}}Week {{ ../term_current_week }} of {{ ../term_total_weeks }}{{/if}}
+                {{#if is_finals}}Finals Week{{/if}}
+                {{#if is_break}}{{ucfirst break_quarter}} Break{{/if}}
+                {{#if ../during_term}}Week {{../term_current_week}} of {{../term_total_weeks}}{{/if}}
 
                 </span>
             </a>
@@ -34,21 +34,21 @@
             <div class="myuw-account-summaries">
               {{#if hfs}}
                 {{#if hfs.student_husky_card}}
-                <a href="/accounts/">Student Husky <span>${{ formatPrice hfs.student_husky_card.balance }}</span></a>
+                <a href="/accounts/">Student Husky <span>${{formatPrice hfs.student_husky_card.balance}}</span></a>
                 {{/if}}
                 {{#if hfs.resident_dining}}
-                <a href="/accounts/">Resident Dining <span>${{ formatPrice hfs.resident_dining.balance }}</span></a>
+                <a href="/accounts/">Resident Dining <span>${{formatPrice hfs.resident_dining.balance}}</span></a>
                 {{/if}}
-                {{#if hfs.employee_husky_card }}
-                <a href="/accounts/">Employee Husky <span>${{ formatPrice hfs.employee_husky_card.balance }}</span></a>
+                {{#if hfs.employee_husky_card}}
+                <a href="/accounts/">Employee Husky <span>${{formatPrice hfs.employee_husky_card.balance}}</span></a>
                 {{/if}}
               {{/if}}
-              {{#if library }}
-                {{#if library.next_due }}
-                <a href="/accounts/">Library Item Due <span>{{ toFromNowDate library.next_due }}</span></a>
+              {{#if library}}
+                {{#if library.next_due}}
+                <a href="/accounts/">Library Item Due <span>{{toFromNowDate library.next_due}}</span></a>
                 {{else}}
-                    {{#if library.holds_ready }}
-                        <a href="http://alliance-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/myAccountMenu.do?activity=requests" target="_blank" data-linklabel="Library Account Requests">Library {{ pluralize library.holds_ready "Item" "Items" }} Ready<span>{{ library.holds_ready }} {{ pluralize library.holds_ready "item" "items" }} ready</span></a>
+                    {{#if library.holds_ready}}
+                        <a href="https://search.lib.uw.edu/account" target="_blank" data-linklabel="Library Account Requests">Library {{pluralize library.holds_ready "Item" "Items"}} Ready<span>{{library.holds_ready}} {{pluralize library.holds_ready "item" "items"}} ready</span></a>
                     {{/if}}
                 {{/if}}
               {{/if}}
@@ -56,4 +56,5 @@
         {{/if}}
 
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

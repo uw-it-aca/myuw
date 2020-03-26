@@ -48,29 +48,61 @@ var Landing = {
     },
 
     _get_desktop_body_cards: function() {
-        var desktop_body_cards = [
-            HuskyExperienceCard,
-            ThriveCard,
-            OutageCard,
-            GradeCard,
-            FutureQuarterCardA,
-            ThankYouCard,
-            ToRegisterCard,
-            RegStatusCard,
-            SummerEFSCard,
-            SummerRegStatusCardA,
-            CriticalInfoCard,
-            InternationalStuCard,
-            SummaryScheduleCard,
-            VisualScheduleCard,
-            TextbookCard,
-            FutureSummaryScheduleCard,
-            FutureQuarterCard1,
-            SummerRegStatusCard1,
-            SeattleApplicationCard,
-            BothellApplicationCard,
-            TacomaApplicationCard
-        ];
+        var desktop_body_cards = [];
+
+        if (window.user.is_hxt_viewer) {
+            desktop_body_cards.push(HuskyExperienceCard);
+            }
+
+        if (window.user.fyp ||
+            window.user.aut_transfer ||
+            window.user.win_transfer) {
+            desktop_body_cards.push(ThriveCard);
+        }
+
+        if (window.user.student ||
+            window.user.instructor ||
+            window.user.employee) {
+            desktop_body_cards.push(OutageCard);
+        }
+
+        if (window.user.student) {
+            desktop_body_cards.push(GradeCard);
+            desktop_body_cards.push(FutureQuarterCardA);
+            desktop_body_cards.push(ThankYouCard);
+            desktop_body_cards.push(ToRegisterCard);
+            desktop_body_cards.push(RegStatusCard);
+            desktop_body_cards.push(SummerEFSCard);
+            desktop_body_cards.push(SummerRegStatusCardA);
+            desktop_body_cards.push(CriticalInfoCard);
+            desktop_body_cards.push(InternationalStuCard);
+        }
+
+        if (window.user.instructor) {
+            desktop_body_cards.push(SummaryScheduleCard);
+        }
+
+        if (window.user.registered_stud || window.user.instructor) {
+            desktop_body_cards.push(VisualScheduleCard);
+        }
+
+        if (window.user.student) {
+            desktop_body_cards.push(TextbookCard);
+        }
+
+        if (window.user.instructor) {
+            desktop_body_cards.push(FutureSummaryScheduleCard);
+        }
+
+        if (window.user.student) {
+            desktop_body_cards.push(FutureQuarterCard1);
+            desktop_body_cards.push(SummerRegStatusCard1);
+        }
+        if (window.user.applicant) {
+            desktop_body_cards.push(SeattleApplicationCard);
+            desktop_body_cards.push(BothellApplicationCard);
+            desktop_body_cards.push(TacomaApplicationCard);
+        }
 
         if (window.user.intl_stud) {
             desktop_body_cards.push(IntlStudCard);
@@ -79,6 +111,7 @@ var Landing = {
         if(window.user.employee &&
            !window.user.student &&
            !window.user.instructor||
+           window.user.retiree ||
            window.user.past_employee) {
             desktop_body_cards.push(HRPayrollCard);
         }
@@ -119,32 +152,55 @@ var Landing = {
     },
 
     _get_mobile_cards: function() {
-        var mobile_cards = [
-            HuskyExperienceCard,
-            SeattleApplicationCard,
-            BothellApplicationCard,
-            TacomaApplicationCard,
-            QuickLinksCard,
-            ThriveCard,
-            OutageCard,
-            GradeCard,
-            FutureQuarterCardA,
-            ThankYouCard,
-            ToRegisterCard,
-            RegStatusCard,
-            SummerEFSCard,
-            SummerRegStatusCardA,
-            CriticalInfoCard,
-            InternationalStuCard,
-            SummaryScheduleCard,
-            FutureSummaryScheduleCard,
-            VisualScheduleCard,
-            TextbookCard,
-            FutureQuarterCard1,
-            SummerRegStatusCard1,
-            AcadCalSnippet,
-            EventsCard
-        ];
+        var mobile_cards = [];
+        if (window.user.is_hxt_viewer) {
+            mobile_cards.push(HuskyExperienceCard);
+        }
+
+        if (window.user.applicant && !window.user.registered_stud) {
+            mobile_cards.push(SeattleApplicationCard);
+            mobile_cards.push(BothellApplicationCard);
+            mobile_cards.push(TacomaApplicationCard);
+        }
+
+        mobile_cards.push(QuickLinksCard);
+
+        if (window.user.fyp ||
+            window.user.aut_transfer ||
+            window.user.win_transfer) {
+            mobile_cards.push(ThriveCard);
+        }
+        if (window.user.student ||
+            window.user.instructor ||
+            window.user.employee) {
+            mobile_cards.push(OutageCard);
+        }
+        if (window.user.student) {
+            mobile_cards.push(GradeCard);
+            mobile_cards.push(FutureQuarterCardA);
+            mobile_cards.push(ThankYouCard);
+            mobile_cards.push(ToRegisterCard);
+            mobile_cards.push(RegStatusCard);
+            mobile_cards.push(SummerEFSCard);
+            mobile_cards.push(SummerRegStatusCardA);
+            mobile_cards.push(CriticalInfoCard);
+            mobile_cards.push(InternationalStuCard);
+        }
+        if (window.user.instructor) {
+            mobile_cards.push(SummaryScheduleCard);
+            mobile_cards.push(FutureSummaryScheduleCard);
+        }
+
+        if (window.user.registered_stud || window.user.instructor) {
+            mobile_cards.push(VisualScheduleCard);
+        }
+        if (window.user.student) {
+            mobile_cards.push(TextbookCard);
+            mobile_cards.push(FutureQuarterCard1);
+            mobile_cards.push(SummerRegStatusCard1);
+        }
+        mobile_cards.push(AcadCalSnippet);
+        mobile_cards.push(EventsCard);
 
         if (window.user.intl_stud) {
             mobile_cards.push(IntlStudCard);
@@ -154,6 +210,7 @@ var Landing = {
            !window.user.student &&
            !window.user.instructor &&
            !window.user.applicant ||
+           window.user.retiree ||
            window.user.past_employee) {
             mobile_cards.push(HRPayrollCard);
         }

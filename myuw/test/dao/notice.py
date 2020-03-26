@@ -38,7 +38,7 @@ class TestNotices(TestCase):
         regid = "9136CCB8F66711D5BE060004AC494F31"
         notices = _get_notices_by_regid(regid)
         self.assertIsNotNone(notices)
-        self.assertEquals(len(notices), 31)
+        self.assertEquals(len(notices), 35)
         self.assertEquals(notices[12].custom_category,
                           "Fees & Finances")
         self.assertFalse(notices[12].is_critical)
@@ -174,3 +174,11 @@ class TestNotices(TestCase):
                 self.assertEquals(notice.location_tags,
                                   ['tuition_aidhold_title'])
                 self.assertFalse(notice.is_critical)
+
+        # test MUWM-4535
+        regid = "FE36CCB8F66711D5BE060004AC494F31"
+        notices = _get_notices_by_regid(regid)
+        self.assertEquals(len(notices), 18)
+        self.assertEquals(notices[15].notice_type, 'HSImmunBlock')
+        self.assertEquals(notices[16].notice_type, 'HSImmunReqDateA')
+        self.assertEquals(notices[17].notice_type, 'HSImmunReqDateB')

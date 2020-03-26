@@ -1,2 +1,3 @@
+uw_netid
 jnew
 javg004

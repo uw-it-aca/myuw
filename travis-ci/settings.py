@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_user_agents',
     'compressor',
-    'templatetag_handlebars',
     'django_client_logger',
     'userservice',
     'rc_django',
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     'blti',
     'hx_toolkit',
     'myuw.apps.MyUWConfig',
+    'python3_saml_patch',
 ]
 
 MIDDLEWARE = [

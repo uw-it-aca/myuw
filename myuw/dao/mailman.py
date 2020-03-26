@@ -1,6 +1,5 @@
 """
-This class encapsulates the interactions with
-the uwnetid subscription resource.
+Instructor class mailing list requests
 """
 
 import logging

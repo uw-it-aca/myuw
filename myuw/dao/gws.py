@@ -8,7 +8,8 @@ try:
 except ImportError:
     pass
 from uw_gws import GWS
-from myuw.dao import get_netid_of_current_user
+from myuw.util.settings import get_myuw_test_access_group
+from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
 from myuw.dao.pws import is_employee
 
 
@@ -200,3 +201,42 @@ def no_major_affiliations(request):
     return (not is_applicant(request) and
             not is_regular_employee(request) and
             not is_student(request))
+
+
+def is_effective_member(request, group_id):
+    return gws.is_effective_member(group_id,
+                                   get_netid_of_current_user(request))
+
+
+def in_myuw_test_access_group(request):
+    test_access_group = get_myuw_test_access_group()
+    return (test_access_group is None or
+            gws.is_effective_member(get_myuw_test_access_group(),
+                                    get_netid_of_original_user(request)))
+
+
+def in_fyp_group(request):
+    if not hasattr(request, "in_fyp_group"):
+        request.in_fyp_group = is_effective_member(request, "u_myuwgroup_fyp")
+    return request.in_fyp_group
+
+
+def in_au_xfer_group(request):
+    if not hasattr(request, "in_au_xfer_group"):
+        request.in_au_xfer_group = is_effective_member(
+            request, "u_myuwgroup_auxfer")
+    return request.in_au_xfer_group
+
+
+def in_wi_xfer_group(request):
+    if not hasattr(request, "in_wi_xfer_group"):
+        request.in_wi_xfer_group = is_effective_member(
+            request, "u_myuwgroup_wixfer")
+    return request.in_wi_xfer_group
+
+
+def in_hxtoolkit_group(request):
+    if not hasattr(request, "in_hxtoolkit_group"):
+        request.in_hxtoolkit_group = is_effective_member(
+            request, "u_myuwgroup_hxtoolkit")
+    return request.in_hxtoolkit_group

@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_course_sche_panel" %}
+{% verbatim %}
+<script id="instructor_course_sche_panel" type="text/x-handlebars-template">
 
 <div class="myuw-card-section">
     {{#if summer_term}}
@@ -9,7 +9,7 @@
         </div>
         <div class="col-sm-9">
             <div class="myuw-card-row-content">
-                {{ capitalizeString summer_term }}
+                {{capitalizeString summer_term}}
             </div>
         </div>
     </div>
@@ -40,38 +40,38 @@
                             {{#if has_eos_dates}}
                                 <th>Date(s)</th>
                             {{/if}}
-                            <th {{#if has_eos_dates}}id="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Day(s)</th>
-                            <th {{#if has_eos_dates}}id="time-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Time</th>
-                            <th {{#if has_eos_dates}}id="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Location</th>
-                            <th {{#if has_eos_dates}}id="meeting-type-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName curriculum_abbr }}-{{ course_number }}-{{ section_id }}"{{/if}}>Meeting Type</th>
+                            <th {{#if has_eos_dates}}id="days-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}"{{/if}}>Day(s)</th>
+                            <th {{#if has_eos_dates}}id="time-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}"{{/if}}>Time</th>
+                            <th {{#if has_eos_dates}}id="location-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}"{{/if}}>Location</th>
+                            <th {{#if has_eos_dates}}id="meeting-type-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}"{{/if}}>Meeting Type</th>
                         </tr>
                     </thead>
                     <tbody class="tbody-course-schedule">
                         {{#each meetings}}
                         <tr class="course-schedule-row">
                             {{#if ../has_eos_dates}}
-                                <th class="meeting-dates" id="{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}">{{#if eos_start_date}}<span class="text-nowrap">{{toMonthDay eos_start_date}}{{#if start_end_same}}</span>{{ else }} &ndash;</span> <span class="text-nowrap">{{toMonthDay eos_end_date}}</span>{{/if}}{{/if}}</th>
+                                <th class="meeting-dates" id="{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}">{{#if eos_start_date}}<span class="text-nowrap">{{toMonthDay eos_start_date}}{{#if start_end_same}}</span>{{else}} &ndash;</span> <span class="text-nowrap">{{toMonthDay eos_end_date}}</span>{{/if}}{{/if}}</th>
                             {{/if}}
 
                             {{#if wont_meet}}
-                                <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Class does not meet</td>
+                                <td colspan="3" class="text-muted course-tbd" {{#if eos_start_date}}headers="days-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>Class does not meet</td>
                             {{else if days_tbd}}
-                                <td colspan="2" class="course-tbd" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Days and times to be arranged</td>
+                                <td colspan="2" class="course-tbd" {{#if eos_start_date}}headers="days-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>Days and times to be arranged</td>
                             {{else if no_meeting}}
-                                <td colspan="3" class="course-tbd" {{#if eos_start_date}}headers="days-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>No classroom meeting: online learning</td>
+                                <td colspan="3" class="course-tbd" {{#if eos_start_date}}headers="days-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>No classroom meeting: online learning</td>
                             {{else}}
-                                {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+                                {{> course_sche_col_days}}
                             {{/if}}
 
                             {{#unless no_meeting}}
                                 {{#if building_tbd}}
-                                    <td class="text-muted course-loc-tbd" {{#if eos_start_date}}headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>Room to be arranged</td>
+                                    <td class="text-muted course-loc-tbd" {{#if eos_start_date}}headers="location-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>Room to be arranged</td>
                                 {{else}}
-                                    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                    {{> course_sche_col_bldg}}
                                 {{/if}}
                             {{/unless}}
 
-                            <td class="course-meeting" {{#if eos_start_date}}headers="meeting-type-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}"{{/if}}>
+                            <td class="course-meeting" {{#if eos_start_date}}headers="meeting-type-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}}>
                                 {{#if display_type}}
                                     <span class="myuw-course-meeting-type c{{../color_id}}Color">{{shorten_meeting_type type}}</span>
                                 {{/if}}
@@ -92,12 +92,12 @@
 
             <div class="col-sm-9">
                 <div class="myuw-card-row-content">
-                    {{#if final_exam }}
+                    {{#if final_exam}}
                         {{#with final_exam}}
                             {{#if no_exam_or_nontraditional}}
                                 <span>No Exam or Non-Traditional</span>
                             {{else}}
-                                {{#if start_date }}
+                                {{#if start_date}}
                                     {{#unless ../is_primary_section}}
                                         <span>The final exam for the primary section is:</span><br>
                                     {{/unless}}
@@ -110,10 +110,10 @@
                                             </tr>
                                         </thead>
                                         <tbody class="tbody-course-schedule">
-                                            <td class="course-final-date">{{ toFriendlyDate start_date }}</td>
-                                            <td class="course-time">{{ formatDateAsTime start_date }} &ndash; {{ formatDateAsTimeAMPM end_date }}</td>
+                                            <td class="course-final-date">{{toFriendlyDate start_date}}</td>
+                                            <td class="course-time">{{formatDateAsTime start_date}} &ndash; {{formatDateAsTimeAMPM end_date}}</td>
 
-                                            {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+                                            {{> course_sche_col_bldg}}
                                         </tbody>
                                     </table>
                                 {{else}}
@@ -130,12 +130,13 @@
                     {{/if}}
 
                     {{#if display_confirm_final_link}}
-                        <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{ year }}&sln={{sln}}&chanid="
-                           target="_blank" data-linklabel="Confirm Final: {{ curriculum_abbr }} {{course_number}} {{section_id}}">Confirm final exam</a>
+                        <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter={{capitalizeString quarter}}+{{year}}&sln={{sln}}&chanid="
+                           target="_blank" data-linklabel="Confirm Final: {{curriculum_abbr}} {{course_number}} {{section_id}}">Confirm final exam</a>
                     {{/if}}
                 </div>
             </div>
         </div>
     {{/unless}}
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

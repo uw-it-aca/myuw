@@ -1,6 +1,6 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "thrive_card" %}
-    <div class="card" data-type="card" data-name="ThriveCard" data-identifier="{{ title }}">
+{% verbatim %}
+<script id="thrive_card" type="text/x-handlebars-template">
+    <div class="card" data-type="card" data-name="ThriveCard" data-identifier="{{title}}">
         <h3>
             {{#if target_fyp}}
                 <span>First Year</span>
@@ -15,12 +15,13 @@
                 <br>Husky Experience Toolkit
             {{/if}}
         </h3>
-        {{> thrive_highlight }}
+        {{> thrive_highlight}}
         <div class="thrive-trythis-learnmore">
-          {{> thrive_learnmore }}
+          {{> thrive_learnmore}}
           <div class="thrive-card-footer">
-              <a href="/thrive/" class="what-is-thrive">What is the Husky Experience Toolkit?</a> | <a href="/thrive_messages/" class="view-thrive-msg">View toolkit messages</a>
+		  <a href="/thrive/" class="what-is-thrive">What is the Husky Experience Toolkit?</a> | <a href="/thrive_messages/" class="view-thrive-msg">View {{#if target_fyp}}first year{{else}}transfer{{/if}} toolkit messages</a>
           </div>
         </div>
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

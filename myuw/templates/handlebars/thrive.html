@@ -1,5 +1,5 @@
-	{% load templatetag_handlebars %}
-    {% tplhandlebars "thrive_content" %}
+	{% verbatim %}
+<script id="thrive_content" type="text/x-handlebars-template">
     <div class="container what-is-thrive">
         <h2 id="main" class="heading-page">What is the Husky Experience Toolkit?</h2>
         <div class="thrive-description">
@@ -22,7 +22,8 @@
 
 <p>To learn more about Husky Experience Toolkit or provide feedback on the project, contact Michaelann Jundt, Associate Dean, Undergraduate Academic Affairs at mjundt@uw.edu.</p>
     </div>
-        <a href="/thrive_messages/">View toolkit messages</a>
+        <a href="/thrive_messages/">View {{#if target_fyp}}first year{{else}}transfer{{/if}} toolkit messages</a>
     </div>
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

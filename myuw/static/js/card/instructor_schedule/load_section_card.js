@@ -76,6 +76,7 @@ var InstructorSectionCard = {
             this.time_schedule_published = course_data.term.time_schedule_published;
             this.registration_start = course_data.term.registration_periods[0].start;
             this.request_summer_term = course_data.summer_term;
+            this.past_term = course_data.past_term;
             InstructorCourseCardContent.render(this, null);
         });
     }

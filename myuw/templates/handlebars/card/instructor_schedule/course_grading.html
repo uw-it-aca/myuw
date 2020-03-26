@@ -1,5 +1,6 @@
-    {% verbatim %}
-{{#if for_credit }}
+{% verbatim %}
+<script id="course_grading" type="text/x-handlebars-template">
+{{#if for_credit}}
     <div class="myuw-card-section">
         <div class="row">
             <div class="col-sm-3">
@@ -49,25 +50,25 @@
                         <div class="card-badge-value">
                             {{#not_equal grading_status 'error'}}
                             {{#if grading_status.all_grades_submitted}}
-                                    <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by {{grading_status.submitted_by}} on <span class="text-nowrap">{{ grading_status.submitted_relative_date }}</span>
+                                    <a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by {{grading_status.submitted_by}} on <span class="text-nowrap">{{grading_status.submitted_relative_date}}</span>
                             {{else}}
-                                {{#if grading_status.unsubmitted_count}}<a href="{{ grading_status.section_url }}"  data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
+                                {{#if grading_status.unsubmitted_count}}<a href="{{grading_status.section_url}}"  data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.unsubmitted_count}} grade{{pluralize grading_status.unsubmitted_count '' 's'}} to submit </a>
                                 {{else}}
                                   {{#if is_primary_section}}
                                         {{#if grading_status.no_grades_submitted}}
-                                            <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">Submit grades in Gradepage</a>
+                                            <a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">Submit grades in Gradepage</a>
                                         {{else}}
                                             {{grading_status.grading_status}}
                                         {{/if}}
                                   {{else}}
                                     {{#if allows_secondary_grading}}
                                         {{#if grading_status.no_grades_submitted}}
-                                            <a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">Submit grades in Gradepage</a>
+                                            <a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">Submit grades in Gradepage</a>
                                         {{else}}
                                             {{grading_status.grading_status}}
                                         {{/if}}
                                     {{else}}
-                                      Grading for secondary section is disabled. <a class="text-nowrap" href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}"  target="_blank">Grade primary section</a>.
+                                      Grading for secondary section is disabled. <a class="text-nowrap" href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}"  target="_blank">Grade primary section</a>.
                                     {{/if}}
                                   {{/if}}
                                 {{/if}}
@@ -83,7 +84,7 @@
                         {{#if grading_period_is_past}}
                             <div class="card-badge-value">
                                 {{#if grading_status}}
-                                {{#if grading_status.all_grades_submitted}}<a href="{{ grading_status.section_url }}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by {{grading_status.submitted_by}} on <span class="text-nowrap">{{ grading_status.submitted_relative_date }}</span>
+                                {{#if grading_status.all_grades_submitted}}<a href="{{grading_status.section_url}}" data-linklabel="GradePage {{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank">{{grading_status.submitted_count}} grade{{pluralize grading_status.submitted_count '' 's'}} submitted</a> by {{grading_status.submitted_by}} on <span class="text-nowrap">{{grading_status.submitted_relative_date}}</span>
                                     <br />
                                 {{/if}}
                                 <div class="myuw-note">Grade submission for {{capitalizeString quarter}} {{year}} closed <span class="text-nowrap">{{grade_submission_deadline_date}}</span></div>
@@ -108,4 +109,5 @@
         </div>
     </div>
 {{/if}}
-    {% endverbatim %}
+</script>
+{% endverbatim %}

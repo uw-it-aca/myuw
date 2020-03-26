@@ -1,55 +1,58 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "notice_banner" %}
+{% verbatim %}
+<script id="notice_banner" type="text/x-handlebars-template">
 
     <div id="app_notices" class="myuw-card notices-summary">
 
         <h3 class="myuw-card-title">Notices</h3>
         {{#unless has_error}}
 
-        {{ #unless critical_notices }}{{ #unless notices }}
+        {{#unless critical_notices}}{{#unless notices}}
         <p>You do not have any notices at this time.</p>
-        {{ /unless }}{{ /unless }}
+        {{/unless}}{{/unless}}
 
 
-        {{ #not_empty critical_notices notices }}
+        {{#not_empty critical_notices notices}}
             <ul class="notice-list unstyled-list">
-        {{ /not_empty }}
+        {{/not_empty}}
 
-            {{ #if critical_notices }}
-               {{ #each critical_notices }}
+            {{#if critical_notices}}
+               {{#each critical_notices}}
                    <li class="clearfix">
-                       <div id="{{ id_hash }}" class="notice-container">
+                       <div id="{{id_hash}}" class="notice-container">
                            <span class="notice-title">
                                <span class="notice-critical">Critical:</span>
-                               <a href="#{{ id_hash }}_div" class="collapsed js-notice-link" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
+                               <a href="#{{id_hash}}_div" class="collapsed js-notice-link" data-toggle="collapse" aria-controls="{{id_hash}}_div" aria-expanded="false">{{{notice_title}}}</a>
                            </span>
-                           {{ #unless is_read }}<span class="notice-status"><span class="new-status">New</span></span>{{ /unless }}
+                           {{#unless is_read}}<span class="notice-status"><span class="new-status">New</span></span>{{/unless}}
                        </div>
-                       <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div id="{{ id_hash }}_focus" class="notice-body-wrapper">{{{ notice_body }}}</div></div>
+                       <div id="{{id_hash}}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div id="{{id_hash}}_focus" class="notice-body-wrapper">{{{notice_body}}}</div></div>
                    </li>
-               {{ /each }}
+               {{/each}}
            {{/if}}
 
            {{#if notices}}
                 {{#each notices}}
-                    <li class="clearfix">
-                        <div id="{{ id_hash }}" class="notice-container">
-                            <span class="notice-title">
-                                <a href="#{{ id_hash }}_div" class="collapsed js-notice-link" data-toggle="collapse" aria-controls="{{ id_hash }}_div" aria-expanded="false">{{{ notice_title }}}</a>
-                            </span>
-                            {{ #unless is_read }}<span class="notice-status"><span class="new-status">New</span></span>{{ /unless }}
-                        </div>
-                        <div id="{{ id_hash }}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div id="{{ id_hash }}_focus" class="notice-body-wrapper">{{{ notice_body }}}</div></div>
-                    </li>
+                    {{#unless is_critical}}
+                        <li class="clearfix">
+                            <div id="{{id_hash}}" class="notice-container">
+                                <span class="notice-title">
+                                    <a href="#{{id_hash}}_div" class="collapsed js-notice-link" data-toggle="collapse" aria-controls="{{id_hash}}_div" aria-expanded="false">{{{notice_title}}}</a>
+                                </span>
+                                {{#unless is_read}}<span class="notice-status"><span class="new-status">New</span></span>{{/unless}}
+                            </div>
+                            <div id="{{id_hash}}_div" class="notice-body collapse" aria-hidden="true" hidden="hidden"><div id="{{id_hash}}_focus" class="notice-body-wrapper">{{{notice_body}}}</div></div>
+                        </li>
+                    {{/unless}}
                 {{/each}}
             {{/if}}
 
-        {{ #not_empty critical_notices notices }}
+        {{#not_empty critical_notices notices}}
         </ul>
-        {{ /not_empty }}
+        {{/not_empty}}
     {{else}}
     <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your notices right now. Please try again later.</p>
     {{/unless}}
 
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

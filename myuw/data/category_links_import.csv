@@ -3,11 +3,12 @@ PageAcademics,Registration,all,https://registrar.washington.edu/enrollment-and-d
 PageAcademics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
 PageAcademics,Registration,pce,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no
 PageAcademics,Registration,all,,,http://www.washington.edu/students/crscat/,Course Catalog,http://www.washington.edu/students/crscatb/,Course Catalog,http://www.washington.edu/students/crscatt/,Course Catalog,no
+PageAcademics,Registration,all,https://myplan.uw.edu/student/myplan/mplogin/netid?rd=/student/myplan/dars,Degree Audit  (DARS),,,,,,,yes
 PageAcademics,Registration,all,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/,MyPlan,,,,,,,yes
 PageAcademics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Register with SLN,,,,,,,yes
 PageAcademics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,yes
 PageAcademics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,yes
-PageAcademics,Registration,all,https://myplan.uw.edu/student/myplan/mplogin/netid?rd=/student/myplan/dars,Degree Audit  (DARS),,,,,,,yes
+PageAcademics,Registration,all,https://prereqmap.uw.edu/,Prereq Map,,,,,,,yes
 PageAcademics,Tutoring & Advising,ugrad,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),,,http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
 PageAcademics,Tutoring & Advising,all,,,http://iss.washington.edu/,International Student Services (ISS),http://www.uwb.edu/iss,International Student Services (ISS),http://www.tacoma.uw.edu/international-student-services/welcome-international-student-scholar-services,International Student & Scholar Services,no
 PageAcademics,Tutoring & Advising,all,,,http://depts.washington.edu/owrc,Odegaard Writing & Research Center,http://www.uwb.edu/wacc,Writing and Communication Center (WaCC),,,no

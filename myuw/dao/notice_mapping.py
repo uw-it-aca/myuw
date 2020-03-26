@@ -32,7 +32,7 @@ def map_notice_category(notice):
     in myuw.dao.notice_categorization
     """
     key = notice.notice_category + "_" + notice.notice_type
-    categorization = NOTICE_CATEGORIES.get(key, None)
+    categorization = NOTICE_CATEGORIES.get(key.lower(), None)
     if categorization is not None:
         notice.custom_category = categorization["myuw_category"]
         notice.is_critical = categorization["critical"]

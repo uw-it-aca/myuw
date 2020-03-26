@@ -1,7 +1,7 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_summary_schedule" %}
+{% verbatim %}
+<script id="instructor_summary_schedule" type="text/x-handlebars-template">
     <div class="myuw-card teaching-schedule-summary" data-type="card"
-         data-name="SummaryScheduleCard" data-identifier="{{ title }}">
+         data-name="SummaryScheduleCard" data-identifier="{{title}}">
          <div style="position:relative;">
 
             <h3 class="myuw-card-title">
@@ -19,7 +19,7 @@
                     </p>
 
                     <div class="view-schedule-details">
-                        <a class="future-nav-link" href="/teaching/{{ year }},{{ quarter }}" future-nav-target="{{year}},{{quarter}}"
+                        <a class="future-nav-link" href="/teaching/{{year}},{{quarter}}" future-nav-target="{{year}},{{quarter}}"
                            data-linklabel="{{capitalizeString quarter}} {{year}} Teaching Details">View details</a>
                     </div>
                 {{/if}}
@@ -27,48 +27,49 @@
 
              {{#if is_summer}}
 
-                {{#if full_term }}
+                {{#if full_term}}
                  <h4 class="myuw-card-heading">
                      Full-Term
                  </h4>
                    {{#each full_term}}
-                        {{> summary_section }}
+                        {{> summary_section}}
                    {{/each}}
-                {{/if }}
+                {{/if}}
 
 
-                {{#if a_term }}
+                {{#if a_term}}
                  <h4 class="myuw-card-heading">
                      A-Term
                  </h4>
                    {{#each a_term}}
-                        {{> summary_section }}
+                        {{> summary_section}}
                    {{/each}}
-                {{/if }}
+                {{/if}}
 
-                {{#if b_term }}
+                {{#if b_term}}
                  <h4 class="myuw-card-heading">
                      B-Term
                  </h4>
-                {{/if }}
+                {{/if}}
 
                    {{#each b_term}}
-                        {{> summary_section }}
+                        {{> summary_section}}
                    {{/each}}
 
              {{else}}
                 {{#each sections}}
-                    {{> summary_section }}
+                    {{> summary_section}}
                {{/each}}
              {{/if}}
                <div class="future-quarter-links" style="margin-top:16px;">
-                   <a href="/academic_calendar/#{{ year }},{{capitalizeString quarter }}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a>
+                   <a href="/academic_calendar/#{{year}},{{capitalizeString quarter}}">View {{capitalizeString quarter}} {{year}} important dates and deadlines.</a>
                </div>
             {{/unless}}
-             {{ else }}
+             {{else}}
              <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your teaching schedule right now. In the meantime, try the 
  <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx" data-linklabel="MyClass" target="_blank">My Class Instructor Resources</a> page.</p>
              {{/unless}}
         </div>
     </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

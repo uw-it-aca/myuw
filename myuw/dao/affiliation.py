@@ -3,23 +3,22 @@ This module provides affiliations of the current user
 """
 
 import logging
-from myuw.dao import is_hx_toolkit_viewer
-from myuw.dao.enrollment import get_main_campus, get_class_level
+from myuw.dao.exceptions import IndeterminateCampusException
+from myuw.dao.enrollment import (
+    get_main_campus, get_class_level, is_registered_current_quarter)
 from myuw.dao.gws import (
     is_clinician, is_regular_employee, is_staff_employee, is_student_employee,
     is_alum_asso, is_student, is_grad_student, is_undergrad_student,
     is_pce_student, is_seattle_student, is_bothell_student, is_tacoma_student,
-    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations)
+    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations,
+    in_fyp_group, in_au_xfer_group, in_wi_xfer_group, in_hxtoolkit_group)
 from myuw.dao.instructor import is_instructor
 from myuw.dao.pws import (
     get_employee_campus, is_employee, is_faculty, is_prior_employee,
     is_prior_student, is_retiree, is_alumni)
 from myuw.dao.term import get_current_quarter
-from myuw.dao.thrive import is_fyp, is_aut_transfer, is_win_transfer
 from myuw.dao.uwnetid import is_2fa_permitted
 from myuw.dao.student_profile import get_profile_of_current_user
-from myuw.dao.exceptions import IndeterminateCampusException
-
 
 logger = logging.getLogger(__name__)
 
@@ -33,6 +32,7 @@ def get_all_affiliations(request):
     ["faculty"]: True if the user is currently faculty.
     ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
+    ["registered_stud"]: True if the student is registered in current quarter.
     ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
@@ -52,6 +52,7 @@ def get_all_affiliations(request):
     ["F1"]: F1 international student
     ["J1"]: J1 international student
     ["intl_stud"]: F1 or J1 international student
+    ["hxt_viewer"]: Husky Experience Toolkit viewer
     ["no_1st_class_affi"]: not applicant, employee, student, instructor
 
     The following are secondary affiliations (without 1st_class_aff):
@@ -76,6 +77,7 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
             "student": is_student(request),
+            "registered_stud": False,
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
@@ -111,7 +113,7 @@ def get_all_affiliations(request):
 
     if data["student"]:
         data["class_level"] = get_class_level(request)
-
+        data["registered_stud"] = is_registered_current_quarter(request)
         try:
             sws_person = get_profile_of_current_user(request)
             data["F1"] = sws_person.is_F1()
@@ -121,14 +123,12 @@ def get_all_affiliations(request):
             logger.error(str(ex))
 
         # enhance student campus with current and future enrollments
-        try:
-            campuses = get_main_campus(request)
-            if len(campuses) > 0:
-                data['seattle'] = data['seattle'] or ('Seattle' in campuses)
-                data['bothell'] = data['bothell'] or ('Bothell' in campuses)
-                data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
-        except IndeterminateCampusException:
-            pass
+        campuses = get_main_campus(request)
+        if len(campuses) > 0:
+            data["enrolled_stud"] = True
+            data['seattle'] = data['seattle'] or ('Seattle' in campuses)
+            data['bothell'] = data['bothell'] or ('Bothell' in campuses)
+            data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
 
     if is_employee(request):
         # determine employee primary campus based on their mailstop
@@ -145,12 +145,12 @@ def get_all_affiliations(request):
 
 
 def get_is_hxt_viewer(request):
-    is_fy_stud = is_fyp(request)
-    is_aut_xfer = is_aut_transfer(request)
-    is_win_xfer = is_win_transfer(request)
+    is_fy_stud = in_fyp_group(request)
+    is_aut_xfer = in_au_xfer_group(request)
+    is_win_xfer = in_wi_xfer_group(request)
     is_sea_stud = is_seattle_student(request)
     is_undergrad = is_undergrad_student(request)
-    is_viewer = is_hx_toolkit_viewer(request)
+    is_viewer = in_hxtoolkit_group(request)
     if not is_viewer:
         if is_sea_stud and is_undergrad and not is_fy_stud:
             term = get_current_quarter(request)

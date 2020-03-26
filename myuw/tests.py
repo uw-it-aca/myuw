@@ -3,7 +3,6 @@ from myuw.test.academic_events import TestAcademicEvents
 from myuw.test.dao import TestDaoInit
 from myuw.test.dao.calendar_mapping import TestCalendarMapping
 from myuw.test.dao.calendar import TestCalendar
-from myuw.test.dao.enrollment import TestDaoEnrollment
 from myuw.test.dao.registered_term import TestRegisteredTerm
 from myuw.test.dao.schedule import TestSchedule
 from myuw.test.dao.notice_mapping import TestMapNotices
@@ -11,9 +10,7 @@ from myuw.test.dao.notice_categorization import TestNoticeCategories
 from myuw.test.dao.notice import TestNotices
 from myuw.test.dao.building import TestBuildings
 from myuw.test.dao.category_links import TestCategoryLinks
-from myuw.test.dao.enrollment import TestDaoEnrollment
 from myuw.test.dao.finance import TestFinance
-from myuw.test.dao.canvas import TestCanvas
 from myuw.test.dao.card_display_dates import TestDisplayValues
 from myuw.test.dao.grad import TestDaoGrad
 from myuw.test.dao.hfs import TestHFS as TestDaoHFS
@@ -45,7 +42,6 @@ from myuw.test.api.upass import TestUpassApi
 from myuw.test.api.thrive import TestApiThrive
 from myuw.test.api.academic_calendar import TestCalendarAPI
 from myuw.test.api.dept_calendar import TestDeptCalAPI
-from myuw.test.views.page import TestPageMethods
 from myuw.test.views.teaching import TestTeachingMethods
 from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLogins
@@ -53,5 +49,3 @@ from myuw.test.views.test_api import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
 from myuw.test.speed import TestPageSpeeds
 from myuw.test.dao.visual_schedule import TestVisualSchedule
-from myuw.test.views.notice_admin import TestNoticeAdmin
-from myuw.test.dao.myuw_notice import TestMyuwNotice

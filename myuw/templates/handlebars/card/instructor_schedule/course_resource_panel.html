@@ -1,12 +1,11 @@
-{% load templatetag_handlebars %}
-{% load static %}
-{% tplhandlebars "instructor_course_resource_panel" %}
+{% verbatim %}
+<script id="instructor_course_resource_panel" type="text/x-handlebars-template">
 
-    {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
+    {{> course_class_list}}
 
     {{#unless mini_card}}
         {{#if current}}
-            {% include "handlebars/card/instructor_schedule/course_resource/course_stats.html" %}
+            {{> course_stats}}
         {{/if}}
     {{/unless}}
 
@@ -23,27 +22,27 @@
                         {{#if myuwclass_url}}
                         <li class="clearfix">
                             <span class="card-badge-value">
-                                <a class="myuwclass" href="{{ myuwclass_url }}" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank" data-linklabel="MyUWClass: {{curriculum_abbr}} {{course_number}} {{section_id}}" title="MyUWClass">
-                                    <img src="{% static '/images/myuwclasslink.gif' %}" alt="MyUWClass" width="67px" height="24px" />
+                                <a class="myuwclass" href="{{myuwclass_url}}" rel="{{curriculum_abbr}} {{course_number}} {{section_id}}" target="_blank" data-linklabel="MyUWClass: {{curriculum_abbr}} {{course_number}} {{section_id}}" title="MyUWClass">
+                                    <img src="{{static '/images/myuwclasslink.gif'}}" alt="MyUWClass" width="67px" height="24px" />
                                 </a>
                             </span>
                         </li>
                         {{/if}}
 
-                        {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
+                        {{> class_website}}
 
-                        {{#if email_list }}
+                        {{#if email_list}}
                             <li class="clearfix">
-                                {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
+                                {{> email_list}}
                             </li>
                         {{else}}
                         <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred with the <a href="https://mailman.u.washington.edu/" data-linklabel="UW Mailman" target="_blank">email list</a>. Please try again later.</p>
                         {{/if}}
 
-                        {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
+                        {{> online_tools}}
 
                         {{#unless mini_card}}
-                        {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
+                        {{> textbooks}}
                         {{/unless}}
                     </ul>
                 </div>
@@ -52,4 +51,5 @@
     </div>
     {{/if}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

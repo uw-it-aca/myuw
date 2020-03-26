@@ -1,7 +1,7 @@
 {
 	"Notices": [
-		{
-			"NoticeAttributes": [
+	        {
+	             "NoticeAttributes": [
 				{
 					"DataType": "string", 
 					"Name": "Quarter", 
@@ -144,8 +144,7 @@
 			"NoticeAttributes": [], 
 			"NoticeCategory": "StudentDAD", 
 			"NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for winter quarter is due <span class=\"date\"></span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>", 
-			"NoticeType": "TuitDue",
-      "Critical": true
+			"NoticeType": "TuitDue"
 		}, 
 		{
 			"NoticeAttributes": [], 
@@ -247,6 +246,7 @@
             "NoticeContent": "<span class=\"notice-title\">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class=\"notice-body-with-title\">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href=\"http://www.washington.edu/students/gencat/policy/p2pshare.html\">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>",
             "NoticeType": "RIAA"
         },
+
         {
             "NoticeAttributes": [
             {
@@ -263,7 +263,87 @@
             "NoticeCategory": "StudentGEN",
             "NoticeContent": "<span class=\"notice-title\">FERPA</span><span class=\"notice-body-with-title\">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, your directory information may be released unless you inform the Registrar's Office. For further details check the <a href=\"http://www.washington.edu/students/reg/ferpa.html\">Family Educational Rights and Privacy Act web site</a>.</span>",
             "NoticeType": "FERPA"
+        },
+
+        {
+            "NoticeAttributes": [
+            {
+                "Name": "Holds",
+                "DataType": "string",
+                "Value": "1"
+            },
+            {
+                "DataType": "date",
+                "Name": "DisplayBegin",
+                "Value": "20191016"
+            },
+            {
+                "DataType": "date",
+                "Name": "DisplayEnd",
+                "Value": "20191101"
+            }
+            ],
+            "NoticeCategory": "StudentALR",
+            "NoticeContent": "<span class=\"notice-title\">Health Science Immunization Registration Block</span><span class=\"notice-body-with-title\">Your Health Science immunization documents must be submitted to CastleBranch and processed before you can register. <a href=\"https://www.ehs.washington.edu/workplace/health-sciences-immunization-program-hsip\">More Information...</a></span>",
+            "NoticeType": "HSImmunBlock"
+        },
+
+        {
+           "NoticeAttributes": [
+             {
+                 "Name": "Year",
+                 "DataType": "string",
+                 "Value": "2019"
+             },
+             {
+                 "Name": "Date",
+                 "DataType": "date",
+                 "Value": "20191016"
+             },
+             {
+                  "DataType": "date",
+                  "Name": "DisplayBegin",
+                  "Value": "20191001"
+             },
+             {
+                 "DataType": "date",
+                 "Name": "DisplayEnd",
+                 "Value": "20191016"
+             }
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Submit Health Science Immunizations</span><span class=\"notice-body-with-title\">Your required Health Science immunization documents must be submitted prior to <span class=\"date\">Wed, Oct 16</span> to maintain eligibility to register for classes. Please allow 2 weeks for processing after you submit your documents to CastleBranch.  <a href=\"https://www.ehs.washington.edu/workplace/health-sciences-immunization-program-hsip\">More information...</a>",
+            "NoticeType": "HSImmunReqDateA"
+        },
+
+        {
+            "NoticeAttributes": [
+              {
+               "Name": "Year",
+               "DataType": "string",
+               "Value": "2019"
+               },
+              {
+                "Name": "Date",
+                "DataType": "date",
+                "Value": "20191030"
+              },
+            {
+                "DataType": "date",
+                "Name": "DisplayBegin",
+                "Value": "20191016"
+            },
+            {
+                "DataType": "date",
+                "Name": "DisplayEnd",
+                "Value": "20191030"
+            }
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Submit Health Science Immunizations</span><span class=\"notice-body-with-title\">Your required annual Health Science Immunization documents must  be updated prior to <span class=\"date\">Wed, Oct 30</span> to maintain eligibility to register for classes. Please allow 2 weeks for processing after you submit your documents to CastleBranch.  <a href=\"https://www.ehs.washington.edu/workplace/health-sciences-immunization-program-hsip\">More information...</a>",
+            "NoticeType": "HSImmunReqDateB"
         }
+
 	], 
 	"Person": {
 		"Href": "", 

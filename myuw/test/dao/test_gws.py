@@ -5,7 +5,9 @@ from myuw.dao.gws import (
     is_grad_and_prof_student, is_grad_student, is_undergrad_student,
     is_student, is_pce_student, is_grad_c2, is_undergrad_c2,
     is_student_employee, is_staff_employee, is_regular_employee,
-    is_alum_asso, is_applicant, no_major_affiliations, get_groups)
+    is_alum_asso, is_applicant, no_major_affiliations, get_groups,
+    is_effective_member, in_myuw_test_access_group, in_fyp_group,
+    in_au_xfer_group, in_wi_xfer_group, in_hxtoolkit_group)
 from myuw.test import fdao_gws_override, get_request_with_user
 
 
@@ -33,6 +35,20 @@ class TestPwsDao(TestCase):
         self.assertFalse(is_grad_student(req))
         self.assertFalse(is_staff_employee(req))
 
+        req = get_request_with_user('jnew')
+        self.assertTrue(in_fyp_group(req))
+
+        req = get_request_with_user('javg001')
+        self.assertTrue(in_au_xfer_group(req))
+
+        req = get_request_with_user('javg002')
+        self.assertTrue(in_wi_xfer_group(req))
+
+        req = get_request_with_user('javg003')
+        self.assertTrue(in_au_xfer_group(req))
+        self.assertTrue(in_wi_xfer_group(req))
+        self.assertFalse(in_fyp_group(req))
+
         req = get_request_with_user('jbothell')
         self.assertFalse(is_student_employee(req))
         self.assertTrue(is_bothell_student(req))
@@ -58,9 +74,11 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_regular_employee(req))
         self.assertTrue(is_staff_employee(req))
         self.assertTrue(is_clinician(req))
+        self.assertTrue(in_hxtoolkit_group(req))
 
         req = get_request_with_user('bill')
         self.assertTrue(is_clinician(req))
+        self.assertFalse(in_hxtoolkit_group(req))
 
         req = get_request_with_user('nobody')
         self.assertTrue(no_major_affiliations(req))
@@ -83,3 +101,19 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_grad_student(req))
         self.assertTrue(is_pce_student(req))
         self.assertTrue(is_student_employee(req))
+
+    def test_is_effective_member(self):
+        req = get_request_with_user('bill')
+        self.assertTrue(
+            is_effective_member(req, 'u_astratst_myuw_test-support-admin'))
+
+    def test_in_myuw_test_access_group(self):
+        self.assertTrue(in_myuw_test_access_group(
+            get_request_with_user("anyone")))
+
+        with self.settings(
+                MYUW_TEST_ACCESS_GROUP='u_astratst_myuw_test-support-admin'):
+            self.assertTrue(in_myuw_test_access_group(
+                get_request_with_user("javerage")))
+            self.assertFalse(in_myuw_test_access_group(
+                get_request_with_user("eight")))

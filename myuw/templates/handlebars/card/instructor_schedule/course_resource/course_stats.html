@@ -1,6 +1,5 @@
-{% load templatetag_handlebars %}
-
-    {% verbatim %}
+{% verbatim %}
+<script id="course_stats" type="text/x-handlebars-template">
     <div class="myuw-card-section">
         <div class="row">
             <div class="col-sm-3">
@@ -11,14 +10,15 @@
                 <div class="myuw-card-row-content">
                     <div class="card-badge-value">
                         <ul class="myuw-card-itemlist">
-                            {{#exists failure_rate }}
+                            {{#exists failure_rate}}
                                 <li><div>{{to_percent failure_rate}}% historic course fail rate</div></li>
                             {{/exists}}
-                            <li><a href="https://coda.uw.edu/#{{ year }}-{{ quarter }}-{{ toUrlSafe curriculum_abbr }}-{{ course_number }}-{{ section_id }}" class="" data-linklabel="Course Dashboard for {{ toUrlSafe curriculum_abbr }} {{ course_number }} {{ section_id }}" rel="{{section_label}}">View course stats</a></li>
+                            <li><a href="https://coda.uw.edu/#{{year}}-{{quarter}}-{{toUrlSafe curriculum_abbr}}-{{course_number}}-{{section_id}}" class="" data-linklabel="Course Dashboard for {{toUrlSafe curriculum_abbr}} {{course_number}} {{section_id}}" rel="{{section_label}}">View course stats</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endverbatim %}
+</script>
+{% endverbatim %}

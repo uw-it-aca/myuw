@@ -66,7 +66,18 @@ describe("HomePage", function() {
             today_date: new Date(2013, 4, 15),
             year: "2013"
         };
-
+        window.user.student = false;
+        window.user.registered_stud = false;
+        window.user.instructor = false;
+        window.user.applicant = false;
+        window.user.is_hxt_viewer = false;
+        window.user.intl_stud = false;
+        window.user.fyp = false;
+        window.user.aut_transfer = false;
+        window.user.win_transfer = false;
+        window.user.employee = false;
+        window.user.retiree = false;
+        window.innerWidth = 767;
         window.card_display_dates = { "system_date": '2013-04-15 00:01' };
         Global.Environment.ajax_stub({
             '/api/v1/hfs/': 'api/v1/hfs/javerage.json',
@@ -86,12 +97,14 @@ describe("HomePage", function() {
     });
 
 
-    it('Desktop cards for applicants/students/instructors', function() {
+    it('Desktop cards for students', function() {
+        window.innerWidth = 800;
+        window.user.netid = "eight";
+        window.user.student = true;
+        window.user.registered_stud = true;
         var desktop_body_cards = Landing._get_desktop_body_cards();
         assert.deepEqual(desktop_body_cards,
-                         [HuskyExperienceCard,
-                          ThriveCard,
-                          OutageCard,
+                         [OutageCard,
                           GradeCard,
                           FutureQuarterCardA,
                           ThankYouCard,
@@ -101,15 +114,10 @@ describe("HomePage", function() {
                           SummerRegStatusCardA,
                           CriticalInfoCard,
                           InternationalStuCard,
-                          SummaryScheduleCard,
                           VisualScheduleCard,
                           TextbookCard,
-                          FutureSummaryScheduleCard,
                           FutureQuarterCard1,
                           SummerRegStatusCard1,
-                          SeattleApplicationCard,
-                          BothellApplicationCard,
-                          TacomaApplicationCard,
                           ResourcesCard,
                           ResourcesExploreCard]);
         var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
@@ -119,15 +127,165 @@ describe("HomePage", function() {
                           EventsCard]);
     });
 
-    it('Mobile cards for applicants/students/instructors', function() {
+    it('Desktop cards for instructor', function() {
+        window.innerWidth = 800;
+        window.user.netid = "billpce";
+        window.user.instructor = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 6);
+        assert.equal(desktop_body_cards[0].name, 'OutageCard');
+        assert.equal(desktop_body_cards[1].name, 'SummaryScheduleCard');
+        assert.equal(desktop_body_cards[2].name, 'VisualScheduleCard');
+        assert.equal(desktop_body_cards[3].name, 'FutureSummaryScheduleCard');
+        assert.equal(desktop_body_cards[4].name, 'ResourcesCard');
+        assert.equal(desktop_body_cards[5].name, 'ResourcesExploreCard');
+        var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
+        assert.deepEqual(desktop_sidebar_cards,
+                         [QuickLinksCard,
+                          AcadCalSnippet,
+                          EventsCard]);
+    });
+
+    it('Desktop cards for applicants', function() {
+        window.innerWidth = 800;
+        window.user.netid = "japplicant";
+        window.user.applicant = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 5);
+        assert.equal(desktop_body_cards[0].name, 'SeattleApplicationCard');
+        assert.equal(desktop_body_cards[1].name, 'BothellApplicationCard');
+        assert.equal(desktop_body_cards[2].name, 'TacomaApplicationCard');
+        assert.equal(desktop_body_cards[3].name, 'ResourcesCard');
+        assert.equal(desktop_body_cards[4].name, 'ResourcesExploreCard');
+        var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
+        assert.deepEqual(desktop_sidebar_cards,
+                         [QuickLinksCard,
+                          AcadCalSnippet,
+                          EventsCard]);
+        window.user.registered_stud = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 6);
+    });
+
+    it('Desktop cards for hxt_viewer', function() {
+        window.innerWidth = 800;
+        window.user.netid = "javerage";
+        window.user.is_hxt_viewer = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 3);
+        assert.equal(desktop_body_cards[0].name, 'HuskyExperienceCard');
+        assert.equal(desktop_body_cards[1].name, 'ResourcesCard');
+        assert.equal(desktop_body_cards[2].name, 'ResourcesExploreCard');
+        var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
+        assert.deepEqual(desktop_sidebar_cards,
+                         [QuickLinksCard,
+                          AcadCalSnippet,
+                          EventsCard]);
+    });
+
+    it('Desktop cards for fyp', function() {
+        window.innerWidth = 800;
+        window.user.netid = "jnew";
+        window.user.fyp = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 3);
+        assert.equal(desktop_body_cards[0].name, 'ThriveCard');
+        assert.equal(desktop_body_cards[1].name, 'ResourcesCard');
+        assert.equal(desktop_body_cards[2].name, 'ResourcesExploreCard');
+        var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
+        assert.deepEqual(desktop_sidebar_cards,
+                         [QuickLinksCard,
+                          AcadCalSnippet,
+                          EventsCard]);
+    });
+
+    it('Desktop cards for aut_transfer', function() {
+        window.innerWidth = 800;
+        window.user.netid = "jnew";
+        window.user.aut_transfer = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 3);
+        assert.equal(desktop_body_cards[0].name, 'ThriveCard');
+    });
+
+    it('Desktop cards for win_transfer', function() {
+        window.innerWidth = 800;
+        window.user.netid = "jnew";
+        window.user.win_transfer = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.equal(desktop_body_cards.length, 3);
+        assert.equal(desktop_body_cards[0].name, 'ThriveCard');
+    });
+
+    it('Desktop for international student should have', function() {
+        window.innerWidth = 800;
+        window.user.netid = "jinter";
+        window.user.student = true;
+        window.user.registered_stud = true;
+        window.user.intl_stud = true;
+        var desktop_body_cards = Landing._get_desktop_body_cards();
+        assert.deepEqual(desktop_body_cards,
+                         [OutageCard,
+                          GradeCard,
+                          FutureQuarterCardA,
+                          ThankYouCard,
+                          ToRegisterCard,
+                          RegStatusCard,
+                          SummerEFSCard,
+                          SummerRegStatusCardA,
+                          CriticalInfoCard,
+                          InternationalStuCard,
+                          VisualScheduleCard,
+                          TextbookCard,
+                          FutureQuarterCard1,
+                          SummerRegStatusCard1,
+                          IntlStudCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
+    });
+
+    it('Mobile cards for applicants', function() {
+        window.user.netid = "japplicant";
+        window.user.applicant = true;
         var mobile_cards = Landing._get_mobile_cards();
         assert.deepEqual(mobile_cards,
-                         [HuskyExperienceCard,
-                          SeattleApplicationCard,
+                         [SeattleApplicationCard,
                           BothellApplicationCard,
                           TacomaApplicationCard,
                           QuickLinksCard,
-                          ThriveCard,
+                          AcadCalSnippet,
+                          EventsCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
+
+        window.user.registered_stud = true;
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.equal(mobile_cards.length, 6);
+    });
+
+    it('Mobile cards for instructor', function() {
+        window.user.netid = "billpce";
+        window.user.instructor = true;
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.deepEqual(mobile_cards,
+                         [QuickLinksCard,
+                          OutageCard,
+                          SummaryScheduleCard,
+                          FutureSummaryScheduleCard,
+                          VisualScheduleCard,
+                          AcadCalSnippet,
+                          EventsCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
+    });
+
+    it('Mobile cards for students', function() {
+        window.user.netid = "eight";
+        window.user.student = true;
+        window.user.registered_stud = true;
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.deepEqual(mobile_cards,
+                         [QuickLinksCard,
                           OutageCard,
                           GradeCard,
                           FutureQuarterCardA,
@@ -138,8 +296,6 @@ describe("HomePage", function() {
                           SummerRegStatusCardA,
                           CriticalInfoCard,
                           InternationalStuCard,
-                          SummaryScheduleCard,
-                          FutureSummaryScheduleCard,
                           VisualScheduleCard,
                           TextbookCard,
                           FutureQuarterCard1,
@@ -150,22 +306,59 @@ describe("HomePage", function() {
                           ResourcesExploreCard]);
     });
 
-    it('Desktop for international student should have', function() {
-        window.innerWidth = 800;
-        window.user.netid = "jinter";
-        window.user.student = true;
-        window.user.intl_stud = true;
-        var desktop_body_cards = Landing._get_desktop_body_cards();
-        assert.equal(desktop_body_cards[21].name, "IntlStudCard");
+    it('Mobile cards for fyp', function() {
+        window.user.netid = "jnew";
+        window.user.fyp = true;
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.deepEqual(mobile_cards,
+                         [QuickLinksCard,
+                          ThriveCard,
+                          AcadCalSnippet,
+                          EventsCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
     });
 
-    it('Mobile for international student should have', function() {
-        window.innerWidth = 767;
+    it('Mobile cards for hxt_viewer', function() {
+        window.user.netid = "jnew";
+        window.user.is_hxt_viewer = true;
+        var mobile_cards = Landing._get_mobile_cards();
+        assert.deepEqual(mobile_cards,
+                         [HuskyExperienceCard,
+                          QuickLinksCard,
+                          AcadCalSnippet,
+                          EventsCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
+    });
+
+    it('Mobile for international student', function() {
         window.user.netid = "jinter";
         window.user.student = true;
+        window.user.registered_stud = true;
         window.user.intl_stud = true;
         var mobile_cards = Landing._get_mobile_cards();
-        assert.equal(mobile_cards[24].name, "IntlStudCard");
+        assert.deepEqual(mobile_cards,
+                         [QuickLinksCard,
+                          OutageCard,
+                          GradeCard,
+                          FutureQuarterCardA,
+                          ThankYouCard,
+                          ToRegisterCard,
+                          RegStatusCard,
+                          SummerEFSCard,
+                          SummerRegStatusCardA,
+                          CriticalInfoCard,
+                          InternationalStuCard,
+                          VisualScheduleCard,
+                          TextbookCard,
+                          FutureQuarterCard1,
+                          SummerRegStatusCard1,
+                          AcadCalSnippet,
+                          EventsCard,
+                          IntlStudCard,
+                          ResourcesCard,
+                          ResourcesExploreCard]);
     });
 
     it('Desktop for alumni should have', function() {
@@ -244,38 +437,46 @@ describe("HomePage", function() {
 
         window.user.netid = "javerage";
         window.user.student = false;
-        window.user.retiree = true;
         window.user.past_employee = true;
 
         Landing.make_html();
         assert.equal(Landing.is_desktop, true);
         assert.equal($('div[id="HRPayrollCard"]').length, 1);
-        assert.equal($('div[id="RetireAssoCard"]').length, 1);
         assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
         assert.equal($('div[id="UwnetidCard"]').length, 1);
         assert.equal($('div[id="QuickLinksCard"]').length, 1);
         assert.equal($('div[id="AcadCalSnippet"]').length, 1);
         assert.equal($('div[id="EventsCard"]').length, 1);
+
+        window.user.past_employee = false;
+        window.user.retiree = true;
+        Landing.make_html();
+        assert.equal($('div[id="HRPayrollCard"]').length, 1);
+        assert.equal($('div[id="RetireAssoCard"]').length, 1);
     });
 
     it('Mobile for past employee should have', function() {
         window.innerWidth = 767;
 
-        window.user.netid = "javerage";
+        window.user.netid = "retiree";
         window.user.is_hxt_viewer = false;
         window.user.student = false;
-        window.user.retiree = true;
         window.user.past_employee = true;
 
         Landing.make_html();
         assert.equal(Landing.is_desktop, false);
         assert.equal($('div[id="HRPayrollCard"]').length, 1);
-        assert.equal($('div[id="RetireAssoCard"]').length, 1);
         assert.equal($('div[id="ContinuingEducationCard"]').length, 1);
         assert.equal($('div[id="UwnetidCard"]').length, 1);
         assert.equal($('div[id="QuickLinksCard"]').length, 1);
         assert.equal($('div[id="AcadCalSnippet"]').length, 1);
         assert.equal($('div[id="EventsCard"]').length, 1);
+
+        window.user.retiree = true;
+        window.user.past_employee = false;
+        Landing.make_html();
+        assert.equal($('div[id="HRPayrollCard"]').length, 1);
+        assert.equal($('div[id="RetireAssoCard"]').length, 1);
     });
 
     it('Test resizing', function() {

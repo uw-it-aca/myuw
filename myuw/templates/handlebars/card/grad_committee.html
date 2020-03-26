@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "gradcommittee_card_content" %}
+{% verbatim %}
+<script id="gradcommittee_card_content" type="text/x-handlebars-template">
 
     <div aria-labeledby="graduate_committees" class="card">
         <h3>Your Committees</h3>
@@ -31,4 +31,5 @@
         <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>An error occurred and MyUW cannot load your committees information right now. In the meantime, try the <a href="http://grad.uw.edu/for-students-and-post-docs/mygrad-program/" data-linklabel="MyGrad" target="_blank">MyGrad program page</a>.</p>
         {{/unless}}
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}
