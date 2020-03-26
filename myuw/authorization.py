@@ -11,7 +11,7 @@ def validate_netid(username):
     if len(username) == 0:
         return NO_USER
 
-    if not PWS().valid_uwnetid(username):
+    if not PWS().valid_uwnetid(username) or len(username) > 16:
         return INVALID_STRING
 
     return None

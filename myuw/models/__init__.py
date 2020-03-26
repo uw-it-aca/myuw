@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 
 class User(models.Model):
-    uwnetid = models.SlugField(max_length=32,
+    uwnetid = models.SlugField(max_length=16,
                                db_index=True,
                                unique=True)
     last_visit = models.DateTimeField(editable=True)

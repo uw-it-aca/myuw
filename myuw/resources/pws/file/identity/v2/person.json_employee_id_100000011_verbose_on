@@ -1,16 +1,65 @@
 {
-"Persons":[
-     {"Href":"\/identity\/v2\/person\/10000000000000000000000000000011.json",
-      "PersonURI":{
-        "Href":"\/identity\/v2\/person\/10000000000000000000000000000011.json",
-        "DisplayName":"Bill Pce",
-        "RegisteredName":"Bill Pce",
-        "UWNetID":"billpce",
-        "UWRegID":"10000000000000000000000000000011"},
-      "PersonFullURI":{
-        "Href":"\/identity\/v2\/person\/10000000000000000000000000000011\/full.json",
-        "DisplayName":"Bill Pce",
-        "RegisteredName":"Bill Pce",
-        "UWNetID":"billpce",
-        "UWRegID":"10000000000000000000000000000011"}}]
+  "Next": null,
+  "Persons":[
+     {"DisplayName":"BILL Pce Instructor",
+      "EduPersonAffiliations":[
+         "member",
+         "alum",
+         "faculty",
+         "employee"],
+      "IsTestEntity":false,
+      "PriorUWNetIDs":[],
+      "PriorUWRegIDs":[],
+      "RegisteredFirstMiddleName":"BILL",
+      "RegisteredName":"BILL PCE INSTRUCTOR",
+      "RegisteredSurname":"Pce Instructor",
+      "UIDNumber":"35443",
+      "UWNetID":"billpce",
+      "UWRegID":"10000000000000000000000000000011",
+      "WhitepagesPublish": true,
+   "PersonAffiliations":{
+    "AlumPersonAffiliation":{
+        "DevelopmentID":"0000773877",
+        "AlumAffiliationState":"current"},
+    "EmployeePersonAffiliation":{
+        "EmployeeID":"100000011",
+        "EmployeeAffiliationState": "current",
+        "EmployeeWhitePages":{
+            "Addresses":
+                ["237 Denny, C-3175, 4333 Brooklyn Ave NE, Seattle, WA 98195"],
+            "EmailAddresses":["billpce@uw.edu"],
+            "Faxes":["+1 206 123-4321"],
+            "Mobiles":[],
+            "Name":"Pce, Bill",
+            "Pagers":[],
+            "Phones":["+1 206 123-1234", "+1 206 543-1234"],
+            "Positions":[
+                {"EWPDept":"ENG: Mechanical Engineering",
+                 "EWPTitle":"INSTRUCTOR",
+                 "Primary":true},
+                {"EWPDept":"Mechanical Engineering",
+                 "EWPTitle":"Senior Lecturer, part-time",
+                 "Primary":false}],
+            "PublishInDirectory":true,
+            "TouchDials":[],
+            "VoiceMails":[]},
+        "HomeDepartment":"ENG: Mechanical Engineering",
+        "MailStop":"352600"},
+    "StudentPersonAffiliation":{
+        "StudentNumber":"1000011",
+        "StudentSystemKey":"000000011",
+        "StudentAffiliationState":"prior",
+        "StudentWhitePages":{
+            "Class":null,
+            "Departments":[],
+            "Email":null,
+            "Name":null,
+            "Phone":null,
+            "PublishInDirectory":false}}
+     }
+   }
+  ],
+  "PageStart": "1",
+  "PageSize": "10",
+  "TotalCount": 1
 }
