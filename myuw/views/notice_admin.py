@@ -164,6 +164,9 @@ def _save_notice(request, context, notice_id=None):
 
 def _get_datetime(dt_string):
     try:
-        return timezone.make_aware(parse(dt_string))
+        dt = parse(dt_string)
     except ValueError:
         return None
+    if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
+        return timezone.make_aware(parse(dt_string))
+    return dt
