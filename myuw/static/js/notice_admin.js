@@ -4,10 +4,10 @@ $(document).ready(function() {
 
 var NoticeAdmin = {
     render: function() {
-        var start = moment($("#start_value").html());
+        var start = moment.utc($("#start_value").html());
         $('#start_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm',
                                        date: start});
-        var end = moment($("#end_value").html());
+        var end = moment.utc($("#end_value").html());
         $('#end_dt').datetimepicker({format: 'YYYY-MM-DD HH:mm',
                                      date: end});
         NoticeAdmin.add_events();
