@@ -1,12 +1,12 @@
-from myuw.views.decorators import admin_required
-from myuw.views import set_admin_wrapper_template
-from myuw.dao.messages import clean_html
+import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-import logging
-from myuw.models.myuw_notice import MyuwNotice
 from dateutil.parser import parse
-
+from django.utils import timezone
+from myuw.dao.messages import clean_html
+from myuw.models.myuw_notice import MyuwNotice
+from myuw.views.decorators import admin_required
+from myuw.views import set_admin_wrapper_template
 
 logger = logging.getLogger(__name__)
 MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
@@ -164,6 +164,9 @@ def _save_notice(request, context, notice_id=None):
 
 def _get_datetime(dt_string):
     try:
-        return parse(dt_string)
+        dt = parse(dt_string)
     except ValueError:
         return None
+    if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
+        return timezone.make_aware(parse(dt_string))
+    return dt
