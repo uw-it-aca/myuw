@@ -35,7 +35,8 @@ def map_notice_category(notice):
     categorization = NOTICE_CATEGORIES.get(key.lower(), None)
     if categorization is not None:
         notice.custom_category = categorization["myuw_category"]
-        if notice.custom_category != "MyUW Banner Notice":
+        # The criticality of MyUW notice is defined in the notice
+        if notice.notice_category != "MyUWNotice":
             notice.is_critical = categorization["critical"]
         notice.location_tags = categorization["location_tags"]
     else:
