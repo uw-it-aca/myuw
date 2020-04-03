@@ -28,7 +28,6 @@ setup(
         'django-compressor==2.2',
         'beautifulsoup4',
         'urllib3',
-        'python-dateutil',
         'UW-Django-SAML2<2.0',
         'django-aws-message<2.0',
         'UW-RestClients-Core>=1.3.2,<2.0',
