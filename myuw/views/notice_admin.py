@@ -94,6 +94,8 @@ def _save_notice(request, context, notice_id=None):
         has_error = True
         context['category_error'] = True
 
+    is_critical = request.POST.get('critical') is not None
+
     title = None
     content = None
     try:
@@ -123,6 +125,7 @@ def _save_notice(request, context, notice_id=None):
                                 content=content,
                                 notice_type=notice_type,
                                 notice_category=notice_category,
+                                is_critical=is_critical,
                                 start=start_date,
                                 end=end_date,
                                 target_group=target_group)
@@ -154,6 +157,8 @@ def _save_notice(request, context, notice_id=None):
 
             for affil in affil_list:
                 setattr(notice, affil, True)
+
+            notice.is_critical = is_critical
             notice.save()
 
         return True
