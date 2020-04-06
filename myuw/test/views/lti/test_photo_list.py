@@ -15,13 +15,13 @@ class TestLTILaunch(MyuwLTITest):
         # Invalid http method
         response = self.client.get(
             url, HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 403)
+        self.assertEquals(response.status_code, 401)
 
         # Invalid launch payload
         response = self.client.post(
                 url, data={},
                 HTTP_USER_AGENT="Lynx/2.8.2rel.1 libwww-FM/2.14")
-        self.assertEquals(response.status_code, 403)
+        self.assertEquals(response.status_code, 401)
 
 
 @override_settings(BLTI_AES_KEY=b"11111111111111111111111111111111",
