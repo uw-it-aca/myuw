@@ -170,7 +170,7 @@ class TestEmaillistApi(MyuwApiTest):
             resp = self.client.post(
                 url,
                 {u'section_single_AB': u'2013,spring,ESS,102/AB'})
-            self.assertEquals(resp.status_code, 401)
+            self.assertEquals(resp.status_code, 403)
 
     def test_is_emaillist_authorized(self):
         req = get_request_with_user('billbot')

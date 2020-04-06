@@ -59,7 +59,7 @@ class TestInstSectDetails(MyuwApiTest):
             resp = self.get_response_by_reverse(
                 "myuw_inst_section_display_close_mini",
                 kwargs={'section_label': section_id})
-            self.assertEqual(resp.status_code, 401)
+            self.assertEqual(resp.status_code, 403)
 
     def test_pin_mini_card_when_override(self):
         with self.settings(DEBUG=False,
@@ -70,4 +70,4 @@ class TestInstSectDetails(MyuwApiTest):
             resp = self.get_response_by_reverse(
                 "myuw_inst_section_display_pin_mini",
                 kwargs={'section_label': section_id})
-            self.assertEqual(resp.status_code, 401)
+            self.assertEqual(resp.status_code, 403)
