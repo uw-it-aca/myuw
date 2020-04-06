@@ -38,4 +38,4 @@ class TestViewsLinkAdmin(MyuwApiTest):
         url = reverse("myuw_popular_links",
                       kwargs={'page': 1})
         response = self.client.post(url)
-        self.assertEquals(response.status_code, 401)
+        self.assertEquals(response.status_code, 403)
