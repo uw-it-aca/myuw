@@ -7,6 +7,7 @@ from uw_sws.notice import get_notices_by_regid
 from myuw.dao.notice_mapping import map_notice_category,\
     get_open_date, get_close_date, is_after_eof_days_after_open,\
     is_before_bof_days_before_close, apply_showhide, categorize_notices
+from myuw.models.myuw_notice import MyuwNotice
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request
 
@@ -162,3 +163,16 @@ class TestMapNotices(TestCase):
         self.assertEquals(notice.custom_category, 'Registration')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])
+
+        # test MUWM-4676
+        notice21 = MyuwNotice(title="Test",
+                              content="...",
+                              notice_type="Banner",
+                              notice_category="MyUWNotice",
+                              is_critical=True,
+                              start="2020-04-02T07:01:00+00:00",
+                              end="2020-04-10T00:58:00+00:00",
+                              target_group="")
+        notice = map_notice_category(notice21)
+        self.assertEquals(notice.custom_category, 'MyUW Banner Notice')
+        self.assertTrue(notice.is_critical)
