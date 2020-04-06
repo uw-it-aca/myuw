@@ -164,7 +164,7 @@ describe("HomePage", function() {
                           EventsCard]);
         window.user.registered_stud = true;
         var desktop_body_cards = Landing._get_desktop_body_cards();
-        assert.equal(desktop_body_cards.length, 3);
+        assert.equal(desktop_body_cards.length, 6);
     });
 
     it('Desktop cards for hxt_viewer', function() {

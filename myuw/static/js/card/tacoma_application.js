@@ -27,7 +27,8 @@ var TacomaApplicationCard = {
             }
         }
 
-        if (typeof tacoma_application === 'undefined'){
+        if (typeof tacoma_application === 'undefined' ||
+            tacoma_application.no_ug_app){
             this.render_error();
             return;
         }

@@ -1,0 +1,54 @@
+{
+"Persons":[{
+"DisplayName":"Seattle Faculty",
+"EduPersonAffiliations":[
+    "member",
+    "alum",
+    "faculty",
+    "employee"],
+"IsTestEntity":true,
+"PriorUWNetIDs":[],
+"PriorUWRegIDs":[],
+"RegisteredFirstMiddleName":"SEATTLE",
+"RegisteredName":"SEATTLE FACULTY",
+"RegisteredSurname":"FACULTY",
+"UIDNumber":"35443",
+"UWNetID":"billsea",
+"UWRegID":"10000000000000000000000000000006",
+"WhitepagesPublish":false,
+"PersonAffiliations":{
+        "AlumPersonAffiliation":{
+            "DevelopmentID":"0000773877",
+            "AlumAffiliationState":"current"},
+        "EmployeePersonAffiliation":{
+            "EmployeeID":"100000006",
+            "EmployeeAffiliationState":"current",
+            "EmployeeWhitePages":{
+                "Addresses": [],
+                "EmailAddresses":["billsea@uw.edu"],
+                "Faxes":["+1 206 123-4321"],
+                "Mobiles":[],
+                "Name":"Bill, Seattle Faculty",
+                "Pagers":[],
+                "Phones":["+1 206 123-1234",
+                          "+1 206 543-1234"],
+                "Positions":[
+                    {"EWPDept":"CAS: Asian Languages & Literature",
+                     "EWPTitle":"Senior Lecturer",
+                     "Primary":true},
+                    {"EWPDept":"Asian Languages and Literature",
+                     "EWPTitle":"Senior Lecturer, full-time",
+                     "Primary":false}
+                ],
+                "PublishInDirectory":true,
+                "TouchDials":[],
+                "VoiceMails":[]},
+        "HomeDepartment":"CAS: Asian Languages & Literature",
+        "MailStop":"356390"}
+     }
+   }
+  ],
+  "PageStart": "1",
+  "PageSize": "10",
+  "TotalCount": 1
+}

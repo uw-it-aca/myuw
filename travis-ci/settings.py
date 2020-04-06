@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'blti',
     'hx_toolkit',
     'myuw.apps.MyUWConfig',
+    'python3_saml_patch',
 ]
 
 MIDDLEWARE = [
