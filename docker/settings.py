@@ -44,8 +44,6 @@ MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
 SUPPORTTOOLS_PARENT_APP = "MyUW"
 SUPPORTTOOLS_PARENT_APP_URL = "/"
 
-STATIC_ROOT = "/static"
-STATIC_URL = '/static/'
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
@@ -53,38 +51,24 @@ if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
     COMPRESS_ENABLED = False
 
 COMPRESS_ROOT = "/static"
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+STATICFILES_FINDERS += (
     'compressor.finders.CompressorFinder',
-]
+)
 
 COMPRESS_PRECOMPILERS = (
     ('text/less', 'lessc {infile} {outfile}'),
 )
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/app/myuw/templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.request',
-                'django.template.context_processors.static',
-                'django.template.context_processors.tz',
-                'django.contrib.messages.context_processors.messages',
-                'supporttools.context_processors.supportools_globals',
-                'supporttools.context_processors.has_less_compiled',
-                'supporttools.context_processors.has_google_analytics',
-            ],
-        },
-    },
-]
 
-RESTCLIENTS_GWS_HOST = "https://groups.uw.edu"
+TEMPLATES[0]['DIRS'] = ['/app/myuw/templates']
+TEMPLATES[0]['OPTIONS']['context_processors'] += [
+    'django.template.context_processors.i18n',
+    'django.template.context_processors.media',
+    'django.template.context_processors.static',
+    'django.template.context_processors.tz',
+    'supporttools.context_processors.supportools_globals',
+    'supporttools.context_processors.has_less_compiled',
+    'supporttools.context_processors.has_google_analytics',
+]
 
 if os.getenv("ENV") == "localdev":
     DEBUG = True

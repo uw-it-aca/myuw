@@ -9,7 +9,8 @@ services:
     ports:
       - "8000:8000"
     environment:
-      REMOTE_USER: 'javerage'
+      ENV: localdev
+      AUTH: SAML_MOCK
       PORT: ${PORT:-8000}
     stdin_open: true
     tty: true

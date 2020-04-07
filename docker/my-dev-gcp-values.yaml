@@ -1,15 +1,17 @@
 ingress:
   enabled: true
   tls:
-    prereq:
-      secretName: my-dev-gcp.axdd.s.uw.edu
+    myuw:
+      secretName: PUT LETSENCRYPT STUFF HERE
       hosts:
-        - my-dev-gcp.axdd.s.uw.edu
+        - test.my.uw.edu
   hosts:
-    prereq:
-      host: my-dev-gcp.axdd.s.uw.edu
+    myuw:
+      host: test.my.uw.edu
       paths: 
         - "/"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
 externalService:
   enabled: true
   name: my-dev-gcp-sql

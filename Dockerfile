@@ -1,4 +1,4 @@
-FROM acait/django-container:1.0.10
+FROM acait/django-container:1.0.22
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -8,9 +8,6 @@ ADD --chown=acait:acait myuw/VERSION /app/myuw/
 ADD --chown=acait:acait setup.py /app/
 ADD --chown=acait:acait requirements.txt /app/
 RUN . /app/bin/activate && pip install -r requirements.txt
-ADD . /app/
-
-ADD docker /app/project/
 
 RUN . /app/bin/activate && pip install mysqlclient
 RUN . /app/bin/activate && pip install nodeenv && nodeenv -p &&\
@@ -21,6 +18,10 @@ RUN . /app/bin/activate && pip install nodeenv && nodeenv -p &&\
     ./bin/npm install moment -g &&\
     ./bin/npm install moment-timezone -g &&\
     ./bin/npm install jsdom -g
-RUN . /app/bin/activate && python manage.py collectstatic &&\
-    python manage.py compress
+
+ADD --chown=acait:acait . /app/
+ADD --chown=acait:acait docker/ project/
+
+RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
+    python manage.py compress -f
 
