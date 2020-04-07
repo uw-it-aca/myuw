@@ -5,6 +5,7 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 """
 
 import logging
+import traceback
 from datetime import datetime, timedelta
 from myuw.logger.logresp import log_exception
 from myuw.dao.term import get_comparison_datetime,\
