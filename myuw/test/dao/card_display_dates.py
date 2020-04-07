@@ -18,7 +18,7 @@ class TestDisplayValues(TestCase):
     def setUp(self):
         get_request()
 
-    def get_last_term_is_none(self, date):
+    def test_get_last_term_is_none(self, date):
         now_request = get_request_with_date("2012-01-01")
         values = get_card_visibilty_date_values(now_request)
         self.assertIsNone(values.get("last_term"))
