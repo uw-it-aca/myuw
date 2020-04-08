@@ -40,9 +40,7 @@ class MyGrad(ProtectedAPI):
             except DataFailureException as ex:
                 if ex.status != 404:
                     json_ret["comm_err"] = ex.status
-                    log_exception(logger,
-                                  "get_grad_committee",
-                                  traceback.format_exc(chain=False))
+                    log_exception(logger, "get_grad_committee", traceback)
 
             try:
                 degree_reqs = get_grad_degree_for_current_user(request)
@@ -50,9 +48,7 @@ class MyGrad(ProtectedAPI):
             except DataFailureException as ex:
                 if ex.status != 404:
                     json_ret["degree_err"] = ex.status
-                    log_exception(logger,
-                                  "get_grad_degree",
-                                  traceback.format_exc(chain=False))
+                    log_exception(logger, "get_grad_degree", traceback)
 
             try:
                 leave_reqs = get_grad_leave_for_current_user(request)
@@ -60,9 +56,7 @@ class MyGrad(ProtectedAPI):
             except DataFailureException as ex:
                 if ex.status != 404:
                     json_ret["leave_err"] = ex.status
-                    log_exception(logger,
-                                  "get_grad_leave",
-                                  traceback.format_exc(chain=False))
+                    log_exception(logger, "get_grad_leave", traceback)
 
             try:
                 petition_reqs = get_grad_petition_for_current_user(request)
@@ -71,9 +65,7 @@ class MyGrad(ProtectedAPI):
             except DataFailureException as ex:
                 if ex.status != 404:
                     json_ret["petit_err"] = ex.status
-                    log_exception(logger,
-                                  "get_grad_leave",
-                                  traceback.format_exc(chain=False))
+                    log_exception(logger, "get_grad_leave", traceback)
 
             log_api_call(timer, request, "Get My Grad")
 

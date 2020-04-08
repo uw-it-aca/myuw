@@ -83,8 +83,8 @@ def data_error():
                           "Data not available due to an error")
 
 
-def handle_exception(logger, timer, stack_traces):
-    log_err(logger, timer, stack_traces.format_exc(chain=False))
+def handle_exception(logger, timer, stack_trace):
+    log_err(logger, timer, stack_trace)
     exc_type, exc_value, exc_traceback = sys.exc_info()
 
     if isinstance(exc_value, DisabledAction):

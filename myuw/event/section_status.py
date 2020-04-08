@@ -64,5 +64,5 @@ class SectionStatusProcessor(MessageBodyProcessor):
         except Exception:
             msg = "Updating memcache failed on {}, {}".format(url,
                                                               new_value)
-            log_exception(logger, msg, traceback.format_exc())
+            log_exception(logger, msg, traceback)
             raise SectionStatusProcessorException(msg)

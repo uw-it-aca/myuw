@@ -7,7 +7,7 @@ https://docs.google.com/document/d/14q26auOLPU34KFtkUmC_bkoo5dAwegRzgpwmZEQMhaU
 import logging
 import traceback
 from datetime import datetime, timedelta
-from myuw.logger.logresp import log_exception
+from myuw.dao import log_err
 from myuw.dao.term import get_comparison_datetime,\
     get_current_quarter, get_next_quarter, get_previous_quarter,\
     get_term_after, is_in_summer_quarter,\
@@ -78,8 +78,7 @@ def get_values_by_date(now, request):
         data["current_summer_term"] = "{},summer".format(last_term.year)
         data["last_term"] = "{},{}".format(last_term.year, last_term.quarter)
     except Exception:
-        log_exception(logger, 'get_previous_quarter',
-                      traceback.format_exc(chain=False))
+        log_err(logger, "get_previous_quarter", traceback, request)
     return data
 
 

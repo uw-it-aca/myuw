@@ -4,8 +4,9 @@ provides student record information of the current user
 """
 
 import logging
+import traceback
 from uw_sws.person import get_person_by_regid
-from myuw.dao import get_netid_of_current_user
+from myuw.dao import log_err
 from myuw.dao.gws import is_grad_student
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.enrollment import get_main_campus, get_enrollments_of_terms
@@ -59,9 +60,8 @@ def get_cur_future_enrollments(request):
     try:
         terms = get_current_and_next_quarters(request, 4)
         return terms, get_enrollments_of_terms(request, terms)
-    except Exception as ex:
-        logger.error("{} get_enrollments: {}".format(
-            get_netid_of_current_user(request), str(ex)))
+    except Exception:
+        log_err(logger, "get_enrollments_of_terms", traceback, request)
         return None
 
 

@@ -8,7 +8,7 @@ import traceback
 from copy import deepcopy
 from uw_sws.enrollment import (
     enrollment_search_by_regid, get_enrollment_history_by_regid)
-from myuw.dao import get_userids
+from myuw.dao import log_err
 from myuw.dao.term import (
     get_current_quarter, get_current_and_next_quarters,
     get_previous_number_quarters, get_comparison_date)
@@ -84,9 +84,7 @@ def is_registered_current_quarter(request):
         enrollment = get_current_quarter_enrollment(request)
         return enrollment is not None and enrollment.is_registered
     except Exception:
-        logger.error("{}, {} => {} ".format(
-            get_userids(request), "is_registered_current_quarter",
-            traceback.format_exc(chain=False)))
+        log_err(logger, "is_registered_current_quarter", traceback, request)
     return False
 
 
@@ -102,9 +100,7 @@ def get_main_campus(request):
                 if major.campus and major.campus not in campuses:
                     campuses.append(major.campus)
     except Exception:
-        logger.error("{}, {} => {} ".format(
-            get_userids(request), "get_main_campus",
-            traceback.format_exc(chain=False)))
+        log_err(logger, "get_main_campus", traceback, request)
     return campuses
 
 
