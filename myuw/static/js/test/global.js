@@ -31,12 +31,14 @@ var Environment = {
         global.assert = require("assert");
         global.moment = require("moment-timezone");
         global.sinon  = require("sinon");
-        global.Handlebars = require("../../vendor/js/handlebars-v4.0.5.js");
+        global.Handlebars = require("../../vendor/js/handlebars-v4.5.3.js");
         global.dom = dom;
         var HandlebarsHelpers = require("../handlebars-helpers.js");
 
         // set up client environment
         window.user = Environment._get_user(config);
+        window.is_mobile = false;
+        window.static_url = 'http://static/path';
 
         // default test term
         window.term = {};
@@ -152,12 +154,7 @@ var Environment = {
     },
     _read_template: function (template_file) {
         var template_path = Environment._abs_path(template_file);
-        var raw = fs.readFileSync(template_path).toString();
-        var template = raw.replace(/{\%[ ]+load[ ]+templatetag_handlebars[ ]+\%}/, '')
-            .replace(/{\%[ ]*tplhandlebars[ ]+["]?([^ \%]+)["]?[ ]*\%}/,
-                     '<script id="$1" type="text/x-handlebars-template">')
-            .replace(/{\%[ ]*endtplhandlebars[ ]*\%}/,
-                     '</script>')
+        var template = fs.readFileSync(template_path).toString()
             .replace(/{\%[ ]*(end)?verbatim[ ]*\%}/g, '');
 
         while (true) {
@@ -170,7 +167,6 @@ var Environment = {
                 break;
             }
         }
-
         return template;
     },
     _load_template: function(template_file) {
@@ -188,8 +184,8 @@ describe("Global Test Environment", function () {
         assert(t.indexOf('endtplhandlebars') < 0, 'end handlebars block stripped');
         assert(t.indexOf('verbatim') < 0, 'verbatim stripped');
         assert(t.indexOf('endverbatim') < 0, 'endverbatim stripped');
-        assert(t.indexOf('show_course_textbook') > 0, 'first inclusion');
-        assert(t.indexOf('list_admin_url') > 0, 'second inclusion');
+        assert(t.indexOf('show_course_textbook') < 0, 'first inclusion');
+        assert(t.indexOf('list_admin_url') < 0, 'second inclusion');
         assert.equal(true, true);
     });
 });

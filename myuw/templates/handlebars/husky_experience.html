@@ -1,6 +1,5 @@
-{% load templatetag_handlebars %}
-{% load static %}
-{% tplhandlebars "husky_experience_page" %}
+{% verbatim %}
+<script id="husky_experience_page" type="text/x-handlebars-template">
 
 <div class="container huskyx-container">
     <div class="huskyx-main">
@@ -17,8 +16,8 @@
                                 </p>
                             </div>
                             <div class="col-sm-5">
-                                <img class="huskyx-diagram" src="{% static '/images/HX_dimensions-1.0x.png' %}"
-                                srcset="{% static '/images/HX_dimensions-1.0x.png' %} 1x, {% static '/images/HX_dimensions-1.5x.png' %} 1.5x, {% static '/images/HX_dimensions-2.0x.png' %} 2x"
+                                <img class="huskyx-diagram" src="{{static '/images/HX_dimensions-1.0x.png'}}"
+                                srcset="{{static '/images/HX_dimensions-1.0x.png'}} 1x, {{static '/images/HX_dimensions-1.5x.png'}} 1.5x, {{static '/images/HX_dimensions-2.0x.png'}} 2x"
                                 sizes="300px"
                                 alt="Husky Experience dimensions diagram" longdesc="" />
                             </div>
@@ -32,7 +31,7 @@
                                 <p>Know what interests and engages you. Test ideas you have about yourself. Build a supportive social network and make decisions that are right for you. Understand how taking care of yourself is fundamental to success in everything you do.</p>
 
                                 <ul class="list-unstyled">
-                                    {{{ know-yourself }}}
+                                    {{{know-yourself}}}
                                 </ul>
                             </div>
 
@@ -41,7 +40,7 @@
                                 <p>What are you curious about? What matters to you? Know how the people and resources at the UW can help you learn, understand, and contribute.</p>
 
                                 <ul class="list-unstyled">
-                                    {{{ know-world }}}
+                                    {{{know-world}}}
                                 </ul>
                             </div>
 
@@ -50,7 +49,7 @@
                                 <h3 class="myuw-card-title">Make Your Way</h3>
                                 <p>Gather tools and knowledge to intentionally construct a career. Learn to identify and showcase your skills and strengths. Build a professional network to support you on a path to success.</p>
                                 <ul class="list-unstyled">
-                                    {{{ make-your-way }}}
+                                    {{{make-your-way}}}
                                 </ul>
                             </div>
 
@@ -59,7 +58,7 @@
                                 <h3 class="myuw-card-title">Weave it Together</h3>
                                 <p>Reflect on your experiences large and small – how do they connect? Weave your experiences into a meaningful whole – the story of your growth and learning.</p>
 
-                                {{{ weave-together }}}
+                                {{{weave-together}}}
                             </div>
 
                     </div>
@@ -87,4 +86,5 @@
 </div>
 
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

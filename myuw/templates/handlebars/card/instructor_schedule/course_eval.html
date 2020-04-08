@@ -1,4 +1,5 @@
-    {% verbatim %}
+{% verbatim %}
+<script id="course_eval" type="text/x-handlebars-template">
     <div class="myuw-card-section last">
         <div class="row">
             <div class="col-sm-3">
@@ -57,7 +58,7 @@
                         {{/if}}
 
                         {{#if evaluation.report_url}}
-                          <li><a href="{{ evaluation.report_url }}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
+                          <li><a href="{{evaluation.report_url}}" data-linklabel="{{curriculum_abbr}} {{course_number}} {{section_id}} Course Evaluation Report">View evaluation results report</a></li>
                         {{/if}}
 
                         <li><strong>{{evaluation.response_rate_percent}}% Response rate</strong></li>
@@ -91,4 +92,5 @@
             </div>
         </div>
     </div>
-    {% endverbatim %}
+</script>
+{% endverbatim %}

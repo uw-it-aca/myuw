@@ -1,6 +1,4 @@
 import json
-from myuw.views.api.prev_unfinished_schedule import\
-    StudUnfinishedPrevQuarClasSche
 from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override,\
     fdao_pws_override
 

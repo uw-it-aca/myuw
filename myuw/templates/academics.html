@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends is_hybrid|yesno:"base_hybrid.html,base.html" %}
 {% load set_context %}
 {% load static %}
 {% load compress %}
@@ -25,6 +25,18 @@
     {% include "handlebars/card/schedule/final_day.html" %}
     {% include "handlebars/card/schedule/visual.html" %}
     {% include "handlebars/card/schedule/visual_day.html" %}
+    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
+    {% include "handlebars/card/instructor_schedule/course_grading.html" %}
+    {% include "handlebars/card/instructor_schedule/course_eval.html" %}
+    {% include "handlebars/card/instructor_schedule/secondaries.html" %}
+    {% include "handlebars/card/instructor_schedule/term_panel.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource/course_stats.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
+    {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
     {% include "handlebars/card/textbook.html" %}
     {% include "handlebars/card/grade.html" %}
     {% include "handlebars/card/grad_status.html" %}

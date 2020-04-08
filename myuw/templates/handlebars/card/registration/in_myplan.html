@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "in_myplan_tmpl" %}
+{% verbatim %}
+<script id="in_myplan_tmpl" type="text/x-handlebars-template">
 
 <div class="card-badge-container">
 
@@ -11,15 +11,15 @@
 
             <div class="pull-right">
                 <ul class="card-badge-value">
-                    <li>{{ plan_data.ready_count }} {{ pluralize plan_data.ready_count "course" "courses" }} ready</li>
-                    {{#if plan_data.unready_count }}
-                        <li class="courses-not-ready">{{ plan_data.unready_count }} not ready
+                    <li>{{plan_data.ready_count}} {{pluralize plan_data.ready_count "course" "courses"}} ready</li>
+                    {{#if plan_data.unready_count}}
+                        <li class="courses-not-ready">{{plan_data.unready_count}} not ready
 
-                            {{#unless plan_data.has_sections }}
+                            {{#unless plan_data.has_sections}}
                                 <a target="_blank" href="{{plan_data.myplan_href}}">Add Sections</a>
-                            {{else }}
-                                <a id="toggle_unready_courses{{#if card }}_{{card}}{{/if}}" href="#myplan_unready_courses{{#if card }}_{{card}}{{/if}}" title="Expand to show courses not ready" role="button"
-                                aria-controls="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
+                            {{else}}
+                                <a id="toggle_unready_courses{{#if card}}_{{card}}{{/if}}" href="#myplan_unready_courses{{#if card}}_{{card}}{{/if}}" title="Expand to show courses not ready" role="button"
+                                aria-controls="myplan_unready_courses{{#if card}}_{{card}}{{/if}}"
                                 aria-expanded="false"
                                 data-toggle="collapse"
                                 data-expanded-title="Collapse to hide courses not ready"
@@ -34,18 +34,18 @@
         </div>
     </div>
 
-    <div id="myplan_unready_courses{{#if card }}_{{card}}{{/if}}"
+    <div id="myplan_unready_courses{{#if card}}_{{card}}{{/if}}"
          class="collapse"
          aria-label="Courses not ready for registration"
          aria-hidden="true" aria-expanded="false" tabindex="-1">
          <div class="course-not-ready-details clearfix">
             <h4>Not ready for registration</h4>
             <ul id="courses_not_ready_list" class="courses-not-ready-list">
-                {{#each plan_data.courses }}
-                    {{#unless registrations_available }}
-                        <li class="courses-not-ready-list-item">{{ curriculum_abbr }} {{ course_number }}</li>
-                        <!--{{#unless @last }}<br/>{{/unless}}-->
-                    {{/unless }}
+                {{#each plan_data.courses}}
+                    {{#unless registrations_available}}
+                        <li class="courses-not-ready-list-item">{{curriculum_abbr}} {{course_number}}</li>
+                        <!--{{#unless @last}}<br/>{{/unless}}-->
+                    {{/unless}}
                 {{/each}}
             </ul>
 
@@ -86,4 +86,5 @@
  <!-- WIP: MyPlan inline error message
 <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your information right now. Please try <a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" data-linklabel="MyPlan" target="_blank">MyPlan</a>.</p> -->
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

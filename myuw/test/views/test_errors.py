@@ -1,6 +1,6 @@
-from myuw.views.error import not_instructor_error, data_not_found,\
-    unknown_uwnetid, invalid_input_data, invalid_method, invalid_future_term,\
-    data_error
+from myuw.views.error import (
+    not_instructor_error, data_not_found, no_access, data_error,
+    unknown_uwnetid, invalid_input_data, invalid_method, invalid_future_term)
 from myuw.test.api import MyuwApiTest
 
 
@@ -21,11 +21,20 @@ class TestViewsError(MyuwApiTest):
         response = unknown_uwnetid()
         self.assertEquals(
             response.content,
-            (b'MyUW cannot find data for this user account '
+            (b'<p>MyUW cannot find data for this user account '
              b'in the person registry services. '
              b'If you have just created your UW NetID, '
-             b'please try signing in to MyUW again in one hour.'))
+             b'please try signing in to MyUW again in one hour.</p>'))
         self.assertEquals(response.status_code, 400)
+
+    def test_no_access(self):
+        response = no_access()
+        self.assertEquals(
+            response.content,
+            (b'<p>This is a test environment of MyUW, '
+             b'its access is limited to specific people. To request access, '
+             b'please contact the UW-IT Service Center.</p>'))
+        self.assertEquals(response.status_code, 403)
 
     def test_invalid_input_data(self):
         response = invalid_input_data()

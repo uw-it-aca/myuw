@@ -1,11 +1,13 @@
 var InstructorCourseSchePanel = {
 
     render: function (c_section) {
+        Handlebars.registerPartial('course_sche_col_days', $("#course_sche_col_days").html());
+        Handlebars.registerPartial('course_sche_col_bldg', $("#course_sche_col_bldg").html());
         var source = $("#instructor_course_sche_panel").html();
         var template = Handlebars.compile(source);
         c_section.netid = window.user.netid;
         if (c_section.meetings.length > 0) {
-            for (i = 0; i < c_section.meetings.length; i++) {
+            for (var i = 0; i < c_section.meetings.length; i++) {
                 if (!c_section.wont_meet &&
                     !c_section.no_meeting &&
                     c_section.meetings[i].type !== c_section.section_type &&
@@ -14,6 +16,7 @@ var InstructorCourseSchePanel = {
                 }
             }
         }
+
         var raw = template(c_section);
         $('#instructor_sche_on_course_card' + c_section.index).html(raw);
     }

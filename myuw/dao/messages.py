@@ -4,8 +4,7 @@ import datetime
 import bleach
 from dateutil.parser import parse
 from myuw.models import BannerMessage
-from myuw.dao import is_netid_in_list, get_netid_of_current_user,\
-    is_using_file_dao
+from myuw.dao import get_netid_of_current_user, is_using_file_dao
 from myuw.dao.admin import is_admin
 from myuw.dao.gws import gws
 from myuw.dao.term import get_comparison_datetime_with_tz

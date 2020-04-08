@@ -1,7 +1,7 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_section_card_no_course" %}
+{% verbatim %}
+<script id="instructor_section_card_no_course" type="text/x-handlebars-template">
 <div class="container">
-  <div class="myuw-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+  <div class="myuw-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
     <div class="fade-in">
       <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
         <h3 class="myuw-card-title">No Course Found</h3>
@@ -12,4 +12,5 @@
     </div>
   </div>
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

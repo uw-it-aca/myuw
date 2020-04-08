@@ -1,12 +1,12 @@
-from myuw.views.decorators import admin_required
-from myuw.views import set_admin_wrapper_template
-from myuw.dao.messages import clean_html
+import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-import logging
-from myuw.models.myuw_notice import MyuwNotice
 from dateutil.parser import parse
-
+from django.utils import timezone
+from myuw.dao.messages import clean_html
+from myuw.models.myuw_notice import MyuwNotice
+from myuw.views.decorators import admin_required
+from myuw.views import set_admin_wrapper_template
 
 logger = logging.getLogger(__name__)
 MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
@@ -94,6 +94,8 @@ def _save_notice(request, context, notice_id=None):
         has_error = True
         context['category_error'] = True
 
+    is_critical = request.POST.get('critical') is not None
+
     title = None
     content = None
     try:
@@ -114,6 +116,7 @@ def _save_notice(request, context, notice_id=None):
         has_error = True
         context['content_error'] = True
 
+    target_group = request.POST.get('target_group')
     campus_list = request.POST.getlist('campus')
     affil_list = request.POST.getlist('affil')
     if not has_error:
@@ -122,14 +125,17 @@ def _save_notice(request, context, notice_id=None):
                                 content=content,
                                 notice_type=notice_type,
                                 notice_category=notice_category,
+                                is_critical=is_critical,
                                 start=start_date,
-                                end=end_date)
+                                end=end_date,
+                                target_group=target_group)
             for campus in campus_list:
                 setattr(notice, campus, True)
 
             for affil in affil_list:
                 setattr(notice, affil, True)
             notice.save()
+
         elif form_action == "edit":
             notice = MyuwNotice.objects.get(id=notice_id)
             notice.title = title
@@ -138,6 +144,7 @@ def _save_notice(request, context, notice_id=None):
             notice.notice_category = notice_category
             notice.start = start_date
             notice.end = end_date
+            notice.target_group = target_group
 
             # reset filters
             fields = MyuwNotice._meta.get_fields()
@@ -150,6 +157,8 @@ def _save_notice(request, context, notice_id=None):
 
             for affil in affil_list:
                 setattr(notice, affil, True)
+
+            notice.is_critical = is_critical
             notice.save()
 
         return True
@@ -160,6 +169,9 @@ def _save_notice(request, context, notice_id=None):
 
 def _get_datetime(dt_string):
     try:
-        return parse(dt_string)
+        dt = parse(dt_string)
     except ValueError:
         return None
+    if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
+        return timezone.make_aware(parse(dt_string))
+    return dt

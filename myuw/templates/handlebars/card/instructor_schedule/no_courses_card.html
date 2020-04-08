@@ -1,10 +1,11 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "instructor_course_card_no_courses" %}
-  <div class="myuw-card card instructor-course-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+{% verbatim %}
+<script id="instructor_course_card_no_courses" type="text/x-handlebars-template">
+  <div class="myuw-card card instructor-course-card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
     <div class="fade-in">
       <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
         <p>No courses associated with this term.</p>
       </div>
     </div>
   </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

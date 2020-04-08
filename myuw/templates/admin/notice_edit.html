@@ -75,6 +75,9 @@
                             <label class="" for="notice_type">Notice Type</label>
                             <select id="notice_type" name="notice_type" class="form-control"><option value="Banner">Banner</option></select>
                         </div>
+                        <div class="form-group">
+                            <label class=""><input type='checkbox' name='critical' value='true' {% if notice.is_critical %}checked="checked"{% endif %}> Critical</label>
+                        </div>
                         <br/>
                     </div>
                     <br/>
@@ -82,7 +85,9 @@
                     <h3>Audience</h3>
 
                     <p class="text-muted"><small>All users see the notice by default (when no options are selected). Selections made for campus intersect selections for affiliation.<br/> (e.g. If Seattle, is_alumni, and is_applicant are selected, only Seattle alumnis and Seattle applicants will see the notice.)</small></p>
-
+                    <br/>
+                    <label class="" for="notice_group">UW Group ID</label>
+                    <input id="notice_group" type='text' name='target_group' class="form-control" value='{% if notice.target_group %}{{ notice.target_group }}{% endif %}'>
                     <br/>
 
                     <h4>Campus</h4>

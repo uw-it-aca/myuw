@@ -5,7 +5,6 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS += [
     'compressor',
     'rc_django',
-    'templatetag_handlebars',
     'myuw',
     'userservice',
     'django_client_logger',
@@ -68,6 +67,7 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'supporttools.context_processors.supportools_globals',
     'supporttools.context_processors.has_less_compiled',
     'supporttools.context_processors.has_google_analytics',
+    'myuw.context_processors.is_hybrid',
 ]
 
 if os.getenv("ENV") == "localdev":

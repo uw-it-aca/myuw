@@ -22,11 +22,34 @@ def get_netid_of_current_user(request=None):
     return request.myuwnetid
 
 
-def get_netid_of_original_user():
+def get_netid_of_original_user(request=None):
     """
     return the actual authenticated user
     """
-    return UserService().get_original_user()
+    if request is None:
+        return UserService().get_original_user()
+
+    if not hasattr(request, "myuw_orig_netid"):
+        request.myuw_orig_netid = UserService().get_original_user()
+    return request.myuw_orig_netid
+
+
+def get_userids(request=None):
+    """
+    Return <actual user netid> acting_as: <override user netid> if
+    the user is acting as someone else, otherwise
+    <actual user netid> no_override: <actual user netid>
+    """
+    lformat = 'orig_netid: {}, acting_netid: {}, is_override: {}'
+    try:
+        override_userid = get_netid_of_current_user(request)
+        actual_userid = get_netid_of_original_user(request)
+        return lformat.format(actual_userid,
+                              override_userid,
+                              override_userid != actual_userid)
+    except Exception as ex:
+        logger.warning("get_userids ==> {}".format(str(ex)))
+    return ""
 
 
 def is_action_disabled():
@@ -43,19 +66,6 @@ def is_using_file_dao():
     return SWS_DAO.get_implementation().is_mock()
 
 
-def is_hx_toolkit_viewer(request):
-    file_path = _get_file_path("MYUW_DATA_PATH",
-                               "hx_toolkit_list.txt")
-    uwnetid = get_netid_of_current_user(request)
-    return is_netid_in_list(uwnetid, file_path)
-
-
-def is_thrive_viewer(uwnetid, population):
-    file_path = _get_file_path("MYUW_DATA_PATH",
-                               population + "_list.txt")
-    return is_netid_in_list(uwnetid, file_path)
-
-
 def _get_file_path(settings_key, filename):
     file_path = getattr(settings, settings_key, None)
     if file_path:
@@ -66,15 +76,3 @@ def _get_file_path(settings_key, filename):
                                              "..", "data",
                                              filename))
     return file_path
-
-
-def is_netid_in_list(username, file_path):
-    with open(file_path, 'r', encoding='utf8') as data_source:
-        for line in data_source:
-            try:
-                if line.rstrip() == username:
-                    return True
-            except Exception as ex:
-                logger.error("{}: {}=?={}".format(str(ex), line, username))
-
-    return False

@@ -2,14 +2,14 @@ import hashlib
 import json
 import logging
 from django_user_agents.utils import get_user_agent
-from myuw.dao import get_netid_of_original_user, get_netid_of_current_user
+from myuw.dao import get_userids
 from myuw.dao.affiliation import get_all_affiliations
 
 logger = logging.getLogger('session')
 
 
 def log_session(request):
-    logger.info("{}, {}, {}".format(get_userid(),
+    logger.info("{}, {}, {}".format(get_userids(),
                                     json.dumps(_get_session_data(request)),
                                     json.dumps(_get_affi(request))))
 
@@ -73,24 +73,6 @@ def get_ip(request):
             return request.META.get('REMOTE_ADDR')
     except Exception as ex:
         logger.warning("ip ==> {}".format(str(ex)))
-    return ""
-
-
-def get_userid():
-    """
-    Return <actual user netid> acting_as: <override user netid> if
-    the user is acting as someone else, otherwise
-    <actual user netid> no_override: <actual user netid>
-    """
-    log_format = 'orig_netid: {}, acting_netid: {}, is_override: {}'
-    try:
-        override_userid = get_netid_of_current_user()
-        actual_userid = get_netid_of_original_user()
-        return log_format.format(actual_userid,
-                                 override_userid,
-                                 override_userid != actual_userid)
-    except Exception as ex:
-        logger.warning("get_userid ==> {}".format(str(ex)))
     return ""
 
 

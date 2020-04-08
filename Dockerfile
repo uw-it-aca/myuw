@@ -12,6 +12,7 @@ RUN . /app/bin/activate && pip install -r requirements.txt
 RUN . /app/bin/activate && pip install mysqlclient
 RUN . /app/bin/activate && pip install nodeenv && nodeenv -p &&\
     npm install -g npm &&\
+    ./bin/npm install tslib -g &&\
     ./bin/npm install less -g &&\
     ./bin/npm install datejs -g &&\
     ./bin/npm install jquery -g &&\

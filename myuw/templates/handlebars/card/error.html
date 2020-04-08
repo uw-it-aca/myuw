@@ -1,7 +1,8 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "card_with_error" %}
+{% verbatim %}
+<script id="card_with_error" type="text/x-handlebars-template">
 <div class="card" style="position:relative;">
-    <h3>{{ card_name }}</h3>
+    <h3>{{card_name}}</h3>
     <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error has occurred and we can't load this content right now. Please try again later.</p>
 </div>
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

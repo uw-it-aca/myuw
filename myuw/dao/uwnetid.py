@@ -6,10 +6,6 @@ with the UW Netid Web Service
 import logging
 from uw_uwnetid.models import Subscription
 from uw_uwnetid.subscription import get_netid_subscriptions
-from uw_uwnetid.subscription_60 import is_current_alumni, is_current_staff,\
-    is_former_staff, is_current_faculty, is_former_faculty,\
-    is_current_clinician, is_former_clinician, is_current_retiree,\
-    is_former_grad, is_former_undergrad, is_former_pce
 from uw_uwnetid.subscription_105 import get_uwemail_forwarding
 from myuw.dao import get_netid_of_current_user
 

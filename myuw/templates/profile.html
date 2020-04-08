@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends is_hybrid|yesno:"base_hybrid.html,base.html" %}
 {% load set_context %}
 {% load static %}
 {% load compress %}
@@ -20,6 +20,7 @@
     {% include "handlebars/card/profile/employee_profile.html" %}
     {% include "handlebars/card/profile/student_info.html" %}
     {% include "handlebars/card/loading.html" %}
+    {% include "handlebars/card/workday_link.html" %}
 
     <!-- page content templates -->
     {% include "handlebars/profile.html" %}

@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "myplan_courses_tmpl" %}
+{% verbatim %}
+<script id="myplan_courses_tmpl" type="text/x-handlebars-template">
 
 {{#if plan_data.courses}}
     <div id="myplan_courses{{#if card}}_{{card}}{{/if}}"
@@ -12,17 +12,17 @@
 
         <div class="reg_resources_disc" style="padding: 4px 0;">
 
-            <h4 class="quarter-heading">Your {{reg_next_quarter}} {{ reg_next_year }} plan</h4>
+            <h4 class="quarter-heading">Your {{reg_next_quarter}} {{reg_next_year}} plan</h4>
 
             <div class="myplan-data">
                 {{#if plan_data.has_ready_courses}}
                     <div>
                         <h5>Ready for registration</h5>
                         <ul class="courses-ready-list">
-                            {{#each plan_data.courses }} <!--Course-->
+                            {{#each plan_data.courses}} <!--Course-->
                                 <li>
-                                {{#if registrations_available }}
-                                    <h6 style="font-size: inherit;">{{ curriculum_abbr }} {{ course_number }}</h6>
+                                {{#if registrations_available}}
+                                    <h6 style="font-size: inherit;">{{curriculum_abbr}} {{course_number}}</h6>
                                     <table class="reg-status-table table table-condensed table-borderless borderless" style="border-width: 0;">
                                         <thead class="sr-only">
                                             <tr>
@@ -32,13 +32,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{#each sections }} <!--Section-->
+                                            {{#each sections}} <!--Section-->
                                                  <tr class="reg-status-table-row">
                                                      {{#each section_data.meetings}}
                                                         <td>
-                                                            <span{{#unless @first }} class="sr-only"{{/unless}}><span class="sr-only">Section </span>{{ ../section_id }}</span>
+                                                            <span{{#unless @first}} class="sr-only"{{/unless}}><span class="sr-only">Section </span>{{../section_id}}</span>
                                                         </td>
-                                                        {{#if days_tbd }}
+                                                        {{#if days_tbd}}
                                                             <td colspan="2">Days and times to be arranged</td>
                                                         {{else}}
                                                             <td>
@@ -54,7 +54,7 @@
                                                           {{/if}}
                                                       {{/each}}
                                                  </tr>
-                                             {{/each }} <!--Section end-->
+                                             {{/each}} <!--Section end-->
                                         </tbody>
                                     </table>
                                 {{/if}}
@@ -68,11 +68,11 @@
                      <div>
                          <h5>Not ready for registration</h5>
                          <ul class="courses-not-ready-list">
-                            {{#each plan_data.courses }}
+                            {{#each plan_data.courses}}
                             <li>
-                                {{#unless registrations_available }}
-                                {{ curriculum_abbr }} {{ course_number }} <br/>
-                                {{/unless }}
+                                {{#unless registrations_available}}
+                                {{curriculum_abbr}} {{course_number}} <br/>
+                                {{/unless}}
                             </li>
                              {{/each}}
                          </ul>
@@ -96,4 +96,5 @@
 
 {{/if}}
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

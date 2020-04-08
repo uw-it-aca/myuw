@@ -1,6 +1,5 @@
 import json
 from myuw.views.api.base_schedule import irregular_start_end
-from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.test.api import MyuwApiTest, require_url, fdao_sws_override
 
 
@@ -23,7 +22,6 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(data["term"]["year"], 2013)
         self.assertEquals(data["term"]["quarter"], 'Spring')
         self.assertEquals(len(data["sections"]), 5)
-
         phys = self.get_section(data, 'PHYS', '121', 'A')
 
         self.assertEquals(phys['canvas_url'],
@@ -34,15 +32,12 @@ class TestSchedule(MyuwApiTest):
             '?s=research/physics_astronomy'
         )
 
-        train = self.get_section(data, 'TRAIN', '101', 'A')
-        self.assertNotIn('canvas_url', train)
-
     def test_none_current_term(self):
         response = self.get_current_schedule_res('none')
         self.assertEquals(response.status_code, 404)
         self.assertEquals(response.content, b'Data not found')
 
-    def test_eight_current_term(self):
+    def test_canvas_url(self):
         response = self.get_current_schedule_res('eight')
         self.assertEquals(response.status_code, 200)
 
@@ -55,6 +50,20 @@ class TestSchedule(MyuwApiTest):
         arctic = self.get_section(data, 'ARCTIC', '200', 'A')
         self.assertEquals(arctic['lib_subj_guide'],
                           'http://guides.lib.uw.edu/tacoma/art')
+
+        phys121a = self.get_section(data, 'PHYS', '121', 'A')
+        self.assertEquals(phys121a['canvas_url'],
+                          'https://test.edu/courses/249652')
+
+        phys121ac = self.get_section(data, 'PHYS', '121', 'AC')
+        self.assertEquals(phys121ac['canvas_url'],
+                          'https://test.edu/courses/249652')
+
+        response = self.get_current_schedule_res('jpce')
+        data = json.loads(response.content)
+        self.assertEquals(len(data["sections"]), 5)
+        for sec_data in data["sections"]:
+            self.assertNotIn('canvas_url', sec_data)
 
     def test_jbothell_current_term(self):
         response = self.get_current_schedule_res('jbothell')

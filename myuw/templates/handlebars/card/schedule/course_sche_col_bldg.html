@@ -1,21 +1,22 @@
 {% verbatim %}
-
+<script id="course_sche_col_bldg" type="text/x-handlebars-template">
 {{#if eos_start_date}}
-    <td class="course-location" headers="location-{{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }} {{ @root.year }}-{{ @root.quarter }}-{{ toAnchorName ../curriculum_abbr }}-{{ ../course_number }}-{{ ../section_id }}-meeting-{{index}}">
+    <td class="course-location" headers="location-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}">
 {{else}}
     <td class="course-location">
 {{/if}}
 
     {{#if latitude}}
-       <a href="http://maps.google.com/maps?q={{ latitude }},{{ longitude }}+({{encodeForMaps building_name }})&z=18" target="_blank" class="show_map" rel="{{building_name}}" data-linklabel="{{ building }} - Google Maps" title="Map {{building_name}}">{{/if}}{{building}}{{#if latitude}}</a>
+       <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map" rel="{{building_name}}" data-linklabel="{{building}} - Google Maps" title="Map {{building_name}}">{{/if}}{{building}}{{#if latitude}}</a>
     {{/if}}
 
     {{#if classroom_info_url}}
-       <a href="{{ classroom_info_url }}" class="room-info" title="View classroom information" target="_blank" data-linklabel="{{ building }} {{ room }} - Room Info">{{room}}</a>
+       <a href="{{classroom_info_url}}" class="room-info" title="View classroom information" target="_blank" data-linklabel="{{building}} {{room}} - Room Info">{{room}}</a>
     {{else}}
         {{#if room}}
             <span class="room-info" title="No classroom information available">{{room}}</span>
         {{/if}}
     {{/if}}
 </td>
+</script>
 {% endverbatim %}

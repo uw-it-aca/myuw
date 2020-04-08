@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "reg_finaid_notices_tmpl" %}
+{% verbatim %}
+<script id="reg_finaid_notices_tmpl" type="text/x-handlebars-template">
 
 <div class="card-badge-container finaid-notices-container">
 
@@ -20,12 +20,13 @@
                 </div>
                 <div id="collapseReg{{id_hash}}{{#if ../card}}_smr{{/if}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="headingReg{{id_hash}}{{#if ../card}}_smr{{/if}}">
                     <div class="panel-body finaid-panel-body">
-                        {{{ notice_content }}}
+                        {{{notice_content}}}
                     </div>
                 </div>
             </li>
-        {{/each }}
+        {{/each}}
     </ul>
 </div>
 
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "grades" %}
+{% verbatim %}
+<script id="grades" type="text/x-handlebars-template">
 
     <!-- notifications banner
     <div class="notification" style="padding: 8px 15px; background: #F3EE81; position: relative; top: -40px; margin: 0px -10px;">
@@ -51,14 +51,14 @@
 <br />
 {{#each sections}}
 <div class="c{{color_id}} c{{color_id}}Border canvasGradeBox" style="padding: 8px 4px;">
-    <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}}{{section_id}}</span>
-    <span class="shortTitle">{{ course_title }}</span>
+    <span class="courseIDtitle">{{curriculum_abbr}} {{course_number}}{{section_id}}</span>
+    <span class="shortTitle">{{course_title}}</span>
     <span class="canvasGrade" style="font-size: 25px; float: right; padding-right: 10px;">
-        {{ #if official_grade }}
-        {{ official_grade }}
-        {{ else }}
+        {{#if official_grade}}
+        {{official_grade}}
+        {{else}}
         Grade not yet submitted
-        {{ /if }}
+        {{/if}}
     </span>
 </div>
 <br />
@@ -123,4 +123,5 @@
         <a>Campus events</a><br>
       </div>
     </div>
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

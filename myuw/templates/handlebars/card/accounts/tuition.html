@@ -1,6 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "tuition_card" %}
-
+{% verbatim %}
+<script id="tuition_card" type="text/x-handlebars-template">
 <div class="card"  data-name="TuitionCard" data-type="card">
 	<!-- Card title -->
     <h3>Tuition &amp; Fees</h3>
@@ -164,7 +163,7 @@
                     </div>
                     <div id="collapseTf{{id_hash}}" class="panel-collapse collapse finaid-panel-collapse" role="tabpanel" aria-labelledby="button{{id_hash}}" aria-hidden="true" hidden="hidden">
                         <div class="panel-body finaid-panel-body">
-                            {{{ notice_content }}}
+                            {{{notice_content}}}
                         </div>
                     </div>
                 </li>
@@ -180,8 +179,9 @@
         <div><p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your information right now. In the meantime, try the <a href="https://portal.continuum.uw.edu" data-linklabel="PCE Tuition portal" target="_blank">PCE Tuition portal</a>.</p></div>
         {{/if}}
     {{/unless}}
-    {% include "handlebars/card/accounts/tuition_resources.html" %}
+    {{> tuition_resources}}
 
 </div>
 
-    {% endtplhandlebars %}
+</script>
+{% endverbatim %}

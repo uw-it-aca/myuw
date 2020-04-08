@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-{% tplhandlebars "quarter-header" %}
+{% verbatim %}
+<script id="quarter-header" type="text/x-handlebars-template">
 <h2 id="quarter-info">
   {{ucfirst quarter}} {{year}} {{page}}
   {{#if show_visual_button}}
@@ -15,4 +15,5 @@
 {{#if is_future_quarter}}
 <a class="back_to_current" href="/" title="Back to current quarter course list"><i class="icon-arrow-left"></i> Back to current quarter</a>
 {{/if}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

@@ -11,6 +11,18 @@ var InstructorCourseResourcePanel = {
             c_section.display_resources = true;
         }
 
+        if (c_section.past_term &&
+            (c_section.is_independent_study ||
+             !c_section.is_primary_section)) {
+            c_section.use_legacy_link = true;
+        }
+
+        Handlebars.registerPartial('course_class_list', $("#course_class_list").html());
+        Handlebars.registerPartial('course_stats', $("#course_stats").html());
+        Handlebars.registerPartial('class_website', $("#class_website").html());
+        Handlebars.registerPartial('email_list', $("#email_list").html());
+        Handlebars.registerPartial('online_tools', $("#online_tools").html());
+        Handlebars.registerPartial('textbooks', $("#textbooks").html());
         var source = $("#instructor_course_resource_panel").html();
         var template = Handlebars.compile(source);
         var raw = template(c_section);
@@ -77,6 +89,7 @@ var InstructorCourseResourcePanel = {
             WSData.log_interaction("open_course_classlist_of_"+section_label);
             return false;
         });
+
     },
 
     get_section_label: function(term, target) {

@@ -1,5 +1,5 @@
-{% load templatetag_handlebars %}
-    {% tplhandlebars "course_card_list" %}
+{% verbatim %}
+<script id="course_card_list" type="text/x-handlebars-template">
 {{#unless has_error}}
 {{#if display_term}}
     <h3 id="prev_qtr_heading" class="prev-qtr-heading">Continuing courses from {{ucfirst quarter}} {{year}}</h3>
@@ -9,31 +9,31 @@
 <div aria-labelledby="your_courses">
 
     {{#each sections}}
-    <a name="{{safeLabel curriculum_abbr }}-{{course_number}}-{{section_id}}"></a>
-    <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{ curriculum_abbr }} {{course_number}} {{section_id}}">
+    <a name="{{safeLabel curriculum_abbr}}-{{course_number}}-{{section_id}}"></a>
+    <div class="card" style="position:relative;"  data-name="CourseCard" data-type="card" data-identifier="{{curriculum_abbr}} {{course_number}} {{section_id}}">
         <div class=" c{{color_id}}Border" style="position:absolute; top:0; left:0; right:0;">&nbsp;</div>
 
         <div class="fade-in">
             <div id="course_wrapper{{index}}" class="OFF" style="position:relative;">
                 <h4>
-                    <span class="courseIDtitle">{{ curriculum_abbr }} {{course_number}} {{section_id}}</span>
+                    <span class="courseIDtitle">{{curriculum_abbr}} {{course_number}} {{section_id}}</span>
 
                     <span class="meeting-type c{{color_id}}Color">{{ucfirst meetings.0.type}}</span>
 
                     <br>
 
-                    {{#if is_primary_section }}
+                    {{#if is_primary_section}}
                         {{#if for_credit}}
                             <span class="credit-info c{{color_id}}Color"> {{credits}} CR</span>
                         {{/if}}
                     {{/if}}
 
-                    <span class="shortTitle" style="display:block;">{{ course_title }}</span>
+                    <span class="shortTitle" style="display:block;">{{course_title}}</span>
 
                     <!--  -->
                 </h4>
                 {{#if summer_term}}
-                <span>Summer {{ capitalizeString summer_term }}</span>
+                <span>Summer {{capitalizeString summer_term}}</span>
                 {{/if}}
                 <div id="course_card_content{{index}}">
                 </div>
@@ -46,4 +46,5 @@
 <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Some course links are not available right now. In the meantime, try  
  <a href="https://canvas.uw.edu/" data-linklabel="Canvas LMS" target="_blank">Canvas LMS</a>.</p>
 {{/unless}}
-{% endtplhandlebars %}
+</script>
+{% endverbatim %}

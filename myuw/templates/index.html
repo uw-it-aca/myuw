@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends is_hybrid|yesno:"base_hybrid.html,base.html" %}
 {% load static %}
 {% load compress %}
 {% load set_context %}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-
+    
     <div id="main-content" role="main" aria-labelledby="main-content-label"></div>
     <div id="static-links"></div>
 
@@ -45,6 +45,8 @@
     {% include "handlebars/card/schedule/final_day.html" %}
     {% include "handlebars/card/schedule/visual.html" %}
     {% include "handlebars/card/schedule/visual_day.html" %}
+    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
+    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
     {% include "handlebars/card/new_student/ns_critical_info.html" %}
     {% include "handlebars/card/new_student/ns_international_stu.html" %}
     {% include "handlebars/card/new_student/ns_summer_efs.html" %}
@@ -56,6 +58,7 @@
     {% include "handlebars/card/summary/section_panel.html" %}
     {% include "handlebars/card/summary/schedule_section.html" %}
     {% include "handlebars/card/alumni.html" %}
+    {% include "handlebars/card/workday_link.html" %}
     {% include "handlebars/card/resources/resources_content.html" %}
     {% include "handlebars/card/resources/resources_card.html" %}
     {% include "handlebars/card/resources/resources_card_explore.html" %}
