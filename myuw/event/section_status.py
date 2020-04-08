@@ -9,7 +9,6 @@ import traceback
 from django.utils import timezone
 from dateutil.parser import parse
 from aws_message.processor import MessageBodyProcessor, ProcessorException
-from myuw.logger.logresp import log_exception
 from myuw.event import update_sws_entry_in_cache
 
 
@@ -64,5 +63,6 @@ class SectionStatusProcessor(MessageBodyProcessor):
         except Exception:
             msg = "Updating memcache failed on {}, {}".format(url,
                                                               new_value)
-            log_exception(logger, msg, traceback)
+            logger.error("{}, {}".format(
+                msg, traceback.format_exc(chain=False).splitlines()))
             raise SectionStatusProcessorException(msg)
