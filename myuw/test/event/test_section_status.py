@@ -1,9 +1,12 @@
 import json
+from bmemcached.exceptions import MemcachedException
 from copy import deepcopy
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
-from myuw.event.section_status import SectionStatusProcessor
+from myuw.event import myuwcache
+from myuw.event.section_status import (
+    SectionStatusProcessor, SectionStatusProcessorException)
 
 
 M1 = {
@@ -89,5 +92,8 @@ class TestSectionStatusProcessor(TestCase):
     def test_process_message_content(self):
         event_hdlr = SectionStatusProcessor()
         M1["EventDate"] = str(timezone.now())
+        self.assertRaises(SectionStatusProcessorException,
+                          event_hdlr.process_message_body, M1)
+
         self.assertTrue(event_hdlr.validate_message_body(M1))
         event_hdlr.process_message_body(M1)
