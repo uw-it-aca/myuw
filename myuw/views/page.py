@@ -43,8 +43,8 @@ def page(request,
     timer = Timer()
     try:
         user = get_updated_user(request)
-    except Exception as ex:
-        log_exception(logger, str(ex), traceback.format_exc(chain=False))
+    except Exception:
+        log_exception(logger, "page:get_updated_user", traceback)
         return unknown_uwnetid()
 
     if not can_access_myuw(request):
@@ -90,7 +90,7 @@ def page(request,
         c_user = context["user"]
         c_user['email_error'] = True
         log_exception(logger, 'get_email_forwarding_for_current_user',
-                      traceback.format_exc(chain=False))
+                      traceback)
         pass
 
     add_term_data_to_context(request, context)
@@ -115,8 +115,7 @@ def try_prefetch(request, template, context):
                            prefetch_instructor=True,
                            prefetch_sws_person=True)
     except DataFailureException:
-        log_exception(logger, "prefetch_resources",
-                      traceback.format_exc(chain=False))
+        log_exception(logger, "prefetch_resources", traceback)
         context["webservice_outage"] = True
         return render(request, template, context)
     return
