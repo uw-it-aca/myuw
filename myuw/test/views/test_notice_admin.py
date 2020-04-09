@@ -19,8 +19,8 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertIsNone(_get_datetime(string))
 
         string = "2018-05-08 15:28"
-        dt = datetime(2018, 5, 8, 15, 28)
-        self.assertEqual(_get_datetime(string), dt)
+        self.assertEqual(str(_get_datetime(string)),
+                         "2018-05-08 15:28:00-07:00")
 
         string = "2013-03-28 10:00:00+00:00"
         dt = get_datetime_with_tz(2013, 3, 28, 3)
@@ -39,8 +39,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'content': "<p>Foobar</p>",
             'affil': 'is_intl_stud',
             'campus': 'is_seattle',
-            'start_date': get_datetime_with_tz(2018, 5, 25, 12),
-            'end_date': get_datetime_with_tz(2018, 5, 26, 12),
+            'start_date': '2018-05-25 12:00',
+            'end_date': '2018-05-26 12:00',
             'notice_type': 'Foo',
             'notice_category': 'Bar',
             'target_group': 'uw_group'

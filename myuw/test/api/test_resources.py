@@ -49,10 +49,10 @@ class TestResources(MyuwApiTest):
                           kwargs={'category_id': 'teachinginclasstools'})
             response = self.client.post(
                 url, content_type='application_json')
-            self.assertEqual(response.status_code, 401)
+            self.assertEqual(response.status_code, 403)
 
             url = reverse('myuw_resources_pin_api',
                           kwargs={'category_id': 'teachinginclasstools'})
             response = self.client.delete(
                 url, content_type='application_json')
-            self.assertEqual(response.status_code, 401)
+            self.assertEqual(response.status_code, 403)

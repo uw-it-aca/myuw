@@ -7,6 +7,7 @@ class MyuwNotice(models.Model):
     content = models.TextField(null=True)
     notice_type = models.TextField(max_length=128)
     notice_category = models.TextField(max_length=128)
+    is_critical = models.BooleanField(default=False)
 
     start = models.DateTimeField()
     end = models.DateTimeField(null=True)
@@ -64,6 +65,7 @@ class MyuwNotice(models.Model):
                 "content": self.content,
                 "notice_type": self.notice_type,
                 "notice_category": self.notice_category,
+                "is_critical": self.is_critical,
                 "start": self.start.isoformat(),
                 "end": self.end.isoformat(),
                 "last_edit_by": self.last_edit_by,

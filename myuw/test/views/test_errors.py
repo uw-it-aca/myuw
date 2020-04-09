@@ -34,7 +34,7 @@ class TestViewsError(MyuwApiTest):
             (b'<p>This is a test environment of MyUW, '
              b'its access is limited to specific people. To request access, '
              b'please contact the UW-IT Service Center.</p>'))
-        self.assertEquals(response.status_code, 401)
+        self.assertEquals(response.status_code, 403)
 
     def test_invalid_input_data(self):
         response = invalid_input_data()

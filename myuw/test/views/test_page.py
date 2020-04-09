@@ -46,7 +46,7 @@ class TestPageMethods(MyuwApiTest):
             url = reverse("myuw_home")
             self.set_user('jbothell')
             response = self.client.get(url)
-            self.assertEquals(response.status_code, 401)
+            self.assertEquals(response.status_code, 403)
 
             self.set_user('bill')
             response = self.client.get(url)
@@ -57,7 +57,7 @@ class TestPageMethods(MyuwApiTest):
         url = reverse("myuw_date_override")
         self.set_user('jbothell')
         response = self.client.get(url)
-        self.assertEquals(response.status_code, 401)
+        self.assertEquals(response.status_code, 403)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_non_student_mobile(self):
@@ -102,3 +102,11 @@ class TestPageMethods(MyuwApiTest):
             self.set_user('billseata')
             response = self.client.get(url)
             self.assertEquals(response.status_code, 200)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_no_user_in_session(self):
+        # MUWM-4366
+        url = reverse("myuw_home")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/saml/login?next=/")

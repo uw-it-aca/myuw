@@ -9,7 +9,7 @@ BLTI_USER_LOGIN = 'custom_canvas_user_login_id'
 def admin_required(func):
     def wrapper(request, *args, **kwargs):
         if not is_myuw_admin(request):
-            return render(request, 'no_access.html', status=401)
+            return render(request, 'no_access.html', status=403)
 
         return func(request, *args, **kwargs)
     return wrapper
@@ -18,7 +18,7 @@ def admin_required(func):
 def override_required(func):
     def wrapper(request, *args, **kwargs):
         if not can_override_user(request):
-            return render(request, 'no_access.html', status=401)
+            return render(request, 'no_access.html', status=403)
 
         return func(request, *args, **kwargs)
     return wrapper
