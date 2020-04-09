@@ -4,10 +4,12 @@ the SWS Personal Financial resource.
 """
 
 import logging
+import traceback
 from uw_libraries.mylib import get_account
 from uw_libraries.subject_guides import get_subject_guide_for_section,\
     get_default_subject_guide
 from restclients_core.exceptions import DataFailureException
+from myuw.dao import log_err
 from myuw.dao.pws import get_netid_of_current_user
 
 
@@ -50,8 +52,8 @@ def get_subject_guide_by_section(section):
         if ex.status == 404:
             get_default = True
         else:
-            logger.error("get_subject_guide for {} ==> {}".format(
-                section_logid, str(ex)))
+            log_err(logger, "get_subject_guide for {}".format(section_logid),
+                    traceback, None)
             raise
 
     if get_default:

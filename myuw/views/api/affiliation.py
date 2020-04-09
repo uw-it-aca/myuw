@@ -17,14 +17,14 @@ class Affiliation(ProtectedAPI):
         """
         Performs actions on resource at /api/v1/affiliation/.
         GET returns 200 with the current user's affiliation
-        @return status 401: no valid authentication token
+        @return status 403: no valid authentication token
                 status 543: data error
         """
         timer = Timer()
         try:
             person = get_updated_user(request)
-        except Exception as ex:
-            log_exception(logger, str(ex), traceback.format_exc(chain=False))
+        except Exception:
+            log_exception(logger, "Affiliation:get_updated_user", traceback)
             return unknown_uwnetid()
 
         try:
