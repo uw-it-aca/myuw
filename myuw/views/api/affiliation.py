@@ -23,8 +23,8 @@ class Affiliation(ProtectedAPI):
         timer = Timer()
         try:
             person = get_updated_user(request)
-        except Exception as ex:
-            log_exception(logger, str(ex), traceback.format_exc(chain=False))
+        except Exception:
+            log_exception(logger, "Affiliation:get_updated_user", traceback)
             return unknown_uwnetid()
 
         try:
