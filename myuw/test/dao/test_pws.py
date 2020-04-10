@@ -1,5 +1,6 @@
 from django.test import TestCase
 from restclients_core.exceptions import DataFailureException, InvalidNetID
+from myuw.dao.exceptions import UserNotFoundInPws
 from myuw.dao.pws import (
     pws, get_display_name_of_current_user, is_employee, is_alumni, is_faculty,
     is_prior_employee, is_prior_student, is_retiree, is_student,
@@ -16,6 +17,9 @@ class TestPwsDao(TestCase):
     def test_no_entity_netid(self):
         self.assertRaises(InvalidNetID, pws.get_person_by_netid, "0")
         # netid max length is 128 now
+
+        req = get_request_with_user('usernotinpws')
+        self.assertRaises(UserNotFoundInPws, get_person_of_current_user, req)
 
     def test_no_pws_person_netid(self):
         req = get_request_with_user('nobody')

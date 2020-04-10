@@ -8,20 +8,20 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
-from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.exceptions import EmailServiceUrlException, UserNotFoundInPws
 from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
 from myuw.dao.user import get_updated_user
-from myuw.util.settings import get_prod_url_pattern
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_invalid_netid_response, log_page_view, log_exception)
 from myuw.logger.session_log import log_session
+from myuw.util.settings import get_prod_url_pattern
 from myuw.util.settings import (
     get_google_search_key, get_logout_url, get_prod_url_pattern)
 from myuw.views import prefetch_resources, get_enabled_features
@@ -43,9 +43,11 @@ def page(request,
     timer = Timer()
     try:
         user = get_updated_user(request)
-    except Exception:
-        log_exception(logger, "page:get_updated_user", traceback)
+    except UserNotFoundInPws:
         return unknown_uwnetid()
+    except Exception as ex:
+        log_exception(logger, "Fatal PWS error", traceback)
+        return render(request, '500.html', status=500)
 
     if not can_access_myuw(request):
         return no_access()
@@ -73,7 +75,11 @@ def page(request,
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
     context["disable_actions"] = is_action_disabled()
-    context["card_display_dates"] = get_card_visibilty_date_values(request)
+    try:
+        context["card_display_dates"] = get_card_visibilty_date_values(request)
+    except Exception:
+        log_exception(logger, "SWS term data error", traceback)
+
     try:
         my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
         if my_uwemail_forwarding.is_active():
@@ -89,11 +95,12 @@ def page(request,
     except Exception:
         c_user = context["user"]
         c_user['email_error'] = True
-        log_exception(logger, 'get_email_forwarding_for_current_user',
-                      traceback)
-        pass
+        log_exception(logger, 'uwnetid email data error', traceback)
 
-    add_term_data_to_context(request, context)
+    try:
+        add_term_data_to_context(request, context)
+    except DataFailureException:
+        log_exception(logger, 'SWS term data error', traceback)
 
     context['enabled_features'] = get_enabled_features()
 
@@ -115,7 +122,7 @@ def try_prefetch(request, template, context):
                            prefetch_instructor=True,
                            prefetch_sws_person=True)
     except DataFailureException:
-        log_exception(logger, "prefetch_resources", traceback)
+        log_exception(logger, "prefetch error", traceback)
         context["webservice_outage"] = True
         return render(request, template, context)
     return
