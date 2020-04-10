@@ -3,21 +3,34 @@ from .base_settings import *
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
+    'django_user_agents',
     'compressor',
-    'rc_django',
-    'myuw',
-    'userservice',
     'django_client_logger',
+    'userservice',
+    'rc_django',
     'supporttools',
     'blti',
     'hx_toolkit',
-    'django_user_agents'
+    'myuw.apps.MyUWConfig'
 ]
 
 MIDDLEWARE += [
+    'django.middleware.locale.LocaleMiddleware',
     'userservice.user.UserServiceMiddleware',
-    'django_user_agents.middleware.UserAgentMiddleware'
+    'django_user_agents.middleware.UserAgentMiddleware',
+    'rc_django.middleware.EnableServiceDegradationMiddleware'
 ]
+
+if os.getenv('AUTH', 'NONE') == 'SAML_MOCK':
+    MOCK_SAML_ATTRIBUTES = {
+        'uwnetid': ['javerage'],
+        'affiliations': ['student', 'member', 'alum', 'staff', 'employee'],
+        'eppn': ['javerage@washington.edu'],
+        'scopedAffiliations': ['student@washington.edu',
+                               'member@washington.edu'],
+        'isMemberOf': ['u_test_group', 'u_test_another_group',
+                       'u_astratest_myuw_test-support-admin'],
+    }
 
 # MYUW_PREFETCH_THREADING = True
 MYUW_ENABLED_FEATURES = []
