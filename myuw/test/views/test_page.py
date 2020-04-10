@@ -146,9 +146,17 @@ class TestPageMethods(MyuwApiTest):
         self.assertEquals(response.status_code, 500)
 
     @patch('myuw.views.page.get_service_url_for_address', spec=True)
-    def test_email_forward__err(self, mock):
+    def test_email_forward_err(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
         mock.side_effect = EmailServiceUrlException
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    @patch('myuw.views.page.prefetch_resources', spec=True)
+    def test_prefetch_err(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = DataFailureException(None, 500, "GWS err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
