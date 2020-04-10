@@ -2,6 +2,8 @@ from unittest import skipIf
 from unittest.mock import patch
 from django.urls import reverse
 from django.test.client import RequestFactory
+from restclients_core.exceptions import DataFailureException
+from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.test.api import missing_url, MyuwApiTest
 
 
@@ -123,7 +125,7 @@ class TestPageMethods(MyuwApiTest):
     def test_pws_err(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
-        mock.side_effect = Exception("mock")
+        mock.side_effect = DataFailureException(None, 500, "pws err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 500)
 
@@ -131,15 +133,23 @@ class TestPageMethods(MyuwApiTest):
     def test_sws_err(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
-        mock.side_effect = Exception("mock")
+        mock.side_effect = DataFailureException(None, 500, "sws err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
-    @patch('myuw.views.page.get_email_forwarding_for_current_user', spec=True)
+    @patch('myuw.views.page.in_myuw_test_access_group', spec=True)
+    def test_gws_err(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = DataFailureException(None, 500, "GWS err")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    @patch('myuw.views.page.get_service_url_for_address', spec=True)
     def test_email_forward__err(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
-        mock.side_effect = Exception("mock")
+        mock.side_effect = EmailServiceUrlException
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 

@@ -75,27 +75,13 @@ def page(request,
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
     context["disable_actions"] = is_action_disabled()
+
+    _add_email_forwarding(request, context)
+
     try:
         context["card_display_dates"] = get_card_visibilty_date_values(request)
     except Exception:
         log_exception(logger, "SWS term data error", traceback)
-
-    try:
-        my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
-        if my_uwemail_forwarding.is_active():
-            c_user = context["user"]
-            try:
-                c_user['email_forward_url'] = get_service_url_for_address(
-                    my_uwemail_forwarding.fwd)
-            except EmailServiceUrlException:
-                c_user['email_forward_url'] = None
-                logger.info('No email url for {}'.format(
-                    my_uwemail_forwarding.fwd))
-
-    except Exception:
-        c_user = context["user"]
-        c_user['email_error'] = True
-        log_exception(logger, 'uwnetid email data error', traceback)
 
     try:
         add_term_data_to_context(request, context)
@@ -145,6 +131,25 @@ def _add_quicklink_context(request, context):
 
 
 def can_access_myuw(request):
-    url = request.build_absolute_uri()
-    return (re.match(get_prod_url_pattern(), url) is not None or
-            in_myuw_test_access_group(request))
+    try:
+        url = request.build_absolute_uri()
+        return (re.match(get_prod_url_pattern(), url) is not None or
+                in_myuw_test_access_group(request))
+    except DataFailureException:
+        log_exception(logger, "GWS error", traceback)
+        return False
+
+
+def _add_email_forwarding(request, context):
+    my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
+    c_user = context["user"]
+    if my_uwemail_forwarding and my_uwemail_forwarding.is_active():
+        try:
+            c_user['email_forward_url'] = get_service_url_for_address(
+                my_uwemail_forwarding.fwd)
+            return
+        except EmailServiceUrlException:
+            logger.error('No email url for {}'.format(
+                my_uwemail_forwarding.fwd))
+    c_user['email_forward_url'] = None
+    c_user['email_error'] = True
