@@ -45,12 +45,16 @@ def page(request,
         user = get_updated_user(request)
     except UserNotFoundInPws:
         return unknown_uwnetid()
-    except Exception as ex:
+    except DataFailureException:
         log_exception(logger, "Fatal PWS error", traceback)
         return render(request, '500.html', status=500)
 
-    if not can_access_myuw(request):
-        return no_access()
+    try:
+        if not can_access_myuw(request):
+            return no_access()
+    except DataFailureException:
+        log_exception(logger, "Fatal GWS error", traceback)
+        return render(request, '500.html', status=500)
 
     netid = user.uwnetid
     context["user"] = {
@@ -80,7 +84,7 @@ def page(request,
 
     try:
         context["card_display_dates"] = get_card_visibilty_date_values(request)
-    except Exception:
+    except DataFailureException:
         log_exception(logger, "SWS term data error", traceback)
 
     try:
@@ -131,13 +135,9 @@ def _add_quicklink_context(request, context):
 
 
 def can_access_myuw(request):
-    try:
-        url = request.build_absolute_uri()
-        return (re.match(get_prod_url_pattern(), url) is not None or
-                in_myuw_test_access_group(request))
-    except DataFailureException:
-        log_exception(logger, "GWS error", traceback)
-        return False
+    url = request.build_absolute_uri()
+    return (re.match(get_prod_url_pattern(), url) is not None or
+            in_myuw_test_access_group(request))
 
 
 def _add_email_forwarding(request, context):
