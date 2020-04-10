@@ -8,7 +8,7 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
-from myuw.dao.exceptions import EmailServiceUrlException, UserNotFoundInPws
+from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
@@ -43,17 +43,17 @@ def page(request,
     timer = Timer()
     try:
         user = get_updated_user(request)
-    except UserNotFoundInPws:
-        return unknown_uwnetid()
-    except DataFailureException:
-        log_exception(logger, "Fatal PWS error", traceback)
+    except DataFailureException as ex:
+        log_exception(logger, "PWS error", traceback)
+        if ex.status == 404:
+            return unknown_uwnetid()
         return render(request, '500.html', status=500)
 
     try:
         if not can_access_myuw(request):
             return no_access()
     except DataFailureException:
-        log_exception(logger, "Fatal GWS error", traceback)
+        log_exception(logger, "GWS error", traceback)
         return render(request, '500.html', status=500)
 
     netid = user.uwnetid

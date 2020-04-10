@@ -34,7 +34,3 @@ class InvalidAffiliationDataFile(Exception):
 
 class InvalidResourceCategory(Exception):
     pass
-
-
-class UserNotFoundInPws(Exception):
-    pass

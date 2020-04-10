@@ -7,8 +7,7 @@ import logging
 from uw_pws import PWS, Person
 from restclients_core.exceptions import DataFailureException
 from myuw.dao import get_netid_of_current_user
-from myuw.dao.exceptions import (
-    IndeterminateCampusException, UserNotFoundInPws)
+from myuw.dao.exceptions import IndeterminateCampusException
 
 
 #
@@ -41,12 +40,7 @@ def get_person_of_current_user(request):
             request.myuw_pws_person = pws.get_person_by_netid(netid)
         except DataFailureException as err:
             if err.status == 404:  # Non-personal
-                try:
-                    request.myuw_pws_person = pws.get_entity_by_netid(netid)
-                except DataFailureException as ex:
-                    if ex.status == 404:
-                        raise UserNotFoundInPws(ex)
-                    raise
+                request.myuw_pws_person = pws.get_entity_by_netid(netid)
             else:
                 raise
     return request.myuw_pws_person
