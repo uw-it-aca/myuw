@@ -14,15 +14,15 @@ source bin/activate
 pip install pycodestyle coverage
 apt-get install -y nodejs npm
 npm install -g jshint
-npm install jquery
-npm install moment
-npm install moment-timezone
-npm install datejs
+npm install -g jquery
+npm install -g moment
+npm install -g moment-timezone
+npm install -g datejs
 npm install -g jshint
 npm install -g mocha
-npm install -g istanbul
-npm install jsdom@15.2.1
-npm install sinon
+npm install -g nyc
+npm install -g jsdom@15.2.1
+npm install -g sinon
 npm install coveralls
 gem install coveralls-lcov
 
@@ -43,10 +43,9 @@ elif [ -d ${DJANGO_APP}/static/js ]; then
     run_test "jshint ${DJANGO_APP}/static/js --verbose"
 fi
 
-
 run_test 'mocha myuw/static/js/test/ --recursive'
 
-run_test 'istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" _mocha -- -R spec myuw/static/js/test/'
+run_test 'nyc --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" _mocha -- -R spec myuw/static/js/test/'
 
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
