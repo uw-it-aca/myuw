@@ -84,13 +84,9 @@ def page(request,
 
     try:
         context["card_display_dates"] = get_card_visibilty_date_values(request)
-    except DataFailureException:
-        log_exception(logger, "SWS term data error", traceback)
-
-    try:
         add_term_data_to_context(request, context)
     except DataFailureException:
-        log_exception(logger, 'SWS term data error', traceback)
+        log_exception(logger, "SWS term data error", traceback)
 
     context['enabled_features'] = get_enabled_features()
 
