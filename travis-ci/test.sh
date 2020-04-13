@@ -35,7 +35,7 @@ function run_test {
 run_test "pycodestyle ${DJANGO_APP}/ --exclude=migrations,static"
 
 # template compress mistakes
-run_test "grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1 && grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1"
+run_test "grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test \$? -eq 1 && grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test \$? -eq 1"
 
 if [ -d ${DJANGO_APP}/static/${DJANGO_APP}/js ]; then
     run_test "jshint ${DJANGO_APP}/static/${DJANGO_APP}/js --verbose"
