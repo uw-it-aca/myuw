@@ -138,19 +138,18 @@ class TestPageMethods(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
     @patch('myuw.views.page.can_access_myuw', spec=True)
-    def test_gws_err(self, mock):
+    def test_gws_err_can_access_myuw(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
         mock.side_effect = DataFailureException(None, 500, "GWS err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 500)
 
-    @patch('myuw.views.page.can_access_myuw', return_value=True)
     @patch('myuw.views.page.get_all_affiliations', spec=True)
-    def test_gws_err_prod(self, mock1, mock2):
+    def test_gws_err_get_all_affiliations(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
-        mock2.side_effect = DataFailureException(None, 500, "GWS err")
+        mock.side_effect = DataFailureException(None, 500, "GWS err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 500)
 
