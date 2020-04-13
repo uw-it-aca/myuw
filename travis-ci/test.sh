@@ -12,7 +12,7 @@ source bin/activate
 
 # install test tooling
 pip install pycodestyle coverage
-apt-get install -y nodejs npm ruby-full
+apt-get install -y nodejs npm rubygems
 npm install -g jshint
 npm install -g jquery
 npm install -g moment
