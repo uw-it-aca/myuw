@@ -149,7 +149,7 @@ class TestPageMethods(MyuwApiTest):
     def test_gws_err_get_all_affiliations(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
-        mock.side_effect = DataFailureException(None, 500, "GWS err")
+        mock.side_effect = DataFailureException(None, 500, "affi GWS err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 500)
 
@@ -165,6 +165,6 @@ class TestPageMethods(MyuwApiTest):
     def test_prefetch_err(self, mock):
         url = reverse("myuw_home")
         self.set_user('javerage')
-        mock.side_effect = DataFailureException(None, 500, "GWS err")
+        mock.side_effect = DataFailureException(None, 500, "prefetch GWS err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
