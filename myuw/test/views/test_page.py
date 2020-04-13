@@ -145,6 +145,15 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 500)
 
+    @patch('myuw.views.page.can_access_myuw', return_value=True)
+    @patch('myuw.views.page.get_all_affiliations', spec=True)
+    def test_gws_err_prod(self, mock1, mock2):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock2.side_effect = DataFailureException(None, 500, "GWS err")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 500)
+
     @patch('myuw.views.page.get_service_url_for_address', spec=True)
     def test_email_forward_err(self, mock):
         url = reverse("myuw_home")

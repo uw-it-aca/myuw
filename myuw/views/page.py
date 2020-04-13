@@ -56,22 +56,26 @@ def page(request,
         log_exception(logger, "GWS error", traceback)
         return render(request, '500.html', status=500)
 
-    netid = user.uwnetid
-    context["user"] = {
-        "netid": netid,
-        "session_key": request.session.session_key,
-    }
-
     if prefetch:
         # Some pages need to prefetch before this point
         failure = try_prefetch(request, template, context)
         if failure:
             return failure
 
+    try:
+        affiliations = get_all_affiliations(request)
+    except DataFailureException:
+        log_exception(logger, "GWS error", traceback)
+        return render(request, '500.html', status=500)
+
     user_pref = get_migration_preference(request)
     log_session(request)
-    affiliations = get_all_affiliations(request)
 
+    netid = user.uwnetid
+    context["user"] = {
+        "netid": netid,
+        "session_key": request.session.session_key,
+    }
     context["home_url"] = "/"
     context["err"] = None
     context["user"]["affiliations"] = affiliations
