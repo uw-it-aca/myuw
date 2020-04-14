@@ -51,6 +51,7 @@ setup(
         'Django-Template-Preprocess>=1.0.2,<2.0',
         'django-userservice<4.0',
         'UW-RestClients-Django-Utils>=2.1.7,<3.0',
+        'Uw-Django-Oidc<1.0',
         'Django-SupportTools<4.0',
         'Django-Safe-EmailBackend<2.0',
         'django_client_logger<3.0',
@@ -62,7 +63,6 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
-
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),
