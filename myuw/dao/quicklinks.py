@@ -1,9 +1,10 @@
 import csv
 import logging
 import os
+import traceback
 from django.db import transaction, IntegrityError
 from myuw.models import VisitedLinkNew, PopularLink, CustomLink, HiddenLink
-from myuw.dao import get_netid_of_current_user
+from myuw.dao import log_err
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.affiliation_data import get_data_for_affiliations
 from myuw.dao.user import get_user_model
@@ -112,9 +113,10 @@ def add_custom_link(request, url, link_label=None):
     except IntegrityError:
         try:
             return get_custom_link_by_url(request, url)
-        except Exception as ex:
-            logger.error("{} add_custom_link({}, {}) ==> {}".format(
-                get_netid_of_current_user(request), url, link_label, str(ex)))
+        except Exception:
+            log_err(logger,
+                    "add_custom_link({}, {})".format(url, link_label),
+                    traceback, request)
     return None
 
 
@@ -122,9 +124,9 @@ def delete_custom_link(request, link_id):
     try:
         link = get_custom_link_by_id(request, link_id)
         return link.delete()
-    except Exception as ex:
-        logger.error("{} delete_custom_link({}) ==> {}".format(
-            get_netid_of_current_user(request), link_id, str(ex)))
+    except Exception:
+        log_err(logger, "delete_custom_link({})".format(link_id),
+                traceback, request)
     return None
 
 
@@ -136,10 +138,10 @@ def edit_custom_link(request, link_id, new_url, new_label=None):
             link.label = new_label
         link.save()
         return link
-    except Exception as ex:
-        logger.error("{} edit_custom_link({}, {}, {}) ==> {}".format(
-            get_netid_of_current_user(request), link_id,
-            new_url, new_label, str(ex)))
+    except Exception:
+        log_err(logger,
+                "edit_custom_link({}, {}, {})".format(
+                    link_id, new_url, new_label), traceback, request)
     return None
 
 
@@ -159,9 +161,9 @@ def add_hidden_link(request, url):
     except IntegrityError:
         try:
             return get_hidden_link_by_url(request, url)
-        except Exception as ex:
-            logger.error("{} add_hidden_link({}) ==> {}".format(
-                get_netid_of_current_user(request), url, str(ex)))
+        except Exception:
+            log_err(logger, "add_hidden_link({})".format(url),
+                    traceback, request)
     return None
 
 
@@ -169,9 +171,9 @@ def delete_hidden_link(request, link_id):
     try:
         link = get_hidden_link_by_id(request, link_id)
         return link.delete()
-    except Exception as ex:
-        logger.error("{} delete_hidden_link({}) ==> {}".format(
-            get_netid_of_current_user(request), link_id, str(ex)))
+    except Exception:
+        log_err(logger, "delete_hidden_link({})".format(link_id),
+                traceback, request)
     return None
 
 

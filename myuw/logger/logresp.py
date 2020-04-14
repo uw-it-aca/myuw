@@ -38,9 +38,9 @@ def log_err(logger, timer, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    logger.error("{}, {}. Time={} seconds".format(get_userids(),
-                                                  exc_info.splitlines(),
-                                                  timer.get_elapsed()))
+    logger.error("{}, {}. Time={} seconds".format(
+        get_userids(), exc_info.format_exc(chain=False).splitlines(),
+        timer.get_elapsed()))
 
 
 def log_exception(logger, action, exc_info):
@@ -48,9 +48,8 @@ def log_exception(logger, action, exc_info):
     exc_info is a string containing
     the full stack trace, the exception type and value
     """
-    logger.error("{}, {} => {} ".format(get_userids(),
-                                        action,
-                                        exc_info.splitlines()))
+    logger.error("{}, {} => {} ".format(
+        get_userids(), action, exc_info.format_exc(chain=False).splitlines()))
 
 
 def log_info(logger, message):
