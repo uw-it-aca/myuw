@@ -3,6 +3,8 @@ This module provides affiliations of the current user
 """
 
 import logging
+import traceback
+from myuw.dao import log_err
 from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.enrollment import (
     get_main_campus, get_class_level, is_registered_current_quarter)
@@ -119,8 +121,8 @@ def get_all_affiliations(request):
             data["F1"] = sws_person.is_F1()
             data["J1"] = sws_person.is_J1()
             data["intl_stud"] = data["F1"] or data["J1"]
-        except Exception as ex:
-            logger.error(str(ex))
+        except Exception:
+            log_err(logger, "get_profile_of_current_user", traceback, request)
 
         # enhance student campus with current and future enrollments
         campuses = get_main_campus(request)
