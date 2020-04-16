@@ -83,5 +83,7 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'myuw.context_processors.is_hybrid',
 ]
 
-if os.getenv("ENV") == "localdev":
+if os.getenv("ENV", '') == "localdev":
     DEBUG = True
+else:
+    RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache_implementation.MyUWMemcachedCache'
