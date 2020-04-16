@@ -16,7 +16,7 @@
     "mocha": "mocha",
     "nyc": "nyc",
     "test": "mocha myuw/static/js/test/ --recursive",
-    "coverage": "nyc"
+    "coverage": "nyc report"
   },
   "nyc": {
     "all": true,

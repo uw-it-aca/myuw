@@ -36,7 +36,7 @@ fi
 
 run_test 'mocha myuw/static/js/test/ --recursive'
 
-run_test 'nyc'
+run_test 'nyc report'
 
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
