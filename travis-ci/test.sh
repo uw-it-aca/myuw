@@ -9,22 +9,6 @@ trap catch ERR
 # start virtualenv
 source bin/activate
 
-# install test tooling
-pip install pycodestyle coverage
-apt-get install -y nodejs npm rubygems
-npm install -g jshint
-npm install -g jquery
-npm install -g moment
-npm install -g moment-timezone
-npm install -g datejs
-npm install -g jshint
-npm install -g mocha
-npm install -g nyc
-npm install -g jsdom@15.2.1
-npm install -g sinon
-npm install coveralls
-gem install coveralls-lcov
-
 function run_test {
     echo "##########################"
     echo "TEST: $1"

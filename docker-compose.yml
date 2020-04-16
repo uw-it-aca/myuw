@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  web:
+  myuw:
     build: .
-    container_name: myuw_web
+    container_name: myuw
     volumes:
       - ./myuw:/app/myuw
     ports:

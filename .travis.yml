@@ -6,6 +6,7 @@ python:
 
 services:
   - docker
+  - memcached
 
 os:
   - linux
@@ -19,14 +20,15 @@ env:
     - DEPLOY_SCRIPT_BASE=https://raw.githubusercontent.com/uw-it-aca/gcp-app-deploy/master
 
 install:
-  - docker build -t "$IMAGE_TAG" .
+  - docker build --target myuw -t "$IMAGE_TAG" .
+  - docker build -t "${IMAGE_TAG}-test" .
 
 before_script:
   - pip install coverage
   - pip install coveralls
 
 script:
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" "$IMAGE_TAG" bash -c ". ./travis-ci/test.sh"
+  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" "${IMAGE_TAG}-test" bash -c ". ./travis-ci/test.sh"
 
 after_success:
   - cp /tmp/.coverage.* js-coverage.json .
