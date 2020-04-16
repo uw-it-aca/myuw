@@ -34,9 +34,7 @@ elif [ -d ${DJANGO_APP}/static/js ]; then
     run_test "jshint ${DJANGO_APP}/static/js --verbose"
 fi
 
-run_test 'mocha myuw/static/js/test/ --recursive'
-
-run_test 'nyc report'
+run_test 'nyc mocha  --recursive myuw/static/js/test/'
 
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
