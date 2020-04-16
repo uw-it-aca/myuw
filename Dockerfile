@@ -28,6 +28,7 @@ USER root
 RUN apt-get install -y nodejs npm rubygems &&\
     pip install pycodestyle coverage &&\
     gem install coveralls-lcov &&\
+    nodeenv -p &&\
     npm install tslib -g &&\
     npm install datejs -g &&\
     npm install jquery -g &&\

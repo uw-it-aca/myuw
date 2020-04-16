@@ -28,7 +28,7 @@ before_script:
   - pip install coveralls
 
 script:
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" "${IMAGE_TAG}-test" bash -c ". ./travis-ci/test.sh"
+  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" -e "CACHE=memcached" -e "CACHE_NODE_0=localhost" "${IMAGE_TAG}-test" bash -c ". ./travis-ci/test.sh"
 
 after_success:
   - cp /tmp/.coverage.* js-coverage.json .
