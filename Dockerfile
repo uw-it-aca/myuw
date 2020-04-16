@@ -26,6 +26,8 @@ RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
 FROM myuw as myuw-test
 USER root
 RUN apt-get install -y nodejs npm rubygems &&\
+    pip install pycodestyle coverage &&\
+    gem install coveralls-lcov &&\
     npm install tslib -g &&\
     npm install datejs -g &&\
     npm install jquery -g &&\
@@ -36,5 +38,4 @@ RUN apt-get install -y nodejs npm rubygems &&\
     npm install mocha -g &&\
     npm install nyc -g &&\
     npm install sinon -g &&\
-    npm install coveralls -g &&\
-    gem install coveralls-lcov
+    npm install coveralls -g
