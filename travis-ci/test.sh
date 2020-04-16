@@ -3,8 +3,10 @@ trap catch ERR
 
 # travis test script for django app
 #
-# PRECONDITION: inherited env vars from application's .travis.yml MUST include:
-#      DJANGO_APP: django application directory name
+# PRECONDITIONS:
+#      * necessary test tooling already installed
+#      * inherited env vars from application's .travis.yml MUST include:
+#        DJANGO_APP: django application directory name
 
 # start virtualenv
 source bin/activate
@@ -38,10 +40,10 @@ run_test 'nyc --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" _
 
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
-run_test "coveralls-lcov -v -n coverage/lcov.info > js-coverage.json"
+run_test "coveralls-lcov -v -n lcov.info > js-coverage.json"
 
 # put generaged coverage result where it will get processed
 cp .coverage.* /coverage
-cp js-coverage.json
+cp js-coverage.json /coverage
 
 exit 0
