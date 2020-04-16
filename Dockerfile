@@ -25,8 +25,7 @@ RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
 
 FROM myuw as myuw-test
 USER root
-RUN apt-get install -y nodejs npm rubygems &&\
-    gem install coveralls-lcov
+RUN apt-get install -y nodejs npm
 
 USER acait
 RUN . /app/bin/activate &&\

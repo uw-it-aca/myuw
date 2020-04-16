@@ -24,6 +24,7 @@ install:
   - docker build -t "${IMAGE_TAG}-test" .
 
 before_script:
+  - gem install coveralls-lcov
   - pip install coverage
   - pip install coveralls
 
@@ -31,8 +32,9 @@ script:
   - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" -e "MEMCACHED_SERVER_COUNT=1" -e "MEMCACHED_SERVER_SPEC=localhost" "${IMAGE_TAG}-test" bash -c ". ./travis-ci/test.sh"
 
 after_success:
-  - cp /tmp/.coverage.* js-coverage.json .
+  - cp /tmp/.coverage.* /tmp/lcov.info .
   - coverage combine
+  - coveralls-lcov -v -n lcov.info > js-coverage.json
   - coveralls --merge=js-coverage.json
 
 cache:
