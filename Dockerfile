@@ -26,8 +26,11 @@ RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
 FROM myuw as myuw-test
 USER root
 RUN apt-get install -y nodejs npm rubygems &&\
+    gem install coveralls-lcov
+
+USER acait
+RUN . /app/bin/activate &&\
     pip install pycodestyle coverage &&\
-    gem install coveralls-lcov &&\
     nodeenv -p &&\
     npm install tslib -g &&\
     npm install datejs -g &&\
