@@ -6,7 +6,7 @@
     "datejs": "latest",
     "mocha": "latest",
     "jshint": "latest",
-    "istanbul": "latest",
+    "nyc": "latest",
     "coveralls": "latest",
     "jsdom": "latest",
     "moment-timezone": "latest"
@@ -14,7 +14,22 @@
   "scripts": {
     "jshint": "jshint",
     "mocha": "mocha",
-    "istanbul": "istanbul",
-    "test": "istanbul cover --include-all-sources -x '**/vendor/**' -x '**/site-packages/**' ./node_modules/mocha/bin/_mocha -- -R spec myuw/static/js/test/"
+    "nyc": "nyc",
+    "test": "mocha myuw/static/js/test/ --recursive",
+    "coverage": "nyc"
+  },
+  "nyc": {
+    "all": true,
+    "reporter": [
+      "lcov"
+    ],
+    "include": [
+      "myuw/static/js/**/*.js"
+    ],
+    "exclude": [
+      "**/js/test/**",
+      "**/vendor/**",
+      "**/site-packages/**"
+    ]
   }
 }

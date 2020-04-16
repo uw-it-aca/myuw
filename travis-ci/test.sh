@@ -36,14 +36,13 @@ fi
 
 run_test 'mocha myuw/static/js/test/ --recursive'
 
-run_test 'nyc --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" _mocha -- -R spec myuw/static/js/test/'
+run_test 'nyc'
 
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
-run_test "coveralls-lcov -v -n lcov.info > js-coverage.json"
+run_test "coveralls-lcov -v -n coverage/lcov.info > /coverage/js-coverage.json"
 
 # put generaged coverage result where it will get processed
 cp .coverage.* /coverage
-cp js-coverage.json /coverage
 
 exit 0
