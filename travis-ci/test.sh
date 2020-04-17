@@ -36,8 +36,6 @@ fi
 
 run_test 'nyc mocha  --recursive myuw/static/js/test/'
 
-run_test "coveralls-lcov -v -n coverage/lcov.info > /coverage/js-coverage.json"
-
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
 # put generaged coverage result where it will get processed
