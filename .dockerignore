@@ -22,8 +22,6 @@ wheels/
 
 .bin/
 
-.coveragerc
-
 .Python
 [Bb]in
 [Ii]nclude
