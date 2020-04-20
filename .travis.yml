@@ -36,6 +36,30 @@ after_success:
   - coverage combine
   - coveralls-lcov -v -n lcov.info > js-coverage.json
   - coveralls --merge=js-coverage.json
+  - |
+    if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      case "$TRAVIS_BRANCH" in
+        "master")
+          export APP_INSTANCE="prod";
+          ;;
+        "develop")
+          export APP_INSTANCE="test";
+          ;;
+        "qa")
+          export APP_INSTANCE="qa";
+          ;;
+        "feature/gcp")
+          export APP_INSTANCE="dev";
+          ;;
+        *)
+          unset APP_INSTANCE
+          ;;
+      esac
+      if [[ "$APP_INSTANCE" ]]; then
+        # curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
+        echo "would deploy to ${RELEASE_NAME}-prod-${APP_INSTANCE}"
+      fi
+    fi
 
 cache:
   directories:
