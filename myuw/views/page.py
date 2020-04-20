@@ -53,7 +53,7 @@ def page(request,
         if not can_access_myuw(request):
             return no_access()
     except DataFailureException:
-        log_exception(logger, "GWS/SWS error", traceback)
+        log_exception(logger, "GWS error", traceback)
         return render(request, '500.html', status=500)
 
     if prefetch:
@@ -65,7 +65,8 @@ def page(request,
     try:
         affiliations = get_all_affiliations(request)
     except DataFailureException:
-        log_exception(logger, "GWS error", traceback)
+        log_exception(logger, "GWS error (or SWS err on student, instructor)",
+                      traceback)
         return render(request, '500.html', status=500)
 
     user_pref = get_migration_preference(request)
