@@ -4,8 +4,7 @@ from django.contrib.auth.decorators import login_required
 import re
 import traceback
 from myuw.dao import coda
-from myuw.views.error import (
-    handle_exception, not_instructor_error, data_not_found)
+from myuw.views.error import handle_exception, not_instructor_error
 import logging
 from operator import itemgetter
 from restclients_core.exceptions import DataFailureException
