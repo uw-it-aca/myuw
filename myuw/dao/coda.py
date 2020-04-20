@@ -46,7 +46,7 @@ def _set_json_fail_rate(section_label, json_obj):
         json_obj.update(get_fail_rate(section_label))
     except Exception:
         log_err(logger, "Coda get_fail_rate", traceback, None)
-        
+
 
 def _set_json_cgpa(section_label, json_obj):
     try:
