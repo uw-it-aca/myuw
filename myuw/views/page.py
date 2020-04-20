@@ -53,7 +53,7 @@ def page(request,
         if not can_access_myuw(request):
             return no_access()
     except DataFailureException:
-        log_exception(logger, "GWS error", traceback)
+        log_exception(logger, "GWS/SWS error", traceback)
         return render(request, '500.html', status=500)
 
     if prefetch:
