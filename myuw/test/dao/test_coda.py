@@ -27,7 +27,7 @@ class TestCoDaDAO(TestCase):
         coda._set_json_fail_rate("2018_winter_ES S_102_A", json_obj)
 
     @patch('myuw.dao.coda.get_course_cgpa', spec=True)
-    def test_get_fail_rate_err(self, mock):
+    def test_get_course_cgpa(self, mock):
         json_obj = {}
         mock.side_effect = DataFailureException(None, 500, "Code err")
         coda._set_json_cgpa("2018_winter_ES S_102_A", json_obj)
