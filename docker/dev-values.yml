@@ -11,7 +11,7 @@ ingress:
       paths: 
         - "/"
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-staging
+    cert-manager.io/cluster-issuer: letsencrypt
 externalService:
   enabled: true
   name: dev-my-uw-db
