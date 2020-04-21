@@ -14,14 +14,15 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-staging
 externalService:
   enabled: true
-  name: my-dev-gcp-sql
+  name: dev-my-uw-db
   type: ClusterIP
   serviceAddress: 172.18.0.3
   servicePort: 3306
 database:
-  secretName: my-dev-gcp-sql-credentials
-  hostname: my-dev-gcp-sql.default.svc.cluster.local
+  engine: mysql
   name: myuw
+  hostname: dev-my-uw-db
+  secretName: my-dev-gcp-sql-credentials
 repo: myuw
 instance: dev
 image:
