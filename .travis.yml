@@ -56,8 +56,7 @@ after_success:
           ;;
       esac
       if [[ "$APP_INSTANCE" ]]; then
-        # curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
-        echo "would deploy to ${RELEASE_NAME}-prod-${APP_INSTANCE}"
+        curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
       fi
     fi
 
