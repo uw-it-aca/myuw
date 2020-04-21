@@ -34,8 +34,8 @@ memcached:
     type: RollingUpdate
 certs:
   mounted: true
-  certPath: /etc/letsencrypt/live/dev.my.uw.edu/cert.pem
-  keyPath: /etc/letsencrypt/live/dev.my.uw.edu/privkey.pem
+  certPath: /certs/myuwdev-uwca.cert
+  keyPath: /certs/myuwdev-uwca.key
   secretName: myuwdev-uwca
 environmentVariables:
   - name: AUTH
