@@ -77,7 +77,7 @@ def load_schedule(request, schedule, summer_term=""):
         log_exception(logger,
                       "find enrolled off term sections ({} {})".format(
                           schedule.term.quarter, schedule.term.year),
-                      traceback.format_exc(chain=False))
+                      traceback)
         pass
 
     if len(schedule.sections):
@@ -85,8 +85,7 @@ def load_schedule(request, schedule, summer_term=""):
             set_section_canvas_course_urls(
                 get_canvas_active_enrollments(request), schedule, request)
         except Exception:
-            log_exception(logger, 'get_canvas_active_enrollments',
-                          traceback.format_exc(chain=False))
+            log_exception(logger, 'get_canvas_active_enrollments', traceback)
             pass
 
     section_index = 0
@@ -130,8 +129,8 @@ def load_schedule(request, schedule, summer_term=""):
                 section_data["lib_subj_guide"] =\
                     get_subject_guide_by_section(section)
             except Exception:
-                log_exception(logger, 'get_subject_guide_by_section',
-                              traceback.format_exc(chain=False))
+                log_exception(logger,
+                              'get_subject_guide_by_section', traceback)
                 pass
 
         # MUWM-596

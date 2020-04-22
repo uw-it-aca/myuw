@@ -4,12 +4,14 @@ to iasystem web service.
 """
 
 import logging
+import traceback
 from datetime import datetime
 from django.utils import timezone
 from restclients_core.exceptions import DataFailureException
 from uw_iasystem.evaluation import search_evaluations
 from myuw.dao.pws import get_student_number_of_current_user,\
     get_person_by_employee_id
+from myuw.dao import log_err
 from myuw.dao.student_profile import get_profile_of_current_user
 from myuw.dao.term import get_comparison_datetime, is_b_term,\
     get_current_summer_term, get_bod_7d_before_last_instruction,\
@@ -142,10 +144,11 @@ def json_for_evaluation(request, evaluations, section):
             for eid in evaluation.instructor_ids:
                 try:
                     instructor = get_person_by_employee_id(eid)
-                except Exception as ex:
-                    logger.error(
-                        "get course {} instructor eid({}) ==> {}".format(
-                            section.section_label(), eid, str(ex)))
+                except Exception:
+                    log_err(logger,
+                            "Get course {} instructor (eid={})".format(
+                                section.section_label(), eid),
+                            traceback, request)
                     continue
 
                 instructor_json = {}

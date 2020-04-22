@@ -1,7 +1,8 @@
 import logging
+import traceback
 from myuw.util.settings import get_myuw_astra_group_stem,\
     get_myuw_admin_group, get_myuw_override_group
-from myuw.dao import get_netid_of_original_user
+from myuw.dao import get_netid_of_original_user, log_err
 from myuw.dao.gws import gws
 
 
@@ -41,14 +42,14 @@ def is_admin():
     try:
         is_admin, override = get_myuw_support_role()
         return is_admin
-    except Exception as ex:
-        logger.error("is_admin ==> {}".format(str(ex)))
+    except Exception:
+        log_err(logger, "is_admin", traceback, None)
         return False
 
 
 def can_override():
     try:
         return any(get_myuw_support_role())
-    except Exception as ex:
-        logger.error("can_override ==> {}".format(str(ex)))
+    except Exception:
+        log_err(logger, "can_override", traceback, None)
         return False

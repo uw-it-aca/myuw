@@ -2,6 +2,7 @@ from datetime import datetime
 from dateutil import tz
 import logging
 import pytz
+import traceback
 from django.shortcuts import render
 from django.template import RequestContext
 from django.http import Http404
@@ -11,10 +12,11 @@ from uw_sws.term import get_term_by_date
 from myuw.dao.card_display_dates import get_values_by_date
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao import is_using_file_dao
-from myuw.dao.term import get_default_date, get_comparison_datetime, \
-    get_default_datetime
+from myuw.dao.term import (
+    get_default_date, get_comparison_datetime, get_default_datetime)
 from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
+from myuw.logger.logresp import log_exception
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
@@ -23,23 +25,25 @@ DATE_KEYS = ['myuw_after_submission', 'myuw_after_last_day', 'myuw_after_reg',
              'myuw_before_end_of_reg_display', 'myuw_before_first_day',
              'myuw_before_end_of_first_week', 'myuw_after_eval_start',
              'in_coursevel_fetch_window']
+logger = logging.getLogger(__name__)
 
 
 @login_required
 @admin_required
 def override(request):
-    logger = logging.getLogger(__name__)
-
     context = {}
     if request.method == "POST":
         _handle_post(request, context)
 
     set_admin_wrapper_template(context)
+    try:
+        add_session_context(request, context)
+        add_date_term_info(request, context)
 
-    add_session_context(request, context)
-    add_date_term_info(request, context)
-
-    add_seen_registration_context(request, context)
+        add_seen_registration_context(request, context)
+    except Exception as ex:
+        log_exception(logger, "override", traceback)
+        context["date_error"] = "Invalid date"
     return render(request, "display_dates/override.html", context)
 
 
@@ -56,6 +60,7 @@ def _handle_post(request, context):
                 request.session["myuw_override_date"] = request.POST["date"]
 
             except Exception as ex:
+                log_exception(logger, "override_date", traceback)
                 context["date_error"] = str(ex)
 
     else:

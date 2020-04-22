@@ -24,7 +24,7 @@
                     {{#if grade_submission_delegates}}
                         <ul class="unstyled-list">
                         {{#each grade_submission_delegates}}
-                          <li id="grade_submission_delegate{{index}}">{{titleCaseName person.first_name}} {{titleCaseName this.person.surname}} (<span>{{capitalizeString level}}</span>)</li>
+                          <li id="grade_submission_delegate{{index}}">{{titleCaseName person.display_name}} (<span>{{capitalizeString level}}</span>)</li>
                         {{/each}}
                         </ul>
                     {{else}}

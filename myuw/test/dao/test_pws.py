@@ -17,6 +17,10 @@ class TestPwsDao(TestCase):
         self.assertRaises(InvalidNetID, pws.get_person_by_netid, "0")
         # netid max length is 128 now
 
+        req = get_request_with_user('usernotinpws')
+        self.assertRaises(DataFailureException,
+                          get_person_of_current_user, req)
+
     def test_no_pws_person_netid(self):
         req = get_request_with_user('nobody')
         person = get_person_of_current_user(req)
