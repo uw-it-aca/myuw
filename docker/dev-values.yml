@@ -51,6 +51,46 @@ environmentVariables:
     value: EVAL
   - name: GWS_ENV
     value: EVAL
+  - name: UWNETID_ENV
+    value: EVAL
+  - name: CANVAS_ENV
+    value: EVAL
+  - name: CANVAS_TIMEOUT
+    value: 60
+  - name: CODA_ENV
+    value: EVAL
+  - name: SDBMYUW_ENV
+    value: EVAL
+  - name: BOOKSTORE_ENV
+    value: EVAL
+  - name: IASYSTEM_UW_ENV
+    value: EVAL
+  - name: IASYSTEM_UWB_ENV
+    value: EVAL
+  - name: IASYSTEM_UWT_ENV
+    value: EVAL
+  - name: IASYSTEM_UWEO_AP_ENV
+    value: EVAL
+  - name: IASYSTEM_UWEO_IELP_ENV
+    value: EVAL
+  - name: LIBCURRICS_ENV
+    value: EVAL
+  - name: LIBRARIES_ENV
+    value: EVAL
+  - name: CALENDAR_ENV
+    value: EVAL
+  - name: MAILMAN_ENV
+    value: EVAL
+  - name: HFS_ENV
+    value: EVAL
+  - name: GRAD_ENV
+    value: EVAL
+  - name: GRADEPAGE_ENV
+    value: EVAL
+  - name: MYPLAN_ENV
+    value: EVAL
+  - name: UPASS_ENV
+    value: EVAL
   - name: CLUSTER_CNAME
     value: dev.my.uw.edu
 environmentVariablesSecrets:
@@ -58,3 +98,23 @@ environmentVariablesSecrets:
     name: DJANGO_SECRET
     secretName: my-dev-gcp-django-secret
     secretKey: django-secret
+  canvas-account-secret:
+    name: CANVAS_ACCOUNT_ID
+    secretName: myuw-dev-secrets
+    secretKey: canvas-account-id
+  canvas-token-secret:
+    name: CANVAS_OAUTH_BEARER
+    secretName: myuw-dev-secrets
+    secretKey: canvas-oauth-bearer
+  coda-token-secret:
+    name: CODA_AUTH_TOKEN
+    secretName: myuw-dev-secrets
+    secretKey: coda-auth-token
+  mailman-request-secret:
+    name: MAILMAN_REQUEST_RECIPIENT
+    secretName: myuw-dev-secrets
+    secretKey: mailman-request-recipient
+  mailman-token-secret:
+    name: MAILMAN_AUTH_KEY
+    secretName: myuw-dev-secrets
+    secretKey: mailman-auth-key
