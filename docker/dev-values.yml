@@ -56,7 +56,7 @@ environmentVariables:
   - name: CANVAS_ENV
     value: EVAL
   - name: CANVAS_TIMEOUT
-    value: 60
+    value: "60"
   - name: CODA_ENV
     value: EVAL
   - name: SDBMYUW_ENV
