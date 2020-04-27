@@ -58,10 +58,7 @@ class IASystem(ProtectedAPI):
             resp_data = load_course_eval(request, schedule, summer_term)
             log_api_call(timer, request, "Get IASystem")
             return self.json_response(resp_data)
-        except Exception as ex:
-            if (isinstance(ex, DataFailureException) and ex.status == 400):
-                log_data_not_found_response(logger, timer)
-                return data_not_found()
+        except Exception:
             return handle_exception(logger, timer, traceback)
 
 

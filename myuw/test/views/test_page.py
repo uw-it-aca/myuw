@@ -1,6 +1,9 @@
 from unittest import skipIf
+from unittest.mock import patch
 from django.urls import reverse
 from django.test.client import RequestFactory
+from restclients_core.exceptions import DataFailureException
+from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.test.api import missing_url, MyuwApiTest
 
 
@@ -110,3 +113,58 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.url, "/saml/login?next=/")
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_user_not_in_pws(self):
+        url = reverse("myuw_home")
+        self.set_user('usernotinpws')
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 400)
+
+    @patch('myuw.views.page.get_updated_user', spec=True)
+    def test_pws_err(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = DataFailureException(None, 500, "pws err")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 500)
+
+    @patch('myuw.views.page.get_card_visibilty_date_values', spec=True)
+    def test_sws_err(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = DataFailureException(None, 500, "sws err")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    @patch('myuw.views.page.can_access_myuw', spec=True)
+    def test_gws_err_can_access_myuw(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = DataFailureException(None, 500, "GWS err")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 500)
+
+    @patch('myuw.views.page.get_all_affiliations', spec=True)
+    def test_gws_err_get_all_affiliations(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = DataFailureException(None, 500, "affi GWS err")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 500)
+
+    @patch('myuw.views.page.get_service_url_for_address', spec=True)
+    def test_email_forward_err(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = EmailServiceUrlException
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
+
+    @patch('myuw.views.page.prefetch_resources', spec=True)
+    def test_prefetch_err(self, mock):
+        url = reverse("myuw_home")
+        self.set_user('javerage')
+        mock.side_effect = DataFailureException(None, 500, "prefetch GWS err")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 200)
