@@ -1,4 +1,4 @@
-FROM acait/django-container:1.0.25 as myuw
+FROM acait/django-container:1.0.26 as myuw
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -23,22 +23,7 @@ RUN . /app/bin/activate &&\
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
 
-FROM myuw as myuw-test
-USER root
-RUN apt-get install -y nodejs npm
 
-USER acait
-RUN . /app/bin/activate &&\
-    pip install pycodestyle coverage &&\
-    nodeenv -p &&\
-    npm install tslib -g &&\
-    npm install datejs -g &&\
-    npm install jquery -g &&\
-    npm install moment -g &&\
-    npm install moment-timezone -g &&\
-    npm install jsdom@15.2.1 -g &&\
-    npm install jshint -g &&\
-    npm install mocha -g &&\
-    npm install nyc -g &&\
-    npm install sinon -g &&\
-    npm install coveralls -g
+FROM acait/django-test-container:1.0.26 as myuw-test
+
+COPY --from=0 /app/ .
