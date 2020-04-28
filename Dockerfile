@@ -26,4 +26,5 @@ RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
 
 FROM acait/django-test-container:1.0.26 as myuw-test
 
-COPY --from=0 /app/ .
+COPY --from=0 /app/ /app/
+COPY --from=0 /static/ /static/
