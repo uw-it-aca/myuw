@@ -23,8 +23,8 @@ env:
     - secure: "JMVV0SG9a04GNq2F304OWnkf6xIaI87Nhf45RoZoU717IMi+xvrz8qX3fYibcv/15eLt+XdeQeu0CxM8/ZSlrReWXf/0/9Qe7m8SxoQj6W35kBIHOEfPln06hP5fq0ruhg5k4eZKQrwCwoeIt3+iOWCtKE+yQJyWvd92t1WX080="
 
 install:
-  - docker build --target myuw -t "$IMAGE_TAG" .
-  - docker build -t "${IMAGE_TAG}-test" .
+  - docker build --target app-container -t "$IMAGE_TAG" .
+  - docker build -t app-test-container .
 
 before_script:
   - gem install coveralls-lcov
@@ -32,7 +32,7 @@ before_script:
   - pip install coveralls
 
 script:
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" -e "MEMCACHED_SERVER_COUNT=1" -e "MEMCACHED_SERVER_SPEC=localhost" "${IMAGE_TAG}-test" bash -c ". ./travis-ci/test.sh"
+  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" -e "MEMCACHED_SERVER_COUNT=1" -e "MEMCACHED_SERVER_SPEC=localhost" app-test-container bash -c ". ./travis-ci/test.sh"
 
 after_success:
   - cp /tmp/.coverage.* /tmp/lcov.info .

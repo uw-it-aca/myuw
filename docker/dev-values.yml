@@ -90,7 +90,7 @@ environmentVariables:
   - name: MYPLAN_ENV
     value: EVAL
   - name: UPASS_ENV
-    value: EVAL
+    value: PROD
   - name: CLUSTER_CNAME
     value: dev.my.uw.edu
 environmentVariablesSecrets:
