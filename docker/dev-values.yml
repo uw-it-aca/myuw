@@ -64,7 +64,7 @@ environmentVariables:
   - name: SDBMYUW_ENV
     value: EVAL
   - name: BOOKSTORE_ENV
-    value: EVAL
+    value: PROD
   - name: IASYSTEM_UW_ENV
     value: EVAL
   - name: IASYSTEM_UWB_ENV
