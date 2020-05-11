@@ -1,11 +1,11 @@
 import logging
 import traceback
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call, log_data_not_found_response
+from myuw.logger.logresp import log_api_call
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.applications import get_applications
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception, data_not_found
+from myuw.views.error import handle_exception
 
 logger = logging.getLogger(__name__)
 
@@ -25,8 +25,5 @@ class Applications(ProtectedAPI):
             response = get_applications(request)
             log_api_call(timer, request, "Get Applications")
             return self.json_response(response)
-        except Exception as ex:
-            if (isinstance(ex, DataFailureException) and ex.status == 404):
-                log_data_not_found_response(logger, timer)
-                return data_not_found()
+        except Exception:
             return handle_exception(logger, timer, traceback)

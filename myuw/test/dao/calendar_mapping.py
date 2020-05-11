@@ -81,7 +81,7 @@ class TestCalendarMapping(TestCase):
         self.assertEqual(len(mm['majors']), 1)
         self.assertEqual(len(mm['minors']), 1)
         self.assertTrue(u'ENGLISH' in mm['majors'])
-        self.assertTrue(u'MATH'in mm['minors'])
+        self.assertTrue(u'MATH' in mm['minors'])
 
         # has only future enrollment
         req = get_request_with_user('jbothell',

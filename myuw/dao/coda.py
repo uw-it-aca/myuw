@@ -1,6 +1,6 @@
 import logging
 import traceback
-import uw_coda
+from uw_coda import get_fail_rate, get_course_cgpa, get_majors
 from restclients_core.exceptions import DataFailureException
 from myuw.util.thread import Thread
 from myuw.dao import log_err
@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 def get_classlist_details(section_label, json_data=None):
     section_label = _process_section_label(section_label)
     try:
-        majors = uw_coda.get_majors(section_label, 1)
+        majors = get_majors(section_label, 1)
     except DataFailureException:
-        log_err(logger, "uw_coda.get_majors", traceback, None)
+        log_err(logger, "Coda get_majors", traceback, None)
         return
 
     if json_data is not None:
@@ -43,16 +43,16 @@ def get_course_card_details(section_label, json_data=None):
 
 def _set_json_fail_rate(section_label, json_obj):
     try:
-        json_obj.update(uw_coda.get_fail_rate(section_label))
-    except DataFailureException:
-        log_err(logger, "uw_coda.get_fail_rate", traceback, None)
+        json_obj.update(get_fail_rate(section_label))
+    except Exception:
+        log_err(logger, "Coda get_fail_rate", traceback, None)
 
 
 def _set_json_cgpa(section_label, json_obj):
     try:
-        json_obj.update(uw_coda.get_course_cgpa(section_label))
-    except DataFailureException:
-        log_err(logger, "uw_coda.get_course_cgpa", traceback, None)
+        json_obj.update(get_course_cgpa(section_label))
+    except Exception:
+        log_err(logger, "Coda get_course_cgpa", traceback, None)
 
 
 def _process_section_label(section_label):
