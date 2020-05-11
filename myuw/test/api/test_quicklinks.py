@@ -315,4 +315,4 @@ class TestQuickLinksAPI(MyuwApiTest):
                                'url': 'www.washington.edu'})
             response = self.client.post(url, data,
                                         content_type='application_json')
-            self.assertEqual(response.status_code, 401)
+            self.assertEqual(response.status_code, 403)

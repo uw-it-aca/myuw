@@ -6,14 +6,13 @@ from myuw.dao.exceptions import NotSectionInstructorException,\
     InvalidResourceCategory
 from myuw.models import ResourceCategoryPin
 from uw_sws.exceptions import InvalidSectionID
-from myuw.logger.logresp import log_err
+from myuw.logger.logresp import log_err, log_data_not_found_response
 from myuw.views.exceptions import DisabledAction, NotInstructorError,\
     InvalidInputFormData
 
 
 HTTP_BAD_REQUEST = 400
-UNAUTHORIZED_ERROR = 401
-NOT_INSTRUCTOR_ERROR = 403
+UNAUTHORIZED_ERROR = 403
 HTTP_NOT_FOUND = 404
 HTTP_METHOD_NOT_ALLOWED = 405
 HTTP_GONE = 410
@@ -32,8 +31,16 @@ def disabled_action_error():
                           "Action Disabled while overriding users")
 
 
+def no_access():
+    return _make_response(
+        UNAUTHORIZED_ERROR,
+        "<p>This is a test environment of MyUW, "
+        "its access is limited to specific people. "
+        "To request access, please contact the UW-IT Service Center.</p>")
+
+
 def not_instructor_error():
-    return _make_response(NOT_INSTRUCTOR_ERROR,
+    return _make_response(UNAUTHORIZED_ERROR,
                           "Access Forbidden to Non Instructor")
 
 
@@ -44,14 +51,6 @@ def unknown_uwnetid():
         "in the person registry services. "
         "If you have just created your UW NetID, "
         "please try signing in to MyUW again in one hour.</p>")
-
-
-def no_access():
-    return _make_response(
-        UNAUTHORIZED_ERROR,
-        "<p>This is a test environment of MyUW, "
-        "its access is limited to specific people. "
-        "To request access, please contact the UW-IT Service Center.</p>")
 
 
 def invalid_input_data():
@@ -84,9 +83,14 @@ def data_error():
                           "Data not available due to an error")
 
 
-def handle_exception(logger, timer, stack_traces):
-    log_err(logger, timer, stack_traces.format_exc(chain=False))
+def handle_exception(logger, timer, stack_trace):
     exc_type, exc_value, exc_traceback = sys.exc_info()
+    if (isinstance(exc_value, DataFailureException) and
+            (exc_value.status == 400 or exc_value.status == 404)):
+        log_data_not_found_response(logger, timer)
+        return data_not_found()
+
+    log_err(logger, timer, stack_trace)
 
     if isinstance(exc_value, DisabledAction):
         return disabled_action_error()
@@ -109,7 +113,4 @@ def handle_exception(logger, timer, stack_traces):
     if isinstance(exc_value, NotSectionInstructorException):
         return not_section_instructor()
 
-    if (isinstance(exc_value, DataFailureException) and
-            (exc_value.status == 400 or exc_value.status == 404)):
-        return data_not_found()
     return data_error()

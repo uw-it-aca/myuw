@@ -7,7 +7,7 @@ from myuw.dao.pws import (
     get_person_of_current_user, get_regid_of_current_user,
     get_employee_id_of_current_user, get_student_number_of_current_user,
     get_student_system_key_of_current_user)
-from myuw.test import fdao_pws_override, get_request_with_user
+from myuw.test import fdao_pws_override, get_request_with_user, get_request
 
 
 @fdao_pws_override
@@ -16,6 +16,10 @@ class TestPwsDao(TestCase):
     def test_no_entity_netid(self):
         self.assertRaises(InvalidNetID, pws.get_person_by_netid, "0")
         # netid max length is 128 now
+
+        req = get_request_with_user('usernotinpws')
+        self.assertRaises(DataFailureException,
+                          get_person_of_current_user, req)
 
     def test_no_pws_person_netid(self):
         req = get_request_with_user('nobody')
@@ -31,6 +35,9 @@ class TestPwsDao(TestCase):
         self.assertTrue(is_bothell_employee(req))
 
     def test_get_person_of_current_user(self):
+        # test MUWM-4366 no user in request
+        self.assertRaises(Exception, get_person_of_current_user, get_request())
+
         req = get_request_with_user('javerage')
         self.assertFalse(hasattr(req, "myuw_pws_person"))
         person = get_person_of_current_user(req)

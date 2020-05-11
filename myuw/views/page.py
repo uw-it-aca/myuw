@@ -15,13 +15,13 @@ from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
 from myuw.dao.user import get_updated_user
-from myuw.util.settings import get_prod_url_pattern
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_invalid_netid_response, log_page_view, log_exception)
 from myuw.logger.session_log import log_session
+from myuw.util.settings import get_prod_url_pattern
 from myuw.util.settings import (
     get_google_search_key, get_logout_url, get_prod_url_pattern)
 from myuw.views import prefetch_resources, get_enabled_features
@@ -43,18 +43,18 @@ def page(request,
     timer = Timer()
     try:
         user = get_updated_user(request)
-    except Exception as ex:
-        log_exception(logger, str(ex), traceback.format_exc(chain=False))
-        return unknown_uwnetid()
+    except DataFailureException as ex:
+        log_exception(logger, "PWS error", traceback)
+        if ex.status == 404:
+            return unknown_uwnetid()
+        return render(request, '500.html', status=500)
 
-    if not can_access_myuw(request):
-        return no_access()
-
-    netid = user.uwnetid
-    context["user"] = {
-        "netid": netid,
-        "session_key": request.session.session_key,
-    }
+    try:
+        if not can_access_myuw(request):
+            return no_access()
+    except DataFailureException:
+        log_exception(logger, "GWS error", traceback)
+        return render(request, '500.html', status=500)
 
     if prefetch:
         # Some pages need to prefetch before this point
@@ -62,10 +62,21 @@ def page(request,
         if failure:
             return failure
 
+    try:
+        affiliations = get_all_affiliations(request)
+    except DataFailureException:
+        log_exception(logger, "GWS error (or SWS err on student, instructor)",
+                      traceback)
+        return render(request, '500.html', status=500)
+
     user_pref = get_migration_preference(request)
     log_session(request)
-    affiliations = get_all_affiliations(request)
 
+    netid = user.uwnetid
+    context["user"] = {
+        "netid": netid,
+        "session_key": request.session.session_key,
+    }
     context["home_url"] = "/"
     context["err"] = None
     context["user"]["affiliations"] = affiliations
@@ -73,27 +84,14 @@ def page(request,
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
     context["disable_actions"] = is_action_disabled()
-    context["card_display_dates"] = get_card_visibilty_date_values(request)
+
+    _add_email_forwarding(request, context)
+
     try:
-        my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
-        if my_uwemail_forwarding.is_active():
-            c_user = context["user"]
-            try:
-                c_user['email_forward_url'] = get_service_url_for_address(
-                    my_uwemail_forwarding.fwd)
-            except EmailServiceUrlException:
-                c_user['email_forward_url'] = None
-                logger.info('No email url for {}'.format(
-                    my_uwemail_forwarding.fwd))
-
-    except Exception:
-        c_user = context["user"]
-        c_user['email_error'] = True
-        log_exception(logger, 'get_email_forwarding_for_current_user',
-                      traceback.format_exc(chain=False))
-        pass
-
-    add_term_data_to_context(request, context)
+        context["card_display_dates"] = get_card_visibilty_date_values(request)
+        add_term_data_to_context(request, context)
+    except DataFailureException:
+        log_exception(logger, "SWS term data error", traceback)
 
     context['enabled_features'] = get_enabled_features()
 
@@ -115,8 +113,7 @@ def try_prefetch(request, template, context):
                            prefetch_instructor=True,
                            prefetch_sws_person=True)
     except DataFailureException:
-        log_exception(logger, "prefetch_resources",
-                      traceback.format_exc(chain=False))
+        log_exception(logger, "prefetch error", traceback)
         context["webservice_outage"] = True
         return render(request, template, context)
     return
@@ -142,3 +139,18 @@ def can_access_myuw(request):
     url = request.build_absolute_uri()
     return (re.match(get_prod_url_pattern(), url) is not None or
             in_myuw_test_access_group(request))
+
+
+def _add_email_forwarding(request, context):
+    my_uwemail_forwarding = get_email_forwarding_for_current_user(request)
+    c_user = context["user"]
+    if my_uwemail_forwarding and my_uwemail_forwarding.is_active():
+        try:
+            c_user['email_forward_url'] = get_service_url_for_address(
+                my_uwemail_forwarding.fwd)
+            return
+        except EmailServiceUrlException:
+            logger.error('No email url for {}'.format(
+                my_uwemail_forwarding.fwd))
+    c_user['email_forward_url'] = None
+    c_user['email_error'] = True

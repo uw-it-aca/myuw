@@ -33,6 +33,12 @@ class TestSessionLog(TestCase):
         entry = _get_session_data(req)
         self.assertEqual(entry['ip'], '127.0.0.2')
 
+        req.META['HTTP_USER_AGENT'] = ' Safari/601.7.7 MyUW_Hybrid/1.0'
+        req.session['uw_uuid'] = 'E621E1F8'
+        entry = _get_session_data(req)
+        self.assertTrue(entry['is_native'])
+        self.assertEqual(entry['uuid'], 'E621E1F8')
+
         entry = _get_affi(req)
         self.assertEqual(entry['class_level'], 'SENIOR')
         self.assertTrue(entry['is_ugrad'])

@@ -3,12 +3,14 @@ This module provides access to instructed class schedule and sections
 """
 
 import logging
+import traceback
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule
 from uw_sws.section import get_sections_by_instructor_and_term,\
     get_section_by_url, get_section_by_label
 from uw_sws.section_status import get_section_status_by_label
 from myuw.util.thread import ThreadWithResponse
+from myuw.dao import log_err
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import get_active_registrations_for_section
@@ -143,8 +145,9 @@ def get_linked_section(url, instructor_regid):
         try:
             linked.registrations = get_active_registrations_for_section(
                 linked, instructor_regid)
-        except DataFailureException as ex:
-            logger.error("get_linked_section({})==>{}".format(url, str(ex)))
+        except DataFailureException:
+            log_err(logger, "get_linked_section({})".format(url),
+                    traceback, None)
             linked.registrations = []
 
         return linked

@@ -35,7 +35,9 @@ def map_notice_category(notice):
     categorization = NOTICE_CATEGORIES.get(key.lower(), None)
     if categorization is not None:
         notice.custom_category = categorization["myuw_category"]
-        notice.is_critical = categorization["critical"]
+        # The criticality of MyUW notice is defined in the notice
+        if notice.notice_category != "MyUWNotice":
+            notice.is_critical = categorization["critical"]
         notice.location_tags = categorization["location_tags"]
     else:
         notice.custom_category = UNKNOWN_CATEGORY_NAME
@@ -151,7 +153,6 @@ def get_json_for_notices(request, notices):
             data['id_hash'] = notice.id_hash
             data['is_read'] = notice.is_read
             data['location_tags'] = notice.location_tags
-
             if "est_reg_date" in notice.location_tags:
                 est_reg = get_est_reg_info(request, notice)
                 data["is_my_1st_reg_day"] =\

@@ -73,5 +73,5 @@ class MyPlan(ProtectedAPI):
             log_api_call(timer, request, "Get MyPlan")
             return self.json_response(base_json)
         except Exception:
-            log_err(logger, timer, traceback.format_exc(chain=False))
+            log_err(logger, timer, traceback)
             return self.json_response([])

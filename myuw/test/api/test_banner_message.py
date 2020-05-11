@@ -47,7 +47,7 @@ class TestBannerMessage(MyuwApiTest):
             self.set_userservice_override("bill")
             self.assertEquals(UserService().get_override_user(), "bill")
             resp = self.get_response_by_reverse('myuw_close_banner_message')
-            self.assertEqual(resp.status_code, 401)
+            self.assertEqual(resp.status_code, 403)
 
     def test_turn_off_pop_up_when_override(self):
         with self.settings(DEBUG=False,
@@ -56,4 +56,4 @@ class TestBannerMessage(MyuwApiTest):
             self.set_userservice_override("bill")
             self.assertEquals(UserService().get_override_user(), "bill")
             resp = self.get_response_by_reverse('myuw_turn_off_tour_popup')
-            self.assertEqual(resp.status_code, 401)
+            self.assertEqual(resp.status_code, 403)

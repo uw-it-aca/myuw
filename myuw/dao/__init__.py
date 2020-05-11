@@ -76,3 +76,9 @@ def _get_file_path(settings_key, filename):
                                              "..", "data",
                                              filename))
     return file_path
+
+
+def log_err(logger, msg, stacktrace, request):
+    logger.error("{}, {} => {} ".format(
+        get_userids(request=request), msg,
+        stacktrace.format_exc(chain=False).splitlines()))

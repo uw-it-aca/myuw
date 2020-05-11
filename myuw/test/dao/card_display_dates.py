@@ -23,6 +23,11 @@ class TestDisplayValues(TestCase):
         values = get_card_visibilty_date_values(now_request)
         return values
 
+    def test_get_last_term_is_none(self):
+        now_request = get_request_with_date("2012-02-01")
+        values = get_card_visibilty_date_values(now_request)
+        self.assertIsNone(values.get("last_term"))
+
     def test_first_day(self):
         # spring, before grade submission
         values = self.get_visibility_for_date('2013-03-26')

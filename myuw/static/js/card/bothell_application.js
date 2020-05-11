@@ -28,7 +28,8 @@ var BothellApplicationCard = {
             }
         }
 
-        if (typeof bothell_application === 'undefined'){
+        if (typeof bothell_application === 'undefined' ||
+            bothell_application.no_ug_app){
             this.render_error();
             return;
         }
