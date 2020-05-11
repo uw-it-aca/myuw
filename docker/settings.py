@@ -1,4 +1,6 @@
 from .base_settings import *
+import sys
+import os
 
 ALLOWED_HOSTS = ['*']
 
@@ -145,6 +147,234 @@ RESTCLIENTS_MYPLAN_POOL_SIZE = 10
 
 RESTCLIENTS_UPASS_TIMEOUT = 60
 RESTCLIENTS_UPASS_POOL_SIZE = 10
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'stdout_stream': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno < logging.WARN
+        },
+        'stderr_stream': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno > logging.INFO
+        }
+    },
+    'formatters': {
+        'myuw': {
+            'format': '%(levelname)-4s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'restclients_timing': {
+            'format': '%(levelname)-4s restclients_timing %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'views_timing': {
+            'format': '%(levelname)-4s views_performance %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'pref': {
+            'format': '%(levelname)-4s pref %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'event': {
+            'format': '%(levelname)-4s event %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'link': {
+            'format': '%(levelname)-4s link %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'session': {
+            'format': '%(levelname)-4s session %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'card': {
+            'format': '%(levelname)-4s card %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+        'notice': {
+            'format': '%(levelname)-4s notice %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
+    },
+    'handlers': {
+        'stdout': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'myuw',
+        },
+        'stderr': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stderr,
+            'filters': ['stderr_stream'],
+            'formatter': 'myuw',
+        },
+        'restclients_timing': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'restclients_timing',
+        },
+        'views_timing': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'views_timing',
+        },
+        'pref': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'pref',
+        },
+        'event': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'event',
+        },
+        'link': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'link',
+        },
+        'session': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'session',
+        },
+        'card': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'card',
+        },
+        'notice': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'notice',
+        },
+        'null': {
+            'class': 'logging.NullHandler',
+        },
+    },
+    'loggers': {
+        'django.security.DisallowedHost': {
+            'handlers': ['null'],
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['stderr'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'restclients_core': {
+            'handlers': ['restclients_timing'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'rc_django': {
+            'handlers': ['restclients_timing'],
+            'level': 'INFO',
+            'propagate': False,
+         },
+        'uw_gws': {
+            'handlers': ['restclients_timing'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'uw_sws': {
+            'handlers': ['restclients_timing'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'uw_iasystem': {
+            'handlers': ['restclients_timing'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.logger.logresp': {
+            'handlers': ['views_timing'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.views.api.banner_message': {
+            'handlers': ['pref'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.views.api.resources.pin': {
+            'handlers': ['pref'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.views.api.instructor_section_display': {
+            'handlers': ['pref'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'aws_message': {
+            'handlers': ['event'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.event': {
+            'handlers': ['event'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.management.commands.load_section_status_changes': {
+            'handlers': ['event'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.views.logger': {
+            'handlers': ['link'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'link': {
+            'handlers': ['link'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'session': {
+            'handlers': ['session'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'card': {
+            'handlers': ['card'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'myuw.views.api.notices.seen': {
+            'handlers': ['notice'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        '': {
+            'handlers': ['stdout', 'stderr'],
+            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG'
+        }
+    }
+}
+
 
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
