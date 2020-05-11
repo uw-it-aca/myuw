@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.utils import override_settings
 from myuw.logger.session_log import log_session, _get_affi,\
-    get_userids, _get_session_data
+    get_userids, _get_session_data, is_native
 from myuw.test import get_request_with_user
 
 UserService = 'userservice.user.UserServiceMiddleware'
@@ -71,3 +71,9 @@ class TestSessionLog(TestCase):
         entry = _get_affi(req)
         self.assertTrue(entry['is_alumni'])
         self.assertTrue(entry['is_past_stud'])
+
+    def test_is_native(self):
+        req = get_request_with_user('javerage')
+        self.assertFalse(is_native(req))
+        req.META['HTTP_USER_AGENT'] = ' MyUW_Hybrid/1.0 (iPhone)'
+        self.assertTrue(is_native(req))

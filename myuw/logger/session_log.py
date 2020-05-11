@@ -15,13 +15,9 @@ def log_session(request):
 
 
 def _get_session_data(request):
-    try:
-        ua_string = request.META['HTTP_USER_AGENT']
-    except KeyError:
-        ua_string = ""
     ret_val = {'session_key': hash_session_key(request),
                'ip': get_ip(request),
-               'is_native': 'MyUW_Hybrid/1.0' in ua_string,
+               'is_native': is_native(request),
                'is_mobile': is_mobile(request),
                'referer': request.META.get('HTTP_REFERER')}
     if ret_val['is_native']:
@@ -91,3 +87,11 @@ def is_mobile(request):
     except Exception as ex:
         logger.warning("is_mobile ==> {}".format(str(ex)))
     return ""
+
+
+def is_native(request):
+    try:
+        ua_string = request.META['HTTP_USER_AGENT']
+    except KeyError:
+        ua_string = ""
+    return 'MyUW_Hybrid' in ua_string

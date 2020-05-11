@@ -1,7 +1,7 @@
 import re
 import logging
 import traceback
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from restclients_core.exceptions import DataFailureException
@@ -21,7 +21,7 @@ from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_invalid_netid_response, log_page_view, log_exception)
-from myuw.logger.session_log import log_session
+from myuw.logger.session_log import log_session, is_native
 from myuw.util.settings import (
     get_google_search_key, get_logout_url, get_prod_url_pattern)
 from myuw.views import prefetch_resources, get_enabled_features
@@ -125,6 +125,9 @@ def try_prefetch(request, template, context):
 def logout(request):
     # Expires current myuw session
     django_logout(request)
+
+    if is_native(request):
+        return HttpResponse()
 
     # Redirects to authN service logout page
     return HttpResponseRedirect(get_logout_url())
