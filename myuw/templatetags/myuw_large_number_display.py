@@ -10,9 +10,9 @@ def large_number(value):
         return value
 
     labels = ['K', 'M', 'B']
-    for l in labels:
+    for label in labels:
         value //= 1000
         if value < 1000:
-            return "{}{}".format(value, l)
+            return "{}{}".format(value, label)
 
-    return "{}{}".format(value, l)
+    return "{}{}".format(value, label)
