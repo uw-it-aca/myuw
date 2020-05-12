@@ -30,7 +30,7 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 2
+  replicaCount: 1
   updateStrategy:
     type: RollingUpdate
 certs:
