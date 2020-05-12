@@ -1,3 +1,7 @@
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
 ingress:
   enabled: true
   tls:
