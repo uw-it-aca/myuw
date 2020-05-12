@@ -14,6 +14,14 @@ def log_session(request):
                                     json.dumps(_get_affi(request))))
 
 
+def log_session_end(request):
+    logger.info("{}, {}".format(
+        get_userids(),
+        json.dumps({'msg': 'logout',
+                    'session_key': hash_session_key(request),
+                    'is_native': is_native(request)})))
+
+
 def _get_session_data(request):
     ret_val = {'session_key': hash_session_key(request),
                'ip': get_ip(request),

@@ -119,7 +119,7 @@ class TestPageMethods(MyuwApiTest):
 
     @skipIf(missing_url("myuw_logout"), "myuw_logout not configured")
     def test_logout(self):
-        self.set_user('faculty')
+        self.set_user('javerage')
         url = reverse("myuw_logout")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
