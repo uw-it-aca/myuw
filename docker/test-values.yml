@@ -2,7 +2,7 @@ ingress:
   enabled: true
   tls:
     myuw:
-      secretName: test.my.uw.edu-cert
+      secretName: test.my.uw.edu-ingress-cert
       hosts:
         - test.my.uw.edu
   hosts:
