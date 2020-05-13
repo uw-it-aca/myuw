@@ -20,7 +20,7 @@ externalService:
   servicePort: 3306
 database:
   engine: mysql
-  name: myuw
+  name: myuw_test
   hostname: test-my-uw-db
   secretName: test.my.uw.edu-sql-credentials
 repo: myuw
