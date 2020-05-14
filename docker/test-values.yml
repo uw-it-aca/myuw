@@ -16,7 +16,7 @@ externalService:
   enabled: true
   name: test-my-uw-db
   type: ClusterIP
-  serviceAddress: 172.18.0.18
+  serviceAddress: 172.18.0.19
   servicePort: 3306
 database:
   engine: mysql
