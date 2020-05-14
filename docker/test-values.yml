@@ -52,37 +52,37 @@ environmentVariables:
   - name: PWS_ENV
     value: EVAL
   - name: GWS_ENV
-    value: EVAL
+    value: PROD
   - name: UWNETID_ENV
-    value: EVAL
+    value: PROD
   - name: CANVAS_ENV
     value: EVAL
   - name: CANVAS_TIMEOUT
     value: "60"
   - name: CODA_ENV
-    value: EVAL
+    value: PROD
   - name: SDBMYUW_ENV
     value: EVAL
   - name: BOOKSTORE_ENV
     value: PROD
   - name: IASYSTEM_UW_ENV
-    value: EVAL
+    value: PROD
   - name: IASYSTEM_UWB_ENV
-    value: EVAL
+    value: PROD
   - name: IASYSTEM_UWT_ENV
-    value: EVAL
+    value: PROD
   - name: IASYSTEM_UWEO_AP_ENV
-    value: EVAL
+    value: PROD
   - name: IASYSTEM_UWEO_IELP_ENV
-    value: EVAL
+    value: PROD
   - name: LIBCURRICS_ENV
-    value: EVAL
+    value: PROD
   - name: LIBRARIES_ENV
-    value: EVAL
+    value: PROD
   - name: CALENDAR_ENV
-    value: EVAL
+    value: PROD
   - name: MAILMAN_ENV
-    value: EVAL
+    value: PROD
   - name: HFS_ENV
     value: EVAL
   - name: GRAD_ENV
