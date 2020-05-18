@@ -11,7 +11,10 @@ describe('IntlStudCard', function(){
                 "myuw/static/js/card/international_student.js"
             ],
             templates: [
-                'myuw/templates/handlebars/card/international_student.html'
+                'myuw/templates/handlebars/card/international/international_student.html',
+                'myuw/templates/handlebars/card/international/bothell_international.html',
+                'myuw/templates/handlebars/card/international/seattle_international.html',
+                'myuw/templates/handlebars/card/international/tacoma_international.html'
             ]
         });
 
@@ -66,6 +69,14 @@ describe('IntlStudCard', function(){
         assert.equal(IntlStudCard.dom_target.find('li').length, 6);
         assert.equal(IntlStudCard.dom_target.find('a[href="http://www.tacoma.uw.edu/iss/maintaining-f-1-status"]').length, 1);
         assert.equal(IntlStudCard.dom_target.find('a[href="http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center"]').length, 1);
+    });
+
+    it("Render for intl students wo campus", function() {
+        IntlStudCard.render_init();
+        assert.equal(IntlStudCard.dom_target.find('ul.unstyled-list').length, 7);
+        assert.equal(IntlStudCard.dom_target.find('div.myuw-tab').length, 3);
+        assert.equal(IntlStudCard.dom_target.find('div.intl_tab_content').length, 3);
+        assert.equal(IntlStudCard.dom_target.find('a[href="https://iss.washington.edu/regulations/f1/"]').length, 1);
     });
 
 });
