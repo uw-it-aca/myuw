@@ -49,11 +49,14 @@ THRIVE_OUTPUT = "/hx_toolkit_output"
 USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
-MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
-MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
-MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
-MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
+
 MYUW_PROD_URL = "https://my.uw.edu/"
+MYUW_ADMIN_GROUP = "u_astra_myuw_test-support-admin"
+MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
+MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
+MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"
+
+MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = True
 
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
