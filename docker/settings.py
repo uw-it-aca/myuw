@@ -53,6 +53,7 @@ MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
 MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
 MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
 MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
+MYUW_PROD_URL = "https://my.uw.edu/"
 
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
