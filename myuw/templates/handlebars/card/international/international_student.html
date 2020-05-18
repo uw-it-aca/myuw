@@ -1,0 +1,43 @@
+{% verbatim %}
+<script id="international_student_card_content" type="text/x-handlebars-template">
+<div class="myuw-card">
+    <h3 class="myuw-card-title">
+        International Student
+    </h3>
+    {{#if seattle}}
+        {{> seattle_international}}
+    {{else}}
+        {{#if bothell}}
+            {{> bothell_international}}
+        {{else}}
+            {{#if tacoma}}
+                {{> tacoma_international}}
+            {{else}}
+                <div role="tablist">
+                    <div class="myuw-tab">
+                        <a href="#seattle_international" class="myuw-tab-label" rel="seattle_international" role="tab" aria-selected="true">Seattle</a>
+                    </div>
+                    <div class="myuw-tab">
+                        <a href="#tacoma_international" class="myuw-tab-label" rel="tacoma_international" role="tab" aria-selected="false">Tacoma</a>
+                    </div>
+                    <div class="myuw-tab">
+                        <a href="#bothell_international" class="myuw-tab-label" rel="bothell_international" role="tab" aria-selected="false">Bothell</a>
+                    </div>
+                </div>
+        
+                <div id="seattle_international" aria-label="Seattle" aria-hidden="false" class="intl_tab_content">
+                    {{> seattle_international}}
+                </div>
+                <div id="tacoma_international" aria-label="Tacoma" aria-hidden="true" class="intl_tab_content" style="display: none;">
+                    {{> tacoma_international}}
+                </div>
+                <div id="bothell_international" aria-label="Bothell" aria-hidden="true" class="intl_tab_content" style="display: none;">
+                    {{> bothell_international}}
+                </div>
+            {{/if}}
+        {{/if}}
+    {{/if}}
+
+</div>
+</script>
+{% endverbatim %}
