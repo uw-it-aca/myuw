@@ -124,3 +124,11 @@ environmentVariablesSecrets:
     name: MAILMAN_AUTH_KEY
     secretName: myuw-dev-secrets
     secretKey: mailman-auth-key
+  email_host-secret:
+    name: EMAIL_HOST
+    secretName: myuw-dev-secrets
+    secretKey: email_host
+  safe_email_recipient-secret:
+    name: SAFE_EMAIL_RECIPIENT
+    secretName: myuw-dev-secrets
+    secretKey: safe_email_recipient
