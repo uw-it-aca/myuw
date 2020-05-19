@@ -37,26 +37,47 @@ if os.getenv('AUTH', 'NONE') == 'SAML_MOCK':
 # MYUW_PREFETCH_THREADING = True
 MYUW_ENABLED_FEATURES = []
 
-EMAIL_BACKEND = "saferecipient.EmailBackend"
-MAILMAN_COURSEREQUEST_RECIPIENT = ""
-
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = 587
+EMAIL_TIMEOUT = 15
+MAILMAN_COURSEREQUEST_RECIPIENT = os.getenv("MAILMAN_REQUEST_RECIPIENT")
+if os.getenv("ENV", "") == "prod":
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+else:
+    EMAIL_BACKEND = "saferecipient.EmailBackend"
+    SAFE_EMAIL_RECIPIENT = os.getenv("SAFE_EMAIL_RECIPIENT")
 
 # Thrive required settings
 MEDIA_ROOT = "/statics/hx_images"
 MEDIA_URL = "/uploaded_images/"
 THRIVE_OUTPUT = "/hx_toolkit_output"
 
-USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
-USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
-RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
-MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
-MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
-MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
-MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
+MYUW_PROD_URL = "https://my.uw.edu/"
+if os.getenv("ENV", "") == "localdev":
+    MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
+    MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
+    MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
+else:
+    MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
+    MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"
+    if os.getenv("ENV", "") == "prod":
+        MYUW_ADMIN_GROUP = "u_astra_myuw_prod-support-admin"
+        MYUW_OVERRIDE_GROUP = "u_astra_myuw_prod-support-impersonate"
+        MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = True
+    else:
+        MYUW_ADMIN_GROUP = "u_astra_myuw_test-support-admin"
+        MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
+        MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
+
+MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
 
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
 SUPPORTTOOLS_PARENT_APP_URL = "/"
+
+USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
+USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
+RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
 
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
@@ -84,70 +105,6 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'supporttools.context_processors.has_google_analytics',
     'myuw.context_processors.is_hybrid',
 ]
-
-# RESTCLIENTS overrides
-RESTCLIENTS_SWS_TIMEOUT = 5
-RESTCLIENTS_SWS_POOL_SIZE = 15
-
-RESTCLIENTS_PWS_TIMEOUT = 5
-RESTCLIENTS_PWS_POOL_SIZE = 15
-
-RESTCLIENTS_GWS_TIMEOUT = 5
-RESTCLIENTS_GWS_POOL_SIZE = 15
-
-RESTCLIENTS_UWNETID_TIMEOUT = 2
-RESTCLIENTS_UWNETID_POOL_SIZE = 15
-
-RESTCLIENTS_CANVAS_POOL_SIZE = 10
-
-RESTCLIENTS_CODA_TIMEOUT = 5
-RESTCLIENTS_CODA_POOL_SIZE = 10
-
-RESTCLIENTS_BOOK_TIMEOUT = 5
-RESTCLIENTS_BOOK_POOL_SIZE = 10
-
-RESTCLIENTS_IASYSTEM_UW_TIMEOUT = 5
-RESTCLIENTS_IASYSTEM_UW_POOL_SIZE = 10
-
-RESTCLIENTS_IASYSTEM_UWB_TIMEOUT = 5
-RESTCLIENTS_IASYSTEM_UWB_POOL_SIZE = 10
-
-RESTCLIENTS_IASYSTEM_UWT_TIMEOUT = 5
-RESTCLIENTS_IASYSTEM_UWT_POOL_SIZE = 10
-
-RESTCLIENTS_IASYSTEM_UWEO_AP_TIMEOUT = 5
-RESTCLIENTS_IASYSTEM_UWEO_AP_POOL_SIZE = 10
-
-RESTCLIENTS_IASYSTEM_UWEO_IELP_TIMEOUT = 5
-RESTCLIENTS_IASYSTEM_UWEO_IELP_POOL_SIZE = 5
-
-RESTCLIENTS_LIBCURRICS_TIMEOUT = 5
-RESTCLIENTS_LIBCURRICS_POOL_SIZE = 10
-
-RESTCLIENTS_LIBRARIES_TIMEOUT = 5
-RESTCLIENTS_LIBRARIES_POOL_SIZE = 10
-
-RESTCLIENTS_CALENDAR_TIMEOUT = 5
-RESTCLIENTS_CALENDAR_POOL_SIZE = 10
-
-RESTCLIENTS_MAILMAN_TIMEOUT = 5
-RESTCLIENTS_MAILMAN_POOL_SIZE = 5
-
-RESTCLIENTS_HFS_TIMEOUT = 60
-RESTCLIENTS_HFS_POOL_SIZE = 10
-
-RESTCLIENTS_GRAD_TIMEOUT = 5
-RESTCLIENTS_GRAD_POOL_SIZE = 10
-
-RESTCLIENTS_GRADEPAGE_TIMEOUT = 5
-RESTCLIENTS_GRADEPAGE_POOL_SIZE = 5
-
-RESTCLIENTS_MYPLAN_TIMEOUT = 5
-RESTCLIENTS_MYPLAN_POOL_SIZE = 10
-
-RESTCLIENTS_UPASS_TIMEOUT = 60
-RESTCLIENTS_UPASS_POOL_SIZE = 10
-
 
 LOGGING = {
     'version': 1,
