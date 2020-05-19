@@ -65,6 +65,8 @@ environmentVariables:
     value: PROD
   - name: HFS_ENV
     value: EVAL
+  - name: HFS_TIMEOUT
+    value: "60"
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UWB_ENV
@@ -91,10 +93,13 @@ environmentVariables:
     value: EVAL
   - name: UPASS_ENV
     value: EVAL
+  - name: UPASS_TIMEOUT
+    value: "60"
   - name: UWNETID_ENV
     value: PROD
   - name: CLUSTER_CNAME
     value: test.my.uw.edu
+
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
