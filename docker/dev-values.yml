@@ -59,54 +59,164 @@ environmentVariables:
     value: 'MIID/TCCAuWgAwIBAgIJAMoYJbDt9lKKMA0GCSqGSIb3DQEBBQUAMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdTAeFw0xMTA0MjYxOTEwMzlaFw0yMTA0MjMxOTEwMzlaMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMH9G8m68L0Hf9bmf4/7c+ERxgDQrbq50NfSi2YTQWc1veUIPYbZy1agSNuc4dwn3RtC0uOQbdNTYUAiVTcYgaYceJVB7syWf9QyGIrglZPMu98c5hWb7vqwvs6d3s2Sm7tBib2v6xQDDiZ4KJxpdAvsoPQlmGdgpFfmAsiYrnYFXLTHgbgCc/YhV8lubTakUdI3bMYWfh9dkj+DVGUmt2gLtQUzbuH8EU44vnXgrQYSXNQkmRcyoE3rj4Rhhbu/p5D3P+nuOukLYFOLRaNeiiGyTu3P7gtc/dy/UjUrf+pH75UUU7Lb369dGEfZwvVtITXsdyp0pBfun4CP808H9N0CAwEAAaOBwTCBvjAdBgNVHQ4EFgQUP5smx3ZYKODMkDglkTbduvLcGYAwgY4GA1UdIwSBhjCBg4AUP5smx3ZYKODMkDglkTbduvLcGYChYKReMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdYIJAMoYJbDt9lKKMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBAEo7c2CNHEI+Fvz5DhwumU+WHXqwSOK47MxXwNJVpFQ9GPR2ZGDAq6hzLJLAVWcY4kB3ECDkRtysAWSFHm1roOU7xsU9f0C17QokoXfLNC0d7KoivPM6ctl8aRftU5moyFJkkJX3qSExXrl053uxTOQVPms4ypkYv1A/FBZWgSC8eNoYnBnv1Mhy4m8bfeEN7qT9rFoxh4cVjMH1Ykq7JWyFXLEB4ifzH4KHyplt5Ryv61eh6J1YPFa2RurVTyGpHJZeOLUIBvJu15GzcexuDDXe0kg7sHD6PbK0xzEF/QeXP/hXzMxR9kQXB/IR/b2k4ien+EM3eY/ueBcTZ95dgVM='
   - name: ENV
     value: dev
-  - name: SWS_ENV
-    value: EVAL
-  - name: PWS_ENV
-    value: EVAL
-  - name: GWS_ENV
-    value: EVAL
-  - name: UWNETID_ENV
-    value: EVAL
-  - name: CANVAS_ENV
-    value: EVAL
-  - name: CANVAS_TIMEOUT
-    value: "60"
-  - name: CODA_ENV
-    value: EVAL
-  - name: SDBMYUW_ENV
-    value: EVAL
+
   - name: BOOKSTORE_ENV
     value: PROD
-  - name: IASYSTEM_UW_ENV
-    value: EVAL
-  - name: IASYSTEM_UWB_ENV
-    value: EVAL
-  - name: IASYSTEM_UWT_ENV
-    value: EVAL
-  - name: IASYSTEM_UWEO_AP_ENV
-    value: EVAL
-  - name: IASYSTEM_UWEO_IELP_ENV
-    value: EVAL
-  - name: LIBCURRICS_ENV
-    value: EVAL
-  - name: LIBRARIES_ENV
-    value: EVAL
+  - name: BOOKSTORE_POOL_SIZE
+    value: "10"
+  - name: BOOK_TIMEOUT
+    value: "30"
+
   - name: CALENDAR_ENV
+    value: PROD
+  - name: CALENDAR_POOL_SIZE
+    value: "10"
+  - name: CALENDAR_TIMEOUT
+    value: "5"
+
+  - name: CANVAS_ENV
     value: EVAL
-  - name: MAILMAN_ENV
+  - name: CANVAS_POOL_SIZE
+    value: "10"
+  - name: CANVAS_TIMEOUT
+    value: "60"
+
+  - name: CODA_ENV
     value: EVAL
-  - name: HFS_ENV
-    value: EVAL
+  - name: CODA_POOL_SIZE
+    value: "10"
+  - name: CODA_TIMEOUT
+    value: "5"
+
   - name: GRAD_ENV
     value: EVAL
+  - name: GRAD_POOL_SIZE
+    value: "10"
+  - name: GRAD_TIMEOUT
+    value: "5"
+
   - name: GRADEPAGE_ENV
+    value: PROD
+  - name: GRADEPAGE_POOL_SIZE
+    value: "10"
+  - name: GRADEPAGE_TIMEOUT
+    value: "5"
+
+  - name: GWS_ENV
+    value: PROD
+  - name: GWS_POOL_SIZE
+    value: "10"
+  - name: GWS_TIMEOUT
+    value: "5"
+
+  - name: HFS_ENV
     value: EVAL
+  - name: HFS_POOL_SIZE
+    value: "10"
+  - name: HFS_TIMEOUT
+    value: "60"
+
+  - name: IASYSTEM_UW_ENV
+    value: PROD
+  - name: IASYSTEM_UW_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UW_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UWB_ENV
+    value: PROD
+  - name: IASYSTEM_UWB_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWB_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UWT_ENV
+    value: PROD
+  - name: IASYSTEM_UWT_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWT_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UWEO_AP_ENV
+    value: PROD
+  - name: IASYSTEM_UWEO_AP_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWEO_AP_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UWEO_IELP_ENV
+    value: PROD
+  - name: IASYSTEM_UWEO_IELP_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWEO_IELP_TIMEOUT
+    value: "5"
+
+  - name: LIBCURRICS_ENV
+    value: PROD
+  - name: LIBCURRICS_POOL_SIZE
+    value: "10"
+  - name: LIBCURRICS_TIMEOUT
+    value: "5"
+
+  - name: LIBRARIES_ENV
+    value: PROD
+  - name: LIBRARIES_POOL_SIZE
+    value: "10"
+  - name: LIBRARIES_TIMEOUT
+    value: "5"
+
+  - name: MAILMAN_ENV
+    value: EVAL
+  - name: MAILMAN_POOL_SIZE
+    value: "10"
+  - name: MAILMAN_TIMEOUT
+    value: "5"
+
   - name: MYPLAN_ENV
     value: EVAL
+  - name: MYPLAN_POOL_SIZE
+    value: "10"
+  - name: MYPLAN_TIMEOUT
+    value: "5"
+
+  - name: PWS_ENV
+    value: EVAL
+  - name: PWS_POOL_SIZE
+    value: "20"
+  - name: PWS_TIMEOUT
+    value: "5"
+
+  - name: SDBMYUW_ENV
+    value: EVAL
+  - name: SDBMYUW_POOL_SIZE
+    value: "10"
+  - name: SDBMYUW_TIMEOUT
+    value: "5"
+
+  - name: SWS_ENV
+    value: EVAL
+  - name: SWS_POOL_SIZE
+    value: "20"
+  - name: SWS_TIMEOUT
+    value: "5"
+
   - name: UPASS_ENV
+    value: EVAL
+  - name: UPASS_POOL_SIZE
+    value: "5"
+  - name: UPASS_TIMEOUT
+    value: "60"
+
+  - name: UWNETID_ENV
     value: PROD
+  - name: UWNETID_POOL_SIZE
+    value: "10"
+  - name: UWNETID_TIMEOUT
+    value: "5"
+
   - name: CLUSTER_CNAME
     value: dev.my.uw.edu
+
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -132,3 +242,11 @@ environmentVariablesSecrets:
     name: MAILMAN_AUTH_KEY
     secretName: myuw-dev-secrets
     secretKey: mailman-auth-key
+  email_host-secret:
+    name: EMAIL_HOST
+    secretName: myuw-dev-secrets
+    secretKey: email_host
+  safe_email_recipient-secret:
+    name: SAFE_EMAIL_RECIPIENT
+    secretName: myuw-dev-secrets
+    secretKey: safe_email_recipient
