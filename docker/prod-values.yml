@@ -241,3 +241,7 @@ environmentVariablesSecrets:
     name: MAILMAN_AUTH_KEY
     secretName: my.uw.edu-secrets
     secretKey: mailman-auth-key
+  email_host-secret:
+    name: EMAIL_HOST
+    secretName: my.uw.edu-secrets
+    secretKey: email_host
