@@ -201,11 +201,11 @@ environmentVariables:
     value: "5"
 
   - name: UPASS_ENV
-    value: EVAL
+    value: PROD
   - name: UPASS_POOL_SIZE
     value: "5"
   - name: UPASS_TIMEOUT
-    value: "60"
+    value: "10"
 
   - name: UWNETID_ENV
     value: PROD
