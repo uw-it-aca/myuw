@@ -35,7 +35,7 @@ setup(
         'UW-RestClients-Canvas>=1.1.9,<2.0',
         'UW-RestClients-CoDa<2.0',
         'UW-RestClients-Grad<2.0',
-        'UW-RestClients-GradePage<2.0',
+        'UW-RestClients-GradePage>=1.1,<2.0',
         'UW-RestClients-GWS>=2.3,<3.0',
         'UW-RestClients-HFS<2.0',
         'UW-RestClients-IASystem<2.0',
