@@ -34,7 +34,7 @@ database:
   engine: mysql
   name: myuw
   hostname: dev-my-uw-db
-  secretName: my-dev-gcp-sql-credentials
+  secretName: dev.my.uw.edu-sql-credentials
 repo: myuw
 instance: dev
 image:
@@ -220,33 +220,33 @@ environmentVariables:
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
-    secretName: my-dev-gcp-django-secret
+    secretName: dev.my.uw.edu-secrets
     secretKey: django-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
-    secretName: myuw-dev-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: canvas-account-id
   canvas-token-secret:
     name: CANVAS_OAUTH_BEARER
-    secretName: myuw-dev-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: canvas-oauth-bearer
   coda-token-secret:
     name: CODA_AUTH_TOKEN
-    secretName: myuw-dev-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: coda-auth-token
   mailman-request-secret:
     name: MAILMAN_REQUEST_RECIPIENT
-    secretName: myuw-dev-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: mailman-request-recipient
   mailman-token-secret:
     name: MAILMAN_AUTH_KEY
-    secretName: myuw-dev-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: mailman-auth-key
   email_host-secret:
     name: EMAIL_HOST
-    secretName: myuw-dev-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: email_host
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT
-    secretName: myuw-dev-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: safe_email_recipient
