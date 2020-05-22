@@ -48,7 +48,7 @@ def get_userids(request=None):
                               override_userid,
                               override_userid != actual_userid)
     except Exception as ex:
-        logger.warning("get_userids ==> {}".format(str(ex)))
+        logger.warning({'get_userids': ex})
     return ""
 
 
