@@ -45,13 +45,10 @@ after_success:
         "master")
           export APP_INSTANCE="prod";
           ;;
-        "develop")
+        "qa")
           export APP_INSTANCE="test";
           ;;
-        "qa")
-          export APP_INSTANCE="qa";
-          ;;
-        "feature/gcp")
+        "develop")
           export APP_INSTANCE="dev";
           ;;
         *)
