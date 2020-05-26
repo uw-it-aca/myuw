@@ -64,7 +64,7 @@ environmentVariables:
     value: "5"
 
   - name: CANVAS_ENV
-    value: EVAL
+    value: PROD
   - name: CANVAS_POOL_SIZE
     value: "10"
   - name: CANVAS_TIMEOUT
@@ -78,11 +78,11 @@ environmentVariables:
     value: "5"
 
   - name: GRAD_ENV
-    value: EVAL
+    value: PROD
   - name: GRAD_POOL_SIZE
     value: "10"
   - name: GRAD_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: GRADEPAGE_ENV
     value: EVAL
@@ -99,11 +99,11 @@ environmentVariables:
     value: "5"
 
   - name: HFS_ENV
-    value: EVAL
+    value: PROD
   - name: HFS_POOL_SIZE
     value: "10"
   - name: HFS_TIMEOUT
-    value: "60"
+    value: "5"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
