@@ -28,7 +28,7 @@ externalService:
   enabled: true
   name: dev-my-uw-db
   type: ClusterIP
-  serviceAddress: 172.18.0.3
+  serviceAddress: 172.18.0.19
   servicePort: 3306
 database:
   engine: mysql
@@ -93,7 +93,7 @@ environmentVariables:
   - name: GRAD_POOL_SIZE
     value: "10"
   - name: GRAD_TIMEOUT
-    value: "5"
+    value: "30"
 
   - name: GRADEPAGE_ENV
     value: PROD
