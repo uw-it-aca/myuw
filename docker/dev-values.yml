@@ -93,7 +93,7 @@ environmentVariables:
   - name: GRAD_POOL_SIZE
     value: "10"
   - name: GRAD_TIMEOUT
-    value: "5"
+    value: "30"
 
   - name: GRADEPAGE_ENV
     value: PROD
