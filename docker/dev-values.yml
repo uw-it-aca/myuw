@@ -1,8 +1,8 @@
 autoscaling:
   enabled: true
   minReplicas: 1
-  maxReplicas: 5
-targetAverageUtilization: 95
+  maxReplicas: 2
+targetAverageUtilization: 90
 resources:
   limits:
     cpu: 500m
@@ -28,11 +28,11 @@ externalService:
   enabled: true
   name: dev-my-uw-db
   type: ClusterIP
-  serviceAddress: 172.18.0.3
+  serviceAddress: 172.18.0.19
   servicePort: 3306
 database:
   engine: mysql
-  name: myuw
+  name: myuw_dev
   hostname: dev-my-uw-db
   secretName: dev.my.uw.edu-sql-credentials
 repo: myuw
@@ -93,7 +93,7 @@ environmentVariables:
   - name: GRAD_POOL_SIZE
     value: "10"
   - name: GRAD_TIMEOUT
-    value: "5"
+    value: "30"
 
   - name: GRADEPAGE_ENV
     value: PROD
