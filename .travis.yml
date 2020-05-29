@@ -1,54 +1,66 @@
-sudo: false
-language: python
-services:
-  - memcached
-  - mysql
-python:
-  - "3.6"
-env:
-  matrix:
-    - DB=sqlite3
-    # - DB=mysql
-install:
-  - sudo apt-get install libxml2-dev libxmlsec1-dev
-  - pip install pyyaml ua-parser user-agents
-  - pip install -r requirements.txt
-before_script:
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create database myuw'; fi
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'create user "myuw" identified by "my_pass"'; fi
-  - if [ "$DB" = "mysql" ] ; then mysql -u root -e 'grant all on *.* to myuw'; fi
-  - if [ "$DB" = "mysql" ] ; then pip install mysqlclient; fi
+sudo: required
 
+language: python
+python:
+  - 3.6
+
+services:
+  - docker
+  - memcached
+
+os:
+  - linux
+
+env:
+  global:
+    - RELEASE_NAME="myuw"
+    - DJANGO_APP="myuw"
+    - COMMIT_HASH="$(git rev-parse --short=7 HEAD)"
+    - IMAGE_TAG="${RELEASE_NAME}:${COMMIT_HASH}"
+    - DEPLOY_SCRIPT_BASE=https://raw.githubusercontent.com/uw-it-aca/gcp-app-deploy/master
+    - secure: "Ms3F/3R08D7/DN+Ix/sbc8cGbdpF6F4lUL5gWSYAhjaya82tKLbu0WmfagSCWTUkMDBSP1RpPHJYNmOaCv6S9iXLyZ9t3ErNLhLY44VgcC0b94ebZYk7Tl9zRktodbTkq7LBBVUWNEPzdMZR5nL9H86m8h6D85YX/SheXynQZCE="
+    - secure: "SQFn4ziHQMZ7HnHJ0G4hiaam+CaDKLgRMe3XHiOfR8vDI9ziQ2C1qL4he2G51iSgdD8WyZkGCiJJ4SjcgdNGuXrOpKpPojFwTwHumfGZq/eebU3RBxEITj7zfbedSf6A9wWsgLzNToQ/vOQtl/G0WD3gCUaGh0xjZ6VrJkmlIho="
+    - secure: "JMVV0SG9a04GNq2F304OWnkf6xIaI87Nhf45RoZoU717IMi+xvrz8qX3fYibcv/15eLt+XdeQeu0CxM8/ZSlrReWXf/0/9Qe7m8SxoQj6W35kBIHOEfPln06hP5fq0ruhg5k4eZKQrwCwoeIt3+iOWCtKE+yQJyWvd92t1WX080="
+
+install:
+  - docker build --target app-container -t "$IMAGE_TAG" .
+  - docker build -t app-test-container .
+
+before_script:
+  - gem install coveralls-lcov
   - pip install coverage
   - pip install coveralls
-  - pip install pycodestyle
-  - npm install jquery
-  - npm install moment
-  - npm install moment-timezone
-  - npm install datejs
-  - npm install -g jshint
-  - npm install -g mocha
-  - npm install -g istanbul
-  - npm install jsdom@15.2.1
-  - npm install sinon
-  - npm install coveralls
-  - gem install coveralls-lcov
-  - cp travis-ci/manage.py manage.py
-  - python manage.py migrate
 
 script:
-  - which mocha
-  - which _mocha
-  - which istanbul
-  - pycodestyle myuw/ --exclude=migrations
-  # Find </br> tags
-  - grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test $? -eq 1
-  - grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test $? -eq 1
-  - jshint myuw/static/js/  --verbose
-  - mocha myuw/static/js/test/ --recursive
-  - istanbul cover --include-all-sources -x "**/vendor/**" -x "**/site-packages/**" _mocha -- -R spec myuw/static/js/test/
-  - FORCE_VIEW_TESTS=1 coverage run --source=myuw/ --omit=myuw/migrations/* manage.py test myuw
-  - coveralls-lcov -v -n coverage/lcov.info > js-coverage.json
-after_script:
+  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" -e "MEMCACHED_SERVER_COUNT=1" -e "MEMCACHED_SERVER_SPEC=localhost" app-test-container bash -c ". ./travis-ci/test.sh"
+
+after_success:
+  - cp /tmp/.coverage.* /tmp/lcov.info .
+  - coverage combine
+  - coveralls-lcov -v -n lcov.info > js-coverage.json
   - coveralls --merge=js-coverage.json
-notifications:
+  - |
+    if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      case "$TRAVIS_BRANCH" in
+        "master")
+          export APP_INSTANCE="prod";
+          ;;
+        "qa")
+          export APP_INSTANCE="test";
+          ;;
+        "develop")
+          export APP_INSTANCE="dev";
+          ;;
+        *)
+          unset APP_INSTANCE
+          ;;
+      esac
+      if [[ "$APP_INSTANCE" ]]; then
+        curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
+      fi
+    fi
+
+cache:
+  directories:
+    - "$HOME/helm"
+    - "$HOME/kubeval"

@@ -1,0 +1,247 @@
+autoscaling:
+  enabled: true
+  minReplicas: 4
+  maxReplicas: 16
+resources:
+  limits:
+    cpu: 500m
+    memory: 1024Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+ingress:
+  enabled: true
+  tls:
+    myuw:
+      secretName: prod.my.uw.edu-ingress-cert
+      hosts:
+        - prod.my.uw.edu
+  hosts:
+    myuw:
+      host: prod.my.uw.edu
+      paths:
+        - "/"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+externalService:
+  enabled: true
+  name: my-uw-db
+  type: ClusterIP
+  serviceAddress: 172.18.0.19
+  servicePort: 3306
+database:
+  engine: mysql
+  name: myuw
+  hostname: my-uw-db
+  secretName: my.uw.edu-sql-credentials
+repo: myuw
+instance: prod
+image:
+  repository: registry.hub.docker.com/acait/myuw
+  tag: IMAGE_TAG
+memcached:
+  enabled: true
+  replicaCount: 1
+  updateStrategy:
+    type: RollingUpdate
+certs:
+  mounted: true
+  certPath: /certs/myuw-uwca.cert
+  keyPath: /certs/myuw-uwca.key
+  secretName: my.uw.edu-uwca
+environmentVariables:
+  - name: AUTH
+    value: SAML
+  - name: SP_CERT
+    value: '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'
+  - name: IDP_CERT
+    value: 'MIID/TCCAuWgAwIBAgIJAMoYJbDt9lKKMA0GCSqGSIb3DQEBBQUAMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdTAeFw0xMTA0MjYxOTEwMzlaFw0yMTA0MjMxOTEwMzlaMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMH9G8m68L0Hf9bmf4/7c+ERxgDQrbq50NfSi2YTQWc1veUIPYbZy1agSNuc4dwn3RtC0uOQbdNTYUAiVTcYgaYceJVB7syWf9QyGIrglZPMu98c5hWb7vqwvs6d3s2Sm7tBib2v6xQDDiZ4KJxpdAvsoPQlmGdgpFfmAsiYrnYFXLTHgbgCc/YhV8lubTakUdI3bMYWfh9dkj+DVGUmt2gLtQUzbuH8EU44vnXgrQYSXNQkmRcyoE3rj4Rhhbu/p5D3P+nuOukLYFOLRaNeiiGyTu3P7gtc/dy/UjUrf+pH75UUU7Lb369dGEfZwvVtITXsdyp0pBfun4CP808H9N0CAwEAAaOBwTCBvjAdBgNVHQ4EFgQUP5smx3ZYKODMkDglkTbduvLcGYAwgY4GA1UdIwSBhjCBg4AUP5smx3ZYKODMkDglkTbduvLcGYChYKReMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdYIJAMoYJbDt9lKKMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBAEo7c2CNHEI+Fvz5DhwumU+WHXqwSOK47MxXwNJVpFQ9GPR2ZGDAq6hzLJLAVWcY4kB3ECDkRtysAWSFHm1roOU7xsU9f0C17QokoXfLNC0d7KoivPM6ctl8aRftU5moyFJkkJX3qSExXrl053uxTOQVPms4ypkYv1A/FBZWgSC8eNoYnBnv1Mhy4m8bfeEN7qT9rFoxh4cVjMH1Ykq7JWyFXLEB4ifzH4KHyplt5Ryv61eh6J1YPFa2RurVTyGpHJZeOLUIBvJu15GzcexuDDXe0kg7sHD6PbK0xzEF/QeXP/hXzMxR9kQXB/IR/b2k4ien+EM3eY/ueBcTZ95dgVM='
+  - name: ENV
+    value: prod
+
+  - name: BOOKSTORE_ENV
+    value: PROD
+  - name: BOOKSTORE_POOL_SIZE
+    value: "30"
+  - name: BOOK_TIMEOUT
+    value: "15"
+
+  - name: CALENDAR_ENV
+    value: PROD
+  - name: CALENDAR_TIMEOUT
+    value: "5"
+  - name: CALENDAR_POOL_SIZE
+    value: "30"
+
+  - name: CANVAS_ENV
+    value: PROD
+  - name: CANVAS_TIMEOUT
+    value: "60"
+  - name: CANVAS_POOL_SIZE
+    value: "20"
+
+  - name: CODA_ENV
+    value: PROD
+  - name: CODA_TIMEOUT
+    value: "5"
+  - name: CODA_POOL_SIZE
+    value: "20"
+
+  - name: GRAD_ENV
+    value: PROD
+  - name: GRAD_POOL_SIZE
+    value: "10"
+  - name: GRAD_TIMEOUT
+    value: "5"
+
+  - name: GRADEPAGE_ENV
+    value: PROD
+  - name: GRADEPAGE_POOL_SIZE
+    value: "20"
+  - name: GRADEPAGE_TIMEOUT
+    value: "5"
+
+  - name: GWS_ENV
+    value: PROD
+  - name: GWS_TIMEOUT
+    value: "5"
+  - name: GWS_POOL_SIZE
+    value: "50"
+
+  - name: HFS_ENV
+    value: PROD
+  - name: HFS_TIMEOUT
+    value: "5"
+  - name: HFS_POOL_SIZE
+    value: "50"
+
+  - name: IASYSTEM_UW_ENV
+    value: PROD
+  - name: IASYSTEM_UW_TIMEOUT
+    value: "5"
+  - name: IASYSTEM_UW_POOL_SIZE
+    value: "20"
+
+  - name: IASYSTEM_UWB_ENV
+    value: PROD
+  - name: IASYSTEM_UWB_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWB_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UWT_ENV
+    value: PROD
+  - name: IASYSTEM_UWT_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWT_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UWEO_AP_ENV
+    value: PROD
+  - name: IASYSTEM_UWEO_AP_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWEO_AP_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UWEO_IELP_ENV
+    value: PROD
+  - name: IASYSTEM_UWEO_IELP_POOL_SIZE
+    value: "10"
+  - name: IASYSTEM_UWEO_IELP_TIMEOUT
+    value: "5"
+
+  - name: LIBCURRICS_ENV
+    value: PROD
+  - name: LIBCURRICS_POOL_SIZE
+    value: "20"
+  - name: LIBCURRICS_TIMEOUT
+    value: "5"
+
+  - name: LIBRARIES_ENV
+    value: PROD
+  - name: LIBRARIES_POOL_SIZE
+    value: "20"
+  - name: LIBRARIES_TIMEOUT
+    value: "5"
+
+  - name: MAILMAN_ENV
+    value: PROD
+  - name: MAILMAN_TIMEOUT
+    value: "30"
+  - name: MAILMAN_POOL_SIZE
+    value: "20"
+
+  - name: MYPLAN_ENV
+    value: PROD
+  - name: MYPLAN_TIMEOUT
+    value: "5"
+  - name: MYPLAN_POOL_SIZE
+    value: "20"
+
+  - name: PWS_ENV
+    value: PROD
+  - name: PWS_TIMEOUT
+    value: "5"
+  - name: PWS_POOL_SIZE
+    value: "50"
+
+  - name: SDBMYUW_ENV
+    value: PROD
+  - name: SDBMYUW_POOL_SIZE
+    value: "15"
+  - name: SDBMYUW_TIMEOUT
+    value: "10"
+
+  - name: SWS_ENV
+    value: PROD
+  - name: SWS_TIMEOUT
+    value: "5"
+  - name: SWS_POOL_SIZE
+    value: "50"
+
+  - name: UPASS_ENV
+    value: PROD
+  - name: UPASS_TIMEOUT
+    value: "10"
+  - name: UPASS_POOL_SIZE
+    value: "20"
+
+  - name: UWNETID_ENV
+    value: PROD
+  - name: UWNETID_POOL_SIZE
+    value: "50"
+  - name: UWNETID_TIMEOUT
+    value: "5"
+
+  - name: CLUSTER_CNAME
+    value: prod.my.uw.edu
+
+environmentVariablesSecrets:
+  django-secret:
+    name: DJANGO_SECRET
+    secretName: my.uw.edu-secrets
+    secretKey: django-secret
+  canvas-account-secret:
+    name: CANVAS_ACCOUNT_ID
+    secretName: my.uw.edu-secrets
+    secretKey: canvas-account-id
+  canvas-token-secret:
+    name: CANVAS_OAUTH_BEARER
+    secretName: my.uw.edu-secrets
+    secretKey: canvas-oauth-bearer
+  coda-token-secret:
+    name: CODA_AUTH_TOKEN
+    secretName: my.uw.edu-secrets
+    secretKey: coda-auth-token
+  mailman-request-secret:
+    name: MAILMAN_REQUEST_RECIPIENT
+    secretName: my.uw.edu-secrets
+    secretKey: mailman-request-recipient
+  mailman-token-secret:
+    name: MAILMAN_AUTH_KEY
+    secretName: my.uw.edu-secrets
+    secretKey: mailman-auth-key
+  email_host-secret:
+    name: EMAIL_HOST
+    secretName: my.uw.edu-secrets
+    secretKey: email_host
