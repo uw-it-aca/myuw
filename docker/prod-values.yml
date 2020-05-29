@@ -213,6 +213,13 @@ environmentVariables:
   - name: UWNETID_TIMEOUT
     value: "5"
 
+  - name: UWIDP_ENV
+    value: PROD
+  - name: UWIDP_POOL_SIZE
+    value: "5"
+  - name: UWIDP_TIMEOUT
+    value: "10"
+
   - name: CLUSTER_CNAME
     value: prod.my.uw.edu
 

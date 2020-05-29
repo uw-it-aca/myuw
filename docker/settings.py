@@ -40,6 +40,8 @@ if os.getenv('AUTH', 'NONE') == 'SAML_MOCK':
 # MYUW_PREFETCH_THREADING = True
 MYUW_ENABLED_FEATURES = []
 
+MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
+
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = 587
 EMAIL_TIMEOUT = 15
@@ -50,11 +52,23 @@ else:
     EMAIL_BACKEND = "saferecipient.EmailBackend"
     SAFE_EMAIL_RECIPIENT = os.getenv("SAFE_EMAIL_RECIPIENT")
 
+# uw_oidc settings
+if os.getenv("ENV", "") == "prod":
+    UW_TOKEN_ISSUER = "https://idp.u.washington.edu"
+    UW_TOKEN_SESSION_AGE = 28800
+else:
+    UW_TOKEN_ISSUER = "https://idp-eval.u.washington.edu"
+    UW_TOKEN_SESSION_AGE = 600
+UW_TOKEN_AUDIENCE = "oidc/myuw"
+UW_TOKEN_LEEWAY = 30
+UW_OIDC_ENABLE_LOGGING = True
+
 # Thrive required settings
 MEDIA_ROOT = "/statics/hx_images"
 MEDIA_URL = "/uploaded_images/"
 THRIVE_OUTPUT = "/hx_toolkit_output"
 
+# dev/test site access settings
 MYUW_PROD_URL = "https://my.uw.edu/"
 if os.getenv("ENV", "") == "localdev":
     MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
@@ -71,8 +85,6 @@ else:
         MYUW_ADMIN_GROUP = "u_astra_myuw_test-support-admin"
         MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
         MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
-
-MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
 
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"
@@ -147,6 +159,10 @@ LOGGING = {
             'format': '%(levelname)-4s link %(module)s %(asctime)s %(message)s [%(name)s]',
             'datefmt': '%d %H:%M:%S',
         },
+        'oidc': {
+            'format': '%(levelname)-4s oidc %(module)s %(asctime)s %(message)s [%(name)s]',
+            'datefmt': '%d %H:%M:%S',
+        },
         'session': {
             'format': '%(levelname)-4s session %(module)s %(asctime)s %(message)s [%(name)s]',
             'datefmt': '%d %H:%M:%S',
@@ -207,6 +223,13 @@ LOGGING = {
             'stream': sys.stdout,
             'filters': ['stdout_stream'],
             'formatter': 'link',
+        },
+        'oidc': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'oidc',
         },
         'session': {
             'level': 'INFO',
@@ -310,6 +333,11 @@ LOGGING = {
         },
         'link': {
             'handlers': ['link'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'uw_oidc': {
+            'handlers': ['oidc'],
             'level': 'INFO',
             'propagate': False,
         },
