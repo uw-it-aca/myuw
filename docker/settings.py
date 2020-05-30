@@ -53,12 +53,12 @@ else:
     SAFE_EMAIL_RECIPIENT = os.getenv("SAFE_EMAIL_RECIPIENT")
 
 # uw_oidc settings
-if os.getenv("ENV", "") == "prod":
-    UW_TOKEN_ISSUER = "https://idp.u.washington.edu"
-    UW_TOKEN_SESSION_AGE = 28800
-else:
+if os.getenv("ENV", "") == "dev":
     UW_TOKEN_ISSUER = "https://idp-eval.u.washington.edu"
     UW_TOKEN_SESSION_AGE = 600
+else:
+    UW_TOKEN_ISSUER = "https://idp.u.washington.edu"
+    UW_TOKEN_SESSION_AGE = 28800
 UW_TOKEN_AUDIENCE = "oidc/myuw"
 UW_TOKEN_LEEWAY = 30
 UW_OIDC_ENABLE_LOGGING = True
