@@ -94,8 +94,6 @@ USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
 
-WSGIPassAuthorization on
-
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
