@@ -64,9 +64,8 @@ def page(request,
 
     try:
         affiliations = get_all_affiliations(request)
-    except DataFailureException:
-        log_exception(logger, "GWS error (or SWS err on student, instructor)",
-                      traceback)
+    except DataFailureException as err:
+        log_exception(logger, err, traceback)
         return render(request, '500.html', status=500)
 
     user_pref = get_migration_preference(request)
