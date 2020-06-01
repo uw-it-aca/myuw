@@ -32,9 +32,9 @@ def get_cache_time(service, url):
             return ONE_DAY * 30
         return ONE_DAY * 7
 
-    if "uw_idp" == service:
+    if "uwidp" == service:
         if re.match(r'^/idp/profile/oidc/keyset', url):
-            return ONE_DAY * 30
+            return ONE_DAY
 
     if "gws" == service:
         return FIFTEEN_MINS
