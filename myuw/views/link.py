@@ -6,10 +6,12 @@ from urllib.parse import unquote
 from django.http import HttpResponseRedirect, HttpResponse
 from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao import is_action_disabled, get_netid_of_current_user
 from myuw.dao.user import get_user_model
 from myuw.models import VisitedLinkNew
+from myuw.logger.logresp import log_exception
 from myuw.views import prefetch_resources
 
 
@@ -40,7 +42,12 @@ def save_visited_link(request):
     if label:
         label = unquote(label)
 
-    affiliations = get_all_affiliations(request)
+    try:
+        affiliations = get_all_affiliations(request)
+    except DataFailureException:
+        log_exception(logger, "save_visited_link", traceback)
+        return
+
     link_data = {"user": user,
                  "url": url,
                  "label": label,
