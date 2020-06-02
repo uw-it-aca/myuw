@@ -13,7 +13,6 @@ from uw_iasystem.exceptions import TermEvalNotCreated
 from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.term import get_specific_term
-from uw_gradepage.grading_status import get_grading_status
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
@@ -191,7 +190,7 @@ def set_course_resources(section_data, section, person):
             if d is not None and k is not None:
                 d[k] = t.response
         else:
-            logger.error("{}: {}".format(k, str(t.exception)))
+            logger.error("{}: {}".format(k, t.exception))
 
 
 def get_enrollment_status_for_section(section, section_json):
