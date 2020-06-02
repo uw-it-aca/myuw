@@ -1,6 +1,6 @@
 import logging
-from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
+from django.core.management.base import BaseCommand, CommandError
 from myuw.logger.timer import Timer
 
 logger = logging.getLogger('session')
@@ -18,6 +18,11 @@ class Command(BaseCommand):
 
         for session in Session.objects.all():
             data = session.get_decoded()
+            if len(data) == 0:
+                # clean up corrupted entry
+                session.delete()
+                continue
+
             if (data.get('uw_oidc_idtoken') and
                     data.get('_uw_original_user') == netid):
                 logger.info(log_format.format(netid, data))
