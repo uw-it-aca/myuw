@@ -13,7 +13,7 @@ describe("Seattle Applicant card", function() {
                 'myuw/templates/handlebars/card/seattle_application.html'
             ]
         });
-        
+
         SeattleApplicationCard.dom_target = $('#' + render_id);
         done();
     });
