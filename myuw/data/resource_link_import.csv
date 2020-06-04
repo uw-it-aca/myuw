@@ -27,7 +27,6 @@ Academics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Sea
 Academics,Registration,all,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education (PCE) Time Schedule,,,,,,,no
 Academics,Registration,all,https://www.degreereg.uw.edu/user-guide,How to Register for PCE Courses,,,,,,,no
 Academics,Tools and Software,all,http://canvas.uw.edu/,Canvas LMS,,,,,,,no
-Academics,Tools and Software,all,https://washington.zoom.us/,UW Zoom,,,,,,,yes
 Academics,Tools and Software,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
 Academics,Tools and Software,all,https://notify.uw.edu/,Notify.UW,,,,,,,no
 Academics,Tools and Software,all,,,http://scout.uw.edu/seattle,Scout: Discover the UW,http://scout.uw.edu/bothell,Scout: Discover the UW,http://scout.uw.edu/tacoma,Scout: Discover the UW,no
@@ -146,7 +145,6 @@ Teaching,Grading,all,http://gradepage.uw.edu,GradePage,,,,,,,no
 Teaching,Grading,all,https://apps.registrar.washington.edu/grade-change/pages/change.php,Change Submitted Grades,,,,,,,no
 Teaching,Grading,all,,,http://depts.washington.edu/grading,Faculty Resource on Grading,https://www.uwb.edu/registration/policies/grading,Grading Policies,http://www.tacoma.uw.edu/node/37545,Grading Policy,no
 Teaching,In-Class Tools,all,http://canvas.uw.edu,Canvas LMS,,,,,,,no
-Teaching,In-Class Tools,all,https://washington.zoom.us/,UW Zoom,,,,,,,yes
 Teaching,In-Class Tools,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
 Teaching,In-Class Tools,all,http://panopto.uw.edu,Panopto Lecture Capture,,,,,,,no
 Teaching,In-Class Tools,all,https://itconnect.uw.edu/learn/tools/polleverywhere/,Poll Everywhere,,,,,,,no
