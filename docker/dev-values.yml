@@ -24,6 +24,8 @@ ingress:
         - "/"
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+readiness:
+  enabled: true
 externalService:
   enabled: true
   name: dev-my-uw-db
