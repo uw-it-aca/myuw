@@ -13,8 +13,11 @@ class TestValidation(TestCase):
         self.assertEquals(validate_netid(""), NO_USER)
         self.assertEquals(validate_netid("jaVeRaGe"), None)
         self.assertEquals(validate_netid("a_canvas"), None)
-        self.assertEquals(validate_netid("thisialongnetid1.2-3_456789"),
-                          INVALID_STRING)
+        self.assertEquals(
+            validate_netid(
+                "alongnetid" +
+                "012345678901234567890123456789012345678901234567890123456"),
+            INVALID_STRING)
         self.assertEquals(validate_netid("99invalid"), INVALID_STRING)
 
     def test_can_override_user(self):

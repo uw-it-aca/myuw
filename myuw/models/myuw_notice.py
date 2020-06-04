@@ -11,7 +11,7 @@ class MyuwNotice(models.Model):
 
     start = models.DateTimeField()
     end = models.DateTimeField(null=True)
-    last_edit_by = models.CharField(max_length=16)
+    last_edit_by = models.CharField(max_length=128)
     last_edit_date = models.DateTimeField(auto_now=True)
 
     # Affiliation Targeting
