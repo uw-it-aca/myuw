@@ -11,7 +11,8 @@ def validate_netid(username):
     if len(username) == 0:
         return NO_USER
 
-    if not PWS().valid_uwnetid(username) or len(username) > 16:
+    if not PWS().valid_uwnetid(username) or len(username) > 64:
+        # max for shared netid is 64
         return INVALID_STRING
 
     return None
