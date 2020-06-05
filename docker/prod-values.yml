@@ -162,7 +162,7 @@ environmentVariables:
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: LIBRARIES_TIMEOUT
     value: "5"
 
@@ -178,7 +178,7 @@ environmentVariables:
   - name: MYPLAN_TIMEOUT
     value: "5"
   - name: MYPLAN_POOL_SIZE
-    value: "20"
+    value: "30"
 
   - name: PWS_ENV
     value: PROD
@@ -206,7 +206,7 @@ environmentVariables:
   - name: UPASS_TIMEOUT
     value: "10"
   - name: UPASS_POOL_SIZE
-    value: "20"
+    value: "30"
 
   - name: UWNETID_ENV
     value: PROD
