@@ -14,11 +14,23 @@ def log_session(request):
                                     json.dumps(_get_affi(request))))
 
 
+def log_session_end(request):
+    logger.info("{}, {}".format(
+        get_userids(),
+        json.dumps({'msg': 'logout',
+                    'session_key': hash_session_key(request),
+                    'is_native': is_native(request)})))
+
+
 def _get_session_data(request):
-    return {'session_key': hash_session_key(request),
-            'ip': get_ip(request),
-            'is_mobile': is_mobile(request),
-            'referer': request.META.get('HTTP_REFERER')}
+    ret_val = {'session_key': hash_session_key(request),
+               'ip': get_ip(request),
+               'is_native': is_native(request),
+               'is_mobile': is_mobile(request),
+               'referer': request.META.get('HTTP_REFERER')}
+    if ret_val['is_native']:
+        ret_val['uuid'] = request.session.get('uw_uuid')
+    return ret_val
 
 
 def _get_affi(request):
@@ -83,3 +95,11 @@ def is_mobile(request):
     except Exception as ex:
         logger.warning("is_mobile ==> {}".format(str(ex)))
     return ""
+
+
+def is_native(request):
+    try:
+        ua_string = request.META['HTTP_USER_AGENT']
+    except KeyError:
+        ua_string = ""
+    return 'MyUW_Hybrid' in ua_string

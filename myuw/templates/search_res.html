@@ -4,7 +4,7 @@
 {% load compress %}
 
 {% block load_values %}
-{% set_context 'page_title' 'Search Results' %}
+{% set_context 'page_title' 'Search the UW' %}
 {% endblock %}
 
 {% block content %}
@@ -13,27 +13,8 @@
         <div class="container search-container">
             <div id="search_content">
 
-                <h2 class="heading-page" id="main-content-label">{{ page_title }}</h2>
-
-                <form action="/search" method="get" class="uw-search">
-                    <label class="sr-only" for="search-results-page">Search for:</label>
-                    <input id="search-results-page" name="q" type="text" placeholder="Search for:">
-                    <button type="submit" value="Search" style="background-image: url({% static 'images/search.svg' %});">Search</button>
-                </form>
-
-                <script>
-                  (function() {
-                    var cx = '{{ google_search_key }}';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                  })();
-                </script>
-                <gcse:searchresults-only></gcse:searchresults-only>
-            </div>
+                <h4><strong>Looking for something you can't find?</strong></h4>
+                <p>Check out <a href="/resources/">UW Resources</a> for links to common UW destinations, or use the serach field above to search all of the UW.</p>
         </div>
     </div>
     <div id="static-links"></div>

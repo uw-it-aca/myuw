@@ -16,14 +16,17 @@ MEMCACHE = 'myuw.util.cache_implementation.MyUWMemcachedCache'
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
-FOUR_HOURS = 60 * 60 * 4
-ONE_DAY = 60 * 60 * 24
+FOUR_HOURS = ONE_HOUR * 4
+ONE_DAY = ONE_HOUR * 24
 
 
 @fdao_sws_override
 class TestCustomCachePolicy(TestCase):
 
     def test_get_cache_time(self):
+        self.assertEquals(get_cache_time(
+            "uwidp", "/idp/profile/oidc/keyset"), ONE_DAY)
+
         self.assertEquals(get_cache_time(
             "myplan", "/api/plan/"), FIVE_SECONDS)
 

@@ -20,10 +20,12 @@ ingress:
   hosts:
     myuw:
       host: dev.my.uw.edu
-      paths: 
+      paths:
         - "/"
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+readiness:
+  enabled: true
 externalService:
   enabled: true
   name: dev-my-uw-db
@@ -213,6 +215,13 @@ environmentVariables:
     value: "10"
   - name: UWNETID_TIMEOUT
     value: "5"
+
+  - name: UWIDP_ENV
+    value: EVAL
+  - name: UWIDP_POOL_SIZE
+    value: "2"
+  - name: UWIDP_TIMEOUT
+    value: "10"
 
   - name: CLUSTER_CNAME
     value: dev.my.uw.edu

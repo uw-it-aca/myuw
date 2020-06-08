@@ -1,6 +1,7 @@
 from myuw.views.error import (
     not_instructor_error, data_not_found, no_access, data_error,
-    unknown_uwnetid, invalid_input_data, invalid_method, invalid_future_term)
+    disabled_action_error, invalid_future_term, invalid_input_data,
+    invalid_method, not_instructor_error, unknown_uwnetid)
 from myuw.test.api import MyuwApiTest
 
 
@@ -27,6 +28,12 @@ class TestViewsError(MyuwApiTest):
              b'please try signing in to MyUW again in one hour.</p>'))
         self.assertEquals(response.status_code, 400)
 
+    def test_disabled_action_error(self):
+        response = disabled_action_error()
+        self.assertEquals(response.content,
+                          b'Action Disabled while overriding users')
+        self.assertEquals(response.status_code, 403)
+
     def test_no_access(self):
         response = no_access()
         self.assertEquals(
@@ -34,6 +41,12 @@ class TestViewsError(MyuwApiTest):
             (b'<p>This is a test environment of MyUW, '
              b'its access is limited to specific people. To request access, '
              b'please contact the UW-IT Service Center.</p>'))
+        self.assertEquals(response.status_code, 403)
+
+    def test_not_instructor_error(self):
+        response = not_instructor_error()
+        self.assertEquals(response.content,
+                          b'Access Forbidden to Non Instructor')
         self.assertEquals(response.status_code, 403)
 
     def test_invalid_input_data(self):
