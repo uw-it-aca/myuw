@@ -2,9 +2,12 @@ from unittest import skipIf
 from unittest.mock import patch
 from django.urls import reverse
 from django.test.client import RequestFactory
+from unittest.mock import patch
+from myuw.views.page import logout
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.test.api import missing_url, MyuwApiTest
+from myuw.test import get_request_with_user
 
 
 class TestPageMethods(MyuwApiTest):
@@ -113,6 +116,21 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.url, "/saml/login?next=/")
+
+    @skipIf(missing_url("myuw_logout"), "myuw_logout not configured")
+    def test_logout(self):
+        self.set_user('javerage')
+        url = reverse("myuw_logout")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.url, "/saml/logout")
+
+        with patch('myuw.views.page.django_logout') as mock:
+            mock.return_value = None
+            req = get_request_with_user('javerage')
+            req.META['HTTP_USER_AGENT'] = 'Mozilla/5.0 MyUW_Hybrid/1.0'
+            response = logout(req)
+            self.assertEquals(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_user_not_in_pws(self):

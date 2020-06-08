@@ -19,10 +19,12 @@ ingress:
   hosts:
     myuw:
       host: prod.my.uw.edu
-      paths: 
+      paths:
         - "/"
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+readiness:
+  enabled: true
 externalService:
   enabled: true
   name: my-uw-db
@@ -160,7 +162,7 @@ environmentVariables:
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: LIBRARIES_TIMEOUT
     value: "5"
 
@@ -176,7 +178,7 @@ environmentVariables:
   - name: MYPLAN_TIMEOUT
     value: "5"
   - name: MYPLAN_POOL_SIZE
-    value: "20"
+    value: "30"
 
   - name: PWS_ENV
     value: PROD
@@ -204,7 +206,7 @@ environmentVariables:
   - name: UPASS_TIMEOUT
     value: "10"
   - name: UPASS_POOL_SIZE
-    value: "20"
+    value: "30"
 
   - name: UWNETID_ENV
     value: PROD
@@ -212,6 +214,13 @@ environmentVariables:
     value: "50"
   - name: UWNETID_TIMEOUT
     value: "5"
+
+  - name: UWIDP_ENV
+    value: PROD
+  - name: UWIDP_POOL_SIZE
+    value: "5"
+  - name: UWIDP_TIMEOUT
+    value: "10"
 
   - name: CLUSTER_CNAME
     value: prod.my.uw.edu
