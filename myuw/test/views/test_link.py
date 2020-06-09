@@ -24,3 +24,22 @@ class TestViewsLinkAdmin(MyuwApiTest):
         self.assertEquals(response.status_code, 302)
         vlinks = VisitedLinkNew.objects.all()
         self.assertEquals(len(vlinks), 1)
+        VisitedLinkNew.objects.all().delete()
+
+        url = "/out?u={}&l={}".format(
+            "https%3A%2F%2Fcoda.uw.edu%2F%232020-spring-TRAIN-100-A",
+            "Course%20Dashboard%20for%20TRAIN%20100%20A")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+        vlinks = VisitedLinkNew.objects.all()
+        self.assertEquals(len(vlinks), 1)
+        self.assertEquals(vlinks[0].label, "Course Dashboard for TRAIN 100 A")
+        VisitedLinkNew.objects.all().delete()
+
+        url = "/out?u={}&l=".format(
+            "https%3A%2F%2Fcoda.uw.edu%2F%232020-spring-TRAIN-100-A")
+        response = self.client.get(url)
+        self.assertEquals(response.status_code, 302)
+        vlinks = VisitedLinkNew.objects.all()
+        self.assertEquals(len(vlinks), 1)
+        self.assertEquals(vlinks[0].label, "")
