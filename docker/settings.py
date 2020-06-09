@@ -142,11 +142,11 @@ LOGGING = {
             'datefmt': '%Y-%m-%d %H:%M:%S',
         },
         'pref': {
-            'format': '%(levelname)-4s pref %(module)s %(asctime)s %(message)s [%(name)s]',
+            'format': '%(levelname)-4s pref:%(name)s %(module)s %(asctime)s %(message)s',
             'datefmt': '%Y-%m-%d %H:%M:%S',
         },
         'event': {
-            'format': '%(levelname)-4s event %(module)s %(asctime)s %(message)s [%(name)s]',
+            'format': '%(levelname)-4s event:%(name)s %(module)s %(asctime)s %(message)s',
             'datefmt': '%Y-%m-%d %H:%M:%S',
         },
     },
