@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.sessions.models import Session
 from myuw.logger.timer import Timer
 
-logger = logging.getLogger('session')
+logger = logging.getLogger(__name__)
 log_format = "Deleted session of {}: {}"
 
 
