@@ -308,5 +308,5 @@ environmentVariablesSecrets:
     secretKey: dev.my.uw.edu.cert
   SAMLIDPCert:
     name: IDP_CERT
-    secretName: uw-idp-cert
-    secretKey: idp.uw-cert
+    secretName: dev.my.uw.edu-uw-idp-cert
+    secretKey: uw-idp-cert
