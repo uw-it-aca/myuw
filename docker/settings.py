@@ -138,16 +138,13 @@ LOGGING = {
     },
     'formatters': {
         'myuw': {
-            'format': '%(levelname)-4s %(name)s %(asctime)s %(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S',
+            'format': '%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
         'pref': {
-            'format': '%(levelname)-4s pref:%(name)s %(module)s %(asctime)s %(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S',
+            'format': 'pref:%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
         'event': {
-            'format': '%(levelname)-4s event:%(name)s %(module)s %(asctime)s %(message)s',
-            'datefmt': '%Y-%m-%d %H:%M:%S',
+            'format': 'event:%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
     },
     'handlers': {
