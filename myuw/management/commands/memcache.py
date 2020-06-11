@@ -16,4 +16,3 @@ class Command(BaseCommand):
         logger.info("Stats {}".format(client.stats()))
         if action == "flush":
             logger.info("Flush all successful: {}".format(client.flush_all()))
-            logger.info("Stats after flush: {}".format(client.stats()))
