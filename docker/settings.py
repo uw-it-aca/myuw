@@ -62,7 +62,7 @@ else:
     UW_TOKEN_ISSUER = "https://idp.u.washington.edu"
     UW_TOKEN_SESSION_AGE = 3600
 UW_TOKEN_AUDIENCE = "oidc/myuw"
-UW_TOKEN_LEEWAY = 30
+UW_TOKEN_LEEWAY = 2
 UW_OIDC_ENABLE_LOGGING = True
 
 # Thrive required settings
