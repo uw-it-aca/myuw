@@ -1,6 +1,7 @@
 import logging
 import os
 import re
+import traceback
 from django.contrib.auth.decorators import login_required
 from urllib.parse import unquote
 from django.http import HttpResponseRedirect, HttpResponse
@@ -35,17 +36,19 @@ def outbound_link(request):
 
 def save_visited_link(request):
     url = request.GET.get('u', '')
-    label = request.GET.get('l', None)
+    label = request.GET.get('l', '')
     user = get_user_model(request)
     prefetch_resources(request, prefetch_group=True, prefetch_sws_person=True)
 
-    if label:
+    if label and len(label) > 0:
         label = unquote(label)
+        if len(label) > 50:
+            label = label[:50]
 
     try:
         affiliations = get_all_affiliations(request)
-    except DataFailureException:
-        log_exception(logger, "save_visited_link", traceback)
+    except DataFailureException as er:
+        log_exception(logger, er, traceback)
         return
 
     link_data = {"user": user,
@@ -65,7 +68,10 @@ def save_visited_link(request):
                  "is_student_employee": affiliations.get('stud_employee',
                                                          False)
                  }
-    VisitedLinkNew.objects.create(**link_data)
+    try:
+        VisitedLinkNew.objects.create(**link_data)
+    except django.db.utils.DataError as ex:
+        log_exception(logger, ex, traceback)
 
 
 def is_link_of_interest(url):
