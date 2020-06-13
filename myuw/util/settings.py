@@ -53,3 +53,11 @@ def get_enabled_features():
 
 def get_myuw_test_access_group():
     return getattr(settings, "MYUW_TEST_ACCESS_GROUP", None)
+
+
+def get_cronjob_recipient():
+    return getattr(settings, 'CRONJOB_RECIPIENT', 'myuw_cron')
+
+
+def get_cronjob_sender():
+    return getattr(settings, 'CRONJOB_SENDER', 'myuw')
