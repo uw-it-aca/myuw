@@ -54,15 +54,15 @@ certs:
 cronjob:
   enabled: true
   jobs:
-#    - name: load_section_status_changes_prod
+#    - name: load_section_status_changes
 #      schedule: "* * * * *"
 #      command: ["/scripts/management_command.sh"]
 #      args: ["load_section_status_changes"]
-    - name: clear_expired_sessions_prod
+    - name: clear_expired_sessions
       schedule: "1 3 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
-    - name: check_reslinks_prod
+    - name: check_reslinks
       schedule: "1 3 * * 7"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
