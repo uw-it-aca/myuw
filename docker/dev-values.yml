@@ -256,6 +256,12 @@ externalSecrets:
           property: mailman-request-recipient
         - name: safe-email-recipient
           property: safe-email-recipient
+        - name: section-status-queue-arn
+          property: section-status-queue-arn
+        - name: section-status-key-id
+          property: section-status-key-id
+        - name: section-status-key
+          property: section-status-key
     - name: dev.my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/dev/sql-secrets
       data:
@@ -313,6 +319,18 @@ environmentVariablesSecrets:
     name: SAFE_EMAIL_RECIPIENT
     secretName: dev.my.uw.edu-secrets
     secretKey: safe-email-recipient
+  SectionStatusQueueARN:
+    name: SECTION_STATUS_QUEUE_ARN
+    secretName: dev.my.uw.edu-secrets
+    secretKey: section-status-queue-arn
+  SectionStatus:
+    name: SECTION_STATUS_KEY_ID
+    secretName: dev.my.uw.edu-secrets
+    secretKey: section-status-key-id
+  SectionStatus:
+    name: SECTION_STATUS_KEY
+    secretName: dev.my.uw.edu-secrets
+    secretKey: section-status-key
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: dev.my.uw.edu-ic-certs
