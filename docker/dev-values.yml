@@ -56,11 +56,11 @@ cronjob:
   enabled: true
   jobs:
     - name: clear-expired-sessions
-      schedule: "1 20 * * 1"
+      schedule: "1 * * * 1"
       command: ["/scripts/management_command.sh"]
-      args: ["clear_expired_sessions", "30"]
+      args: ["clear_expired_sessions", "7"]
     - name: check-reslinks
-      schedule: "30 19 * * 1"
+      schedule: "50 * * * 1"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
 environmentVariables:
