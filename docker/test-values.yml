@@ -248,3 +248,23 @@ environmentVariablesSecrets:
     name: SAFE_EMAIL_RECIPIENT
     secretName: test.my.uw.edu-secrets
     secretKey: safe_email_recipient
+  SectionStatusQueueARN:
+    name: SECTION_STATUS_QUEUE_ARN
+    secretName: test.my.uw.edu-secrets
+    secretKey: section-status-queue-arn
+  SectionStatus:
+    name: SECTION_STATUS_KEY_ID
+    secretName: test.my.uw.edu-secrets
+    secretKey: section-status-key-id
+  SectionStatus:
+    name: SECTION_STATUS_KEY
+    secretName: test.my.uw.edu-secrets
+    secretKey: section-status-key
+  SAMLServiceProviderCert:
+    name: SP_CERT
+    secretName: test.my.uw.edu-ic-certs
+    secretKey: test.my.uw.edu.cert
+  SAMLIDPCert:
+    name: IDP_CERT
+    secretName: test.my.uw.edu-uw-idp-cert
+    secretKey: uw-idp-cert

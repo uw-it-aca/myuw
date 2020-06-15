@@ -269,7 +269,23 @@ environmentVariablesSecrets:
     name: EMAIL_HOST
     secretName: my.uw.edu-secrets
     secretKey: email_host
-  aws_sqs-secret:
-    name: AWS_SQS
+  SectionStatusQueueARN:
+    name: SECTION_STATUS_QUEUE_ARN
     secretName: my.uw.edu-secrets
-    secretKey: aws_sqs
+    secretKey: section-status-queue-arn
+  SectionStatus:
+    name: SECTION_STATUS_KEY_ID
+    secretName: my.uw.edu-secrets
+    secretKey: section-status-key-id
+  SectionStatus:
+    name: SECTION_STATUS_KEY
+    secretName: my.uw.edu-secrets
+    secretKey: section-status-key
+  SAMLServiceProviderCert:
+    name: SP_CERT
+    secretName: my.uw.edu-ic-certs
+    secretKey: my.uw.edu.cert
+  SAMLIDPCert:
+    name: IDP_CERT
+    secretName: my.uw.edu-uw-idp-cert
+    secretKey: uw-idp-cert
