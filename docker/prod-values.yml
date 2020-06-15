@@ -59,11 +59,11 @@ cronjob:
 #      command: ["/scripts/management_command.sh"]
 #      args: ["load_section_status_changes"]
     - name: clear-expired-sessions
-      schedule: "1 3 * * 6"
+      schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
     - name: check-reslinks
-      schedule: "1 3 * * 7"
+      schedule: "1 10 * * 7"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
 environmentVariables:
