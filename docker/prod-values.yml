@@ -269,3 +269,7 @@ environmentVariablesSecrets:
     name: EMAIL_HOST
     secretName: my.uw.edu-secrets
     secretKey: email_host
+  aws_sqs-secret:
+    name: AWS_SQS
+    secretName: my.uw.edu-secrets
+    secretKey: aws_sqs

@@ -42,6 +42,8 @@ MYUW_ENABLED_FEATURES = []
 
 MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?cid="
 
+AWS_SQS = os.getenv("AWS_SQS")
+
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = 587
 EMAIL_TIMEOUT = 15
