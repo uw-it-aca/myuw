@@ -50,7 +50,7 @@ def get_http_status(url, messages):
             'GET',
             url,
             headers={'User-Agent': ua},
-            retries=urllib3.Retry(redirect=1, connect=2, read=2)
+            retries=urllib3.Retry(redirect=3, connect=2, read=2)
         )
         return result.status
     except Exception as ex:
