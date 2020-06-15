@@ -48,6 +48,7 @@ class Command(BaseCommand):
 
                 run_delete(cut_off_dt)
             except Exception as ex:
+                logger.error(ex)
                 errors.append("{}\n".format(ex))
         if len(errors):
             send_mail("Clear Expired Django Session Weekly Cron",

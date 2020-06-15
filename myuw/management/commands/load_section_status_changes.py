@@ -21,7 +21,8 @@ class Command(BaseCommand):
         try:
             Gather(processor=SectionStatusProcessor()).gather_events()
             logger.info("Total Time: {} seconds".format(timer.get_elapsed()))
-        except Exception:
+        except Exception as ex:
+            logger.error(ex)
             send_mail("Loads Section Status change Cron",
                       "{}".format(traceback.format_exc(chain=False)),
                       "{}@uw.edu".format(get_cronjob_sender()),

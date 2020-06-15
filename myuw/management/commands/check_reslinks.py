@@ -29,10 +29,11 @@ class Command(BaseCommand):
                 continue
             status = get_http_status(link.url, messages)
             if status not in [200]:
-                messages.append(
-                    "{}, {}, URL: {} =status=> {}\n\n".format(
-                        link.title, make_campus_human_readable(link.campus),
-                        link.url, status))
+                msg = "{}, {}, URL: {} =status=> {}\n\n".format(
+                    link.title, make_campus_human_readable(link.campus),
+                    link.url, status)
+                logger.error(msg)
+                messages.append(msg)
         if len(messages):
             send_mail("Check Cetegory Links Cron",
                       "\n".join(messages),
