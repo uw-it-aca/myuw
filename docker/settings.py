@@ -6,14 +6,15 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
     'uw_oidc',
-    'django_user_agents',
     'compressor',
     'django_client_logger',
-    'userservice',
+    'django_user_agents',
+    'hx_toolkit',
+    'python3_saml_patch',
     'rc_django',
+    'userservice',
     'supporttools',
     'blti',
-    'hx_toolkit',
     'myuw.apps.MyUWConfig'
 ]
 
@@ -123,6 +124,7 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'myuw.context_processors.is_hybrid',
 ]
 
+AWS_CA_BUNDLE = '/app/certs/ca-bundle.crt'
 AWS_SQS = {
     'SECTION_STATUS_V1': {
         'QUEUE_ARN': os.getenv('SECTION_STATUS_QUEUE_ARN'),
@@ -243,3 +245,7 @@ if os.getenv("ENV", '') == "localdev":
     DEBUG = True
 else:
     RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache_implementation.MyUWMemcachedCache'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
+GOOGLE_SEARCH_KEY = '012718091035072974782:aydolizhqxg'

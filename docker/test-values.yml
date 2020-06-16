@@ -211,6 +211,9 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: test.my.uw.edu
 
+  - name: GOOGLE_ANALYTICS_KEY
+    value: "UA-22539974-8"
+
 externalSecrets:
   enabled: true
   secrets:
