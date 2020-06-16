@@ -9,7 +9,7 @@ class TestLoadSectionStatus(TestCase):
 
     def test_run(self):
         with self.settings(AWS_SQS={
-                'SECTION_SATSUS_V1': {
+                'SECTION_STATUS_V1': {
                     'QUEUE_ARN': ARN,
                     'KEY_ID': 'XXXXXXXXXXXXXXXX',
                     'KEY': 'YYYYYYYYYYYYYYYYYYYYYYYY',

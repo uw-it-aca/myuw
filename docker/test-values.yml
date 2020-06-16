@@ -24,7 +24,7 @@ database:
   engine: mysql
   name: myuw_test
   hostname: test-my-uw-db
-  secretName: test.my.uw.edu-sql-credentials
+  secretName: test.my.uw.edu-sql-secrets
 repo: myuw
 instance: test
 image:
@@ -37,16 +37,12 @@ memcached:
     type: RollingUpdate
 certs:
   mounted: true
-  certPath: /certs/myuwdev-uwca.cert
-  keyPath: /certs/myuwdev-uwca.key
-  secretName: myuwdev-uwca
+  certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
+  keyPath: /certs/myuw-dev.s.uw.edu-uwca.key
+  secretName: test.my.uw.edu-uwca-certs
 environmentVariables:
   - name: AUTH
     value: SAML
-  - name: SP_CERT
-    value: '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'
-  - name: IDP_CERT
-    value: 'MIID/TCCAuWgAwIBAgIJAMoYJbDt9lKKMA0GCSqGSIb3DQEBBQUAMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdTAeFw0xMTA0MjYxOTEwMzlaFw0yMTA0MjMxOTEwMzlaMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMH9G8m68L0Hf9bmf4/7c+ERxgDQrbq50NfSi2YTQWc1veUIPYbZy1agSNuc4dwn3RtC0uOQbdNTYUAiVTcYgaYceJVB7syWf9QyGIrglZPMu98c5hWb7vqwvs6d3s2Sm7tBib2v6xQDDiZ4KJxpdAvsoPQlmGdgpFfmAsiYrnYFXLTHgbgCc/YhV8lubTakUdI3bMYWfh9dkj+DVGUmt2gLtQUzbuH8EU44vnXgrQYSXNQkmRcyoE3rj4Rhhbu/p5D3P+nuOukLYFOLRaNeiiGyTu3P7gtc/dy/UjUrf+pH75UUU7Lb369dGEfZwvVtITXsdyp0pBfun4CP808H9N0CAwEAAaOBwTCBvjAdBgNVHQ4EFgQUP5smx3ZYKODMkDglkTbduvLcGYAwgY4GA1UdIwSBhjCBg4AUP5smx3ZYKODMkDglkTbduvLcGYChYKReMFwxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJXQTEhMB8GA1UEChMYVW5pdmVyc2l0eSBvZiBXYXNoaW5ndG9uMR0wGwYDVQQDExRpZHAudS53YXNoaW5ndG9uLmVkdYIJAMoYJbDt9lKKMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADggEBAEo7c2CNHEI+Fvz5DhwumU+WHXqwSOK47MxXwNJVpFQ9GPR2ZGDAq6hzLJLAVWcY4kB3ECDkRtysAWSFHm1roOU7xsU9f0C17QokoXfLNC0d7KoivPM6ctl8aRftU5moyFJkkJX3qSExXrl053uxTOQVPms4ypkYv1A/FBZWgSC8eNoYnBnv1Mhy4m8bfeEN7qT9rFoxh4cVjMH1Ykq7JWyFXLEB4ifzH4KHyplt5Ryv61eh6J1YPFa2RurVTyGpHJZeOLUIBvJu15GzcexuDDXe0kg7sHD6PbK0xzEF/QeXP/hXzMxR9kQXB/IR/b2k4ien+EM3eY/ueBcTZ95dgVM='
 
   - name: ENV
     value: dev
@@ -215,6 +211,59 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: test.my.uw.edu
 
+externalSecrets:
+  enabled: true
+  secrets:
+    - name: test.my.uw.edu-secrets
+      externalKey: axdd/kv/data/my/test/secrets
+      data:
+        - name: canvas-account-id
+          property: canvas-account-id
+        - name: canvas-oauth-bearer
+          property: canvas-oauth-bearer
+        - name: coda-auth-token
+          property: coda-auth-token
+        - name: django-secret
+          property: django-secret
+        - name: email-host
+          property: email-host
+        - name: mailman-auth-key
+          property: mailman-auth-key
+        - name: mailman-request-recipient
+          property: mailman-request-recipient
+        - name: safe-email-recipient
+          property: safe-email-recipient
+        - name: section-status-queue-arn
+          property: section-status-queue-arn
+        - name: section-status-key-id
+          property: section-status-key-id
+        - name: section-status-key
+          property: section-status-key
+    - name: test.my.uw.edu-sql-secrets
+      externalKey: axdd/kv/data/my/test/sql-secrets
+      data:
+        - name: username
+          property: sql_user
+        - name: password
+          property: sql_pass
+    - name: test.my.uw.edu-uwca-certs
+      externalKey: axdd/kv/data/my/test/uwca-certs
+      data:
+        - name: myuw-dev.s.uw.edu-uwca.key
+          property: key
+        - name: myuw-dev.s.uw.edu-uwca.cert
+          property: cert
+    - name: test.my.uw.edu-ic-certs
+      externalKey: axdd/kv/data/my/test/ic-certs
+      data:
+        - name: test.my.uw.edu.cert
+          property: cert
+    - name: test.my.uw.edu-uw-idp-cert
+      externalKey: axdd/kv/data/idp-cert
+      data:
+        - name: uw-idp-cert
+          property: cert
+
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -243,8 +292,28 @@ environmentVariablesSecrets:
   email_host-secret:
     name: EMAIL_HOST
     secretName: test.my.uw.edu-secrets
-    secretKey: email_host
+    secretKey: email-host
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT
     secretName: test.my.uw.edu-secrets
-    secretKey: safe_email_recipient
+    secretKey: safe-email-recipient
+  SectionStatusQueueARN:
+    name: SECTION_STATUS_QUEUE_ARN
+    secretName: test.my.uw.edu-secrets
+    secretKey: section-status-queue-arn
+  SectionStatus:
+    name: SECTION_STATUS_KEY_ID
+    secretName: test.my.uw.edu-secrets
+    secretKey: section-status-key-id
+  SectionStatus:
+    name: SECTION_STATUS_KEY
+    secretName: test.my.uw.edu-secrets
+    secretKey: section-status-key
+  SAMLServiceProviderCert:
+    name: SP_CERT
+    secretName: test.my.uw.edu-ic-certs
+    secretKey: test.my.uw.edu.cert
+  SAMLIDPCert:
+    name: IDP_CERT
+    secretName: test.my.uw.edu-uw-idp-cert
+    secretKey: uw-idp-cert
