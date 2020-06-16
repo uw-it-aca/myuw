@@ -14,7 +14,7 @@ from myuw.event import update_sws_entry_in_cache
 
 logger = logging.getLogger(__name__)
 MESSAGE_FRESHNESS = timedelta(hours=4)
-QUEUE_SETTINGS_NAME = 'SECTION_SATSUS_V1'
+QUEUE_SETTINGS_NAME = 'SECTION_STATUS_V1'
 
 
 class SectionStatusProcessorException(ProcessorException):

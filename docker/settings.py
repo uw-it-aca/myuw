@@ -123,6 +123,19 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'myuw.context_processors.is_hybrid',
 ]
 
+AWS_SQS = {
+    'SECTION_STATUS_V1': {
+        'QUEUE_ARN': os.getenv('SECTION_STATUS_QUEUE_ARN'),
+        'KEY_ID': os.getenv('SECTION_STATUS_KEY_ID'),
+        'KEY': os.getenv('SECTION_STATUS_KEY'),
+        'VISIBILITY_TIMEOUT': 50,
+        'MESSAGE_GATHER_SIZE': 10,
+        'WAIT_TIME': 7,
+        'VALIDATE_SNS_SIGNATURE': True,
+        'PAYLOAD_SETTINGS': {}
+    }
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
