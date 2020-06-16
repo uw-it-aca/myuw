@@ -45,6 +45,8 @@ MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?ci
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = 587
 EMAIL_TIMEOUT = 15
+EMAIL_SSL_CERTFILE = os.getenv('CERT_PATH', '')
+EMAIL_SSL_KEYFILE = os.getenv('KEY_PATH', '')
 MAILMAN_COURSEREQUEST_RECIPIENT = os.getenv("MAILMAN_REQUEST_RECIPIENT")
 if os.getenv("ENV", "") == "prod":
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -60,7 +62,7 @@ else:
     UW_TOKEN_ISSUER = "https://idp.u.washington.edu"
     UW_TOKEN_SESSION_AGE = 3600
 UW_TOKEN_AUDIENCE = "oidc/myuw"
-UW_TOKEN_LEEWAY = 30
+UW_TOKEN_LEEWAY = 2
 UW_OIDC_ENABLE_LOGGING = True
 
 # Thrive required settings
@@ -121,59 +123,41 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'myuw.context_processors.is_hybrid',
 ]
 
+AWS_SQS = {
+    'SECTION_STATUS_V1': {
+        'QUEUE_ARN': os.getenv('SECTION_STATUS_QUEUE_ARN'),
+        'KEY_ID': os.getenv('SECTION_STATUS_KEY_ID'),
+        'KEY': os.getenv('SECTION_STATUS_KEY'),
+        'VISIBILITY_TIMEOUT': 50,
+        'MESSAGE_GATHER_SIZE': 10,
+        'WAIT_TIME': 7,
+        'VALIDATE_SNS_SIGNATURE': True,
+        'PAYLOAD_SETTINGS': {}
+    }
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
         'stdout_stream': {
             '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno < logging.WARN
+            'callback': lambda record: record.levelno <= logging.WARNING
         },
         'stderr_stream': {
             '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno > logging.INFO
+            'callback': lambda record: record.levelno >= logging.ERROR
         }
     },
     'formatters': {
         'myuw': {
-            'format': '%(levelname)-4s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
-        },
-        'restclients_timing': {
-            'format': '%(levelname)-4s restclients_timing %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
-        },
-        'views_timing': {
-            'format': '%(levelname)-4s views_performance %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
+            'format': '%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
         'pref': {
-            'format': '%(levelname)-4s pref %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
+            'format': 'pref:%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
         'event': {
-            'format': '%(levelname)-4s event %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
-        },
-        'link': {
-            'format': '%(levelname)-4s link %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
-        },
-        'oidc': {
-            'format': '%(levelname)-4s oidc %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
-        },
-        'session': {
-            'format': '%(levelname)-4s session %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
-        },
-        'card': {
-            'format': '%(levelname)-4s card %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
-        },
-        'notice': {
-            'format': '%(levelname)-4s notice %(module)s %(asctime)s %(message)s [%(name)s]',
-            'datefmt': '%d %H:%M:%S',
+            'format': 'event:%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
     },
     'handlers': {
@@ -189,20 +173,6 @@ LOGGING = {
             'filters': ['stderr_stream'],
             'formatter': 'myuw',
         },
-        'restclients_timing': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'restclients_timing',
-        },
-        'views_timing': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'views_timing',
-        },
         'pref': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
@@ -217,41 +187,6 @@ LOGGING = {
             'filters': ['stdout_stream'],
             'formatter': 'event',
         },
-        'link': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'link',
-        },
-        'oidc': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'oidc',
-        },
-        'session': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'session',
-        },
-        'card': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'card',
-        },
-        'notice': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'notice',
-        },
         'null': {
             'class': 'logging.NullHandler',
         },
@@ -265,36 +200,6 @@ LOGGING = {
             'handlers': ['stderr'],
             'level': 'ERROR',
             'propagate': True,
-        },
-        'restclients_core': {
-            'handlers': ['restclients_timing'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'rc_django': {
-            'handlers': ['restclients_timing'],
-            'level': 'INFO',
-            'propagate': False,
-         },
-        'uw_gws': {
-            'handlers': ['restclients_timing'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'uw_sws': {
-            'handlers': ['restclients_timing'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'uw_iasystem': {
-            'handlers': ['restclients_timing'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.logger.logresp': {
-            'handlers': ['views_timing'],
-            'level': 'INFO',
-            'propagate': False,
         },
         'myuw.views.api.banner_message': {
             'handlers': ['pref'],
@@ -326,39 +231,9 @@ LOGGING = {
             'level': 'INFO',
             'propagate': False,
         },
-        'myuw.views.logger': {
-            'handlers': ['link'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'link': {
-            'handlers': ['link'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'uw_oidc': {
-            'handlers': ['oidc'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'session': {
-            'handlers': ['session'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'card': {
-            'handlers': ['card'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.views.api.notices.seen': {
-            'handlers': ['notice'],
-            'level': 'INFO',
-            'propagate': False,
-        },
         '': {
             'handlers': ['stdout', 'stderr'],
-            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG'
+            'level': 'DEBUG' if os.getenv('ENV', '') == 'dev' else 'INFO'
         }
     }
 }
