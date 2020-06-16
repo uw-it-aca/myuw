@@ -54,10 +54,10 @@ certs:
 cronjob:
   enabled: true
   jobs:
-#    - name: load-section-status-changes
-#      schedule: "* * * * *"
-#      command: ["/scripts/management_command.sh"]
-#      args: ["load_section_status_changes"]
+    - name: load-section-status-changes
+      schedule: "* * * * *"
+      command: ["/scripts/management_command.sh"]
+      args: ["load_section_status_changes"]
     - name: clear-expired-sessions
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
