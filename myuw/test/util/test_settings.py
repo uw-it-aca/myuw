@@ -6,7 +6,7 @@ from myuw.util.settings import (
     get_mailman_courserequest_recipient, get_google_search_key,
     get_myuw_admin_group, get_myuw_override_group, get_myuw_astra_group_stem,
     get_disable_actions_when_override, get_enabled_features, get_logout_url,
-    get_prod_url_pattern)
+    get_prod_url_pattern, get_cronjob_recipient, get_cronjob_sender)
 
 
 class TestSetting(TestCase):
@@ -23,7 +23,9 @@ class TestSetting(TestCase):
                            MYUW_ASTRA_GROUP_STEM='u_astratst_myuw',
                            MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE=True,
                            MYUW_TEST_ACCESS_GROUP='u_dev_test-access',
-                           MYUW_ENABLED_FEATURES=[]):
+                           MYUW_ENABLED_FEATURES=[],
+                           CRONJOB_RECIPIENT="mycron",
+                           CRONJOB_SENDER="my"):
 
             self.assertEqual(get_calendar_time_zone(), 'America/Los_Angeles')
             self.assertEqual(get_mailman_courserequest_recipient(), "")
@@ -38,3 +40,5 @@ class TestSetting(TestCase):
             self.assertEqual(get_myuw_test_access_group(), 'u_dev_test-access')
             self.assertEqual(get_disable_actions_when_override(), True)
             self.assertEqual(get_enabled_features(), [])
+            self.assertEqual(get_cronjob_recipient(), "mycron")
+            self.assertEqual(get_cronjob_sender(), "my")
