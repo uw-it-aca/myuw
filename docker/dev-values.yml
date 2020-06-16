@@ -55,12 +55,8 @@ certs:
 cronjob:
   enabled: true
   jobs:
-    - name: clear-expired-sessions
-      schedule: "1 * * * 1"
-      command: ["/scripts/management_command.sh"]
-      args: ["clear_expired_sessions", "7"]
     - name: check-reslinks
-      schedule: "50 * * * 1"
+      schedule: "1 17 * * 2"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
 environmentVariables:
