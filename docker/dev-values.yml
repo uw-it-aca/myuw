@@ -230,9 +230,6 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: dev.my.uw.edu
 
-  - name: GOOGLE_ANALYTICS_KEY
-    value: "UA-22539974-6"
-
 externalSecrets:
   enabled: true
   secrets:
@@ -261,6 +258,9 @@ externalSecrets:
           property: section-status-key-id
         - name: section-status-key
           property: section-status-key
+        - name: google_analytics_key
+          property google_analytics_key
+
     - name: dev.my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/dev/sql-secrets
       data:
@@ -338,3 +338,11 @@ environmentVariablesSecrets:
     name: IDP_CERT
     secretName: dev.my.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
+  GoogleAnalyticsKey
+    name: GOOGLE_ANALYTICS_KEY
+    secretName: dev.my.uw.edu-secrets
+    secretKey: google_analytics_key
+  GoogleSearchKey
+    name: GOOGLE_SEARCH_KEY
+    secretName: dev.my.uw.edu-secrets
+    secretKey: google_search_key
