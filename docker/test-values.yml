@@ -315,11 +315,11 @@ environmentVariablesSecrets:
     secretKey: section-status-key
   GoogleAnalyticsKey:
     name: GOOGLE_ANALYTICS_KEY
-    secretName: dev.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: google-analytics-key
   GoogleSearchKey:
     name: GOOGLE_SEARCH_KEY
-    secretName: dev.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: google-search-key
   SAMLServiceProviderCert:
     name: SP_CERT
