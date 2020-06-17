@@ -69,8 +69,6 @@ cronjob:
 environmentVariables:
   - name: AUTH
     value: SAML
-  - name: SP_CERT
-    value: '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'
 
   - name: ENV
     value: prod
@@ -265,6 +263,10 @@ externalSecrets:
           property: section-status-key-id
         - name: section-status-key
           property: section-status-key
+        - name: google-analytics-key
+          property: google-analytics-key
+        - name: google-search-key
+          property: google-search-key
     - name: my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/prod/sql-secrets
       data:
@@ -331,6 +333,14 @@ environmentVariablesSecrets:
     name: SECTION_STATUS_KEY
     secretName: my.uw.edu-secrets
     secretKey: section-status-key
+  GoogleAnalyticsKey:
+    name: GOOGLE_ANALYTICS_KEY
+    secretName: my.uw.edu-secrets
+    secretKey: google-analytics-key
+  GoogleSearchKey:
+    name: GOOGLE_SEARCH_KEY
+    secretName: my.uw.edu-secrets
+    secretKey: google-search-key
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: my.uw.edu-ic-certs

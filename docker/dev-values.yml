@@ -9,7 +9,7 @@ resources:
     memory: 768Mi
   requests:
     cpu: 100m
-    memory: 256Mi
+    memory: 700Mi
 ingress:
   enabled: true
   tls:
@@ -258,6 +258,10 @@ externalSecrets:
           property: section-status-key-id
         - name: section-status-key
           property: section-status-key
+        - name: google-analytics-key
+          property: google-analytics-key
+        - name: google-search-key
+          property: google-search-key
     - name: dev.my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/dev/sql-secrets
       data:
@@ -327,6 +331,14 @@ environmentVariablesSecrets:
     name: SECTION_STATUS_KEY
     secretName: dev.my.uw.edu-secrets
     secretKey: section-status-key
+  GoogleAnalyticsKey:
+    name: GOOGLE_ANALYTICS_KEY
+    secretName: dev.my.uw.edu-secrets
+    secretKey: google-analytics-key
+  GoogleSearchKey:
+    name: GOOGLE_SEARCH_KEY
+    secretName: dev.my.uw.edu-secrets
+    secretKey: google-search-key
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: dev.my.uw.edu-ic-certs
