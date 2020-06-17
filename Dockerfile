@@ -24,7 +24,7 @@ RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
 
 
-FROM acait/django-test-container:1.0.32 as app-test-container
+FROM acait/django-test-container:1.0.34 as app-test-container
 
 COPY --from=0 /app/ /app/
 COPY --from=0 /static/ /static/
