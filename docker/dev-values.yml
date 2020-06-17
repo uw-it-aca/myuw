@@ -258,9 +258,10 @@ externalSecrets:
           property: section-status-key-id
         - name: section-status-key
           property: section-status-key
-        - name: google_analytics_key
-          property google_analytics_key
-
+        - name: google-analytics-key
+          property: google-analytics-key
+        - name: google-search-key
+          property: google-search-key
     - name: dev.my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/dev/sql-secrets
       data:
@@ -330,6 +331,14 @@ environmentVariablesSecrets:
     name: SECTION_STATUS_KEY
     secretName: dev.my.uw.edu-secrets
     secretKey: section-status-key
+  GoogleAnalyticsKey:
+    name: GOOGLE_ANALYTICS_KEY
+    secretName: dev.my.uw.edu-secrets
+    secretKey: google-analytics-key
+  GoogleSearchKey:
+    name: GOOGLE_SEARCH_KEY
+    secretName: dev.my.uw.edu-secrets
+    secretKey: google-search-key
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: dev.my.uw.edu-ic-certs
@@ -338,11 +347,3 @@ environmentVariablesSecrets:
     name: IDP_CERT
     secretName: dev.my.uw.edu-uw-idp-cert
     secretKey: uw-idp-cert
-  GoogleAnalyticsKey
-    name: GOOGLE_ANALYTICS_KEY
-    secretName: dev.my.uw.edu-secrets
-    secretKey: google_analytics_key
-  GoogleSearchKey
-    name: GOOGLE_SEARCH_KEY
-    secretName: dev.my.uw.edu-secrets
-    secretKey: google_search_key

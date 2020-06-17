@@ -10,7 +10,6 @@ INSTALLED_APPS += [
     'django_client_logger',
     'django_user_agents',
     'hx_toolkit',
-    'python3_saml_patch',
     'rc_django',
     'userservice',
     'supporttools',
@@ -248,4 +247,4 @@ else:
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
-GOOGLE_SEARCH_KEY = '012718091035072974782:aydolizhqxg'
+GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
