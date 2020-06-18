@@ -17,9 +17,25 @@ ingress:
       secretName: my.uw.edu-ingress-cert
       hosts:
         - my.uw.edu
+    myuw-uw:
+      secretName: myuw.uw.edu-ingress-cert
+      hosts:
+        - myuw.uw.edu
+    myuw-washington:
+      secretName: myuw.washington.edu-ingress-cert
+      hosts:
+        - myuw.washington.edu
   hosts:
     myuw:
       host: my.uw.edu
+      paths:
+        - "/"
+    myuw-uw:
+      host: myuw.uw.edu
+      paths:
+        - "/"
+    myuw-washington:
+      host: myuw.washington.edu
       paths:
         - "/"
   annotations:
@@ -98,7 +114,7 @@ environmentVariables:
   - name: CODA_ENV
     value: PROD
   - name: CODA_TIMEOUT
-    value: "5"
+    value: "10"
   - name: CODA_POOL_SIZE
     value: "20"
 
@@ -107,14 +123,14 @@ environmentVariables:
   - name: GRAD_POOL_SIZE
     value: "10"
   - name: GRAD_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_POOL_SIZE
     value: "20"
   - name: GRADEPAGE_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: GWS_ENV
     value: PROD
@@ -133,7 +149,7 @@ environmentVariables:
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
-    value: "5"
+    value: "10"
   - name: IASYSTEM_UW_POOL_SIZE
     value: "20"
 
@@ -142,42 +158,42 @@ environmentVariables:
   - name: IASYSTEM_UWB_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWB_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWT_ENV
     value: PROD
   - name: IASYSTEM_UWT_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWT_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWEO_AP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_AP_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWEO_AP_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWEO_IELP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_IELP_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWEO_IELP_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
     value: "30"
   - name: LIBRARIES_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: MAILMAN_ENV
     value: PROD
@@ -189,14 +205,14 @@ environmentVariables:
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
-    value: "5"
+    value: "10"
   - name: MYPLAN_POOL_SIZE
     value: "30"
 
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
-    value: "5"
+    value: "10"
   - name: PWS_POOL_SIZE
     value: "50"
 
@@ -210,7 +226,7 @@ environmentVariables:
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
-    value: "5"
+    value: "10"
   - name: SWS_POOL_SIZE
     value: "50"
 
@@ -226,7 +242,7 @@ environmentVariables:
   - name: UWNETID_POOL_SIZE
     value: "50"
   - name: UWNETID_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: UWIDP_ENV
     value: PROD
