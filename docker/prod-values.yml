@@ -56,7 +56,7 @@ cronjob:
   enabled: true
   jobs:
     - name: load-section-status-changes
-      schedule: "* * * * *"
+      schedule: "*/1 * * * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_section_status_changes"]
     - name: clear-expired-sessions
