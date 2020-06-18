@@ -268,6 +268,8 @@ externalSecrets:
           property: google-analytics-key
         - name: google-search-key
           property: google-search-key
+        - name: saml-entity-id
+          property: saml-entity-id
     - name: my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/prod/sql-secrets
       data:
@@ -342,6 +344,10 @@ environmentVariablesSecrets:
     name: GOOGLE_SEARCH_KEY
     secretName: my.uw.edu-secrets
     secretKey: google-search-key
+  SAMLEntityId:
+    name: SAML_ENTITY_ID
+    secretName: my.uw.edu-secrets
+    secretKey: saml-entity-id
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: my.uw.edu-ic-certs
