@@ -14,12 +14,12 @@ ingress:
   enabled: true
   tls:
     myuw:
-      secretName: prod.my.uw.edu-ingress-cert
+      secretName: my.uw.edu-ingress-cert
       hosts:
-        - prod.my.uw.edu
+        - my.uw.edu
   hosts:
     myuw:
-      host: prod.my.uw.edu
+      host: my.uw.edu
       paths:
         - "/"
   annotations:
@@ -236,7 +236,7 @@ environmentVariables:
     value: "10"
 
   - name: CLUSTER_CNAME
-    value: prod.my.uw.edu
+    value: my.uw.edu
 
 externalSecrets:
   enabled: true
