@@ -64,7 +64,7 @@ cronjob:
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
     - name: check-reslinks
-      schedule: "1 10 * * 7"
+      schedule: "1 10 * * 0"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
 environmentVariables:
