@@ -139,9 +139,11 @@ def _add_quicklink_context(request, context):
 
 
 def can_access_myuw(request):
-    url = request.build_absolute_uri()
-    return (re.match(get_prod_url_pattern(), url) is not None or
-            in_myuw_test_access_group(request))
+    # url = request.build_absolute_uri()
+    # logger.info("build_absolute_uri: {}".format(url))
+    # return (re.match(get_prod_url_pattern(), url) is not None or
+    #         in_myuw_test_access_group(request))
+    return True
 
 
 def _add_email_forwarding(request, context):
