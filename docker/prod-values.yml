@@ -1,13 +1,14 @@
 autoscaling:
   enabled: true
   minReplicas: 4
-  maxReplicas: 16
+  maxReplicas: 12
+targetAverageUtilization: 60
 resources:
   limits:
-    cpu: 500m
-    memory: 1024Mi
+    cpu: 1.0
+    memory: 768Mi
   requests:
-    cpu: 100m
+    cpu: 256m
     memory: 256Mi
 ingress:
   enabled: true
@@ -325,11 +326,11 @@ environmentVariablesSecrets:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: my.uw.edu-secrets
     secretKey: section-status-queue-arn
-  SectionStatus:
+  SectionStatusKeyId:
     name: SECTION_STATUS_KEY_ID
     secretName: my.uw.edu-secrets
     secretKey: section-status-key-id
-  SectionStatus:
+  SectionStatusKey:
     name: SECTION_STATUS_KEY
     secretName: my.uw.edu-secrets
     secretKey: section-status-key
