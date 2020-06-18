@@ -17,9 +17,25 @@ ingress:
       secretName: my.uw.edu-ingress-cert
       hosts:
         - my.uw.edu
+    myuw-uw:
+      secretName: myuw.uw.edu-ingress-cert
+      hosts:
+        - myuw.uw.edu
+    myuw-washington:
+      secretName: myuw.washington.edu-ingress-cert
+      hosts:
+        - myuw.washington.edu
   hosts:
     myuw:
       host: my.uw.edu
+      paths:
+        - "/"
+    myuw-uw:
+      host: myuw.uw.edu
+      paths:
+        - "/"
+    myuw-washington:
+      host: myuw.washington.edu
       paths:
         - "/"
   annotations:
