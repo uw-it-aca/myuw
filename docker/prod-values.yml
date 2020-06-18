@@ -326,11 +326,11 @@ environmentVariablesSecrets:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: my.uw.edu-secrets
     secretKey: section-status-queue-arn
-  SectionStatus:
+  SectionStatusKeyId:
     name: SECTION_STATUS_KEY_ID
     secretName: my.uw.edu-secrets
     secretKey: section-status-key-id
-  SectionStatus:
+  SectionStatusKey:
     name: SECTION_STATUS_KEY
     secretName: my.uw.edu-secrets
     secretKey: section-status-key
