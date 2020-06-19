@@ -52,7 +52,7 @@ class TestPageMethods(MyuwApiTest):
             url = reverse("myuw_home")
             self.set_user('jbothell')
             response = self.client.get(url)
-            # self.assertEquals(response.status_code, 403)
+            self.assertEquals(response.status_code, 403)
 
             self.set_user('bill')
             response = self.client.get(url)

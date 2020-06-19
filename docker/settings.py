@@ -73,7 +73,7 @@ MEDIA_URL = "/uploaded_images/"
 THRIVE_OUTPUT = "/hx_toolkit_output"
 
 # dev/test site access settings
-MYUW_PROD_URL = "https://my.uw.edu/"
+MYUW_PROD_URL = "https?://my.uw.edu/"
 if os.getenv("ENV", "") == "localdev":
     MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
     MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
