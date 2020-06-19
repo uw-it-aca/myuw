@@ -1,15 +1,15 @@
 autoscaling:
   enabled: true
   minReplicas: 4
-  maxReplicas: 12
-targetAverageUtilization: 60
+  maxReplicas: 16
+targetAverageUtilization: 80
 resources:
   limits:
     cpu: 1.0
-    memory: 768Mi
+    memory: 1280Mi
   requests:
-    cpu: 256m
-    memory: 256Mi
+    cpu: 512m
+    memory: 768Mi
 ingress:
   enabled: true
   tls:
@@ -60,7 +60,18 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 1
+  replicaCount: 4
+  command:
+    - "memcached"
+    - "-m"
+    - "512"
+    - "-c"
+    - "2048"
+    - "-t"
+    - "8"
+    - "-o"
+    - "modern"
+    - "-v"
   updateStrategy:
     type: RollingUpdate
 certs:
@@ -114,7 +125,7 @@ environmentVariables:
   - name: CODA_ENV
     value: PROD
   - name: CODA_TIMEOUT
-    value: "5"
+    value: "10"
   - name: CODA_POOL_SIZE
     value: "20"
 
@@ -123,14 +134,14 @@ environmentVariables:
   - name: GRAD_POOL_SIZE
     value: "10"
   - name: GRAD_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_POOL_SIZE
     value: "20"
   - name: GRADEPAGE_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: GWS_ENV
     value: PROD
@@ -149,7 +160,7 @@ environmentVariables:
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
-    value: "5"
+    value: "10"
   - name: IASYSTEM_UW_POOL_SIZE
     value: "20"
 
@@ -158,42 +169,42 @@ environmentVariables:
   - name: IASYSTEM_UWB_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWB_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWT_ENV
     value: PROD
   - name: IASYSTEM_UWT_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWT_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWEO_AP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_AP_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWEO_AP_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWEO_IELP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_IELP_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWEO_IELP_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
     value: "30"
   - name: LIBRARIES_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: MAILMAN_ENV
     value: PROD
@@ -205,14 +216,14 @@ environmentVariables:
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
-    value: "5"
+    value: "10"
   - name: MYPLAN_POOL_SIZE
     value: "30"
 
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
-    value: "5"
+    value: "10"
   - name: PWS_POOL_SIZE
     value: "50"
 
@@ -226,7 +237,7 @@ environmentVariables:
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
-    value: "5"
+    value: "10"
   - name: SWS_POOL_SIZE
     value: "50"
 
@@ -242,7 +253,7 @@ environmentVariables:
   - name: UWNETID_POOL_SIZE
     value: "50"
   - name: UWNETID_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: UWIDP_ENV
     value: PROD
