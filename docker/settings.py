@@ -45,8 +45,10 @@ MYUWCLASS = "https://eo.admin.uw.edu/uweomyuw/myuwclass/uwnetid/myuwclass.asp?ci
 EMAIL_HOST = os.getenv("EMAIL_HOST")
 EMAIL_PORT = 587
 EMAIL_TIMEOUT = 15
+EMAIL_USE_TLS=True
 EMAIL_SSL_CERTFILE = os.getenv('CERT_PATH', '')
 EMAIL_SSL_KEYFILE = os.getenv('KEY_PATH', '')
+
 MAILMAN_COURSEREQUEST_RECIPIENT = os.getenv("MAILMAN_REQUEST_RECIPIENT")
 if os.getenv("ENV", "") == "prod":
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -71,11 +73,11 @@ MEDIA_URL = "/uploaded_images/"
 THRIVE_OUTPUT = "/hx_toolkit_output"
 
 # dev/test site access settings
-MYUW_PROD_URL = "https://my.uw.edu/"
 if os.getenv("ENV", "") == "localdev":
     MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
     MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
     MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
+    MYUW_SKIP_ACCESS_CHECK = True
 else:
     MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
     MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"
@@ -83,10 +85,12 @@ else:
         MYUW_ADMIN_GROUP = "u_astra_myuw_prod-support-admin"
         MYUW_OVERRIDE_GROUP = "u_astra_myuw_prod-support-impersonate"
         MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = True
+        MYUW_SKIP_ACCESS_CHECK = True
     else:
         MYUW_ADMIN_GROUP = "u_astra_myuw_test-support-admin"
         MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
         MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
+        MYUW_SKIP_ACCESS_CHECK = False
 
 # Support Tools settings
 SUPPORTTOOLS_PARENT_APP = "MyUW"

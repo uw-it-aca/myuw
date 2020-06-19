@@ -2,23 +2,40 @@ autoscaling:
   enabled: true
   minReplicas: 4
   maxReplicas: 16
+targetAverageUtilization: 80
 resources:
   limits:
-    cpu: 500m
-    memory: 1024Mi
+    cpu: 1.0
+    memory: 1280Mi
   requests:
-    cpu: 100m
-    memory: 256Mi
+    cpu: 512m
+    memory: 768Mi
 ingress:
   enabled: true
   tls:
     myuw:
-      secretName: prod.my.uw.edu-ingress-cert
+      secretName: my.uw.edu-ingress-cert
       hosts:
-        - prod.my.uw.edu
+        - my.uw.edu
+    myuw-uw:
+      secretName: myuw.uw.edu-ingress-cert
+      hosts:
+        - myuw.uw.edu
+    myuw-washington:
+      secretName: myuw.washington.edu-ingress-cert
+      hosts:
+        - myuw.washington.edu
   hosts:
     myuw:
-      host: prod.my.uw.edu
+      host: my.uw.edu
+      paths:
+        - "/"
+    myuw-uw:
+      host: myuw.uw.edu
+      paths:
+        - "/"
+    myuw-washington:
+      host: myuw.washington.edu
       paths:
         - "/"
   annotations:
@@ -43,7 +60,18 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 1
+  replicaCount: 4
+  command:
+    - "memcached"
+    - "-m"
+    - "512"
+    - "-c"
+    - "2048"
+    - "-t"
+    - "8"
+    - "-o"
+    - "modern"
+    - "-v"
   updateStrategy:
     type: RollingUpdate
 certs:
@@ -55,7 +83,7 @@ cronjob:
   enabled: true
   jobs:
     - name: load-section-status-changes
-      schedule: "* * * * *"
+      schedule: "*/1 * * * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_section_status_changes"]
     - name: clear-expired-sessions
@@ -63,7 +91,7 @@ cronjob:
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
     - name: check-reslinks
-      schedule: "1 10 * * 7"
+      schedule: "1 10 * * 0"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
 environmentVariables:
@@ -97,7 +125,7 @@ environmentVariables:
   - name: CODA_ENV
     value: PROD
   - name: CODA_TIMEOUT
-    value: "5"
+    value: "10"
   - name: CODA_POOL_SIZE
     value: "20"
 
@@ -106,14 +134,14 @@ environmentVariables:
   - name: GRAD_POOL_SIZE
     value: "10"
   - name: GRAD_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_POOL_SIZE
     value: "20"
   - name: GRADEPAGE_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: GWS_ENV
     value: PROD
@@ -132,7 +160,7 @@ environmentVariables:
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
-    value: "5"
+    value: "10"
   - name: IASYSTEM_UW_POOL_SIZE
     value: "20"
 
@@ -141,42 +169,42 @@ environmentVariables:
   - name: IASYSTEM_UWB_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWB_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWT_ENV
     value: PROD
   - name: IASYSTEM_UWT_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWT_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWEO_AP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_AP_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWEO_AP_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: IASYSTEM_UWEO_IELP_ENV
     value: PROD
   - name: IASYSTEM_UWEO_IELP_POOL_SIZE
     value: "10"
   - name: IASYSTEM_UWEO_IELP_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "20"
+    value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
     value: "30"
   - name: LIBRARIES_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: MAILMAN_ENV
     value: PROD
@@ -188,14 +216,14 @@ environmentVariables:
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
-    value: "5"
+    value: "10"
   - name: MYPLAN_POOL_SIZE
     value: "30"
 
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
-    value: "5"
+    value: "10"
   - name: PWS_POOL_SIZE
     value: "50"
 
@@ -209,7 +237,7 @@ environmentVariables:
   - name: SWS_ENV
     value: PROD
   - name: SWS_TIMEOUT
-    value: "5"
+    value: "10"
   - name: SWS_POOL_SIZE
     value: "50"
 
@@ -225,7 +253,7 @@ environmentVariables:
   - name: UWNETID_POOL_SIZE
     value: "50"
   - name: UWNETID_TIMEOUT
-    value: "5"
+    value: "10"
 
   - name: UWIDP_ENV
     value: PROD
@@ -235,7 +263,7 @@ environmentVariables:
     value: "10"
 
   - name: CLUSTER_CNAME
-    value: prod.my.uw.edu
+    value: my.uw.edu
 
 externalSecrets:
   enabled: true
@@ -267,6 +295,8 @@ externalSecrets:
           property: google-analytics-key
         - name: google-search-key
           property: google-search-key
+        - name: saml-entity-id
+          property: saml-entity-id
     - name: my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/prod/sql-secrets
       data:
@@ -325,11 +355,11 @@ environmentVariablesSecrets:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: my.uw.edu-secrets
     secretKey: section-status-queue-arn
-  SectionStatus:
+  SectionStatusKeyId:
     name: SECTION_STATUS_KEY_ID
     secretName: my.uw.edu-secrets
     secretKey: section-status-key-id
-  SectionStatus:
+  SectionStatusKey:
     name: SECTION_STATUS_KEY
     secretName: my.uw.edu-secrets
     secretKey: section-status-key
@@ -341,6 +371,10 @@ environmentVariablesSecrets:
     name: GOOGLE_SEARCH_KEY
     secretName: my.uw.edu-secrets
     secretKey: google-search-key
+  SAMLEntityId:
+    name: SAML_ENTITY_ID
+    secretName: my.uw.edu-secrets
+    secretKey: saml-entity-id
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: my.uw.edu-ic-certs
