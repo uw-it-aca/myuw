@@ -6,7 +6,7 @@ from myuw.util.settings import (
     get_mailman_courserequest_recipient, get_google_search_key,
     get_myuw_admin_group, get_myuw_override_group, get_myuw_astra_group_stem,
     get_disable_actions_when_override, get_enabled_features, get_logout_url,
-    get_prod_url_pattern, get_cronjob_recipient, get_cronjob_sender)
+    no_access_check, get_cronjob_recipient, get_cronjob_sender)
 
 
 class TestSetting(TestCase):
@@ -16,7 +16,7 @@ class TestSetting(TestCase):
                            MAILMAN_COURSEREQUEST_RECIPIENT="",
                            GOOGLE_SEARCH_KEY="",
                            LOGOUT_URL="/user_logout",
-                           MYUW_PROD_URL="https://my.uw",
+                           MYUW_SKIP_ACCESS_CHECK=False,
                            MYUWCLASS="myuwclass.asp?cid=",
                            MYUW_ADMIN_GROUP='admin',
                            MYUW_OVERRIDE_GROUP='impersonate',
@@ -31,8 +31,7 @@ class TestSetting(TestCase):
             self.assertEqual(get_mailman_courserequest_recipient(), "")
             self.assertEqual(get_google_search_key(), "")
             self.assertEqual(get_logout_url(), "/user_logout")
-            self.assertEqual(get_prod_url_pattern(),
-                             re.compile("https://my.uw"))
+            self.assertFalse(no_access_check())
             self.assertEqual(get_myuwclass_url(), "myuwclass.asp?cid=")
             self.assertEqual(get_myuw_admin_group(), 'admin')
             self.assertEqual(get_myuw_override_group(), 'impersonate')
