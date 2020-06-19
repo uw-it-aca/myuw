@@ -1,15 +1,15 @@
 autoscaling:
   enabled: true
   minReplicas: 4
-  maxReplicas: 12
-targetAverageUtilization: 60
+  maxReplicas: 16
+targetAverageUtilization: 80
 resources:
   limits:
     cpu: 1.0
-    memory: 768Mi
+    memory: 1280Mi
   requests:
-    cpu: 256m
-    memory: 256Mi
+    cpu: 512m
+    memory: 768Mi
 ingress:
   enabled: true
   tls:
@@ -60,7 +60,18 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 1
+  replicaCount: 4
+  command:
+    - "memcached"
+    - "-m"
+    - "512"
+    - "-c"
+    - "2048"
+    - "-t"
+    - "8"
+    - "-o"
+    - "modern"
+    - "-v"
   updateStrategy:
     type: RollingUpdate
 certs:
