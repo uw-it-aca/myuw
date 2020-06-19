@@ -59,17 +59,17 @@ def log_info(logger, msg_dict):
 
 
 def log_data_not_found_response(logger, timer):
-    log_msg(logger, timer, {'msg': 'Data not found'})
+    log_msg(logger, timer, 'Data not found')
 
 
 def log_invalid_netid_response(logger, timer):
-    log_msg(logger, timer, {'msg': 'Invalid netid, abort'})
+    log_msg(logger, timer, 'Invalid netid, abort')
 
 
 def log_invalid_regid_response(logger, timer):
-    log_msg(logger, timer, {'msg': 'Invalid regid, abort'})
+    log_msg(logger, timer, 'Invalid regid, abort')
 
 
-def log_msg(logger, timer, action_message):
-    log_info(logger, {'msg': action_message,
+def log_msg(logger, timer, msg_str):
+    log_info(logger, {'msg': msg_str,
                       'Time': "{} seconds".format(timer.get_elapsed())})
