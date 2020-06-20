@@ -51,14 +51,15 @@ def set_section_canvas_course_urls(canvas_active_enrollments, schedule,
         try:
             section.canvas_course_url = canvas_links.get(
                 section.canvas_course_sis_id())
-        except InvalidCanvasIndependentStudyCourse:
+        except InvalidCanvasIndependentStudyCourse as ex:
             # REQ3132940 known SWS issue:
             # prior quarter's registration data has
             # no independent study instructor.
             # If independent_study_instructor being None occurs
             # in current or future quarter, likely is a data error.
             if not section.term.is_past(now):
-                log_err(logger, "Possible registration data error",
+                log_err(logger,
+                        "{} {}".format(section.section_label(), ex),
                         traceback, request)
             pass
 
