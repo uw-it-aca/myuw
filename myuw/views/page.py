@@ -23,7 +23,7 @@ from myuw.logger.logresp import (
 from myuw.logger.session_log import (
     log_session, is_native, log_session_end)
 from myuw.util.settings import (
-    get_google_search_key, get_logout_url, get_prod_url_pattern)
+    get_google_search_key, get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import unknown_uwnetid, no_access
 from django.contrib.auth.decorators import login_required
@@ -139,9 +139,7 @@ def _add_quicklink_context(request, context):
 
 
 def can_access_myuw(request):
-    url = request.build_absolute_uri()
-    return (re.match(get_prod_url_pattern(), url) is not None or
-            in_myuw_test_access_group(request))
+    return (no_access_check() or in_myuw_test_access_group(request))
 
 
 def _add_email_forwarding(request, context):

@@ -128,14 +128,14 @@ def get_all_secondary_section_lists(primary_section):
                 secondaries.append(thread.response)
             else:
                 logger.error(
-                    "{}. get_single_course_list({},{},{},{},{})==>{}".format(
-                        get_userids(),
-                        primary_section.curriculum_abbr,
-                        primary_section.course_number,
-                        section_id,
-                        primary_section.term.quarter,
-                        primary_section.term.year,
-                        str(thread.exception)))
+                    {**get_userids(),
+                     **{'at': "get_single_course_list({},{},{},{},{})".format(
+                         primary_section.curriculum_abbr,
+                         primary_section.course_number,
+                         section_id,
+                         primary_section.term.quarter,
+                         primary_section.term.year),
+                        'err': thread.exception}})
     return secondaries
 
 
@@ -296,10 +296,11 @@ def get_single_message_body(requestor_uwnetid,
             message_body += _get_single_line(section)
         else:
             logger.error(
-                "{}. get_single_message_body ==> {}".format(
-                    get_userids(), str(thread.exception)))
-    log_info(logger, "For {} ==request emaillist message body==> {}".format(
-        single_section_labels, message_body.splitlines()))
+                {**get_userids(),
+                 **{'at': "get_single_message_body",
+                    'err': thread.exception}})
+    log_info(logger, {'msg': "Request emaillist For {}".format(
+        single_section_labels)})
     return message_body, num_sections_found
 
 
@@ -328,10 +329,12 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
             num_sections_found += 1
             message_body += _get_joint_line(section)
         else:
-            logger.error("{}. get_joint_message_body ==> {}".format(
-                get_userids(), str(thread.exception)))
-    log_info(logger, "For {} ==request emaillist message body==> {}".format(
-        joint_section_labels, message_body.splitlines()))
+            logger.error(
+                {**get_userids(),
+                 **{'at': "get_joint_message_body",
+                    'err': thread.exception}})
+    log_info(logger, {'msg': "Request emaillist For {}".format(
+        joint_section_labels)})
     return message_body, num_sections_found
 
 

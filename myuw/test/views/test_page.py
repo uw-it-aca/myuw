@@ -47,7 +47,7 @@ class TestPageMethods(MyuwApiTest):
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_access(self):
         with self.settings(
-                MYUW_PROD_URL="https://my.uw",
+                MYUW_SKIP_ACCESS_CHECK=False,
                 MYUW_TEST_ACCESS_GROUP='u_astratst_myuw_test-support-admin'):
             url = reverse("myuw_home")
             self.set_user('jbothell')
@@ -55,6 +55,14 @@ class TestPageMethods(MyuwApiTest):
             self.assertEquals(response.status_code, 403)
 
             self.set_user('bill')
+            response = self.client.get(url)
+            self.assertEquals(response.status_code, 200)
+        with self.settings(
+                MYUW_SKIP_ACCESS_CHECK=True,
+                MYUW_TEST_ACCESS_GROUP='u_astratst_myuw_test-support-admin'):
+            # MUWM-4710
+            url = reverse("myuw_home")
+            self.set_user('jbothell')
             response = self.client.get(url)
             self.assertEquals(response.status_code, 200)
 
