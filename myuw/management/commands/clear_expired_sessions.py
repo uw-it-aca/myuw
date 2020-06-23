@@ -32,7 +32,7 @@ class Command(BaseCommand):
         #             the earliest expired sessions exist
 
     def handle(self, *args, **options):
-        logger.debug("Start ... {}".format(total_days))
+        logger.debug("Start ...")
         errors = []
         total_days = options['total_days']
         logger.debug("total_days = {}".format(total_days))
