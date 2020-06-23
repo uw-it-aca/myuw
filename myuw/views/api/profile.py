@@ -6,7 +6,7 @@ from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.password import get_pw_json
 from myuw.dao.student_profile import get_applicant_profile, get_student_profile
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call, log_msg, log_exception
+from myuw.logger.logresp import log_api_call, log_exception
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
 from restclients_core.exceptions import DataFailureException

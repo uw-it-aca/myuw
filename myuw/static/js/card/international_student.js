@@ -7,6 +7,13 @@ var IntlStudCard = {
             $("#IntlStudCard").hide();
             return;
         }
+        Handlebars.registerPartial("seattle_international",
+                                   $("#seattle_international").html());
+        Handlebars.registerPartial("bothell_international",
+                                   $("#bothell_international").html());
+        Handlebars.registerPartial("tacoma_international",
+                                   $("#tacoma_international").html());
+
         IntlStudCard._render();
     },
 
@@ -28,7 +35,33 @@ var IntlStudCard = {
         var internationalStudents_template = Handlebars.compile(source);
         var raw = internationalStudents_template(context);
         IntlStudCard.dom_target.html(raw);
+        IntlStudCard.add_events();
     },
+
+    add_events: function() {
+        $("a.myuw-tab-label").click(function(ev) {
+            var campus = $(ev.target).attr('rel');
+            var tabcontent = document.getElementsByClassName("intl_tab_content");
+            for (i = 0; i < tabcontent.length; i++) {
+                if (tabcontent[i].id === campus) {
+                    tabcontent[i].style.display = "block";
+                    $(tabcontent[i]).attr('aria-hidden', false);
+                } else {
+                    tabcontent[i].style.display = "none";
+                    $(tabcontent[i]).attr('aria-hidden', true);
+                }
+            }
+            var tablinks = document.getElementsByClassName("myuw-tab-label");
+            for (i = 0; i < tablinks.length; i++) {
+                if (tablinks[i].rel === campus) {
+                    $(tablinks[i]).attr('aria-selected', true);
+                } else {
+                    $(tablinks[i]).attr('aria-selected', false);
+                }
+            }
+            WSData.log_interaction("open_intl_"+campus);
+        });
+    }
 };
 
 /* node.js exports */
