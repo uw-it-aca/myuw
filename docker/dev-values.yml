@@ -56,9 +56,9 @@ cronjob:
   enabled: true
   jobs:
     - name: clear-expired-sessions
-      schedule: "10 18 * * 2"
-      command: ["bash"]
-      args: ["-c", "(cd /app && source ./bin/activate && ./bin/python manage.py clear_expired_sessions 7)"]
+      schedule: "1 19 * * 2"
+      command: '["bash"]'
+      args: '["-c", "(cd /app && source ./bin/activate && ./bin/python manage.py clear_expired_sessions 7)"]'
 environmentVariables:
   - name: AUTH
     value: SAML
