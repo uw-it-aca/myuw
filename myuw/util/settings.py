@@ -1,4 +1,3 @@
-import re
 from django.conf import settings
 
 
@@ -19,9 +18,8 @@ def get_logout_url():
     return getattr(settings, "LOGOUT_URL", "/user_logout")
 
 
-def get_prod_url_pattern():
-    domain = getattr(settings, "MYUW_PROD_URL", "")
-    return re.compile(domain)
+def no_access_check():
+    return getattr(settings, "MYUW_SKIP_ACCESS_CHECK", True)
 
 
 def get_myuwclass_url():

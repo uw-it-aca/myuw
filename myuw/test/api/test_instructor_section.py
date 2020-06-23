@@ -167,7 +167,7 @@ class TestInstSectDetails(MyuwApiTest):
 class TestLTIInstructorSectionDetails(MyuwLTITest):
     def test_bill_section(self):
         request = get_lti_request()
-
+        request = get_request_with_user('bill', request)
         section_id = '2013-spring-ESS-102-A'
         resp = LTIInstSectionDetails().get(request, section_id=section_id)
 

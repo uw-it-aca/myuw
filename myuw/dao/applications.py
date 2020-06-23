@@ -14,6 +14,6 @@ def get_applications(request):
         for application in applications:
             response.append(application.json_data())
     else:
-        logger.error(
-            "{}, Student system key not found".format(get_userids(request)))
+        logger.error({**get_userids(request),
+                      **{'msg': "Missing Student System Key"}})
     return response
