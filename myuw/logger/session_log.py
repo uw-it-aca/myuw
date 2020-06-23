@@ -9,28 +9,23 @@ logger = logging.getLogger('session')
 
 
 def log_session(request):
-    logger.info("{}, {}, {}".format(get_userids(),
-                                    json.dumps(_get_session_data(request)),
-                                    json.dumps(_get_affi(request))))
+    logger.info({**get_userids(request),
+                 **_get_session_data(request),
+                 **_get_affi(request)})
 
 
 def log_session_end(request):
-    logger.info("{}, {}".format(
-        get_userids(),
-        json.dumps({'msg': 'logout',
+    logger.info({**get_userids(request),
+                 **{'msg': 'logout',
                     'session_key': hash_session_key(request),
-                    'is_native': is_native(request)})))
+                    'is_native': is_native(request)}})
 
 
 def _get_session_data(request):
-    ret_val = {'session_key': hash_session_key(request),
-               'ip': get_ip(request),
-               'is_native': is_native(request),
-               'is_mobile': is_mobile(request),
-               'referer': request.META.get('HTTP_REFERER')}
-    if ret_val['is_native']:
-        ret_val['uuid'] = request.session.get('uw_uuid')
-    return ret_val
+    return {'session_key': hash_session_key(request),
+            'ip': get_ip(request),
+            'is_mobile': is_mobile(request),
+            'is_native': is_native(request)}
 
 
 def _get_affi(request):

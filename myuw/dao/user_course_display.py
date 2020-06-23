@@ -5,7 +5,6 @@ import logging
 import traceback
 from django.db import IntegrityError
 from myuw.models import UserCourseDisplay
-from myuw.logger.logresp import log_info
 from myuw.dao.user import get_user_model
 
 TOTAL_COURSE_COLORS = 8
@@ -103,10 +102,10 @@ def _save_section_color(user, section, color_id):
                                              section_label=section_label,
                                              color_id=color_id)
         except Exception as ex:
-            err = str(ex)
-            log_info(logger,
-                     "{} when create ({} color_id: {}) in DB".format(
-                         err, section_label, color_id))
+            logger.warning({'user': user.uwnetid,
+                            'at': "create ({} color_id: {}) in DB".format(
+                                section_label, color_id),
+                            'err': ex})
             if '1062, "Duplicate entry ' not in err:
                 raise
 

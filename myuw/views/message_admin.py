@@ -67,7 +67,7 @@ def _delete_message(request):
     title = message.message_title
 
     message.delete()
-    log_info(logger, "Message deleted.  Title: {}".format(title))
+    log_info(logger, {'msg': "Deleted message (Title: {})".format(title)})
     return True
 
 
@@ -129,7 +129,7 @@ def _save_new_message(request, context):
                                      is_published=is_published,
                                      message_body=body)
 
-        log_info(logger, "Message saved.  Title: {}".format(title))
+        log_info(logger, {'msg': "Saved message (Title: {})".format(title)})
         return True
 
     return False
