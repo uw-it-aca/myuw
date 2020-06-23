@@ -22,7 +22,7 @@ var IntlStudCard = {
             is_f1: window.user.f1,
             is_j1: window.user.j1,
             is_intl_stud: window.user.intl_stud,
-            seattle: false,
+            seattle: window.user.seattle,
             bothell: window.user.bothell,
             tacoma: window.user.tacoma
             };
