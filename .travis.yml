@@ -48,7 +48,7 @@ after_success:
         "qa")
           export APP_INSTANCE="test";
           ;;
-        "develop")
+        "feature/gcp")
           export APP_INSTANCE="dev";
           ;;
         *)

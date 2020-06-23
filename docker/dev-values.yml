@@ -55,10 +55,10 @@ certs:
 cronjob:
   enabled: true
   jobs:
-    - name: check-reslinks
-      schedule: "1 17 * * 2"
-      command: ["/scripts/management_command.sh"]
-      args: ["check_reslinks"]
+    - name: clear-expired-sessions
+      schedule: "1 10 * * 2"
+      command: ["bash"]
+      args: ["-c", "(cd /app && source ./bin/activate && ./bin/python manage.py clear_expired_sessions 7)"]
 environmentVariables:
   - name: AUTH
     value: SAML
