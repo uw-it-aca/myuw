@@ -56,7 +56,7 @@ cronjob:
   enabled: true
   jobs:
     - name: clear-expired-sessions
-      schedule: "1 10 * * 2"
+      schedule: "10 18 * * 2"
       command: ["bash"]
       args: ["-c", "(cd /app && source ./bin/activate && ./bin/python manage.py clear_expired_sessions 7)"]
 environmentVariables:
