@@ -2,13 +2,13 @@ import sys
 from django.http import HttpResponse
 from restclients_core.exceptions import (DataFailureException, InvalidNetID,
                                          InvalidRegID)
-from myuw.dao.exceptions import NotSectionInstructorException,\
-    InvalidResourceCategory
+from myuw.dao.exceptions import (
+    NotSectionInstructorException, InvalidResourceCategory)
 from myuw.models import ResourceCategoryPin
 from uw_sws.exceptions import InvalidSectionID
 from myuw.logger.logresp import log_err, log_data_not_found_response
-from myuw.views.exceptions import DisabledAction, NotInstructorError,\
-    InvalidInputFormData
+from myuw.views.exceptions import (
+    DisabledAction, NotInstructorError, InvalidInputFormData)
 
 
 HTTP_BAD_REQUEST = 400

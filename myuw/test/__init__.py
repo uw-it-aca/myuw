@@ -2,6 +2,7 @@ from django.test.utils import override_settings
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
 from userservice.user import UserServiceMiddleware, UserService
+from userservice.user import set_override_user as set_override
 from uw_gws.utilities import fdao_gws_override
 from uw_pws.util import fdao_pws_override
 from uw_sws.util import fdao_sws_override
@@ -54,17 +55,19 @@ def get_request_with_user(username, now_request=None):
     return now_request
 
 
-def set_override_user(username):
-    UserService().set_override_user(username)
+def set_override_user(username, request=None):
+    if request is not None:
+        set_override(request, username)
+    else:
+        UserService().set_override_user(username)
 
 
 def get_user(username):
     try:
-        user = User.objects.get(username=username)
-        return user
+        return User.objects.get(username=username)
     except Exception as ex:
-        user = User.objects.create_user(username, password='pass')
-        return user
+        return User.objects.create_user(
+            username, password=get_user_pass(username))
 
 
 def get_user_pass(username):
