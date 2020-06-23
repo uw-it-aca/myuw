@@ -22,7 +22,7 @@ var IntlStudCard = {
             is_f1: window.user.f1,
             is_j1: window.user.j1,
             is_intl_stud: window.user.intl_stud,
-            seattle: window.user.seattle,
+            seattle: false,
             bothell: window.user.bothell,
             tacoma: window.user.tacoma
             };
@@ -37,6 +37,9 @@ var IntlStudCard = {
         IntlStudCard.dom_target.html(raw);
         IntlStudCard.add_events();
     },
+
+
+
 
     add_events: function() {
         $("a.myuw-tab-label").click(function(ev) {
@@ -62,6 +65,9 @@ var IntlStudCard = {
             WSData.log_interaction("open_intl_"+campus);
         });
     }
+    
+
+
 };
 
 /* node.js exports */
