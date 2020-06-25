@@ -53,6 +53,13 @@ certs:
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
   keyPath: /certs/myuw-dev.s.uw.edu-uwca.key
   secretName: test.my.uw.edu-uwca-certs
+cronjob:
+  enabled: true
+  jobs:
+    - name: clearsessions
+      schedule: "1 12 * * 0"
+      command: '["bash"]'
+      args: '["-c", "(source /app/bin/activate && /app/manage.py clearsessions)"]'
 environmentVariables:
   - name: AUTH
     value: SAML
