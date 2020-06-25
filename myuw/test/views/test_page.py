@@ -195,7 +195,6 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
 
-
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_blocked_netid(self):
         url = reverse("myuw_home")
@@ -204,4 +203,3 @@ class TestPageMethods(MyuwApiTest):
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
         self.assertEquals(response.status_code, 403)
-

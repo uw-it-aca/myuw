@@ -43,6 +43,7 @@ def not_instructor_error():
     return _make_response(UNAUTHORIZED_ERROR,
                           "Access Forbidden to Non Instructor")
 
+
 def blocked_uwnetid():
     return _make_response(
         UNAUTHORIZED_ERROR,
