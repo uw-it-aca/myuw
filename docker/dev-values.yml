@@ -57,9 +57,9 @@ cronjob:
   enabled: true
   jobs:
     - name: clearsessions
-      schedule: "59 20 * * 4"
-      command: ["bash"]
-      args: ["-c", "(source /app/bin/activate && /app/manage.py clearsessions)"]
+      schedule: "1 10 * * 5"
+      command: ["/scripts/management_command.sh"]
+      args: ["clearsessions"]
 environmentVariables:
   - name: AUTH
     value: SAML
