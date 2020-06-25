@@ -58,8 +58,8 @@ cronjob:
   jobs:
     - name: load-section-status-upd
       schedule: "* * * * 4"
-      command: '["bash"]'
-      args: '["-c", "(cd /app && source ./bin/activate && ./manage.py load_section_status_changes)"]'
+      command: ["/scripts/management_command.sh"]
+      args: ["load_section_status_changes"]
 environmentVariables:
   - name: AUTH
     value: SAML
