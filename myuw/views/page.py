@@ -8,7 +8,8 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
-from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.exceptions import (
+    EmailServiceUrlException, BlockedNetidErr)
 from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
@@ -25,7 +26,7 @@ from myuw.logger.session_log import (
 from myuw.util.settings import (
     get_google_search_key, get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import unknown_uwnetid, no_access
+from myuw.views.error import unknown_uwnetid, no_access, blocked_uwnetid
 from django.contrib.auth.decorators import login_required
 
 
@@ -64,6 +65,8 @@ def page(request,
 
     try:
         affiliations = get_all_affiliations(request)
+    except BlockedNetidErr:
+        return blocked_uwnetid()
     except DataFailureException as err:
         log_exception(logger, err, traceback)
         return render(request, '500.html', status=500)

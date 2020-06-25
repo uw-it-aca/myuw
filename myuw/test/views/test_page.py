@@ -23,7 +23,7 @@ class TestPageMethods(MyuwApiTest):
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_desktop_redirect(self):
         url = reverse("myuw_home")
-        self.set_user('nobody')
+        self.set_user('javerage')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
@@ -194,3 +194,14 @@ class TestPageMethods(MyuwApiTest):
         mock.side_effect = DataFailureException(None, 500, "prefetch GWS err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_blocked_netid(self):
+        url = reverse("myuw_home")
+        self.set_user('nobody')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
+        self.assertEquals(response.status_code, 403)
+
