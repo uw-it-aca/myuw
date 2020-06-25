@@ -56,10 +56,10 @@ certs:
 cronjob:
   enabled: true
   jobs:
-    - name: clear-expired-sessions
+    - name: clearsessions
       schedule: "1 12 * * 0"
       command: '["bash"]'
-      args: '["-c", "(cd /app && source ./bin/activate && ./manage.py clearsessions)"]'
+      args: '["-c", "(source /app/bin/activate && /app/manage.py clearsessions)"]'
 environmentVariables:
   - name: AUTH
     value: SAML
