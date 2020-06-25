@@ -32,8 +32,10 @@ class Command(BaseCommand):
         #             the earliest expired sessions exist
 
     def handle(self, *args, **options):
+        logger.info("Start ...")
         errors = []
         total_days = options['total_days']
+        logger.info("total_days = {}".format(total_days))
         now = timezone.now()
         for ddelta in range(total_days, 0, -1):
             cut_off_dt = now - timedelta(days=ddelta)
@@ -55,6 +57,7 @@ class Command(BaseCommand):
                       "\n".join(errors),
                       "{}@uw.edu".format(get_cronjob_sender()),
                       ["{}@uw.edu".format(get_cronjob_recipient())])
+        logger.info("End ...")
 
 
 def get_cut_off_params(day_session_count):
