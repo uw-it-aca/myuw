@@ -56,10 +56,10 @@ certs:
 cronjob:
   enabled: true
   jobs:
-    - name: check-reslinks
-      schedule: "1 17 * * 2"
-      command: ["/scripts/management_command.sh"]
-      args: ["check_reslinks"]
+    - name: load-section-status-upd
+      schedule: "* * * * 4"
+      command: '["bash"]'
+      args: '["-c", "(cd /app && source ./bin/activate && ./manage.py load_section_status_changes)"]'
 environmentVariables:
   - name: AUTH
     value: SAML
