@@ -46,7 +46,7 @@ def not_instructor_error():
 def blocked_uwnetid():
     return _make_response(
         UNAUTHORIZED_ERROR,
-        "<p>We encountered a problem accessing your uwnetid, "
+        "<p>We encountered a problem with your uwnetid, "
         "please contact the UW-IT Service Center.</p>.")
 
 
