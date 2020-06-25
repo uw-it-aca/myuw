@@ -56,10 +56,10 @@ certs:
 cronjob:
   enabled: true
   jobs:
-    - name: load-section-status-upd
-      schedule: "* * * * 4"
-      command: ["/scripts/management_command.sh"]
-      args: ["load_section_status_changes"]
+    - name: clearsessions
+      schedule: "21 19 * * 4"
+      command: ["bash"]
+      args: ["-c", "(source /app/bin/activate && /app/manage.py clearsessions)"]
 environmentVariables:
   - name: AUTH
     value: SAML
