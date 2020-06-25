@@ -52,6 +52,13 @@ certs:
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
   keyPath: /certs/myuw-dev.s.uw.edu-uwca.key
   secretName: test.my.uw.edu-uwca-certs
+cronjob:
+  enabled: true
+  jobs:
+    - name: clear-expired-sessions
+      schedule: "1 12 * * 0"
+      command: '["bash"]'
+      args: '["-c", "(cd /app && source ./bin/activate && ./manage.py clearsessions)"]'
 environmentVariables:
   - name: AUTH
     value: SAML

@@ -55,8 +55,8 @@ certs:
 cronjob:
   enabled: true
   jobs:
-    - name: clear-expired-sessions
-      schedule: "* * * * 2"
+    - name: load-section-status-upd
+      schedule: "* * * * 4"
       command: '["bash"]'
       args: '["-c", "(cd /app && source ./bin/activate && ./manage.py load_section_status_changes)"]'
 environmentVariables:
