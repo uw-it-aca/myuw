@@ -57,7 +57,7 @@ cronjob:
   enabled: true
   jobs:
     - name: clearsessions
-      schedule: "10 20 * * 4"
+      schedule: "59 20 * * 4"
       command: ["bash"]
       args: ["-c", "(source /app/bin/activate && /app/manage.py clearsessions)"]
 environmentVariables:
