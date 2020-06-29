@@ -30,9 +30,19 @@ class TestDeleteSessions(TransactionTestCase):
                                session_data=session_data1,
                                expire_date=(timezone.now() +
                                             timedelta(seconds=600)))
-        self.assertEqual(Session.objects.all().count(), 2)
+        session_data2 = Session.get_session_store_class()().encode(
+            {'_auth_user_id': '3',
+             '_auth_user_backend': 'RemoteUserBackend',
+             '_auth_user_hash': 'ac3a44eea77b1680dg'})
+        Session.objects.create(session_key="c",
+                               session_data=session_data2,
+                               expire_date=(timezone.now() +
+                                            timedelta(seconds=600)))
+        self.assertEqual(Session.objects.all().count(), 3)
 
         delete_sessions('javerage', SCOPE_IDTOKEN)
-        self.assertEqual(Session.objects.all().count(), 1)
+        self.assertEqual(Session.objects.all().count(), 2)
         delete_sessions('javerage', SCOPE_ALL)
-        self.assertEqual(Session.objects.all().count(), 0)
+        self.assertEqual(Session.objects.all().count(), 1)
+        delete_sessions('javerage', "")
+        self.assertEqual(Session.objects.all().count(), 1)
