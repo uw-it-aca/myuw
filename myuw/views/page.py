@@ -68,7 +68,7 @@ def page(request,
     try:
         affiliations = get_all_affiliations(request)
     except BlockedNetidErr:
-        delete_sessions(netid, SCOPE_ALL)
+        django_logout(request)
         return blocked_uwnetid()
     except DataFailureException as err:
         log_exception(logger, err, traceback)
