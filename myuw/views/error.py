@@ -48,7 +48,7 @@ def blocked_uwnetid():
     return _make_response(
         UNAUTHORIZED_ERROR,
         "<p>We encountered a problem with your uwnetid, "
-        "please contact the UW-IT Service Center.</p>.")
+        "please contact the UW-IT Service Center.</p>")
 
 
 def unknown_uwnetid():
