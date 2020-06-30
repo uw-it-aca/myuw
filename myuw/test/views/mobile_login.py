@@ -38,7 +38,7 @@ class TestLogins(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
     def test_desktop_login(self):
-        self.set_user('nobody')
+        self.set_user('none')
         response = self.get_home_desktop()
         self.assertEquals(response.status_code, 200)
 

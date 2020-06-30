@@ -1,5 +1,6 @@
 from unittest import skipIf
 from unittest.mock import patch
+from django.contrib.sessions.models import Session
 from django.urls import reverse
 from django.test.client import RequestFactory
 from unittest.mock import patch
@@ -23,7 +24,7 @@ class TestPageMethods(MyuwApiTest):
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_desktop_redirect(self):
         url = reverse("myuw_home")
-        self.set_user('nobody')
+        self.set_user('javerage')
         response = self.client.get(
             url,
             HTTP_USER_AGENT="Mozilla/4.0 (compatible; MSIE 5.01; WebISOGet")
@@ -133,12 +134,11 @@ class TestPageMethods(MyuwApiTest):
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.url, "/saml/logout")
 
-        with patch('myuw.views.page.django_logout') as mock:
-            mock.return_value = None
-            req = get_request_with_user('javerage')
-            req.META['HTTP_USER_AGENT'] = 'Mozilla/5.0 MyUW_Hybrid/1.0'
-            response = logout(req)
-            self.assertEquals(response.status_code, 200)
+        self.set_user('javerage')
+        response = self.client.get(
+            url,
+            HTTP_USER_AGENT="Mozilla/5.0 MyUW_Hybrid/1.0")
+        self.assertEquals(response.status_code, 200)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_user_not_in_pws(self):
@@ -194,3 +194,13 @@ class TestPageMethods(MyuwApiTest):
         mock.side_effect = DataFailureException(None, 500, "prefetch GWS err")
         response = self.client.get(url)
         self.assertEquals(response.status_code, 200)
+
+    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
+    def test_blocked_netid(self):
+        url = reverse("myuw_home")
+        self.set_user('nobody')
+        response = self.client.get(url,
+                                   HTTP_USER_AGENT="Mozilla/5.0")
+        self.assertEquals(response.status_code, 403)
+        self.assertTrue(
+            "a problem with your uwnetid" in response.reason_phrase)
