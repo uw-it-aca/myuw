@@ -37,15 +37,13 @@
       "subscriptionCode": 105,
       "subscriptionName": "U Forwarding",
       "permitted": true,
-      "statusCode": 20,
-      "statusName": "Active",
+      "statusCode": 24,
+      "statusName": "Inactive",
       "actions": [
         "Show",
-        "Deactivate",
         "Activate"
       ],
       "dataField": "FWD",
-      "dataValue": "none@u.washington.edu",
       "permits": [
         {
           "type": "permit",
