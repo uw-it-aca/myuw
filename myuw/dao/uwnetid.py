@@ -5,10 +5,12 @@ with the UW Netid Web Service
 
 import logging
 import traceback
+from restclients_core.exceptions import DataFailureException
 from uw_uwnetid.models import Subscription
 from uw_uwnetid.subscription import get_netid_subscriptions
 from uw_uwnetid.subscription_105 import get_uwemail_forwarding
 from myuw.dao import get_netid_of_current_user, log_err
+from myuw.dao.exceptions import BlockedNetidErr
 
 logger = logging.getLogger(__name__)
 kerberos_id = Subscription.SUBS_CODE_KERBEROS
@@ -55,9 +57,11 @@ def get_subscriptions(request):
                 subs_dict[twofa_id] = subs.permitted
                 # True|False
 
-    except Exception:
+    except DataFailureException as ex:
         log_err(logger, "uwnetid_subscriptions({})".format(netid),
                 traceback, request)
+        if ex.status == 409:
+            raise BlockedNetidErr(ex)
 
     request.myuwnetid_subscriptions = subs_dict
     return subs_dict

@@ -1,14 +1,15 @@
-import re
 import logging
 import traceback
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from restclients_core.exceptions import DataFailureException
+from userservice.user import get_original_user
 from myuw.dao import is_action_disabled
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
-from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.exceptions import (
+    EmailServiceUrlException, BlockedNetidErr)
 from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
@@ -22,10 +23,11 @@ from myuw.logger.logresp import (
     log_invalid_netid_response, log_page_view, log_exception)
 from myuw.logger.session_log import (
     log_session, is_native, log_session_end)
+from myuw.util.sessions import delete_sessions, SCOPE_IDTOKEN
 from myuw.util.settings import (
     get_google_search_key, get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import unknown_uwnetid, no_access
+from myuw.views.error import unknown_uwnetid, no_access, blocked_uwnetid
 from django.contrib.auth.decorators import login_required
 
 
@@ -62,8 +64,12 @@ def page(request,
         if failure:
             return failure
 
+    netid = user.uwnetid
     try:
         affiliations = get_all_affiliations(request)
+    except BlockedNetidErr:
+        django_logout(request)
+        return blocked_uwnetid()
     except DataFailureException as err:
         log_exception(logger, err, traceback)
         return render(request, '500.html', status=500)
@@ -71,7 +77,6 @@ def page(request,
     user_pref = get_migration_preference(request)
     log_session(request)
 
-    netid = user.uwnetid
     context["user"] = {
         "netid": netid,
         "session_key": request.session.session_key,
@@ -120,13 +125,13 @@ def try_prefetch(request, template, context):
 
 @login_required
 def logout(request):
-    # Expires current myuw session
-    django_logout(request)
     log_session_end(request)
-
     if is_native(request):
+        netid = get_original_user(request)
+        delete_sessions(netid, SCOPE_IDTOKEN)
         return HttpResponse()
 
+    django_logout(request)  # clear the session data
     # Redirects to authN service logout page
     return HttpResponseRedirect(get_logout_url())
 

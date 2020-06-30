@@ -1,7 +1,7 @@
 import sys
 from django.http import HttpResponse
-from restclients_core.exceptions import (DataFailureException, InvalidNetID,
-                                         InvalidRegID)
+from restclients_core.exceptions import (
+    DataFailureException, InvalidNetID, InvalidRegID)
 from myuw.dao.exceptions import (
     NotSectionInstructorException, InvalidResourceCategory)
 from myuw.models import ResourceCategoryPin
@@ -42,6 +42,13 @@ def no_access():
 def not_instructor_error():
     return _make_response(UNAUTHORIZED_ERROR,
                           "Access Forbidden to Non Instructor")
+
+
+def blocked_uwnetid():
+    return _make_response(
+        UNAUTHORIZED_ERROR,
+        "<p>We encountered a problem with your uwnetid, "
+        "please contact the UW-IT Service Center.</p>")
 
 
 def unknown_uwnetid():
