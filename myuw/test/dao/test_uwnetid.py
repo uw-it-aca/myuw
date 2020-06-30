@@ -1,6 +1,7 @@
 from django.test import TestCase
 from myuw.dao.uwnetid import (
-    get_subscriptions, get_email_forwarding_for_current_user, is_2fa_permitted)
+    get_subscriptions, get_email_forwarding_for_current_user,
+    is_2fa_permitted, BlockedNetidErr)
 from myuw.test import get_request_with_user, fdao_uwnetid_override
 
 
@@ -22,6 +23,11 @@ class TestUWNetidDao(TestCase):
         self.assertEquals(forward.fwd, "javerage@gamail.uw.edu")
 
         req = get_request_with_user('nobody')
+        self.assertRaises(
+            BlockedNetidErr,
+            get_email_forwarding_for_current_user, req)
+
+        req = get_request_with_user('none')
         forward = get_email_forwarding_for_current_user(req)
         self.assertIsNone(forward.fwd)
         self.assertTrue(forward.permitted)
