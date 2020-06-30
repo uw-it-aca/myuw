@@ -23,7 +23,7 @@ from myuw.logger.logresp import (
     log_invalid_netid_response, log_page_view, log_exception)
 from myuw.logger.session_log import (
     log_session, is_native, log_session_end)
-from myuw.util.sessions import delete_sessions, SCOPE_ALL, SCOPE_IDTOKEN
+from myuw.util.sessions import delete_sessions, SCOPE_IDTOKEN
 from myuw.util.settings import (
     get_google_search_key, get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features

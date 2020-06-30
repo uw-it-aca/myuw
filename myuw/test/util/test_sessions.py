@@ -3,7 +3,7 @@ from django.test import TransactionTestCase
 from django.core.management import call_command
 from django.contrib.sessions.models import Session
 from django.utils import timezone
-from myuw.util.sessions import delete_sessions, SCOPE_ALL, SCOPE_IDTOKEN
+from myuw.util.sessions import delete_sessions, SCOPE_IDTOKEN
 
 
 class TestDeleteSessions(TransactionTestCase):
@@ -42,7 +42,5 @@ class TestDeleteSessions(TransactionTestCase):
 
         delete_sessions('javerage', SCOPE_IDTOKEN)
         self.assertEqual(Session.objects.all().count(), 2)
-        delete_sessions('javerage', SCOPE_ALL)
-        self.assertEqual(Session.objects.all().count(), 1)
-        delete_sessions('javerage', "")
+        delete_sessions('javerage')
         self.assertEqual(Session.objects.all().count(), 1)
