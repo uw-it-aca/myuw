@@ -7,7 +7,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('netid', type=str, help="param1: uwnetid")
         parser.add_argument('scope', type=str, help="param2: {}|all".format(
-            SCOPE_IDTOKEN), default=SCOPE_IDTOKEN)
+            SCOPE_IDTOKEN))
 
     def handle(self, *args, **options):
-        delete_sessions(options['netid'], options.get('scope'))
+        delete_sessions(options['netid'], options['scope'])

@@ -17,10 +17,8 @@ def delete_sessions(netid, scope=None):
             data = session.get_decoded()
             if _is_qualified(data, netid, scope) is True:
                 session.delete()
-                logger.info(
-                    {'msg': "Deleted session of {}".format(netid),
-                     'scope': scope,
-                     'session_data': data})
+                logger.info({'msg': "Deleted session of {}".format(netid),
+                             'scope': scope})
         except Exception as ex:
             logger.error({'msg': "When deleting session of {}".format(netid),
                           'scope': scope,
