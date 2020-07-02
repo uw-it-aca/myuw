@@ -36,6 +36,7 @@ class Affiliation(ProtectedAPI):
 
             resp = get_all_affiliations(request)
             log_api_call(timer, request, "Get Affiliation")
+            request.session.set_expiry(60)
             return self.json_response(resp)
         except Exception:
             handle_exception(logger, timer, traceback)
