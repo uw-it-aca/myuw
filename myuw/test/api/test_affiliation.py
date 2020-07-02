@@ -50,3 +50,4 @@ class TestApiAffiliation(MyuwApiTest):
         self.assertTrue(data["hxt_viewer"])
         self.assertTrue(data["enrolled_stud"])
         self.assertTrue(data["2fa_permitted"])
+        self.assertEqual(self.request.session.get_expiry_age(), 60)
