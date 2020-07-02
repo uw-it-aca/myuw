@@ -136,10 +136,11 @@ class LogoutResponse(HttpResponse):
 @login_required
 def logout(request):
     log_session_end(request)
+    netid = get_netid_of_current_user(request)
     django_logout(request)  # clear the session data
 
     if is_native(request):
-        return LogoutResponse(get_netid_of_current_user(request))
+        return LogoutResponse(netid)
 
     # Redirects to authN service logout page
     return HttpResponseRedirect(get_logout_url())
