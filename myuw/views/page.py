@@ -4,8 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import logout as django_logout
 from restclients_core.exceptions import DataFailureException
-from userservice.user import get_original_user
-from myuw.dao import is_action_disabled
+from myuw.dao import is_action_disabled, get_netid_of_current_user
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.emaillink import get_service_url_for_address
 from myuw.dao.exceptions import (
@@ -123,13 +122,22 @@ def try_prefetch(request, template, context):
     return
 
 
+class LogoutResponse(HttpResponse):
+    def __init__(self, netid):
+        super(LogoutResponse, self).__init__()
+        self.netid = netid
+
+    def close(self):
+        super().close()
+        logger.info({"msg": "LogoutResponse.close {}".format(self.netid)})
+        delete_sessions(self.netid, SCOPE_IDTOKEN)
+
+
 @login_required
 def logout(request):
     log_session_end(request)
     if is_native(request):
-        netid = get_original_user(request)
-        delete_sessions(netid, SCOPE_IDTOKEN)
-        return HttpResponse()
+        return LogoutResponse(get_netid_of_current_user(request))
 
     django_logout(request)  # clear the session data
     # Redirects to authN service logout page
