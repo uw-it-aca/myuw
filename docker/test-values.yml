@@ -30,6 +30,8 @@ lifecycle:
   enabled: true
   preStop:
     enabled: true
+affinity:
+   podsSpanNodes: true
 readiness:
   enabled: true
 externalService:
