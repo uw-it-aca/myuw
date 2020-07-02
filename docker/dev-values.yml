@@ -10,6 +10,8 @@ resources:
   requests:
     cpu: 100m
     memory: 700Mi
+affinity:
+   podsSpanNodes: true
 ingress:
   enabled: true
   tls:
