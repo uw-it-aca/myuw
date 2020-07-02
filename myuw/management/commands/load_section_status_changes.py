@@ -17,8 +17,6 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        logger.info("Start ...")
-
         timer = Timer()
         try:
             Gather(processor=SectionStatusProcessor()).gather_events()
@@ -29,4 +27,3 @@ class Command(BaseCommand):
                       "{}".format(traceback.format_exc(chain=False)),
                       "{}@uw.edu".format(get_cronjob_sender()),
                       ["{}@uw.edu".format(get_cronjob_recipient())])
-        logger.info("End ...")
