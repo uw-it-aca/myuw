@@ -135,8 +135,8 @@ class LogoutResponse(HttpResponse):
 
 @login_required
 def logout(request):
-    django_logout(request)  # clear the session data
     log_session_end(request)
+    django_logout(request)  # clear the session data
 
     if is_native(request):
         return LogoutResponse(get_netid_of_current_user(request))
