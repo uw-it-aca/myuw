@@ -1,31 +1,31 @@
 Category,Subcategory,affiliation,Central (not campus specific),Central Title,Seattle,Seattle (link text),Bothell (destination URL),Bothell (link text),Tacoma,Tacoma Title,Open in a new tab?
 PageAcademics,Registration,all,https://registrar.washington.edu/enrollment-and-degree-verification/,Self-Service Enrollment Verification,,,,,,,no
-PageAcademics,Registration,all,,,http://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,http://www.uwb.edu/registration/time,UW Bothell Time Schedule,http://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
-PageAcademics,Registration,pce,http://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no
-PageAcademics,Registration,all,,,http://www.washington.edu/students/crscat/,Course Catalog,http://www.washington.edu/students/crscatb/,Course Catalog,http://www.washington.edu/students/crscatt/,Course Catalog,no
+PageAcademics,Registration,all,,,https://www.washington.edu/students/timeschd/,UW Seattle Time Schedule,https://www.uwb.edu/registration/time,UW Bothell Time Schedule,https://www.tacoma.uw.edu/ts-quicksearch/,UW Tacoma Time Schedule,no
+PageAcademics,Registration,pce,https://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no
+PageAcademics,Registration,all,,,http://www.washington.edu/students/crscat/,Course Catalog,https://www.washington.edu/students/crscatb/,Course Catalog,https://www.washington.edu/students/crscatt/,Course Catalog,no
 PageAcademics,Registration,all,https://myplan.uw.edu/student/myplan/mplogin/netid?rd=/student/myplan/dars,Degree Audit  (DARS),,,,,,,yes
 PageAcademics,Registration,all,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/,MyPlan,,,,,,,yes
 PageAcademics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Register with SLN,,,,,,,yes
 PageAcademics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,yes
 PageAcademics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,yes
 PageAcademics,Registration,all,https://prereqmap.uw.edu/,Prereq Map,,,,,,,yes
-PageAcademics,Tutoring & Advising,ugrad,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),,,http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
-PageAcademics,Tutoring & Advising,all,,,http://iss.washington.edu/,International Student Services (ISS),http://www.uwb.edu/iss,International Student Services (ISS),http://www.tacoma.uw.edu/international-student-services/welcome-international-student-scholar-services,International Student & Scholar Services,no
+PageAcademics,Tutoring & Advising,ugrad,,,http://depts.washington.edu/aspuw/clue/home/,Center for Learning and Undergraduate Enrichment (CLUE),,,https://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center,Teaching and Learning Center,no
+PageAcademics,Tutoring & Advising,all,,,https://iss.washington.edu/,International Student Services (ISS),https://www.uwb.edu/iss,International Student Services (ISS),https://www.tacoma.uw.edu/international-student-services/welcome-international-student-scholar-services,International Student & Scholar Services,no
 PageAcademics,Tutoring & Advising,all,,,http://depts.washington.edu/owrc,Odegaard Writing & Research Center,http://www.uwb.edu/wacc,Writing and Communication Center (WaCC),,,no
-PageAcademics,Tutoring & Advising,all,,,,,,,http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0,Academic Writing Resources,no
+PageAcademics,Tutoring & Advising,all,,,,,,,https://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0,Academic Writing Resources,no
 PageAcademics,Tutoring & Advising,ugrad,,,http://www.washington.edu/uaa/advising/,Undergraduate Academic Advising (Pre-major),http://www.uwb.edu/cusp/advising,Undergraduate Academic Advising (Pre-major),http://www.tacoma.uw.edu/advising,Undergraduate Academic Advising (Pre-major),no
 PageAcademics,Tutoring & Advising,all,,,http://studyabroad.washington.edu/,Study Abroad,http://www.uwb.edu/globalinitiatives/abroad,Study Abroad,http://www.tacoma.uw.edu/international-programs/international-programs,Study Abroad,no
-PageAcademics,Tutoring & Advising,all,,,http://careers.uw.edu/,Career & Internship Center,http://www.bothell.washington.edu/careers,Career Services,http://www.tacoma.uw.edu/career-development/career-development-education,Career Development and Education,no
+PageAcademics,Tutoring & Advising,all,,,http://careers.uw.edu/,Career & Internship Center,https://www.uwb.edu/careers,Career Services,https://www.tacoma.uw.edu/career-development/career-development-education,Career Development and Education,no
 PageAcademics,Grades & Transcripts,all,https://www.washington.edu/uaa/advising/grades-credits/gpa-calculator/,GPA Calculator,,,,,,,no
 PageAcademics,Grades & Transcripts,all,https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx,Grade Report,,,,,,,yes
-PageAcademics,Grades & Transcripts,all,,,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,http://www.uwb.edu/registration/transcript,Order Official Transcripts,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,yes
+PageAcademics,Grades & Transcripts,all,,,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,https://www.uwb.edu/registration/transcript,Order Official Transcripts,https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx,Order Official Transcripts,yes
 PageAcademics,Grades & Transcripts,all,https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp,Unofficial Transcript,,,,,,,yes
-PageAcademics,Graduation,all,,,http://www.washington.edu/students/reg/grad.html,Application for Graduation,https://www.uwb.edu/registration/graduation/apply,Applying for Graduation,http://www.tacoma.uw.edu/node/37921,Applying to Graduate,no
-PageAcademics,Tools & Software,all,,,http://scout.uw.edu/seattle,Scout: Discover the UW,http://scout.uw.edu/bothell,Scout: Discover the UW,http://scout.uw.edu/tacoma,Scout: Discover the UW,no
-PageAcademics,Tools & Software,all,http://www.washington.edu/itconnect/wares/uware/tableau-software/,Tableau Data Analysis Software,,,,,,,no
+PageAcademics,Graduation,all,,,https://registrar.washington.edu/enrollment-and-records/graduation-commencement-and-diplomas/,Application for Graduation,https://www.uwb.edu/registration/graduation/apply,Applying for Graduation,http://www.tacoma.uw.edu/node/37921,Applying to Graduate,no
+PageAcademics,Tools & Software,all,,,https://scout.uw.edu/seattle,Scout: Discover the UW,https://scout.uw.edu/bothell,Scout: Discover the UW,https://scout.uw.edu/tacoma,Scout: Discover the UW,no
+PageAcademics,Tools & Software,all,https://itconnect.uw.edu/wares/uware/tableau-software/,Tableau Data Analysis Software,,,,,,,no
 PageAcademics,Tools & Software,all,https://panopto.uw.edu/,Panopto,,,,,,,yes
 PageAcademics,Tools & Software,all,https://itconnect.uw.edu/wares/,Software & hardware for the UW,,,,,,,yes
 PageCalendar,Other Calendars,all,,,http://www.washington.edu/students/reg/calendar.html,All Academic Calendars,http://www.uwb.edu/calendar/academic,Bothell Academic Calendar,http://www.tacoma.uw.edu/node/41353,Tacoma Academic Calendars,no
-PageCalendar,Other Calendars,all,,,http://www.washington.edu/calendar/,Campus Event Calendar,http://www.uwb.edu/calendar,Bothell Campus Event Calendar,http://www.tacoma.uw.edu/home/calendar,Tacoma Campus Event Calendar,no
-PageCalendar,Other Calendars,all,,,http://depts.washington.edu/thehub/hub-events/event-calendars/,HUB Event Calendar,http://www.bothell.washington.edu/sea/events,Student Engagement & Activities Events,,,yes
+PageCalendar,Other Calendars,all,,,https://www.washington.edu/calendar/,Campus Event Calendar,https://www.uwb.edu/calenda,Bothell Campus Event Calendar,https://www.tacoma.uw.edu/home/calendar,Tacoma Campus Event Calendar,no
+PageCalendar,Other Calendars,all,,,https://hub.washington.edu/hub-events/event-calendars/,HUB Event Calendar,https://www.uwb.edu/sea/events,Student Engagement & Activities Events,,,yes
 PageCalendar,Other Calendars,all,https://isc.uw.edu/workday-payroll-calendar/,Payroll Calendar,,,,,,,yes
