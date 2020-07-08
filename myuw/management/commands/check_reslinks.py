@@ -7,7 +7,7 @@ import sys
 import urllib3
 from django.core.mail import send_mail
 from django.core.management.base import BaseCommand, CommandError
-from myuw.dao.category_links import Res_Links
+from myuw.dao.category_links import Res_Links, Resource_Links
 from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 
 # Disable SSL warnings
@@ -24,21 +24,30 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         messages = []
         links = Res_Links.get_all_links()
-        for link in links:
-            if link.url.startswith("https://sdb."):
-                continue
-            status = get_http_status(link.url, messages)
-            if status not in [200]:
-                msg = "{}, {}, URL: {} =status=> {}\n\n".format(
-                    link.title, make_campus_human_readable(link.campus),
-                    link.url, status)
-                logger.error(msg)
-                messages.append(msg)
-        if len(messages):
-            send_mail("Check Cetegory Links Cron",
-                      "\n".join(messages),
-                      "{}@uw.edu".format(get_cronjob_sender()),
-                      ["{}@uw.edu".format(get_cronjob_recipient())])
+        messages.append(Res_Links.csv_filename)
+        verify_links(links, messages)
+
+        links = Resource_Links.get_all_links()
+        messages.append("\n\n{}".format(Resource_Links.csv_filename))
+        verify_links(links, messages)
+        send_mail("Check Cetegory and Resource Links",
+                  "\n".join(messages),
+                  "{}@uw.edu".format(get_cronjob_sender()),
+                  ["{}@uw.edu".format(get_cronjob_recipient())])
+
+
+def verify_links(links, messages):
+    for link in links:
+        if link.url.startswith("https://sdb."):
+            continue
+        status = get_http_status(link.url, messages)
+        if status not in [200]:
+            msg = {"title": link.title,
+                   "campus": make_campus_human_readable(link.campus),
+                   "url": link.url,
+                   "status": status}
+            logger.error(msg)
+            messages.append("{}\n\n".format(msg))
 
 
 def get_http_status(url, messages):
@@ -54,6 +63,7 @@ def get_http_status(url, messages):
         )
         return result.status
     except Exception as ex:
+        logger.error(ex)
         messages.append(str(ex))
 
 
