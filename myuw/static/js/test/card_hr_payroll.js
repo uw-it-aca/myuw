@@ -41,12 +41,14 @@ describe('HRPayrollCard', function(){
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 1);
             assert.equal(HRPayrollCard.dom_target.find('a[href="http://ap.washington.edu/ahr/"]').length, 0);
         });
+
         it("Should render for student employee", function() {
             window.user.stud_employee = true;
             HRPayrollCard.render_init();
-            assert.equal(HRPayrollCard.dom_target.find('a[href="http://hr.uw.edu/"]').length, 1);
+            assert.equal(HRPayrollCard.dom_target.find('a[href="https://hr.uw.edu/"]').length, 1);
             assert.equal(HRPayrollCard.dom_target.find('a[href="https://isc.uw.edu/"]').length, 1);
         });
+
         it("Should render truncated view for past_employee", function() {
             window.user.past_employee = true;
             window.page = "home";
