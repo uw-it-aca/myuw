@@ -224,7 +224,7 @@ environmentVariables:
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
-    value: "10"
+    value: "5"
   - name: MYPLAN_POOL_SIZE
     value: "30"
 
