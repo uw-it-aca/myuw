@@ -186,6 +186,16 @@ describe('Handlebar-helpers', function(){
             var output = template();
             assert.equal(output, 'Monday, March 4, 1:30PM');
         });
+        it ("empty date", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetimeVerbose ''}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+        it ("undefined", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetimeVerbose undefined}}");
+            var output = template();
+            assert.equal(output, '');
+        });
     });
     describe("formatDateAsFinalsDay", function() {
         it ("work for a date", function() {
