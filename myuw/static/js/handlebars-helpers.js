@@ -45,7 +45,7 @@ Handlebars.registerHelper("strToInt", function(str) {
         if (date_str === undefined || date_str.length === 0) {
             return "";
         }
-        return moment(new Date(date_str).toISOString()).format("ddd, MMM D, h:mmA");
+        return moment(date_str).format("ddd, MMM D, h:mmA");
     });
 
     Handlebars.registerHelper("toFriendlyDateVerbose", function(date_str) {
@@ -59,7 +59,7 @@ Handlebars.registerHelper("strToInt", function(str) {
         if (date_str === undefined || date_str.length === 0) {
             return "";
         }
-        return moment(new Date(date_str).toISOString()).format("dddd, MMMM D, h:mmA");
+        return moment(date_str).format("dddd, MMMM D, h:mmA");
     });
 })();
 
