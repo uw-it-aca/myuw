@@ -134,12 +134,12 @@ describe('Handlebar-helpers', function(){
         it ("work for a datetime", function() {
             var template = Handlebars.compile("{{toFriendlyDatetime '2013-03-04 13:30'}}");
             var output = template();
-            assert.equal(output, 'Mon, Mar 4, 1PM');
+            assert.equal(output, 'Mon, Mar 4, 1:30PM');
         });
         it ("work for a timezone datetime", function() {
             var template = Handlebars.compile("{{toFriendlyDatetime '2018-06-07 06:59:59 UTC+0000'}}");
             var output = template();
-            assert.equal(output, 'Thu, Jun 7, 3PM');
+            assert.equal(output, 'Thu, Jun 7, 6:59AM');
         });
         it ("empty date", function() {
             var template = Handlebars.compile("{{toFriendlyDatetime ''}}");
@@ -179,12 +179,12 @@ describe('Handlebar-helpers', function(){
         it ("work for a date", function() {
             var template = Handlebars.compile("{{toFriendlyDatetimeVerbose '2013-03-04'}}");
             var output = template();
-            assert.equal(output, 'Monday, March 4, 12AM');
+            assert.equal(output, 'Monday, March 4, 12:00AM');
         });
         it ("work for a datetime", function() {
             var template = Handlebars.compile("{{toFriendlyDatetimeVerbose '2013-03-04 13:30'}}");
             var output = template();
-            assert.equal(output, 'Monday, March 4, 1PM');
+            assert.equal(output, 'Monday, March 4, 1:30PM');
         });
     });
     describe("formatDateAsFinalsDay", function() {
