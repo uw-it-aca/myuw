@@ -15,7 +15,6 @@ from myuw.test.dao.card_display_dates import TestDisplayValues
 from myuw.test.dao.grad import TestDaoGrad
 from myuw.test.dao.hfs import TestHFS as TestDaoHFS
 from myuw.test.dao.iasystem import IASystemDaoTest
-from myuw.test.dao.library import TestLibrary
 from myuw.test.dao.mailman import TestMailmanDao
 from myuw.test.dao.password import TestDaoPassword
 from myuw.test.dao.textbook import TestTextbooks
@@ -30,7 +29,6 @@ from myuw.test.api.profile import TestProfile
 from myuw.test.api.iasystem import TestIasystemApi
 from myuw.test.api.emaillist import TestEmaillistApi
 from myuw.test.api.myplan import TestMyPlanApi
-from myuw.test.api.library import TestLibrary as TestLibraryAPI
 from myuw.test.api.category_links import TestLinks
 from myuw.test.api.finance import TestFinance as TestFinanceAPI
 from myuw.test.api.future_schedule import TestFutureSchedule
