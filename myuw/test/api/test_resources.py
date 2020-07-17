@@ -23,15 +23,14 @@ class TestResources(MyuwApiTest):
     def test_pin_resource(self):
         self.set_user('bill')
         url = reverse('myuw_resources_pin_api',
-                      kwargs={'category_id': 'teachinginclasstools'})
+                      kwargs={'category_id': 'teachingtools'})
         response = self.client.post(
             url, content_type='application_json')
         self.assertEqual(response.status_code, 200)
 
         categories = ResourceCategoryPin.objects.all()
         self.assertEqual(len(categories), 1)
-        self.assertEqual(categories[0].resource_category_id,
-                         'teachinginclasstools')
+        self.assertEqual(categories[0].resource_category_id, 'teachingtools')
 
         response = self.client.delete(
             url, content_type='application_json')

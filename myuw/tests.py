@@ -9,7 +9,6 @@ from myuw.test.dao.notice_mapping import TestMapNotices
 from myuw.test.dao.notice_categorization import TestNoticeCategories
 from myuw.test.dao.notice import TestNotices
 from myuw.test.dao.building import TestBuildings
-from myuw.test.dao.category_links import TestCategoryLinks
 from myuw.test.dao.finance import TestFinance
 from myuw.test.dao.card_display_dates import TestDisplayValues
 from myuw.test.dao.grad import TestDaoGrad

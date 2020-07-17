@@ -144,7 +144,9 @@ Teaching,Course Materials,all,http://lib.washington.edu/types/course/instructors
 Teaching,Grading,all,http://gradepage.uw.edu,GradePage,,,,,,,no
 Teaching,Grading,all,https://apps.registrar.washington.edu/grade-change/pages/change.php,Change Submitted Grades,,,,,,,no
 Teaching,Grading,all,,,http://depts.washington.edu/grading,Faculty Resource on Grading,https://www.uwb.edu/registration/policies/grading,Grading Policies,http://www.tacoma.uw.edu/node/37545,Grading Policy,no
-Teaching,In-Class Tools,all,http://canvas.uw.edu,Canvas LMS,,,,,,,no
-Teaching,In-Class Tools,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
-Teaching,In-Class Tools,all,http://panopto.uw.edu,Panopto Lecture Capture,,,,,,,no
-Teaching,In-Class Tools,all,https://itconnect.uw.edu/learn/tools/polleverywhere/,Poll Everywhere,,,,,,,no
+Teaching,Tools,all,http://canvas.uw.edu,Canvas LMS,,,,,,,no
+Teaching,Tools,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
+Teaching,Tools,all,http://panopto.uw.edu,Panopto Lecture Capture,,,,,,,no
+Teaching,Tools,all,https://itconnect.uw.edu/learn/tools/polleverywhere/,Poll Everywhere,,,,,,,no
+Teaching,Tools,all,https://coda.uw.edu,Course stats,,,,,,,no
+Teaching,Tools,all,https://washington.zoom.us,Zoom,,,,,,,no
