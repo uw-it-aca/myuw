@@ -130,6 +130,29 @@ describe('Handlebar-helpers', function(){
         });
     });
 
+    describe("toFriendlyDatetime", function() {
+        it ("work for a datetime", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetime '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, 'Mon, Mar 4, 1:30PM');
+        });
+        it ("work for a timezone datetime", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetime '2018-06-07 06:59:59 UTC+0000'}}");
+            var output = template();
+            assert.equal(output, 'Thu, Jun 7, 6:59AM');
+        });
+        it ("empty date", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetime ''}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+        it ("undefined", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetime undefined}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
+
     describe("toFriendlyDateVerbose", function() {
         it ("work for a date", function() {
             var template = Handlebars.compile("{{toFriendlyDateVerbose '2013-03-04'}}");
@@ -152,7 +175,28 @@ describe('Handlebar-helpers', function(){
             assert.equal(output, '');
         });
     });
-
+    describe("toFriendlyDatetimeVerbose", function() {
+        it ("work for a date", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetimeVerbose '2013-03-04'}}");
+            var output = template();
+            assert.equal(output, 'Monday, March 4, 12:00AM');
+        });
+        it ("work for a datetime", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetimeVerbose '2013-03-04 13:30'}}");
+            var output = template();
+            assert.equal(output, 'Monday, March 4, 1:30PM');
+        });
+        it ("empty date", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetimeVerbose ''}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+        it ("undefined", function() {
+            var template = Handlebars.compile("{{toFriendlyDatetimeVerbose undefined}}");
+            var output = template();
+            assert.equal(output, '');
+        });
+    });
     describe("formatDateAsFinalsDay", function() {
         it ("work for a date", function() {
             var template = Handlebars.compile("{{formatDateAsFinalsDay '2013-06-14' 4}}");

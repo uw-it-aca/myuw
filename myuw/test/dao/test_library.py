@@ -17,7 +17,8 @@ class TestLibrary(TestCase):
         self.assertEquals(_get_account_by_uwnetid(None), None)
 
         javerage_acct = _get_account_by_uwnetid('javerage')
-        self.assertEquals(javerage_acct.next_due, datetime.date(2014, 5, 27))
+        self.assertEquals(str(javerage_acct.next_due),
+                          '2014-05-27 02:00:00+00:00')
 
         self.assertRaises(DataFailureException,
                           _get_account_by_uwnetid,
