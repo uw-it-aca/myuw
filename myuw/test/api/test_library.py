@@ -15,11 +15,11 @@ class TestLibrary(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
 
         data = json.loads(response.content)
-
-        self.assertEquals(data["next_due"], "2014-05-27")
-        self.assertEquals(data["holds_ready"], 1)
-        self.assertEquals(data["fines"], 0)
-        self.assertEquals(data["items_loaned"], 1)
+        self.assertEquals(data,
+                          {'fines': 0,
+                           'holds_ready': 1,
+                           'items_loaned': 1,
+                           'next_due': '2014-05-27T02:00:00+00:00'})
 
     def test_invalid_books(self):
         self.set_user('nodata')

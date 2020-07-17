@@ -41,11 +41,25 @@ Handlebars.registerHelper("strToInt", function(str) {
         return moment(date_str).format("ddd, MMM D");
     });
 
+    Handlebars.registerHelper("toFriendlyDatetime", function(date_str) {
+        if (date_str === undefined || date_str.length === 0) {
+            return "";
+        }
+        return moment(date_str).format("ddd, MMM D, h:mmA");
+    });
+
     Handlebars.registerHelper("toFriendlyDateVerbose", function(date_str) {
         if (date_str === undefined || date_str.length === 0) {
             return "";
         }
         return moment(date_str).format("dddd, MMMM D");
+    });
+
+    Handlebars.registerHelper("toFriendlyDatetimeVerbose", function(date_str) {
+        if (date_str === undefined || date_str.length === 0) {
+            return "";
+        }
+        return moment(date_str).format("dddd, MMMM D, h:mmA");
     });
 })();
 
