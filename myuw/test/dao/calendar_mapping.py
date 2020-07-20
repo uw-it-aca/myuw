@@ -98,6 +98,6 @@ class TestCalendarMapping(TestCase):
                                     get_request_with_date("2014-01-01"))
         mm = _get_major_minors(req)
         self.assertEqual(len(mm['majors']), 1)
-        self.assertEqual(len(mm['minors']), 1)
+        self.assertEqual(len(mm['minors']), 2)
         self.assertTrue(u'PREMAJOR (BOTHELL)' in mm['majors'])
         self.assertTrue(u'ASL' in mm['minors'])
