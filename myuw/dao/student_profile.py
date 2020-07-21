@@ -72,9 +72,11 @@ def get_academic_info(request, response):
     """
     terms, enrollments = get_cur_future_enrollments(request)
 
-    if terms[0] in enrollments:
-        enrollment = enrollments[terms[0]]
-        response['class_level'] = enrollment.class_level
+    for term in terms:
+        if term in enrollments:
+            enrollment = enrollments[term]
+            response['class_level'] = enrollment.class_level
+            break
 
     response['term_majors'] = _get_degrees_for_terms(terms, enrollments,
                                                      "majors")
