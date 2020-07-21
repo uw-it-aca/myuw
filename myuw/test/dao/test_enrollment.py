@@ -99,9 +99,9 @@ class TestDaoEnrollment(TestCase):
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))
         enrollments = get_enrollments_of_terms(req, terms)
-        self.assertEqual(len(enrollments), 3)
+        self.assertEqual(len(enrollments), 2)
         self.assertTrue(t1 in enrollments)
-        self.assertTrue(t2 in enrollments)
+        self.assertFalse(t2 in enrollments)
         self.assertTrue(t3 in enrollments)
         enrollment = get_enrollment_for_term(req, t1)
         self.assertEqual(len(enrollment.majors), 1)
