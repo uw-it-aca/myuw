@@ -63,8 +63,8 @@ Services for Faculty and Staff,Others,all,,,https://www.ehs.washington.edu/,Envi
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/,UW Facilities,https://www.uwb.edu/facility,Facilities and Campus Operations,http://www.tacoma.uw.edu/facilities-services/facilities-services,Facilities Services,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/services/requests,UW Facilities: Request Service,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,http://www.tacoma.uw.edu/facilities-services/work-order-request,Facilities Services: Work Order Request,no
 Campus Life,Campus Retail,all,,,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwseattle,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwbothell,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwtacoma,University Book Store,no
-Campus Life,Campus Safety,all,,,,,,,http://www.tacoma.uw.edu/campus-safety/,Campus Safety & Security,no
-Campus Life,Campus Safety,all,,,http://www.washington.edu/safecampus/,SafeCampus,https://www.uwb.edu/safety,SafeCampus,https://www.tacoma.uw.edu/node/38890,SafeCampus,no
+Campus Life,Campus Safety,all,,,https://www.washington.edu/safety/,Campus Safety,https://www.uwb.edu/safety,Campus Safety Department,https://www.tacoma.uw.edu/campus-safety/,Campus Safety & Security,no
+Campus Life,Campus Safety,all,http://www.washington.edu/safecampus/,SafeCampus,,,,,,,no
 Campus Life,Campus Safety,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/facility/ehs,Environmental Health & Safety,http://www.tacoma.uw.edu/node/38910,Environmental Health & Safety,no
 Campus Life,Campus Safety,all,https://cspc.admin.uw.edu/mychem,MyChem,,,,,,,no
 Campus Life,Campus Safety,all,,,https://www.washington.edu/uwem/,UW Emergency Management,https://www.uwb.edu/emergency,UW Bothell Emergency Page,http://www.tacoma.uw.edu/campus-safety/emergency-response,UW Tacoma Emergency Response,no
