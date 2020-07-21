@@ -21,10 +21,7 @@ class MyLibInfo(ProtectedAPI):
         timer = Timer()
         try:
             myaccount = get_account_info_for_current_user(request)
-
-            resp_json = myaccount.json_data(
-                use_abbr_week_month_day_format=True)
-
+            resp_json = myaccount.json_data()
             log_api_call(timer, request, "Get My Library Account")
             return self.json_response(resp_json)
         except Exception:

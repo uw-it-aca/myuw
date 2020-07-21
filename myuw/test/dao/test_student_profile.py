@@ -1,6 +1,6 @@
 from django.test import TestCase
 from myuw.dao.student_profile import _get_degrees_for_terms,\
-    get_cur_future_enrollments
+    get_cur_future_enrollments, get_student_profile
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
 
@@ -30,7 +30,6 @@ class TestStudentProfile(TestCase):
 
         self.assertEquals(len(minors[0]['minors']), 1)
         self.assertEquals(len(minors[1]['minors']), 2)
-        self.assertEquals(len(minors[2]['minors']), 1)
 
     def test_no_change(self):
         req = get_request_with_user('javg005',
@@ -72,3 +71,9 @@ class TestStudentProfile(TestCase):
         self.assertFalse(majors[3]['degrees_modified'])
         self.assertTrue(len(majors[3]["majors"]) == 0)
         self.assertFalse(majors[3]['has_only_dropped'])
+
+    def test_class_standing(self):
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2013-07-01"))
+        data = get_student_profile(req)
+        self.assertEqual(data['class_level'], 'SOPHOMORE')
