@@ -149,7 +149,7 @@ class TestCategoryLinks(TransactionTestCase):
         self.assertEqual(len(links[8]['subcategories']['Tools']), 5)
         self.assertEqual(
             links[8]['subcategories']['Tools']['links'][4]['title'],
-            'Course stats')
+            'Course Stats')
         self.assertEqual(
             links[8]['subcategories']['Tools']['links'][5]['title'], 'Zoom')
 
