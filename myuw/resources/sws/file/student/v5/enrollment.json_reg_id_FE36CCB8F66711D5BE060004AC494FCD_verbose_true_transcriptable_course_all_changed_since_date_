@@ -2,7 +2,7 @@
   "Href":"\/student\/v5\/enrollment.json?reg_id=FE36CCB8F66711D5BE060004AC494FCD&verbose=true&changed_since_date=&transcriptable_course=all", "RegID":"FE36CCB8F66711D5BE060004AC494FCD","Verbose":true},
 "Enrollments":[
    {
-    "ClassLevel": "SOPHOMORE",
+    "ClassLevel": "FRESHMAN",
     "FullName": "BOTHELL, JAMES",
     "HonorsProgram": false,
     "LeaveEndQuarter": 0,
@@ -336,54 +336,6 @@
                     "Name":"POLITICAL SCIENCE",
                     "Pathway":0,
                     "ShortName":"POL SCI"
-                }
-            ],
-            "PendingClassChange": false,
-            "PendingHonorsChange": false,
-            "PendingMajorChange": false,
-            "PendingResidentChange": false,
-            "PendingSpecialProgramChange": false,
-            "Person": {
-                "Href": "/student/v5/person/FE36CCB8F66711D5BE060004AC494FCD.json",
-                "Name": "BOTHELL, JAMES",
-                "RegID": "FE36CCB8F66711D5BE060004AC494FCD"
-            },
-            "QtrGradePoints": 30,
-            "QtrGradedAttmp": 10,
-            "QtrNonGrdEarned": 2,
-            "RegID": "FE36CCB8F66711D5BE060004AC494FCD",
-            "Registrations": [
-
-            ],
-            "Term": {
-                "Href": "/student/v5/term/2013,summer.json",
-                "Quarter": "summer",
-                "Year": "2013"
-            }
-        },{
-            "ClassLevel": "SOPHOMORE",
-            "FullName": "BOTHELL, JAMES",
-            "HonorsProgram": false,
-            "LeaveEndQuarter": 0,
-            "LeaveEndYear": 0,
-            "Majors": [
-               {"Abbreviation":"B PRE",
-               "Campus":"Bothell",
-               "DegreeLevel":0,
-               "DegreeName":null,
-               "DegreeType":0,
-               "FullName":"Premajor (Bothell Campus)",
-               "MajorName":"PREMAJOR (BOTHELL)",
-               "Pathway":0,
-               "ShortName":"B PRE"}],
-            "Minors":[
-                {
-                    "Abbreviation":"ASL",
-                    "CampusName":"Tacoma",
-                    "FullName":"American Sign Language",
-                    "Name":"AMERICAN SIGN LANGUAGE",
-                    "Pathway":0,
-                    "ShortName":"ASL"
                 }
             ],
             "PendingClassChange": false,
