@@ -414,6 +414,104 @@
                 "Quarter": "autumn",
                 "Year": "2013"
             }
+        },
+        {
+            "ClassCode": "4",
+            "ClassLevel": "JUNIOR",
+            "ClassDescription": "Junior",
+            "CurrentRegisteredCredits": null,
+            "EnrollmentStatus": "Registered",
+            "EnrollmentStatusDate": "",
+            "FullName": "CLASS, EIGHT",
+            "HonorsProgram": false,
+            "LeaveEndQuarter": 0,
+            "LeaveEndYear": 0,
+            "Majors": [
+            {"Abbreviation":"E E",
+                "Campus":"Tacoma",
+                "DegreeLevel":1,
+                "DegreeName":"BACHELOR OF SCIENCE (ECONOMICS)",
+                "DegreeType":5,
+                "FullName":"Economics",
+                "MajorName":"ECONOMICS",
+                "Pathway":0,
+                "ShortName":"ECONOMICS"},
+            {"Abbreviation":"MATH",
+                "Campus":"Tacoma",
+                "DegreeLevel":1,
+                "DegreeName":"BACHELOR OF SCIENCE (MATHEMATICS)",
+                "DegreeType":5,
+                "FullName":"Mathematics",
+                "MajorName":"MATHEMATICS",
+                "Pathway":0,
+                "ShortName":"MATH"}
+
+            ],
+            "Metadata": "EnrollmentSourceLocation=SDB;",
+            "PendingClassChange": false,
+            "PendingHonorsChange": false,
+            "PendingMajorChange": false,
+            "PendingResidentChange": false,
+            "PendingSpecialProgramChange": false,
+            "Person": {
+                "Href": "/student/v5/person/12345678901234567890123456789012.json",
+                "Name": "CLASS, EIGHT",
+                "RegID": "12345678901234567890123456789012"
+            },
+            "QtrGradePoints": 40,
+            "QtrGradedAttmp": 17,
+            "QtrNonGrdEarned": 2,
+            "RegID": "12345678901234567890123456789012",
+            "Registrations": [
+                {
+                    "AccessDateRangeEnd": "",
+                    "AccessDateRangeStart": "",
+                    "Auditor": false,
+                    "Credits": "5.0",
+                    "DuplicateCode": "",
+                    "EducationUnitType": null,
+                    "EndDate": "",
+                    "FeeBaseType": "",
+                    "Grade": "X",
+                    "GradeDate": "",
+                    "GradeDocumentID": "",
+                    "GradingSystem": null,
+                    "HonorsCourse": false,
+                    "Href": "/student/v5/registration/2020,autumn,E%20E,235,A,12345678901234567890123456789012,.json",
+                    "Instructor": null,
+                    "IsActive": true,
+                    "IsCredit": true,
+                    "IsIndependentStart": false,
+                    "Metadata": "RegistrationSourceLocation=SDB;",
+                    "Person": {
+                        "Href": "/student/v5/person/12345678901234567890123456789012.json",
+                        "Name": "see PWS",
+                        "RegID": "12345678901234567890123456789012"
+                    },
+                    "RepeatCourse": false,
+                    "RepositoryTimeStamp": "6/23/2020 8:02:24 AM",
+                    "RequestDate": "2020-05-14",
+                    "RequestStatus": "ADDED TO CLASS",
+                    "Section": {
+                        "CourseNumber": "235",
+                        "CurriculumAbbreviation": "E E",
+                        "Href": "/student/v5/course/2020,autumn,E%20E,235/A.json",
+                        "Quarter": "autumn",
+                        "SLN": "13826",
+                        "SectionID": "A",
+                        "Year": 2020
+                    },
+                    "SourceDateString": null,
+                    "StartDate": "",
+                    "VariableCredit": false,
+                    "WritingCourse": false
+                }
+            ],
+            "Term": {
+                "Href": "/student/v5/term/2013,autumn.json",
+                "Quarter": "autumn",
+                "Year": "2020"
+            }
         }
 ],
 "Next":null,
