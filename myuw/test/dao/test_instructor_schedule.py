@@ -53,6 +53,15 @@ class TestInstructorSchedule(TestCase):
         schedule = get_instructor_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 0)
 
+        # remote learning
+        request = get_request_with_user('billsea',
+                                        get_request_with_date("2020-10-01"))
+        term = get_current_quarter(request)
+        schedule = get_instructor_schedule_by_term(request, term)
+        self.assertEqual(len(schedule.sections), 5)
+        self.assertTrue(schedule.sections[0].is_remote)
+        self.assertTrue(schedule.sections[3].is_remote)
+
     def test_set_section_from_url(self):
         section_url = "/student/v5/course/2018,spring,JAPAN,573/A.json"
         term = Term()

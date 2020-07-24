@@ -63,10 +63,13 @@
                                 {{/if}}
 
                                 {{#unless no_meeting}}
-                                    {{#if building_tbd}}
+                                    {{#if ../is_remote}}
+                                        <td class="course-location">REMOTE</td>
+                                    {{else}} {{#if building_tbd}}
                                         <td {{#if eos_start_date}}headers="location-{{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}} {{@root.year}}-{{@root.quarter}}-{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}-meeting-{{index}}"{{/if}} class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
-                                    {{else}}
-                                        {{> course_sche_col_bldg}}
+                                        {{else}}
+                                            {{> course_sche_col_bldg}}
+                                        {{/if}}
                                     {{/if}}
                                 {{/unless}}
 

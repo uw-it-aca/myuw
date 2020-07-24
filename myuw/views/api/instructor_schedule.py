@@ -304,6 +304,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data[
             'allows_secondary_grading'] = section.allows_secondary_grading
 
+        section_data['is_remote'] = section.is_remote
+
         if section.is_early_fall_start():
             section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True
