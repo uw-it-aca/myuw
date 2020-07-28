@@ -101,7 +101,7 @@ USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
 
 COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
+COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
 
 if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
     COMPRESS_ENABLED = False
