@@ -142,9 +142,9 @@ def load_schedule(request, schedule, summer_term=""):
             if section.final_exam.building:
                 building = buildings[section.final_exam.building]
                 if building:
-                   final["longitude"] = building.longitude
-                   final["latitude"] = building.latitude
-                   final["building_name"] = building.name
+                    final["longitude"] = building.longitude
+                    final["latitude"] = building.latitude
+                    final["building_name"] = building.name
 
         # Also backfill the meeting building data
         section_data["has_eos_dates"] = False
