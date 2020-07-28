@@ -178,6 +178,7 @@ var FinalExamSchedule = {
                 visual_data.latest_ending = end_minutes;
             }
             var exam_info = {
+                is_remote: section.is_remote,
                 is_meeting: true,
                 start: start_minutes,
                 end: end_minutes,

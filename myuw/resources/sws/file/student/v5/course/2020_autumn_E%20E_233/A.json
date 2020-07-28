@@ -126,16 +126,13 @@
                         "Name": "Monday"
                     },
                     {
-                        "Name": "Tuesday"
-                    },
-                    {
                         "Name": "Wednesday"
                     },
                     {
                         "Name": "Friday"
                     }
                 ],
-                "Text": "MTW F"
+                "Text": "M W F"
             },
             "DaysOfWeekToBeArranged": false,
             "EndTime": "09:20",
