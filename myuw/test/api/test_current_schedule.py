@@ -222,3 +222,5 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(len(data["sections"]), 3)
         ee = self.get_section(data, 'E E', '233', 'A')
         self.assertTrue(ee["is_remote"])
+        self.assertTrue(ee["final_exam"]["is_remote"])
+        self.assertTrue(ee["meetings"][0]["is_remote"])

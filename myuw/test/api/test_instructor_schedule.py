@@ -260,3 +260,14 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(len(data['sections']), 2)
         self.assertEqual(data['sections'][0]['current_enrollment'], 18)
         self.assertEqual(data['sections'][1]['current_enrollment'], 3)
+
+    def test_remote_courese(self):
+        request = get_request_with_user(
+            'billsea', get_request_with_date('2020-10-01'))
+        resp = InstScheCurQuar().get(request)
+        data = json.loads(resp.content)
+        self.assertEquals(len(data["sections"]), 5)
+        ee = data["sections"][0]
+        self.assertTrue(ee["is_remote"])
+        self.assertTrue(ee["final_exam"]["is_remote"])
+        self.assertTrue(ee["meetings"][0]["is_remote"])

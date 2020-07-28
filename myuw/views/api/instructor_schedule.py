@@ -304,8 +304,6 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         section_data[
             'allows_secondary_grading'] = section.allows_secondary_grading
 
-        section_data['is_remote'] = section.is_remote
-
         if section.is_early_fall_start():
             section_data["cc_display_dates"] = True
             section_data["early_fall_start"] = True
@@ -331,19 +329,28 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         course_resource_threads.append(t)
         t.start()
 
-        # MUWM-596
-        if section.final_exam and section.final_exam.building:
-            building = buildings[section.final_exam.building]
-            if building:
-                section_data["final_exam"]["longitude"] = building.longitude
-                section_data["final_exam"]["latitude"] = building.latitude
-                section_data["final_exam"]["building_name"] = building.name
+        if section.final_exam:
+            final = section_data["final_exam"]
+            # MUWM-4728
+            final["is_remote"] = section.is_remote
+
+            # MUWM-596
+            if section.final_exam.building:
+                building = buildings[section.final_exam.building]
+                if building:
+                    final["longitude"] = building.longitude
+                    final["latitude"] = building.latitude
+                    final["building_name"] = building.name
 
         # Also backfill the meeting building data
         section_data["has_eos_dates"] = False
         meeting_index = 0
         for meeting in section.meetings:
             mdata = section_data["meetings"][meeting_index]
+
+            # MUWM-4728
+            mdata["is_remote"] = section.is_remote
+
             if meeting.eos_start_date is not None:
                 if not section_data["has_eos_dates"]:
                     section_data["has_eos_dates"] = True
