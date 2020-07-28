@@ -86,5 +86,5 @@ class TestRegistrationsDao(TestCase):
         term = get_current_quarter(request)
         schedule = get_schedule_by_term(request, term)
         self.assertIsNotNone(schedule)
-        self.assertEqual(len(schedule.sections), 1)
+        self.assertEqual(len(schedule.sections), 3)
         self.assertTrue(schedule.sections[0].is_remote)

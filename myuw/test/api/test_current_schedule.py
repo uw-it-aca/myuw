@@ -219,6 +219,6 @@ class TestSchedule(MyuwApiTest):
         data = json.loads(response.content)
         self.assertEquals(data["term"]["year"], 2020)
         self.assertEquals(data["term"]["quarter"], 'Autumn')
-        self.assertEquals(len(data["sections"]), 1)
+        self.assertEquals(len(data["sections"]), 3)
         ee = self.get_section(data, 'E E', '233', 'A')
         self.assertTrue(ee["is_remote"])
