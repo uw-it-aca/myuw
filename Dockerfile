@@ -1,4 +1,4 @@
-FROM acait/django-container:1.0.35 as app-container
+FROM acait/django-container:1.0.35 as pre-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -26,7 +26,7 @@ WORKDIR /app/
 RUN npm install .
 RUN node_modules/.bin/parcel build -d /app/myuw/static/dist myuw/static/node_bundler_entry/**/*
 
-FROM app-container
+FROM pre-container as app-container
 
 COPY --chown=acait:acait --from=node-bundler /app/myuw/static/dist/* /static/dist/
 
