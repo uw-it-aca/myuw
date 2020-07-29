@@ -13,6 +13,7 @@ services:
       ENV: localdev
       AUTH: SAML_MOCK
       PORT: ${PORT:-8000}
+      COMPRESSOR_ENABLED: "False"
     stdin_open: true
     tty: true
   node-bundler:
