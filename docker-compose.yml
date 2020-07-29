@@ -6,6 +6,7 @@ services:
     container_name: app-myuw
     volumes:
       - ./myuw:/app/myuw
+      - statics-volume:/static
     ports:
       - "8000:8000"
     environment:
@@ -14,3 +15,12 @@ services:
       PORT: ${PORT:-8000}
     stdin_open: true
     tty: true
+  node-bundler:
+    image: node:14.6.0-stretch
+    volumes:
+      - ./myuw:/app/myuw
+      - ./package.json:/app/package.json
+      - statics-volume:/static
+    command: bash -c "cd /app/ && npm install . && node_modules/.bin/parcel watch --no-hmr -d /static/dist myuw/static/node_bundler_entry/**/*"
+volumes:
+  statics-volume:

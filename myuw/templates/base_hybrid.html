@@ -15,34 +15,11 @@
         {% load compress %}
         {% load static %}
 
-        {% compress css %}
-        <!-- styles -->
-        <link href="{% static 'vendor/css/bootstrap-3.3.5.min.css' %}" rel="stylesheet">
-        <link href="{% static 'vendor/css/font-awesome-4.7.0.min.css' %}" rel="stylesheet">
-        <link href="{% static 'vendor/css/user-fonts.css' %}" rel="stylesheet">
-        <link href="{% static 'css/mobile.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/desktop.less' %}" rel="stylesheet" type="text/less"/>
-        {% endcompress %}
+        <!-- compresses css -->
+        <link href="{% static 'dist/base.css' %}" rel="stylesheet">
 
-        {% compress css %}
-        <!-- new myuw styles -->
-        <link href="{% static 'css/typography.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/buttons.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/course_card.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/boilerplate.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/tabs.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/dropmenus.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/ratings.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/cards.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/components.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/photo_list.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/textbooks.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/huskyx.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/resources.less' %}" rel="stylesheet" type="text/less">
-        <link href="{% static 'css/notices.less' %}" rel="stylesheet" type="text/less">
         <!-- hybrid overrides -->
-        <link href="{% static 'css/hybrid.less' %}" rel="stylesheet" type="text/less">
-        {% endcompress %}
+        <link href="{% static 'dist/hybrid_mixin.less' %}" rel="stylesheet" type="text/less">
 
        <!-- google fonts -->
        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>

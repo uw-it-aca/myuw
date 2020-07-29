@@ -71,7 +71,10 @@ db.sqlite3
 pip-selfcheck.json
 share/
 
+# Node
 node_modules/
+package-lock.json
+
 .idea/
 
 *.[1-9]
