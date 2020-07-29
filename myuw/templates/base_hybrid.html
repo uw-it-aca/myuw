@@ -15,11 +15,9 @@
         {% load compress %}
         {% load static %}
 
-        <!-- compresses css -->
+        <!-- parceled css -->
         <link href="{% static 'dist/base.css' %}" rel="stylesheet">
-
-        <!-- hybrid overrides -->
-        <link href="{% static 'dist/hybrid_mixin.less' %}" rel="stylesheet" type="text/less">
+        <link href="{% static 'dist/base_hybrid.css' %}" rel="stylesheet">
 
        <!-- google fonts -->
        <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
