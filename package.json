@@ -2,18 +2,6 @@
   "dependencies": {
     "canvas": "^2.6.1",
     "coveralls": "latest",
-<<<<<<< HEAD
-    "datejs": "^1.0.0-rc3",
-    "jquery": "^3.5.1",
-    "jsdom": "^16.3.0",
-    "jshint": "latest",
-    "mocha": "latest",
-    "moment": "^2.27.0",
-    "moment-timezone": "^0.5.31",
-    "nyc": "latest",
-    "parcel": "^1.12.4",
-    "sinon": "^9.0.2"
-=======
     "datejs": "latest",
     "jquery": "latest",
     "jsdom": "^16.3.0",
@@ -24,7 +12,6 @@
     "nyc": "latest",
     "parcel": "^1.12.4",
     "sinon": "latest"
->>>>>>> cb3584f0717fdd8c9e746981687747ed8ec252d8
   },
   "scripts": {
     "jshint": "jshint",
