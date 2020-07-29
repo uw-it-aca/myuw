@@ -20,11 +20,21 @@ RUN . /app/bin/activate &&\
     npm install -g npm &&\
     ./bin/npm install less -g
 
+FROM node:14.6.0-stretch AS node-bundler
+ADD . /app/
+WORKDIR /app/
+RUN npm install .
+RUN node_modules/.bin/parcel build -d /app/myuw/static/dist myuw/static/node_bundler_entry/**/*
+
+FROM app-container
+
+RUN mkdir /app/myuw/static/dist
+COPY --chown=acait:acait --from=node-bundler /app/myuw/static/dist/* /app/myuw/static/dist/
+
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
 
-
 FROM acait/django-test-container:1.0.35 as app-test-container
 
-COPY --from=0 /app/ /app/
-COPY --from=0 /static/ /static/
+COPY --from=app-container /app/ /app/
+COPY --from=app-container /static/ /static/

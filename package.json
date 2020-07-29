@@ -1,15 +1,17 @@
 {
   "dependencies": {
-    "jquery": "latest",
-    "moment": "latest",
-    "sinon": "latest",
-    "datejs": "latest",
-    "mocha": "latest",
-    "jshint": "latest",
-    "nyc": "latest",
+    "canvas": "^2.6.1",
     "coveralls": "latest",
-    "jsdom": "latest",
-    "moment-timezone": "latest"
+    "datejs": "^1.0.0-rc3",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.3.0",
+    "jshint": "latest",
+    "mocha": "latest",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
+    "nyc": "latest",
+    "parcel": "^1.12.4",
+    "sinon": "^9.0.2"
   },
   "scripts": {
     "jshint": "jshint",
@@ -31,5 +33,8 @@
       "**/vendor/**",
       "**/site-packages/**"
     ]
+  },
+  "devDependencies": {
+    "less": "^3.12.2"
   }
 }
