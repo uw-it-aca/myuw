@@ -15,7 +15,7 @@
         {% load compress %}
         {% load static %}
 
-        <!-- compressed css -->
+        <!-- parceled css -->
         <link href="{% static 'dist/base.css' %}" rel="stylesheet">
 
        <!-- google fonts -->
@@ -240,21 +240,21 @@
                 {% endblock %}
 
                 {% if display_onboard_message %}
-		{% block mobile_tour_banner %}
-		<!-- Tour message banner (mobile only)-->
-		<div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="tour_messages_mobile_label" role="complementary">
-		    <div class="message-banner" style="margin-top:-17px;">
-		        <h2 class="sr-only" id="tour_messages_mobile_label">MyUW Announcements</h2>
-		            <div class="message-text myuw-wrapper">
-		                <div class="message">
-		                    <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal"> See MyUW at a glance </a></p>
-		                </div>
-		            </div>
-			<button id="mobile_banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message" aria-controls="tour_messages_mobile"><span aria-hidden="true">&times;</span></button>
-		    </div>
-		</div>
-		<!-- end message banner -->
-		{% endblock %}
+                {% block mobile_tour_banner %}
+                <!-- Tour message banner (mobile only)-->
+                <div class="myuw-banner-mobile app-messages" id="tour_messages_mobile" aria-labelledby="tour_messages_mobile_label" role="complementary">
+                    <div class="message-banner" style="margin-top:-17px;">
+                        <h2 class="sr-only" id="tour_messages_mobile_label">MyUW Announcements</h2>
+                            <div class="message-text myuw-wrapper">
+                                <div class="message">
+                                    <p>New here?  <a href="#" data-toggle="modal" data-target="#tour_modal"> See MyUW at a glance </a></p>
+                                </div>
+                            </div>
+                    <button id="mobile_banner_msg_close" type="button" class="myuw-banner-msg-close-btn close" aria-label="Close message" aria-controls="tour_messages_mobile"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                </div>
+                <!-- end message banner -->
+                {% endblock %}
                 {% endif %}
 
                 <div class="myuw-content">
