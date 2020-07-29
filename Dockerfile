@@ -28,8 +28,7 @@ RUN node_modules/.bin/parcel build -d /app/myuw/static/dist myuw/static/node_bun
 
 FROM app-container
 
-RUN mkdir /app/myuw/static/dist
-COPY --chown=acait:acait --from=node-bundler /app/myuw/static/dist/* /app/myuw/static/dist/
+COPY --chown=acait:acait --from=node-bundler /app/myuw/static/dist/* /static/dist/
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f

@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   myuw:
@@ -17,11 +17,12 @@ services:
     stdin_open: true
     tty: true
   node-bundler:
-    image: node:14.6.0-stretch
+    build:
+      context: .
+      target: node-bundler
     volumes:
       - ./myuw:/app/myuw
-      - ./package.json:/app/package.json
       - statics-volume:/static
-    command: bash -c "cd /app/ && npm install . && node_modules/.bin/parcel watch --no-hmr -d /static/dist myuw/static/node_bundler_entry/**/*"
+    command: bash -c "cd /app/ && node_modules/.bin/parcel watch --no-hmr -d /static/dist myuw/static/node_bundler_entry/**/*"
 volumes:
   statics-volume:
