@@ -81,6 +81,7 @@ var FinalExamSchedule = {
             // We need to set this here, since the code that displays links doesn't have access
             // to the full list of sections, necessarily
             section.index = index;
+            section.is_remote = section.is_remote;
             if (for_instructor){
                 section.is_instructor = true;
             }
@@ -98,7 +99,9 @@ var FinalExamSchedule = {
                     if (start_date > finals.last_day_of_finals) {
                         finals.show_list_instead_of_visual = true;
                     }
-                    if (final_exam.building === "*") {
+                    if (section.is_remote) {
+                        final_exam.is_remote = section.is_remote;
+                    } else if (final_exam.building === "*") {
                         final_exam.building_tbd = true;
                     }
                     finals.scheduled_finals.push(section);

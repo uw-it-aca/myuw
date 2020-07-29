@@ -1053,3 +1053,9 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(schedule), 3)
         schedule_json = get_schedule_json(schedule, term)
         self.assertEqual(len(schedule_json['periods']), 3)
+        self.assertTrue(
+            schedule_json['periods'][2]['sections'][0]['is_remote'])
+        self.assertTrue(
+            schedule_json['periods'][2]['sections'][1]['is_remote'])
+        self.assertTrue(
+            schedule_json['periods'][2]['sections'][2]['is_remote'])
