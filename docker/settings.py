@@ -112,10 +112,6 @@ STATICFILES_FINDERS += (
     'compressor.finders.CompressorFinder',
 )
 
-COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
-)
-
 TEMPLATES[0]['DIRS'] = ['/app/myuw/templates']
 TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'django.template.context_processors.i18n',

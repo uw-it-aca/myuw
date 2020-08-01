@@ -14,12 +14,6 @@ RUN . /app/bin/activate && pip install mysqlclient
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
-RUN . /app/bin/activate &&\
-    pip install nodeenv &&\
-    nodeenv -p &&\
-    npm install -g npm &&\
-    ./bin/npm install less -g
-
 FROM node:14.6.0-stretch AS node-bundler
 ADD . /app/
 WORKDIR /app/
