@@ -20,12 +20,13 @@ ADD ./package.json /app/
 WORKDIR /app/
 RUN npm install .
 
+ENV NODE_ENV=production
 ADD . /app/
 RUN npx webpack
 
 FROM pre-container as app-container
 
-COPY --chown=acait:acait --from=node-bundler /static/* /static/
+COPY --chown=acait:acait --from=node-bundler /static /static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
