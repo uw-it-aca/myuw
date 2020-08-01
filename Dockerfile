@@ -34,8 +34,3 @@ FROM acait/django-test-container:1.0.35 as app-test-container
 
 COPY --from=app-container /app/ /app/
 COPY --from=app-container /static/ /static/
-
-RUN . /app/bin/activate &&\
-    pip install nodeenv &&\
-    nodeenv -p &&\
-    npm install coveralls jquery jsdom jshint mocha moment moment-timezone nyc sinon
