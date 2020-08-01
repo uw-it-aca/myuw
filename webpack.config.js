@@ -2,7 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
-const { VueLoaderPlugin } = require('vue-loader')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -47,24 +47,19 @@ module.exports = {
         use: 'vue-loader'
       },
       {
-        test: /\.js?$/,
+        test: /\.js$/,
         loader: 'babel-loader'
       },
       {
-        test: /\.(css)/,
-        use: [
-            { loader: 'style-loader' },
-            { loader: 'css-loader' },
-        ]
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(scss)/,
-        use: [
-            { loader: 'sass-loader'},
-        ]
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(less)/,
+        test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader']
       },
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },

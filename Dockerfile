@@ -15,9 +15,12 @@ ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
 FROM node:14.6.0-stretch AS node-bundler
-ADD . /app/
+
+ADD ./package.json /app/
 WORKDIR /app/
 RUN npm install .
+
+ADD . /app/
 RUN npx webpack
 
 FROM pre-container as app-container
