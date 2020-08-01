@@ -23,7 +23,6 @@ RUN npx webpack
 FROM pre-container as app-container
 
 COPY --chown=acait:acait --from=node-bundler /static/* /static/
-RUN ls /static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
