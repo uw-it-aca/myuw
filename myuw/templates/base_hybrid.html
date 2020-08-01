@@ -15,8 +15,10 @@
         {% load compress %}
         {% load static %}
 
-        <!-- parceled css -->
-        <link href="{% static 'dist/base_hybrid.css' %}" rel="stylesheet">
+        <!-- webpack css -->
+        {% load render_bundle from webpack_loader %}
+        {% render_bundle 'base' %}
+        {% render_bundle 'base_hybrid' %}
 
         <!-- google fonts -->
         <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>

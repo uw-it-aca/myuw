@@ -23,6 +23,6 @@ services:
     volumes:
       - ./myuw:/app/myuw
       - statics-volume:/static
-    command: bash -c "cd /app/ && node_modules/.bin/parcel watch --no-hmr -d /static/dist myuw/static/node_bundler_entry/**/*"
+    command: bash -c "cd /app/ && npx webpack --watch"
 volumes:
   statics-volume:

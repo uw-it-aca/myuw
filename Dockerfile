@@ -24,11 +24,12 @@ FROM node:14.6.0-stretch AS node-bundler
 ADD . /app/
 WORKDIR /app/
 RUN npm install .
-RUN node_modules/.bin/parcel build -d /app/myuw/static/dist myuw/static/node_bundler_entry/**/*
+RUN npx webpack
 
 FROM pre-container as app-container
 
-COPY --chown=acait:acait --from=node-bundler /app/myuw/static/dist/* /static/dist/
+COPY --chown=acait:acait --from=node-bundler /static/* /static/
+RUN ls /static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
