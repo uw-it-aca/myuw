@@ -22,6 +22,7 @@ services:
       target: node-bundler
     environment:
       NODE_ENV: development
+      ENV: localdev
     volumes:
       - ./myuw:/app/myuw
       - statics-volume:/static
