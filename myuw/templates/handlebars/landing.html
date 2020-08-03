@@ -2,11 +2,12 @@
 <script id="landing" type="text/x-handlebars-template">
 
 <h2 id="main-content-label" class="sr-only">Home</h2>
-<div class="container landing-wrapper">
+
+<!-- vuejs attach point -->
+<div id="landing" class="container landing-wrapper">
 
     <div id="landing_summaries"></div>
-    <!-- vuejs attach point -->
-    <div class="row" id="home">
+    <div class="row">
         <div id="landing_content" class="col-md-8">
 
             <!-- vuejs single component -->
@@ -36,11 +37,13 @@
             
         </div>
     </div>
-    {% endverbatim %}
-    <!-- vuejs script -->
-    {% load render_bundle from webpack_loader %}
-    {% render_bundle 'home' %}
-    {% verbatim %}
+{% endverbatim %}
+
+<!-- vuejs script -->
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'landing' %}
+
+{% verbatim %}
 </div>
 </script>
 {% endverbatim %}

@@ -48,7 +48,7 @@ module.exports = {
         "./myuw/static/css/notices.less",
       ],
       base_hybrid: "./myuw/static/css/hybrid.less",
-      home: "./myuw/static/vue/entry/home.js"
+      landing: "./myuw/static/vue/entry/landing.js"
   },
   output: {
       path: path.resolve('/static/myuw/'),

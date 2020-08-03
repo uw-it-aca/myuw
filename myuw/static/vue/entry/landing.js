@@ -5,4 +5,4 @@ import SideCard from '../components/sidecard.vue'
 Vue.component('home-page-component', Home)
 Vue.component('side-card-component', SideCard)
 
-new Vue({ el: '#home' })
+new Vue({ el: '#landing' })
