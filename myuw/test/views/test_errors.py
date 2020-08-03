@@ -1,7 +1,8 @@
 from myuw.views.error import (
     not_instructor_error, data_not_found, no_access, data_error,
     disabled_action_error, invalid_future_term, invalid_input_data,
-    invalid_method, not_instructor_error, unknown_uwnetid)
+    invalid_method, not_instructor_error, unknown_uwnetid,
+    blocked_uwnetid, pws_error_404)
 from myuw.test.api import MyuwApiTest
 
 
@@ -18,15 +19,31 @@ class TestViewsError(MyuwApiTest):
                           b'Access Forbidden to Non Instructor')
         self.assertEquals(response.status_code, 403)
 
+    def test_blocked_uwnetid(self):
+        response = blocked_uwnetid()
+        self.assertEquals(
+            response.content,
+            (b'<p>MyUW encountered a problem with your uwnetid, '
+             b'please contact the UW-IT Service Center.</p>'))
+        self.assertEquals(response.status_code, 403)
+
+    def pws_error_404(self):
+        response = pws_error_404()
+        self.assertEquals(
+            response.content,
+            (b'<p>MyUW cannot find data for this user account in the Person '
+             b'Registry services. Please contact the UW-IT Service Center.'
+             b'</p>'))
+        self.assertEquals(response.status_code, 403)
+
     def test_unknown_uwnetid(self):
         response = unknown_uwnetid()
         self.assertEquals(
             response.content,
-            (b'<p>MyUW cannot find data for this user account '
-             b'in the person registry services. '
-             b'If you have just created your UW NetID, '
+            (b'<p>MyUW cannot find data for this user account in the Person '
+             b'Registry services. If you have just created your UW NetID, '
              b'please try signing in to MyUW again in one hour.</p>'))
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 403)
 
     def test_disabled_action_error(self):
         response = disabled_action_error()
