@@ -8,24 +8,32 @@
     <!-- vuejs attach point -->
     <div class="row" id="home">
         <div id="landing_content" class="col-md-8">
+
+            <!-- vuejs single component -->
+            <side-card-component>
+                lorem ipsum dolor amet
+            </side-card-component>
+
             <div id="notice_banner_location"></div>
 
-            <!-- vuejs component -->
+            <!-- vuejs page component -->
             <home-page-component></home-page-component>
 
             <div id="calendar_banner_location_mobile"></div>
             <div id="pce_banner_location"></div>
             <div id="landing_content_cards"></div>
+
         </div>
         <div id="landing_accounts" class="col-md-4">
             <div id="calendar_banner_location_desktop"></div>
 
-            <!-- vuejs component -->
+            <!-- vuejs single component -->
             <side-card-component>
                 And this is my body
             </side-card-component>
 
             <div id="landing_accounts_cards"></div>
+            
         </div>
     </div>
     {% endverbatim %}

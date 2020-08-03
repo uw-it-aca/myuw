@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <small>home.vue</small>
+    <small>home.vue (page component)</small>
     <div class="home">
       <hello-world class="sadf"></hello-world>
       <hello-world class="bal"></hello-world>
@@ -20,9 +20,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-small { color: blue; }
+small { color: salmon; }
 .home {
-  outline: solid 2px blue;
+  outline: solid 2px salmon;
   padding: 10px;
   margin-bottom: 1.5rem;
 }
