@@ -14,7 +14,7 @@ from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import get_updated_user
+from myuw.dao.user import get_updated_user, not_existing_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
@@ -45,7 +45,7 @@ def page(request,
         user = get_updated_user(request)
     except DataFailureException as ex:
         log_exception(logger, "PWS error", traceback)
-        if ex.status == 404:
+        if ex.status == 404 and not_existing_user(request):
             return unknown_uwnetid()
         return render(request, '500.html', status=500)
 
