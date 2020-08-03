@@ -210,4 +210,4 @@ class TestSchedule(MyuwApiTest):
 
     def test_invalid_user(self):
         response = self.get_response_by_reverse('myuw_current_schedule')
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 403)

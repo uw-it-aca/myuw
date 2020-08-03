@@ -8,7 +8,7 @@ class TestApiAffiliation(MyuwApiTest):
     def test_javerage(self):
         self.set_user('fffjjj')
         response = self.get_response_by_reverse('myuw_affiliation')
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 403)
 
         self.set_user('javerage')
         response = self.get_response_by_reverse('myuw_affiliation')
