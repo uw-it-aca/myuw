@@ -12,14 +12,18 @@
         </div>
         <div class="visual-info" style="position: absolute; top:{{top}}%; height:{{height}}%;">
 	    <div class="visual-location" style="z-index: 1;">
-		{{#if building_tbd}}
-		Room TBD
-		{{else}}
-		{{#if latitude}}
-		<a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building}})&z=18" class="show_visual_map" rel="{{building}}" data-linklabel="{{building}} - Google Maps">
-		    {{/if}}
-		    {{building}} {{room}}
-		    {{#if latitude}}</a>{{/if}}
+                {{#if is_remote}}
+                    Remote
+                {{else}}
+                    {{#if building_tbd}}
+		        Room TBD
+                    {{else}}
+                        {{#if latitude}}
+                            <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building}})&z=18" class="show_visual_map" rel="{{building}}" data-linklabel="{{building}} - Google Maps">
+		        {{/if}}
+		        {{building}} {{room}}
+		        {{#if latitude}}</a>{{/if}}
+                     {{/if}}
 		{{/if}}
 	    </div>
         </div>
