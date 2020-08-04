@@ -43,14 +43,18 @@
                                 <td>Final exam time to be determined or no final exam</td>
                             {{/if}}
                             <td>
-        	                {{#if building_tbd}}
-                                    Room TBD
-        	                {{else}}
-                                    {{#if latitude}}
-                                        <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}" data-linklabel="{{building}} - Google Maps">
-        	                    {{/if}}
-        	                    {{building}} {{room_number}}
-        	                    {{#if final_exam.latitude}}</a>{{/if}}
+                                {{#if is_remote}}
+                                    Remote
+                                {{else}}
+        	                    {{#if building_tbd}}
+                                        Room TBD
+        	                    {{else}}
+                                        {{#if latitude}}
+                                            <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building_name}})&z=18" target="_blank" class="show_map_modal" rel="{{building_name}}" data-linklabel="{{building}} - Google Maps">
+        	                        {{/if}}
+        	                        {{building}} {{room_number}}
+        	                        {{#if final_exam.latitude}}</a>{{/if}}
+ 	                            {{/if}}
         	                {{/if}}
                             </td>
                         {{/with}}
@@ -150,14 +154,18 @@
                     <div class="pull-left course-box">
 			    <div class="c{{color_id}} course-info"><a href="/{{#if is_instructor}}teaching{{else}}academics{{/if}}/#{{safeLabel curriculum}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum}} {{course_number}}&nbsp;{{section_id}}</a></div>
                         <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">
-                            {{#if building_tbd}}
-                                Room TBD
+                            {{#if is_remote}}
+                                Remote
                             {{else}}
-                                {{#if latitude}}
-                                    <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building_name}})&z=18" class="show_visual_map" rel="{{building_name}}">
-                                 {{/if}}
-                                 {{building}} {{room}}
-                                 {{#if latitude}}</a>{{/if}}
+                                {{#if building_tbd}}
+                                    Room TBD
+                                {{else}}
+                                    {{#if latitude}}
+                                        <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building_name}})&z=18" class="show_visual_map" rel="{{building_name}}">
+                                     {{/if}}
+                                     {{building}} {{room}}
+                                     {{#if latitude}}</a>{{/if}}
+                                {{/if}}
                             {{/if}}
                         </div>
                     </div>

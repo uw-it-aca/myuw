@@ -33,10 +33,14 @@
             {{/if}}
 
             {{#unless no_meeting}}
-                {{#if building_tbd}}
-                    <td class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
+                {{#if is_remote}}
+                    <td class="course-location">Remote</td>
                 {{else}}
-                    {{> course_sche_col_bldg}}
+                    {{#if building_tbd}}
+                        <td class="course-loc-tbd">Room <abbr title="To be determined">TBD</abbr></td>
+                    {{else}}
+                        {{> course_sche_col_bldg}}
+                    {{/if}}
                 {{/if}}
             {{/unless}}
 

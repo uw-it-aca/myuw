@@ -91,6 +91,13 @@ class TestInstructorTermSchedule(MyuwApiTest):
         data = json.loads(response.content)
         self.assertFalse(data['sections'][0]['current'])
 
+    def test_remote_sections(self):
+        request = get_request_with_user('billsea',
+                                        get_request_with_date("2020-10-01"))
+        schedule = get_current_quarter_instructor_schedule(request)
+        self.assertTrue(schedule.sections[0].is_remote)
+        self.assertTrue(schedule.sections[3].is_remote)
+
     def test_having_secondary_sections_case(self):
         now_request = get_request_with_user(
             'billsea', get_request_with_date("2017-10-01"))
@@ -253,3 +260,14 @@ class TestInstructorSection(MyuwApiTest):
         self.assertEqual(len(data['sections']), 2)
         self.assertEqual(data['sections'][0]['current_enrollment'], 18)
         self.assertEqual(data['sections'][1]['current_enrollment'], 3)
+
+    def test_remote_courese(self):
+        request = get_request_with_user(
+            'billsea', get_request_with_date('2020-10-01'))
+        resp = InstScheCurQuar().get(request)
+        data = json.loads(resp.content)
+        self.assertEquals(len(data["sections"]), 5)
+        ee = data["sections"][0]
+        self.assertTrue(ee["is_remote"])
+        self.assertTrue(ee["final_exam"]["is_remote"])
+        self.assertTrue(ee["meetings"][0]["is_remote"])
