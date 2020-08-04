@@ -120,6 +120,7 @@ var VisualScheduleCard = {
 
                         var meeting_info = {
                             is_meeting: true,
+                            is_remote: section.is_remote,
                             is_instructor: section.is_teaching,
                             start: start_minutes,
                             end: end_minutes,

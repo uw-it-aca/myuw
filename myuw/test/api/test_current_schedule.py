@@ -210,4 +210,28 @@ class TestSchedule(MyuwApiTest):
 
     def test_invalid_user(self):
         response = self.get_response_by_reverse('myuw_current_schedule')
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 403)
+
+    def test_remote_courese(self):
+        response = self.get_current_schedule_res('eight',
+                                                 '2020-10-01 00:00:01')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertEquals(data["term"]["year"], 2020)
+        self.assertEquals(data["term"]["quarter"], 'Autumn')
+        self.assertEquals(len(data["sections"]), 3)
+
+        ee = self.get_section(data, 'E E', '233', 'A')
+        self.assertTrue(ee["is_remote"])
+        self.assertTrue(ee["meetings"][0]["is_remote"])
+        self.assertTrue(ee["final_exam"]["is_remote"])
+
+        chem = self.get_section(data, 'CHEM', '321', 'A')
+        self.assertTrue(chem["is_remote"])
+        self.assertTrue(chem["meetings"][0]["is_remote"])
+        self.assertTrue(chem["final_exam"]["is_remote"])
+
+        chem = self.get_section(data, 'CHEM', '321', 'AA')
+        self.assertTrue(chem["is_remote"])
+        self.assertTrue(chem["meetings"][0]["is_remote"])
+        self.assertTrue(chem["final_exam"]["is_remote"])
