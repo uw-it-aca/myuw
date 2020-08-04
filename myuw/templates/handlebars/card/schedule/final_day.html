@@ -15,7 +15,7 @@
             <div class="visual-confirm">{{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}<a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank">(Confirm)</a>{{/unless}}{{/unless}}</div>
             <div class="visual-location">
             {{#if is_remote}}
-                REMOTE
+                Remote
             {{else}}
                 {{#if building_tbd}}
                     Room TBD
@@ -38,7 +38,7 @@
         <div class="visual-info" style="position: absolute; top:{{top}}%; height:{{height}}%;">
             <div class="visual-location" style="z-index: 1;">
                 {{#if is_remote}}
-                    REMOTE
+                    Remote
                 {{else}}
                     {{#if building_tbd}}
                         Room TBD
