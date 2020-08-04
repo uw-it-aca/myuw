@@ -69,14 +69,14 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          process.env.ENV === 'localdev' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ],
       },
       {
         test: /\.scss$/,
         use: [
-          process.env.ENV === 'localdev' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ],
@@ -84,7 +84,7 @@ module.exports = {
       {
         test: /\.less$/,
         use: [
-          process.env.ENV === 'localdev' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader'
         ]
