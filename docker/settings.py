@@ -69,7 +69,7 @@ UW_TOKEN_LEEWAY = 2
 UW_OIDC_ENABLE_LOGGING = True
 
 # Thrive required settings
-MEDIA_ROOT = "/statics/hx_images"
+MEDIA_ROOT = "../statics/hx_images"
 MEDIA_URL = "/uploaded_images/"
 THRIVE_OUTPUT = "/hx_toolkit_output"
 
@@ -107,7 +107,7 @@ COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
 if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
     COMPRESS_ENABLED = False
 
-COMPRESS_ROOT = "/static"
+COMPRESS_ROOT = "../static"
 STATICFILES_FINDERS += (
     'compressor.finders.CompressorFinder',
 )
@@ -253,8 +253,8 @@ GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 WEBPACK_LOADER = {
     'DEFAULT': {
         'CACHE': not DEBUG,
-        'BUNDLE_DIR_NAME': '/static/myuw/', # must end with slash
-        'STATS_FILE': os.path.join('/static/', 'myuw-webpack-stats.json'),
+        'BUNDLE_DIR_NAME': '../static/myuw/', # must end with slash
+        'STATS_FILE': os.path.join('../static/', 'myuw-webpack-stats.json'),
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
         'IGNORE': [r'.+\.hot-update.js', r'.+\.map'],

@@ -50,7 +50,7 @@ module.exports = {
       base_hybrid: "./myuw/static/css/hybrid.less",
   },
   output: {
-      path: path.resolve('/static/myuw/'),
+      path: path.resolve('../static/myuw/'),
       filename: "[name]-[hash].js",
       chunkFilename: '[id]-[chunkhash].js',
       publicPath: '/static/myuw/',
