@@ -26,3 +26,7 @@ def get_user_model(request):
         except User.DoesNotExist:
             return get_updated_user(request)
     return request.myuw_user_model
+
+
+def not_existing_user(request):
+    return not User.exists(get_netid_of_current_user(request))

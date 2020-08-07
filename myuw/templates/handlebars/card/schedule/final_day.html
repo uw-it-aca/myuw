@@ -14,14 +14,18 @@
         <div class="visual-info" style="z-index: 1; position: absolute; top:{{top}}%; height:{{height}}%;">
             <div class="visual-confirm">{{#unless final_exam.no_exam_or_nontraditional}}{{#unless final_exam.is_confirmed}}<a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/{{netid}}/finalexam.asp?{{capitalizeString quarter}}+{{year}}&sln={{sln}}" target="_blank">(Confirm)</a>{{/unless}}{{/unless}}</div>
             <div class="visual-location">
-            {{#if building_tbd}}
-                Room TBD
+            {{#if is_remote}}
+                Remote
             {{else}}
-                {{#if latitude}}
-                    <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building}})&z=18" class="show_final_map" rel="{{building}}">
-                 {{/if}}
-                 {{building}} {{room_number}}
-                 {{#if latitude}}</a>{{/if}}
+                {{#if building_tbd}}
+                    Room TBD
+                {{else}}
+                    {{#if latitude}}
+                        <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building}})&z=18" class="show_final_map" rel="{{building}}">
+                    {{/if}}
+                    {{building}} {{room_number}}
+                    {{#if latitude}}</a>{{/if}}
+                {{/if}}
             {{/if}}
             </div>
         </div>
@@ -33,14 +37,18 @@
         </div>
         <div class="visual-info" style="position: absolute; top:{{top}}%; height:{{height}}%;">
             <div class="visual-location" style="z-index: 1;">
-                {{#if building_tbd}}
-                    Room TBD
+                {{#if is_remote}}
+                    Remote
                 {{else}}
-                    {{#if latitude}}
-                        <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building}})&z=18" class="show_final_map" rel="{{building}}" data-linklabel="{{building}} - Google Maps">
-                     {{/if}}
-                     {{building}} {{room_number}}
-                     {{#if latitude}}</a>{{/if}}
+                    {{#if building_tbd}}
+                        Room TBD
+                    {{else}}
+                        {{#if latitude}}
+                            <a href="http://maps.google.com/maps?q={{latitude}},{{longitude}}+({{encodeForMaps building}})&z=18" class="show_final_map" rel="{{building}}" data-linklabel="{{building}} - Google Maps">
+                        {{/if}}
+                        {{building}} {{room_number}}
+                        {{#if latitude}}</a>{{/if}}
+                    {{/if}}
                 {{/if}}
             </div>
         </div>

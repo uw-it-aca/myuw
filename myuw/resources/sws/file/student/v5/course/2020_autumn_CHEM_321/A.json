@@ -1,0 +1,308 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "BlockRegistrationChildren": [],
+    "BlockRegistrationParents": [],
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "321",
+        "CurriculumAbbreviation": "CHEM",
+        "Href": "/student/v5/course/2020,autumn,CHEM,321.json",
+        "Quarter": "autumn",
+        "Year": 2020
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Introduction to chemical analysis, including gravimetric, volumetric, spectrophotometric, and potentiometric analyses. Laboratory computer use included. Prerequisite: either CHEM 153, CHEM 155, or CHEM 162. Offered: AWSpS.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "QUANTITATIVE ANLYS",
+    "CourseTitleLong": "Quantitative Analysis",
+    "CreditControl": "fixed credit",
+    "CurrentEnrollment": 19,
+    "Curriculum": {
+        "CollegeName": "ARTS & SCI",
+        "DepartmentAbbreviation": "CHEM",
+        "TimeScheduleLinkAbbreviation": "chem"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EOS_CID": null,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": "75.0",
+    "FeeBudget": "069318",
+    "FeeType": "03",
+    "FinalExam": {
+        "Building": "*",
+        "Date": "2020-12-16",
+        "EndTime": "16:20",
+        "FinalExamBuilding": {
+            "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=BAG&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+        },
+        "MeetingStatus": "0",
+        "RoomNumber": "*",
+        "StartTime": "14:30"
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": true,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+       {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494F31.json",
+                "Name": "See pws",
+                "RegID": "9136CCB8F66711D5BE060004AC494F31"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/12345678901234567890123456789012.json",
+                "Name": "See pws",
+                "RegID": "12345678901234567890123456789012"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": null,
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 40,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [
+        {
+            "LinkedSections": [
+                {
+                    "IsPrimarySection": false,
+                    "Section": {
+                        "CourseNumber": "321",
+                        "CurriculumAbbreviation": "CHEM",
+                        "Href": "/student/v5/course/2020,autumn,CHEM,321/AA.json",
+                        "Quarter": "autumn",
+                        "SectionID": "AA",
+                        "Year": 2020
+                    }
+                }
+            ],
+            "Type": "laboratory"
+        }
+    ],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "BAG",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Monday"
+                    },
+                    {
+                        "Name": "Wednesday"
+                    }
+                ],
+                "Text": "M W"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "12:20",
+            "Instructors": [
+                 {
+                    "FacultySequenceNumber": null,
+                    "GradeRoster": null,
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "See pws",
+                        "RegID": "10000000000000000000000000000006"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=BAG&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "lecture",
+            "RoomNumber": "261",
+            "RoomToBeArranged": false,
+            "StartTime": "11:30"
+        },
+        {
+            "Building": "BAG",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Friday"
+                    }
+                ],
+                "Text": "    F"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "12:20",
+            "Instructors": [],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=BAG&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "2",
+            "MeetingType": "conference",
+            "RoomNumber": "261",
+            "RoomToBeArranged": false,
+            "StartTime": "11:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "5.0",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "321",
+        "CurriculumAbbreviation": "CHEM",
+        "Href": "/student/v5/course/2020,autumn,CHEM,321/A.json",
+        "Quarter": "autumn",
+        "SectionID": "A",
+        "Year": 2020
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "321",
+        "CurriculumAbbreviation": "CHEM",
+        "Href": "/student/v5/registration.json?year=2020&quarter=autumn&curriculum_abbreviation=CHEM&course_number=321&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "A",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2020
+    },
+    "RepositoryTimeStamp": "7/15/2020 11:15:02 AM",
+    "ResearchCredit": false,
+    "RoomCapacity": 80,
+    "SLN": "12492",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "A",
+    "SectionType": "lecture",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "  95.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2020,autumn.json",
+        "Quarter": "autumn",
+        "Year": 2020
+    },
+    "TimeMaskException": false,
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": [
+                {
+                    "Text": "CHEM 321 ALL SECTIONS - FRIDAY OPT'L TUTORIAL"
+                }
+            ]
+        },
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "****ADD CODES AND DROP CODES ARE REQUIRED FOR CHEM"
+                },
+                {
+                    "Text": "145, 155, 165, AND 200 LEVEL LAB COURSES AND ABOVE"
+                },
+                {
+                    "Text": "DURING REGISTRATION PD. 3 & 4."
+                },
+                {
+                    "Text": "****DROP CODES ARE REQUIRED DURING REGISTRATION"
+                },
+                {
+                    "Text": "PD. 4 FOR CHEM 120, 142, 152, AND 162."
+                },
+                {
+                    "Text": "****CODES ARE AVAILABLE BEGINNING THE FIRST WEEK"
+                },
+                {
+                    "Text": "OF THE QUARTER IN BAG 303, M-F  8:00 AM - 4:00 PM."
+                },
+                {
+                    "Text": "***CHEM REPEAT POLICY: IF YOU ARE REPEATING A 100-"
+                },
+                {
+                    "Text": "200 LEVEL COURSE YOU MUST WAIT UNTIL PD.2 TO REGIS"
+                },
+                {
+                    "Text": "TER. IF YOU ARE REPEATING A 300-400 LEVEL COURSE"
+                },
+                {
+                    "Text": "YOU MUST SEE ADVISORS IN BAG 303 TO REGISTER."
+                }
+            ]
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "CHEMISTRY LABS CANNOT BE OVERLOADED"
+                },
+                {
+                    "Text": "--------------------"
+                },
+                {
+                    "Text": "GOGGLES, LAB COAT & APPROPRIATE"
+                },
+                {
+                    "Text": "CLOTHING REQ'D FIRST DAY OF LAB."
+                },
+                {
+                    "Text": "OFFERED VIA REMOTE LEARNING"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "$75 course fee - auditors exempt"
+                },
+                {
+                    "Text": "Fee purpose: Lab"
+                },
+                {
+                    "Text": "CHEM majors only Period 1 (5/8/2020-6/21/2020)"
+                }
+            ]
+        }
+    }
+}
