@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,16 +37,16 @@
         </script>
         
         {% block django_json_data %}
-        {% endblock %}
+        {% endblock django_json_data %}
     </head>
     <body>
         {% csrf_token %}
 
         {% block body_content %}
-        {% endblock %}
+        {% endblock body_content %}
 
         {% block vue_script %}
-        {% endblock %}
+        {% endblock vue_script %}
 
     </body>
 </html>
