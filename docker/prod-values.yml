@@ -2,7 +2,7 @@ autoscaling:
   enabled: true
   minReplicas: 2
   maxReplicas: 24
-targetAverageUtilization: 100
+targetAverageUtilization: 95
 resources:
   limits:
     cpu: 1.0
