@@ -192,7 +192,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: vue.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/vue/secrets
+      externalKey: axdd/kv/data/my/prod/secrets
       data:
         - name: canvas-account-id
           property: canvas-account-id
@@ -220,8 +220,7 @@ externalSecrets:
           property: google-analytics-key
         - name: google-search-key
           property: google-search-key
-        - name: saml-entity-id
-          property: saml-entity-id
+
     - name: vue.my.uw.edu-sql-secrets
       externalKey: axdd/kv/data/my/test/sql-secrets
       data:
@@ -246,7 +245,6 @@ externalSecrets:
       data:
         - name: uw-idp-cert
           property: cert
-
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
