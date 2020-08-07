@@ -191,7 +191,7 @@ environmentVariables:
 externalSecrets:
   enabled: true
   secrets:
-    - name: vue.my.uw.edu-secrets
+    - name: my.uw.edu-secrets
       externalKey: axdd/kv/data/my/prod/secrets
       data:
         - name: canvas-account-id
@@ -202,6 +202,10 @@ externalSecrets:
           property: coda-auth-token
         - name: django-secret
           property: django-secret
+
+    - name: test.my.uw.edu-secrets
+      externalKey: axdd/kv/data/my/test/secrets
+      data:
         - name: email-host
           property: email-host
         - name: mailman-auth-key
@@ -228,6 +232,7 @@ externalSecrets:
           property: sql_user
         - name: password
           property: sql_pass
+
     - name: vue.my.uw.edu-uwca-certs
       externalKey: axdd/kv/data/my/prod/uwca-certs
       data:
@@ -235,11 +240,13 @@ externalSecrets:
           property: key
         - name: myuw.s.uw.edu-uwca.cert
           property: cert
+
     - name: vue.my.uw.edu-ic-certs
       externalKey: axdd/kv/data/my/vue/ic-certs
       data:
         - name: vue.my.uw.edu.cert
           property: cert
+
     - name: vue.my.uw.edu-uw-idp-cert
       externalKey: axdd/kv/data/idp-cert
       data:
@@ -263,18 +270,19 @@ environmentVariablesSecrets:
     name: CODA_AUTH_TOKEN
     secretName: my.uw.edu-secrets
     secretKey: coda-auth-token
-  mailman-request-secret:
-    name: MAILMAN_REQUEST_RECIPIENT
-    secretName: test.my.uw.edu-secrets
-    secretKey: mailman-request-recipient
-  mailman-token-secret:
-    name: MAILMAN_AUTH_KEY
-    secretName: test.my.uw.edu-secrets
-    secretKey: mailman-auth-key
+
   email_host-secret:
     name: EMAIL_HOST
     secretName: test.my.uw.edu-secrets
     secretKey: email-host
+  mailman-token-secret:
+    name: MAILMAN_AUTH_KEY
+    secretName: test.my.uw.edu-secrets
+    secretKey: mailman-auth-key
+  mailman-request-secret:
+    name: MAILMAN_REQUEST_RECIPIENT
+    secretName: test.my.uw.edu-secrets
+    secretKey: mailman-request-recipient
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT
     secretName: test.my.uw.edu-secrets
