@@ -223,7 +223,7 @@ externalSecrets:
         - name: saml-entity-id
           property: saml-entity-id
     - name: vue.my.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/my/prod/sql-secrets
+      externalKey: axdd/kv/data/my/test/sql-secrets
       data:
         - name: username
           property: sql_user
@@ -250,64 +250,60 @@ externalSecrets:
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: django-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
-    secretName: vue.my.uw.edu-secrets
+    secretName: my.uw.edu-secrets
     secretKey: canvas-account-id
   canvas-token-secret:
     name: CANVAS_OAUTH_BEARER
-    secretName: vue.my.uw.edu-secrets
+    secretName: my.uw.edu-secrets
     secretKey: canvas-oauth-bearer
   coda-token-secret:
     name: CODA_AUTH_TOKEN
-    secretName: vue.my.uw.edu-secrets
+    secretName: my.uw.edu-secrets
     secretKey: coda-auth-token
   mailman-request-secret:
     name: MAILMAN_REQUEST_RECIPIENT
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: mailman-request-recipient
   mailman-token-secret:
     name: MAILMAN_AUTH_KEY
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: mailman-auth-key
   email_host-secret:
     name: EMAIL_HOST
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: email-host
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT
-    secretName: dev.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: safe-email-recipient
   SectionStatusQueueARN:
     name: SECTION_STATUS_QUEUE_ARN
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: section-status-queue-arn
   SectionStatusKeyId:
     name: SECTION_STATUS_KEY_ID
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: section-status-key-id
   SectionStatusKey:
     name: SECTION_STATUS_KEY
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: section-status-key
   GoogleAnalyticsKey:
     name: GOOGLE_ANALYTICS_KEY
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: google-analytics-key
   GoogleSearchKey:
     name: GOOGLE_SEARCH_KEY
-    secretName: vue.my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: google-search-key
-  SAMLEntityId:
-    name: SAML_ENTITY_ID
-    secretName: vue.my.uw.edu-secrets
-    secretKey: saml-entity-id
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: vue.my.uw.edu-ic-certs
-    secretKey: vue.my.uw.edu.cert
+    secretKey: my.uw.edu.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: vue.my.uw.edu-uw-idp-cert
