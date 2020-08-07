@@ -51,9 +51,9 @@ after_success:
         "develop")
           export APP_INSTANCE="dev";
           ;;
-#        "feature/vue")
-#          export APP_INSTANCE="vue";
-#          ;;
+        "feature/vue")
+          export APP_INSTANCE="vue";
+          ;;
         *)
           unset APP_INSTANCE
           ;;
