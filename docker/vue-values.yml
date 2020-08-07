@@ -208,6 +208,8 @@ externalSecrets:
           property: mailman-auth-key
         - name: mailman-request-recipient
           property: mailman-request-recipient
+        - name: safe-email-recipient
+          property: safe-email-recipient
         - name: section-status-queue-arn
           property: section-status-queue-arn
         - name: section-status-key-id
@@ -274,6 +276,10 @@ environmentVariablesSecrets:
     name: EMAIL_HOST
     secretName: vue.my.uw.edu-secrets
     secretKey: email-host
+  safe_email_recipient-secret:
+    name: SAFE_EMAIL_RECIPIENT
+    secretName: dev.my.uw.edu-secrets
+    secretKey: safe-email-recipient
   SectionStatusQueueARN:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: vue.my.uw.edu-secrets
