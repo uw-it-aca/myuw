@@ -28,13 +28,13 @@ run_test "pycodestyle ${DJANGO_APP}/ --exclude=migrations,static"
 run_test "grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test \$? -eq 1 &&\
           grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test \$? -eq 1"
 
-if [ -d ${DJANGO_APP}/static/${DJANGO_APP}/js ]; then
-    run_test "jshint ${DJANGO_APP}/static/${DJANGO_APP}/js --verbose"
-elif [ -d ${DJANGO_APP}/static/js ]; then
-    run_test "jshint ${DJANGO_APP}/static/js --verbose"
-fi
+# if [ -d ${DJANGO_APP}/static/${DJANGO_APP}/js ]; then
+#     run_test "jshint ${DJANGO_APP}/static/${DJANGO_APP}/js --verbose"
+# elif [ -d ${DJANGO_APP}/static/js ]; then
+#     run_test "jshint ${DJANGO_APP}/static/js --verbose"
+# fi
 
-run_test 'nyc mocha  --recursive myuw/static/js/test/'
+# run_test 'nyc mocha  --recursive myuw/static/js/test/'
 
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
