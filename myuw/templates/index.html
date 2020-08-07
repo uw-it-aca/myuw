@@ -2,3 +2,8 @@
 {% block body_content %}
     <p>place holder</p>
 {% endblock body_content %}
+
+{% block vue_script %}
+    {% load render_bundle from webpack_loader %}
+    {% render_bundle 'index' %}
+{% endblock vue_script %}
