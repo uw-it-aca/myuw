@@ -27,7 +27,7 @@ class TestBannerMessage(MyuwApiTest):
     def test_invalid_user_msg_error_case(self):
         self.set_user('0000')
         err_msg = (b'<p>MyUW cannot find data for this user account '
-                   b'in the person registry services. '
+                   b'in the Person Registry services. '
                    b'If you have just created your UW NetID, '
                    b'please try signing in to MyUW again in one hour.</p>')
         resp = self.get_response_by_reverse('myuw_close_banner_message')
