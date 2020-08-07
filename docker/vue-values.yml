@@ -249,7 +249,7 @@ externalSecrets:
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
-    secretName: test.my.uw.edu-secrets
+    secretName: my.uw.edu-secrets
     secretKey: django-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
