@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>MyUW: {{ page_title|default:'MyUW'}}</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <!-- TODO: Add google fonts here -->
+
+        <!-- favicon -->
+       <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+       <!-- ios icons -->
+        <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{% static 'images/apple-touch-icon-180x180-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'images/apple-touch-icon-152x152-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'images/apple-touch-icon-120x120-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'images/apple-touch-icon-76x76-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
+        <link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
+
+        <!-- android icons -->
+        <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
+
+        <script>
+            // Check if this browser is Internet Explorer and running Document Mode 9 or lower
+            if(document.documentMode !== null && document.documentMode <= 9){
+                // Notify the user that we do not support this document mode
+                alert("We have detected that your browser is running in document mode for Internet Explorer 9 or lower.\n" +
+                      "Please set document mode to 10 or higher, or switch to another browser.");
+            }
+        </script>
+        
+        {% block django_json_data %}
+        {% endblock %}
+    </head>
+    <body>
+        {% csrf_token %}
+
+        {% block body_content %}
+        {% endblock %}
+
+        {% block vue_script %}
+        {% endblock %}
+
+    </body>
+</html>
