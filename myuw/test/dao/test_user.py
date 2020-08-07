@@ -1,6 +1,6 @@
 from django.test import TransactionTestCase
 from myuw.models import User
-from myuw.dao.user import get_user_model
+from myuw.dao.user import get_user_model, not_existing_user
 from myuw.test import fdao_pws_override, get_request_with_user
 
 
@@ -17,6 +17,7 @@ class TestUserDao(TransactionTestCase):
         self.assertIsNotNone(str(user))
         self.assertIsNotNone(req.myuw_user_model)
         self.assertEqual(user.uwnetid, "javerage")
+        self.assertFalse(not_existing_user(req))
 
         self.assertTrue(user.is_netid_changed("jav"))
         last_visit = user.last_visit
@@ -47,3 +48,7 @@ class TestUserDao(TransactionTestCase):
         user = User.get_user("javerage", ['javg001'])
         self.assertEqual(user.uwnetid, "javerage")
         self.assertNotEqual(last_visit, user.last_visit)
+
+    def test_not_existing_user(self):
+        req = get_request_with_user("nobody")
+        self.assertTrue(not_existing_user(req))

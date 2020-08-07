@@ -14,7 +14,7 @@ from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
 from myuw.dao.term import add_term_data_to_context
-from myuw.dao.user import get_updated_user
+from myuw.dao.user import get_updated_user, not_existing_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
@@ -25,7 +25,8 @@ from myuw.logger.session_log import (
 from myuw.util.settings import (
     get_google_search_key, get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import unknown_uwnetid, no_access, blocked_uwnetid
+from myuw.views.error import (
+    unknown_uwnetid, no_access, blocked_uwnetid, pws_error_404)
 from django.contrib.auth.decorators import login_required
 
 
@@ -46,7 +47,9 @@ def page(request,
     except DataFailureException as ex:
         log_exception(logger, "PWS error", traceback)
         if ex.status == 404:
-            return unknown_uwnetid()
+            if not_existing_user(request):
+                return unknown_uwnetid()
+            return pws_error_404()
         return render(request, '500.html', status=500)
 
     try:

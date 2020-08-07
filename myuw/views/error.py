@@ -47,17 +47,25 @@ def not_instructor_error():
 def blocked_uwnetid():
     return _make_response(
         UNAUTHORIZED_ERROR,
-        "<p>We encountered a problem with your uwnetid, "
+        "<p>MyUW encountered a problem with your uwnetid, "
         "please contact the UW-IT Service Center.</p>")
 
 
 def unknown_uwnetid():
     return _make_response(
-        HTTP_BAD_REQUEST,
+        UNAUTHORIZED_ERROR,
         "<p>MyUW cannot find data for this user account "
-        "in the person registry services. "
+        "in the Person Registry services. "
         "If you have just created your UW NetID, "
         "please try signing in to MyUW again in one hour.</p>")
+
+
+def pws_error_404():
+    return _make_response(
+        UNAUTHORIZED_ERROR,
+        "<p>MyUW cannot find data for this user account "
+        "in the Person Registry services. "
+        "Please contact the UW-IT Service Center.</p>")
 
 
 def invalid_input_data():
