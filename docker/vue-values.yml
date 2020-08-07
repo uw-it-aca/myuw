@@ -236,7 +236,7 @@ externalSecrets:
         - name: myuw.s.uw.edu-uwca.cert
           property: cert
     - name: vue.my.uw.edu-ic-certs
-      externalKey: axdd/kv/data/my/prod/ic-certs
+      externalKey: axdd/kv/data/my/vue/ic-certs
       data:
         - name: vue.my.uw.edu.cert
           property: cert
@@ -245,6 +245,7 @@ externalSecrets:
       data:
         - name: uw-idp-cert
           property: cert
+
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
@@ -301,7 +302,7 @@ environmentVariablesSecrets:
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: vue.my.uw.edu-ic-certs
-    secretKey: my.uw.edu.cert
+    secretKey: vue.my.uw.edu.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: vue.my.uw.edu-uw-idp-cert
