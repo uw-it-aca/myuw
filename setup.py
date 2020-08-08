@@ -25,7 +25,6 @@ setup(
     install_requires=[
         'Django>=2.0.13,<2.1',
         'ordereddict',
-        'django-compressor==2.2',
         'beautifulsoup4',
         'urllib3',
         'UW-Django-SAML2<2.0',

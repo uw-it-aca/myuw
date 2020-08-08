@@ -6,7 +6,6 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS += [
     'uw_oidc',
-    'compressor',
     'django_client_logger',
     'django_user_agents',
     'hx_toolkit',
@@ -100,17 +99,6 @@ SUPPORTTOOLS_PARENT_APP_URL = "/"
 USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
-
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
-
-if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
-    COMPRESS_ENABLED = False
-
-COMPRESS_ROOT = "../static"
-STATICFILES_FINDERS += (
-    'compressor.finders.CompressorFinder',
-)
 
 TEMPLATES[0]['DIRS'] = ['/app/myuw/templates']
 TEMPLATES[0]['OPTIONS']['context_processors'] += [
