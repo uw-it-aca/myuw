@@ -191,21 +191,17 @@ environmentVariables:
 externalSecrets:
   enabled: true
   secrets:
-    - name: my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/prod/secrets
+    - name: test.my.uw.edu-secrets
+      externalKey: axdd/kv/data/my/test/secrets
       data:
+        - name: django-secret
+          property: django-secret
         - name: canvas-account-id
           property: canvas-account-id
         - name: canvas-oauth-bearer
           property: canvas-oauth-bearer
         - name: coda-auth-token
           property: coda-auth-token
-        - name: django-secret
-          property: django-secret
-
-    - name: test.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/test/secrets
-      data:
         - name: email-host
           property: email-host
         - name: mailman-auth-key
@@ -234,7 +230,7 @@ externalSecrets:
           property: sql_pass
 
     - name: vue.my.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/my/prod/uwca-certs
+      externalKey: axdd/kv/data/my/vue/uwca-certs
       data:
         - name: myuw.s.uw.edu-uwca.key
           property: key
@@ -256,21 +252,20 @@ externalSecrets:
 environmentVariablesSecrets:
   django-secret:
     name: DJANGO_SECRET
-    secretName: my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: django-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
-    secretName: my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: canvas-account-id
   canvas-token-secret:
     name: CANVAS_OAUTH_BEARER
-    secretName: my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: canvas-oauth-bearer
   coda-token-secret:
     name: CODA_AUTH_TOKEN
-    secretName: my.uw.edu-secrets
+    secretName: test.my.uw.edu-secrets
     secretKey: coda-auth-token
-
   email_host-secret:
     name: EMAIL_HOST
     secretName: test.my.uw.edu-secrets
