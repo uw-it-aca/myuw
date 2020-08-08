@@ -240,7 +240,7 @@ LOGGING = {
     }
 }
 
-
+DEBUG = False
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
 else:
