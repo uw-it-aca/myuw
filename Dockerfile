@@ -28,8 +28,6 @@ FROM pre-container as app-container
 
 COPY --chown=acait:acait --from=node-bundler /static /static
 
-RUN . /app/bin/activate && python manage.py collectstatic --noinput
-
 FROM acait/django-test-container:1.0.35 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
