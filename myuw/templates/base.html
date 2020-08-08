@@ -42,8 +42,10 @@
     <body>
         {% csrf_token %}
 
-        {% block body_content %}
-        {% endblock body_content %}
+        <div id="vue_root">
+            {% block body_content %}
+            {% endblock body_content %}
+        </div>
 
         {% block vue_script %}
         {% endblock vue_script %}

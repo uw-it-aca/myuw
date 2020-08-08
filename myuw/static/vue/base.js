@@ -7,4 +7,5 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
-export default Vue;
+const rootId = "vue_root"
+export { Vue, rootId }

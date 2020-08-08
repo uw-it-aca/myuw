@@ -1,3 +1,3 @@
-import Vue from './base.js'
+import { Vue, rootId } from './base.js'
 
-new Vue({ el: '#vue-root' })
+new Vue({ el: `#${rootId}` })
