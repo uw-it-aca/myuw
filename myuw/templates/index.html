@@ -8,10 +8,10 @@
 {% endblock django_json_data %}
 
 {% block body_content %}
-    <myuw-layout :disable_actions="'{{ disable_actions }}' == 'True'"
+    <boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
         logout_url="{% settings_value "LOGOUT_URL" %}">
-        place holder
-    </myuw-layout>
+        <p>place holder</p>
+    </boilerplate>
 {% endblock body_content %}
 
 {% block vue_script %}

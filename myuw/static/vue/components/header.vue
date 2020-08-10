@@ -10,6 +10,7 @@
 
         <b-collapse id="app_search">
         </b-collapse>
+        
         <b-navbar>
             <b-navbar-nav>
                 <b-nav-item href="/profile/">

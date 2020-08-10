@@ -1,8 +1,8 @@
 import { Vue, store, rootId } from './base.js'
 
-import MyUWLayout from './containers/myuw-layout.vue'
+import Boilerplate from './containers/boilerplate.vue'
 
-Vue.component('myuw-layout', MyUWLayout)
+Vue.component('boilerplate', Boilerplate)
 
 new Vue({
     el: `#${rootId}`,
