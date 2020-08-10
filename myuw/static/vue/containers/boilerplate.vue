@@ -14,81 +14,100 @@
       </b-collapse>
 
       <div class="myuw-thin-bar">
-        <b-navbar class="p-0" type="dark">
-          <b-navbar-nav>
-            <b-nav-item href="/profile/">
-              <font-awesome-icon icon="user" /> {{ user.netid }}
-            </b-nav-item>
-          </b-navbar-nav>
 
-          <b-navbar-nav class="ml-auto">
-            <b-nav-item
-              v-if="user.email_error"
-              href="https://itconnect.uw.edu/connect/email/"
-              title="UW email services"
-            >
-              <b-icon icon="exclamation-triangle"></b-icon> Email error
-            </b-nav-item>
+        <b-container fluid="lg">
+          <b-navbar class="p-0" type="dark">
+            <b-navbar-nav>
+              <b-nav-item href="/profile/">
+                <font-awesome-icon icon="user" /> {{ user.netid }}
+              </b-nav-item>
+            </b-navbar-nav>
 
-            <b-nav-item
-              v-else
-              :href="user.email_forward_url"
-              title="Open your email in new tab"
-            >
-              <font-awesome-icon icon="envelope" /> Email
-            </b-nav-item>
+            <b-navbar-nav class="ml-auto">
+              <b-nav-item
+                v-if="user.email_error"
+                href="https://itconnect.uw.edu/connect/email/"
+                title="UW email services"
+              >
+                <b-icon icon="exclamation-triangle"></b-icon> Email error
+              </b-nav-item>
 
-            <b-nav-text v-b-toggle.app_search aria-label="Open search area">
-              <font-awesome-icon icon="search" flip="horizontal" /> Search
-            </b-nav-text>
+              <b-nav-item
+                v-else
+                :href="user.email_forward_url"
+                title="Open your email in new tab"
+              >
+                <font-awesome-icon icon="envelope" /> Email
+              </b-nav-item>
 
-            <b-nav-item :href="logout_url" class="d-none d-lg-block">
-              <font-awesome-icon icon="sign-out-alt" /> Sign Out
-            </b-nav-item>
-          </b-navbar-nav>
-        </b-navbar>
+              <b-nav-text v-b-toggle.app_search aria-label="Open search area">
+                <font-awesome-icon icon="search" flip="horizontal" /> Search
+              </b-nav-text>
+
+              <b-nav-item :href="logout_url" class="d-none d-lg-block">
+                <font-awesome-icon icon="sign-out-alt" /> Sign Out
+              </b-nav-item>
+            </b-navbar-nav>
+          </b-navbar>
+        </b-container>
       </div>
 
       <div class="myuw-navigation">
-        <b-navbar type="dark">
-          <b-navbar-brand href="#">
-            <b-button
-              v-b-toggle.nav-collapse
-              variant="outline-light"
-              size="sm"
-              class="d-lg-none"
-              >BB</b-button
-            >
-            MyUW
-          </b-navbar-brand>
-        </b-navbar>
+        <b-container fluid="lg">
+          <b-navbar type="dark">
+            <b-navbar-brand href="#">
+              <b-button
+                v-b-toggle.nav-collapse
+                variant="outline-light"
+                size="sm"
+                class="d-lg-none"
+                >BB</b-button
+              >
+              MyUW
+            </b-navbar-brand>
+          </b-navbar>
+        </b-container>
       </div>
     </header>
 
-    <b-collapse id="nav-collapse" is-nav class="d-sm-none d-lg-block">
-      <ul class="list-unstyled">
-        <li><font-awesome-icon icon="home" /> Home</li>
-        <li><font-awesome-icon icon="paw" /> Husky Experience</li>
-        <li><font-awesome-icon icon="edit" /> Teaching</li>
-        <li><font-awesome-icon icon="credit-card" /> Accounts</li>
-        <li><font-awesome-icon icon="user" /> Profile</li>
-        <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
-        <li><font-awesome-icon icon="bookmark" /> Resources</li>
-      </ul>
-    </b-collapse>
+    <b-container fluid="lg">
+      <b-row>
+        <b-col lg="2">
 
-    <slot></slot>
+          <!-- main sidebar navigation -->
+          <b-collapse id="nav-collapse" is-nav class="d-sm-none d-lg-block">
+            <ul class="list-unstyled">
+              <li><font-awesome-icon icon="home" /> Home</li>
+              <li><font-awesome-icon icon="paw" /> Husky Experience</li>
+              <li><font-awesome-icon icon="edit" /> Teaching</li>
+              <li><font-awesome-icon icon="credit-card" /> Accounts</li>
+              <li><font-awesome-icon icon="user" /> Profile</li>
+              <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
+              <li><font-awesome-icon icon="bookmark" /> Resources</li>
+            </ul>
+          </b-collapse>
+
+        </b-col>
+        <b-col lg="10">
+          
+          <!-- page content inserted here -->
+          <slot></slot>
+
+        </b-col>
+      </b-row>
+    </b-container>
 
     <footer class="myuw-footer">
+      <b-container fluid="lg">
+        <a href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid">
+          <font-awesome-icon icon="envelope" /> Contact</a>
+        <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW Help</a>
+        <a href="">Sign Out</a>
+        <a href="">Terms</a>
+        <a href="a">Privacy</a>
 
-      <a href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid">
-        <font-awesome-icon icon="envelope" /> Contact</a>
-      <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW Help</a>
-      <a href="">Sign Out</a>
-      <a href="">Terms</a>
-      <a href="a">Privacy</a>
-
-      <p>&copy; {{ new Date().getFullYear() }} University of Washington</p>
+        <p>&copy; {{ new Date().getFullYear() }} University of Washington</p>
+      </b-container>
     </footer>
   </div>
 </template>
