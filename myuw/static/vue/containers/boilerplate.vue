@@ -21,27 +21,31 @@
               <font-awesome-icon icon="user" /> {{ user.netid }}
             </b-nav-item>
           </b-navbar-nav>
+          
           <b-navbar-nav class="ml-auto">
+            
             <b-nav-item
               v-if="user.email_error"
               href="https://itconnect.uw.edu/connect/email/"
-              title="UW email services"
-            >
+              title="UW email services">
               <b-icon icon="exclamation-triangle"></b-icon> Email error
             </b-nav-item>
+
             <b-nav-item
               v-else
               :href="user.email_forward_url"
-              title="Open your email in new tab"
-            >
+              title="Open your email in new tab">
               <font-awesome-icon icon="envelope" /> Email
             </b-nav-item>
+
             <b-nav-text v-b-toggle.app_search aria-label="Open search area">
               <font-awesome-icon icon="search" flip="horizontal" /> Search
             </b-nav-text>
-            <b-nav-item :href="logout_url">
+
+            <b-nav-item :href="logout_url" class="d-none d-lg-block">
               <font-awesome-icon icon="sign-out-alt" /> Sign Out
             </b-nav-item>
+
           </b-navbar-nav>
         </b-navbar>
       </div>
