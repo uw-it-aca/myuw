@@ -48,7 +48,9 @@
 
       <div class="myuw-navigation">
         <b-navbar toggleable="lg" type="dark">
-          <b-navbar-brand href="#"><b-navbar-toggle target="nav-collapse" size="sm"></b-navbar-toggle> MyUW</b-navbar-brand>
+          <b-navbar-brand href="#">
+            <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm">BB</b-button> MyUW
+          </b-navbar-brand>
         </b-navbar>
       </div>
       
