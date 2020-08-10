@@ -3,9 +3,15 @@ import "regenerator-runtime/runtime";
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import '../css/bootstrap-theming.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// fontawesome 5
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.config.productionTip = false
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue)

@@ -18,7 +18,7 @@
         <b-navbar class="p-0" type="dark">
           <b-navbar-nav>
             <b-nav-item href="/profile/">
-              <b-icon icon="person-fill"></b-icon> {{ user.netid }}
+              <font-awesome-icon icon="user" /> {{ user.netid }}
             </b-nav-item>
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
@@ -34,13 +34,13 @@
               :href="user.email_forward_url"
               title="Open your email in new tab"
             >
-              <b-icon icon="envelope-fill"></b-icon> Email
+              <font-awesome-icon icon="envelope" /> Email
             </b-nav-item>
             <b-nav-text v-b-toggle.app_search aria-label="Open search area">
-              <b-icon icon="search"></b-icon> Search
+              <font-awesome-icon icon="search" flip="horizontal" /> Search
             </b-nav-text>
             <b-nav-item :href="logout_url">
-              <b-icon icon="box-arrow-right"></b-icon> Sign Out
+              <font-awesome-icon icon="sign-out-alt" /> Sign Out
             </b-nav-item>
           </b-navbar-nav>
         </b-navbar>
@@ -57,14 +57,14 @@
     </header>
 
     <b-collapse id="nav-collapse" is-nav class="d-sm-none d-lg-block">
-      <ul>
-        <li>Home</li>
-        <li>Husky Experience</li>
-        <li>Teaching</li>
-        <li>Accounts</li>
-        <li>Profile</li>
-        <li>Calendar</li>
-        <li>Resources</li>
+      <ul class="list-unstyled">
+        <li><font-awesome-icon icon="home" /> Home</li>
+        <li><font-awesome-icon icon="paw" /> Husky Experience</li>
+        <li><font-awesome-icon icon="edit" /> Teaching</li>
+        <li><font-awesome-icon icon="credit-card" /> Accounts</li>
+        <li><font-awesome-icon icon="user" /> Profile</li>
+        <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
+        <li><font-awesome-icon icon="bookmark" /> Resources</li>
       </ul>  
     </b-collapse>
       
@@ -89,6 +89,22 @@
 </template>
 
 <script>
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import { faUser, faEnvelope, faSearch, faSignOutAlt, faHome, faPaw, faBookmark, faCalendarCheck, faEdit, faCreditCard } from '@fortawesome/free-solid-svg-icons'
+import { } from '@fortawesome/free-regular-svg-icons'
+
+library.add(faUser)
+library.add(faEnvelope)
+library.add(faSearch)
+library.add(faSignOutAlt)
+library.add(faHome)
+library.add(faPaw)
+library.add(faEdit)
+library.add(faCreditCard)
+library.add(faCalendarCheck)
+library.add(faBookmark)
+
 import { mapState } from 'vuex'
 
 export default {
