@@ -59,7 +59,15 @@
   </div>
 
     <b-collapse visible id="nav-collapse" is-nav>
-      main navigation
+      <ul>
+        <li>Home</li>
+        <li>Husky Experience</li>
+        <li>Teaching</li>
+        <li>Accounts</li>
+        <li>Profile</li>
+        <li>Calendar</li>
+        <li>Resources</li>
+      </ul>  
     </b-collapse>
       
     <slot></slot>
