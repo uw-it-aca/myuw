@@ -42,7 +42,7 @@
     <body>
         {% csrf_token %}
 
-        <div id="vue_root">
+        <div id="vue_root" hidden>
             {% block body_content %}
             {% endblock body_content %}
         </div>
