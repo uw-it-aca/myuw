@@ -50,8 +50,7 @@
 
     <div class="myuw-navigation">
       <b-navbar toggleable="lg" type="dark">
-        <b-navbar-brand href="#">MyUW</b-navbar-brand>
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-brand href="#"><b-navbar-toggle target="nav-collapse" size="sm"></b-navbar-toggle> MyUW</b-navbar-brand>
       </b-navbar>
     </div>
 
