@@ -7,7 +7,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const BootstrapVueLoader = require('bootstrap-vue-loader')
 
 module.exports = {
   devtool: (process.env.ENV == 'localdev' ? 'source-map' : 'none'),
@@ -91,9 +90,6 @@ module.exports = {
     new CleanWebpackPlugin(),
     new BundleTracker({filename: './../static/myuw-webpack-stats.json'}),
     new VueLoaderPlugin(),
-    // TODO: Keep track of https://github.com/bootstrap-vue/bootstrap-vue/issues/5311
-    // remove this and back bootstrap-vue imports to base.js after this gets fixed
-    new BootstrapVueLoader(),
     new MiniCssExtractPlugin({
       filename: '[name]-[hash].css',
       chunkFilename: '[id]-[chunkhash].css',
