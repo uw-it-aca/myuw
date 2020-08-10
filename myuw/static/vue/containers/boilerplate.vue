@@ -47,16 +47,16 @@
       </div>
 
       <div class="myuw-navigation">
-        <b-navbar toggleable="lg" type="dark">
+        <b-navbar type="dark">
           <b-navbar-brand href="#">
-            <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm">BB</b-button> MyUW
+            <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm" class="d-lg-none">BB</b-button> MyUW
           </b-navbar-brand>
         </b-navbar>
       </div>
       
     </header>
 
-    <b-collapse visible id="nav-collapse" is-nav>
+    <b-collapse id="nav-collapse" is-nav class="d-sm-none d-lg-block">
       <ul>
         <li>Home</li>
         <li>Husky Experience</li>
