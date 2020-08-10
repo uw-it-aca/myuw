@@ -240,11 +240,6 @@ LOGGING = {
     }
 }
 
-# Django compressor does this with extra steps
-del STATIC_ROOT
-STATICFILES_DIRS = [
-    '/static/',
-]
 
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
