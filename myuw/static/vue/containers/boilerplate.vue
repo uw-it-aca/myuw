@@ -54,12 +54,15 @@
             <b-collapse id="nav-collapse" is-nav>
               <ul class="list-unstyled">
                 <li><font-awesome-icon icon="home" /> Home</li>
-                <li><font-awesome-icon icon="paw" /> Husky Experience</li>
-                <li><font-awesome-icon icon="edit" /> Teaching</li>
+                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon icon="paw" /> Husky Experience</li>
+                <li v-if="user.affiliations.student || user.affiliations.applicant"><font-awesome-icon icon="graduation-cap" /> Academics</li>
+                <li v-if="user.affiliations.instructor"><font-awesome-icon icon="edit" /> Teaching</li>
                 <li><font-awesome-icon icon="credit-card" /> Accounts</li>
+                <li v-if="user.affiliations.student"><font-awesome-icon icon="exclamation-triangle" /> Notices</li>
                 <li><font-awesome-icon icon="user" /> Profile</li>
+                <li role="separator"><hr></li>
                 <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
-                <li><font-awesome-icon icon="bookmark" /> Resources</li>
+                <li><font-awesome-icon icon="bookmark" /> UW Resources</li>
               </ul>
             </b-collapse>
           </mq-layout>
@@ -67,12 +70,15 @@
             <b-collapse id="nav-collapse" is-nav visible>
               <ul class="list-unstyled">
                 <li><font-awesome-icon icon="home" /> Home</li>
-                <li><font-awesome-icon icon="paw" /> Husky Experience</li>
-                <li><font-awesome-icon icon="edit" /> Teaching</li>
+                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon icon="paw" /> Husky Experience</li>
+                <li v-if="user.affiliations.student || user.affiliations.applicant"><font-awesome-icon icon="graduation-cap" /> Academics</li>
+                <li v-if="user.affiliations.instructor"><font-awesome-icon icon="edit" /> Teaching</li>
                 <li><font-awesome-icon icon="credit-card" /> Accounts</li>
+                <li v-if="user.affiliations.student"><font-awesome-icon icon="exclamation-triangle" /> Notices</li>
                 <li><font-awesome-icon icon="user" /> Profile</li>
+                <li role="separator"><hr></li>
                 <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
-                <li><font-awesome-icon icon="bookmark" /> Resources</li>
+                <li><font-awesome-icon icon="bookmark" /> UW Resources</li>
               </ul>
             </b-collapse>
           </mq-layout>

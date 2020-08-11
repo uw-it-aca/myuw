@@ -19,6 +19,7 @@ import {
   faEdit,
   faCreditCard,
   faExclamationTriangle,
+  faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {} from '@fortawesome/free-regular-svg-icons';
@@ -32,6 +33,7 @@ library.add(faSearch);
 library.add(faSignOutAlt);
 library.add(faHome);
 library.add(faPaw);
+library.add(faGraduationCap);
 library.add(faEdit);
 library.add(faCreditCard);
 library.add(faCalendarCheck);
