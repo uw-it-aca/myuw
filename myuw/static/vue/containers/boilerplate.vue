@@ -113,33 +113,6 @@
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core';
-
-import {
-  faUser,
-  faEnvelope,
-  faSearch,
-  faSignOutAlt,
-  faHome,
-  faPaw,
-  faBookmark,
-  faCalendarCheck,
-  faEdit,
-  faCreditCard,
-} from '@fortawesome/free-solid-svg-icons';
-import {} from '@fortawesome/free-regular-svg-icons';
-
-library.add(faUser);
-library.add(faEnvelope);
-library.add(faSearch);
-library.add(faSignOutAlt);
-library.add(faHome);
-library.add(faPaw);
-library.add(faEdit);
-library.add(faCreditCard);
-library.add(faCalendarCheck);
-library.add(faBookmark);
-
 import { mapState } from 'vuex';
 
 export default {
