@@ -42,9 +42,7 @@ export default {
         'uw-card': Card,
     },
     data: function() {
-        return {
-            loading: true,
-        }
+        return {}
     },
     computed: {
         ...mapState({
