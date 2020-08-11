@@ -139,7 +139,6 @@ export default {
   line-height: 65px;
 
   .myuw-brand {
-    //background-image: url('./../static/images/w-logo-white.png');
     background-repeat: no-repeat;
     background-size: 45px;
     background-position: right 20px bottom;
