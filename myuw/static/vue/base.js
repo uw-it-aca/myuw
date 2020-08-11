@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import { BootstrapVue } from 'bootstrap-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueMq from 'vue-mq';
 
 import {
   faUser,
@@ -41,6 +42,16 @@ Vue.config.productionTip = false
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
+
+// vue-mq (media queries)
+Vue.use(VueMq, {
+  breakpoints: {
+    // default mobile is 320px - 767px
+    mobile: 768, // tablet begins 768px
+    tablet: 992, // desktop begins 992px
+    desktop: Infinity,
+  }
+});
 
 const store = new Vuex.Store({
     state: {

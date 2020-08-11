@@ -56,14 +56,7 @@
         <b-container fluid="lg">
           <b-navbar type="dark">
             <b-navbar-brand href="#">
-              <b-button
-                v-b-toggle.nav-collapse
-                variant="outline-light"
-                size="sm"
-                class="d-lg-none"
-                >BB</b-button
-              >
-              MyUW
+              <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm" class="d-lg-none">=</b-button> MyUW
             </b-navbar-brand>
           </b-navbar>
         </b-container>
@@ -75,18 +68,33 @@
         <b-col lg="2">
 
           <!-- main sidebar navigation -->
-          <b-collapse id="nav-collapse" is-nav class="d-sm-none d-lg-block">
-            <ul class="list-unstyled">
-              <li><font-awesome-icon icon="home" /> Home</li>
-              <li><font-awesome-icon icon="paw" /> Husky Experience</li>
-              <li><font-awesome-icon icon="edit" /> Teaching</li>
-              <li><font-awesome-icon icon="credit-card" /> Accounts</li>
-              <li><font-awesome-icon icon="user" /> Profile</li>
-              <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
-              <li><font-awesome-icon icon="bookmark" /> Resources</li>
-            </ul>
-          </b-collapse>
-
+          <mq-layout :mq="['mobile', 'tablet']">
+            <b-collapse id="nav-collapse" is-nav>
+              <ul class="list-unstyled">
+                <li><font-awesome-icon icon="home" /> Home</li>
+                <li><font-awesome-icon icon="paw" /> Husky Experience</li>
+                <li><font-awesome-icon icon="edit" /> Teaching</li>
+                <li><font-awesome-icon icon="credit-card" /> Accounts</li>
+                <li><font-awesome-icon icon="user" /> Profile</li>
+                <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
+                <li><font-awesome-icon icon="bookmark" /> Resources</li>
+              </ul>
+            </b-collapse>
+          </mq-layout>
+          <mq-layout mq="desktop">
+            <b-collapse id="nav-collapse" is-nav visible>
+              <ul class="list-unstyled">
+                <li><font-awesome-icon icon="home" /> Home</li>
+                <li><font-awesome-icon icon="paw" /> Husky Experience</li>
+                <li><font-awesome-icon icon="edit" /> Teaching</li>
+                <li><font-awesome-icon icon="credit-card" /> Accounts</li>
+                <li><font-awesome-icon icon="user" /> Profile</li>
+                <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
+                <li><font-awesome-icon icon="bookmark" /> Resources</li>
+              </ul>
+            </b-collapse>
+          </mq-layout>
+        
         </b-col>
         <b-col lg="10">
           
@@ -114,6 +122,7 @@
 
 <script>
 import { mapState } from 'vuex';
+
 
 export default {
   components: {},
