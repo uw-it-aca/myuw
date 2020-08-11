@@ -38,7 +38,7 @@
       </div>
 
       <div class="myuw-navigation">
-        <b-container fluid="lg">
+        <b-container fluid="lg" class="myuw-brand" style="background-image: url(/static/images/w-logo-white.png)">
           <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm" class="d-lg-none">=</b-button> 
           <h2 class="d-inline h3 align-middle text-white">MyUW <span class="sr-only">Home</span></h2>
         </b-container>
@@ -124,7 +124,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
 .myuw-search {
   background: red;
 }
@@ -136,6 +137,14 @@ export default {
 .myuw-navigation {
   background: #4b2e83;
   line-height: 65px;
+
+  .myuw-brand {
+    //background-image: url('./../static/images/w-logo-white.png');
+    background-repeat: no-repeat;
+    background-size: 45px;
+    background-position: right 20px bottom;
+  }
+
 }
 
 .myuw-footer {
