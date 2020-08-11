@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { buildWith } from './model-builder';
+import { buildWith } from './model_builder';
 
 const postProcess = (respose) => {
   const notices = respose.data;

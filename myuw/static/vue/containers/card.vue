@@ -1,6 +1,6 @@
 <template>
   <b-card v-if="loaded">
-    <h3><slot name="card-heading"></slot></h3>
+    <slot name="card-heading"></slot>
     <slot name="card-body"></slot>
   </b-card>
   <b-card v-else>

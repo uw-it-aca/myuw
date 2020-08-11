@@ -1,7 +1,7 @@
 <template>
     <uw-card :loaded="isReady">
         <template #card-heading>
-            Notices
+            <h3>Notices</h3>
         </template>
         <template #card-body>
             <p v-if="notices.length == 0">
