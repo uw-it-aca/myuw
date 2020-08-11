@@ -18,6 +18,7 @@ import {
   faCalendarCheck,
   faEdit,
   faCreditCard,
+  faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {} from '@fortawesome/free-regular-svg-icons';
@@ -35,6 +36,7 @@ library.add(faEdit);
 library.add(faCreditCard);
 library.add(faCalendarCheck);
 library.add(faBookmark);
+library.add(faExclamationTriangle);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -46,7 +48,7 @@ Vue.use(BootstrapVue)
 // vue-mq (media queries)
 Vue.use(VueMq, {
   breakpoints: {
-    // default mobile is 320px - 767px
+    // breakpoints == min-widths of next size
     mobile: 768, // tablet begins 768px
     tablet: 992, // desktop begins 992px
     desktop: Infinity,

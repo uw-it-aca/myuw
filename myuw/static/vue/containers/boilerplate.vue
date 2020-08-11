@@ -9,56 +9,38 @@
         </a>
       </div>
 
-      <b-collapse id="app_search">
+      <b-collapse id="app_search" class="myuw-search">
         this is search
       </b-collapse>
 
       <div class="myuw-thin-bar">
 
         <b-container fluid="lg">
-          <b-navbar class="p-0" type="dark">
-            <b-navbar-nav>
-              <b-nav-item href="/profile/">
-                <font-awesome-icon icon="user" /> {{ user.netid }}
-              </b-nav-item>
-            </b-navbar-nav>
 
-            <b-navbar-nav class="ml-auto">
-              <b-nav-item
-                v-if="user.email_error"
-                href="https://itconnect.uw.edu/connect/email/"
-                title="UW email services"
-              >
-                <b-icon icon="exclamation-triangle"></b-icon> Email error
-              </b-nav-item>
+          <b-link href="/profile/"><font-awesome-icon icon="user" /> {{ user.netid }}</b-link>
 
-              <b-nav-item
-                v-else
-                :href="user.email_forward_url"
-                title="Open your email in new tab"
-              >
-                <font-awesome-icon icon="envelope" /> Email
-              </b-nav-item>
+          <b-link v-if="user.email_error" href="https://itconnect.uw.edu/connect/email/"  title="UW email services">
+            <font-awesome-icon icon="exclamation-triangle" /> Email error
+          </b-link>
+          <b-link v-else href="user.email_forward_url" title="Open your email in new tab">
+            <font-awesome-icon icon="envelope" /> Email 
+          </b-link>
+          
+          <b-link href="#" v-b-toggle.app_search aria-label="Open search area">
+            <font-awesome-icon icon="search" flip="horizontal" /> Search
+          </b-link>
 
-              <b-nav-text v-b-toggle.app_search aria-label="Open search area">
-                <font-awesome-icon icon="search" flip="horizontal" /> Search
-              </b-nav-text>
-
-              <b-nav-item :href="logout_url" class="d-none d-lg-block">
-                <font-awesome-icon icon="sign-out-alt" /> Sign Out
-              </b-nav-item>
-            </b-navbar-nav>
-          </b-navbar>
+          <b-link href="logout_url" class="d-none d-lg-inline">
+            <font-awesome-icon icon="sign-out-alt" /> Sign Out
+          </b-link>
+       
         </b-container>
       </div>
 
       <div class="myuw-navigation">
         <b-container fluid="lg">
-          <b-navbar type="dark">
-            <b-navbar-brand href="#">
-              <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm" class="d-lg-none">=</b-button> MyUW
-            </b-navbar-brand>
-          </b-navbar>
+          <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm" class="d-lg-none">=</b-button> 
+          <h2 class="d-inline h3 align-middle text-white">MyUW <span class="sr-only">Home</span></h2>
         </b-container>
       </div>
     </header>
@@ -107,12 +89,12 @@
 
     <footer class="myuw-footer">
       <b-container fluid="lg">
-        <a href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid">
-          <font-awesome-icon icon="envelope" /> Contact</a>
-        <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW Help</a>
-        <a href="">Sign Out</a>
-        <a href="">Terms</a>
-        <a href="a">Privacy</a>
+
+        <b-link href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid"><font-awesome-icon icon="envelope" /> Contact</b-link>
+        <b-link href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW Help</b-link>
+        <b-link href="#foo">Sign Out</b-link>
+        <b-link href="#foo">Terms</b-link>
+        <b-link href="#foo">Privacy</b-link>
 
         <p>&copy; {{ new Date().getFullYear() }} University of Washington</p>
       </b-container>
@@ -143,12 +125,17 @@ export default {
 </script>
 
 <style scoped>
+.myuw-search {
+  background: red;
+}
 .myuw-thin-bar {
   background: #452a78;
+  line-height: 40px;
 }
 
 .myuw-navigation {
   background: #4b2e83;
+  line-height: 65px;
 }
 
 .myuw-footer {
