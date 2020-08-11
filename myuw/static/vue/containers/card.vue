@@ -27,20 +27,4 @@ export default {
 </script>
 
 <style scoped>
-  .card {
-    border-radius: 0;
-    border: 1px solid #ddd;
-    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.15);
-  }
-  .card-body {
-    padding: 16px;
-  }
-  h3 {
-    font-weight: 600;
-    color: #85754d;
-  }
-  .card-loading {
-    min-height: 60px;
-    color: #ddd;
-  }
 </style>
