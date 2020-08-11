@@ -20,9 +20,8 @@ ADD ./package.json /app/
 WORKDIR /app/
 RUN npm install .
 
-ENV NODE_ENV=production
 ADD . /app/
-RUN npx webpack
+RUN npx webpack --production
 
 FROM pre-container as app-container
 

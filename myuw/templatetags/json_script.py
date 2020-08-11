@@ -24,9 +24,12 @@ def json_script(value, element_id):
     TODO: Remove this when we update to Django 2.1
     """
     from django.core.serializers.json import DjangoJSONEncoder
-    json_str = json.dumps(
-        value, cls=DjangoJSONEncoder
-    ).translate(_json_script_escapes)
+    try:
+        json_str = json.dumps(
+            value, cls=DjangoJSONEncoder
+        ).translate(_json_script_escapes)
+    except TypeError:
+        json_str = json.dumps({}, cls=DjangoJSONEncoder)
     return format_html(
         '<script id="{}" type="application/json">{}</script>',
         element_id, mark_safe(json_str)

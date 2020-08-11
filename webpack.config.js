@@ -14,7 +14,7 @@ module.exports = {
   context: __dirname,
   optimization: {
     minimizer: [
-      new TerserJSPlugin({}),
+      new TerserJSPlugin(),
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           safe: true,
@@ -45,6 +45,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader'
       },
       {
@@ -59,6 +60,16 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  require('autoprefixer')
+                ];
+              }
+            }
+          },
           'sass-loader'
         ],
       },
@@ -89,6 +100,5 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
     },
-    modules: ['node_modules'],
   }
 }
