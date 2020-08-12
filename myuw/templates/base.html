@@ -1,4 +1,5 @@
 {% load static %}
+{% load settings_value %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,6 +37,7 @@
             }
         </script>
         
+        <script id="static_url" type="application/json">"{% settings_value 'STATIC_URL' %}"</script>
         {% block django_json_data %}
         {% endblock django_json_data %}
     </head>

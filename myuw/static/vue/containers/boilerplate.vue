@@ -30,7 +30,7 @@
       </div>
 
       <div class="myuw-navigation">
-        <b-container fluid="lg" class="myuw-brand" style="background-image: url(/static/images/w-logo-white.png)">
+        <b-container fluid="lg" class="myuw-brand" :style="`background-image: url(${staticUrl}images/w-logo-white.png)`">
           <b-button v-b-toggle.nav-collapse variant="outline-light" size="sm" class="d-lg-none">=</b-button> 
           <h2 class="d-inline h3 align-middle text-white">MyUW <span class="sr-only">Home</span></h2>
         </b-container>
@@ -102,6 +102,7 @@ export default {
   },
   computed: mapState({
     user: (state) => state.user,
+    staticUrl: (state) => state.staticUrl,
   }),
 };
 </script>
