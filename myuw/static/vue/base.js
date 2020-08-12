@@ -4,7 +4,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import { BootstrapVue } from 'bootstrap-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 import VueMq from 'vue-mq';
 
 import {
@@ -17,12 +17,14 @@ import {
   faBookmark,
   faExclamationTriangle,
   faGraduationCap,
+  faBars
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
   faEdit,
   faCreditCard,
   faCalendarCheck,
+  faSquare
 } from '@fortawesome/free-regular-svg-icons';
 
 import '../css/bootstrap-theming.scss'
@@ -40,11 +42,14 @@ library.add(faCreditCard);
 library.add(faCalendarCheck);
 library.add(faBookmark);
 library.add(faExclamationTriangle);
+library.add(faSquare);
+library.add(faBars);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.config.productionTip = false
+Vue.component('font-awesome-layers', FontAwesomeLayers)
 
+// vuex
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
 
