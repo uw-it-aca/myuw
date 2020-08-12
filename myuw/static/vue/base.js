@@ -15,14 +15,15 @@ import {
   faHome,
   faPaw,
   faBookmark,
-  faCalendarCheck,
-  faEdit,
-  faCreditCard,
   faExclamationTriangle,
   faGraduationCap,
 } from '@fortawesome/free-solid-svg-icons';
 
-import {} from '@fortawesome/free-regular-svg-icons';
+import {
+  faEdit,
+  faCreditCard,
+  faCalendarCheck,
+} from '@fortawesome/free-regular-svg-icons';
 
 import '../css/bootstrap-theming.scss'
 import 'bootstrap-vue/dist/bootstrap-vue.css'

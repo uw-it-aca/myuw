@@ -4,7 +4,7 @@
       <div id="actions_disabled_banner" v-if="disable_actions">
         <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
         Overriding is read-only and no actions will be saved. &nbsp;&nbsp;
-        <a href="/support" style="font-weight: normal; color: #003399;">
+        <a href="/support/" style="font-weight: normal; color: #003399;">
           Back to MyUW Support tool
         </a>
       </div>
@@ -17,13 +17,13 @@
         <b-container fluid="lg">
            <b-row>
             <b-col xs="2">
-              <b-link href="/profile/" class="text-white"><font-awesome-icon icon="user" class="mr-2" />{{ user.netid }}</b-link>
+              <b-link href="/profile/" class="text-white"><font-awesome-icon :icon="['fas', 'user']" class="mr-2" />{{ user.netid }}</b-link>
             </b-col>
             <b-col xs="10" class="text-right">
-              <b-link v-if="user.email_error" href="https://itconnect.uw.edu/connect/email/" class="ml-2 text-white" title="UW email services"><font-awesome-icon icon="exclamation-triangle" class="mr-1" />Email error</b-link>
-              <b-link v-else href="user.email_forward_url" class="ml-2 text-white" title="Open your email in new tab"><font-awesome-icon icon="envelope" class="mr-1" />Email</b-link>
-              <b-link href="#" class="ml-2 text-white" v-b-toggle.app_search aria-label="Open search area"><font-awesome-icon icon="search" flip="horizontal" class="mr-1" />Search</b-link>
-              <b-link href="logout_url" class="d-none d-lg-inline ml-2 text-white"><font-awesome-icon icon="sign-out-alt" class="mr-1" />Sign Out</b-link>
+              <b-link v-if="user.email_error" href="https://itconnect.uw.edu/connect/email/" class="ml-2 text-white" title="UW email services"><font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email error</b-link>
+              <b-link v-else href="user.email_forward_url" class="ml-2 text-white" title="Open your email in new tab"><font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email</b-link>
+              <b-link href="#" class="ml-2 text-white" v-b-toggle.app_search aria-label="Open search area"><font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search</b-link>
+              <b-link href="/logout/" class="d-none d-lg-inline ml-2 text-white"><font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-1" />Sign Out</b-link>
             </b-col>
           </b-row>
         </b-container>
@@ -46,16 +46,16 @@
             <!-- main sidebar navigation -->
             <b-collapse id="nav-collapse" :visible="$mq == 'desktop'">
               <ul class="list-unstyled">
-                <li><font-awesome-icon icon="home" /> Home</li>
-                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon icon="paw" /> Husky Experience</li>
-                <li v-if="user.affiliations.student || user.affiliations.applicant"><font-awesome-icon icon="graduation-cap" /> Academics</li>
-                <li v-if="user.affiliations.instructor"><font-awesome-icon icon="edit" /> Teaching</li>
-                <li><font-awesome-icon icon="credit-card" /> Accounts</li>
-                <li v-if="user.affiliations.student"><font-awesome-icon icon="exclamation-triangle" /> Notices</li>
-                <li><font-awesome-icon icon="user" /> Profile</li>
+                <li><font-awesome-icon :icon="['fas', 'home']" /> Home</li>
+                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon :icon="['fas', 'paw']" /> Husky Experience</li>
+                <li v-if="user.affiliations.student || user.affiliations.applicant"><font-awesome-icon :icon="['fas', 'graduation-cap']" /> Academics</li>
+                <li v-if="user.affiliations.instructor"><font-awesome-icon :icon="['far', 'edit']"  /> Teaching</li>
+                <li><font-awesome-icon :icon="['far', 'credit-card']" /> Accounts</li>
+                <li v-if="user.affiliations.student"><font-awesome-icon :icon="['fas', 'exclamation-triangle']" /> Notices</li>
+                <li><font-awesome-icon :icon="['fas', 'user']" /> Profile</li>
                 <li role="separator"><hr></li>
-                <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
-                <li><font-awesome-icon icon="bookmark" /> UW Resources</li>
+                <li><font-awesome-icon :icon="['far', 'calendar-check']"  /> Calendar</li>
+                <li><font-awesome-icon :icon="['fas', 'bookmark']" /> UW Resources</li>
               </ul>
             </b-collapse>
           
@@ -74,7 +74,7 @@
       <b-container fluid="lg">
 
         <ul class="list-inline m-0">
-          <li class="list-inline-item mr-1"><b-link href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid" class="text-white"><font-awesome-icon icon="envelope" class="mr-1" />Contact</b-link></li>
+          <li class="list-inline-item mr-1"><b-link href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid" class="text-white"><font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Contact</b-link></li>
           <li class="list-inline-item mr-1"><b-link href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" class="text-white">MyUW Help</b-link></li>
           <li class="list-inline-item mr-1 d-lg-none"><b-link href="/logout/" class="text-white">Sign Out</b-link></li>
           <li class="list-inline-item mr-1"><b-link href="https://www.washington.edu/online/terms/" class="text-white">Terms</b-link></li>
