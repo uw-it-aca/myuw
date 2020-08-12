@@ -29,8 +29,8 @@
         </b-container>
       </div>
 
-      <div class="myuw-navigation">
-        <b-container fluid="lg" class="myuw-brand" :style="`background-image: url(${staticUrl}images/w-logo-white.png)`">
+      <div class="myuw-brand">
+        <b-container fluid="lg" class="myuw-brand-logo" :style="`background-image: url(${staticUrl}images/w-logo-white.png)`">
           <b-button v-b-toggle.nav-collapse variant="link" size="sm" class="d-lg-none p-0 text-white">
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="['far', 'square']" />
@@ -49,7 +49,7 @@
           <b-col lg="2">
 
             <!-- main sidebar navigation -->
-            <b-collapse id="nav-collapse" :visible="$mq == 'desktop'">
+            <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
               <ul class="list-unstyled">
                 <li><font-awesome-icon :icon="['fas', 'home']" /> Home</li>
                 <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon :icon="['fas', 'paw']" /> Husky Experience</li>
@@ -116,7 +116,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+// boilerplate
 .myuw-search {
   background: red;
 }
@@ -127,16 +127,21 @@ export default {
   white-space: nowrap;
 }
 
-.myuw-navigation {
+.myuw-brand {
   background: #4b2e83;
   line-height: 65px;
 
-  .myuw-brand {
+  .myuw-brand-logo {
     background-repeat: no-repeat;
     background-size: 45px;
     background-position: right 20px bottom;
   }
 
+}
+
+.myuw-navigation {
+  color: purple;
+  white-space: nowrap;
 }
 
 .myuw-body {
@@ -161,6 +166,8 @@ export default {
 }
 </style>
 
-<style>
+
+<style style lang="scss">
+// global styles
 body { min-width: 320px; }
 </style>
