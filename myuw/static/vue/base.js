@@ -60,6 +60,7 @@ Vue.use(VueMq, {
 const store = new Vuex.Store({
     state: {
         user: JSON.parse(document.getElementById('user').innerHTML),
+        staticUrl: JSON.parse(document.getElementById('static_url').innerHTML),
     }
 })
 
