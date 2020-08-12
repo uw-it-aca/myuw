@@ -3,7 +3,7 @@
         <template #card-heading>
             <h3>Notices</h3>
         </template>
-        <template #card-body>
+        <template #card-body v-if="!isErrored">
             <p v-if="notices.length == 0">
                 You do not have any notices at this time.
             </p>
@@ -23,18 +23,24 @@
                             </span>
                         </span>
                     </div>
-                    <b-collapse v-on:shown="onShowNotice(notice)"
+                    <b-collapse @show="onShowNotice(notice)"
                                 :id="notice.id_hash" tabindex="0">
                         <div class="notice-body" v-html="notice.notice_body"></div>
                     </b-collapse>
                 </li>
             </ul>
         </template>
+        <template #card-body v-else>
+            <p class="text-danger">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                An error occurred and MyUW cannot load your notices right now. Please try again later.
+            </p>
+        </template>
     </uw-card>
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 import Card from '../../../containers/card.vue'
 
 export default {
@@ -60,17 +66,22 @@ export default {
         }),
         ...mapGetters('notices', {
             isReady: 'isReady',
+            isErrored: 'isErrored',
         }),
     },
     created() {
-        this.$store.dispatch('notices/fetch');
+        this.fetch();
     },
     methods: {
         onShowNotice(notice) {
             if (!notice.is_read) {
-                this.$store.dispatch('notices/setRead', notice);
+                this.setRead(notice);
             }
         },
+        ...mapActions('notices', [
+            'fetch',
+            'setRead',
+        ]),
     }
 }
 </script>

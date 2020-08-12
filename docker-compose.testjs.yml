@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  node-test:
+    build:
+      context: .
+      target: node-bundler
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+    command: bash -c "cd /app/ && npx jest --watchAll"

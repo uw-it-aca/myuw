@@ -28,7 +28,7 @@ const buildWith = (
 
   const actions = {
     fetch({commit, getters}) {
-      if (!getters.is_ready && !getters.is_fetching) {
+      if (!getters.isReady && !getters.isFetching) {
         commit('setStatus', statusOptions[1]);
         axios.get(endpoint, {
           responseType: type,

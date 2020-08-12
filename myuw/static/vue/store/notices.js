@@ -39,20 +39,20 @@ const postProcess = (respose) => {
 };
 
 const custom_mutations = {
-  setRead(state, notice) {
+  setReadTrue(state, notice) {
     notice.is_read = true;
   }
 }
 
 const custom_actions = {
   setRead({commit, rootState}, notice) {
-    axios.put("/api/v1/notices/",{
+    axios.put("/api/v1/notices/", {
         "notice_hashes": [notice.id_hash]
       }, {
         headers: {
           'X-CSRFToken': rootState.csrfToken,
         }
-      }).then(() => commit('setRead', notice)).catch(() => {});
+    }).then(() => commit('setReadTrue', notice)).catch(() => {});
   }
 }
 
