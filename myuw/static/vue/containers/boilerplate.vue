@@ -35,37 +35,40 @@
           <h2 class="d-inline h3 align-middle text-white">MyUW <span class="sr-only">Home</span></h2>
         </b-container>
       </div>
+
     </header>
 
-    <b-container fluid="lg">
-      <b-row>
-        <b-col lg="2">
+    <div class="myuw-body">
+      <b-container fluid="lg">
+        <b-row>
+          <b-col lg="2">
 
-          <!-- main sidebar navigation -->
-          <b-collapse id="nav-collapse" :visible="$mq == 'desktop'">
-            <ul class="list-unstyled">
-              <li><font-awesome-icon icon="home" /> Home</li>
-              <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon icon="paw" /> Husky Experience</li>
-              <li v-if="user.affiliations.student || user.affiliations.applicant"><font-awesome-icon icon="graduation-cap" /> Academics</li>
-              <li v-if="user.affiliations.instructor"><font-awesome-icon icon="edit" /> Teaching</li>
-              <li><font-awesome-icon icon="credit-card" /> Accounts</li>
-              <li v-if="user.affiliations.student"><font-awesome-icon icon="exclamation-triangle" /> Notices</li>
-              <li><font-awesome-icon icon="user" /> Profile</li>
-              <li role="separator"><hr></li>
-              <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
-              <li><font-awesome-icon icon="bookmark" /> UW Resources</li>
-            </ul>
-          </b-collapse>
-        
-        </b-col>
-        <b-col lg="10">
+            <!-- main sidebar navigation -->
+            <b-collapse id="nav-collapse" :visible="$mq == 'desktop'">
+              <ul class="list-unstyled">
+                <li><font-awesome-icon icon="home" /> Home</li>
+                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon icon="paw" /> Husky Experience</li>
+                <li v-if="user.affiliations.student || user.affiliations.applicant"><font-awesome-icon icon="graduation-cap" /> Academics</li>
+                <li v-if="user.affiliations.instructor"><font-awesome-icon icon="edit" /> Teaching</li>
+                <li><font-awesome-icon icon="credit-card" /> Accounts</li>
+                <li v-if="user.affiliations.student"><font-awesome-icon icon="exclamation-triangle" /> Notices</li>
+                <li><font-awesome-icon icon="user" /> Profile</li>
+                <li role="separator"><hr></li>
+                <li><font-awesome-icon icon="calendar-check" /> Calendar</li>
+                <li><font-awesome-icon icon="bookmark" /> UW Resources</li>
+              </ul>
+            </b-collapse>
           
-          <!-- page content inserted here -->
-          <slot></slot>
+          </b-col>
+          <b-col lg="10">
+            
+            <!-- page content inserted here -->
+            <slot></slot>
 
-        </b-col>
-      </b-row>
-    </b-container>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
 
     <footer class="pt-3 pb-3 myuw-footer">
       <b-container fluid="lg">
@@ -129,6 +132,10 @@ export default {
     background-position: right 20px bottom;
   }
 
+}
+
+.myuw-body {
+  background: #f5f5f5;
 }
 
 .myuw-footer {
