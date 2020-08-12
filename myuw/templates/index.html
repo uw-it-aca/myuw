@@ -5,6 +5,22 @@
 
 {% block django_json_data %}
     {{ user|json_script:'user' }}
+    {{ today|date:"l, F j, Y"|json_script:'today' }}
+    <script> 
+        // TODO: Replace this with a object in the context and a json_script.
+        window.term_data = {
+            today: '{{ today|date:"l, F j, Y" }}',
+            year: '{{ year }}',
+            quarter: '{{ quarter }}',
+            breakYear: '{{ break_year }}',
+            breakQuarter: '{{ break_quarter }}',
+            isFinals: {{ is_finals|yesno:"true, false"}},
+            isBreak: {{ is_break|yesno:"true, false"}},
+            todayDate: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
+            firstDay: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
+            lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
+        };
+    </script>
 {% endblock django_json_data %}
 
 {% block body_content %}
@@ -13,6 +29,7 @@
 
         <h2>Home</h2>
 
+        <uw-summaries></uw-summaries>
         <b-row>
             <b-col md="8">
                 <uw-notices></uw-notices>

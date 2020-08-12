@@ -24,8 +24,6 @@ import {} from '@fortawesome/free-regular-svg-icons';
 import '../css/bootstrap-theming.scss';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-import notices from './store/notices';
-
 library.add(faUser);
 library.add(faEnvelope);
 library.add(faSearch);
@@ -45,9 +43,6 @@ Vue.use(Vuex);
 Vue.use(BootstrapVue);
 
 const store = new Vuex.Store({
-  modules: {
-    notices,
-  },
   state: {
     user: JSON.parse(document.getElementById('user').innerHTML),
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,

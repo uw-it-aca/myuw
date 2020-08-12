@@ -30,6 +30,7 @@
     "less": "^3.12.2",
     "less-loader": "^6.2.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "moment": "^2.27.0",
     "npx": "^10.2.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss": "^7.0.32",
@@ -58,6 +59,10 @@
       ".*\\.(vue)$": "vue-jest"
     },
     "collectCoverage": true,
-    "collectCoverageFrom": ["myuw/static/**/*.{js,vue}", "!**/node_modules/**"]
+    "collectCoverageFrom": [
+      "myuw/static/**/*.{js,vue}",
+      "!**/tests/**",
+      "!**/node_modules/**"
+    ]
   }
 }
