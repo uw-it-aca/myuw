@@ -14,26 +14,18 @@
       </b-collapse>
 
       <div class="myuw-thin-bar">
-
         <b-container fluid="lg">
-
-          <b-link href="/profile/"><font-awesome-icon icon="user" /> {{ user.netid }}</b-link>
-
-          <b-link v-if="user.email_error" href="https://itconnect.uw.edu/connect/email/"  title="UW email services">
-            <font-awesome-icon icon="exclamation-triangle" /> Email error
-          </b-link>
-          <b-link v-else href="user.email_forward_url" title="Open your email in new tab">
-            <font-awesome-icon icon="envelope" /> Email 
-          </b-link>
-          
-          <b-link href="#" v-b-toggle.app_search aria-label="Open search area">
-            <font-awesome-icon icon="search" flip="horizontal" /> Search
-          </b-link>
-
-          <b-link href="logout_url" class="d-none d-lg-inline">
-            <font-awesome-icon icon="sign-out-alt" /> Sign Out
-          </b-link>
-       
+           <b-row>
+            <b-col xs="2">
+              <b-link href="/profile/" class="text-white"><font-awesome-icon icon="user" class="mr-2" />{{ user.netid }}</b-link>
+            </b-col>
+            <b-col xs="10" class="text-right">
+              <b-link v-if="user.email_error" href="https://itconnect.uw.edu/connect/email/" class="ml-2 text-white" title="UW email services"><font-awesome-icon icon="exclamation-triangle" class="mr-1" />Email error</b-link>
+              <b-link v-else href="user.email_forward_url" class="ml-2 text-white" title="Open your email in new tab"><font-awesome-icon icon="envelope" class="mr-1" />Email</b-link>
+              <b-link href="#" class="ml-2 text-white" v-b-toggle.app_search aria-label="Open search area"><font-awesome-icon icon="search" flip="horizontal" class="mr-1" />Search</b-link>
+              <b-link href="logout_url" class="d-none d-lg-inline ml-2 text-white"><font-awesome-icon icon="sign-out-alt" class="mr-1" />Sign Out</b-link>
+            </b-col>
+          </b-row>
         </b-container>
       </div>
 
@@ -75,16 +67,18 @@
       </b-row>
     </b-container>
 
-    <footer class="myuw-footer">
+    <footer class="pt-3 pb-3 myuw-footer">
       <b-container fluid="lg">
 
-        <b-link href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid"><font-awesome-icon icon="envelope" /> Contact</b-link>
-        <b-link href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW Help</b-link>
-        <b-link href="#foo">Sign Out</b-link>
-        <b-link href="#foo">Terms</b-link>
-        <b-link href="#foo">Privacy</b-link>
+        <ul class="list-inline m-0">
+          <li class="list-inline-item mr-1"><b-link href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid" class="text-white"><font-awesome-icon icon="envelope" class="mr-1" />Contact</b-link></li>
+          <li class="list-inline-item mr-1"><b-link href="https://itconnect.uw.edu/learn/tools/myuw-help-center/" class="text-white">MyUW Help</b-link></li>
+          <li class="list-inline-item mr-1 d-lg-none"><b-link href="/logout/" class="text-white">Sign Out</b-link></li>
+          <li class="list-inline-item mr-1"><b-link href="https://www.washington.edu/online/terms/" class="text-white">Terms</b-link></li>
+          <li class="list-inline-item"><b-link href="https://www.washington.edu/online/privacy/" class="text-white">Privacy</b-link></li>
+        </ul>
 
-        <p>&copy; {{ new Date().getFullYear() }} University of Washington</p>
+        <div class="text-white-50">&copy; {{ new Date().getFullYear() }} University of Washington</div>
       </b-container>
     </footer>
   </div>
@@ -120,6 +114,8 @@ export default {
 .myuw-thin-bar {
   background: #452a78;
   line-height: 40px;
+  font-size: .85rem;
+  white-space: nowrap;
 }
 
 .myuw-navigation {
@@ -136,7 +132,22 @@ export default {
 
 .myuw-footer {
   background: #333;
+  font-size: .70rem;
+  white-space: nowrap;
+
+  ul {
+    li {
+     &:not(:last-child)::after {
+       content: "·";
+       color: #fff;
+       margin-left: 0.5rem;
+     }
+    }
+  }
+  
 }
 </style>
 
-<style></style>
+<style>
+body { min-width: 320px; }
+</style>
