@@ -51,16 +51,34 @@
             <!-- main sidebar navigation -->
             <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
               <ul class="list-unstyled">
-                <li><font-awesome-icon :icon="['fas', 'home']" /> Home</li>
-                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon :icon="['fas', 'paw']" /> Husky Experience</li>
-                <li v-if="user.affiliations.student || user.affiliations.applicant"><font-awesome-icon :icon="['fas', 'graduation-cap']" /> Academics</li>
-                <li v-if="user.affiliations.instructor"><font-awesome-icon :icon="['far', 'edit']"  /> Teaching</li>
-                <li><font-awesome-icon :icon="['far', 'credit-card']" /> Accounts</li>
-                <li v-if="user.affiliations.student"><font-awesome-icon :icon="['fas', 'exclamation-triangle']" /> Notices</li>
-                <li><font-awesome-icon :icon="['fas', 'user']" /> Profile</li>
+                <li>
+                  <b-link href="/" class="text-dark"><font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home</b-link>
+                </li>
+                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer">
+                  <b-link href="/husky_experience/" class="text-dark"><font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience</b-link>
+                </li>
+                <li v-if="user.affiliations.student || user.affiliations.applicant">
+                  <b-link href="/academics/" class="text-dark"><font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics</b-link>
+                </li>
+                <li v-if="user.affiliations.instructor">
+                  <b-link href="/teaching/" class="text-dark"><font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching</b-link>
+                </li>
+                <li>
+                  <b-link href="/accounts/" class="text-dark"><font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts</b-link>
+                </li>
+                <li v-if="user.affiliations.student">
+                  <b-link href="/notices/" class="text-dark"><font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices</b-link>
+                </li>
+                <li>
+                  <b-link href="/profile/" class="text-dark"><font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile</b-link>
+                </li>
                 <li role="separator"><hr></li>
-                <li><font-awesome-icon :icon="['far', 'calendar-check']"  /> Calendar</li>
-                <li><font-awesome-icon :icon="['fas', 'bookmark']" /> UW Resources</li>
+                <li>
+                  <b-link href="/academic_calendar/" class="text-dark"><font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar</b-link>
+                </li>
+                <li>
+                  <b-link href="/resources/" class="text-dark"><font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources</b-link>
+                </li>
               </ul>
             </b-collapse>
           
@@ -140,7 +158,6 @@ export default {
 }
 
 .myuw-navigation {
-  color: purple;
   white-space: nowrap;
 }
 
