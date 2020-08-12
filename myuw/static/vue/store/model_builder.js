@@ -1,13 +1,17 @@
 import axios from 'axios';
 
-const statusOptions = ["READY", "FETCHING", "ERROR"];
+const statusOptions = ['READY', 'FETCHING', 'ERROR'];
 
 const doNothing = (response) => response;
 
 const buildWith = (
-  endpoint,
-  postProcess=doNothing,
-  {custom_getters={},custom_mutations={},custom_actions={}} = {}, type="json") => {
+    endpoint,
+    postProcess=doNothing,
+    {
+      customGetters={},
+      customMutations={},
+      customActions={},
+    } = {}, type='json') => {
   const state = () => ({
     value: [],
     status: null,
@@ -23,7 +27,7 @@ const buildWith = (
     isErrored(state) {
       return state.status == statusOptions[2];
     },
-    ...custom_getters
+    ...customGetters,
   };
 
   const actions = {
@@ -34,16 +38,16 @@ const buildWith = (
           responseType: type,
           headers: {
             'Accept': 'text/html',
-          }
+          },
         }).then(postProcess).then((data)=>{
           commit('setValue', data);
           commit('setStatus', statusOptions[0]);
-        }).catch((response)=>{
+        }).catch(()=>{
           commit('setStatus', statusOptions[2]);
-        })
+        });
       }
     },
-    ...custom_actions
+    ...customActions,
   };
 
   const mutations = {
@@ -53,7 +57,7 @@ const buildWith = (
     setStatus(state, status) {
       state.status = status;
     },
-    ...custom_mutations
+    ...customMutations,
   };
 
   return {
@@ -61,13 +65,13 @@ const buildWith = (
     state,
     getters,
     actions,
-    mutations
-  }
-}
+    mutations,
+  };
+};
 
 
 export {
   statusOptions,
   doNothing,
   buildWith,
-}
+};

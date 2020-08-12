@@ -1,10 +1,10 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import Vue from 'vue'
-import Vuex from 'vuex'
-import { BootstrapVue } from 'bootstrap-vue'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import {BootstrapVue} from 'bootstrap-vue';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
 
 import {
   faUser,
@@ -21,10 +21,10 @@ import {
 
 import {} from '@fortawesome/free-regular-svg-icons';
 
-import '../css/bootstrap-theming.scss'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import '../css/bootstrap-theming.scss';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-import notices from './store/notices'
+import notices from './store/notices';
 
 library.add(faUser);
 library.add(faEnvelope);
@@ -38,21 +38,21 @@ library.add(faCalendarCheck);
 library.add(faBookmark);
 
 // fontawesome 5
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.config.productionTip = false
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.config.productionTip = false;
 
-Vue.use(Vuex)
-Vue.use(BootstrapVue)
+Vue.use(Vuex);
+Vue.use(BootstrapVue);
 
 const store = new Vuex.Store({
-    modules: {
-        notices,
-    },
-    state: {
-        user: JSON.parse(document.getElementById('user').innerHTML),
-        csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value
-    }
-})
+  modules: {
+    notices,
+  },
+  state: {
+    user: JSON.parse(document.getElementById('user').innerHTML),
+    csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+  },
+});
 
-const rootId = "vue_root"
-export { Vue, store, rootId }
+const rootId = 'vue_root';
+export {Vue, store, rootId};
