@@ -50,7 +50,7 @@
         <b-col lg="2">
 
           <!-- main sidebar navigation -->
-          <b-collapse id="nav-collapse" is-nav :visible="$mq == 'desktop'">
+          <b-collapse id="nav-collapse" :visible="$mq == 'desktop'">
             <ul class="list-unstyled">
               <li><font-awesome-icon icon="home" /> Home</li>
               <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer"><font-awesome-icon icon="paw" /> Husky Experience</li>
