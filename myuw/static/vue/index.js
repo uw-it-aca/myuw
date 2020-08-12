@@ -12,7 +12,7 @@ store.registerModule('notices', notices);
 store.registerModule('hfs', hfs);
 store.registerModule('library', library);
 
-store.state["termData"] = window.term_data;
+store.state['termData'] = window.term_data;
 
 Vue.component('uw-boilerplate', Boilerplate);
 Vue.component('uw-summaries', Summaries);
