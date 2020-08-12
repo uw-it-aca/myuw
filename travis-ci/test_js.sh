@@ -26,6 +26,6 @@ run_test "npx eslint ${DJANGO_APP}/static/vue"
 run_test "npx jest"
 
 # put generaged coverage result where it will get processed
-cp coverage/* /coverage
+cp -r coverage/* /coverage
 
 exit 0
