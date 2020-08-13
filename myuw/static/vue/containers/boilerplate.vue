@@ -52,7 +52,7 @@
             <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
               <ul class="list-unstyled">
                 <li>
-                  <b-link href="/"><font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home</b-link>
+                  <b-link href="/" class="active"><font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home</b-link>
                 </li>
                 <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer">
                   <b-link href="/husky_experience/"><font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience</b-link>
@@ -133,8 +133,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "bootstrap";
+
+// global styles
+body { min-width: 320px; }
 
 // boilerplate
 .myuw-search {
@@ -167,7 +170,18 @@ export default {
   }
 
   a {
-    @extend .text-dark;
+    @extend .text-dark, .d-block, .p-1;
+
+    &:hover, &:focus {
+      background: #ddd;
+      text-decoration: none;
+    }
+    
+    &.active {
+      background: #ddd;
+      color: #7b59b3 !important;
+      svg { color: #452a78 !important; }
+    }
   }
 
 }
@@ -195,10 +209,4 @@ export default {
   }
   
 }
-</style>
-
-
-<style style lang="scss">
-// global styles
-body { min-width: 320px; }
 </style>
