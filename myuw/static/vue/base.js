@@ -39,7 +39,6 @@ library.add(faBookmark);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
-Vue.config.productionTip = false;
 
 Vue.use(Vuex);
 Vue.use(BootstrapVue);
