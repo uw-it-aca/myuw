@@ -30,7 +30,7 @@
       </div>
 
       <div class="myuw-brand">
-        <b-container fluid="lg" class="myuw-brand-logo" :style="`background-image: url(${staticUrl}images/w-logo-white.png)`">
+        <b-container fluid="lg" class="myuw-brand-logo">
           <b-button v-b-toggle.nav-collapse variant="link" size="sm" class="d-lg-none p-0 text-white">
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="['far', 'square']" />
@@ -158,6 +158,7 @@ body { min-width: 320px; }
     background-repeat: no-repeat;
     background-size: 45px;
     background-position: right 20px bottom;
+    background-image: url(../../images/w-logo-white.png);
   }
 
 }
