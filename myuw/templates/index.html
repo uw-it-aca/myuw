@@ -8,10 +8,21 @@
 {% endblock django_json_data %}
 
 {% block body_content %}
-    <boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
+    <uw-boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
         logout_url="{% settings_value "LOGOUT_URL" %}">
-        <p>place holder</p>
-    </boilerplate>
+
+        <h2>Home</h2>
+
+        <b-row>
+            <b-col md="8">
+                <uw-notices></uw-notices>
+            </b-col>
+            <b-col md="4">
+                <div>quicklinks go here</div>
+            </b-col>
+        </b-row>
+
+    </uw-boilerplate>
 {% endblock body_content %}
 
 {% block vue_script %}
