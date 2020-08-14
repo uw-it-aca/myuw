@@ -4,7 +4,11 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import {BootstrapVue} from 'bootstrap-vue';
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+import {
+  FontAwesomeIcon,
+  FontAwesomeLayers,
+} from '@fortawesome/vue-fontawesome';
+import VueMq from 'vue-mq';
 
 import {
   faUser,
@@ -14,12 +18,17 @@ import {
   faHome,
   faPaw,
   faBookmark,
-  faCalendarCheck,
-  faEdit,
-  faCreditCard,
+  faExclamationTriangle,
+  faGraduationCap,
+  faBars,
 } from '@fortawesome/free-solid-svg-icons';
 
-import {} from '@fortawesome/free-regular-svg-icons';
+import {
+  faEdit,
+  faCreditCard,
+  faCalendarCheck,
+  faSquare,
+} from '@fortawesome/free-regular-svg-icons';
 
 import '../css/bootstrap-theming.scss';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
@@ -30,23 +39,49 @@ library.add(faSearch);
 library.add(faSignOutAlt);
 library.add(faHome);
 library.add(faPaw);
+library.add(faGraduationCap);
 library.add(faEdit);
 library.add(faCreditCard);
 library.add(faCalendarCheck);
 library.add(faBookmark);
+library.add(faExclamationTriangle);
+library.add(faSquare);
+library.add(faBars);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('font-awesome-layers', FontAwesomeLayers);
 
+// vuex
 Vue.use(Vuex);
 Vue.use(BootstrapVue);
+
+// vue-mq (media queries)
+Vue.use(VueMq, {
+  breakpoints: {
+    // breakpoints == min-widths of next size
+    mobile: 768, // tablet begins 768px
+    tablet: 992, // desktop begins 992px
+    desktop: Infinity,
+  },
+});
 
 const store = new Vuex.Store({
   state: {
     user: JSON.parse(document.getElementById('user').innerHTML),
-    csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+    staticUrl: JSON.parse(document.getElementById('static_url').innerHTML),
+    disableActions: JSON.parse(
+        document.getElementById('disable_actions').innerHTML,
+    ),
   },
 });
 
-const rootId = 'vue_root';
-export {Vue, store, rootId};
+const vueConf = {
+  el: '#vue_root',
+  created: function() {
+    document.title = 'MyUW: ' + store.state['pageTitle'];
+    document.getElementById('vue_root').hidden = false;
+  },
+  store: store,
+};
+export {Vue, vueConf};

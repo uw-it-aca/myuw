@@ -2,8 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -27,8 +26,14 @@ module.exports = {
   },
   entry: {
       index: [
-        "./myuw/static/vue/index.js"
+        "./myuw/static/vue/index.js",
       ],
+      teaching: [
+        "./myuw/static/vue/teaching.js",
+      ],
+      accounts: [
+        "./myuw/static/vue/accounts.js"
+      ]
   },
   output: {
       path: path.resolve('../static/myuw/'),
@@ -67,7 +72,8 @@ module.exports = {
                 return [
                   require('autoprefixer')
                 ];
-              }
+              },
+              sourceMap: true,
             }
           },
           'sass-loader'
@@ -87,7 +93,6 @@ module.exports = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
     new BundleTracker({filename: './../static/myuw-webpack-stats.json'}),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({

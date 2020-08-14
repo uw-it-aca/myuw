@@ -1,9 +1,10 @@
 {% load static %}
+{% load settings_value %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>MyUW: {{ page_title|default:'MyUW'}}</title>
+        {% comment %} <title>MyUW: {{ page_title|default:'MyUW'}}</title> {% endcomment %}
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="description" content="">
         <meta name="author" content="">
@@ -36,6 +37,11 @@
             }
         </script>
         
+        <script id="static_url" type="application/json">"{% settings_value 'STATIC_URL' %}"</script>
+        {% load json_script %}
+        {{ user|json_script:'user' }}
+        {{ disable_actions|json_script:'disable_actions' }}
+
         {% block django_json_data %}
         {% endblock django_json_data %}
     </head>

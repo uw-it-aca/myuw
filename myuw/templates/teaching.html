@@ -1,4 +1,19 @@
 {% extends 'base.html' %}
+
+{% load settings_value %}
+{% load json_script %}
+{% load set_context %}
+
+{% block django_json_data %}
+{% endblock django_json_data %}
+
 {% block body_content %}
-    <p>place holder</p>
+    <myuw-boilerplate logout_url="{% settings_value "LOGOUT_URL" %}">
+        <p>teaching place holder</p>
+    </myuw-boilerplate>
 {% endblock body_content %}
+
+{% block vue_script %}
+    {% load render_bundle from webpack_loader %}
+    {% render_bundle 'teaching' %}
+{% endblock vue_script %}
