@@ -43,47 +43,55 @@
 
     </header>
 
-    <div class="myuw-body">
+    <div class="pt-4 myuw-body">
       <b-container fluid="lg">
         <b-row>
-          <b-col lg="2">
+          <b-col lg="3">
 
             <!-- main sidebar navigation -->
             <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
               <ul class="list-unstyled">
-                <li>
-                  <b-link href="/" class="active"><font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home</b-link>
+                <li class="mb-2">
+                  <b-link href="/" class="text-dark d-block p-1 active"><font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home</b-link>
                 </li>
-                <li v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer">
-                  <b-link href="/husky_experience/"><font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience</b-link>
+                <li class="mb-2" v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer">
+                  <b-link href="/husky_experience/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience</b-link>
                 </li>
-                <li v-if="user.affiliations.student || user.affiliations.applicant">
-                  <b-link href="/academics/"><font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics</b-link>
+                <li class="mb-2" v-if="user.affiliations.student || user.affiliations.applicant">
+                  <b-link href="/academics/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics</b-link>
                 </li>
-                <li v-if="user.affiliations.instructor">
-                  <b-link href="/teaching/"><font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching</b-link>
+                <li class="mb-2"v-if="user.affiliations.instructor">
+                  <b-link href="/teaching/" class="text-dark d-block p-1"><font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching</b-link>
                 </li>
-                <li>
-                  <b-link href="/accounts/"><font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts</b-link>
+                <li class="mb-2">
+                  <b-link href="/accounts/" class="text-dark d-block p-1"><font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts</b-link>
                 </li>
-                <li v-if="user.affiliations.student">
-                  <b-link href="/notices/"><font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices</b-link>
+                <li class="mb-2" v-if="user.affiliations.student">
+                  <b-link href="/notices/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices</b-link>
                 </li>
-                <li>
-                  <b-link href="/profile/"><font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile</b-link>
+                <li class="mb-2">
+                  <b-link href="/profile/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile</b-link>
                 </li>
                 <li role="separator"><hr></li>
-                <li>
-                  <b-link href="/academic_calendar/"><font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar</b-link>
+                <li class="mb-2">
+                  <b-link href="/academic_calendar/" class="text-dark d-block p-1"><font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar</b-link>
                 </li>
-                <li>
-                  <b-link href="/resources/"><font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources</b-link>
+                <li class="mb-2">
+                  <b-link href="/resources/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources</b-link>
                 </li>
               </ul>
+
+              <!-- TODO: convert main navigation to b-nav -->
+              <b-nav vertical>
+                <b-nav-item href="/" @click="selectedMenu='home'" :active="selectedMenu == 'home'">Home</b-nav-item>
+                <b-nav-item href="/" @click="selectedMenu='accounts'" :active="selectedMenu == 'accounts'">Accounts</b-nav-item>
+                <b-nav-item href="/" @click="selectedMenu='huskyExp'" :active="selectedMenu == 'huskyExp'">Husky Experience</b-nav-item>
+              </b-nav>
+
             </b-collapse>
           
           </b-col>
-          <b-col lg="10">
+          <b-col lg="9">
             
             <!-- page content inserted here -->
             <slot></slot>
@@ -123,8 +131,10 @@ export default {
     },
     logout_url: String,
   },
-  data: function () {
-    return {};
+  data() {
+    return {
+      selectedMenu: 'home'
+    };
   },
   computed: mapState({
     user: (state) => state.user,
@@ -134,7 +144,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "bootstrap";
 
 // global styles
 body { min-width: 320px; }
@@ -166,12 +175,8 @@ body { min-width: 320px; }
 .myuw-navigation {
   white-space: nowrap;
 
-  li {
-    @extend .mb-2;
-  }
-
   a {
-    @extend .text-dark, .d-block, .p-1;
+    //@extend .text-dark, .d-block, .p-1;
 
     &:hover, &:focus {
       background: #ddd;
@@ -188,10 +193,7 @@ body { min-width: 320px; }
 }
 
 .myuw-body {
-  @extend .pt-4;
-
   background: #f5f5f5;
-
 }
 
 .myuw-footer {
