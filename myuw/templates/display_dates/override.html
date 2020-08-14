@@ -1,4 +1,57 @@
-{% extends 'base.html' %}
-{% block body_content %}
-    <p>place holder</p>
-{% endblock body_content %}
+{% extends wrapper_template %}
+{% block content %}
+
+<h2>Date Override</h2>
+
+<h3>Actual Time:</h3>
+<ul style="list-style-type:none">
+<li>Date time: {{ actual_now_date }}</li>
+<li>Term: {{ actual_now_term_quarter }} {{ actual_now_term_year }}</li>
+</ul>
+
+<h3>Set The Override Date Time:</h3>
+<form action="{% url 'myuw_date_override' %}" method="POST">
+{% csrf_token %}
+<b>Override date:</b> <input type="text" name="date" value="{{ myuw_override_date }}" placeholder="YYYY-MM-DD HH:MM:SS" size="20"/> <button class="btn  btn-primary" type="submit">Submit</button>
+{% if date_error %}
+<p>Error with date: {{ date_error }}</p>
+{% endif %}
+
+
+<h3>Overridden Time:</h3>
+<ul style="list-style-type:none">
+<li>Date time: {{ effective_now_date }}</li>
+<li>Term: {{ effective_now_term_quarter }} {{ effective_now_term_year }}</li>
+</ul>
+
+<h3>Seen Registration Periods</h3>
+<p>You may override the date to before/on/after the date they were first seen.</p>
+
+<ul style="list-style-type:none">
+{% for reg in seen_registrations %}
+    <li><h4>{{ reg.year }} {{ reg.quarter }} {{ reg.summer }}</h4>
+        <p style="padding-left:40px;">{{ reg.date_seen }}</p></li>
+{% endfor %}
+</ul>
+
+<h3>Display Attibutes</h3>
+
+<table style="border-spacing: 10px 0px; border-collapse: separate;">
+    <thead>
+        <tr>
+            <th>&nbsp;</th><th>For overridden date time</th><th>For actual date time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>is_after_grade_submission_deadline</td><td>{{ values_used.is_after_grade_submission_deadline}}</td><td>{{ values_now.is_after_grade_submission_deadline}}</td></tr>
+        <tr><td>is_after_last_day_of_classes</td><td>{{ values_used.is_after_last_day_of_classes}}</td><td>{{ values_now.is_after_last_day_of_classes}}</td></tr>
+        <tr><td>is_after_start_of_registration_display_period</td><td>{{ values_used.is_after_start_of_registration_display_period}}</td><td>{{ values_now.is_after_start_of_registration_display_period}}</td></tr>
+        <tr><td>is_before_end_of_finals_week</td><td>{{ values_used.is_before_end_of_finals_week}}</td><td>{{ values_now.is_before_end_of_finals_week}}</td></tr>
+        <tr><td>is_before_last_day_of_classes</td><td>{{ values_used.is_before_last_day_of_classes}}</td><td>{{ values_now.is_before_last_day_of_classes}}</td></tr>
+        <tr><td>is_before_end_of_registration_display_period</td><td>{{ values_used.is_before_end_of_registration_display_period}}</td><td>{{ values_now.is_before_end_of_registration_display_period}}</td></tr>
+        <tr><td>is_before_first_day_of_term</td><td>{{ values_used.is_before_first_day_of_term}}</td><td>{{ values_now.is_before_first_day_of_term}}</td></tr>
+        <tr><td>is_after_7d_before_last_instruction</td><td>{{ values_used.is_after_7d_before_last_instruction}}</td><td>{{ values_now.is_after_7d_before_last_instruction}}</td></tr>
+    </tbody>
+</table>
+
+{% endblock %}
