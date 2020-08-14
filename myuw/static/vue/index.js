@@ -1,10 +1,22 @@
 import {Vue, store, rootId} from './base.js';
 
 import Boilerplate from './containers/boilerplate.vue';
+import Summaries from './components/index/summaries.vue';
 import Notices from './components/index/cards/notices.vue';
 
-Vue.component('uw-boilerplate', Boilerplate);
-Vue.component('uw-notices', Notices);
+import notices from './store/notices';
+import hfs from './store/hfs';
+import library from './store/library';
+
+store.registerModule('notices', notices);
+store.registerModule('hfs', hfs);
+store.registerModule('library', library);
+
+store.state['termData'] = window.term_data;
+
+Vue.component('myuw-boilerplate', Boilerplate);
+Vue.component('myuw-banner-summaries', Summaries);
+Vue.component('myuw-notice-card', Notices);
 
 new Vue({
   el: `#${rootId}`,

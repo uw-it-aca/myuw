@@ -2,11 +2,13 @@ import axios from 'axios';
 
 const statusOptions = ['READY', 'FETCHING', 'ERROR'];
 
+// Some helper functions
 const doNothing = (response) => response;
+const extractData = (response) => response.data;
 
 const buildWith = (
     endpoint,
-    postProcess=doNothing,
+    postProcess,
     {
       customGetters={},
       customMutations={},
@@ -73,5 +75,6 @@ const buildWith = (
 export {
   statusOptions,
   doNothing,
+  extractData,
   buildWith,
 };
