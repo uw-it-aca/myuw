@@ -258,7 +258,7 @@
           </b-col>
           <b-col lg="10">
 
-            <h2>{{pageTitle}}</h2>
+            <h2 v-bind:class="[pageTitle == 'Home' ? 'sr-only' : '']">{{pageTitle}}</h2>
 
             <!-- page content inserted here -->
             <slot />
