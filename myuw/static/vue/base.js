@@ -70,5 +70,12 @@ const store = new Vuex.Store({
     }
 })
 
-const rootId = "vue_root"
-export { Vue, store, rootId }
+const vueConf = {
+  el: "#vue_root",
+  created: function() {
+    document.title = "MyUW: " + store.state['pageTitle'];
+    document.getElementById("vue_root").hidden = false;
+  },
+  store: store,
+}
+export { Vue, vueConf }
