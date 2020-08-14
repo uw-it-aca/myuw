@@ -2,8 +2,8 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {BootstrapVue} from 'bootstrap-vue';
-import {library} from '@fortawesome/fontawesome-svg-core';
+import { BootstrapVue } from 'bootstrap-vue';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
   FontAwesomeLayers,
@@ -70,16 +70,18 @@ const store = new Vuex.Store({
   state: {
     user: JSON.parse(document.getElementById('user').innerHTML),
     staticUrl: JSON.parse(document.getElementById('static_url').innerHTML),
-    disableActions: JSON.parse(document.getElementById('disable_actions').innerHTML),
+    disableActions: JSON.parse(
+      document.getElementById('disable_actions').innerHTML
+    ),
   },
 });
 
 const vueConf = {
   el: '#vue_root',
-  created: function() {
+  created: function () {
     document.title = 'MyUW: ' + store.state['pageTitle'];
     document.getElementById('vue_root').hidden = false;
   },
   store: store,
 };
-export {Vue, vueConf};
+export { Vue, vueConf };
