@@ -1,0 +1,58 @@
+version: '3.4'
+
+services:
+  myuw:
+    build: .
+    user: root
+    container_name: app-myuw
+    volumes:
+      - ./myuw:/app/myuw
+    environment:
+      ENV: localdev
+      AUTH: SAML_MOCK
+      DJANGO_APP: "myuw"
+      MEMCACHED_SERVER_COUNT: 1
+      MEMCACHED_SERVER_SPEC: memcached
+    depends_on:
+      - memcached
+    stdin_open: true
+    tty: true
+    command: bash -c ". ./travis-ci/test_python.sh"
+  memcached:
+    image: memcached
+  eslint-fix:
+    build:
+      context: .
+      target: node-bundler
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+    stdin_open: true
+    tty: true
+    command: bash -c "cd /app/ && npx eslint --fix"
+  eslint:
+    build:
+      context: .
+      target: node-bundler
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+    stdin_open: true
+    tty: true
+    command: bash -c "cd /app/ && npx eslint"
+  jest:
+    build:
+      context: .
+      target: node-bundler
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+    stdin_open: true
+    tty: true
+    command: bash -c "cd /app/ && npx jest --watchAll"
