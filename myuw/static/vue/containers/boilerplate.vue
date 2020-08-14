@@ -46,7 +46,7 @@
     <div class="pt-4 pb-4 myuw-body">
       <b-container fluid="lg">
         <b-row>
-          <b-col lg="3">
+          <b-col lg="2">
 
             <!-- main sidebar navigation -->
             <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
@@ -87,7 +87,7 @@
             </b-collapse>
           
           </b-col>
-          <b-col lg="9">
+          <b-col lg="10">
             <!-- page content inserted here -->
             <slot></slot>
 
