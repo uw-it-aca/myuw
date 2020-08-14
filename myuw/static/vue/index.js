@@ -13,7 +13,7 @@ vueConf.store.registerModule('hfs', hfs);
 vueConf.store.registerModule('library', library);
 
 vueConf.store.state['termData'] = window.term_data;
-vueConf.store.state['pageTitle'] = "Home";
+vueConf.store.state['pageTitle'] = 'Home';
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
