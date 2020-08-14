@@ -42,8 +42,6 @@
 
         {% block django_json_data %}
         {% endblock django_json_data %}
-
-        {{ page_title|json_script:'page_title' }}
     </head>
     <body>
         {% csrf_token %}

@@ -13,6 +13,7 @@ store.registerModule('hfs', hfs);
 store.registerModule('library', library);
 
 store.state['termData'] = window.term_data;
+store.state['pageTitle'] = "Home";
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
