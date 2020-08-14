@@ -4,4 +4,7 @@
 
 $container-max-widths: map.merge($container-max-widths, (xl: 1200px));
 
+// override the boostrap gutter from 30px to 20px
+$grid-gutter-width: 20px;
+
 @import "~bootstrap/scss/bootstrap";

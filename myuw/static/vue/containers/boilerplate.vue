@@ -33,8 +33,8 @@
         <b-container fluid="xl" class="myuw-brand-logo">
           <b-button v-b-toggle.nav-collapse variant="link" size="sm" class="d-lg-none p-0 text-white">
             <font-awesome-layers class="fa-2x">
-              <font-awesome-icon :icon="['far', 'square']" />
-              <font-awesome-icon :icon="['fas', 'bars']" transform="shrink-8" />
+              <font-awesome-icon :icon="['far', 'square']" class="m-0" />
+              <font-awesome-icon :icon="['fas', 'bars']" transform="shrink-8" class="m-0" />
             </font-awesome-layers>
           </b-button> 
           <h2 class="d-inline align-middle text-white" v-bind:class="[$mq == 'desktop' ? 'h3' : 'h5']">MyUW <span class="sr-only">Home</span></h2>
