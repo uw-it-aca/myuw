@@ -1,13 +1,13 @@
-import { Vue, store, rootId } from './base.js'
+import { Vue, store, rootId } from './base.js';
 
-import Boilerplate from './containers/boilerplate.vue'
+import Boilerplate from './containers/boilerplate.vue';
 
-Vue.component('myuw-boilerplate', Boilerplate)
+Vue.component('myuw-boilerplate', Boilerplate);
 
 new Vue({
-    el: `#${rootId}`,
-    created: function() {
-        document.getElementById(rootId).hidden = false;
-    },
-    store: store,
-})
+  el: `#${rootId}`,
+  created: function () {
+    document.getElementById(rootId).hidden = false;
+  },
+  store: store,
+});
