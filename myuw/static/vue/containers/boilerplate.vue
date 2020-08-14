@@ -257,6 +257,9 @@
             </b-collapse>
           </b-col>
           <b-col lg="10">
+
+            <h2>{{pageTitle}}</h2>
+
             <!-- page content inserted here -->
             <slot />
           </b-col>
