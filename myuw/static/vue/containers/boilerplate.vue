@@ -73,8 +73,8 @@
                 <b-nav-item class="mb-2" href="/profile/" :active="page_title == 'Profile'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile
                 </b-nav-item>
-                <b-nav-item class="mb-2" role="separator" disabled :link-classes="'text-dark d-block px-2 py-1'">
-                  <hr>
+                <b-nav-item class="mb-2" role="separator" disabled :link-classes="'text-dark d-block p-0'">
+                  <hr class="m-0">
                 </b-nav-item>
                 <b-nav-item class="mb-2" href="/academic_calendar/" :active="page_title == 'Academic Calendar'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar
