@@ -67,6 +67,7 @@ const store = new Vuex.Store({
     state: {
         user: JSON.parse(document.getElementById('user').innerHTML),
         staticUrl: JSON.parse(document.getElementById('static_url').innerHTML),
+        pageTitle: JSON.parse(document.getElementById('page_title').innerHTML),
     }
 })
 

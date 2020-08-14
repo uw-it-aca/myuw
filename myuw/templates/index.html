@@ -2,8 +2,10 @@
 
 {% load settings_value %}
 {% load json_script %}
+{% load set_context %}
 
 {% block django_json_data %}
+    {% set_context 'page_title' 'Home' %}
     {{ user|json_script:'user' }}
 {% endblock django_json_data %}
 
