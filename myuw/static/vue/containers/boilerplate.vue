@@ -14,7 +14,7 @@
       </b-collapse>
 
       <div class="myuw-thin-bar">
-        <b-container fluid="xl">
+        <b-container fluid="xl" class="px-3">
            <b-row>
             <b-col xs="2">
               <b-link href="/profile/" class="text-white"><font-awesome-icon :icon="['fas', 'user']" class="mr-2" />{{ user.netid }}</b-link>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="myuw-brand">
-        <b-container fluid="xl" class="myuw-brand-logo">
+        <b-container fluid="xl" class="px-3 myuw-brand-logo">
           <b-button v-b-toggle.nav-collapse variant="link" size="sm" class="d-lg-none p-0 text-white">
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="['far', 'square']" class="m-0" />
@@ -44,7 +44,7 @@
     </header>
 
     <div class="pt-4 pb-4 myuw-body">
-      <b-container fluid="xl">
+      <b-container fluid="xl" class="px-3">
         <b-row>
           <b-col lg="2">
 
@@ -97,7 +97,7 @@
     </div>
 
     <footer class="pt-3 pb-3 myuw-footer">
-      <b-container fluid="xl">
+      <b-container fluid="xl" class="px-3">
 
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1"><b-link href="'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid" class="text-white"><font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Contact</b-link></li>
