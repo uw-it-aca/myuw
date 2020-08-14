@@ -52,34 +52,34 @@
             <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
               
               <b-nav vertical>
-                <b-nav-item class="mb-2" href="/" :active="page_title == 'Home'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" href="/" :active="pageTitle == 'Home'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home
                 </b-nav-item>
-                <b-nav-item class="mb-2" v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer" href="/husky_exp/" :active="page_title == 'Husky Experience'"  :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer" href="/husky_exp/" :active="pageTitle == 'Husky Experience'"  :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience
                 </b-nav-item>
-                <b-nav-item class="mb-2" v-if="user.affiliations.student || user.affiliations.applicant" href="/academics/" :active="page_title == 'Academics'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" v-if="user.affiliations.student || user.affiliations.applicant" href="/academics/" :active="pageTitle == 'Academics'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics
                 </b-nav-item>
-                <b-nav-item class="mb-2" v-if="user.affiliations.instructor" href="/teaching/" :active="page_title == 'Teaching'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" v-if="user.affiliations.instructor" href="/teaching/" :active="pageTitle == 'Teaching'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching
                 </b-nav-item>
-                <b-nav-item class="mb-2" href="/accounts/" :active="page_title == 'Accounts'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" href="/accounts/" :active="pageTitle == 'Accounts'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts
                 </b-nav-item>
-                <b-nav-item class="mb-2" v-if="user.affiliations.student" href="/notices/" :active="page_title == 'Notices'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" v-if="user.affiliations.student" href="/notices/" :active="pageTitle == 'Notices'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices
                 </b-nav-item>
-                <b-nav-item class="mb-2" href="/profile/" :active="page_title == 'Profile'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" href="/profile/" :active="pageTitle == 'Profile'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile
                 </b-nav-item>
                 <b-nav-item class="mb-2" role="separator" disabled :link-classes="'text-dark d-block p-0'">
                   <hr class="m-0">
                 </b-nav-item>
-                <b-nav-item class="mb-2" href="/academic_calendar/" :active="page_title == 'Academic Calendar'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" href="/academic_calendar/" :active="pageTitle == 'Academic Calendar'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar
                 </b-nav-item>
-                <b-nav-item class="mb-2" href="/resources/" :active="page_title == 'UW Resources'" :link-classes="'text-dark d-block px-2 py-1'">
+                <b-nav-item class="mb-2" href="/resources/" :active="pageTitle == 'UW Resources'" :link-classes="'text-dark d-block px-2 py-1'">
                   <font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources
                 </b-nav-item>
               </b-nav>
@@ -125,7 +125,6 @@ export default {
       default: false,
     },
     logout_url: String,
-    page_title: String
   },
   data() {
     return {
@@ -135,6 +134,7 @@ export default {
   computed: mapState({
     user: (state) => state.user,
     staticUrl: (state) => state.staticUrl,
+    pageTitle: (state) => state.pageTitle,
   }),
 };
 </script>
