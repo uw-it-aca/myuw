@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <div id="actions_disabled_banner" v-if="disable_actions">
+      <div id="actions_disabled_banner" v-if="disableActions">
         <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
         Overriding is read-only and no actions will be saved. &nbsp;&nbsp;
         <a href="/support/" style="font-weight: normal; color: #003399;">
@@ -120,10 +120,6 @@ import { mapState } from 'vuex';
 export default {
   components: {},
   props: {
-    disable_actions: {
-      type: Boolean,
-      default: false,
-    },
     logout_url: String,
   },
   data() {
@@ -135,6 +131,7 @@ export default {
     user: (state) => state.user,
     staticUrl: (state) => state.staticUrl,
     pageTitle: (state) => state.pageTitle,
+    disableActions: (state) => state.disableActions,
   }),
 };
 </script>

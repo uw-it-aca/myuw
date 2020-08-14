@@ -5,13 +5,10 @@
 {% load set_context %}
 
 {% block django_json_data %}
-    {% set_context 'page_title' 'Teaching' %}
-    {{ user|json_script:'user' }}
 {% endblock django_json_data %}
 
 {% block body_content %}
-    <myuw-boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
-        logout_url="{% settings_value "LOGOUT_URL" %}" page_title="{{ page_title }}">
+    <myuw-boilerplate logout_url="{% settings_value "LOGOUT_URL" %}">
         <p>teaching place holder</p>
     </myuw-boilerplate>
 {% endblock body_content %}

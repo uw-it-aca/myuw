@@ -39,6 +39,8 @@
         
         <script id="static_url" type="application/json">"{% settings_value 'STATIC_URL' %}"</script>
         {% load json_script %}
+        {{ user|json_script:'user' }}
+        {{ disable_actions|json_script:'disable_actions' }}
 
         {% block django_json_data %}
         {% endblock django_json_data %}
