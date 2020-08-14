@@ -26,8 +26,14 @@ module.exports = {
   },
   entry: {
       index: [
-        "./myuw/static/vue/index.js"
+        "./myuw/static/vue/index.js",
       ],
+      teaching: [
+        "./myuw/static/vue/teaching.js",
+      ],
+      accounts: [
+        "./myuw/static/vue/accounts.js"
+      ]
   },
   output: {
       path: path.resolve('../static/myuw/'),

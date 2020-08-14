@@ -50,42 +50,38 @@
 
             <!-- main sidebar navigation -->
             <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
-              <ul class="list-unstyled">
-                <li class="mb-2">
-                  <b-link href="/" class="text-dark d-block p-1 active"><font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home</b-link>
-                </li>
-                <li class="mb-2" v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer">
-                  <b-link href="/husky_experience/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience</b-link>
-                </li>
-                <li class="mb-2" v-if="user.affiliations.student || user.affiliations.applicant">
-                  <b-link href="/academics/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics</b-link>
-                </li>
-                <li class="mb-2"v-if="user.affiliations.instructor">
-                  <b-link href="/teaching/" class="text-dark d-block p-1"><font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching</b-link>
-                </li>
-                <li class="mb-2">
-                  <b-link href="/accounts/" class="text-dark d-block p-1"><font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts</b-link>
-                </li>
-                <li class="mb-2" v-if="user.affiliations.student">
-                  <b-link href="/notices/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices</b-link>
-                </li>
-                <li class="mb-2">
-                  <b-link href="/profile/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile</b-link>
-                </li>
-                <li role="separator"><hr></li>
-                <li class="mb-2">
-                  <b-link href="/academic_calendar/" class="text-dark d-block p-1"><font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar</b-link>
-                </li>
-                <li class="mb-2">
-                  <b-link href="/resources/" class="text-dark d-block p-1"><font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources</b-link>
-                </li>
-              </ul>
-
-              <!-- TODO: convert main navigation to b-nav -->
+              
               <b-nav vertical>
-                <b-nav-item href="/" @click="selectedMenu='home'" :active="selectedMenu == 'home'">Home</b-nav-item>
-                <b-nav-item href="/" @click="selectedMenu='accounts'" :active="selectedMenu == 'accounts'">Accounts</b-nav-item>
-                <b-nav-item href="/" @click="selectedMenu='huskyExp'" :active="selectedMenu == 'huskyExp'">Husky Experience</b-nav-item>
+                <b-nav-item class="mb-2" href="/" @click="selectedMenu='home'" :active="selectedMenu == 'home'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home
+                </b-nav-item>
+                <b-nav-item class="mb-2" v-if="user.affiliations.undergrad && user.affiliations.seattle || user.affiliations.hxt_viewer" href="/husky_exp/" @click="selectedMenu='husky_exp'" :active="selectedMenu == 'husky_exp'"  :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience
+                </b-nav-item>
+                <b-nav-item class="mb-2" v-if="user.affiliations.student || user.affiliations.applicant" href="/academics/" @click="selectedMenu='academics'" :active="selectedMenu == 'academics'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics
+                </b-nav-item>
+                <b-nav-item class="mb-2" v-if="user.affiliations.instructor" href="/teaching/" @click="selectedMenu='teaching'" :active="selectedMenu == 'teaching'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching
+                </b-nav-item>
+                <b-nav-item class="mb-2" href="/accounts/" @click="selectedMenu='accounts'" :active="selectedMenu == 'accounts'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts
+                </b-nav-item>
+                <b-nav-item class="mb-2" v-if="user.affiliations.student" href="/notices/" @click="selectedMenu='notices'" :active="selectedMenu == 'notices'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices
+                </b-nav-item>
+                <b-nav-item class="mb-2" href="/profile/" @click="selectedMenu='profile'" :active="selectedMenu == 'profile'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile
+                </b-nav-item>
+                <b-nav-item class="mb-2" role="separator" disabled :link-classes="'text-dark d-block px-2 py-1'">
+                  <hr>
+                </b-nav-item>
+                <b-nav-item class="mb-2" href="/academic_calendar/" @click="selectedMenu='calendar'" :active="selectedMenu == 'calendar'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar
+                </b-nav-item>
+                <b-nav-item class="mb-2" href="/resources/" @click="selectedMenu='resources'" :active="selectedMenu == 'resources'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources
+                </b-nav-item>
               </b-nav>
 
             </b-collapse>
@@ -133,7 +129,7 @@ export default {
   },
   data() {
     return {
-      selectedMenu: 'home'
+      selectedMenu: ''
     };
   },
   computed: mapState({

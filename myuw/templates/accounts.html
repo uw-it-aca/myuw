@@ -1,4 +1,20 @@
 {% extends 'base.html' %}
+
+{% load settings_value %}
+{% load json_script %}
+
+{% block django_json_data %}
+    {{ user|json_script:'user' }}
+{% endblock django_json_data %}
+
 {% block body_content %}
-    <p>place holder</p>
+    <boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
+        logout_url="{% settings_value "LOGOUT_URL" %}">
+        <p>accounts place holder</p>
+    </boilerplate>
 {% endblock body_content %}
+
+{% block vue_script %}
+    {% load render_bundle from webpack_loader %}
+    {% render_bundle 'accounts' %}
+{% endblock vue_script %}
