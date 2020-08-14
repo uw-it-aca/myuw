@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Vue from 'vue'
@@ -7,15 +6,6 @@ import { BootstrapVue } from 'bootstrap-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 import VueMq from 'vue-mq';
-=======
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import Vue from 'vue';
-import Vuex from 'vuex';
-import {BootstrapVue} from 'bootstrap-vue';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
->>>>>>> feature/vue
 
 import {
   faUser,
