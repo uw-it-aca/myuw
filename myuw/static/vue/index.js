@@ -14,9 +14,9 @@ store.registerModule('library', library);
 
 store.state['termData'] = window.term_data;
 
-Vue.component('uw-boilerplate', Boilerplate);
-Vue.component('uw-summaries', Summaries);
-Vue.component('uw-notices', Notices);
+Vue.component('myuw-boilerplate', Boilerplate);
+Vue.component('myuw-banner-summaries', Summaries);
+Vue.component('myuw-notice-card', Notices);
 
 new Vue({
   el: `#${rootId}`,

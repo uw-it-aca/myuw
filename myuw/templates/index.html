@@ -24,22 +24,22 @@
 {% endblock django_json_data %}
 
 {% block body_content %}
-    <uw-boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
+    <myuw-boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
         logout_url="{% settings_value "LOGOUT_URL" %}">
 
         <h2>Home</h2>
 
-        <uw-summaries></uw-summaries>
+        <myuw-banner-summaries></myuw-banner-summaries>
         <b-row>
             <b-col md="8">
-                <uw-notices></uw-notices>
+                <myuw-notice-card></myuw-notice-card>
             </b-col>
             <b-col md="4">
                 <div>quicklinks go here</div>
             </b-col>
         </b-row>
 
-    </uw-boilerplate>
+    </myuw-boilerplate>
 {% endblock body_content %}
 
 {% block vue_script %}
