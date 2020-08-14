@@ -43,7 +43,7 @@
 
     </header>
 
-    <div class="pt-4 myuw-body">
+    <div class="pt-4 pb-4 myuw-body">
       <b-container fluid="lg">
         <b-row>
           <b-col lg="3">
@@ -88,9 +88,6 @@
           
           </b-col>
           <b-col lg="9">
-            
-            <div>{{ page_title }}</div>
-
             <!-- page content inserted here -->
             <slot></slot>
 
