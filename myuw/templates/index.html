@@ -5,8 +5,6 @@
 {% load set_context %}
 
 {% block django_json_data %}
-    {{ user|json_script:'user' }}
-    {{ today|date:"l, F j, Y"|json_script:'today' }}
     <script> 
         // TODO: Replace this with a object in the context and a json_script.
         window.term_data = {
@@ -26,10 +24,7 @@
 
 {% block body_content %}
 
-    <myuw-boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
-        logout_url="{% settings_value "LOGOUT_URL" %}" page_title="{{ page_title }}">
-
-        <h2>{{ page_title }}</h2>
+    <myuw-boilerplate logout_url="{% settings_value "LOGOUT_URL" %}">
 
         <myuw-banner-summaries></myuw-banner-summaries>
         <b-row>
