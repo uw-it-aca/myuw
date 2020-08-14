@@ -1,6 +1,6 @@
 import {Vue, vueConf} from './base.js';
 
-import Boilerplate from './containers/boilerplate.vue'
+import Boilerplate from './containers/boilerplate.vue';
 
 vueConf.store.state['pageTitle'] = "Teaching";
 
