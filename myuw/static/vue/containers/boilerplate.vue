@@ -37,7 +37,7 @@
               <font-awesome-icon :icon="['fas', 'bars']" transform="shrink-8" />
             </font-awesome-layers>
           </b-button> 
-          <h2 class="d-inline h3 align-middle text-white">MyUW <span class="sr-only">Home</span></h2>
+          <h2 class="d-inline align-middle text-white" v-bind:class="[$mq == 'desktop' ? 'h3' : 'h5']">MyUW <span class="sr-only">Home</span></h2>
         </b-container>
       </div>
 
@@ -172,7 +172,6 @@ body { min-width: 320px; }
   white-space: nowrap;
 
   a {
-    //@extend .text-dark, .d-block, .p-1;
 
     &:hover, &:focus {
       background: #ddd;
