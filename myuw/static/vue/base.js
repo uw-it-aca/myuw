@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Vue from 'vue'
@@ -6,6 +7,15 @@ import { BootstrapVue } from 'bootstrap-vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome'
 import VueMq from 'vue-mq';
+=======
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import {BootstrapVue} from 'bootstrap-vue';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+>>>>>>> feature/vue
 
 import {
   faUser,
@@ -27,8 +37,8 @@ import {
   faSquare
 } from '@fortawesome/free-regular-svg-icons';
 
-import '../css/bootstrap-theming.scss'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import '../css/bootstrap-theming.scss';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 library.add(faUser);
 library.add(faEnvelope);

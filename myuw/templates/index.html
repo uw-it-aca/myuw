@@ -7,13 +7,42 @@
 {% block django_json_data %}
     {% set_context 'page_title' 'Home' %}
     {{ user|json_script:'user' }}
+    {{ today|date:"l, F j, Y"|json_script:'today' }}
+    <script> 
+        // TODO: Replace this with a object in the context and a json_script.
+        window.term_data = {
+            today: '{{ today|date:"l, F j, Y" }}',
+            year: '{{ year }}',
+            quarter: '{{ quarter }}',
+            breakYear: '{{ break_year }}',
+            breakQuarter: '{{ break_quarter }}',
+            isFinals: {{ is_finals|yesno:"true, false"}},
+            isBreak: {{ is_break|yesno:"true, false"}},
+            todayDate: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
+            firstDay: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
+            lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
+        };
+    </script>
 {% endblock django_json_data %}
 
 {% block body_content %}
-    <boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
+
+    <myuw-boilerplate :disable_actions="'{{ disable_actions }}' == 'True'"
         logout_url="{% settings_value "LOGOUT_URL" %}" page_title="{{ page_title }}">
-        <p>home place holder</p>
-    </boilerplate>
+
+        <h2>{{ page_title }}</h2>
+
+        <myuw-banner-summaries></myuw-banner-summaries>
+        <b-row>
+            <b-col md="8">
+                <myuw-notice-card></myuw-notice-card>
+            </b-col>
+            <b-col md="4">
+                <div>quicklinks go here</div>
+            </b-col>
+        </b-row>
+
+    </myuw-boilerplate>
 {% endblock body_content %}
 
 {% block vue_script %}

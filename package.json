@@ -8,17 +8,29 @@
   "devDependencies": {
     "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
+    "@vue/test-utils": "^1.0.3",
+    "axios": "^0.19.2",
     "autoprefixer": "9.8.6",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.3.0",
     "babel-loader": "^8.1.0",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
     "canvas": "^2.6.1",
     "core-js": "^3.6.5",
     "css-loader": "^4.2.0",
+    "eslint": "^7.6.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-jest": "^23.20.0",
+    "eslint-plugin-vue": "^6.2.2",
     "file-loader": "^6.0.0",
+    "jest": "^26.3.0",
+    "jquery": "^3.5.1",
     "less": "^3.12.2",
     "less-loader": "^6.2.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "moment": "^2.27.0",
     "npx": "^10.2.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss": "^7.0.32",
@@ -28,6 +40,11 @@
     "terser-webpack-plugin": "^3.0.8",
     "url-loader": "^4.1.0",
     "vue": "^2.6.11",
+<<<<<<< HEAD
+=======
+    "vuex": "^3.5.1",
+    "vue-jest": "^3.0.6",
+>>>>>>> feature/vue
     "vue-loader": "^15.9.3",
     "vue-mq": "^1.0.1",
     "vue-template-compiler": "^2.6.11",
@@ -35,5 +52,22 @@
     "webpack": "^4.44.1",
     "webpack-bundle-tracker": "^0.4.3",
     "webpack-cli": "^3.3.12"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(js)$": "babel-jest",
+      ".*\\.(vue)$": "vue-jest"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "myuw/static/**/*.{js,vue}",
+      "!**/tests/**",
+      "!**/node_modules/**"
+    ]
   }
 }
