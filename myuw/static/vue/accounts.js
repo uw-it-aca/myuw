@@ -2,7 +2,7 @@ import { Vue, store, rootId } from './base.js'
 
 import Boilerplate from './containers/boilerplate.vue'
 
-Vue.component('boilerplate', Boilerplate)
+Vue.component('myuw-boilerplate', Boilerplate)
 
 new Vue({
     el: `#${rootId}`,
