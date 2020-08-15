@@ -23,7 +23,7 @@
                     </div>
                     <b-collapse @show="onShowNotice(notice)"
                                 :id="notice.id_hash" tabindex="0">
-                        <div v-html="notice.notice_body"></div>
+                        <div v-html="notice.notice_body" class="p-3 mt-2 mb-2 bg-light text-dark"></div>
                     </b-collapse>
                 </li>
             </ul>
