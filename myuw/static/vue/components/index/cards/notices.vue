@@ -7,7 +7,7 @@
             <p v-if="notices.length == 0">
                 You do not have any notices at this time.
             </p>
-            <ul class="list-unstyled" v-else>
+            <ul class="list-unstyled myuw-notice-list" v-else>
                 <li v-for="notice in notices" :key="notice.id_hash">
                     <div>
                          <span>
@@ -85,5 +85,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.myuw-notice-list {
+    font-size: .95rem;
+}
 
 </style>
