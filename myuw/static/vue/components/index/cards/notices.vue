@@ -7,7 +7,7 @@
             <p v-if="notices.length == 0">
                 You do not have any notices at this time.
             </p>
-            <ul class="list-unstyled myuw-notice-list" v-else>
+            <ul class="list-unstyled mb-0 myuw-notice-list" v-else>
                 <li v-for="notice in notices" :key="notice.id_hash">
                     <div>
                          <span>
