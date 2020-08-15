@@ -9,13 +9,13 @@
             </p>
             <ul class="list-unstyled mb-0 myuw-notice-list" v-else>
                 <li v-for="notice in notices" :key="notice.id_hash">
-                    <div>
-                         <span>
-                            <span class="font-weight-bold text-danger" v-if="notice.is_critical">
+                    <div class="notice-container">
+                         <span class="notice-title">
+                            <span class="font-weight-bold text-danger notice-critical" v-if="notice.is_critical">
                                 Critical:
                             </span>
                             <b-link v-b-toggle="notice.id_hash"
-                                class="p-0" variant="link"
+                                class="p-0 notice-link" variant="link"
                                 v-html="notice.notice_title">
                             </b-link>
                             <b-badge v-if="!notice.is_read" variant="warning" class="font-weight-normal">New</b-badge>
@@ -23,7 +23,7 @@
                     </div>
                     <b-collapse @show="onShowNotice(notice)"
                                 :id="notice.id_hash" tabindex="0">
-                        <div v-html="notice.notice_body" class="p-3 mt-2 mb-2 bg-light text-dark"></div>
+                        <div v-html="notice.notice_body" class="p-3 mt-2 mb-2 bg-light text-dark notice-body"></div>
                     </b-collapse>
                 </li>
             </ul>
