@@ -10,7 +10,10 @@
       <p v-if="notices.length == 0">
         You do not have any notices at this time.
       </p>
-      <ul v-else>
+      <ul
+        v-else
+        class="list-unstyled mb-0 myuw-notice-list"
+      >
         <li
           v-for="notice in notices"
           :key="notice.id_hash"
@@ -19,7 +22,7 @@
             <span class="notice-title">
               <span
                 v-if="notice.is_critical"
-                class="notice-critical"
+                class="font-weight-bold text-danger notice-critical"
               >
                 Critical:
               </span>
@@ -29,12 +32,11 @@
                 variant="link"
                 v-html="notice.notice_title"
               />
-              <span
+              <b-badge
                 v-if="!notice.is_read"
-                class="notice-new"
-              >
-                New
-              </span>
+                variant="warning"
+                class="font-weight-normal"
+              >New</b-badge>
             </span>
           </div>
           <b-collapse
@@ -43,7 +45,7 @@
             @show="onShowNotice(notice)"
           >
             <div
-              class="notice-body"
+              class="p-3 mt-2 mb-2 bg-light text-dark notice-body"
               v-html="notice.notice_body"
             />
           </b-collapse>
@@ -59,8 +61,8 @@
           class="fa fa-exclamation-triangle"
           aria-hidden="true"
         />
-        An error occurred and MyUW cannot load your notices right now.
-        Please try again later.
+        An error occurred and MyUW cannot load your notices right now. Please
+        try again later.
       </p>
     </template>
   </uw-card>
@@ -105,14 +107,13 @@ export default {
         this.setRead(notice);
       }
     },
-    ...mapActions('notices', [
-      'fetch',
-      'setRead',
-    ]),
+    ...mapActions('notices', ['fetch', 'setRead']),
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
+.myuw-notice-list {
+  font-size: 0.95rem;
+}
 </style>

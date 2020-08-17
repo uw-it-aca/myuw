@@ -1,21 +1,22 @@
 <template>
-  <b-row>
-    <b-col>
+  <b-row class="myuw-account-summaries mb-3">
+    <b-col md="4">
       <a
         v-if="termData"
+        class="d-block px-3 pb-2 text-secondary text-nowrap"
+        :class="[
+          $mq == 'tablet' || $mq == 'desktop'
+            ? 'border-left text-left'
+            : 'border-bottom text-center',
+        ]"
         href="/academic_calendar/"
       >
-        <i
-          class="fa fa-calendar"
-          aria-hidden="true"
-        />
+        <font-awesome-icon :icon="['far', 'calendar-alt']" />
         <span v-if="termData.isBreak">
-          <span v-if="termData.breakYear !== termData.year">
-            {{ termData.year }} / {{ termData.breakYear }}
-          </span>
-          <span v-else>
-            {{ termData.year }}
-          </span>
+          <span
+            v-if="termData.breakYear !== termData.year"
+          >{{ termData.year }} / {{ termData.breakYear }}</span>
+          <span v-else>{{ termData.year }}</span>
         </span>
         <span v-else>
           {{ ucfirst(termData.quarter) }}
@@ -26,53 +27,100 @@
           {{ ucfirst(termData.breakQuarter) }}
           Break
         </span>
-        <span v-else>
+        <strong
+          v-else
+          class="text-dark"
+        >
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
-          {{ getWeeksApart(termData.firstDay, termData.lastDay ) }}
-        </span>
+          {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
+        </strong>
       </a>
     </b-col>
-    <b-col v-if="isHfsReady && isLibraryReady">
-      <a
-        v-if="hfs.student_husky_card"
-        href="/accounts/"
-      >
-        Student Husky
-        <span>${{ hfs.student_husky_card.balance.toFixed(2) }}</span>
-      </a>
-      <a
-        v-if="hfs.resident_dining"
-        href="/accounts/"
-      >
-        Resident Dining
-        <span>${{ hfs.resident_dining.balance.toFixed(2) }}</span>
-      </a>
-      <a
-        v-if="hfs.employee_husky_card"
-        href="/accounts/"
-      >
-        Employee Husky
-        <span>${{ hfs.employee_husky_card.balance.toFixed(2) }}</span>
-      </a>
-      <a
-        v-if="library.next_due"
-        href="/accounts/"
-      >
-        Library Item Due
-        <span>{{ toFromNowDate(library.next_due) }}</span>
-      </a>
-      <a
-        v-else-if="library.holds_ready"
-        href="https://search.lib.uw.edu/account"
-        target="_blank"
-        data-linklabel="Library Account Requests"
-      >
-        Library {{ library.holds_ready === 1 ? "Items" : "Item" }} Ready
-        <span>
-          {{ library.holds_ready }}
-          {{ library.holds_ready === 1 ? "Items" : "Item" }} ready
-        </span>
-      </a>
+    <b-col
+      v-if="isHfsReady && isLibraryReady"
+      md="8"
+    >
+      <div class="row">
+        <a
+          v-if="hfs.student_husky_card"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          :class="[
+            $mq == 'tablet' || $mq == 'desktop'
+              ? 'border-left text-left pb-2'
+              : 'py-2 border-none text-center',
+          ]"
+          href="/accounts/"
+        >
+          Student Husky
+          <strong class="text-dark">
+            ${{ hfs.student_husky_card.balance.toFixed(2) }}
+          </strong>
+        </a>
+        <a
+          v-if="hfs.resident_dining"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          :class="[
+            $mq == 'tablet' || $mq == 'desktop'
+              ? 'border-left text-left pb-2'
+              : 'py-2 border-none text-center',
+          ]"
+          href="/accounts/"
+        >
+          Resident Dining
+          <strong class="text-dark">
+            ${{ hfs.resident_dining.balance.toFixed(2) }}
+          </strong>
+        </a>
+
+        <a
+          v-if="hfs.employee_husky_card"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          :class="[
+            $mq == 'tablet' || $mq == 'desktop'
+              ? 'border-left text-left pb-2'
+              : 'py-2 border-none text-center',
+          ]"
+          href="/accounts/"
+        >
+          Employee Husky
+          <strong class="text-dark">
+            ${{ hfs.employee_husky_card.balance.toFixed(2) }}
+          </strong>
+        </a>
+        <a
+          v-if="library.next_due"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          :class="[
+            $mq == 'tablet' || $mq == 'desktop'
+              ? 'border-left text-left pb-2'
+              : 'py-2 border-none text-center',
+          ]"
+          href="/accounts/"
+        >
+          Library Item Due
+          <strong class="text-dark">
+            {{ toFromNowDate(library.next_due) }}
+          </strong>
+        </a>
+        <a
+          v-else-if="library.holds_ready"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          :class="[
+            $mq == 'tablet' || $mq == 'desktop'
+              ? 'border-left text-left pb-2'
+              : 'py-2 border-none text-center',
+          ]"
+          href="https://search.lib.uw.edu/account"
+          target="_blank"
+          data-linklabel="Library Account Requests"
+        >
+          Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
+          <strong class="text-dark">
+            {{ library.holds_ready }}
+            {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
+          </strong>
+        </a>
+      </div>
     </b-col>
   </b-row>
 </template>
@@ -117,7 +165,8 @@ export default {
     }),
     getWeeksApart(qsDate, testDate) {
       const days = moment(testDate).diff(
-          moment(qsDate).startOf('week'), 'days',
+          moment(qsDate).startOf('week'),
+          'days',
       );
       if (days < 0) {
         return 0;
@@ -131,4 +180,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.myuw-account-summaries {
+  font-size: 0.85rem;
+
+  strong {
+    font-size: 0.95rem;
+    display: block;
+  }
+}
+</style>

@@ -138,7 +138,10 @@
               role="navigation"
               :visible="$mq == 'desktop'"
             >
-              <b-nav vertical>
+              <b-nav
+                vertical
+                :class="[$mq == 'desktop' ? '' : 'border-bottom mb-3']"
+              >
                 <b-nav-item
                   class="mb-2"
                   href="/"
@@ -257,6 +260,10 @@
             </b-collapse>
           </b-col>
           <b-col lg="10">
+            <h2 :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+              {{ pageTitle }}
+            </h2>
+
             <!-- page content inserted here -->
             <slot />
           </b-col>

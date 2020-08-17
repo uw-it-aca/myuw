@@ -24,7 +24,7 @@
 
 {% block body_content %}
 
-    <myuw-boilerplate logoutUrl="{% settings_value "LOGOUT_URL" %}">
+    <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
 
         <myuw-banner-summaries></myuw-banner-summaries>
         <b-row>
@@ -35,7 +35,6 @@
                 <div>quicklinks go here</div>
             </b-col>
         </b-row>
-
     </myuw-boilerplate>
 {% endblock body_content %}
 
