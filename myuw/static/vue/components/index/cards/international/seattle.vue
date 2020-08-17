@@ -13,7 +13,7 @@
       </li>
       <li>
         <a
-          v-if="user.affiliations.F1"
+          v-if="user.affiliations.J1"
           href="https://iss.washington.edu/regulations/j1/"
           target="_blank"
           aria-label="Visa and Immigration Rules"

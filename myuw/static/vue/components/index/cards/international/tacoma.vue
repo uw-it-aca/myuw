@@ -30,7 +30,8 @@
         <a
           href="http://www.tacoma.uw.edu/international-student-services/events"
           target="_blank"
-          aria-label="ISSS Calendar (International Student and Scholar Services)"
+          aria-label="ISSS Calendar
+          (International Student and Scholar Services)"
         >International Student and Scholar Services (ISSS) Calendar</a>
       </li>
     </ul>
@@ -58,14 +59,9 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
-
 export default {
   data: function() {
     return {};
   },
-  computed: mapState({
-    user: (state) => state.user,
-  }),
 };
 </script>
