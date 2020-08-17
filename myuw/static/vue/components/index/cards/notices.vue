@@ -3,17 +3,26 @@
     <template #card-heading>
       <h3>Notices</h3>
     </template>
-    <template #card-body v-if="!isErrored">
+    <template
+      v-if="!isErrored"
+      #card-body
+    >
       <p v-if="notices.length == 0">
         You do not have any notices at this time.
       </p>
-      <ul class="list-unstyled mb-0 myuw-notice-list" v-else>
-        <li v-for="notice in notices" :key="notice.id_hash">
+      <ul
+        v-else
+        class="list-unstyled mb-0 myuw-notice-list"
+      >
+        <li
+          v-for="notice in notices"
+          :key="notice.id_hash"
+        >
           <div class="notice-container">
             <span class="notice-title">
               <span
-                class="font-weight-bold text-danger notice-critical"
                 v-if="notice.is_critical"
+                class="font-weight-bold text-danger notice-critical"
               >
                 Critical:
               </span>
@@ -32,8 +41,8 @@
           </div>
           <b-collapse
             :id="notice.id_hash"
-            @show="onShowNotice(notice)"
             tabindex="0"
+            @show="onShowNotice(notice)"
           >
             <div
               class="p-3 mt-2 mb-2 bg-light text-dark notice-body"
@@ -43,9 +52,15 @@
         </li>
       </ul>
     </template>
-    <template #card-body v-else>
+    <template
+      v-else
+      #card-body
+    >
       <p class="text-danger">
-        <i class="fa fa-exclamation-triangle" aria-hidden="true" />
+        <i
+          class="fa fa-exclamation-triangle"
+          aria-hidden="true"
+        />
         An error occurred and MyUW cannot load your notices right now. Please
         try again later.
       </p>

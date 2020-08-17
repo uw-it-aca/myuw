@@ -132,11 +132,26 @@
         <b-row>
           <b-col lg="2">
             <!-- main sidebar navigation -->
-            <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
-              <b-nav vertical 
-              v-bind:class="[$mq == 'desktop' ? '' : 'border-bottom mb-3']">
-                <b-nav-item class="mb-2" href="/" :active="pageTitle == 'Home'" :link-classes="'text-dark d-block px-2 py-1'">
-                  <font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home
+            <b-collapse
+              id="nav-collapse"
+              class="myuw-navigation"
+              role="navigation"
+              :visible="$mq == 'desktop'"
+            >
+              <b-nav
+                vertical
+                :class="[$mq == 'desktop' ? '' : 'border-bottom mb-3']"
+              >
+                <b-nav-item
+                  class="mb-2"
+                  href="/"
+                  :active="pageTitle == 'Home'"
+                  :link-classes="'text-dark d-block px-2 py-1'"
+                >
+                  <font-awesome-icon
+                    :icon="['fas', 'home']"
+                    class="mr-2"
+                  />Home
                 </b-nav-item>
                 <b-nav-item
                   v-if="user.affiliations.undergrad &&
@@ -245,8 +260,9 @@
             </b-collapse>
           </b-col>
           <b-col lg="10">
-
-            <h2 v-bind:class="[pageTitle == 'Home' ? 'sr-only' : '']">{{pageTitle}}</h2>
+            <h2 :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+              {{ pageTitle }}
+            </h2>
 
             <!-- page content inserted here -->
             <slot />

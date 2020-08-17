@@ -13,12 +13,10 @@
       >
         <font-awesome-icon :icon="['far', 'calendar-alt']" />
         <span v-if="termData.isBreak">
-          <span v-if="termData.breakYear !== termData.year">
-            {{ termData.year }} / {{ termData.breakYear }}
-          </span>
-          <span v-else>
-            {{ termData.year }}
-          </span>
+          <span
+            v-if="termData.breakYear !== termData.year"
+          >{{ termData.year }} / {{ termData.breakYear }}</span>
+          <span v-else>{{ termData.year }}</span>
         </span>
         <span v-else>
           {{ ucfirst(termData.quarter) }}
@@ -29,7 +27,10 @@
           {{ ucfirst(termData.breakQuarter) }}
           Break
         </span>
-        <strong v-else class="text-dark">
+        <strong
+          v-else
+          class="text-dark"
+        >
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
         </strong>
@@ -51,7 +52,9 @@
           href="/accounts/"
         >
           Student Husky
-          <strong class="text-dark">${{ hfs.student_husky_card.balance.toFixed(2) }}</strong>
+          <strong class="text-dark">
+            ${{ hfs.student_husky_card.balance.toFixed(2) }}
+          </strong>
         </a>
         <a
           v-if="hfs.resident_dining"
@@ -64,7 +67,9 @@
           href="/accounts/"
         >
           Resident Dining
-          <strong class="text-dark">${{ hfs.resident_dining.balance.toFixed(2) }}</strong>
+          <strong class="text-dark">
+            ${{ hfs.resident_dining.balance.toFixed(2) }}
+          </strong>
         </a>
 
         <a
@@ -78,7 +83,9 @@
           href="/accounts/"
         >
           Employee Husky
-          <strong class="text-dark">${{ hfs.employee_husky_card.balance.toFixed(2) }}</strong>
+          <strong class="text-dark">
+            ${{ hfs.employee_husky_card.balance.toFixed(2) }}
+          </strong>
         </a>
         <a
           v-if="library.next_due"
@@ -91,7 +98,9 @@
           href="/accounts/"
         >
           Library Item Due
-          <strong class="text-dark">{{ toFromNowDate(library.next_due) }}</strong>
+          <strong class="text-dark">
+            {{ toFromNowDate(library.next_due) }}
+          </strong>
         </a>
         <a
           v-else-if="library.holds_ready"
@@ -156,7 +165,8 @@ export default {
     }),
     getWeeksApart(qsDate, testDate) {
       const days = moment(testDate).diff(
-          moment(qsDate).startOf('week'), 'days',
+          moment(qsDate).startOf('week'),
+          'days',
       );
       if (days < 0) {
         return 0;
