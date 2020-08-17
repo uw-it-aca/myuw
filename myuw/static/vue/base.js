@@ -26,6 +26,7 @@ import {
 import {
   faEdit,
   faCreditCard,
+  faCalendarAlt,
   faCalendarCheck,
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
@@ -42,6 +43,7 @@ library.add(faPaw);
 library.add(faGraduationCap);
 library.add(faEdit);
 library.add(faCreditCard);
+library.add(faCalendarAlt);
 library.add(faCalendarCheck);
 library.add(faBookmark);
 library.add(faExclamationTriangle);

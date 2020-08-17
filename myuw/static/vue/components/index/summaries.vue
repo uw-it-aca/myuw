@@ -1,9 +1,13 @@
 <template>
-  <b-row class="my-3">
-    <b-col md="3">
-
-      <a class="d-block border-bottom p-3 text-dark text-center" href="/academic_calendar/" v-if="termData">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
+  <b-row class="myuw-account-summaries mb-3">
+    <b-col md="4">
+      <a
+        v-if="termData"
+        class="d-block px-3 pb-2 text-dark text-nowrap"
+        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-none text-left' : 'border-bottom text-center']"
+        href="/academic_calendar/"
+      >
+        <font-awesome-icon :icon="['far', 'calendar-alt']" />
         <span v-if="termData.isBreak">
           <span v-if="termData.breakYear !== termData.year">
             {{ termData.year }} / {{ termData.breakYear }}
@@ -21,48 +25,73 @@
           {{ ucfirst(termData.breakQuarter) }}
           Break
         </span>
-        <span v-else>
+        <strong v-else>
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
-          {{ getWeeksApart(termData.firstDay, termData.lastDay ) }}
-        </span>
+          {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
+        </strong>
       </a>
-
     </b-col>
-    <b-col md="9" v-if="isHfsReady && isLibraryReady">
+    <b-col md="8" v-if="isHfsReady && isLibraryReady">
+      
+      <div class="row">
+      <a
+        class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-left text-left pb-2' : 'py-2 border-none text-center']"
+        href="/accounts/"
+        v-if="hfs.student_husky_card"
+      >
+        Student Husky
+        <strong>${{ hfs.student_husky_card.balance.toFixed(2) }}</strong>
+      </a>
+      <a
+        class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-left text-left pb-2' : 'py-2 border-none text-center']"
+        href="/accounts/"
+        v-if="hfs.resident_dining"
+      >
+        Resident Dining
+        <strong>${{ hfs.resident_dining.balance.toFixed(2) }}</strong>
+      </a>
 
-      <a class="d-inline-block border-left p-3 text-dark" href="/accounts/" v-if="hfs.student_husky_card">
-        Student Husky<br>
-        <span>${{ hfs.student_husky_card.balance.toFixed(2) }}</span>
+      <a
+        class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-left text-left pb-2' : 'py-2 border-none text-center']"
+        href="/accounts/"
+        v-if="hfs.employee_husky_card"
+      >
+        Employee Husky
+        <strong>${{ hfs.employee_husky_card.balance.toFixed(2) }}</strong>
       </a>
-      <a class="d-inline-block border-left p-3 text-dark" href="/accounts/" v-if="hfs.resident_dining">
-        Resident Dining<br>
-        <span>${{ hfs.resident_dining.balance.toFixed(2) }}</span>
+      <a
+        class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-left text-left pb-2' : 'py-2 border-none text-center']"
+        href="/accounts/"
+        v-if="library.next_due"
+      >
+        Library Item Due
+        <strong>{{ toFromNowDate(library.next_due) }}</strong>
       </a>
-      <a class="d-inline-block border-left p-3 text-dark"  href="/accounts/" v-if="hfs.employee_husky_card">
-        Employee Husky<br>
-        <span>${{ hfs.employee_husky_card.balance.toFixed(2) }}</span>
-      </a>
-      <a class="d-inline-block border-left p-3 text-dark"  href="/accounts/" v-if="library.next_due">
-        Library Item Due<br>
-        <span>{{ toFromNowDate(library.next_due) }}</span>
-      </a>
-      <a class="d-inline-block border-left p-3 text-dark" 
+      <a
+        class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-left text-left pb-2' : 'py-2 border-none text-center']"
         href="https://search.lib.uw.edu/account"
-        target="_blank" data-linklabel="Library Account Requests"
+        target="_blank"
+        data-linklabel="Library Account Requests"
         v-else-if="library.holds_ready"
       >
-        Library {{ library.holds_ready === 1 ? "Items" : "Item" }} Ready<br>
-        <span>
+        Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
+        <strong>
           {{ library.holds_ready }}
-          {{ library.holds_ready === 1 ? "Items" : "Item" }} ready
-        </span>
+          {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
+        </strong>
       </a>
+      </div>
     </b-col>
   </b-row>
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import moment from 'moment';
 
 export default {
@@ -115,4 +144,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .myuw-account-summaries {
+    font-size: 0.85rem;
+
+    strong {
+      font-size: 0.95rem;
+      display: block;
+    }
+  }
+</style>

@@ -132,23 +132,11 @@
         <b-row>
           <b-col lg="2">
             <!-- main sidebar navigation -->
-            <b-collapse
-              id="nav-collapse"
-              class="myuw-navigation"
-              role="navigation"
-              :visible="$mq == 'desktop'"
-            >
-              <b-nav vertical>
-                <b-nav-item
-                  class="mb-2"
-                  href="/"
-                  :active="pageTitle == 'Home'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon
-                    :icon="['fas', 'home']"
-                    class="mr-2"
-                  />Home
+            <b-collapse id="nav-collapse" class="myuw-navigation" role="navigation" :visible="$mq == 'desktop'">
+              
+              <b-nav vertical class="border-bottom mb-3">
+                <b-nav-item class="mb-2" href="/" :active="pageTitle == 'Home'" :link-classes="'text-dark d-block px-2 py-1'">
+                  <font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home
                 </b-nav-item>
                 <b-nav-item
                   v-if="user.affiliations.undergrad &&
