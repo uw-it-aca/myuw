@@ -57,9 +57,6 @@ export default {
     'uw-bothell': Bothell,
     'uw-tacoma': Tacoma,
   },
-  data: function() {
-    return {};
-  },
   computed: mapState({
     user: (state) => state.user,
   }),
