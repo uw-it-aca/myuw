@@ -51,6 +51,7 @@ describe('Summaries', () => {
   it('getWeeksApart', async () => {
     axios.get.mockResolvedValue({data: mockNotices});
     const wrapper = shallowMount(Summaries, {store, localVue});
+    moment.mockImplementation(jest.requireActual('moment'));
 
     // The week starts on Sundays
     // Winter quarter starts on Tuesday

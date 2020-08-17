@@ -17,6 +17,8 @@ module.exports = {
     // use the recommended rule set for both plain javascript and vue
     "eslint:recommended",
     "google",
+    "plugin:vue/essential",
+    "plugin:vue/strongly-recommended",
     "plugin:vue/recommended",
     "plugin:jest/recommended"
   ],
@@ -34,6 +36,8 @@ module.exports = {
       {
         "assertFunctionNames": ["expect*"]
       }
-    ]
+    ],
+    // TODO: This is not ideal and needs to fixed at some point
+    "vue/no-v-html": "off",
   }
 };
