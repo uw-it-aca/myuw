@@ -41,9 +41,10 @@
       md="8"
     >
       <div class="row">
+
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -58,7 +59,7 @@
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -74,7 +75,7 @@
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -89,7 +90,7 @@
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -104,7 +105,7 @@
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -120,6 +121,7 @@
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
           </strong>
         </a>
+
       </div>
     </b-col>
   </b-row>
