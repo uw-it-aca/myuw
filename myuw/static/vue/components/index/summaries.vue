@@ -6,7 +6,7 @@
     >
       <a
         v-if="termData"
-        class="d-block px-3 pb-2 text-secondary text-nowrap"
+        class="d-block px-3 py-2 text-secondary text-nowrap"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-left text-left'
@@ -49,11 +49,11 @@
       >
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left pb-2'
-              : 'py-2 border-none text-center',
+              ? 'border-left text-left'
+              : 'border-none text-center',
           ]"
           href="/accounts/"
         >
@@ -64,11 +64,11 @@
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left pb-2'
-              : 'py-2 border-none text-center',
+              ? 'border-left text-left'
+              : 'border-none text-center',
           ]"
           href="/accounts/"
         >
@@ -80,11 +80,11 @@
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left pb-2'
-              : 'py-2 border-none text-center',
+              ? 'border-left text-left'
+              : 'border-none text-center',
           ]"
           href="/accounts/"
         >
@@ -95,11 +95,11 @@
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left pb-2'
-              : 'py-2 border-none text-center',
+              ? 'border-left text-left'
+              : 'border-none text-center',
           ]"
           href="/accounts/"
         >
@@ -110,11 +110,11 @@
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left pb-2'
-              : 'py-2 border-none text-center',
+              ? 'border-left text-left'
+              : 'border-none text-center',
           ]"
           href="https://search.lib.uw.edu/account"
           target="_blank"

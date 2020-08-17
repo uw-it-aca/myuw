@@ -140,7 +140,7 @@
             >
               <b-nav
                 vertical
-                :class="[$mq == 'desktop' ? '' : 'border-bottom mb-3']"
+                :class="[$mq == 'desktop' ? '' : 'border-bottom']"
               >
                 <b-nav-item
                   class="mb-2"
