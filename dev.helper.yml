@@ -1,10 +1,18 @@
+# This file provides preconfigured containers to run tests
+# in a development environment
+#
+# How to use this:
+# docker-compose -f dev.helper.yml run (django-test|eslint-fix|eslint|jest) 
+#
+# You can also run a command in the container by using:
+# docker-compose -f dev.helper.yml run <service-name> <command>
+
 version: '3.4'
 
 services:
-  myuw:
+  django-test:
     build: .
     user: root
-    container_name: app-myuw
     volumes:
       - ./myuw:/app/myuw
     environment:
