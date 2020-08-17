@@ -112,7 +112,7 @@
           ]"
           href="https://search.lib.uw.edu/account"
           target="_blank"
-          data-linklabel="Library Account Requests"
+          aria-label="Library Account Requests"
         >
           Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
           <strong class="text-dark">
