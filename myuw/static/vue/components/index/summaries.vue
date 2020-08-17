@@ -45,7 +45,7 @@
       lg="8"
     >
       <div
-        class="row float-lg-right"
+        class="row float-md-right"
       >
         <a
           v-if="hfs.student_husky_card"
