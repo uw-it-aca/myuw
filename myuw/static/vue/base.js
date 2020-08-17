@@ -75,6 +75,7 @@ const store = new Vuex.Store({
     disableActions: JSON.parse(
         document.getElementById('disable_actions').innerHTML,
     ),
+    csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },
 });
 
