@@ -39,7 +39,7 @@ services:
       - ./myuw:/app/myuw
     stdin_open: true
     tty: true
-    command: bash -c "cd /app/ && npx eslint myuw/static/vue --fix"
+    command: bash -c "cd /app/ && npx eslint myuw/static/vue --ext .vue --fix"
   eslint:
     build:
       context: .
@@ -51,7 +51,7 @@ services:
       - ./myuw:/app/myuw
     stdin_open: true
     tty: true
-    command: bash -c "cd /app/ && npx eslint myuw/static/vue"
+    command: bash -c "cd /app/ && npx eslint myuw/static/vue --ext .vue"
   jest:
     build:
       context: .
