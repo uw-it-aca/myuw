@@ -3,7 +3,7 @@
     <b-col md="4">
       <a
         v-if="termData"
-        class="d-block px-3 pb-2 text-dark text-nowrap"
+        class="d-block px-3 pb-2 text-secondary text-nowrap"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-left text-left'
@@ -29,7 +29,7 @@
           {{ ucfirst(termData.breakQuarter) }}
           Break
         </span>
-        <strong v-else>
+        <strong v-else class="text-dark">
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
         </strong>
@@ -42,7 +42,7 @@
       <div class="row">
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -51,11 +51,11 @@
           href="/accounts/"
         >
           Student Husky
-          <strong>${{ hfs.student_husky_card.balance.toFixed(2) }}</strong>
+          <strong class="text-dark">${{ hfs.student_husky_card.balance.toFixed(2) }}</strong>
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -64,12 +64,12 @@
           href="/accounts/"
         >
           Resident Dining
-          <strong>${{ hfs.resident_dining.balance.toFixed(2) }}</strong>
+          <strong class="text-dark">${{ hfs.resident_dining.balance.toFixed(2) }}</strong>
         </a>
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -78,11 +78,11 @@
           href="/accounts/"
         >
           Employee Husky
-          <strong>${{ hfs.employee_husky_card.balance.toFixed(2) }}</strong>
+          <strong class="text-dark">${{ hfs.employee_husky_card.balance.toFixed(2) }}</strong>
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -91,11 +91,11 @@
           href="/accounts/"
         >
           Library Item Due
-          <strong>{{ toFromNowDate(library.next_due) }}</strong>
+          <strong class="text-dark">{{ toFromNowDate(library.next_due) }}</strong>
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col-6 col-sm-3 px-3 text-dark text-nowrap"
+          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -106,7 +106,7 @@
           data-linklabel="Library Account Requests"
         >
           Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
-          <strong>
+          <strong class="text-dark">
             {{ library.holds_ready }}
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
           </strong>
