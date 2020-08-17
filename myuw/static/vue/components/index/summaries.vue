@@ -3,8 +3,8 @@
     <b-col md="4">
       <a
         v-if="termData"
-        class="d-block pb-2 text-dark text-nowrap"
-        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-none pr-3 text-left' : 'border-bottom px-3 text-center']"
+        class="d-block px-3 pb-2 text-dark text-nowrap"
+        v-bind:class="[$mq == 'tablet' || $mq=='desktop' ? 'border-left text-left' : 'border-bottom text-center']"
         href="/academic_calendar/"
       >
         <font-awesome-icon :icon="['far', 'calendar-alt']" />
