@@ -1,6 +1,9 @@
 <template>
   <b-row class="myuw-account-summaries mb-3">
-    <b-col md="4">
+    <b-col
+      md="3"
+      lg="4"
+    >
       <a
         v-if="termData"
         class="d-block px-3 pb-2 text-secondary text-nowrap"
@@ -38,12 +41,15 @@
     </b-col>
     <b-col
       v-if="isHfsReady && isLibraryReady"
-      md="8"
+      md="9"
+      lg="8"
     >
-      <div class="row">
+      <div
+        class="row float-md-right"
+      >
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -58,7 +64,7 @@
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -74,7 +80,7 @@
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -89,7 +95,7 @@
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
@@ -104,7 +110,7 @@
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col-6 col-sm-3 px-3 text-secondary text-nowrap"
+          class="d-inline-block col px-3 text-secondary text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left pb-2'
