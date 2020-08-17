@@ -44,7 +44,14 @@
       md="9"
       lg="8"
     >
-      <div class="row">
+      <div
+        class="row"
+        :class="[
+          $mq == 'tablet' || $mq == 'desktop'
+            ? 'float-right'
+            : '',
+        ]"
+      >
         <a
           v-if="hfs.student_husky_card"
           class="d-inline-block col px-3 text-secondary text-nowrap"
