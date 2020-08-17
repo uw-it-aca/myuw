@@ -1,14 +1,9 @@
 <template>
-  <b-row>
-    <b-col>
-      <a
-        v-if="termData"
-        href="/academic_calendar/"
-      >
-        <i
-          class="fa fa-calendar"
-          aria-hidden="true"
-        />
+  <b-row class="my-3">
+    <b-col md="3">
+
+      <a class="d-block border-bottom p-3 text-dark text-center" href="/academic_calendar/" v-if="termData">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
         <span v-if="termData.isBreak">
           <span v-if="termData.breakYear !== termData.year">
             {{ termData.year }} / {{ termData.breakYear }}
@@ -31,43 +26,32 @@
           {{ getWeeksApart(termData.firstDay, termData.lastDay ) }}
         </span>
       </a>
+
     </b-col>
-    <b-col v-if="isHfsReady && isLibraryReady">
-      <a
-        v-if="hfs.student_husky_card"
-        href="/accounts/"
-      >
-        Student Husky
+    <b-col md="9" v-if="isHfsReady && isLibraryReady">
+
+      <a class="d-inline-block border-left p-3 text-dark" href="/accounts/" v-if="hfs.student_husky_card">
+        Student Husky<br>
         <span>${{ hfs.student_husky_card.balance.toFixed(2) }}</span>
       </a>
-      <a
-        v-if="hfs.resident_dining"
-        href="/accounts/"
-      >
-        Resident Dining
+      <a class="d-inline-block border-left p-3 text-dark" href="/accounts/" v-if="hfs.resident_dining">
+        Resident Dining<br>
         <span>${{ hfs.resident_dining.balance.toFixed(2) }}</span>
       </a>
-      <a
-        v-if="hfs.employee_husky_card"
-        href="/accounts/"
-      >
-        Employee Husky
+      <a class="d-inline-block border-left p-3 text-dark"  href="/accounts/" v-if="hfs.employee_husky_card">
+        Employee Husky<br>
         <span>${{ hfs.employee_husky_card.balance.toFixed(2) }}</span>
       </a>
-      <a
-        v-if="library.next_due"
-        href="/accounts/"
-      >
-        Library Item Due
+      <a class="d-inline-block border-left p-3 text-dark"  href="/accounts/" v-if="library.next_due">
+        Library Item Due<br>
         <span>{{ toFromNowDate(library.next_due) }}</span>
       </a>
-      <a
-        v-else-if="library.holds_ready"
+      <a class="d-inline-block border-left p-3 text-dark" 
         href="https://search.lib.uw.edu/account"
-        target="_blank"
-        data-linklabel="Library Account Requests"
+        target="_blank" data-linklabel="Library Account Requests"
+        v-else-if="library.holds_ready"
       >
-        Library {{ library.holds_ready === 1 ? "Items" : "Item" }} Ready
+        Library {{ library.holds_ready === 1 ? "Items" : "Item" }} Ready<br>
         <span>
           {{ library.holds_ready }}
           {{ library.holds_ready === 1 ? "Items" : "Item" }} ready
