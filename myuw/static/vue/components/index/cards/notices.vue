@@ -76,9 +76,6 @@ export default {
   components: {
     'uw-card': Card,
   },
-  data: function() {
-    return {};
-  },
   computed: {
     ...mapState({
       notices: (state) => {

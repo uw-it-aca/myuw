@@ -136,9 +136,6 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import moment from 'moment';
 
 export default {
-  data: function() {
-    return {};
-  },
   computed: {
     ...mapState({
       termData: (state) => state.termData,
