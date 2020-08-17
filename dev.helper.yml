@@ -1,0 +1,66 @@
+# This file provides preconfigured containers to run tests
+# in a development environment
+#
+# How to use this:
+# docker-compose -f dev.helper.yml run (django-test|eslint-fix|eslint|jest) 
+#
+# You can also run a command in the container by using:
+# docker-compose -f dev.helper.yml run <service-name> <command>
+
+version: '3.4'
+
+services:
+  django-test:
+    build: .
+    user: root
+    volumes:
+      - ./myuw:/app/myuw
+    environment:
+      ENV: localdev
+      AUTH: SAML_MOCK
+      DJANGO_APP: "myuw"
+      MEMCACHED_SERVER_COUNT: 1
+      MEMCACHED_SERVER_SPEC: memcached
+    depends_on:
+      - memcached
+    stdin_open: true
+    tty: true
+    command: bash -c ". ./travis-ci/test_python.sh"
+  memcached:
+    image: memcached
+  eslint-fix:
+    build:
+      context: .
+      target: node-bundler
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+    stdin_open: true
+    tty: true
+    command: bash -c "cd /app/ && npx eslint myuw/static/vue --ext .vue --fix"
+  eslint:
+    build:
+      context: .
+      target: node-bundler
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+    stdin_open: true
+    tty: true
+    command: bash -c "cd /app/ && npx eslint myuw/static/vue --ext .vue"
+  jest:
+    build:
+      context: .
+      target: node-bundler
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+    stdin_open: true
+    tty: true
+    command: bash -c "cd /app/ && npx jest --watchAll"

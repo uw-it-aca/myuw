@@ -1,14 +1,20 @@
 <template>
   <b-row>
     <b-col>
-      <a href="/academic_calendar/" v-if="termData">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
+      <a
+        v-if="termData"
+        href="/academic_calendar/"
+      >
+        <i
+          class="fa fa-calendar"
+          aria-hidden="true"
+        />
         <span v-if="termData.isBreak">
           <span v-if="termData.breakYear !== termData.year">
             {{ termData.year }} / {{ termData.breakYear }}
           </span>
           <span v-else>
-            {{ termData.year }} 
+            {{ termData.year }}
           </span>
         </span>
         <span v-else>
@@ -22,31 +28,44 @@
         </span>
         <span v-else>
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
-          {{ getWeeksApart(termData.firstDay, termData.lastDay )}}
+          {{ getWeeksApart(termData.firstDay, termData.lastDay ) }}
         </span>
       </a>
     </b-col>
     <b-col v-if="isHfsReady && isLibraryReady">
-      <a href="/accounts/" v-if="hfs.student_husky_card">
+      <a
+        v-if="hfs.student_husky_card"
+        href="/accounts/"
+      >
         Student Husky
         <span>${{ hfs.student_husky_card.balance.toFixed(2) }}</span>
       </a>
-      <a href="/accounts/" v-if="hfs.resident_dining">
+      <a
+        v-if="hfs.resident_dining"
+        href="/accounts/"
+      >
         Resident Dining
         <span>${{ hfs.resident_dining.balance.toFixed(2) }}</span>
       </a>
-      <a href="/accounts/" v-if="hfs.employee_husky_card">
+      <a
+        v-if="hfs.employee_husky_card"
+        href="/accounts/"
+      >
         Employee Husky
         <span>${{ hfs.employee_husky_card.balance.toFixed(2) }}</span>
       </a>
-      <a href="/accounts/" v-if="library.next_due">
+      <a
+        v-if="library.next_due"
+        href="/accounts/"
+      >
         Library Item Due
         <span>{{ toFromNowDate(library.next_due) }}</span>
       </a>
       <a
-        href="https://search.lib.uw.edu/account"
-        target="_blank" data-linklabel="Library Account Requests"
         v-else-if="library.holds_ready"
+        href="https://search.lib.uw.edu/account"
+        target="_blank"
+        data-linklabel="Library Account Requests"
       >
         Library {{ library.holds_ready === 1 ? "Items" : "Item" }} Ready
         <span>
@@ -59,60 +78,56 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
+import {mapGetters, mapState, mapActions} from 'vuex';
 import moment from 'moment';
 
 export default {
-  data: function () {
+  data: function() {
     return {};
   },
   computed: {
     ...mapState({
       termData: (state) => state.termData,
     }),
-    ...mapState("hfs", {
+    ...mapState('hfs', {
       hfs: (state) => state.value,
     }),
-    ...mapState("library", {
+    ...mapState('library', {
       library: (state) => state.value,
     }),
-    ...mapGetters("hfs", {
-      isHfsReady: "isReady",
-      isHfsErrored: "isErrored",
+    ...mapGetters('hfs', {
+      isHfsReady: 'isReady',
+      isHfsErrored: 'isErrored',
     }),
-    ...mapGetters("library", {
-      isLibraryReady: "isReady",
-      isLibraryErrored: "isErrored",
+    ...mapGetters('library', {
+      isLibraryReady: 'isReady',
+      isLibraryErrored: 'isErrored',
     }),
   },
+  mounted() {
+    this.fetchHfs();
+    this.fetchLibrary();
+  },
   methods: {
-    ...mapActions("hfs", {
-      fetchHfs: "fetch",
+    ...mapActions('hfs', {
+      fetchHfs: 'fetch',
     }),
-    ...mapActions("library", {
-      fetchLibrary: "fetch",
+    ...mapActions('library', {
+      fetchLibrary: 'fetch',
     }),
-    getWeeksApart(qs_date, test_date) {
-      // qs_date: quarter start date
-      var one_day_ms = 24 * 3600 * 1000;
-      var one_week_ms = one_day_ms * 7;
-      var t1 = qs_date.getTime(); // milliseconds since January 1, 1970
-      var qs_day_of_week = qs_date.getDay();
-      var qs_prev_sunday = t1 - (one_day_ms * qs_day_of_week);
-      var t2 = test_date.getTime();
-      if (t2 < qs_prev_sunday) {
+    getWeeksApart(qsDate, testDate) {
+      const days = moment(testDate).diff(
+          moment(qsDate).startOf('week'), 'days',
+      );
+      if (days < 0) {
         return 0;
       } else {
-        return parseInt((t2 - qs_prev_sunday) / one_week_ms) + 1;
+        return parseInt(days / 7) + 1;
       }
     },
     ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
     toFromNowDate: (s) => moment(s).fromNow(),
   },
-  created() {
-    this.fetchHfs();
-    this.fetchLibrary();
-  }
 };
 </script>
 

@@ -22,7 +22,7 @@ function catch {
     exit 1
 }
 
-run_test "npx eslint ${DJANGO_APP}/static/vue"
+run_test "npx eslint ${DJANGO_APP}/static/vue --ext .vue"
 run_test "npx jest"
 
 # put generaged coverage result where it will get processed
