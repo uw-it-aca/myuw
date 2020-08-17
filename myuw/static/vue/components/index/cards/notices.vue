@@ -22,32 +22,30 @@
                 class="p-0 notice-link"
                 variant="link"
                 v-html="notice.notice_title"
-              >
-              </b-link>
+              />
               <b-badge
                 v-if="!notice.is_read"
                 variant="warning"
                 class="font-weight-normal"
-                >New</b-badge
-              >
+              >New</b-badge>
             </span>
           </div>
           <b-collapse
-            @show="onShowNotice(notice)"
             :id="notice.id_hash"
+            @show="onShowNotice(notice)"
             tabindex="0"
           >
             <div
-              v-html="notice.notice_body"
               class="p-3 mt-2 mb-2 bg-light text-dark notice-body"
-            ></div>
+              v-html="notice.notice_body"
+            />
           </b-collapse>
         </li>
       </ul>
     </template>
     <template #card-body v-else>
       <p class="text-danger">
-        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <i class="fa fa-exclamation-triangle" aria-hidden="true" />
         An error occurred and MyUW cannot load your notices right now. Please
         try again later.
       </p>
