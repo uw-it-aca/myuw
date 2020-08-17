@@ -48,7 +48,7 @@
         class="row"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
-            ? 'justify-content-end'
+            ? 'float-right'
             : '',
         ]"
       >
