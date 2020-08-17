@@ -1,6 +1,9 @@
 <template>
   <b-row class="myuw-account-summaries mb-3">
-    <b-col md="4">
+    <b-col
+      md="3"
+      lg="4"
+    >
       <a
         v-if="termData"
         class="d-block px-3 pb-2 text-secondary text-nowrap"
@@ -38,10 +41,10 @@
     </b-col>
     <b-col
       v-if="isHfsReady && isLibraryReady"
-      md="8"
+      md="9"
+      lg="8"
     >
       <div class="row">
-
         <a
           v-if="hfs.student_husky_card"
           class="d-inline-block col px-3 text-secondary text-nowrap"
@@ -121,7 +124,6 @@
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
           </strong>
         </a>
-
       </div>
     </b-col>
   </b-row>
