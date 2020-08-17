@@ -28,13 +28,11 @@
         </b-tab>
         <b-tab
           title="Bothell"
-          active
         >
           <uw-bothell />
         </b-tab>
         <b-tab
           title="Tacoma"
-          active
         >
           <uw-tacoma />
         </b-tab>
