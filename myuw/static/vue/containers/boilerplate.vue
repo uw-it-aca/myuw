@@ -369,9 +369,8 @@ export default {
 body { min-width: 320px; }
 
 // boilerplate
-
 .myuw-override {
-  background: #ffcc42;
+  background: #ffbc24;
 }
 
 .myuw-search {

@@ -4,7 +4,7 @@
     :loaded="true"
   >
     <template #card-heading>
-      <h3>International Student</h3>
+      <h3 class="mb-3 myuw-card-header">International Student</h3>
     </template>
     <template
       v-if="user.affiliations.seattle ||
@@ -61,6 +61,6 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>

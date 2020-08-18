@@ -31,7 +31,7 @@ import {
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 
-import '../css/bootstrap-theming.scss';
+import '../css/myuw-custom.scss';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 library.add(faUser);

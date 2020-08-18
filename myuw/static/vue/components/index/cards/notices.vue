@@ -1,7 +1,7 @@
 <template>
   <uw-card :loaded="isReady">
     <template #card-heading>
-      <h3>Notices</h3>
+      <h3 class="myuw-card-header">Notices</h3>
     </template>
     <template
       v-if="!isErrored"
@@ -111,6 +111,6 @@ export default {
 
 <style lang="scss" scoped>
 .myuw-notice-list {
-  font-size: 0.95rem;
+  //font-size: 0.95rem;
 }
 </style>

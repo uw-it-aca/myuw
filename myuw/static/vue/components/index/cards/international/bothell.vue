@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h4 class="myuw-card-heading">
+    <h4 class="h5 myuw-card-header">
       Visa and Immigration Rules
     </h4>
 
-    <ul class="unstyled-list">
+    <ul class="list-unstyled">
       <li>
         <a
           href="http://www.uwb.edu/cie/current-students/travel"
@@ -42,10 +42,10 @@
       </li>
     </ul>
 
-    <h4 class="myuw-card-heading">
+    <h4 class="h5 myuw-card-header">
       Academic Support
     </h4>
-    <ul class="unstyled-list">
+    <ul class="list-unstyled">
       <li>
         <a
           href="http://www.uwb.edu/cie/current-students/writing-support"
