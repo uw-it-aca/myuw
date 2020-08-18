@@ -9,7 +9,7 @@
       <div
         v-for="notice in notices"
         :key="notice.id_hash"
-        v-html="notice.notice_content"
+        v-html="notice.notice_body"
       />
     </template>
   </uw-card>
