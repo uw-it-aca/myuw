@@ -55,10 +55,10 @@ export default {
     'uw-tacoma': Tacoma,
   },
   computed: mapState({
-      seattle: (state) => state.user.affiliations.seattle,
-      bothell: (state) => state.user.affiliations.bothell,
-      tacoma: (state) => state.user.affiliations.tacoma,
-      intl_stud: (state) => state.user.affiliations.intl_stud,
+    seattle: (state) => state.user.affiliations.seattle,
+    bothell: (state) => state.user.affiliations.bothell,
+    tacoma: (state) => state.user.affiliations.tacoma,
+    intl_stud: (state) => state.user.affiliations.intl_stud,
   }),
 };
 </script>
