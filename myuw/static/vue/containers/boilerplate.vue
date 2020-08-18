@@ -4,15 +4,19 @@
       <div
         v-if="disableActions"
         id="actions_disabled_banner"
+        class="myuw-override"
       >
-        <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
-        Overriding is read-only and no actions will be saved. &nbsp;&nbsp;
-        <a
-          href="/support/"
-          style="font-weight: normal; color: #003399;"
+        <b-container
+          fluid="xl"
+          class="py-2 text-center"
         >
-          Back to MyUW Support tool
-        </a>
+          <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
+          Overriding is read-only and no actions will be saved. <a
+            href="/support/"
+          >
+            Back to MyUW Support tool
+          </a>
+        </b-container>
       </div>
 
       <b-collapse
@@ -365,9 +369,15 @@ export default {
 body { min-width: 320px; }
 
 // boilerplate
+
+.myuw-override {
+  background: #ffcc42;
+}
+
 .myuw-search {
   background: red;
 }
+
 .myuw-thin-bar {
   background: #452a78;
   line-height: 40px;

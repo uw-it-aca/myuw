@@ -1,14 +1,14 @@
 <template>
   <b-card
     v-if="loaded"
-    class="rounded-0 shadow-sm"
+    class="rounded-0 shadow-sm mb-3"
   >
     <slot name="card-heading" />
     <slot name="card-body" />
   </b-card>
   <b-card
     v-else
-    class="rounded-0 shadow-sm"
+    class="rounded-0 shadow-sm mb-3"
   >
     <b-card-text class="d-flex justify-content-center card-loading">
       <!-- TODO: replace this with a cog -->
