@@ -85,7 +85,7 @@ export default {
               notice.location_tags.includes('notices_date_sort') ||
               notice.location_tags.includes('notice_banner'),
         ).sort((n1, n2) => {
-          if (n1.is_critical !== n2.is_critical) return n2.is_critical;
+          if (n1.is_critical !== n2.is_critical) return n2.is_critical - n1.is_critical;
           return n2.date - n1.date;
         });
       },
