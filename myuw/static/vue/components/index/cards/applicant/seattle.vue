@@ -1,5 +1,5 @@
 <template>
-  <uw-card :loaded="isReady">
+  <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="applicantData.is_returning" #card-heading>
       <h3>Your Returning Student Application</h3>
     </template>
