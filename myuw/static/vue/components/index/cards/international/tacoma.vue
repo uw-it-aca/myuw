@@ -4,7 +4,7 @@
       Visa and Immigration Rules
     </h4>
 
-    <ul class="list-unstyled">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="http://www.tacoma.uw.edu/iss/travel-visas"
@@ -39,7 +39,7 @@
     <h4 class="h5 myuw-card-header">
       Academic Support
     </h4>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0"

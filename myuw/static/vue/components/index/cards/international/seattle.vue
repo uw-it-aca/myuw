@@ -3,7 +3,7 @@
     <h4 class="h5 myuw-card-header">
       Visa and Immigration Rules
     </h4>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="https://iss.washington.edu/travel-visas/"
@@ -13,7 +13,7 @@
       </li>
       <li>
         <a
-          v-if="user.affiliations.J1"
+          v-if="visaJ1"
           href="https://iss.washington.edu/regulations/j1/"
           target="_blank"
           aria-label="Visa and Immigration Rules"
@@ -51,7 +51,7 @@
     <h4 class="h5 myuw-card-header">
       Academic Support
     </h4>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="http://depts.washington.edu/aspuw/clue/home/"
@@ -78,7 +78,7 @@
     <h4 class="h5 myuw-card-header">
       Social Events
     </h4>
-    <ul class="list-unstyled">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="http://www.fiuts.org/events"
@@ -95,7 +95,7 @@ import {mapState} from 'vuex';
 
 export default {
   computed: mapState({
-    user: (state) => state.user,
+    visaJ1: (state) => state.user.affiliations.J1,
   }),
 };
 </script>

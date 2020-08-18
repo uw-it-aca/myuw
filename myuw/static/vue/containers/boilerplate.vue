@@ -4,7 +4,7 @@
       <div
         v-if="disableActions"
         id="actions_disabled_banner"
-        class="myuw-override"
+        class="myuw-override myuw-text-md"
       >
         <b-container
           fluid="xl"
@@ -26,7 +26,7 @@
         this is search
       </b-collapse>
 
-      <div class="myuw-thin-bar">
+      <div class="myuw-thin-bar myuw-text-sm">
         <b-container
           fluid="xl"
           class="px-3"
@@ -40,7 +40,8 @@
                 <font-awesome-icon
                   :icon="['fas', 'user']"
                   class="mr-2"
-                />{{ user.netid }}
+                />
+                {{ netid }}
               </b-link>
             </b-col>
             <b-col
@@ -48,7 +49,7 @@
               class="text-right"
             >
               <b-link
-                v-if="user.email_error"
+                v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-white"
                 title="UW email services"
@@ -60,7 +61,7 @@
               </b-link>
               <b-link
                 v-else
-                href="user.email_forward_url"
+                :href="emailForwardUrl"
                 class="ml-2 text-white"
                 title="Open your email in new tab"
               >
@@ -158,9 +159,7 @@
                   />Home
                 </b-nav-item>
                 <b-nav-item
-                  v-if="user.affiliations.undergrad &&
-                    user.affiliations.seattle ||
-                    user.affiliations.hxt_viewer"
+                  v-if="(undergrad && seattle) || hxtViewer"
                   class="mb-2"
                   href="/husky_exp/"
                   :active="pageTitle == 'Husky Experience'"
@@ -169,11 +168,11 @@
                   <font-awesome-icon
                     :icon="['fas', 'paw']"
                     class="mr-2"
-                  />Husky Experience
+                  />Husky
+                  Experience
                 </b-nav-item>
                 <b-nav-item
-                  v-if="user.affiliations.student ||
-                    user.affiliations.applicant"
+                  v-if="student || applicant"
                   class="mb-2"
                   href="/academics/"
                   :active="pageTitle == 'Academics'"
@@ -185,7 +184,7 @@
                   />Academics
                 </b-nav-item>
                 <b-nav-item
-                  v-if="user.affiliations.instructor"
+                  v-if="instructor"
                   class="mb-2"
                   href="/teaching/"
                   :active="pageTitle == 'Teaching'"
@@ -208,7 +207,7 @@
                   />Accounts
                 </b-nav-item>
                 <b-nav-item
-                  v-if="user.affiliations.student"
+                  v-if="student"
                   class="mb-2"
                   href="/notices/"
                   :active="pageTitle == 'Notices'"
@@ -275,7 +274,7 @@
       </b-container>
     </div>
 
-    <footer class="pt-3 pb-3 myuw-footer">
+    <footer class="pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container
         fluid="xl"
         class="px-3"
@@ -283,10 +282,7 @@
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1">
             <b-link
-              href="mailto:help@uw.edu?subject=
-              MyUW%20Comment,%20Request,%20Suggestion&body=
-              Hello,%0A%0A%3CInclude%20your%20comment%20or%20question
-              %20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20$' + user.netid"
+              :href="mailToUrl + netid"
               class="text-white"
             >
               <font-awesome-icon
@@ -340,7 +336,6 @@
 <script>
 import {mapState} from 'vuex';
 
-
 export default {
   components: {},
   props: {
@@ -352,10 +347,20 @@ export default {
   data() {
     return {
       selectedMenu: '',
+      mailToUrl:
+        'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20',
     };
   },
   computed: mapState({
-    user: (state) => state.user,
+    netid: (state) => state.user.netid,
+    emailError: (state) => state.user.email_error,
+    emailForwardUrl: (state) => state.user.email_forward_url,
+    undergrad: (state) => state.user.affiliations.undergrad,
+    seattle: (state) => state.user.affiliations.seattle,
+    hxtViewer: (state) => state.user.affiliations.hxt_viewer,
+    student: (state) => state.user.affiliations.student,
+    applicant: (state) => state.user.affiliations.applicant,
+    instructor: (state) => state.user.affiliations.instructor,
     staticUrl: (state) => state.staticUrl,
     pageTitle: (state) => state.pageTitle,
     disableActions: (state) => state.disableActions,
@@ -364,9 +369,15 @@ export default {
 </script>
 
 <style lang="scss">
-
 // global styles
-body { min-width: 320px; }
+body {
+  min-width: 320px;
+}
+
+// text sizing utilities
+.myuw-text-md { font-size: .95rem !important; }
+.myuw-text-sm { font-size: .85rem !important; }
+.myuw-text-xs { font-size: .75rem !important; }
 
 // boilerplate
 .myuw-override {
@@ -380,7 +391,6 @@ body { min-width: 320px; }
 .myuw-thin-bar {
   background: #452a78;
   line-height: 40px;
-  font-size: .85rem;
   white-space: nowrap;
 }
 
@@ -394,15 +404,14 @@ body { min-width: 320px; }
     background-position: right 20px bottom;
     background-image: url(../../images/w-logo-white.png);
   }
-
 }
 
 .myuw-navigation {
   white-space: nowrap;
 
   a {
-
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: #ddd;
       text-decoration: none;
     }
@@ -410,10 +419,11 @@ body { min-width: 320px; }
     &.active {
       background: #ddd;
       color: #7b59b3 !important;
-      svg { color: #452a78 !important; }
+      svg {
+        color: #452a78 !important;
+      }
     }
   }
-
 }
 
 .myuw-body {
@@ -422,18 +432,16 @@ body { min-width: 320px; }
 
 .myuw-footer {
   background: #333;
-  font-size: .70rem;
   white-space: nowrap;
 
   ul {
     li {
-     &:not(:last-child)::after {
-       content: "·";
-       color: #fff;
-       margin-left: 0.5rem;
-     }
+      &:not(:last-child)::after {
+        content: "·";
+        color: #fff;
+        margin-left: 0.5rem;
+      }
     }
   }
-
 }
 </style>

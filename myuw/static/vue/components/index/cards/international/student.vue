@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="user.affiliations.intl_stud"
+    v-if="internationalStudent"
     :loaded="true"
   >
     <template #card-heading>
@@ -9,13 +9,12 @@
       </h3>
     </template>
     <template
-      v-if="user.affiliations.seattle ||
-        user.affiliations.bothell || user.affiliations.tacoma"
+      v-if="seattle || bothell || tacoma"
       #card-body
     >
-      <uw-seattle v-if="user.affiliations.seattle" />
-      <uw-bothell v-if="user.affiliations.bothell" />
-      <uw-tacoma v-if="user.affiliations.tacoma" />
+      <uw-seattle v-if="seattle" />
+      <uw-bothell v-if="bothell" />
+      <uw-tacoma v-if="tacoma" />
     </template>
     <template
       v-else
@@ -28,14 +27,10 @@
         >
           <uw-seattle />
         </b-tab>
-        <b-tab
-          title="Bothell"
-        >
+        <b-tab title="Bothell">
           <uw-bothell />
         </b-tab>
-        <b-tab
-          title="Tacoma"
-        >
+        <b-tab title="Tacoma">
           <uw-tacoma />
         </b-tab>
       </b-tabs>
@@ -58,11 +53,13 @@ export default {
     'uw-tacoma': Tacoma,
   },
   computed: mapState({
-    user: (state) => state.user,
+    internationalStudent: (state) => state.user.affiliations.intl_stud,
+    seattle: (state) => state.user.affiliations.seattle,
+    bothell: (state) => state.user.affiliations.bothell,
+    tacoma: (state) => state.user.affiliations.tacoma,
   }),
 };
 </script>
 
 <style lang="scss">
-
 </style>

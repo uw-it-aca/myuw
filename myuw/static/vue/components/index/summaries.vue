@@ -1,12 +1,12 @@
 <template>
-  <b-row class="myuw-account-summaries mb-3">
+  <b-row class="mb-3">
     <b-col
       md="3"
       lg="4"
     >
       <a
         v-if="termData"
-        class="d-block px-3 py-2 text-secondary text-nowrap"
+        class="d-block px-3 py-2 text-secondary text-nowrap myuw-text-sm"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-left text-left'
@@ -32,7 +32,7 @@
         </span>
         <strong
           v-else
-          class="text-dark"
+          class="text-dark d-block myuw-text-md"
         >
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
@@ -44,12 +44,11 @@
       md="9"
       lg="8"
     >
-      <div
-        class="row float-md-right"
-      >
+      <div class="row float-md-right">
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap
+          myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -58,13 +57,14 @@
           href="/accounts/"
         >
           Student Husky
-          <strong class="text-dark">
+          <strong class="text-dark d-block myuw-text-md">
             ${{ hfs.student_husky_card.balance.toFixed(2) }}
           </strong>
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap
+          myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -73,14 +73,15 @@
           href="/accounts/"
         >
           Resident Dining
-          <strong class="text-dark">
+          <strong class="text-dark d-block myuw-text-md">
             ${{ hfs.resident_dining.balance.toFixed(2) }}
           </strong>
         </a>
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap
+          myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -89,13 +90,14 @@
           href="/accounts/"
         >
           Employee Husky
-          <strong class="text-dark">
+          <strong class="text-dark d-block myuw-text-md">
             ${{ hfs.employee_husky_card.balance.toFixed(2) }}
           </strong>
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap
+          myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -104,13 +106,14 @@
           href="/accounts/"
         >
           Library Item Due
-          <strong class="text-dark">
+          <strong class="text-dark d-block myuw-text-md">
             {{ toFromNowDate(library.next_due) }}
           </strong>
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col px-3 py-2 text-secondary text-nowrap"
+          class="d-inline-block col px-3 py-2 text-secondary text-nowrap
+          myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -121,7 +124,7 @@
           aria-label="Library Account Requests"
         >
           Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
-          <strong class="text-dark">
+          <strong class="text-dark d-block myuw-text-md">
             {{ library.holds_ready }}
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
           </strong>
@@ -184,12 +187,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.myuw-account-summaries {
-  font-size: 0.85rem;
-
-  strong {
-    font-size: 0.95rem;
-    display: block;
-  }
-}
 </style>
