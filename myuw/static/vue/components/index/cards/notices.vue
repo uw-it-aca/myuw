@@ -1,7 +1,9 @@
 <template>
   <uw-card :loaded="isReady">
     <template #card-heading>
-      <h3 class="myuw-card-header">Notices</h3>
+      <h3 class="myuw-card-header">
+        Notices
+      </h3>
     </template>
     <template
       v-if="!isErrored"
