@@ -13,7 +13,7 @@
       </li>
       <li>
         <a
-          v-if="J1"
+          v-if="visaJ1"
           href="https://iss.washington.edu/regulations/j1/"
           target="_blank"
           aria-label="Visa and Immigration Rules"
@@ -95,7 +95,7 @@ import {mapState} from 'vuex';
 
 export default {
   computed: mapState({
-    J1: (state) => state.user.affiliations.J1,
+    visaJ1: (state) => state.user.affiliations.J1,
   }),
 };
 </script>

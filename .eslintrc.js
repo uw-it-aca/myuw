@@ -26,6 +26,7 @@ module.exports = {
     // we should always disable console logs and debugging in production
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
+    "max-len": ["error", { "ignoreUrls": true, "ignoreStrings": true }],
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
