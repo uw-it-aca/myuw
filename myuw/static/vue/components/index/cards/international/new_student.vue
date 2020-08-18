@@ -40,7 +40,7 @@ export default {
     this.fetch();
   },
   methods: {
-    ...mapActions('notices', ['fetch', 'setRead']),
+    ...mapActions('notices', ['fetch']),
   },
 };
 </script>
