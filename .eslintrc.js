@@ -39,5 +39,6 @@ module.exports = {
     ],
     // TODO: This is not ideal and needs to fixed at some point
     "vue/no-v-html": "off",
+    "vue/max-attributes-per-line": "off",
   }
 };
