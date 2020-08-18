@@ -19,10 +19,8 @@
           aria-label="Visa and Immigration Rules"
         >Visa and Immigration Rules for J-1 students</a>
         <a
-          v-else
-          href="https://iss.washington.edu/regulations/f1/"
-          target="_blank"
-          aria-label="Visa and Immigration Rules"
+          v-else href="https://iss.washington.edu/regulations/f1/"
+          target="_blank" aria-label="Visa and Immigration Rules"
         >Visa and Immigration Rules for F-1 students</a>
       </li>
       <li>
