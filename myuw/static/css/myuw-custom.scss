@@ -5,6 +5,8 @@
 // override max width of containers
 $container-max-widths: map.merge($container-max-widths, (xl: 1200px));
 
+$enable-responsive-font-sizes: true;
+
 // override the boostrap gutter from 30px to 20px
 $grid-gutter-width: 20px;
 

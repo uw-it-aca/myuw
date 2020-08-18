@@ -14,7 +14,7 @@
       </p>
       <ul
         v-else
-        class="list-unstyled mb-0 myuw-notice-list"
+        class="list-unstyled mb-0"
       >
         <li
           v-for="notice in notices"
@@ -112,7 +112,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.myuw-notice-list {
-  //font-size: 0.95rem;
-}
 </style>
