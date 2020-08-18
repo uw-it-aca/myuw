@@ -12,14 +12,12 @@
         >Travel and Visas</a>
       </li>
       <li>
-        <a
-          v-if="user.affiliations.J1"
+        <a v-if="J1"
           href="https://iss.washington.edu/regulations/j1/"
           target="_blank"
           aria-label="Visa and Immigration Rules"
         >Visa and Immigration Rules for J-1 students</a>
-        <a
-          v-else
+        <a v-else
           href="https://iss.washington.edu/regulations/f1/"
           target="_blank"
           aria-label="Visa and Immigration Rules"
@@ -95,7 +93,7 @@ import {mapState} from 'vuex';
 
 export default {
   computed: mapState({
-    user: (state) => state.user,
+      J1: (state) => state.user.affiliations.J1,
   }),
 };
 </script>

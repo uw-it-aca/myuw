@@ -1,19 +1,18 @@
 <template>
   <uw-card
-    v-if="user.affiliations.intl_stud"
+    v-if="intl_stud"
     :loaded="true"
   >
     <template #card-heading>
       <h3>International Student</h3>
     </template>
     <template
-      v-if="user.affiliations.seattle ||
-        user.affiliations.bothell || user.affiliations.tacoma"
+      v-if="seattle || bothell || tacoma"
       #card-body
     >
-      <uw-seattle v-if="user.affiliations.seattle" />
-      <uw-bothell v-if="user.affiliations.bothell" />
-      <uw-tacoma v-if="user.affiliations.tacoma" />
+      <uw-seattle v-if="seattle" />
+      <uw-bothell v-if="bothell" />
+      <uw-tacoma v-if="tacoma" />
     </template>
     <template
       v-else
@@ -56,7 +55,10 @@ export default {
     'uw-tacoma': Tacoma,
   },
   computed: mapState({
-    user: (state) => state.user,
+      seattle: (state) => state.user.affiliations.seattle,
+      bothell: (state) => state.user.affiliations.bothell,
+      tacoma: (state) => state.user.affiliations.tacoma,
+      intl_stud: (state) => state.user.affiliations.intl_stud,
   }),
 };
 </script>
