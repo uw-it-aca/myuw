@@ -1,9 +1,6 @@
 <template>
-  <b-row class="mb-3">
-    <b-col
-      md="3"
-      lg="4"
-    >
+  <b-row class="mb-3" :class="[$mq == 'tablet' ? 'mt-3' : '']">
+    <b-col md="3" lg="4">
       <a
         v-if="termData"
         class="d-block px-3 py-2 text-secondary text-nowrap myuw-text-sm"
@@ -16,9 +13,9 @@
       >
         <font-awesome-icon :icon="['far', 'calendar-alt']" />
         <span v-if="termData.isBreak">
-          <span
-            v-if="termData.breakYear !== termData.year"
-          >{{ termData.year }} / {{ termData.breakYear }}</span>
+          <span v-if="termData.breakYear !== termData.year">
+            {{ termData.year }} / {{ termData.breakYear }}
+          </span>
           <span v-else>{{ termData.year }}</span>
         </span>
         <span v-else>
@@ -30,20 +27,13 @@
           {{ ucfirst(termData.breakQuarter) }}
           Break
         </span>
-        <strong
-          v-else
-          class="text-dark d-block myuw-text-md"
-        >
+        <strong v-else class="text-dark d-block myuw-text-md">
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
         </strong>
       </a>
     </b-col>
-    <b-col
-      v-if="isHfsReady && isLibraryReady"
-      md="9"
-      lg="8"
-    >
+    <b-col v-if="isHfsReady && isLibraryReady" md="9" lg="8">
       <div class="row float-md-right">
         <a
           v-if="hfs.student_husky_card"
@@ -186,5 +176,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

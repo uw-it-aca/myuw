@@ -374,10 +374,10 @@ body {
   min-width: 320px;
 }
 
-// text sizing utilities
-.myuw-text-md { font-size: .95rem !important; }
-.myuw-text-sm { font-size: .85rem !important; }
-.myuw-text-xs { font-size: .75rem !important; }
+// text sizing utilities (base 16px)
+.myuw-text-md { font-size: .95rem !important; } //15.2px
+.myuw-text-sm { font-size: .85rem !important; } //13.6px
+.myuw-text-xs { font-size: .75rem !important; } //12px
 
 // boilerplate
 .myuw-override {

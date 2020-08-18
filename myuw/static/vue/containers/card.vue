@@ -14,7 +14,7 @@
       <!-- TODO: replace this with a cog -->
       <b-spinner
         small
-        variant="secondary"
+        variant="muted"
         class="my-auto"
         label="Loading..."
       />
