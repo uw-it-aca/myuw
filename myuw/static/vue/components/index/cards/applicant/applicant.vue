@@ -1,5 +1,5 @@
 <template>
-  <div v-if="applicant">
+  <div v-if="applicant && !registeredStud">
     <uw-seattle :applicant-data="seattleApplicant" :is-ready="isReady" />
     <uw-bothell :applicant-data="bothellApplicant" :is-ready="isReady" />
     <uw-tacoma :applicant-data="tacomaApplicant" :is-ready="isReady" />
@@ -21,6 +21,7 @@ export default {
   computed: {
     ...mapState({
       applicant: (state) => state.user.affiliations.applicant,
+      registeredStud: (state) => state.user.affiliations.registered_stud,
       seattleApplicant: (state) =>
         state.applicant.value.filter((applicant) => applicant.is_seattle)[0],
       bothellApplicant: (state) =>
