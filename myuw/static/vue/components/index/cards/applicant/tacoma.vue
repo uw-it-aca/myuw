@@ -12,7 +12,7 @@
       </h3>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h4 class="myuw-card-header">
+      <h4 class="h5 mb-3 myuw-card-header">
         For application status, contact the UW Tacoma Office of Registrar
       </h4>
       <b-container>
@@ -41,7 +41,7 @@
           </b-col>
         </b-row>
       </b-container>
-      <h4 class="myuw-card-header">
+      <h4 class="h5 mb-3 myuw-card-header">
         Resources for Tacoma Applicants
       </h4>
       <ul class="list-unstyled myuw-text-md">
@@ -74,7 +74,7 @@
       >
         View your {{ applicantData.type }} application status
       </a>
-      <h4 class="myuw-card-header">
+      <h4 class="h5 mb-3 myuw-card-header">
         Resources for Tacoma Applicants
       </h4>
       <h5 class="h6">

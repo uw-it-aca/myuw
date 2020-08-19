@@ -12,7 +12,7 @@
       </h3>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h4 class="myuw-card-header">
+      <h4 class="h5 mb-3 myuw-card-header">
         For application status, contact the UW Bothell Office of Admissions
       </h4>
       <b-container>
@@ -29,7 +29,7 @@
           <b-col>10909 NE 185th St <br>Bothell, WA 98011<br>Box 358500</b-col>
         </b-row>
       </b-container>
-      <h4 class="myuw-card-header">
+      <h4 class="h5 mb-3 myuw-card-header">
         Resources for Bothell Applicants
       </h4>
       <ul class="list-unstyled myuw-text-md">
