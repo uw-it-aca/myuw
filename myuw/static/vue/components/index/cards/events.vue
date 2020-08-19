@@ -68,13 +68,13 @@
               See all events from:
               <ul>
                 <li v-for="(event, i) in calLinks" :key="i">
-                  <a :href="event.url">{{event.title}}</a>
+                  <a :href="event.url">{{ event.title }}</a>
                 </li>
               </ul>
             </div>
             <div v-else>
               See all events from <a :href="calLinks[0].url">
-                {{calLinks[0].title}}
+                {{ calLinks[0].title }}
               </a> calendar.
             </div>
           </b-collapse>
@@ -90,13 +90,13 @@
             See all events from:
             <ul>
               <li v-for="(event, i) in calLinks" :key="i">
-                <a :href="event.url">{{event.title}}</a>
+                <a :href="event.url">{{ event.title }}</a>
               </li>
             </ul>
           </div>
           <div v-else>
             See all events from <a :href="calLinks[0].url">
-              {{calLinks[0].title}}
+              {{ calLinks[0].title }}
             </a> calendar.
           </div>
         </div>
@@ -104,22 +104,22 @@
       <div v-else>
         <div v-if="futureCalLinks.length > 0">
           No events in the next 14 days.
-          <strong>{{futureCalCount}}</strong>
-          {{futureCalCount > 1 ? 'events' : 'event'}}
-          from {{futureCalLinks.length}} calendars in the next 30 days.
+          <strong>{{ futureCalCount }}</strong>
+          {{ futureCalCount > 1 ? 'events' : 'event' }}
+          from {{ futureCalLinks.length }} calendars in the next 30 days.
           <ul>
             <li v-for="(event, i) in futureCalLinks" :key="i">
-              <a :href="event.url">{{event.title}}</a>
+              <a :href="event.url">{{ event.title }}</a>
             </li>
           </ul>
         </div>
         <div v-else>
           No events in the next 14 days.
-          <strong>{{futureCalCount}}</strong>
-          {{futureCalCount > 1 ? 'events' : 'event'}}
+          <strong>{{ futureCalCount }}</strong>
+          {{ futureCalCount > 1 ? 'events' : 'event' }}
           from
           <span v-for="(event, i) in futureCalLinks" :key="i">
-            <a :href="event.url">{{event.title}}</a>
+            <a :href="event.url">{{ event.title }}</a>
           </span>
           in the next 30 days.
         </div>
