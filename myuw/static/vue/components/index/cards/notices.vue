@@ -39,7 +39,9 @@
               v-if="!notice.is_read"
               variant="warning"
               class="notice-status font-weight-normal float-right float-sm-none"
-            >New</b-badge>
+            >
+              New
+            </b-badge>
           </div>
           <b-collapse
             :id="notice.id_hash"
