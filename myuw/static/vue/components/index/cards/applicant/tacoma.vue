@@ -1,16 +1,18 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="applicantData.is_returning" #card-heading>
-      <h3>Your Returning Student Application</h3>
+      <h3 class="myuw-card-header">
+        Your Returning Student Application
+      </h3>
     </template>
     <template v-else #card-heading>
-      <h3>
+      <h3 class="myuw-card-header">
         Your Tacoma Application for
         {{ ucfirst(applicantData.quarter) }} {{ applicantData.year }}
       </h3>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h4>
+      <h4 class="myuw-card-header">
         For application status, contact the UW Tacoma Office of Registrar
       </h4>
       <b-container>
@@ -39,8 +41,10 @@
           </b-col>
         </b-row>
       </b-container>
-      <h4>Resources for Tacoma Applicants</h4>
-      <ul>
+      <h4 class="myuw-card-header">
+        Resources for Tacoma Applicants
+      </h4>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="http://www.tacoma.uw.edu/node/36610"
              target="_blank" aria-label="Financial Aid"
@@ -65,14 +69,18 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
+      <a class="btn btn-outline-secondary my-4" href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
          aria-label="Your application status details"
       >
         View your {{ applicantData.type }} application status
       </a>
-      <h4>Resources for Tacoma Applicants</h4>
-      <h5>ADMISSIONS</h5>
-      <ul>
+      <h4 class="myuw-card-header">
+        Resources for Tacoma Applicants
+      </h4>
+      <h5 class="h6">
+        ADMISSIONS
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a
             href="http://www.tacoma.uw.edu/admissions/important-dates-deadlines-all-applicants"
@@ -83,8 +91,10 @@
           </a>
         </li>
       </ul>
-      <h5>FINANCES</h5>
-      <ul>
+      <h5 class="h6">
+        FINANCES
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="http://www.tacoma.uw.edu/node/20240"
              target="_blank" aria-label="Applying for a financial Aid"
@@ -101,8 +111,10 @@
           </a>
         </li>
       </ul>
-      <h5>STUDENT LIFE</h5>
-      <ul>
+      <h5 class="h6">
+        STUDENT LIFE
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="http://www.tacoma.uw.edu/admissions/visit"
              target="_blank" aria-label="Tacoma Campus Tours"
@@ -134,8 +146,10 @@
           </a>
         </li>
       </ul>
-      <h5>IF ADMITTED</h5>
-      <ul>
+      <h5 class="h6">
+        IF ADMITTED
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="http://www.tacoma.uw.edu/admissions/i-was-admitted-now-what"
              target="_blank" aria-label="Next Steps for Admitted Students"

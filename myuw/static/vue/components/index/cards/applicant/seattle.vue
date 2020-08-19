@@ -1,16 +1,18 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="applicantData.is_returning" #card-heading>
-      <h3>Your Returning Student Application</h3>
+      <h3 class="myuw-card-header">
+        Your Returning Student Application
+      </h3>
     </template>
     <template v-else #card-heading>
-      <h3>
+      <h3 class="myuw-card-header">
         Your Seattle Application for
         {{ ucfirst(applicantData.quarter) }} {{ applicantData.year }}
       </h3>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h4>
+      <h4 class="myuw-card-header">
         For application status, contact the Office of the University Registrar
       </h4>
       <b-container>
@@ -28,7 +30,9 @@
         </b-row>
       </b-container>
 
-      <h4>Registration for Returning Student</h4>
+      <h4 class="myuw-card-header">
+        Registration for Returning Student
+      </h4>
       <p>
         You must confirm your intent to attend prior to being able to register.
       </p>
@@ -40,8 +44,10 @@
         >Academic calendar</a>.
       </p>
 
-      <h4>Resources for Seattle Applicants</h4>
-      <ul>
+      <h4 class="myuw-card-header">
+        Resources for Seattle Applicants
+      </h4>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a
             href="https://www.washington.edu/financialaid/"
@@ -67,15 +73,19 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
+      <a class="btn btn-outline-secondary my-4" href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
          aria-label="Your application status details"
       >
         View your {{ applicantData.type }} application status
       </a>
 
-      <h4>Resources for Seattle Applicants</h4>
-      <h5>ADMISSIONS</h5>
-      <ul>
+      <h4 class="h5 myuw-card-header">
+        Resources for Seattle Applicants
+      </h4>
+      <h5 class="h6">
+        ADMISSIONS
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li v-if="applicantData.is_freshman">
           <a href="https://admit.washington.edu/apply/dates-deadlines/"
              target="_blank" aria-label="Key dates &amp; deadlines for freshmen"
@@ -101,8 +111,10 @@
         </li>
       </ul>
 
-      <h5>FINANCES</h5>
-      <ul>
+      <h5 class="h6">
+        FINANCES
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="https://www.washington.edu/financialaid/"
              target="_blank" aria-label="Student Financial Aid"
@@ -119,8 +131,10 @@
         </li>
       </ul>
 
-      <h5>STUDENT LIFE</h5>
-      <ul>
+      <h5 class="h6">
+        STUDENT LIFE
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="http://admit.washington.edu/Visit"
              target="_blank" aria-label="Seattle Campus Tours"
@@ -144,8 +158,10 @@
           </a>
         </li>
       </ul>
-      <h5>IF ADMITTED</h5>
-      <ul>
+      <h5 class="h6">
+        IF ADMITTED
+      </h5>
+      <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="http://www.washington.edu/newhuskies/must-do/"
              target="_blank" aria-label="Next steps for Admitted students"
