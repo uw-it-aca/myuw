@@ -33,6 +33,7 @@ export default {
           notice.location_tags.includes('checklist_fiuts'),
         );
       },
+      internationalStudent: (state) => state.user.affiliations.intl_stud,
     }),
     ...mapGetters('notices', {
       isReady: 'isReady',

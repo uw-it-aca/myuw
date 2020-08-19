@@ -178,6 +178,13 @@ describe('New International Student Card', () => {
     store = new Vuex.Store({
       modules: {
         "notices": Notices,
+      },
+      state: {
+        user: {
+          affiliations: {
+            intl_stud: true,
+          }
+        }
       }
     });
   });
