@@ -30,16 +30,16 @@
               </span>
               <b-link
                 v-b-toggle="notice.id_hash"
-                class="p-0 notice-link"
+                class="p-0 notice-link mr-1"
                 variant="link"
                 v-html="notice.notice_title"
               />
-              <b-badge
-                v-if="!notice.is_read"
-                variant="warning"
-                class="font-weight-normal"
-              >New</b-badge>
             </span>
+            <b-badge
+              v-if="!notice.is_read"
+              variant="warning"
+              class="notice-status font-weight-normal float-right float-sm-none"
+            >New</b-badge>
           </div>
           <b-collapse
             :id="notice.id_hash"
