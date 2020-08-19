@@ -58,7 +58,7 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a class="btn btn-outline-secondary my-4" href="https://admissions.uwb.edu/apply/status"
+      <a class="btn btn-outline-secondary text-dark my-4" href="https://admissions.uwb.edu/apply/status"
          aria-label="Your application status details"
       >
         View your {{ applicantData.type }} application status and checklist
