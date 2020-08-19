@@ -77,6 +77,11 @@ const store = new Vuex.Store({
     ),
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },
+  mutations: {
+    addVarToState (state, {name, value}) {
+      state[name] = value;
+    }
+  }
 });
 
 const vueConf = {

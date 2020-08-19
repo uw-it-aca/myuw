@@ -18,8 +18,14 @@ vueConf.store.registerModule('hfs', hfs);
 vueConf.store.registerModule('library', library);
 vueConf.store.registerModule('applicant', applicant);
 
-vueConf.store.state['termData'] = window.term_data;
-vueConf.store.state['pageTitle'] = 'Home';
+vueConf.store.commit('addVarToState', {
+  name: 'termData',
+  value: window.term_data
+});
+vueConf.store.commit('addVarToState', {
+  name: 'pageTitle',
+  value: 'Home'
+});
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
