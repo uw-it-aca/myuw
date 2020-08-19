@@ -20,28 +20,32 @@
           v-for="notice in notices"
           :key="notice.id_hash"
         >
-          <div class="notice-container">
-            <span class="notice-title">
-              <span
-                v-if="notice.is_critical"
-                class="font-weight-bold text-danger notice-critical"
-              >
-                Critical:
+          <div class="d-flex d-sm-inline-flex notice-container">
+            <div class="flex-grow-1 pr-1">
+              <span class="notice-title">
+                <span
+                  v-if="notice.is_critical"
+                  class="font-weight-bold text-danger notice-critical"
+                >
+                  Critical:
+                </span>
+                <b-link
+                  v-b-toggle="notice.id_hash"
+                  class="p-0 notice-link"
+                  variant="link"
+                  v-html="notice.notice_title"
+                />
               </span>
-              <b-link
-                v-b-toggle="notice.id_hash"
-                class="p-0 notice-link"
-                variant="link"
-                v-html="notice.notice_title"
-              />
-            </span>
-            <b-badge
-              v-if="!notice.is_read"
-              variant="warning"
-              class="notice-status font-weight-normal float-right float-sm-none"
-            >
-              New
-            </b-badge>
+            </div>
+            <div>
+              <b-badge
+                v-if="!notice.is_read"
+                variant="warning"
+                class="font-weight-normal notice-status"
+              >
+                New
+              </b-badge>
+            </div>
           </div>
           <b-collapse
             :id="notice.id_hash"
