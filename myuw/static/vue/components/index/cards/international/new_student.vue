@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="!isReady || notices.length > 0" :loaded="isReady">
     <template #card-heading>
-      <h3 class="myuw-card-heading">
+      <h3 class="myuw-card-header">
         International Student Resources
       </h3>
     </template>

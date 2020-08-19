@@ -41,7 +41,7 @@
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-left text-left myuw-min-width-25'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -57,7 +57,7 @@
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-left text-left myuw-min-width-25'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -74,7 +74,7 @@
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-left text-left myuw-min-width-25'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -90,7 +90,7 @@
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-left text-left myuw-min-width-25'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -106,7 +106,7 @@
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-left text-left myuw-min-width-25'
               : 'border-none text-center',
           ]"
           href="https://search.lib.uw.edu/account"
@@ -176,4 +176,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.myuw-min-width-25 {
+    min-width: 25%;
+  }
+</style>
