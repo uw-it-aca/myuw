@@ -2,17 +2,23 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
+// override max width of containers
 $container-max-widths: map.merge($container-max-widths, (xl: 1200px));
 
-// override the boostrap gutter from 30px to 20px
-$grid-gutter-width: 16px;
+// enable responsive font sizing
+//$enable-responsive-font-sizes: true;
 
+// override the boostrap gutter from 30px to 20px
+$grid-gutter-width: 20px;
+
+// override theme colors
 $theme-colors: (
   'primary': #4d307f,
   'danger': #a94442,
   'warning': #f5d300
 );
 
+// override all links
 $link-color: #4d66ca; //a11y blue
 
 @import "~bootstrap/scss/bootstrap";

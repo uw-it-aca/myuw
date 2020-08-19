@@ -1,19 +1,25 @@
 <template>
   <div>
     <header>
-      <div v-if="disableActions" id="actions_disabled_banner">
-        <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
-        Overriding is read-only and no actions will be saved. &nbsp;&nbsp;
-        <a href="/support/" style="font-weight: normal; color: #003399;">
-          Back to MyUW Support tool
-        </a>
+      <div
+        v-if="disableActions"
+        id="actions_disabled_banner"
+        class="myuw-override myuw-text-md"
+      >
+        <b-container fluid="xl" class="py-2 text-center">
+          <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
+          Overriding is read-only and no actions will be saved.
+          <a href="/support/">
+            Back to MyUW Support tool
+          </a>
+        </b-container>
       </div>
 
       <b-collapse id="app_search" class="myuw-search">
         this is search
       </b-collapse>
 
-      <div class="myuw-thin-bar">
+      <div class="myuw-thin-bar myuw-text-sm">
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
@@ -80,10 +86,14 @@
             class="d-lg-none p-0 text-white"
           >
             <font-awesome-layers class="fa-2x">
-              <font-awesome-icon :icon="['far', 'square']" class="m-0" />
+              <font-awesome-icon
+                :icon="['far', 'square']"
+                transform="right-1"
+                class="m-0"
+              />
               <font-awesome-icon
                 :icon="['fas', 'bars']"
-                transform="shrink-8"
+                transform="shrink-8 right-1 "
                 class="m-0"
               />
             </font-awesome-layers>
@@ -234,7 +244,7 @@
       </b-container>
     </div>
 
-    <footer class="pt-3 pb-3 myuw-footer">
+    <footer class="pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1">
@@ -325,14 +335,29 @@ body {
   min-width: 320px;
 }
 
+// text sizing utilities (base 16px)
+.myuw-text-md {
+  font-size: 0.95rem !important;
+} //15.2px
+.myuw-text-sm {
+  font-size: 0.85rem !important;
+} //13.6px
+.myuw-text-xs {
+  font-size: 0.75rem !important;
+} //12px
+
 // boilerplate
+.myuw-override {
+  background: #ffbc24;
+}
+
 .myuw-search {
   background: red;
 }
+
 .myuw-thin-bar {
   background: #452a78;
   line-height: 40px;
-  font-size: 0.85rem;
   white-space: nowrap;
 }
 
@@ -374,7 +399,6 @@ body {
 
 .myuw-footer {
   background: #333;
-  font-size: 0.7rem;
   white-space: nowrap;
 
   ul {

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h4 class="myuw-card-heading">
+    <h4 class="h5 myuw-card-header">
       Visa and Immigration Rules
     </h4>
-    <ul class="unstyled-list">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="https://iss.washington.edu/travel-visas/"
@@ -19,8 +19,10 @@
           aria-label="Visa and Immigration Rules"
         >Visa and Immigration Rules for J-1 students</a>
         <a
-          v-else href="https://iss.washington.edu/regulations/f1/"
-          target="_blank" aria-label="Visa and Immigration Rules"
+          v-else
+          href="https://iss.washington.edu/regulations/f1/"
+          target="_blank"
+          aria-label="Visa and Immigration Rules"
         >Visa and Immigration Rules for F-1 students</a>
       </li>
       <li>
@@ -46,10 +48,10 @@
       </li>
     </ul>
 
-    <h4 class="myuw-card-heading">
+    <h4 class="h5 myuw-card-header">
       Academic Support
     </h4>
-    <ul class="unstyled-list">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="http://depts.washington.edu/aspuw/clue/home/"
@@ -73,10 +75,10 @@
       </li>
     </ul>
 
-    <h4 class="myuw-card-heading">
+    <h4 class="h5 myuw-card-header">
       Social Events
     </h4>
-    <ul class="unstyled-list">
+    <ul class="list-unstyled myuw-text-md">
       <li>
         <a
           href="http://www.fiuts.org/events"
