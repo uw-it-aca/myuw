@@ -110,11 +110,12 @@
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon
                 :icon="['far', 'square']"
+                transform="right-1"
                 class="m-0"
               />
               <font-awesome-icon
                 :icon="['fas', 'bars']"
-                transform="shrink-8"
+                transform="shrink-8 right-1 "
                 class="m-0"
               />
             </font-awesome-layers>
