@@ -1,30 +1,18 @@
 <template>
-  <uw-card
-    v-if="internationalStudent"
-    :loaded="true"
-  >
+  <uw-card v-if="internationalStudent" :loaded="true">
     <template #card-heading>
       <h3 class="mb-3 myuw-card-header">
         International Student
       </h3>
     </template>
-    <template
-      v-if="seattle || bothell || tacoma"
-      #card-body
-    >
+    <template v-if="seattle || bothell || tacoma" #card-body>
       <uw-seattle v-if="seattle" />
       <uw-bothell v-if="bothell" />
       <uw-tacoma v-if="tacoma" />
     </template>
-    <template
-      v-else
-      #card-body
-    >
+    <template v-else #card-body>
       <b-tabs>
-        <b-tab
-          title="Seattle"
-          active
-        >
+        <b-tab title="Seattle" active>
           <uw-seattle />
         </b-tab>
         <b-tab title="Bothell">
@@ -61,5 +49,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

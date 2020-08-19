@@ -6,48 +6,29 @@
         id="actions_disabled_banner"
         class="myuw-override myuw-text-md"
       >
-        <b-container
-          fluid="xl"
-          class="py-2 text-center"
-        >
+        <b-container fluid="xl" class="py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
-          Overriding is read-only and no actions will be saved. <a
-            href="/support/"
-          >
+          Overriding is read-only and no actions will be saved.
+          <a href="/support/">
             Back to MyUW Support tool
           </a>
         </b-container>
       </div>
 
-      <b-collapse
-        id="app_search"
-        class="myuw-search"
-      >
+      <b-collapse id="app_search" class="myuw-search">
         this is search
       </b-collapse>
 
       <div class="myuw-thin-bar myuw-text-sm">
-        <b-container
-          fluid="xl"
-          class="px-3"
-        >
+        <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
-              <b-link
-                href="/profile/"
-                class="text-white"
-              >
-                <font-awesome-icon
-                  :icon="['fas', 'user']"
-                  class="mr-2"
-                />
+              <b-link href="/profile/" class="text-white">
+                <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />
                 {{ netid }}
               </b-link>
             </b-col>
-            <b-col
-              xs="10"
-              class="text-right"
-            >
+            <b-col xs="10" class="text-right">
               <b-link
                 v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
@@ -97,10 +78,7 @@
       </div>
 
       <div class="myuw-brand">
-        <b-container
-          fluid="xl"
-          class="px-3 myuw-brand-logo"
-        >
+        <b-container fluid="xl" class="px-3 myuw-brand-logo">
           <b-button
             v-b-toggle.nav-collapse
             variant="link"
@@ -131,10 +109,7 @@
     </header>
 
     <div class="pt-4 pb-4 myuw-body">
-      <b-container
-        fluid="xl"
-        class="px-3"
-      >
+      <b-container fluid="xl" class="px-3">
         <b-row>
           <b-col lg="2">
             <!-- main sidebar navigation -->
@@ -154,10 +129,7 @@
                   :active="pageTitle == 'Home'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['fas', 'home']"
-                    class="mr-2"
-                  />Home
+                  <font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home
                 </b-nav-item>
                 <b-nav-item
                   v-if="(undergrad && seattle) || hxtViewer"
@@ -166,10 +138,7 @@
                   :active="pageTitle == 'Husky Experience'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['fas', 'paw']"
-                    class="mr-2"
-                  />Husky
+                  <font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky
                   Experience
                 </b-nav-item>
                 <b-nav-item
@@ -276,16 +245,10 @@
     </div>
 
     <footer class="pt-3 pb-3 myuw-footer myuw-text-xs">
-      <b-container
-        fluid="xl"
-        class="px-3"
-      >
+      <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1">
-            <b-link
-              :href="mailToUrl + netid"
-              class="text-white"
-            >
+            <b-link :href="mailToUrl + netid" class="text-white">
               <font-awesome-icon
                 :icon="['fas', 'envelope']"
                 class="mr-1"
@@ -301,10 +264,7 @@
             </b-link>
           </li>
           <li class="list-inline-item mr-1 d-lg-none">
-            <b-link
-              href="/logout/"
-              class="text-white"
-            >
+            <b-link href="/logout/" class="text-white">
               Sign Out
             </b-link>
           </li>
@@ -376,9 +336,15 @@ body {
 }
 
 // text sizing utilities (base 16px)
-.myuw-text-md { font-size: .95rem !important; } //15.2px
-.myuw-text-sm { font-size: .85rem !important; } //13.6px
-.myuw-text-xs { font-size: .75rem !important; } //12px
+.myuw-text-md {
+  font-size: 0.95rem !important;
+} //15.2px
+.myuw-text-sm {
+  font-size: 0.85rem !important;
+} //13.6px
+.myuw-text-xs {
+  font-size: 0.75rem !important;
+} //12px
 
 // boilerplate
 .myuw-override {
