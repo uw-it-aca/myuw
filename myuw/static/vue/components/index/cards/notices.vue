@@ -30,7 +30,7 @@
               </span>
               <b-link
                 v-b-toggle="notice.id_hash"
-                class="p-0 notice-link mr-1"
+                class="p-0 notice-link"
                 variant="link"
                 v-html="notice.notice_title"
               />
