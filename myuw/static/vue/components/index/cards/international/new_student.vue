@@ -1,7 +1,10 @@
 <template>
-  <uw-card v-if="!isReady || notices.length > 0" :loaded="isReady">
+  <uw-card
+    v-if="(!isReady || notices.length > 0) && internationalStudent"
+    :loaded="isReady"
+  >
     <template #card-heading>
-      <h3 class="myuw-card-heading">
+      <h3 class="myuw-card-header">
         International Student Resources
       </h3>
     </template>
@@ -30,6 +33,7 @@ export default {
           notice.location_tags.includes('checklist_fiuts'),
         );
       },
+      internationalStudent: (state) => state.user.affiliations.intl_stud,
     }),
     ...mapGetters('notices', {
       isReady: 'isReady',

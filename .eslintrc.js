@@ -18,8 +18,6 @@ module.exports = {
     // use the recommended rule set for both plain javascript and vue
     'eslint:recommended',
     'google',
-    'plugin:vue/essential',
-    'plugin:vue/strongly-recommended',
     'plugin:vue/recommended',
     'plugin:jest/recommended',
   ],
