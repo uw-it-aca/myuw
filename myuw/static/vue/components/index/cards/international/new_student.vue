@@ -1,5 +1,8 @@
 <template>
-  <uw-card v-if="!isReady || notices.length > 0" :loaded="isReady">
+  <uw-card
+    v-if="(!isReady || notices.length > 0) && internationalStudent"
+    :loaded="isReady"
+  >
     <template #card-heading>
       <h3 class="myuw-card-header">
         International Student Resources
