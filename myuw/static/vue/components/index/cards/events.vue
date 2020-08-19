@@ -6,7 +6,7 @@
       </h3>
     </template>
     <template v-if="!isErrored" #card-body>
-      <div v-if="shownEvents.length > 0">
+      <div v-if="shownEvents && shownEvents.length > 0">
         <div>Showing events in the next 14 days.</div>
         <ul>
           <li v-for="(event, i) in shownEvents" :key="i">
@@ -35,7 +35,7 @@
             </span>
           </li>
         </ul>
-        <div v-if="hiddenEvents.length > 0">
+        <div v-if="hiddenEvents && hiddenEvents.length > 0">
           <b-collapse id="hidden_events_collapse">
             <ul>
               <li v-for="(event, i) in hiddenEvents" :key="i">
@@ -86,7 +86,7 @@
           </a>
         </div>
         <div v-else>
-          <div v-if="calLinks.length > 0">
+          <div v-if="calLinks && calLinks.length > 0">
             See all events from:
             <ul>
               <li v-for="(event, i) in calLinks" :key="i">
@@ -147,7 +147,6 @@ export default {
     ...mapState({
       shownEvents: (state) => state.events.value.shownEvents,
       hiddenEvents: (state) => state.events.value.hiddenEvents,
-      needsDisclosure: (state) => state.events.value.needsDisclosure,
       futureCalCount: (state) => state.events.value.futureCalCount,
       futureCalLinks: (state) => state.events.value.futureCalLinks,
       calLinks: (state) => state.events.value.calLinks,
