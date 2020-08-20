@@ -47,6 +47,20 @@ const postProcess = (respose) => {
   });
 };
 
+const customGetters = {
+  hasRegisterNotices: (state) => {
+    return state.value.filter(
+        (notice) => notice.location_tags.includes('checklist_no_orient') ||
+          notice.location_tags.includes('checklist_orient_after') ||
+          notice.location_tags.includes('checklist_iss_before') ||
+          notice.location_tags.includes('checklist_iss_after') ||
+          notice.location_tags.includes('checklist_measles_before') ||
+          notice.location_tags.includes('checklist_measles_after') ||
+          notice.location_tags.includes('checklist_orient_before'),
+    ).length > 0;
+  },
+}
+
 const customMutations = {
   setReadTrue(state, notice) {
     notice.is_read = true;
@@ -68,5 +82,5 @@ const customActions = {
 export default buildWith(
     '/api/v1/notices/',
     postProcess,
-    {customMutations, customActions},
+    {customGetters, customMutations, customActions},
 );

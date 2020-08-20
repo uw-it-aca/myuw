@@ -81,22 +81,12 @@ export default {
 
         return isResident;
       },
-      hasRegisterNotices: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_no_orient') ||
-              notice.location_tags.includes('checklist_orient_after') ||
-              notice.location_tags.includes('checklist_iss_before') ||
-              notice.location_tags.includes('checklist_iss_after') ||
-              notice.location_tags.includes('checklist_measles_before') ||
-              notice.location_tags.includes('checklist_measles_after') ||
-              notice.location_tags.includes('checklist_orient_before'),
-        ).length > 0;
-      },
       student: (state) => state.user.affiliations.student,
     }),
     ...mapGetters('notices', {
       isReady: 'isReady',
       isErrored: 'isErrored',
+      hasRegisterNotices: 'hasRegisterNotices',
     }),
   },
   created() {
