@@ -4,8 +4,8 @@ import Boilerplate from './containers/boilerplate.vue';
 import Summaries from './components/index/summaries.vue';
 import Notices from './components/index/cards/notices.vue';
 import InterStudent from './components/index/cards/international/student.vue';
-import NewInterStudent from 
-  './components/index/cards/international/new_student.vue';
+import NewInterStudent from
+  './components/index/cards/international/new-student.vue';
 import Applicant from './components/index/cards/applicant/applicant.vue';
 
 import notices from './store/notices';
