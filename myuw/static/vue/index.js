@@ -7,7 +7,7 @@ import InterStudent from './components/index/cards/international/student.vue';
 import NewInterStudent from 
   './components/index/cards/international/new_student.vue';
 import Applicant from './components/index/cards/applicant/applicant.vue';
-import Events from './components/index/cards/events.vue';
+import Events from './components/index/cards/events/events.vue';
 
 import notices from './store/notices';
 import hfs from './store/hfs';
