@@ -6,7 +6,8 @@ import {statusOptions} from '../store/model_builder';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import events from '../store/events';
-import EventsCard from '../components/index/cards/events.vue';
+import EventsCard from '../components/index/cards/events/events.vue';
+import ListEvents from '../components/index/cards/events/list-events.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
@@ -91,7 +92,13 @@ describe('Events Card', () => {
 
   it('acalDateFormat', async () => {
     axios.get.mockResolvedValue({data: mockEvents});
-    const wrapper = mount(EventsCard, {store, localVue});
+    const wrapper = mount(ListEvents, {
+      store, 
+      localVue,
+      propsData: {
+        events: [],
+      }
+    });
 
     await new Promise((r) => setTimeout(r, 10));
     expect(

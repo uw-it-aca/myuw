@@ -3,8 +3,8 @@
     <slot name="card-heading" />
     <slot name="card-body" />
     <slot name="card-disclosure" />
-    <template v-slot:footer
-              v-if="!!this.$slots['card-footer']"
+    <template v-if="!!this.$slots['card-footer']"
+              v-slot:footer
               footer-tag="footer"
     >
       <slot name="card-footer" />
@@ -36,7 +36,7 @@ export default {
     errored: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data: function() {
     return {};

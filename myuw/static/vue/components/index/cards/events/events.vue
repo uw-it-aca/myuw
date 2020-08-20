@@ -53,8 +53,8 @@
     </template>
     <template v-if="hiddenEvents && hiddenEvents.length > 0" #card-footer>
       <button v-b-toggle.hidden_events_collapse
-          :aria-label="`Show ${hiddenEvents.length} more ${
-            hiddenEvents.length > 1 ? 'events' : 'event'}`"
+              :aria-label="`Show ${hiddenEvents.length} more ${
+                hiddenEvents.length > 1 ? 'events' : 'event'}`"
       >
         SHOW ({{ hiddenEvents.length }}) MORE
       </button>

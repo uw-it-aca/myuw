@@ -32,9 +32,9 @@
 export default {
   props: {
     events: {
-      type:  Array,
+      type: Array,
       required: true,
-    }
+    },
   },
   methods: {
     acalDateFormat(d1, d2) {
@@ -44,6 +44,6 @@ export default {
       }
       return formattedDate;
     },
-  }
-}
+  },
+};
 </script>
