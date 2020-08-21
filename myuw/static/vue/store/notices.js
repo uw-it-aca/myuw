@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {buildWith} from './model_builder';
+import {fetchBuilder, buildWith} from './model_builder';
 
 const postProcess = (response) => {
   const notices = response.data;
@@ -68,7 +68,7 @@ const customMutations = {
 };
 
 const customActions = {
-  setRead({commit, rootState}, notice) {
+  setRead: ({commit, rootState}, notice) => {
     axios.put('/api/v1/notices/', {
       'notice_hashes': [notice.id_hash],
     }, {
@@ -77,10 +77,9 @@ const customActions = {
       },
     }).then(() => commit('setReadTrue', notice)).catch(() => {});
   },
+  fetch: fetchBuilder('/api/v1/notices/', postProcess, 'json'),
 };
 
 export default buildWith(
-    '/api/v1/notices/',
-    postProcess,
-    {customGetters, customMutations, customActions},
+  {customMutations, customActions},
 );
