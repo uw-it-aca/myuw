@@ -1,8 +1,8 @@
 import axios from 'axios';
 import {buildWith} from './model_builder';
 
-const postProcess = (respose) => {
-  const notices = respose.data;
+const postProcess = (response) => {
+  const notices = response.data;
 
   const parser = new DOMParser();
   return notices.map((notice) => {
