@@ -1,5 +1,7 @@
 <template>
-  <uw-card :loaded="isReady" :errored="isErrored">
+  <uw-card v-if="(shownEvents && shownEvents.length > 0) || futureCalCount > 0"
+           :loaded="isReady" :errored="isErrored"
+  >
     <template #card-heading>
       <h3>
         Events
@@ -34,7 +36,7 @@
     </template>
     <!-- v-if condition is common with #card-footer -->
     <template v-if="hiddenEvents && hiddenEvents.length > 0" #card-disclosure>
-      <b-collapse id="hidden_events_collapse">
+      <b-collapse id="hidden_events_collapse" v-model="isOpen">
         <uw-list-events :events="hiddenEvents" />
         <div v-if="calLinks.length > 0">
           See all events from:
@@ -52,11 +54,16 @@
       </b-collapse>
     </template>
     <template v-if="hiddenEvents && hiddenEvents.length > 0" #card-footer>
-      <button v-b-toggle.hidden_events_collapse
+      <button v-if="!isOpen" v-b-toggle.hidden_events_collapse
               :aria-label="`Show ${hiddenEvents.length} more ${
                 hiddenEvents.length > 1 ? 'events' : 'event'}`"
       >
         SHOW ({{ hiddenEvents.length }}) MORE
+      </button>
+      <button v-else v-b-toggle.hidden_events_collapse
+              aria-label="Show less"
+      >
+        SHOW LESS
       </button>
     </template>
   </uw-card>
@@ -71,6 +78,11 @@ export default {
   components: {
     'uw-card': Card,
     'uw-list-events': ListEvents,
+  },
+  data: function() {
+    return {
+      isOpen: false,
+    };
   },
   computed: {
     ...mapState({
