@@ -45,7 +45,7 @@ services:
       context: .
       target: node-bundler
     environment:
-      NODE_ENV: development
+      NODE_ENV: producation
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
@@ -57,7 +57,7 @@ services:
       context: .
       target: node-bundler
     environment:
-      NODE_ENV: development
+      NODE_ENV: producation
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw

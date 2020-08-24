@@ -21,6 +21,7 @@ import {
   faExclamationTriangle,
   faGraduationCap,
   faBars,
+  faLocationArrow
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -49,6 +50,7 @@ library.add(faBookmark);
 library.add(faExclamationTriangle);
 library.add(faSquare);
 library.add(faBars);
+library.add(faLocationArrow);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -77,6 +79,11 @@ const store = new Vuex.Store({
     ),
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },
+  mutations: {
+    addVarToState (state, {name, value}) {
+      state[name] = value;
+    }
+  }
 });
 
 const vueConf = {

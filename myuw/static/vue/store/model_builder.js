@@ -44,7 +44,10 @@ const buildWith = (
         }).then(postProcess).then((data)=>{
           commit('setValue', data);
           commit('setStatus', statusOptions[0]);
-        }).catch(()=>{
+        }).catch((error)=>{
+          if (process.env.NODE_ENV === "development") {
+            console.log(error);
+          };
           commit('setStatus', statusOptions[2]);
         });
       }
