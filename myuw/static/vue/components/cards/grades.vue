@@ -81,8 +81,6 @@ export default {
   computed: {
     ...mapState({
       currentSummerTerm: (state) => state.cardDisplayDates.current_summer_term,
-      gradeSubmissionDeadline: (state) =>
-        state.courses.value.term.grade_submission_deadline,
       isAfterLastDayOfClasses: (state) =>
         state.cardDisplayDates.is_after_last_day_of_classes,
       isBeforeLastDayOfClasses: (state) =>
@@ -93,14 +91,17 @@ export default {
         state.cardDisplayDates.is_after_summer_b,
       isAfterGradeSubmissionDeadline: (state) =>
         state.cardDisplayDates.is_after_grade_submission_deadline,
-      sections: (state) => state.courses.value.sections,
+      courses: (state) => state.courses.value,
     }),
     ...mapGetters('courses', {
       isReady: 'isReady',
       isErrored: 'isErrored',
     }),
+    gradeSubmissionDeadline: function() {
+      return this.courses[this.term].term.grade_submission_deadline;
+    },
     filteredSections: function() {
-      return this.sections.filter((section) => {
+      return this.courses[this.term].sections.filter((section) => {
         let shouldDisplay = true;
 
         if (this.showOnlyATerm && section.summer_term !== 'A-term') {

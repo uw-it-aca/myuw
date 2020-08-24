@@ -15,7 +15,7 @@ const fetchBuilder = (url, postProcess, type) => {
         headers: {
           'Accept': 'text/html',
         },
-      }).then(postProcess).then((data)=>{
+      }).then((response) => postProcess(response, urlExtra)).then((data)=>{
         commit('setValue', data);
         commit('setStatus', statusOptions[0]);
       }).catch((error)=>{
