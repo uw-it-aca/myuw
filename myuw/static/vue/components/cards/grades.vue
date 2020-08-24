@@ -9,17 +9,17 @@
     </template>
     <template #card-body>
       <span v-if="!isAfterGradeSubmissionDeadline">
-        These grades are not official until 11:59 p.m. on 
-        {{toFriendlyDate(gradeSubmissionDeadline)}}.
+        These grades are not official until 11:59 p.m. on
+        {{ toFriendlyDate(gradeSubmissionDeadline) }}.
       </span>
       <ul>
         <li v-for="section in filteredSections" :key="section.course_number">
           <div :class="`bg-c${section.color_id} simplesquare`"
                aria-hidden="true"
           />
-          <span>{{section.curriculum_abbr}} {{section.course_number}}</span>
+          <span>{{ section.curriculum_abbr }} {{ section.course_number }}</span>
           <span v-if="section.grade === 'X'"> No grade yet</span>
-          <span>{{section.grade}}</span>
+          <span>{{ section.grade }}</span>
         </li>
       </ul>
     </template>
@@ -70,12 +70,12 @@ export default {
   components: {
     'uw-card': Card,
   },
-  data: function () {
+  data: function() {
     return {
       term: null,
       showOnlyATerm: false,
       isOpen: false,
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -117,7 +117,7 @@ export default {
 
         return shouldDisplay;
       });
-    }
+    },
   },
   mounted() {
     if (this.isAfterLastDayOfClasses) {
@@ -137,13 +137,13 @@ export default {
   methods: {
     toFriendlyDate(dateStr) {
       if (dateStr === undefined || dateStr.length === 0) {
-            return '';
+        return '';
       }
       return moment(dateStr).format('ddd, MMM D');
     },
     ...mapActions('courses', ['fetch']),
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
