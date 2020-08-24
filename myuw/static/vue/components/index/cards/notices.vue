@@ -65,10 +65,7 @@
       #card-body
     >
       <p class="text-danger">
-        <i
-          class="fa fa-exclamation-triangle"
-          aria-hidden="true"
-        />
+        <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
         An error occurred and MyUW cannot load your notices right now. Please
         try again later.
       </p>

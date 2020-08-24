@@ -4,12 +4,16 @@ import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import notices from '../store/notices';
 import NoticeCard from '../components/index/cards/notices';
+import {
+  FontAwesomeIcon,
+} from '@fortawesome/vue-fontawesome';
 
 import mockNotices from './mock_data/notices.json';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 localVue.use(Vuex);
+localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 jest.mock('axios');
 
@@ -106,9 +110,7 @@ describe('Notice Card', () => {
     const wrapper = mount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
-    expect(
-        notices.getters.isReady(wrapper.vm.$store.state.notices),
-    ).toBeTruthy();
+    expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.findAll('.p-0.notice-link')).toHaveLength(8);
     expect(wrapper.findAll('.collapse.show')).toHaveLength(0);

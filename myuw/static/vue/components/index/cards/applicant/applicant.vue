@@ -1,5 +1,5 @@
 <template>
-  <div v-if="applicant">
+  <div v-if="applicant && !isErrored">
     <uw-seattle :applicant-data="seattleApplicant" :is-ready="isReady" />
     <uw-bothell :applicant-data="bothellApplicant" :is-ready="isReady" />
     <uw-tacoma :applicant-data="tacomaApplicant" :is-ready="isReady" />
