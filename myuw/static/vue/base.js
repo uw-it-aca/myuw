@@ -86,6 +86,8 @@ const store = new Vuex.Store({
   }
 });
 
+Vue.config.devtools = true;
+
 const vueConf = {
   el: '#vue_root',
   created: function() {
