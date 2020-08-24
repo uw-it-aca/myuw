@@ -1,6 +1,7 @@
 <template>
-  <uw-card v-if="(!isReady || filteredSections.length > 0) && term"
-           :loaded="isReady" :errored="isErrored"
+  <uw-card
+    v-if="term && (!isReady || filteredSections.length > 0)"
+    :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
       <h3>
@@ -132,7 +133,7 @@ export default {
       this.term = this.currentSummerTerm;
       this.showOnlyATerm = true;
     }
-    this.fetch(this.term);
+    if (this.term) this.fetch(this.term);
   },
   methods: {
     toFriendlyDate(dateStr) {
