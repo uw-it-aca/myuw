@@ -3,7 +3,7 @@ import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import notices from '../store/notices';
-import CriticalInfoCard from '../components/index/cards/critical-info.vue';
+import CriticalInfoCard from '../components/index/cards/new_student/critical-info.vue';
 
 import mockNotices from './mock_data/notices.json';
 

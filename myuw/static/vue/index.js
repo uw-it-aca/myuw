@@ -3,7 +3,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './containers/boilerplate.vue';
 import Summaries from './components/index/summaries.vue';
 import Notices from './components/index/cards/notices.vue';
-import CriticalInfo from './components/index/cards/critical-info.vue';
+import CriticalInfo from './components/index/cards/new_student/critical-info.vue';
 import InterStudent from './components/index/cards/international/student.vue';
 import NewInterStudent from 
   './components/index/cards/international/new_student.vue';
@@ -25,10 +25,10 @@ vueConf.store.state['pageTitle'] = 'Home';
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
 Vue.component('myuw-notice-card', Notices);
-Vue.component('myuw-critical-info', CriticalInfo);
-Vue.component('myuw-international-student', InterStudent);
-Vue.component('myuw-new-international-student', NewInterStudent);
+Vue.component('myuw-ns-critical-info', CriticalInfo);
+Vue.component('myuw-ns-international-student', NewInterStudent);
 Vue.component('myuw-applicant', Applicant);
+Vue.component('myuw-international-student', InterStudent);
 
 new Vue({
   ...vueConf,

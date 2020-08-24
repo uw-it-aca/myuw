@@ -53,7 +53,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../../containers/card.vue';
+import Card from '../../../../containers/card.vue';
 
 export default {
   components: {
