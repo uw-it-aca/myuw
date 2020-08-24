@@ -92,10 +92,9 @@ export default {
         state.cardDisplayDates.is_after_summer_b,
       isAfterGradeSubmissionDeadline: (state) =>
         state.cardDisplayDates.is_after_grade_submission_deadline,
-      courses: (state) => state.courses.value, // Maybe remove this
       sections: (state) => state.courses.value.sections,
     }),
-    ...mapGetters('notices', {
+    ...mapGetters('courses', {
       isReady: 'isReady',
       isErrored: 'isErrored',
     }),
@@ -103,7 +102,7 @@ export default {
       return this.sections.filter((section) => {
         let shouldDisplay = true;
 
-        if (this.showOnlyATerm && section.summer_term !== "A-term") {
+        if (this.showOnlyATerm && section.summer_term !== 'A-term') {
           section.hide_for_early_summer_display = true;
           shouldDisplay = false;
         }
@@ -138,9 +137,9 @@ export default {
   methods: {
     toFriendlyDate(dateStr) {
       if (dateStr === undefined || dateStr.length === 0) {
-            return "";
+            return '';
       }
-      return moment(dateStr).format("ddd, MMM D");
+      return moment(dateStr).format('ddd, MMM D');
     },
     ...mapActions('courses', ['fetch']),
   },
