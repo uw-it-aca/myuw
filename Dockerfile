@@ -21,7 +21,7 @@ WORKDIR /app/
 RUN npm install .
 
 ADD . /app/
-RUN npx webpack --production
+RUN npx webpack --development
 
 FROM pre-container as app-container
 
