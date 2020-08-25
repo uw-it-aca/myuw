@@ -20,7 +20,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import mockCourses from './mock_data/courses.json';
-import courses from '../store/courses';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -145,6 +144,14 @@ describe('Events Card', () => {
 
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.find('h3').text()).toEqual('Final Grades');
+  });
+
+  it('Basic Render - 3', async () => {
+    axios.get.mockResolvedValue(Promise.reject("404"));
+    const wrapper = mount(GradesCard, {store, localVue});
+
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.find('h3').exists()).toBe(false);
   });
 
   it('toFriendlyDate', async () => {

@@ -125,8 +125,10 @@ export default {
     },
     showGradeCard: function() {
       return this.term && (
-        !this.isReady || (
-          this.courses[this.term].length > 0 &&
+        // This is done so that when there is a error it goes to the second
+        // if conditional
+        (!this.isReady && !this.isErrored) || (
+          this.term in this.courses &&
           this.filteredSections.length > 0
         )
       );
