@@ -46,7 +46,7 @@
           </p>
           <ul>
             <li v-for="(event, i) in calLinks" :key="i">
-              <a :href="event.base_url">{{ event.title }}</a>
+              <a :href="event.url">{{ event.title }}</a>
             </li>
           </ul>
         </div>
