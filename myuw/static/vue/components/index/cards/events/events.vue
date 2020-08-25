@@ -38,7 +38,7 @@
     <template v-if="hiddenEvents && hiddenEvents.length > 0" #card-disclosure>
       <b-collapse id="hidden_events_collapse" v-model="isOpen">
         <uw-list-events :events="hiddenEvents" />
-        <div v-if="calLinks.length > 0">
+        <div v-if="calLinks.length > 1">
           See all events from:
           <ul>
             <li v-for="(event, i) in calLinks" :key="i">
@@ -52,6 +52,22 @@
           </a> calendar.
         </div>
       </b-collapse>
+    </template>
+    <!-- Open disclosure -->
+    <template v-else #card-disclosure>
+      <div v-if="calLinks.length > 1">
+        See all events from:
+        <ul>
+          <li v-for="(event, i) in calLinks" :key="i">
+            <a :href="event.url">{{ event.title }}</a>
+          </li>
+        </ul>
+      </div>
+      <div v-else>
+        See all events from <a :href="calLinks[0].url">
+          {{ calLinks[0].title }}
+        </a> calendar.
+      </div>
     </template>
     <template v-if="hiddenEvents && hiddenEvents.length > 0" #card-footer>
       <button v-if="!isOpen" v-b-toggle.hidden_events_collapse
