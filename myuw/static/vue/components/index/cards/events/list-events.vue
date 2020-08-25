@@ -1,9 +1,9 @@
 <template>
-  <ul>
-    <li v-for="(event, i) in events" :key="i">
-      <span>
+  <ul class="list-unstyled mb-0 myuw-text-md">
+    <li v-for="(event, i) in events" :key="i" class="border-bottom pb-2 mb-2">
+      <strong>
         {{ acalDateFormat(event.start_date, event.end_date) }}
-      </span>
+      </strong>
       <div>
         <span v-if="event.is_all_day">
           All Day
@@ -11,19 +11,13 @@
         <span v-else>
           {{ event.start_time }}
         </span>
-        <span>
-          <a :href="event.event_url">{{ event.summary }}</a>
-        </span>
+        <a :href="event.event_url">{{ event.summary }}</a>
       </div>
-      <span v-if="event.event_location">
-        <em>
-          <font-awesome-icon :icon="['fas', 'location-arrow']" />
-          {{ event.event_location }}
-        </em>
-      </span>
-      <span v-else>
-        <em>Location not available</em>
-      </span>
+      <em v-if="event.event_location" class="text-muted myuw-text-xs">
+        <font-awesome-icon :icon="['fas', 'location-arrow']" size="sm" />
+        {{ event.event_location }}
+      </em>
+      <em v-else class="text-muted myuw-text-xs">Location not available</em>
     </li>
   </ul>
 </template>
