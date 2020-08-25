@@ -52,10 +52,13 @@
     <template #card-footer>
       <button v-if="!isOpen"
               v-b-toggle.grade_card_collapse aria-label="SHOW MORE"
+              title="Expand to show additional grade resources"
       >
         SHOW MORE
       </button>
-      <button v-else v-b-toggle.grade_card_collapse aria-label="SHOW LESS">
+      <button v-else v-b-toggle.grade_card_collapse aria-label="SHOW LESS"
+              title="Collapse to hide additional grade resources"
+      >
         SHOW LESS
       </button>
     </template>
