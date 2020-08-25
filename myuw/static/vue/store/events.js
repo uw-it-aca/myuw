@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import { buildWith } from './model_builder';
+import {fetchBuilder, buildWith} from './model_builder';
 
 const postProcess = (response) => {
   const eventData = response.data;
@@ -32,7 +32,10 @@ const postProcess = (response) => {
   };
 }
 
+const customActions = {
+    fetch: fetchBuilder('/api/v1/deptcal/', postProcess, 'json'),
+};
+
 export default buildWith(
-  '/api/v1/deptcal/',
-  postProcess,
+    {customActions},
 );

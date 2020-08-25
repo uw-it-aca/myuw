@@ -6,14 +6,34 @@ const statusOptions = ['READY', 'FETCHING', 'ERROR'];
 const doNothing = (response) => response;
 const extractData = (response) => response.data;
 
+const fetchBuilder = (url, postProcess, type) => {
+  return ({commit, getters}, urlExtra = '') => {
+    if (!getters.isReady && !getters.isFetching) {
+      commit('setStatus', statusOptions[1]);
+      axios.get(url + urlExtra, {
+        responseType: type,
+        headers: {
+          'Accept': 'text/html',
+        },
+      }).then((response) => postProcess(response, urlExtra)).then((data)=>{
+        commit('setValue', data);
+        commit('setStatus', statusOptions[0]);
+      }).catch((error)=>{
+        if (process.env.NODE_ENV === "development") {
+          console.log(error);
+        };
+        commit('setStatus', statusOptions[2]);
+      });
+    }
+  };
+};
+
 const buildWith = (
-    endpoint,
-    postProcess,
     {
       customGetters={},
       customMutations={},
       customActions={},
-    } = {}, type='json') => {
+    } = {}) => {
   const state = () => ({
     value: [],
     status: null,
@@ -32,29 +52,6 @@ const buildWith = (
     ...customGetters,
   };
 
-  const actions = {
-    fetch({commit, getters}) {
-      if (!getters.isReady && !getters.isFetching) {
-        commit('setStatus', statusOptions[1]);
-        axios.get(endpoint, {
-          responseType: type,
-          headers: {
-            'Accept': 'text/html',
-          },
-        }).then(postProcess).then((data)=>{
-          commit('setValue', data);
-          commit('setStatus', statusOptions[0]);
-        }).catch((error)=>{
-          if (process.env.NODE_ENV === "development") {
-            console.log(error);
-          };
-          commit('setStatus', statusOptions[2]);
-        });
-      }
-    },
-    ...customActions,
-  };
-
   const mutations = {
     setValue(state, data) {
       state.value = data;
@@ -69,7 +66,7 @@ const buildWith = (
     namespaced: true,
     state,
     getters,
-    actions,
+    actions: customActions,
     mutations,
   };
 };
@@ -80,4 +77,5 @@ export {
   doNothing,
   extractData,
   buildWith,
+  fetchBuilder,
 };
