@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="(shownEvents.length > 0) || futureCalCount > 0"
+  <uw-card v-if="!isReady || (shownEvents.length > 0 || futureCalCount > 0)"
            :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
