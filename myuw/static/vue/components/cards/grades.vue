@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="term && (!isReady || filteredSections.length > 0)"
+    v-if="showGradeCard"
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
@@ -122,6 +122,14 @@ export default {
 
         return shouldDisplay;
       });
+    },
+    showGradeCard: function() {
+      return this.term && (
+        !this.isReady || (
+          this.courses[this.term].length > 0 &&
+          this.filteredSections.length > 0
+        )
+      );
     },
   },
   mounted() {
