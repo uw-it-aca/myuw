@@ -73,11 +73,13 @@
       <button v-if="!isOpen" v-b-toggle.hidden_events_collapse
               :aria-label="`Show ${hiddenEvents.length} more ${
                 hiddenEvents.length > 1 ? 'events' : 'event'}`"
+              title="Show additional events"
       >
         SHOW ({{ hiddenEvents.length }}) MORE
       </button>
       <button v-else v-b-toggle.hidden_events_collapse
               aria-label="Show less"
+              title="Hide additional events"
       >
         SHOW LESS
       </button>
