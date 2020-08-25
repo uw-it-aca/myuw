@@ -44,7 +44,7 @@
           <p class="text-muted myuw-text-md">
             See all events from:
           </p>
-          <ul>
+          <ul class="myuw-text-md">
             <li v-for="(event, i) in calLinks" :key="i">
               <a :href="event.url">{{ event.title }}</a>
             </li>
@@ -63,8 +63,10 @@
     </template>
     <template v-else-if="calLinks.length > 0" #card-disclosure>
       <div v-if="calLinks.length > 1">
-        See all events from:
-        <ul>
+        <p class="text-muted myuw-text-md">
+          See all events from:
+        </p>
+        <ul class="myuw-text-md">
           <li v-for="(event, i) in calLinks" :key="i">
             <a :href="event.url">{{ event.title }}</a>
           </li>
