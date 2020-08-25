@@ -81,5 +81,5 @@ const customActions = {
 };
 
 export default buildWith(
-  {customMutations, customActions},
+  {customMutations, customGetters, customActions},
 );
