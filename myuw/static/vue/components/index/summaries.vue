@@ -8,7 +8,8 @@
     <b-col md="2">
       <a
         v-if="termData"
-        class="d-block px-3 py-2 text-dark text-nowrap font-weight-light myuw-text-sm"
+        class="d-block px-3 py-2 text-dark text-nowrap
+        font-weight-light myuw-text-sm"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-left text-left'
@@ -47,7 +48,8 @@
       <div class="row float-md-right">
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
+          class="d-inline-block col px-3 py-2
+          font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -63,7 +65,8 @@
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
+          class="d-inline-block col px-3 py-2
+          font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -80,7 +83,8 @@
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
+          class="d-inline-block col px-3 py-2
+          font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -96,7 +100,8 @@
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
+          class="d-inline-block col px-3 py-2
+          font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -112,7 +117,8 @@
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
+          class="d-inline-block col px-3 py-2
+          font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'

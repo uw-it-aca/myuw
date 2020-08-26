@@ -205,7 +205,8 @@
                   disabled
                   :link-classes="'text-dark d-block p-0'"
                 >
-                  <hr class="m-0"><span class="sr-only">Navigation separator</span>
+                  <hr class="m-0"><span class="sr-only">
+                    Navigation separator</span>
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
