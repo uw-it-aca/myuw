@@ -5,8 +5,8 @@ import Summaries from './components/index/summaries.vue';
 import Notices from './components/index/cards/notices.vue';
 import CriticalInfo from './components/index/cards/new_student/critical-info.vue';
 import InterStudent from './components/index/cards/international/student.vue';
-import NewInterStudent from 
-  './components/index/cards/international/new_student.vue';
+import NewInterStudent from
+  './components/index/cards/international/new-student.vue';
 import Applicant from './components/index/cards/applicant/applicant.vue';
 import Events from './components/index/cards/events/events.vue';
 import Grades from './components/cards/grades.vue';
