@@ -98,12 +98,12 @@
               />
             </font-awesome-layers>
           </b-button>
-          <h2
+          <h1
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
             MyUW <span class="sr-only">Home</span>
-          </h2>
+          </h1>
         </b-container>
       </div>
     </header>
@@ -205,7 +205,7 @@
                   disabled
                   :link-classes="'text-dark d-block p-0'"
                 >
-                  <hr class="m-0">
+                  <hr class="m-0"><span class="sr-only">Navigation separator</span>
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -286,7 +286,7 @@
           </li>
         </ul>
 
-        <div class="text-white-50">
+        <div class="text-white font-weight-lighter">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
       </b-container>
@@ -385,7 +385,7 @@ body {
 
     &.active {
       background: #ddd;
-      color: #7b59b3 !important;
+      color: #452a78 !important;
       svg {
         color: #452a78 !important;
       }

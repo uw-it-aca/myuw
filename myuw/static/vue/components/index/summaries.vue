@@ -1,9 +1,14 @@
 <template>
-  <b-row class="mb-3" :class="[$mq == 'tablet' ? 'mt-3' : '']">
-    <b-col md="3" lg="4">
+  <b-row class="mb-3" :class="[$mq == 'tablet' ? 'mt-3' : '']"
+         role="group" aria-labelledby="summaryHeader"
+  >
+    <h3 id="summaryHeader" class="sr-only">
+      Account Summaries
+    </h3>
+    <b-col md="2">
       <a
         v-if="termData"
-        class="d-block px-3 py-2 text-muted text-nowrap myuw-text-sm"
+        class="d-block px-3 py-2 text-dark text-nowrap font-weight-light myuw-text-sm"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-left text-left'
@@ -23,26 +28,26 @@
           {{ termData.year }}
         </span>
         <strong v-if="termData.isFinal"
-                class="text-dark d-block myuw-text-md"
+                class="text-dark d-block font-weight-bold myuw-text-md"
         >Finals Week</strong>
         <strong
           v-else-if="termData.isBreak"
-          class="text-dark d-block myuw-text-md"
+          class="text-dark d-block font-weight-bold myuw-text-md"
         >
           {{ ucfirst(termData.breakQuarter) }}
           Break
         </strong>
-        <strong v-else class="text-dark d-block myuw-text-md">
+        <strong v-else class="text-dark d-block font-weight-bold myuw-text-md">
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
         </strong>
       </a>
     </b-col>
-    <b-col v-if="isHfsReady && isLibraryReady" md="9" lg="8">
+    <b-col v-if="isHfsReady && isLibraryReady" md="10">
       <div class="row float-md-right">
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col px-3 py-2 text-muted text-nowrap
+          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -52,13 +57,13 @@
           href="/accounts/"
         >
           Student Husky
-          <strong class="text-dark d-block myuw-text-md">
+          <strong class="text-dark d-block font-weight-bold myuw-text-md">
             ${{ hfs.student_husky_card.balance.toFixed(2) }}
           </strong>
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col px-3 py-2 text-muted text-nowrap
+          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -68,14 +73,14 @@
           href="/accounts/"
         >
           Resident Dining
-          <strong class="text-dark d-block myuw-text-md">
+          <strong class="text-dark d-block font-weight-bold myuw-text-md">
             ${{ hfs.resident_dining.balance.toFixed(2) }}
           </strong>
         </a>
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col px-3 py-2 text-muted text-nowrap
+          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -85,13 +90,13 @@
           href="/accounts/"
         >
           Employee Husky
-          <strong class="text-dark d-block myuw-text-md">
+          <strong class="text-dark d-block font-weight-bold myuw-text-md">
             ${{ hfs.employee_husky_card.balance.toFixed(2) }}
           </strong>
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col px-3 py-2 text-muted text-nowrap
+          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -101,13 +106,13 @@
           href="/accounts/"
         >
           Library Item Due
-          <strong class="text-dark d-block myuw-text-md">
+          <strong class="text-dark d-block font-weight-bold myuw-text-md">
             {{ toFromNowDate(library.next_due) }}
           </strong>
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col px-3 py-2 text-muted text-nowrap
+          class="d-inline-block col px-3 py-2 font-weight-light text-dark text-nowrap
           myuw-text-sm"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -119,7 +124,7 @@
           aria-label="Library Account Requests"
         >
           Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
-          <strong class="text-dark d-block myuw-text-md">
+          <strong class="text-dark d-block font-weight-bold myuw-text-md">
             {{ library.holds_ready }}
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
           </strong>
