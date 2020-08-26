@@ -32,7 +32,7 @@
              <div class="seven-day">
                  <div class="day-label">SUN <br /> <span class="final-date">{{formatDateAsFinalsDay end_date 5}}</span></div>
                  <div class="exam-day-col hours-{{total_hours}}">
-                                {{show_final_card_day sunday start_time end_time ../term}}
+                     {{show_final_card_day sunday start_time end_time ../term}}
                  </div>
              </div>
              {{/if}}
@@ -83,7 +83,7 @@
             {{#each tbd}}
             <div class="pull-left course-box">
                 <div class="c{{color_id}} course-info"><a href="/{{#if is_teaching}}teaching{{else}}academics{{/if}}/#{{curriculum_abbr}}-{{course_number}}-{{section_id}}" style="color: white;" class="show_section_card">{{curriculum_abbr}} {{course_number}}&nbsp;{{section_id}}</a></div>
-                <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">Room TBD</div>
+                <div style="font-size:.8em; color:#555; text-align:center; margin-top:3px;">{{#if is_remote}}Remote{{else}}Room TBD{{/if}}</div>
             </div>
             {{/each}}
         </div>

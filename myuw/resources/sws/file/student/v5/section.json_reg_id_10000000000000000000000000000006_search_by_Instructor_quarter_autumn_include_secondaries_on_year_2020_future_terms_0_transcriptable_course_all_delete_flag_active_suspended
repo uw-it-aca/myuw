@@ -1,0 +1,68 @@
+{
+    "Current": {
+        "ChangedSinceDate": null,
+        "CourseNumber": null,
+        "CurriculumAbbreviation": null,
+        "DeleteFlag": null,
+        "FacilityCode": null,
+        "FutureTerms": 0,
+        "Href": "/student/v5/section.json?year=2020&quarter=autumn&future_terms=0&curriculum_abbreviation=&course_number=&reg_id=10000000000000000000000000000006&search_by=Instructor&include_secondaries=on&delete_flag=&changed_since_date=&transcriptable_course=all&page_size=10&page_start=1&facility_code=&room_number=&sln=",
+        "IncludeSecondaries": true,
+        "PageSize": "10",
+        "PageStart": "1",
+        "Quarter": "autumn",
+        "RegID": "10000000000000000000000000000006",
+        "RoomNumber": null,
+        "SLN": null,
+        "SearchBy": "Instructor",
+        "TranscriptableCourse": "all",
+        "Year": "2020"
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "Sections": [
+        {
+            "CourseNumber": "233",
+            "CurriculumAbbreviation": "E E",
+            "Href": "/student/v5/course/2020,autumn,E%20E,233/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "233",
+            "CurriculumAbbreviation": "E E",
+            "Href": "/student/v5/course/2020,autumn,E%20E,233/AA.json",
+            "Quarter": "autumn",
+            "SectionID": "AA",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "233",
+            "CurriculumAbbreviation": "E E",
+            "Href": "/student/v5/course/2020,autumn,E%20E,233/AB.json",
+            "Quarter": "autumn",
+            "SectionID": "AB",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "321",
+            "CurriculumAbbreviation": "CHEM",
+            "Href": "/student/v5/course/2020,autumn,CHEM,321/A.json",
+            "Quarter": "autumn",
+            "SectionID": "A",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "321",
+            "CurriculumAbbreviation": "CHEM",
+            "Href": "/student/v5/course/2020,autumn,CHEM,321/AA.json",
+            "Quarter": "autumn",
+            "SectionID": "AA",
+            "Year": 2020
+        }
+    ],
+    "TotalCount": 5
+}

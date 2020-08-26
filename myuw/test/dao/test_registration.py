@@ -79,3 +79,12 @@ class TestRegistrationsDao(TestCase):
                          "SEATTLE GRADUATE STUDENT")
         self.assertEqual(meeting1_instructors[1].display_name,
                          "Seattle Faculty")
+
+    def test_remote_section(self):
+        request = get_request_with_user('eight',
+                                        get_request_with_date("2020-10-01"))
+        term = get_current_quarter(request)
+        schedule = get_schedule_by_term(request, term)
+        self.assertIsNotNone(schedule)
+        self.assertEqual(len(schedule.sections), 3)
+        self.assertTrue(schedule.sections[0].is_remote)

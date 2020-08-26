@@ -1,0 +1,231 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "BlockRegistrationChildren": [],
+    "BlockRegistrationParents": [],
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "233",
+        "CurriculumAbbreviation": "E E",
+        "Href": "/student/v5/course/2020,autumn,E%20E,233.json",
+        "Quarter": "autumn",
+        "Year": 2020
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Electric circuit theory. Analysis of circuits with sinusoidal signals. Phasors, system functions, and complex frequency. Frequency response. Computer analysis of electrical circuits. Power and energy. Two port network theory. Laboratory in basic electrical engineering topics. Prerequisite: E E 215. Offered: AWSpS.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "CIRCUIT THEORY",
+    "CourseTitleLong": "Circuit Theory",
+    "CreditControl": "zero credits",
+    "CurrentEnrollment": 10,
+    "Curriculum": {
+        "CollegeName": "ENGINEERING",
+        "DepartmentAbbreviation": "E E",
+        "TimeScheduleLinkAbbreviation": "ee"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EOS_CID": null,
+    "EndDate": "",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": null,
+    "FeeBudget": null,
+    "FeeType": null,
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                "Name": "",
+                "RegID": "10000000000000000000000000000006"
+            }
+        }
+    ],
+    "GradingSystem": "standard",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": null,
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 16,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "ECE",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Thursday"
+                    }
+                ],
+                "Text": "   T"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "17:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": null,
+                    "GradeRoster": null,
+                    "PercentInvolve": "1",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000006.json",
+                        "Name": "",
+                        "RegID": "10000000000000000000000000000006"
+                    },
+                    "TSPrint": false
+                },
+                {
+                    "FacultySequenceNumber": null,
+                    "GradeRoster": null,
+                    "PercentInvolve": "99",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000002.json",
+                        "Name": "",
+                        "RegID": "10000000000000000000000000000002"
+                    },
+                    "TSPrint": false
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=ECE&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "laboratory",
+            "RoomNumber": "137A",
+            "RoomToBeArranged": false,
+            "StartTime": "14:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "233",
+        "CurriculumAbbreviation": "E E",
+        "Href": "/student/v5/course/2020,autumn,E%20E,233/A.json",
+        "Quarter": "autumn",
+        "SectionID": "A",
+        "Year": 2020
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "233",
+        "CurriculumAbbreviation": "E E",
+        "Href": "/student/v5/registration.json?year=2020&quarter=autumn&curriculum_abbreviation=E%20E&course_number=233&section_id=AA&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "autumn",
+        "RegID": null,
+        "SectionID": "AA",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2020
+    },
+    "RepositoryTimeStamp": "7/18/2020 7:12:23 PM",
+    "ResearchCredit": false,
+    "RoomCapacity": 30,
+    "SLN": "13822",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "AA",
+    "SectionType": "laboratory",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "   0.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2020,autumn.json",
+        "Quarter": "autumn",
+        "Year": 2020
+    },
+    "TimeMaskException": false,
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": [
+                {
+                    "Text": "ENTRY CODES AVAILABLE IN PAUL ALLEN CTR 100R"
+                },
+                {
+                    "Text": "DUE TO LIMITED INSTRUCTIONAL RESOURCES, THE"
+                },
+                {
+                    "Text": "ELECTRICAL ENGINEERING DEPARTMENT RESERVES THE"
+                },
+                {
+                    "Text": "OPTION OF DROPPING A STUDENT FROM AN E E COURSE IF"
+                },
+                {
+                    "Text": "THEY DO NOT ATTEND ONE OR MORE SCHEDULED CLASS"
+                },
+                {
+                    "Text": "MEETINGS DURING THE FIRST WEEK OF THE QUARTER."
+                }
+            ]
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": [
+                {
+                    "Text": "OFFERED VIA IN PERSON INSTRUCTION"
+                }
+            ]
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Lab Section"
+                }
+            ]
+        }
+    }
+}

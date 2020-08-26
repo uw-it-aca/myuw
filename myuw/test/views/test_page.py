@@ -2,11 +2,14 @@ from unittest import skipIf
 from unittest.mock import patch
 from django.contrib.sessions.models import Session
 from django.urls import reverse
+from django.utils import timezone
 from django.test.client import RequestFactory
 from unittest.mock import patch
-from myuw.views.page import logout
+from myuw.models import User
+from myuw.views.page import logout, page
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.exceptions import EmailServiceUrlException
+from myuw.dao.user import get_user_model
 from myuw.test.api import missing_url, MyuwApiTest
 from myuw.test import get_request_with_user
 
@@ -19,7 +22,7 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('jnone')
         response = self.client.get(url,
                                    HTTP_USER_AGENT='Fake Android Mobile')
-        self.assertEquals(response.status_code, 400)
+        self.assertEquals(response.status_code, 403)
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_desktop_redirect(self):
@@ -142,10 +145,28 @@ class TestPageMethods(MyuwApiTest):
 
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_user_not_in_pws(self):
+        req = get_request_with_user('usernotinpws')
+        response = page(req, 'index.html', add_quicklink_context=True)
+        self.assertEquals(response.status_code, 403)
+        self.assertEquals(
+            response.reason_phrase,
+            ("<p>MyUW cannot find data for this user account "
+             "in the Person Registry services. If you have just "
+             "created your UW NetID, please try signing in to "
+             "MyUW again in one hour.</p>"))
+
         url = reverse("myuw_home")
         self.set_user('usernotinpws')
-        response = self.client.get(url)
-        self.assertEquals(response.status_code, 400)
+        User.objects.create(uwnetid='usernotinpws', last_visit=timezone.now())
+        response = self.client.get(url,
+                                   HTTP_USER_AGENT="Mozilla/5.0")
+        self.assertEquals(response.status_code, 403)
+        self.assertEquals(
+            response.reason_phrase,
+            ('<p>MyUW cannot find data for this user account '
+             'in the Person Registry services. Please contact the '
+             '<a href="https://itconnect.uw.edu/it-connect-home/question/">'
+             'UW-IT Service Center</a>.</p>'))
 
     @patch('myuw.views.page.get_updated_user', spec=True)
     def test_pws_err(self, mock):
@@ -202,5 +223,8 @@ class TestPageMethods(MyuwApiTest):
         response = self.client.get(url,
                                    HTTP_USER_AGENT="Mozilla/5.0")
         self.assertEquals(response.status_code, 403)
-        self.assertTrue(
-            "a problem with your uwnetid" in response.reason_phrase)
+        self.assertEquals(
+            response.reason_phrase,
+            ('<p>MyUW encountered a problem with your uwnetid, '
+             'please contact the <a href="https://itconnect.uw.edu/'
+             'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
