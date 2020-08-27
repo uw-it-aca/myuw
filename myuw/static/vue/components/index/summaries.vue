@@ -22,11 +22,16 @@
           {{ ucfirst(termData.quarter) }}
           {{ termData.year }}
         </span>
-        <span v-if="termData.isFinal">Finals Week</span>
-        <span v-else-if="termData.isBreak">
+        <strong v-if="termData.isFinal"
+                class="text-dark d-block myuw-text-md"
+        >Finals Week</strong>
+        <strong
+          v-else-if="termData.isBreak"
+          class="text-dark d-block myuw-text-md"
+        >
           {{ ucfirst(termData.breakQuarter) }}
           Break
-        </span>
+        </strong>
         <strong v-else class="text-dark d-block myuw-text-md">
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
@@ -178,6 +183,6 @@ export default {
 
 <style lang="scss" scoped>
 .myuw-min-width-25 {
-    min-width: 25%;
-  }
+  min-width: 25%;
+}
 </style>
