@@ -101,27 +101,35 @@ export default {
       isErrored: 'isErrored',
     }),
     gradeSubmissionDeadline: function() {
-      return this.courses[this.term].term.grade_submission_deadline;
+      if (this.term in this.courses) {
+        return this.courses[this.term].term.grade_submission_deadline;
+      } else {
+        return [];
+      }
     },
     filteredSections: function() {
-      return this.courses[this.term].sections.filter((section) => {
-        let shouldDisplay = true;
+      if (this.term in this.courses) {
+        return this.courses[this.term].sections.filter((section) => {
+          let shouldDisplay = true;
 
-        if (this.showOnlyATerm && section.summer_term !== 'A-term') {
-          section.hide_for_early_summer_display = true;
-          shouldDisplay = false;
-        }
-
-        if (section.is_primary_section && !section.is_auditor) {
-          if (!section.hide_for_early_summer_display) {
-            shouldDisplay = true;
+          if (this.showOnlyATerm && section.summer_term !== 'A-term') {
+            section.hide_for_early_summer_display = true;
+            shouldDisplay = false;
           }
-        } else {
-          shouldDisplay = false;
-        }
 
-        return shouldDisplay;
-      });
+          if (section.is_primary_section && !section.is_auditor) {
+            if (!section.hide_for_early_summer_display) {
+              shouldDisplay = true;
+            }
+          } else {
+            shouldDisplay = false;
+          }
+
+          return shouldDisplay;
+        });
+      } else {
+        return [];
+      }
     },
     showGradeCard: function() {
       return this.term && (

@@ -190,7 +190,7 @@ describe('New International Student Card', () => {
   });
 
   it('Check url', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
+    axios.get.mockResolvedValue({data: mockNotices, status: 200});
     const wrapper = shallowMount(NewStudentCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));

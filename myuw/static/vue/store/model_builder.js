@@ -9,20 +9,27 @@ const extractData = (response) => response.data;
 const fetchBuilder = (url, postProcess, type) => {
   return ({commit, getters}, urlExtra = '') => {
     if (!getters.isReady && !getters.isFetching) {
-      commit('setStatus', statusOptions[1]);
+      commit('setStatus', {type: statusOptions[1]});
       axios.get(url + urlExtra, {
         responseType: type,
         headers: {
           'Accept': 'text/html',
         },
-      }).then((response) => postProcess(response, urlExtra)).then((data)=>{
+      }).then((response) => {
+        return {
+          data: postProcess(response, urlExtra),
+          statusCode: response.status
+        };
+      }).then(({data, statusCode}) => {
         commit('setValue', data);
-        commit('setStatus', statusOptions[0]);
+        commit('setStatus', {type: statusOptions[0], code: statusCode});
       }).catch((error)=>{
         if (process.env.NODE_ENV === "development") {
           console.log(error);
         };
-        commit('setStatus', statusOptions[2]);
+        commit('setStatus', {
+          type: statusOptions[2], code: error.response.status
+        });
       });
     }
   };
@@ -41,13 +48,16 @@ const buildWith = (
 
   const getters = {
     isReady(state) {
-      return state.status == statusOptions[0];
+      return state.status !== null && state.status.type == statusOptions[0];
     },
     isFetching(state) {
-      return state.status == statusOptions[1];
+      return state.status !== null && state.status.type == statusOptions[1];
     },
     isErrored(state) {
-      return state.status == statusOptions[2];
+      return state.status !== null && state.status.type == statusOptions[2];
+    },
+    statusCode(state) {
+      return state.status === null ? -1 : state.status.code;
     },
     ...customGetters,
   };
