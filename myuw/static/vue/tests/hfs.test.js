@@ -8,7 +8,7 @@ jest.mock('axios');
 
 describe('Library model', () => {
   it('Check status changes on fetch - success', () => {
-    axios.get.mockResolvedValue({data: mockRes});
+    axios.get.mockResolvedValue({data: mockRes, status: 200});
     const getters = {
       isReady: false,
       isFeatching: false,
@@ -21,7 +21,7 @@ describe('Library model', () => {
   });
 
   it('Check status changes on fetch - failure', () => {
-    axios.get.mockResolvedValue(Promise.reject(new Error('Test Reject')));
+    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
       isReady: false,
       isFeatching: false,

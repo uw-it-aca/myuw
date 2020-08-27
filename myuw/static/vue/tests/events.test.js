@@ -46,7 +46,7 @@ describe('Event Store', () => {
   });
 
   it('Check status changes on fetch - success', () => {
-    axios.get.mockResolvedValue({data: mockEvents});
+    axios.get.mockResolvedValue({data: mockEvents, status: 200});
     const getters = {
       isReady: false,
       isFeatching: false,
@@ -59,7 +59,7 @@ describe('Event Store', () => {
   });
 
   it('Check status changes on fetch - failure', () => {
-    axios.get.mockResolvedValue(Promise.reject(new Error('Test Reject')));
+    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
       isReady: false,
       isFeatching: false,
@@ -82,16 +82,15 @@ describe('Events Card', () => {
     });
   });
 
-  it('Basic Render', async () => {
-    axios.get.mockResolvedValue({data: mockEvents});
-    const wrapper = mount(EventsCard, {store, localVue});
+  it('Basic Render', () => {
+    axios.get.mockResolvedValue({data: mockEvents, status: 200});
+    const wrapper = shallowMount(EventsCard, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.find('h3').text()).toEqual('Events');
   });
 
-  it('acalDateFormat', async () => {
-    axios.get.mockResolvedValue({data: mockEvents});
+  it('acalDateFormat', () => {
+    axios.get.mockResolvedValue({data: mockEvents, status: 200});
     const wrapper = mount(ListEvents, {
       store, 
       localVue,
@@ -100,7 +99,6 @@ describe('Events Card', () => {
       }
     });
 
-    await new Promise((r) => setTimeout(r, 10));
     expect(
       wrapper.vm.acalDateFormat(moment('2020-08-19'), moment('2020-08-19'))
     ).toEqual('August 19');
@@ -109,13 +107,13 @@ describe('Events Card', () => {
     ).toEqual('August 19 - 20');
   });
 
-  it('Future Cal Render', async () => {
+  it('Future Cal Render', () => {
     axios.get.mockResolvedValue({
-      data: { 'future_active_cals': mockEvents['future_active_cals'] }
+      data: { 'future_active_cals': mockEvents['future_active_cals'] },
+      status: 200,
     });
-    const wrapper = mount(EventsCard, {store, localVue});
+    const wrapper = shallowMount(EventsCard, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.find('h3').text()).toEqual('Events');
   });
 });

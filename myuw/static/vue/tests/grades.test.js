@@ -45,7 +45,7 @@ describe('Courses Store', () => {
   });
 
   it('Check status changes on fetch - success', () => {
-    axios.get.mockResolvedValue({data: mockCourses});
+    axios.get.mockResolvedValue({data: mockCourses, status: 200});
     const getters = {
       isReady: false,
       isFeatching: false,
@@ -58,7 +58,7 @@ describe('Courses Store', () => {
   });
 
   it('Check status changes on fetch - failure', () => {
-    axios.get.mockResolvedValue(Promise.reject(new Error('Test Reject')));
+    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
       isReady: false,
       isFeatching: false,
@@ -107,15 +107,15 @@ describe('Events Card', () => {
   });
 
   it('Basic Render - 1', async () => {
-    axios.get.mockResolvedValue({data: mockCourses});
+    axios.get.mockResolvedValue({data: mockCourses, status: 200});
     const wrapper = mount(GradesCard, {store, localVue});
-
+  
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.find('h3').text()).toEqual('Final Grades');
   });
 
   it('Basic Render - 2', async () => {
-    axios.get.mockResolvedValue({data: mockCourses});
+    axios.get.mockResolvedValue({data: mockCourses, status: 200});
 
     store.state.cardDisplayDates = {
       is_after_7d_before_last_instruction: true,
@@ -146,16 +146,15 @@ describe('Events Card', () => {
     expect(wrapper.find('h3').text()).toEqual('Final Grades');
   });
 
-  it('Basic Render - 3', async () => {
-    axios.get.mockResolvedValue(Promise.reject("404"));
+  it('Basic Render - 3', () => {
+    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(GradesCard, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.find('h3').exists()).toBe(false);
   });
 
-  it('toFriendlyDate', async () => {
-    axios.get.mockResolvedValue({data: mockCourses});
+  it('toFriendlyDate', () => {
+    axios.get.mockResolvedValue({data: mockCourses, status: 200});
     const wrapper = mount(GradesCard, {store, localVue});
 
     expect(
