@@ -3,7 +3,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import Notices from '../store/notices';
-import NewStudentCard from '../components/index/cards/international/new_student.vue';
+import NewStudentCard from '../components/index/cards/international/new-student.vue';
 import StudentCard from '../components/index/cards/international/student.vue';
 import SeattleComp from '../components/index/cards/international/seattle.vue';
 import BothellComp from '../components/index/cards/international/bothell.vue';
