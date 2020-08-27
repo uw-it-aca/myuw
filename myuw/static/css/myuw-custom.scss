@@ -6,18 +6,21 @@
 $container-max-widths: map.merge($container-max-widths, (xl: 1200px));
 
 // enable responsive font sizing
-//$enable-responsive-font-sizes: true;
+// $enable-responsive-font-sizes: true;
 
 // override the boostrap gutter from 30px to 20px
 $grid-gutter-width: 20px;
 
 // override theme colors
 $theme-colors: (
-  'primary': #4d307f,
-  'secondary': #e8e3d3,
+
+  // bootstrap base themes
+  'primary': #4d307f, // default (blue)
+  'secondary': #e8e3d3, // default (dark gray)
   'danger': #a94442,
   'warning': #f5d300,
-  // Course card colors
+
+  // course card colors
   'c1': #2E6884,
   'c1a': #36799A,
   'c2': #844B2E,
@@ -35,6 +38,9 @@ $theme-colors: (
   'c8': #352E9B,
   'c8a': #473EC5,
 );
+
+// override global line height (1.5rem default)
+$line-height-base: 1.55;
 
 // override all links
 $link-color: #4d66ca; //a11y blue
