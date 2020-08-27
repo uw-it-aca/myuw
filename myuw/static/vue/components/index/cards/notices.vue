@@ -1,5 +1,6 @@
 <template>
-  <uw-card :loaded="isReady">
+  <uw-card v-if="!isReady"
+    :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h3 class="myuw-card-header">
         Notices

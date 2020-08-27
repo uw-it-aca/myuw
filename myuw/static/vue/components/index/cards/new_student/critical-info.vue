@@ -1,5 +1,6 @@
 <template>
-  <uw-card v-if="student && hasRegisterNotices" :loaded="isReady">
+  <uw-card v-if="!isReady || student && hasRegisterNotices"
+    :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h3>
         Update Critical Information
