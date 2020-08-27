@@ -13,11 +13,15 @@
         </span>
         {{ event.summary }}
       </a>
-      <em v-if="event.event_location" class="text-muted myuw-text-xs">
+      <em v-if="event.event_location" class="text-muted
+      font-weight-light myuw-text-xs"
+      >
         <font-awesome-icon :icon="['fas', 'location-arrow']" size="sm" />
         {{ event.event_location }}
       </em>
-      <em v-else class="text-muted myuw-text-xs">Location not available</em>
+      <em v-else class="text-muted font-weight-light myuw-text-xs">
+        Location not available
+      </em>
     </li>
   </ul>
 </template>
