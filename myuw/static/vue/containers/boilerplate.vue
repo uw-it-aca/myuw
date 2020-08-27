@@ -77,7 +77,7 @@
         </b-container>
       </div>
 
-      <div class="myuw-brand">
+      <div class="bg-primary myuw-brand">
         <b-container fluid="xl" class="px-3 myuw-brand-logo">
           <b-button
             v-b-toggle.nav-collapse
@@ -108,7 +108,7 @@
       </div>
     </header>
 
-    <div class="pt-4 pb-4 myuw-body">
+    <div class="bg-light pt-4 pb-4 myuw-body">
       <b-container fluid="xl" class="px-3">
         <b-row>
           <b-col lg="2">
@@ -245,7 +245,7 @@
       </b-container>
     </div>
 
-    <footer class="pt-3 pb-3 myuw-footer myuw-text-xs">
+    <footer class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1">
@@ -363,7 +363,6 @@ body {
 }
 
 .myuw-brand {
-  background: #4b2e83;
   line-height: 65px;
 
   .myuw-brand-logo {
@@ -394,12 +393,9 @@ body {
   }
 }
 
-.myuw-body {
-  background: #f5f5f5;
-}
+//.myuw-body { }
 
 .myuw-footer {
-  background: #333;
   white-space: nowrap;
 
   ul {
