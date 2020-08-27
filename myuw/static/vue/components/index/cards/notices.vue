@@ -1,5 +1,5 @@
 <template>
-  <uw-card :loaded="isReady">
+  <uw-card :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h3 class="myuw-card-header">
         Notices
