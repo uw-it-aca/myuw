@@ -12,9 +12,9 @@
   </b-card>
   <b-card v-else-if="errored" class="rounded-0 shadow-sm mb-3">
     <slot name="card-heading" />
-    <p>
+    <p class="text-danger myuw-text-md">
       <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-      An error occurred and MyUW cannot load event information right now.
+      An error occurred and and we can't load this content right now.
       Please try again later.
     </p>
   </b-card>
