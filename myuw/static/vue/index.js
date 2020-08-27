@@ -1,5 +1,6 @@
 import {Vue, vueConf} from './base.js';
 
+// Vue componenets
 import Boilerplate from './containers/boilerplate.vue';
 import Summaries from './components/index/summaries.vue';
 import Notices from './components/index/cards/notices.vue';
@@ -11,7 +12,9 @@ import Applicant from './components/index/cards/applicant/applicant.vue';
 import Events from './components/index/cards/events/events.vue';
 import Grades from './components/cards/grades.vue';
 import HuskyExperience from './components/cards/husky-experience.vue'
+import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 
+// Stores
 import notices from './store/notices';
 import hfs from './store/hfs';
 import library from './store/library';
@@ -19,6 +22,7 @@ import applicant from './store/applicant';
 import events from './store/events';
 import courses from './store/courses';
 import hx_toolkit from './store/hx_toolkit';
+import schedule from './store/schedule';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -27,6 +31,7 @@ vueConf.store.registerModule('applicant', applicant);
 vueConf.store.registerModule('events', events);
 vueConf.store.registerModule('courses', courses);
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
+vueConf.store.registerModule('schedule', schedule);
 
 vueConf.store.commit('addVarToState', {
   name: 'termData',
@@ -51,6 +56,7 @@ Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
 Vue.component('myuw-husky-experience', HuskyExperience);
+Vue.component('myuw-visual-schedule', VisualSchedule);
 
 new Vue({
   ...vueConf,

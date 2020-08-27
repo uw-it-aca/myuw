@@ -5,6 +5,11 @@ const statusOptions = ['READY', 'FETCHING', 'ERROR'];
 // Some helper functions
 const doNothing = (response) => response;
 const extractData = (response) => response.data;
+const setTermAndExtractData = (response, urlExtra) => {
+  let proccessValue = {};
+  proccessValue[urlExtra] = response.data;
+  return proccessValue;
+}
 
 const fetchBuilder = (url, postProcess, type) => {
   return ({commit, getters}, urlExtra = '') => {
@@ -84,8 +89,11 @@ const buildWith = (
 
 export {
   statusOptions,
+  // Helper Functions
   doNothing,
   extractData,
+  setTermAndExtractData,
+  // Builders
   buildWith,
   fetchBuilder,
 };
