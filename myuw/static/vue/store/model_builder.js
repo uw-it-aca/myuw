@@ -17,9 +17,6 @@ const fetchBuilder = (url, postProcess, type) => {
       commit('setStatus', {type: statusOptions[1]});
       axios.get(url + urlExtra, {
         responseType: type,
-        headers: {
-          'Accept': 'text/html',
-        },
       }).then((response) => {
         return {
           data: postProcess(response, urlExtra),

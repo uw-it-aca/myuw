@@ -18,10 +18,8 @@ const postProcess = (response, urlExtra) => {
       period.title = period.id;
     }
 
-    let minTime = null;
-    let maxTime = null;
-    let days = [];
-    console.log(period.id);
+    let earliestTime = null;
+    let latestTime = null;
     for (const i in period.sections) {
       // Skip if no exam is defined or no time is set
       if (period.sections[i].final_exam &&
@@ -35,15 +33,15 @@ const postProcess = (response, urlExtra) => {
 
         if (period.id == 'finals') {
           // Update min and max time if needed
-          if (minTime === null && maxTime === null) {
-            minTime = period.sections[i].final_exam.start_date;
-            maxTime = period.sections[i].final_exam.end_date;
+          if (earliestTime === null && latestTime === null) {
+            earliestTime = period.sections[i].final_exam.start_date;
+            latestTime = period.sections[i].final_exam.end_date;
           } else {
-            if (period.sections[i].final_exam.start_date < minTime) {
-              minTime = period.sections[i].final_exam.start_date;
+            if (period.sections[i].final_exam.start_date < earliestTime) {
+              earliestTime = period.sections[i].final_exam.start_date;
             }
-            if (period.sections[i].final_exam.end_date > maxTime) {
-              maxTime = period.sections[i].final_exam.end_date;
+            if (period.sections[i].final_exam.end_date > latestTime) {
+              latestTime = period.sections[i].final_exam.end_date;
             }
           }
         }
@@ -63,15 +61,15 @@ const postProcess = (response, urlExtra) => {
 
           if (period.id != 'finals') {
             // Update min and max time if needed
-            if (minTime === null && maxTime === null) {
-              minTime = period.sections[i].meetings[j].start_time;
-              maxTime = period.sections[i].meetings[j].end_time;
+            if (earliestTime === null && latestTime === null) {
+              earliestTime = period.sections[i].meetings[j].start_time;
+              latestTime = period.sections[i].meetings[j].end_time;
             } else {
-              if (period.sections[i].meetings[j].start_time < minTime) {
-                minTime = period.sections[i].meetings[j].start_time;
+              if (period.sections[i].meetings[j].start_time < earliestTime) {
+                earliestTime = period.sections[i].meetings[j].start_time;
               }
-              if (period.sections[i].meetings[j].end_time > maxTime) {
-                maxTime = period.sections[i].meetings[j].end_time;
+              if (period.sections[i].meetings[j].end_time > latestTime) {
+                latestTime = period.sections[i].meetings[j].end_time;
               }
             }
           }
@@ -79,9 +77,8 @@ const postProcess = (response, urlExtra) => {
       }
     }
 
-    period.minMeetingTime = minTime.clone();
-    period.maxMeetingTime = maxTime.clone();
-
+    period.earliestMeetingTime = earliestTime ? earliestTime.clone() : null;
+    period.latestMeetingTime = latestTime ? latestTime.clone() : null;
     return period;
   });
 
