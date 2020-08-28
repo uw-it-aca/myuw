@@ -115,7 +115,7 @@
             <!-- main sidebar navigation -->
             <b-collapse
               id="nav-collapse"
-              class="myuw-navigation"
+              class="text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
             >
@@ -232,11 +232,10 @@
               </b-nav>
             </b-collapse>
           </b-col>
-          <b-col lg="10">
-            <h2 :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+          <b-col lg="10" role="main" aria-labelledby="mainHeader">
+            <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
-
             <!-- page content inserted here -->
             <slot />
           </b-col>
@@ -371,8 +370,6 @@ body {
 }
 
 .myuw-navigation {
-  white-space: nowrap;
-
   a {
     &:hover,
     &:focus {
