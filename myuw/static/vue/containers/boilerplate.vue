@@ -110,8 +110,8 @@
 
     <div class="bg-light pt-4 pb-4 myuw-body">
       <b-container fluid="xl"
-                   :class="[$mq == 'tablet' || $mq == 'desktop' ? 'px-3'
-                     : 'px-0']"
+                   :class="[$mq == 'tablet' || $mq == 'desktop' ?
+                     'px-3' : 'px-0']"
       >
         <b-row>
           <b-col lg="2">
@@ -119,6 +119,8 @@
             <b-collapse
               id="nav-collapse"
               class="text-nowrap myuw-navigation"
+              :class="[$mq == 'tablet' || $mq == 'desktop' ? '' : 'px-3']"
+
               role="navigation"
               :visible="$mq == 'desktop'"
             >

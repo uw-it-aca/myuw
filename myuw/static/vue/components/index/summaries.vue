@@ -1,19 +1,24 @@
 <template>
-  <b-row class="mb-3" :class="[$mq == 'tablet' ? 'mt-3' : '']"
+  <b-row class="mb-3" :class="[$mq == 'mobile' ? 'mx-3' : '',
+                               $mq == 'tablet' ? 'mt-3 mx-0' : '',
+                               $mq == 'desktop' ? 'mt-0 mx-0' : '']"
          role="group" aria-labelledby="summaryHeader"
   >
     <h3 id="summaryHeader" class="sr-only">
       Account Summaries
     </h3>
-    <b-col md="2">
+    <b-col md="2"
+           :class="[$mq == 'tablet' || $mq == 'desktop' ?
+             'border-left' : 'border-bottom ']"
+    >
       <a
         v-if="termData"
         class="d-block px-3 py-2 text-dark text-nowrap
         font-weight-light myuw-text-sm"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
-            ? 'border-left text-left'
-            : 'border-bottom text-center',
+            ? 'text-left'
+            : 'text-center',
         ]"
         href="/academic_calendar/"
       >
