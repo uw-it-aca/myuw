@@ -1,5 +1,9 @@
 // global styles
-body {
+
+// remove horizontal scrolling for mobile overflow
+html, body {
+  height: 100%;
+  overflow-x: hidden;
   min-width: 320px;
 }
 

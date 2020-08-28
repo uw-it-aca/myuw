@@ -109,7 +109,10 @@
     </header>
 
     <div class="bg-light pt-4 pb-4 myuw-body">
-      <b-container fluid="xl" class="px-3">
+      <b-container fluid="xl"
+                   :class="[$mq == 'tablet' || $mq == 'desktop' ? 'px-3'
+                     : 'px-0']"
+      >
         <b-row>
           <b-col lg="2">
             <!-- main sidebar navigation -->
