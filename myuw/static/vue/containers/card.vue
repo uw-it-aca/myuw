@@ -1,5 +1,5 @@
 <template>
-  <b-card v-if="loaded" class="rounded-0 shadow-sm mb-3">
+  <b-card v-if="loaded" class="rounded-0 shadow-sm mb-3" tabindex="0">
     <slot name="card-heading" />
     <slot name="card-body" />
     <slot name="card-disclosure" />
@@ -10,7 +10,7 @@
       <slot name="card-footer" />
     </template>
   </b-card>
-  <b-card v-else-if="errored" class="rounded-0 shadow-sm mb-3">
+  <b-card v-else-if="errored" class="rounded-0 shadow-sm mb-3" tabindex="0">
     <slot name="card-heading" />
     <p>
       <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />

@@ -1,7 +1,7 @@
 <template>
   <uw-card
-    v-if="(!isReady || notices.length > 0) && internationalStudent"
-    :loaded="isReady"
+    v-if="!isReady || internationalStudent && notices.length > 0"
+    :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
       <h3 class="text-dark-beige">
@@ -28,12 +28,12 @@ export default {
   },
   computed: {
     ...mapState({
+      internationalStudent: (state) => state.user.affiliations.intl_stud,
       notices: (state) => {
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_fiuts'),
         );
       },
-      internationalStudent: (state) => state.user.affiliations.intl_stud,
     }),
     ...mapGetters('notices', {
       isReady: 'isReady',

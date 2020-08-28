@@ -23,7 +23,7 @@
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
-              <b-link href="/profile/" class="text-white">
+              <b-link href="/profile/" class="text-white font-weight-lighter">
                 <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />
                 {{ netid }}
               </b-link>
@@ -32,7 +32,7 @@
               <b-link
                 v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
-                class="ml-2 text-white"
+                class="ml-2 text-white font-weight-lighter"
                 title="UW email services"
               >
                 <font-awesome-icon
@@ -43,7 +43,7 @@
               <b-link
                 v-else
                 :href="emailForwardUrl"
-                class="ml-2 text-white"
+                class="ml-2 text-white font-weight-lighter"
                 title="Open your email in new tab"
               >
                 <font-awesome-icon
@@ -54,7 +54,7 @@
               <b-link
                 v-b-toggle.app_search
                 href="#"
-                class="ml-2 text-white"
+                class="ml-2 text-white font-weight-lighter"
                 aria-label="Open search area"
               >
                 <font-awesome-icon
@@ -65,7 +65,7 @@
               </b-link>
               <b-link
                 href="/logout/"
-                class="d-none d-lg-inline ml-2 text-white"
+                class="d-none d-lg-inline ml-2 text-white font-weight-lighter"
               >
                 <font-awesome-icon
                   :icon="['fas', 'sign-out-alt']"
@@ -98,12 +98,12 @@
               />
             </font-awesome-layers>
           </b-button>
-          <h2
+          <h1
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
             MyUW <span class="sr-only">Home</span>
-          </h2>
+          </h1>
         </b-container>
       </div>
     </header>
@@ -205,7 +205,8 @@
                   disabled
                   :link-classes="'text-dark d-block p-0'"
                 >
-                  <hr class="m-0">
+                  <hr class="m-0"><span class="sr-only">
+                    Navigation separator</span>
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -285,7 +286,7 @@
           </li>
         </ul>
 
-        <div class="text-white-50">
+        <div class="text-white font-weight-lighter">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
       </b-container>
@@ -379,7 +380,7 @@ body {
 
     &.active {
       background: #ddd;
-      color: #7b59b3 !important;
+      color: #452a78 !important;
       svg {
         color: #452a78 !important;
       }
