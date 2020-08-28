@@ -14,7 +14,7 @@
     <slot name="card-heading" />
     <p>
       <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-      An error occurred and MyUW cannot load event information right now.
+      An error has occurred and we can't load this content right now.
       Please try again later.
     </p>
   </b-card>
