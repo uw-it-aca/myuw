@@ -15,12 +15,14 @@
               'bg-grey': 'disabled_days' in period && period.disabled_days[day]
             }"
         >
-          <uw-course-mini-card v-if="meetings" :meetings="meetings" />
+          <uw-course-mini-card v-if="meetings" :meetings="meetings"
+                               :isFinalsCard="isFinalsTab"
+          />
         </td>
       </tr>
     </table>
     <div v-if="meetingsWithoutTime.length > 0">
-      <span v-if="period.id != 'finals'">
+      <span v-if="!isFinalsTab">
         No meeting time specified:
       </span>
       <span v-else>
@@ -71,9 +73,13 @@ export default {
       meetingMap: {},
       meetingsWithoutTime: [],
       hasMeetingsWithTime: true,
+      isFinalsTab: false,
     }
   },
   created() {
+    // Set if this tab is for finals
+    this.isFinalsTab = this.period.id == 'finals';
+
     // If there are no meetings with defined time in this period
     if (
       this.period.earliestMeetingTime == null &&
@@ -117,7 +123,7 @@ export default {
 
     // Put in the meeting into the map.
     for (const i in this.period.sections) {
-      if (this.period.id != 'finals') {
+      if (!this.isFinalsTab) {
         for (const j in this.period.sections[i].meetings) {
           if (this.period.sections[i].meetings[j].start_time && 
               this.period.sections[i].meetings[j].end_time) {
@@ -174,7 +180,6 @@ export default {
           this.meetingMap[i.format("hh:mm A")][day] &&
           this.meetingMap[i.format("hh:mm A")][day].meetings
         ) {
-          console.log("here")
           meetingsToAdd = meetingsToAdd.concat(
             this.meetingMap[i.format("hh:mm A")][day].meetings
           );
@@ -184,10 +189,9 @@ export default {
         count += 1;
       }
 
-      // Overlap handling
+      // Overlap handling when the starttime is diffrent
       if (!(day in this.meetingMap[startTime.format("hh:mm A")])) {
         // Find the overlapping meeting cell
-        console.log("here2")
         let newRowspan = count;
         const j = startTime.clone();
         while (!(day in this.meetingMap[j.format("hh:mm A")])) {
@@ -205,6 +209,22 @@ export default {
           ...meetingsToAdd
         );
       } else {
+        // Handle if the start time overlaps
+        if (
+          this.meetingMap[startTime.format("hh:mm A")][day].meetings &&
+          this.meetingMap[startTime.format("hh:mm A")][day].meetings.length > 0
+        ) {
+          meetingsToAdd = meetingsToAdd.concat(
+            this.meetingMap[startTime.format("hh:mm A")][day].meetings
+          );
+          // Select the bigger span
+          if (
+            this.meetingMap[startTime.format("hh:mm A")][day].rowspan > count
+          ) {
+            count = this.meetingMap[startTime.format("hh:mm A")][day].rowspan;
+          }
+        }
+
         // Update cell with the meeting
         this.meetingMap[startTime.format("hh:mm A")][day].rowspan = count;
         this.meetingMap[
