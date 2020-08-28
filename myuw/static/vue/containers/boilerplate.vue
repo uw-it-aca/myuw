@@ -19,7 +19,7 @@
         this is search
       </b-collapse>
 
-      <div class="myuw-thin-bar myuw-text-sm">
+      <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-sm">
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
@@ -77,7 +77,7 @@
         </b-container>
       </div>
 
-      <div class="myuw-brand">
+      <div class="bg-purple myuw-brand">
         <b-container fluid="xl" class="px-3 myuw-brand-logo">
           <b-button
             v-b-toggle.nav-collapse
@@ -108,14 +108,14 @@
       </div>
     </header>
 
-    <div class="pt-4 pb-4 myuw-body">
+    <div class="bg-light pt-4 pb-4 myuw-body">
       <b-container fluid="xl" class="px-3">
         <b-row>
           <b-col lg="2">
             <!-- main sidebar navigation -->
             <b-collapse
               id="nav-collapse"
-              class="myuw-navigation"
+              class="text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
             >
@@ -233,11 +233,10 @@
               </b-nav>
             </b-collapse>
           </b-col>
-          <b-col lg="10">
-            <h2 :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+          <b-col lg="10" role="main" aria-labelledby="mainHeader">
+            <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
-
             <!-- page content inserted here -->
             <slot />
           </b-col>
@@ -245,7 +244,7 @@
       </b-container>
     </div>
 
-    <footer class="pt-3 pb-3 myuw-footer myuw-text-xs">
+    <footer class="bg-dark pt-3 pb-3 text-nowrap myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1">
@@ -330,40 +329,23 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// global styles
-body {
-  min-width: 320px;
-}
-
-// text sizing utilities (base 16px)
-.myuw-text-md {
-  font-size: 0.95rem !important;
-} //15.2px
-.myuw-text-sm {
-  font-size: 0.85rem !important;
-} //13.6px
-.myuw-text-xs {
-  font-size: 0.75rem !important;
-} //12px
+<style lang="scss" scoped>
+@import "../../css/variables.scss";
 
 // boilerplate
 .myuw-override {
-  background: #ffbc24;
+  background: $uw-yellow;
 }
 
 .myuw-search {
-  background: red;
+  background: $uw-yellow;
 }
 
 .myuw-thin-bar {
-  background: #452a78;
   line-height: 40px;
-  white-space: nowrap;
 }
 
 .myuw-brand {
-  background: #4b2e83;
   line-height: 65px;
 
   .myuw-brand-logo {
@@ -375,8 +357,6 @@ body {
 }
 
 .myuw-navigation {
-  white-space: nowrap;
-
   a {
     &:hover,
     &:focus {
@@ -394,13 +374,9 @@ body {
   }
 }
 
-.myuw-body {
-  background: #f5f5f5;
-}
+//.myuw-body { }
 
 .myuw-footer {
-  background: #333;
-  white-space: nowrap;
 
   ul {
     li {

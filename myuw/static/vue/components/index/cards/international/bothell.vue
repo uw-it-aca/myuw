@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="h5 myuw-card-header">
+    <h4 class="h5 text-dark-beige">
       Visa and Immigration Rules
     </h4>
 
@@ -42,7 +42,7 @@
       </li>
     </ul>
 
-    <h4 class="h5 myuw-card-header">
+    <h4 class="h5 text-dark-beige">
       Academic Support
     </h4>
     <ul class="list-unstyled myuw-text-md">

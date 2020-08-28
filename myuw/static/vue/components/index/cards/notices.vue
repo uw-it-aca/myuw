@@ -1,7 +1,7 @@
 <template>
   <uw-card :loaded="isReady" :errored="isErrored">
     <template #card-heading>
-      <h3 class="myuw-card-header">
+      <h3 class="text-dark-beige">
         Notices
       </h3>
     </template>
@@ -19,6 +19,7 @@
         <li
           v-for="notice in notices"
           :key="notice.id_hash"
+          class="mb-1"
         >
           <div class="d-flex d-sm-inline-flex notice-container">
             <div class="flex-grow-1 pr-1">

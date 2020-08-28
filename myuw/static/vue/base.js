@@ -21,7 +21,7 @@ import {
   faExclamationTriangle,
   faGraduationCap,
   faBars,
-  faLocationArrow
+  faLocationArrow,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -32,8 +32,10 @@ import {
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 
-import '../css/myuw-custom.scss';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+// MARK: specific css render order
+import '../css/custom.scss'; // custom bootstrap theming
+import 'bootstrap-vue/dist/bootstrap-vue.css'; // base boostrap
+import '../css/global.scss'; // myuw global styles
 
 library.add(faUser);
 library.add(faEnvelope);
@@ -80,10 +82,10 @@ const store = new Vuex.Store({
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },
   mutations: {
-    addVarToState (state, {name, value}) {
+    addVarToState(state, {name, value}) {
       state[name] = value;
-    }
-  }
+    },
+  },
 });
 
 Vue.config.devtools = true;
