@@ -1,6 +1,6 @@
 <template>
   <b-tab :title="title" title-item-class="text-uppercase" :active="active">
-    <table>
+    <table v-if="hasMeetingsWithTime">
       <tr>
         <td />
         <th v-for="daySlot in daySlots" :key="daySlot" scope="col">
@@ -9,17 +9,37 @@
       </tr>
       <tr v-for="timeSlot in timeSlots" :key="timeSlot">
         <th scope="row"><div>{{timeSlot}}</div></th>
-        <td v-for="(daySlot, i) in meetingMap[timeSlot]" :key="i"
-            :rowspan="daySlot.rowspan">
-          {{daySlot.data ? daySlot.data.course_title + ' ' + daySlot.data.course_number : ''}}
+        <td v-for="({rowspan, day, meetings}, i) in meetingMap[timeSlot]"
+            :key="i" :rowspan="rowspan"
+            :class="{
+              'bg-grey': 'disabled_days' in period && period.disabled_days[day]
+            }"
+        >
+          <uw-course-mini-card v-if="meetings" :meetings="meetings" />
         </td>
       </tr>
     </table>
+    <div v-if="meetingsWithoutTime.length > 0">
+      <span v-if="period.id != 'finals'">
+        No meeting time specified:
+      </span>
+      <span v-else>
+        Courses with final exam meeting times to be determined or courses with no final exam:
+      </span>
+      <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
+        <uw-course-mini-card :meetings="[meeting]" />
+      </div>
+    </div>
   </b-tab>
 </template>
 
 <script>
+import CourseMiniCard from './course-mini-card.vue';
+
 export default {
+  components: {
+    'uw-course-mini-card': CourseMiniCard,
+  },
   props: {
     title: {
       type: String,
@@ -43,19 +63,32 @@ export default {
         thursday: "THU",
         friday: "FRI",
         saturday: "SAT",
-        sunday: null,
+        sunday: "SUN",
       },
       timestep: [30, 'minutes'],
       timeSlots: [],
       daySlots: [],
       meetingMap: {},
+      meetingsWithoutTime: [],
+      hasMeetingsWithTime: true,
     }
   },
   created() {
-    let start = this.period.minMeetingTime.clone().subtract(
-        ...this.timestep
-      );
-    let end = this.period.maxMeetingTime.clone().add(...this.timestep);
+    // If there are no meetings with defined time in this period
+    if (
+      this.period.earliestMeetingTime == null &&
+      this.period.latestMeetingTime == null
+    ) {
+      this.hasMeetingsWithTime = false;
+      return;
+    }
+
+    // Make a array of all the possible time slots with the interval
+    // of this.timestep
+    let start = this.period.earliestMeetingTime.clone().subtract(
+      ...this.timestep
+    );
+    let end = this.period.latestMeetingTime.clone().add(...this.timestep);
     if (!(end.minute() === 30 || end.minute() === 0)) {
       end = end.add(10, 'minutes');
     }
@@ -67,19 +100,22 @@ export default {
     }
     this.timeSlots.push(start.format('hh:mm A'));
 
-    // Stud
+    // Setting the days of the week that need to be displayed
     this.daySlots = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+    if (this.period.meets_saturday) {this.daySlots.push("saturday")};
+    if (this.period.meets_sunday) {this.daySlots.unshift("sunday")};
 
     // Initalize the meeting map.
     for (const i in this.timeSlots) {
       this.meetingMap[this.timeSlots[i]] = {};
       for (const j in this.daySlots) {
         this.meetingMap[this.timeSlots[i]][this.daySlots[j]] = {
-          rowspan: 1,
+          rowspan: 1, day: this.daySlots[j],
         };
       }
     }
 
+    // Put in the meeting into the map.
     for (const i in this.period.sections) {
       if (this.period.id != 'finals') {
         for (const j in this.period.sections[i].meetings) {
@@ -89,12 +125,18 @@ export default {
               if (this.period.sections[i].meetings[j].meeting_days[day]) {
                 this.putMeeting(
                   this.period.sections[i],
+                  this.period.sections[i].meetings[j],
                   this.period.sections[i].meetings[j].start_time,
                   this.period.sections[i].meetings[j].end_time,
                   day
                 );
               }
             }
+          } else {
+            this.meetingsWithoutTime.push({
+              section: this.period.sections[i],
+              meeting: this.period.sections[i].meetings[j],
+            })
           }
         }
       } else {
@@ -103,36 +145,72 @@ export default {
             this.period.sections[i].final_exam.end_date) {
           this.putMeeting(
             this.period.sections[i],
+            this.period.sections[i].final_exam,
             this.period.sections[i].final_exam.start_date,
             this.period.sections[i].final_exam.end_date,
             this.period.sections[i].final_exam.start_date.format(
               'dddd'
             ).toLowerCase()
           );
+        } else {
+          this.meetingsWithoutTime.push({
+            section: this.period.sections[i],
+            meeting: this.period.sections[i].final_exam,
+          })
         }
       }
     }
   },
-  computed: {
-  },
   methods: {
-    putMeeting(section, startTime, endTime, day) {
+    putMeeting(section, meeting, startTime, endTime, day) {
+      let meetingsToAdd = [{section: section, meeting: meeting}];
+
       let count = 1;
-      console.log(this.period.id, this.meetingMap["05:00 PM"]);
-      console.log(this.period.id, section);
       const i = startTime.clone().add(...this.timestep);
-      console.log('Proccessing', startTime.format("hh:mm A"), '-', endTime.format("hh:mm A"), day);
+
       while (i < endTime) {
-        console.log("Deleting", i.format("hh:mm A"), day);
+        // Check if this meeting is overwriting another
+        if (
+          this.meetingMap[i.format("hh:mm A")][day] &&
+          this.meetingMap[i.format("hh:mm A")][day].meetings
+        ) {
+          console.log("here")
+          meetingsToAdd = meetingsToAdd.concat(
+            this.meetingMap[i.format("hh:mm A")][day].meetings
+          );
+        }
         delete this.meetingMap[i.format("hh:mm A")][day];
         i.add(...this.timestep);
         count += 1;
       }
 
-      console.log(day);
-      // Update the rowspan
-      this.meetingMap[startTime.format("hh:mm A")][day].rowspan = count;
-      this.meetingMap[startTime.format("hh:mm A")][day].data = section;
+      // Overlap handling
+      if (!(day in this.meetingMap[startTime.format("hh:mm A")])) {
+        // Find the overlapping meeting cell
+        console.log("here2")
+        let newRowspan = count;
+        const j = startTime.clone();
+        while (!(day in this.meetingMap[j.format("hh:mm A")])) {
+          j.subtract(...this.timestep);
+          newRowspan += 1;
+        }
+
+        // Don't use the newRowspan in case of complete overlap
+        if (this.meetingMap[j.format("hh:mm A")][day].rowspan < newRowspan) {
+          this.meetingMap[j.format("hh:mm A")][day].rowspan = newRowspan;
+        }
+
+        this.meetingMap[j.format("hh:mm A")][day].meetings =
+          this.meetingMap[j.format("hh:mm A")][day].meetings.concat(
+          ...meetingsToAdd
+        );
+      } else {
+        // Update cell with the meeting
+        this.meetingMap[startTime.format("hh:mm A")][day].rowspan = count;
+        this.meetingMap[
+          startTime.format("hh:mm A")
+        ][day].meetings = meetingsToAdd;
+      }
     }
   },
 }
@@ -140,13 +218,22 @@ export default {
 
 <style lang="scss" scoped>
 table {
+  width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 table, th, td {
   border: 1px solid black;
 }
-// table > tr > th > div {
-//   position: relative;
-//   top: 0.85rem;
-// }
+table > tr > td, th {
+  position: relative;
+}
+table > tr > th > div {
+  position: relative;
+  bottom: 100%;
+}
+table > tr > td > div {
+  position: absolute;
+  top: 0;
+}
 </style>
