@@ -1,5 +1,7 @@
 <template>
-  <b-card v-if="loaded" class="rounded-0 shadow-sm mb-3" tabindex="0">
+  <b-card v-if="loaded" class="rounded-0 shadow-sm mb-3" tabindex="0"
+          footer-class="py-2"
+  >
     <slot name="card-heading" />
     <slot name="card-body" />
     <slot name="card-disclosure" />
