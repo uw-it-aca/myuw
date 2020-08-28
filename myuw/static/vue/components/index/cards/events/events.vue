@@ -3,7 +3,7 @@
            :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="myuw-card-header">
+      <h3 class="text-dark-beige">
         Events
       </h3>
     </template>

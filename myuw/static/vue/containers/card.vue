@@ -45,9 +45,4 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../css/myuw-variables.scss";
-
-.myuw-card-header {
-  color: $uw-gold;
-}
 </style>

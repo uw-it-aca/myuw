@@ -1,7 +1,7 @@
 <template>
   <uw-card :loaded="isReady">
     <template #card-heading>
-      <h3 class="myuw-card-header">
+      <h3 class="text-dark-beige">
         Notices
       </h3>
     </template>

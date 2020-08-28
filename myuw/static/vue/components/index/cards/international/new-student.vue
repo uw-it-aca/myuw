@@ -4,7 +4,7 @@
     :loaded="isReady"
   >
     <template #card-heading>
-      <h3 class="myuw-card-header">
+      <h3 class="text-dark-beige">
         International Student Resources
       </h3>
     </template>
