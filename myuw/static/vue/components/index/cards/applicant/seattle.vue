@@ -1,18 +1,18 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="applicantData.is_returning" #card-heading>
-      <h3 class="myuw-card-header">
+      <h3 class="text-dark-beige">
         Your Returning Student Application
       </h3>
     </template>
     <template v-else #card-heading>
-      <h3 class="myuw-card-header">
+      <h3 class="text-dark-beige">
         Your Seattle Application for
         {{ ucfirst(applicantData.quarter) }} {{ applicantData.year }}
       </h3>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h4 class="h5 mb-3 myuw-card-header">
+      <h4 class="h5 mb-3 text-dark-beige">
         For application status, contact the Office of the University Registrar
       </h4>
       <b-container>
@@ -30,7 +30,7 @@
         </b-row>
       </b-container>
 
-      <h4 class="h5 mb-3 myuw-card-header">
+      <h4 class="h5 mb-3 text-dark-beige">
         Registration for Returning Student
       </h4>
       <p>
@@ -44,7 +44,7 @@
         >Academic calendar</a>.
       </p>
 
-      <h4 class="h5 mb-3 myuw-card-header">
+      <h4 class="h5 mb-3 text-dark-beige">
         Resources for Seattle Applicants
       </h4>
       <ul class="list-unstyled myuw-text-md">
@@ -79,7 +79,7 @@
         View your {{ applicantData.type }} application status
       </a>
 
-      <h4 class="h5 mb-3 myuw-card-header">
+      <h4 class="h5 mb-3 text-dark-beige">
         Resources for Seattle Applicants
       </h4>
       <h5 class="h6">
