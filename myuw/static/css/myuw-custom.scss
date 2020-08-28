@@ -14,11 +14,15 @@ $grid-gutter-width: 20px;
 // override theme colors
 $theme-colors: (
 
-  // bootstrap base themes
-  'primary': #4d307f, // default (blue)
-  'secondary': #e8e3d3, // default (dark gray)
+  // override bootstrap colors
   'danger': #a94442,
   'warning': #f5d300,
+
+  // myuw custom colors
+  'purple': #4d307f, // uw purple
+  'dark-purple': #452a78, // thin bar
+  'beige': #e8e3d3, // tan
+  'dark-beige': #85754d, // headers
 
   // course card colors
   'c1': #2E6884,

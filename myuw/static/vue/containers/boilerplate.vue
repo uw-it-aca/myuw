@@ -19,7 +19,7 @@
         this is search
       </b-collapse>
 
-      <div class="myuw-thin-bar myuw-text-sm">
+      <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-sm">
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
@@ -77,7 +77,7 @@
         </b-container>
       </div>
 
-      <div class="bg-primary myuw-brand">
+      <div class="bg-purple myuw-brand">
         <b-container fluid="xl" class="px-3 myuw-brand-logo">
           <b-button
             v-b-toggle.nav-collapse
@@ -244,7 +244,7 @@
       </b-container>
     </div>
 
-    <footer class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
+    <footer class="bg-dark pt-3 pb-3 text-nowrap myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1">
@@ -356,9 +356,7 @@ body {
 }
 
 .myuw-thin-bar {
-  background: #452a78;
   line-height: 40px;
-  white-space: nowrap;
 }
 
 .myuw-brand {
@@ -395,7 +393,6 @@ body {
 //.myuw-body { }
 
 .myuw-footer {
-  white-space: nowrap;
 
   ul {
     li {
