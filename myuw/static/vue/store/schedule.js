@@ -5,6 +5,9 @@ const postProcess = (response, urlExtra) => {
   const schedule = setTermAndExtractData(response, urlExtra);
 
   schedule[urlExtra].periods = schedule[urlExtra].periods.map((period) => {
+    let eosAlreadyAdded = false;
+    period.eosData = [];
+
     if (period.end_date && period.start_date) {
       // Convert dates into moment objects
       period.end_date = moment(period.end_date);
@@ -48,8 +51,13 @@ const postProcess = (response, urlExtra) => {
       }
 
       for (const j in period.sections[i].meetings) {
-        // Skip if time and date are tdb
-        if (!period.sections[i].meetings[j].days_tbd) {
+        console.log(period.sections[i].meetings[j].eos_start_date)
+        // Skip if time and date are tdb or null anyways
+        if (
+          !period.sections[i].meetings[j].days_tbd &&
+          period.sections[i].meetings[j].start_time &&
+          period.sections[i].meetings[j].end_time
+        ) {
           period.sections[i].meetings[j].start_time = moment(
             period.sections[i].meetings[j].start_time,
             "hh:mm"
@@ -74,11 +82,44 @@ const postProcess = (response, urlExtra) => {
             }
           }
         }
+
+        if (
+          period.sections[i].meetings[j].eos_start_date &&
+          period.sections[i].meetings[j].eos_end_date
+        ) {
+          period.sections[i].meetings[j].start_end_same = (
+            period.sections[i].meetings[j].eos_start_date ===
+            period.sections[i].meetings[j].eos_end_date
+          );
+
+          period.sections[i].meetings[j].eos_start_date = moment(
+            period.sections[i].meetings[j].eos_start_date
+          );
+          period.sections[i].meetings[j].eos_end_date = moment(
+            period.sections[i].meetings[j].eos_end_date
+          );
+
+          if (!eosAlreadyAdded) {
+            period.eosData.push(period.sections[i]);
+            eosAlreadyAdded = true;
+          }
+        }
+      }
+
+      // Some eos meetings don't come in a sorted order, so
+      // we need to sort them
+      if (eosAlreadyAdded) {
+        period.sections[i].meetings.sort(
+          (s1, s2) => {
+            return s1.eos_start_date - s2.eos_start_date;
+          }
+        );
       }
     }
 
     period.earliestMeetingTime = earliestTime ? earliestTime.clone() : null;
     period.latestMeetingTime = latestTime ? latestTime.clone() : null;
+
     return period;
   });
 

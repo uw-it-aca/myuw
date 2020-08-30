@@ -72,7 +72,7 @@ export default {
       daySlots: [],
       meetingMap: {},
       meetingsWithoutTime: [],
-      hasMeetingsWithTime: true,
+      hasMeetingsWithTime: false,
       isFinalsTab: false,
     }
   },
@@ -82,63 +82,86 @@ export default {
 
     // If there are no meetings with defined time in this period
     if (
-      this.period.earliestMeetingTime == null &&
-      this.period.latestMeetingTime == null
+      !(this.period.earliestMeetingTime == null &&
+      this.period.latestMeetingTime == null)
     ) {
-      this.hasMeetingsWithTime = false;
-      return;
-    }
+      // Make a array of all the possible time slots with the interval
+      // of this.timestep
+      let start = this.period.earliestMeetingTime.clone().subtract(
+        ...this.timestep
+      );
+      let end = this.period.latestMeetingTime.clone().add(...this.timestep);
+      if (!(end.minute() === 30 || end.minute() === 0)) {
+        end = end.add(10, 'minutes');
+      }
 
-    // Make a array of all the possible time slots with the interval
-    // of this.timestep
-    let start = this.period.earliestMeetingTime.clone().subtract(
-      ...this.timestep
-    );
-    let end = this.period.latestMeetingTime.clone().add(...this.timestep);
-    if (!(end.minute() === 30 || end.minute() === 0)) {
-      end = end.add(10, 'minutes');
-    }
+      while (start.format('hh:mm A') != end.format('hh:mm A')) {
+        this.timeSlots.push(start.format('hh:mm A'));
 
-    while (start.format('hh:mm A') != end.format('hh:mm A')) {
+        start = start.add(...this.timestep);
+      }
       this.timeSlots.push(start.format('hh:mm A'));
 
-      start = start.add(...this.timestep);
-    }
-    this.timeSlots.push(start.format('hh:mm A'));
+      // Setting the days of the week that need to be displayed
+      this.daySlots = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+      if (this.period.meets_saturday) {this.daySlots.push("saturday")};
+      if (this.period.meets_sunday) {this.daySlots.unshift("sunday")};
 
-    // Setting the days of the week that need to be displayed
-    this.daySlots = ["monday", "tuesday", "wednesday", "thursday", "friday"];
-    if (this.period.meets_saturday) {this.daySlots.push("saturday")};
-    if (this.period.meets_sunday) {this.daySlots.unshift("sunday")};
+      // Initalize the meeting map.
+      for (const i in this.timeSlots) {
+        this.meetingMap[this.timeSlots[i]] = {};
+        for (const j in this.daySlots) {
+          this.meetingMap[this.timeSlots[i]][this.daySlots[j]] = {
+            rowspan: 1, day: this.daySlots[j],
+          };
+        }
+      }
 
-    // Initalize the meeting map.
-    for (const i in this.timeSlots) {
-      this.meetingMap[this.timeSlots[i]] = {};
-      for (const j in this.daySlots) {
-        this.meetingMap[this.timeSlots[i]][this.daySlots[j]] = {
-          rowspan: 1, day: this.daySlots[j],
-        };
+      // Put in the meeting with time into the map.
+      for (const i in this.period.sections) {
+        if (!this.isFinalsTab) {
+          for (const j in this.period.sections[i].meetings) {
+            if (this.period.sections[i].meetings[j].start_time && 
+                this.period.sections[i].meetings[j].end_time) {
+              for (const day in this.period.sections[i].meetings[j].meeting_days) {
+                if (this.period.sections[i].meetings[j].meeting_days[day]) {
+                  this.putMeeting(
+                    this.period.sections[i],
+                    this.period.sections[i].meetings[j],
+                    this.period.sections[i].meetings[j].start_time,
+                    this.period.sections[i].meetings[j].end_time,
+                    day
+                  );
+                  this.hasMeetingsWithTime = true;
+                }
+              }
+            }
+          }
+        } else {
+          if (this.period.sections[i].final_exam &&
+              this.period.sections[i].final_exam.start_date &&
+              this.period.sections[i].final_exam.end_date) {
+            this.putMeeting(
+              this.period.sections[i],
+              this.period.sections[i].final_exam,
+              this.period.sections[i].final_exam.start_date,
+              this.period.sections[i].final_exam.end_date,
+              this.period.sections[i].final_exam.start_date.format(
+                'dddd'
+              ).toLowerCase()
+            );
+            this.hasMeetingsWithTime = true;
+          }
+        }
       }
     }
 
-    // Put in the meeting into the map.
+    // Put the meeting without time into its list.
     for (const i in this.period.sections) {
       if (!this.isFinalsTab) {
         for (const j in this.period.sections[i].meetings) {
-          if (this.period.sections[i].meetings[j].start_time && 
-              this.period.sections[i].meetings[j].end_time) {
-            for (const day in this.period.sections[i].meetings[j].meeting_days) {
-              if (this.period.sections[i].meetings[j].meeting_days[day]) {
-                this.putMeeting(
-                  this.period.sections[i],
-                  this.period.sections[i].meetings[j],
-                  this.period.sections[i].meetings[j].start_time,
-                  this.period.sections[i].meetings[j].end_time,
-                  day
-                );
-              }
-            }
-          } else {
+          if (!(this.period.sections[i].meetings[j].start_time && 
+              this.period.sections[i].meetings[j].end_time)) {
             this.meetingsWithoutTime.push({
               section: this.period.sections[i],
               meeting: this.period.sections[i].meetings[j],
@@ -146,19 +169,10 @@ export default {
           }
         }
       } else {
-        if (this.period.sections[i].final_exam &&
+        if (!(
+            this.period.sections[i].final_exam &&
             this.period.sections[i].final_exam.start_date &&
-            this.period.sections[i].final_exam.end_date) {
-          this.putMeeting(
-            this.period.sections[i],
-            this.period.sections[i].final_exam,
-            this.period.sections[i].final_exam.start_date,
-            this.period.sections[i].final_exam.end_date,
-            this.period.sections[i].final_exam.start_date.format(
-              'dddd'
-            ).toLowerCase()
-          );
-        } else {
+            this.period.sections[i].final_exam.end_date)) {
           this.meetingsWithoutTime.push({
             section: this.period.sections[i],
             meeting: this.period.sections[i].final_exam,

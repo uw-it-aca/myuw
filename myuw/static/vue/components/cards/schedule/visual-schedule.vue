@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="term && (!isReady || periods.length > 0)"
+    v-if="!isErrored && term && (!isReady || periods.length > 0)"
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
@@ -12,11 +12,38 @@
       </h3>
     </template>
     <template #card-body>
-      <!-- TODO: add the eos disclaimer
-      https://github.com/uw-it-aca/myuw/blob/5fc7c436d50f3050991f25d4c1a873e4005536ea/myuw/templates/handlebars/card/schedule/visual.html#L11-L20
-      -->
-      <h4 class="sr-only">{{termName}} Final Exam Schedule</h4>
-      <b-tabs>
+      <div v-if="periods[tabIndex].eosData.length > 0">
+        <span v-for="(eosSection, i) in periods[tabIndex].eosData" :key="i">
+          <h4>
+            {{eosSection.curriculum_abbr}} {{eosSection.course_number}}
+            {{eosSection.section_id}} meeting times:&nbsp;
+          </h4>
+          <ol>
+            <li v-for="(meeting, i) in eosSection.meetings" :key="i">
+              <span v-if="i !== 0">,&nbsp;</span>
+              <span v-if="meeting.eos_start_date">
+                {{formatDate(meeting.eos_start_date)}}
+                <span v-if="!meeting.start_end_same">
+                  &ndash; {{formatDate(meeting.eos_end_date)}}
+                </span>
+              </span>
+              <span v-if="meeting.wont_meet">
+                (Class does not meet)
+              </span>
+              <span v-else-if="meeting.no_meeting">
+                (Online learning)
+              </span>
+              <span v-else>
+                <span v-if="meeting.start_time">
+                  ({{formatTime(meeting.start_time)}} &ndash;
+                  {{formatTime(meeting.end_time)}})
+                </span>
+              </span>
+            </li>
+          </ol>
+        </span>
+      </div>
+      <b-tabs v-model="tabIndex">
         <uw-schedule-tab
           v-for="(period, i) in periods" :key="i" :title="period.title"
           :active="i == 0" :period="period"
@@ -39,6 +66,7 @@ export default {
   data: function() {
     return {
       term: 'current',
+      tabIndex: 0,
     };
   },
   computed: {
@@ -69,6 +97,12 @@ export default {
     ...mapActions('schedule', ['fetch']),
     // TODO: move every instance of this functions into global scope
     ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
+    formatDate: (d) => {
+      return d.format("MMM D");
+    },
+    formatTime: (t) => {
+      return t.format("h:mmA");
+    }
   },
 }
 </script>

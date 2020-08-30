@@ -17,13 +17,16 @@
         (Confirm)
       </a>
       <div>
-        <a v-if="meetingLocationUrl(meetingData.meeting)"
+        <a v-if="(
+          !meetingData.section.is_remote &&
+           meetingLocationUrl(meetingData.meeting)
+          )"
           :href="meetingLocationUrl(meetingData.meeting)"
         >
-          {{meetingLocation(meetingData.meeting)}}
+          {{meetingLocation(meetingData.section, meetingData.meeting)}}
         </a>
         <span v-else>
-          {{meetingLocation(meetingData.meeting)}}
+          {{meetingLocation(meetingData.section, meetingData.meeting)}}
         </span>
       </div>
     </div>
@@ -66,7 +69,13 @@ export default {
         'room' in meeting && meeting.room != '*'
       ));
     },
-    meetingLocation: function(meeting) {
+    meetingLocation: function(section, meeting) {
+      if (section.is_remote) {
+        return "Remote";
+      }
+      if (meeting != null && meeting.no_meeting) {
+        return "No Meeting";
+      }
       if (!this.isRoomTBD(meeting)) {
         return `${meeting.building} ${meeting.room}`
       }
