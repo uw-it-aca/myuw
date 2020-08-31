@@ -1,33 +1,38 @@
 <template>
   <b-tab :title="title" title-item-class="text-uppercase" :active="active">
-    <table v-if="hasMeetingsWithTime">
-      <tr>
-        <td />
-        <th v-for="daySlot in daySlots" :key="daySlot" scope="col"
-            :aria-label="daySlot"
-        >
-          {{ days[daySlot] }}
-          <br />
-          <span v-if="isFinalsTab">
-            {{getFirstFinalExamTimeOn(daySlot).format("MMM D")}}
-          </span>
+    <table v-if="hasMeetingsWithTime" class="table table-sm table-borderless
+    mt-4 myuw-text-sm"
+    >
+      <thead>
+        <th class=""><span class="sr-only">Time</span></th>
+        <th class="border-bottom" v-for="daySlot in daySlots" :key="daySlot" scope="col">
+          <div :aria-label="daySlot" class="text-center">{{ days[daySlot] }}</div>
+          <div v-if="isFinalsTab" class="text-center">
+            {{ getFirstFinalExamTimeOn(daySlot).format("MMM D") }}
+          </div>
         </th>
-      </tr>
-      <tr v-for="timeSlot in timeSlots" :key="timeSlot">
-        <th scope="row">
-          <div>{{ timeSlot }}</div>
-        </th>
-        <td v-for="({rowspan, day, meetings}, i) in meetingMap[timeSlot]"
-            :key="i" :rowspan="rowspan"
-            :class="{
-              'bg-grey': 'disabled_days' in period && period.disabled_days[day]
-            }"
-        >
-          <uw-course-section v-if="meetings" :meetings="meetings"
-                             :is-finals-card="isFinalsTab"
-          />
-        </td>
-      </tr>
+      </thead>
+      <tbody>
+        <tr v-for="timeSlot in timeSlots" :key="timeSlot">
+          <th scope="row">
+            <div class="text-nowrap">
+              <span>{{ timeSlot }}</span>
+            </div>
+          </th>
+          <td v-for="({rowspan, day, meetings}, i) in meetingMap[timeSlot]"
+              :key="i" :rowspan="rowspan"
+              :class="{
+                'bg-grey': 'disabled_days' in period &&
+                  period.disabled_days[day]
+              }"
+              class="border-left border-right border-bottom"
+          >
+            <uw-course-section v-if="meetings" :meetings="meetings"
+                               :is-finals-card="isFinalsTab"
+            />
+          </td>
+        </tr>
+      </tbody>
     </table>
     <div v-if="meetingsWithoutTime.length > 0">
       <span v-if="!isFinalsTab">
@@ -280,13 +285,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
+
+td { position: relative; }
+
+/*
 table, th, td {
-  border: 1px solid black;
+  //border: 1px solid black;
+  position: relative;
 }
 table > tr > td, th {
   position: relative;
@@ -298,5 +309,5 @@ table > tr > th > div {
 table > tr > td > div {
   position: absolute;
   top: 0;
-}
+}*/
 </style>
