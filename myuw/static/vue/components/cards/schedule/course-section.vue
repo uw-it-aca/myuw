@@ -1,23 +1,28 @@
 <template>
   <div>
     <div v-for="(meetingData, i) in meetings" :key="i" role="group"
-         tabindex="0" style="background-color: #e8e3d3"
+         tabindex="0" style="background-color: #e8e3d3; position:absolute; top:0;"
     >
       <abbr v-if="meetingData.section.is_teaching" title="Teaching Course">
         T
       </abbr>
-      <div :class="`bg-c${meetingData.section.color_id}`">
-        <a :href="sectionUrl(meetingData.section)">
+      <div :class="`bg-c${meetingData.section.color_id}`"
+           class="p-1 myuw-text-xxs"
+      >
+        <a :href="sectionUrl(meetingData.section)"
+           class="text-white"
+        >
           {{ sectionTitle(meetingData.section) }}
         </a>
       </div>
       <a v-if="showConfirmLink(meetingData.section)"
          :href="confirmationLink(meetingData.section)"
          target="_blank"
-      >
+         class="text-warning"
+      >white
         (Confirm)
       </a>
-      <div>
+      <div class="p-1 myuw-text-xxs">
         <a v-if="(
              !meetingData.section.is_remote &&
              meetingLocationUrl(meetingData.meeting)
