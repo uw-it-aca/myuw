@@ -29,6 +29,7 @@
           >
             <uw-course-section v-if="meetings" :meetings="meetings"
                                :is-finals-card="isFinalsTab"
+                               style="background-color: #e8e3d3; position:absolute; top:0;"
             />
           </td>
         </tr>
