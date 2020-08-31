@@ -8,25 +8,26 @@
       </abbr>
       <div :class="`bg-c${meetingData.section.color_id}`">
         <a :href="sectionUrl(meetingData.section)">
-          {{sectionTitle(meetingData.section)}}
+          {{ sectionTitle(meetingData.section) }}
         </a>
       </div>
       <a v-if="showConfirmLink(meetingData.section)"
          :href="confirmationLink(meetingData.section)"
-         target="_blank">
+         target="_blank"
+      >
         (Confirm)
       </a>
       <div>
         <a v-if="(
-          !meetingData.section.is_remote &&
-           meetingLocationUrl(meetingData.meeting)
-          )"
-          :href="meetingLocationUrl(meetingData.meeting)"
+             !meetingData.section.is_remote &&
+             meetingLocationUrl(meetingData.meeting)
+           )"
+           :href="meetingLocationUrl(meetingData.meeting)"
         >
-          {{meetingLocation(meetingData.section, meetingData.meeting)}}
+          {{ meetingLocation(meetingData.section, meetingData.meeting) }}
         </a>
         <span v-else>
-          {{meetingLocation(meetingData.section, meetingData.meeting)}}
+          {{ meetingLocation(meetingData.section, meetingData.meeting) }}
         </span>
       </div>
     </div>
@@ -45,23 +46,27 @@ export default {
     isFinalsCard: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   computed: {
     ...mapState({
       netid: (state) => state.user.netid,
       quarter: (state) => state.termData.quarter.replace(
-        /^([a-z])/, (c) => c.toUpperCase()
+          /^([a-z])/, (c) => c.toUpperCase(),
       ),
       year: (state) => state.termData.year,
     }),
   },
   methods: {
     sectionTitle: function(section) {
-      return `${section.curriculum_abbr} ${section.course_number} ${section.section_id}`;
+      return `${section.curriculum_abbr} ${
+        section.course_number
+      } ${section.section_id}`;
     },
     sectionUrl: function(section) {
-      return `/academics/#${section.curriculum_abbr}-${section.course_number}-${section.section_id}`;
+      return `/academics/#${section.curriculum_abbr}-${
+        section.course_number
+      }-${section.section_id}`;
     },
     isRoomTBD: function(meeting) {
       return meeting == null || (meeting.room_tbd || !(
@@ -71,15 +76,15 @@ export default {
     },
     meetingLocation: function(section, meeting) {
       if (section.is_remote) {
-        return "Remote";
+        return 'Remote';
       }
       if (meeting != null && meeting.no_meeting) {
-        return "No Meeting";
+        return 'No Meeting';
       }
       if (!this.isRoomTBD(meeting)) {
-        return `${meeting.building} ${meeting.room}`
+        return `${meeting.building} ${meeting.room}`;
       }
-      return "Room TBD";
+      return 'Room TBD';
     },
     meetingLocationUrl: function(meeting) {
       if (
@@ -105,7 +110,7 @@ export default {
       return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/${
         this.netid
       }/finalexam.asp?${this.quarter}+${this.year}&sln=${section.sln}`;
-    }
-  }
-}
+    },
+  },
+};
 </script>
