@@ -1,10 +1,13 @@
 import moment, { max } from 'moment';
 import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 
+// Helper functions
+const isFinalPeriod = (period) => period.id === 'finals';
+
 const postProcess = (response, urlExtra) => {
   const schedule = setTermAndExtractData(response, urlExtra);
 
-  schedule[urlExtra].periods = schedule[urlExtra].periods.map((period) => {
+  schedule[urlExtra].periods.forEach((period) => {
     let eosAlreadyAdded = false;
     period.eosData = [];
 
@@ -23,104 +26,84 @@ const postProcess = (response, urlExtra) => {
 
     let earliestTime = null;
     let latestTime = null;
-    for (const i in period.sections) {
+    period.sections.forEach((section) => {
       // Skip if no exam is defined or no time is set
-      if (period.sections[i].final_exam &&
-          period.sections[i].final_exam.start_date) {
-        period.sections[i].final_exam.start_date = moment(
-          period.sections[i].final_exam.start_date
+      if (section.final_exam && section.final_exam.start_date) {
+        section.final_exam.start_date = moment(
+          section.final_exam.start_date
         ).seconds(0).milliseconds(0);
-        period.sections[i].final_exam.end_date = moment(
-          period.sections[i].final_exam.end_date,
+        section.final_exam.end_date = moment(
+          section.final_exam.end_date
         ).seconds(0).milliseconds(0);
 
-        if (period.id == 'finals') {
+        if (isFinalPeriod(period)) {
           // Update min and max time if needed
           if (earliestTime === null && latestTime === null) {
-            earliestTime = period.sections[i].final_exam.start_date;
-            latestTime = period.sections[i].final_exam.end_date;
+            earliestTime = section.final_exam.start_date;
+            latestTime = section.final_exam.end_date;
           } else {
-            if (period.sections[i].final_exam.start_date < earliestTime) {
-              earliestTime = period.sections[i].final_exam.start_date;
+            if (section.final_exam.start_date < earliestTime) {
+              earliestTime = section.final_exam.start_date;
             }
-            if (period.sections[i].final_exam.end_date > latestTime) {
-              latestTime = period.sections[i].final_exam.end_date;
+            if (section.final_exam.end_date > latestTime) {
+              latestTime = section.final_exam.end_date;
             }
           }
         }
       }
 
-      for (const j in period.sections[i].meetings) {
-        console.log(period.sections[i].meetings[j].eos_start_date)
+      section.meetings.forEach((meeting) => {
         // Skip if time and date are tdb or null anyways
-        if (
-          !period.sections[i].meetings[j].days_tbd &&
-          period.sections[i].meetings[j].start_time &&
-          period.sections[i].meetings[j].end_time
-        ) {
-          period.sections[i].meetings[j].start_time = moment(
-            period.sections[i].meetings[j].start_time,
-            "hh:mm"
+        if (!meeting.days_tbd && meeting.start_time && meeting.end_time) {
+          meeting.start_time = moment(
+            meeting.start_time, "hh:mm"
           ).seconds(0).milliseconds(0);
-          period.sections[i].meetings[j].end_time = moment(
-            period.sections[i].meetings[j].end_time,
-            "hh:mm"
+          meeting.end_time = moment(
+            meeting.end_time, "hh:mm"
           ).seconds(0).milliseconds(0);
 
-          if (period.id != 'finals') {
+          if (!isFinalPeriod(period)) {
             // Update min and max time if needed
             if (earliestTime === null && latestTime === null) {
-              earliestTime = period.sections[i].meetings[j].start_time;
-              latestTime = period.sections[i].meetings[j].end_time;
+              earliestTime = meeting.start_time;
+              latestTime = meeting.end_time;
             } else {
-              if (period.sections[i].meetings[j].start_time < earliestTime) {
-                earliestTime = period.sections[i].meetings[j].start_time;
+              if (meeting.start_time < earliestTime) {
+                earliestTime = meeting.start_time;
               }
-              if (period.sections[i].meetings[j].end_time > latestTime) {
-                latestTime = period.sections[i].meetings[j].end_time;
+              if (meeting.end_time > latestTime) {
+                latestTime = meeting.end_time;
               }
             }
           }
         }
 
-        if (
-          period.sections[i].meetings[j].eos_start_date &&
-          period.sections[i].meetings[j].eos_end_date
-        ) {
-          period.sections[i].meetings[j].start_end_same = (
-            period.sections[i].meetings[j].eos_start_date ===
-            period.sections[i].meetings[j].eos_end_date
+        if (meeting.eos_start_date && meeting.eos_end_date) {
+          meeting.start_end_same = (
+            meeting.eos_start_date === meeting.eos_end_date
           );
 
-          period.sections[i].meetings[j].eos_start_date = moment(
-            period.sections[i].meetings[j].eos_start_date
-          );
-          period.sections[i].meetings[j].eos_end_date = moment(
-            period.sections[i].meetings[j].eos_end_date
-          );
+          meeting.eos_start_date = moment(meeting.eos_start_date);
+          meeting.eos_end_date = moment(meeting.eos_end_date);
 
           if (!eosAlreadyAdded) {
-            period.eosData.push(period.sections[i]);
+            period.eosData.push(section);
             eosAlreadyAdded = true;
           }
         }
-      }
+      });
 
       // Some eos meetings don't come in a sorted order, so
       // we need to sort them
       if (eosAlreadyAdded) {
-        period.sections[i].meetings.sort(
-          (s1, s2) => {
-            return s1.eos_start_date - s2.eos_start_date;
-          }
+        section.meetings.sort(
+          (s1, s2) => s1.eos_start_date - s2.eos_start_date
         );
       }
-    }
+    });
 
     period.earliestMeetingTime = earliestTime ? earliestTime.clone() : null;
     period.latestMeetingTime = latestTime ? latestTime.clone() : null;
-
-    return period;
   });
 
   return schedule;
