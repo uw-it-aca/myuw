@@ -15,8 +15,11 @@
       <tbody>
         <tr v-for="timeSlot in timeSlots" :key="timeSlot">
           <th scope="row">
-            <div class="text-nowrap">
-              <span>{{ timeSlot }}</span>
+            <div class="text-nowrap" style="position:relative;">
+              <div style="position:absolute; top: -13px; text-align:right; width:100%;">
+                <!-- TODO: if :30... add sr-only -->
+                <span>{{ timeSlot }}</span>
+              </div>
             </div>
           </th>
           <td v-for="({rowspan, day, meetings}, i) in meetingMap[timeSlot]"
@@ -25,7 +28,7 @@
                 'bg-grey': 'disabled_days' in period &&
                   period.disabled_days[day]
               }"
-              class="border-left border-right border-bottom"
+              class="p-0 border-left border-right border-bottom"
           >
             <uw-course-section v-if="meetings" :meetings="meetings"
                                :is-finals-card="isFinalsTab"
@@ -293,7 +296,7 @@ table {
   table-layout: fixed;
 }
 
-td { position: relative; }
+td { position: relative; height:30px; }
 
 /*
 table, th, td {
