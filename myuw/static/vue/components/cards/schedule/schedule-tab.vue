@@ -7,6 +7,10 @@
             :aria-label="daySlot"
         >
           {{ days[daySlot] }}
+          <br />
+          <span v-if="isFinalsTab">
+            {{getFirstFinalExamTimeOn(daySlot).format("MMM D")}}
+          </span>
         </th>
       </tr>
       <tr v-for="timeSlot in timeSlots" :key="timeSlot">
@@ -225,6 +229,11 @@ export default {
         this.getMeetingsAt(startTime)[day].rowspan = count;
         this.getMeetingsAt(startTime)[day].meetings = meetingsToAdd;
       }
+    },
+    getFirstFinalExamTimeOn(day) {
+      return this.period.latestMeetingTime.day(
+        day.replace(/^([a-z])/, (c) => c.toUpperCase()),
+      );
     },
     // -- Some helper functions to initalize the state. --
     // Make a array of all the possible time slots with the interval
