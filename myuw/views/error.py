@@ -36,7 +36,9 @@ def no_access():
         UNAUTHORIZED_ERROR,
         "<p>This is a test environment of MyUW, "
         "its access is limited to specific people. "
-        "To request access, please contact the UW-IT Service Center.</p>")
+        "To request access, please contact the "
+        "<a href=\"https://itconnect.uw.edu/it-connect-home/question/\">"
+        "UW-IT Service Center</a>.</p>")
 
 
 def not_instructor_error():
@@ -47,8 +49,9 @@ def not_instructor_error():
 def blocked_uwnetid():
     return _make_response(
         UNAUTHORIZED_ERROR,
-        "<p>MyUW encountered a problem with your uwnetid, "
-        "please contact the UW-IT Service Center.</p>")
+        "<p>MyUW encountered a problem with your uwnetid, please contact the "
+        "<a href=\"https://itconnect.uw.edu/it-connect-home/question/\">"
+        "UW-IT Service Center</a>.</p>")
 
 
 def unknown_uwnetid():
@@ -64,8 +67,9 @@ def pws_error_404():
     return _make_response(
         UNAUTHORIZED_ERROR,
         "<p>MyUW cannot find data for this user account "
-        "in the Person Registry services. "
-        "Please contact the UW-IT Service Center.</p>")
+        "in the Person Registry services. Please contact the "
+        "<a href=\"https://itconnect.uw.edu/it-connect-home/question/\">"
+        "UW-IT Service Center</a>.</p>")
 
 
 def invalid_input_data():
