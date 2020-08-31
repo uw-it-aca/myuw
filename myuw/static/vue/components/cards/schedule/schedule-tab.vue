@@ -3,7 +3,9 @@
     <table v-if="hasMeetingsWithTime">
       <tr>
         <td />
-        <th v-for="daySlot in daySlots" :key="daySlot" scope="col">
+        <th v-for="daySlot in daySlots" :key="daySlot" scope="col"
+            :aria-label="daySlot"
+        >
           {{ days[daySlot] }}
         </th>
       </tr>
@@ -17,8 +19,8 @@
               'bg-grey': 'disabled_days' in period && period.disabled_days[day]
             }"
         >
-          <uw-course-mini-card v-if="meetings" :meetings="meetings"
-                               :is-finals-card="isFinalsTab"
+          <uw-course-section v-if="meetings" :meetings="meetings"
+                             :is-finals-card="isFinalsTab"
           />
         </td>
       </tr>
@@ -32,18 +34,18 @@
         courses with no final exam:
       </span>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
-        <uw-course-mini-card :meetings="[meeting]" />
+        <uw-course-section :meetings="[meeting]" />
       </div>
     </div>
   </b-tab>
 </template>
 
 <script>
-import CourseMiniCard from './course-mini-card.vue';
+import CourseSection from './course-section.vue';
 
 export default {
   components: {
-    'uw-course-mini-card': CourseMiniCard,
+    'uw-course-section': CourseSection,
   },
   props: {
     title: {
