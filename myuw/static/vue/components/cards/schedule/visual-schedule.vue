@@ -49,6 +49,13 @@
           :active="i == 0" :period="period"
         />
       </b-tabs>
+      <!-- commented till functionality is confirmed -->
+      <!-- <p v-if="offTerm.length > 0">
+        Note:
+        <span v-for="(term, i) in offTerm" :key="i">
+          {{term.section}} course continues until {{formatTime(term.end_date)}}
+        </span>
+      </p> -->
     </template>
   </uw-card>
 </template>

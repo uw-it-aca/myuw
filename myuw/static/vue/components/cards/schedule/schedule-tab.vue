@@ -32,7 +32,7 @@
           >
             <uw-course-section v-if="meetings" :meetings="meetings"
                                :is-finals-card="isFinalsTab"
-                               style="background-color: #e8e3d3; position:absolute; top:0;"
+                               style="position:absolute; top:0;"
             />
           </td>
         </tr>
@@ -296,7 +296,16 @@ table {
   table-layout: fixed;
 }
 
-td { position: relative; height:30px; }
+td {
+  position: relative;
+  height:30px;
+
+  div {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
+}
 
 /*
 table, th, td {

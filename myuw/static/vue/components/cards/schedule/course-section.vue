@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(meetingData, i) in meetings" :key="i" role="group"
-         tabindex="0"
+         tabindex="0" style="background-color: #e8e3d3; width: 100%; margin-bottom: 10px"
     >
       <abbr v-if="meetingData.section.is_teaching" title="Teaching Course">
         T
@@ -19,7 +19,7 @@
          :href="confirmationLink(meetingData.section)"
          target="_blank"
          class="text-warning"
-      >white
+      >
         (Confirm)
       </a>
       <div class="p-1 myuw-text-xxs">
