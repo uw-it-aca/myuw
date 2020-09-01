@@ -17,9 +17,9 @@
         >
           <div :aria-label="daySlot" class="text-center">
             {{ days[daySlot] }}
-          </div>
-          <div v-if="isFinalsTab" class="text-center">
-            {{ getFirstFinalExamTimeOn(daySlot).format('MMM D') }}
+            <span v-if="isFinalsTab" class="d-block">
+              {{ getFirstFinalExamTimeOn(daySlot).format('MMM D') }}
+            </span>
           </div>
         </th>
       </thead>
