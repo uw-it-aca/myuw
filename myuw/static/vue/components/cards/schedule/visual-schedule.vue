@@ -44,10 +44,11 @@
         </span>
       </div>
       <b-tabs v-model="tabIndex">
-        <uw-schedule-tab
-          v-for="(period, i) in periods" :key="i" :title="period.title"
-          :active="i == 0" :period="period"
-        />
+        <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
+               title-item-class="text-uppercase" :active="i == 0"
+        >
+          <uw-schedule-tab :period="period" />
+        </b-tab>
       </b-tabs>
       <!-- commented till functionality is confirmed -->
       <!-- <p v-if="offTerm.length > 0">

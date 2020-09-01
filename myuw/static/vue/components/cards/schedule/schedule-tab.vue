@@ -1,55 +1,45 @@
 <template>
-  <b-tab :title="title" title-item-class="text-uppercase" :active="active">
-    <table
-      v-if="hasMeetingsWithTime"
-      class="table table-sm table-borderless
+  <div>
+    <table v-if="hasMeetingsWithTime" class="table table-sm table-borderless
     mt-4 myuw-text-sm"
     >
       <thead>
-        <th class="">
-          <span class="sr-only">Time</span>
-        </th>
-        <th
-          v-for="daySlot in daySlots"
-          :key="daySlot"
-          class="border-bottom"
-          scope="col"
-        >
-          <div :aria-label="daySlot" class="text-center">
-            {{ days[daySlot] }}
-            <span v-if="isFinalsTab" class="d-block">
-              {{ getFirstFinalExamTimeOn(daySlot).format('MMM D') }}
-            </span>
+        <th class=""><span class="sr-only">Time</span></th>
+        <th class="border-bottom" v-for="daySlot in daySlots" :key="daySlot" scope="col">
+          <div :aria-label="daySlot" class="text-center">{{ days[daySlot] }}</div>
+          <div v-if="isFinalsTab" class="text-center"
+               :aria-label="getFirstFinalExamTimeOn(daySlot).format('MMMM Do')"
+          >
+            {{ getFirstFinalExamTimeOn(daySlot).format("MMM D") }}
           </div>
         </th>
       </thead>
       <tbody>
         <tr v-for="timeSlot in timeSlots" :key="timeSlot">
-          <th scope="row">
+          <th scope="row" style="width: 60px">
             <div class="text-nowrap" style="position:relative;">
               <div
                 style="position:absolute; top: -13px;
                 text-align:right; width:100%;"
               >
                 <!-- TODO: if :30... add sr-only -->
-                <span>{{ timeSlot }}</span>
+                <span :class="{'sr-only': timeSlot.substr(3,2) == '30'}">
+                  {{ timeSlotToMoment(timeSlot).format('ha') }}
+                </span>
               </div>
             </div>
           </th>
-          <td
-            v-for="({ rowspan, day, meetings }, i) in meetingMap[timeSlot]"
-            :key="i"
-            :rowspan="rowspan"
-            :class="{
-              'bg-grey': 'disabled_days' in period && period.disabled_days[day],
-            }"
-            class="p-0 border-left border-right border-bottom"
+          <td v-for="({rowspan, day, meetings}, i) in meetingMap[timeSlot]"
+              :key="i" :rowspan="rowspan"
+              :class="{
+                'bg-grey': 'disabled_days' in period &&
+                  period.disabled_days[day]
+              }"
+              class="p-0 border-left border-right"
           >
-            <uw-course-section
-              v-if="meetings"
-              :meetings="meetings"
-              :is-finals-card="isFinalsTab"
-              style="position:absolute; top:0;"
+            <uw-course-section v-if="meetings" :meetings="meetings"
+                               :is-finals-card="isFinalsTab" :rowspan="rowspan"
+                               style="position:absolute; top:0;"
             />
           </td>
         </tr>
@@ -64,13 +54,14 @@
         no final exam:
       </span>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
-        <uw-course-section :meetings="[meeting]" />
+        <uw-course-section :meetings="[meeting]" :rowspan="0"/>
       </div>
     </div>
-  </b-tab>
+  </div>
 </template>
 
 <script>
+import moment from 'moment';
 import CourseSection from './course-section.vue';
 
 export default {
@@ -78,14 +69,6 @@ export default {
     'uw-course-section': CourseSection,
   },
   props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    active: {
-      type: Boolean,
-      default: false,
-    },
     period: {
       type: Object,
       required: true,
@@ -258,6 +241,9 @@ export default {
         this.getMeetingsAt(startTime)[day].meetings = meetingsToAdd;
       }
     },
+    timeSlotToMoment(t) {
+      return moment(t, 'hh:mm A');
+    },
     getFirstFinalExamTimeOn(day) {
       return this.period.latestMeetingTime.day(
           day.replace(/^([a-z])/, (c) => c.toUpperCase()),
@@ -312,7 +298,15 @@ export default {
 table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
+  // table-layout: fixed;
+  tbody {
+    tr:nth-child(odd) > td {
+      border-top: 1px solid black;
+    }
+    tr:nth-child(even) > td {
+      border-top: 1px dashed black;
+    }
+  }
 }
 
 td {
@@ -325,21 +319,4 @@ td {
     width: 100%;
   }
 }
-
-/*
-table, th, td {
-  //border: 1px solid black;
-  position: relative;
-}
-table > tr > td, th {
-  position: relative;
-}
-table > tr > th > div {
-  position: relative;
-  bottom: 100%;
-}
-table > tr > td > div {
-  position: absolute;
-  top: 0;
-}*/
 </style>
