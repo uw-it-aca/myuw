@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-for="(meetingData, i) in meetings" :key="i" role="group"
-         tabindex="0"
-         style="background-color: #e8e3d3; width: 100%; margin-bottom: 10px"
+         tabindex="0" class="course-section"
+         :style="sectionMargins[i]"
     >
       <abbr v-if="meetingData.section.is_teaching" title="Teaching Course">
         T
@@ -53,6 +53,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    rowspan: {
+      type: Number,
+      required: true,
+    }
+  },
+  data: function() {
+    return {
+      sectionMargins: [],
+    }
   },
   computed: {
     ...mapState({
@@ -62,6 +71,14 @@ export default {
       ),
       year: (state) => state.termData.year,
     }),
+  },
+  created() {
+    this.meetings.sort(
+      (m1, m2) => m1.meeting.start_time - m2.meeting.start_time
+    );
+    this.meetings.forEach((meeting, i) => {
+      this.sectionMargins[i] = this.generateStyle(meeting);
+    });
   },
   methods: {
     sectionTitle: function(section) {
@@ -117,6 +134,44 @@ export default {
         this.netid
       }/finalexam.asp?${this.quarter}+${this.year}&sln=${section.sln}`;
     },
+    // Returns minutes from midnight
+    getMFM(t) {
+      return (t.hour() * 60) + t.minute();
+    },
+    generateStyle(meetingData) {
+      if (meetingData.meeting) {
+        return {
+          margin: this.getSizings(
+            meetingData.meeting,
+            this.meetings[0].meeting.start_time ||
+            this.meetings[0].meeting.start_date,
+          ),
+        };
+      }
+      return {};
+    },
+    getSizings(meeting, startPosTime) {
+      let startTime = meeting.start_time || meeting.start_date;
+      let endTime = meeting.end_time || meeting.end_date;
+      if (startTime == null || endTime == null) {
+        return '0';
+      }
+      let marginTop = (
+        this.getMFM(startTime) - this.getMFM(startPosTime)
+      ) - 1; // -1 to make it overlap the border
+      let marginBottom = (
+        (this.getMFM(startPosTime) + (30 * this.rowspan)) -
+        this.getMFM(endTime)
+      );
+      return `${marginTop}px 0 ${marginBottom}px 0`;
+    }
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.course-section {
+  background-color: #e8e3d3;
+  width: 100%;
+}
+</style>
