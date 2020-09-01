@@ -1,14 +1,25 @@
 <template>
   <b-tab :title="title" title-item-class="text-uppercase" :active="active">
-    <table v-if="hasMeetingsWithTime" class="table table-sm table-borderless
+    <table
+      v-if="hasMeetingsWithTime"
+      class="table table-sm table-borderless
     mt-4 myuw-text-sm"
     >
       <thead>
-        <th class=""><span class="sr-only">Time</span></th>
-        <th class="border-bottom" v-for="daySlot in daySlots" :key="daySlot" scope="col">
-          <div :aria-label="daySlot" class="text-center">{{ days[daySlot] }}</div>
+        <th class="">
+          <span class="sr-only">Time</span>
+        </th>
+        <th
+          v-for="daySlot in daySlots"
+          :key="daySlot"
+          class="border-bottom"
+          scope="col"
+        >
+          <div :aria-label="daySlot" class="text-center">
+            {{ days[daySlot] }}
+          </div>
           <div v-if="isFinalsTab" class="text-center">
-            {{ getFirstFinalExamTimeOn(daySlot).format("MMM D") }}
+            {{ getFirstFinalExamTimeOn(daySlot).format('MMM D') }}
           </div>
         </th>
       </thead>
@@ -16,23 +27,29 @@
         <tr v-for="timeSlot in timeSlots" :key="timeSlot">
           <th scope="row">
             <div class="text-nowrap" style="position:relative;">
-              <div style="position:absolute; top: -13px; text-align:right; width:100%;">
+              <div
+                style="position:absolute; top: -13px;
+                text-align:right; width:100%;"
+              >
                 <!-- TODO: if :30... add sr-only -->
                 <span>{{ timeSlot }}</span>
               </div>
             </div>
           </th>
-          <td v-for="({rowspan, day, meetings}, i) in meetingMap[timeSlot]"
-              :key="i" :rowspan="rowspan"
-              :class="{
-                'bg-grey': 'disabled_days' in period &&
-                  period.disabled_days[day]
-              }"
-              class="p-0 border-left border-right border-bottom"
+          <td
+            v-for="({ rowspan, day, meetings }, i) in meetingMap[timeSlot]"
+            :key="i"
+            :rowspan="rowspan"
+            :class="{
+              'bg-grey': 'disabled_days' in period && period.disabled_days[day],
+            }"
+            class="p-0 border-left border-right border-bottom"
           >
-            <uw-course-section v-if="meetings" :meetings="meetings"
-                               :is-finals-card="isFinalsTab"
-                               style="position:absolute; top:0;"
+            <uw-course-section
+              v-if="meetings"
+              :meetings="meetings"
+              :is-finals-card="isFinalsTab"
+              style="position:absolute; top:0;"
             />
           </td>
         </tr>
@@ -43,8 +60,8 @@
         No meeting time specified:
       </span>
       <span v-else>
-        Courses with final exam meeting times to be determined or
-        courses with no final exam:
+        Courses with final exam meeting times to be determined or courses with
+        no final exam:
       </span>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
         <uw-course-section :meetings="[meeting]" />
@@ -100,8 +117,10 @@ export default {
 
     // If there are no meetings with defined time in this period
     if (
-      !(this.period.earliestMeetingTime == null &&
-      this.period.latestMeetingTime == null)
+      !(
+        this.period.earliestMeetingTime == null &&
+        this.period.latestMeetingTime == null
+      )
     ) {
       // Initialize the rendering logic
       this.initializeTimeSlots();
@@ -116,7 +135,10 @@ export default {
               for (const day in meeting.meeting_days) {
                 if (meeting.meeting_days[day]) {
                   this.putMeeting(
-                      section, meeting, meeting.start_time, meeting.end_time,
+                      section,
+                      meeting,
+                      meeting.start_time,
+                      meeting.end_time,
                       day,
                   );
                   this.hasMeetingsWithTime = true;
@@ -131,7 +153,9 @@ export default {
             section.final_exam.end_date
           ) {
             this.putMeeting(
-                section, section.final_exam, section.final_exam.start_date,
+                section,
+                section.final_exam,
+                section.final_exam.start_date,
                 section.final_exam.end_date,
                 section.final_exam.start_date.format('dddd').toLowerCase(),
             );
@@ -153,11 +177,13 @@ export default {
           }
         });
       } else {
-        if (!(
-          section.final_exam &&
-          section.final_exam.start_date &&
-          section.final_exam.end_date
-        )) {
+        if (
+          !(
+            section.final_exam &&
+            section.final_exam.start_date &&
+            section.final_exam.end_date
+          )
+        ) {
           this.meetingsWithoutTime.push({
             section: section,
             meeting: section.final_exam,
@@ -185,10 +211,7 @@ export default {
 
       while (i < endTime) {
         // Check if this meeting is overwriting another
-        if (
-          this.getMeetingsAt(i)[day] &&
-          this.getMeetingsAt(i)[day].meetings
-        ) {
+        if (this.getMeetingsAt(i)[day] && this.getMeetingsAt(i)[day].meetings) {
           meetingsToAdd = meetingsToAdd.concat(
               this.getMeetingsAt(i)[day].meetings,
           );
@@ -213,10 +236,8 @@ export default {
           this.getMeetingsAt(j)[day].rowspan = newRowspan;
         }
 
-        this.getMeetingsAt(j)[day].meetings =
-          this.getMeetingsAt(j)[day].meetings.concat(
-              ...meetingsToAdd,
-          );
+        this.getMeetingsAt(j)[day].meetings = this.getMeetingsAt(j)[
+            day].meetings.concat(...meetingsToAdd);
       } else {
         // Handle if the start time overlaps
         if (
@@ -227,9 +248,7 @@ export default {
               this.getMeetingsAt(startTime)[day].meetings,
           );
           // Select the bigger span
-          if (
-            this.getMeetingsAt(startTime)[day].rowspan > count
-          ) {
+          if (this.getMeetingsAt(startTime)[day].rowspan > count) {
             count = this.getMeetingsAt(startTime)[day].rowspan;
           }
         }
@@ -241,16 +260,16 @@ export default {
     },
     getFirstFinalExamTimeOn(day) {
       return this.period.latestMeetingTime.day(
-        day.replace(/^([a-z])/, (c) => c.toUpperCase()),
+          day.replace(/^([a-z])/, (c) => c.toUpperCase()),
       );
     },
     // -- Some helper functions to initalize the state. --
     // Make a array of all the possible time slots with the interval
     // of this.timestep
     initializeTimeSlots() {
-      let start = this.period.earliestMeetingTime.clone().subtract(
-          ...this.timestep,
-      );
+      let start = this.period.earliestMeetingTime
+          .clone()
+          .subtract(...this.timestep);
       let end = this.period.latestMeetingTime.clone().add(...this.timestep);
       if (!(end.minute() === 30 || end.minute() === 0)) {
         end = end.add(10, 'minutes');
@@ -279,7 +298,8 @@ export default {
         this.meetingMap[timeSlot] = {};
         this.daySlots.forEach((daySlot) => {
           this.meetingMap[timeSlot][daySlot] = {
-            rowspan: 1, day: daySlot,
+            rowspan: 1,
+            day: daySlot,
           };
         });
       });
@@ -289,7 +309,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -298,7 +317,7 @@ table {
 
 td {
   position: relative;
-  height:30px;
+  height: 30px;
 
   div {
     display: flex;
