@@ -16,13 +16,13 @@
       </thead>
       <tbody>
         <tr v-for="timeSlot in timeSlots" :key="timeSlot">
-          <th scope="row" style="width: 60px">
-            <div class="text-nowrap" style="position:relative;">
+          <th scope="row" style="width: 40px">
+            <!-- TODO: change to 'font-weight-bold' for 8am (earliest time) and 12pm -->
+            <div class="text-nowrap font-weight-light myuw-text-xs" style="position:relative;">
               <div
                 style="position:absolute; top: -13px;
                 text-align:right; width:100%;"
               >
-                <!-- TODO: if :30... add sr-only -->
                 <span :class="{'sr-only': timeSlot.substr(3,2) == '30'}">
                   {{ timeSlotToMoment(timeSlot).format('ha') }}
                 </span>
@@ -295,16 +295,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//@import "~bootstrap/scss/variables";
+@import "../../../../css/custom.scss";
+
 table {
   width: 100%;
   border-collapse: collapse;
   // table-layout: fixed;
   tbody {
     tr:nth-child(odd) > td {
-      border-top: 1px solid black;
+      border-top: 1px solid $table-border-color;
     }
     tr:nth-child(even) > td {
-      border-top: 1px dashed black;
+      border-top: 1px dashed $table-border-color;
     }
   }
 }
