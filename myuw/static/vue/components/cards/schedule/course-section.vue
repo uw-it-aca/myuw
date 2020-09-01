@@ -1,7 +1,8 @@
 <template>
   <div>
     <div v-for="(meetingData, i) in meetings" :key="i" role="group"
-         tabindex="0" style="background-color: #e8e3d3; width: 100%; margin-bottom: 10px"
+         tabindex="0"
+         style="background-color: #e8e3d3; width: 100%; margin-bottom: 10px"
     >
       <abbr v-if="meetingData.section.is_teaching" title="Teaching Course">
         T
