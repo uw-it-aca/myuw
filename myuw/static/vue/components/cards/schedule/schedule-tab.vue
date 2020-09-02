@@ -1,20 +1,20 @@
 <template>
   <div>
     <div class="schedule-body">
-      <div class="time-column">
+      <div class="time-column myuw-text-xs" aria-hidden="true">
         <div v-for="(time, i) in timeSlots" :key="i"
-            class="time-cell"
+             class="time-cell"
         >
           <div v-if="time.minute() == 0">
             <strong>{{ time.format('h a') }}</strong>
           </div>
-          <div v-else class="sr-only">
+          <div v-else class="d-none">
             {{ time.format('h:mm a') }}
           </div>
         </div>
       </div>
       <div v-for="day in daySlots" :key="day" class="day-column">
-        <div class="day-heading">
+        <div class="day-heading" tabindex="0">
           <div>
             {{ days[day] }}
             <br>
@@ -47,7 +47,7 @@
         no final exam:
       </span>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
-        <uw-course-section :meetingData="meeting" :rowspan="0"/>
+        <uw-course-section :meeting-data="meeting" :rowspan="0" />
       </div>
     </div>
   </div>
