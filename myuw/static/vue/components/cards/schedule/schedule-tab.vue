@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="my-4 schedule-body">
+    <div class="mb-4 schedule-body">
       <div class="time-column myuw-text-xs" aria-hidden="true">
         <div v-for="(time, i) in timeSlots" :key="i"
              class="time-cell"
