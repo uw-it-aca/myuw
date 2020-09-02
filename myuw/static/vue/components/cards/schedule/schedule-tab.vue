@@ -17,7 +17,7 @@
            role="group"
            class="day-column"
       >
-        <div class="font-weight-bold myuw-text-xs day-heading" tabindex="0">
+        <div class="font-weight-bold myuw-text-xs day-heading">
           <div :id="day">
             {{ days[day] }}
             <span v-if="isFinalsTab" class="d-block">
