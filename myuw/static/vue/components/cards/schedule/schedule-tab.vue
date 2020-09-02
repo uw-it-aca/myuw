@@ -46,7 +46,7 @@
         no final exam:
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
-           class="d-inline-block mr-2"
+           class="d-inline-block w-25 mr-2"
       >
         <uw-course-section :meeting-data="meeting" />
       </div>
