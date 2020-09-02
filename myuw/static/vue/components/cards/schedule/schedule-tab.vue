@@ -1,67 +1,45 @@
 <template>
-  <div>
-    <table v-if="hasMeetingsWithTime" class="table table-sm table-borderless
-    mt-4 myuw-text-sm"
-    >
-      <thead>
-        <th class=""><span class="sr-only">Time</span></th>
-        <th class="border-bottom" v-for="daySlot in daySlots" :key="daySlot" scope="col">
-          <div :aria-label="daySlot" class="text-center">{{ days[daySlot] }}</div>
-          <div v-if="isFinalsTab" class="text-center"
-               :aria-label="getFirstFinalExamTimeOn(daySlot).format('MMMM Do')"
-          >
-            {{ getFirstFinalExamTimeOn(daySlot).format("MMM D") }}
-          </div>
-        </th>
-      </thead>
-      <tbody>
-        <tr v-for="timeSlot in timeSlots" :key="timeSlot">
-          <th scope="row" style="width: 40px">
-            <!-- TODO: change to 'font-weight-bold' for 8am (earliest time) and 12pm -->
-            <div class="text-nowrap font-weight-light myuw-text-xs" style="position:relative;">
-              <div
-                style="position:absolute; top: -13px;
-                text-align:right; width:100%;"
-              >
-                <span :class="{'sr-only': timeSlot.substr(3,2) == '30'}">
-                  {{ timeSlotToMoment(timeSlot).format('ha') }}
-                </span>
-              </div>
-            </div>
-          </th>
-          <td v-for="({rowspan, day, meetings}, i) in meetingMap[timeSlot]"
-              :key="i" :rowspan="rowspan"
-              :class="{
-                'bg-grey': 'disabled_days' in period &&
-                  period.disabled_days[day]
-              }"
-              class="p-0 border-left border-right"
-          >
-            <uw-course-section v-if="meetings" :meetings="meetings"
-                               :is-finals-card="isFinalsTab" :rowspan="rowspan"
-                               style="position:absolute; top:0;"
-            />
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div v-if="meetingsWithoutTime.length > 0">
-      <span v-if="!isFinalsTab">
-        No meeting time specified:
-      </span>
-      <span v-else>
-        Courses with final exam meeting times to be determined or courses with
-        no final exam:
-      </span>
-      <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
-        <uw-course-section :meetings="[meeting]" :rowspan="0"/>
+  <div class="schedule-body">
+    <div class="time-column">
+      <div v-for="(time, i) in timeSlots" :key="i"
+           class="time-cell"
+      >
+        <div v-if="time.minute() == 0">
+          <strong>{{ time.format('h a') }}</strong>
+        </div>
+        <div v-else class="sr-only">
+          {{ time.format('h:mm a') }}
+        </div>
+      </div>
+    </div>
+    <div v-for="day in daySlots" :key="day" class="day-column">
+      <div class="day-heading">
+        <div>
+          {{ days[day] }}
+          <br>
+          <span v-if="isFinalsTab">
+            {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
+          </span>
+        </div>
+      </div>
+      <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
+        <div v-if="(
+          meetingMap[day][formatToUnique(time)] &&
+          meetingMap[day][formatToUnique(time)].length > 0
+        )" class="d-flex"
+        >
+          <uw-course-section
+            v-for="(meetingData, j) in meetingMap[day][formatToUnique(time)]"
+            :key="j" :meeting-data="meetingData"
+            :is-finals-card="isFinalsTab"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import moment from 'moment';
 import CourseSection from './course-section.vue';
 
 export default {
@@ -121,7 +99,6 @@ export default {
                       section,
                       meeting,
                       meeting.start_time,
-                      meeting.end_time,
                       day,
                   );
                   this.hasMeetingsWithTime = true;
@@ -139,7 +116,6 @@ export default {
                 section,
                 section.final_exam,
                 section.final_exam.start_date,
-                section.final_exam.end_date,
                 section.final_exam.start_date.format('dddd').toLowerCase(),
             );
             this.hasMeetingsWithTime = true;
@@ -147,6 +123,8 @@ export default {
         }
       });
     }
+
+    this.populateOverlapParameters();
 
     // Put the meeting without time into its list.
     this.period.sections.forEach((section) => {
@@ -177,72 +155,68 @@ export default {
   },
   methods: {
     // Converts a moment object to a standard string that is used in timeslots
-    toTimeSlotFormat(t) {
+    formatToUnique(t) {
       return t.format('hh:mm A');
     },
-    // Gets the meeting at the time t
-    getMeetingsAt(t) {
-      return this.meetingMap[this.toTimeSlotFormat(t)];
+    // Returns minutes from midnight
+    getMFM(t) {
+      return (t.hour() * 60) + t.minute();
     },
     // Puts a meeting in meetingMap at time startTime and calculates variables
     // needed to render the meetingMap.
-    putMeeting(section, meeting, startTime, endTime, day) {
-      let meetingsToAdd = [{section: section, meeting: meeting}];
+    putMeeting(section, meeting, startTime, day) {
+      let meetingsToAdd = [{
+        section: section,
+        meeting: meeting,
+        onLeft: 0,
+        onRight: 0,
+        onSameTime: 0,
+      }];
 
-      let count = 1;
-      const i = startTime.clone().add(...this.timestep);
+      if (
+        this.meetingMap[day][this.formatToUnique(startTime)] &&
+        this.meetingMap[day][this.formatToUnique(startTime)].length > 0
+      ) {
+        // this.meetingMap[day][this.formatToUnique(startTime)].forEach((m) => {
+        //   m.onLeft += 1;
+        //   m.onSameTime += 1;
+        // });
+        // meetingsToAdd[0].onRight +=
+        //   this.meetingMap[day][this.formatToUnique(startTime)].length;
+        // meetingsToAdd[0].onSameTime +=
+        //   this.meetingMap[day][this.formatToUnique(startTime)].length;
 
-      while (i < endTime) {
-        // Check if this meeting is overwriting another
-        if (this.getMeetingsAt(i)[day] && this.getMeetingsAt(i)[day].meetings) {
-          meetingsToAdd = meetingsToAdd.concat(
-              this.getMeetingsAt(i)[day].meetings,
-          );
-        }
-        delete this.getMeetingsAt(i)[day];
-        i.add(...this.timestep);
-        count += 1;
+        meetingsToAdd = meetingsToAdd.concat(
+            this.meetingMap[day][this.formatToUnique(startTime)],
+        );
       }
 
-      // Overlap handling when the starttime is diffrent
-      if (!(day in this.getMeetingsAt(startTime))) {
-        // Find the overlapping meeting cell
-        let newRowspan = count;
-        const j = startTime.clone();
-        while (!(day in this.getMeetingsAt(j))) {
-          j.subtract(...this.timestep);
-          newRowspan += 1;
-        }
-
-        // Don't use the newRowspan in case of complete overlap
-        if (this.getMeetingsAt(j)[day].rowspan < newRowspan) {
-          this.getMeetingsAt(j)[day].rowspan = newRowspan;
-        }
-
-        this.getMeetingsAt(j)[day].meetings = this.getMeetingsAt(j)[
-            day].meetings.concat(...meetingsToAdd);
-      } else {
-        // Handle if the start time overlaps
-        if (
-          this.getMeetingsAt(startTime)[day].meetings &&
-          this.getMeetingsAt(startTime)[day].meetings.length > 0
-        ) {
-          meetingsToAdd = meetingsToAdd.concat(
-              this.getMeetingsAt(startTime)[day].meetings,
-          );
-          // Select the bigger span
-          if (this.getMeetingsAt(startTime)[day].rowspan > count) {
-            count = this.getMeetingsAt(startTime)[day].rowspan;
-          }
-        }
-
-        // Update cell with the meeting
-        this.getMeetingsAt(startTime)[day].rowspan = count;
-        this.getMeetingsAt(startTime)[day].meetings = meetingsToAdd;
-      }
+      this.meetingMap[day][this.formatToUnique(startTime)] = meetingsToAdd;
     },
-    timeSlotToMoment(t) {
-      return moment(t, 'hh:mm A');
+    populateOverlapParameters() {
+      this.daySlots.forEach((d) => {
+        this.timeSlots.forEach((t1, i) => {
+          const ft1 = this.formatToUnique(t1);
+
+          this.meetingMap[d][ft1].forEach((m1) => {
+            const m1TimeDiff = (
+              this.getMFM(m1.meeting.end_time || m1.meeting.end_date) -
+              this.getMFM(m1.meeting.start_time || m1.meeting.start_date)
+            );
+
+            this.timeSlots.slice(
+                i + 1, i + 1 + parseInt(m1TimeDiff / 30),
+            ).forEach((t2) => {
+              const ft2 = this.formatToUnique(t2);
+              this.meetingMap[d][ft2].forEach((m2) => {
+                m1.onRight += 1;
+                m2.onLeft += 1;
+                console.log('overlap detected', d, ft1, ft2);
+              });
+            });
+          });
+        });
+      });
     },
     getFirstFinalExamTimeOn(day) {
       return this.period.latestMeetingTime.day(
@@ -253,20 +227,19 @@ export default {
     // Make a array of all the possible time slots with the interval
     // of this.timestep
     initializeTimeSlots() {
-      let start = this.period.earliestMeetingTime
-          .clone()
+      let start = this.period.earliestMeetingTime.clone()
           .subtract(...this.timestep);
       let end = this.period.latestMeetingTime.clone().add(...this.timestep);
       if (!(end.minute() === 30 || end.minute() === 0)) {
         end = end.add(10, 'minutes');
       }
 
-      while (this.toTimeSlotFormat(start) != this.toTimeSlotFormat(end)) {
-        this.timeSlots.push(this.toTimeSlotFormat(start));
+      while (start.format('hh:mm A') !== end.format('hh:mm A')) {
+        this.timeSlots.push(start.clone());
 
         start = start.add(...this.timestep);
       }
-      this.timeSlots.push(this.toTimeSlotFormat(start));
+      this.timeSlots.push(start.clone());
     },
     // Setting the days of the week that need to be displayed
     initializeDaySlots() {
@@ -280,13 +253,10 @@ export default {
     },
     // Initalize the meeting map.
     initializeMeetingMap() {
-      this.timeSlots.forEach((timeSlot) => {
-        this.meetingMap[timeSlot] = {};
-        this.daySlots.forEach((daySlot) => {
-          this.meetingMap[timeSlot][daySlot] = {
-            rowspan: 1,
-            day: daySlot,
-          };
+      this.daySlots.forEach((daySlot) => {
+        this.meetingMap[daySlot] = {};
+        this.timeSlots.forEach((timeSlot) => {
+          this.meetingMap[daySlot][this.formatToUnique(timeSlot)] = [];
         });
       });
     },
@@ -295,31 +265,80 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//@import "~bootstrap/scss/variables";
-@import "../../../../css/custom.scss";
+$heading-width: 45px;
+$cell-height: 30px;
 
-table {
+.schedule-body {
   width: 100%;
-  border-collapse: collapse;
-  // table-layout: fixed;
-  tbody {
-    tr:nth-child(odd) > td {
-      border-top: 1px solid $table-border-color;
-    }
-    tr:nth-child(even) > td {
-      border-top: 1px dashed $table-border-color;
+  display: flex;
+}
+.time-column {
+  padding-top: $heading-width - ($cell-height / 2) ;
+  height: 100%;
+  flex-basis: 50px;
+  display: flex;
+  flex-direction: column;
+
+  .time-cell {
+    flex-grow: 1;
+    height: $cell-height;
+    position: relative;
+
+    div {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100%;
+      text-align: center;
     }
   }
 }
+.day-column {
+  height: 100%;
+  flex-grow: 1;
+  flex-basis: 0;
 
-td {
-  position: relative;
-  height: 30px;
+  .day-heading {
+    height: $heading-width;
+    position: relative;
 
-  div {
-    display: flex;
-    height: 100%;
-    width: 100%;
+    div {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .day-cell {
+    height: $cell-height;
+
+    // Border logic for empty cells
+    // &:empty {
+      &:nth-child(even) {
+        border-top: 1px solid black;
+
+        &:last-child {
+          border-bottom: 1px dashed black;
+        }
+      }
+
+      &:nth-child(odd) {
+        border-top: 1px dashed black;
+
+        &:last-child {
+          border-bottom: 1px solid black;
+        }
+      }
+    // }
+    border-left: 1px solid #707070;
+  }
+
+  &:last-child {
+    .day-cell {
+      border-right: 1px solid #707070;
+    }
   }
 }
 </style>
