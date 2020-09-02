@@ -163,7 +163,7 @@ export default {
 
 <style lang="scss" scoped>
 .course-section {
-  background-color: #e8e3d3;
+  background-color: lighten(#e8e3d3, 7%);;
   width: 100%;
   position: relative;
   outline: transparent auto 1px;

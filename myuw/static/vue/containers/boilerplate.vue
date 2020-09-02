@@ -9,7 +9,7 @@
         <b-container fluid="xl" class="py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
           Overriding is read-only and no actions will be saved.
-          <a href="/support/">
+          <a href="/support/" class="text-body">
             Back to MyUW Support tool
           </a>
         </b-container>
