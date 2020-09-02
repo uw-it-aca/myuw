@@ -1,41 +1,39 @@
 <template>
-  <div>
-    <div v-for="(meetingData, i) in meetings" :key="i" role="group"
-         tabindex="0" class="course-section"
-         :style="sectionMargins[i]"
+  <div role="group"
+       tabindex="0" class="course-section"
+       :style="computedStyles"
+  >
+    <abbr v-if="meetingData.section.is_teaching" title="Teaching Course">
+      T
+    </abbr>
+    <div :class="`bg-c${meetingData.section.color_id}`"
+         class="p-1 myuw-text-xxs"
     >
-      <abbr v-if="meetingData.section.is_teaching" title="Teaching Course">
-        T
-      </abbr>
-      <div :class="`bg-c${meetingData.section.color_id}`"
-           class="p-1 myuw-text-xxs"
+      <a :href="sectionUrl"
+         class="text-white"
       >
-        <a :href="sectionUrl(meetingData.section)"
-           class="text-white"
-        >
-          {{ sectionTitle(meetingData.section) }}
-        </a>
-      </div>
-      <a v-if="showConfirmLink(meetingData.section)"
-         :href="confirmationLink(meetingData.section)"
-         target="_blank"
-         class="text-warning"
-      >
-        (Confirm)
+        {{ sectionTitle }}
       </a>
-      <div class="p-1 myuw-text-xxs">
-        <a v-if="(
-             !meetingData.section.is_remote &&
-             meetingLocationUrl(meetingData.meeting)
-           )"
-           :href="meetingLocationUrl(meetingData.meeting)"
-        >
-          {{ meetingLocation(meetingData.section, meetingData.meeting) }}
-        </a>
-        <span v-else>
-          {{ meetingLocation(meetingData.section, meetingData.meeting) }}
-        </span>
-      </div>
+    </div>
+    <a v-if="showConfirmLink"
+       :href="confirmationLink"
+       target="_blank"
+       class="text-warning"
+    >
+      (Confirm)
+    </a>
+    <div class="p-1 myuw-text-xxs">
+      <a v-if="(
+           !meetingData.section.is_remote &&
+           meetingLocationUrl
+         )"
+         :href="meetingLocationUrl"
+      >
+        {{ meetingLocation }}
+      </a>
+      <span v-else>
+        {{ meetingLocation }}
+      </span>
     </div>
   </div>
 </template>
@@ -45,23 +43,14 @@ import {mapState} from 'vuex';
 
 export default {
   props: {
-    meetings: {
-      type: Array,
+    meetingData: {
+      type: Object,
       required: true,
     },
     isFinalsCard: {
       type: Boolean,
       default: false,
     },
-    rowspan: {
-      type: Number,
-      required: true,
-    }
-  },
-  data: function() {
-    return {
-      sectionMargins: [],
-    }
   },
   computed: {
     ...mapState({
@@ -71,100 +60,108 @@ export default {
       ),
       year: (state) => state.termData.year,
     }),
-  },
-  created() {
-    this.meetings.sort(
-      (m1, m2) => m1.meeting.start_time - m2.meeting.start_time
-    );
-    this.meetings.forEach((meeting, i) => {
-      this.sectionMargins[i] = this.generateStyle(meeting);
-    });
-  },
-  methods: {
-    sectionTitle: function(section) {
-      return `${section.curriculum_abbr} ${
-        section.course_number
-      } ${section.section_id}`;
+    computedStyles: function() {
+      const startTime = (
+        this.meetingData.meeting.start_time ||
+        this.meetingData.meeting.start_date
+      );
+      const endTime = (
+        this.meetingData.meeting.end_time ||
+        this.meetingData.meeting.end_date
+      );
+      const totalOverlappingSections =
+        this.meetingData.onLeft + this.meetingData.onRight + 1;
+
+      if (startTime && endTime) {
+        return {
+          'height': `${this.getMFM(endTime) - this.getMFM(startTime)}px`,
+          'margin-top': '-1px',
+          'margin-left': `${
+            (100 * this.meetingData.onLeft
+            ) / totalOverlappingSections
+          }%`,
+          'width': `${100 / totalOverlappingSections}%`,
+        };
+      }
+
+      return {};
     },
-    sectionUrl: function(section) {
-      return `/academics/#${section.curriculum_abbr}-${
-        section.course_number
-      }-${section.section_id}`;
+    sectionTitle: function() {
+      return `${this.meetingData.section.curriculum_abbr} ${
+        this.meetingData.section.course_number
+      } ${this.meetingData.section.section_id}`;
     },
-    isRoomTBD: function(meeting) {
-      return meeting == null || (meeting.room_tbd || !(
-        'building' in meeting && meeting.building != '*' &&
-        'room' in meeting && meeting.room != '*'
-      ));
+    sectionUrl: function() {
+      return `/academics/#${this.meetingData.section.curriculum_abbr}-${
+        this.meetingData.section.course_number
+      }-${this.meetingData.section.section_id}`;
     },
-    meetingLocation: function(section, meeting) {
-      if (section.is_remote) {
+    meetingLocation: function() {
+      if (this.meetingData.section.is_remote) {
         return 'Remote';
       }
-      if (meeting != null && meeting.no_meeting) {
+      if (
+        this.meetingData.meeting != null &&
+        this.meetingData.meeting.no_meeting
+      ) {
         return 'No Meeting';
       }
-      if (!this.isRoomTBD(meeting)) {
-        return `${meeting.building} ${meeting.room}`;
+      if (!this.isRoomTBD()) {
+        return `${
+          this.meetingData.meeting.building
+        } ${this.meetingData.meeting.room}`;
       }
       return 'Room TBD';
     },
-    meetingLocationUrl: function(meeting) {
+    meetingLocationUrl: function() {
       if (
-        !this.isRoomTBD(meeting) &&
-        'latitude' in meeting &&
-        'longitude' in meeting
+        !this.isRoomTBD() &&
+        'latitude' in this.meetingData.meeting &&
+        'longitude' in this.meetingData.meeting
       ) {
         return `http://maps.google.com/maps?q=${
-          meeting.latitude
-        },${meeting.longitude}+(${meeting.building})&z=18`;
+          this.meetingData.meeting.latitude
+        },${this.meetingData.meeting.longitude}+(${
+          this.meetingData.meeting.building
+        })&z=18`;
       }
       return false;
     },
-    showConfirmLink: function(section) {
+    showConfirmLink: function() {
       return (
-        section.is_teaching &&
+        this.meetingData.section.is_teaching &&
         this.isFinalsCard &&
-        !section.final_exam.no_exam_or_nontraditional &&
-        !section.final_exam.is_confirmed
+        !this.meetingData.section.final_exam.no_exam_or_nontraditional &&
+        !this.meetingData.section.final_exam.is_confirmed
       );
     },
-    confirmationLink: function(section) {
+    confirmationLink: function() {
       return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/${
         this.netid
-      }/finalexam.asp?${this.quarter}+${this.year}&sln=${section.sln}`;
+      }/finalexam.asp?${this.quarter}+${
+        this.year
+      }&sln=${this.meetingData.section.sln}`;
     },
+  },
+  methods: {
     // Returns minutes from midnight
     getMFM(t) {
       return (t.hour() * 60) + t.minute();
     },
-    generateStyle(meetingData) {
-      if (meetingData.meeting) {
-        return {
-          margin: this.getSizings(
-            meetingData.meeting,
-            this.meetings[0].meeting.start_time ||
-            this.meetings[0].meeting.start_date,
-          ),
-        };
-      }
-      return {};
-    },
-    getSizings(meeting, startPosTime) {
-      let startTime = meeting.start_time || meeting.start_date;
-      let endTime = meeting.end_time || meeting.end_date;
-      if (startTime == null || endTime == null) {
-        return '0';
-      }
-      let marginTop = (
-        this.getMFM(startTime) - this.getMFM(startPosTime)
-      ) - 1; // -1 to make it overlap the border
-      let marginBottom = (
-        (this.getMFM(startPosTime) + (30 * this.rowspan)) -
-        this.getMFM(endTime)
+    isRoomTBD: function() {
+      return (
+        this.meetingData.meeting == null ||
+        (
+          this.meetingData.meeting.room_tbd ||
+          !(
+            'building' in this.meetingData.meeting &&
+            this.meetingData.meeting.building != '*' &&
+            'room' in this.meetingData.meeting &&
+            this.meetingData.meeting.room != '*'
+          )
+        )
       );
-      return `${marginTop}px 0 ${marginBottom}px 0`;
-    }
+    },
   },
 };
 </script>
@@ -173,5 +170,6 @@ export default {
 .course-section {
   background-color: #e8e3d3;
   width: 100%;
+  position: relative;
 }
 </style>
