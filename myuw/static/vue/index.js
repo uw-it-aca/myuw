@@ -49,6 +49,7 @@ import schedule from './store/schedule';
 import hx_toolkit from './store/hx_toolkit';
 import oquarter from './store/oquarter';
 import profile from './store/profile';
+import myplan from './store/myplan';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -61,6 +62,7 @@ vueConf.store.registerModule('hx_toolkit', hx_toolkit);
 vueConf.store.registerModule('quicklinks', quicklinks);
 vueConf.store.registerModule('oquarter', oquarter);
 vueConf.store.registerModule('profile', profile);
+vueConf.store.registerModule('myplan', myplan);
 
 
 vueConf.store.commit('addVarToState', {
