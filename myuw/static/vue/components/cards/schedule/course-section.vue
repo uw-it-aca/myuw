@@ -76,11 +76,12 @@ export default {
         return {
           'height': `${this.getMFM(endTime) - this.getMFM(startTime)}px`,
           'margin-top': '-1px',
+          /*
           'margin-left': `${
             (100 * this.meetingData.onLeft
             ) / totalOverlappingSections
           }%`,
-          'width': `${100 / totalOverlappingSections}%`,
+          'width': `${100 / totalOverlappingSections}%`,*/
         };
       }
 
@@ -171,5 +172,12 @@ export default {
   background-color: #e8e3d3;
   width: 100%;
   position: relative;
+  outline: #444 auto 1px;
+
+  &:hover, &:focus {
+    outline: -webkit-focus-ring-color auto 1px;
+    z-index:9999;
+  }
+
 }
 </style>

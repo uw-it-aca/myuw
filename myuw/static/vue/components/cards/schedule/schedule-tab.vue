@@ -265,6 +265,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../css/custom.scss";
+
 $heading-width: 45px;
 $cell-height: 30px;
 
@@ -317,27 +319,27 @@ $cell-height: 30px;
     // Border logic for empty cells
     // &:empty {
       &:nth-child(even) {
-        border-top: 1px solid black;
+        border-top: 1px solid $table-border-color;
 
         &:last-child {
-          border-bottom: 1px dashed black;
+          border-bottom: 1px dashed $table-border-color;
         }
       }
 
       &:nth-child(odd) {
-        border-top: 1px dashed black;
+        border-top: 1px dashed $table-border-color;
 
         &:last-child {
-          border-bottom: 1px solid black;
+          border-bottom: 1px solid $table-border-color;
         }
       }
     // }
-    border-left: 1px solid #707070;
+    border-left: 1px solid $table-border-color;
   }
 
   &:last-child {
     .day-cell {
-      border-right: 1px solid #707070;
+      border-right: 1px solid $table-border-color;
     }
   }
 }
