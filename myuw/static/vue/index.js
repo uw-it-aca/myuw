@@ -35,6 +35,7 @@ import HuskyExperience from './components/cards/husky-experience.vue';
 import Outage from './components/cards/outage.vue';
 import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue';
 import ToRegister from './components/index/cards/new_student/to-register.vue';
+import RegStatus from './components/index/cards/reg_status/status.vue';
 
 // Stores
 import notices from './store/notices';
@@ -46,6 +47,8 @@ import events from './store/events';
 import courses from './store/courses';
 import schedule from './store/schedule';
 import hx_toolkit from './store/hx_toolkit';
+import oquarter from './store/oquarter';
+import profile from './store/profile';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -56,6 +59,9 @@ vueConf.store.registerModule('courses', courses);
 vueConf.store.registerModule('schedule', schedule);
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
 vueConf.store.registerModule('quicklinks', quicklinks);
+vueConf.store.registerModule('oquarter', oquarter);
+vueConf.store.registerModule('profile', profile);
+
 
 vueConf.store.commit('addVarToState', {
   name: 'termData',
@@ -101,6 +107,7 @@ Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
 Vue.component('myuw-ns-to-register', ToRegister);
+Vue.component('myuw-reg-status', RegStatus);
 
 new Vue({
   ...vueConf,
