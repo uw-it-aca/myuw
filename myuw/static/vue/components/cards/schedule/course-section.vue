@@ -171,9 +171,17 @@ export default {
   background-color: #e8e3d3;
   width: 100%;
   position: relative;
+  outline: white auto 1px;
 
-  &:hover, &:focus {
+  &:hover {
     z-index:9999;
+    outline-color: -webkit-focus-ring-color;
   }
+
+  &:focus {
+    z-index:9999;
+    outline-color: -webkit-focus-ring-color;
+  }
+
 }
 </style>
