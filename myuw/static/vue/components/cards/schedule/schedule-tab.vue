@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mt-4 schedule-body">
+    <div class="my-4 schedule-body">
       <div class="time-column myuw-text-xs" aria-hidden="true">
         <div v-for="(time, i) in timeSlots" :key="i"
              class="time-cell"
@@ -38,15 +38,17 @@
       </div>
     </div>
     <div v-if="meetingsWithoutTime.length > 0">
-      <span v-if="!isFinalsTab">
+      <p v-if="!isFinalsTab">
         No meeting time specified:
-      </span>
-      <span v-else>
+      </p>
+      <p v-else>
         Courses with final exam meeting times to be determined or courses with
         no final exam:
-      </span>
-      <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
-        <uw-course-section :meeting-data="meeting" :rowspan="0" />
+      </p>
+      <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
+           class="d-inline-block mr-2"
+      >
+        <uw-course-section :meeting-data="meeting" />
       </div>
     </div>
   </div>
