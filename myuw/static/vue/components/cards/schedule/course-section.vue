@@ -4,16 +4,11 @@
        :style="computedStyles"
   >
     <div :class="`bg-c${meetingData.section.color_id}`"
-         class="p-1 myuw-text-xxs"
+         class="p-1 text-center myuw-text-xxs"
     >
-      <font-awesome-layers v-if="meetingData.section.is_teaching" class="fa-1x">
-        <font-awesome-icon :icon="['fas', 'square']" inverse />
-        <strong>
-          <abbr title="Teaching Course">
-            <font-awesome-layers-text transform="shrink-8" value="T"/>
-          </abbr>
-        </strong>
-      </font-awesome-layers>
+      <b-badge v-if="meetingData.section.is_teaching" variant="light">
+        <abbr title="Teaching Course">T</abbr>
+      </b-badge>
       <a :href="sectionUrl"
          class="text-white"
       >
@@ -27,7 +22,7 @@
     >
       (Confirm)
     </a>
-    <div class="p-1 myuw-text-xxs">
+    <div class="p-1 text-center myuw-text-xxs">
       <a v-if="(
            !meetingData.section.is_remote &&
            meetingLocationUrl
@@ -171,7 +166,8 @@ export default {
   background-color: #e8e3d3;
   width: 100%;
   position: relative;
-  outline: white auto 1px;
+  outline: transparent auto 1px;
+  overflow: hidden;
 
   &:hover {
     z-index:9999;

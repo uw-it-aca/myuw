@@ -1,24 +1,23 @@
 <template>
   <div>
-    <div class="schedule-body">
+    <div class="mt-4 schedule-body">
       <div class="time-column myuw-text-xs" aria-hidden="true">
         <div v-for="(time, i) in timeSlots" :key="i"
              class="time-cell"
         >
-          <div v-if="time.minute() == 0">
-            <strong>{{ time.format('h a') }}</strong>
+          <div v-if="time.minute() == 0" class="font-weight-bold">
+            {{ time.format('ha') }}
           </div>
           <div v-else class="d-none">
-            {{ time.format('h:mm a') }}
+            {{ time.format('h:mma') }}
           </div>
         </div>
       </div>
       <div v-for="day in daySlots" :key="day" class="day-column">
-        <div class="day-heading" tabindex="0">
+        <div class="font-weight-bold myuw-text-xs day-heading" tabindex="0">
           <div>
             {{ days[day] }}
-            <br>
-            <span v-if="isFinalsTab">
+            <span v-if="isFinalsTab" class="d-block">
               {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
             </span>
           </div>
@@ -252,7 +251,7 @@ $cell-height: 30px;
 .time-column {
   padding-top: $heading-width - ($cell-height / 2) ;
   height: 100%;
-  flex-basis: 50px;
+  flex-basis: 40px;
   display: flex;
   flex-direction: column;
 
