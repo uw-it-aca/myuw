@@ -44,7 +44,7 @@
         </span>
       </div>
 
-      <b-tabs v-model="tabIndex" pills
+      <b-tabs v-model="tabIndex" pills justified
               nav-class="mt-4 mb-2"
               active-nav-item-class="bg-light text-body font-weight-bold"
       >
