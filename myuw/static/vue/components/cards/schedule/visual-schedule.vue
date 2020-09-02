@@ -45,12 +45,12 @@
       </div>
 
       <b-tabs v-model="tabIndex" pills justified
-              nav-class="mt-4 mb-0"
+              nav-class="mt-4 mb-1"
               active-nav-item-class="bg-light text-body font-weight-bold"
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
                title-item-class="text-uppercase myuw-text-xs mr-1"
-               title-link-class="bg-light text-dark"
+               title-link-class="text-dark"
                :active="i == 0"
         >
           <uw-schedule-tab :period="period" />
