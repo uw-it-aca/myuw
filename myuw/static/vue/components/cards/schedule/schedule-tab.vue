@@ -1,39 +1,53 @@
 <template>
-  <div class="schedule-body">
-    <div class="time-column">
-      <div v-for="(time, i) in timeSlots" :key="i"
-           class="time-cell"
-      >
-        <div v-if="time.minute() == 0">
-          <strong>{{ time.format('h a') }}</strong>
+  <div>
+    <div class="schedule-body">
+      <div class="time-column">
+        <div v-for="(time, i) in timeSlots" :key="i"
+            class="time-cell"
+        >
+          <div v-if="time.minute() == 0">
+            <strong>{{ time.format('h a') }}</strong>
+          </div>
+          <div v-else class="sr-only">
+            {{ time.format('h:mm a') }}
+          </div>
         </div>
-        <div v-else class="sr-only">
-          {{ time.format('h:mm a') }}
+      </div>
+      <div v-for="day in daySlots" :key="day" class="day-column">
+        <div class="day-heading">
+          <div>
+            {{ days[day] }}
+            <br>
+            <span v-if="isFinalsTab">
+              {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
+            </span>
+          </div>
+        </div>
+        <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
+          <div v-if="(
+            meetingMap[day][formatToUnique(time)] &&
+            meetingMap[day][formatToUnique(time)].length > 0
+          )" class="d-flex"
+          >
+            <uw-course-section
+              v-for="(meetingData, j) in meetingMap[day][formatToUnique(time)]"
+              :key="j" :meeting-data="meetingData"
+              :is-finals-card="isFinalsTab"
+            />
+          </div>
         </div>
       </div>
     </div>
-    <div v-for="day in daySlots" :key="day" class="day-column">
-      <div class="day-heading">
-        <div>
-          {{ days[day] }}
-          <br>
-          <span v-if="isFinalsTab">
-            {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
-          </span>
-        </div>
-      </div>
-      <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
-        <div v-if="(
-          meetingMap[day][formatToUnique(time)] &&
-          meetingMap[day][formatToUnique(time)].length > 0
-        )" class="d-flex"
-        >
-          <uw-course-section
-            v-for="(meetingData, j) in meetingMap[day][formatToUnique(time)]"
-            :key="j" :meeting-data="meetingData"
-            :is-finals-card="isFinalsTab"
-          />
-        </div>
+    <div v-if="meetingsWithoutTime.length > 0">
+      <span v-if="!isFinalsTab">
+        No meeting time specified:
+      </span>
+      <span v-else>
+        Courses with final exam meeting times to be determined or courses with
+        no final exam:
+      </span>
+      <div v-for="(meeting, i) in meetingsWithoutTime" :key="i">
+        <uw-course-section :meetingData="meeting" :rowspan="0"/>
       </div>
     </div>
   </div>
@@ -124,8 +138,6 @@ export default {
       });
     }
 
-    this.populateOverlapParameters();
-
     // Put the meeting without time into its list.
     this.period.sections.forEach((section) => {
       if (!this.isFinalsTab) {
@@ -168,55 +180,18 @@ export default {
       let meetingsToAdd = [{
         section: section,
         meeting: meeting,
-        onLeft: 0,
-        onRight: 0,
-        onSameTime: 0,
       }];
 
       if (
         this.meetingMap[day][this.formatToUnique(startTime)] &&
         this.meetingMap[day][this.formatToUnique(startTime)].length > 0
       ) {
-        // this.meetingMap[day][this.formatToUnique(startTime)].forEach((m) => {
-        //   m.onLeft += 1;
-        //   m.onSameTime += 1;
-        // });
-        // meetingsToAdd[0].onRight +=
-        //   this.meetingMap[day][this.formatToUnique(startTime)].length;
-        // meetingsToAdd[0].onSameTime +=
-        //   this.meetingMap[day][this.formatToUnique(startTime)].length;
-
         meetingsToAdd = meetingsToAdd.concat(
             this.meetingMap[day][this.formatToUnique(startTime)],
         );
       }
 
       this.meetingMap[day][this.formatToUnique(startTime)] = meetingsToAdd;
-    },
-    populateOverlapParameters() {
-      this.daySlots.forEach((d) => {
-        this.timeSlots.forEach((t1, i) => {
-          const ft1 = this.formatToUnique(t1);
-
-          this.meetingMap[d][ft1].forEach((m1) => {
-            const m1TimeDiff = (
-              this.getMFM(m1.meeting.end_time || m1.meeting.end_date) -
-              this.getMFM(m1.meeting.start_time || m1.meeting.start_date)
-            );
-
-            this.timeSlots.slice(
-                i + 1, i + 1 + parseInt(m1TimeDiff / 30),
-            ).forEach((t2) => {
-              const ft2 = this.formatToUnique(t2);
-              this.meetingMap[d][ft2].forEach((m2) => {
-                m1.onRight += 1;
-                m2.onLeft += 1;
-                console.log('overlap detected', d, ft1, ft2);
-              });
-            });
-          });
-        });
-      });
     },
     getFirstFinalExamTimeOn(day) {
       return this.period.latestMeetingTime.day(

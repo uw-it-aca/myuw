@@ -3,12 +3,17 @@
        tabindex="0" class="course-section"
        :style="computedStyles"
   >
-    <abbr v-if="meetingData.section.is_teaching" title="Teaching Course">
-      T
-    </abbr>
     <div :class="`bg-c${meetingData.section.color_id}`"
          class="p-1 myuw-text-xxs"
     >
+      <font-awesome-layers v-if="meetingData.section.is_teaching" class="fa-1x">
+        <font-awesome-icon :icon="['fas', 'square']" inverse />
+        <strong>
+          <abbr title="Teaching Course">
+            <font-awesome-layers-text transform="shrink-8" value="T"/>
+          </abbr>
+        </strong>
+      </font-awesome-layers>
       <a :href="sectionUrl"
          class="text-white"
       >
@@ -61,28 +66,22 @@ export default {
       year: (state) => state.termData.year,
     }),
     computedStyles: function() {
-      const startTime = (
-        this.meetingData.meeting.start_time ||
-        this.meetingData.meeting.start_date
-      );
-      const endTime = (
-        this.meetingData.meeting.end_time ||
-        this.meetingData.meeting.end_date
-      );
-      const totalOverlappingSections =
-        this.meetingData.onLeft + this.meetingData.onRight + 1;
+      if (this.meetingData.meeting) {
+        const startTime = (
+          this.meetingData.meeting.start_time ||
+          this.meetingData.meeting.start_date
+        );
+        const endTime = (
+          this.meetingData.meeting.end_time ||
+          this.meetingData.meeting.end_date
+        );
 
-      if (startTime && endTime) {
-        return {
-          'height': `${this.getMFM(endTime) - this.getMFM(startTime)}px`,
-          'margin-top': '-1px',
-          /*
-          'margin-left': `${
-            (100 * this.meetingData.onLeft
-            ) / totalOverlappingSections
-          }%`,
-          'width': `${100 / totalOverlappingSections}%`,*/
-        };
+        if (startTime && endTime) {
+          return {
+            'height': `${this.getMFM(endTime) - this.getMFM(startTime)}px`,
+            'margin-top': '-1px',
+          };
+        }
       }
 
       return {};
@@ -172,12 +171,9 @@ export default {
   background-color: #e8e3d3;
   width: 100%;
   position: relative;
-  outline: #444 auto 1px;
 
   &:hover, &:focus {
-    outline: -webkit-focus-ring-color auto 1px;
     z-index:9999;
   }
-
 }
 </style>
