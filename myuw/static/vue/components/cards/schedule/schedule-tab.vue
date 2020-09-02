@@ -5,7 +5,7 @@
         <div v-for="(time, i) in timeSlots" :key="i"
              class="time-cell"
         >
-          <div v-if="time.minute() == 0" class="font-weight-bold">
+          <div v-if="time.minute() == 0" class="font-weight-bold text-nowrap">
             {{ time.format('ha') }}
           </div>
           <div v-else class="d-none">
@@ -13,9 +13,12 @@
           </div>
         </div>
       </div>
-      <div v-for="day in daySlots" :key="day" class="day-column">
+      <div v-for="day in daySlots" :key="day" :aria-labelledby="day"
+           role="group"
+           class="day-column"
+      >
         <div class="font-weight-bold myuw-text-xs day-heading" tabindex="0">
-          <div>
+          <div :id="day">
             {{ days[day] }}
             <span v-if="isFinalsTab" class="d-block">
               {{ getFirstFinalExamTimeOn(day).format('MMM D') }}

@@ -1,7 +1,9 @@
 <template>
+  <!-- TODO: add aria-label -->
   <div role="group"
        tabindex="0" class="course-section"
        :style="computedStyles"
+       aria-label="Monday, 8:30am-9:20am, Train 101 A, Room TBD"
   >
     <div :class="`bg-c${meetingData.section.color_id}`"
          class="p-1 text-center myuw-text-xxs"
