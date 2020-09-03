@@ -11,39 +11,9 @@
         </span>
       </h3>
     </template>
-    <template #card-body>
-      <div v-if="periods[tabIndex].eosData.length > 0">
-        <span v-for="(eosSection, i) in periods[tabIndex].eosData" :key="i">
-          <h4>
-            {{ eosSection.curriculum_abbr }} {{ eosSection.course_number }}
-            {{ eosSection.section_id }} meeting times:&nbsp;
-          </h4>
-          <ol>
-            <li v-for="(meeting, j) in eosSection.meetings" :key="j">
-              <span v-if="i !== 0">,&nbsp;</span>
-              <span v-if="meeting.eos_start_date">
-                {{ formatDate(meeting.eos_start_date) }}
-                <span v-if="!meeting.start_end_same">
-                  &ndash; {{ formatDate(meeting.eos_end_date) }}
-                </span>
-              </span>
-              <span v-if="meeting.wont_meet">
-                (Class does not meet)
-              </span>
-              <span v-else-if="meeting.no_meeting">
-                (Online learning)
-              </span>
-              <span v-else>
-                <span v-if="meeting.start_time">
-                  ({{ formatTime(meeting.start_time) }} &ndash;
-                  {{ formatTime(meeting.end_time) }})
-                </span>
-              </span>
-            </li>
-          </ol>
-        </span>
-      </div>
 
+    <template #card-body>
+      <!-- schedule tabs -->
       <b-tabs v-model="tabIndex" pills justified
               nav-class="mb-4"
               active-nav-item-class="bg-beige text-body font-weight-bold"
@@ -54,9 +24,43 @@
                title-link-class="text-body h-100"
                :active="i == 0"
         >
+          <!-- special eos data display -->
+          <div v-if="periods[tabIndex].eosData.length > 0">
+            <span v-for="(eosSection, i) in periods[tabIndex].eosData" :key="i">
+              <h4>
+                {{ eosSection.curriculum_abbr }} {{ eosSection.course_number }}
+                {{ eosSection.section_id }} meeting times:&nbsp;
+              </h4>
+              <ol>
+                <li v-for="(meeting, j) in eosSection.meetings" :key="j">
+                  <span v-if="i !== 0">,&nbsp;</span>
+                  <span v-if="meeting.eos_start_date">
+                    {{ formatDate(meeting.eos_start_date) }}
+                    <span v-if="!meeting.start_end_same">
+                      &ndash; {{ formatDate(meeting.eos_end_date) }}
+                    </span>
+                  </span>
+                  <span v-if="meeting.wont_meet">
+                    (Class does not meet)
+                  </span>
+                  <span v-else-if="meeting.no_meeting">
+                    (Online learning)
+                  </span>
+                  <span v-else>
+                    <span v-if="meeting.start_time">
+                      ({{ formatTime(meeting.start_time) }} &ndash;
+                      {{ formatTime(meeting.end_time) }})
+                    </span>
+                  </span>
+                </li>
+              </ol>
+            </span>
+          </div>
+          <!-- tab content -->
           <uw-schedule-tab :period="period" />
         </b-tab>
       </b-tabs>
+
       <!-- commented till functionality is confirmed -->
       <!-- <p v-if="offTerm.length > 0">
         Note:

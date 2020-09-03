@@ -80,6 +80,18 @@
         </div>
       </div>
     </div>
+    <!-- TODO: move eos data here -->
+    <div>
+      <p class="text-muted myuw-text-md">
+        BIGDATA 230 A, meeting time updates:
+      </p>
+      <ol class="myuw-text-md">
+        <li>Apr 3 – Jun 12 (6:00 – 9:00PM)</li>
+        <li>May 11 – May 15 (Class does not meet)</li>
+        <li>May 29 (Class does not meet)</li>
+      </ol>
+    </div>
+
     <div v-if="meetingsWithoutTime.length > 0">
       <p v-if="!isFinalsTab" class="text-muted myuw-text-md">
         No meeting time specified:
