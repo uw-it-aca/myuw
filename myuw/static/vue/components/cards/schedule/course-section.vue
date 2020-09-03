@@ -202,9 +202,13 @@ export default {
     outline-color: -webkit-focus-ring-color;
   }
 
-  &:focus, &:focus-within {
+  &:focus {
     z-index:9999;
     outline-color: -webkit-focus-ring-color;
+  }
+
+  &:focus-within {
+    z-index: 9999;
   }
 
 }
