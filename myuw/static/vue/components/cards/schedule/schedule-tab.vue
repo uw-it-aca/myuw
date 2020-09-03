@@ -13,29 +13,55 @@
           </div>
         </div>
       </div>
-      <div v-for="day in daySlots" :key="day" :aria-labelledby="day"
-           role="group"
-           class="day-column"
-      >
-        <div class="font-weight-bold myuw-text-xs day-heading">
-          <div :id="day">
-            {{ days[day] }}
-            <span v-if="isFinalsTab" class="d-block">
-              {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
-            </span>
+      <div v-if="$mq !== 'mobile'" class="d-flex w-100">
+        <div v-for="day in daySlots" :key="day" :aria-labelledby="day"
+            role="group"
+            class="day-column"
+        >
+          <div class="font-weight-bold myuw-text-xs day-heading">
+            <div :id="day">
+              {{ days[day] }}
+              <span v-if="isFinalsTab" class="d-block">
+                {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
+              </span>
+            </div>
+          </div>
+          <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
+            <div v-if="(
+              meetingMap[day][formatToUnique(time)] &&
+              meetingMap[day][formatToUnique(time)].length > 0
+            )" class="d-flex"
+            >
+              <uw-course-section
+                v-for="(meetingData, j) in meetingMap[day][formatToUnique(time)]"
+                :key="j" :meeting-data="meetingData"
+                :is-finals-card="isFinalsTab"
+              />
+            </div>
           </div>
         </div>
-        <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
-          <div v-if="(
-            meetingMap[day][formatToUnique(time)] &&
-            meetingMap[day][formatToUnique(time)].length > 0
-          )" class="d-flex"
-          >
-            <uw-course-section
-              v-for="(meetingData, j) in meetingMap[day][formatToUnique(time)]"
-              :key="j" :meeting-data="meetingData"
-              :is-finals-card="isFinalsTab"
-            />
+      </div>
+      <div v-else class="w-100">
+        <div class="mobile-column-selector">
+          <b-form-select
+            v-model="mobile['current']"
+            :options="mobile['options']"
+          />
+        </div>
+        <div class="day-column">
+          <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
+            <div v-if="(
+              meetingMap[mobile['current']][formatToUnique(time)] &&
+              meetingMap[mobile['current']][formatToUnique(time)].length > 0
+            )" class="d-flex"
+            >
+              <uw-course-section
+                v-for="(meetingData, j) in 
+                  meetingMap[mobile['current']][formatToUnique(time)]"
+                :key="j" :meeting-data="meetingData"
+                :is-finals-card="isFinalsTab"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -58,6 +84,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import CourseSection from './course-section.vue';
 
 export default {
@@ -88,6 +115,10 @@ export default {
       meetingsWithoutTime: [],
       hasMeetingsWithTime: false,
       isFinalsTab: false,
+      mobile: {
+        current: null,
+        options: [],
+      },
     };
   },
   created() {
@@ -221,6 +252,7 @@ export default {
       this.timeSlots.push(start.clone());
     },
     // Setting the days of the week that need to be displayed
+    // Also initalizes the mobile values for days
     initializeDaySlots() {
       this.daySlots = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
       if (this.period.meets_saturday) {
@@ -228,6 +260,23 @@ export default {
       }
       if (this.period.meets_sunday) {
         this.daySlots.unshift('sunday');
+      }
+
+      this.daySlots.forEach((day) => {
+        const i = this.mobile['options'].push({
+          value: day,
+          text: day.replace(/^([a-z])/, (c) => c.toUpperCase()),
+        });
+        if (this.isFinalsTab) {
+          this.mobile['options'][i - 1].text += (
+            ' - ' + this.getFirstFinalExamTimeOn(day).format('MMMM D')
+          );
+        }
+      });
+      if (this.isFinalsTab) {
+        this.mobile['current'] = this.daySlots[0];
+      } else {
+        this.mobile['current'] = moment().format('dddd').toLowerCase();
       }
     },
     // Initalize the meeting map.
@@ -246,7 +295,7 @@ export default {
 <style lang="scss" scoped>
 @import "../../../../css/custom.scss";
 
-$heading-width: 45px;
+$heading-height: 45px;
 $cell-height: 30px;
 
 .schedule-body {
@@ -254,7 +303,7 @@ $cell-height: 30px;
   display: flex;
 }
 .time-column {
-  padding-top: $heading-width - ($cell-height / 2) ;
+  padding-top: $heading-height - ($cell-height / 2) ;
   height: 100%;
   flex-basis: 40px;
   display: flex;
@@ -280,7 +329,7 @@ $cell-height: 30px;
   flex-basis: 0;
 
   .day-heading {
-    height: $heading-width;
+    height: $heading-height;
     position: relative;
 
     div {
@@ -321,5 +370,8 @@ $cell-height: 30px;
       border-right: 1px solid $table-border-color;
     }
   }
+}
+.mobile-column-selector {
+  height: $heading-height;
 }
 </style>
