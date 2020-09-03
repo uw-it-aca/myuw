@@ -16,13 +16,7 @@
         {{ sectionTitle }}
       </a>
     </div>
-    <a v-if="showConfirmLink"
-       :href="confirmationLink"
-       target="_blank"
-       class="text-warning"
-    >
-      (Confirm)
-    </a>
+
     <div class="p-1 text-center myuw-text-xxs">
       <a v-if="(
            !meetingData.section.is_remote &&
@@ -35,6 +29,13 @@
       <span v-else>
         {{ meetingLocation }}
       </span>
+      <a v-if="showConfirmLink"
+         :href="confirmationLink"
+         target="_blank"
+         class="d-block"
+      >
+        (Confirm)
+      </a>
     </div>
   </div>
 </template>
