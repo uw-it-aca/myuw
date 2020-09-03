@@ -57,9 +57,10 @@
         <div class="day-column">
           <div class="mobile-column-selector">
             <b-form-select
-              aria-label="Select the Day of Week:"
               v-model="mobile['current']"
+              aria-label="Select the Day of Week:"
               :options="mobile['options']"
+              class="font-weight-bold myuw-text-md"
             />
           </div>
           <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
@@ -339,7 +340,7 @@ $cell-height: 30px;
 .time-column {
   padding-top: $heading-height - ($cell-height / 2) ;
   height: 100%;
-  flex-basis: 40px;
+  flex-basis: 45px;
   display: flex;
   flex-direction: column;
 
