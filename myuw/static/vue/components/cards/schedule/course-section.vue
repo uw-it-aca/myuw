@@ -154,14 +154,14 @@ export default {
         if (startTime && endTime) {
           label += `${startTime.format('dddd')}, ${
             startTime.format('h:mma')
-          }-${endTime.format('h:mma')}, `
+          }-${endTime.format('h:mma')}, `;
         }
       }
 
       label += `${this.sectionTitle}, ${this.meetingLocation}`;
 
       return label;
-    }
+    },
   },
   methods: {
     // Returns minutes from midnight
