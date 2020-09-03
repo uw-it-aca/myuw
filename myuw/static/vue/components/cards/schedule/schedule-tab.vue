@@ -28,7 +28,9 @@
               </span>
             </div>
           </div>
-          <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
+          <div v-for="(time, i) in timeSlots" :key="i"
+               :class="{'day-cell': true, 'day-disabled': isDayDisabled(day)}"
+          >
             <div v-if="(
               meetingMap[day][formatToUnique(time)] &&
               meetingMap[day][formatToUnique(time)].length > 0
@@ -261,6 +263,9 @@ export default {
           day.replace(/^([a-z])/, (c) => c.toUpperCase()),
       );
     },
+    isDayDisabled(day) {
+      return this.period.disabled_days && this.period.disabled_days[day];
+    },
     // -- Some helper functions to initalize the state. --
     // Make a array of all the possible time slots with the interval
     // of this.timestep
@@ -409,6 +414,10 @@ $cell-height: 30px;
       }
     // }
     border-left: 1px solid darken($table-border-color, 5%);
+  }
+
+  .day-disabled {
+    background-color: #dedede;
   }
 
   &:last-child {
