@@ -13,6 +13,7 @@
           </div>
         </div>
       </div>
+      <!-- Desktop Version -->
       <div v-if="$mq !== 'mobile'" class="d-flex w-100">
         <div v-for="day in daySlots" :key="day"
              :aria-labelledby="`${day}-${period.id}`"
@@ -43,6 +44,7 @@
           </div>
         </div>
       </div>
+      <!-- Mobile Version -->
       <div v-else class="w-100">
         <div class="mobile-column-selector">
           <b-form-select
