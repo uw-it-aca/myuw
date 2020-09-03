@@ -50,7 +50,7 @@
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
                title-item-class="bg-light text-uppercase myuw-text-sm mr-1"
-               title-link-class="text-body"
+               title-link-class="text-body h-100"
                :active="i == 0"
         >
           <uw-schedule-tab :period="period" />
