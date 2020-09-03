@@ -44,14 +44,14 @@
         </div>
       </div>
       <div v-else class="w-100">
-        <div class="mobile-column-selector">
-          <b-form-select
-            aria-label="Select the Day of Week:"
-            v-model="mobile['current']"
-            :options="mobile['options']"
-          />
-        </div>
         <div class="day-column">
+          <div class="mobile-column-selector">
+            <b-form-select
+              aria-label="Select the Day of Week:"
+              v-model="mobile['current']"
+              :options="mobile['options']"
+            />
+          </div>
           <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
             <div v-if="(
               meetingMap[mobile['current']][formatToUnique(time)] &&
