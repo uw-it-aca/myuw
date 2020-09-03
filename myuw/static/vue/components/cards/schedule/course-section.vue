@@ -1,9 +1,8 @@
 <template>
-  <!-- TODO: add aria-label -->
   <div role="group"
        tabindex="0" class="course-section"
        :style="computedStyles"
-       aria-label="Monday, 8:30am-9:20am, Train 101 A, Room TBD"
+       :aria-label="ariaLabel"
   >
     <div :class="`bg-c${meetingData.section.color_id}`"
          class="p-1 text-center myuw-text-xxs"
@@ -139,6 +138,30 @@ export default {
         this.year
       }&sln=${this.meetingData.section.sln}`;
     },
+    ariaLabel: function() {
+      let label = '';
+
+      if (this.meetingData.meeting) {
+        const startTime = (
+          this.meetingData.meeting.start_time ||
+          this.meetingData.meeting.start_date
+        );
+        const endTime = (
+          this.meetingData.meeting.end_time ||
+          this.meetingData.meeting.end_date
+        );
+
+        if (startTime && endTime) {
+          label += `${startTime.format('dddd')}, ${
+            startTime.format('h:mma')
+          }-${endTime.format('h:mma')}, `
+        }
+      }
+
+      label += `${this.sectionTitle}, ${this.meetingLocation}`;
+
+      return label;
+    }
   },
   methods: {
     // Returns minutes from midnight
