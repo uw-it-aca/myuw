@@ -15,8 +15,8 @@
       </div>
       <div v-if="$mq !== 'mobile'" class="d-flex w-100">
         <div v-for="day in daySlots" :key="day" :aria-labelledby="day"
-            role="group"
-            class="day-column"
+             role="group"
+             class="day-column"
         >
           <div class="font-weight-bold myuw-text-xs day-heading">
             <div :id="day">
@@ -33,7 +33,8 @@
             )" class="d-flex"
             >
               <uw-course-section
-                v-for="(meetingData, j) in meetingMap[day][formatToUnique(time)]"
+                v-for="(meetingData, j) in
+                  meetingMap[day][formatToUnique(time)]"
                 :key="j" :meeting-data="meetingData"
                 :is-finals-card="isFinalsTab"
               />
@@ -56,7 +57,7 @@
             )" class="d-flex"
             >
               <uw-course-section
-                v-for="(meetingData, j) in 
+                v-for="(meetingData, j) in
                   meetingMap[mobile['current']][formatToUnique(time)]"
                 :key="j" :meeting-data="meetingData"
                 :is-finals-card="isFinalsTab"
@@ -347,27 +348,27 @@ $cell-height: 30px;
     // Border logic for empty cells
     // &:empty {
       &:nth-child(even) {
-        border-top: 1px solid $table-border-color;
+        border-top: 1px solid darken($table-border-color, 5%);
 
         &:last-child {
-          border-bottom: 1px dashed $table-border-color;
+          border-bottom: 1px dashed darken($table-border-color, 5%);
         }
       }
 
       &:nth-child(odd) {
-        border-top: 1px dashed $table-border-color;
+        border-top: 1px dashed darken($table-border-color, 5%);
 
         &:last-child {
-          border-bottom: 1px solid $table-border-color;
+          border-bottom: 1px solid darken($table-border-color, 5%);
         }
       }
     // }
-    border-left: 1px solid $table-border-color;
+    border-left: 1px solid darken($table-border-color, 5%);
   }
 
   &:last-child {
     .day-cell {
-      border-right: 1px solid $table-border-color;
+      border-right: 1px solid darken($table-border-color, 5%);
     }
   }
 }
