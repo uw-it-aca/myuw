@@ -84,6 +84,7 @@
             variant="link"
             size="sm"
             class="d-lg-none p-0 text-white"
+            aria-label="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon
