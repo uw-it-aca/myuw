@@ -24,7 +24,8 @@ class TestViewsError(MyuwApiTest):
         self.assertEquals(
             response.content,
             (b'<p>MyUW encountered a problem with your uwnetid, '
-             b'please contact the UW-IT Service Center.</p>'))
+             b'please contact the <a href="https://itconnect.uw.edu/'
+             b'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
         self.assertEquals(response.status_code, 403)
 
     def pws_error_404(self):
@@ -32,8 +33,9 @@ class TestViewsError(MyuwApiTest):
         self.assertEquals(
             response.content,
             (b'<p>MyUW cannot find data for this user account in the Person '
-             b'Registry services. Please contact the UW-IT Service Center.'
-             b'</p>'))
+             b'Registry services. Please contact the <a href="https://'
+             b'itconnect.uw.edu/it-connect-home/question/">UW-IT Service '
+             b'Center</a>.</p>'))
         self.assertEquals(response.status_code, 403)
 
     def test_unknown_uwnetid(self):
@@ -57,7 +59,8 @@ class TestViewsError(MyuwApiTest):
             response.content,
             (b'<p>This is a test environment of MyUW, '
              b'its access is limited to specific people. To request access, '
-             b'please contact the UW-IT Service Center.</p>'))
+             b'please contact the <a href="https://itconnect.uw.edu/'
+             b'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
         self.assertEquals(response.status_code, 403)
 
     def test_not_instructor_error(self):

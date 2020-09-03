@@ -163,9 +163,10 @@ class TestPageMethods(MyuwApiTest):
         self.assertEquals(response.status_code, 403)
         self.assertEquals(
             response.reason_phrase,
-            ("<p>MyUW cannot find data for this user account "
-             "in the Person Registry services. Please contact "
-             "the UW-IT Service Center.</p>"))
+            ('<p>MyUW cannot find data for this user account '
+             'in the Person Registry services. Please contact the '
+             '<a href="https://itconnect.uw.edu/it-connect-home/question/">'
+             'UW-IT Service Center</a>.</p>'))
 
     @patch('myuw.views.page.get_updated_user', spec=True)
     def test_pws_err(self, mock):
@@ -224,5 +225,6 @@ class TestPageMethods(MyuwApiTest):
         self.assertEquals(response.status_code, 403)
         self.assertEquals(
             response.reason_phrase,
-            ("<p>MyUW encountered a problem with your uwnetid, "
-             "please contact the UW-IT Service Center.</p>"))
+            ('<p>MyUW encountered a problem with your uwnetid, '
+             'please contact the <a href="https://itconnect.uw.edu/'
+             'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
