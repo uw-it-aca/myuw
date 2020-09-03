@@ -202,6 +202,8 @@ export default {
         }
       }
     });
+
+    this.initializeMobileDaySlots();
   },
   methods: {
     // Converts a moment object to a standard string that is used in timeslots
@@ -255,7 +257,6 @@ export default {
       this.timeSlots.push(start.clone());
     },
     // Setting the days of the week that need to be displayed
-    // Also initalizes the mobile values for days
     initializeDaySlots() {
       this.daySlots = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
       if (this.period.meets_saturday) {
@@ -264,7 +265,10 @@ export default {
       if (this.period.meets_sunday) {
         this.daySlots.unshift('sunday');
       }
-
+    },
+    // Initalizes the mobile values for days needs to be called
+    // at the end of create
+    initializeMobileDaySlots() {
       this.daySlots.forEach((day) => {
         const i = this.mobile['options'].push({
           value: day,
@@ -274,6 +278,23 @@ export default {
           this.mobile['options'][i - 1].text += (
             ' - ' + this.getFirstFinalExamTimeOn(day).format('MMMM D')
           );
+        }
+
+        let hasMeetingToday = false;
+        this.timeSlots.forEach((time) => {
+          if (
+            this.meetingMap[day][this.formatToUnique(time)] &&
+            this.meetingMap[day][this.formatToUnique(time)].length > 0
+          ) {
+            hasMeetingToday = true;
+          }
+        });
+
+        if (!hasMeetingToday) {
+          this.mobile['options'][i - 1].text += ` (no ${
+            this.isFinalsTab ? 'finals' : 'sections'
+          } scheduled)`;
+          this.mobile['options'][i - 1].disabled = true;
         }
       });
       if (this.isFinalsTab) {
