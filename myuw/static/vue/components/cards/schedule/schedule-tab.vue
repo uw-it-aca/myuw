@@ -19,7 +19,7 @@
              role="group"
              class="day-column"
         >
-          <div class="font-weight-bold myuw-text-xs day-heading">
+          <div class="font-weight-bold text-center myuw-text-xs day-heading">
             <div :id="`${day}-${period.id}`">
               {{ days[day] }}
               <span v-if="isFinalsTab" class="d-block">
@@ -44,6 +44,14 @@
         </div>
       </div>
       <div v-else class="w-100">
+        <div class="mobile-column-selector">
+          <b-form-select
+            v-model="mobile['current']"
+            aria-label="Select the Day of Week:"
+            :options="mobile['options']"
+            class="font-weight-bold myuw-text-md"
+          />
+        </div>
         <div class="day-column">
           <div class="mobile-column-selector">
             <b-form-select
@@ -70,10 +78,10 @@
       </div>
     </div>
     <div v-if="meetingsWithoutTime.length > 0">
-      <p v-if="!isFinalsTab">
+      <p v-if="!isFinalsTab" class="text-muted myuw-text-md">
         No meeting time specified:
       </p>
-      <p v-else>
+      <p v-else class="text-muted myuw-text-md">
         Courses with final exam meeting times to be determined or courses with
         no final exam:
       </p>
@@ -361,7 +369,6 @@ $cell-height: 30px;
       top: 50%; left: 50%;
       transform: translate(-50%,-50%);
       width: 100%;
-      text-align: center;
     }
   }
 
