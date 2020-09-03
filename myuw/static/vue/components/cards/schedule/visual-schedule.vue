@@ -49,7 +49,8 @@
               active-nav-item-class="bg-beige text-body font-weight-bold"
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
-               title-item-class="bg-light text-uppercase myuw-text-sm mr-1"
+               title-item-class="bg-light text-nowrap text-uppercase
+               myuw-text-xs mr-1 mb-1"
                title-link-class="text-body h-100"
                :active="i == 0"
         >
