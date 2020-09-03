@@ -45,7 +45,7 @@
       </div>
 
       <b-tabs v-model="tabIndex" pills justified
-              nav-class="mt-4 mb-2"
+              nav-class="my-2"
               active-nav-item-class="bg-light text-body font-weight-bold"
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
