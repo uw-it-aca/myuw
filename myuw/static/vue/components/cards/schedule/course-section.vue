@@ -170,6 +170,8 @@ export default {
   position: relative;
   outline: transparent auto 1px;
   overflow: hidden;
+  margin-left: 2px;
+  margin-right: 2px;
 
   &:hover {
     z-index:9999;
