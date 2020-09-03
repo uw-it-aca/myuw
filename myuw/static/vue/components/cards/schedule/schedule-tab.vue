@@ -14,12 +14,13 @@
         </div>
       </div>
       <div v-if="$mq !== 'mobile'" class="d-flex w-100">
-        <div v-for="day in daySlots" :key="day" :aria-labelledby="day"
+        <div v-for="day in daySlots" :key="day"
+             :aria-labelledby="`${day}-${period.id}`"
              role="group"
              class="day-column"
         >
           <div class="font-weight-bold myuw-text-xs day-heading">
-            <div :id="day">
+            <div :id="`${day}-${period.id}`">
               {{ days[day] }}
               <span v-if="isFinalsTab" class="d-block">
                 {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
@@ -45,6 +46,7 @@
       <div v-else class="w-100">
         <div class="mobile-column-selector">
           <b-form-select
+            aria-label="Select the Day of Week:"
             v-model="mobile['current']"
             :options="mobile['options']"
           />
