@@ -12,8 +12,6 @@
   </b-card>
   <b-card v-else-if="errored" class="rounded-0 shadow-sm mb-3" tabindex="0">
     <slot name="card-heading" />
-<<<<<<< HEAD
-
     <b-alert show variant="light" class="p-0 m-0">
       <div class="d-flex text-danger m-0 myuw-text-md">
         <div class="pr-2 flex-shrink-1">
@@ -25,13 +23,6 @@
         </div>
       </div>
     </b-alert>
-=======
-    <p class="text-danger myuw-text-md">
-      <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-      An error occurred and and we can't load this content right now.
-      Please try again later.
-    </p>
->>>>>>> 49f6a09310f572a0f5518d9d8fb513c6544a0f6b
   </b-card>
   <b-card v-else class="rounded-0 shadow-sm mb-3">
     <b-card-text class="d-flex justify-content-center card-loading">
