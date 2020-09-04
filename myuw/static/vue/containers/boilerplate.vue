@@ -24,7 +24,7 @@
           <b-row>
             <b-col xs="2">
               <b-link href="/profile/" class="text-white font-weight-lighter">
-                <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />
+                <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
                 {{ netid }}
               </b-link>
             </b-col>
