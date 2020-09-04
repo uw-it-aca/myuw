@@ -196,12 +196,10 @@ export default {
     this.isFinalsTab = this.period.id == 'finals';
 
     // If there are no meetings with defined time in this period
-    if (
-      !(
+    if (!(
         this.period.earliestMeetingTime == null &&
         this.period.latestMeetingTime == null
-      )
-    ) {
+    )) {
       // Initialize the rendering logic
       this.initializeTimeSlots();
       this.initializeDaySlots();
@@ -211,7 +209,11 @@ export default {
       this.period.sections.forEach((section) => {
         if (!this.isFinalsTab) {
           section.meetings.forEach((meeting) => {
-            if (meeting.start_time && meeting.end_time) {
+            if (
+              !meeting.no_meeting &&
+              meeting.start_time &&
+              meeting.end_time
+            ) {
               for (const day in meeting.meeting_days) {
                 if (meeting.meeting_days[day]) {
                   this.putMeeting(
@@ -247,7 +249,24 @@ export default {
     this.period.sections.forEach((section) => {
       if (!this.isFinalsTab) {
         section.meetings.forEach((meeting) => {
-          if (!(meeting.start_time && meeting.end_time)) {
+          if (
+            (
+              meeting.no_meeting ||
+              !(meeting.start_time && meeting.end_time)
+            ) &&
+            (
+              !(
+                meeting.eos_start_date &&
+                meeting.eos_end_date
+              ) ||
+              (
+                meeting.eos_start_date &&
+                meeting.eos_end_date &&
+                meeting.eos_start_date >= period.start_date &&
+                meeting.eos_end_date >= period.end_date
+              )
+            )
+          ) {
             this.meetingsWithoutTime.push({
               section: section,
               meeting: meeting,
@@ -312,13 +331,19 @@ export default {
     // Make a array of all the possible time slots with the interval
     // of this.timestep
     initializeTimeSlots() {
-      let start = this.period.earliestMeetingTime.clone()
-          .subtract(...this.timestep);
-      let end = this.period.latestMeetingTime.clone().add(...this.timestep);
-      if (!(end.minute() === 30 || end.minute() === 0)) {
-        end = end.add(10, 'minutes');
+      let start = this.period.earliestMeetingTime.clone();
+      if (start.minute() === 30) {
+        start = start.subtract(...this.timestep);
+      } else if (start.minute() === 0) {
+        start = start.subtract(...this.timestep).subtract(...this.timestep);
       }
 
+      let end = this.period.latestMeetingTime.clone();
+      if (end.minute() !== 0 && end.minute() !== 30) {
+        end = end.add(30 - end.minute(), 'minutes');
+      }
+
+      console.log(start.format('hh:mm A'));
       while (start.format('hh:mm A') !== end.format('hh:mm A')) {
         this.timeSlots.push(start.clone());
 

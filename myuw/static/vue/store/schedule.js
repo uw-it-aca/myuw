@@ -85,11 +85,11 @@ const postProcess = (response, urlExtra) => {
 
           meeting.eos_start_date = moment(meeting.eos_start_date);
           meeting.eos_end_date = moment(meeting.eos_end_date);
+        }
 
-          if (!eosAlreadyAdded) {
-            period.eosData.push(section);
-            eosAlreadyAdded = true;
-          }
+        if (meeting.eos_cid && !eosAlreadyAdded) {
+          period.eosData.push(section);
+          eosAlreadyAdded = true;
         }
       });
 
