@@ -63,7 +63,7 @@ export default {
       year: (state) => state.termData.year,
     }),
     computedStyles: function() {
-      if (this.meetingData.meeting) {
+      if (this.meetingData.meeting && !this.meetingData.meeting.no_meeting) {
         const startTime = (
           this.meetingData.meeting.start_time ||
           this.meetingData.meeting.start_date
