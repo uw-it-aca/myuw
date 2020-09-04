@@ -1,14 +1,13 @@
 <template>
   <uw-card :loaded="isReady" :errored="isErrored">
-      <template #card-heading>
-        <h3>
-          Husky Experience Toolkit
-        </h3>
-      </template>
-      <template #card-body>
-        <div v-html="article_html">
-        </div>
-      </template>
+    <template #card-heading>
+      <h3>
+        Husky Experience Toolkit
+      </h3>
+    </template>
+    <template #card-body>
+      <div v-html="article_html" />
+    </template>
   </uw-card>
 </template>
 
@@ -23,10 +22,10 @@ export default {
   data: function() {
     return {};
   },
-  computed: { 
+  computed: {
     ...mapState({
       article_html: (state) => state.hx_toolkit.value.article_html,
-      
+
     }),
     ...mapGetters('hx_toolkit', {
       isReady: 'isReady',
@@ -38,7 +37,7 @@ export default {
   },
   methods: {
     ...mapActions('hx_toolkit', ['fetch']),
-  }
+  },
 };
 </script>
 
