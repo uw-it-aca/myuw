@@ -26,7 +26,7 @@ export default {
   computed: { 
     ...mapState({
       article_html: (state) => state.hx_toolkit.value.article_html,
-
+      
     }),
     ...mapGetters('hx_toolkit', {
       isReady: 'isReady',

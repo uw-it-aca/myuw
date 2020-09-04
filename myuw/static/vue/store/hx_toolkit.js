@@ -13,8 +13,6 @@ const postProccess = (response) => {
         data.article_html = htmlDoc.links[0].outerHTML;
     }
 
-    console.log(htmlDoc.links[0].outerHTML);
-
     return data;
 }
 const customActions = {
