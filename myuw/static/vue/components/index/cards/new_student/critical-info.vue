@@ -84,7 +84,7 @@ export default {
       },
       isResident: (state) => {
         let isResident = true;
-        let notices = state.notices.value.filter(
+        const notices = state.notices.value.filter(
             (notice) => notice.location_tags.includes('checklist_residence'),
         )[0];
 
