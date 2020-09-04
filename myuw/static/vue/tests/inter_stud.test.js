@@ -208,6 +208,6 @@ describe('New International Student Card', () => {
     // closing span tag.
     expect(
       wrapper.findAll('div').at(0).html()
-    ).toBe('<div>' + mockNotices[23].notice_body + '</span></div>');
+    ).toBe('<div class="myuw-text-md">' + mockNotices[23].notice_body + '</span></div>');
   });
 });
