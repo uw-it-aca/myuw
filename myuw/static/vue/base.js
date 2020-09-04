@@ -22,6 +22,7 @@ import {
   faGraduationCap,
   faBars,
   faLocationArrow,
+  faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -51,6 +52,7 @@ library.add(faCalendarCheck);
 library.add(faBookmark);
 library.add(faExclamationTriangle);
 library.add(faSquare);
+library.add(faSquareFull);
 library.add(faBars);
 library.add(faLocationArrow);
 

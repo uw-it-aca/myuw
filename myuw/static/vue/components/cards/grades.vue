@@ -1,33 +1,53 @@
 <template>
-  <uw-card
-    v-if="showGradeCard"
-    :loaded="isReady" :errored="isErrored"
-  >
+  <uw-card v-if="showGradeCard" :loaded="isReady" :errored="isErrored">
     <template #card-heading>
-      <h3>
+      <h3 class="text-dark-beige">
         Final Grades
       </h3>
     </template>
     <template #card-body>
-      <span v-if="!isAfterGradeSubmissionDeadline">
+      <p
+        v-if="!isAfterGradeSubmissionDeadline"
+        class="text-muted font-italic myuw-text-md"
+      >
         These grades are not official until 11:59 p.m. on
         {{ toFriendlyDate(gradeSubmissionDeadline) }}.
-      </span>
-      <ul>
-        <li v-for="section in filteredSections" :key="section.course_number">
-          <div :class="`bg-c${section.color_id} simplesquare`"
-               aria-hidden="true"
-          />
-          <span>{{ section.curriculum_abbr }} {{ section.course_number }}</span>
-          <span v-if="section.grade === 'X'"> No grade yet</span>
-          <span>{{ section.grade }}</span>
+      </p>
+      <ul class="list-unstyled">
+        <li
+          v-for="section in filteredSections"
+          :key="section.course_number"
+          class="mb-2"
+        >
+          <div class="d-flex align-content-center">
+            <div class="w-50">
+              <font-awesome-icon
+                :icon="['fas', 'square-full']"
+                :class="`text-c${section.color_id}`"
+                class="mr-1"
+              />
+              <span class="h5 m-0">
+                {{ section.curriculum_abbr }} {{ section.course_number }}
+              </span>
+            </div>
+            <div class="w-50 text-right text-nowrap">
+              <span
+                v-if="section.grade === 'X'"
+                class="m-0 mr-2 text-muted font-italic myuw-text-md">
+                No grade yet
+              </span>
+              <span class="h5 m-0 font-weight-bold">{{ section.grade }}</span>
+            </div>
+          </div>
         </li>
       </ul>
     </template>
     <template #card-disclosure>
       <b-collapse id="grade_card_collapse" v-model="isOpen">
-        <h4>Resources</h4>
-        <ul>
+        <h4 class="h6 font-weight-bold">
+          Resources
+        </h4>
+        <ul class="list-unstyled myuw-text-md">
           <li>
             <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">
               View credits and GPA
@@ -50,24 +70,35 @@
       </b-collapse>
     </template>
     <template #card-footer>
-      <button v-if="!isOpen"
-              v-b-toggle.grade_card_collapse aria-label="SHOW MORE"
-              title="Expand to show additional grade resources"
+      <b-button
+        v-if="!isOpen"
+        v-b-toggle.grade_card_collapse
+        aria-label="SHOW MORE"
+        title="Expand to show additional grade resources"
+        variant="link"
+        size="sm"
+        class="w-100 p-0 text-dark"
       >
         SHOW MORE
-      </button>
-      <button v-else v-b-toggle.grade_card_collapse aria-label="SHOW LESS"
-              title="Collapse to hide additional grade resources"
+      </b-button>
+      <b-button
+        v-else
+        v-b-toggle.grade_card_collapse
+        aria-label="SHOW LESS"
+        title="Collapse to hide additional grade resources"
+        variant="link"
+        size="sm"
+        class="w-100 p-0 text-dark"
       >
         SHOW LESS
-      </button>
+      </b-button>
     </template>
   </uw-card>
 </template>
 
 <script>
 import moment from 'moment';
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../containers/card.vue';
 
 export default {
@@ -90,8 +121,7 @@ export default {
         state.cardDisplayDates.is_before_first_day_of_term,
       isSummer: (state) => state.cardDisplayDates.is_summer,
       lastTerm: (state) => state.cardDisplayDates.last_term,
-      isAfterSummerBStart: (state) =>
-        state.cardDisplayDates.is_after_summer_b,
+      isAfterSummerBStart: (state) => state.cardDisplayDates.is_after_summer_b,
       isAfterGradeSubmissionDeadline: (state) =>
         state.cardDisplayDates.is_after_grade_submission_deadline,
       courses: (state) => state.courses.value,
@@ -132,13 +162,12 @@ export default {
       }
     },
     showGradeCard: function() {
-      return this.term && (
+      return (
+        this.term &&
         // This is done so that when there is a error it goes to the second
         // if conditional
-        (!this.isReady && !this.isErrored) || (
-          this.term in this.courses &&
-          this.filteredSections.length > 0
-        )
+        ((!this.isReady && !this.isErrored) ||
+          (this.term in this.courses && this.filteredSections.length > 0))
       );
     },
   },
@@ -168,12 +197,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-  .simplesquare {
-    display: inline-block;
-    height: .9em;
-    width: .9em;
-    margin-right: 0.3em;
-  }
-</style>
