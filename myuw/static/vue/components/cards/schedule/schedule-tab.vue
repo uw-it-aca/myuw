@@ -106,7 +106,7 @@
               {{ eosSection.section_id }}
             </a>
           </div>
-          <div class="p-1 myuw-text-xs">
+          <div class="p-1 myuw-text-xxs">
             <ol class="m-0 pl-4">
               <li v-for="(meeting, j) in eosSection.meetings" :key="j">
                 <span v-if="i !== 0">,&nbsp;</span>
