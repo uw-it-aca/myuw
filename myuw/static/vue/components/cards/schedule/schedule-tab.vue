@@ -82,23 +82,65 @@
         </div>
       </div>
     </div>
-    <!-- TODO: move eos data here -->
-    <div>
-      <p class="text-muted myuw-text-md">
-        BIGDATA 230 A, meeting time updates:
+
+    <!-- eos message display -->
+    <div v-if="period.eosData.length > 0" class="mb-2">
+      <p class="text-muted myuw-text-md mb-1">
+        Meeting time notes:
       </p>
-      <ol class="myuw-text-md">
-        <li>Apr 3 – Jun 12 (6:00 – 9:00PM)</li>
-        <li>May 11 – May 15 (Class does not meet)</li>
-        <li>May 29 (Class does not meet)</li>
-      </ol>
+      <!-- style like a course section card -->
+      <div v-for="(eosSection, i) in period.eosData" :key="i"
+           class="d-inline-block w-100 mr-2"
+      >
+        <div role="group" tabindex="0" aria-label="xxxxxxxxxx"
+             class="course-section"
+        >
+          <div class="p-1 text-center myuw-text-xxs"
+               :class="`bg-c${eosSection.color_id}`"
+          >
+            <b-badge v-if="eosSection.is_teaching" variant="light">
+              <abbr title="Teaching Course">T</abbr>
+            </b-badge>
+            <a href="/xxxxxxxxx" class="text-white">
+              {{ eosSection.curriculum_abbr }} {{ eosSection.course_number }}
+              {{ eosSection.section_id }}
+            </a>
+          </div>
+          <div class="p-1 myuw-text-xs">
+            <ol class="m-0 pl-4">
+              <li v-for="(meeting, j) in eosSection.meetings" :key="j">
+                <span v-if="i !== 0">,&nbsp;</span>
+                <span v-if="meeting.eos_start_date">
+                  {{ formatDate(meeting.eos_start_date) }}
+                  <span v-if="!meeting.start_end_same">
+                    &ndash; {{ formatDate(meeting.eos_end_date) }}
+                  </span>
+                </span>
+                <span v-if="meeting.wont_meet">
+                  (Class does not meet)
+                </span>
+                <span v-else-if="meeting.no_meeting">
+                  (Online learning)
+                </span>
+                <span v-else>
+                  <span v-if="meeting.start_time">
+                    ({{ formatTime(meeting.start_time) }} &ndash;
+                    {{ formatTime(meeting.end_time) }})
+                  </span>
+                </span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- no meeting specified notes -->
     <div v-if="meetingsWithoutTime.length > 0">
-      <p v-if="!isFinalsTab" class="text-muted myuw-text-md">
+      <p v-if="!isFinalsTab" class="text-muted myuw-text-md mb-1">
         No meeting time specified:
       </p>
-      <p v-else class="text-muted myuw-text-md">
+      <p v-else class="text-muted myuw-text-md mb-1">
         Courses with final exam meeting times to be determined or courses with
         no final exam:
       </p>
@@ -339,6 +381,14 @@ export default {
           this.meetingMap[daySlot][this.formatToUnique(timeSlot)] = [];
         });
       });
+    },
+    // TODO: move every instance of this functions into global scope
+    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
+    formatDate: (d) => {
+      return d.format('MMM D');
+    },
+    formatTime: (t) => {
+      return t.format('h:mmA');
     },
   },
 };

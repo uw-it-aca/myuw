@@ -187,7 +187,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .course-section {
   background-color: lighten(#e8e3d3, 7%);;
   width: 100%;
