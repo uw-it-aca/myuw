@@ -65,7 +65,7 @@
       v-else
       #card-body
     >
-      <p class="text-danger">
+      <p class="text-danger myuw-text-md">
         <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
         An error occurred and MyUW cannot load your notices right now. Please
         try again later.
