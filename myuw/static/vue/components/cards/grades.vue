@@ -33,7 +33,8 @@
             <div class="w-50 text-right text-nowrap">
               <span
                 v-if="section.grade === 'X'"
-                class="m-0 mr-2 text-muted font-italic myuw-text-md">
+                class="m-0 mr-2 text-muted font-italic myuw-text-md"
+              >
                 No grade yet
               </span>
               <span class="h5 m-0 font-weight-bold">{{ section.grade }}</span>
@@ -98,7 +99,7 @@
 
 <script>
 import moment from 'moment';
-import { mapGetters, mapState, mapActions } from 'vuex';
+import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../containers/card.vue';
 
 export default {
