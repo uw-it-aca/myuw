@@ -84,16 +84,19 @@ export default {
       },
       isResident: (state) => {
         let isResident = true;
-
-        state.notices.value.filter(
+        let notices = state.notices.value.filter(
             (notice) => notice.location_tags.includes('checklist_residence'),
-        )[0].attributes.forEach((attr) => {
-          if (attr.name === 'ResidencyStatus' &&
-              attr.value !== '1' &&
-              attr.value !== '2') {
-            isResident = false;
-          }
-        });
+        )[0];
+
+        if (notices) {
+          notices.attributes.forEach((attr) => {
+            if (attr.name === 'ResidencyStatus' &&
+                attr.value !== '1' &&
+                attr.value !== '2') {
+              isResident = false;
+            }
+          });
+        }
 
         return isResident;
       },
