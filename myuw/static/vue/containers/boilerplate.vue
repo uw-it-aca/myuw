@@ -32,7 +32,7 @@
               <b-link
                 v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
-                class="ml-2 text-white font-weight-lighter"
+                class="ml-2 text-danger font-weight-lighter"
                 title="UW email services"
               >
                 <font-awesome-icon
@@ -330,6 +330,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:map";
+@import "../../css/custom.scss";
 @import "../../css/variables.scss";
 
 // boilerplate
@@ -343,6 +345,11 @@ export default {
 
 .myuw-thin-bar {
   line-height: 40px;
+
+  // override danger color to fix a11y contrast
+  .text-danger, .text-danger:hover {
+    color: lighten(map.get($theme-colors, "danger"), 25%) !important;
+  }
 }
 
 .myuw-brand {
