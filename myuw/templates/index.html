@@ -21,6 +21,10 @@
         };
     </script>
     {{ card_display_dates|json_script:'card_display_dates' }}
+    {{ recent_links|json_script:'recent_links' }}
+    {{ popular_links|json_script:'popular_links' }}
+    {{ custom_links|json_script:'custom_links' }}
+    {{ default_links|json_script:'default_links' }}
 {% endblock django_json_data %}
 
 {% block body_content %}
@@ -33,6 +37,8 @@
       <myuw-notice-card></myuw-notice-card>
       <myuw-grades></myuw-grades>
       <myuw-husky-experience></myuw-husky-experience> 
+      <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
+      <myuw-quicklinks mobile-only></myuw-quicklinks>
       <myuw-ns-critical-info></myuw-ns-critical-info>
       <myuw-ns-international-student></myuw-ns-international-student>
       <myuw-applicant></myuw-applicant>
@@ -43,6 +49,7 @@
     <!-- MARK: #side-bar template (tablet/desktop only) -->
     <template #side-bar>
       <!--MARK: inherent card ordering -->
+      <myuw-quicklinks></myuw-quicklinks>
       <myuw-events></myuw-events>
     </template>
   </myuw-boilerplate>

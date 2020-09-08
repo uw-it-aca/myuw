@@ -37,14 +37,15 @@ const fetchBuilder = (url, postProcess, type) => {
 
 const buildWith = (
     {
+      customState={
+        value: null,
+        status: null,
+      },
       customGetters={},
       customMutations={},
       customActions={},
     } = {}) => {
-  const state = () => ({
-    value: [],
-    status: null,
-  });
+  const state = () => customState;
 
   const getters = {
     isReady(state) {
