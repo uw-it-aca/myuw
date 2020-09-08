@@ -50,7 +50,7 @@ var Landing = {
     _get_desktop_body_cards: function() {
         var desktop_body_cards = [];
 
-        if (window.user.is_hxt_viewer) {
+        if (window.user.seattle && window.user.undergrad) {
             desktop_body_cards.push(HuskyExperienceCard);
             }
 
@@ -153,7 +153,7 @@ var Landing = {
 
     _get_mobile_cards: function() {
         var mobile_cards = [];
-        if (window.user.is_hxt_viewer) {
+        if (window.user.seattle && window.user.undergrad) {
             mobile_cards.push(HuskyExperienceCard);
         }
 

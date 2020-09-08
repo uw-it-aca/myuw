@@ -70,7 +70,11 @@ describe("HomePage", function() {
         window.user.registered_stud = false;
         window.user.instructor = false;
         window.user.applicant = false;
-        window.user.is_hxt_viewer = false;
+        window.user.seattle = false;
+        window.user.bothell = false;
+        window.user.tacoma = false;
+        window.user.undergrad = false;
+        window.user.grad = false;
         window.user.intl_stud = false;
         window.user.fyp = false;
         window.user.aut_transfer = false;
@@ -170,7 +174,8 @@ describe("HomePage", function() {
     it('Desktop cards for hxt_viewer', function() {
         window.innerWidth = 800;
         window.user.netid = "javerage";
-        window.user.is_hxt_viewer = true;
+        window.user.seattle = true;
+        window.user.undergrad = true;
         var desktop_body_cards = Landing._get_desktop_body_cards();
         assert.equal(desktop_body_cards.length, 3);
         assert.equal(desktop_body_cards[0].name, 'HuskyExperienceCard');
@@ -320,9 +325,11 @@ describe("HomePage", function() {
     });
 
     it('Mobile cards for hxt_viewer', function() {
-        window.user.netid = "jnew";
-        window.user.is_hxt_viewer = true;
+        window.user.netid = "javg001";
+        window.user.seattle = true;
+        window.user.undergrad = true;
         var mobile_cards = Landing._get_mobile_cards();
+        console.log(mobile_cards);
         assert.deepEqual(mobile_cards,
                          [HuskyExperienceCard,
                           QuickLinksCard,
@@ -459,8 +466,6 @@ describe("HomePage", function() {
         window.innerWidth = 767;
 
         window.user.netid = "retiree";
-        window.user.is_hxt_viewer = false;
-        window.user.student = false;
         window.user.past_employee = true;
 
         Landing.make_html();
