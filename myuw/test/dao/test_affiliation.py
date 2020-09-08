@@ -34,6 +34,12 @@ class TestAffilliationDao(TransactionTestCase):
     def test_get_is_hxt_viewer(self):
         request = get_request_with_user('staff')
         self.assertTrue(get_is_hxt_viewer(request)[5])
+        request = get_request_with_user('javg001')
+        self.assertTrue(get_is_hxt_viewer(request)[5])
+        request = get_request_with_user('jbothell')
+        self.assertFalse(get_is_hxt_viewer(request)[5])
+        request = get_request_with_user('seagrad')
+        self.assertFalse(get_is_hxt_viewer(request)[5])
 
     def test_is_instructor(self):
         now_request = get_request_with_user('bill')
