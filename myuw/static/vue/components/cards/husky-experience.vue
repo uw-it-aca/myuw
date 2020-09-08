@@ -1,5 +1,5 @@
 <template>
-  <uw-card :loaded="isReady" :errored="isErrored">
+  <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h3>
         Husky Experience Toolkit
@@ -25,7 +25,7 @@ export default {
   computed: {
     ...mapState({
       article_html: (state) => state.hx_toolkit.value.article_html,
-
+      hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
     ...mapGetters('hx_toolkit', {
       isReady: 'isReady',
