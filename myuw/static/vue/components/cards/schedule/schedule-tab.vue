@@ -132,6 +132,7 @@
 
 <script>
 import moment from 'moment';
+import {mapState} from 'vuex';
 import CourseSection from './course-section.vue';
 
 export default {
@@ -168,6 +169,14 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState({
+      quarterLastDate: (state) => moment(
+        state.termData.lastDay, 'dddd, MMMM D, YYYY'
+      ),
+      today: (state) => moment(state.termData.today, 'dddd, MMMM D, YYYY'),
+    }),
+  },
   created() {
     // Set if this tab is for finals
     this.isFinalsTab = this.period.id == 'finals';
@@ -175,9 +184,17 @@ export default {
       this.period.earliestMeetingTime &&
       this.period.latestMeetingTime
     )) {
-      // todo set some time if not defined
-      this.period.earliestMeetingTime = moment().hour(8).minute(30);
-      this.period.latestMeetingTime = moment().hour(11).minute(50);
+      if (this.isFinalsTab) {
+        this.period.earliestMeetingTime = this.quarterLastDate
+          .clone().day(8).hour(8).minute(30);
+        this.period.latestMeetingTime = this.quarterLastDate
+          .clone().day(8).hour(11).minute(50);
+      } else {
+        this.period.earliestMeetingTime = this.today
+          .clone().day(1).hour(8).minute(30);
+        this.period.latestMeetingTime = this.today
+          .clone().day(5).hour(11).minute(50);
+      }
     }
 
     // If there are no meetings with defined time in this period
