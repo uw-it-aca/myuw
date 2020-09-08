@@ -81,50 +81,35 @@
         Meeting time notes:
       </p>
       <!-- style like a course section card -->
-      <div v-for="(eosSection, i) in period.eosData" :key="i"
-           class="d-inline-block w-100 mr-2"
+      <uw-course-section
+        v-for="(eosSection, i) in period.eosData" :key="i"
+        :meeting-data="{section: eosSection}"
+        :is-finals-card="false" class="d-inline-block w-auto mr-2"
       >
-        <div role="group" tabindex="0" aria-label="xxxxxxxxxx"
-             class="course-section"
-        >
-          <div class="p-1 text-center myuw-text-xxs"
-               :class="`bg-c${eosSection.color_id}`"
-          >
-            <b-badge v-if="eosSection.is_teaching" variant="light">
-              <abbr title="Teaching Course">T</abbr>
-            </b-badge>
-            <a href="/xxxxxxxxx" class="text-white">
-              {{ eosSection.curriculum_abbr }} {{ eosSection.course_number }}
-              {{ eosSection.section_id }}
-            </a>
-          </div>
-          <div class="p-1 myuw-text-xxs">
-            <ol class="m-0 pl-4">
-              <li v-for="(meeting, j) in eosSection.meetings" :key="j">
-                <span v-if="i !== 0">,&nbsp;</span>
-                <span v-if="meeting.eos_start_date">
-                  {{ formatDate(meeting.eos_start_date) }}
-                  <span v-if="!meeting.start_end_same">
-                    &ndash; {{ formatDate(meeting.eos_end_date) }}
-                  </span>
-                </span>
-                <span v-if="meeting.wont_meet">
-                  (Class does not meet)
-                </span>
-                <span v-else-if="meeting.no_meeting">
-                  (Online learning)
-                </span>
-                <span v-else>
-                  <span v-if="meeting.start_time">
-                    ({{ formatTime(meeting.start_time) }} &ndash;
-                    {{ formatTime(meeting.end_time) }})
-                  </span>
-                </span>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
+        <ol class="m-0 px-4 text-left">
+          <li v-for="(meeting, j) in eosSection.meetings" :key="j">
+            <span v-if="i !== 0">,&nbsp;</span>
+            <span v-if="meeting.eos_start_date">
+              {{ formatDate(meeting.eos_start_date) }}
+              <span v-if="!meeting.start_end_same">
+                &ndash; {{ formatDate(meeting.eos_end_date) }}
+              </span>
+            </span>
+            <span v-if="meeting.wont_meet">
+              (Class does not meet)
+            </span>
+            <span v-else-if="meeting.no_meeting">
+              (Online learning)
+            </span>
+            <span v-else>
+              <span v-if="meeting.start_time">
+                ({{ formatTime(meeting.start_time) }} &ndash;
+                {{ formatTime(meeting.end_time) }})
+              </span>
+            </span>
+          </li>
+        </ol>
+      </uw-course-section>
     </div>
 
     <!-- no meeting specified notes -->
@@ -137,7 +122,7 @@
         no final exam:
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
-           class="d-inline-block w-25 mr-2"
+           class="d-inline-block w-auto mr-2"
       >
         <uw-course-section :meeting-data="meeting" />
       </div>

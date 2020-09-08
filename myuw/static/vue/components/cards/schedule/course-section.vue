@@ -18,24 +18,26 @@
     </div>
 
     <div class="p-1 text-center myuw-text-xxs">
-      <a v-if="(
-           !meetingData.section.is_remote &&
-           meetingLocationUrl
-         )"
-         :href="meetingLocationUrl"
-      >
-        {{ meetingLocation }}
-      </a>
-      <span v-else>
-        {{ meetingLocation }}
-      </span>
-      <a v-if="showConfirmLink"
-         :href="confirmationLink"
-         target="_blank"
-         class="d-block"
-      >
-        (Confirm)
-      </a>
+      <slot>
+        <a v-if="(
+            !meetingData.section.is_remote &&
+            meetingLocationUrl
+          )"
+          :href="meetingLocationUrl"
+        >
+          {{ meetingLocation }}
+        </a>
+        <span v-else>
+          {{ meetingLocation }}
+        </span>
+        <a v-if="showConfirmLink"
+          :href="confirmationLink"
+          target="_blank"
+          class="d-block"
+        >
+          (Confirm)
+        </a>
+      </slot>
     </div>
   </div>
 </template>
