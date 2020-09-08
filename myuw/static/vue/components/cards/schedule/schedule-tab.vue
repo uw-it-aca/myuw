@@ -48,14 +48,6 @@
       </div>
       <!-- Mobile Version -->
       <div v-else class="w-100">
-        <div class="mobile-column-selector">
-          <b-form-select
-            v-model="mobile['current']"
-            aria-label="Select the Day of Week:"
-            :options="mobile['options']"
-            class="font-weight-bold myuw-text-md"
-          />
-        </div>
         <div class="day-column">
           <div class="mobile-column-selector">
             <b-form-select
