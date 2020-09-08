@@ -25,11 +25,11 @@
                :active="(
                  period.start_date <= today &&
                  period.end_date >= today
-                ) || (
-                  i > 0 &&
-                  periods[i - 1].end_date < today &&
-                  period.title === 'finals'
-                )"
+               ) || (
+                 i > 0 &&
+                 periods[i - 1].end_date < today &&
+                 period.title === 'finals'
+               )"
         >
           <!-- tab content -->
           <uw-schedule-tab :period="period" />

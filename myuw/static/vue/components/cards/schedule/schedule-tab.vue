@@ -182,7 +182,7 @@ export default {
 
     // If there are no meetings with defined time in this period
     if (!(
-        this.period.earliestMeetingTime == null &&
+      this.period.earliestMeetingTime == null &&
         this.period.latestMeetingTime == null
     )) {
       // Initialize the rendering logic
