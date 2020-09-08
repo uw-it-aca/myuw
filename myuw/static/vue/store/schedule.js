@@ -87,7 +87,7 @@ const postProcess = (response, urlExtra) => {
           meeting.eos_end_date = moment(meeting.eos_end_date);
         }
 
-        if (meeting.eos_cid && !eosAlreadyAdded) {
+        if (section.eos_cid && !eosAlreadyAdded) {
           period.eosData.push(section);
           eosAlreadyAdded = true;
         }
