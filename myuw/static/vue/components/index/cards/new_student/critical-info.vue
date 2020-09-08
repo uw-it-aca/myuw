@@ -54,16 +54,6 @@
         </div>
       </div>
     </template>
-    <!-- MARK: this should not be needed...
-    it should get the default card.vue error
-    <template v-else #card-body>
-      <p class="text-danger">
-        <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-        An error occurred and MyUW cannot load your notices right now. Please
-        try again later.
-      </p>
-    </template>
-    -->
   </uw-card>
 </template>
 
