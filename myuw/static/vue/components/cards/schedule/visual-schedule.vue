@@ -38,8 +38,9 @@
       <!-- Needs testing no mock user available -->
       <p v-if="offTerm.length > 0">
         Note:
-        <span v-for="(term, i) in offTerm" :key="i">
-          {{term.section}} course continues until {{formatTime(term.end_date)}}
+        <span v-for="(termData, i) in offTerm" :key="i">
+          {{ termData.section }} course continues until
+          {{ formatTime(termData.end_date) }}
         </span>
       </p>
     </template>
