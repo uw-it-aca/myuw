@@ -55,6 +55,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    day: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     ...mapState({
@@ -154,8 +158,12 @@ export default {
           this.meetingData.meeting.end_date
         );
 
+        if (this.day) {
+          label += `${this.ucfirst(this.day)}, `;
+        }
+
         if (startTime && endTime) {
-          label += `${startTime.format('dddd')}, ${
+          label += `${
             startTime.format('h:mma')
           }-${endTime.format('h:mma')}, `;
         }
@@ -185,6 +193,7 @@ export default {
         )
       );
     },
+    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
   },
 };
 </script>
