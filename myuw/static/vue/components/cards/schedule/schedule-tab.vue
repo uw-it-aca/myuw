@@ -493,7 +493,7 @@ $cell-height: 30px;
   }
 
   .day-disabled {
-    background-color: #dedede;
+    background-color: lighten($table-border-color, 5%);
   }
 
   &:last-child {
