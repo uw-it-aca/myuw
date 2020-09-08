@@ -15,8 +15,8 @@
     <template #card-body>
       <!-- schedule tabs -->
       <b-tabs v-model="tabIndex" pills
-              nav-wrapper-class="mb-3 p-1 overflow-auto"
-              nav-class="m-0 flex-nowrap"
+              nav-wrapper-class="mb-3 p-1"
+              nav-class=""
               active-nav-item-class="bg-beige text-body font-weight-bold"
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
