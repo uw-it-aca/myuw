@@ -186,6 +186,14 @@ export default {
   created() {
     // Set if this tab is for finals
     this.isFinalsTab = this.period.id == 'finals';
+    if (!(
+      this.period.earliestMeetingTime &&
+      this.period.latestMeetingTime
+    )) {
+      // todo set some time if not defined
+      this.period.earliestMeetingTime = moment().hour(8).minute(30);
+      this.period.latestMeetingTime = moment().hour(11).minute(50);
+    }
 
     // If there are no meetings with defined time in this period
     if (!(
@@ -254,8 +262,15 @@ export default {
               (
                 meeting.eos_start_date &&
                 meeting.eos_end_date &&
-                meeting.eos_start_date >= period.start_date &&
-                meeting.eos_end_date >= period.end_date
+                (
+                  (
+                    meeting.eos_start_date >= this.period.start_date &&
+                    meeting.eos_start_date <= this.period.end_date
+                  ) || (
+                    meeting.eos_end_date >= this.period.start_date &&
+                    meeting.eos_end_date <= this.period.end_date
+                  )
+                )
               )
             )
           ) {
@@ -335,7 +350,6 @@ export default {
         end = end.add(30 - end.minute(), 'minutes');
       }
 
-      console.log(start.format('hh:mm A'));
       while (start.format('hh:mm A') !== end.format('hh:mm A')) {
         this.timeSlots.push(start.clone());
 
@@ -381,7 +395,6 @@ export default {
           this.mobile['options'][i - 1].text += ` (no ${
             this.isFinalsTab ? 'finals' : 'sections'
           } scheduled)`;
-          this.mobile['options'][i - 1].disabled = true;
         }
       });
       if (this.isFinalsTab) {

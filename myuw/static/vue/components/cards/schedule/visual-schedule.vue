@@ -22,7 +22,14 @@
                title-item-class="bg-light text-nowrap text-uppercase
                myuw-text-xs mr-1 mb-1"
                title-link-class="text-body h-100"
-               :active="i == 0"
+               :active="(
+                 period.start_date <= today &&
+                 period.end_date >= today
+                ) || (
+                  i > 0 &&
+                  periods[i - 1].end_date < today &&
+                  period.title === 'finals'
+                )"
         >
           <!-- tab content -->
           <uw-schedule-tab :period="period" />
@@ -41,6 +48,7 @@
 </template>
 
 <script>
+import moment from 'moment';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../../containers/card.vue';
 import ScheduleTab from './schedule-tab.vue';
@@ -59,6 +67,7 @@ export default {
   computed: {
     ...mapState({
       allSchedules: (state) => state.schedule.value,
+      today: (state) => moment(state.termData.today, 'dddd, MMMM D, YYYY'),
     }),
     ...mapGetters('schedule', {
       isReady: 'isReady',
