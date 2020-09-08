@@ -212,8 +212,8 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
 
-    expect(wrapper.findAllComponents(ScheduleTab).at(0).vm.title).toBe("Apr 01 - Jun 07");
-    expect(wrapper.findAllComponents(ScheduleTab).at(1).vm.title).toBe("finals");
+    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
+    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("finals");
   });
 
   it ('Check Mount - javerage summer', async () => {
@@ -225,8 +225,8 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.find('h3').text()).toMatch("Summer 2013 A-Term Schedule");
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
 
-    expect(wrapper.findAllComponents(ScheduleTab).at(0).vm.title).toBe("Jun 24 - Jul 19");
-    expect(wrapper.findAllComponents(ScheduleTab).at(1).vm.title).toBe("Jul 22 - Jul 24");
+    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Jun 24 - Jul 19");
+    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Jul 22 - Jul 24");
   }); 
 
   it ('Check Mount - jeos', async () => {
@@ -238,12 +238,12 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
 
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(6);
-    expect(wrapper.findAllComponents(ScheduleTab).at(0).vm.title).toBe("Apr 01 - Apr 05");
-    expect(wrapper.findAllComponents(ScheduleTab).at(1).vm.title).toBe("Apr 07 - May 03");
-    expect(wrapper.findAllComponents(ScheduleTab).at(2).vm.title).toBe("May 05 - May 11");
-    expect(wrapper.findAllComponents(ScheduleTab).at(3).vm.title).toBe("May 13 - Sep 14");
-    expect(wrapper.findAllComponents(ScheduleTab).at(4).vm.title).toBe("Sep 16 - Sep 18");
-    expect(wrapper.findAllComponents(ScheduleTab).at(5).vm.title).toBe("finals");
+    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Apr 05");
+    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Apr 07 - May 03");
+    expect(wrapper.findAll('a[role=tab]').at(2).text()).toBe("May 05 - May 11");
+    expect(wrapper.findAll('a[role=tab]').at(3).text()).toBe("May 13 - Sep 14");
+    expect(wrapper.findAll('a[role=tab]').at(4).text()).toBe("Sep 16 - Sep 18");
+    expect(wrapper.findAll('a[role=tab]').at(5).text()).toBe("finals");
 
     expect(wrapper.vm.periods[0].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[1].eosData).toHaveLength(1);
@@ -262,22 +262,17 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
 
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
-    expect(wrapper.findAllComponents(ScheduleTab).at(0).vm.title).toBe("Apr 01 - Jun 07");
-    expect(wrapper.findAllComponents(ScheduleTab).at(1).vm.title).toBe("finals");
+    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
+    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("finals");
 
     expect(
       wrapper.findAllComponents(ScheduleTab).at(0).vm
-        .meetingMap["08:30 AM"]["tuesday"].meetings
-    ).toHaveLength(2);
-
-    expect(
-      wrapper.findAllComponents(ScheduleTab).at(0).vm
-        .meetingMap["09:30 AM"]["wednesday"].meetings
+        .meetingMap["tuesday"]["08:30 AM"]
     ).toHaveLength(2);
 
     expect(
       wrapper.findAllComponents(ScheduleTab).at(1).vm
-        .meetingMap["08:30 AM"]["monday"].meetings
+        .meetingMap["monday"]["08:30 AM"]
     ).toHaveLength(2);
   });
 });

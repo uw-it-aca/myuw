@@ -16,7 +16,8 @@ import {
 
 import {
   faExclamationTriangle,
-  faLocationArrow
+  faLocationArrow,
+  faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
 
 import mockCourses from './mock_data/courses.json';
@@ -27,6 +28,7 @@ localVue.use(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faLocationArrow);
+library.add(faSquareFull);
 
 localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
