@@ -2,59 +2,72 @@
 {% load settings_value %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        {% comment %} <title>MyUW: {{ page_title|default:'MyUW'}}</title> {% endcomment %}
-        <meta name="viewport" content="initial-scale=1, maximum-scale=5>
-        <meta name="description" content="">
-        <meta name="author" content="">
 
-        <!-- TODO: Add google fonts here -->
+<head>
+    <meta charset="utf-8">
+    {% comment %} <title>MyUW: {{ page_title|default:'MyUW'}}</title> {% endcomment %}
 
-        <!-- favicon -->
-       <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
 
-       <!-- ios icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{% static 'images/apple-touch-icon-180x180-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'images/apple-touch-icon-152x152-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'images/apple-touch-icon-120x120-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/apple-touch-icon-114x114-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'images/apple-touch-icon-76x76-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
-        <link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
+    <!-- TODO: Add google fonts here -->
 
-        <!-- android icons -->
-        <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
 
-        <script>
-            // Check if this browser is Internet Explorer and running Document Mode 9 or lower
-            if(document.documentMode !== null && document.documentMode <= 9){
-                // Notify the user that we do not support this document mode
-                alert("We have detected that your browser is running in document mode for Internet Explorer 9 or lower.\n" +
-                      "Please set document mode to 10 or higher, or switch to another browser.");
-            }
-        </script>
-        
-        <script id="static_url" type="application/json">"{% settings_value 'STATIC_URL' %}"</script>
-        {% load json_script %}
-        {{ user|json_script:'user' }}
-        {{ disable_actions|json_script:'disable_actions' }}
+    <!-- ios icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="180x180"
+        href="{% static 'images/apple-touch-icon-180x180-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152"
+        href="{% static 'images/apple-touch-icon-152x152-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="{% static 'images/apple-touch-icon-144x144-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120"
+        href="{% static 'images/apple-touch-icon-120x120-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="{% static 'images/apple-touch-icon-114x114-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76"
+        href="{% static 'images/apple-touch-icon-76x76-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="{% static 'images/apple-touch-icon-72x72-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57"
+        href="{% static 'images/apple-touch-icon-57x57-precomposed.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/apple-touch-icon-precomposed.png' %}">
 
-        {% block django_json_data %}
-        {% endblock django_json_data %}
-    </head>
-    <body>
-        {% csrf_token %}
+    <!-- android icons -->
+    <link rel="shortcut icon" sizes="196x196" href="{% static 'images/android-196x196.png' %}">
 
-        <div id="vue_root" hidden>
-            {% block body_content %}
-            {% endblock body_content %}
-        </div>
+    <script>
+        // Check if this browser is Internet Explorer and running Document Mode 9 or lower
+        if (document.documentMode !== null && document.documentMode <= 9) {
+            // Notify the user that we do not support this document mode
+            alert("We have detected that your browser is running in document mode for Internet Explorer 9 or lower.\n" +
+                "Please set document mode to 10 or higher, or switch to another browser.");
+        }
+    </script>
 
-        {% block vue_script %}
-        {% endblock vue_script %}
+    <script id="static_url" type="application/json">
+        "{% settings_value 'STATIC_URL' %}"
+    </script>
+    {% load json_script %}
+    {{ user|json_script:'user' }}
+    {{ disable_actions|json_script:'disable_actions' }}
 
-    </body>
+    {% block django_json_data %}
+    {% endblock django_json_data %}
+</head>
+
+<body>
+    {% csrf_token %}
+
+    <div id="vue_root" hidden>
+        {% block body_content %}
+        {% endblock body_content %}
+    </div>
+
+    {% block vue_script %}
+    {% endblock vue_script %}
+
+</body>
+
 </html>
