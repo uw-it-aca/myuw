@@ -35,14 +35,13 @@
           <uw-schedule-tab :period="period" />
         </b-tab>
       </b-tabs>
-      <!-- TODO: commented till functionality is confirmed,
-      this can go into the "card notification header" -->
-      <!-- <p v-if="offTerm.length > 0">
+      <!-- Needs testing no mock user available -->
+      <p v-if="offTerm.length > 0">
         Note:
         <span v-for="(term, i) in offTerm" :key="i">
           {{term.section}} course continues until {{formatTime(term.end_date)}}
         </span>
-      </p> -->
+      </p>
     </template>
   </uw-card>
 </template>
@@ -96,9 +95,6 @@ export default {
     ...mapActions('schedule', ['fetch']),
     // TODO: move every instance of this functions into global scope
     ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
-    formatDate: (d) => {
-      return d.format('MMM D');
-    },
     formatTime: (t) => {
       return t.format('h:mmA');
     },

@@ -288,10 +288,6 @@ export default {
     formatToUnique(t) {
       return t.format('hh:mm A');
     },
-    // Returns minutes from midnight
-    getMFM(t) {
-      return (t.hour() * 60) + t.minute();
-    },
     // Puts a meeting in meetingMap at time startTime and calculates variables
     // needed to render the meetingMap.
     putMeeting(section, meeting, startTime, day) {
@@ -397,8 +393,6 @@ export default {
         });
       });
     },
-    // TODO: move every instance of this functions into global scope
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
     formatDate: (d) => {
       return d.format('MMM D');
     },
