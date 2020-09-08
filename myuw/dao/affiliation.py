@@ -152,6 +152,7 @@ def get_is_hxt_viewer(request):
     is_win_xfer = in_wi_xfer_group(request)
     is_sea_stud = is_seattle_student(request)
     is_undergrad = is_undergrad_student(request)
+    # MUWM-4798
     is_viewer = in_hxtoolkit_group(request) or is_sea_stud and is_undergrad
     return (is_aut_xfer, is_fy_stud, is_win_xfer, is_sea_stud,
             is_undergrad, is_viewer)
