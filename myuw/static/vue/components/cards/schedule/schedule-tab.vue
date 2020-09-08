@@ -40,7 +40,7 @@
                 v-for="(meetingData, j) in
                   meetingMap[day][formatToUnique(time)]"
                 :key="j" :meeting-data="meetingData"
-                :is-finals-card="isFinalsTab"
+                :is-finals-card="isFinalsTab" :day="day"
               />
             </div>
           </div>
@@ -67,7 +67,7 @@
                 v-for="(meetingData, j) in
                   meetingMap[mobile['current']][formatToUnique(time)]"
                 :key="j" :meeting-data="meetingData"
-                :is-finals-card="isFinalsTab"
+                :is-finals-card="isFinalsTab" :day="mobile['current']"
               />
             </div>
           </div>
@@ -404,7 +404,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../css/custom.scss";
+@import "../../../../css/variables.scss";
 
 $heading-height: 45px;
 $cell-height: 30px;
