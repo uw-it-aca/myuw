@@ -20,10 +20,10 @@
     <div class="p-1 text-center myuw-text-xxs">
       <slot>
         <a v-if="(
-            !meetingData.section.is_remote &&
-            meetingLocationUrl
-          )"
-          :href="meetingLocationUrl"
+             !meetingData.section.is_remote &&
+             meetingLocationUrl
+           )"
+           :href="meetingLocationUrl"
         >
           {{ meetingLocation }}
         </a>
@@ -31,9 +31,9 @@
           {{ meetingLocation }}
         </span>
         <a v-if="showConfirmLink"
-          :href="confirmationLink"
-          target="_blank"
-          class="d-block"
+           :href="confirmationLink"
+           target="_blank"
+           class="d-block"
         >
           (Confirm)
         </a>
