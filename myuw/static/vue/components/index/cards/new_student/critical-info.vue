@@ -4,52 +4,55 @@
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3>
+      <h3 class="text-dark-beige">
         Update Critical Information
       </h3>
     </template>
     <template v-if="!isErrored" #card-body>
+      <!-- notice template where data is inserted -->
       <div v-for="notice in notices" :key="notice.id_hash">
-        <div v-html="notice.notice_title" />
-        <div v-html="notice.notice_body" />
+        <h4 class="h6 font-weight-bold" v-html="notice.notice_title" />
+        <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
       </div>
+      <!-- static notice content, goes after dynamic notices -->
       <div class="notice-content">
-        <span class="notice-title">Update Student Directory</span>
-        <span class="non-notice-body-with-title">
-          Critical information (e.g. financial aid information) goes to your
-          addresses found in the Student Directory, so keep them up to date.
-          You can check your directory information by clicking on your
-          username in the MyUW header above and you can update it by
-          following links provided there.
-        </span>
+        <h4 class="h6 font-weight-bold">
+          <span class="notice-title">Update Student Directory</span>
+        </h4>
+        <div class="mb-4 myuw-text-md">
+          <span class="non-notice-body-with-title">
+            Critical information (e.g. financial aid information) goes to your
+            addresses found in the Student Directory, so keep them up to date.
+            You can check your directory information by clicking on your
+            username in the MyUW header above and you can update it by
+            following links provided there.
+          </span>
+        </div>
       </div>
       <div v-if="!isResident" class="notice-content">
-        <span class="notice-title">Non-Resident Classification</span>
-        <span class="non-notice-body-with-title">
-          You are currently classified as a "Non-Resident.”
-          If you believe you qualify for
-          <a
-            href="http://www.washington.edu/students/reg/residency/index.html"
-          >
-            resident status
-          </a>, you may apply for a change of status by completing the
-          <a
-            href="http://www.washington.edu/students/reg/residency/applicationProcess.html"
-          >
-            Residence Questionnaire
-          </a>, or contact the Residency Office at
-          <a href="mailto:resquest@uw.edu">
-            resquest@uw.edu
-          </a> or 206-543-5932.
-        </span>
+        <h4 class="h6 font-weight-bold">
+          <span class="notice-title">Non-Resident Classification</span>
+        </h4>
+        <div class="mb-4 myuw-text-md">
+          <span class="non-notice-body-with-title">
+            You are currently classified as a "Non-Resident.”
+            If you believe you qualify for
+            <a
+              href="http://www.washington.edu/students/reg/residency/index.html"
+            >
+              resident status
+            </a>, you may apply for a change of status by completing the
+            <a
+              href="http://www.washington.edu/students/reg/residency/applicationProcess.html"
+            >
+              Residence Questionnaire
+            </a>, or contact the Residency Office at
+            <a href="mailto:resquest@uw.edu">
+              resquest@uw.edu
+            </a> or 206-543-5932.
+          </span>
+        </div>
       </div>
-    </template>
-    <template v-else #card-body>
-      <p class="text-danger">
-        <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-        An error occurred and MyUW cannot load your notices right now. Please
-        try again later.
-      </p>
     </template>
   </uw-card>
 </template>
@@ -71,16 +74,19 @@ export default {
       },
       isResident: (state) => {
         let isResident = true;
-
-        state.notices.value.filter(
+        const notices = state.notices.value.filter(
             (notice) => notice.location_tags.includes('checklist_residence'),
-        )[0].attributes.forEach((attr) => {
-          if (attr.name === 'ResidencyStatus' &&
-              attr.value !== '1' &&
-              attr.value !== '2') {
-            isResident = false;
-          }
-        });
+        )[0];
+
+        if (notices) {
+          notices.attributes.forEach((attr) => {
+            if (attr.name === 'ResidencyStatus' &&
+                attr.value !== '1' &&
+                attr.value !== '2') {
+              isResident = false;
+            }
+          });
+        }
 
         return isResident;
       },
