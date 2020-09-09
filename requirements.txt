@@ -1,2 +1,1 @@
 -e .
-git+https://github.com/uw-it-aca/python3-saml-patch/#egg=python3-saml-patch
