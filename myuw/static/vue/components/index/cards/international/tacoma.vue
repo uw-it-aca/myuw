@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h4 class="h5 text-dark-beige">
+    <h4 class="h6 font-weight-bold">
       Visa and Immigration Rules
     </h4>
 
-    <ul class="list-unstyled myuw-text-md">
+    <ul class="mb-4 list-unstyled myuw-text-md">
       <li>
         <a
           href="http://www.tacoma.uw.edu/iss/travel-visas"
@@ -36,10 +36,10 @@
       </li>
     </ul>
 
-    <h4 class="h5 text-dark-beige">
+    <h4 class="h6 font-weight-bold">
       Academic Support
     </h4>
-    <ul class="list-unstyled myuw-text-md">
+    <ul class="mb-4 list-unstyled myuw-text-md">
       <li>
         <a
           href="http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0"
