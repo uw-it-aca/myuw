@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     ...mapState({
-      article_html: (state) => state.hx_toolkit.value,
+      hx_toolkit: (state) => state.hx_toolkit.value,
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
     ...mapGetters('hx_toolkit', {
@@ -35,14 +35,15 @@ export default {
     }),
     getArticleTeaserBody() {
       var parser = new DOMParser();
+      var article_html = this.hx_toolkit[this.urlExtra];
       var htmlDoc = parser.parseFromString(
-        this.article_html, 'text/html'
+        article_html, 'text/html'
       );
 
       if(htmlDoc.links[0] !== undefined) {
         return htmlDoc.links[0].outerHTML;
       } else {
-        return this.article_html;
+        return article_html;
       }
     }
   },
