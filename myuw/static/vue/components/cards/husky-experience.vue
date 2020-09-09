@@ -6,7 +6,7 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-html="article_html" />
+      <div v-html="getArticleTeaserBody" />
     </template>
   </uw-card>
 </template>
@@ -20,23 +20,40 @@ export default {
     'uw-card': Card,
   },
   data: function() {
-    return {};
+    return {
+      urlExtra: 'week/',
+    };
   },
   computed: {
     ...mapState({
-      article_html: (state) => state.hx_toolkit.value.article_html,
+      article_html: (state) => state.hx_toolkit.value,
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
     ...mapGetters('hx_toolkit', {
       isReady: 'isReady',
       isErrored: 'isErrored',
     }),
+    getArticleTeaserBody() {
+      var parser = new DOMParser();
+      var htmlDoc = parser.parseFromString(
+        this.article_html, 'text/html'
+      );
+
+      if(htmlDoc.links[0] !== undefined) {
+        return htmlDoc.links[0].outerHTML;
+      } else {
+        return this.article_html;
+      }
+    }
   },
   created() {
-    this.fetch();
+    if(this.hxtViewer) {
+      this.fetch(this.urlExtra);
+    }
   },
   methods: {
     ...mapActions('hx_toolkit', ['fetch']),
+
   },
 };
 </script>
