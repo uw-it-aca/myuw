@@ -1,3 +1,54 @@
+@use "sass:map";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// override max width of containers
+$container-max-widths: map.merge($container-max-widths, (xl: 1200px));
+
+// enable responsive font sizing
+// $enable-responsive-font-sizes: true;
+
+// override the boostrap gutter from 30px to 20px
+$grid-gutter-width: 20px;
+
+// override theme colors
+$theme-colors: (
+
+  // override bootstrap colors
+  'danger': #a94442,
+  'warning': #f5d300,
+
+  // myuw custom colors
+  'purple': #4d307f, // uw purple
+  'dark-purple': #452a78, // thin bar
+  'beige': #e8e3d3, // tan
+  'dark-beige': #85754d, // headers
+
+  // course card colors
+  'c1': #2E6884,
+  'c1a': #36799A,
+  'c2': #844B2E,
+  'c2a': #9A5736,
+  'c3': #14511E,
+  'c3a': #218431,
+  'c4': #444444,
+  'c4a': #646464,
+  'c5': #91279f,
+  'c5a': #BD37CF,
+  'c6': #716141,
+  'c6a': #84734C,
+  'c7': #4B2E84,
+  'c7a': #653FB2,
+  'c8': #352E9B,
+  'c8a': #473EC5,
+);
+
+// override global line height (1.5rem default)
+//$line-height-base: 1.55;
+
+// override all links
+$link-color: #4d66ca; //a11y blue
+
 // color variables
 
 // gold yellow testing

@@ -331,7 +331,6 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../css/custom.scss";
 @import "../../css/variables.scss";
 
 // boilerplate
