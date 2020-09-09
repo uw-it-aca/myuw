@@ -26,7 +26,7 @@ run_test "pycodestyle ${DJANGO_APP}/ --exclude=migrations,static"
 
 # template compress mistakes
 run_test "grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test \$? -eq 1 &&\
-          grep -r 'static/' myuw/ | grep -v /test/ | grep -v washington.edu/static; test \$? -eq 1"
+          grep -r 'static/' myuw/ | grep -v /test/ | grep -v /tests/ | grep -v washington.edu/static; test \$? -eq 1"
 
 run_test "FORCE_VIEW_TESTS=1 coverage run --source=${DJANGO_APP} '--omit=*/migrations/*' manage.py test ${DJANGO_APP}"
 
