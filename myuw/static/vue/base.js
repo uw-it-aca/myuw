@@ -33,10 +33,9 @@ import {
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 
-// MARK: specific css render order
-import '../css/custom.scss'; // custom bootstrap theming
-import 'bootstrap-vue/dist/bootstrap-vue.css'; // base boostrap
-import '../css/global.scss'; // myuw global styles
+// myuw custom theming and global styles
+import '../css/myuw/custom.scss';
+import '../css/myuw/global.scss';
 
 library.add(faUser);
 library.add(faEnvelope);
