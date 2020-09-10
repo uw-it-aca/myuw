@@ -199,8 +199,11 @@ export default {
 </script>
 
 <style lang="scss">
+@use "sass:map";
+@import "../../../../../static/css/myuw/variables.scss";
+
 .course-section {
-  background-color: lighten(#e8e3d3, 7%);;
+  background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
   width: 100%;
   position: relative;
   outline: transparent auto 1px;
