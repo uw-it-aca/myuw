@@ -336,7 +336,9 @@ export default {
 
 // boilerplate
 
-//.myuw-override {}
+.myuw-override {
+  a { color: darken($link-color, 12%) !important; }
+}
 //.myuw-search {}
 
 .myuw-thin-bar {
