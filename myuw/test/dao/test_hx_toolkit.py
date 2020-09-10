@@ -76,20 +76,20 @@ class TestHXTDao(TestCase):
         request = get_request_with_user('jnew')
         self.assertFalse(get_is_hxt_viewer(request)[5])
 
-        # au transfer in au
+        # au transfer in au MUWM-4798
         request = get_request_with_user('javg001',
                                         get_request_with_date("2017-09-18"))
-        self.assertFalse(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[5])
 
         # au transfter outside au
         request = get_request_with_user('javg001',
                                         get_request_with_date("2017-02-18"))
         self.assertTrue(get_is_hxt_viewer(request)[5])
 
-        # wi transfer in wi
+        # wi transfer in wi MUWM-4798
         request = get_request_with_user('javg002',
                                         get_request_with_date("2017-02-18"))
-        self.assertFalse(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[5])
 
         # wi transfter outside wi
         request = get_request_with_user('javg002',

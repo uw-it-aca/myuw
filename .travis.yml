@@ -50,7 +50,7 @@ after_success:
         "qa")
           export APP_INSTANCE="test";
           ;;
-        "develop")
+        "imp/MUWM-4798")
           export APP_INSTANCE="dev";
           ;;
         "feature/vue")
