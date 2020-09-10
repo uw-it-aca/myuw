@@ -4,7 +4,7 @@
       <div
         v-if="disableActions"
         id="actions_disabled_banner"
-        class="myuw-override myuw-text-md"
+        class="bg-gold myuw-override myuw-text-md"
       >
         <b-container fluid="xl" class="py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
@@ -15,7 +15,7 @@
         </b-container>
       </div>
 
-      <b-collapse id="app_search" class="myuw-search">
+      <b-collapse id="app_search" class="myuw-search bg-gold">
         this is search
       </b-collapse>
 
@@ -331,16 +331,12 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../css/variables.scss";
+@import "../../css/myuw/variables.scss";
 
 // boilerplate
-.myuw-override {
-  background: $uw-yellow;
-}
 
-.myuw-search {
-  background: $uw-yellow;
-}
+//.myuw-override {}
+//.myuw-search {}
 
 .myuw-thin-bar {
   line-height: 40px;
