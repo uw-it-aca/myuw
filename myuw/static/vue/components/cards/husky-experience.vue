@@ -36,7 +36,7 @@ export default {
     getArticleTeaserBody() {
       const parser = new DOMParser();
       const articleHtml = this.hx_toolkit[this.urlExtra];
-      let htmlDoc = parser.parseFromString(
+      const htmlDoc = parser.parseFromString(
           articleHtml, 'text/html',
       );
 
