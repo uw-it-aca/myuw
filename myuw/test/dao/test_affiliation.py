@@ -34,6 +34,12 @@ class TestAffilliationDao(TransactionTestCase):
     def test_get_is_hxt_viewer(self):
         request = get_request_with_user('staff')
         self.assertTrue(get_is_hxt_viewer(request)[5])
+        request = get_request_with_user('javg001')
+        self.assertTrue(get_is_hxt_viewer(request)[5])
+        request = get_request_with_user('jbothell')
+        self.assertFalse(get_is_hxt_viewer(request)[5])
+        request = get_request_with_user('seagrad')
+        self.assertFalse(get_is_hxt_viewer(request)[5])
 
     def test_is_instructor(self):
         now_request = get_request_with_user('bill')
@@ -85,6 +91,7 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations.get('pce'))
         self.assertFalse(affiliations.get('undergrad_c2'))
         self.assertTrue(affiliations.get('grad_c2'))
+        self.assertFalse(affiliations.get("hxt_viewer"))
 
     def test_error_case(self):
         now_request = get_request_with_user('jerror')
@@ -103,15 +110,19 @@ class TestAffilliationDao(TransactionTestCase):
         now_request = get_request_with_user('javerage')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("seattle"))
+        self.assertTrue(affiliations.get("undergrad"))
         self.assertTrue(affiliations.get("registered_stud"))
+        self.assertTrue(affiliations.get("hxt_viewer"))
 
         now_request = get_request_with_user('jbothell')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("bothell"))
+        self.assertFalse(affiliations.get("hxt_viewer"))
 
         now_request = get_request_with_user('eight')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("tacoma"))
+        self.assertFalse(affiliations.get("hxt_viewer"))
 
     def test_is_grad_stud_employee(self):
         now_request = get_request_with_user('billseata')
@@ -123,6 +134,7 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations.get("stud_employee"))
         self.assertTrue(affiliations.get("seattle"))
         self.assertTrue(affiliations.get("official_seattle"))
+        self.assertFalse(affiliations.get("hxt_viewer"))
 
     def test_botgrad(self):
         now_request = get_request_with_user('botgrad')
