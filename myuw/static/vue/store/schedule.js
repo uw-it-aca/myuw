@@ -8,7 +8,6 @@ const postProcess = (response, urlExtra) => {
   const schedule = setTermAndExtractData(response, urlExtra);
 
   schedule[urlExtra].periods.forEach((period) => {
-    let eosAlreadyAdded = false;
     period.eosData = [];
 
     if (period.end_date && period.start_date) {
@@ -27,6 +26,7 @@ const postProcess = (response, urlExtra) => {
     let earliestTime = null;
     let latestTime = null;
     period.sections.forEach((section) => {
+      let eosAlreadyAdded = false;
       // Skip if no exam is defined or no time is set
       if (section.final_exam && section.final_exam.start_date) {
         section.final_exam.start_date = moment(
