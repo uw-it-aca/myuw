@@ -172,7 +172,7 @@ export default {
   computed: {
     ...mapState({
       quarterLastDate: (state) => moment(
-        state.termData.lastDay, 'dddd, MMMM D, YYYY'
+          state.termData.lastDay, 'dddd, MMMM D, YYYY',
       ),
       today: (state) => moment(state.termData.today, 'dddd, MMMM D, YYYY'),
     }),
@@ -186,14 +186,14 @@ export default {
     )) {
       if (this.isFinalsTab) {
         this.period.earliestMeetingTime = this.quarterLastDate
-          .clone().day(8).hour(8).minute(30);
+            .clone().day(8).hour(8).minute(30);
         this.period.latestMeetingTime = this.quarterLastDate
-          .clone().day(8).hour(11).minute(50);
+            .clone().day(8).hour(11).minute(50);
       } else {
         this.period.earliestMeetingTime = this.today
-          .clone().day(1).hour(8).minute(30);
+            .clone().day(1).hour(8).minute(30);
         this.period.latestMeetingTime = this.today
-          .clone().day(5).hour(11).minute(50);
+            .clone().day(5).hour(11).minute(50);
       }
     }
 
