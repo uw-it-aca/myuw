@@ -34,21 +34,21 @@ export default {
       isErrored: 'isErrored',
     }),
     getArticleTeaserBody() {
-      var parser = new DOMParser();
-      var article_html = this.hx_toolkit[this.urlExtra];
-      var htmlDoc = parser.parseFromString(
-        article_html, 'text/html'
+      const parser = new DOMParser();
+      const articleHtml = this.hx_toolkit[this.urlExtra];
+      let htmlDoc = parser.parseFromString(
+          articleHtml, 'text/html',
       );
 
-      if(htmlDoc.links[0] !== undefined) {
+      if (htmlDoc.links[0] !== undefined) {
         return htmlDoc.links[0].outerHTML;
       } else {
-        return article_html;
+        return articleHtml;
       }
-    }
+    },
   },
   created() {
-    if(this.hxtViewer) {
+    if (this.hxtViewer) {
       this.fetch(this.urlExtra);
     }
   },
