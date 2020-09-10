@@ -200,7 +200,7 @@ export default {
 
 <style lang="scss">
 @use "sass:map";
-@import "../../../../../static/css/myuw/variables.scss";
+@import "../../../../css/myuw/variables.scss";
 
 .course-section {
   background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
