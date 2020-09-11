@@ -1,1 +1,66 @@
-{"AcademicCatalog":"2017-08-01","ATermLastDay":null,"BTermFirstDay":null,"CensusDay":"2020-10-09","FifthDay":"2020-10-06","FinancialAidYear":null,"GradeSubmissionDeadline":"2020-12-21T17:00:00","GradingPeriodClose":"2021-01-06T17:00:00","GradingPeriodOpen":"2020-11-23T08:00:00","GradingPeriodOpenATerm":null,"FirstDay":"2020-09-30","FirstDayMedSchool":"2020-09-08","TimeScheduleConstruction":{"Bothell":false,"Seattle":false,"Tacoma":false},"TimeSchedulePublished":{"Bothell":false,"Seattle":false,"Tacoma":false},"LastAddDay":"2020-10-20","LastAddDayATerm":null,"LastAddDayBTerm":null,"LastDayOfClasses":"2020-12-11","LastDropDay":"2020-11-15","LastDropDayATerm":null,"LastDropDayBTerm":null,"LastDropDayNotRecorded":"2020-10-13","LastDropDayNotRecordedATerm":null,"LastDropDayNotRecordedBTerm":null,"LastFinalExamDay":"2020-12-18","NextTerm":{"Href":"/student/v5/term/2021,winter.json","Year":2021,"Quarter":"winter"},"PreviousTerm":{"Href":"/student/v5/term/2020,summer.json","Year":2020,"Quarter":"summer"},"Quarter":"autumn","RepositoryTimeStamp":"6/5/2019 9:15:06 AM","Metadata":"TermSourceKey=SDB;","RegistrationPeriods":[{"StartDate":"2020-05-10","EndDate":"2020-06-23"},{"StartDate":"2020-06-24","EndDate":"2020-09-24"},{"StartDate":"2020-09-25","EndDate":"2020-10-01"}],"RegistrationServicesStart":"2020-05-03","StudentAccountStart":null,"Year":2020}
+{
+  "AcademicCatalog": "2017-08-01",
+  "ATermLastDay": null,
+  "BTermFirstDay": null,
+  "CensusDay": "2020-10-09",
+  "FifthDay": "2020-10-06",
+  "FinancialAidYear": null,
+  "GradeSubmissionDeadline": "2020-12-22T17:00:00",
+  "GradingPeriodClose": "2021-01-06T17:00:00",
+  "GradingPeriodOpen": "2020-11-23T08:00:00",
+  "GradingPeriodOpenATerm": null,
+  "FirstDay": "2020-09-30",
+  "FirstDayMedSchool": "2020-09-08",
+  "TimeScheduleConstruction": {
+    "Bothell": false,
+    "Seattle": false,
+    "Tacoma": false
+  },
+  "TimeSchedulePublished": {
+    "Bothell": true,
+    "Seattle": true,
+    "Tacoma": true
+  },
+  "LastAddDay": "2020-10-20",
+  "LastAddDayATerm": null,
+  "LastAddDayBTerm": null,
+  "LastDayOfClasses": "2020-12-11",
+  "LastDropDay": "2020-11-15",
+  "LastDropDayATerm": null,
+  "LastDropDayBTerm": null,
+  "LastDropDayNotRecorded": "2020-10-13",
+  "LastDropDayNotRecordedATerm": null,
+  "LastDropDayNotRecordedBTerm": null,
+  "LastFinalExamDay": "2020-12-18",
+  "NextTerm": {
+    "Href": "/student/v5/term/2021,winter.json",
+    "Year": 2021,
+    "Quarter": "winter"
+  },
+  "PreviousTerm": {
+    "Href": "/student/v5/term/2020,summer.json",
+    "Year": 2020,
+    "Quarter": "summer"
+  },
+  "Quarter": "autumn",
+  "RepositoryTimeStamp": "7/22/2020 7:18:11 AM",
+  "Metadata": "TermSourceKey=SDB;",
+  "RegistrationPeriods": [
+    {
+      "StartDate": "2020-05-08",
+      "EndDate": "2020-06-21"
+    },
+    {
+      "StartDate": "2020-06-22",
+      "EndDate": "2020-09-29"
+    },
+    {
+      "StartDate": "2020-09-30",
+      "EndDate": "2020-10-06"
+    }
+  ],
+  "RegistrationServicesStart": "2020-05-01",
+  "StudentAccountStart": null,
+  "Year": 2020
+}
+

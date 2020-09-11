@@ -1,0 +1,60 @@
+{
+    "Current": {
+        "ChangedSinceDate": null,
+        "CourseNumber": "230",
+        "CurriculumAbbreviation": "BIGDATA",
+        "DeleteFlag": null,
+        "FacilityCode": null,
+        "FutureTerms": 4,
+        "Href": "/student/v5/section.json?year=2018&quarter=summer&future_terms=4&curriculum_abbreviation=BIGDATA&course_number=230&reg_id=10000000000000000000000000000011&search_by=Instructor&include_secondaries=&delete_flag=&changed_since_date=&transcriptable_course=all&page_size=10&page_start=1&facility_code=&room_number=&sln=",
+        "IncludeSecondaries": false,
+        "PageSize": "10",
+        "PageStart": "1",
+        "Quarter": "summer",
+        "RegID": "10000000000000000000000000000011",
+        "RoomNumber": null,
+        "SLN": null,
+        "SearchBy": "Instructor",
+        "TranscriptableCourse": "all",
+        "Year": "2018"
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "Sections": [
+        {
+            "CourseNumber": "230",
+            "CurriculumAbbreviation": "BIGDATA",
+            "Href": "/student/v5/course/2019,spring,BIGDATA,230/A.json",
+            "Quarter": "spring",
+            "SectionID": "A",
+            "Year": 2019
+        },
+        {
+            "CourseNumber": "230",
+            "CurriculumAbbreviation": "BIGDATA",
+            "Href": "/student/v5/course/2019,spring,BIGDATA,230/B.json",
+            "Quarter": "spring",
+            "SectionID": "B",
+            "Year": 2019
+        },
+        {
+            "CourseNumber": "230",
+            "CurriculumAbbreviation": "BIGDATA",
+            "Href": "/student/v5/course/2019,summer,BIGDATA,230/A.json",
+            "Quarter": "summer",
+            "SectionID": "A",
+            "Year": 2019
+        },
+        {
+            "CourseNumber": "230",
+            "CurriculumAbbreviation": "BIGDATA",
+            "Href": "/student/v5/course/2019,summer,BIGDATA,230/B.json",
+            "Quarter": "summer",
+            "SectionID": "B",
+            "Year": 2019
+        }
+    ],
+ "TotalCount": 4
+}
