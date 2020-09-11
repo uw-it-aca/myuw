@@ -6,7 +6,9 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-html="getArticleTeaserBody" />
+      <div class="mx-n3 overflow-hidden"
+           v-html="getArticleTeaserBody"
+      />
     </template>
   </uw-card>
 </template>
