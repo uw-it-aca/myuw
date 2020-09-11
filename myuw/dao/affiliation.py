@@ -132,6 +132,10 @@ def get_all_affiliations(request):
             data['bothell'] = data['bothell'] or ('Bothell' in campuses)
             data['tacoma'] = data['tacoma'] or ('Tacoma' in campuses)
 
+        if data['seattle']:
+            data["hxt_viewer"] = (data["hxt_viewer"] or
+                                  data['seattle'] and data["undergrad"])
+
     if is_employee(request):
         # determine employee primary campus based on their mailstop
         try:
@@ -153,6 +157,6 @@ def get_is_hxt_viewer(request):
     is_sea_stud = is_seattle_student(request)
     is_undergrad = is_undergrad_student(request)
     # MUWM-4798
-    is_viewer = in_hxtoolkit_group(request) or is_sea_stud and is_undergrad
+    is_viewer = is_sea_stud and is_undergrad or in_hxtoolkit_group(request)
     return (is_aut_xfer, is_fy_stud, is_win_xfer, is_sea_stud,
             is_undergrad, is_viewer)
