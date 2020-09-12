@@ -2,8 +2,7 @@ from django.test import TestCase
 from django.conf import settings
 from restclients_core.exceptions import DataFailureException
 from uw_sws.section import get_section_by_label
-from myuw.dao.registration import get_schedule_by_term,\
-    get_active_registrations_for_section
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_user, get_request_with_date
@@ -36,23 +35,6 @@ class TestRegistrationsDao(TestCase):
         term = get_current_quarter(request)
         schedule = get_schedule_by_term(request, term)
         self.assertEqual(len(schedule.sections), 5)
-
-    def test_get_active_registrations_for_section(self):
-        section = get_section_by_label("2013,autumn,MUSEUM,700/A")
-        regid = "10000000000000000000000000000011"
-        registrations = get_active_registrations_for_section(section, regid)
-        self.assertEqual(len(registrations), 1)
-        enrolled_student = registrations[0].person
-        self.assertEqual(enrolled_student.uwnetid, "javg001")
-
-        section = get_section_by_label('2017,autumn,EDC&I,552/A')
-        self.assertEqual(section.section_label(), '2017,autumn,EDC&I,552/A')
-
-        regid = "10000000000000000000000000000006"
-        reg = get_active_registrations_for_section(section, regid)
-        self.assertEqual(len(reg), 2)
-        enrolled_student = reg[0].person
-        self.assertEqual(enrolled_student.uwnetid, "javg003")
 
     def test_tsprint_false_instructor(self):
         request = get_request_with_user('javerage',

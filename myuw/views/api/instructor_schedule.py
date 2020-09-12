@@ -21,10 +21,9 @@ from myuw.dao.iasystem import get_evaluation_by_section_and_instructor
 from myuw.dao.instructor_schedule import (
     get_instructor_schedule_by_term, check_section_instructor,
     get_section_status_by_label, get_instructor_section,
-    get_primary_section)
+    get_primary_section, get_active_registrations_for_section)
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
-from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import (
     get_current_quarter, is_past, is_future,
     get_previous_number_quarters, get_future_number_quarters)

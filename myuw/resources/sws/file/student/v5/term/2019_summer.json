@@ -1,1 +1,65 @@
-{"ATermLastDay":"2019-07-24","AcademicCatalog":"2015-08-01","BTermFirstDay":"2019-07-25","CensusDay":"2019-07-05","FifthDay":"2019-06-28","FinancialAidYear":null,"FirstDay":"2019-06-24","FirstDayMedSchool":null,"GradeSubmissionDeadline":"2019-08-27T17:00:00","GradingPeriodClose":"2019-09-11T17:00:00","GradingPeriodOpen":"2019-08-16T08:00:00","GradingPeriodOpenATerm":"2019-07-18T08:00:00","LastAddDay":"2019-07-14","LastAddDayATerm":"2019-07-14","LastAddDayBTerm":"2019-07-31","LastDayOfClasses":"2019-08-23","LastDropDay":"2019-08-11","LastDropDayATerm":"2019-07-14","LastDropDayBTerm":"2019-08-14","LastDropDayNotRecorded":"2019-07-07","LastDropDayNotRecordedATerm":"2019-06-30","LastDropDayNotRecordedBTerm":"2019-07-31","LastFinalExamDay":"2019-08-23","Metadata":"TermSourceKey=SDB;","NextTerm":{"Href":"\/student\/v5\/term\/2019,autumn.json","Quarter":"autumn","Year":2019},"PreviousTerm":{"Href":"\/student\/v5\/term\/2019,spring.json","Quarter":"spring","Year":2019},"Quarter":"summer","RegistrationPeriods":[{"EndDate":null,"StartDate":null},{"EndDate":null,"StartDate":null},{"EndDate":null,"StartDate":null}],"RegistrationServicesStart":null,"RepositoryTimeStamp":"2\/1\/2017 3:43:15 PM","StudentAccountStart":null,"TimeScheduleConstruction":{"Bothell":false,"Seattle":false,"Tacoma":false},"TimeSchedulePublished":{"Bothell":false,"Seattle":false,"Tacoma":false},"Year":2019}
+{
+  "AcademicCatalog": "2017-08-01",
+  "ATermLastDay": "2019-07-24",
+  "BTermFirstDay": "2019-07-25",
+  "CensusDay": "2019-07-05",
+  "FifthDay": "2019-06-28",
+  "FinancialAidYear": null,
+  "GradeSubmissionDeadline": "2019-08-27T17:00:00",
+  "GradingPeriodClose": "2019-09-11T17:00:00",
+  "GradingPeriodOpen": "2019-08-16T08:00:00",
+  "GradingPeriodOpenATerm": "2019-07-18T08:00:00",
+  "FirstDay": "2019-06-24",
+  "FirstDayMedSchool": null,
+  "TimeScheduleConstruction": {
+    "Bothell": false,
+    "Seattle": false,
+    "Tacoma": false
+  },
+  "TimeSchedulePublished": {
+    "Bothell": true,
+    "Seattle": true,
+    "Tacoma": true
+  },
+  "LastAddDay": "2019-07-14",
+  "LastAddDayATerm": "2019-07-14",
+  "LastAddDayBTerm": "2019-07-31",
+  "LastDayOfClasses": "2019-08-23",
+  "LastDropDay": "2019-08-11",
+  "LastDropDayATerm": "2019-07-14",
+  "LastDropDayBTerm": "2019-08-14",
+  "LastDropDayNotRecorded": "2019-07-07",
+  "LastDropDayNotRecordedATerm": "2019-06-30",
+  "LastDropDayNotRecordedBTerm": "2019-07-31",
+  "LastFinalExamDay": "2019-08-23",
+  "NextTerm": {
+    "Href": "/student/v5/term/2019,autumn.json",
+    "Year": 2019,
+    "Quarter": "autumn"
+  },
+  "PreviousTerm": {
+    "Href": "/student/v5/term/2019,spring.json",
+    "Year": 2019,
+    "Quarter": "spring"
+  },
+  "Quarter": "summer",
+  "RepositoryTimeStamp": "6/5/2019 9:15:06 AM",
+  "Metadata": "TermSourceKey=SDB;",
+  "RegistrationPeriods": [
+    {
+      "StartDate": "2019-04-15",
+      "EndDate": "2019-05-22"
+    },
+    {
+      "StartDate": "2019-05-23",
+      "EndDate": "2019-06-23"
+    },
+    {
+      "StartDate": "2019-06-24",
+      "EndDate": "2019-06-30"
+    }
+  ],
+  "RegistrationServicesStart": "2019-04-08",
+  "StudentAccountStart": null,
+  "Year": 2019
+}

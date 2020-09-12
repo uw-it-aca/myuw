@@ -6,8 +6,7 @@ from copy import deepcopy
 import logging
 from restclients_core.thread import generic_prefetch
 from uw_libraries.subject_guides import get_subject_guide_for_section_params
-from uw_sws.registration import get_active_registrations_by_section,\
-    get_schedule_by_regid_and_term
+from uw_sws.registration import get_schedule_by_regid_and_term
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.user_course_display import set_course_display_pref
 from myuw.dao.term import get_comparison_datetime
@@ -55,10 +54,3 @@ def myuw_section_prefetch(data):
                               params)
 
     return [[key, method]]
-
-
-def get_active_registrations_for_section(section, instructor_regid):
-    if section.is_independent_study:
-        section.independent_study_instructor_regid = instructor_regid
-    return get_active_registrations_by_section(section,
-                                               transcriptable_course="all")
