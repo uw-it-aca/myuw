@@ -6,14 +6,15 @@ import logging
 import traceback
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule
-from uw_sws.section import get_sections_by_instructor_and_term,\
-    get_section_by_url, get_section_by_label
+from uw_sws.registration import get_active_registrations_by_section
+from uw_sws.section import (
+    get_sections_by_instructor_and_term, get_section_by_url,
+    get_section_by_label)
 from uw_sws.section_status import get_section_status_by_label
 from myuw.util.thread import ThreadWithResponse
 from myuw.dao import log_err
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
-from myuw.dao.registration import get_active_registrations_for_section
 from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.dao.user_course_display import set_course_display_pref
 
@@ -173,3 +174,10 @@ def check_section_instructor(section, person):
 
 def get_primary_section(secondary_section):
     return get_section_by_label(secondary_section.primary_section_label())
+
+
+def get_active_registrations_for_section(section, instructor_regid):
+    if section.is_independent_study:
+        section.independent_study_instructor_regid = instructor_regid
+    return get_active_registrations_by_section(section,
+                                               transcriptable_course="all")
