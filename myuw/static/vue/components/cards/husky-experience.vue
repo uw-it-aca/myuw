@@ -2,15 +2,15 @@
   <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h3 class="text-dark-beige">
-        {{cardTitle}}
+        {{ cardTitle }}
       </h3>
     </template>
     <template #card-body>
       <a :href="expLink">
-        <img :srcset="srcset" :src="src"/>
+        <img :srcset="srcset" :src="src">
         <div>
-          <h4>{{articleTeaserTitle}}</h4>
-          {{articleTeaserBody}}
+          <h4>{{ articleTeaserTitle }}</h4>
+          {{ articleTeaserBody }}
           <font-awesome-icon :icon="['fas', articleFaClass]" />
         </div>
       </a>
@@ -33,26 +33,26 @@ export default {
   },
   computed: {
     ...mapState({
-      cardTitle: function(state) { 
-        return state.hx_toolkit.value[this.urlExtra].cardTitle
+      cardTitle: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].cardTitle;
       },
-      expLink: function(state) { 
-        return state.hx_toolkit.value[this.urlExtra].expLink
+      expLink: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].expLink;
       },
-      srcset: function(state) { 
-        return state.hx_toolkit.value[this.urlExtra].srcset
+      srcset: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].srcset;
       },
-      src: function(state) { 
-        return state.hx_toolkit.value[this.urlExtra].src
+      src: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].src;
       },
-      articleTeaserTitle: function(state) { 
-        return state.hx_toolkit.value[this.urlExtra].articleTeaserTitle
+      articleTeaserTitle: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].articleTeaserTitle;
       },
-      articleTeaserBody: function(state) { 
-        return state.hx_toolkit.value[this.urlExtra].articleTeaserBody
+      articleTeaserBody: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].articleTeaserBody;
       },
-      articleFaClass: function(state) { 
-        return state.hx_toolkit.value[this.urlExtra].articleFaClass
+      articleFaClass: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].articleFaClass;
       },
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),

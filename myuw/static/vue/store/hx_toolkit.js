@@ -16,7 +16,8 @@ const postProccess = (response, urlExtra) => {
   }
 
   if (htmlDoc.getElementsByTagName('a')[0]) {
-    proccessValue[urlExtra].expLink = htmlDoc.getElementsByTagName('a')[0].href;
+    proccessValue[urlExtra].expLink =
+      htmlDoc.getElementsByTagName('a')[0].href;
   }
 
   if (htmlDoc.getElementsByClassName('myuw-card-image-full')[0]) {
