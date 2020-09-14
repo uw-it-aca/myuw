@@ -12,6 +12,7 @@
       </b-badge>
       <a :href="sectionUrl"
          class="text-white"
+         :title="sectionTitle"
       >
         {{ sectionTitle }}
       </a>
@@ -24,6 +25,7 @@
              meetingLocationUrl
            )"
            :href="meetingLocationUrl"
+           :title="meetingLocation"
         >
           {{ meetingLocation }}
         </a>
