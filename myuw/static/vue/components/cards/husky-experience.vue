@@ -6,14 +6,24 @@
       </h3>
     </template>
     <template #card-body>
-      <a :href="expLink">
-        <img :srcset="srcset" :src="src">
-        <div>
-          <h4>{{ articleTeaserTitle }}</h4>
-          {{ articleTeaserBody }}
-          <font-awesome-icon :icon="['fas', articleFaClass]" />
-        </div>
-      </a>
+      <div class="mx-n3 mb-n3 overflow-hidden myuw-huskyexp">
+        <a :href="expLink" class="d-block position-relative">
+          <img :srcset="srcset" :src="src" class="img-fluid">
+          <div class="position-absolute px-3 py-4 myuw-huskyexp-body">
+            <h4 class="h5 d-inline-block bg-white px-2 py-1
+            text-body font-weight-bold"
+            >
+              {{ articleTeaserTitle }}
+            </h4>
+            <div class="bg-white px-2 py-1
+            text-body myuw-text-md text-black blah"
+            >
+              {{ articleTeaserBody }}
+              <font-awesome-icon :icon="['fas', articleFaClass]" />
+            </div>
+          </div>
+        </a>
+      </div>
     </template>
   </uw-card>
 </template>
@@ -72,16 +82,16 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// scoped does not work... since the html content
-// for the articles comes via the api
-.myuw-card-article {
-  border: solid 1px red; ;
+<style lang="scss" scoped>
+.myuw-huskyexp {
+  max-height: 320px;
 
-  .myuw-card-image-full {
-    width: 100%;
-    height: auto;
+  img {
     opacity: 0.75;
+  }
+  .myuw-huskyexp-body {
+    top: 0;
+
   }
 }
 
