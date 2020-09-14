@@ -1,5 +1,7 @@
 <template>
-  <b-card v-if="loaded" class="rounded-0 shadow-sm mb-3" tabindex="0">
+  <b-card v-if="loaded"
+          class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3"
+  >
     <slot name="card-heading" />
     <slot name="card-body" />
     <slot name="card-disclosure" />
@@ -10,7 +12,9 @@
       <slot name="card-footer" />
     </template>
   </b-card>
-  <b-card v-else-if="errored" class="rounded-0 shadow-sm mb-3" tabindex="0">
+  <b-card v-else-if="errored"
+          class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3"
+  >
     <slot name="card-heading" />
     <b-alert show variant="light" class="p-0 m-0">
       <div class="d-flex text-danger m-0 myuw-text-md">
@@ -24,7 +28,7 @@
       </div>
     </b-alert>
   </b-card>
-  <b-card v-else class="rounded-0 shadow-sm mb-3">
+  <b-card v-else class="rounded-0 shadow-sm mb-3" body-class="p-3">
     <b-card-text class="d-flex justify-content-center card-loading">
       <!-- TODO: replace this with a cog -->
       <b-spinner small variant="muted" class="my-auto" label="Loading..." />
