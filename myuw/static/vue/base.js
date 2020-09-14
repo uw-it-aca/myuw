@@ -23,6 +23,7 @@ import {
   faBars,
   faLocationArrow,
   faSquareFull,
+  faCaretRight
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -54,6 +55,7 @@ library.add(faSquare);
 library.add(faSquareFull);
 library.add(faBars);
 library.add(faLocationArrow);
+library.add(faCaretRight);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);

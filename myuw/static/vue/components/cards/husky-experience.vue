@@ -2,13 +2,18 @@
   <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h3 class="text-dark-beige">
-        Husky Experience Toolkit
+        {{cardTitle}}
       </h3>
     </template>
     <template #card-body>
-      <div class="mx-n3 overflow-hidden myuw-card-article"
-           v-html="getArticleTeaserBody"
-      />
+      <a :href="expLink">
+        <img :srcset="srcset" :src="src"/>
+        <div>
+          <h4>{{articleTeaserTitle}}</h4>
+          {{articleTeaserBody}}
+          <font-awesome-icon :icon="['fas', articleFaClass]" />
+        </div>
+      </a>
     </template>
   </uw-card>
 </template>
@@ -28,26 +33,33 @@ export default {
   },
   computed: {
     ...mapState({
-      hx_toolkit: (state) => state.hx_toolkit.value,
+      cardTitle: function(state) { 
+        return state.hx_toolkit.value[this.urlExtra].cardTitle
+      },
+      expLink: function(state) { 
+        return state.hx_toolkit.value[this.urlExtra].expLink
+      },
+      srcset: function(state) { 
+        return state.hx_toolkit.value[this.urlExtra].srcset
+      },
+      src: function(state) { 
+        return state.hx_toolkit.value[this.urlExtra].src
+      },
+      articleTeaserTitle: function(state) { 
+        return state.hx_toolkit.value[this.urlExtra].articleTeaserTitle
+      },
+      articleTeaserBody: function(state) { 
+        return state.hx_toolkit.value[this.urlExtra].articleTeaserBody
+      },
+      articleFaClass: function(state) { 
+        return state.hx_toolkit.value[this.urlExtra].articleFaClass
+      },
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
     ...mapGetters('hx_toolkit', {
       isReady: 'isReady',
       isErrored: 'isErrored',
     }),
-    getArticleTeaserBody() {
-      const parser = new DOMParser();
-      const articleHtml = this.hx_toolkit[this.urlExtra];
-      const htmlDoc = parser.parseFromString(
-          articleHtml, 'text/html',
-      );
-
-      if (htmlDoc.links[0] !== undefined) {
-        return htmlDoc.links[0].outerHTML;
-      } else {
-        return articleHtml;
-      }
-    },
   },
   created() {
     if (this.hxtViewer) {
@@ -56,7 +68,6 @@ export default {
   },
   methods: {
     ...mapActions('hx_toolkit', ['fetch']),
-
   },
 };
 </script>
