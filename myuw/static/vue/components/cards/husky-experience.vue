@@ -19,7 +19,7 @@
               <div class="bg-white px-2 py-1 text-body myuw-text-md">
                 {{ articleTeaserBody }}
                 <font-awesome-icon :icon="['fas', articleFaClass]"
-                                   aria-hidden="true"
+                                   aria-hidden="true" class="align-text-bottom"
                 />
               </div>
             </a>
