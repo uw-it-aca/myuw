@@ -2,8 +2,6 @@ from .base_settings import *
 import sys
 import os
 
-ALLOWED_HOSTS = ['*']
-
 INSTALLED_APPS += [
     'uw_oidc',
     'compressor',
