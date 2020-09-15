@@ -86,7 +86,7 @@ export default {
 
         if (startTime && endTime) {
           return {
-            'height': `${(this.getMFM(endTime) - this.getMFM(startTime))*4/3}px`,
+            'height': `${(this.getMFM(endTime) - this.getMFM(startTime))*35/30}px`,
             'margin-top': '-1px',
           };
         }
