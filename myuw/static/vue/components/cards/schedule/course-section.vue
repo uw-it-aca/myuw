@@ -7,14 +7,14 @@
       :aria-label="ariaLabel"
     >
       <div :class="`bg-c${meetingData.section.color_id}`"
-          class="p-1 text-center myuw-text-xxs"
+           class="p-1 text-center myuw-text-xxs"
       >
         <b-badge v-if="meetingData.section.is_teaching" variant="light">
           <abbr title="Teaching Course">T</abbr>
         </b-badge>
         <a :href="sectionUrl"
-          class="text-white"
-          :title="sectionTitle"
+           class="text-white"
+           :title="sectionTitle"
         >
           {{ sectionTitle }}
         </a>
@@ -23,11 +23,11 @@
       <div class="p-1 text-center myuw-text-xxs">
         <slot>
           <a v-if="(
-              !meetingData.section.is_remote &&
-              meetingLocationUrl
-            )"
-            :href="meetingLocationUrl"
-            :title="meetingLocation"
+               !meetingData.section.is_remote &&
+               meetingLocationUrl
+             )"
+             :href="meetingLocationUrl"
+             :title="meetingLocation"
           >
             {{ meetingLocation }}
           </a>
@@ -35,9 +35,9 @@
             {{ meetingLocation }}
           </span>
           <a v-if="showConfirmLink"
-            :href="confirmationLink"
-            target="_blank"
-            class="d-block"
+             :href="confirmationLink"
+             target="_blank"
+             class="d-block"
           >
             (Confirm)
           </a>
@@ -229,7 +229,7 @@ export default {
   position: relative;
   overflow: hidden;
   transition: width 1s;
-  
+
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
     outline: transparent auto 1px;
