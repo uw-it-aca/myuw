@@ -424,7 +424,7 @@ export default {
 @import "../../../../css/myuw/variables.scss";
 
 $heading-height: 45px;
-$cell-height: 30px;
+$cell-height: 40px;
 
 .schedule-body {
   width: 100%;

@@ -1,43 +1,46 @@
 <template>
-  <div role="group"
-       tabindex="0" class="course-section"
-       :style="computedStyles"
-       :aria-label="ariaLabel"
-  >
-    <div :class="`bg-c${meetingData.section.color_id}`"
-         class="p-1 text-center myuw-text-xxs"
+  <div class="course-section" :style="computedStyles">
+    <div
+      role="group"
+      tabindex="0"
+      class="course-section-inner"
+      :aria-label="ariaLabel"
     >
-      <b-badge v-if="meetingData.section.is_teaching" variant="light">
-        <abbr title="Teaching Course">T</abbr>
-      </b-badge>
-      <a :href="sectionUrl"
-         class="text-white"
+      <div :class="`bg-c${meetingData.section.color_id}`"
+          class="p-1 text-center myuw-text-xxs"
       >
-        {{ sectionTitle }}
-      </a>
-    </div>
+        <b-badge v-if="meetingData.section.is_teaching" variant="light">
+          <abbr title="Teaching Course">T</abbr>
+        </b-badge>
+        <a :href="sectionUrl"
+          class="text-white"
+        >
+          {{ sectionTitle }}
+        </a>
+      </div>
 
-    <div class="p-1 text-center myuw-text-xxs">
-      <slot>
-        <a v-if="(
-             !meetingData.section.is_remote &&
-             meetingLocationUrl
-           )"
-           :href="meetingLocationUrl"
-        >
-          {{ meetingLocation }}
-        </a>
-        <span v-else>
-          {{ meetingLocation }}
-        </span>
-        <a v-if="showConfirmLink"
-           :href="confirmationLink"
-           target="_blank"
-           class="d-block"
-        >
-          (Confirm)
-        </a>
-      </slot>
+      <div class="p-1 text-center myuw-text-xxs">
+        <slot>
+          <a v-if="(
+              !meetingData.section.is_remote &&
+              meetingLocationUrl
+            )"
+            :href="meetingLocationUrl"
+          >
+            {{ meetingLocation }}
+          </a>
+          <span v-else>
+            {{ meetingLocation }}
+          </span>
+          <a v-if="showConfirmLink"
+            :href="confirmationLink"
+            target="_blank"
+            class="d-block"
+          >
+            (Confirm)
+          </a>
+        </slot>
+      </div>
     </div>
   </div>
 </template>
@@ -81,7 +84,7 @@ export default {
 
         if (startTime && endTime) {
           return {
-            'height': `${this.getMFM(endTime) - this.getMFM(startTime)}px`,
+            'height': `${(this.getMFM(endTime) - this.getMFM(startTime))*4/3}px`,
             'margin-top': '-1px',
           };
         }
@@ -113,6 +116,23 @@ export default {
         return `${
           this.meetingData.meeting.building
         } ${this.meetingData.meeting.room}`;
+      }
+      return 'Room TBD';
+    },
+    ariaMeetingLocation: function() {
+      if (this.meetingData.section.is_remote) {
+        return 'Remote Learning';
+      }
+      if (
+        this.meetingData.meeting != null &&
+        this.meetingData.meeting.no_meeting
+      ) {
+        return 'No Meeting';
+      }
+      if (!this.isRoomTBD()) {
+        return `Building:${
+          this.meetingData.meeting.building
+        } Room:${this.meetingData.meeting.room}`;
       }
       return 'Room TBD';
     },
@@ -169,7 +189,7 @@ export default {
         }
       }
 
-      label += `${this.sectionTitle}, ${this.meetingLocation}`;
+      label += `${this.sectionTitle}, ${this.ariaMeetingLocation}`;
 
       return label;
     },
@@ -203,27 +223,26 @@ export default {
 @import "../../../../css/myuw/variables.scss";
 
 .course-section {
-  background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
   width: 100%;
   position: relative;
-  outline: transparent auto 1px;
   overflow: hidden;
-  margin-left: 2px;
-  margin-right: 2px;
+  transition: width 1s;
+  
+  .course-section-inner {
+    background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
+    outline: transparent auto 1px;
+    height: 100%;
+    margin-left: 2px;
+    margin-right: 2px;
 
-  &:hover {
+    &:focus, &:focus-within, &:hover {
+      outline-color: -webkit-focus-ring-color;
+    }
+  }
+
+  &:focus, &:focus-within, &:hover {
     z-index:9999;
-    outline-color: -webkit-focus-ring-color;
+    flex-shrink: 0.2;
   }
-
-  &:focus {
-    z-index:9999;
-    outline-color: -webkit-focus-ring-color;
-  }
-
-  &:focus-within {
-    z-index: 9999;
-  }
-
 }
 </style>
