@@ -53,8 +53,10 @@ export default {
     ...mapGetters({
       courseStatusCode: 'courses/statusCode',
       noticeStatusCode: 'notices/statusCode',
-      /** These modules don't exist yet. 
+      /** These modules don't exist yet.
        * Commenting them for later implementation.
+       * TODO: Implement the profile, instructorSchedule, 
+       * and directory api calls.
       profileStatusCode: 'profile/statusCode',
       instructorScheduleStatusCode: 'instructorSchedule/statusCode',
       directoryStatusCode: 'directory/statusCode',
