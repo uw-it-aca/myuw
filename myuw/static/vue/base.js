@@ -7,7 +7,7 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
   FontAwesomeLayers,
-  FontAwesomeLayersText
+  FontAwesomeLayersText,
 } from '@fortawesome/vue-fontawesome';
 import VueMq from 'vue-mq';
 
@@ -24,6 +24,7 @@ import {
   faBars,
   faLocationArrow,
   faSquareFull,
+  faCaretRight,
   faSquare as fasSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -57,6 +58,7 @@ library.add(faSquareFull);
 library.add(fasSquare);
 library.add(faBars);
 library.add(faLocationArrow);
+library.add(faCaretRight);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
