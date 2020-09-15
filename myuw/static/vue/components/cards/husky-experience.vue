@@ -91,15 +91,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../css/myuw/variables.scss";
-
 .myuw-huskyexp {
-
   a {
     &:hover {
       h4, div { color: $link-color !important; }
     }
   }
-
   img {
     opacity: 0.75;
   }
