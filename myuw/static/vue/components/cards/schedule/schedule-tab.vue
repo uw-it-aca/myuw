@@ -15,7 +15,7 @@
       </div>
       <!-- Desktop Version -->
       <div v-if="$mq !== 'mobile'" class="d-flex w-100">
-        <div v-for="day in daySlots" :key="day"
+        <div v-for="day in Object.keys(period.daySlots)" :key="day"
              :aria-labelledby="`${day}-${period.id}`"
              role="group"
              class="day-column"
@@ -23,8 +23,8 @@
           <div class="font-weight-bold text-center myuw-text-xs day-heading">
             <div :id="`${day}-${period.id}`">
               {{ days[day] }}
-              <span v-if="isFinalsTab" class="d-block">
-                {{ getFirstFinalExamTimeOn(day).format('MMM D') }}
+              <span v-if="isFinalsTab && period.daySlots[day]" class="d-block">
+                {{ period.daySlots[day].format('MMM D') }}
               </span>
             </div>
           </div>
@@ -157,7 +157,6 @@ export default {
       },
       timestep: [30, 'minutes'],
       timeSlots: [],
-      daySlots: [],
       meetingMap: {},
       meetingsWithoutTime: [],
       hasMeetingsWithTime: false,
@@ -203,7 +202,6 @@ export default {
     )) {
       // Initialize the rendering logic
       this.initializeTimeSlots();
-      this.initializeDaySlots();
       this.initializeMeetingMap();
 
       // Put in the meeting with time into the map.
@@ -323,11 +321,6 @@ export default {
 
       this.meetingMap[day][this.formatToUnique(startTime)] = meetingsToAdd;
     },
-    getFirstFinalExamTimeOn(day) {
-      return this.period.latestMeetingTime.day(
-          day.replace(/^([a-z])/, (c) => c.toUpperCase()),
-      );
-    },
     isDayDisabled(day) {
       return this.period.disabled_days && this.period.disabled_days[day];
     },
@@ -354,27 +347,17 @@ export default {
       }
       this.timeSlots.push(start.clone());
     },
-    // Setting the days of the week that need to be displayed
-    initializeDaySlots() {
-      this.daySlots = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
-      if (this.period.meets_saturday) {
-        this.daySlots.push('saturday');
-      }
-      if (this.period.meets_sunday) {
-        this.daySlots.unshift('sunday');
-      }
-    },
     // Initalizes the mobile values for days needs to be called
     // at the end of create
     initializeMobileDaySlots() {
-      this.daySlots.forEach((day) => {
+      for (const day in this.period.daySlots) {
         const i = this.mobile['options'].push({
           value: day,
           text: day.replace(/^([a-z])/, (c) => c.toUpperCase()),
         });
-        if (this.isFinalsTab) {
+        if (this.isFinalsTab && this.period.daySlots[day]) {
           this.mobile['options'][i - 1].text += (
-            ' - ' + this.getFirstFinalExamTimeOn(day).format('MMMM D')
+            ' - ' + this.period.daySlots[day].format('MMM D')
           );
         }
 
@@ -393,16 +376,16 @@ export default {
             this.isFinalsTab ? 'finals' : 'sections'
           } scheduled)`;
         }
-      });
+      };
       if (this.isFinalsTab) {
-        this.mobile['current'] = this.daySlots[0];
+        this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
         this.mobile['current'] = moment().format('dddd').toLowerCase();
       }
     },
     // Initalize the meeting map.
     initializeMeetingMap() {
-      this.daySlots.forEach((daySlot) => {
+      Object.keys(this.period.daySlots).forEach((daySlot) => {
         this.meetingMap[daySlot] = {};
         this.timeSlots.forEach((timeSlot) => {
           this.meetingMap[daySlot][this.formatToUnique(timeSlot)] = [];

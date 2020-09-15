@@ -102,6 +102,51 @@ const postProcess = (response, urlExtra) => {
       }
     });
 
+    // Generate Days
+    period.daySlots = {};
+    if (!isFinalPeriod(period)) {
+      if (period.meets_sunday) {
+        period.daySlots['sunday'] = null;
+      }
+      period.daySlots = {
+        monday: null,
+        tuesday: null,
+        wednesday: null,
+        thursday: null,
+        friday: null
+      };
+      if (period.meets_saturday) {
+        period.daySlots['saturday'] = null;
+      }
+    } else if (earliestTime) {
+      // Generate dates if on a final period
+
+      let refrenceDate = earliestTime;
+
+      if (refrenceDate.day() === 6) {
+        period.daySlots['saturday'] = refrenceDate.clone();
+        period.daySlots['monday'] = refrenceDate.clone().day(8);
+        period.daySlots['tuesday'] = refrenceDate.clone().day(9);
+        period.daySlots['wednesday'] = refrenceDate.clone().day(10);
+        period.daySlots['thursday'] = refrenceDate.clone().day(11);
+        period.daySlots['friday'] = refrenceDate.clone().day(12);
+      } else if (refrenceDate.day() > 0) {
+        period.daySlots['monday'] = refrenceDate.clone().day(1);
+        period.daySlots['tuesday'] = refrenceDate.clone().day(2);
+        period.daySlots['wednesday'] = refrenceDate.clone().day(3);
+        period.daySlots['thursday'] = refrenceDate.clone().day(4);
+        period.daySlots['friday'] = refrenceDate.clone().day(5);
+      }
+    } else {
+      period.daySlots = {
+        monday: null,
+        tuesday: null,
+        wednesday: null,
+        thursday: null,
+        friday: null
+      };
+    }
+
     period.earliestMeetingTime = earliestTime ? earliestTime.clone() : null;
     period.latestMeetingTime = latestTime ? latestTime.clone() : null;
   });
