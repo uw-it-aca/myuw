@@ -76,11 +76,10 @@
     </div>
 
     <!-- eos message display -->
-    <div v-if="period.eosData.length > 0" class="mb-2">
+    <div v-if="period.eosData.length > 0  && !isFinalsTab" class="mb-2">
       <p class="text-muted myuw-text-md mb-1">
         Meeting time notes:
       </p>
-      <!-- style like a course section card -->
       <uw-course-section
         v-for="(eosSection, i) in period.eosData" :key="i"
         :meeting-data="{section: eosSection}"
