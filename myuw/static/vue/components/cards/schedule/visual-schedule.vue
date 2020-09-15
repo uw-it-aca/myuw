@@ -23,14 +23,7 @@
                title-item-class="bg-light text-nowrap text-uppercase
                myuw-text-xs mr-1 mb-1"
                title-link-class="text-body h-100"
-               :active="(
-                 period.start_date <= today &&
-                 period.end_date >= today
-               ) || (
-                 i > 0 &&
-                 periods[i - 1].end_date < today &&
-                 period.title === 'finals'
-               )"
+               :active="period.id == activePeriod.id"
         >
           <!-- tab content -->
           <uw-schedule-tab :period="period" />
@@ -89,6 +82,26 @@ export default {
       }
       return name;
     },
+    activePeriod: function() {
+      let active = this.periods[0];
+      for (const i in this.periods) {
+        if (
+          this.periods[i].start_date <= this.today &&
+          this.periods[i].end_date >= this.today
+        ) {
+          return this.periods[i];
+        }
+        
+        if (this.periods[i].end_date && (this.periods[i].end_date < this.today)) {
+          if (this.periods.length > (parseInt(i) + 1)) {
+            active = this.periods[parseInt(i) + 1];
+          } else {
+            active = this.periods[this.periods.length - 1];
+          }
+        }
+      }
+      return active;       
+    }
   },
   mounted() {
     if (this.term) this.fetch(this.term);
