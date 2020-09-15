@@ -244,7 +244,7 @@
       </b-container>
     </div>
 
-    <footer class="bg-dark pt-3 pb-3 text-nowrap myuw-footer myuw-text-xs">
+    <footer class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-1">
