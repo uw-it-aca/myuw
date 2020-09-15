@@ -108,13 +108,11 @@ const postProcess = (response, urlExtra) => {
       if (period.meets_sunday) {
         period.daySlots['sunday'] = null;
       }
-      period.daySlots = {
-        monday: null,
-        tuesday: null,
-        wednesday: null,
-        thursday: null,
-        friday: null
-      };
+      period.daySlots['monday'] = null;
+      period.daySlots['tuesday'] = null;
+      period.daySlots['wednesday'] = null;
+      period.daySlots['thursday'] = null;
+      period.daySlots['friday'] = null;
       if (period.meets_saturday) {
         period.daySlots['saturday'] = null;
       }
