@@ -11,6 +11,7 @@ import Applicant from './components/index/cards/applicant/applicant.vue';
 import Events from './components/index/cards/events/events.vue';
 import Grades from './components/cards/grades.vue';
 import HuskyExperience from './components/cards/husky-experience.vue'
+import Outage from './components/cards/outage.vue'
 
 import notices from './store/notices';
 import hfs from './store/hfs';
@@ -51,6 +52,7 @@ Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
 Vue.component('myuw-husky-experience', HuskyExperience);
+Vue.component('myuw-outage', Outage);
 
 new Vue({
   ...vueConf,

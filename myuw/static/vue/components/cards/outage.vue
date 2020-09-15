@@ -1,0 +1,102 @@
+<template>
+  <uw-card v-if="showOutageCard" :loaded="true">
+    <template #card-heading>
+      <h3>
+        Limited data due to technical difficulties
+      </h3>
+    </template>
+    <template #card-body>
+      <p class="text-danger">
+        We are aware of the issue and working on it. Please try again later.
+      </p>
+      <h2 style="font-size:15px; font-weight: bold;">
+        Things you might be looking for:
+      </h2>
+      <ul class="" style="margin-top:1em;">
+        <li><a href="https://canvas.uw.edu/" target="_blank">Canvas LMS</a></li>
+        <li><a href="https://catalyst.uw.edu/" target="_blank">Catalyst Web Tools</a></li>
+        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank">Student Registration</a></li>
+        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp" target="_blank">Student Class Schedule</a></li>
+        <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank">Student Tuition Statement</a></li>
+
+        <li><a href="https://www.washington.edu/students/timeschd/" target="_blank">Time Schedule</a></li>
+        <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" target="_blank">MyPlan</a></li>
+        <li><a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx" target="_blank">My Class Instructor Resources</a></li>
+        <li><a href="https://gradepage.uw.edu/" target="_blank">GradePage</a></li>
+        <li><a href="https://uw.hosted.panopto.com/" target="_blank">Panopto Lecture Capture</a></li>
+        <li><a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp" target="_blank">UW Professional &amp; Continuing Education</a></li>
+        <li><a href="https://wd5.myworkday.com/uw/d/home.htmld" target="_blank">Workday</a></li>
+        <li><a href="http://ucs.admin.uw.edu/myfd/" target="_blank">MyFinancial.desktop</a></li>
+      </ul>
+    </template>
+  </uw-card>
+</template>
+
+<script>
+import {mapGetters, mapState} from 'vuex';
+import Card from '../../containers/card.vue';
+
+export default {
+  components: {
+    'uw-card': Card,
+  },
+  data: function() {
+    return {
+    };
+  },
+  computed: {
+    ...mapState({
+      isStudent: (state) => state.user.affiliations.student,
+      isInstructor: (state) => state.user.affiliations.instructor,
+      isEmployee: (state) => state.user.affiliations.employee,
+    }),
+    ...mapGetters({
+      courseStatusCode: 'courses/statusCode',
+      noticeStatusCode: 'notices/statusCode',
+      /** These modules don't exist yet. 
+       * Commenting them for later implementation.
+      profileStatusCode: 'profile/statusCode',
+      instructorScheduleStatusCode: 'instructorSchedule/statusCode',
+      directoryStatusCode: 'directory/statusCode',
+      */
+    }),
+    showOutageCard: function() {
+      if (this.isStudent) {
+        if (this.courseStatusCode && this.noticeStatusCode
+        /** && this.profileStatusCode **/) {
+          if (this.non404Error(this.courseStatusCode) ||
+              this.non404Error(this.noticeStatusCode)
+              /** || non404Error(this.profileStatusCode) **/) {
+            return true;
+          }
+        }
+      }
+      /** This is the logic for instructor and employee
+      if (this.isInstructor) {
+        if (this.profileStatusCode) {
+          if (this.non404Error(this.profileStatusCode)) {
+            return true;
+          }
+        }
+      }
+
+      if (this.isEmployee) {
+        if (this.directoryStatusCode) {
+          if (this.non404Error(this.directoryStatusCode)) {
+            return true;
+          }
+        }
+      }
+      */
+      return false;
+    },
+  },
+  methods: {
+    // Client errors (400–499)
+    // and Server errors (500–599).
+    non404Error(statusCode) {
+      return (statusCode < 600 && statusCode >= 400 && statusCode !== 404);
+    },
+  },
+};
+</script>
