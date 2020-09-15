@@ -228,12 +228,14 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
-  transition: width 1s;
+  padding-top: 1px;
+  padding-bottom: 1px;
 
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
     outline: transparent auto 1px;
     height: 100%;
+    overflow: hidden;
     margin-left: 2px;
     margin-right: 2px;
 
