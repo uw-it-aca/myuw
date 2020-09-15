@@ -6,17 +6,19 @@
       </h3>
     </template>
     <template #card-body>
-      <div class="mx-n3 mb-n3 overflow-hidden myuw-huskyexp">
+      <div class="mx-n3 mb-n3 myuw-huskyexp">
         <div class="position-relative">
-          <img :srcset="srcset" :src="src" class="img-fluid">
-          <div class="position-absolute w-100 px-3 py-4 myuw-huskyexp-body">
-            <a :href="expLink" class="d-block text-decoration-none">
-              <h4 class="h5 d-inline-block bg-white px-2 py-1
+          <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt">
+          <div class="position-absolute h-100 myuw-huskyexp-body">
+            <a :href="expLink" class="d-block h-100
+            px-3 py-4"
+            >
+              <h4 class="h5 d-inline bg-white px-2 py-1
             text-body font-weight-bold"
               >
                 {{ articleTeaserTitle }}
               </h4>
-              <div class="bg-white px-2 py-1 text-body myuw-text-md">
+              <div class="bg-white mt-3 px-2 py-1 text-body myuw-text-md">
                 {{ articleTeaserBody }}
                 <font-awesome-icon :icon="['fas', articleFaClass]"
                                    aria-hidden="true" class="align-text-bottom"
@@ -57,6 +59,9 @@ export default {
       src: function(state) {
         return state.hx_toolkit.value[this.urlExtra].src;
       },
+      alt: function(state) {
+        return state.hx_toolkit.value[this.urlExtra].alt;
+      },
       articleTeaserTitle: function(state) {
         return state.hx_toolkit.value[this.urlExtra].articleTeaserTitle;
       },
@@ -85,15 +90,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../css/myuw/variables.scss";
 .myuw-huskyexp {
-  max-height: 320px;
-
+  a {
+    &:hover {
+      h4, div { color: $link-color !important; }
+    }
+  }
   img {
     opacity: 0.75;
   }
   .myuw-huskyexp-body {
     top: 0;
-
   }
 }
 

@@ -27,6 +27,9 @@ const postProccess = (response, urlExtra) => {
     proccessValue[urlExtra].src = htmlDoc.getElementsByClassName(
       'myuw-card-image-full'
     )[0].src;
+    proccessValue[urlExtra].alt = htmlDoc.getElementsByClassName(
+      'myuw-card-image-full'
+    )[0].alt;
   }
 
   if (htmlDoc.getElementsByClassName('myuw-highlight')[0]) {
