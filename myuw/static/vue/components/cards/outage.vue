@@ -55,7 +55,7 @@ export default {
       noticeStatusCode: 'notices/statusCode',
       /** These modules don't exist yet.
        * Commenting them for later implementation.
-       * TODO: Implement the profile, instructorSchedule, 
+       * TODO: Implement the profile, instructorSchedule,
        * and directory api calls.
       profileStatusCode: 'profile/statusCode',
       instructorScheduleStatusCode: 'instructorSchedule/statusCode',
