@@ -147,13 +147,13 @@ export default {
   data: function() {
     return {
       days: {
+        sunday: 'SUN',
         monday: 'MON',
         tuesday: 'TUE',
         wednesday: 'WED',
         thursday: 'THU',
         friday: 'FRI',
         saturday: 'SAT',
-        sunday: 'SUN',
       },
       timestep: [30, 'minutes'],
       timeSlots: [],
@@ -187,6 +187,19 @@ export default {
             .clone().day(8).hour(8).minute(30);
         this.period.latestMeetingTime = this.quarterLastDate
             .clone().day(8).hour(11).minute(50);
+        
+        const refrenceDate = this.period.earliestMeetingTime.clone();
+        for (const day in this.period.daySlots) {
+          if (!this.period.daySlots[day]) {
+            if (day === "saturday") {
+              this.period.daySlots[day] = refrenceDate.clone().day(6);
+            } else {
+              this.period.daySlots[day] = refrenceDate.clone().day(
+                7 + Object.keys(this.days).indexOf(day)
+              );
+            }
+          }
+        }
       } else {
         this.period.earliestMeetingTime = this.today
             .clone().day(1).hour(8).minute(30);
