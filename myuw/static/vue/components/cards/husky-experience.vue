@@ -6,11 +6,13 @@
       </h3>
     </template>
     <template #card-body>
-      <div class="mx-n3 mb-n3 overflow-hidden myuw-huskyexp">
+      <div class="mx-n3 mb-n3 myuw-huskyexp">
         <div class="position-relative">
           <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt">
-          <div class="position-absolute w-100 px-3 py-4 myuw-huskyexp-body">
-            <a :href="expLink" class="d-block text-decoration-none">
+          <div class="position-absolute h-100 myuw-huskyexp-body">
+            <a :href="expLink" class="d-block h-100
+            px-3 py-4 text-decoration-none"
+            >
               <h4 class="h5 d-inline-block bg-white px-2 py-1
             text-body font-weight-bold"
               >
@@ -89,14 +91,11 @@ export default {
 
 <style lang="scss" scoped>
 .myuw-huskyexp {
-  max-height: 320px;
-
   img {
     opacity: 0.75;
   }
   .myuw-huskyexp-body {
     top: 0;
-
   }
 }
 
