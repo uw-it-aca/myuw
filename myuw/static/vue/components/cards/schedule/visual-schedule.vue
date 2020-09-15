@@ -36,7 +36,7 @@
           <uw-schedule-tab :period="period" />
         </b-tab>
       </b-tabs>
-      <!-- Needs testing no mock user available -->
+      <!-- TODO: charlon style this, use billpce on 2019-06-26 to test it -->
       <p v-if="offTerm.length > 0">
         Note:
         <span v-for="(termData, i) in offTerm" :key="i">
