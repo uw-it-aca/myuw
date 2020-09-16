@@ -29,19 +29,23 @@
 
     <myuw-banner-summaries></myuw-banner-summaries>
     <template #main>
-      <myuw-notice-card class="order-1"></myuw-notice-card>
+      <myuw-notice-card></myuw-notice-card>
 
-      <myuw-grades class="order-2"></myuw-grades>
-      <myuw-husky-experience class="order-3"></myuw-husky-experience> 
-      <myuw-ns-critical-info class="order-4"></myuw-ns-critical-info>
-      <myuw-ns-international-student class="order-5"></myuw-ns-international-student>
+      <myuw-grades></myuw-grades>
 
-      <myuw-applicant class="order-6"></myuw-applicant>
+      <myuw-husky-experience></myuw-husky-experience> 
+      <myuw-ns-critical-info></myuw-ns-critical-info>
+      <myuw-ns-international-student></myuw-ns-international-student>
 
-      <myuw-international-student class="order-7"></myuw-international-student>
+      <myuw-applicant></myuw-applicant>
+
+      <myuw-international-student></myuw-international-student>
+
+      <myuw-events mobile-only></myuw-events>
     </template>
+    <!-- Side Bar is only rendered on desktop -->
     <template #side-bar>
-      <myuw-events class="order-8"></myuw-events>
+      <myuw-events></myuw-events>
     </template>
   </myuw-boilerplate>
 {% endblock body_content %}

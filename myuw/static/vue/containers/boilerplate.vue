@@ -248,9 +248,8 @@
               </b-col>
             </b-row>
             <b-row v-else>
-              <b-col class="px-0 d-flex flex-column">
+              <b-col class="px-0">
                 <slot name="main" />
-                <slot name="side-bar" />
               </b-col>
             </b-row>
           </b-col>
