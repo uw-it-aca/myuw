@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored">
+  <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored" :erroredShow="false">
     <template #card-heading>
       <h3 class="text-dark-beige">
         Husky Experience Toolkit
