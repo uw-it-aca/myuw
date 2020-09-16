@@ -1,19 +1,21 @@
 <template>
-  <div v-if="loaded">
-    <b-card class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3">
-      <slot name="card-heading" />
-      <slot name="card-body" />
-      <slot name="card-disclosure" />
-      <template v-if="!!this.$slots['card-footer']"
-                v-slot:footer
-                footer-tag="footer"
-      >
-        <slot name="card-footer" />
-      </template>
-    </b-card>
-  </div>
+  <b-card v-if="loaded"
+          class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3"
+  >
+    <slot name="card-heading" />
+    <slot name="card-body" />
+    <slot name="card-disclosure" />
+    <template v-if="!!this.$slots['card-footer']"
+              v-slot:footer
+              footer-tag="footer"
+    >
+      <slot name="card-footer" />
+    </template>
+  </b-card>
   <div v-else-if="errored">
-    <b-card v-if="erroredShow" class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3">
+    <b-card v-if="erroredShow"
+            class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3"
+    >
       <slot name="card-heading" />
       <b-alert show variant="light" class="p-0 m-0">
         <div class="d-flex text-danger m-0 myuw-text-md">
