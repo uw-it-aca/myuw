@@ -2,7 +2,7 @@
   <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h3 class="text-dark-beige">
-        {{ cardTitle }}
+        Husky Experience Toolkit
       </h3>
     </template>
     <template #card-body>
@@ -47,9 +47,6 @@ export default {
   },
   computed: {
     ...mapState({
-      cardTitle: function(state) {
-        return state.hx_toolkit.value[this.urlExtra].cardTitle;
-      },
       expLink: function(state) {
         return state.hx_toolkit.value[this.urlExtra].expLink;
       },

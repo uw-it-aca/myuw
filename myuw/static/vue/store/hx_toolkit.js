@@ -9,12 +9,6 @@ const postProccess = (response, urlExtra) => {
     response.data, 'text/html',
   );
 
-  if (htmlDoc.getElementsByClassName('myuw-card-title')[0]) {
-    proccessValue[urlExtra].cardTitle = htmlDoc.getElementsByClassName(
-      'myuw-card-title'
-    )[0].innerHTML;
-  }
-
   if (htmlDoc.getElementsByTagName('a')[0]) {
     proccessValue[urlExtra].expLink =
       htmlDoc.getElementsByTagName('a')[0].href;
