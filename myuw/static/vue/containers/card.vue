@@ -52,7 +52,7 @@ export default {
     mobileOnly: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data: function() {
     return {};
