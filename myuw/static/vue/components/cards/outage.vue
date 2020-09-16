@@ -7,7 +7,7 @@
     </template>
     <template #card-body>
       <!-- custom error message for outages -->
-      <b-alert show variant="light" class="p-0 m-0">
+      <b-alert show variant="light" class="p-0">
         <div class="d-flex text-danger m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
             <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
@@ -18,9 +18,9 @@
         </div>
       </b-alert>
 
-      <p class="h6 mt-4 font-weight-bold">
+      <h4 class="h6 font-weight-bold">
         Things you might be looking for:
-      </p>
+      </h4>
 
       <ul class="list-unstyled myuw-text-md">
         <li><a href="https://canvas.uw.edu/" target="_blank">Canvas LMS</a></li>
