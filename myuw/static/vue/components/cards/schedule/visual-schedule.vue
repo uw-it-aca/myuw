@@ -84,24 +84,27 @@ export default {
     },
     activePeriod: function() {
       let active = this.periods[0];
-      for (const i in this.periods) {
+      Object.keys(this.periods).forEach((i) => {
         if (
           this.periods[i].start_date <= this.today &&
           this.periods[i].end_date >= this.today
         ) {
           return this.periods[i];
         }
-        
-        if (this.periods[i].end_date && (this.periods[i].end_date < this.today)) {
+
+        if (
+          this.periods[i].end_date &&
+          this.periods[i].end_date < this.today
+        ) {
           if (this.periods.length > (parseInt(i) + 1)) {
             active = this.periods[parseInt(i) + 1];
           } else {
             active = this.periods[this.periods.length - 1];
           }
         }
-      }
-      return active;       
-    }
+      });
+      return active;
+    },
   },
   mounted() {
     if (this.term) this.fetch(this.term);

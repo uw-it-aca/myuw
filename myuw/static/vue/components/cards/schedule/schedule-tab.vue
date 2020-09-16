@@ -76,7 +76,7 @@
     </div>
 
     <!-- eos message display -->
-    <div v-if="period.eosData.length > 0  && !isFinalsTab" class="mb-2">
+    <div v-if="period.eosData.length > 0 && !isFinalsTab" class="mb-2">
       <p class="text-muted myuw-text-md mb-1">
         Meeting time notes:
       </p>
@@ -187,15 +187,15 @@ export default {
             .clone().day(8).hour(8).minute(30);
         this.period.latestMeetingTime = this.quarterLastDate
             .clone().day(8).hour(11).minute(50);
-        
+
         const refrenceDate = this.period.earliestMeetingTime.clone();
         for (const day in this.period.daySlots) {
           if (!this.period.daySlots[day]) {
-            if (day === "saturday") {
+            if (day === 'saturday') {
               this.period.daySlots[day] = refrenceDate.clone().day(6);
             } else {
               this.period.daySlots[day] = refrenceDate.clone().day(
-                7 + Object.keys(this.days).indexOf(day)
+                  7 + Object.keys(this.days).indexOf(day),
               );
             }
           }
@@ -363,7 +363,7 @@ export default {
     // Initalizes the mobile values for days needs to be called
     // at the end of create
     initializeMobileDaySlots() {
-      for (const day in this.period.daySlots) {
+      Object.keys(this.period.daySlots).forEach((day) => {
         const i = this.mobile['options'].push({
           value: day,
           text: day.replace(/^([a-z])/, (c) => c.toUpperCase()),
@@ -389,7 +389,7 @@ export default {
             this.isFinalsTab ? 'finals' : 'sections'
           } scheduled)`;
         }
-      };
+      });
       if (this.isFinalsTab) {
         this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
