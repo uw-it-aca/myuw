@@ -238,7 +238,7 @@
               {{ pageTitle }}
             </h2>
             <!-- page content inserted here -->
-            <b-row v-if="$mq == 'desktop'">
+            <b-row v-if="$mq !== 'mobile'">
               <b-col md="8">
                 <slot name="main" />
               </b-col>
