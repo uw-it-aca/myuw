@@ -109,8 +109,8 @@
     </header>
 
     <div class="bg-light pt-4 pb-4 myuw-body">
-      <b-container fluid="xl" class="px-3">
-        <b-row>
+      <b-container fluid="xl">
+        <b-row :no-gutters="$mq !== 'desktop'">
           <b-col lg="2">
             <!-- main sidebar navigation -->
             <b-collapse
@@ -238,7 +238,20 @@
               {{ pageTitle }}
             </h2>
             <!-- page content inserted here -->
-            <slot />
+            <b-row v-if="$mq == 'desktop'">
+              <b-col md="8">
+                <slot name="main" />
+              </b-col>
+              <b-col md="4">
+                <slot name="side-bar" />
+              </b-col>
+            </b-row>
+            <b-row v-else>
+              <b-col class="px-0 d-flex flex-column">
+                <slot name="main" />
+                <slot name="side-bar" />
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
       </b-container>

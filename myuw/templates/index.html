@@ -28,23 +28,21 @@
   <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
 
     <myuw-banner-summaries></myuw-banner-summaries>
-      <b-row>
-        <b-col md="8">
-          <myuw-notice-card></myuw-notice-card>
+    <template #main>
+      <myuw-notice-card class="order-1"></myuw-notice-card>
 
-          <myuw-grades></myuw-grades>
-          <myuw-husky-experience></myuw-husky-experience> 
-          <myuw-ns-critical-info></myuw-ns-critical-info>
-          <myuw-ns-international-student></myuw-ns-international-student>
+      <myuw-grades class="order-2"></myuw-grades>
+      <myuw-husky-experience class="order-3"></myuw-husky-experience> 
+      <myuw-ns-critical-info class="order-4"></myuw-ns-critical-info>
+      <myuw-ns-international-student class="order-5"></myuw-ns-international-student>
 
-          <myuw-applicant></myuw-applicant>
+      <myuw-applicant class="order-6"></myuw-applicant>
 
-          <myuw-international-student></myuw-international-student>
-        </b-col>
-        <b-col md="4">
-          <myuw-events></myuw-events>
-        </b-col>
-      </b-row>
+      <myuw-international-student class="order-7"></myuw-international-student>
+    </template>
+    <template #side-bar>
+      <myuw-events class="order-8"></myuw-events>
+    </template>
   </myuw-boilerplate>
 {% endblock body_content %}
 
