@@ -94,10 +94,6 @@ export default {
       removeLink: 'removeLink',
       quicklinksUpdateLink: 'updateLink',
     }),
-    addLink: function(event) {
-      event.preventDefault();
-      this.quicklinksAddLink(this.customLink);
-    },
     updateLink: function(event) {
       event.preventDefault();
       this.quicklinksUpdateLink(this.currentCustomLink);
@@ -108,7 +104,7 @@ export default {
       this.customLink = {};
     },
     saveLink() {
-
+      // TODO: don't know when this is used
     },
   }
 }

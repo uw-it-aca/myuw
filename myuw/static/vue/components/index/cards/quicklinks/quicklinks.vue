@@ -1,5 +1,5 @@
 <template>
-  <uw-card :loaded="true" :errored="false">
+  <uw-card :loaded="true" :errored="false" :mobileOnly="mobileOnly">
     <template #card-heading>
       <h3>Quick Links</h3>
     </template>
@@ -106,6 +106,12 @@ export default {
     "uw-card": Card,
     'uw-link': Link,
   },
+  props: {
+    mobileOnly: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data: function () {
     return {
       customLink: {},
@@ -114,15 +120,14 @@ export default {
   computed: {
     ...mapState({
       disableActions: (state) => state.disableActions,
-      user: (state) => state.user,
     }),
-    ...mapState("quicklinks", {
+    ...mapState('quicklinks', {
       recentLinks: (state) => state.value.recentLinks,
       popularLinks: (state) => state.value.popularLinks,
       customLinks: (state) => state.value.customLinks,
       defaultLinks: (state) => state.value.defaultLinks,
     }),
-    ...mapGetters("quicklinks", {
+    ...mapGetters('quicklinks', {
       isReady: "isReady",
       isErrored: "isErrored",
       isAddFetching: "isAddFetching",
@@ -132,7 +137,6 @@ export default {
   methods: {
     ...mapActions('quicklinks', {
       quicklinksAddLink: 'addLink',
-      quicklinksUpdateLink: 'updateLink',
     }),
     addLink: function(event) {
       event.preventDefault();

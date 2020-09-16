@@ -1,0 +1,59 @@
+{
+    "popular_links": [],
+    "recent_links": [],
+    "custom_links": [],
+    "default_links": [
+        {
+            "url": "http://canvas.uw.edu/",
+            "label": "Canvas LMS"
+        },
+        {
+            "url": "https://myplan.uw.edu",
+            "label": "MyPlan"
+        },
+        {
+            "url": "https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx",
+            "label": "Grade Report"
+        },
+        {
+            "url": "https://sdb.admin.uw.edu/students/uwnetid/register.asp",
+            "label": "Register using SLN codes"
+        },
+        {
+            "url": "https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx",
+            "label": "Financial Aid Status"
+        },
+        {
+            "url": "http://www.washington.edu/students/timeschd/",
+            "label": "Time Schedule - Seattle"
+        },
+        {
+            "url": "http://www.washington.edu/students/timeschd/95index.html",
+            "label": "Time Schedule - PCE"
+        },
+        {
+            "url": "https://wellbeing.uw.edu/",
+            "label": "Husky Health \u0026 Well-Being"
+        },
+        {
+            "url": "https://scout.uw.edu",
+            "label": "Scout"
+        },
+        {
+            "url": "http://www.washington.edu/home/peopledir/",
+            "label": "Directory Search"
+        },
+        {
+            "url": "https://uwnetid.washington.edu/manage/",
+            "label": "Manage UW NetID Account"
+        },
+        {
+            "url": "http://www.lib.washington.edu/",
+            "label": "UW Libraries"
+        },
+        {
+            "url": "http://webster.uaa.washington.edu/asp/website/online-learning/",
+            "label": "Online Learning Resources"
+        }
+    ]
+}
