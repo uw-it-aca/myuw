@@ -26,25 +26,25 @@
 {% block body_content %}
 
   <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
-
     <myuw-banner-summaries></myuw-banner-summaries>
-      <b-row>
-        <b-col md="8">
-          <myuw-notice-card></myuw-notice-card>
-
-          <myuw-grades></myuw-grades>
-          <myuw-husky-experience></myuw-husky-experience> 
-          <myuw-ns-critical-info></myuw-ns-critical-info>
-          <myuw-ns-international-student></myuw-ns-international-student>
-
-          <myuw-applicant></myuw-applicant>
-
-          <myuw-international-student></myuw-international-student>
-        </b-col>
-        <b-col md="4">
-          <myuw-events></myuw-events>
-        </b-col>
-      </b-row>
+    <!--MARK: #main template (mobile-desktop) -->
+    <template #main>
+      <!--MARK: inherent card ordering -->
+      <myuw-notice-card></myuw-notice-card>
+      <myuw-grades></myuw-grades>
+      <myuw-husky-experience></myuw-husky-experience> 
+      <myuw-ns-critical-info></myuw-ns-critical-info>
+      <myuw-ns-international-student></myuw-ns-international-student>
+      <myuw-applicant></myuw-applicant>
+      <myuw-international-student></myuw-international-student>
+      <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
+      <myuw-events mobile-only></myuw-events>
+    </template>
+    <!-- MARK: #side-bar template (tablet/desktop only) -->
+    <template #side-bar>
+      <!--MARK: inherent card ordering -->
+      <myuw-events></myuw-events>
+    </template>
   </myuw-boilerplate>
 {% endblock body_content %}
 
