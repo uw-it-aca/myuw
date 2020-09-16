@@ -1,18 +1,28 @@
 <template>
-  <uw-card v-if="showOutageCard" :loaded="true">
+  <uw-card v-if="showOutageCard" :loaded="true" class="myuw-outage">
     <template #card-heading>
-      <h3>
+      <h3 class="text-danger">
         Limited data due to technical difficulties
       </h3>
     </template>
     <template #card-body>
-      <p class="text-danger">
-        We are aware of the issue and working on it. Please try again later.
-      </p>
-      <h2 style="font-size:15px; font-weight: bold;">
+      <!-- custom error message for outages -->
+      <b-alert show variant="light" class="p-0 m-0">
+        <div class="d-flex text-danger m-0 myuw-text-md">
+          <div class="pr-2 flex-shrink-1">
+            <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+          </div>
+          <div class="w-100">
+            We are aware of the issue and working on it. Please try again later.
+          </div>
+        </div>
+      </b-alert>
+
+      <p class="h6 mt-4 font-weight-bold">
         Things you might be looking for:
-      </h2>
-      <ul class="" style="margin-top:1em;">
+      </p>
+
+      <ul class="list-unstyled myuw-text-md">
         <li><a href="https://canvas.uw.edu/" target="_blank">Canvas LMS</a></li>
         <li><a href="https://catalyst.uw.edu/" target="_blank">Catalyst Web Tools</a></li>
         <li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank">Student Registration</a></li>
@@ -102,3 +112,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@use "sass:map";
+@import "../../../css/myuw/variables.scss";
+.myuw-outage {
+  background-color: lighten(map.get($theme-colors, "warning"), 48%) !important;
+  // override bootstrap alert styles
+  .alert-light {
+    background-color: transparent !important;
+    border-color: transparent !important;
+  }
+}
+</style>
