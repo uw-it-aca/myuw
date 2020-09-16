@@ -6,7 +6,7 @@
     <b-button
       v-if="activeButtons['edit']" variant="link"
       :title="`Edit ${link.label} link`"
-      v-b-toggle="editId" @click="updateCustomCurrent(link)"
+      v-b-toggle="`${customId}-collapse`"
     >
       <font-awesome-icon :icon="['fas', 'pencil-alt']" />
     </b-button>
@@ -31,6 +31,21 @@
         <font-awesome-icon :icon="['fas', 'plus']" />
       </b-button>
     </div>
+    <b-collapse v-if="activeButtons['edit']" :id="`${customId}-collapse`">
+      <b-form @submit="updateLink" @reset="onReset">
+        <h4>Edit Quick Link</h4>
+        <b-form-group label="URL" :label-for="`${customId}-edit-url`">
+          <b-form-input type="url" :id="`${customId}-edit-url`" v-model="currentCustomLink.url" required>
+          </b-form-input>
+        </b-form-group>
+        <b-form-group label="Link name (optional)" :label-for="`${customId}-edit-label`">
+          <b-form-input type="text" :id="`${customId}-edit-label`" v-model="currentCustomLink.label">
+          </b-form-input>
+        </b-form-group>
+        <b-button type="reset" v-b-toggle="`${customId}-collapse`">Cancel</b-button>
+        <b-button type="submit">Save</b-button>
+      </b-form>
+    </b-collapse>
   </li>
 </template>
 
@@ -47,17 +62,14 @@ export default {
       type: Array,
       default: [],
     },
-    editId: {
+    customId: {
       type: String,
-      default: null,
+      required: true,
     },
     canActuallyRemove: {
       type: Boolean,
       default: false,
     },
-    updateCustomCurrent: {
-      type: Function,
-    }
   },
   data: function() {
     return {
@@ -65,18 +77,35 @@ export default {
         edit: false,
         remove: false,
         save: false,
-      }
+      },
+      currentCustomLink: {},
     } 
   },
   created() {
     this.buttons.forEach((button) => {
       this.activeButtons[button] = true;
     });
+
+    // Create a deep clone
+    this.currentCustomLink = JSON.parse(JSON.stringify(this.link));
   },
   methods: {
-    ...mapActions('quicklinks', ['removeLink',]),
-    editLink() {
-
+    ...mapActions('quicklinks', {
+      removeLink: 'removeLink',
+      quicklinksUpdateLink: 'updateLink',
+    }),
+    addLink: function(event) {
+      event.preventDefault();
+      this.quicklinksAddLink(this.customLink);
+    },
+    updateLink: function(event) {
+      event.preventDefault();
+      this.quicklinksUpdateLink(this.currentCustomLink);
+    },
+    onReset: function(event) {
+      event.preventDefault();
+      this.currentCustomLink = {};
+      this.customLink = {};
     },
     saveLink() {
 

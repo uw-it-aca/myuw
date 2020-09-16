@@ -7,13 +7,12 @@
       <ul class="quicklinks-list">
         <uw-link
           v-for="(link, index) in defaultLinks" :key="`default-${index}`"
-          :link="link" :buttons="['remove']"
+          :link="link" :buttons="['remove']" :customId="`default-${index}`"
         />
         <uw-link
           v-for="(link, index) in customLinks" :key="`custom-${index}`"
           :link="link" :buttons="['edit', 'remove']"
-          editId="custom-link-edit" canActuallyRemove
-          :updateCustomCurrent="updateCustomCurrent"
+          :customId="`custom-${index}`" canActuallyRemove
         />
       </ul>
       <hr />
@@ -21,8 +20,8 @@
         <h4>Recently Visited</h4>
         <ul class="quicklinks-list">
           <uw-link
-            v-for="(link, index) in recentLinks" :key="index"
-            :link="link" :buttons="['save']"
+            v-for="(link, index) in recentLinks" :key="`recent-${index}`"
+            :link="link" :buttons="['save']" :customId="`recent-${index}`"
           />
         </ul>
         <span>
@@ -30,30 +29,6 @@
         </span>
       </div>
       <hr v-if="recentLinks.length" />
-      <b-collapse id="custom-link-edit">
-        <b-form @submit="updateLink" @reset="onReset">
-          <h4>Edit Quick Link</h4>
-          <b-form-group label="URL" label-for="custom-link-edit-url">
-            <b-form-input type="url" id="custom-link-edit-url" v-model="editCustomLink.url" required>
-            </b-form-input>
-          </b-form-group>
-          <b-form-group label="Link name (optional)" label-for="custom-link-edit-label">
-            <b-form-input type="text" id="custom-link-edit-label" v-model="editCustomLink.label">
-            </b-form-input>
-          </b-form-group>
-          <b-button type="reset" v-b-toggle.custom-link-edit>Cancel</b-button>
-          <b-button type="submit">Save</b-button>
-        </b-form>
-        <div class="form">
-          <fieldset>
-            
-            <input type="hidden" id="custom-link-edit-id" />
-            <div style="padding: 8px 0;">
-              
-            </div>
-          </fieldset>
-        </div>
-      </b-collapse>
       <div>
         <span>
           Not seeing the links you're looking for?
@@ -74,8 +49,8 @@
         <h4>Popular Links</h4>
         <ul class="quicklinks-list">
           <uw-link
-            v-for="(link, index) in popularLinks" :key="index"
-            :link="link" :buttons="['save']"
+            v-for="(link, index) in popularLinks" :key="`popular-${index}`"
+            :link="link" :buttons="['save']" :customId="`popular-${index}`"
           />
         </ul>
       </b-collapse>
@@ -106,10 +81,10 @@
             </b-form-input>
           </b-form-group>
           <div>
-            <div id="error_saving">
+            <div id="error_saving" v-if="isAddErrored">
               <span>Error saving</span>
             </div>
-            <div id="quicklink_saving">
+            <div id="quicklink_saving" v-if="isAddFetching">
               <span>Saving...</span>
             </div>
           </div>
@@ -134,7 +109,6 @@ export default {
   data: function () {
     return {
       customLink: {},
-      editCustomLink: {},
     };
   },
   computed: {
@@ -151,6 +125,8 @@ export default {
     ...mapGetters("quicklinks", {
       isReady: "isReady",
       isErrored: "isErrored",
+      isAddFetching: "isAddFetching",
+      isAddErrored: "isAddErrored",
     }),
   },
   methods: {
@@ -162,18 +138,10 @@ export default {
       event.preventDefault();
       this.quicklinksAddLink(this.customLink);
     },
-    updateLink: function(event) {
-      event.preventDefault();
-      this.quicklinksUpdateLink(this.editCustomLink);
-    },
     onReset: function(event) {
       event.preventDefault();
-      this.currentCustomLink = {};
       this.customLink = {};
     },
-    updateCustomCurrent: function(link) {
-      this.editCustomLink = JSON.parse(JSON.stringify(link));
-    }
   },
 };
 </script>
