@@ -13,22 +13,24 @@
         <slot name="card-footer" />
       </template>
     </b-card>
-    <b-card v-else-if="errored"
-            class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3"
-    >
-      <slot name="card-heading" />
-      <b-alert show variant="light" class="p-0 m-0">
-        <div class="d-flex text-danger m-0 myuw-text-md">
-          <div class="pr-2 flex-shrink-1">
-            <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+    <div v-else-if="errored">
+      <b-card v-if="erroredShow"
+              class="rounded-0 shadow-sm mb-3" tabindex="0" body-class="p-3"
+      >
+        <slot name="card-heading" />
+        <b-alert show variant="light" class="p-0 m-0">
+          <div class="d-flex text-danger m-0 myuw-text-md">
+            <div class="pr-2 flex-shrink-1">
+              <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+            </div>
+            <div class="w-100">
+              An error has occurred and we can't load this content right now.
+              Please try again later.
+            </div>
           </div>
-          <div class="w-100">
-            An error has occurred and we can't load this content right now.
-            Please try again later.
-          </div>
-        </div>
-      </b-alert>
-    </b-card>
+        </b-alert>
+      </b-card>
+    </div>
     <b-card v-else class="rounded-0 shadow-sm mb-3" body-class="p-3">
       <b-card-text class="d-flex justify-content-center card-loading">
         <!-- TODO: replace this with a cog -->
@@ -48,6 +50,10 @@ export default {
     errored: {
       type: Boolean,
       default: false,
+    },
+    erroredShow: {
+      type: Boolean,
+      default: true,
     },
     mobileOnly: {
       type: Boolean,

@@ -1,5 +1,9 @@
 <template>
-  <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored">
+  <uw-card v-if="hxtViewer"
+           :loaded="isReady"
+           :errored="isErrored"
+           :erroredShow="showError"
+  >
     <template #card-heading>
       <h3 class="text-dark-beige">
         Husky Experience Toolkit
@@ -73,7 +77,11 @@ export default {
     ...mapGetters('hx_toolkit', {
       isReady: 'isReady',
       isErrored: 'isErrored',
+      statusCode: 'statusCode',
     }),
+    showError: function() {
+      return (this.statusCode == 543);
+    },
   },
   created() {
     if (this.hxtViewer) {
