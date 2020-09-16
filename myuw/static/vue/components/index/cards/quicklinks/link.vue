@@ -1,19 +1,19 @@
 <template>
-  <li>
+  <li class="quicklinks-link">
     <a :href="link.url" :title="link.label" target="_blank">
       <span>{{ link.label }}</span>
     </a>
     <b-button
       v-if="activeButtons['edit']" variant="link"
       :title="`Edit ${link.label} link`"
-      @click="editLink"
+      v-b-toggle="editId" @click="updateCustomCurrent(link)"
     >
       <font-awesome-icon :icon="['fas', 'pencil-alt']" />
     </b-button>
     <b-button
       v-if="activeButtons['remove']" variant="link"
       :title="`Remove ${link.label} link from Quick Links list`"
-      @click="removeLink"
+      @click="removeLink({link, canActuallyRemove})"
     >
       <font-awesome-icon :icon="['fas', 'times']" />
     </b-button>
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   props: {
     link: {
@@ -44,6 +46,17 @@ export default {
     buttons: {
       type: Array,
       default: [],
+    },
+    editId: {
+      type: String,
+      default: null,
+    },
+    canActuallyRemove: {
+      type: Boolean,
+      default: false,
+    },
+    updateCustomCurrent: {
+      type: Function,
     }
   },
   data: function() {
@@ -61,10 +74,8 @@ export default {
     });
   },
   methods: {
+    ...mapActions('quicklinks', ['removeLink',]),
     editLink() {
-
-    },
-    removeLink() {
 
     },
     saveLink() {
@@ -75,5 +86,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.quicklinks-link {
+  button {
+    padding: 0;
+  }
+}
 </style>

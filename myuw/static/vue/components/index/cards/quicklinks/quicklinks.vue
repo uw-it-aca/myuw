@@ -4,20 +4,22 @@
       <h3>Quick Links</h3>
     </template>
     <template #card-body>
-      <ul>
+      <ul class="quicklinks-list">
         <uw-link
-          v-for="(link, index) in defaultLinks" :key="index"
+          v-for="(link, index) in defaultLinks" :key="`default-${index}`"
           :link="link" :buttons="['remove']"
         />
         <uw-link
-          v-for="(link, index) in customLinks" :key="index"
+          v-for="(link, index) in customLinks" :key="`custom-${index}`"
           :link="link" :buttons="['edit', 'remove']"
+          editId="custom-link-edit" canActuallyRemove
+          :updateCustomCurrent="updateCustomCurrent"
         />
       </ul>
       <hr />
       <div v-if="recentLinks.length">
         <h4>Recently Visited</h4>
-        <ul>
+        <ul class="quicklinks-list">
           <uw-link
             v-for="(link, index) in recentLinks" :key="index"
             :link="link" :buttons="['save']"
@@ -29,17 +31,17 @@
       </div>
       <hr v-if="recentLinks.length" />
       <b-collapse id="custom-link-edit">
-        <b-form @submit="saveLink">
+        <b-form @submit="updateLink" @reset="onReset">
           <h4>Edit Quick Link</h4>
           <b-form-group label="URL" label-for="custom-link-edit-url">
-            <b-form-input type="url" id="custom-link-edit-url" v-model="custom_link.url" required>
+            <b-form-input type="url" id="custom-link-edit-url" v-model="editCustomLink.url" required>
             </b-form-input>
           </b-form-group>
           <b-form-group label="Link name (optional)" label-for="custom-link-edit-label">
-            <b-form-input type="url" id="custom-link-edit-label" v-model="custom_link.label">
+            <b-form-input type="text" id="custom-link-edit-label" v-model="editCustomLink.label">
             </b-form-input>
           </b-form-group>
-          <b-button type="reset">Cancel</b-button>
+          <b-button type="reset" v-b-toggle.custom-link-edit>Cancel</b-button>
           <b-button type="submit">Save</b-button>
         </b-form>
         <div class="form">
@@ -70,7 +72,7 @@
 
       <b-collapse id="popular_qlinks">
         <h4>Popular Links</h4>
-        <ul>
+        <ul class="quicklinks-list">
           <uw-link
             v-for="(link, index) in popularLinks" :key="index"
             :link="link" :buttons="['save']"
@@ -82,48 +84,38 @@
         role="form"
         aria-labelledby="custom_qlinks_label"
       >
-        <div>
-          <h4 id="custom_qlinks_label">Add your link to Quick Links</h4>
+        <b-form @submit="addLink" @reset="onReset">
+          <h4>Add your link to Quick Links</h4>
+          <b-form-group label="URL" label-for="myuw-custom-qlink">
+            <b-form-input
+              type="url"
+              id="myuw-custom-qlink"
+              v-model="customLink.url"
+              placeholder="https://www.washington.edu"
+              required
+            >
+            </b-form-input>
+          </b-form-group>
+          <b-form-group label="Link name (optional)" label-for="myuw-custom-qlink-label">
+            <b-form-input
+              type="text"
+              id="myuw-custom-qlink-label"
+              v-model="customLink.label"
+              placeholder="UW Homepage"
+            >
+            </b-form-input>
+          </b-form-group>
           <div>
-            <label for="myuw-custom-qlink" class="sr-only">Web Address</label>
-            <fieldset>
-              <label for="myuw-custom-qlink">URL</label>
-              <input
-                type="url"
-                placeholder="https://www.washington.edu"
-                id="myuw-custom-qlink"
-                value=""
-              />
-              <br />
-              <label for="myuw-custom-qlink-label">
-                Link name (optional)
-              </label>
-              <input
-                type="text"
-                placeholder="UW Homepage"
-                id="myuw-custom-qlink-label"
-                value=""
-              />
-              <br />
-              <div>
-                <div>
-                  <div>
-                    <a data-toggle="collapse" href="#custom_qlinks">Cancel</a>
-                    <button id="quicklinks-save-new">
-                      Add
-                    </button>
-                  </div>
-                </div>
-                <div id="error_saving">
-                  <span>Error saving</span>
-                </div>
-                <div id="quicklink_saving">
-                  <span>Saving...</span>
-                </div>
-              </div>
-            </fieldset>
+            <div id="error_saving">
+              <span>Error saving</span>
+            </div>
+            <div id="quicklink_saving">
+              <span>Saving...</span>
+            </div>
           </div>
-        </div>
+          <b-button type="reset" v-b-toggle.custom_qlinks>Cancel</b-button>
+          <b-button type="submit">Add</b-button>
+        </b-form>
       </b-collapse>
     </template>
   </uw-card>
@@ -141,7 +133,8 @@ export default {
   },
   data: function () {
     return {
-      custom_link: {},
+      customLink: {},
+      editCustomLink: {},
     };
   },
   computed: {
@@ -161,11 +154,33 @@ export default {
     }),
   },
   methods: {
-    removeLink(link) {
-
+    ...mapActions('quicklinks', {
+      quicklinksAddLink: 'addLink',
+      quicklinksUpdateLink: 'updateLink',
+    }),
+    addLink: function(event) {
+      event.preventDefault();
+      this.quicklinksAddLink(this.customLink);
+    },
+    updateLink: function(event) {
+      event.preventDefault();
+      this.quicklinksUpdateLink(this.editCustomLink);
+    },
+    onReset: function(event) {
+      event.preventDefault();
+      this.currentCustomLink = {};
+      this.customLink = {};
+    },
+    updateCustomCurrent: function(link) {
+      this.editCustomLink = JSON.parse(JSON.stringify(link));
     }
   },
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.quicklinks-list {
+  list-style: none;
+  padding-left: 0;
+}
+</style>
