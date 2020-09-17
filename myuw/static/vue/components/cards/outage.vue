@@ -85,8 +85,8 @@ export default {
       }
       /** This is the logic for instructor and employee
       if (this.isInstructor) {
-        if (this.profileStatusCode) {
-          if (this.non404Error(this.profileStatusCode)) {
+        if (this.instructorScheduleStatusCode) {
+          if (this.non404Error(this.instructorScheduleStatusCode)) {
             return true;
           }
         }
