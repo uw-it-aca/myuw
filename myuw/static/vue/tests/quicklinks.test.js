@@ -17,6 +17,7 @@ import {
   faExclamationTriangle,
   faPencilAlt,
   faTimes,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 const localVue = createLocalVue();
@@ -26,6 +27,7 @@ localVue.use(Vuex);
 library.add(faExclamationTriangle);
 library.add(faPencilAlt);
 library.add(faTimes);
+library.add(faPlus);
 
 localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
@@ -200,6 +202,36 @@ describe('Quicklinks/Link', () => {
     expect(wrapper.findAllComponents(Link).at(
       mockQuicklinksCopy['default_links'].length + editLinkIndex
     ).text()).toMatch(editCustomLink.label);
+  });
+
+  it('recent save link', async () => {
+    const mockQuicklinksCopy = JSON.parse(JSON.stringify(mockQuicklinks));
+    const newRecentLink = {
+      added: false,
+      id: 2,
+      url: "http://test.com",
+      label: "test",
+    };
+
+    const newLinkIndex = mockQuicklinksCopy.recent_links.push({
+      ...newRecentLink,
+    }) - 1;
+    axios.post.mockResolvedValue({data: mockQuicklinksCopy});
+    const wrapper = mount(Quicklinks, {store, localVue});
+    expect(wrapper.find('h3').text()).toEqual('Quick Links');
+
+    // It takes like 10 ms for the dom to update
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.findAllComponents(Link)).toHaveLength(
+      mockQuicklinksCopy['default_links'].length + mockQuicklinksCopy['recent_links'].length
+    );
+
+    wrapper.findAllComponents(Link).at(
+      mockQuicklinksCopy['default_links'].length + newLinkIndex,
+    ).vm.currentCustomLink = newRecentLink;
+    wrapper.findAllComponents(Link).at(
+      mockQuicklinksCopy['default_links'].length + newLinkIndex,
+    ).vm.saveLink({preventDefault: jest.fn()});
   });
 
   it('onReset', () => {
