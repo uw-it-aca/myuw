@@ -251,6 +251,8 @@ describe('Quicklinks/Link', () => {
     wrapper.findAllComponents(Link).at(0).vm.currentCustomLink = newCustomLink;
     expect(wrapper.findAllComponents(Link).at(0).vm.currentCustomLink).toEqual(newCustomLink);
     wrapper.findAllComponents(Link).at(0).vm.onReset({preventDefault: jest.fn()});
-    expect(wrapper.findAllComponents(Link).at(0).vm.currentCustomLink).toEqual({});
+    expect(
+      wrapper.findAllComponents(Link).at(0).vm.currentCustomLink
+    ).toEqual(mockQuicklinks.default_links[0]);
   });
 });
