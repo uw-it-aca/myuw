@@ -3,7 +3,7 @@
 @import "~bootstrap/scss/variables";
 
 // override max width of containers
-$container-max-widths: map.merge($container-max-widths, (xl: 1200px));
+$container-max-widths: map.merge($container-max-widths, (xl: 1400px));
 
 // enable responsive font sizing
 // $enable-responsive-font-sizes: true;
@@ -42,6 +42,8 @@ $theme-colors: (
   'c7a': #653FB2,
   'c8': #352E9B,
   'c8a': #473EC5,
+  // Colors
+  'grey': #dedede,
 );
 
 // override global line height (1.5rem default)
@@ -49,8 +51,3 @@ $theme-colors: (
 
 // override all links
 $link-color: #4d66ca; //a11y blue
-
-// color variables
-
-// gold yellow testing
-$uw-yellow: #ffbc24; 

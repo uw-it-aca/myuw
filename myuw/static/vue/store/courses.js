@@ -1,10 +1,4 @@
-import {fetchBuilder, buildWith} from './model_builder';
-
-const setTermAndExtractData = (response, urlExtra) => {
-    let proccessValue = {};
-    proccessValue[urlExtra] = response.data;
-    return proccessValue;
-}
+import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 
 const customActions = {
     fetch: fetchBuilder('/api/v1/schedule/', setTermAndExtractData, 'json'),
