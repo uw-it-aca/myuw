@@ -6,7 +6,12 @@
       </strong>
       <!-- TODO: add title and aria-label -->
       <!-- STRING: "Event date. Time. Event title. Location" -->
-      <a :href="event.event_url" class="d-block" title="" aria-label="">
+      <a
+        :href="event.event_url"
+        class="d-block"
+        :title="generateLabel(event)"
+        :aria-label="generateLabel(event)"
+      >
         <span v-if="event.is_all_day" class="text-dark font-weight-light
         d-inline-block mr-1"
         >
@@ -46,6 +51,25 @@ export default {
       }
       return formattedDate;
     },
+    generateLabel(event) {
+      let label = '';
+
+      if (event.start_date && event.end_date) {
+        label += `${
+          this.acalDateFormat(event.start_date, event.end_date)
+        }. ${event.start_date.format('h:mm A')}. `;
+      }
+
+      label += `${event.summary}`;
+
+      if (event.event_location) {
+        label += `. ${event.event_location}`;
+      } else {
+        label += `. Location not available`;
+      }
+
+      return label;
+    }
   },
 };
 </script>
