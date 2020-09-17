@@ -1,5 +1,6 @@
 import {Vue, vueConf} from './base.js';
 
+// Vue componenets
 import Boilerplate from './containers/boilerplate.vue';
 import Summaries from './components/index/summaries.vue';
 import Notices from './components/index/cards/notices.vue';
@@ -10,9 +11,11 @@ import NewInterStudent from
 import Applicant from './components/index/cards/applicant/applicant.vue';
 import Events from './components/index/cards/events/events.vue';
 import Grades from './components/cards/grades.vue';
+import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 import HuskyExperience from './components/cards/husky-experience.vue'
 import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue'
 
+// Stores
 import notices from './store/notices';
 import quicklinks from './store/quicklinks';
 import hfs from './store/hfs';
@@ -20,6 +23,7 @@ import library from './store/library';
 import applicant from './store/applicant';
 import events from './store/events';
 import courses from './store/courses';
+import schedule from './store/schedule';
 import hx_toolkit from './store/hx_toolkit';
 
 vueConf.store.registerModule('notices', notices);
@@ -28,6 +32,7 @@ vueConf.store.registerModule('library', library);
 vueConf.store.registerModule('applicant', applicant);
 vueConf.store.registerModule('events', events);
 vueConf.store.registerModule('courses', courses);
+vueConf.store.registerModule('schedule', schedule);
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
 vueConf.store.registerModule('quicklinks', quicklinks);
 
@@ -53,6 +58,7 @@ Vue.component('myuw-applicant', Applicant);
 Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
+Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-quicklinks', Quicklinks);
 

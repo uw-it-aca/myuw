@@ -5,6 +5,11 @@ const statusOptions = ['READY', 'FETCHING', 'ERROR'];
 // Some helper functions
 const doNothing = (response) => response;
 const extractData = (response) => response.data;
+const setTermAndExtractData = (response, urlExtra) => {
+  let proccessValue = {};
+  proccessValue[urlExtra] = response.data;
+  return proccessValue;
+}
 
 const fetchBuilder = (url, postProcess, type) => {
   return ({commit, getters}, urlExtra = '') => {
@@ -12,9 +17,6 @@ const fetchBuilder = (url, postProcess, type) => {
       commit('setStatus', {type: statusOptions[1]});
       axios.get(url + urlExtra, {
         responseType: type,
-        headers: {
-          'Accept': 'text/html',
-        },
       }).then((response) => {
         return {
           data: postProcess(response, urlExtra),
@@ -87,8 +89,11 @@ const buildWith = (
 
 export {
   statusOptions,
+  // Helper Functions
   doNothing,
   extractData,
+  setTermAndExtractData,
+  // Builders
   buildWith,
   fetchBuilder,
 };
