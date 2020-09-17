@@ -198,6 +198,7 @@ describe('Vue SFC Tests', () => {
         termData: {
           quarter: 'summer',
           year: 2013,
+          today: 'Monday, April 1, 2013',
         }
       }
     });
@@ -274,5 +275,31 @@ describe('Vue SFC Tests', () => {
       wrapper.findAllComponents(ScheduleTab).at(1).vm
         .meetingMap["monday"]["08:30 AM"]
     ).toHaveLength(2);
+  });
+
+  it ('jeos - activePeriod', async () => {
+    axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
+    const wrapper = mount(VisualSchedule, {store, localVue});
+
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.find('h3').exists()).toBeTruthy();
+    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+
+    expect(wrapper.vm.activePeriod.id).toEqual(0);
+    
+    store.state.termData.today = 'Saturday, April 6, 2013';
+    expect(wrapper.vm.activePeriod.id).toEqual(1);
+
+    store.state.termData.today = 'Sunday, April 7, 2013';
+    expect(wrapper.vm.activePeriod.id).toEqual(1);
+
+    store.state.termData.today = 'Friday, May 3, 2013';
+    expect(wrapper.vm.activePeriod.id).toEqual(1);
+
+    store.state.termData.today = 'Saturday, May 4, 2013';
+    expect(wrapper.vm.activePeriod.id).toEqual(2);
+
+    store.state.termData.today = 'Sunday, May 5, 2013';
+    expect(wrapper.vm.activePeriod.id).toEqual(2);
   });
 });
