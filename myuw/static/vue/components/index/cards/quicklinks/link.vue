@@ -4,9 +4,9 @@
       <span>{{ link.label }}</span>
     </a>
     <b-button
-      v-if="activeButtons['edit']" variant="link"
+      v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
+      variant="link"
       :title="`Edit ${link.label} link`"
-      v-b-toggle="`${customId}-collapse`"
     >
       <font-awesome-icon :icon="['fas', 'pencil-alt']" />
     </b-button>
@@ -35,22 +35,35 @@
       <b-form @submit="updateLink" @reset="onReset">
         <h4>Edit Quick Link</h4>
         <b-form-group label="URL" :label-for="`${customId}-edit-url`">
-          <b-form-input type="url" :id="`${customId}-edit-url`" v-model="currentCustomLink.url" required>
-          </b-form-input>
+          <b-form-input
+            :id="`${customId}-edit-url`"
+            v-model="currentCustomLink.url"
+            type="url" required
+          />
         </b-form-group>
-        <b-form-group label="Link name (optional)" :label-for="`${customId}-edit-label`">
-          <b-form-input type="text" :id="`${customId}-edit-label`" v-model="currentCustomLink.label">
-          </b-form-input>
+        <b-form-group
+          label="Link name (optional)"
+          :label-for="`${customId}-edit-label`"
+        >
+          <b-form-input
+            :id="`${customId}-edit-label`"
+            v-model="currentCustomLink.label"
+            type="text"
+          />
         </b-form-group>
-        <b-button type="reset" v-b-toggle="`${customId}-collapse`">Cancel</b-button>
-        <b-button type="submit">Save</b-button>
+        <b-button v-b-toggle="`${customId}-collapse`" type="reset">
+          Cancel
+        </b-button>
+        <b-button type="submit">
+          Save
+        </b-button>
       </b-form>
     </b-collapse>
   </li>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import {mapActions} from 'vuex';
 
 export default {
   props: {
@@ -60,7 +73,7 @@ export default {
     },
     buttons: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     customId: {
       type: String,
@@ -79,7 +92,7 @@ export default {
         save: false,
       },
       currentCustomLink: {},
-    } 
+    };
   },
   created() {
     this.buttons.forEach((button) => {
@@ -108,8 +121,8 @@ export default {
       event.preventDefault();
       this.addLink(this.link);
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>

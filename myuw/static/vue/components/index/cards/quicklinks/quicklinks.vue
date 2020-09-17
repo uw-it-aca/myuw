@@ -1,5 +1,5 @@
 <template>
-  <uw-card :loaded="true" :errored="false" :mobileOnly="mobileOnly">
+  <uw-card :loaded="true" :errored="false" :mobile-only="mobileOnly">
     <template #card-heading>
       <h3>Quick Links</h3>
     </template>
@@ -7,28 +7,28 @@
       <ul class="quicklinks-list">
         <uw-link
           v-for="(link, index) in defaultLinks" :key="`default-${index}`"
-          :link="link" :buttons="['remove']" :customId="`default-${index}`"
+          :link="link" :buttons="['remove']" :custom-id="`default-${index}`"
         />
         <uw-link
           v-for="(link, index) in customLinks" :key="`custom-${index}`"
           :link="link" :buttons="['edit', 'remove']"
-          :customId="`custom-${index}`" canActuallyRemove
+          :custom-id="`custom-${index}`" can-actually-remove
         />
       </ul>
-      <hr />
+      <hr>
       <div v-if="recentLinks.length">
         <h4>Recently Visited</h4>
         <ul class="quicklinks-list">
           <uw-link
             v-for="(link, index) in recentLinks" :key="`recent-${index}`"
-            :link="link" :buttons="['save']" :customId="`recent-${index}`"
+            :link="link" :buttons="['save']" :custom-id="`recent-${index}`"
           />
         </ul>
         <span>
           Save your recently visited links for future access.
         </span>
       </div>
-      <hr v-if="recentLinks.length" />
+      <hr v-if="recentLinks.length">
       <div>
         <span>
           Not seeing the links you're looking for?
@@ -50,7 +50,7 @@
         <ul class="quicklinks-list">
           <uw-link
             v-for="(link, index) in popularLinks" :key="`popular-${index}`"
-            :link="link" :buttons="['save']" :customId="`popular-${index}`"
+            :link="link" :buttons="['save']" :custom-id="`popular-${index}`"
           />
         </ul>
       </b-collapse>
@@ -63,33 +63,38 @@
           <h4>Add your link to Quick Links</h4>
           <b-form-group label="URL" label-for="myuw-custom-qlink">
             <b-form-input
-              type="url"
               id="myuw-custom-qlink"
               v-model="customLink.url"
+              type="url"
               placeholder="https://www.washington.edu"
               required
-            >
-            </b-form-input>
+            />
           </b-form-group>
-          <b-form-group label="Link name (optional)" label-for="myuw-custom-qlink-label">
+          <b-form-group
+            label="Link name (optional)"
+            label-for="myuw-custom-qlink-label"
+          >
             <b-form-input
-              type="text"
               id="myuw-custom-qlink-label"
               v-model="customLink.label"
+              type="text"
               placeholder="UW Homepage"
-            >
-            </b-form-input>
+            />
           </b-form-group>
           <div>
-            <div id="error_saving" v-if="isAddErrored">
+            <div v-if="isAddErrored" id="error_saving">
               <span>Error saving</span>
             </div>
-            <div id="quicklink_saving" v-if="isAddFetching">
+            <div v-if="isAddFetching" id="quicklink_saving">
               <span>Saving...</span>
             </div>
           </div>
-          <b-button type="reset" v-b-toggle.custom_qlinks>Cancel</b-button>
-          <b-button type="submit">Add</b-button>
+          <b-button v-b-toggle.custom_qlinks type="reset">
+            Cancel
+          </b-button>
+          <b-button type="submit">
+            Add
+          </b-button>
         </b-form>
       </b-collapse>
     </template>
@@ -97,13 +102,13 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
-import Card from "../../../../containers/card.vue";
-import Link from "./link.vue";
+import {mapGetters, mapState, mapActions} from 'vuex';
+import Card from '../../../../containers/card.vue';
+import Link from './link.vue';
 
 export default {
   components: {
-    "uw-card": Card,
+    'uw-card': Card,
     'uw-link': Link,
   },
   props: {
@@ -112,7 +117,7 @@ export default {
       default: false,
     },
   },
-  data: function () {
+  data: function() {
     return {
       customLink: {},
     };
@@ -128,10 +133,10 @@ export default {
       defaultLinks: (state) => state.value.defaultLinks,
     }),
     ...mapGetters('quicklinks', {
-      isReady: "isReady",
-      isErrored: "isErrored",
-      isAddFetching: "isAddFetching",
-      isAddErrored: "isAddErrored",
+      isReady: 'isReady',
+      isErrored: 'isErrored',
+      isAddFetching: 'isAddFetching',
+      isAddErrored: 'isAddErrored',
     }),
   },
   methods: {
