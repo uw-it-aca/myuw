@@ -17,7 +17,13 @@
         :myplanPeakLoad="myplanPeakLoad"
         :regHoldsNotices="regHoldsNotices"
       />
-      <uw-myplan
+      <uw-in-myplan
+        v-if="!myplanPeakLoad"
+        :nextTermYear="nextTermYear"
+        :nextTermQuarter="nextTermQuarter"
+      />
+
+      <uw-myplan-courses
         v-if="!myplanPeakLoad"
         :nextTermYear="nextTermYear"
         :nextTermQuarter="nextTermQuarter"
@@ -34,15 +40,22 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../../../containers/card.vue';
 import EstRegComponent from './estRegDate.vue';
+import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
-import MyPlanComponent from './myplan.vue';
+import InMyPlanComponent from './inMyplan.vue';
+import MyplanCoursesComponent from './myplanCourses.vue';
+import ResourcesComponent from './resources.vue';
+
 
 export default {
   components: {
     'uw-card': Card,
     'uw-est-reg-date': EstRegComponent,
+    'uw-fin-aid': FinAidComponent,
     'uw-holds': HoldsComponent,
-    'uw-myplan': MyPlanComponent,
+    'uw-in-myplan': InMyPlanComponent,
+    'uw-myplan-courses': MyplanCoursesComponent,
+    'uw-resources': ResourcesComponent,
   },
   computed: {
     ...mapState({
@@ -105,10 +118,41 @@ export default {
       );
     }
   },
+  data: function() {
+    return {
+      estRegData: {
+        hasEstRegDataNotice: false,
+        noticeMyRegIsOpen: false,
+        isMy1stRegDay: false,
+        estRegDate: null,
+      },
+    }
+  },
   created() {
     this.fetchNotices();
     this.fetchQuarters();
     this.fetchProfile();
+
+    this.estRegDateNotices.forEach((notice) => {
+      let registration_date = null;
+
+      // Set registration_date date to the first date value found in
+      // the notice attributes
+      notice.attributes.filter((a) => a.name === 'Date')
+        .slice(0, 1).forEach((a) => {registration_date = a.value});
+
+      notice.attributes
+        .filter((a) => a.name === 'Quarter' && a.value === this.nextTermQuarter)
+        .slice(0, 1).forEach((a) => {
+          this.estRegData.hasEstRegDataNotice = true;
+          this.estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
+          this.estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
+          this.estRegData.estRegDate = {
+            notice: notice,
+            date: registration_date,
+          };
+        });
+    });
   },
   methods: {
     ...mapActions('notices', {
