@@ -49,7 +49,7 @@ const customActions = {
   addLink({commit, rootState}, link) {
     commit('setAddStatus', {type: statusOptions[1]});
     axios.post('/api/v1/link', {
-      type: "custom",
+      type: link.type || "custom",
       ...link,
     }, {
       headers: {
@@ -62,7 +62,6 @@ const customActions = {
       console.log(e);
       commit('setAddStatus', {type: statusOptions[2], code: e.statusCode});
     });
-    // TODO: the catch above needs to propogated back
   },
   removeLink({commit, rootState}, {link, canActuallyRemove}) {
     axios.post('/api/v1/link', {
@@ -73,7 +72,6 @@ const customActions = {
         'X-CSRFToken': rootState.csrfToken,
       },
     }).then((response) => commit('updateFromResponse', response)).catch(console.log);
-    // TODO: the catch above needs to propogated back
   },
   updateLink({commit, rootState}, link) {
     axios.post('/api/v1/link', {
@@ -86,7 +84,6 @@ const customActions = {
         'X-CSRFToken': rootState.csrfToken,
       },
     }).then((response) => commit('updateFromResponse', response)).catch(() => {});
-    // TODO: the catch above needs to propogated back
   }
 }
 

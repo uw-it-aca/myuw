@@ -17,7 +17,7 @@
     >
       <font-awesome-icon :icon="['fas', 'times']" />
     </b-button>
-    <div v-if="activeButtons['save']">
+    <span v-if="activeButtons['save']">
       <font-awesome-icon
         v-if="link.added"
         :title="`${link.label} link saved to Quick Links`"
@@ -26,11 +26,11 @@
       <b-button
         v-else variant="link"
         :title="`Save ${link.label} link to your Quick Links list`"
-        @click="saveLink(link)"
+        @click="saveLink"
       >
         <font-awesome-icon :icon="['fas', 'plus']" />
       </b-button>
-    </div>
+    </span>
     <b-collapse v-if="activeButtons['edit']" :id="`${customId}-collapse`">
       <b-form @submit="updateLink" @reset="onReset">
         <h4>Edit Quick Link</h4>
@@ -91,6 +91,7 @@ export default {
   },
   methods: {
     ...mapActions('quicklinks', {
+      addLink: 'addLink',
       removeLink: 'removeLink',
       quicklinksUpdateLink: 'updateLink',
     }),
@@ -103,8 +104,9 @@ export default {
       this.currentCustomLink = {};
       this.customLink = {};
     },
-    saveLink() {
-      // TODO: don't know when this is used
+    saveLink(event) {
+      event.preventDefault();
+      this.addLink(this.link);
     },
   }
 }
