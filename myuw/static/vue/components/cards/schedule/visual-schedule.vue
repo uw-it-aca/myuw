@@ -90,7 +90,7 @@ export default {
         ) {
           return this.periods[i];
         }
-      };
+      }
       return this.periods[Object.keys(this.periods)[this.periods.length - 1]];
     },
   },
