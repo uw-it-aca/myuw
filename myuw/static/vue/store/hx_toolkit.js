@@ -9,12 +9,6 @@ const postProccess = (response, urlExtra) => {
     response.data, 'text/html',
   );
 
-  if (htmlDoc.getElementsByClassName('myuw-card-title')[0]) {
-    proccessValue[urlExtra].cardTitle = htmlDoc.getElementsByClassName(
-      'myuw-card-title'
-    )[0].innerHTML;
-  }
-
   if (htmlDoc.getElementsByTagName('a')[0]) {
     proccessValue[urlExtra].expLink =
       htmlDoc.getElementsByTagName('a')[0].href;
@@ -27,6 +21,9 @@ const postProccess = (response, urlExtra) => {
     proccessValue[urlExtra].src = htmlDoc.getElementsByClassName(
       'myuw-card-image-full'
     )[0].src;
+    proccessValue[urlExtra].alt = htmlDoc.getElementsByClassName(
+      'myuw-card-image-full'
+    )[0].alt;
   }
 
   if (htmlDoc.getElementsByClassName('myuw-highlight')[0]) {
