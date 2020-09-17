@@ -3,35 +3,41 @@
     <a :href="link.url" :title="link.label" target="_blank">
       <span>{{ link.label }}</span>
     </a>
-    <b-button
-      v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
-      variant="link"
-      :title="`Edit ${link.label} link`"
-    >
-      <font-awesome-icon :icon="['fas', 'pencil-alt']" />
-    </b-button>
-    <b-button
-      v-if="activeButtons['remove']" variant="link"
-      :title="`Remove ${link.label} link from Quick Links list`"
-      @click="removeLink({link, canActuallyRemove})"
-    >
-      <font-awesome-icon :icon="['fas', 'times']" />
-    </b-button>
-    <span v-if="activeButtons['save']">
-      <font-awesome-icon
-        v-if="link.added"
-        :title="`${link.label} link saved to Quick Links`"
-        :icon="['fa', 'check']"
-      />
+    <span v-if="!isEditOpen">
       <b-button
-        v-else variant="link"
-        :title="`Save ${link.label} link to your Quick Links list`"
-        @click="saveLink"
+        v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
+        variant="link"
+        :title="`Edit ${link.label} link`"
       >
-        <font-awesome-icon :icon="['fas', 'plus']" />
+        <font-awesome-icon :icon="['fas', 'pencil-alt']" />
       </b-button>
+      <b-button
+        v-if="activeButtons['remove']" variant="link"
+        :title="`Remove ${link.label} link from Quick Links list`"
+        @click="removeLink({link, canActuallyRemove})"
+      >
+        <font-awesome-icon :icon="['fas', 'times']" />
+      </b-button>
+      <span v-if="activeButtons['save']">
+        <font-awesome-icon
+          v-if="link.added"
+          :title="`${link.label} link saved to Quick Links`"
+          :icon="['fa', 'check']"
+        />
+        <b-button
+          v-else variant="link"
+          :title="`Save ${link.label} link to your Quick Links list`"
+          @click="saveLink"
+        >
+          <font-awesome-icon :icon="['fas', 'plus']" />
+        </b-button>
+      </span>
     </span>
-    <b-collapse v-if="activeButtons['edit']" :id="`${customId}-collapse`">
+    <b-collapse
+      v-if="activeButtons['edit']"
+      :id="`${customId}-collapse`"
+      v-model="isEditOpen"
+    >
       <b-form @submit="updateLink" @reset="onReset">
         <h4>Edit Quick Link</h4>
         <b-form-group label="URL" :label-for="`${customId}-edit-url`">
@@ -92,6 +98,7 @@ export default {
         save: false,
       },
       currentCustomLink: {},
+      isEditOpen: false,
     };
   },
   created() {
@@ -111,11 +118,12 @@ export default {
     updateLink: function(event) {
       event.preventDefault();
       this.quicklinksUpdateLink(this.currentCustomLink);
+      this.onReset({preventDefault: () => {}});
     },
     onReset: function(event) {
       event.preventDefault();
-      this.currentCustomLink = {};
-      this.customLink = {};
+      this.currentCustomLink = JSON.parse(JSON.stringify(this.link));
+      this.isEditOpen = false;
     },
     saveLink(event) {
       event.preventDefault();
