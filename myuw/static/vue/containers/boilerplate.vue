@@ -24,7 +24,7 @@
           <b-row>
             <b-col xs="2">
               <b-link href="/profile/" class="text-white font-weight-lighter">
-                <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />
+                <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
                 {{ netid }}
               </b-link>
             </b-col>
@@ -84,6 +84,7 @@
             variant="link"
             size="sm"
             class="d-lg-none p-0 text-white"
+            aria-label="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon
@@ -109,8 +110,8 @@
     </header>
 
     <div class="bg-light pt-4 pb-4 myuw-body">
-      <b-container fluid="xl" class="px-3">
-        <b-row>
+      <b-container fluid="xl">
+        <b-row :no-gutters="$mq !== 'desktop'">
           <b-col lg="2">
             <!-- main sidebar navigation -->
             <b-collapse
@@ -239,15 +240,28 @@
             </h2>
             <!-- page content inserted here -->
             <slot />
+            <b-row v-if="$mq !== 'mobile'">
+              <b-col md="8">
+                <slot name="main" />
+              </b-col>
+              <b-col md="4">
+                <slot name="side-bar" />
+              </b-col>
+            </b-row>
+            <b-row v-else>
+              <b-col class="px-0">
+                <slot name="main" />
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
       </b-container>
     </div>
 
-    <footer class="bg-dark pt-3 pb-3 text-nowrap myuw-footer myuw-text-xs">
+    <footer class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
-          <li class="list-inline-item mr-1">
+          <li class="list-inline-item mr-0">
             <b-link :href="mailToUrl + netid" class="text-white">
               <font-awesome-icon
                 :icon="['fas', 'envelope']"
@@ -255,7 +269,7 @@
               />Contact
             </b-link>
           </li>
-          <li class="list-inline-item mr-1">
+          <li class="list-inline-item mr-0">
             <b-link
               href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
               class="text-white"
@@ -263,12 +277,12 @@
               MyUW Help
             </b-link>
           </li>
-          <li class="list-inline-item mr-1 d-lg-none">
+          <li class="list-inline-item mr-0 d-lg-none">
             <b-link href="/logout/" class="text-white">
               Sign Out
             </b-link>
           </li>
-          <li class="list-inline-item mr-1">
+          <li class="list-inline-item mr-0">
             <b-link
               href="https://www.washington.edu/online/terms/"
               class="text-white"
@@ -335,7 +349,9 @@ export default {
 
 // boilerplate
 
-//.myuw-override {}
+.myuw-override {
+  a { color: darken($link-color, 12%) !important; }
+}
 //.myuw-search {}
 
 .myuw-thin-bar {
@@ -385,7 +401,7 @@ export default {
       &:not(:last-child)::after {
         content: "·";
         color: #fff;
-        margin-left: 0.5rem;
+        //margin-left: 0.5rem;
       }
     }
   }
