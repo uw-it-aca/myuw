@@ -3,13 +3,35 @@ import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import Outage from '../components/cards/outage.vue';
 
-//import mockNotices from './mock_data/notices.json';
-
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 localVue.use(Vuex);
 
 describe('Outage card', () => {
+
+  it('non404Error checking', () => {
+    let store = new Vuex.Store({
+        state: {
+          user: {
+            affiliations: {
+            student: true,
+            instructor: false,
+            employee: false,
+            }
+          }
+        },
+        getters: {
+          'courses/statusCode': () => 200,
+          'notices/statusCode': () => 200,
+          // 'profile/statusCode': () => 200,
+        },
+    });
+    const wrapper = shallowMount(Outage, {store, localVue});
+    expect(wrapper.vm.non404Error(200)).toBeFalsy();
+    expect(wrapper.vm.non404Error(404)).toBeFalsy();
+    expect(wrapper.vm.non404Error(543)).toBeTruthy();
+    expect(wrapper.vm.non404Error(400)).toBeTruthy();
+  });
 
   describe('showOutageCard for Student', () => {
     const state = {
