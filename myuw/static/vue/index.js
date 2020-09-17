@@ -11,8 +11,10 @@ import Applicant from './components/index/cards/applicant/applicant.vue';
 import Events from './components/index/cards/events/events.vue';
 import Grades from './components/cards/grades.vue';
 import HuskyExperience from './components/cards/husky-experience.vue'
+import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue'
 
 import notices from './store/notices';
+import quicklinks from './store/quicklinks';
 import hfs from './store/hfs';
 import library from './store/library';
 import applicant from './store/applicant';
@@ -27,6 +29,7 @@ vueConf.store.registerModule('applicant', applicant);
 vueConf.store.registerModule('events', events);
 vueConf.store.registerModule('courses', courses);
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
+vueConf.store.registerModule('quicklinks', quicklinks);
 
 vueConf.store.commit('addVarToState', {
   name: 'termData',
@@ -51,6 +54,7 @@ Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
 Vue.component('myuw-husky-experience', HuskyExperience);
+Vue.component('myuw-quicklinks', Quicklinks);
 
 new Vue({
   ...vueConf,

@@ -13,7 +13,17 @@ module.exports = {
   context: __dirname,
   optimization: {
     minimizer: [
-      new TerserJSPlugin(),
+      new TerserJSPlugin({
+        extractComments: true,
+        cache: true,
+        parallel: true,
+        terserOptions: {
+          extractComments: 'all',
+          compress: {
+            drop_console: true,
+          },
+        }
+      }),
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           safe: true,
