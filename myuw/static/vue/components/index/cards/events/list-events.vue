@@ -4,11 +4,15 @@
       <strong>
         {{ acalDateFormat(event.start_date, event.end_date) }}
       </strong>
-      <a :href="event.event_url" class="d-block">
-        <span v-if="event.is_all_day" class="text-dark d-inline-block mr-1">
+      <!-- TODO: add title and aria-label -->
+      <!-- STRING: "Event date. Time. Event title. Location" -->
+      <a :href="event.event_url" class="d-block" title="" aria-label="">
+        <span v-if="event.is_all_day" class="text-dark font-weight-light
+        d-inline-block mr-1"
+        >
           All Day
         </span>
-        <span v-else class="text-dark d-inline-block mr-1">
+        <span v-else class="text-dark font-weight-light d-inline-block mr-1">
           {{ event.start_time }}
         </span>
         {{ event.summary }}
