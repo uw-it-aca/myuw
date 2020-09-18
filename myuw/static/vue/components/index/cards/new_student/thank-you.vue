@@ -7,7 +7,7 @@
     </template>
     <template #card-body>
       <div v-for="notice in notices" :key="notice.id_hash">
-        <span @show="onShowNotice" v-html="notice.notice_content" />
+        <span v-html="notice.notice_content" />
       </div>
     </template>
   </uw-card>
@@ -48,6 +48,9 @@ export default {
     this.fetch();
   },
   methods: {
+    // TODO: Find an event to link this method to.
+    // problem: the notices are computed properties so if the value of is_read
+    // is changed in vuex, the card will render hide the card automatically.
     onShowNotice(notice) {
       if (!notice.is_read) {
         this.setRead(notice);
