@@ -3,7 +3,7 @@
     <h4>In MyPlan</h4>
     <div>
       <ul>
-        <li>{{readyCount}} {{readyCount > 1 ? "courses" : "course"}}</li>
+        <li>{{readyCount}} {{readyCount > 1 ? "courses" : "course"}} ready</li>
         <li v-if="unreadyCount">
           {{unreadyCount}} not ready
           <a v-if="hasSections" target="_blank" :href="myplanHref">

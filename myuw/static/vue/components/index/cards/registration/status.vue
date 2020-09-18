@@ -15,7 +15,27 @@
         :regHoldsNotices="regHoldsNotices"
       />
 
-      <!-- TODO: implement pending majors and minors-->
+      <div>
+        <h4 v-if="pendingMajors.length">
+          {{pendingMajors.length > 1 ? "Majors" : "Major"}}
+          Beginning <br>
+          {{nextTermQuarter}}
+        </h4>
+        <span v-for="(major, i) in pendingMajors" :key="i">
+          {{major.degree_abbr}}
+        </span>
+      </div>
+
+      <div>
+        <h4 v-if="pendingMinors.length">
+          {{pendingMinors.length > 1 ? "Minors" : "Minor"}}
+          Beginning <br>
+          {{nextTermQuarter}}
+        </h4>
+        <span v-for="(minor, i) in pendingMinors" :key="i">
+          {{minor.abbr}}
+        </span>
+      </div>
 
       <uw-in-myplan
         v-if="!myplanPeakLoad"
