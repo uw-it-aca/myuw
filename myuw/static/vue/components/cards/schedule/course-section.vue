@@ -227,20 +227,23 @@ export default {
 .course-section {
   width: 100%;
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
   padding-top: 1px;
   padding-bottom: 1px;
 
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
-    outline: transparent auto 1px;
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px 2px white;
+
     height: 100%;
     overflow: hidden;
     margin-left: 2px;
     margin-right: 2px;
 
     &:focus, &:focus-within, &:hover {
-      outline-color: -webkit-focus-ring-color;
+      border-radius: 2px;
+      box-shadow: 0px 0px 0px 2px $link-color;
     }
   }
 
