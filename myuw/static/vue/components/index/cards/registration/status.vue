@@ -47,11 +47,15 @@
         Registration opens at 6:00AM
       </span>
 
-      <uw-resources 
+      <uw-resources
+        :myplanPeakLoad="myplanPeakLoad"
         :registrationIsOpen="estRegData.noticeMyRegIsOpen || (
           !estRegData.hasEstRegDataNotice &&
           regPeriod1Started
         )"
+        :nextTermYear="nextTermYear"
+        :nextTermQuarter="nextTermQuarter"
+        :preRegNotices="preRegNotices"
       />
 
       <uw-fin-aid v-if="finAidNotices && finAidNotices.length"/>
