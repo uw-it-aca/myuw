@@ -9,7 +9,9 @@
       <div :class="`bg-c${meetingData.section.color_id}`"
            class="p-1 text-center myuw-text-xxs"
       >
-        <b-badge v-if="meetingData.section.is_teaching" variant="light">
+        <b-badge v-if="meetingData.section.is_teaching" variant="light"
+                 class="teaching-badge"
+        >
           <abbr title="Teaching Course">T</abbr>
         </b-badge>
         <a :href="sectionUrl"
@@ -223,24 +225,20 @@ export default {
 <style lang="scss">
 @use "sass:map";
 @import "../../../../css/myuw/variables.scss";
-
 .course-section {
   width: 100%;
   position: relative;
   overflow: hidden;
   border-radius: 4px;
   border: 2px solid rgba(255, 255, 255, 0);
-
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
     height: 100%;
     overflow: hidden;
   }
-
   &:not(:last-child) {
     border-right: 0;
   }
-
   &:focus, &:focus-within, &:hover {
     z-index:9999;
     flex-shrink: 0.3;
@@ -248,6 +246,10 @@ export default {
     & + .course-section {
       border-left: 0;
     }
+  }
+  .teaching-badge {
+    position: absolute;
+    left: 3px;
   }
 }
 </style>
