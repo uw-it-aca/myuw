@@ -1,5 +1,9 @@
 <template>
-  <uw-card v-if="notices.length > 0" :loaded="isReady" :errored="isErrored">
+  <uw-card
+    v-if="unreadNotices().length > 0"
+    :loaded="isReady"
+    :errored="isErrored"
+  >
     <template #card-heading>
       <h3 class="text-dark-beige">
         Payment Received, Thank You
@@ -7,7 +11,10 @@
     </template>
     <template #card-body>
       <div v-for="notice in notices" :key="notice.id_hash">
-        <span v-html="notice.notice_content" />
+        <span
+          v-if="!notice.is_read"
+          v-html="notice.notice_content"
+        />
       </div>
     </template>
   </uw-card>
@@ -34,9 +41,7 @@ export default {
         );
       },
       notices() {
-        return this.ty_notices.concat(this.fp_notices).filter(
-            (notice) => notice.is_read == false
-        );
+        return this.ty_notices.concat(this.fp_notices);
       },
     }),
     ...mapGetters('notices', {
@@ -48,9 +53,11 @@ export default {
     this.fetch();
   },
   methods: {
-    // TODO: Find an event to link this method to.
-    // problem: the notices are computed properties so if the value of is_read
-    // is changed in vuex, the card will render hide the card automatically.
+    unreadNotices() {
+      return this.notices.filter(
+          (notice) => notice.is_read == false,
+      );
+    },
     onShowNotice(notice) {
       if (!notice.is_read) {
         this.setRead(notice);
