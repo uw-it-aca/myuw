@@ -228,25 +228,23 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
-    outline: transparent auto 1px;
     height: 100%;
     overflow: hidden;
-    margin-left: 2px;
-    margin-right: 2px;
+  }
 
-    &:focus, &:focus-within, &:hover {
-      outline-color: -webkit-focus-ring-color;
-    }
+  &:not(:last-child) {
+    margin-right: 2px;
   }
 
   &:focus, &:focus-within, &:hover {
     z-index:9999;
-    flex-shrink: 0.2;
+    flex-shrink: 0.3;
+    border: 2px solid $link-color;
   }
 }
 </style>
