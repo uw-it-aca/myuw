@@ -11,14 +11,35 @@
       <uw-tacoma v-if="tacoma" />
     </template>
     <template v-else #card-body>
-      <b-tabs>
-        <b-tab title="Seattle" active>
+      <b-tabs
+        pills
+        nav-wrapper-class="mb-3 p-1"
+        nav-class=""
+        active-nav-item-class="bg-beige text-body font-weight-bold"
+      >
+        <b-tab
+          title="Seattle"
+          title-item-class="bg-light text-nowrap text-uppercase
+               myuw-text-xs mr-1 mb-1"
+          title-link-class="text-body h-100"
+          active
+        >
           <uw-seattle />
         </b-tab>
-        <b-tab title="Bothell">
+        <b-tab
+          title="Bothell"
+          title-item-class="bg-light text-nowrap text-uppercase
+               myuw-text-xs mr-1 mb-1"
+          title-link-class="text-body h-100"
+        >
           <uw-bothell />
         </b-tab>
-        <b-tab title="Tacoma">
+        <b-tab
+          title="Tacoma"
+          title-item-class="bg-light text-nowrap text-uppercase
+               myuw-text-xs mr-1 mb-1"
+          title-link-class="text-body h-100"
+        >
           <uw-tacoma />
         </b-tab>
       </b-tabs>
