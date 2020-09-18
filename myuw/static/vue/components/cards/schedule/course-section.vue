@@ -245,8 +245,8 @@ export default {
     z-index:9999;
     flex-shrink: 0.3;
     border: 2px solid $link-color;
-    &:not(:first-child) {
-      margin-left: 2px;
+    & + .course-section {
+      border-left: 0;
     }
   }
 }
