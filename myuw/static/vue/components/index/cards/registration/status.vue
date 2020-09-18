@@ -8,20 +8,33 @@
       </h3>
     </template>
     <template #card-body>
-      <!-- TODO: test this component with mock data -->
-      <uw-est-reg-date 
-        :estRegDateNotices="estRegDateNotices"
-        :quarter="nextTermQuarter"
-      />
+      <uw-est-reg-date :estRegData="estRegData"/>
       <uw-holds
+        v-if="regHoldsNotices && regHoldsNotices.length"
         :myplanPeakLoad="myplanPeakLoad"
         :regHoldsNotices="regHoldsNotices"
       />
+
+      <!-- TODO: implement pending majors and minors-->
+
       <uw-in-myplan
         v-if="!myplanPeakLoad"
         :nextTermYear="nextTermYear"
         :nextTermQuarter="nextTermQuarter"
       />
+
+      <span v-if="estRegData.estRegDate && estRegData.isMy1stRegDay">
+        Registration opens at 6:00AM
+      </span>
+
+      <uw-resources 
+        :registrationIsOpen="estRegData.noticeMyRegIsOpen || (
+          !estRegData.hasEstRegDataNotice &&
+          regPeriod1Started
+        )"
+      />
+
+      <uw-fin-aid v-if="finAidNotices && finAidNotices.length"/>
 
       <uw-myplan-courses
         v-if="!myplanPeakLoad"
@@ -37,7 +50,9 @@
 </template>
 
 <script>
+import moment from 'moment';
 import {mapGetters, mapState, mapActions} from 'vuex';
+
 import Card from '../../../../containers/card.vue';
 import EstRegComponent from './estRegDate.vue';
 import FinAidComponent from './finaid.vue';
@@ -45,7 +60,6 @@ import HoldsComponent from './holds.vue';
 import InMyPlanComponent from './inMyplan.vue';
 import MyplanCoursesComponent from './myplanCourses.vue';
 import ResourcesComponent from './resources.vue';
-
 
 export default {
   components: {
@@ -68,6 +82,7 @@ export default {
       isBeforeEndOfRegistrationDisplayPeriod: (state) =>
         state.cardDisplayDates.is_before_end_of_registration_display_period,
       myplanPeakLoad: (state) => state.cardDisplayDates.myplan_peak_load,
+      regPeriod1Started: (state) => state.cardDisplayDates.reg_period1_started,
     }),
     ...mapState('notices', {
       estRegDateNotices: (state) => state.value.filter(
@@ -79,10 +94,21 @@ export default {
       regHoldsNotices: (state) => state.value.filter(
         (notice) => notice.location_tags.includes('reg_card_holds'),
       ),
+      finAidNotices: function(state) { 
+        return this.nextTermQuarter ? state.value.filter(
+          (notice) => notice.location_tags.includes(
+            'reg_summeraid_avail_title',
+          ),
+        ) : [];
+      },
     }),
     ...mapState('oquarter', {
       nextTermYear: (state) => state.value.next_term_data.year,
       nextTermQuarter: (state) => state.value.next_term_data.quarter,
+    }),
+    ...mapState('profile', {
+      termMinors: (state) => state.value.term_minors,
+      termMajors: (state) => state.value.term_majors,
     }),
     ...mapGetters('notices', {
       isNoticesReady: 'isReady',
@@ -116,43 +142,46 @@ export default {
         this.isQuarterErrored ||
         this.isProfileErrored
       );
-    }
-  },
-  data: function() {
-    return {
-      estRegData: {
-        hasEstRegDataNotice: false,
-        noticeMyRegIsOpen: false,
-        isMy1stRegDay: false,
-        estRegDate: null,
-      },
-    }
+    },
+    estRegData: function() {
+      const estRegData = {};
+
+      this.estRegDateNotices.forEach((notice) => {
+        let registrationDate = null;
+
+        // Set registrationDate date to the first date value found in
+        // the notice attributes
+        notice.attributes.filter((a) => a.name === 'Date')
+          .slice(0, 1).forEach((a) => {registrationDate = moment(a.value)});
+
+        notice.attributes
+          .filter(
+            (a) => a.name === 'Quarter' &&
+            a.value === this.nextTermQuarter
+          ).slice(0, 1).forEach((a) => {
+            estRegData.hasEstRegDataNotice = true;
+            estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
+            estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
+            estRegData.estRegDate = {
+              notice: notice,
+              date: registrationDate,
+            };
+          });
+      });
+
+      return estRegData;
+    },
+    pendingMajors: function() {
+      return this.retrieveQuarterDegrees(this.termMajors, "majors");
+    },
+    pendingMinors: function() {
+      return this.retrieveQuarterDegrees(this.termMinors, "minors");
+    },
   },
   created() {
     this.fetchNotices();
     this.fetchQuarters();
     this.fetchProfile();
-
-    this.estRegDateNotices.forEach((notice) => {
-      let registration_date = null;
-
-      // Set registration_date date to the first date value found in
-      // the notice attributes
-      notice.attributes.filter((a) => a.name === 'Date')
-        .slice(0, 1).forEach((a) => {registration_date = a.value});
-
-      notice.attributes
-        .filter((a) => a.name === 'Quarter' && a.value === this.nextTermQuarter)
-        .slice(0, 1).forEach((a) => {
-          this.estRegData.hasEstRegDataNotice = true;
-          this.estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
-          this.estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
-          this.estRegData.estRegDate = {
-            notice: notice,
-            date: registration_date,
-          };
-        });
-    });
   },
   methods: {
     ...mapActions('notices', {
@@ -164,6 +193,20 @@ export default {
     ...mapActions('profile', {
       fetchProfile: 'fetch',
     }),
+    retrieveQuarterDegrees(degrees, degreeType) {
+      let filteredDegrees = degrees.filter((degree) => (
+        degree.quarter.toUpperCase() === this.nextTermQuarter.toUpperCase() &&
+        degree.year === this.nextTermYear &&
+        degree.degrees_modified &&
+        !degree.has_only_dropped
+      ));
+
+      if (filteredDegrees && filteredDegrees.length) {
+        return filteredDegrees[0][degreeType];
+      } else {
+        return [];
+      }
+    }
   },
 }
 </script>

@@ -1,12 +1,34 @@
 <template>
   <div>
-    <h4 v-if="!myplanPeakLoad">Holds</h4>
     <div>
-      <font-awesome-icon
-        :icon="['fas', 'exclamation-triangle']"
-        class="mr-1"
-      />
+      <h4 v-if="!myplanPeakLoad">Holds</h4>
+      <div>
+        <font-awesome-icon
+          :icon="['fas', 'exclamation-triangle']"
+          class="mr-1"
+        />
+        <button
+          v-b-toggle="`${summerCardLabel}holds-collapse`"
+          title="Expand and show holds details"
+        >
+          <span v-if="collapseOpen">Hide</span>
+          {{regHoldsNotices.length}}
+          {{regHoldsNotices.length > 1 ? "Holds" : "Hold"}}
+        </button>
+      </div>
     </div>
+    <b-collapse
+      :id="`${summerCardLabel}holds-collapse`"
+      v-model="collapseOpen"
+    >
+      <h4 class="sr-only">Registration and/or Transcript Holds</h4>
+      <ul class="reg-holds-list">
+        <li
+          v-for="(notice, i) in regHoldsNotices"
+          :key="i" v-html="notice.notice_content"
+        />
+      </ul>
+    </b-collapse>
   </div>
 </template>
 
@@ -19,13 +41,18 @@ export default {
     },
     summerCardLabel: {
       type: String,
-      default: null,
+      default: "",
     },
     regHoldsNotices: {
       type: Array,
       required: true,
     }
   },
+  data: function() {
+    return {
+      collapseOpen: false,
+    }
+  }
 }
 </script>
 
