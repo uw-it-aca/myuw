@@ -1,10 +1,17 @@
 <template>
-  <div>resources</div>
+  <div >
+
+  </div>
 </template>
 
 <script>
 export default {
-
+  props: {
+    registrationIsOpen: {
+      type: Boolean,
+      default: false,
+    }
+  }
 }
 </script>
 
