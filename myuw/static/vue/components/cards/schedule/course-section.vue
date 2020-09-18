@@ -228,8 +228,8 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0);
 
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
@@ -238,13 +238,16 @@ export default {
   }
 
   &:not(:last-child) {
-    margin-right: 2px;
+    border-right: 0;
   }
 
   &:focus, &:focus-within, &:hover {
     z-index:9999;
     flex-shrink: 0.3;
     border: 2px solid $link-color;
+    &:not(:first-child) {
+      margin-left: 2px;
+    }
   }
 }
 </style>
