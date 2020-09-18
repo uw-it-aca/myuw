@@ -14,7 +14,7 @@ import Grades from './components/cards/grades.vue';
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 import HuskyExperience from './components/cards/husky-experience.vue';
 import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue';
-import ThankYou from './components/index/cards/new_student/thank-you-card.vue';
+import ThankYou from './components/index/cards/new_student/thank-you.vue';
 
 // Stores
 import notices from './store/notices';
