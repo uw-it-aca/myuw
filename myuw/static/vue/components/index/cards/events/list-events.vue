@@ -4,8 +4,6 @@
       <strong>
         {{ acalDateFormat(event.start_date, event.end_date) }}
       </strong>
-      <!-- TODO: add title and aria-label -->
-      <!-- STRING: "Event date. Time. Event title. Location" -->
       <a
         :href="event.event_url"
         class="d-block"
@@ -69,7 +67,7 @@ export default {
       }
 
       return label;
-    }
+    },
   },
 };
 </script>
