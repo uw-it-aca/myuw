@@ -8,7 +8,7 @@
     <template #card-body>
       <!-- notice template where data is inserted -->
       <div v-for="notice in notices" :key="notice.id_hash">
-        {{ notice.notice_content }}
+        <span v-html="notice.notice_content" />
       </div>
     </template>
   </uw-card>
@@ -34,33 +34,13 @@ export default {
             (notice) => notice.location_tags.includes('checklist_feespaid'),
         );
       },
-      isResident: (state) => {
-        let isResident = true;
-        const notices = state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_residence'),
-        )[0];
-
-        if (notices) {
-          notices.attributes.forEach((attr) => {
-            if (attr.name === 'ResidencyStatus' &&
-                attr.value !== '1' &&
-                attr.value !== '2') {
-              isResident = false;
-            }
-          });
-        }
-
-        return isResident;
+      notices() {
+        return this.ty_notices.concat(this.fp_notices);
       },
-      student: (state) => state.user.affiliations.student,
-      notices () {
-        return ty_notices.concat(fp_notices);
-      }
     }),
     ...mapGetters('notices', {
       isReady: 'isReady',
       isErrored: 'isErrored',
-      hasRegisterNotices: 'hasRegisterNotices',
     }),
   },
   created() {
