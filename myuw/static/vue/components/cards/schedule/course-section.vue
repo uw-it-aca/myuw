@@ -227,7 +227,7 @@ export default {
 .course-section {
   width: 100%;
   position: relative;
-  //overflow: hidden;
+  overflow: hidden;
   padding-top: 1px;
   padding-bottom: 1px;
 
