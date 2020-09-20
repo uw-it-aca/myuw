@@ -156,6 +156,8 @@ def _get_summer_term_data(enrollment):
     _get_sections(enrollment.registrations)
 
     for reg in enrollment.registrations:
+        if not reg.is_active:
+            continue
         if is_full_summer_term(reg.section.summer_term):
             data[FULL_TERM] = True
             data[FULL_TERM_SECTIONS] += 1
@@ -194,8 +196,9 @@ def _get_sections_credits(enrollment):
     total_sections = 0
     total_credits = 0
     for reg in enrollment.registrations:
-        total_sections += 1
-        total_credits += float(reg.credits)
+        if reg.is_active:
+            total_sections += 1
+            total_credits += float(reg.credits)
     return total_sections, total_credits
 
 

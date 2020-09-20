@@ -154,8 +154,8 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(section['end_date'], '2013-06-19')
         self.assertFalse(section["is_ended"])
         section = self.get_section(data, 'CPROGRM', '712', 'A')
-        self.assertEquals(section['start_date'], '2013-04-29')
-        self.assertEquals(section['end_date'], '2013-06-28')
+        self.assertEquals(section['start_date'], '2013-04-24')
+        self.assertEquals(section['end_date'], '2013-06-30')
         self.assertFalse(section["is_ended"])
 
     def test_noncredit_cert_course_schedule(self):

@@ -142,11 +142,11 @@ class TestDaoEnrollment(TestCase):
         term = get_previous_quarter(req)
         self.assertTrue(term in enrollements)
         sections = enrollements[term].unf_pce_courses
-        self.assertEqual(len(sections), 1)
+        self.assertEqual(len(sections), 2)
         self.assertFalse('2013,spring,AAES,150/A' in sections)
         self.assertTrue('2013,spring,CPROGRM,712/A' in sections)
         s1 = sections.get('2013,spring,CPROGRM,712/A')
-        self.assertEqual(str(s1.end_date), '2013-06-28')
+        self.assertEqual(str(s1.end_date), '2013-06-30')
 
         self.assertFalse(is_ended(req, None))
         self.assertFalse(is_ended(req, ""))

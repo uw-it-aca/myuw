@@ -18,8 +18,7 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(len(data["terms"]), 0)
 
     def test_get_registered_future_quarters(self):
-        req = get_request_with_user(
-            'javerage', get_request_with_date("2013-05-05"))
+        req = get_request_with_user('javerage')
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
         self.assertEqual(len(terms), 3)
@@ -27,16 +26,16 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(terms[0]['quarter'], "Summer")
         self.assertEqual(terms[0]['summer_term'], "a-term")
         self.assertEqual(terms[0]['url'], '/2013,summer,a-term')
-        self.assertEqual(terms[0]['credits'], '1.0')
-        self.assertEqual(terms[0]['section_count'], 1)
+        self.assertEqual(terms[0]['credits'], '2.0')
+        self.assertEqual(terms[0]['section_count'], 2)
         self.assertTrue(terms[0]['has_registration'])
 
         self.assertEqual(terms[1]['year'], 2013)
         self.assertEqual(terms[1]['quarter'], "Summer")
         self.assertEqual(terms[1]['summer_term'], "b-term")
         self.assertEqual(terms[1]['url'], '/2013,summer,b-term')
-        self.assertEqual(terms[1]['credits'], '2.0')
-        self.assertEqual(terms[1]['section_count'], 1)
+        self.assertEqual(terms[1]['credits'], '3.0')
+        self.assertEqual(terms[1]['section_count'], 2)
 
         self.assertEqual(terms[2]['year'], 2013)
         self.assertEqual(terms[2]['quarter'], "Autumn")
@@ -78,6 +77,78 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(terms[0]['credits'], '15.0')
         self.assertEqual(terms[0]["section_count"], 5)
         self.assertTrue(terms[0]['has_registration'])
+
+        req = get_request_with_user('eight')
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 3)
+        self.assertEqual(terms[0]['year'], 2013)
+        self.assertEqual(terms[0]['quarter'], "Summer")
+        self.assertEqual(terms[0]['summer_term'], "a-term")
+        self.assertEqual(terms[0]['url'], '/2013,summer,a-term')
+        self.assertEqual(terms[0]['credits'], '6.0')
+        self.assertEqual(terms[0]['section_count'], 2)
+        self.assertTrue(terms[0]['has_registration'])
+
+        self.assertEqual(terms[1]['year'], 2013)
+        self.assertEqual(terms[1]['quarter'], "Summer")
+        self.assertEqual(terms[1]['summer_term'], "b-term")
+        self.assertEqual(terms[1]['url'], '/2013,summer,b-term')
+        self.assertEqual(terms[1]['credits'], '6.0')
+        self.assertEqual(terms[1]['section_count'], 2)
+
+        self.assertEqual(terms[2]['year'], 2013)
+        self.assertEqual(terms[2]['quarter'], "Autumn")
+        self.assertEqual(terms[2]['section_count'], 1)
+        self.assertEqual(terms[2]['credits'], '5.0')
+        self.assertEquals(data['next_term_data']['label'], '2013,autumn')
+
+        req = get_request_with_user(
+            'eight', get_request_with_date("2020-05-05"))
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 1)
+        self.assertEqual(terms[0]['section_count'], 3)
+        self.assertEqual(terms[0]['credits'], '10.0')
+        self.assertEquals(data['next_term_data']['label'], '2020,autumn')
+
+        req = get_request_with_user(
+            'jbothell', get_request_with_date("2013-01-05"))
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 1)
+        self.assertEquals(data['next_term_data']['label'], '2013,spring')
+        self.assertEqual(data['next_term_data']['section_count'], 4)
+
+        req = get_request_with_user('jbothell')
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 1)
+        self.assertEqual(data['next_term_data']['label'], '2013,autumn')
+        self.assertEqual(data['next_term_data']['section_count'], 0)
+
+        req = get_request_with_user(
+            'jpce', get_request_with_date("2013-01-05"))
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 1)
+        self.assertEqual(terms[0]['section_count'], 2)
+
+        req = get_request_with_user('jpce')
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 1)
+        self.assertEqual(terms[0]['label'], '2013,summer')
+        self.assertEqual(terms[0]['section_count'], 2)
+
+        req = get_request_with_user('jeos')
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 2)
+        self.assertEqual(terms[0]['label'], '2013,summer')
+        self.assertEqual(terms[0]['section_count'], 1)
+        self.assertEqual(data['next_term_data']['label'], '2013,autumn')
+        self.assertEqual(data['next_term_data']['section_count'], 1)
 
     def test_highlight(self):
         req = get_request_with_user(
