@@ -13,13 +13,13 @@ from myuw.test import get_request_with_date, get_request_with_user,\
 class TestRegisteredTerm(TransactionTestCase):
 
     def test_no_future_quarter_regs(self):
-         req = get_request_with_user('none')
-         self.assertRaises(DataFailureException,
-                           get_registered_future_quarters, req)
+        req = get_request_with_user('none')
+        self.assertRaises(DataFailureException,
+                          get_registered_future_quarters, req)
 
-         req = get_request_with_user('staff')
-         self.assertRaises(DataFailureException,
-                           get_registered_future_quarters, req)
+        req = get_request_with_user('staff')
+        self.assertRaises(DataFailureException,
+                          get_registered_future_quarters, req)
 
     def test_get_registered_future_quarters(self):
         req = get_request_with_user('javerage')
