@@ -29,16 +29,12 @@ class StudClasScheFutureQuar(StudClasSche):
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term", None)
         try:
-            smr_term = ""
-            if summer_term and len(summer_term) > 1:
-                smr_term = summer_term.title()
-
             request_term = get_specific_term(year, quarter)
-
             if is_past(request_term, request):
                 if not in_show_grades_period(request_term, request):
                     return invalid_future_term("{},{}".format(year, quarter))
 
-            return self.make_http_resp(timer, request_term, request, smr_term)
+            return self.make_http_resp(
+                timer, request_term, request, summer_term=summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)

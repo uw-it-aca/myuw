@@ -8,9 +8,9 @@ from myuw.dao.canvas import (
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.pws import get_person_of_current_user
-from myuw.dao.schedule import (
-    get_schedule_by_term, filter_schedule_sections_by_summer_term)
-from myuw.dao.registered_term import get_current_summer_term_in_schedule
+from myuw.dao.registration import get_schedule_by_term
+# from myuw.dao.schedule import filter_schedule_sections_by_summer_term
+# from myuw.dao.registered_term import get_current_summer_term_in_schedule
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_data_not_found_response, log_api_call, log_exception)
@@ -44,30 +44,26 @@ class StudClasSche(ProtectedAPI):
         @return class schedule data in json format
                 status 404: no schedule found (not registered)
         """
-        schedule = get_schedule_by_term(request, term)
+        schedule = get_schedule_by_term(
+            request, term=term, summer_term=summer_term)
 
-        if summer_term is None:
-            summer_term = get_current_summer_term_in_schedule(schedule,
-                                                              request)
-
-        filter_schedule_sections_by_summer_term(schedule, summer_term)
         if len(schedule.sections) == 0:
             log_data_not_found_response(logger, timer)
             return data_not_found()
 
-        resp_data = load_schedule(request, schedule, summer_term)
+        resp_data = load_schedule(request, schedule)
         log_api_call(timer, request,
                      "Get Student Schedule {},{}".format(term.year,
                                                          term.quarter))
         return self.json_response(resp_data)
 
 
-def load_schedule(request, schedule, summer_term=""):
+def load_schedule(request, schedule):
     json_data = schedule.json_data()
-
-    json_data["summer_term"] = summer_term
-
+    if schedule.term.is_summer_quarter():
+        json_data["summer_term"] = schedule.summer_term
     buildings = get_buildings_by_schedule(schedule)
+    """
     pce_sections = {}
     try:
         enrollment = get_enrollment_for_term(request, schedule.term)
@@ -79,7 +75,7 @@ def load_schedule(request, schedule, summer_term=""):
                           schedule.term.quarter, schedule.term.year),
                       traceback)
         pass
-
+    """
     if len(schedule.sections):
         try:
             set_section_canvas_course_urls(
@@ -105,18 +101,14 @@ def load_schedule(request, schedule, summer_term=""):
             json_data["has_early_fall_start"] = True
             section_data["is_ended"] = is_ended(request, section.end_date)
         else:
-            if len(pce_sections) > 0 and\
-                    section.section_label() in pce_sections:
-                pce_course = pce_sections.get(section.section_label())
-                section_data["on_standby"] = pce_course.is_standby_status()
-                group_independent_start = irregular_start_end(
-                    schedule.term, pce_course, section.summer_term)
-                if group_independent_start:
+            if not section.is_source_sdb():
+                if irregular_start_end(schedule.term, section):
                     section_data["cc_display_dates"] = True
-                    section_data["start_date"] = str(pce_course.start_date)
-                    section_data["end_date"] = str(pce_course.end_date)
-                    section_data["is_ended"] = is_ended(request,
-                                                        pce_course.end_date)
+
+                section_data["is_ended"] = is_ended(request,
+                                                    section.end_date)
+                section_data["on_standby"] = (
+                    section.registration.is_standby_status())
 
         try:
             section_data["canvas_url"] = section.canvas_course_url
@@ -203,15 +195,17 @@ def load_schedule(request, schedule, summer_term=""):
     return json_data
 
 
-def irregular_start_end(term, pce_course_data, summer_term):
-    if len(summer_term) and summer_term.lower() == "a-term":
-        return (term.first_day_quarter != pce_course_data.start_date or
-                term.aterm_last_date != pce_course_data.end_date)
-    if len(summer_term) and summer_term.lower() == "b-term":
-        return (term.bterm_first_date != pce_course_data.start_date or
-                term.last_final_exam_date != pce_course_data.end_date)
-    return (term.first_day_quarter != pce_course_data.start_date or
-            term.last_final_exam_date != pce_course_data.end_date)
+def irregular_start_end(term, section):
+    if section.is_summer_a_term():
+        return (section.start_date and section.end_date and
+                (term.first_day_quarter != section.start_date or
+                 term.aterm_last_date != section.end_date))
+    if section.is_summer_b_term():
+        return (section.start_date and section.end_date and
+                (term.bterm_first_date != section.start_date or
+                 term.last_day_instruction != section.end_date))
+    return (term.first_day_quarter != section.start_date or
+            term.last_final_exam_date != section.end_date)
 
 
 def sort_pce_section_meetings(section_meetings_json_data):

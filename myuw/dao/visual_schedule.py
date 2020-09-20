@@ -1,4 +1,3 @@
-from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_current_quarter, get_current_summer_term
@@ -114,7 +113,7 @@ def _get_off_term_trimmed(visual_schedule):
 
 
 def get_future_visual_schedule(request, term, summer_term=None):
-    schedule = _get_combined_future_schedule(request, term)
+    schedule = _get_combined_future_schedule(request, term, summer_term)
     vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
     return vs
 
@@ -136,16 +135,14 @@ def get_visual_schedule_from_schedule(request, schedule, summer_term=None):
 
 
 def _get_combined_schedule(request):
-    current_term = get_current_quarter(request)
     try:
-        student_schedule = get_current_quarter_schedule(request)
+        student_schedule = get_schedule_by_term(request)
         _set_student_sections(student_schedule)
     except DataFailureException:
         student_schedule = None
 
     try:
-        instructor_schedule = get_instructor_schedule_by_term(request,
-                                                              current_term)
+        instructor_schedule = get_instructor_schedule_by_term(request)
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
@@ -160,15 +157,17 @@ def _get_combined_schedule(request):
     return schedule
 
 
-def _get_combined_future_schedule(request, term):
+def _get_combined_future_schedule(request, term, summer_term):
     try:
-        student_schedule = get_schedule_by_term(request, term)
+        student_schedule = get_schedule_by_term(
+            request, term=term, summer_term=summer_term)
         _set_student_sections(student_schedule)
     except DataFailureException:
         student_schedule = None
 
     try:
-        instructor_schedule = get_instructor_schedule_by_term(request, term)
+        instructor_schedule = get_instructor_schedule_by_term(
+            request, term=term, summer_term=summer_term)
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None

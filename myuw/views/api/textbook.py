@@ -1,13 +1,13 @@
 import logging
 import traceback
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.schedule import (
-    get_schedule_by_term, filter_schedule_sections_by_summer_term)
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.term import get_specific_term, get_current_quarter, \
-    get_current_summer_term, get_comparison_datetime
-from myuw.dao.textbook import get_textbook_by_schedule
-from myuw.dao.textbook import get_order_url_by_schedule
+from myuw.dao.term import (
+    get_specific_term, get_current_quarter,
+    get_current_summer_term, get_comparison_datetime)
+from myuw.dao.textbook import (
+    get_textbook_by_schedule, get_order_url_by_schedule)
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import (
     log_api_call, log_msg, log_data_not_found_response)
@@ -41,7 +41,8 @@ class Textbook(ProtectedAPI):
             term = get_specific_term(year=year, quarter=quarter)
             # enrolled sections
             try:
-                schedule = get_schedule_by_term(request, term)
+                schedule = get_schedule_by_term(
+                    request, term=term, summer_term=summer_term)
                 by_sln.update(self._get_schedule_textbooks(
                     schedule, summer_term))
 
@@ -74,11 +75,6 @@ class Textbook(ProtectedAPI):
     def _get_schedule_textbooks(self, schedule, summer_term):
         by_sln = {}
         if schedule:
-            if summer_term is not None and len(summer_term) > 0:
-                summer_term = summer_term.replace(",", "")
-                filter_schedule_sections_by_summer_term(
-                    schedule, summer_term)
-
             if len(schedule.sections) > 0:
                 book_data = get_textbook_by_schedule(schedule)
                 by_sln.update(index_by_sln(book_data))

@@ -50,7 +50,8 @@ class InstSche(ProtectedAPI):
                 status 404: no schedule found (teaching no courses)
         """
         prefetch_resources(request)
-        schedule = get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(
+            request, term=term, summer_term=summer_term)
         resp_data = load_schedule(request, schedule)
         threads = []
 
@@ -310,7 +311,7 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
         else:
             if section.is_campus_pce():
                 group_independent_start = irregular_start_end(
-                    schedule.term, section, section.summer_term)
+                    schedule.term, section)
                 if group_independent_start:
                     section_data["cc_display_dates"] = True
 
