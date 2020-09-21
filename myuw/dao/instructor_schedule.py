@@ -28,7 +28,8 @@ def get_instructor_schedule_by_term(request, term=None, summer_term=None):
     :return: the instructor's class schedule (uw_sws.models.ClassSchedule) of
     the given quarter/term and corresponding summer term.
     :param Term term: None uses current term related to the given request
-    :param str summer_term
+    :param str summer_term: 'full-term' means to include all sections,
+    'a-term', b-term', or None returns a term-specific schedule.
     """
     inst_schedule = __get_instructor_schedule_by_term(
         request, term if term is not None else get_current_quarter(request))

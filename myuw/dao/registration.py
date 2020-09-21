@@ -20,7 +20,8 @@ def get_schedule_by_term(request, term=None, summer_term=None, tsprint=True):
     the actively enrolled sections for the user in the given quarter
     and corresponding summer term.
     :param Term term: None uses current term related to the given request
-    :param str summer_term
+    :param str summer_term: 'full-term' means to include all sections,
+    'a-term', b-term', or None returns a term-specific schedule.
     :param boolean Tsprint: True means non-independent study section meetings
     will only include tsprint instructors.
     """
