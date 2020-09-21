@@ -1,2 +1,1 @@
 -e .
--e git://github.com/uw-it-aca/uw-restclients-sws@develop#egg=UW-RestClients-SWS
