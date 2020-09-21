@@ -10,7 +10,7 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-once v-for="notice in notices" :key="notice.id_hash">
+      <div v-for="notice in notices" v-once :key="notice.id_hash">
         <span
           v-html="notice.notice_content"
         />
@@ -27,11 +27,11 @@ export default {
   components: {
     'uw-card': Card,
   },
-  data: function () {
+  data: function() {
     return {
       showCard: true,
       ranOnce: false,
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -67,7 +67,7 @@ export default {
         } else {
           this.showCard = Boolean(this.notices.length > 0).valueOf();
           this.ranOnce = true;
-          this.notices.forEach(notice => this.setRead(notice));
+          this.notices.forEach((notice) => this.setRead(notice));
         }
       }
       return true;
