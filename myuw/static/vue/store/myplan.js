@@ -4,9 +4,11 @@ function postProcess(response) {
   const data = extractData(response);
   const formattedData = {};
 
-  data.terms.forEach((term) => {
-    formattedData[term.quarter] = term;
-  });
+  if (data.terms) {
+    data.terms.forEach((term) => {
+      formattedData[term.quarter] = term;
+    });
+  }
 
   return formattedData;
 }

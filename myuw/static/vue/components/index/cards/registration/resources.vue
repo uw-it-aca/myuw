@@ -8,7 +8,7 @@
         Register using SLN codes
       </a>
 
-      <div v-if="!myplanPeakLoad && isReady">
+      <div v-if="myplanShouldDisplay && isReady">
         <a 
           v-if="hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
@@ -123,7 +123,7 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 
 export default {
   props: {
-    myplanPeakLoad: {
+    myplanShouldDisplay: {
       type: Boolean,
       default: true,
     },
@@ -156,7 +156,7 @@ export default {
         return state.value[this.nextTermQuarter].registration_href;
       },
       degreeAuditHref: function(state) {
-        if (!this.myplanPeakLoad && this.isReady) {
+        if (this.myplanShouldDisplay && this.isReady) {
           return state.value[this.nextTermQuarter].degree_audit_href;
         } else {
           return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
@@ -196,7 +196,7 @@ export default {
     },
   },
   created() {
-    if (!this.myplanPeakLoad) {
+    if (this.myplanShouldDisplay) {
       this.fetchMyPlan({
         year: this.nextTermYear,
         quarter: this.nextTermQuarter
