@@ -11,7 +11,7 @@
       <uw-est-reg-date :estRegData="estRegData"/>
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
-        :myplanPeakLoad="myplanPeakLoad"
+        :myplanPeakLoad="myplanShouldDisplay"
         :regHoldsNotices="regHoldsNotices"
       />
 
@@ -38,7 +38,7 @@
       </div>
 
       <uw-in-myplan
-        v-if="!myplanPeakLoad"
+        v-if="myplanShouldDisplay"
         :nextTermYear="nextTermYear"
         :nextTermQuarter="nextTermQuarter"
       />
@@ -48,7 +48,7 @@
       </span>
 
       <uw-resources
-        :myplanPeakLoad="myplanPeakLoad"
+        :myplanShouldDisplay="myplanShouldDisplay"
         :registrationIsOpen="estRegData.noticeMyRegIsOpen || (
           !estRegData.hasEstRegDataNotice &&
           regPeriod1Started
@@ -59,19 +59,45 @@
       />
 
       <uw-fin-aid 
-        v-if="finAidNotices && finAidNotices.length"
+        v-if="finAidNotices && finAidNotices.length && isSummerReg"
         :finAidNotices="finAidNotices"
       />
     </template>
-    <template #card-disclosure>
-      <uw-myplan-courses
-        v-if="!myplanPeakLoad"
-        :nextTermYear="nextTermYear"
-        :nextTermQuarter="nextTermQuarter"
-      />
+    <template v-if="myplanShouldDisplay" #card-disclosure>
+      <b-collapse id="myplan-courses-collapse" v-model="isOpen">
+        <uw-myplan-courses
+          :nextTermYear="nextTermYear"
+          :nextTermQuarter="nextTermQuarter"
+        />
+      </b-collapse>
     </template>
-    <template #card-footer>
-      <button v-if="!myplanPeakLoad" />
+    <template v-if="myplanShouldDisplay" #card-footer>
+      <b-button
+        v-if="!isOpen"
+        v-b-toggle.myplan-courses-collapse
+        :aria-label="
+          `Expand to show your ${nextTermQuarter} ${nextTermYear} plan`
+        "
+        variant="link"
+        size="sm"
+        class="w-100 p-0 text-dark"
+      >
+        <!-- TODO: @charlon add a css capital class for this button -->
+        SHOW {{nextTermQuarter}} {{nextTermYear}} PLAN
+      </b-button>
+      <b-button
+        v-else
+        v-b-toggle.myplan-courses-collapse
+        :aria-label="
+          `Collapse to hide your ${nextTermQuarter} ${nextTermYear} plan`
+        "
+        variant="link"
+        size="sm"
+        class="w-100 p-0 text-dark"
+      >
+        <!-- TODO: @charlon add a css capital class for this button -->
+        HIDE {{nextTermQuarter}} {{nextTermYear}} PLAN
+      </b-button>
     </template>
   </uw-card>
 </template>
@@ -132,10 +158,16 @@ export default {
     ...mapState('oquarter', {
       nextTermYear: (state) => state.value.next_term_data.year,
       nextTermQuarter: (state) => state.value.next_term_data.quarter,
+      hasRegistration: (state) => state.value.next_term_data.has_registration,
     }),
     ...mapState('profile', {
       termMinors: (state) => state.value.term_minors,
       termMajors: (state) => state.value.term_majors,
+    }),
+    ...mapState('myplan', {
+      myplanData: function(state) {
+        return state.value[this.nextTermQuarter];
+      },
     }),
     ...mapGetters('notices', {
       isNoticesReady: 'isReady',
@@ -149,18 +181,38 @@ export default {
       isProfileReady: 'isReady',
       isProfileErrored: 'isErrored',
     }),
+    ...mapGetters('myplan', {
+      isMyPlanReady: 'isReady',
+      isMyPlanErrored: 'isErrored',
+    }),
     shouldDisplayAtAll: function() {
       return (
         this.student &&
         this.isAfterStartOfRegistrationDisplayPeriod &&
-        this.isBeforeEndOfRegistrationDisplayPeriod
+        this.isBeforeEndOfRegistrationDisplayPeriod &&
+        (
+          (
+            this.allDataLoaded && 
+            !(this.isSummerReg && this.hasRegistration) && (
+              // Can do any one of these
+              (this.finAidNotices && this.finAidNotices.length) ||
+              this.estRegData.estRegDate ||
+              (this.regHoldsNotices && this.regHoldsNotices.length) ||
+              this.myplanShouldDisplay
+            )
+          ) || !this.allDataLoaded
+        )
       );
     },
     allDataLoaded: function() {
       return (
         this.isNoticesReady &&
         this.isQuarterReady &&
-        this.isProfileReady
+        this.isProfileReady &&
+        (
+          this.myplanPeakLoad ||
+          (!this.myplanPeakLoad && this.isMyPlanReady)
+        )
       );
     },
     anyDataErrored: function() {
@@ -204,11 +256,36 @@ export default {
     pendingMinors: function() {
       return this.retrieveQuarterDegrees(this.termMinors, "minors");
     },
+    isSummerReg: function() {
+      return this.nextTermQuarter === "Summer";
+    },
+    myplanShouldDisplay: function() {
+      return (
+        !this.myplanPeakLoad &&
+        this.isMyPlanReady &&
+        this.myplanData !== undefined
+      );
+    }
   },
   created() {
     this.fetchNotices();
     this.fetchQuarters();
     this.fetchProfile();
+  },
+  data() {
+    return {
+      isOpen: false,
+    }
+  },
+  watch: {
+    isQuarterReady: function(n, o) {
+      if (n) {
+        this.fetchMyPlan({
+          year: this.nextTermYear,
+          quarter: this.nextTermQuarter
+        });
+      }
+    }
   },
   methods: {
     ...mapActions('notices', {
@@ -219,6 +296,9 @@ export default {
     }),
     ...mapActions('profile', {
       fetchProfile: 'fetch',
+    }),
+    ...mapActions('myplan', {
+      fetchMyPlan: 'fetch',
     }),
     retrieveQuarterDegrees(degrees, degreeType) {
       let filteredDegrees = degrees.filter((degree) => (
