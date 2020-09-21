@@ -58,17 +58,20 @@
         :preRegNotices="preRegNotices"
       />
 
-      <uw-fin-aid v-if="finAidNotices && finAidNotices.length"/>
-
+      <uw-fin-aid 
+        v-if="finAidNotices && finAidNotices.length"
+        :finAidNotices="finAidNotices"
+      />
+    </template>
+    <template #card-disclosure>
       <uw-myplan-courses
         v-if="!myplanPeakLoad"
         :nextTermYear="nextTermYear"
         :nextTermQuarter="nextTermQuarter"
       />
     </template>
-    <template #card-disclosure>
-    </template>
     <template #card-footer>
+      <button v-if="!myplanPeakLoad" />
     </template>
   </uw-card>
 </template>
