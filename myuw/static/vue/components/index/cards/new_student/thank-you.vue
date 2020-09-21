@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="unreadNotices().length > 0"
+    v-if="showThankYou()"
     :loaded="isReady"
     :errored="isErrored"
   >
@@ -10,9 +10,8 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-for="notice in notices" :key="notice.id_hash">
+      <div v-once v-for="notice in notices" :key="notice.id_hash">
         <span
-          v-if="!notice.is_read"
           v-html="notice.notice_content"
         />
       </div>
@@ -28,6 +27,12 @@ export default {
   components: {
     'uw-card': Card,
   },
+  data: function () {
+    return {
+      showCard: true,
+      ranOnce: false,
+    }
+  },
   computed: {
     ...mapState({
       ty_notices: (state) => {
@@ -41,7 +46,9 @@ export default {
         );
       },
       notices() {
-        return this.ty_notices.concat(this.fp_notices);
+        return this.ty_notices.concat(this.fp_notices).filter(
+            (notice) => notice.is_read == false,
+        );
       },
     }),
     ...mapGetters('notices', {
@@ -53,15 +60,17 @@ export default {
     this.fetch();
   },
   methods: {
-    unreadNotices() {
-      return this.notices.filter(
-          (notice) => notice.is_read == false,
-      );
-    },
-    onShowNotice(notice) {
-      if (!notice.is_read) {
-        this.setRead(notice);
+    showThankYou() {
+      if (this.isReady) {
+        if (this.ranOnce) {
+          return this.showCard;
+        } else {
+          this.showCard = Boolean(this.notices.length > 0).valueOf();
+          this.ranOnce = true;
+          this.notices.forEach(notice => this.setRead(notice));
+        }
       }
+      return true;
     },
     ...mapActions('notices', ['fetch', 'setRead']),
   },
