@@ -63,10 +63,16 @@ export default {
       allSchedules: (state) => state.schedule.value,
       today: (state) => moment(state.termData.today, 'dddd, MMMM D, YYYY'),
     }),
-    ...mapGetters('schedule', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-    }),
+    ...mapGetters('schedule', [
+      'isReadyTagged',
+      'isErroredTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(this.term);
+    },
+    isErrored() {
+      return this.isErroredTagged(this.term);
+    },
     offTerm: function() {
       return this.allSchedules[this.term].off_term_trimmed;
     },
