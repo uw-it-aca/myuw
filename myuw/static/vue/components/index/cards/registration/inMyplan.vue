@@ -104,10 +104,16 @@ export default {
         return state.value[this.nextTermQuarter].courses;
       },
     }),
-    ...mapGetters('myplan', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-    }),
+    ...mapGetters('myplan', [
+      'isReadyTagged',
+      'isErroredTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    },
+    isErrored() {
+      return this.isErroredTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    },
     coursesUnavailable: function() {
       return this.courses.filter((c) => !c.registrations_available);
     }

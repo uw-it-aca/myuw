@@ -182,9 +182,19 @@ export default {
       isProfileErrored: 'isErrored',
     }),
     ...mapGetters('myplan', {
-      isMyPlanReady: 'isReady',
-      isMyPlanErrored: 'isErrored',
+      isMyPlanReadyTagged: 'isReadyTagged',
+      isMyPlanErroredTagged: 'isErroredTagged',
     }),
+    isMyPlanReady() {
+      return this.isMyPlanReadyTagged(
+        `${this.nextTermYear}/${this.nextTermQuarter}`
+      );
+    },
+    isMyPlanErrored() {
+      return this.isMyPlanErroredTagged(
+        `${this.nextTermYear}/${this.nextTermQuarter}`
+      );
+    },
     shouldDisplayAtAll: function() {
       return (
         this.student &&
@@ -275,11 +285,13 @@ export default {
   data() {
     return {
       isOpen: false,
+      myplanFetchedOnce: false,
     }
   },
   watch: {
     isQuarterReady: function(n, o) {
-      if (n) {
+      if (n && !this.myplanFetchedOnce) {
+        this.myplanFetchedOnce = true;
         this.fetchMyPlan({
           year: this.nextTermYear,
           quarter: this.nextTermQuarter

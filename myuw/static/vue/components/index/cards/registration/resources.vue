@@ -172,10 +172,16 @@ export default {
         state.user.affiliations.undergrad_c2
       ),
     }),
-    ...mapGetters('myplan', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-    }),
+    ...mapGetters('myplan', [
+      'isReadyTagged',
+      'isErroredTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    },
+    isErrored() {
+      return this.isErroredTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    },
     nextTermQuarterCode() {
       if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
         return "";
