@@ -22,7 +22,8 @@ def get_schedule_by_term(request, term=None, summer_term=None, tsprint=True):
     :param Term term: None uses current term related to the given request
     :param str summer_term: 'full-term': includes all sections;
     'a-term', 'b-term': expects a term-specific schedule;
-    None: expects a term-specific schedule if currently in the summer term.
+    None: a term-specific schedule if "currently" in the summer term and
+    the schedule has some A-term or B-term course(s).
     """
     student_schedule = get_schedule_by_regid_and_term(
         get_regid_of_current_user(request),
@@ -90,9 +91,12 @@ def _get_current_summer_term(request, schedule, summer_term):
     if summer_term is not None and len(summer_term):
         return summer_term.lower()
 
+    now = get_comparison_datetime(request)
     if _is_split_term(schedule.registered_summer_terms):
-        aterm_end = schedule.term.get_eod_summer_aterm()
-        if get_comparison_datetime(request) > aterm_end:
+        if now > schedule.term.get_eod_grade_submission():
+            # not split for a past-term
+            return "full-term"
+        if now > schedule.term.get_eod_summer_aterm():
             return "b-term"
         else:
             return "a-term"

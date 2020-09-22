@@ -2,8 +2,10 @@ from django.test import TestCase
 from django.conf import settings
 from restclients_core.exceptions import DataFailureException
 from uw_sws.section import get_section_by_label
+from uw_sws.registration import get_schedule_by_regid_and_term
 from uw_sws.term import get_term_by_date, get_specific_term
-from myuw.dao.registration import (get_schedule_by_term, _is_split_term)
+from myuw.dao.registration import (
+    get_schedule_by_term, _get_current_summer_term, _is_split_term)
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_user, get_request_with_date
 
@@ -22,6 +24,34 @@ class TestRegistrationsDao(TestCase):
         request = get_request_with_user('jinter')
         schedule = get_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 0)
+
+    def test_get_current_summer_term(self):
+        schedule = get_schedule_by_regid_and_term(
+            "9136CCB8F66711D5BE060004AC494FFE",
+            get_specific_term(2013, 'summer'))
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-06-24"))
+        for sterm in ['A-term', 'B-term', 'Full-term']:
+            self.assertEqual(_get_current_summer_term(
+                request, schedule, sterm), sterm.lower())
+
+        self.assertEqual(
+            _get_current_summer_term(request, schedule, None), 'a-term')
+
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-07-24"))
+        self.assertEqual(
+            _get_current_summer_term(request, schedule, None), 'a-term')
+
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-07-25"))
+        self.assertEqual(
+            _get_current_summer_term(request, schedule, None), 'b-term')
+
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-08-28"))
+        self.assertEqual(_get_current_summer_term(request, schedule, None),
+                         'full-term')
 
     def test_get_current_schedule(self):
         request = get_request_with_user('javerage',
