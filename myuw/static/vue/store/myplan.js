@@ -4,7 +4,7 @@ function postProcess(response) {
   const data = extractData(response);
   const formattedData = {};
 
-  if (data.terms) {
+  if (data && data.terms) {
     data.terms.forEach((term) => {
       formattedData[term.quarter] = term;
     });
