@@ -89,7 +89,7 @@
         "
         variant="link"
         size="sm"
-        class="w-100 p-0 text-dark"
+        class="w-100 p-0 border-0 text-dark"
       >
         SHOW ({{ hiddenEvents.length }}) MORE
       </b-button>
@@ -99,7 +99,7 @@
         aria-label="Show less"
         variant="link"
         size="sm"
-        class="w-100 p-0 text-dark"
+        class="w-100 p-0 border-0 text-dark"
       >
         SHOW LESS
       </b-button>

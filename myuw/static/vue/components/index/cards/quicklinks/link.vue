@@ -11,7 +11,7 @@
           v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
           variant="link"
           :title="`Edit ${link.label} link`"
-          class="p-0 m-0 text-white"
+          class="p-0 m-0 border-0 text-white"
           size="sm"
         >
           <font-awesome-icon :icon="['fas', 'pencil-alt']" />
@@ -19,7 +19,7 @@
         <b-button
           v-if="activeButtons['remove']" variant="link"
           :title="`Remove ${link.label} link from Quick Links list`"
-          class="p-0 m-0 text-white"
+          class="p-0 m-0 border-0 text-white"
           size="sm"
           @click="removeLink({link, canActuallyRemove})"
         >
