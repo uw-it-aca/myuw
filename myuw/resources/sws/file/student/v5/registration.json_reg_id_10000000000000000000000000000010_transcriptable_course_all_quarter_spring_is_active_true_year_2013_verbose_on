@@ -64,7 +64,7 @@
     "Credits": "3.0",
     "DuplicateCode": "",
     "EducationUnitType": null,
-    "EndDate": "06/13/2013",
+    "EndDate": "06/27/2013",
     "FeeBaseType": "Fee based course",
     "Grade": "X",
     "GradeDate": "",
@@ -94,7 +94,7 @@
         "SectionID": "A",
         "Year": 2013
     },
-    "StartDate": "04/04/2013",
+    "StartDate": "04/18/2013",
     "VariableCredit": false,
     "WritingCourse": false},
       { "AccessDateRangeEnd": "06/02/2014",
