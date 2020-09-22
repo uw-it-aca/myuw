@@ -24,12 +24,8 @@ class RegisteredFutureQuarters(ProtectedAPI):
         """
         timer = Timer()
         try:
-            try:
-                resp_data = get_registered_future_quarters(request)
-            except DataFailureException as ex:
-                if ex.status != 404:
-                    raise
+            data = get_registered_future_quarters(request)
             log_api_call(timer, request, "Get RegisteredFutureQuarters")
-            return self.json_response(resp_data)
+            return self.json_response(data)
         except Exception as ex:
             return handle_exception(logger, timer, traceback)

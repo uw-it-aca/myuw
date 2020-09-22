@@ -43,9 +43,14 @@ var FutureQuarterCard = {
     },
 
     render_error: function(status) {
-        $("#FutureQuarterCard1").hide();
         if (status === 404) {
-            FutureQuarterCard.dom_target.hide();
+            // we don't know which card is showing
+            if ($("#FutureQuarterCardA")) {
+                $("#FutureQuarterCardA").hide();
+            }
+            if ($("#FutureQuarterCard1")) {
+                $("#FutureQuarterCard1").hide();
+            }
             return;
         }
         FutureQuarterCard._render_with_context({has_error: true});
