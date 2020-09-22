@@ -124,7 +124,7 @@ describe('Schedule Model', () => {
 
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
-    expect(store.getters['schedule/isReady']).toBeTruthy();
+    expect(store.getters['schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
     expect(store.state.schedule.value).toBeDefined();
     expect(store.state.schedule.value.testCurrent).toBeDefined();
@@ -165,7 +165,7 @@ describe('Schedule Model', () => {
 
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
-    expect(store.getters['schedule/isReady']).toBeTruthy();
+    expect(store.getters['schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
     expect(store.state.schedule.value).toBeDefined();
     expect(store.state.schedule.value.testCurrent).toBeDefined();
