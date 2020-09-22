@@ -1,10 +1,10 @@
 <template>
   <uw-card :loaded="true" :errored="false" :mobile-only="mobileOnly">
     <template #card-heading>
-      <h3>Quick Links</h3>
+      <h3 class="text-dark-beige">Quick Links</h3>
     </template>
     <template #card-body>
-      <ul class="quicklinks-list">
+      <ul class="list-unstyled myuw-text-md">
         <uw-link
           v-for="(link, index) in defaultLinks" :key="`default-${index}`"
           :link="link" :buttons="['remove']" :custom-id="`default-${index}`"
@@ -18,7 +18,7 @@
       <hr>
       <div v-if="recentLinks.length">
         <h4>Recently Visited</h4>
-        <ul class="quicklinks-list">
+        <ul class="list-unstyled myuw-text-md">
           <uw-link
             v-for="(link, index) in recentLinks" :key="`recent-${index}`"
             :link="link" :buttons="['save']" :custom-id="`recent-${index}`"
@@ -47,7 +47,7 @@
 
       <b-collapse id="popular_qlinks">
         <h4>Popular Links</h4>
-        <ul class="quicklinks-list">
+        <ul class="list-unstyled myuw-text-md">
           <uw-link
             v-for="(link, index) in popularLinks" :key="`popular-${index}`"
             :link="link" :buttons="['save']" :custom-id="`popular-${index}`"
@@ -156,8 +156,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.quicklinks-list {
-  list-style: none;
-  padding-left: 0;
-}
+
 </style>

@@ -1,13 +1,18 @@
 <template>
-  <li class="quicklinks-link">
-    <a :href="link.url" :title="link.label" target="_blank">
-      <span>{{ link.label }}</span>
+  <li class="myuw-quicklinks" tabindex="0" role="group">
+
+    <div class="d-flex"> 
+
+    <a :href="link.url" :title="link.label" target="_blank" class="mr-auto pr-1">
+      {{ link.label }}
     </a>
     <span v-if="!isEditOpen">
       <b-button
         v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
         variant="link"
         :title="`Edit ${link.label} link`"
+        class="p-0 m-0 text-white"
+        size="sm"
       >
         <font-awesome-icon :icon="['fas', 'pencil-alt']" />
       </b-button>
@@ -15,6 +20,8 @@
         v-if="activeButtons['remove']" variant="link"
         :title="`Remove ${link.label} link from Quick Links list`"
         @click="removeLink({link, canActuallyRemove})"
+        class="p-0 m-0 text-white"
+        size="sm"
       >
         <font-awesome-icon :icon="['fas', 'times']" />
       </b-button>
@@ -33,6 +40,8 @@
         </b-button>
       </span>
     </span>
+    </div>
+
     <b-collapse
       v-if="activeButtons['edit']"
       :id="`${customId}-collapse`"
@@ -65,6 +74,7 @@
         </b-button>
       </b-form>
     </b-collapse>
+
   </li>
 </template>
 
@@ -134,9 +144,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.quicklinks-link {
-  button {
-    padding: 0;
+
+.myuw-quicklinks {
+  &:focus, &:focus-within, &:hover {
+    button {
+      color: #666 !important;
+    }
   }
 }
+
 </style>
