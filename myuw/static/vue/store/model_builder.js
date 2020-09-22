@@ -14,7 +14,7 @@ const setTermAndExtractData = (response, urlExtra) => {
 const fetchBuilder = (url, postProcess, type) => {
   return ({commit, getters}, urlExtra = '') => {
     if (!getters.isReady && !getters.isFetching) {
-      commit('setStatus', {type: statusOptions[1]});
+      commit('setStatus', {[urlExtra]: {type: statusOptions[1]}});
       axios.get(url + urlExtra, {
         responseType: type,
       }).then((response) => {
@@ -24,14 +24,22 @@ const fetchBuilder = (url, postProcess, type) => {
         };
       }).then(({data, statusCode}) => {
         commit('setValue', data);
-        commit('setStatus', {type: statusOptions[0], code: statusCode});
+        commit(
+          'setStatus',
+          {[urlExtra]: {type: statusOptions[0], code: statusCode}}
+        );
       }).catch((error)=>{
         if (process.env.NODE_ENV === "development") {
           console.log(error);
         };
-        commit('setStatus', {
-          type: statusOptions[2], code: error.response.status
-        });
+        commit(
+          'setStatus', 
+          {
+            [urlExtra]: {
+              type: statusOptions[2], code: error.response.status,
+            }
+          }
+        );
       });
     }
   };
@@ -41,7 +49,7 @@ const buildWith = (
     {
       customState={
         value: [],
-        status: null,
+        status: {},
       },
       customGetters={},
       customMutations={},
@@ -52,18 +60,44 @@ const buildWith = (
   });
 
   const getters = {
+    // Default getters when no urlExtra is used
     isReady(state) {
-      return state.status !== null && state.status.type == statusOptions[0];
+      return (
+        state.status[''] !== undefined &&
+        state.status[''].type == statusOptions[0]
+      );
     },
     isFetching(state) {
-      return state.status !== null && state.status.type == statusOptions[1];
+      return (
+        state.status[''] !== undefined &&
+        state.status[''].type == statusOptions[1]
+      );
     },
     isErrored(state) {
-      return state.status !== null && state.status.type == statusOptions[2];
+      return (
+        state.status[''] !== undefined &&
+        state.status[''].type == statusOptions[2]
+      );
     },
     statusCode(state) {
-      return state.status === null ? -1 : state.status.code;
+      return state.status[''] !== undefined ? -1 : state.status.code;
     },
+    // Function type getters when urlExtra is used
+    isReadyTagged: (state) => (urlExtra) => (
+      state.status[urlExtra] !== undefined &&
+      state.status[urlExtra].type == statusOptions[0]
+    ),
+    isFetchingTagged: (state) => (urlExtra) => (
+      state.status[urlExtra] !== undefined &&
+      state.status[urlExtra].type == statusOptions[1]
+    ),
+    isErroredTagged: (state) => (urlExtra) => (
+      state.status[urlExtra] !== undefined &&
+      state.status[urlExtra].type == statusOptions[2]
+    ),
+    statusCodeTagged: (state) => (urlExtra) => (
+      state.status[urlExtra] !== undefined ? -1 : state.status.code
+    ),
     ...customGetters,
   };
 

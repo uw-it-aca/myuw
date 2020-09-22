@@ -127,10 +127,16 @@ export default {
         state.cardDisplayDates.is_after_grade_submission_deadline,
       courses: (state) => state.courses.value,
     }),
-    ...mapGetters('courses', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-    }),
+    ...mapGetters('courses', [
+      'isReadyTagged',
+      'isErroredTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(this.term);
+    },
+    isErrored() {
+      return this.isErroredTagged(this.term);
+    },
     gradeSubmissionDeadline: function() {
       if (this.term in this.courses) {
         return this.courses[this.term].term.grade_submission_deadline;
