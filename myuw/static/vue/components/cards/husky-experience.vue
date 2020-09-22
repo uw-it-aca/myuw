@@ -74,11 +74,20 @@ export default {
       },
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
-    ...mapGetters('hx_toolkit', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-      statusCode: 'statusCode',
-    }),
+    ...mapGetters('hx_toolkit', [
+      'isReadyTagged',
+      'isErroredTagged',
+      'statusCodeTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(this.urlExtra);
+    },
+    isErrored() {
+      return this.isErroredTagged(this.urlExtra);
+    },
+    statusCode() {
+      return this.isErroredTagged(this.urlExtra);
+    },
     showError: function() {
       return (this.statusCode == 543);
     },
