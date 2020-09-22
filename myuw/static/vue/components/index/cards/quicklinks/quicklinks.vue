@@ -1,7 +1,9 @@
 <template>
   <uw-card :loaded="true" :errored="false" :mobile-only="mobileOnly">
     <template #card-heading>
-      <h3 class="text-dark-beige">Quick Links</h3>
+      <h3 class="text-dark-beige">
+        Quick Links
+      </h3>
     </template>
     <template #card-body>
       <ul class="list-unstyled myuw-text-md">
@@ -29,24 +31,30 @@
         </span>
       </div>
       <hr v-if="recentLinks.length">
-      <div>
+      <p class="m-0 myuw-text-md">
         <span>
           Not seeing the links you're looking for?
           <span v-if="popularLinks.length">
             Select from
-            <b-button v-b-toggle.popular_qlinks>
+            <b-link v-b-toggle.popular_qlinks href="#"
+                    disabled class="d-inline-block"
+            >
               popular links,
-            </b-button>
+            </b-link>
             or
           </span>
-          <b-button v-b-toggle.custom_qlinks :disabled="disableActions">
-            add your own
-          </b-button>.
+          <b-link v-b-toggle.custom_qlinks href="#"
+                  :disabled="disableActions" class="d-inline-block"
+          >
+            Add your own.
+          </b-link>
         </span>
-      </div>
+      </p>
 
       <b-collapse id="popular_qlinks">
-        <h4>Popular Links</h4>
+        <h4 class="h6 font-weight-bold">
+          Popular Links
+        </h4>
         <ul class="list-unstyled myuw-text-md">
           <uw-link
             v-for="(link, index) in popularLinks" :key="`popular-${index}`"
@@ -54,13 +62,17 @@
           />
         </ul>
       </b-collapse>
+
       <b-collapse
         id="custom_qlinks"
         role="form"
         aria-labelledby="custom_qlinks_label"
+        class="bg-light mx-n3 p-3 mt-3"
       >
-        <b-form @submit="addLink" @reset="onReset">
-          <h4>Add your link to Quick Links</h4>
+        <b-form class="myuw-text-md" @submit="addLink" @reset="onReset">
+          <h4 class="h6 font-weight-bold">
+            Add your link to Quick Links
+          </h4>
           <b-form-group label="URL" label-for="myuw-custom-qlink">
             <b-form-input
               id="myuw-custom-qlink"
@@ -68,6 +80,7 @@
               type="url"
               placeholder="https://www.washington.edu"
               required
+              size="sm"
             />
           </b-form-group>
           <b-form-group
@@ -79,6 +92,7 @@
               v-model="customLink.label"
               type="text"
               placeholder="UW Homepage"
+              size="sm"
             />
           </b-form-group>
           <div>
@@ -89,12 +103,16 @@
               <span>Saving...</span>
             </div>
           </div>
-          <b-button v-b-toggle.custom_qlinks type="reset">
-            Cancel
-          </b-button>
-          <b-button type="submit">
-            Add
-          </b-button>
+          <div class="d-flex justify-content-end">
+            <b-button v-b-toggle.custom_qlinks
+                      variant="link" type="reset" size="sm"
+            >
+              Cancel
+            </b-button>
+            <b-button variant="primary" type="submit" size="sm">
+              Add
+            </b-button>
+          </div>
         </b-form>
       </b-collapse>
     </template>
@@ -156,5 +174,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

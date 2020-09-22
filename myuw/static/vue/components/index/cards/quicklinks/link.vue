@@ -1,59 +1,63 @@
 <template>
-  <li class="myuw-quicklinks" tabindex="0" role="group">
-
-    <div class="d-flex"> 
-
-    <a :href="link.url" :title="link.label" target="_blank" class="mr-auto pr-1">
-      {{ link.label }}
-    </a>
-    <span v-if="!isEditOpen">
-      <b-button
-        v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
-        variant="link"
-        :title="`Edit ${link.label} link`"
-        class="p-0 m-0 text-white"
-        size="sm"
+  <li class="myuw-quicklinks" role="group">
+    <div class="d-flex">
+      <a :href="link.url" :title="link.label"
+         target="_blank" class="mr-auto pr-1"
       >
-        <font-awesome-icon :icon="['fas', 'pencil-alt']" />
-      </b-button>
-      <b-button
-        v-if="activeButtons['remove']" variant="link"
-        :title="`Remove ${link.label} link from Quick Links list`"
-        @click="removeLink({link, canActuallyRemove})"
-        class="p-0 m-0 text-white"
-        size="sm"
-      >
-        <font-awesome-icon :icon="['fas', 'times']" />
-      </b-button>
-      <span v-if="activeButtons['save']">
-        <font-awesome-icon
-          v-if="link.added"
-          :title="`${link.label} link saved to Quick Links`"
-          :icon="['fa', 'check']"
-        />
+        {{ link.label }}
+      </a>
+      <span v-if="!isEditOpen">
         <b-button
-          v-else variant="link"
-          :title="`Save ${link.label} link to your Quick Links list`"
-          @click="saveLink"
+          v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
+          variant="link"
+          :title="`Edit ${link.label} link`"
+          class="p-0 m-0 text-white"
+          size="sm"
         >
-          <font-awesome-icon :icon="['fas', 'plus']" />
+          <font-awesome-icon :icon="['fas', 'pencil-alt']" />
         </b-button>
+        <b-button
+          v-if="activeButtons['remove']" variant="link"
+          :title="`Remove ${link.label} link from Quick Links list`"
+          class="p-0 m-0 text-white"
+          size="sm"
+          @click="removeLink({link, canActuallyRemove})"
+        >
+          <font-awesome-icon :icon="['fas', 'times']" />
+        </b-button>
+        <span v-if="activeButtons['save']">
+          <font-awesome-icon
+            v-if="link.added"
+            :title="`${link.label} link saved to Quick Links`"
+            :icon="['fa', 'check']"
+          />
+          <b-button
+            v-else variant="link"
+            :title="`Save ${link.label} link to your Quick Links list`"
+            @click="saveLink"
+          >
+            <font-awesome-icon :icon="['fas', 'plus']" />
+          </b-button>
+        </span>
       </span>
-    </span>
     </div>
 
     <b-collapse
       v-if="activeButtons['edit']"
       :id="`${customId}-collapse`"
       v-model="isEditOpen"
+      class="bg-light mx-n3 p-3 my-1"
     >
       <b-form @submit="updateLink" @reset="onReset">
-        <h4>Edit Quick Link</h4>
+        <h4 class="h6 font-weight-bold">
+          Edit Quick Link
+        </h4>
         <b-form-group label="URL" :label-for="`${customId}-edit-url`">
           <b-form-input
             :id="`${customId}-edit-url`"
             v-model="currentCustomLink.url"
             type="url" required
+            size="sm"
           />
         </b-form-group>
         <b-form-group
@@ -64,17 +68,21 @@
             :id="`${customId}-edit-label`"
             v-model="currentCustomLink.label"
             type="text"
+            size="sm"
           />
         </b-form-group>
-        <b-button v-b-toggle="`${customId}-collapse`" type="reset">
-          Cancel
-        </b-button>
-        <b-button type="submit">
-          Save
-        </b-button>
+        <div class="d-flex justify-content-end">
+          <b-button v-b-toggle="`${customId}-collapse`"
+                    variant="link" size="sm" type="reset"
+          >
+            Cancel
+          </b-button>
+          <b-button variant="primary" size="sm" type="submit">
+            Save
+          </b-button>
+        </div>
       </b-form>
     </b-collapse>
-
   </li>
 </template>
 
@@ -144,11 +152,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:map";
+@import "../../../../../css/myuw/variables.scss";
 
 .myuw-quicklinks {
   &:focus, &:focus-within, &:hover {
-    button {
-      color: #666 !important;
+    //handle visibility of remove/edit buttons
+    button.text-white {
+      color: $text-muted !important;
     }
   }
 }
