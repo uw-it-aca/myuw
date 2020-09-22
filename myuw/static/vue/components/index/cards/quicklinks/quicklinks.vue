@@ -36,18 +36,19 @@
           Not seeing the links you're looking for?
           <span v-if="popularLinks.length">
             Select from
-            <b-link v-b-toggle.popular_qlinks href="#"
-                    disabled class="d-inline-block"
+            <b-button v-b-toggle.popular_qlinks variant="link" size="sm"
+                      disabled class="d-inline-block align-bottom p-0 border-0"
             >
               popular links,
-            </b-link>
+            </b-button>
             or
           </span>
-          <b-link v-b-toggle.custom_qlinks href="#"
-                  :disabled="disableActions" class="d-inline-block"
+          <b-button v-b-toggle.custom_qlinks variant="link" size="sm"
+                    :disabled="disableActions"
+                    class="d-inline-block align-bottom p-0 border-0"
           >
             Add your own.
-          </b-link>
+          </b-button>
         </span>
       </p>
 
