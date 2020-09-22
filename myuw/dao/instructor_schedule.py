@@ -30,7 +30,8 @@ def get_instructor_schedule_by_term(request, term=None, summer_term=None):
     :param Term term: None uses current term related to the given request
     :param str summer_term: 'full-term': includes all sections;
     'a-term', 'b-term': expects a term-specific schedule;
-    None: expects a term-specific schedule if currently in the summer term.
+    None: a term-specific schedule if "currently" in the summer term and
+    the schedule has some A-term or B-term course(s).
     """
     inst_schedule = __get_instructor_schedule_by_term(
         request, term if term is not None else get_current_quarter(request))
