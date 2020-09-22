@@ -3,9 +3,7 @@ import traceback
 from restclients_core.exceptions import DataFailureException
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
-from myuw.dao.term import (
-    get_specific_term, get_current_quarter,
-    get_current_summer_term, get_comparison_datetime)
+from myuw.dao.term import get_specific_term, get_current_quarter
 from myuw.dao.textbook import (
     get_textbook_by_schedule, get_order_url_by_schedule)
 from myuw.logger.timer import Timer
@@ -27,18 +25,16 @@ class Textbook(ProtectedAPI):
         GET returns 200 with textbooks for the given quarter
         """
         timer = Timer()
-        current_date = get_comparison_datetime(request)
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term")
+        return self.respond(
+            timer, request, get_specific_term(year, quarter), summer_term)
 
-        return self.respond(timer, request, year, quarter, summer_term)
-
-    def respond(self, timer, request, year, quarter, summer_term):
+    def respond(self, timer, request, term, summer_term=None):
         try:
             prefetch_resources(request)
             by_sln = {}
-            term = get_specific_term(year=year, quarter=quarter)
             # enrolled sections
             try:
                 schedule = get_schedule_by_term(
@@ -55,7 +51,8 @@ class Textbook(ProtectedAPI):
 
             # instructed sections
             try:
-                schedule = get_instructor_schedule_by_term(request, term)
+                schedule = get_instructor_schedule_by_term(
+                    request, term=term, summer_term=summer_term)
                 by_sln.update(self._get_schedule_textbooks(
                     schedule, summer_term))
             except DataFailureException as ex:
@@ -67,7 +64,7 @@ class Textbook(ProtectedAPI):
                 return data_not_found()
 
             log_api_call(timer, request, "Get Textbook for {}.{}".format(
-                year, quarter))
+                term.year, term.quarter))
             return self.json_response(by_sln)
         except Exception:
             return handle_exception(logger, timer, traceback)
@@ -101,11 +98,6 @@ class TextbookCur(Textbook):
         """
         timer = Timer()
         try:
-            term = get_current_quarter(request)
-            summer_term = ""
-            if term.quarter == "summer":
-                summer_term = get_current_summer_term(request)
-            return self.respond(timer, request, term.year,
-                                term.quarter, summer_term)
+            return self.respond(timer, request, get_current_quarter(request))
         except Exception:
             return handle_exception(logger, timer, traceback)
