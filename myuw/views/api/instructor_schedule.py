@@ -446,7 +446,7 @@ class InstScheCurQuar(InstSche):
         timer = Timer()
         return self.make_http_resp(timer,
                                    get_current_quarter(request),
-                                   request)
+                                   request, summer_term='full-term')
 
 
 class InstScheQuar(InstSche):
@@ -464,15 +464,11 @@ class InstScheQuar(InstSche):
         timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
-        summer_term = kwargs.get("summer_term", None)
+        summer_term = kwargs.get("summer_term", "full-term")
         try:
-            smr_term = ""
-            if summer_term and len(summer_term) > 1:
-                smr_term = summer_term.title()
-
             return self.make_http_resp(timer,
                                        get_specific_term(year, quarter),
-                                       request, smr_term)
+                                       request, summer_term=summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
