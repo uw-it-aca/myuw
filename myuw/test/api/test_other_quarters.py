@@ -13,7 +13,12 @@ class TestOtherQuarters(MyuwApiTest):
         self.set_user('javerage')
         response = self.get_oquarters_response()
         self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertFalse(data["terms"][0]["has_registration"])
+        self.assertFalse(data["next_term_data"]["has_registration"])
 
+        self.set_date("2013-05-15")
+        response = self.get_oquarters_response()
         data = json.loads(response.content)
         self.assertEquals(data["next_term_data"]["has_registration"], True)
         self.assertEquals(data["next_term_data"]["quarter"], "Autumn")

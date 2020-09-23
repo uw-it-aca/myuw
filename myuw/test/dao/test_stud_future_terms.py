@@ -22,7 +22,8 @@ class TestRegisteredTerm(TransactionTestCase):
                           get_registered_future_quarters, req)
 
     def test_get_registered_future_quarters(self):
-        req = get_request_with_user('javerage')
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-05-14"))
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
         self.assertEqual(len(terms), 3)
@@ -72,7 +73,7 @@ class TestRegisteredTerm(TransactionTestCase):
 
         # Winter quarter enrollment
         req = get_request_with_user(
-            'javerage', get_request_with_date("2013-11-10"))
+            'javerage', get_request_with_date("2013-11-12"))
         data = get_registered_future_quarters(req)
         terms = data["terms"]
         self.assertTrue(len(terms) == 1)
@@ -82,7 +83,8 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(terms[0]["section_count"], 5)
         self.assertTrue(terms[0]['has_registration'])
 
-        req = get_request_with_user('eight')
+        req = get_request_with_user('eight',
+                                    get_request_with_date("2013-05-14"))
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
         self.assertEqual(len(terms), 3)
@@ -108,7 +110,7 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEquals(data['next_term_data']['label'], '2013,autumn')
 
         req = get_request_with_user(
-            'jbothell', get_request_with_date("2013-01-05"))
+            'jbothell', get_request_with_date("2013-02-19"))
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
         self.assertEqual(len(terms), 1)
@@ -123,13 +125,14 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(data['next_term_data']['section_count'], 0)
 
         req = get_request_with_user(
-            'jpce', get_request_with_date("2013-01-05"))
+            'jpce', get_request_with_date("2013-02-19"))
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
         self.assertEqual(len(terms), 1)
         self.assertEqual(terms[0]['section_count'], 5)
 
-        req = get_request_with_user('jpce')
+        req = get_request_with_user('jpce',
+                                    get_request_with_date("2013-05-14"))
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
         self.assertEqual(len(terms), 3)
@@ -140,8 +143,9 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(terms[2]['url'], '/2013,autumn')
         self.assertEqual(terms[2]['section_count'], 0)
 
-        req = get_request_with_user('jeos')
-        data = get_registered_future_quarters(req)
+        req = get_request_with_user('jeos',
+                                    get_request_with_date("2013-05-14"))
+        data = get_registered_future_quarters(req,)
         terms = data.get("terms")
         self.assertEqual(len(terms), 2)
         self.assertEqual(terms[0]['label'], '2013,summer')

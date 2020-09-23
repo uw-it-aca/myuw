@@ -339,24 +339,24 @@ class TestVisualSchedule(TestCase):
         weeks = _add_sections_to_weeks(schedule.sections, weeks)
         consolidated = _consolidate_weeks(weeks)
 
-        self.assertEqual(len(consolidated), 4)
+        self.assertEqual(len(consolidated), 5)
 
-        w1 = [schedule.sections[1], schedule.sections[2], schedule.sections[3],
-              schedule.sections[4]]
-        self.assertEqual(len(consolidated[0].sections), 4)
+        w1 = [schedule.sections[2], schedule.sections[3], schedule.sections[4]]
+        self.assertEqual(len(consolidated[0].sections), 3)
         self.assertTrue(_section_lists_are_same(consolidated[0].sections, w1))
 
-        w2 = [schedule.sections[0], schedule.sections[1], schedule.sections[2],
+        w2 = [schedule.sections[1], schedule.sections[2],
               schedule.sections[3], schedule.sections[4]]
-        self.assertEqual(len(consolidated[1].sections), 5)
+        self.assertEqual(len(consolidated[1].sections), 4)
         self.assertTrue(_section_lists_are_same(consolidated[1].sections, w2))
 
-        w3 = [schedule.sections[0], schedule.sections[4]]
-        self.assertEqual(len(consolidated[2].sections), 2)
+        w3 = [schedule.sections[0], schedule.sections[1], schedule.sections[2],
+              schedule.sections[3], schedule.sections[4]]
+        self.assertEqual(len(consolidated[2].sections), 5)
         self.assertTrue(_section_lists_are_same(consolidated[2].sections, w3))
 
-        w4 = [schedule.sections[0]]
-        self.assertEqual(len(consolidated[3].sections), 1)
+        w4 = [schedule.sections[0], schedule.sections[1], schedule.sections[3]]
+        self.assertEqual(len(consolidated[3].sections), 3)
         self.assertTrue(_section_lists_are_same(consolidated[3].sections, w4))
 
     def test_weekend_meetings(self):
@@ -369,7 +369,7 @@ class TestVisualSchedule(TestCase):
         term = get_term_from_quarter_string("2013,summer")
 
         request = get_request_with_user('javerage')
-        schedule = get_schedule_by_term(request, term)
+        schedule = get_schedule_by_term(request, term, summer_term='full-term')
         schedule = _add_dates_to_sections(schedule)
 
         self.assertEqual(schedule.sections[0].start_date,
@@ -391,7 +391,7 @@ class TestVisualSchedule(TestCase):
         term = get_term_from_quarter_string("2013,summer")
 
         request = get_request_with_user('javerage')
-        schedule = get_schedule_by_term(request, term)
+        schedule = get_schedule_by_term(request, term, 'b-term')
         schedule = _add_dates_to_sections(schedule)
         a_term, b_term = get_summer_schedule_bounds(schedule)
         self.assertEqual(a_term[0], datetime.date(2013, 6, 23))
@@ -678,7 +678,8 @@ class TestVisualSchedule(TestCase):
         request = get_request_with_user('javerage',
                                         get_request_with_date("2013-03-01"))
         term = get_term_from_quarter_string("2013,summer")
-        future_schedule = get_future_visual_schedule(request, term)
+        future_schedule = get_future_visual_schedule(
+            request, term, summer_term='b-term')
 
         now_req = get_request_with_date("2013-08-01")
         second_request = get_request_with_user('javerage', now_req)
@@ -777,10 +778,8 @@ class TestVisualSchedule(TestCase):
 
     def test_get_off_term_trimmed(self):
         request = get_request_with_user('jeos',
-                                        get_request_with_date("2013-07-01"))
-
+                                        get_request_with_date("2013-07-25"))
         schedule = _get_combined_schedule(request)
-
         visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
         trimmed = _get_off_term_trimmed(visual_schedule)
         self.assertEqual(trimmed[0]['section'], 'LIS 498 C')
@@ -1065,9 +1064,9 @@ class TestVisualSchedule(TestCase):
             'jeos', get_request_with_date("2013-05-12"))
         term = get_current_quarter(request)
         schedule = get_current_visual_schedule(request)
-        self.assertEqual(len(schedule), 6)
+        self.assertEqual(len(schedule), 5)
         schedule_json = get_schedule_json(schedule, term)
-        self.assertEqual(len(schedule_json['periods']), 6)
+        self.assertEqual(len(schedule_json['periods']), 5)
         self.assertEqual(str(schedule_json['periods'][2]['end_date']),
                          '2013-06-15')
         self.assertEqual(len(schedule_json['periods'][2]['sections']), 2)

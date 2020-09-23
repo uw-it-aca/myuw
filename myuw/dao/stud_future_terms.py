@@ -9,12 +9,12 @@ from datetime import timedelta
 from uw_sws.section import (
     is_a_term, is_b_term, is_full_summer_term)
 from myuw.models import SeenRegistration
+from myuw.dao import is_using_file_dao
 from myuw.dao.registration import get_schedule_by_term, _is_split_term
 from myuw.dao.term import (
-    get_current_quarter, get_next_quarter, get_term_after,
+    get_current_quarter, get_next_quarter, get_term_after, get_comparison_date,
     get_comparison_datetime, get_comparison_datetime_with_tz)
 from myuw.dao.user import get_user_model
-
 
 logger = logging.getLogger(__name__)
 FULL_TERM = "F"
@@ -34,18 +34,19 @@ def get_registered_future_quarters(request):
     """
     Return the list of future quarters that has actively enrolled sections
     """
-    resp_data = {"terms": [],
-                 "next_term_data": None}
+    resp_data = {"terms": [], "next_term_data": None}
     high_light = False
     future_term_regs, summer_started, bterm_started = (
         _get_future_registrations(request))
+
+    if is_using_file_dao():
+        _set_mock_data(request, future_term_regs)
 
     for schedule in future_term_regs:
 
         if schedule.term.is_summer_quarter():
 
             summer_term_data = _get_summer_term_data(schedule)
-
             if _is_split_term(schedule.registered_summer_terms):
 
                 if (not summer_started and (
@@ -75,6 +76,7 @@ def get_registered_future_quarters(request):
                 resp_data["terms"].append(data)
             continue
 
+        # non-summer term
         data = _get_resp_json(schedule)
         data["highlight"] = _should_highlight(request, data)
         high_light = high_light or data["highlight"]
@@ -220,3 +222,15 @@ def _should_highlight(request, data, bterm_start_dt=None):
 
     # highlight on the 1st day when the reg status card shows up
     return now < srobj.first_seen_date + timedelta(days=1)
+
+
+def _set_mock_data(request, future_term_regs):
+    """
+    No future term registration data until 3 days after
+    registration_period1_start so that the RegStatusCard can show up
+    """
+    now = get_comparison_date(request)
+    for schedule in future_term_regs:
+        if now <= (schedule.term.registration_period1_start +
+                   timedelta(days=3)):
+            schedule.sections = []
