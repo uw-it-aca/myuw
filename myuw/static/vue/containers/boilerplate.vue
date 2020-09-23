@@ -23,7 +23,7 @@
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
-              <b-link href="/profile/" 
+              <b-link href="/profile/"
                       class="text-white font-weight-lighter"
                       aria-label="View your profile"
               >
