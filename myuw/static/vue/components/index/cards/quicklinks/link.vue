@@ -1,7 +1,7 @@
 <template>
   <li class="mb-1 myuw-quicklinks">
     <div class="d-flex">
-      <a :href="link.url" :aria-label="link.label"
+      <a :href="link.url"
          target="_blank" class="mr-auto pr-1"
       >
         {{ link.label }}
