@@ -1,5 +1,5 @@
 <template>
-  <li class="mb-1 myuw-quicklinks" role="group">
+  <li class="mb-1 myuw-quicklinks">
     <div class="d-flex">
       <a :href="link.url" :title="link.label"
          target="_blank" class="mr-auto pr-1"
