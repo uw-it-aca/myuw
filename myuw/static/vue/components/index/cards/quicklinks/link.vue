@@ -34,6 +34,8 @@
           <b-button
             v-else variant="link"
             :title="`Save ${link.label} link to your Quick Links list`"
+            class="p-0 m-0 border-0 align-bottom text-light"
+            size="sm"
             @click="saveLink"
           >
             <font-awesome-icon :icon="['fas', 'plus']" />
@@ -158,7 +160,7 @@ export default {
 .myuw-quicklinks {
   &:focus, &:focus-within, &:hover {
     //handle visibility of remove/edit buttons
-    button.text-white {
+    button.text-white, button.text-light {
       color: $text-muted !important;
     }
   }

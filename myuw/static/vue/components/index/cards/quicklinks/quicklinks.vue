@@ -40,24 +40,23 @@
                       :disabled="disableActions"
                       class="d-inline-block align-bottom p-0 border-0"
             >
-              popular links,
-            </b-button>
-            or
+              popular links
+            </b-button>, or
           </span>
           <b-button v-b-toggle.custom_qlinks variant="link" size="sm"
                     :disabled="disableActions"
                     class="d-inline-block align-bottom p-0 border-0"
           >
-            Add your own.
-          </b-button>
+            add your own
+          </b-button>.
         </span>
       </p>
 
-      <b-collapse id="popular_qlinks">
+      <b-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
         <h4 class="h6 font-weight-bold">
           Popular Links
         </h4>
-        <ul class="list-unstyled myuw-text-md">
+        <ul class="list-unstyled myuw-text-md mb-0">
           <uw-link
             v-for="(link, index) in popularLinks" :key="`popular-${index}`"
             :link="link" :buttons="['save']" :custom-id="`popular-${index}`"
