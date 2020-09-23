@@ -14,7 +14,7 @@
         </b-badge>
         <a :href="sectionUrl"
            class="text-white"
-           :title="sectionTitle"
+           :aria-label="'Course section: ' + sectionTitle"
         >
           {{ sectionTitle }}
         </a>
@@ -27,11 +27,11 @@
                meetingLocationUrl
              )"
              :href="meetingLocationUrl"
-             :title="meetingLocation"
+             :aria-label="'Location: ' + meetingLocation"
           >
             {{ meetingLocation }}
           </a>
-          <span v-else>
+          <span v-else :aria-label="'Location: ' + meetingLocation">
             {{ meetingLocation }}
           </span>
           <a v-if="showConfirmLink"
