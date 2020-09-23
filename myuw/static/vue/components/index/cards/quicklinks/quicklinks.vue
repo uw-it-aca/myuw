@@ -99,10 +99,10 @@
           </b-form-group>
           <div>
             <div v-if="isAddErrored" id="error_saving">
-              <span>Error saving</span>
+              <span class="text-danger">Error saving</span>
             </div>
             <div v-if="isAddFetching" id="quicklink_saving">
-              <span>Saving...</span>
+              <span class="text-muted">Saving...</span>
             </div>
           </div>
           <div class="d-flex justify-content-end">
