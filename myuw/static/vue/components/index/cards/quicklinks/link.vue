@@ -1,7 +1,7 @@
 <template>
   <li class="mb-1 myuw-quicklinks">
     <div class="d-flex">
-      <a :href="link.url" :title="link.label"
+      <a :href="link.url" :aria-label="link.label"
          target="_blank" class="mr-auto pr-1"
       >
         {{ link.label }}
@@ -10,7 +10,7 @@
         <b-button
           v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
           variant="link"
-          :title="`Edit ${link.label} link`"
+          :aria-label="`Edit ${link.label} link`"
           class="p-0 m-0 border-0 align-bottom text-white"
           size="sm"
         >
@@ -18,7 +18,7 @@
         </b-button>
         <b-button
           v-if="activeButtons['remove']" variant="link"
-          :title="`Remove ${link.label} link from Quick Links list`"
+          :aria-label="`Remove ${link.label} link from Quick Links list`"
           class="p-0 m-0 border-0 align-bottom text-white"
           size="sm"
           @click="removeLink({link, canActuallyRemove})"
@@ -28,14 +28,14 @@
         <span v-if="activeButtons['save']">
           <font-awesome-icon
             v-if="link.added"
-            :title="`${link.label} link saved to Quick Links`"
+            :aria-label="`${link.label} link saved to Quick Links`"
             :icon="['fa', 'check']"
             class="p-0 m-0 border-0 align-bottom text-light"
             size="sm"
           />
           <b-button
             v-else variant="link"
-            :title="`Save ${link.label} link to your Quick Links list`"
+            :aria-label="`Save ${link.label} link to your Quick Links list`"
             class="p-0 m-0 border-0 align-bottom text-light"
             size="sm"
             @click="saveLink"
