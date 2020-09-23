@@ -30,9 +30,9 @@
                 >
                   Critical:
                 </span>
-                <b-link
+                <b-button
                   v-b-toggle="notice.id_hash"
-                  class="p-0 notice-link"
+                  class="p-0 border-0 align-top notice-link myuw-text-md"
                   variant="link"
                   v-html="notice.notice_title"
                 />
