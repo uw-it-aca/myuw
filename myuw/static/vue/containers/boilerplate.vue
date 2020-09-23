@@ -23,7 +23,10 @@
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
-              <b-link href="/profile/" class="text-white font-weight-lighter">
+              <b-link href="/profile/" 
+                      class="text-white font-weight-lighter"
+                      aria-label="View your profile"
+              >
                 <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
                 {{ netid }}
               </b-link>
@@ -33,7 +36,7 @@
                 v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-lighter"
-                title="UW email services"
+                aria-label="UW email services"
               >
                 <font-awesome-icon
                   :icon="['fas', 'exclamation-triangle']"
@@ -44,7 +47,7 @@
                 v-else
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-lighter"
-                title="Open your email in new tab"
+                aria-label="Open your email in new tab"
               >
                 <font-awesome-icon
                   :icon="['fas', 'envelope']"
@@ -66,6 +69,7 @@
               <b-link
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-lighter"
+                aria-label="Sign out of MyUW"
               >
                 <font-awesome-icon
                   :icon="['fas', 'sign-out-alt']"
