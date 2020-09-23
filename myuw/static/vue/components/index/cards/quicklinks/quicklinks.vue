@@ -37,7 +37,8 @@
           <span v-if="popularLinks.length">
             Select from
             <b-button v-b-toggle.popular_qlinks variant="link" size="sm"
-                      disabled class="d-inline-block align-bottom p-0 border-0"
+                      :disabled="disableActions"
+                      class="d-inline-block align-bottom p-0 border-0"
             >
               popular links,
             </b-button>
