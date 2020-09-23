@@ -7,7 +7,6 @@
       <a
         :href="event.event_url"
         class="d-block"
-        :title="generateLabel(event)"
         :aria-label="generateLabel(event)"
       >
         <span v-if="event.is_all_day" class="text-dark font-weight-light
