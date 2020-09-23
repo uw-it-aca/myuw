@@ -30,6 +30,8 @@
             v-if="link.added"
             :title="`${link.label} link saved to Quick Links`"
             :icon="['fa', 'check']"
+            class="p-0 m-0 border-0 align-bottom text-light"
+            size="sm"
           />
           <b-button
             v-else variant="link"
