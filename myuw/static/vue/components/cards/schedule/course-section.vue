@@ -27,11 +27,11 @@
                meetingLocationUrl
              )"
              :href="meetingLocationUrl"
-             :aria-label="`Location: ${meetingLocation}`"
+             :aria-label="ariaMeetingLocation"
           >
             {{ meetingLocation }}
           </a>
-          <span v-else :aria-label="`Location: ${meetingLocation}`">
+          <span v-else :aria-label="ariaMeetingLocation">
             {{ meetingLocation }}
           </span>
           <a v-if="showConfirmLink"
@@ -112,7 +112,7 @@ export default {
         this.meetingData.meeting != null &&
         this.meetingData.meeting.no_meeting
       ) {
-        return 'No Meeting';
+        return 'No meeting';
       }
       if (!this.isRoomTBD()) {
         return `${
@@ -123,20 +123,20 @@ export default {
     },
     ariaMeetingLocation: function() {
       if (this.meetingData.section.is_remote) {
-        return 'Remote Learning';
+        return 'Location: Remote';
       }
       if (
         this.meetingData.meeting != null &&
         this.meetingData.meeting.no_meeting
       ) {
-        return 'No Meeting';
+        return 'Location: None';
       }
       if (!this.isRoomTBD()) {
-        return `Building:${
+        return `Building: ${
           this.meetingData.meeting.building
-        } Room:${this.meetingData.meeting.room}`;
+        } Room: ${this.meetingData.meeting.room}`;
       }
-      return 'Room TBD';
+      return 'Location: Room TBD';
     },
     meetingLocationUrl: function() {
       if (
@@ -180,6 +180,8 @@ export default {
           this.meetingData.meeting.end_date
         );
 
+        label += 'Meeting time: ';
+
         if (this.day) {
           label += `${this.ucfirst(this.day)}, `;
         }
@@ -187,11 +189,15 @@ export default {
         if (startTime && endTime) {
           label += `${
             startTime.format('h:mma')
-          }-${endTime.format('h:mma')}, `;
+          }-${endTime.format('h:mma')}`;
+        }
+
+        if (!this.day && !startTime && !endTime) {
+          label += 'None';
         }
       }
 
-      label += `${this.sectionTitle}, ${this.ariaMeetingLocation}`;
+      // label += `${this.sectionTitle}, ${this.ariaMeetingLocation}`;
 
       return label;
     },
