@@ -162,7 +162,7 @@ export default {
 .myuw-quicklinks {
   &:focus, &:focus-within, &:hover {
     //handle visibility of remove/edit buttons
-    button.text-white, button.text-light {
+    button.text-white, button.text-light, svg.text-light {
       color: $text-muted !important;
     }
   }
