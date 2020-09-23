@@ -37,26 +37,27 @@
           <span v-if="popularLinks.length">
             Select from
             <b-button v-b-toggle.popular_qlinks variant="link" size="sm"
-                      disabled class="d-inline-block align-bottom p-0 border-0"
+                      :disabled="disableActions"
+                      class="d-inline-block align-bottom p-0 border-0"
             >
-              popular links,
-            </b-button>
-            or
+              popular links
+            </b-button>, or
           </span>
           <b-button v-b-toggle.custom_qlinks variant="link" size="sm"
                     :disabled="disableActions"
                     class="d-inline-block align-bottom p-0 border-0"
           >
-            Add your own.
-          </b-button>
+            <span v-if="popularLinks.length">add your own</span>
+            <span v-else>Add your own</span>
+          </b-button>.
         </span>
       </p>
 
-      <b-collapse id="popular_qlinks">
+      <b-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
         <h4 class="h6 font-weight-bold">
           Popular Links
         </h4>
-        <ul class="list-unstyled myuw-text-md">
+        <ul class="list-unstyled myuw-text-md mb-0">
           <uw-link
             v-for="(link, index) in popularLinks" :key="`popular-${index}`"
             :link="link" :buttons="['save']" :custom-id="`popular-${index}`"
@@ -98,10 +99,10 @@
           </b-form-group>
           <div>
             <div v-if="isAddErrored" id="error_saving">
-              <span>Error saving</span>
+              <span class="text-danger">Error saving</span>
             </div>
             <div v-if="isAddFetching" id="quicklink_saving">
-              <span>Saving...</span>
+              <span class="text-muted">Saving...</span>
             </div>
           </div>
           <div class="d-flex justify-content-end">
