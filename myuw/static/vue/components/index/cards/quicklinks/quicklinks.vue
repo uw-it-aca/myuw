@@ -47,7 +47,8 @@
                     :disabled="disableActions"
                     class="d-inline-block align-bottom p-0 border-0"
           >
-            add your own
+            <span v-if="popularLinks.length">add your own</span>
+            <span v-else>Add your own</span>
           </b-button>.
         </span>
       </p>
