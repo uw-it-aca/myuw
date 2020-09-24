@@ -333,13 +333,14 @@ class TestVisualSchedule(TestCase):
         request = get_request_with_user('jpce')
         schedule = get_schedule_by_term(request, term)
         schedule = _add_dates_to_sections(schedule)
+        self.assertEqual(len(schedule.sections), 5)
 
         bounds = get_schedule_bounds(schedule)
         weeks = _get_weeks_from_bounds(bounds)
         weeks = _add_sections_to_weeks(schedule.sections, weeks)
         consolidated = _consolidate_weeks(weeks)
 
-        self.assertEqual(len(consolidated), 4)
+        self.assertEqual(len(consolidated), 5)
 
         w1 = [schedule.sections[1], schedule.sections[2], schedule.sections[3],
               schedule.sections[4]]
@@ -351,13 +352,17 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(consolidated[1].sections), 5)
         self.assertTrue(_section_lists_are_same(consolidated[1].sections, w2))
 
-        w3 = [schedule.sections[0], schedule.sections[4]]
-        self.assertEqual(len(consolidated[2].sections), 2)
+        w3 = [schedule.sections[0], schedule.sections[1], schedule.sections[3]]
+        self.assertEqual(len(consolidated[2].sections), 3)
         self.assertTrue(_section_lists_are_same(consolidated[2].sections, w3))
 
-        w4 = [schedule.sections[0]]
-        self.assertEqual(len(consolidated[3].sections), 1)
+        w4 = [schedule.sections[0], schedule.sections[3]]
+        self.assertEqual(len(consolidated[3].sections), 2)
         self.assertTrue(_section_lists_are_same(consolidated[3].sections, w4))
+
+        w5 = [schedule.sections[0]]
+        self.assertEqual(len(consolidated[4].sections), 1)
+        self.assertTrue(_section_lists_are_same(consolidated[4].sections, w5))
 
     def test_weekend_meetings(self):
         consolidated = self._get_weekend_meeting_schedule()
@@ -777,7 +782,7 @@ class TestVisualSchedule(TestCase):
 
     def test_get_off_term_trimmed(self):
         request = get_request_with_user('jeos',
-                                        get_request_with_date("2013-07-01"))
+                                        get_request_with_date("2013-07-25"))
 
         schedule = _get_combined_schedule(request)
 
