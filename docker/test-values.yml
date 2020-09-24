@@ -208,7 +208,7 @@ environmentVariables:
     value: "5"
 
   - name: SWS_ENV
-    value: PROD
+    value: EVAL
   - name: SWS_POOL_SIZE
     value: "20"
   - name: SWS_TIMEOUT
