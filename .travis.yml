@@ -45,7 +45,7 @@ after_success:
         "master")
           export APP_INSTANCE="prod";
           ;;
-        "fix/MUWM-4808")
+        "qa")
           export APP_INSTANCE="test";
           ;;
         "develop")
