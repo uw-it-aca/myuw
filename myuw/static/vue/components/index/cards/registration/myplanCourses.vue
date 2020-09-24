@@ -90,19 +90,24 @@ export default {
     },
   },
   computed: {
+    currentPlanData() {
+      return this.myPlanData.terms.find(
+        (term) => term.quarter === this.nextTermQuarter
+      );
+    },
     hadReadyCourses() {
-      return this.myPlanData.has_ready_courses;
+      return this.currentPlanData.has_ready_courses;
     },
     hadUnReadyCourses() {
-      return this.myPlanData.has_unready_courses;
+      return this.currentPlanData.has_unready_courses;
     },
     coursesRegistrable() {
-      return this.myPlanData.courses.filter(
+      return this.currentPlanData.courses.filter(
         (c) => c.registrations_available
       );
     },
     coursesUnRegistrable() {
-      return this.myPlanData.courses.filter(
+      return this.currentPlanData.courses.filter(
         (c) => !c.registrations_available
       );
     },
