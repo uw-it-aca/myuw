@@ -49,7 +49,7 @@
       </div>
     </b-collapse>
   </div>
-  <div v-else-if="isReady">
+  <div v-else>
     <h4>In MyPlan</h4>
     <div>No courses in your plan</div>
     <div>
@@ -69,6 +69,10 @@ export default {
       type: Object,
       required: true,
     },
+    quarter: {
+      type: String,
+      required: true,
+    },
     summerCardLabel: {
       type: String,
       default: "",
@@ -80,23 +84,28 @@ export default {
     }
   },
   computed: {
+    currentPlanData() {
+      return this.myPlanData.terms.find(
+        (term) => term.quarter === this.quarter
+      );
+    },
     readyCount() {
-      return this.myPlanData.ready_count;
+      return this.currentPlanData.ready_count;
     },
     unreadyCount() {
-      return this.myPlanData.unready_count;
+      return this.currentPlanData.unready_count;
     },
     hasSections() {
-      return this.myPlanData.has_sections;
+      return this.currentPlanData.has_sections;
     },
     myplanHref() {
-      return this.myPlanData.myplan_href;
+      return this.currentPlanData.myplan_href;
     },
     myplanCourseSearchHref() {
-      return this.myPlanData.course_search_href;
+      return this.currentPlanData.course_search_href;
     },
     courses() {
-      return this.myPlanData.courses;
+      return this.currentPlanData.courses;
     },
     coursesUnavailable() {
       return this.courses.filter((c) => !c.registrations_available);

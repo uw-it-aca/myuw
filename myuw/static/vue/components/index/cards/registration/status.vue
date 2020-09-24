@@ -40,6 +40,7 @@
       <uw-in-myplan
         v-if="myPlanData"
         :myPlanData="myPlanData"
+        :quarter="quarter"
       />
 
       <span v-if="estRegData.estRegDate && estRegData.isMy1stRegDay">
@@ -189,16 +190,17 @@ export default {
     termMinors() {return this.profile.term_minors},
     termMajors() {return this.profile.term_majors},
     shouldDisplayAtAll: function() {
-      return (
-        !this.loading && 
-        !(this.isSummerReg && this.hasRegistration) && (
+      if (this.loaded) {
+        return !(this.isSummerReg && this.hasRegistration) && (
           // Can do any one of these
           (this.finAidNotices && this.finAidNotices.length) ||
           this.estRegData.estRegDate ||
           (this.regHoldsNotices && this.regHoldsNotices.length) ||
           this.myPlanData
         )
-      ) || !this.loading;
+      }
+
+      return false;
     },
     estRegData: function() {
       const estRegData = {};
