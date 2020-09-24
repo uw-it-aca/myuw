@@ -13,6 +13,7 @@ import Events from './components/index/cards/events/events.vue';
 import Grades from './components/cards/grades.vue';
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 import HuskyExperience from './components/cards/husky-experience.vue'
+import Outage from './components/cards/outage.vue'
 import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue'
 
 // Stores
@@ -60,6 +61,7 @@ Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-husky-experience', HuskyExperience);
+Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
 
 new Vue({
