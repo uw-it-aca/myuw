@@ -45,11 +45,11 @@ after_success:
         "master")
           export APP_INSTANCE="prod";
           ;;
-        "qa")
+        "fix/MUWM-4808")
           export APP_INSTANCE="test";
           ;;
-        "fix/MUWM-4808")
-          export APP_INSTANCE="vue";
+        "develop")
+          export APP_INSTANCE="dev";
           ;;
         *)
           unset APP_INSTANCE
