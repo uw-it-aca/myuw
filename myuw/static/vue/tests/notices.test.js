@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
+import { BCollapse } from 'bootstrap-vue'
 import Vuex from 'vuex';
 import notices from '../store/notices';
 import NoticeCard from '../components/index/cards/notices';
@@ -112,14 +113,14 @@ describe('Notice Card', () => {
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
 
-    expect(wrapper.findAll('.p-0.notice-link')).toHaveLength(8);
-    expect(wrapper.findAll('.collapse.show')).toHaveLength(0);
+    expect(wrapper.findAll('button')).toHaveLength(8);
+    expect(wrapper.findAllComponents(BCollapse)).toHaveLength(8);
 
     for (let i = 0; i < 8; i++) {
-      wrapper.findAll('.p-0.notice-link').at(i).trigger('click');
-      await wrapper.vm.$nextTick();
+      expect(wrapper.findAllComponents(BCollapse).at(i).vm.show).toBeFalsy();
+      await wrapper.findAll('button').at(i).trigger('click');
+      expect(wrapper.findAllComponents(BCollapse).at(i).vm.show).toBeTruthy();
     }
-    expect(wrapper.findAll('.collapse.show')).toHaveLength(8);
   });
 
   it('Check show event', async () => {
