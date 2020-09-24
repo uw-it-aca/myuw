@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isReady">
+  <div>
     <h4>Your {{nextTermQuarter}} {{nextTermYear}} plan</h4>
     <div v-if="hadReadyCourses">
       <h5>Ready for registration</h5>
@@ -83,45 +83,29 @@ export default {
     nextTermQuarter: {
       type: String,
       required: true,
-    }
+    },
+    myPlanData: {
+      type: Object,
+      required: true,
+    },
   },
   computed: {
-    ...mapState('myplan', {
-      hadReadyCourses: function(state) {
-        return state.value[this.nextTermQuarter].has_ready_courses;
-      },
-      hadUnReadyCourses: function(state) {
-        return state.value[this.nextTermQuarter].has_unready_courses;
-      },
-      coursesRegistrable: function(state) {
-        return state.value[this.nextTermQuarter].courses.filter(
-          (c) => c.registrations_available
-        );
-      },
-      coursesUnRegistrable: function(state) {
-        return state.value[this.nextTermQuarter].courses.filter(
-          (c) => !c.registrations_available
-        );
-      },
-    }),
-    ...mapGetters('myplan', [
-      'isReadyTagged',
-      'isErroredTagged',
-    ]),
-    isReady() {
-      return this.isReadyTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    hadReadyCourses() {
+      return this.myPlanData.has_ready_courses;
     },
-    isErrored() {
-      return this.isErroredTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    hadUnReadyCourses() {
+      return this.myPlanData.has_unready_courses;
     },
-  },
-  created() {
-    this.fetchMyPlan(this.nextTermYear, this.nextTermQuarter);
-  },
-  methods: {
-    ...mapActions('myplan', {
-      fetchMyPlan: 'fetch',
-    }),
+    coursesRegistrable() {
+      return this.myPlanData.courses.filter(
+        (c) => c.registrations_available
+      );
+    },
+    coursesUnRegistrable() {
+      return this.myPlanData.courses.filter(
+        (c) => !c.registrations_available
+      );
+    },
   },
 }
 </script>

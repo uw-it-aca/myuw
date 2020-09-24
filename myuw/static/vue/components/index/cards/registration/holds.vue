@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <h4 v-if="!myplanPeakLoad">Holds</h4>
+      <h4 v-if="myPlanData">Holds</h4>
       <div>
         <font-awesome-icon
           :icon="['fas', 'exclamation-triangle']"
@@ -35,9 +35,9 @@
 <script>
 export default {
   props: {
-    myplanPeakLoad: {
-      type: Boolean,
-      required: true,
+    myPlanData: {
+      type: Object,
+      default: null,
     },
     summerCardLabel: {
       type: String,
