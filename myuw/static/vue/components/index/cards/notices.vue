@@ -1,5 +1,8 @@
 <template>
-  <uw-card :loaded="isReady" :errored="isErrored">
+  <uw-card
+    v-if="!isReady || hasAnyNotices"
+    :loaded="isReady" :errored="isErrored"
+  >
     <template #card-heading>
       <h3 class="text-dark-beige">
         Notices
@@ -96,6 +99,9 @@ export default {
           }
           return n2.date - n1.date;
         });
+      },
+      hasAnyNotices: (state) => {
+        return state.notices.value.length > 0;
       },
     }),
     ...mapGetters('notices', {
