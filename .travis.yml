@@ -48,8 +48,8 @@ after_success:
         "qa")
           export APP_INSTANCE="test";
           ;;
-        "develop")
-          export APP_INSTANCE="dev";
+        "fix/MUWM-4808")
+          export APP_INSTANCE="vue";
           ;;
         *)
           unset APP_INSTANCE
