@@ -8,7 +8,7 @@
         Register using SLN codes
       </a>
 
-      <div v-if="myplanShouldDisplay && isReady">
+      <div v-if="myPlanData">
         <a 
           v-if="hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
@@ -24,7 +24,7 @@
           Register using MyPlan
         </a>
       </div>
-      <div v-else-if="isReady">
+      <div v-else>
         <a
           target="_blank" title="Register using MyPlan"
           :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`">
@@ -123,9 +123,9 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 
 export default {
   props: {
-    myplanShouldDisplay: {
-      type: Boolean,
-      default: true,
+    myPlanData: {
+      type: Object,
+      default: null,
     },
     nextTermYear: {
       type: Number,
@@ -145,24 +145,6 @@ export default {
     }
   },
   computed: {
-    ...mapState('myplan', {
-      hasReadyCourses: function(state) {
-        return state.value[this.nextTermQuarter].has_ready_courses;
-      },
-      myplanHref: function(state) {
-        return state.value[this.nextTermQuarter].myplan_href;
-      },
-      myplanRegistrationHref: function(state) {
-        return state.value[this.nextTermQuarter].registration_href;
-      },
-      degreeAuditHref: function(state) {
-        if (this.myplanShouldDisplay && this.isReady) {
-          return state.value[this.nextTermQuarter].degree_audit_href;
-        } else {
-          return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
-        }
-      },
-    }),
     ...mapState({
       seattle: (state) => state.user.affiliations.seattle,
       bothell: (state) => state.user.affiliations.bothell,
@@ -172,15 +154,21 @@ export default {
         state.user.affiliations.undergrad_c2
       ),
     }),
-    ...mapGetters('myplan', [
-      'isReadyTagged',
-      'isErroredTagged',
-    ]),
-    isReady() {
-      return this.isReadyTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    hasReadyCourses() {
+      return this.myPlanData.has_ready_courses;
     },
-    isErrored() {
-      return this.isErroredTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    myplanHref() {
+      return this.myPlanData.myplan_href;
+    },
+    myplanRegistrationHref() {
+      return this.myPlanData.registration_href;
+    },
+    degreeAuditHref() {
+      if (this.myPlanData && this.myPlanData.degree_audit_href) {
+        return this.myPlanData.degree_audit_href;
+      } else {
+        return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
+      }
     },
     nextTermQuarterCode() {
       if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
@@ -200,19 +188,6 @@ export default {
           return 4;
       }
     },
-  },
-  created() {
-    if (this.myplanShouldDisplay) {
-      this.fetchMyPlan({
-        year: this.nextTermYear,
-        quarter: this.nextTermQuarter
-      });
-    }
-  },
-  methods: {
-    ...mapActions('myplan', {
-      fetchMyPlan: 'fetch',
-    }),
   },
 }
 </script>

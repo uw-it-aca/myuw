@@ -34,7 +34,7 @@ import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 import HuskyExperience from './components/cards/husky-experience.vue'
 import Outage from './components/cards/outage.vue'
 import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue'
-import RegStatus from './components/index/cards/registration/status.vue';
+import RegStatusGroup from './components/index/cards/registration/status-group.vue';
 
 // Stores
 import notices from './store/notices';
@@ -107,7 +107,7 @@ Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
-Vue.component('myuw-reg-status', RegStatus);
+Vue.component('myuw-reg-status-group', RegStatusGroup);
 
 new Vue({
   ...vueConf,

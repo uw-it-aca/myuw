@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isReady && courses">
+  <div v-if="courses">
     <h4>In MyPlan</h4>
     <div>
       <ul>
@@ -65,12 +65,8 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 
 export default {
   props: {
-    nextTermYear: {
-      type: Number,
-      required: true,
-    },
-    nextTermQuarter: {
-      type: String,
+    myPlanData: {
+      type: Object,
       required: true,
     },
     summerCardLabel: {
@@ -84,47 +80,27 @@ export default {
     }
   },
   computed: {
-    ...mapState('myplan', {
-      readyCount: function(state) {
-        return state.value[this.nextTermQuarter].ready_count;
-      },
-      unreadyCount: function(state) {
-        return state.value[this.nextTermQuarter].unready_count;
-      },
-      hasSections: function(state) {
-        return state.value[this.nextTermQuarter].has_sections;
-      },
-      myplanHref: function(state) {
-        return state.value[this.nextTermQuarter].myplan_href;
-      },
-      myplanCourseSearchHref: function(state) {
-        return state.value[this.nextTermQuarter].course_search_href;
-      },
-      courses: function(state) {
-        return state.value[this.nextTermQuarter].courses;
-      },
-    }),
-    ...mapGetters('myplan', [
-      'isReadyTagged',
-      'isErroredTagged',
-    ]),
-    isReady() {
-      return this.isReadyTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    readyCount() {
+      return this.myPlanData.ready_count;
     },
-    isErrored() {
-      return this.isErroredTagged(`${this.nextTermYear}/${this.nextTermQuarter}`);
+    unreadyCount() {
+      return this.myPlanData.unready_count;
     },
-    coursesUnavailable: function() {
+    hasSections() {
+      return this.myPlanData.has_sections;
+    },
+    myplanHref() {
+      return this.myPlanData.myplan_href;
+    },
+    myplanCourseSearchHref() {
+      return this.myPlanData.course_search_href;
+    },
+    courses() {
+      return this.myPlanData.courses;
+    },
+    coursesUnavailable() {
       return this.courses.filter((c) => !c.registrations_available);
     }
-  },
-  created() {
-    this.fetchMyPlan({year: this.nextTermYear, quarter: this.nextTermQuarter});
-  },
-  methods: {
-    ...mapActions('myplan', {
-      fetchMyPlan: 'fetch',
-    }),
   },
 }
 </script>

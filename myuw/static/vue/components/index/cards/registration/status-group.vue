@@ -1,10 +1,17 @@
 <template>
   <div>
-    <uw-reg-status />
+    <uw-reg-status
+      v-for="quarter in quarters"
+      :key="quarter" :quarter="quarter" :year="nextTermData.year"
+      :myPlanData="myplanData[`${nextTermData.year}/${quarter}`]"
+      :loaded="loaded(quarter)" :errored="errored(quarter)"
+      :notices="notices" :profile="profile" :oquarterData="oquarterData"
+    />
   </div>
 </template>
 
 <script>
+import {mapGetters, mapState, mapActions} from 'vuex';
 import Status from './status.vue';
 
 export default {
@@ -25,21 +32,23 @@ export default {
         state.cardDisplayDates.is_after_start_of_summer_reg_display_periodA,
       isAfterStartOfSummerRegDisplayPeriod1: (state) =>
         state.cardDisplayDates.is_after_start_of_summer_reg_display_period1,
-      myplanPeakLoad: (state) => state.cardDisplayDates.myplan_peak_load,
-      regPeriod1Started: (state) => state.cardDisplayDates.reg_period1_started,
+      myPlanPeakLoad: (state) => state.cardDisplayDates.myplan_peak_load,
     }),
     ...mapState('notices', {
       notices: (state) => state.value,
     }),
     ...mapState('oquarter', {
-      nextTermData: (state) => state.value.next_term_data,
+      nextTermData: (state) => state.value.next_term_data || {},
+      oquarterData: (state) => Array.isArray(state.value) ? null : state.value,
     }),
     ...mapState('profile', {
-      profile: (state) => state.value,
+      profile: function(state) {
+        return this.isProfileReady ? state.value : null;
+      },
     }),
     ...mapState('myplan', {
       myplanData: function(state) {
-        return state.value[this.nextTermQuarter];
+        return state.value || {};
       },
     }),
     ...mapGetters('notices', {
@@ -58,29 +67,57 @@ export default {
       isMyPlanReadyTagged: 'isReadyTagged',
       isMyPlanErroredTagged: 'isErroredTagged',
     }),
-    isMyPlanReady() {
-      return this.isMyPlanReadyTagged(
-        `${this.nextTermData.next_term_year}/${this.nextTermData.next_term_quarter}`
-      );
-    },
-    isMyPlanErrored() {
-      return this.isMyPlanErroredTagged(
-        `${this.nextTermData.next_term_year}/${this.nextTermData.next_term_quarter}`
-      );
+    needsSummerCard() {
+      return this.isAfterStartOfSummerRegDisplayPeriodA ||
+        this.isAfterStartOfSummerRegDisplayPeriod1;
     },
   },
   created() {
-    this.fetchNotices();
-    this.fetchQuarters();
-    this.fetchProfile();
+    if (this.student) {
+      if (this.needsSummerCard) {
+        this.quarters.push('Summer');
+      }
+
+      if (
+        this.isAfterStartOfRegistrationDisplayPeriod &&
+        this.isBeforeEndOfRegistrationDisplayPeriod
+      ) {
+        this.quarters.push(this.nextQuarterStub);
+      }
+
+      this.fetchNotices();
+      this.fetchQuarters();
+      this.fetchProfile();
+    }
+  },
+  data() {
+    return {
+      quarters: [],
+      nextQuarterStub: 'Next',
+    };
   },
   watch: {
     isQuarterReady: function(n, o) {
-      if (n) {
-        this.fetchMyPlan({
-          year: this.nextTermData.next_term_year,
-          quarter: this.nextTermData.next_term_quarter,
-        });
+      if (!o && n && !this.myPlanPeakLoad) {
+        if (this.needsSummerCard) {
+          this.fetchMyPlan({
+            year: this.nextTermData.year,
+            quarter: 'Summer',
+          });
+        }
+
+        if (this.quarters.indexOf(this.nextQuarterStub) !== -1) {
+          // Replace the stub with the real quarter
+          this.quarters.splice(
+            this.quarters.indexOf(this.nextQuarterStub),
+            1,
+            this.nextTermData.quarter,
+          )
+          this.fetchMyPlan({
+            year: this.nextTermData.year,
+            quarter: this.nextTermData.quarter,
+          });
+        }
       }
     }
   },
@@ -97,6 +134,29 @@ export default {
     ...mapActions('myplan', {
       fetchMyPlan: 'fetch',
     }),
+    loaded(quarter) {
+      return (
+        this.isNoticesReady &&
+        this.isQuarterReady &&
+        this.isProfileReady &&
+        (
+          this.myplanPeakLoad ||
+          (!this.myplanPeakLoad && this.isMyPlanReadyTagged(
+            `${this.nextTermData.year}/${quarter}`
+          ))
+        )
+      );
+    },
+    errored(quarter) {
+      return (
+        this.isNoticesErrored ||
+        this.isQuarterErrored ||
+        this.isProfileErrored ||
+        (!this.myplanPeakLoad && this.isMyPlanErroredTagged(
+          `${this.nextTermData.year}/${quarter}`
+        ))
+      );
+    },
   },
 }
 </script>

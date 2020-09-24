@@ -1,16 +1,13 @@
 import { fetchBuilder, extractData, buildWith } from './model_builder';
 
-function postProcess(response) {
-  const data = extractData(response);
-  const formattedData = {};
+function postProcess(response, urlExtra) {
+  let data = extractData(response);
 
-  if (data && data.terms) {
-    data.terms.forEach((term) => {
-      formattedData[term.quarter] = term;
-    });
+  if (Array.isArray(data) && data.length === 0) {
+    data = null;
   }
 
-  return formattedData;
+  return {[urlExtra]: data};
 }
 
 const customActions = {
