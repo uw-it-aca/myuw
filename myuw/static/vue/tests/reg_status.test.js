@@ -83,4 +83,6 @@ describe('Quicklinks/Link', () => {
     expect(wrapper.vm.loaded).toBeTruthy();
     expect(wrapper.find('h3').text()).toEqual('Registration: Spring 2013');
   });
+
+  // TODO: ADD MORE TEST CASES
 });
