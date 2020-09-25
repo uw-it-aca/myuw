@@ -116,6 +116,9 @@ export default {
           (c) => !c.registrations_available,
       );
     },
+    courses() {
+      return this.currentPlanData.courses;
+    },
   },
 };
 </script>
