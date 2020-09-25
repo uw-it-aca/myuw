@@ -1,6 +1,7 @@
 <template>
-  <uw-card v-if="!loaded || shouldDisplayAtAll"
-           :loaded="loaded" :errored="errored"
+  <uw-card 
+    v-if="student && shouldDisplayAtAll && (!loaded || hasDataToDisplay)"
+    :loaded="loaded" :errored="errored" :erroredShow="false"
   >
     <template #card-heading>
       <h3>
@@ -236,17 +237,16 @@ export default {
         shouldDisplay = true;
       }
 
-      if (shouldDisplay) {
-        return !this.hasRegistration && (
-          // Can do any one of these
-          (this.finAidNotices && this.finAidNotices.length) ||
-          this.estRegData.estRegDate ||
-          (this.regHoldsNotices && this.regHoldsNotices.length) ||
-          this.myPlanData
-        );
-      }
-
-      return false;
+      return shouldDisplay;
+    },
+    hasDataToDisplay() {
+      return !this.hasRegistration && (
+        // Can do any one of these
+        (this.finAidNotices && this.finAidNotices.length) ||
+        this.estRegData.estRegDate ||
+        (this.regHoldsNotices && this.regHoldsNotices.length) ||
+        this.myPlanData
+      );
     },
     estRegData: function() {
       const estRegData = {};
@@ -285,7 +285,7 @@ export default {
       return this.retrieveQuarterDegrees(this.termMinors, 'minors');
     },
     isSummerReg: function() {
-      return this.quarter === 'Summer';
+      return this.forQuarter === 'Summer';
     },
     summerShouldDisplay() {
       return this.isSummerReg && (
