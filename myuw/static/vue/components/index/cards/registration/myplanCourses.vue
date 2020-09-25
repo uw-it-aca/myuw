@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h4>Your {{nextTermQuarter}} {{nextTermYear}} plan</h4>
+    <h4>Your {{ nextTermQuarter }} {{ nextTermYear }} plan</h4>
     <div v-if="hadReadyCourses">
       <h5>Ready for registration</h5>
       <ul>
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
-          <h6>{{course.curriculum_abbr}} {{course.course_number}}</h6>
+          <h6>{{ course.curriculum_abbr }} {{ course.course_number }}</h6>
           <table>
             <thead>
               <tr>
@@ -22,9 +22,13 @@
                   <td :key="`meeting-0-${k}`">
                     <span v-if="k == 0">Section </span>
                     <span v-else class="sr-only">Section </span>
-                    {{section.section_id}}
+                    {{ section.section_id }}
                   </td>
-                  <td v-if="meeting.days_tdb" colspan="2" :key="`meeting-1-${k}`">
+                  <td
+                    v-if="meeting.days_tdb"
+                    :key="`meeting-1-${k}`"
+                    colspan="2"
+                  >
                     Days and times to be arranged
                   </td>
                   <td v-else :key="`meeting-2-${k}`">
@@ -34,7 +38,10 @@
                     <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">
                       T
                     </abbr>
-                    <abbr v-if="meeting.meeting_days.wednesday" title="Wednesday">
+                    <abbr
+                      v-if="meeting.meeting_days.wednesday"
+                      title="Wednesday"
+                    >
                       W
                     </abbr>
                     <abbr v-if="meeting.meeting_days.thursday" title="Thursday">
@@ -51,7 +58,7 @@
                     </abbr>
                   </td>
                   <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`">
-                    {{meeting.start_time}} &ndash; {{meeting.end_time}}
+                    {{ meeting.start_time }} &ndash; {{ meeting.end_time }}
                   </td>
                 </template>
               </tr>
@@ -64,7 +71,7 @@
       <h5>Not ready for registration</h5>
       <ul>
         <li v-for="(course, i) in courses" :key="i">
-          {{course.curriculum_abbr}} {{course.course_number}}
+          {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>
       </ul>
     </div>
@@ -72,8 +79,6 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
-
 export default {
   props: {
     nextTermYear: {
@@ -92,7 +97,7 @@ export default {
   computed: {
     currentPlanData() {
       return this.myPlanData.terms.find(
-        (term) => term.quarter === this.nextTermQuarter
+          (term) => term.quarter === this.nextTermQuarter,
       );
     },
     hadReadyCourses() {
@@ -103,16 +108,16 @@ export default {
     },
     coursesRegistrable() {
       return this.currentPlanData.courses.filter(
-        (c) => c.registrations_available
+          (c) => c.registrations_available,
       );
     },
     coursesUnRegistrable() {
       return this.currentPlanData.courses.filter(
-        (c) => !c.registrations_available
+          (c) => !c.registrations_available,
       );
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

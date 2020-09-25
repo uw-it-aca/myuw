@@ -6,7 +6,7 @@
         <button
           v-b-toggle="`finAid-${notice.id_hash}-collapse`"
         >
-          {{notice.short_content}}
+          {{ notice.short_content }}
         </button>
         <b-collapse
           :id="`finAid-${notice.id_hash}-collapse`"
@@ -24,14 +24,14 @@ export default {
     finAidNotices: {
       type: Array,
       required: true,
-    }
+    },
   },
   data: function() {
     return {
       collapseOpen: true,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
