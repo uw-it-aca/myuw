@@ -1,7 +1,7 @@
 <template>
-  <uw-card 
+  <uw-card
     v-if="student && shouldDisplayAtAll && (!loaded || hasDataToDisplay)"
-    :loaded="loaded" :errored="errored" :erroredShow="false"
+    :loaded="loaded" :errored="errored" :errored-show="false"
   >
     <template #card-heading>
       <h3>
