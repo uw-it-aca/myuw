@@ -300,7 +300,10 @@ def _adjust_period_dates(schedule):
 
 
 def _get_earliest_start_from_period(period):
-    earliest_meeting = None
+    """
+    return the earliest date in the period
+    """
+    earliest_meeting = None  # week day
     for section in period.sections:
         for meeting in section.meetings:
             if meeting.wont_meet():
@@ -319,6 +322,7 @@ def _get_earliest_start_from_period(period):
         days_to_add = earliest_meeting + 1
     else:
         days_to_add = earliest_meeting - start_day
+
     start_date = (period.start_date + timedelta(days=days_to_add))
     return start_date
 
@@ -460,6 +464,8 @@ def trim_summer_meetings(weeks):
 def _trim_sections_after(sections, date):
     cutoff_day = int(date.strftime('%w'))
     for section in sections:
+        if section.summer_term == "A-term":
+            continue
         for meeting in section.meetings:
             if cutoff_day <= 5:
                 meeting.meets_saturday = False
@@ -479,6 +485,8 @@ def _trim_sections_after(sections, date):
 def _trim_sections_before(sections, date):
     cutoff_day = int(date.strftime('%w'))
     for section in sections:
+        if section.summer_term == "B-term":
+            continue
         for meeting in section.meetings:
             if cutoff_day >= 1:
                 meeting.meets_sunday = False
