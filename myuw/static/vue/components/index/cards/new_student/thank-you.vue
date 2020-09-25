@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="showThankYou()"
+    v-if="showThankYou(notices)"
     :loaded="isReady"
     :errored="isErrored"
   >
@@ -10,8 +10,11 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-for="notice in notices" v-once :key="notice.id_hash">
-        <span
+      <div class="ty-notices">
+        <div
+          v-for="notice in notices"
+          v-once
+          :key="notice.id_hash"
           v-html="notice.notice_content"
         />
       </div>
@@ -45,7 +48,7 @@ export default {
             (notice) => notice.location_tags.includes('checklist_feespaid'),
         );
       },
-      notices() {
+      notices: function() {
         return this.ty_notices.concat(this.fp_notices).filter(
             (notice) => notice.is_read == false,
         );
@@ -60,17 +63,20 @@ export default {
     this.fetch();
   },
   methods: {
-    showThankYou() {
+    showThankYou(notices) {
       if (this.isReady) {
         if (this.ranOnce) {
           return this.showCard;
         } else {
-          this.showCard = Boolean(this.notices.length > 0).valueOf();
+          this.showCard = Boolean(notices.length > 0).valueOf();
           this.ranOnce = true;
-          this.notices.forEach((notice) => this.setRead(notice));
+          this.setNoticesRead(notices);
         }
       }
       return true;
+    },
+    setNoticesRead(notices) {
+      notices.forEach((notice) => this.setRead(notice));
     },
     ...mapActions('notices', ['fetch', 'setRead']),
   },
