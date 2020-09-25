@@ -1,0 +1,122 @@
+{
+    "uwnetid": "jinter",
+    "uwregid": "9136CCB8F66711D5BE060004AC494F31",
+    "birth_date": "1991-10-26",
+    "email": "jinter@u.washington.edu",
+    "first_name": "Japendra",
+    "last_name": "Chakrabarti",
+    "student_name": "Chakrabarti,Japendra",
+    "student_number": "1233334",
+    "employee_id": "133456789",
+    "directory_release": false,
+    "local_address": {
+        "city": "Seattle",
+        "country": "",
+        "street_line1": "2344 Eastlake Ave E",
+        "street_line2": "APT 204",
+        "postal_code": "",
+        "state": "WA",
+        "zip_code": "98102"
+    },
+    "local_phone": "2065554567",
+    "permanent_address": {
+        "city": "Fort",
+        "country": "India",
+        "street_line1": "Veer Nariman Road",
+        "street_line2": "",
+        "postal_code": "400001",
+        "state": "Mumbai",
+        "zip_code": ""
+    },
+    "permanent_phone": null,
+    "visa_type": "F1",
+    "is_student": true,
+    "is_grad_student": true,
+    "campus": "Seattle",
+    "class_level": "NON_MATRIC",
+    "term_majors": [
+        {
+            "quarter": "spring",
+            "year": 2013,
+            "majors": [
+                {
+                    "degree_abbr": "N MATR",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 0,
+                    "degree_name": null,
+                    "campus": "Seattle",
+                    "name": "NON MATRICULATED",
+                    "full_name": "Non Matriculated",
+                    "short_name": "N MATR"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "autumn",
+            "year": 2013,
+            "majors": [
+                {
+                    "degree_abbr": "C SCI",
+                    "college_abbr": "A & S",
+                    "college_full_name": "A & S",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (COMPUTER SCIENCE)",
+                    "campus": "Seattle",
+                    "name": "COMPUTER SCIENCE",
+                    "full_name": "Computer Science",
+                    "short_name": "COMPUTER SCI"
+                }
+            ],
+            "degrees_modified": true,
+            "has_only_dropped": false
+        }
+    ],
+    "has_pending_major": true,
+    "term_minors": [
+        {
+            "quarter": "spring",
+            "year": 2013,
+            "minors": [],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "autumn",
+            "year": 2013,
+            "minors": [
+                {
+                    "abbr": "ASL",
+                    "campus": "Seattle",
+                    "name": "AMERICAN SIGN LANGUAGE",
+                    "full_name": "American Sign Language",
+                    "short_name": "ASL"
+                }
+            ],
+            "degrees_modified": true,
+            "has_only_dropped": false
+        }
+    ],
+    "has_minors": true,
+    "has_pending_minor": true,
+    "display_name": "JAMES INTERNATIONAL STUDENT",
+    "password": {
+        "uwnetid": "jinter",
+        "kerb_status": "Active",
+        "last_change": "2013-01-27 10:49:42-08:00",
+        "interval": 10368000,
+        "last_change_med": null,
+        "expires_med": null,
+        "interval_med": null,
+        "minimum_length": 8,
+        "time_stamp": "2016-12-16 14:21:40-08:00",
+        "netid_status": [
+            "Person",
+            "Active"
+        ],
+        "days_after_last_pw_change": 18,
+        "has_active_med_pw": false
+    }
+}

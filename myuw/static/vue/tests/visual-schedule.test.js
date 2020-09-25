@@ -36,8 +36,8 @@ describe('Schedule Model', () => {
   it ('Check status changes on fetch - success', () => {
     axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
 
     return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
@@ -50,8 +50,8 @@ describe('Schedule Model', () => {
   it('Check status changes on fetch - failure', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
@@ -63,8 +63,8 @@ describe('Schedule Model', () => {
   it ('Check can process - bill', () => {
     axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
 
     return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
@@ -77,8 +77,8 @@ describe('Schedule Model', () => {
   it ('Check can process - billsea 2020', () => {
     axios.get.mockResolvedValue({data: mockScheduleBillsea2020, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
 
     return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
@@ -91,8 +91,8 @@ describe('Schedule Model', () => {
   it ('Check can process - javerage', () => {
     axios.get.mockResolvedValue({data: mockScheduleJaverage, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
 
     return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
@@ -105,8 +105,8 @@ describe('Schedule Model', () => {
   it ('Check can process - jeos', () => {
     axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
 
     return expectAction(schedule.actions.fetch, null, schedule.state, getters, [

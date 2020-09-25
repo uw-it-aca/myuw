@@ -217,15 +217,7 @@ export default {
       let shouldDisplay = false;
 
       if (this.isSummerReg) {
-        if (
-          this.period === 'A' &&
-          this.isAfterStartOfSummerRegDisplayPeriodA
-        ) {
-          shouldDisplay = true; 
-        } else if (
-          this.period === '1' &&
-          this.isAfterStartOfSummerRegDisplayPeriod1      
-        ) {
+        if (this.summerShouldDisplay) {
           shouldDisplay = true;
         }
       } else if (
@@ -284,6 +276,17 @@ export default {
     isSummerReg: function() {
       return this.quarter === "Summer";
     },
+    summerShouldDisplay() {
+      return this.isSummerReg && (
+        (
+          this.period === 'A' &&
+          this.isAfterStartOfSummerRegDisplayPeriodA
+        ) || (
+          this.period === '1' &&
+          this.isAfterStartOfSummerRegDisplayPeriod1
+        )
+      );
+    },
     hasRegistration() {
       if (this.isQuarterReady) {
         if (this.isSummerReg) {
@@ -301,16 +304,22 @@ export default {
       return false;
     },
     loaded() {
+      let myPlanReady = true;
+      if (this.isQuarterReady && (
+        !this.isSummerReg || this.summerShouldDisplay
+      )) {
+        myPlanReady = this.myplanPeakLoad || (
+          !this.myplanPeakLoad &&
+          this.isMyPlanReadyTagged(
+            `${this.year}/${this.quarter}`
+          )
+        )
+      }
       return (
         this.isNoticesReady &&
         this.isQuarterReady &&
         this.isProfileReady &&
-        (
-          this.myplanPeakLoad ||
-          (!this.myplanPeakLoad && this.isMyPlanReadyTagged(
-            `${this.year}/${this.quarter}`
-          ))
-        )
+        myPlanReady
       );
     },
     errored() {
@@ -341,7 +350,11 @@ export default {
   },
   watch: {
     isQuarterReady: function(n, o) {
-      if (!o && n && !this.myPlanPeakLoad) {
+      if (
+        !o && n && !this.myPlanPeakLoad && (
+          !this.isSummerReg || this.summerShouldDisplay
+        )
+      ) {
         this.fetchMyPlan({
           year: this.year,
           quarter: this.quarter,

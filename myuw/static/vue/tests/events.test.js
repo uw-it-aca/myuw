@@ -45,8 +45,8 @@ describe('Event Store', () => {
   it('Check status changes on fetch - success', () => {
     axios.get.mockResolvedValue({data: mockEvents, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(events.actions.fetch, null, events.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
@@ -58,8 +58,8 @@ describe('Event Store', () => {
   it('Check status changes on fetch - failure', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(events.actions.fetch, null, events.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
