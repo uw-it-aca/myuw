@@ -35,7 +35,7 @@ import HuskyExperience from './components/cards/husky-experience.vue';
 import Outage from './components/cards/outage.vue';
 import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue';
 import ToRegister from './components/index/cards/new_student/to-register.vue';
-import RegStatusGroup from './components/index/cards/registration/status-group.vue';
+import RegStatus from './components/index/cards/registration/status.vue';
 
 // Stores
 import notices from './store/notices';
@@ -109,7 +109,7 @@ Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
 Vue.component('myuw-ns-to-register', ToRegister);
-Vue.component('myuw-reg-status-group', RegStatusGroup);
+Vue.component('myuw-reg-status', RegStatus);
 
 new Vue({
   ...vueConf,
