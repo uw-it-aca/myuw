@@ -29,7 +29,8 @@ const fetchBuilder = (url, postProcess, type) => {
         commit('setValue', data);
         commit(
           'setStatus',
-          {[urlExtra]: {type: statusOptions[0], code: statusCode}}
+          urlExtra,
+          {type: statusOptions[0], code: statusCode}
         );
       }).catch((error)=>{
         if (process.env.NODE_ENV === "development") {
@@ -37,17 +38,16 @@ const fetchBuilder = (url, postProcess, type) => {
         };
         commit(
           'setStatus', 
-          {
-            [urlExtra]: {
-              type: statusOptions[2], code: error.response.status,
-            }
-          }
+          urlExtra,
+          {type: statusOptions[2], code: error.response.status},
         );
       });
     }
   };
 };
 
+
+// TODO: Add comments explaing the parameters
 const buildWith = (
     {
       customState={
