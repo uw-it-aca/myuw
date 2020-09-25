@@ -3,6 +3,7 @@
     v-if="showThankYou(notices)"
     :loaded="isReady"
     :errored="isErrored"
+    :erroredShow="showError"
   >
     <template #card-heading>
       <h3 class="text-dark-beige">
@@ -57,7 +58,11 @@ export default {
     ...mapGetters('notices', {
       isReady: 'isReady',
       isErrored: 'isErrored',
+      statusCode: 'statusCode',
     }),
+    showError: function() {
+      return (this.statusCode == 543);
+    },
   },
   created() {
     this.fetch();
