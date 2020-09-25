@@ -10,8 +10,8 @@ describe('Library model', () => {
   it('Check status changes on fetch - success', () => {
     axios.get.mockResolvedValue({data: mockRes, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(hfs.actions.fetch, null, hfs.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
@@ -23,8 +23,8 @@ describe('Library model', () => {
   it('Check status changes on fetch - failure', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(hfs.actions.fetch, null, hfs.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
