@@ -1,14 +1,14 @@
 <template>
   <div v-if="estRegData.estRegDate">
     <span class="sr-only">
-      Estimated Registration Date: {{estRegData.estRegDate.date}}
+      Estimated Registration Date: {{ estRegData.estRegDate.date }}
     </span>
     <h4>Est. Registration Date</h4>
     <div>
       <span>
-        {{estRegData.estRegDate.date.format('ddd, MMM d')}}
+        {{ estRegData.estRegDate.date.format('ddd, MMM d') }}
       </span>
-      <br />
+      <br>
       <span>
         at 6:00 AM
       </span>
@@ -22,9 +22,9 @@ export default {
     estRegData: {
       type: Object,
       required: true,
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

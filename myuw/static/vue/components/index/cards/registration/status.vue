@@ -4,42 +4,42 @@
   >
     <template #card-heading>
       <h3>
-        Registration: {{quarter}} {{year}}
+        Registration: {{ quarter }} {{ year }}
       </h3>
     </template>
     <template #card-body>
-      <uw-est-reg-date :estRegData="estRegData"/>
+      <uw-est-reg-date :est-reg-data="estRegData" />
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
-        :myPlanData="myPlanData"
-        :regHoldsNotices="regHoldsNotices"
+        :my-plan-data="myPlanData"
+        :reg-holds-notices="regHoldsNotices"
       />
 
       <div>
         <h4 v-if="pendingMajors.length">
-          {{pendingMajors.length > 1 ? "Majors" : "Major"}}
+          {{ pendingMajors.length > 1 ? "Majors" : "Major" }}
           Beginning <br>
-          {{quarter}}
+          {{ quarter }}
         </h4>
         <span v-for="(major, i) in pendingMajors" :key="i">
-          {{major.degree_abbr}}
+          {{ major.degree_abbr }}
         </span>
       </div>
 
       <div>
         <h4 v-if="pendingMinors.length">
-          {{pendingMinors.length > 1 ? "Minors" : "Minor"}}
+          {{ pendingMinors.length > 1 ? "Minors" : "Minor" }}
           Beginning <br>
-          {{quarter}}
+          {{ quarter }}
         </h4>
         <span v-for="(minor, i) in pendingMinors" :key="i">
-          {{minor.abbr}}
+          {{ minor.abbr }}
         </span>
       </div>
 
       <uw-in-myplan
         v-if="myPlanData"
-        :myPlanData="myPlanData"
+        :my-plan-data="myPlanData"
         :quarter="quarter"
       />
 
@@ -48,27 +48,27 @@
       </span>
 
       <uw-resources
-        :myPlanData="myPlanData"
-        :registrationIsOpen="estRegData.noticeMyRegIsOpen || (
+        :my-plan-data="myPlanData"
+        :registration-is-open="estRegData.noticeMyRegIsOpen || (
           !estRegData.hasEstRegDataNotice &&
           regPeriod1Started
         )"
-        :nextTermYear="year"
-        :nextTermQuarter="quarter"
-        :preRegNotices="preRegNotices"
+        :next-term-year="year"
+        :next-term-quarter="quarter"
+        :pre-reg-notices="preRegNotices"
       />
 
-      <uw-fin-aid 
+      <uw-fin-aid
         v-if="finAidNotices && finAidNotices.length && isSummerReg"
-        :finAidNotices="finAidNotices"
+        :fin-aid-notices="finAidNotices"
       />
     </template>
     <template v-if="isQuarterReady && myPlanData" #card-disclosure>
       <b-collapse id="myplan-courses-collapse" v-model="isOpen">
         <uw-myplan-courses
-          :nextTermYear="year"
-          :nextTermQuarter="quarter"
-          :myPlanData="myPlanData"
+          :next-term-year="year"
+          :next-term-quarter="quarter"
+          :my-plan-data="myPlanData"
         />
       </b-collapse>
     </template>
@@ -84,7 +84,7 @@
         class="w-100 p-0 text-dark"
       >
         <!-- TODO: @charlon add a css capital class for this button -->
-        SHOW {{quarter}} {{year}} PLAN
+        SHOW {{ quarter }} {{ year }} PLAN
       </b-button>
       <b-button
         v-else
@@ -97,7 +97,7 @@
         class="w-100 p-0 text-dark"
       >
         <!-- TODO: @charlon add a css capital class for this button -->
-        HIDE {{quarter}} {{year}} PLAN
+        HIDE {{ quarter }} {{ year }} PLAN
       </b-button>
     </template>
   </uw-card>
@@ -133,7 +133,12 @@ export default {
     period: {
       type: String,
       default: null,
-    }
+    },
+  },
+  data() {
+    return {
+      isOpen: false,
+    };
   },
   computed: {
     ...mapState({
@@ -193,26 +198,30 @@ export default {
     },
     estRegDateNotices() {
       return this.notices.filter(
-        (notice) => notice.location_tags.includes('est_reg_date'),
+          (notice) => notice.location_tags.includes('est_reg_date'),
       );
     },
     preRegNotices() {
       return this.notices.filter(
-        (notice) => notice.location_tags.includes('reg_card_messages'),
+          (notice) => notice.location_tags.includes('reg_card_messages'),
       );
     },
     regHoldsNotices() {
       return this.notices.filter(
-        (notice) => notice.location_tags.includes('reg_card_holds'),
+          (notice) => notice.location_tags.includes('reg_card_holds'),
       );
     },
     finAidNotices() {
       return this.isSummerReg ? this.notices.filter(
-        (notice) => notice.location_tags.includes('reg_summeraid_avail_title'),
+          (notice) => notice.location_tags.includes('reg_summeraid_avail_title'),
       ) : [];
     },
-    termMinors() {return this.profile.term_minors},
-    termMajors() {return this.profile.term_majors},
+    termMinors() {
+      return this.profile.term_minors;
+    },
+    termMajors() {
+      return this.profile.term_majors;
+    },
     shouldDisplayAtAll: function() {
       let shouldDisplay = false;
 
@@ -234,7 +243,7 @@ export default {
           this.estRegData.estRegDate ||
           (this.regHoldsNotices && this.regHoldsNotices.length) ||
           this.myPlanData
-        )
+        );
       }
 
       return false;
@@ -248,33 +257,35 @@ export default {
         // Set registrationDate date to the first date value found in
         // the notice attributes
         notice.attributes.filter((a) => a.name === 'Date')
-          .slice(0, 1).forEach((a) => {registrationDate = moment(a.value)});
+            .slice(0, 1).forEach((a) => {
+              registrationDate = moment(a.value);
+            });
 
         notice.attributes
-          .filter(
-            (a) => a.name === 'Quarter' &&
-            a.value === this.quarter
-          ).slice(0, 1).forEach((a) => {
-            estRegData.hasEstRegDataNotice = true;
-            estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
-            estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
-            estRegData.estRegDate = {
-              notice: notice,
-              date: registrationDate,
-            };
-          });
+            .filter(
+                (a) => a.name === 'Quarter' &&
+            a.value === this.quarter,
+            ).slice(0, 1).forEach((a) => {
+              estRegData.hasEstRegDataNotice = true;
+              estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
+              estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
+              estRegData.estRegDate = {
+                notice: notice,
+                date: registrationDate,
+              };
+            });
       });
 
       return estRegData;
     },
     pendingMajors: function() {
-      return this.retrieveQuarterDegrees(this.termMajors, "majors");
+      return this.retrieveQuarterDegrees(this.termMajors, 'majors');
     },
     pendingMinors: function() {
-      return this.retrieveQuarterDegrees(this.termMinors, "minors");
+      return this.retrieveQuarterDegrees(this.termMinors, 'minors');
     },
     isSummerReg: function() {
-      return this.quarter === "Summer";
+      return this.quarter === 'Summer';
     },
     summerShouldDisplay() {
       return this.isSummerReg && (
@@ -311,9 +322,9 @@ export default {
         myPlanReady = this.myplanPeakLoad || (
           !this.myplanPeakLoad &&
           this.isMyPlanReadyTagged(
-            `${this.year}/${this.quarter}`
+              `${this.year}/${this.quarter}`,
           )
-        )
+        );
       }
       return (
         this.isNoticesReady &&
@@ -331,22 +342,10 @@ export default {
           !this.myplanPeakLoad &&
           this.isQuarterReady &&
           this.isMyPlanErroredTagged(
-          `${this.year}/${this.quarter}`
-        ))
+              `${this.year}/${this.quarter}`,
+          ))
       );
     },
-  },
-  data() {
-    return {
-      isOpen: false,
-    }
-  },
-  created() {
-    if (this.student) {
-      this.fetchNotices();
-      this.fetchQuarters();
-      this.fetchProfile();
-    }
   },
   watch: {
     isQuarterReady: function(n, o) {
@@ -360,6 +359,13 @@ export default {
           quarter: this.quarter,
         });
       }
+    },
+  },
+  created() {
+    if (this.student) {
+      this.fetchNotices();
+      this.fetchQuarters();
+      this.fetchProfile();
     }
   },
   methods: {
@@ -376,7 +382,7 @@ export default {
       fetchMyPlan: 'fetch',
     }),
     retrieveQuarterDegrees(degrees, degreeType) {
-      let filteredDegrees = degrees.filter((degree) => (
+      const filteredDegrees = degrees.filter((degree) => (
         degree.quarter.toUpperCase() === this.quarter.toUpperCase() &&
         degree.year === this.year &&
         degree.degrees_modified &&
@@ -388,9 +394,9 @@ export default {
       } else {
         return [];
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

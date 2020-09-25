@@ -9,14 +9,14 @@
       </a>
 
       <div v-if="myPlanData">
-        <a 
+        <a
           v-if="hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
         >
           Edit Plan in MyPlan
         </a>
-        <a 
+        <a
           v-else
           target="_blank" title="Register using MyPlan"
           :href="myplanRegistrationHref"
@@ -27,7 +27,8 @@
       <div v-else>
         <a
           target="_blank" title="Register using MyPlan"
-          :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`">
+          :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`"
+        >
           Use MyPlan to Register
         </a>
       </div>
@@ -119,7 +120,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import {mapState} from 'vuex';
 
 export default {
   props: {
@@ -141,8 +142,8 @@ export default {
     },
     preRegNotices: {
       type: Array,
-      default: [],
-    }
+      default: () => [],
+    },
   },
   computed: {
     ...mapState({
@@ -166,30 +167,28 @@ export default {
     degreeAuditHref() {
       if (this.myPlanData && this.myPlanData.degree_audit_href) {
         return this.myPlanData.degree_audit_href;
-      } else {
-        return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
       }
+      return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
     },
     nextTermQuarterCode() {
       if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
-        return "";
+        return '';
       }
-      var q = this.nextTermQuarter.toLowerCase();
-      if(q === "winter") {
-          return 1;
+      const q = this.nextTermQuarter.toLowerCase();
+      if (q === 'winter') {
+        return 1;
+      } else if (q === 'spring') {
+        return 2;
+      } else if (q === 'summer') {
+        return 3;
+      } else if (q === 'autumn') {
+        return 4;
       }
-      else if(q === "spring") {
-          return 2;
-      }
-      else if(q === "summer") {
-          return 3;
-      }
-      else if(q === "autumn") {
-          return 4;
-      }
+
+      return '';
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

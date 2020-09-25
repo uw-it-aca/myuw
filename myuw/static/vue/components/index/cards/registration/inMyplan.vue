@@ -3,9 +3,13 @@
     <h4>In MyPlan</h4>
     <div>
       <ul>
-        <li>{{readyCount}} {{readyCount > 1 ? "courses" : "course"}} ready</li>
+        <li>
+          {{ readyCount }}
+          {{ readyCount > 1 ? "courses" : "course" }}
+          ready
+        </li>
         <li v-if="unreadyCount">
-          {{unreadyCount}} not ready
+          {{ unreadyCount }} not ready
           <a v-if="hasSections" target="_blank" :href="myplanHref">
             Add Sections
           </a>
@@ -13,7 +17,7 @@
             v-else v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse`"
             title="Expand to show courses not ready"
           >
-            {{collapseOpen ? "Hide Details" : "See Details"}}
+            {{ collapseOpen ? "Hide Details" : "See Details" }}
           </button>
         </li>
       </ul>
@@ -22,7 +26,7 @@
       <h4>Not ready for registration</h4>
       <ul>
         <li v-for="(course, i) in coursesUnavailable" :key="i">
-          {{course.curriculum_abbr}} {{course.course_number}}
+          {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>
       </ul>
 
@@ -61,8 +65,6 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
-
 export default {
   props: {
     myPlanData: {
@@ -75,18 +77,18 @@ export default {
     },
     summerCardLabel: {
       type: String,
-      default: "",
+      default: '',
     },
   },
   data: function() {
     return {
       collapseOpen: false,
-    }
+    };
   },
   computed: {
     currentPlanData() {
       return this.myPlanData.terms.find(
-        (term) => term.quarter === this.quarter
+          (term) => term.quarter === this.quarter,
       );
     },
     readyCount() {
@@ -109,9 +111,9 @@ export default {
     },
     coursesUnavailable() {
       return this.courses.filter((c) => !c.registrations_available);
-    }
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,9 @@
 <template>
   <div>
     <div>
-      <h4 v-if="myPlanData">Holds</h4>
+      <h4 v-if="myPlanData">
+        Holds
+      </h4>
       <div>
         <font-awesome-icon
           :icon="['fas', 'exclamation-triangle']"
@@ -12,8 +14,8 @@
           title="Expand and show holds details"
         >
           <span v-if="collapseOpen">Hide</span>
-          {{regHoldsNotices.length}}
-          {{regHoldsNotices.length > 1 ? "Holds" : "Hold"}}
+          {{ regHoldsNotices.length }}
+          {{ regHoldsNotices.length > 1 ? "Holds" : "Hold" }}
         </button>
       </div>
     </div>
@@ -21,7 +23,9 @@
       :id="`${summerCardLabel}holds-collapse`"
       v-model="collapseOpen"
     >
-      <h4 class="sr-only">Registration and/or Transcript Holds</h4>
+      <h4 class="sr-only">
+        Registration and/or Transcript Holds
+      </h4>
       <ul class="reg-holds-list">
         <li
           v-for="(notice, i) in regHoldsNotices"
@@ -41,19 +45,19 @@ export default {
     },
     summerCardLabel: {
       type: String,
-      default: "",
+      default: '',
     },
     regHoldsNotices: {
       type: Array,
       required: true,
-    }
+    },
   },
   data: function() {
     return {
       collapseOpen: false,
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
