@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="shouldDisplayAtAll"
+  <uw-card v-if="!loaded || shouldDisplayAtAll"
            :loaded="loaded" :errored="errored"
   >
     <template #card-heading>
@@ -63,7 +63,7 @@
         :finAidNotices="finAidNotices"
       />
     </template>
-    <template v-if="myPlanData" #card-disclosure>
+    <template v-if="isQuarterReady && myPlanData" #card-disclosure>
       <b-collapse id="myplan-courses-collapse" v-model="isOpen">
         <uw-myplan-courses
           :nextTermYear="year"
@@ -72,7 +72,7 @@
         />
       </b-collapse>
     </template>
-    <template v-if="myPlanData" #card-footer>
+    <template v-if="isQuarterReady && myPlanData" #card-footer>
       <b-button
         v-if="!isOpen"
         v-b-toggle.myplan-courses-collapse
@@ -126,47 +126,71 @@ export default {
     'uw-resources': ResourcesComponent,
   },
   props: {
-    quarter: {
+    forQuarter: {
       type: String,
-      default: "",
-    },
-    year: {
-      type: Number,
-      default: -1,
-    },
-    oquarterData: {
-      type: Object,
       default: null,
     },
-    myPlanData: {
-      type: Object,
+    period: {
+      type: String,
       default: null,
-    },
-    loaded: {
-      type: Boolean,
-      required: true,
-    },
-    errored: {
-      type: Boolean,
-      required: true,
-    },
-    notices: {
-      type: Array,
-      default: [],
-    },
-    profile: {
-      type: Object,
-      default: {},
-    },
+    }
   },
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
-      seattle: (state) => state.user.affiliations.seattle,
-      bothell: (state) => state.user.affiliations.bothell,
-      tacoma: (state) => state.user.affiliations.tacoma,
+      isAfterStartOfRegistrationDisplayPeriod: (state) =>
+        state.cardDisplayDates.is_after_start_of_registration_display_period,
+      isBeforeEndOfRegistrationDisplayPeriod: (state) =>
+        state.cardDisplayDates.is_before_end_of_registration_display_period,
+      isAfterStartOfSummerRegDisplayPeriodA: (state) =>
+        state.cardDisplayDates.is_after_start_of_summer_reg_display_periodA,
+      isAfterStartOfSummerRegDisplayPeriod1: (state) =>
+        state.cardDisplayDates.is_after_start_of_summer_reg_display_period1,
+      myPlanPeakLoad: (state) => state.cardDisplayDates.myplan_peak_load,
       regPeriod1Started: (state) => state.cardDisplayDates.reg_period1_started,
     }),
+    ...mapState('notices', {
+      notices: (state) => state.value,
+    }),
+    ...mapState('oquarter', {
+      year: (state) => state.value.next_term_data.year,
+      quarter(state) {
+        if (this.forQuarter) {
+          return this.forQuarter;
+        }
+        return state.value.next_term_data.quarter;
+      },
+      nextTermHasReg: (state) => state.value.next_term_data.has_registration,
+      terms: (state) => state.value.terms,
+    }),
+    ...mapState('profile', {
+      profile: (state) => state.value,
+    }),
+    ...mapState('myplan', {
+      myPlanData: function(state) {
+        return state.value[`${this.year}/${this.quarter}`];
+      },
+    }),
+    ...mapGetters('notices', {
+      isNoticesReady: 'isReady',
+      isNoticesErrored: 'isErrored',
+    }),
+    ...mapGetters('oquarter', {
+      isQuarterReady: 'isReady',
+      isQuarterErrored: 'isErrored',
+    }),
+    ...mapGetters('profile', {
+      isProfileReady: 'isReady',
+      isProfileErrored: 'isErrored',
+    }),
+    ...mapGetters('myplan', {
+      isMyPlanReadyTagged: 'isReadyTagged',
+      isMyPlanErroredTagged: 'isErroredTagged',
+    }),
+    needsSummerCard() {
+      return this.isAfterStartOfSummerRegDisplayPeriodA ||
+        this.isAfterStartOfSummerRegDisplayPeriod1;
+    },
     estRegDateNotices() {
       return this.notices.filter(
         (notice) => notice.location_tags.includes('est_reg_date'),
@@ -190,8 +214,29 @@ export default {
     termMinors() {return this.profile.term_minors},
     termMajors() {return this.profile.term_majors},
     shouldDisplayAtAll: function() {
-      if (this.loaded) {
-        return !(this.isSummerReg && this.hasRegistration) && (
+      let shouldDisplay = false;
+
+      if (this.isSummerReg) {
+        if (
+          this.period === 'A' &&
+          this.isAfterStartOfSummerRegDisplayPeriodA
+        ) {
+          shouldDisplay = true; 
+        } else if (
+          this.period === '1' &&
+          this.isAfterStartOfSummerRegDisplayPeriod1      
+        ) {
+          shouldDisplay = true;
+        }
+      } else if (
+        this.isAfterStartOfRegistrationDisplayPeriod &&
+        this.isBeforeEndOfRegistrationDisplayPeriod
+      ) {
+        shouldDisplay = true;
+      }
+
+      if (shouldDisplay) {
+        return !this.hasRegistration && (
           // Can do any one of these
           (this.finAidNotices && this.finAidNotices.length) ||
           this.estRegData.estRegDate ||
@@ -240,20 +285,46 @@ export default {
       return this.quarter === "Summer";
     },
     hasRegistration() {
-      if (this.oquarterData) {
+      if (this.isQuarterReady) {
         if (this.isSummerReg) {
           let hasReg = false;
-          this.oquarterData.terms.forEach((term) => {
+          this.terms.forEach((term) => {
             if (term.quarter === this.quarter && term.section_count) {
               hasReg = true;
             }
           });
           return hasReg;
         } else {
-          return this.oquarterData.next_term_data.has_registration;
+          return this.nextTermHasReg;
         }
       }
       return false;
+    },
+    loaded() {
+      return (
+        this.isNoticesReady &&
+        this.isQuarterReady &&
+        this.isProfileReady &&
+        (
+          this.myplanPeakLoad ||
+          (!this.myplanPeakLoad && this.isMyPlanReadyTagged(
+            `${this.year}/${this.quarter}`
+          ))
+        )
+      );
+    },
+    errored() {
+      return (
+        this.isNoticesErrored ||
+        this.isQuarterErrored ||
+        this.isProfileErrored ||
+        (
+          !this.myplanPeakLoad &&
+          this.isQuarterReady &&
+          this.isMyPlanErroredTagged(
+          `${this.year}/${this.quarter}`
+        ))
+      );
     },
   },
   data() {
@@ -261,7 +332,36 @@ export default {
       isOpen: false,
     }
   },
+  created() {
+    if (this.student) {
+      this.fetchNotices();
+      this.fetchQuarters();
+      this.fetchProfile();
+    }
+  },
+  watch: {
+    isQuarterReady: function(n, o) {
+      if (!o && n && !this.myPlanPeakLoad) {
+        this.fetchMyPlan({
+          year: this.year,
+          quarter: this.quarter,
+        });
+      }
+    }
+  },
   methods: {
+    ...mapActions('notices', {
+      fetchNotices: 'fetch',
+    }),
+    ...mapActions('oquarter', {
+      fetchQuarters: 'fetch',
+    }),
+    ...mapActions('profile', {
+      fetchProfile: 'fetch',
+    }),
+    ...mapActions('myplan', {
+      fetchMyPlan: 'fetch',
+    }),
     retrieveQuarterDegrees(degrees, degreeType) {
       let filteredDegrees = degrees.filter((degree) => (
         degree.quarter.toUpperCase() === this.quarter.toUpperCase() &&
