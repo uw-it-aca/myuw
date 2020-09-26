@@ -1,8 +1,8 @@
 'use strict'
 const path = require('path');
-const webpack = require('webpack');
 const BundleTracker = require('webpack-bundle-tracker');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -33,6 +33,9 @@ module.exports = {
         },
       })
     ],
+    // splitChunks: {
+    //   chunks: 'all',
+    // },
   },
   entry: {
       index: [
@@ -108,7 +111,10 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name]-[hash].css',
       chunkFilename: '[id]-[chunkhash].css',
-    })
+    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerHost: '0.0.0.0',
+    // }),
   ],
 
   resolve: {

@@ -2,7 +2,6 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {BootstrapVue} from 'bootstrap-vue';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
@@ -79,7 +78,6 @@ Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 // vuex
 Vue.use(Vuex);
-Vue.use(BootstrapVue);
 
 // vue-mq (media queries)
 Vue.use(VueMq, {

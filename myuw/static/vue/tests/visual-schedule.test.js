@@ -1,5 +1,5 @@
 import axios from 'axios';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
@@ -130,28 +130,28 @@ describe('Schedule Model', () => {
 
     expect(
       store.state.schedule.value.testCurrent.periods[0].earliestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[0].earliestMeetingTime.format('hh:mm A')
     ).toBe("08:30 AM");
 
     expect(
       store.state.schedule.value.testCurrent.periods[0].latestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[0].latestMeetingTime.format('hh:mm A')
     ).toBe("06:20 PM");
 
     expect(
       store.state.schedule.value.testCurrent.periods[1].earliestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[1].earliestMeetingTime.format('hh:mm A')
     ).toBe("08:30 AM");
 
     expect(
       store.state.schedule.value.testCurrent.periods[1].latestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[1].latestMeetingTime.format('hh:mm A')
     ).toBe("04:20 PM");
