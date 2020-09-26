@@ -92,7 +92,7 @@ export default {
       for (const i in Object.keys(this.periods)) {
         if (
           !this.periods[i].end_date ||
-          this.periods[i].end_date >= this.today
+          this.periods[i].end_date >= this.today.clone().hour(0).minute(0)
         ) {
           return this.periods[i];
         }

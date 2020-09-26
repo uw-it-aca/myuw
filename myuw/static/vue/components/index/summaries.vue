@@ -143,8 +143,8 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import dayjs from 'dayjs';
-var relativeTime = require('dayjs/plugin/relativeTime')
-dayjs.extend(relativeTime)
+const relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
 
 export default {
   computed: {
