@@ -83,6 +83,15 @@ class TestInstructorSchedule(TestCase):
         self.assertEqual(schedule.registered_summer_terms,
                          {'b-term': True})
 
+        request = get_request_with_user(
+            'billpce', get_request_with_date("2013-07-25"))
+        schedule = get_instructor_schedule_by_term(request)
+        self.assertEqual(len(schedule.sections), 3)
+        self.assertEqual(schedule.registered_summer_terms,
+                         {'b-term': True, 'full-term': True})
+        self.assertEqual(str(schedule.sections[1].start_date), "2013-07-22")
+        self.assertEqual(str(schedule.sections[1].end_date), "2013-07-26")
+
     def test_set_section_from_url(self):
         section_url = "/student/v5/course/2018,spring,JAPAN,573/A.json"
         term = Term()

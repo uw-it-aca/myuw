@@ -79,7 +79,8 @@ def filter_sections_by_summer_term(request, schedule, summer_term):
         sections_to_keep = []
         for section in schedule.sections:
             if (section.is_full_summer_term() or
-                    section.is_same_summer_term(summer_term)):
+                    section.is_same_summer_term(summer_term) or
+                    len(section.summer_term) == 0):
                 sections_to_keep.append(section)
             else:
                 sst = section.summer_term.lower()
