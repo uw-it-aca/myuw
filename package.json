@@ -48,7 +48,7 @@
     "vue-template-compiler": "^2.6.11",
     "webpack": "^4.44.2",
     "webpack-bundle-analyzer": "^3.9.0",
-    "webpack-bundle-tracker": "^1.0.0-alpha.1",
+    "webpack-bundle-tracker": "^0.4.3",
     "webpack-cli": "^3.3.12"
   },
   "jest": {
