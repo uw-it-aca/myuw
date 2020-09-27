@@ -40,6 +40,9 @@ import {
   faSquare,
 } from '@fortawesome/free-regular-svg-icons';
 
+// Mixins
+import utils from './mixin/utils';
+
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
 import '../css/myuw/global.scss';
@@ -104,6 +107,8 @@ const store = new Vuex.Store({
 });
 
 Vue.config.devtools = true;
+
+Vue.mixin(utils);
 
 const vueConf = {
   el: '#vue_root',

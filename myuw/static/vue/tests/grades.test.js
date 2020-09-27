@@ -1,10 +1,10 @@
 import axios from 'axios';
 import moment from 'moment';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import {expectAction} from './helper';
 import {statusOptions} from '../store/model_builder';
-import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import Courses from '../store/courses';
 import GradesCard from '../components/cards/grades.vue';
 
@@ -23,8 +23,6 @@ import {
 import mockCourses from './mock_data/courses.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faLocationArrow);

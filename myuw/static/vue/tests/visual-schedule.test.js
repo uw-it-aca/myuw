@@ -1,9 +1,9 @@
 import axios from 'axios';
 import moment from 'moment';
 
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import schedule from '../store/schedule';
 import {statusOptions} from '../store/model_builder';
 import {expectAction} from './helper';
@@ -19,8 +19,6 @@ import mockScheduleJaverageSummer from './mock_data/schedule/javerageSummer2013.
 import mockScheduleJeos from './mock_data/schedule/jeos2013.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 jest.mock('axios');
 
