@@ -8,7 +8,6 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  devtool: (process.env.ENV == 'localdev' ? 'source-map' : 'none'),
   mode: (process.env.ENV === 'localdev' ? 'development' : 'production'),
   context: __dirname,
   optimization: {
@@ -38,15 +37,15 @@ module.exports = {
     // },
   },
   entry: {
-      index: [
-        "./myuw/static/vue/index.js",
-      ],
-      teaching: [
-        "./myuw/static/vue/teaching.js",
-      ],
-      accounts: [
-        "./myuw/static/vue/accounts.js"
-      ]
+    index: [
+      "./myuw/static/vue/index.js",
+    ],
+    teaching: [
+      "./myuw/static/vue/teaching.js",
+    ],
+    accounts: [
+      "./myuw/static/vue/accounts.js"
+    ]
   },
   output: {
       path: path.resolve('../static/myuw/'),
@@ -100,8 +99,8 @@ module.exports = {
           'less-loader'
         ]
       },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-      { test: /\.(png|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: "url-loader?limit=10000&mimetype=application/font-woff" },
+      { test: /\.(png|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, use: "file-loader" },
     ]
   },
 
@@ -112,9 +111,6 @@ module.exports = {
       filename: '[name]-[hash].css',
       chunkFilename: '[id]-[chunkhash].css',
     }),
-    // new BundleAnalyzerPlugin({
-    //   analyzerHost: '0.0.0.0',
-    // }),
   ],
 
   resolve: {
@@ -122,4 +118,16 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
     },
   }
+}
+
+if (process.env.ENV == 'localdev') {
+  module.exports.devtool = 'source-map';
+}
+
+if (process.env.BUNDLE_ANALYZER === "True") {
+  module.exports.plugins.push(
+    new BundleAnalyzerPlugin({
+      analyzerHost: '0.0.0.0',
+    })
+  );
 }
