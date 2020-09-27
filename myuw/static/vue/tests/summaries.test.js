@@ -27,13 +27,6 @@ describe('Summaries', () => {
     });
   });
 
-  it('ucfirst', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    const wrapper = shallowMount(Summaries, {store, localVue});
-    expect(wrapper.vm.ucfirst('test')).toEqual('Test');
-    expect(wrapper.vm.ucfirst('test string')).toEqual('Test string');
-  });
-
   it('toFromNowDate', async () => {
     axios.get.mockResolvedValue({data: mockNotices});
     moment.mockImplementation((s) => {
