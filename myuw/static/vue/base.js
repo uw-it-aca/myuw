@@ -41,6 +41,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 
 // Mixins
+import outlink from './mixin/outlink';
 import utils from './mixin/utils';
 
 // myuw custom theming and global styles
@@ -108,6 +109,7 @@ const store = new Vuex.Store({
 
 Vue.config.devtools = true;
 
+Vue.mixin(outlink);
 Vue.mixin(utils);
 
 const vueConf = {
