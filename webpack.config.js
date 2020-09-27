@@ -32,6 +32,7 @@ module.exports = {
         },
       })
     ],
+    // TODO: USE THIS WHEN DJANGO WEBPACK LOADER SUPPORTS IT
     // splitChunks: {
     //   chunks: 'all',
     // },

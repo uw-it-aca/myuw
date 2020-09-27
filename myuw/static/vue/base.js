@@ -1,5 +1,3 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {library} from '@fortawesome/fontawesome-svg-core';
