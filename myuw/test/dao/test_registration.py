@@ -5,7 +5,7 @@ from uw_sws.section import get_section_by_label
 from uw_sws.registration import get_schedule_by_regid_and_term
 from uw_sws.term import get_term_by_date, get_specific_term
 from myuw.dao.registration import (
-    get_schedule_by_term, _get_current_summer_term, _is_split_term)
+    get_schedule_by_term, _get_current_summer_term, _is_split_summer)
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_user, get_request_with_date
 
@@ -173,16 +173,16 @@ class TestRegistrationsDao(TestCase):
         self.assertEqual(len(schedule.sections), 3)
         self.assertTrue(schedule.sections[0].is_remote)
 
-    def test_is_split_term(self):
-        self.assertTrue(_is_split_term({'a-term': True}))
-        self.assertTrue(_is_split_term({'b-term': True}))
-        self.assertTrue(_is_split_term({'a-term': True,
+    def test_is_split_summer(self):
+        self.assertTrue(_is_split_summer({'a-term': True}))
+        self.assertTrue(_is_split_summer({'b-term': True}))
+        self.assertTrue(_is_split_summer({'a-term': True,
                                         'b-term': True}))
-        self.assertTrue(_is_split_term({'a-term': True,
+        self.assertTrue(_is_split_summer({'a-term': True,
                                         'full-term': True}))
-        self.assertTrue(_is_split_term({'b-term': True,
+        self.assertTrue(_is_split_summer({'b-term': True,
                                         'full-term': True}))
-        self.assertTrue(_is_split_term({'a-term': True,
+        self.assertTrue(_is_split_summer({'a-term': True,
                                         'b-term': True,
                                         'full-term': True}))
-        self.assertFalse(_is_split_term({'full-term': True}))
+        self.assertFalse(_is_split_summer({'full-term': True}))

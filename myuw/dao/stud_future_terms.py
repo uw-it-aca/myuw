@@ -10,7 +10,7 @@ from uw_sws.section import (
     is_a_term, is_b_term, is_full_summer_term)
 from myuw.models import SeenRegistration
 from myuw.dao import is_using_file_dao
-from myuw.dao.registration import get_schedule_by_term, _is_split_term
+from myuw.dao.registration import get_schedule_by_term, _is_split_summer
 from myuw.dao.term import (
     get_current_quarter, get_next_quarter, get_term_after, get_comparison_date,
     get_comparison_datetime, get_comparison_datetime_with_tz)
@@ -47,7 +47,7 @@ def get_registered_future_quarters(request):
         if schedule.term.is_summer_quarter():
 
             summer_term_data = _get_summer_term_data(schedule)
-            if _is_split_term(schedule.registered_summer_terms):
+            if _is_split_summer(schedule.registered_summer_terms):
 
                 if (not summer_started and (
                         summer_term_data[A_TERM] or

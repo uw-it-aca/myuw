@@ -93,7 +93,7 @@ def _get_current_summer_term(request, schedule, summer_term):
         return summer_term.lower()
 
     now = get_comparison_datetime(request)
-    if _is_split_term(schedule.registered_summer_terms):
+    if _is_split_summer(schedule.registered_summer_terms):
         if now > schedule.term.get_eod_grade_submission():
             # not split for a past-term
             return "full-term"
@@ -104,7 +104,7 @@ def _get_current_summer_term(request, schedule, summer_term):
     return "full-term"
 
 
-def _is_split_term(registered_summer_terms):
+def _is_split_summer(registered_summer_terms):
     """
     Return True if the schedule needs to be displayed with
     separate summer terms if the user has:
