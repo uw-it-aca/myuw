@@ -24,6 +24,7 @@ var QuickLinksCard = {
         QuickLinksCard.dom_target.html(
             QuickLinksCard.get_html(quicklink_data));
         QuickLinksCard.add_events();
+        LogUtils.cardLoaded(QuickLinksCard.name, QuickLinksCard.dom_target);
     },
 
     render_error: function (status) {
