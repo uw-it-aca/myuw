@@ -190,7 +190,7 @@ var QuickLinksCard = {
     redraw: function(response) {
         $("#quicklink_saving").hide();
         if (response.status === 200) {
-            quicklink_data = response.responseJSON;
+            var quicklink_data = response.responseJSON;
             var html = $(QuickLinksCard.get_html(quicklink_data));
             var replace_ids = ['#popular_qlinks', '.myuw-qlinks-active', '.myuw-qlinks-recent',
                                '#custom-link-edit', '#custom_qlinks'];
