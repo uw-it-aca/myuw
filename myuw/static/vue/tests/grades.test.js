@@ -1,10 +1,8 @@
 import axios from 'axios';
-import moment from 'moment';
 import {mount} from '@vue/test-utils';
-import {expectAction} from './helper';
+import {createLocalVue, expectAction} from './helper';
 import {statusOptions} from '../store/model_builder';
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
 import Courses from '../store/courses';
 import GradesCard from '../components/cards/grades.vue';
 

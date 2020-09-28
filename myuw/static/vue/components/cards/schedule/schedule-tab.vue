@@ -130,7 +130,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {mapState} from 'vuex';
 import CourseSection from './course-section.vue';
 
@@ -169,10 +169,10 @@ export default {
   },
   computed: {
     ...mapState({
-      quarterLastDate: (state) => moment(
+      quarterLastDate: (state) => dayjs(
           state.termData.lastDay, 'dddd, MMMM D, YYYY',
       ),
-      today: (state) => moment(state.termData.today, 'dddd, MMMM D, YYYY'),
+      today: (state) => dayjs(state.termData.today, 'dddd, MMMM D, YYYY'),
     }),
   },
   created() {
@@ -311,7 +311,7 @@ export default {
     this.initializeMobileDaySlots();
   },
   methods: {
-    // Converts a moment object to a standard string that is used in timeslots
+    // Converts a dayjs object to a standard string that is used in timeslots
     formatToUnique(t) {
       return t.format('hh:mm A');
     },
@@ -393,7 +393,7 @@ export default {
       if (this.isFinalsTab) {
         this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
-        this.mobile['current'] = moment().format('dddd').toLowerCase();
+        this.mobile['current'] = dayjs().format('dddd').toLowerCase();
       }
     },
     // Initalize the meeting map.

@@ -1,10 +1,9 @@
 import axios from 'axios';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {mount, shallowMount} from '@vue/test-utils';
-import {expectAction} from './helper';
+import {createLocalVue, expectAction} from './helper';
 import {statusOptions} from '../store/model_builder';
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
 import events from '../store/events';
 import EventsCard from '../components/index/cards/events/events.vue';
 import ListEvents from '../components/index/cards/events/list-events.vue';
@@ -98,10 +97,10 @@ describe('Events Card', () => {
     });
 
     expect(
-      wrapper.vm.acalDateFormat(moment('2020-08-19'), moment('2020-08-19'))
+      wrapper.vm.acalDateFormat(dayjs('2020-08-19'), dayjs('2020-08-19'))
     ).toEqual('August 19');
     expect(
-      wrapper.vm.acalDateFormat(moment('2020-08-19'), moment('2020-08-20'))
+      wrapper.vm.acalDateFormat(dayjs('2020-08-19'), dayjs('2020-08-20'))
     ).toEqual('August 19 - 20');
   });
 

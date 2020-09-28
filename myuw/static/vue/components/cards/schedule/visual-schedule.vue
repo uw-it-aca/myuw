@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../../containers/card.vue';
 import ScheduleTab from './schedule-tab.vue';
@@ -61,7 +61,7 @@ export default {
   computed: {
     ...mapState({
       allSchedules: (state) => state.schedule.value,
-      today: (state) => moment(state.termData.today, 'dddd, MMMM D, YYYY'),
+      today: (state) => dayjs(state.termData.todayDate),
     }),
     ...mapGetters('schedule', [
       'isReadyTagged',
@@ -92,7 +92,7 @@ export default {
       for (const i in Object.keys(this.periods)) {
         if (
           !this.periods[i].end_date ||
-          this.periods[i].end_date >= this.today
+          this.periods[i].end_date >= this.today.clone().hour(0).minute(0)
         ) {
           return this.periods[i];
         }
@@ -106,7 +106,7 @@ export default {
   methods: {
     ...mapActions('schedule', ['fetch']),
     formatDate: (t) => {
-      return moment(t).format('ddd, MMM D');
+      return dayjs(t).format('ddd, MMM D');
     },
   },
 };

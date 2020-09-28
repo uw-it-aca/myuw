@@ -1,5 +1,5 @@
 import axios from 'axios';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
@@ -130,28 +130,28 @@ describe('Schedule Model', () => {
 
     expect(
       store.state.schedule.value.testCurrent.periods[0].earliestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[0].earliestMeetingTime.format('hh:mm A')
     ).toBe("08:30 AM");
 
     expect(
       store.state.schedule.value.testCurrent.periods[0].latestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[0].latestMeetingTime.format('hh:mm A')
     ).toBe("06:20 PM");
 
     expect(
       store.state.schedule.value.testCurrent.periods[1].earliestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[1].earliestMeetingTime.format('hh:mm A')
     ).toBe("08:30 AM");
 
     expect(
       store.state.schedule.value.testCurrent.periods[1].latestMeetingTime
-    ).toBeInstanceOf(moment);
+    ).toBeInstanceOf(dayjs);
     expect(
       store.state.schedule.value.testCurrent.periods[1].latestMeetingTime.format('hh:mm A')
     ).toBe("04:20 PM");
@@ -196,7 +196,7 @@ describe('Vue SFC Tests', () => {
         termData: {
           quarter: 'summer',
           year: 2013,
-          today: 'Monday, April 1, 2013',
+          todayDate: new Date('Mon Apr 1 2013 00:00:00 GMT-0700 (Pacific Daylight Time)'),
         }
       }
     });
@@ -285,19 +285,19 @@ describe('Vue SFC Tests', () => {
 
     expect(wrapper.vm.activePeriod.id).toEqual(0);
     
-    store.state.termData.today = 'Saturday, April 6, 2013';
+    store.state.termData.todayDate = new Date('Sat Apr 6 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
     expect(wrapper.vm.activePeriod.id).toEqual(1);
 
-    store.state.termData.today = 'Sunday, April 7, 2013';
+    store.state.termData.todayDate = new Date('Sun Apr 7 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
     expect(wrapper.vm.activePeriod.id).toEqual(1);
 
-    store.state.termData.today = 'Friday, May 3, 2013';
+    store.state.termData.todayDate = new Date('Fri May 3 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
     expect(wrapper.vm.activePeriod.id).toEqual(1);
 
-    store.state.termData.today = 'Saturday, May 4, 2013';
+    store.state.termData.todayDate = new Date('Sat May 4 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
     expect(wrapper.vm.activePeriod.id).toEqual(2);
 
-    store.state.termData.today = 'Sunday, May 5, 2013';
+    store.state.termData.todayDate = new Date('Sun May 5 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
     expect(wrapper.vm.activePeriod.id).toEqual(2);
   });
 });
