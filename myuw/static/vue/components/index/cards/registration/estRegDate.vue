@@ -6,7 +6,7 @@
     <h4>Est. Registration Date</h4>
     <div>
       <span>
-        {{ estRegData.estRegDate.date.format('ddd, MMM d') }}
+        {{ estRegData.estRegDate.date.format('ddd, MMM D') }}
       </span>
       <br>
       <span>
