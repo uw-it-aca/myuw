@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../../../containers/card.vue';
@@ -258,7 +258,7 @@ export default {
         // the notice attributes
         notice.attributes.filter((a) => a.name === 'Date')
             .slice(0, 1).forEach((a) => {
-              registrationDate = moment(a.value);
+              registrationDate = dayjs(a.value);
             });
 
         notice.attributes
