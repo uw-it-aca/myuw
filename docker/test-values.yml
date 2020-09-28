@@ -194,7 +194,7 @@ environmentVariables:
     value: "5"
 
   - name: PWS_ENV
-    value: PROD
+    value: EVAL
   - name: PWS_POOL_SIZE
     value: "20"
   - name: PWS_TIMEOUT
