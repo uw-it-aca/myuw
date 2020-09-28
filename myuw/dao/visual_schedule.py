@@ -114,20 +114,28 @@ def _get_off_term_trimmed(visual_schedule):
 
 def get_future_visual_schedule(request, term, summer_term=None):
     schedule = _get_combined_future_schedule(request, term, summer_term)
+    if schedule is None or len(schedule.sections) == 0:
+        return None
+
     vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
     return vs
 
 
 def get_current_visual_schedule(request):
     schedule = _get_combined_schedule(request)
-    summer_term = get_current_summer_term(request)
+    if schedule is None or len(schedule.sections) == 0:
+        return None, None, None
+    summer_term = None
+    if schedule.term.is_summer_quarter():
+        summer_term = schedule.summer_term
     vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
-    return vs
+    return vs, schedule.term, summer_term
 
 
-def get_visual_schedule_from_schedule(request, schedule, summer_term=None):
+def get_visual_schedule_from_schedule(request, schedule, summer_term):
     if schedule is not None:
-        visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
+        visual_schedule = _get_visual_schedule_from_schedule(
+            schedule, request, summer_term)
         if summer_term and _is_split_summer(schedule):
             visual_schedule = _trim_summer_term(visual_schedule, summer_term)
 
@@ -195,8 +203,10 @@ def _set_student_sections(student_schedule):
     return student_schedule
 
 
-def _get_visual_schedule_from_schedule(schedule, request):
+def _get_visual_schedule_from_schedule(schedule, request, summer_term):
+    # common courses default to term start/end dates
     _add_dates_to_sections(schedule)
+
     if _is_split_summer(schedule):
         _adjust_off_term_dates(schedule)
         a_bounds, b_bounds = get_summer_schedule_bounds(schedule)
@@ -464,7 +474,8 @@ def trim_summer_meetings(weeks):
 def _trim_sections_after(sections, date):
     cutoff_day = int(date.strftime('%w'))
     for section in sections:
-        if section.summer_term == "A-term":
+        if section.summer_term == "A-term" and section.end_date > date:
+            # preserve a-term course meetings that goes beyond term last day
             continue
         for meeting in section.meetings:
             if cutoff_day <= 5:
@@ -485,7 +496,8 @@ def _trim_sections_after(sections, date):
 def _trim_sections_before(sections, date):
     cutoff_day = int(date.strftime('%w'))
     for section in sections:
-        if section.summer_term == "B-term":
+        if section.summer_term == "B-term" and section.start_date < date:
+            # preserve b-term course meetings that occurs before term 1st day
             continue
         for meeting in section.meetings:
             if cutoff_day >= 1:
