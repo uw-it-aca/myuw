@@ -850,7 +850,7 @@ WSData = {
     fetch_link_data: function(callback, err_callback, args) {
             if (WSData._link_data === null) {
                 $.ajax({
-                    url: "/api/v1/links/",
+                    url: "/api/v1/link/",
                     dataType: "JSON",
 
                     type: "GET",

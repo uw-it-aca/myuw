@@ -7,6 +7,38 @@ var QuickLinksCard = {
     opened_panels: {},
     hidden_panel: undefined,
 
+    render_init: function() {
+        WSData.fetch_link_data(QuickLinksCard.render_upon_data,
+                               QuickLinksCard.render_error);
+    },
+
+    render_upon_data: function () {
+        if (!WSData.link_data()) {
+            return;
+        }
+        QuickLinksCard.render()
+    },
+
+    render: function() {
+        var quicklink_data = WSData.link_data()
+        QuickLinksCard.dom_target.html(
+            QuickLinksCard.get_html(quicklink_data));
+        QuickLinksCard.add_events();
+    },
+
+    render_error: function (status) {
+        QuickLinksCard.get_html({has_error: true});
+    },
+
+    get_html: function(data) {
+        var source = $("#quicklinks").html();
+        var template = Handlebars.compile(source);
+        return template({
+            'links': data,
+            'disable_actions': window.user.is_override_and_disable_actions
+        });
+    },
+
     run_control: function(ev) {
         var target = $(this);
         var type = target.attr('data-linktype');
@@ -157,8 +189,8 @@ var QuickLinksCard = {
     redraw: function(response) {
         $("#quicklink_saving").hide();
         if (response.status === 200) {
-            window.quicklink_data = response.responseJSON;
-            var html = $(QuickLinksCard.get_html());
+            quicklink_data = response.responseJSON;
+            var html = $(QuickLinksCard.get_html(quicklink_data));
             var replace_ids = ['#popular_qlinks', '.myuw-qlinks-active', '.myuw-qlinks-recent',
                                '#custom-link-edit', '#custom_qlinks'];
             var i = 0;
@@ -172,23 +204,6 @@ var QuickLinksCard = {
         }
     },
 
-    render_init: function() {
-        QuickLinksCard.render();
-    },
-
-    get_html: function() {
-        var source = $("#quicklinks").html();
-        var template = Handlebars.compile(source);
-        return template({
-            'links': window.quicklink_data,
-            'disable_actions': window.user.is_override_and_disable_actions
-        });
-    },
-
-    render: function() {
-        QuickLinksCard.dom_target.html(QuickLinksCard.get_html());
-        QuickLinksCard.add_events();
-    },
     collapse_event: function(caller) {
         // Closing a collapse that hasn't been opened at least once results in
         // a regex error in jquery code...
