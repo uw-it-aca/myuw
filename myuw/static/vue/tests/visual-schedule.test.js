@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import schedule from '../store/schedule';
-import {statusOptions} from '../store/model_builder';
+import schedule from '../vuex/store/schedule';
+import {statusOptions} from '../vuex/store/model_builder';
 import {expectAction} from './helper';
 
 import CourseSection from '../components/cards/schedule/course-section.vue';

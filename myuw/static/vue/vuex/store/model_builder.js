@@ -106,7 +106,11 @@ const buildWith = (
 
   const mutations = {
     setValue(state, data) {
-      state.value = data;
+      if (Array.isArray(state.value)) {
+        state.value = data;
+      } else {
+        state.value = {...state.value, ...data}
+      }
     },
     setStatus(state, status) {
       state.status = {...state.status, ...status};

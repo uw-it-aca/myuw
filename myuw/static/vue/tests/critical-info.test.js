@@ -2,7 +2,7 @@ import axios from 'axios';
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import notices from '../store/notices';
+import notices from '../vuex/store/notices';
 import CriticalInfoCard from '../components/index/cards/new_student/critical-info.vue';
 
 import mockNotices from './mock_data/notices.json';

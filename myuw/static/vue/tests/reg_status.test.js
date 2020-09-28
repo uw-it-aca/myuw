@@ -3,10 +3,10 @@ import {mount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import RegStatus from '../components/index/cards/registration/status.vue';
-import notices from '../store/notices';
-import oquarter from '../store/oquarter';
-import profile from '../store/profile';
-import myplan from '../store/myplan';
+import notices from '../vuex/store/notices';
+import oquarter from '../vuex/store/oquarter';
+import profile from '../vuex/store/profile';
+import myplan from '../vuex/store/myplan';
 
 import mockNotices from './mock_data/notices.json';
 import myPlanSpring from './mock_data/myplan/spring.json';

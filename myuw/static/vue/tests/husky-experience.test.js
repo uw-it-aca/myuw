@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {expectAction} from './helper';
-import {statusOptions} from '../store/model_builder';
-import hx_toolkit from '../store/hx_toolkit';
+import {statusOptions} from '../vuex/store/model_builder';
+import hx_toolkit from '../vuex/store/hx_toolkit';
 import mockRes from './mock_data/husky-experience.html';
 
 jest.mock('axios');

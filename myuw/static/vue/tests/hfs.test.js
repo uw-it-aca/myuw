@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {expectAction} from './helper';
-import {statusOptions} from '../store/model_builder';
-import hfs from '../store/hfs';
+import {statusOptions} from '../vuex/store/model_builder';
+import hfs from '../vuex/store/hfs';
 import mockRes from './mock_data/hfs.json';
 
 jest.mock('axios');

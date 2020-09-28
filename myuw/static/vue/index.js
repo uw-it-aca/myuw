@@ -38,18 +38,18 @@ import ToRegister from './components/index/cards/new_student/to-register.vue';
 import RegStatus from './components/index/cards/registration/status.vue';
 
 // Stores
-import notices from './store/notices';
-import quicklinks from './store/quicklinks';
-import hfs from './store/hfs';
-import library from './store/library';
-import applicant from './store/applicant';
-import events from './store/events';
-import courses from './store/courses';
-import schedule from './store/schedule';
-import hx_toolkit from './store/hx_toolkit';
-import oquarter from './store/oquarter';
-import profile from './store/profile';
-import myplan from './store/myplan';
+import notices from './vuex/store/notices';
+import quicklinks from './vuex/store/quicklinks';
+import hfs from './vuex/store/hfs';
+import library from './vuex/store/library';
+import applicant from './vuex/store/applicant';
+import events from './vuex/store/events';
+import courses from './vuex/store/courses';
+import schedule from './vuex/store/schedule';
+import hx_toolkit from './vuex/store/hx_toolkit';
+import oquarter from './vuex/store/oquarter';
+import profile from './vuex/store/profile';
+import myplan from './vuex/store/myplan';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);

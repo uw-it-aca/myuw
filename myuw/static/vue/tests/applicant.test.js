@@ -2,7 +2,7 @@ import axios from 'axios';
 import { mount, shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import ApplicantModel from '../store/applicant';
+import ApplicantModel from '../vuex/store/applicant';
 import ApplicantCard from '../components/index/cards/applicant/applicant.vue';
 import SeattleComp from '../components/index/cards/applicant/seattle.vue';
 import BothellComp from '../components/index/cards/applicant/bothell.vue';
