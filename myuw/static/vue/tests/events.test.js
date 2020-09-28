@@ -1,10 +1,10 @@
 import axios from 'axios';
 import moment from 'moment';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
+import {mount, shallowMount} from '@vue/test-utils';
 import {expectAction} from './helper';
 import {statusOptions} from '../store/model_builder';
-import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import events from '../store/events';
 import EventsCard from '../components/index/cards/events/events.vue';
 import ListEvents from '../components/index/cards/events/list-events.vue';
@@ -23,8 +23,6 @@ import {
 import mockEvents from './mock_data/events.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faLocationArrow);

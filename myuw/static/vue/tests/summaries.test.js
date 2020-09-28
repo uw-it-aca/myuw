@@ -1,8 +1,8 @@
 import axios from 'axios';
 import moment from 'moment';
-import {shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import hfs from '../store/hfs';
 import library from '../store/library';
 import Summaries from '../components/index/summaries.vue';
@@ -10,8 +10,6 @@ import Summaries from '../components/index/summaries.vue';
 import mockNotices from './mock_data/notices.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 jest.mock('axios');
 jest.mock('moment');
@@ -27,13 +25,6 @@ describe('Summaries', () => {
       },
       state: {},
     });
-  });
-
-  it('ucfirst', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    const wrapper = shallowMount(Summaries, {store, localVue});
-    expect(wrapper.vm.ucfirst('test')).toEqual('Test');
-    expect(wrapper.vm.ucfirst('test string')).toEqual('Test string');
   });
 
   it('toFromNowDate', async () => {

@@ -1,3 +1,10 @@
+import { createLocalVue as createLocalVueOriginal } from '@vue/test-utils';
+import BootstrapVue from 'bootstrap-vue';
+import Vuex from 'vuex';
+
+// Global Mixins
+import utils from '../mixin/utils';
+
 // helper for testing action with expected mutations
 const expectAction = (
     action, payload, state, getters, expectedMutations,
@@ -31,6 +38,17 @@ const expectAction = (
   }
 });
 
+const createLocalVue = () => {
+  const localVue = createLocalVueOriginal();
+  localVue.use(BootstrapVue);
+  localVue.use(Vuex);
+
+  localVue.mixin(utils);
+
+  return localVue;
+};
+
 export {
   expectAction,
+  createLocalVue,
 };

@@ -105,8 +105,6 @@ export default {
   },
   methods: {
     ...mapActions('schedule', ['fetch']),
-    // TODO: move every instance of this functions into global scope
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
     formatDate: (t) => {
       return moment(t).format('ddd, MMM D');
     },

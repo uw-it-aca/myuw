@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import { mount, shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import ApplicantModel from '../store/applicant';
 import ApplicantCard from '../components/index/cards/applicant/applicant.vue';
 import SeattleComp from '../components/index/cards/applicant/seattle.vue';
@@ -12,8 +12,6 @@ import UwCard from '../containers/card.vue';
 import mockApplicant from './mock_data/applicant.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 jest.mock('axios');
 

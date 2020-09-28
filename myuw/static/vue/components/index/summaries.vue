@@ -186,7 +186,6 @@ export default {
         return parseInt(days / 7) + 1;
       }
     },
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
     toFromNowDate: (s) => moment(s).fromNow(),
   },
 };
