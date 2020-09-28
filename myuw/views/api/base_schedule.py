@@ -101,14 +101,11 @@ def load_schedule(request, schedule):
             json_data["has_early_fall_start"] = True
             section_data["is_ended"] = is_ended(request, section.end_date)
         else:
-            if not section.is_source_sdb():
-                if irregular_start_end(schedule.term, section):
-                    section_data["cc_display_dates"] = True
-
-                section_data["is_ended"] = is_ended(request,
-                                                    section.end_date)
-                section_data["on_standby"] = (
-                    section.registration.is_standby_status())
+            if irregular_start_end(schedule.term, section):
+                section_data["cc_display_dates"] = True
+                section_data["is_ended"] = is_ended(request, section.end_date)
+            section_data["on_standby"] = (
+                section.registration.is_standby_status())
 
         try:
             section_data["canvas_url"] = section.canvas_course_url
@@ -196,14 +193,14 @@ def load_schedule(request, schedule):
 
 
 def irregular_start_end(term, section):
+    if section.start_date is None or section.end_date is None:
+        return False
     if section.is_summer_a_term():
-        return (section.start_date and section.end_date and
-                (term.first_day_quarter != section.start_date or
-                 term.aterm_last_date != section.end_date))
+        return (term.first_day_quarter != section.start_date or
+                term.aterm_last_date != section.end_date)
     if section.is_summer_b_term():
-        return (section.start_date and section.end_date and
-                (term.bterm_first_date != section.start_date or
-                 term.last_day_instruction != section.end_date))
+        return (term.bterm_first_date != section.start_date or
+                term.last_day_instruction != section.end_date)
     return (term.first_day_quarter != section.start_date or
             term.last_final_exam_date != section.end_date)
 
