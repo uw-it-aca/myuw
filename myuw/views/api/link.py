@@ -21,6 +21,16 @@ logger = logging.getLogger(__name__)
 
 
 class ManageLinks(ProtectedAPI):
+
+    def get(self, request, *args, **kwargs):
+        timer = Timer()
+        try:
+            data = get_quicklink_data(request)
+            log_api_call(timer, request, "Get Quicklinks")
+            return self.json_response(get_quicklink_data(request))
+        except Exception as ex:
+            return handle_exception(logger, timer, traceback)
+
     @method_decorator(csrf_protect)
     def post(self, request, *args, **kwargs):
         if is_action_disabled():
