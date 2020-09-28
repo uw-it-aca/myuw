@@ -11,16 +11,16 @@
     </template>
     <template #card-body>
       <div v-if="formatted_date">
-        <strong>Register on {{formatted_date}} through
+        <strong>Register on {{ formatted_date }} through
           <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
           or
           <a target="_blank" href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">the registration screen</a>.
         </strong>
         <ul>
-	        <li>
+          <li>
             <a href="https://depts.washington.edu/sislearn/registration-resources/">How to register</a>
           </li>
-	        <li>
+          <li>
             <a href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/">How to choose courses</a>
           </li>
         </ul>
@@ -55,7 +55,10 @@
       </div>
       <div v-if="orient_after.length > 0">
         <font-awesome-icon :icon="['fas', 'check-circle']" />
-        <span class="mb-4 myuw-text-md"> You have registered for an Advising & Orientation Session. </span>
+        <span
+          class="mb-4 myuw-text-md"
+        > You have registered for an Advising & Orientation Session.
+        </span>
       </div>
     </template>
   </uw-card>
@@ -74,12 +77,12 @@ export default {
       let date = false;
       if (this.isReady) {
         if (this.no_orient.length > 0) {
-        let no_msg_attr = this.no_orient[0].attributes;
-        no_msg_attr.forEach((attribute) => {
-          if (attribute.name === 'Date') {
-            date = attribute.formatted_value;
-          }
-        });
+          const noMsgAttr = this.no_orient[0].attributes;
+          noMsgAttr.forEach((attribute) => {
+            if (attribute.name === 'Date') {
+              date = attribute.formatted_value;
+            }
+          });
         }
       }
       return date;
@@ -87,37 +90,37 @@ export default {
     ...mapState({
       no_orient: (state) => {
         return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_no_orient')
+            (notice) => notice.location_tags.includes('checklist_no_orient'),
         );
       },
       orient_after: (state) => {
         return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_orient_after')
+            (notice) => notice.location_tags.includes('checklist_orient_after'),
         );
       },
       iss_before: (state) => {
         return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_iss_before')
+            (notice) => notice.location_tags.includes('checklist_iss_before'),
         );
       },
       iss_after: (state) => {
         return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_iss_after')
+            (notice) => notice.location_tags.includes('checklist_iss_after'),
         );
       },
       measles_before: (state) => {
         return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_measles_before')
+            (notice) => notice.location_tags.includes('checklist_measles_before'),
         );
       },
       measles_after: (state) => {
         return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_measles_after')
+            (notice) => notice.location_tags.includes('checklist_measles_after'),
         );
       },
       orient_before: (state) => {
         return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_orient_before')
+            (notice) => notice.location_tags.includes('checklist_orient_before'),
         );
       },
     }),
