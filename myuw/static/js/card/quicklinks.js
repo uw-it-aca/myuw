@@ -27,7 +27,7 @@ var QuickLinksCard = {
     },
 
     render_error: function (status) {
-        QuickLinksCard.get_html({has_error: true});
+        QuickLinksCard.dom_target.html(CardWithError.render("QuickLinks"));
     },
 
     get_html: function(data) {
