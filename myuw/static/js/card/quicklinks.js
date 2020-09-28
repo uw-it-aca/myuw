@@ -16,11 +16,11 @@ var QuickLinksCard = {
         if (!WSData.link_data()) {
             return;
         }
-        QuickLinksCard.render()
+        QuickLinksCard.render();
     },
 
     render: function() {
-        var quicklink_data = WSData.link_data()
+        var quicklink_data = WSData.link_data();
         QuickLinksCard.dom_target.html(
             QuickLinksCard.get_html(quicklink_data));
         QuickLinksCard.add_events();
