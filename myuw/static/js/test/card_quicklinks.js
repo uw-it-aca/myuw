@@ -9,9 +9,11 @@ describe('QuickLinksCard', function(){
         Global.Environment.init({
             render_id: render_id,
             scripts: [
+                "myuw/static/js/card/error.js",
                 "myuw/static/js/card/quicklinks.js"
             ],
             templates: [
+                'myuw/templates/handlebars/card/error.html',
                 'myuw/templates/handlebars/card/quicklinks.html'
             ]
         });
@@ -19,46 +21,14 @@ describe('QuickLinksCard', function(){
     });
 
     beforeEach(function (){
-        window.quicklink_data = {
-            default_links: [
-                {url: "http://canvas.uw.edu/",
-                 label: "Canvas LMS"},
-                {url: "https://myplan.uw.edu",
-                 label: "MyPlan"}
-            ],
-            popular_links: [
-                {added: false,
-                 id: "8",
-                 url: "https://itconnect.uw.edu",
-                 label: "IT Connect"},
-                {added: false,
-                 id: "9",
-                 url: "http://hr.uw.edu/jobs/",
-                 label: "UW Jobs"},
-                {added: false,
-                 id: "15",
-                 url: "http://search.lib.uw.edu/account",
-                 label: "Your Library Account"}
-            ],
-            recent_links: [
-                {added: false,
-                 id: "1",
-                 url: "https://notify.uw.edu/",
-                 label: "Notify.UW"}
-            ],
-            custom_links: [
-                {id: "83",
-                 url: "https://wiki.cac.washington.edu/",
-                 label: "Wiki"},
-                {id: "130",
-                 url: "https://www.washington.edu/transportation/",
-                 label: "Parking"}
-            ]
-        };
+        Global.Environment.ajax_stub({
+            '/api/v1/link/': '/api/v1/link/javerage.json',
+        });
         QuickLinksCard.render_init();
     });
 
     afterEach(function(){
+        Global.Environment.ajax_stub_restore();
     });
 
     it("Test render links", function() {

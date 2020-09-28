@@ -188,3 +188,33 @@ class TestQuickLinkDAO(TransactionTestCase):
         tac_qls = get_quicklink_data(req)
         self.assertEqual(tac_qls['default_links'][0]['label'],
                          "International Student and Scholar Services (ISSS)")
+
+    def test_MUWM_4760(self):
+        req = get_request_with_user('bill')
+        data = get_quicklink_data(req)
+        self.assertTrue(data['instructor'])
+        self.assertTrue(data['sea_emp'])
+        self.assertFalse(data['student'])
+
+        req = get_request_with_user('javerage')
+        data = get_quicklink_data(req)
+        self.assertFalse(data['instructor'])
+        self.assertTrue(data['student'])
+        self.assertFalse(data['bot_student'])
+        self.assertFalse(data['tac_student'])
+        self.assertTrue(data['sea_student'])
+        self.assertTrue(data['sea_emp'])
+        self.assertFalse(data['bot_emp'])
+        self.assertFalse(data['tac_emp'])
+
+        req = get_request_with_user('jbothell')
+        data = get_quicklink_data(req)
+        self.assertTrue(data['student'])
+        self.assertTrue(data['bot_student'])
+
+        req = get_request_with_user('eight')
+        data = get_quicklink_data(req)
+        self.assertTrue(data['student'])
+        self.assertTrue(data['tac_student'])
+        self.assertTrue(data['instructor'])
+        self.assertTrue(data['sea_emp'])
