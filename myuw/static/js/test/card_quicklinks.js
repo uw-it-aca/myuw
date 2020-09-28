@@ -9,9 +9,11 @@ describe('QuickLinksCard', function(){
         Global.Environment.init({
             render_id: render_id,
             scripts: [
+                "myuw/static/js/card/error.js",
                 "myuw/static/js/card/quicklinks.js"
             ],
             templates: [
+                'myuw/templates/handlebars/card/error.html',
                 'myuw/templates/handlebars/card/quicklinks.html'
             ]
         });
