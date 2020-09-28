@@ -177,12 +177,12 @@ class TestRegistrationsDao(TestCase):
         self.assertTrue(_is_split_summer({'a-term': True}))
         self.assertTrue(_is_split_summer({'b-term': True}))
         self.assertTrue(_is_split_summer({'a-term': True,
-                                        'b-term': True}))
+                                          'b-term': True}))
         self.assertTrue(_is_split_summer({'a-term': True,
-                                        'full-term': True}))
+                                          'full-term': True}))
         self.assertTrue(_is_split_summer({'b-term': True,
-                                        'full-term': True}))
+                                          'full-term': True}))
         self.assertTrue(_is_split_summer({'a-term': True,
-                                        'b-term': True,
-                                        'full-term': True}))
+                                          'b-term': True,
+                                          'full-term': True}))
         self.assertFalse(_is_split_summer({'full-term': True}))
