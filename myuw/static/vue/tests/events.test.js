@@ -2,9 +2,9 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import {mount, shallowMount} from '@vue/test-utils';
 import {createLocalVue, expectAction} from './helper';
-import {statusOptions} from '../store/model_builder';
+import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
-import events from '../store/events';
+import events from '../vuex/store/events';
 import EventsCard from '../components/index/cards/events/events.vue';
 import ListEvents from '../components/index/cards/events/list-events.vue';
 

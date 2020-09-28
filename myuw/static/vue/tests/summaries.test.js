@@ -3,8 +3,8 @@ import dayjs from 'dayjs';
 import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import hfs from '../store/hfs';
-import library from '../store/library';
+import hfs from '../vuex/store/hfs';
+import library from '../vuex/store/library';
 import Summaries from '../components/index/summaries.vue';
 
 import mockNotices from './mock_data/notices.json';

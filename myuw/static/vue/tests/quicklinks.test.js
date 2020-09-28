@@ -52,7 +52,7 @@ documentSpy.mockImplementation((id) => mockElements[id]);
 
 describe('Quicklinks/Link', () => {
   let store;
-  let quicklinks = jest.requireActual('../store/quicklinks')['default'];
+  let quicklinks = jest.requireActual('../vuex/store/quicklinks')['default'];
 
   beforeEach(() => {
     store = new Vuex.Store({

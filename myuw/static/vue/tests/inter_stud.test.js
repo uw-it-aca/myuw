@@ -2,7 +2,7 @@ import axios from 'axios';
 import { shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import Notices from '../store/notices';
+import Notices from '../vuex/store/notices';
 import NewStudentCard from '../components/index/cards/international/new-student.vue';
 import StudentCard from '../components/index/cards/international/student.vue';
 import SeattleComp from '../components/index/cards/international/seattle.vue';

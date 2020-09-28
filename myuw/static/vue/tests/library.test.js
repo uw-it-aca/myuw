@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {expectAction} from './helper';
-import {statusOptions} from '../store/model_builder';
-import library from '../store/library';
+import {statusOptions} from '../vuex/store/model_builder';
+import library from '../vuex/store/library';
 
 jest.mock('axios');
 

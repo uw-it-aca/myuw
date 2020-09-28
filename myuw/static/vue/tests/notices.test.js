@@ -3,7 +3,7 @@ import {mount, shallowMount} from '@vue/test-utils';
 import { BCollapse } from 'bootstrap-vue'
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import notices from '../store/notices';
+import notices from '../vuex/store/notices';
 import NoticeCard from '../components/index/cards/notices';
 import {
   FontAwesomeIcon,
