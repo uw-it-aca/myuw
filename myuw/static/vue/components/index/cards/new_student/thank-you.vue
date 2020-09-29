@@ -3,7 +3,7 @@
     v-if="showThankYou(notices)"
     :loaded="isReady"
     :errored="isErrored"
-    :erroredShow="showError"
+    :errored-show="showError"
   >
     <template #card-heading>
       <h3 class="text-dark-beige">

@@ -1,14 +1,15 @@
 <template>
   <uw-card
     v-if="student && shouldDisplayAtAll && (!loaded || hasDataToDisplay)"
-    :loaded="loaded" :errored="errored" :errored-show="!isSummerReg"
+    :loaded="loaded" :errored="errored"
+    :errored-show="!isSummerReg || (isSummerReg && period === 'A')"
   >
     <template #card-heading>
       <h3 v-if="!errored">
         Registration: {{ quarter }} {{ year }}
       </h3>
       <h3 v-else>
-        Registration
+        {{ forQuarter }} Registration
       </h3>
     </template>
     <template #card-body>
