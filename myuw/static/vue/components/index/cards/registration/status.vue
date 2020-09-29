@@ -322,8 +322,8 @@ export default {
       if (this.isQuarterReady && (
         !this.isSummerReg || this.summerShouldDisplay
       )) {
-        myPlanReady = this.myplanPeakLoad || (
-          !this.myplanPeakLoad &&
+        myPlanReady = this.myPlanPeakLoad || (
+          !this.myPlanPeakLoad &&
           this.isMyPlanReadyTagged(
               `${this.year}/${this.quarter}`,
           )
@@ -342,7 +342,7 @@ export default {
         this.isQuarterErrored ||
         this.isProfileErrored ||
         (
-          !this.myplanPeakLoad &&
+          !this.myPlanPeakLoad &&
           this.isQuarterReady &&
           this.isMyPlanErroredTagged(
               `${this.year}/${this.quarter}`,
