@@ -13,7 +13,10 @@ const setTermAndExtractData = (response, urlExtra) => {
 
 const fetchBuilder = (url, postProcess, type) => {
   return ({commit, getters}, urlExtra = '') => {
-    if (!getters.isReady && !getters.isFetching) {
+    if (
+      !getters.isReadyTagged(urlExtra) &&
+      !getters.isFetchingTagged(urlExtra)
+    ) {
       commit('setStatus', {[urlExtra]: {type: statusOptions[1]}});
       axios.get(url + urlExtra, {
         responseType: type,
@@ -103,10 +106,14 @@ const buildWith = (
 
   const mutations = {
     setValue(state, data) {
-      state.value = data;
+      if (Array.isArray(state.value)) {
+        state.value = data;
+      } else {
+        state.value = {...state.value, ...data}
+      }
     },
     setStatus(state, status) {
-      state.status = status;
+      state.status = {...state.status, ...status};
     },
     ...customMutations,
   };

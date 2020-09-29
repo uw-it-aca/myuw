@@ -22,6 +22,7 @@ import {
   faLocationArrow,
   faSquareFull,
   faCaretRight,
+  faCaretDown,
   faSquare as fasSquare,
   faTimes,
   faPencilAlt,
@@ -66,6 +67,7 @@ library.add(fasSquare);
 library.add(faBars);
 library.add(faLocationArrow);
 library.add(faCaretRight);
+library.add(faCaretDown);
 library.add(faTimes);
 library.add(faPencilAlt);
 library.add(faCheck);

@@ -33,6 +33,7 @@ import Outage from './components/cards/outage.vue';
 import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue';
 
 import ToRegister from './components/index/cards/new_student/to-register.vue';
+import RegStatus from './components/index/cards/registration/status.vue';
 import CriticalInfo from
   './components/index/cards/new_student/critical-info.vue';
 import ThankYou from './components/index/cards/new_student/thank-you.vue';
@@ -42,15 +43,18 @@ import NewInterStudent from
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 
 // Stores
-import notices from './store/notices';
-import quicklinks from './store/quicklinks';
-import hfs from './store/hfs';
-import library from './store/library';
-import applicant from './store/applicant';
-import events from './store/events';
-import courses from './store/courses';
-import schedule from './store/schedule';
-import hx_toolkit from './store/hx_toolkit';
+import notices from './vuex/store/notices';
+import quicklinks from './vuex/store/quicklinks';
+import hfs from './vuex/store/hfs';
+import library from './vuex/store/library';
+import applicant from './vuex/store/applicant';
+import events from './vuex/store/events';
+import courses from './vuex/store/courses';
+import schedule from './vuex/store/schedule';
+import hx_toolkit from './vuex/store/hx_toolkit';
+import oquarter from './vuex/store/oquarter';
+import profile from './vuex/store/profile';
+import myplan from './vuex/store/myplan';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -61,6 +65,10 @@ vueConf.store.registerModule('courses', courses);
 vueConf.store.registerModule('schedule', schedule);
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
 vueConf.store.registerModule('quicklinks', quicklinks);
+vueConf.store.registerModule('oquarter', oquarter);
+vueConf.store.registerModule('profile', profile);
+vueConf.store.registerModule('myplan', myplan);
+
 
 vueConf.store.commit('addVarToState', {
   name: 'termData',
@@ -107,6 +115,7 @@ Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
 Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
+Vue.component('myuw-reg-status', RegStatus);
 
 new Vue({
   ...vueConf,
