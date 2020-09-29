@@ -10,7 +10,7 @@
         </li>
         <li v-if="unreadyCount">
           {{ unreadyCount }} not ready
-          <a v-if="hasSections" target="_blank" :href="myplanHref">
+          <a v-if="!hasSections" target="_blank" :href="myplanHref">
             Add Sections
           </a>
           <button
@@ -22,7 +22,10 @@
         </li>
       </ul>
     </div>
-    <b-collapse :id="`${summerCardLabel}inMyPlanUnready-collapse`">
+    <b-collapse
+      :id="`${summerCardLabel}inMyPlanUnready-collapse`"
+      v-model="collapseOpen"
+    >
       <h4>Not ready for registration</h4>
       <ul>
         <li v-for="(course, i) in coursesUnavailable" :key="i">
