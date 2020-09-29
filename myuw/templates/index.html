@@ -33,24 +33,32 @@
     <myuw-banner-summaries></myuw-banner-summaries>
     <!--MARK: #main template (mobile-desktop) -->
     <template #main>
+
       <!--MARK: inherent card ordering -->
       <myuw-notice-card></myuw-notice-card>
       <myuw-grades></myuw-grades>
       <myuw-husky-experience></myuw-husky-experience>
       <myuw-outage></myuw-outage>
+
       <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
       <myuw-quicklinks mobile-only></myuw-quicklinks>
+
+      <myuw-ns-thank-you></myuw-ns-thank-you>
+      <myuw-ns-to-register></myuw-ns-to-register>
       <myuw-reg-status></myuw-reg-status>
       <myuw-reg-status for-quarter="Summer" period="A"></myuw-reg-status>
       <myuw-ns-critical-info></myuw-ns-critical-info>
       <myuw-ns-international-student></myuw-ns-international-student>
-      <myuw-ns-to-register></myuw-ns-to-register>
+
       <myuw-visual-schedule></myuw-visual-schedule>
+      <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
+
       <myuw-applicant></myuw-applicant>
       <myuw-international-student></myuw-international-student>
-      <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
+
       <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
       <myuw-events mobile-only></myuw-events>
+
     </template>
     <!-- MARK: #side-bar template (tablet/desktop only) -->
     <template #side-bar>
