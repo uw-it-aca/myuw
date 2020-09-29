@@ -15,7 +15,7 @@
           </a>
           <button
             v-else v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse`"
-            title="Expand to show courses not ready"
+            :title="buttonTitle"
           >
             {{ collapseOpen ? "Hide Details" : "See Details" }}
           </button>
@@ -114,6 +114,10 @@ export default {
     },
     coursesUnavailable() {
       return this.courses.filter((c) => !c.registrations_available);
+    },
+    buttonTitle() {
+      if (this.collapseOpen) return 'Collapse and hide holds details';
+      return 'Expand and show holds details';
     },
   },
 };

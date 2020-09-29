@@ -11,7 +11,7 @@
         />
         <button
           v-b-toggle="`${summerCardLabel}holds-collapse`"
-          title="Expand and show holds details"
+          :title="buttonTitle"
         >
           <span v-if="collapseOpen">Hide</span>
           {{ regHoldsNotices.length }}
@@ -56,6 +56,12 @@ export default {
     return {
       collapseOpen: false,
     };
+  },
+  computed: {
+    buttonTitle() {
+      if (this.collapseOpen) return 'Collapse and hide holds details';
+      return 'Expand and show holds details';
+    },
   },
 };
 </script>

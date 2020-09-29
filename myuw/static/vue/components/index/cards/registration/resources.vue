@@ -10,7 +10,7 @@
 
       <div v-if="myPlanData">
         <a
-          v-if="hasReadyCourses"
+          v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
         >
@@ -93,7 +93,7 @@
             Tacoma Time Schedule Quick Search
           </a>
         </li>
-        <li v-if="isC2 && registrationIsOpen">
+        <li v-if="isC2">
           <a
             target="_blank"
             href="https://www.washington.edu/students/timeschd/95index.html"
@@ -101,7 +101,7 @@
             PCE Time Schedule
           </a>
         </li>
-        <li v-else-if="isC2 && !registrationIsOpen">
+        <li v-if="isC2 && !registrationIsOpen">
           <a
             target="_blank"
             href="https://www.degreereg.uw.edu/user-guide"
