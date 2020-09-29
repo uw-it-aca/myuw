@@ -7,12 +7,12 @@
           v-b-toggle="`finAid-${notice.id_hash}-collapse`"
         >
           <font-awesome-icon
-            :icon="['fas', 'caret-down']"
             v-if="collapseOpen"
+            :icon="['fas', 'caret-down']"
           />
           <font-awesome-icon
-            :icon="['fas', 'caret-right']"
             v-else
+            :icon="['fas', 'caret-right']"
           />
           {{ notice.short_content }}
         </button>
