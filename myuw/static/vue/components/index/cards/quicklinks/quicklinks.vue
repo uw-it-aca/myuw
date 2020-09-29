@@ -28,9 +28,9 @@
             :link="link" :buttons="['save']" :custom-id="`recent-${index}`"
           />
         </ul>
-        <span>
+        <p class="m-0 myuw-text-md">
           Save your recently visited links for future access.
-        </span>
+        </p>
       </div>
       <hr v-if="recentLinks.length">
       <p class="m-0 myuw-text-md">
