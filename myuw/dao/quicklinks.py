@@ -16,8 +16,15 @@ logger = logging.getLogger(__name__)
 
 
 def get_quicklink_data(request):
-    data = {}
     affiliations = get_all_affiliations(request)
+    data = {'instructor': affiliations['instructor'],
+            'student': affiliations['student'],
+            'sea_student': affiliations['seattle'],
+            'bot_student': affiliations['bothell'],
+            'tac_student': affiliations['tacoma'],
+            'sea_emp': affiliations['official_seattle'],
+            'bot_emp': affiliations['official_bothell'],
+            'tac_emp': affiliations['official_tacoma']}
     # For excluding from the recent list
     existing_list_urls = set()
     custom = []
