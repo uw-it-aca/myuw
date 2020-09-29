@@ -6,6 +6,14 @@
         <button
           v-b-toggle="`finAid-${notice.id_hash}-collapse`"
         >
+          <font-awesome-icon
+            :icon="['fas', 'caret-down']"
+            v-if="collapseOpen"
+          />
+          <font-awesome-icon
+            :icon="['fas', 'caret-right']"
+            v-else
+          />
           {{ notice.short_content }}
         </button>
         <b-collapse
@@ -28,7 +36,7 @@ export default {
   },
   data: function() {
     return {
-      collapseOpen: true,
+      collapseOpen: false,
     };
   },
 };
