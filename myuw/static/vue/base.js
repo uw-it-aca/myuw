@@ -1,8 +1,5 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {BootstrapVue} from 'bootstrap-vue';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
@@ -42,6 +39,10 @@ import {
   faCircle,
 } from '@fortawesome/free-regular-svg-icons';
 
+// Mixins
+import outlink from './mixin/outlink';
+import utils from './mixin/utils';
+
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
 import '../css/myuw/global.scss';
@@ -79,7 +80,6 @@ Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 // vuex
 Vue.use(Vuex);
-Vue.use(BootstrapVue);
 
 // vue-mq (media queries)
 Vue.use(VueMq, {
@@ -108,6 +108,9 @@ const store = new Vuex.Store({
 });
 
 Vue.config.devtools = true;
+
+Vue.mixin(outlink);
+Vue.mixin(utils);
 
 const vueConf = {
   el: '#vue_root',

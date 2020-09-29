@@ -1,5 +1,8 @@
-import moment, { max } from 'moment';
+import dayjs, { max } from 'dayjs';
 import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
+
+var customParseFormat = require('dayjs/plugin/customParseFormat')
+dayjs.extend(customParseFormat)
 
 // Helper functions
 const isFinalPeriod = (period) => period.id === 'finals';
@@ -11,9 +14,9 @@ const postProcess = (response, urlExtra) => {
     period.eosData = [];
 
     if (period.end_date && period.start_date) {
-      // Convert dates into moment objects
-      period.end_date = moment(period.end_date);
-      period.start_date = moment(period.start_date);
+      // Convert dates into dayjs objects
+      period.end_date = dayjs(period.end_date);
+      period.start_date = dayjs(period.start_date);
 
       // Construct the title
       period.title = period.start_date.format("MMM DD") +
@@ -29,12 +32,12 @@ const postProcess = (response, urlExtra) => {
       let eosAlreadyAdded = false;
       // Skip if no exam is defined or no time is set
       if (section.final_exam && section.final_exam.start_date) {
-        section.final_exam.start_date = moment(
+        section.final_exam.start_date = dayjs(
           section.final_exam.start_date
-        ).seconds(0).milliseconds(0);
-        section.final_exam.end_date = moment(
+        ).second(0).millisecond(0);
+        section.final_exam.end_date = dayjs(
           section.final_exam.end_date
-        ).seconds(0).milliseconds(0);
+        ).second(0).millisecond(0);
 
         if (isFinalPeriod(period)) {
           // Update min and max time if needed
@@ -55,12 +58,12 @@ const postProcess = (response, urlExtra) => {
       section.meetings.forEach((meeting) => {
         // Skip if time and date are tdb or null anyways
         if (!meeting.days_tbd && meeting.start_time && meeting.end_time) {
-          meeting.start_time = moment(
+          meeting.start_time = dayjs(
             meeting.start_time, "hh:mm"
-          ).seconds(0).milliseconds(0);
-          meeting.end_time = moment(
+          ).second(0).millisecond(0);
+          meeting.end_time = dayjs(
             meeting.end_time, "hh:mm"
-          ).seconds(0).milliseconds(0);
+          ).second(0).millisecond(0);
 
           if (!isFinalPeriod(period)) {
             // Update min and max time if needed
@@ -83,8 +86,8 @@ const postProcess = (response, urlExtra) => {
             meeting.eos_start_date === meeting.eos_end_date
           );
 
-          meeting.eos_start_date = moment(meeting.eos_start_date);
-          meeting.eos_end_date = moment(meeting.eos_end_date);
+          meeting.eos_start_date = dayjs(meeting.eos_start_date);
+          meeting.eos_end_date = dayjs(meeting.eos_end_date);
         }
 
         if (section.eos_cid && !eosAlreadyAdded) {

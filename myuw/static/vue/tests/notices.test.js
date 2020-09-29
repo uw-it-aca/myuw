@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {mount, shallowMount} from '@vue/test-utils';
 import { BCollapse } from 'bootstrap-vue'
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import notices from '../store/notices';
 import NoticeCard from '../components/index/cards/notices';
 import {
@@ -12,8 +12,6 @@ import {
 import mockNotices from './mock_data/notices.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 jest.mock('axios');

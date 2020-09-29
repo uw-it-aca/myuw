@@ -142,7 +142,9 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import moment from 'moment';
+import dayjs from 'dayjs';
+const relativeTime = require('dayjs/plugin/relativeTime');
+dayjs.extend(relativeTime);
 
 export default {
   computed: {
@@ -176,8 +178,8 @@ export default {
       fetchLibrary: 'fetch',
     }),
     getWeeksApart(qsDate, testDate) {
-      const days = moment(testDate).diff(
-          moment(qsDate).startOf('week'),
+      const days = dayjs(testDate).diff(
+          dayjs(qsDate).startOf('week'),
           'days',
       );
       if (days < 0) {
@@ -186,8 +188,7 @@ export default {
         return parseInt(days / 7) + 1;
       }
     },
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
-    toFromNowDate: (s) => moment(s).fromNow(),
+    toFromNowDate: (s) => dayjs(s).fromNow(),
   },
 };
 </script>

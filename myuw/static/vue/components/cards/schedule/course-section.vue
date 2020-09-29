@@ -221,7 +221,6 @@ export default {
         )
       );
     },
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
   },
 };
 </script>
