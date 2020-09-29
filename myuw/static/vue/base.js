@@ -27,6 +27,7 @@ import {
   faPencilAlt,
   faCheck,
   faPlus,
+  faCheckCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -35,6 +36,7 @@ import {
   faCalendarAlt,
   faCalendarCheck,
   faSquare,
+  faCircle,
 } from '@fortawesome/free-regular-svg-icons';
 
 // Mixins
@@ -68,6 +70,8 @@ library.add(faTimes);
 library.add(faPencilAlt);
 library.add(faCheck);
 library.add(faPlus);
+library.add(faCheckCircle);
+library.add(faCircle);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
