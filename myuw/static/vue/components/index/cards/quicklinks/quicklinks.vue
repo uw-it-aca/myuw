@@ -21,7 +21,9 @@
       <uw-covid-links :links="allLinks" />
 
       <div v-if="recentLinks.length">
-        <h4>Recently Visited</h4>
+        <h4 class="h6">
+          Recently Visited
+        </h4>
         <ul class="list-unstyled myuw-text-md">
           <uw-link
             v-for="(link, index) in recentLinks" :key="`recent-${index}`"
@@ -56,7 +58,7 @@
       </p>
 
       <b-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
-        <h4 class="h6 font-weight-bold">
+        <h4 class="h6">
           Popular Links
         </h4>
         <ul class="list-unstyled myuw-text-md mb-0">
@@ -74,7 +76,7 @@
         class="bg-light mx-n3 p-3 mt-3"
       >
         <b-form class="myuw-text-md" @submit="addLink" @reset="onReset">
-          <h4 class="h6 font-weight-bold">
+          <h4 class="h6">
             Add your link to Quick Links
           </h4>
           <b-form-group label="URL" label-for="myuw-custom-qlink">
