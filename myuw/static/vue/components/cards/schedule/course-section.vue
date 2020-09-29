@@ -14,7 +14,7 @@
         </b-badge>
         <a :href="sectionUrl"
            class="text-white"
-           :title="sectionTitle"
+           :aria-label="`Course section: ${sectionTitle}`"
         >
           {{ sectionTitle }}
         </a>
@@ -27,11 +27,11 @@
                meetingLocationUrl
              )"
              :href="meetingLocationUrl"
-             :title="meetingLocation"
+             :aria-label="ariaMeetingLocation"
           >
             {{ meetingLocation }}
           </a>
-          <span v-else>
+          <span v-else :aria-label="ariaMeetingLocation">
             {{ meetingLocation }}
           </span>
           <a v-if="showConfirmLink"
@@ -112,7 +112,7 @@ export default {
         this.meetingData.meeting != null &&
         this.meetingData.meeting.no_meeting
       ) {
-        return 'No Meeting';
+        return 'No meeting';
       }
       if (!this.isRoomTBD()) {
         return `${
@@ -123,20 +123,20 @@ export default {
     },
     ariaMeetingLocation: function() {
       if (this.meetingData.section.is_remote) {
-        return 'Remote Learning';
+        return 'Location: Remote';
       }
       if (
         this.meetingData.meeting != null &&
         this.meetingData.meeting.no_meeting
       ) {
-        return 'No Meeting';
+        return 'Location: None';
       }
       if (!this.isRoomTBD()) {
-        return `Building:${
+        return `Building: ${
           this.meetingData.meeting.building
-        } Room:${this.meetingData.meeting.room}`;
+        } Room: ${this.meetingData.meeting.room}`;
       }
-      return 'Room TBD';
+      return 'Location: Room TBD';
     },
     meetingLocationUrl: function() {
       if (
@@ -180,6 +180,8 @@ export default {
           this.meetingData.meeting.end_date
         );
 
+        label += 'Meeting time: ';
+
         if (this.day) {
           label += `${this.ucfirst(this.day)}, `;
         }
@@ -187,11 +189,15 @@ export default {
         if (startTime && endTime) {
           label += `${
             startTime.format('h:mma')
-          }-${endTime.format('h:mma')}, `;
+          }-${endTime.format('h:mma')}`;
+        }
+
+        if (!this.day && !startTime && !endTime) {
+          label += 'None';
         }
       }
 
-      label += `${this.sectionTitle}, ${this.ariaMeetingLocation}`;
+      // label += `${this.sectionTitle}, ${this.ariaMeetingLocation}`;
 
       return label;
     },
@@ -215,7 +221,6 @@ export default {
         )
       );
     },
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
   },
 };
 </script>
@@ -228,25 +233,26 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0);
 
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
-    outline: transparent auto 1px;
     height: 100%;
     overflow: hidden;
-    margin-left: 2px;
-    margin-right: 2px;
+  }
 
-    &:focus, &:focus-within, &:hover {
-      outline-color: -webkit-focus-ring-color;
-    }
+  &:not(:last-child) {
+    border-right: 0;
   }
 
   &:focus, &:focus-within, &:hover {
     z-index:9999;
-    flex-shrink: 0.2;
+    flex-shrink: 0.3;
+    border: 2px solid $link-color;
+    & + .course-section {
+      border-left: 0;
+    }
   }
 }
 </style>

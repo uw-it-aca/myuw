@@ -4,11 +4,17 @@
       <strong>
         {{ acalDateFormat(event.start_date, event.end_date) }}
       </strong>
-      <a :href="event.event_url" class="d-block">
-        <span v-if="event.is_all_day" class="text-dark d-inline-block mr-1">
+      <a
+        :href="event.event_url"
+        class="d-block"
+        :aria-label="generateLabel(event)"
+      >
+        <span v-if="event.is_all_day" class="text-dark font-weight-light
+        d-inline-block mr-1"
+        >
           All Day
         </span>
-        <span v-else class="text-dark d-inline-block mr-1">
+        <span v-else class="text-dark font-weight-light d-inline-block mr-1">
           {{ event.start_time }}
         </span>
         {{ event.summary }}
@@ -41,6 +47,25 @@ export default {
         formattedDate += d2.format(' - D');
       }
       return formattedDate;
+    },
+    generateLabel(event) {
+      let label = '';
+
+      if (event.start_date && event.end_date) {
+        label += `${
+          this.acalDateFormat(event.start_date, event.end_date)
+        }. ${event.start_date.format('h:mm A')}. `;
+      }
+
+      label += `${event.summary}`;
+
+      if (event.event_location) {
+        label += `. ${event.event_location}`;
+      } else {
+        label += `. Location not available`;
+      }
+
+      return label;
     },
   },
 };

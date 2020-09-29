@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {mount, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import Link from '../components/index/cards/quicklinks/link.vue';
 import Quicklinks from '../components/index/cards/quicklinks/quicklinks.vue';
 
@@ -21,8 +21,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faPencilAlt);

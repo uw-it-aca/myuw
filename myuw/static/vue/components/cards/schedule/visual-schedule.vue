@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../../containers/card.vue';
 import ScheduleTab from './schedule-tab.vue';
@@ -61,12 +61,18 @@ export default {
   computed: {
     ...mapState({
       allSchedules: (state) => state.schedule.value,
-      today: (state) => moment(state.termData.today, 'dddd, MMMM D, YYYY'),
+      today: (state) => dayjs(state.termData.todayDate),
     }),
-    ...mapGetters('schedule', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-    }),
+    ...mapGetters('schedule', [
+      'isReadyTagged',
+      'isErroredTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(this.term);
+    },
+    isErrored() {
+      return this.isErroredTagged(this.term);
+    },
     offTerm: function() {
       return this.allSchedules[this.term].off_term_trimmed;
     },
@@ -86,7 +92,7 @@ export default {
       for (const i in Object.keys(this.periods)) {
         if (
           !this.periods[i].end_date ||
-          this.periods[i].end_date >= this.today
+          this.periods[i].end_date >= this.today.clone().hour(0).minute(0)
         ) {
           return this.periods[i];
         }
@@ -99,10 +105,8 @@ export default {
   },
   methods: {
     ...mapActions('schedule', ['fetch']),
-    // TODO: move every instance of this functions into global scope
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
     formatDate: (t) => {
-      return moment(t).format('ddd, MMM D');
+      return dayjs(t).format('ddd, MMM D');
     },
   },
 };

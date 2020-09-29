@@ -7,7 +7,12 @@
     <meta charset="utf-8">
     {% comment %} <title>MyUW: {{ page_title|default:'MyUW'}}</title> {% endcomment %}
 
+    {% if is_hybrid %}
+    <!-- disable zooming for hybrid -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    {% else %}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endif %}
     <meta name="description" content="">
 
     <!-- TODO: Add google fonts here -->

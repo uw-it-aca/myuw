@@ -1,5 +1,8 @@
 <template>
-  <uw-card :loaded="isReady" :errored="isErrored">
+  <uw-card
+    v-if="!isReady || hasAnyNotices"
+    :loaded="isReady" :errored="isErrored"
+  >
     <template #card-heading>
       <h3 class="text-dark-beige">
         Notices
@@ -24,18 +27,17 @@
           <div class="d-flex d-sm-inline-flex notice-container">
             <div class="flex-grow-1 pr-1">
               <span class="notice-title">
-                <span
-                  v-if="notice.is_critical"
-                  class="font-weight-bold text-danger notice-critical"
-                >
-                  Critical:
-                </span>
-                <b-link
+                <button
                   v-b-toggle="notice.id_hash"
-                  class="p-0 notice-link"
-                  variant="link"
-                  v-html="notice.notice_title"
-                />
+                  class="btn btn-link p-0 border-0 align-top
+                    notice-link text-left myuw-text-md"
+                >
+                  <span
+                    v-if="notice.is_critical"
+                    class="d-inline-block font-weight-bold
+                    text-danger mr-1 notice-critical"
+                  >Critical:</span><span v-html="notice.notice_title" />
+                </button>
               </span>
             </div>
             <div>
@@ -96,6 +98,9 @@ export default {
           }
           return n2.date - n1.date;
         });
+      },
+      hasAnyNotices: (state) => {
+        return state.notices.value.length > 0;
       },
     }),
     ...mapGetters('notices', {

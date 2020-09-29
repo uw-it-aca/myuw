@@ -44,7 +44,7 @@
           <p class="text-muted myuw-text-md">
             See all events from:
           </p>
-          <ul class="myuw-text-md">
+          <ul class="list-unstyled mb-0 myuw-text-md">
             <li v-for="(event, i) in calLinks" :key="i">
               <a :href="event.url">{{ event.title }}</a>
             </li>
@@ -78,7 +78,7 @@
         </a> calendar.
       </div>
     </template>
-    <template v-if="hiddenEvents.length > 0" #card-footer>
+    <template v-if="hiddenEvents.length > 0" #card-footer footer-class="xxxx">
       <b-button
         v-if="!isOpen"
         v-b-toggle.hidden_events_collapse
@@ -89,7 +89,7 @@
         "
         variant="link"
         size="sm"
-        class="w-100 p-0 text-dark"
+        class="w-100 p-0 border-0 text-dark"
       >
         SHOW ({{ hiddenEvents.length }}) MORE
       </b-button>
@@ -99,7 +99,7 @@
         aria-label="Show less"
         variant="link"
         size="sm"
-        class="w-100 p-0 text-dark"
+        class="w-100 p-0 border-0 text-dark"
       >
         SHOW LESS
       </b-button>

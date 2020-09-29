@@ -1,8 +1,8 @@
 import axios from 'axios';
-import moment from 'moment';
-import {shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import dayjs from 'dayjs';
+import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import hfs from '../store/hfs';
 import library from '../store/library';
 import Summaries from '../components/index/summaries.vue';
@@ -10,11 +10,9 @@ import Summaries from '../components/index/summaries.vue';
 import mockNotices from './mock_data/notices.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 jest.mock('axios');
-jest.mock('moment');
+jest.mock('dayjs');
 
 describe('Summaries', () => {
   let store;
@@ -29,29 +27,22 @@ describe('Summaries', () => {
     });
   });
 
-  it('ucfirst', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    const wrapper = shallowMount(Summaries, {store, localVue});
-    expect(wrapper.vm.ucfirst('test')).toEqual('Test');
-    expect(wrapper.vm.ucfirst('test string')).toEqual('Test string');
-  });
-
   it('toFromNowDate', async () => {
     axios.get.mockResolvedValue({data: mockNotices});
-    moment.mockImplementation((s) => {
+    dayjs.mockImplementation((s) => {
       return {
         fromNow: jest.fn().mockReturnValueOnce(s),
       };
     });
     const wrapper = shallowMount(Summaries, {store, localVue});
     expect(wrapper.vm.toFromNowDate('test')).toEqual('test');
-    expect(moment).toHaveBeenCalledTimes(1);
+    expect(dayjs).toHaveBeenCalledTimes(1);
   });
 
   it('getWeeksApart', async () => {
     axios.get.mockResolvedValue({data: mockNotices});
     const wrapper = shallowMount(Summaries, {store, localVue});
-    moment.mockImplementation(jest.requireActual('moment'));
+    dayjs.mockImplementation(jest.requireActual('dayjs'));
 
     // The week starts on Sundays
     // Winter quarter starts on Tuesday

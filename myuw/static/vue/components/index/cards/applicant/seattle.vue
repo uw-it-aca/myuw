@@ -238,9 +238,6 @@ export default {
       required: true,
     },
   },
-  methods: {
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
-  },
 };
 </script>
 

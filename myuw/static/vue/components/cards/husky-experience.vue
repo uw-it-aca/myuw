@@ -14,8 +14,9 @@
         <div class="position-relative">
           <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt">
           <div class="position-absolute h-100 myuw-huskyexp-body">
-            <a :href="expLink" class="d-block h-100
-            px-3 py-4"
+            <a :href="expLink"
+               :aria-label="`${articleTeaserTitle}. ${articleTeaserBody}`"
+               class="d-block h-100 px-3 py-4"
             >
               <h4 class="h5 d-inline bg-white px-2 py-1
             text-body font-weight-bold"
@@ -74,11 +75,20 @@ export default {
       },
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
-    ...mapGetters('hx_toolkit', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-      statusCode: 'statusCode',
-    }),
+    ...mapGetters('hx_toolkit', [
+      'isReadyTagged',
+      'isErroredTagged',
+      'statusCodeTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(this.urlExtra);
+    },
+    isErrored() {
+      return this.isErroredTagged(this.urlExtra);
+    },
+    statusCode() {
+      return this.isErroredTagged(this.urlExtra);
+    },
     showError: function() {
       return (this.statusCode == 543);
     },
