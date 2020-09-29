@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header>
+    <header v-if="!isHybrid">
       <div
         v-if="disableActions"
         id="actions_disabled_banner"
@@ -119,6 +119,7 @@
           <b-col lg="2">
             <!-- main sidebar navigation -->
             <b-collapse
+              v-if="!isHybrid"
               id="nav-collapse"
               class="text-nowrap myuw-navigation"
               role="navigation"
@@ -262,7 +263,7 @@
       </b-container>
     </div>
 
-    <footer class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
+    <footer v-if="!isHybrid" class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-0">
@@ -325,6 +326,7 @@ export default {
   },
   data() {
     return {
+      isHybrid: navigator.userAgent.includes('MyUW_Hybrid/1.0'),
       selectedMenu: '',
       mailToUrl:
         'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20',
