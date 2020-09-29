@@ -116,8 +116,8 @@ export default {
       return this.courses.filter((c) => !c.registrations_available);
     },
     buttonTitle() {
-      if (this.collapseOpen) return 'Collapse and hide holds details';
-      return 'Expand and show holds details';
+      if (this.collapseOpen) return 'Collapse to hide courses not ready';
+      return 'Expand to show courses not read';
     },
   },
 };
