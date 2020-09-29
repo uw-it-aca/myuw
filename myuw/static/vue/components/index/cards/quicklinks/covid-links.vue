@@ -1,7 +1,9 @@
 <template>
   <div class="mx-n3 mb-3 p-3 myuw-covid-links">
     <div>
-      <h4 class="h6">UW Coronavirus</h4>
+      <h4 class="h6">
+        UW Coronavirus
+      </h4>
       <ul v-if="links.student" class="list-unstyled myuw-text-md">
         <li class="mb-1">
           <a href="https://www.washington.edu/coronavirus/autumnquarter/">
@@ -44,7 +46,9 @@
     </div>
     <div v-if="links.student">
       <hr>
-      <h4 class="h6">Remote Learning</h4>
+      <h4 class="h6">
+        Remote Learning
+      </h4>
       <ul v-if="links.sea_student" class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a href="https://webster.uaa.washington.edu/asp/website/online-learning/">
@@ -89,7 +93,9 @@
     </div>
     <div v-if="links.instructor">
       <hr>
-      <h4 class="h6">Remote Teaching</h4>
+      <h4 class="h6">
+        Remote Teaching
+      </h4>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-2">
           <a href="https://teachingremotely.washington.edu/">
