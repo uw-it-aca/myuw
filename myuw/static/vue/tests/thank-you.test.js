@@ -2,7 +2,7 @@ import axios from 'axios';
 import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
-import notices from '../store/notices';
+import notices from '../vuex/store/notices';
 import ThankYouCard from '../components/index/cards/new_student/thank-you.vue';
 
 import mockNotices from './mock_data/notices.json';
