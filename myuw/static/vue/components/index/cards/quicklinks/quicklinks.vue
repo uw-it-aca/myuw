@@ -1,5 +1,5 @@
 <template>
-  <uw-card :loaded="true" :errored="false" :mobile-only="mobileOnly">
+  <uw-card :loaded="isReady" :errored="isErrored" :mobile-only="mobileOnly">
     <template #card-heading>
       <h3 class="text-dark-beige">
         Quick Links
@@ -17,7 +17,9 @@
           :custom-id="`custom-${index}`" can-actually-remove
         />
       </ul>
-      <hr>
+
+      <uw-covid-links :links="allLinks" />
+
       <div v-if="recentLinks.length">
         <h4>Recently Visited</h4>
         <ul class="list-unstyled myuw-text-md">
@@ -125,11 +127,13 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../../../containers/card.vue';
 import Link from './link.vue';
+import CovidLinks from './covid-links.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-link': Link,
+    'uw-covid-links': CovidLinks,
   },
   props: {
     mobileOnly: {
@@ -147,10 +151,11 @@ export default {
       disableActions: (state) => state.disableActions,
     }),
     ...mapState('quicklinks', {
-      recentLinks: (state) => state.value.recentLinks,
-      popularLinks: (state) => state.value.popularLinks,
-      customLinks: (state) => state.value.customLinks,
-      defaultLinks: (state) => state.value.defaultLinks,
+      recentLinks: (state) => state.value.recent_links,
+      popularLinks: (state) => state.value.popular_links,
+      customLinks: (state) => state.value.custom_links,
+      defaultLinks: (state) => state.value.default_links,
+      allLinks: (state) => state.value,
     }),
     ...mapGetters('quicklinks', {
       isReady: 'isReady',
@@ -159,8 +164,12 @@ export default {
       isAddErrored: 'isAddErrored',
     }),
   },
+  created() {
+    this.fetch();
+  },
   methods: {
     ...mapActions('quicklinks', {
+      fetch: 'fetch',
       quicklinksAddLink: 'addLink',
     }),
     addLink: function(event) {
