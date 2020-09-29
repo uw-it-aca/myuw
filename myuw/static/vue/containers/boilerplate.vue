@@ -119,6 +119,7 @@
           <b-col lg="2">
             <!-- main sidebar navigation -->
             <b-collapse
+              v-if="!isHybrid"
               id="nav-collapse"
               class="text-nowrap myuw-navigation"
               role="navigation"
