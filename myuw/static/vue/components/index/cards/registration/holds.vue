@@ -15,7 +15,7 @@
         >
           <span v-if="collapseOpen">Hide</span>
           {{ regHoldsNotices.length }}
-          {{ regHoldsNotices.length > 1 ? "Holds" : "Hold" }}
+          {{ regHoldsNotices.length > 1 ? "holds" : "hold" }}
         </button>
       </div>
     </div>
