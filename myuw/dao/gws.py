@@ -51,10 +51,10 @@ def _search_groups(uwnetid):
     """
     group_names = set([])
     group_refs = gws.search_groups(member=uwnetid,
-                                   stem="uw_affiliation",
-                                   name="",
                                    scope="all",
-                                   type="direct")
+                                   type="direct",
+                                   stem="uw_affiliation",
+                                   name="")
     if group_refs:
         for gr in group_refs:
             name = str(gr.name)
