@@ -495,7 +495,7 @@ class InstSect(ProtectedAPI):
         except NotSectionInstructorException:
             return not_instructor_error()
 
-        resp_data = load_schedule(request, schedule, "")
+        resp_data = load_schedule(request, schedule, schedule.summer_term)
         log_api_call(timer, request,
                      "Get Instructor Section for {}".format(section_id))
         return self.json_response(resp_data)
