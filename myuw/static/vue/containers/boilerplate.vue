@@ -19,12 +19,12 @@
         this is search
       </b-collapse>
 
-      <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-sm">
+      <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
               <b-link href="/profile/"
-                      class="text-white font-weight-lighter"
+                      class="text-white font-weight-light"
                       aria-label="View your profile"
               >
                 <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
@@ -35,7 +35,7 @@
               <b-link
                 v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
-                class="ml-2 text-danger font-weight-lighter"
+                class="ml-2 text-danger font-weight-light"
                 aria-label="UW email services"
               >
                 <font-awesome-icon
@@ -46,7 +46,7 @@
               <b-link
                 v-else
                 :href="emailForwardUrl"
-                class="ml-2 text-white font-weight-lighter"
+                class="ml-2 text-white font-weight-light"
                 aria-label="Open your email in new tab"
               >
                 <font-awesome-icon
@@ -57,7 +57,7 @@
               <b-link
                 v-b-toggle.app_search
                 href="#"
-                class="ml-2 text-white font-weight-lighter"
+                class="ml-2 text-white font-weight-light"
                 aria-label="Open search area"
               >
                 <font-awesome-icon
@@ -68,7 +68,7 @@
               </b-link>
               <b-link
                 href="/logout/"
-                class="d-none d-lg-inline ml-2 text-white font-weight-lighter"
+                class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 aria-label="Sign out of MyUW"
               >
                 <font-awesome-icon
@@ -305,7 +305,7 @@
           </li>
         </ul>
 
-        <div class="text-white font-weight-lighter">
+        <div class="text-white font-weight-light">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
       </b-container>
