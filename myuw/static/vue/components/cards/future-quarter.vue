@@ -118,10 +118,8 @@ export default {
 @import "../../../css/myuw/variables.scss";
 .myuw-future-quarter {
   right: 1rem; top: 50%; margin-top: -20px;
-
   a {
     line-height:40px; width: 40px;
-
     &:focus, &:focus-within, &:hover {
       background-color: map.get($theme-colors, "grey") !important;
     }
