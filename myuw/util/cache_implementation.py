@@ -1,6 +1,9 @@
+from django.conf import settings
 import re
 from rc_django.cache_implementation import TimedCache
 from rc_django.cache_implementation.memcache import MemcachedCache
+import memcache
+import threading
 
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
@@ -52,6 +55,22 @@ class MyUWMemcachedCache(MemcachedCache):
 
     def get_cache_expiration_time(self, service, url):
         return get_cache_time(service, url)
+
+
+class PythonMemcachedCache(MyUWMemcachedCache):
+    def _set_client(self):
+        thread_id = threading.current_thread().ident
+        if not hasattr(PythonMemcachedCache, "_memcached_cache"):
+            PythonMemcachedCache._memcached_cache = {}
+
+        if thread_id in PythonMemcachedCache._memcached_cache:
+            self.client = PythonMemcachedCache._memcached_cache[thread_id]
+            return
+
+        servers = settings.RESTCLIENTS_MEMCACHED_SERVERS
+
+        self.client = memcache.Client(servers)
+        PythonMemcachedCache._memcached_cache[thread_id] = self.client
 
 
 class MyUWCache(TimedCache):
