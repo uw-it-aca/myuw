@@ -440,8 +440,11 @@ class InstScheCurQuar(InstSche):
                 status 543: data error
         """
         timer = Timer()
-        return self.make_http_resp(timer, get_current_quarter(request),
-                                   request, 'full-term')
+        try:
+            return self.make_http_resp(
+                timer, get_current_quarter(request), request, "full-term")
+        except Exception:
+            return handle_exception(logger, timer, traceback)
 
 
 class InstScheQuar(InstSche):
@@ -461,8 +464,8 @@ class InstScheQuar(InstSche):
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term", "full-term")
         try:
-            return self.make_http_resp(timer, get_specific_term(year, quarter),
-                                       request, summer_term)
+            return self.make_http_resp(
+                timer, get_specific_term(year, quarter), request, summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
