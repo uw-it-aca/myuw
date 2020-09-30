@@ -28,10 +28,10 @@ class Textbook(ProtectedAPI):
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
         summer_term = kwargs.get("summer_term", "full-term")
-        return self.respond(timer, request, get_specific_term(year, quarter),
-                            summer_term=summer_term)
+        return self.respond(
+            timer, request, get_specific_term(year, quarter), summer_term)
 
-    def respond(self, timer, request, term, summer_term=None):
+    def respond(self, timer, request, term, summer_term):
         try:
             prefetch_resources(request)
             by_sln = {}
@@ -39,8 +39,7 @@ class Textbook(ProtectedAPI):
             try:
                 schedule = get_schedule_by_term(
                     request, term=term, summer_term=summer_term)
-                by_sln.update(self._get_schedule_textbooks(
-                    schedule, summer_term))
+                by_sln.update(self._get_schedule_textbooks(schedule))
 
                 order_url = get_order_url_by_schedule(schedule)
                 if order_url:
@@ -49,12 +48,11 @@ class Textbook(ProtectedAPI):
                 if ex.status != 400 and ex.status != 404:
                     raise
 
-            # instructed sections
+            # instructed sections (not split summer terms)
             try:
                 schedule = get_instructor_schedule_by_term(
-                    request, term=term, summer_term=summer_term)
-                by_sln.update(self._get_schedule_textbooks(
-                    schedule, summer_term))
+                    request, term=term, summer_term="full-term")
+                by_sln.update(self._get_schedule_textbooks(schedule))
             except DataFailureException as ex:
                 if ex.status != 404:
                     raise
@@ -66,16 +64,15 @@ class Textbook(ProtectedAPI):
             log_api_call(timer, request, "Get Textbook for {}.{}".format(
                 term.year, term.quarter))
             return self.json_response(by_sln)
+
         except Exception:
             return handle_exception(logger, timer, traceback)
 
-    def _get_schedule_textbooks(self, schedule, summer_term):
+    def _get_schedule_textbooks(self, schedule):
         by_sln = {}
-        if schedule:
-            if len(schedule.sections) > 0:
-                book_data = get_textbook_by_schedule(schedule)
-                by_sln.update(index_by_sln(book_data))
-
+        if schedule and len(schedule.sections):
+            book_data = get_textbook_by_schedule(schedule)
+            by_sln.update(index_by_sln(book_data))
         return by_sln
 
 
@@ -98,6 +95,7 @@ class TextbookCur(Textbook):
         """
         timer = Timer()
         try:
-            return self.respond(timer, request, get_current_quarter(request))
+            return self.respond(
+                timer, request, get_current_quarter(request), None)
         except Exception:
             return handle_exception(logger, timer, traceback)
