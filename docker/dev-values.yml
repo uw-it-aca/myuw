@@ -52,9 +52,9 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 1
-  updateStrategy:
-    type: RollingUpdate
+  replicaCount: 2
+  mcrouter:
+    enabled: true
 certs:
   mounted: true
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
