@@ -38,7 +38,7 @@ describe('Thank You Card', () => {
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
     let htmlDoc = new DOMParser().parseFromString(wrapper.html(), 'text/html');
-    expect(htmlDoc.getElementsByClassName('ty-notices')[0]
+    expect(htmlDoc.getElementsByClassName('myuw-thank-you-notices')[0]
            .getElementsByTagName('div').length).toBe(2);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.notices).toHaveLength(0);
