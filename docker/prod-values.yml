@@ -68,7 +68,7 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 4
+  replicaCount: 6
   command:
     - "memcached"
     - "-m"
