@@ -143,6 +143,7 @@ export default {
     ...mapGetters('notices', [
       'isReady',
       'isErrored',
+      'statusCode',
       'hasRegisterNotices',
     ]),
     showError: function() {
