@@ -57,9 +57,9 @@ memcached:
     type: RollingUpdate
   resources:
     limits:
-    memory: 256Mi
-  requests:
-    memory: 256Mi
+      memory: 256Mi
+    requests:
+      memory: 256Mi
 certs:
   mounted: true
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
