@@ -21,13 +21,13 @@
     "Previous": null,
     "Registrations": [
     {
-    "AccessDateRangeEnd": "08/18/2014",
+    "AccessDateRangeEnd": "09/06/2014",
     "AccessDateRangeStart": "07/03/2013",
     "Auditor": false,
     "Credits": "3",
     "DuplicateCode": "",
     "EducationUnitType": null,
-    "EndDate": "07/26/2013",
+    "EndDate": "09/06/2013",
     "FeeBaseType": "",
     "Grade": "",
     "GradeDate": "",
@@ -48,7 +48,7 @@
     "RepeatCourse": false,
     "RepositoryTimeStamp": "5/18/2013 12:11:04 PM",
     "RequestDate": "2013-05-18",
-    "RequestStatus": "Pending Added to class",
+    "RequestStatus": "Added to standby",
     "Section": {
         "CourseNumber": "498",
         "CurriculumAbbreviation": "LIS",
