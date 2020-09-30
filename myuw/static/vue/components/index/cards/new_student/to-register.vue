@@ -214,9 +214,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.notice-title,
-.notice-body-with-title,
-.non-notice-body-with-title {
-  display: block;
-}
 </style>
