@@ -82,6 +82,9 @@ memcached:
     - "-v"
   updateStrategy:
     type: RollingUpdate
+  mcrouter:
+    enabled: true
+    controller: "statefulset"
 certs:
   mounted: true
   certPath: /certs/myuw.s.uw.edu-uwca.cert
