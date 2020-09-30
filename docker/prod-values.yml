@@ -68,7 +68,7 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 6
+  replicaCount: 8
   command:
     - "memcached"
     - "-m"
@@ -82,6 +82,9 @@ memcached:
     - "-v"
   updateStrategy:
     type: RollingUpdate
+  mcrouter:
+    enabled: true
+    controller: "statefulset"
 certs:
   mounted: true
   certPath: /certs/myuw.s.uw.edu-uwca.cert
