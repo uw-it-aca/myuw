@@ -12,7 +12,7 @@
       </h3>
     </template>
     <template #card-body>
-      <div class="ty-notices myuw-text-md">
+      <div class="myuw-thank-you-notices myuw-text-md">
         <div
           v-for="notice in notices"
           v-once
@@ -94,6 +94,11 @@ export default {
 .myuw-thank-you {
   .card {
     background-color: lighten($green, 57%);
+  }
+  .myuw-thank-you-notices {
+    div { margin-bottom: 1rem;
+      &:last-child { margin-bottom: 0;}
+    }
   }
 }
 </style>
