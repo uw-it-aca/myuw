@@ -123,7 +123,7 @@ export default {
   a {
     line-height:40px; width: 40px;
     &:focus, &:focus-within, &:hover {
-      background-color: map.get($theme-colors, "grey") !important;
+      background-color: $gray-200;
     }
   }
 }
