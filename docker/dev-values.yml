@@ -55,6 +55,7 @@ memcached:
   replicaCount: 2
   mcrouter:
     enabled: true
+    controller: "statefulset"
 certs:
   mounted: true
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
