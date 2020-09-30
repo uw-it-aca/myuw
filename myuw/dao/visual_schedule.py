@@ -133,13 +133,11 @@ def get_current_visual_schedule(request):
 
 
 def get_visual_schedule_from_schedule(request, schedule, summer_term):
-    if schedule is not None:
-        visual_schedule = _get_visual_schedule_from_schedule(
-            schedule, request, summer_term)
-        if summer_term and _is_split_summer(schedule):
-            visual_schedule = _trim_summer_term(visual_schedule, summer_term)
-
-        return visual_schedule
+    visual_schedule = _get_visual_schedule_from_schedule(
+        schedule, request, summer_term)
+    if summer_term and _is_split_summer(schedule):
+        visual_schedule = _trim_summer_term(visual_schedule, summer_term)
+    return visual_schedule
 
 
 def _get_combined_schedule(request):
