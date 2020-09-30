@@ -54,7 +54,7 @@ def _search_groups(uwnetid):
                                    stem="uw_affiliation",
                                    name="",
                                    scope="all",
-                                   type="effective")
+                                   type="direct")
     if group_refs:
         for gr in group_refs:
             name = str(gr.name)
