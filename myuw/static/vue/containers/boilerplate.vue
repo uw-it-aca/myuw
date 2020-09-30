@@ -384,15 +384,15 @@ export default {
   a {
     &:hover,
     &:focus {
-      background: #ddd;
+      background: map.get($theme-colors, "grey") !important;
       text-decoration: none;
     }
 
     &.active {
-      background: #ddd;
-      color: #452a78 !important;
+      background: map.get($theme-colors, "grey") !important;
+      color: map.get($theme-colors, "purple") !important;
       svg {
-        color: #452a78 !important;
+        color: map.get($theme-colors, "purple") !important;
       }
     }
   }

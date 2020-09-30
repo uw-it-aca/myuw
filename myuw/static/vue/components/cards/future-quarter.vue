@@ -2,13 +2,15 @@
   <div v-if="student">
     <div v-if="isReady">
       <div v-if="terms.length && shouldRender">
-        <h3>Upcoming quarters you are registered for</h3>
+        <h3 class="sr-only">
+          Upcoming quarters you are registered for
+        </h3>
         <uw-card
           v-for="(term, i) in terms"
           :key="i" :loaded="true"
         >
           <template #card-heading>
-            <h4>
+            <h4 class="h3 text-dark-beige">
               {{ term.quarter }} {{ term.year }}
               <span v-if="term.summer_term" class="text-capitalize">
                 {{ term.summer_term }}
@@ -16,30 +18,34 @@
             </h4>
           </template>
           <template #card-body>
-            <p>
-              <span>
-                You have registered for {{ term.credits }} credits
-              </span>
-              <span>
-                ({{ term.section_count }}
-                {{ term.section_count > 1 ? "sections" : "section" }})
-                for {{ term.quarter }} {{ term.year }}
-                <span v-if="term.summer_term" class="text-capitalize">
-                  {{ term.summer_term }}
-                </span>
-              </span>
-            </p>
             <div>
-              <a :href="`../future_quarters${term.url}`">
-                <span>
-                  View {{ term.quarter }} {{ term.year }}
+              <div class="myuw-text-md mr-auto">
+                <div>
+                  You have registered for {{ term.credits }} credits
+                </div>
+                <div>
+                  ({{ term.section_count }}
+                  {{ term.section_count > 1 ? "sections" : "section" }})
+                  for {{ term.quarter }} {{ term.year }}
                   <span v-if="term.summer_term" class="text-capitalize">
                     {{ term.summer_term }}
                   </span>
-                  information
-                </span>
-                <font-awesome-icon :icon="['fa', 'chevron-right']" />
-              </a>
+                </div>
+              </div>
+              <div class="position-absolute myuw-future-quarter">
+                <a :href="`../future_quarters${term.url}`"
+                   class="d-inline-block text-center"
+                >
+                  <span class="sr-only">
+                    View {{ term.quarter }} {{ term.year }}
+                    <span v-if="term.summer_term" class="text-capitalize">
+                      {{ term.summer_term }}
+                    </span>
+                    information
+                  </span>
+                  <font-awesome-icon :icon="['fa', 'chevron-right']" class="" />
+                </a>
+              </div>
             </div>
           </template>
         </uw-card>
@@ -106,3 +112,19 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@use "sass:map";
+@import "../../../css/myuw/variables.scss";
+.myuw-future-quarter {
+  right: 1rem; top: 50%; margin-top: -20px;
+
+  a {
+    line-height:40px; width: 40px;
+
+    &:focus, &:focus-within, &:hover {
+      background-color: map.get($theme-colors, "grey") !important;
+    }
+  }
+}
+</style>
