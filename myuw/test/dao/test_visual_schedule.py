@@ -1070,7 +1070,6 @@ class TestVisualSchedule(TestCase):
         self.assertTrue(
             schedule_json['periods'][2]['sections'][2]['is_remote'])
 
-
     def test_MUWM_4800(self):
         request = get_request_with_user(
             'jeos', get_request_with_date("2013-05-12"))
