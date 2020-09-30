@@ -36,7 +36,7 @@
         ]
     },
     {
-        "notice_content": "<span class=\"notice-title\">Attend Advising & Orientation and Class Registration</span>&nbsp;<span class=\"notice-body-with-title\">You are scheduled to attend an Advising &#47O Orientation session on Mon, July 6 - Tues, July 7. <strong>You will register for your first quarter classes during this session</strong>.<a href=\"http://fyp.washington.edu/beforeao\">Learn what you need to do to prepare.</a></span>",
+        "notice_content": "<span class=\"notice-title\">Attend Advising & Orientation and Class Registration</span>&nbsp;<span class=\"notice-body-with-title\">You are scheduled to attend an Advising &#47O Orientation session on Mon, July 6 - Tues, July 7. <strong>You will register for your first quarter classes during this session</strong>. <a href=\"http://fyp.washington.edu/beforeao\">Learn what you need to do to prepare.</a></span>",
         "attributes": [],
         "category": "Admission",
         "sws_category": "NewStudentCLIST",
