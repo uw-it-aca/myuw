@@ -27,7 +27,10 @@
                       class="text-white font-weight-light"
                       aria-label="View your profile"
               >
-                <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
+                <font-awesome-icon :icon="['fas', 'user']"
+                                   aria-hidden="true"
+                                   class="mr-1"
+                />
                 {{ netid }}
               </b-link>
             </b-col>
@@ -40,6 +43,7 @@
               >
                 <font-awesome-icon
                   :icon="['fas', 'exclamation-triangle']"
+                  aria-hidden="true"
                   class="mr-1"
                 />Email error
               </b-link>
@@ -51,6 +55,7 @@
               >
                 <font-awesome-icon
                   :icon="['fas', 'envelope']"
+                  aria-hidden="true"
                   class="mr-1"
                 />Email
               </b-link>
@@ -62,6 +67,7 @@
               >
                 <font-awesome-icon
                   :icon="['fas', 'search']"
+                  aria-hidden="true"
                   flip="horizontal"
                   class="mr-1"
                 />Search
@@ -73,6 +79,7 @@
               >
                 <font-awesome-icon
                   :icon="['fas', 'sign-out-alt']"
+                  aria-hidden="true"
                   class="mr-1"
                 />Sign Out
               </b-link>
@@ -93,11 +100,13 @@
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon
                 :icon="['far', 'square']"
+                aria-hidden="true"
                 transform="right-1"
                 class="m-0"
               />
               <font-awesome-icon
                 :icon="['fas', 'bars']"
+                aria-hidden="true"
                 transform="shrink-8 right-1 "
                 class="m-0"
               />
