@@ -58,7 +58,9 @@
       :errored-show="showError"
     >
       <template #card-heading>
-        <h4>Future Quarter</h4>
+        <h3 class="text-dark-beige">
+          Future Quarter
+        </h3>
       </template>
       <template #card-error>
         An error occurred and MyUW cannot load your registration information
