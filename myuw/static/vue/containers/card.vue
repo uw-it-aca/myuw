@@ -26,8 +26,10 @@
               <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
             </div>
             <div class="w-100">
-              An error has occurred and we can't load this content right now.
-              Please try again later.
+              <slot name="card-error">
+                An error has occurred and we can't load this content right now.
+                Please try again later.
+              </slot>
             </div>
           </div>
         </b-alert>

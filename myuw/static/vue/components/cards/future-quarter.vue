@@ -46,11 +46,19 @@
       </div>
     </div>
     <uw-card
-      v-else
+      v-else-if="highlighted"
       :loaded="false"
       :errored="isErrored"
       :errored-show="showError"
-    />
+    >
+      <template #card-heading>
+        <h4>Future Quarter</h4>
+      </template>
+      <template #card-error>
+        An error occurred and MyUW cannot load your registration information
+        right now. Please try again later.
+      </template>
+    </uw-card>
   </div>
 </template>
 
