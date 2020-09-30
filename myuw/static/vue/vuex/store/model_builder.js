@@ -83,7 +83,7 @@ const buildWith = (
       );
     },
     statusCode(state) {
-      return state.status[''] !== undefined ? -1 : state.status.code;
+      return state.status[''] === undefined ? -1 : state.status[''].code;
     },
     // Function type getters when urlExtra is used
     isReadyTagged: (state) => (urlExtra) => (
@@ -99,7 +99,7 @@ const buildWith = (
       state.status[urlExtra].type == statusOptions[2]
     ),
     statusCodeTagged: (state) => (urlExtra) => (
-      state.status[urlExtra] !== undefined ? -1 : state.status.code
+      state.status[urlExtra] === undefined ? -1 : state.status[urlExtra].code
     ),
     ...customGetters,
   };

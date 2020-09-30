@@ -41,6 +41,7 @@ import NewInterStudent from
   './components/index/cards/international/new-student.vue';
 
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
+import FutureQuarterCards from './components/cards/future-quarter.vue';
 
 // Stores
 import notices from './vuex/store/notices';
@@ -116,6 +117,7 @@ Vue.component('myuw-quicklinks', Quicklinks);
 Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
 Vue.component('myuw-reg-status', RegStatus);
+Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
 
 new Vue({
   ...vueConf,

@@ -29,6 +29,7 @@ import {
   faCheck,
   faPlus,
   faCheckCircle,
+  faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -74,6 +75,7 @@ library.add(faCheck);
 library.add(faPlus);
 library.add(faCheckCircle);
 library.add(faCircle);
+library.add(faChevronRight);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
