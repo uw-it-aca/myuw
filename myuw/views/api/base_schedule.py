@@ -202,7 +202,7 @@ def irregular_start_end(term, section):
         return (term.bterm_first_date != section.start_date or
                 term.last_day_instruction != section.end_date)
     return (term.first_day_quarter != section.start_date or
-            term.last_final_exam_date != section.end_date)
+            term.last_day_instruction != section.end_date)
 
 
 def sort_pce_section_meetings(section_meetings_json_data):

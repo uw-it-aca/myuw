@@ -11,7 +11,6 @@ class TestFutureQuarterPage(MyuwApiTest):
     def test_student_summer_aterm(self):
         url = reverse("myuw_future_quarters_page",
                       kwargs={"quarter": "2013,summer,a-term"})
-        print(url)
         self.set_user("javerage")
         response = self.client.get(
             url,

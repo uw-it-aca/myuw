@@ -133,6 +133,7 @@ def get_instructor_section(request,
 
     section = get_section_by_label(section_id)
     schedule.term = section.term
+    schedule.summer_term = section.summer_term
 
     if include_registrations:
         section.registrations = get_active_registrations_for_section(
