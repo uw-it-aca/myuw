@@ -63,19 +63,6 @@ def load_schedule(request, schedule):
     if schedule.term.is_summer_quarter():
         json_data["summer_term"] = schedule.summer_term
     buildings = get_buildings_by_schedule(schedule)
-    """
-    pce_sections = {}
-    try:
-        enrollment = get_enrollment_for_term(request, schedule.term)
-        if enrollment is not None:
-            pce_sections = enrollment.unf_pce_courses
-    except Exception:
-        log_exception(logger,
-                      "find enrolled off term sections ({} {})".format(
-                          schedule.term.quarter, schedule.term.year),
-                      traceback)
-        pass
-    """
     if len(schedule.sections):
         try:
             set_section_canvas_course_urls(
