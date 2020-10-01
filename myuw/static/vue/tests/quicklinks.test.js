@@ -2,7 +2,7 @@ import axios from 'axios';
 import {mount, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import quicklinks from '../store/quicklinks';
+import quicklinks from '../vuex/store/quicklinks';
 import Link from '../components/index/cards/quicklinks/link.vue';
 import Quicklinks from '../components/index/cards/quicklinks/quicklinks.vue';
 
