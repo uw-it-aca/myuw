@@ -48,7 +48,7 @@ after_success:
         "qa")
           export APP_INSTANCE="test";
           ;;
-        "feature/python-memcached-rc")
+        "develop")
           export APP_INSTANCE="dev";
           ;;
         *)
