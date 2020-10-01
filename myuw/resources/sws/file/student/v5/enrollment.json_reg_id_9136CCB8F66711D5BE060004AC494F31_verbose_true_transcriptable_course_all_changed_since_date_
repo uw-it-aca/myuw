@@ -3,7 +3,7 @@
 "Enrollments":[
 {
 "ClassLevel":"NON_MATRIC",
-"FullName":"Chakrabarti, Japendra",
+"FullName":"Inter, Jay",
 "HonorsProgram":false,
 "LeaveEndQuarter":0,
 "LeaveEndYear":0,
@@ -23,7 +23,7 @@
 "PendingResidentChange":false,
 "PendingSpecialProgramChange":false,
 "Person":{"Href":"/student/v5/person/9136CCB8F66711D5BE060004AC494F31.json",
-        "Name":"Chakrabarti,Japendra",
+        "Name":"Inter, Jay",
         "RegID":"9136CCB8F66711D5BE060004AC494F31"},
 "QtrGradePoints":null,
 "QtrGradedAttmp":null,
@@ -58,11 +58,121 @@
         "Quarter": "spring",
         "Year": "2013"
     }
-}
+},
+{
+   "ClassLevel": "GRADUATE",
+   "CurrentRegisteredCredits": null,
+   "EnrollmentStatus": null,
+   "EnrollmentStatusDate": "",
+   "FullName": "Jay Inter",
+   "HonorsProgram": false,
+   "LeaveEndQuarter": 0,
+   "LeaveEndYear": 0,
+   "Majors": [
+       {
+           "Abbreviation": "C SCI",
+           "Campus": "Seattle",
+           "CollegeAbbreviation": "A & S",
+           "CollegeFullName": "COLLEGE OF ARTS & SCIENCES",
+           "DegreeLevel": 1,
+           "DegreeName": "BACHELOR OF SCIENCE (COMPUTER SCIENCE)",
+           "DegreeType": 5,
+           "FullName": "Computer Science",
+           "MajorName": "COMPUTER SCIENCE",
+           "Pathway": 0,
+           "ShortName": "COMPUTER SCI"
+       }
+   ],
+   "Metadata": "EnrollmentSourceLocation=SDB;",
+   "Minors": [
+       {"Abbreviation":"ASL",
+        "CampusName":"Seattle",
+        "FullName":"American Sign Language",
+        "Name":"AMERICAN SIGN LANGUAGE",
+        "Pathway":0,
+        "ShortName":"ASL"}
+   ],
+   "PendingClassChange": false,
+   "PendingHonorsChange": false,
+   "PendingMajorChange": true,
+   "PendingResidentChange": false,
+   "PendingSpecialProgramChange": false,
+   "Person": {
+       "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494F31.json",
+       "Name": "Jay Inter",
+       "RegID": "9136CCB8F66711D5BE060004AC494F31"
+   },
+    "QtrGradePoints": null,
+    "QtrGradedAttmp": null,
+    "QtrNonGrdEarned": null,
+    "RegID": "9136CCB8F66711D5BE060004AC494F31",
+    "Registrations": [],
+    "Term": {
+        "Href": "/student/v5/term/2013,autumn.json",
+        "Quarter": "autumn",
+        "Year": "2013"
+          }
+  },
+  {
+    "ClassLevel": "GRADUATE",
+    "CurrentRegisteredCredits": null,
+    "EnrollmentStatus": null,
+    "EnrollmentStatusDate": "",
+    "FullName": "Jay Inter",
+    "HonorsProgram": false,
+    "LeaveEndQuarter": 0,
+    "LeaveEndYear": 0,
+    "Majors": [
+        {
+            "Abbreviation":"ENGL",
+            "Campus":"Seattle",
+            "CollegeAbbreviation":"A & S",
+            "CollegeFullName":"COLLEGE OF ARTS & SCIENCES",
+            "DegreeLevel":1,
+            "DegreeName":"BACHELOR OF ARTS (ENGLISH)",
+            "DegreeType":1,
+            "FullName":"English",
+            "MajorName":"ENGLISH",
+            "Pathway":0,
+            "ShortName":"ENGLISH"
+        }
+    ],
+    "Metadata": "EnrollmentSourceLocation=SDB;",
+    "Minors": [
+        {
+            "Abbreviation": "MATH",
+            "CampusName": "Seattle",
+            "FullName": "Mathematics",
+            "Name": "MATHEMATICS",
+            "Pathway": 0,
+            "ShortName": "MATH"
+        }
+    ],
+    "PendingClassChange": false,
+    "PendingHonorsChange": false,
+    "PendingMajorChange": true,
+    "PendingResidentChange": false,
+    "PendingSpecialProgramChange": false,
+    "Person": {
+        "Href": "/student/v5/person/9136CCB8F66711D5BE060004AC494F31.json",
+        "Name": "Jay Inter",
+        "RegID": "9136CCB8F66711D5BE060004AC494F31"
+    },
+    "QtrGradePoints": null,
+    "QtrGradedAttmp": null,
+    "QtrNonGrdEarned":null,
+    "RegID": "9136CCB8F66711D5BE060004AC494F31",
+    "Registrations": [],
+    "Term": {
+        "Href": "/student/v5/term/2014,winter.json",
+        "Quarter": "winter",
+        "Year": "2014"
+       }
+    }
 ],
 "Next":null,
 "PageSize":"10",
 "PageStart":"1",
 "Previous":null,
-"TotalCount":1
+"TotalCount":3
 }

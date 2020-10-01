@@ -2,7 +2,7 @@
 <script id="quicklinks" type="text/x-handlebars-template">
 <div class="card clearfix"  data-name="QuickLinks" data-type="card">
     <h3>Quick Links</h3>
-    {{#unless has_error}}
+
     <div class="myuw-qlinks">
         <div class="myuw-qlinks-active">
             <ul class="unstyled-list myuw-qlinks-active-list">
@@ -30,7 +30,88 @@
 
             </ul>
         </div>
-        <hr>
+        <div class="myuw-remote-covid">
+            <div class="myuw-covid-inner">
+                <h4>UW Coronavirus</h4>
+                <ul class="unstyled-list">
+                    <!-- ONLY FOR STUDENTS --->
+                    {{#if links.student}}
+                    <li><a href="https://www.washington.edu/coronavirus/autumnquarter/">Autumn Quarter FAQs</a></li>
+                    <li><a href="https://www.washington.edu/coronavirus/students/">Resources for Students</a></li>
+                        <!-- SEATTLE ONLY --->
+                        {{#if links.sea_student}}
+                        <li><a href="https://wellbeing.uw.edu/">Husky Health & Wellbeing</a></li>
+                        {{/if}}
+                        <!-- BOTHELL ONLY --->
+                        {{#if links.bot_student}}
+                        <li><a href="https://www.uwb.edu/studentaffairs/counseling">Counseling Center</a></li>
+                        {{/if}}
+                        <!-- TACOMA ONLY --->
+                        {{#if links.tac_student}}
+                        <li><a href="https://www.tacoma.uw.edu/studentcounseling">Counseling & Psychological Services</a></li>
+                        {{/if}}
+                    <li><a href="https://www.washington.edu/counseling/covid-19/">Coping with COVID-19 Stress</a></li>
+                    <!-- EVERYONE EXCEPT STUDENTS --->
+                    {{else}}
+                    <li><a href="https://www.washington.edu/coronavirus/">UW Coronavirus Home</a></li>
+                    {{/if}}
+                </ul>
+
+                <!-- ONLY FOR STUDENTS --->
+                {{#if links.student}}
+                <hr>
+                <h4>Remote Learning</h4>
+                <ul class="unstyled-list">
+                    <!-- SEATTLE ONLY --->
+                    {{#if links.sea_student}}
+                        <li><a href="https://webster.uaa.washington.edu/asp/website/online-learning/">Online Learning Tips and Resources</a></li>
+                    {{/if}}
+                    <!-- BOTHELL ONLY --->
+                    {{#if links.bot_student}}
+                        <li><a href="https://www.uwb.edu/it/student-continuity">Student Help for Learning Online</a></li>
+                        <li><a href="https://www.uwb.edu/diversity/diversity-center/firstgenstudents/student-resources/academicsupport">Academic Support Services</a></li>
+                        <li><a href="https://www.uwb.edu/it/service-catalog/teaching-learning/tech-lending-program">Laptop and WiFi Hotspot Lending Program</a></li>
+                    {{/if}}
+                    <!-- TACOMA ONLY --->
+                    {{#if links.tac_student}}
+                        <li><a href="https://www.tacoma.uw.edu/digital-learning/student-online-support">Online Learning Support</a></li>
+                        <li><a href="https://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center">Teaching and Learning Center</a></li>
+                        <li><a href="https://www.tacoma.uw.edu/information-technology/equipment-checkout">Equipment Checkout</a></li>
+                    {{/if}}
+                </ul>
+                {{/if}}
+                
+                <!-- ONLY FOR INSTRUCTORS --->
+                {{#if links.instructor}}
+                <hr>
+                <h4>Remote Teaching</h4>
+                <ul class="unstyled-list">
+                    <li><a href="https://teachingremotely.washington.edu/">Teaching Remotely</a>
+                        <div class="myuw-teach">Plan and deliver high-quality remote learning</div></li>
+                    <!-- BOTHELL ONLY --->
+                    {{#if links.bot_emp}}
+                    <li><a href="https://www.uwb.edu/it/teaching">UWB Teach Anywhere</a>
+                        <div class="myuw-teach">UW Bothell resources for teaching online</div></li>
+                    {{/if}}
+                    <!-- TACOMA ONLY --->
+                    {{#if links.tac_emp}}
+                    <li><a href="https://www.tacoma.uw.edu/digital-learning/instructional-continuity">UWT Instructional Continuity</a>
+                        <div class="myuw-teach">UW Tacoma resources for teaching online</div></li>
+                    {{/if}}
+                    <li><a href="https://canvas.uw.edu/courses/1392969">Teaching with UW Technologies</a>
+                        <div class="myuw-teach">Learn about technology to support online instruction</div></li>
+                    <li><a href="https://teachingremotely.washington.edu/#getHelp">Workshops and Office Hours</a>
+                        <div class="myuw-teach">Calendars for workshops and office hours for all three campuses</div></li>
+                    <li><a href="https://washington.zoom.us/">Zoom</a>
+                        <div class="myuw-teach">Schedule and start online class sessions.</div></li>
+                    <li><a href="https://panopto.uw.edu/">Panopto</a>
+                        <div class="myuw-teach">Lecture capture – record, schedule, and review lectures</div></li>
+                    <li><a href="http://polleverywhere.com/">Poll Everywhere</a>
+                        <div class="myuw-teach">Create poll responses for your classes</div></li>
+                </ul>
+                {{/if}}
+            </div>
+        </div>
         {{#if links.recent_links}}
         <div class="myuw-qlinks-recent">
             <h4>Recently Visited</h4>
@@ -95,11 +176,6 @@
             </div>
         </div>
     </div>
-    {{else}}
-    <div>
-	    <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> An error occurred and MyUW cannot load your information right now. Please try again later.</p>
-    </div>
-    {{/unless}}
 </div>
 
 </script>

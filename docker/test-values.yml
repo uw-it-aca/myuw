@@ -55,6 +55,11 @@ memcached:
   replicaCount: 1
   updateStrategy:
     type: RollingUpdate
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      memory: 256Mi
 certs:
   mounted: true
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
@@ -110,7 +115,7 @@ environmentVariables:
     value: "10"
 
   - name: GRADEPAGE_ENV
-    value: EVAL
+    value: PROD
   - name: GRADEPAGE_POOL_SIZE
     value: "10"
   - name: GRADEPAGE_TIMEOUT
