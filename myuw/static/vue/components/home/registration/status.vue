@@ -5,7 +5,7 @@
     :errored-show="!isSummerReg || (isSummerReg && period === 'A')"
   >
     <template #card-heading>
-      <h3 v-if="!errored">
+      <h3 v-if="!errored" class="text-dark-beige">
         Registration: {{ quarter }} {{ year }}
       </h3>
       <h3 v-else>
@@ -116,8 +116,8 @@ import Card from '../../_templates/card.vue';
 import EstRegComponent from './estRegDate.vue';
 import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
-import InMyPlanComponent from './inMyplan.vue';
-import MyplanCoursesComponent from './myplanCourses.vue';
+import InMyPlanComponent from './in-myplan.vue';
+import MyplanCoursesComponent from './myplan-courses.vue';
 import ResourcesComponent from './resources.vue';
 
 export default {
