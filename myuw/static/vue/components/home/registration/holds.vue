@@ -27,7 +27,7 @@
       v-model="collapseOpen"
       class=""
     >
-      <div class="alert alert-danger m-0 border-0 rounded-0 text-body">
+      <div class="alert alert-danger border-0 rounded-0 text-body">
         <h5 class="sr-only">
           Registration and/or Transcript Holds
         </h5>
