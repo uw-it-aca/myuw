@@ -76,7 +76,6 @@ export default {
 .myuw-reg-holds-list {
   li {
     &:last-child { margin-top: 1rem;}
-
     .notice-title { display: block; font-weight: bold;}
   }
 }
