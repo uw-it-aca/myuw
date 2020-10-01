@@ -4,6 +4,7 @@ from restclients_core.models import MockHTTP
 from rc_django.cache_implementation import TimedCache
 from pymemcache.client.hash import HashClient
 from pymemcache import serde
+from logging import getLogger
 import threading
 import json
 import re
@@ -13,6 +14,8 @@ FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
 FOUR_HOURS = ONE_HOUR * 4
 ONE_DAY = ONE_HOUR * 24
+
+logger = getLogger(__name__)
 
 
 def get_cache_time(service, url):
@@ -68,7 +71,11 @@ class MyUWMemcachedCache(object):
             return
 
         key = self._get_key(service, url)
-        data = self.client.get(key)
+        try:
+            data = self.client.get(key)
+        except Exception as ex:
+            logger.error("CACHE GET: {}".format(ex))
+            return
 
         if data:
             response = MockHTTP()
@@ -89,7 +96,11 @@ class MyUWMemcachedCache(object):
         key = self._get_key(service, url)
         data = self._make_cache_data(
             response.data, header_data, response.status, timezone.now())
-        self.client.set(key, data, expire=expire_seconds)
+        try:
+            self.client.set(key, data, expire=expire_seconds)
+        except Exception as ex:
+            logger.error("CACHE SET: {}".format(ex))
+            pass
 
     def updateCache(self, service, url, new_data, new_data_dt):
         expire_seconds = self.get_cache_expiration_time(service, url)
@@ -98,7 +109,11 @@ class MyUWMemcachedCache(object):
 
         key = self._get_key(service, url)
         data = self._make_cache_data(new_data, {}, 200, new_data_dt)
-        self.client.replace(key, data, expire=expire_seconds)
+        try:
+            self.client.replace(key, data, expire=expire_seconds)
+        except Exception as ex:
+            logger.error("CACHE REPLACE: {}".format(ex))
+            pass
 
     def get_cache_expiration_time(self, service, url):
         return get_cache_time(service, url)
