@@ -7,7 +7,7 @@
     </template>
     <template #card-body>
       <!-- custom error message for outages -->
-      <b-alert show variant="light" class="p-0">
+      <b-alert show variant="light" class="p-0 border-0 bg-transparent">
         <div class="d-flex text-danger m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
             <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
@@ -113,15 +113,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "sass:map";
-@import "../../../css/myuw/variables.scss";
+@import '../../../css/myuw/variables.scss';
 .myuw-outage {
-  background-color: lighten(map.get($theme-colors, "warning"), 48%) !important;
-  // override bootstrap alert styles
-  .alert-light {
-    background-color: transparent !important;
-    border-color: transparent !important;
+  .card {
+    background-color: lighten(
+      map.get($theme-colors, 'warning'), 49%
+    ) !important;
   }
 }
 </style>
