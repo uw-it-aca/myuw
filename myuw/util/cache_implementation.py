@@ -123,12 +123,13 @@ class MyUWMemcachedCache(object):
             self.client = MyUWMemcachedCache._memcached_cache[thread_id]
             return
 
-        self.client = HashClient(settings.RESTCLIENTS_MEMCACHED_SERVERS,
-                                 use_pooling=True,
-                                 max_pool_size=10,
-                                 connect_timeout=5,
-                                 timeout=5,
-                                 serde=serde.pickle_serde)
+        self.client = HashClient(
+            settings.RESTCLIENTS_MEMCACHED_SERVERS,
+            use_pooling=True,
+            max_pool_size=settings.MEMCACHED_MAX_POOL_SIZE,
+            connect_timeout=settings.MEMCACHED_CONNECT_TIMEOUT,
+            timeout=settings.MEMCACHED_TIMEOUT,
+            serde=serde.pickle_serde)
         MyUWMemcachedCache._memcached_cache[thread_id] = self.client
 
 
