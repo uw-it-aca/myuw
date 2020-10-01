@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h4>Your {{ nextTermQuarter }} {{ nextTermYear }} plan</h4>
+    <h4 class="h6 mt-4 text-dark-beige">
+      Your {{ nextTermQuarter }} {{ nextTermYear }} plan
+    </h4>
     <div v-if="hadReadyCourses">
       <h5>Ready for registration</h5>
-      <ul>
+      <ul class="list-unstyled m-0">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
           <h6>{{ course.curriculum_abbr }} {{ course.course_number }}</h6>
           <table>

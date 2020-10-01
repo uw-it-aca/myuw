@@ -14,7 +14,7 @@
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
-          class="btn btn-outline-beige text-dark"
+          class="btn btn-outline-beige "
         >
           Edit Plan in MyPlan
         </a>
@@ -22,7 +22,7 @@
           v-else
           target="_blank" title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
-          class="btn btn-outline-beige text-dark"
+          class="btn btn-outline-beige text-dark myuw-text-md"
         >
           Use MyPlan to Register
         </a>
@@ -31,7 +31,7 @@
         <a
           target="_blank" title="Register using MyPlan"
           :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`"
-          class="btn btn-outline-beige text-dark"
+          class="btn btn-outline-beige text-dark myuw-text-md"
         >
           Register using MyPlan
         </a>
@@ -57,7 +57,7 @@
       <h4 class="h6 text-dark">
         Registration resources
       </h4>
-      <ul class="list-unstyled myuw-text-md">
+      <ul class="m-0 list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
           <a
             target="_blank"
