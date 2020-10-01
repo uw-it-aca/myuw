@@ -109,7 +109,12 @@ export default {
 .myuw-huskyexp {
   a {
     &:hover {
-      h4, div { color: $link-color !important; }
+      text-decoration: none !important;
+      h4 {
+        color: $link-color !important;
+        text-decoration: underline !important;
+      }
+      div { text-decoration: none !important; }
     }
   }
   img {
@@ -119,5 +124,4 @@ export default {
     top: 0;
   }
 }
-
 </style>

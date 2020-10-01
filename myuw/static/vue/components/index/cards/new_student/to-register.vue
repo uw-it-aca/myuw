@@ -1,7 +1,8 @@
 <template>
   <uw-card
     v-if="!isReady || hasRegisterNotices"
-    :loaded="isReady" :errored="isErrored"
+    :loaded="isReady"
+    :errored="isErrored"
     :errored-show="showError"
   >
     <template #card-heading>
@@ -11,54 +12,123 @@
     </template>
     <template #card-body>
       <div v-if="formatted_date">
-        <strong>Register on {{ formatted_date }} through
-          <a target="_blank" href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/">MyPlan</a>
-          or
-          <a target="_blank" href="https://sdb.admin.uw.edu/students/uwnetid/register.asp">the registration screen</a>.
-        </strong>
-        <ul>
+        <p class="myuw-text-md">
+          Register on <strong>{{ formatted_date }}</strong> through
+          <a
+            target="_blank"
+            href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/"
+          >MyPlan</a> or
+          <a
+            target="_blank"
+            href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+          >the registration screen</a>.
+        </p>
+        <ul class="list-unstyled myuw-text-md">
           <li>
-            <a href="https://depts.washington.edu/sislearn/registration-resources/">How to register</a>
+            <a
+              href="https://depts.washington.edu/sislearn/registration-resources/"
+            >How to register</a>
           </li>
           <li>
-            <a href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/">How to choose courses</a>
+            <a
+              href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/"
+            >How to choose courses</a>
           </li>
         </ul>
       </div>
-      <div v-for="notice in orient_after" :key="notice.id_hash">
-        <font-awesome-icon :icon="['far', 'circle']" />
-        <h4 class="h6 font-weight-bold" v-html="notice.notice_title" />
-        <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
+
+      <div
+        v-for="notice in orient_after"
+        :key="notice.id_hash"
+        class="d-flex mb-4"
+      >
+        <font-awesome-icon
+          :icon="['far', 'circle']"
+          class="mr-3 mt-1 text-muted myuw-text-lg"
+        />
+        <div>
+          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="myuw-text-md" v-html="notice.notice_body" />
+        </div>
       </div>
-      <div v-for="notice in iss_before" :key="notice.id_hash">
-        <font-awesome-icon :icon="['far', 'circle']" />
-        <h4 class="h6 font-weight-bold" v-html="notice.notice_title" />
-        <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
+
+      <div
+        v-for="notice in iss_before"
+        :key="notice.id_hash"
+        class="d-flex mb-4"
+      >
+        <font-awesome-icon
+          :icon="['far', 'circle']"
+          class="mr-3 mt-1 text-muted myuw-text-lg"
+        />
+        <div>
+          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="myuw-text-md" v-html="notice.notice_body" />
+        </div>
       </div>
-      <div v-for="notice in iss_after" :key="notice.id_hash">
-        <font-awesome-icon :icon="['fas', 'check-circle']" />
-        <span class="mb-4 myuw-text-md" v-html="notice.notice_content" />
+
+      <div
+        v-for="notice in iss_after"
+        :key="notice.id_hash"
+        class="d-flex mb-4"
+      >
+        <font-awesome-icon
+          :icon="['fas', 'check-circle']"
+          class="mr-3 mt-1 text-success myuw-text-lg"
+        />
+        <div class="myuw-text-md" v-html="notice.notice_content" />
       </div>
-      <div v-for="notice in measles_before" :key="notice.id_hash">
-        <font-awesome-icon :icon="['far', 'circle']" />
-        <h4 class="h6 font-weight-bold" v-html="notice.notice_title" />
-        <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
+
+      <div
+        v-for="notice in measles_before"
+        :key="notice.id_hash"
+        class="d-flex mb-4"
+      >
+        <font-awesome-icon
+          :icon="['far', 'circle']"
+          class="mr-3 mt-1 text-muted myuw-text-lg"
+        />
+        <div>
+          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="myuw-text-md" v-html="notice.notice_body" />
+        </div>
       </div>
-      <div v-for="notice in measles_after" :key="notice.id_hash">
-        <font-awesome-icon :icon="['fas', 'check-circle']" />
-        <span class="mb-4 myuw-text-md" v-html="notice.notice_content" />
+
+      <div
+        v-for="notice in measles_after"
+        :key="notice.id_hash"
+        class="d-flex mb-4"
+      >
+        <font-awesome-icon
+          :icon="['fas', 'check-circle']"
+          class="mr-3 mt-1 text-success myuw-text-lg"
+        />
+        <div class="myuw-text-md" v-html="notice.notice_content" />
       </div>
-      <div v-for="notice in orient_before" :key="notice.id_hash">
-        <font-awesome-icon :icon="['far', 'circle']" />
-        <h4 class="h6 font-weight-bold" v-html="notice.notice_title" />
-        <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
+
+      <div
+        v-for="notice in orient_before"
+        :key="notice.id_hash"
+        class="d-flex mb-4"
+      >
+        <font-awesome-icon
+          :icon="['far', 'circle']"
+          class="mr-3 mt-1 text-muted myuw-text-lg"
+        />
+        <div>
+          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="myuw-text-md" v-html="notice.notice_body" />
+        </div>
       </div>
-      <div v-if="orient_after.length > 0">
-        <font-awesome-icon :icon="['fas', 'check-circle']" />
-        <span
-          class="mb-4 myuw-text-md"
-        > You have registered for an Advising & Orientation Session.
-        </span>
+
+      <div v-if="orient_after.length > 0" class="d-flex mb-4">
+        <font-awesome-icon
+          :icon="['fas', 'check-circle']"
+          class="mr-3 mt-1 text-success myuw-text-lg"
+        />
+        <div class="myuw-text-md">
+          You have registered for an Advising &amp; Orientation Session.
+        </div>
       </div>
     </template>
   </uw-card>
@@ -89,48 +159,49 @@ export default {
     },
     ...mapState({
       no_orient: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_no_orient'),
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_no_orient'),
         );
       },
       orient_after: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_orient_after'),
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_orient_after'),
         );
       },
       iss_before: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_iss_before'),
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_iss_before'),
         );
       },
       iss_after: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_iss_after'),
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_iss_after'),
         );
       },
       measles_before: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_measles_before'),
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_measles_before'),
         );
       },
       measles_after: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_measles_after'),
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_measles_after'),
         );
       },
       orient_before: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.location_tags.includes('checklist_orient_before'),
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_orient_before'),
         );
       },
     }),
     ...mapGetters('notices', [
       'isReady',
       'isErrored',
+      'statusCode',
       'hasRegisterNotices',
     ]),
     showError: function() {
-      return (this.statusCode == 543);
+      return this.statusCode == 543;
     },
   },
   created() {
@@ -143,7 +214,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.notice-title, .notice-body-with-title, .non-notice-body-with-title {
-  display: block;
-}
 </style>

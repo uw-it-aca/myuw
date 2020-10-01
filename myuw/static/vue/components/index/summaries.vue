@@ -9,7 +9,7 @@
       <a
         v-if="termData"
         class="d-block px-3 py-2 text-dark text-nowrap
-        font-weight-light myuw-text-sm"
+        font-weight-light myuw-text-xs"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-left text-left'
@@ -17,16 +17,18 @@
         ]"
         href="/academic_calendar/"
       >
-        <font-awesome-icon :icon="['far', 'calendar-alt']" />
-        <span v-if="termData.isBreak">
-          <span v-if="termData.breakYear !== termData.year">
-            {{ termData.year }} / {{ termData.breakYear }}
+        <span class="d-inline-block bg-light">
+          <font-awesome-icon :icon="['far', 'calendar-alt']" />
+          <span v-if="termData.isBreak">
+            <span v-if="termData.breakYear !== termData.year">
+              {{ termData.year }} / {{ termData.breakYear }}
+            </span>
+            <span v-else>{{ termData.year }}</span>
           </span>
-          <span v-else>{{ termData.year }}</span>
-        </span>
-        <span v-else>
-          {{ ucfirst(termData.quarter) }}
-          {{ termData.year }}
+          <span v-else>
+            {{ ucfirst(termData.quarter) }}
+            {{ termData.year }}
+          </span>
         </span>
         <span v-if="termData.isFinal"
               class="text-dark d-block font-weight-bold myuw-text-md"
@@ -50,7 +52,7 @@
           v-if="hfs.student_husky_card"
           class="d-inline-block col px-3 py-2
           font-weight-light text-dark text-nowrap
-          myuw-text-sm"
+          myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left myuw-min-width-25'
@@ -58,7 +60,7 @@
           ]"
           href="/accounts/"
         >
-          Student Husky
+          <span class="d-inline-block bg-light">Student Husky</span>
           <span class="text-dark d-block font-weight-bold myuw-text-md">
             ${{ hfs.student_husky_card.balance.toFixed(2) }}
           </span>
@@ -67,7 +69,7 @@
           v-if="hfs.resident_dining"
           class="d-inline-block col px-3 py-2
           font-weight-light text-dark text-nowrap
-          myuw-text-sm"
+          myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left myuw-min-width-25'
@@ -75,7 +77,7 @@
           ]"
           href="/accounts/"
         >
-          Resident Dining
+          <span class="d-inline-block bg-light">Resident Dining</span>
           <span class="text-dark d-block font-weight-bold myuw-text-md">
             ${{ hfs.resident_dining.balance.toFixed(2) }}
           </span>
@@ -85,7 +87,7 @@
           v-if="hfs.employee_husky_card"
           class="d-inline-block col px-3 py-2
           font-weight-light text-dark text-nowrap
-          myuw-text-sm"
+          myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left myuw-min-width-25'
@@ -93,7 +95,7 @@
           ]"
           href="/accounts/"
         >
-          Employee Husky
+          <span class="d-inline-block bg-light">Employee Husky</span>
           <span class="text-dark d-block font-weight-bold myuw-text-md">
             ${{ hfs.employee_husky_card.balance.toFixed(2) }}
           </span>
@@ -102,7 +104,7 @@
           v-if="library.next_due"
           class="d-inline-block col px-3 py-2
           font-weight-light text-dark text-nowrap
-          myuw-text-sm"
+          myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left myuw-min-width-25'
@@ -110,7 +112,7 @@
           ]"
           href="/accounts/"
         >
-          Library Item Due
+          <span class="d-inline-block bg-light">Library Item Due</span>
           <span class="text-dark d-block font-weight-bold myuw-text-md">
             {{ toFromNowDate(library.next_due) }}
           </span>
@@ -119,7 +121,7 @@
           v-else-if="library.holds_ready"
           class="d-inline-block col px-3 py-2
           font-weight-light text-dark text-nowrap
-          myuw-text-sm"
+          myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left myuw-min-width-25'
@@ -129,7 +131,9 @@
           target="_blank"
           aria-label="Library Account Requests"
         >
-          Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
+          <span class="d-inline-block bg-light">
+            Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
+          </span>
           <span class="text-dark d-block font-weight-bold myuw-text-md">
             {{ library.holds_ready }}
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
