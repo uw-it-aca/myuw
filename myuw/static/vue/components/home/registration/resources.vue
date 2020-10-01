@@ -4,7 +4,7 @@
       <a
         target="_blank" title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
-        class="btn btn-outline-beige text-dark"
+        class="btn btn-outline-beige text-dark myuw-text-md"
       >
         Register using SLN codes
       </a>
@@ -14,7 +14,7 @@
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
-          class="btn btn-outline-beige "
+          class="btn btn-outline-beige myuw-text-md"
         >
           Edit Plan in MyPlan
         </a>
