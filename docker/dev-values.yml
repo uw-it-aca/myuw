@@ -199,7 +199,7 @@ environmentVariables:
     value: "5"
 
   - name: SDBMYUW_ENV
-    value: PROD
+    value: EVAL
   - name: SDBMYUW_POOL_SIZE
     value: "10"
   - name: SDBMYUW_TIMEOUT
