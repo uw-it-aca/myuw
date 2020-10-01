@@ -7,7 +7,7 @@
     </template>
     <template #card-body>
       <!-- custom error message for outages -->
-      <b-alert show variant="light" class="p-0">
+      <b-alert show variant="light" class="p-0 border-0 bg-transparent">
         <div class="d-flex text-danger m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
             <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
@@ -23,20 +23,45 @@
       </h4>
 
       <ul class="list-unstyled myuw-text-md">
-        <li><a href="https://canvas.uw.edu/" target="_blank">Canvas LMS</a></li>
-        <li><a href="https://catalyst.uw.edu/" target="_blank">Catalyst Web Tools</a></li>
-        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank">Student Registration</a></li>
-        <li><a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp" target="_blank">Student Class Schedule</a></li>
-        <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank">Student Tuition Statement</a></li>
-
-        <li><a href="https://www.washington.edu/students/timeschd/" target="_blank">Time Schedule</a></li>
-        <li><a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" target="_blank">MyPlan</a></li>
-        <li><a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx" target="_blank">My Class Instructor Resources</a></li>
-        <li><a href="https://gradepage.uw.edu/" target="_blank">GradePage</a></li>
-        <li><a href="https://uw.hosted.panopto.com/" target="_blank">Panopto Lecture Capture</a></li>
-        <li><a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp" target="_blank">UW Professional &amp; Continuing Education</a></li>
-        <li><a href="https://wd5.myworkday.com/uw/d/home.htmld" target="_blank">Workday</a></li>
-        <li><a href="http://ucs.admin.uw.edu/myfd/" target="_blank">MyFinancial.desktop</a></li>
+        <li class="mb-1">
+          <a href="https://canvas.uw.edu/" target="_blank">Canvas LMS</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://catalyst.uw.edu/" target="_blank">Catalyst Web Tools</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank">Student Registration</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp" target="_blank">Student Class Schedule</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank">Student Tuition Statement</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://www.washington.edu/students/timeschd/" target="_blank">Time Schedule</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" target="_blank">MyPlan</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx" target="_blank">My Class Instructor Resources</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://gradepage.uw.edu/" target="_blank">GradePage</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://uw.hosted.panopto.com/" target="_blank">Panopto Lecture Capture</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp" target="_blank">UW Professional &amp; Continuing Education</a>
+        </li>
+        <li class="mb-1">
+          <a href="https://wd5.myworkday.com/uw/d/home.htmld" target="_blank">Workday</a>
+        </li>
+        <li class="mb-1">
+          <a href="http://ucs.admin.uw.edu/myfd/" target="_blank">MyFinancial.desktop</a>
+        </li>
       </ul>
     </template>
   </uw-card>
@@ -113,15 +138,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "sass:map";
-@import "../../../css/myuw/variables.scss";
+@import '../../../css/myuw/variables.scss';
 .myuw-outage {
-  background-color: lighten(map.get($theme-colors, "warning"), 48%) !important;
-  // override bootstrap alert styles
-  .alert-light {
-    background-color: transparent !important;
-    border-color: transparent !important;
+  .card {
+    background-color: lighten(
+      map.get($theme-colors, 'warning'), 49%
+    ) !important;
   }
 }
 </style>
