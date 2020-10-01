@@ -36,8 +36,7 @@
           Use MyPlan to Register
         </a>
       </div>
-
-      <div v-if="isC2" class="text-center myuw-text-md">
+      <div v-if="isC2" class="mt-2 text-center myuw-text-md">
         <a
           target="_blank"
           href="https://www.degreereg.uw.edu/user-guide"
