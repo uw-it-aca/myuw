@@ -4,6 +4,7 @@
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
+    class="myuw-thank-you"
   >
     <template #card-heading>
       <h3 class="text-dark-beige">
@@ -11,7 +12,7 @@
       </h3>
     </template>
     <template #card-body>
-      <div class="ty-notices">
+      <div class="myuw-thank-you-notices myuw-text-md">
         <div
           v-for="notice in notices"
           v-once
@@ -88,5 +89,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "../../../../../css/myuw/variables.scss";
+.myuw-thank-you {
+  .card {
+    background-color: lighten($green, 57%);
+  }
+  .myuw-thank-you-notices {
+    div { margin-bottom: 1rem;
+      &:last-child { margin-bottom: 0;}
+    }
+  }
+}
 </style>
