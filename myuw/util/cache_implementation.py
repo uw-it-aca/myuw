@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.utils import timezone
 from restclients_core.models import MockHTTP
+from rc_django.cache_implementation import TimedCache
 from pymemcache.client.hash import HashClient
 from pymemcache import serde
 import threading
@@ -129,3 +130,13 @@ class MyUWMemcachedCache(object):
                                  timeout=5,
                                  serde=serde.pickle_serde)
         MyUWMemcachedCache._memcached_cache[thread_id] = self.client
+
+
+class MyUWCache(TimedCache):
+
+    def getCache(self, service, url, headers):
+        return self._response_from_cache(
+            service, url, headers, get_cache_time(service, url))
+
+    def processResponse(self, service, url, response):
+        return self._process_response(service, url, response)

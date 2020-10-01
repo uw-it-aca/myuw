@@ -14,6 +14,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         flush = options["flush"]
         client = MyUWMemcachedCache().client
-        logger.info("Stats {}".format(client.stats()))
+        # logger.info("Stats {}".format(client.stats()))
         if flush:
             logger.info("Flushed: {}".format(client.flush_all()))
