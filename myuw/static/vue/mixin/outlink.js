@@ -6,7 +6,10 @@ export default {
         if (link.href.includes(document.baseURI)) {
           link.classList.add('in-link');
         } else {
-          link.href = `${document.baseURI}out?=${link.href}`;
+          let label = link.innerText;
+          link.href = `${document.baseURI}out?u=${
+            encodeURI(link.href)
+          }&l=${encodeURI(label)}`;
           link.classList.add('out-link');
         }
       });
