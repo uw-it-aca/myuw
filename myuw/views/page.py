@@ -38,7 +38,6 @@ def page(request,
          context=None,
          prefetch=True,
          add_quicklink_context=False):
-    return render(request, '500.html', status=500)
     if context is None:
         context = {}
 
@@ -75,7 +74,8 @@ def page(request,
     except DataFailureException as err:
         log_exception(logger, err, traceback)
         return render(request, '500.html', status=500)
-
+    #  500 Error
+    return render(request, '500.html', status=500)
     user_pref = get_migration_preference(request)
     log_session(request)
 
