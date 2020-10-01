@@ -74,8 +74,7 @@ def page(request,
     except DataFailureException as err:
         log_exception(logger, err, traceback)
         return render(request, '500.html', status=500)
-    #  500 Error
-    return render(request, '500.html', status=500)
+
     user_pref = get_migration_preference(request)
     log_session(request)
 
