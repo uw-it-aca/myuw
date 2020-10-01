@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="registrationIsOpen" class="mb-4 text-center">
+    <div v-if="registrationIsOpen" class="my-4 text-center">
       <a
         target="_blank" title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
