@@ -8,7 +8,7 @@
         Register using SLN codes
       </a>
 
-      <div v-if="myPlanData">
+      <div v-if="currentPlanData">
         <a
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
@@ -18,10 +18,10 @@
         </a>
         <a
           v-else
-          target="_blank" title="Register using MyPlan"
+          target="_blank" title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
         >
-          Register using MyPlan
+          Use MyPlan to Register
         </a>
       </div>
       <div v-else>
@@ -155,18 +155,23 @@ export default {
         state.user.affiliations.undergrad_c2
       ),
     }),
+    currentPlanData() {
+      return this.myPlanData.terms.find(
+          (term) => term.quarter === this.nextTermQuarter,
+      );
+    },
     hasReadyCourses() {
-      return this.myPlanData.has_ready_courses;
+      return this.currentPlanData.has_ready_courses;
     },
     myplanHref() {
-      return this.myPlanData.myplan_href;
+      return this.currentPlanData.myplan_href;
     },
     myplanRegistrationHref() {
-      return this.myPlanData.registration_href;
+      return this.currentPlanData.registration_href;
     },
     degreeAuditHref() {
-      if (this.myPlanData && this.myPlanData.degree_audit_href) {
-        return this.myPlanData.degree_audit_href;
+      if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
+        return this.currentPlanData.degree_audit_href;
       }
       return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
     },
