@@ -247,7 +247,7 @@ LOGGING = {
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
 else:
-    RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache_implementation.PythonMemcachedCache'
+    RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache_implementation.MyUWMemcachedCache'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
