@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< HEAD
     <h4 class="mt-4 text-dark-beige">
       Your {{ nextTermQuarter }} {{ nextTermYear }} plan
     </h4>
@@ -7,6 +8,13 @@
       <h5 class="h6">
         Ready for registration
       </h5>
+=======
+    <h4 class="h6 mt-4 text-dark-beige">
+      Your {{ nextTermQuarter }} {{ nextTermYear }} plan
+    </h4>
+    <div v-if="hadReadyCourses">
+      <h5>Ready for registration</h5>
+>>>>>>> Begin styling myplan course reg list.
       <ul class="list-unstyled m-0">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
           <h6>{{ course.curriculum_abbr }} {{ course.course_number }}</h6>
