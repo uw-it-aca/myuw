@@ -46,6 +46,8 @@ def get_cache_time(service, url):
         return FIFTEEN_MINS
 
     if "pws" == service:
+        if re.match(r'^/idcard/v1/photo', url):
+            return
         return ONE_HOUR
 
     if "uwnetid" == service:
