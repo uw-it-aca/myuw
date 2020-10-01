@@ -2,8 +2,10 @@ from django.conf import settings
 import re
 from rc_django.cache_implementation import TimedCache
 from rc_django.cache_implementation.memcache import MemcachedCache
+from base64 import b64decode, b64encode
 import memcache
 import threading
+import json
 
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
@@ -58,6 +60,18 @@ class MyUWMemcachedCache(MemcachedCache):
 
 
 class PythonMemcachedCache(MyUWMemcachedCache):
+    def _get_cache_data(self, data_from_cache):
+        return b64decode(data_from_cache)
+
+    def _make_cache_data(self, service, url, data_to_cache,
+                         header_data, status, time_stamp):
+        return b64encode(json.dumps({
+            "status": status,
+            "headers": header_data,
+            "data": data_to_cache,
+            "time_stamp": time_stamp.isoformat(),
+        }))
+
     def _set_client(self):
         thread_id = threading.current_thread().ident
         if not hasattr(PythonMemcachedCache, "_memcached_cache"):

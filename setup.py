@@ -51,7 +51,7 @@ setup(
         'UW-RestClients-UWNetID<2.0',
         'Django-Template-Preprocess>=1.0.2,<2.0',
         'django-userservice<4.0',
-        'UW-RestClients-Django-Utils>=2.1.7,<3.0',
+        'UW-RestClients-Django-Utils>=2.1.9,<3.0',
         'Uw-Django-Oidc>=0.3,<1.0',
         'Django-SupportTools<4.0',
         'Django-Safe-EmailBackend<2.0',
