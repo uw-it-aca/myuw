@@ -74,7 +74,7 @@ class MyUWMemcachedCache(object):
         try:
             data = self.client.get(key)
         except Exception as ex:
-            logger.error("CACHE GET: {}".format(ex))
+            logger.error("CACHE GET ({}): {}".format(key, ex))
             return
 
         if data:
@@ -99,7 +99,7 @@ class MyUWMemcachedCache(object):
         try:
             self.client.set(key, data, expire=expire_seconds)
         except Exception as ex:
-            logger.error("CACHE SET: {}".format(ex))
+            logger.error("CACHE SET ({}): {}".format(key, ex))
             pass
 
     def updateCache(self, service, url, new_data, new_data_dt):
@@ -112,7 +112,7 @@ class MyUWMemcachedCache(object):
         try:
             self.client.replace(key, data, expire=expire_seconds)
         except Exception as ex:
-            logger.error("CACHE REPLACE: {}".format(ex))
+            logger.error("CACHE REPLACE ({}): {}".format(key, ex))
             pass
 
     def get_cache_expiration_time(self, service, url):
