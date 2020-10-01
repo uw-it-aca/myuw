@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="registrationIsOpen" class="mb-4 text-center">
+    <div v-if="registrationIsOpen" class="my-4 text-center">
       <a
         target="_blank" title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
@@ -9,7 +9,7 @@
         Register using SLN codes
       </a>
 
-      <div v-if="currentPlanData">
+      <div v-if="currentPlanData" class="d-inline-block">
         <a
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
@@ -33,7 +33,7 @@
           :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`"
           class="btn btn-outline-beige text-dark"
         >
-          Use MyPlan to Register
+          Register using MyPlan
         </a>
       </div>
       <div v-if="isC2" class="mt-2 text-center myuw-text-md">
