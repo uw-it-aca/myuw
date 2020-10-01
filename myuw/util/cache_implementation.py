@@ -72,9 +72,9 @@ class MyUWMemcachedCache(object):
 
         if data:
             response = MockHTTP()
-            response.headers = values["headers"]
-            response.status = values["status"]
-            response.data = values["data"]
+            response.headers = data.get("headers")
+            response.status = data.get("status")
+            response.data = data.get("data")
             return {"response": response}
 
     def processResponse(self, service, url, response):
