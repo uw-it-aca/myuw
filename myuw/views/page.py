@@ -38,6 +38,7 @@ def page(request,
          context=None,
          prefetch=True,
          add_quicklink_context=False):
+    return render(request, '500.html', status=500)
     if context is None:
         context = {}
 
