@@ -1,17 +1,14 @@
 import axios from 'axios';
-import { statusOptions, doNothing, buildWith } from './model_builder';
+import {
+  statusOptions,
+  extractData,
+  fetchBuilder,
+  buildWith
+} from './model_builder';
 
 const customState = {
-  value: {
-    recentLinks: JSON.parse(document.getElementById('recent_links').innerHTML),
-    popularLinks: JSON.parse(document.getElementById('popular_links').innerHTML),
-    customLinks: JSON.parse(document.getElementById('custom_links').innerHTML),
-    defaultLinks: JSON.parse(document.getElementById('default_links').innerHTML),
-  },
-  status: {
-    code: 200,
-    type: statusOptions[0],
-  },
+  value: [],
+  status: {},
   addStatus: {
     code: 200,
     type: statusOptions[0],
@@ -35,10 +32,7 @@ const customGetters = {
 
 const customMutations = {
   updateFromResponse(state, response) {
-    state.value.recentLinks = response.data.recent_links;
-    state.value.popularLinks = response.data.popular_links;
-    state.value.customLinks = response.data.custom_links;
-    state.value.defaultLinks = response.data.default_links;
+    state.value = extractData(response);
   },
   setAddStatus(state, status) {
     state.addStatus = status;
@@ -46,6 +40,7 @@ const customMutations = {
 }
 
 const customActions = {
+  fetch: fetchBuilder('/api/v1/link/', extractData, 'json'),
   addLink({commit, rootState}, link) {
     commit('setAddStatus', {type: statusOptions[1]});
     axios.post('/api/v1/link', {

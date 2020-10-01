@@ -21,10 +21,6 @@
         };
     </script>
     {{ card_display_dates|json_script:'card_display_dates' }}
-    {{ recent_links|json_script:'recent_links' }}
-    {{ popular_links|json_script:'popular_links' }}
-    {{ custom_links|json_script:'custom_links' }}
-    {{ default_links|json_script:'default_links' }}
 {% endblock django_json_data %}
 
 {% block body_content %}
