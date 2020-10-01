@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div v-if="registrationIsOpen">
+    <div v-if="registrationIsOpen" class="mb-4 text-center">
       <a
         target="_blank" title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+        class="btn btn-outline-beige text-dark"
       >
         Register using SLN codes
       </a>
@@ -13,6 +14,7 @@
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
+          class="btn btn-outline-beige text-dark"
         >
           Edit Plan in MyPlan
         </a>
@@ -20,6 +22,7 @@
           v-else
           target="_blank" title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
+          class="btn btn-outline-beige text-dark"
         >
           Use MyPlan to Register
         </a>
@@ -28,12 +31,13 @@
         <a
           target="_blank" title="Register using MyPlan"
           :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`"
+          class="btn btn-outline-beige text-dark"
         >
           Use MyPlan to Register
         </a>
       </div>
 
-      <div v-if="isC2">
+      <div v-if="isC2" class="text-center myuw-text-md">
         <a
           target="_blank"
           href="https://www.degreereg.uw.edu/user-guide"
@@ -42,7 +46,7 @@
         </a>
       </div>
     </div>
-    <div v-else-if="preRegNotices && preRegNotices.length">
+    <div v-else-if="preRegNotices && preRegNotices.length" class="mb-4">
       <a
         target="_blank"
         href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
@@ -51,8 +55,10 @@
       </a>
     </div>
     <div>
-      <h4>Registration resources</h4>
-      <ul>
+      <h4 class="h6 text-dark">
+        Registration resources
+      </h4>
+      <ul class="list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
           <a
             target="_blank"

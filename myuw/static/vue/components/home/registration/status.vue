@@ -86,7 +86,7 @@
         "
         variant="link"
         size="sm"
-        class="w-100 p-0 text-dark"
+        class="w-100 p-0 border-0 text-dark text-uppercase"
       >
         <!-- TODO: @charlon add a css capital class for this button -->
         SHOW {{ quarter }} {{ year }} PLAN
@@ -99,7 +99,7 @@
         "
         variant="link"
         size="sm"
-        class="w-100 p-0 text-dark"
+        class="w-100 p-0 border-0 text-dark text-uppercase"
       >
         <!-- TODO: @charlon add a css capital class for this button -->
         HIDE {{ quarter }} {{ year }} PLAN
