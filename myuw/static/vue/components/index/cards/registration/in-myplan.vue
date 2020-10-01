@@ -1,8 +1,10 @@
 <template>
-  <div v-if="courses">
-    <h4>In MyPlan</h4>
-    <div>
-      <ul>
+  <div v-if="courses" class="d-flex align-items-center">
+    <h4 class="h6 text-dark flex-fill">
+      In MyPlan
+    </h4>
+    <div class="flex-fill text-right">
+      <ul class="list-unstyled font-weight-bold">
         <li>
           {{ readyCount }}
           {{ readyCount > 1 ? "courses" : "course" }}
