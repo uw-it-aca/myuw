@@ -2,7 +2,9 @@ version: '3.4'
 
 services:
   myuw:
-    build: .
+    build:
+      context: .
+      target: app-container
     container_name: app-myuw
     volumes:
       - ./myuw:/app/myuw
