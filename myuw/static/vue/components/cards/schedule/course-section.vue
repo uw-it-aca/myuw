@@ -225,7 +225,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "sass:map";
 @import "../../../../css/myuw/variables.scss";
 
