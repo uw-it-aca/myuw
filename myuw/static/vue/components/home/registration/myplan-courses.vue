@@ -4,8 +4,10 @@
       Your {{ nextTermQuarter }} {{ nextTermYear }} plan
     </h4>
     <div v-if="hadReadyCourses">
-      <h5>Ready for registration</h5>
-      <ul class="list-unstyled m-0">
+      <h5 class="h6 font-weight-bold">
+        Ready for registration
+      </h5>
+      <ul class="list-unstyled m-0 myuw-text-sm">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
           <h6>{{ course.curriculum_abbr }} {{ course.course_number }}</h6>
           <table>
@@ -16,12 +18,12 @@
                 <td>Time</td>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-dark">
               <tr v-for="(section, j) in course.sections" :key="`section-${j}`">
                 <template
                   v-for="(meeting, k) in section.section_data.meetings"
                 >
-                  <td :key="`meeting-0-${k}`">
+                  <td :key="`meeting-0-${k}`" class="w-50">
                     <span v-if="k == 0">Section </span>
                     <span v-else class="sr-only">Section </span>
                     {{ section.section_id }}
