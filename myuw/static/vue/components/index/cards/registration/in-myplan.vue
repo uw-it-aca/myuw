@@ -1,27 +1,30 @@
 <template>
   <div v-if="courses">
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center mb-2">
       <h4 class="h6 text-dark flex-fill">
         In MyPlan
       </h4>
       <div class="flex-fill text-right">
-        <ul class="list-unstyled font-weight-bold">
-          <li>
+        <ul class="list-unstyled m-0">
+          <li class="font-weight-bold">
             {{ readyCount }}
             {{ readyCount > 1 ? "courses" : "course" }}
             ready
           </li>
-          <li v-if="unreadyCount">
+          <li v-if="unreadyCount" class="myuw-text-sm">
             {{ unreadyCount }} not ready
             <a v-if="!hasSections" target="_blank" :href="myplanHref">
               Add Sections
             </a>
-            <button
+            <b-button
               v-else v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse`"
               :title="buttonTitle"
+              size="sm"
+              variant="link"
+              class="p-0 border-0 bg-transparent align-baseline"
             >
               {{ collapseOpen ? "Hide Details" : "See Details" }}
-            </button>
+            </b-button>
           </li>
         </ul>
       </div>
@@ -30,8 +33,8 @@
       :id="`${summerCardLabel}inMyPlanUnready-collapse`"
       v-model="collapseOpen"
     >
-      <div class="bg-light m-0 p-3 border-0 rounded-0 text-body">
-        <h5 class="h6">
+      <div class="bg-light m-0 p-3 border-0 rounded-0">
+        <h5 class="h6 font-weight-bold">
           Not ready for registration
         </h5>
         <ul class="myuw-text-md">
