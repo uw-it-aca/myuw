@@ -1,17 +1,42 @@
 <template>
   <uw-card
     v-if="show"
-    :loaded="isReadyTagged(term)"
-    :errored="isErroredTagged(term)"
+    :loaded="isReadyTextbook(term) && isReadySchedule(term)"
+    :errored="isErroredTextbook(term) || isErroredSchedule(term)"
   >
     <template #card-heading>
       <h3>Textbooks</h3>
     </template>
     <template #card-body>
       <ul>
-        <li v-for="(section, i) in sections" :key="i">
+        <li v-for="(section, i) in bookData.sections" :key="i">
+          <font-awesome-icon
+            :icon="['fas', 'square-full']"
+            :class="`text-c${section.colorId}`"
+            class="mr-1"
+          />
+          <span>
+            {{section.courseId}}:
+          </span>
+          <span v-if="section.noCourseBooks">
+            No books
+          </span>
+          <span v-else>
+            {{section.totalBooks}} {{section.totalBooks > 1 ? 'books' : 'book'}}
+            <span>
+              ({{section.requiredBooks ? section.requiredBooks : 'not'}} required)
+            </span>
+          </span>
         </li>
       </ul>
+      <div v-if="!bookData.noBookAssigned">
+        <a :href="`/textbooks/${bookData.year},${bookData.quarter}${bookData.summerTerm ? ',' + bookData.summerTerm : ''}`">
+          <font-awesome-icon
+            :icon="['fa', 'chevron-right']"
+            class="mr-1"
+          />
+        </a>
+      </div>
     </template>
   </uw-card>
 </template>
@@ -36,18 +61,66 @@ export default {
       isBeforeEndOfFirstWeek: (state) => 
         state.cardDisplayDates.is_before_eof_7days_of_term,
     }),
-    ...mapState('textbooks', {
-      textbookTerm: (state) => state.value.term,
+    ...mapState('schedule', {
+      courseData: function (state) { return state.value[this.term]; },
     }),
-    ...mapGetters('textbooks', [
-      'isReadyTagged',
-      'isErroredTagged',
-    ]),
+    ...mapGetters('visual_schedule', {
+      isReadySchedule: 'isReadyTagged',
+      isErroredSchedule: 'isErroredTagged',
+    }),
+    ...mapGetters('textbooks', {
+      isReadyTextbook: 'isReadyTagged',
+      isErroredTextbook: 'isErroredTagged',
+      getProcessedData: 'getProcessedData',
+    }),
     show() {
       return (
         this.student &&
         (this.term !== 'current' || this.isBeforeEndOfFirstWeek)
       );
+    },
+    bookData() {
+      if (this.isReadyTextbook(this.term) && this.isReadySchedule(this.term)) {
+        let data = this.getProcessedData(this.courseData);
+        let noBookAssigned = true;
+        let sectionBookData = [];
+
+        data.enrolledSections.forEach((section) => {
+          let required = 0;
+          let optional = 0;
+          if (section.books) {
+            section.books.forEach((book) => {
+              if (book.is_required) {
+                required += 1;
+              } else {
+                optional += 1;
+              }
+              if (noBookAssigned) {
+                noBookAssigned = false;
+              }
+            });
+          }
+          let courseId = `${section.curriculum} ${section.courseNumber} ${section.sectionId}`;
+
+          let sectionData = {
+            courseId: courseId,
+            colorId: section.colorId,
+            requiredBooks: required,
+            totalBooks: required + optional,
+            noCourseBooks: (required + optional) ? false :true
+          };
+          sectionBookData.push(sectionData);
+        });
+
+        return {
+          noBookAssigned: noBookAssigned,
+          quarter: data.quarter,
+          year: data.year,
+          summerTerm: data.summerTerm,
+          sections: sectionBookData,
+        };
+      }
+      return {}
     }
   },
   // Called when the function in injected into the page

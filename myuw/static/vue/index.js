@@ -52,12 +52,13 @@ import library from './vuex/store/library';
 import applicant from './vuex/store/applicant';
 import events from './vuex/store/events';
 import courses from './vuex/store/courses';
-import schedule from './vuex/store/schedule';
+import visual_schedule from './vuex/store/visual_schedule';
 import hx_toolkit from './vuex/store/hx_toolkit';
 import oquarter from './vuex/store/oquarter';
 import profile from './vuex/store/profile';
 import myplan from './vuex/store/myplan';
 import textbooks from './vuex/store/textbooks';
+import schedule from './vuex/store/schedule';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -65,13 +66,14 @@ vueConf.store.registerModule('library', library);
 vueConf.store.registerModule('applicant', applicant);
 vueConf.store.registerModule('events', events);
 vueConf.store.registerModule('courses', courses);
-vueConf.store.registerModule('schedule', schedule);
+vueConf.store.registerModule('visual_schedule', visual_schedule);
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
 vueConf.store.registerModule('quicklinks', quicklinks);
 vueConf.store.registerModule('oquarter', oquarter);
 vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('myplan', myplan);
 vueConf.store.registerModule('textbooks', textbooks);
+vueConf.store.registerModule('schedule', schedule);
 
 vueConf.store.commit('addVarToState', {
   name: 'termData',

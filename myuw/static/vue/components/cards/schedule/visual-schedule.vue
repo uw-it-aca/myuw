@@ -60,10 +60,10 @@ export default {
   },
   computed: {
     ...mapState({
-      allSchedules: (state) => state.schedule.value,
+      allSchedules: (state) => state.visual_schedule.value,
       today: (state) => dayjs(state.termData.todayDate),
     }),
-    ...mapGetters('schedule', [
+    ...mapGetters('visual_schedule', [
       'isReadyTagged',
       'isErroredTagged',
     ]),
@@ -104,7 +104,7 @@ export default {
     if (this.term) this.fetch(this.term);
   },
   methods: {
-    ...mapActions('schedule', ['fetch']),
+    ...mapActions('visual_schedule', ['fetch']),
     formatDate: (t) => {
       return dayjs(t).format('ddd, MMM D');
     },
