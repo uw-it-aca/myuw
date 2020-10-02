@@ -89,11 +89,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../../../../css/myuw/variables.scss";
 .myuw-thank-you {
-  .card {
-    background-color: lighten($green, 57%);
+  // override card background color using $success background
+  ::v-deep .card {
+    background-color: lighten($success, 57%) !important;
   }
   .myuw-thank-you-notices {
     div { margin-bottom: 1rem;
