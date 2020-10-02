@@ -25,9 +25,9 @@
     <b-collapse
       :id="`${summerCardLabel}holds-collapse`"
       v-model="collapseOpen"
-      class=""
+      class="myuw-reg-holds"
     >
-      <div class="alert alert-danger m-0 border-0 rounded-0 text-body">
+      <div class="bg-danger m-0 p-3 border-0 rounded-0 text-body">
         <h5 class="sr-only">
           Registration and/or Transcript Holds
         </h5>
@@ -72,11 +72,24 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.myuw-reg-holds-list {
-  li {
-    &:last-child { margin-top: 1rem;}
-    .notice-title { display: block; font-weight: bold;}
+<style lang="scss" scoped>
+@use "sass:map";
+@import "../../../../../css/myuw/variables.scss";
+
+.myuw-reg-holds {
+  // override danger background
+  .bg-danger {
+    background-color: lighten(map.get($theme-colors, "danger"), 50%) !important;
+  }
+  .myuw-reg-holds-list {
+    li {
+      &:last-child { margin-top: 1rem;}
+      // use ::v-deep for deep selection of embeded classes in scoped styles
+      ::v-deep .notice-title {
+        font-weight: bold;
+        display: block;
+      }
+    }
   }
 }
 </style>

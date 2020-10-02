@@ -4,7 +4,7 @@
       <a
         target="_blank" title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
-        class="btn btn-outline-beige text-dark myuw-text-md"
+        class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
       >
         Register using SLN codes
       </a>
@@ -14,7 +14,7 @@
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
-          class="btn btn-outline-beige myuw-text-md"
+          class="mb-2  btn btn-outline-beige myuw-text-md"
         >
           Edit Plan in MyPlan
         </a>
@@ -22,7 +22,7 @@
           v-else
           target="_blank" title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
-          class="btn btn-outline-beige text-dark myuw-text-md"
+          class="mb-2  btn btn-outline-beige text-dark myuw-text-md"
         >
           Use MyPlan to Register
         </a>
@@ -36,7 +36,7 @@
           Register using MyPlan
         </a>
       </div>
-      <div v-if="isC2" class="mt-2 text-center myuw-text-md">
+      <div v-if="isC2" class="text-center myuw-text-md">
         <a
           target="_blank"
           href="https://www.degreereg.uw.edu/user-guide"
