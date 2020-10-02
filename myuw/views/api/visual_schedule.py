@@ -2,8 +2,7 @@ import logging
 import traceback
 from myuw.dao.visual_schedule import get_current_visual_schedule, \
     get_schedule_json, get_future_visual_schedule
-from myuw.dao.term import get_current_quarter, get_specific_term, is_past, \
-    is_in_summer_a_term, is_in_summer_b_term
+from myuw.dao.term import get_specific_term, is_past
 from myuw.dao.card_display_dates import in_show_grades_period
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_api_call
@@ -28,16 +27,10 @@ class VisSchedCurQtr(ProtectedAPI):
         """
         timer = Timer()
         try:
-            visual_schedule = get_current_visual_schedule(request)
+            visual_schedule, term, summer_term = (
+                get_current_visual_schedule(request))
             if visual_schedule is None:
                 return data_not_found()
-            term = get_current_quarter(request)
-            summer_term = None
-            if term.quarter == "summer":
-                if is_in_summer_a_term(request):
-                    summer_term = 'a-term'
-                elif is_in_summer_b_term(request):
-                    summer_term = 'b-term'
             response = get_schedule_json(visual_schedule, term, summer_term)
             resp = self.json_response(response)
             log_api_call(timer, request, "Get Current Quarter Visual Schedule")

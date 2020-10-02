@@ -188,7 +188,7 @@ class TestSchedule(MyuwApiTest):
 
     def test_on_standby_status(self):
         response = self.get_current_schedule_res('jeos',
-                                                 '2013-6-25 00:00:01')
+                                                 '2013-07-25 00:00:01')
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
         section = self.get_section(data, 'LIS', '498', 'C')
@@ -200,7 +200,7 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
         section = self.get_section(data, 'MUSEUM', '700', 'A')
-        self.assertFalse("cc_display_dates" in section)
+        self.assertTrue("cc_display_dates" in section)
         self.assertFalse(section["on_standby"])
 
     def test_non_student(self):

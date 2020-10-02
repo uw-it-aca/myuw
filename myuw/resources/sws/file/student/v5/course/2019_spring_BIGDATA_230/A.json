@@ -1,21 +1,23 @@
 {
     "AddCodeRequired": false,
     "Auditors": 0,
+    "BlockRegistrationChildren": [],
+    "BlockRegistrationParents": [],
     "ClassWebsiteUrl": "",
     "Course": {
-        "CourseNumber": "712",
-        "CurriculumAbbreviation": "CPROGRM",
-        "Href": "/student/v5/course/2013,spring,CPROGRM,712.json",
+        "CourseNumber": "230",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/course/2019,spring,BIGDATA,230.json",
         "Quarter": "spring",
-        "Year": 2013
+        "Year": 2019
     },
     "CourseCampus": "PCE",
     "CourseDescription": null,
     "CourseHasVariableContent": false,
-    "CourseTitle": "C++ Programming: Intermediate",
-    "CourseTitleLong": "C++ Programming: Intermediate",
+    "CourseTitle": "Emerging Technologies in Big Data",
+    "CourseTitleLong": "Emerging Technologies in Big Data",
     "CreditControl": null,
-    "CurrentEnrollment": 29,
+    "CurrentEnrollment": 7,
     "Curriculum": {
         "CollegeName": null,
         "DepartmentAbbreviation": null,
@@ -23,9 +25,13 @@
     },
     "DeleteFlag": "active",
     "DistanceLearning": true,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
     "DuplicateEnrollmentAllowed": false,
-    "EOS_CID" : 116874,
-    "EndDate": "2013-06-28",
+    "EOS_CID": "124709",
+    "EndDate": "2019-06-12",
     "EnrollmentRestrictions": false,
     "FeeAmount": null,
     "FeeBudget": null,
@@ -50,7 +56,7 @@
     "IsIndependentStart": false,
     "JointSections": [],
     "LMSOwnership": "PCE_OL",
-    "LimitEstimateEnrollment": 35,
+    "LimitEstimateEnrollment": 22,
     "LimitEstimateEnrollmentIndicator": "L",
     "LinkedSectionTypes": [],
     "MaximumCredit": "",
@@ -60,17 +66,21 @@
             "Building": "",
             "BuildingToBeArranged": false,
             "DaysOfWeek": {
-                "Days": [],
-                "Text": "......."
+                "Days": [
+                    {
+                        "Name": "Wednesday"
+                    }
+                ],
+                "Text": "..W...."
             },
             "DaysOfWeekToBeArranged": false,
-            "EndTime": "",
+            "EOS_EndDate": "2019-06-12",
+            "EOS_StartDate": "2019-04-03",
+            "EndTime": "21:00:00",
             "Instructors": [
                 {
                     "FacultySequenceNumber": "1",
-                    "GradeRoster": {
-                        "Href": "/student/v5/graderoster/2013,spring,CPROGRM,712,A,10000000000000000000000000000011"
-                    },
+                    "GradeRoster": null,
                     "PercentInvolve": "",
                     "Person": {
                         "Href": "/student/v5/person/10000000000000000000000000000011.json",
@@ -87,6 +97,43 @@
             "MeetingType": "CLS",
             "RoomNumber": "",
             "RoomToBeArranged": false,
+            "StartTime": "18:00:00"
+        },
+        {
+            "Building": "",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Wednesday"
+                    }
+                ],
+                "Text": "..W...."
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EOS_EndDate": "2019-05-01",
+            "EOS_StartDate": "2019-05-01",
+            "EndTime": "",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "1",
+                    "GradeRoster": null,
+                    "PercentInvolve": "",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": null,
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": false
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "NON",
+            "RoomNumber": "",
+            "RoomToBeArranged": false,
             "StartTime": ""
         }
     ],
@@ -98,18 +145,18 @@
     },
     "PrimaryLMS": "CANVAS",
     "PrimarySection": {
-        "CourseNumber": "712",
-        "CurriculumAbbreviation": "CPROGRM",
-        "Href": "/student/v5/course/2013,spring,CPROGRM,712/A.json",
+        "CourseNumber": "230",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/course/2019,spring,BIGDATA,230/A.json",
         "Quarter": "spring",
         "SectionID": "A",
-        "Year": 2013
+        "Year": 2019
     },
     "Registrations": {
         "ChangedSinceDate": "",
-        "CourseNumber": "712",
-        "CurriculumAbbreviation": "CPROGRM",
-        "Href": "/student/v5/registration.json?year=2013&quarter=spring&curriculum_abbreviation=CPROGRM&course_number=712&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "CourseNumber": "230",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/registration.json?year=2019&quarter=spring&curriculum_abbreviation=BIGDATA&course_number=230&section_id=A&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
         "InstructorRegID": null,
         "IsActive": true,
         "PageSize": "",
@@ -119,9 +166,9 @@
         "SectionID": "A",
         "TranscriptableCourse": "",
         "Verbose": false,
-        "Year": 2013
+        "Year": 2019
     },
-    "RepositoryTimeStamp": "4/17/2013 11:22:24 AM",
+    "RepositoryTimeStamp": "7/25/2020 4:04:18 AM",
     "ResearchCredit": false,
     "RoomCapacity": 0,
     "SLN": "00000",
@@ -131,14 +178,15 @@
     "SectionType": null,
     "SelfRegistrationAllowed": false,
     "ServiceLearning": false,
-    "StartDate": "2013-04-15",
+    "StartDate": "2019-04-03",
     "StudentCreditHours": null,
     "SummerTerm": "",
     "Term": {
-        "Href": "/student/v5/term/2013,spring.json",
+        "Href": "/student/v5/term/2019,spring.json",
         "Quarter": "spring",
-        "Year": 2013
+        "Year": 2019
     },
+    "TimeMaskException": false,
     "TimeScheduleComments": {
         "CollegeComments": {
             "Lines": []
@@ -156,11 +204,7 @@
             "Lines": []
         },
         "SectionComments": {
-            "Lines": [
-                {
-                    "Text": "Online office hours are Tuesdays from 7:00\u20138:30 pm PST. Recommended, not required."
-                }
-            ]
+            "Lines": []
         },
         "TimeScheduleGeneratedComments": {
             "Lines": []
