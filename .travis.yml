@@ -51,9 +51,6 @@ after_success:
         "develop")
           export APP_INSTANCE="dev";
           ;;
-        "fix/MUWM-4800")
-          export APP_INSTANCE="vue";
-          ;;
         *)
           unset APP_INSTANCE
           ;;
