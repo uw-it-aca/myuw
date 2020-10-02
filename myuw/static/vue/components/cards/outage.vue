@@ -138,11 +138,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "sass:map";
 @import '../../../css/myuw/variables.scss';
 .myuw-outage {
-  .card {
+  // override card background color using new warning theme background
+  ::v-deep .card {
     background-color: lighten(
       map.get($theme-colors, 'warning'), 49%
     ) !important;
