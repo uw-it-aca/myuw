@@ -1,8 +1,17 @@
 <template>
-  <uw-card>
+  <uw-card
+    v-if="show"
+    :loaded="isReadyTagged(term)"
+    :errored="isErroredTagged(term)"
+  >
     <template #card-heading>
+      <h3>Textbooks</h3>
     </template>
     <template #card-body>
+      <ul>
+        <li v-for="(section, i) in sections" :key="i">
+        </li>
+      </ul>
     </template>
   </uw-card>
 </template>
@@ -15,30 +24,48 @@ export default {
   components: {
     'uw-card': Card,
   },
-  data: function() {
-    return {
-      term: 'current',
-    };
+  props: {
+    term: {
+      type: String,
+      required: true,
+    }
   },
   computed: {
+    ...mapState({
+      student: (state) => state.user.affiliations.student,
+      isBeforeEndOfFirstWeek: (state) => 
+        state.cardDisplayDates.is_before_eof_7days_of_term,
+    }),
+    ...mapState('textbooks', {
+      textbookTerm: (state) => state.value.term,
+    }),
     ...mapGetters('textbooks', [
       'isReadyTagged',
       'isErroredTagged',
     ]),
+    show() {
+      return (
+        this.student &&
+        (this.term !== 'current' || this.isBeforeEndOfFirstWeek)
+      );
+    }
   },
   // Called when the function in injected into the page
   created() {
-    let urlSuffix = `${this.year},${this.term}`;
-
-    if (this.summerTerm) {
-      urlSuffix += `,${this.summerTerm}`;
+    if (this.show) {
+      // We got this fetch function from mapActions
+      this.fetchTextbooks(this.term);
+      this.fetchSchedule(this.term);
     }
-    // We got this fetch function from mapActions
-    this.fetch(urlSuffix);
   },
   methods: {
     // Mapping the fetch function from textbooks module
-    ...mapActions('textbooks', ['fetch']),
+    ...mapActions('textbooks', {
+      fetchTextbooks: 'fetch',
+    }),
+    ...mapActions('schedule', {
+      fetchSchedule: 'fetch',
+    }),
   },
 };
 </script>
