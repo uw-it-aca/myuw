@@ -12,8 +12,8 @@
           <h6 class="myuw-text-md m-0">
             {{ course.curriculum_abbr }} {{ course.course_number }}
           </h6>
-          <table class="table table-borderless table-sm">
-            <thead>
+          <table class="table table-borderless table-sm myuw-text-sm">
+            <thead class="sr-only">
               <tr>
                 <td>Section</td>
                 <td>Day</td>
@@ -34,6 +34,7 @@
                     v-if="meeting.days_tdb"
                     :key="`meeting-1-${k}`"
                     colspan="2"
+                    class="w-25"
                   >
                     Days and times to be arranged
                   </td>
