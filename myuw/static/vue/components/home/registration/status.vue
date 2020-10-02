@@ -69,7 +69,7 @@
       />
     </template>
     <template v-if="isQuarterReady && myPlanData" #card-disclosure>
-      <b-collapse id="myplan-courses-collapse" v-model="isOpen">
+      <b-collapse id="myplan-courses-collapse" v-model="isOpen" class="mt-4">
         <uw-myplan-courses
           :next-term-year="year"
           :next-term-quarter="quarter"
