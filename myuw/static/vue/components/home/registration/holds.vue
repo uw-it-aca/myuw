@@ -28,7 +28,7 @@
       class="myuw-reg-holds"
     >
       <div class="bg-danger m-0 p-3 border-0 rounded-0 text-body">
-        <h5 class="sr-only">
+        <h5 class="h6 font-weight-bold">
           Registration and/or Transcript Holds
         </h5>
         <ul class="list-unstyled p-0 m-0 myuw-text-sm myuw-reg-holds-list">

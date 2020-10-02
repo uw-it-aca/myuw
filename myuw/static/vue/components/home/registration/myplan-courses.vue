@@ -23,7 +23,7 @@
                 <template
                   v-for="(meeting, k) in section.section_data.meetings"
                 >
-                  <td :key="`meeting-0-${k}`" class="w-50">
+                  <td :key="`meeting-0-${k}`" class="w-25 pl-0">
                     <span v-if="k == 0">Section </span>
                     <span v-else class="sr-only">Section </span>
                     {{ section.section_id }}
@@ -35,7 +35,7 @@
                   >
                     Days and times to be arranged
                   </td>
-                  <td v-else :key="`meeting-2-${k}`">
+                  <td v-else :key="`meeting-2-${k}`" class="w-25">
                     <abbr v-if="meeting.meeting_days.monday" title="Monday">
                       M
                     </abbr>
@@ -61,7 +61,9 @@
                       Su
                     </abbr>
                   </td>
-                  <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`">
+                  <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`"
+                      class="w-50 text-nowrap"
+                  >
                     {{ meeting.start_time }} &ndash; {{ meeting.end_time }}
                   </td>
                 </template>
