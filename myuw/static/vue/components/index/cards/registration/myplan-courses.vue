@@ -9,8 +9,10 @@
       </h5>
       <ul class="list-unstyled m-0 myuw-text-sm">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
-          <h6>{{ course.curriculum_abbr }} {{ course.course_number }}</h6>
-          <table>
+          <h6 class="myuw-text-md m-0">
+            {{ course.curriculum_abbr }} {{ course.course_number }}
+          </h6>
+          <table class="table table-borderless table-sm">
             <thead>
               <tr>
                 <td>Section</td>
