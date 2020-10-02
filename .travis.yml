@@ -45,10 +45,10 @@ after_success:
         "master")
           export APP_INSTANCE="prod";
           ;;
-        "qa")
+        "fix/MUWM-4800")
           export APP_INSTANCE="test";
           ;;
-        "fix/MUWM-4800")
+        "develop")
           export APP_INSTANCE="dev";
           ;;
         *)
