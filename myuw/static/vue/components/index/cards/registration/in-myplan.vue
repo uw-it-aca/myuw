@@ -1,60 +1,65 @@
 <template>
-  <div v-if="courses" class="d-flex align-items-center">
-    <h4 class="h6 text-dark flex-fill">
-      In MyPlan
-    </h4>
-    <div class="flex-fill text-right">
-      <ul class="list-unstyled font-weight-bold">
-        <li>
-          {{ readyCount }}
-          {{ readyCount > 1 ? "courses" : "course" }}
-          ready
-        </li>
-        <li v-if="unreadyCount">
-          {{ unreadyCount }} not ready
-          <a v-if="!hasSections" target="_blank" :href="myplanHref">
-            Add Sections
-          </a>
-          <button
-            v-else v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse`"
-            :title="buttonTitle"
-          >
-            {{ collapseOpen ? "Hide Details" : "See Details" }}
-          </button>
-        </li>
-      </ul>
+  <div v-if="courses">
+    <div class="d-flex align-items-center">
+      <h4 class="h6 text-dark flex-fill">
+        In MyPlan
+      </h4>
+      <div class="flex-fill text-right">
+        <ul class="list-unstyled font-weight-bold">
+          <li>
+            {{ readyCount }}
+            {{ readyCount > 1 ? "courses" : "course" }}
+            ready
+          </li>
+          <li v-if="unreadyCount">
+            {{ unreadyCount }} not ready
+            <a v-if="!hasSections" target="_blank" :href="myplanHref">
+              Add Sections
+            </a>
+            <button
+              v-else v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse`"
+              :title="buttonTitle"
+            >
+              {{ collapseOpen ? "Hide Details" : "See Details" }}
+            </button>
+          </li>
+        </ul>
+      </div>
     </div>
     <b-collapse
       :id="`${summerCardLabel}inMyPlanUnready-collapse`"
       v-model="collapseOpen"
     >
-      <h4>Not ready for registration</h4>
-      <ul>
-        <li v-for="(course, i) in coursesUnavailable" :key="i">
-          {{ course.curriculum_abbr }} {{ course.course_number }}
-        </li>
-      </ul>
-
-      <div>
-        <p>
-          One or more of the issues below will prevent these courses from
-          being sent to registration:
-        </p>
-        <ul>
-          <li>Too many/too few sections selected for a course</li>
-          <li>Time conflict with registered course</li>
-          <li>Time conflict with a selected section</li>
-          <li>Planned courses are jointly offered versions of one course</li>
+      <div class="bg-light m-0 p-3 border-0 rounded-0 text-body">
+        <h5 class="h6">
+          Not ready for registration
+        </h5>
+        <ul class="myuw-text-md">
+          <li v-for="(course, i) in coursesUnavailable" :key="i">
+            {{ course.curriculum_abbr }} {{ course.course_number }}
+          </li>
         </ul>
-      </div>
 
-      <div>
-        <a
-          title="Edit plan to fix issues" target="_blank"
-          :href="myplanHref"
-        >
-          Edit plan in MyPlan
-        </a>
+        <div class="myuw-text-md">
+          <p>
+            One or more of the issues below will prevent these courses from
+            being sent to registration:
+          </p>
+          <ul>
+            <li>Too many/too few sections selected for a course</li>
+            <li>Time conflict with registered course</li>
+            <li>Time conflict with a selected section</li>
+            <li>Planned courses are jointly offered versions of one course</li>
+          </ul>
+        </div>
+        <div class="text-right myuw-text-md">
+          <a
+            title="Edit plan to fix issues" target="_blank"
+            :href="myplanHref"
+          >
+            Edit plan in MyPlan
+          </a>
+        </div>
       </div>
     </b-collapse>
   </div>
