@@ -15,16 +15,22 @@
       </div>
       <div class="links-container actionlink-list">
         <ul class="unstyled-list">
-          <li><a href="https://uwnetid.washington.edu/manage/?password" target="_blank" title="Change UW NetID password">Change UW NetID password</a></li>
-          <li><a href="https://identity.uw.edu/account/recovery/" target="_blank" title="NetID account recovery options">Set account recovery options</a></li>
-          <li v-if="two_factor"><a href="https://identity.uw.edu/2fa/" target="_blank" title="Manage two-factor authentication">Manage two-factor authentication (2FA)</a></li>
+          <li>
+            <a href="https://uwnetid.washington.edu/manage/?password" target="_blank" title="Change UW NetID password">Change UW NetID password</a>
+          </li>
+          <li>
+            <a href="https://identity.uw.edu/account/recovery/" target="_blank" title="NetID account recovery options">Set account recovery options</a>
+          </li>
+          <li v-if="two_factor">
+            <a href="https://identity.uw.edu/2fa/" target="_blank" title="Manage two-factor authentication">Manage two-factor authentication (2FA)</a>
+          </li>
         </ul>
       </div>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. Please
-      try again later. In the meantime, if you want to change your password, try the
-      <a href="https://uwnetid.washington.edu/manage/?password" data-linklabel="UW NetID page" target="_blank">UW NetID page</a>.
+      try again later. In the meantime, if you want to change your password,
+      try the <a href="https://uwnetid.washington.edu/manage/?password" data-linklabel="UW NetID page" target="_blank">UW NetID page</a>.
     </template>
   </uw-card>
 </template>
