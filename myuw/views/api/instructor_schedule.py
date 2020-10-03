@@ -44,14 +44,15 @@ MYUW_FUTURE_INSTRUCTED_TERM_COUNT_DEFAULT = 2
 
 
 class InstSche(ProtectedAPI):
-    def make_http_resp(self, timer, term, request, summer_term=None):
+    def make_http_resp(self, timer, term, request, summer_term):
         """
         @return instructor schedule data in json format
                 status 404: no schedule found (teaching no courses)
         """
         prefetch_resources(request)
-        schedule = get_instructor_schedule_by_term(request, term)
-        resp_data = load_schedule(request, schedule)
+        schedule = get_instructor_schedule_by_term(
+            request, term=term, summer_term=summer_term)
+        resp_data = load_schedule(request, schedule, summer_term)
         threads = []
 
         for section in resp_data['sections']:
@@ -241,9 +242,8 @@ def safe_label(label):
     return re.sub(r"[^A-Za-z0-9]", "_", label)
 
 
-def load_schedule(request, schedule, summer_term="", section_callback=None):
+def load_schedule(request, schedule, summer_term, section_callback=None):
     json_data = schedule.json_data()
-
     json_data["summer_term"] = summer_term
 
     json_data["related_terms"] = _load_related_terms(request)
@@ -308,11 +308,8 @@ def load_schedule(request, schedule, summer_term="", section_callback=None):
             section_data["early_fall_start"] = True
             json_data["has_early_fall_start"] = True
         else:
-            if section.is_campus_pce():
-                group_independent_start = irregular_start_end(
-                    schedule.term, section, section.summer_term)
-                if group_independent_start:
-                    section_data["cc_display_dates"] = True
+            section_data["cc_display_dates"] = (
+                irregular_start_end(schedule.term, section))
 
         # if section.is_primary_section:
         section_data['grade_submission_delegates'] = []
@@ -443,9 +440,11 @@ class InstScheCurQuar(InstSche):
                 status 543: data error
         """
         timer = Timer()
-        return self.make_http_resp(timer,
-                                   get_current_quarter(request),
-                                   request)
+        try:
+            return self.make_http_resp(
+                timer, get_current_quarter(request), request, "full-term")
+        except Exception:
+            return handle_exception(logger, timer, traceback)
 
 
 class InstScheQuar(InstSche):
@@ -463,15 +462,10 @@ class InstScheQuar(InstSche):
         timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
-        summer_term = kwargs.get("summer_term", None)
+        summer_term = kwargs.get("summer_term", "full-term")
         try:
-            smr_term = ""
-            if summer_term and len(summer_term) > 1:
-                smr_term = summer_term.title()
-
-            return self.make_http_resp(timer,
-                                       get_specific_term(year, quarter),
-                                       request, smr_term)
+            return self.make_http_resp(
+                timer, get_specific_term(year, quarter), request, summer_term)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
@@ -501,7 +495,7 @@ class InstSect(ProtectedAPI):
         except NotSectionInstructorException:
             return not_instructor_error()
 
-        resp_data = load_schedule(request, schedule)
+        resp_data = load_schedule(request, schedule, schedule.summer_term)
         log_api_call(timer, request,
                      "Get Instructor Section for {}".format(section_id))
         return self.json_response(resp_data)

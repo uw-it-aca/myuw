@@ -83,7 +83,7 @@ class OpenInstSectionDetails(OpenAPI):
             return not_instructor_error()
 
         self.term = schedule.term
-        resp_data = load_schedule(request, schedule,
+        resp_data = load_schedule(request, schedule, schedule.summer_term,
                                   section_callback=self.per_section_data)
 
         _set_current(self.term, request, resp_data)

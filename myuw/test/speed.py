@@ -5,10 +5,9 @@ from django.test import TestCase
 from django.test.client import Client
 from django.test.utils import override_settings
 from myuw.test.api import missing_url, get_user, get_user_pass
-from myuw.util.cache_implementation import MemcachedCache
 
 
-class TestingMemoryCache(MemcachedCache):
+class TestingMemoryCache(object):
     cache = {}
 
     def getCache(self, service, url, headers):

@@ -48,7 +48,7 @@
         "WritingCourse":false},
     {"AddAccessCode":"",
      "Auditor":false,
-     "Credits":" 1.0",
+     "Credits": "2.0",
      "DropAccessCode":"",
      "DuplicateCode":"2",
      "FacultySequenceNumber":"",
