@@ -130,7 +130,7 @@ class SeenRegistration(models.Model):
     year = models.PositiveSmallIntegerField(db_index=True)
     quarter = models.CharField(max_length=10, db_index=True)
     summer_term = models.CharField(max_length=1)
-    first_seen_date = models.DateTimeField(auto_now_add=True)
+    first_seen_date = models.DateTimeField()
 
     unique_together = (("user",
                         "year",

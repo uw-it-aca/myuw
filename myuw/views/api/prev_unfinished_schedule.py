@@ -68,7 +68,8 @@ class StudUnfinishedPrevQuarClasSche(StudClasSche):
         """
         Return only unfinished course schedule
         """
-        schedule = get_schedule_by_term(request, term)
+        schedule = get_schedule_by_term(
+            request, term=term, summer_term='full-term')
         include_sections = []
         for section in schedule.sections:
             if section.section_label() in unfinished_sections:

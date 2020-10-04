@@ -1,4 +1,3 @@
-from myuw.dao.schedule import get_current_quarter_schedule
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_current_quarter, get_current_summer_term
@@ -114,38 +113,42 @@ def _get_off_term_trimmed(visual_schedule):
 
 
 def get_future_visual_schedule(request, term, summer_term=None):
-    schedule = _get_combined_future_schedule(request, term)
+    schedule = _get_combined_future_schedule(request, term, summer_term)
+    if schedule is None or len(schedule.sections) == 0:
+        return None
+
     vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
     return vs
 
 
 def get_current_visual_schedule(request):
     schedule = _get_combined_schedule(request)
-    summer_term = get_current_summer_term(request)
+    if schedule is None or len(schedule.sections) == 0:
+        return None, None, None
+    summer_term = None
+    if schedule.term.is_summer_quarter():
+        summer_term = schedule.summer_term
     vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
-    return vs
+    return vs, schedule.term, summer_term
 
 
-def get_visual_schedule_from_schedule(request, schedule, summer_term=None):
-    if schedule is not None:
-        visual_schedule = _get_visual_schedule_from_schedule(schedule, request)
-        if summer_term and _is_split_summer(schedule):
-            visual_schedule = _trim_summer_term(visual_schedule, summer_term)
-
-        return visual_schedule
+def get_visual_schedule_from_schedule(request, schedule, summer_term):
+    visual_schedule = _get_visual_schedule_from_schedule(
+        schedule, request, summer_term)
+    if summer_term and _is_split_summer(schedule):
+        visual_schedule = _trim_summer_term(visual_schedule, summer_term)
+    return visual_schedule
 
 
 def _get_combined_schedule(request):
-    current_term = get_current_quarter(request)
     try:
-        student_schedule = get_current_quarter_schedule(request)
+        student_schedule = get_schedule_by_term(request)
         _set_student_sections(student_schedule)
     except DataFailureException:
         student_schedule = None
 
     try:
-        instructor_schedule = get_instructor_schedule_by_term(request,
-                                                              current_term)
+        instructor_schedule = get_instructor_schedule_by_term(request)
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
@@ -160,15 +163,17 @@ def _get_combined_schedule(request):
     return schedule
 
 
-def _get_combined_future_schedule(request, term):
+def _get_combined_future_schedule(request, term, summer_term):
     try:
-        student_schedule = get_schedule_by_term(request, term)
+        student_schedule = get_schedule_by_term(
+            request, term=term, summer_term=summer_term)
         _set_student_sections(student_schedule)
     except DataFailureException:
         student_schedule = None
 
     try:
-        instructor_schedule = get_instructor_schedule_by_term(request, term)
+        instructor_schedule = get_instructor_schedule_by_term(
+            request, term=term, summer_term=summer_term)
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
@@ -196,8 +201,10 @@ def _set_student_sections(student_schedule):
     return student_schedule
 
 
-def _get_visual_schedule_from_schedule(schedule, request):
+def _get_visual_schedule_from_schedule(schedule, request, summer_term):
+    # common courses default to term start/end dates
     _add_dates_to_sections(schedule)
+
     if _is_split_summer(schedule):
         _adjust_off_term_dates(schedule)
         a_bounds, b_bounds = get_summer_schedule_bounds(schedule)
@@ -301,7 +308,10 @@ def _adjust_period_dates(schedule):
 
 
 def _get_earliest_start_from_period(period):
-    earliest_meeting = None
+    """
+    return the earliest date in the period
+    """
+    earliest_meeting = None  # week day
     for section in period.sections:
         for meeting in section.meetings:
             if meeting.wont_meet():
@@ -320,6 +330,7 @@ def _get_earliest_start_from_period(period):
         days_to_add = earliest_meeting + 1
     else:
         days_to_add = earliest_meeting - start_day
+
     start_date = (period.start_date + timedelta(days=days_to_add))
     return start_date
 
@@ -461,6 +472,9 @@ def trim_summer_meetings(weeks):
 def _trim_sections_after(sections, date):
     cutoff_day = int(date.strftime('%w'))
     for section in sections:
+        if section.summer_term == "A-term" and section.end_date > date:
+            # preserve a-term course meetings that goes beyond term last day
+            continue
         for meeting in section.meetings:
             if cutoff_day <= 5:
                 meeting.meets_saturday = False
@@ -480,6 +494,9 @@ def _trim_sections_after(sections, date):
 def _trim_sections_before(sections, date):
     cutoff_day = int(date.strftime('%w'))
     for section in sections:
+        if section.summer_term == "B-term" and section.start_date < date:
+            # preserve b-term course meetings that occurs before term 1st day
+            continue
         for meeting in section.meetings:
             if cutoff_day >= 1:
                 meeting.meets_sunday = False
