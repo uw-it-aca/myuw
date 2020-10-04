@@ -40,7 +40,7 @@ import ThankYou from './components/index/cards/new_student/thank-you.vue';
 import NewInterStudent from
   './components/index/cards/international/new-student.vue';
 
-import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
+import VisualSchedule from './components/cards/visual_schedule/schedule.vue';
 import FutureQuarterCards from './components/cards/future-quarter.vue';
 import Textbooks from './components/cards/textbooks.vue'
 

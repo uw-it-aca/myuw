@@ -8,9 +8,11 @@ import visual_schedule from '../vuex/store/visual_schedule';
 import {statusOptions} from '../vuex/store/model_builder';
 import {expectAction} from './helper';
 
-import CourseSection from '../components/cards/schedule/course-section.vue';
-import ScheduleTab from '../components/cards/schedule/schedule-tab.vue';
-import VisualSchedule from '../components/cards/schedule/visual-schedule.vue';
+import CourseSection from
+  '../components/cards/visual_schedule/course-section.vue';
+import ScheduleTab from
+   '../components/cards/visual_schedule/schedule-tab.vue';
+import VisualSchedule from '../components/cards/visual_schedule/schedule.vue';
 
 import mockScheduleBill from './mock_data/schedule/bill2013.json';
 import mockScheduleBillsea2020 from './mock_data/schedule/billsea2020.json';
