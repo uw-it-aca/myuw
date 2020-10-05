@@ -14,7 +14,7 @@
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
-          class="mb-2  btn btn-outline-beige myuw-text-md"
+          class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
         >
           Edit Plan in MyPlan
         </a>
