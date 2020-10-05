@@ -9,7 +9,7 @@
       <h3 v-if="!errored" class="text-dark-beige">
         Registration: {{ quarter }} {{ year }}
       </h3>
-      <h3 v-else>
+      <h3 v-else class="text-dark-beige">
         {{ forQuarter }} Registration
       </h3>
     </template>
