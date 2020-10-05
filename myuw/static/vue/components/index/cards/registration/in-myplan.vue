@@ -17,7 +17,8 @@
               Add Sections
             </a>
             <b-button
-              v-else v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse`"
+              v-else
+              v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
               :title="buttonTitle"
               size="sm"
               variant="link"
@@ -30,7 +31,7 @@
       </div>
     </div>
     <b-collapse
-      :id="`${summerCardLabel}inMyPlanUnready-collapse`"
+      :id="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
       v-model="collapseOpen"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">
