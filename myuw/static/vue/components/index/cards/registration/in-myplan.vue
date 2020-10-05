@@ -1,5 +1,5 @@
 <template>
-  <div v-if="courses">
+  <div v-if="courses" class="mb-4">
     <div class="d-flex align-items-center mb-2">
       <h4 class="h6 text-dark flex-fill">
         In MyPlan
@@ -56,7 +56,7 @@
             <li>Planned courses are jointly offered versions of one course</li>
           </ul>
         </div>
-        <div class="text-right myuw-text-md">
+        <div class="text-right myuw-text-sm">
           <a
             title="Edit plan to fix issues" target="_blank"
             :href="myplanHref"
