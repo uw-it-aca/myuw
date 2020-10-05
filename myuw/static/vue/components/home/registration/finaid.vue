@@ -6,7 +6,7 @@
     <ul class="list-unstyled m-0">
       <li v-for="(notice, i) in finAidNotices" :key="i">
         <b-button
-          v-b-toggle="`finAid-${notice.id_hash}-collapse`"
+          v-b-toggle="`finAid-${notice.id_hash}-collapse-${_uid}`"
           variant="link"
           class="p-0 border-0 mb-2 bg-transparent myuw-text-md"
           size="md"
@@ -19,7 +19,7 @@
           {{ notice.short_content }}
         </b-button>
         <b-collapse
-          :id="`finAid-${notice.id_hash}-collapse`"
+          :id="`finAid-${notice.id_hash}-collapse-${_uid}`"
           v-model="collapseOpen"
           class="myuw-fin-aid"
         >

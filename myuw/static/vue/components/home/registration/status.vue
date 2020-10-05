@@ -86,7 +86,10 @@
       />
     </template>
     <template v-if="isQuarterReady && myPlanData" #card-disclosure>
-      <b-collapse id="myplan-courses-collapse" v-model="isOpen" class="mt-4">
+      <b-collapse
+        :id="`myplan-courses-collapse-${_uid}`"
+        v-model="isOpen" class="mt-4"
+      >
         <uw-myplan-courses
           :next-term-year="year"
           :next-term-quarter="quarter"
@@ -97,7 +100,7 @@
     <template v-if="isQuarterReady && myPlanData" #card-footer>
       <b-button
         v-if="!isOpen"
-        v-b-toggle.myplan-courses-collapse
+        v-b-toggle="`myplan-courses-collapse-${_uid}`"
         :aria-label="`Expand to show your ${quarter} ${year} plan`"
         variant="link"
         size="sm"
@@ -108,7 +111,7 @@
       </b-button>
       <b-button
         v-else
-        v-b-toggle.myplan-courses-collapse
+        v-b-toggle="`myplan-courses-collapse-${_uid}`"
         :aria-label="`Collapse to hide your ${quarter} ${year} plan`"
         variant="link"
         size="sm"
