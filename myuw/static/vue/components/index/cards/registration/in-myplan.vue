@@ -37,13 +37,13 @@
         <h5 class="h6 font-weight-bold">
           Not ready for registration
         </h5>
-        <ul class="myuw-text-md">
+        <ul class="myuw-text-sm">
           <li v-for="(course, i) in coursesUnavailable" :key="i">
             {{ course.curriculum_abbr }} {{ course.course_number }}
           </li>
         </ul>
 
-        <div class="myuw-text-md">
+        <div class="myuw-text-sm">
           <p>
             One or more of the issues below will prevent these courses from
             being sent to registration:
