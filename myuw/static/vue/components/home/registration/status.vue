@@ -21,9 +21,9 @@
         :reg-holds-notices="regHoldsNotices"
       />
 
-      <div class="mb-4">
+      <div v-if="pendingMajors.length" class="mb-4">
         <div class="d-flex align-items-center">
-          <h4 v-if="pendingMajors.length" class="h6 m-0 text-dark flex-fill">
+          <h4 class="h6 m-0 text-dark flex-fill">
             {{ pendingMajors.length > 1 ? 'Majors' : 'Major' }}
             Beginning <br>
             {{ quarter }}
@@ -40,9 +40,9 @@
         </div>
       </div>
 
-      <div class="mb-4">
+      <div v-if="pendingMinors.length" class="mb-4">
         <div class="d-flex align-items-center">
-          <h4 v-if="pendingMinors.length" class="h6 m-0 text-dark flex-fill">
+          <h4 class="h6 m-0 text-dark flex-fill">
             {{ pendingMinors.length > 1 ? 'Minors' : 'Minor' }}
             Beginning <br>
             {{ quarter }}
@@ -65,9 +65,11 @@
         :quarter="quarter"
       />
 
-      <span v-if="estRegData.estRegDate && estRegData.isMy1stRegDay">
+      <div v-if="estRegData.estRegDate && estRegData.isMy1stRegDay"
+           class="font-weight-bold"
+      >
         Registration opens at 6:00AM
-      </span>
+      </div>
 
       <uw-resources
         :my-plan-data="myPlanData"

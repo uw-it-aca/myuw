@@ -16,7 +16,7 @@
           :href="myplanHref"
           class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
         >
-          Edit Plan in MyPlan
+          Edit plan in MyPlan
         </a>
         <a
           v-else
