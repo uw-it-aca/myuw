@@ -77,7 +77,7 @@
       <h5 class="h6 font-weight-bold">
         Not ready for registration
       </h5>
-      <ul class="list-unstyled myuw-text-md">
+      <ul class="list-unstyled myuw-text-sm">
         <li v-for="(course, i) in courses" :key="i">
           {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>

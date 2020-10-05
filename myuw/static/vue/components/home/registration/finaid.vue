@@ -15,10 +15,7 @@
             v-if="collapseOpen"
             :icon="['fas', 'caret-down']"
           />
-          <font-awesome-icon
-            v-else
-            :icon="['fas', 'caret-right']"
-          />
+          <font-awesome-icon v-else :icon="['fas', 'caret-right']" />
           {{ notice.short_content }}
         </b-button>
         <b-collapse
@@ -26,9 +23,9 @@
           v-model="collapseOpen"
           class="myuw-fin-aid"
         >
-          <div class="bg-warning m-0 p-3 border-0 rounded-0
-          myuw-text-md"
-               v-html="notice.notice_body"
+          <div
+            class="bg-warning m-0 p-3 border-0 rounded-0 myuw-text-sm"
+            v-html="notice.notice_body"
           />
         </b-collapse>
       </li>
@@ -54,12 +51,14 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../../../css/myuw/variables.scss";
+@import '../../../../../css/myuw/variables.scss';
 .myuw-fin-aid {
   // override warning background
   ::v-deep .bg-warning {
-    background-color: lighten(map.get($theme-colors,
-    "warning"), 47%) !important;
+    background-color: lighten(
+      map.get($theme-colors, 'warning'),
+      47%
+    ) !important;
   }
 
   ::v-deep .notice-title {
