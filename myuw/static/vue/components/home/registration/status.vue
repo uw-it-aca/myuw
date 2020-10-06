@@ -14,12 +14,6 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-if="estRegData.estRegDate && estRegData.isMy1stRegDay"
-           class="font-weight-bold"
-      >
-        Registration opens at 6:00AM
-      </div>
-
       <uw-est-reg-date :est-reg-data="estRegData" />
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"

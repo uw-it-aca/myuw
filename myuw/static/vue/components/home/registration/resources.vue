@@ -55,7 +55,7 @@
     </div>
     <div>
       <h4 class="h6 font-weight-bold">
-        Registration resources
+        Registration resources lsakdjlsadkjf
       </h4>
       <ul class="m-0 list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
