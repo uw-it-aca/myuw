@@ -1,7 +1,7 @@
 <template>
   <div class="mb-4">
     <div class="d-flex align-items-center mb-2">
-      <h4 v-if="myPlanData" class="h6 m-0 text-dark flex-fill">
+      <h4 class="h6 m-0 text-dark flex-fill">
         Holds
       </h4>
       <div class="flex-fill text-right">
