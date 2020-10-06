@@ -3,6 +3,7 @@
     v-if="show"
     :loaded="isReadyTextbook(term) && isReadySchedule(term)"
     :errored="isErroredTextbook(term) || isErroredSchedule(term)"
+    :errored-show="showError"
   >
     <template #card-heading>
       <h3>Textbooks</h3>
@@ -64,19 +65,27 @@ export default {
     ...mapState('schedule', {
       courseData: function (state) { return state.value[this.term]; },
     }),
-    ...mapGetters('visual_schedule', {
+    ...mapGetters('schedule', {
       isReadySchedule: 'isReadyTagged',
       isErroredSchedule: 'isErroredTagged',
+      statusCodeSchedule: 'statusCodeTagged'
     }),
     ...mapGetters('textbooks', {
       isReadyTextbook: 'isReadyTagged',
       isErroredTextbook: 'isErroredTagged',
+      statusCodeTextbooks: 'statusCodeTagged',
       getProcessedData: 'getProcessedData',
     }),
     show() {
       return (
         this.student &&
         (this.term !== 'current' || this.isBeforeEndOfFirstWeek)
+      );
+    },
+    showError() {
+      return (
+        this.statusCodeSchedule(this.term) != 404 &&
+        this.statusCodeTextbooks(this.term) != 404
       );
     },
     bookData() {
