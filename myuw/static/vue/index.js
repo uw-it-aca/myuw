@@ -43,6 +43,7 @@ import NewInterStudent from
 import VisualSchedule from './components/cards/visual_schedule/schedule.vue';
 import FutureQuarterCards from './components/cards/future-quarter.vue';
 import Textbooks from './components/cards/textbooks.vue'
+import UWNetID from './components/index/cards/accounts/uwnetid.vue';
 
 // Stores
 import notices from './vuex/store/notices';
@@ -114,7 +115,6 @@ Vue.component('myuw-applicant', Applicant);
 Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
-Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
@@ -122,7 +122,9 @@ Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
 Vue.component('myuw-reg-status', RegStatus);
 Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
+Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
+Vue.component('myuw-uwnetid', UWNetID);
 
 new Vue({
   ...vueConf,
