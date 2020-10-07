@@ -1,7 +1,8 @@
 from django.test import TransactionTestCase
 from django.conf import settings
 from restclients_core.exceptions import DataFailureException
-from myuw.dao.stud_future_terms import get_registered_future_quarters
+from myuw.dao.stud_future_terms import (
+    _get_future_registrations, get_registered_future_quarters)
 from myuw.dao.user import get_user_model
 from myuw.models import SeenRegistration
 from myuw.test import get_request_with_date, get_request_with_user,\
@@ -17,11 +18,42 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertRaises(DataFailureException,
                           get_registered_future_quarters, req)
 
-        req = get_request_with_user('staff')
+        req = get_request_with_user('jerror')
         self.assertRaises(DataFailureException,
                           get_registered_future_quarters, req)
 
+    def test_get_future_registrations(self):
+        req = get_request_with_user('jinter',
+                                    get_request_with_date("2013-04-15"))
+        schedules, summer_started, bterm_started = (
+            _get_future_registrations(req))
+        self.assertEqual(len(schedules), 2)
+        self.assertEqual(schedules[0].term.quarter, "summer")
+        self.assertEqual(schedules[0].summer_term, "full-term")
+        self.assertEqual(schedules[1].term.quarter, "autumn")
+        self.assertFalse(summer_started)
+        self.assertFalse(bterm_started)
+
+        req = get_request_with_user('jinter',
+                                    get_request_with_date("2013-06-25"))
+        schedules, summer_started, bterm_started = (
+            _get_future_registrations(req))
+        self.assertEqual(len(schedules), 2)
+        self.assertEqual(schedules[0].term.quarter, "summer")
+        self.assertEqual(schedules[0].summer_term, "b-term")
+        self.assertEqual(schedules[1].term.quarter, "autumn")
+        self.assertTrue(summer_started)
+        self.assertFalse(bterm_started)
+
     def test_get_registered_future_quarters(self):
+        req = get_request_with_user('jinter',
+                                    get_request_with_date("2013-04-15"))
+        data = get_registered_future_quarters(req)
+        terms = data.get("terms")
+        self.assertEqual(len(terms), 2)
+        self.assertFalse(terms[0]['has_registration'])
+        self.assertFalse(terms[1]['has_registration'])
+
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-05-14"))
         data = get_registered_future_quarters(req)
@@ -120,7 +152,7 @@ class TestRegisteredTerm(TransactionTestCase):
         req = get_request_with_user('jbothell')
         data = get_registered_future_quarters(req)
         terms = data.get("terms")
-        self.assertEqual(len(terms), 1)
+        self.assertEqual(len(terms), 2)
         self.assertEqual(data['next_term_data']['label'], '2013,autumn')
         self.assertEqual(data['next_term_data']['section_count'], 0)
 
