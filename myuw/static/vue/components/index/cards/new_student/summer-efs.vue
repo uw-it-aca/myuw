@@ -4,15 +4,16 @@
     :loaded="isReady" :errored="isErrored"
     :errored-show="showError"
   >
-  
     <template #card-heading>
-      <h3 v-if="isErrored">Summer & Early Fall Start</h3>
+      <h3 v-if="isErrored">
+        Summer & Early Fall Start
+      </h3>
     </template>
 
     <template #card-body>
       <div v-for="notice in notices" :key="notice.id_hash">
         <h3>Review Critical Summer Registration Info</h3>
-        <div v-html="notice.notice_body"></div>
+        <div v-html="notice.notice_body" />
       </div>
 
       <h3>Consider Early Fall Start</h3>
@@ -29,7 +30,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import {mapGetters, mapState} from 'vuex';
 import Card from '../../../../containers/card.vue';
 
 export default {
@@ -48,11 +49,11 @@ export default {
       'hasRegisterNotices',
       'isReady',
       'isErrored',
-      'statusCode'
+      'statusCode',
     ]),
-    showError () {
+    showError() {
       return this.statusCode != 404;
-    }
-  }
-}
+    },
+  },
+};
 </script>
