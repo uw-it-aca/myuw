@@ -1,7 +1,7 @@
 <template>
   <div v-if="(mobileOnly && $mq === 'mobile') || !mobileOnly">
     <b-card v-if="loaded"
-            class="rounded-0 shadow-sm mb-3" tabindex="0"
+            class="rounded-0 shadow-sm mb-3"
             body-class="p-3"
             footer-class="px-3 pt-1 pb-2"
     >
