@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex';
+import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../../../containers/card.vue';
 
 export default {
@@ -54,6 +54,12 @@ export default {
     showError() {
       return this.statusCode != 404;
     },
+  },
+  created() {
+    this.fetch();
+  },
+  methods: {
+    ...mapActions('notices', ['fetch']),
   },
 };
 </script>
