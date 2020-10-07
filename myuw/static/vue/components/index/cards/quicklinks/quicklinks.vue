@@ -127,7 +127,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../../../containers/card.vue';
+import Card from '../../../../layouts/card.vue';
 import Link from './link.vue';
 import CovidLinks from './covid-links.vue';
 

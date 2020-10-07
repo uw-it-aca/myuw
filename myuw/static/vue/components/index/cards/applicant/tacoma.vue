@@ -178,7 +178,7 @@
 </template>
 
 <script>
-import Card from '../../../../containers/card.vue';
+import Card from '../../../../layouts/card.vue';
 
 export default {
   components: {
