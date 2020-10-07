@@ -3,7 +3,7 @@ import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 
 // Global Mixins
-import utils from '../mixin/utils';
+import utils from '../mixins/utils';
 
 // helper for testing action with expected mutations
 const expectAction = (

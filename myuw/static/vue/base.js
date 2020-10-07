@@ -42,8 +42,8 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 
 // Mixins
-import outlink from './mixin/outlink';
-import utils from './mixin/utils';
+import outlink from './mixins/outlink';
+import utils from './mixins/utils';
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';

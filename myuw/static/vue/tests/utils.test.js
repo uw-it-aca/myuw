@@ -1,4 +1,4 @@
-import utils from '../mixin/utils'
+import utils from '../mixins/utils'
 
 it('ucfirst', () => {
   expect(utils.methods.ucfirst('test')).toEqual('Test');
