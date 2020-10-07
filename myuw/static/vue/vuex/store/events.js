@@ -1,5 +1,10 @@
-import moment from 'moment-timezone';
+import dayjs from 'dayjs';
 import {fetchBuilder, buildWith} from './model_builder';
+
+var utc = require('dayjs/plugin/utc')
+var timezone = require('dayjs/plugin/timezone')
+dayjs.extend(utc)
+dayjs.extend(timezone)
 
 const postProcess = (response) => {
   const eventData = response.data;
@@ -15,8 +20,8 @@ const postProcess = (response) => {
   });
 
   eventData.events.forEach((event) => {
-    const startDate = moment(new Date(event.start)).tz('America/Los_Angeles');
-    const endDate = moment(new Date(event.end)).tz('America/Los_Angeles');
+    const startDate = dayjs(new Date(event.start)).tz('America/Los_Angeles');
+    const endDate = dayjs(new Date(event.end)).tz('America/Los_Angeles');
 
     event.start_time = startDate.format('h:mm A');
     event.start_date = startDate;

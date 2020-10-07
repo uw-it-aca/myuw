@@ -1,11 +1,10 @@
 import axios from 'axios';
-import moment from 'moment';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import {expectAction} from './helper';
-import {statusOptions} from '../store/model_builder';
-import BootstrapVue from 'bootstrap-vue';
+import dayjs from 'dayjs';
+import {mount, shallowMount} from '@vue/test-utils';
+import {createLocalVue, expectAction} from './helper';
+import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
-import events from '../store/events';
+import events from '../vuex/store/events';
 import EventsCard from '../components/index/cards/events/events.vue';
 import ListEvents from '../components/index/cards/events/list-events.vue';
 
@@ -23,8 +22,6 @@ import {
 import mockEvents from './mock_data/events.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faLocationArrow);
@@ -48,8 +45,8 @@ describe('Event Store', () => {
   it('Check status changes on fetch - success', () => {
     axios.get.mockResolvedValue({data: mockEvents, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(events.actions.fetch, null, events.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
@@ -61,8 +58,8 @@ describe('Event Store', () => {
   it('Check status changes on fetch - failure', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(events.actions.fetch, null, events.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
@@ -100,10 +97,10 @@ describe('Events Card', () => {
     });
 
     expect(
-      wrapper.vm.acalDateFormat(moment('2020-08-19'), moment('2020-08-19'))
+      wrapper.vm.acalDateFormat(dayjs('2020-08-19'), dayjs('2020-08-19'))
     ).toEqual('August 19');
     expect(
-      wrapper.vm.acalDateFormat(moment('2020-08-19'), moment('2020-08-20'))
+      wrapper.vm.acalDateFormat(dayjs('2020-08-19'), dayjs('2020-08-20'))
     ).toEqual('August 19 - 20');
   });
 

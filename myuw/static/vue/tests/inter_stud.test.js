@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { shallowMount, createLocalVue } from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import { shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import Notices from '../store/notices';
+import {createLocalVue} from './helper';
+import Notices from '../vuex/store/notices';
 import NewStudentCard from '../components/index/cards/international/new-student.vue';
 import StudentCard from '../components/index/cards/international/student.vue';
 import SeattleComp from '../components/index/cards/international/seattle.vue';
@@ -13,8 +13,6 @@ import UwCard from '../containers/card.vue';
 import mockNotices from './mock_data/inter_notices.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 describe('International Student Card - student.vue', () => {
   let store;

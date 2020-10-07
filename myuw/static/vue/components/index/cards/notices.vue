@@ -27,18 +27,17 @@
           <div class="d-flex d-sm-inline-flex notice-container">
             <div class="flex-grow-1 pr-1">
               <span class="notice-title">
-                <span
-                  v-if="notice.is_critical"
-                  class="font-weight-bold text-danger notice-critical"
-                >
-                  Critical:
-                </span>
                 <button
                   v-b-toggle="notice.id_hash"
                   class="btn btn-link p-0 border-0 align-top
-                    notice-link myuw-text-md"
-                  v-html="notice.notice_title"
-                />
+                    notice-link text-left myuw-text-md"
+                >
+                  <span
+                    v-if="notice.is_critical"
+                    class="d-inline-block font-weight-bold
+                    text-danger mr-1 notice-critical"
+                  >Critical:</span><span v-html="notice.notice_title" />
+                </button>
               </span>
             </div>
             <div>

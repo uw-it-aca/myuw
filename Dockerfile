@@ -1,4 +1,4 @@
-FROM acait/django-container:1.0.38 as pre-container
+FROM acait/django-container:1.1.3 as pre-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -21,7 +21,7 @@ WORKDIR /app/
 RUN npm install .
 
 ADD . /app/
-RUN npx webpack --development
+RUN npx webpack --production
 
 FROM pre-container as app-container
 
@@ -29,9 +29,8 @@ COPY --chown=acait:acait --from=node-bundler /static /static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 
-FROM acait/django-test-container:1.0.35 as app-test-container
+FROM acait/django-test-container:1.1.3 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
-
 COPY --from=app-container /app/ /app/
 COPY --from=app-container /static/ /static/

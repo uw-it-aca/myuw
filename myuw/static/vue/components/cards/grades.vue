@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import moment from 'moment';
+import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../containers/card.vue';
 
@@ -198,7 +198,7 @@ export default {
       if (dateStr === undefined || dateStr.length === 0) {
         return '';
       }
-      return moment(dateStr).format('ddd, MMM D');
+      return dayjs(dateStr).format('ddd, MMM D');
     },
     ...mapActions('courses', ['fetch']),
   },

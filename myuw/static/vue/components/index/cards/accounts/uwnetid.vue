@@ -1,0 +1,78 @@
+<template>
+  <uw-card
+    v-if="!isReady || showCard"
+    :loaded="isReady" :errored="isErrored"
+    :erroredShow="showError"
+  >
+    <template #card-heading>
+      <h3 class="text-dark-beige">
+        UW NetID
+      </h3>
+    </template>
+    <template #card-body>
+      <div>
+        <a href="https://uwnetid.washington.edu/manage/" target="_blank" title="Manage UW NetID" class="btn btn-default card-action-btn myuw-button">Manage UW NetID account</a>
+      </div>
+      <div class="links-container actionlink-list">
+        <ul class="unstyled-list">
+          <li>
+            <a href="https://uwnetid.washington.edu/manage/?password" target="_blank" title="Change UW NetID password">Change UW NetID password</a>
+          </li>
+          <li>
+            <a href="https://identity.uw.edu/account/recovery/" target="_blank" title="NetID account recovery options">Set account recovery options</a>
+          </li>
+          <li v-if="two_factor">
+            <a href="https://identity.uw.edu/2fa/" target="_blank" title="Manage two-factor authentication">Manage two-factor authentication (2FA)</a>
+          </li>
+        </ul>
+      </div>
+    </template>
+    <template #card-error>
+      An error occurred and MyUW cannot load your information right now. Please
+      try again later. In the meantime, if you want to change your password,
+      try the <a href="https://uwnetid.washington.edu/manage/?password" data-linklabel="UW NetID page" target="_blank">UW NetID page</a>.
+    </template>
+  </uw-card>
+</template>
+
+<script>
+import {mapGetters, mapState, mapActions} from 'vuex';
+import Card from '../../../../containers/card.vue';
+
+export default {
+  components: {
+    'uw-card': Card,
+  },
+  computed: {
+    ...mapState({
+      data: (state) => {
+        return state.profile.value.password;
+      },
+      two_factor: (state) => state.user.affiliations['2fa_permitted'],
+      applicant: (state) => state.user.affiliations.applicant,
+      employee: (state) => state.user.affiliations.employee,
+      student: (state) => state.user.affiliations.student,
+    }),
+    ...mapGetters('profile', [
+      'isReady',
+      'isErrored',
+      'statusCode',
+    ]),
+    showError: function() {
+      return (this.statusCode == 543);
+    },
+    showCard: function() {
+      return !(this.applicant || this.employee || this.student);
+    },
+  },
+  created() {
+    this.fetch();
+  },
+  methods: {
+    ...mapActions('profile', ['fetch']),
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+</style>

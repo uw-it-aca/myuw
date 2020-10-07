@@ -1,15 +1,13 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
-import notices from '../store/notices';
+import {createLocalVue} from './helper';
+import notices from '../vuex/store/notices';
 import CriticalInfoCard from '../components/index/cards/new_student/critical-info.vue';
 
 import mockNotices from './mock_data/notices.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 jest.mock('axios');
 

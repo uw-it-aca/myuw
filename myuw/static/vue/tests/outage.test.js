@@ -1,11 +1,21 @@
-import {shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import Outage from '../components/cards/outage.vue';
 
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {
+  FontAwesomeIcon,
+} from '@fortawesome/vue-fontawesome';
+
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
+
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
+
+library.add(faExclamationTriangle);
+localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 describe('Outage card', () => {
 

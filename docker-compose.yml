@@ -2,7 +2,9 @@ version: '3.4'
 
 services:
   myuw:
-    build: .
+    build:
+      context: .
+      target: app-container
     container_name: app-myuw
     volumes:
       - ./myuw:/app/myuw
@@ -20,12 +22,17 @@ services:
     build:
       context: .
       target: node-bundler
+    ports:
+      - "8888:8888"
     environment:
       NODE_ENV: development
       ENV: localdev
+      # BUNDLE_ANALYZER: "True"
     volumes:
       - ./myuw:/app/myuw
       - statics-volume:/static
     command: bash -c "cd /app/ && npx webpack --watch"
+    stdin_open: true
+    tty: true
 volumes:
   statics-volume:

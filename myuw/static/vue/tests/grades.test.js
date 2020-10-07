@@ -1,11 +1,9 @@
 import axios from 'axios';
-import moment from 'moment';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import {expectAction} from './helper';
-import {statusOptions} from '../store/model_builder';
-import BootstrapVue from 'bootstrap-vue';
+import {mount} from '@vue/test-utils';
+import {createLocalVue, expectAction} from './helper';
+import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
-import Courses from '../store/courses';
+import Courses from '../vuex/store/courses';
 import GradesCard from '../components/cards/grades.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
@@ -23,8 +21,6 @@ import {
 import mockCourses from './mock_data/courses.json';
 
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faLocationArrow);
@@ -49,8 +45,8 @@ describe('Courses Store', () => {
   it('Check status changes on fetch - success', () => {
     axios.get.mockResolvedValue({data: mockCourses, status: 200});
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(Courses.actions.fetch, null, Courses.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
@@ -62,8 +58,8 @@ describe('Courses Store', () => {
   it('Check status changes on fetch - failure', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const getters = {
-      isReady: false,
-      isFeatching: false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(Courses.actions.fetch, null, Courses.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},

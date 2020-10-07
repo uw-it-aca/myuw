@@ -221,12 +221,11 @@ export default {
         )
       );
     },
-    ucfirst: (s) => s.replace(/^([a-z])/, (c) => c.toUpperCase()),
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "sass:map";
 @import "../../../../css/myuw/variables.scss";
 

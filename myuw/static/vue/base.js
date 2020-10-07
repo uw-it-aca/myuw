@@ -1,8 +1,5 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {BootstrapVue} from 'bootstrap-vue';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
@@ -25,11 +22,14 @@ import {
   faLocationArrow,
   faSquareFull,
   faCaretRight,
+  faCaretDown,
   faSquare as fasSquare,
   faTimes,
   faPencilAlt,
   faCheck,
   faPlus,
+  faCheckCircle,
+  faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -38,7 +38,12 @@ import {
   faCalendarAlt,
   faCalendarCheck,
   faSquare,
+  faCircle,
 } from '@fortawesome/free-regular-svg-icons';
+
+// Mixins
+import outlink from './mixin/outlink';
+import utils from './mixin/utils';
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
@@ -63,10 +68,14 @@ library.add(fasSquare);
 library.add(faBars);
 library.add(faLocationArrow);
 library.add(faCaretRight);
+library.add(faCaretDown);
 library.add(faTimes);
 library.add(faPencilAlt);
 library.add(faCheck);
 library.add(faPlus);
+library.add(faCheckCircle);
+library.add(faCircle);
+library.add(faChevronRight);
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -75,7 +84,6 @@ Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 // vuex
 Vue.use(Vuex);
-Vue.use(BootstrapVue);
 
 // vue-mq (media queries)
 Vue.use(VueMq, {
@@ -104,6 +112,9 @@ const store = new Vuex.Store({
 });
 
 Vue.config.devtools = true;
+
+Vue.mixin(outlink);
+Vue.mixin(utils);
 
 const vueConf = {
   el: '#vue_root',

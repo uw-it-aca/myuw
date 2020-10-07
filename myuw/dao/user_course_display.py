@@ -106,7 +106,7 @@ def _save_section_color(user, section, color_id):
                             'at': "create ({} color_id: {}) in DB".format(
                                 section_label, color_id),
                             'err': ex})
-            if '1062, "Duplicate entry ' not in err:
+            if '1062, "Duplicate entry ' not in str(ex):
                 raise
 
 
