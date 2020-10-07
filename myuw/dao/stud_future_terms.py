@@ -6,10 +6,11 @@ This module encapsulates the access of the term data
 import logging
 from django.utils import timezone
 from datetime import timedelta
-from uw_sws.section import (
-    is_a_term, is_b_term, is_full_summer_term)
+from restclients_core.exceptions import DataFailureException
+from uw_sws.models import Registration
+from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
 from myuw.models import SeenRegistration
-from myuw.dao import is_using_file_dao
+from myuw.dao import is_using_file_dao, get_netid_of_current_user
 from myuw.dao.registration import get_schedule_by_term, _is_split_summer
 from myuw.dao.term import (
     get_current_quarter, get_next_quarter, get_term_after, get_comparison_date,
@@ -39,9 +40,6 @@ def get_registered_future_quarters(request):
     future_term_regs, summer_started, bterm_started = (
         _get_future_registrations(request))
 
-    if is_using_file_dao():
-        _set_mock_data(request, future_term_regs)
-
     for schedule in future_term_regs:
 
         if schedule.term.is_summer_quarter():
@@ -69,7 +67,7 @@ def get_registered_future_quarters(request):
                     resp_data["terms"].append(data)
                 continue
 
-            if not summer_started and summer_term_data[FULL_TERM]:
+            if not summer_started:
                 data = _get_resp_json(schedule, "full-term", summer_term_data)
                 data["highlight"] = _should_highlight(request, data)
                 high_light = high_light or data["highlight"]
@@ -97,18 +95,16 @@ def _get_future_registrations(request):
         summer_started = (now >= cur_term.get_bod_first_day())
         bterm_started = (now >= cur_term.get_eod_summer_aterm())
         if not bterm_started:
-            data.append(get_schedule_by_term(
-                request, term=cur_term, summer_term='b-term'))
-        data.append(get_schedule_by_term(request, term=nxt_term))
+            data.append(__get_reg_data(request, cur_term,
+                                       summer_term='b-term'))
+        data.append(__get_reg_data(request, nxt_term))
 
     else:
         if nxt_term.is_summer_quarter():
-            data.append(get_schedule_by_term(
-                request, term=nxt_term, summer_term='full-term'))
-            data.append(get_schedule_by_term(
-                request, term=get_term_after(nxt_term)))
+            data.append(__get_reg_data(request, nxt_term))
+            data.append(__get_reg_data(request, get_term_after(nxt_term)))
         else:
-            data.append(get_schedule_by_term(request, term=nxt_term))
+            data.append(__get_reg_data(request, nxt_term))
     return data, summer_started, bterm_started
 
 
@@ -134,6 +130,7 @@ def _get_resp_json(schedule, summer_term=None, summer_term_data=None):
             section_count = (summer_term_data[FULL_TERM_SECTIONS] +
                              summer_term_data[B_TERM_SECTIONS])
             return_json["section_count"] = section_count
+
         elif summer_term == "full-term":
             return_json["credits"] = str(summer_term_data[FULL_TERM_CREDITS])
             return_json["section_count"] = summer_term_data[FULL_TERM_SECTIONS]
@@ -224,13 +221,35 @@ def _should_highlight(request, data, bterm_start_dt=None):
     return now < srobj.first_seen_date + timedelta(days=1)
 
 
-def _set_mock_data(request, future_term_regs):
-    """
-    No future term registration data until 3 days after
-    registration_period1_start so that the RegStatusCard can show up
-    """
+def __get_reg_data(request, term, summer_term="full-term"):
+    if not is_using_file_dao():
+        return get_schedule_by_term(
+            request, term=term, summer_term=summer_term)
+
+    if get_netid_of_current_user(request) == 'jerror':
+        raise DataFailureException("/student/v5/registration.json",
+                                   500, "mock 500 error")
+    if get_netid_of_current_user(request) == 'none':
+        raise DataFailureException("/student/v5/registration.json",
+                                   404, "mock 404 error")
+
+    # mock an object with no enrolled sections
+    mock_0reg_schedule = Registration()
+    mock_0reg_schedule.sections = []
+    mock_0reg_schedule.term = term
+    mock_0reg_schedule.summer_term = summer_term
+    mock_0reg_schedule.registered_summer_terms = {}
+
     now = get_comparison_date(request)
-    for schedule in future_term_regs:
-        if now <= (schedule.term.registration_period1_start +
-                   timedelta(days=3)):
-            schedule.sections = []
+    if now <= (term.registration_period1_start + timedelta(days=3)):
+        # hold reg data until 3 days after registration_period1_start
+        return mock_0reg_schedule
+
+    try:
+        return get_schedule_by_term(
+            request, term=term, summer_term=summer_term)
+    except DataFailureException as ex:
+        if ex.status == 404:
+            # missing mock data
+            return mock_0reg_schedule
+        raise
