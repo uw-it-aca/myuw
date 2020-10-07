@@ -2,7 +2,13 @@
   <uw-card
     v-if="!isReady || hasRegisterNotices"
     :loaded="isReady" :errored="isErrored"
+    :errored-show="showError"
   >
+  
+    <template #card-heading>
+      <h3 v-if="isErrored">Summer & Early Fall Start</h3>
+    </template>
+
     <template #card-body>
       <div v-for="notice in notices" :key="notice.id_hash">
         <h3>Review Critical Summer Registration Info</h3>
@@ -16,9 +22,7 @@
         class size, an early introduction to college life, and a lighter
         course load during autumn quarter. The language courses may be
         particularly helpful to international students!
-        <a href="http://www.outreach.washington.edu/efs/">
-          Learn more about Early Fall Start and register
-        </a>.
+        <a href="http://www.outreach.washington.edu/efs/">Learn more about Early Fall Start and register</a>.
       </div>
     </template>
   </uw-card>
@@ -44,7 +48,11 @@ export default {
       'hasRegisterNotices',
       'isReady',
       'isErrored',
+      'statusCode'
     ]),
+    showError () {
+      return this.statusCode != 404;
+    }
   }
 }
 </script>
