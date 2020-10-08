@@ -1,6 +1,6 @@
 import { Vue, vueConf } from './base.js';
 
-// Bootstrap vue plugins
+// bootstrap vue plugins
 import {
   AlertPlugin,
   BadgePlugin,
@@ -43,7 +43,7 @@ import ThankYou from './components/pages/home/cards/new_student/thank-you.vue';
 import NewInterStudent from './components/pages/home/cards/international/new-student.vue';
 import UWNetID from './components/pages/home/cards/accounts/uwnetid.vue';
 
-// Stores
+// stores
 import notices from './vuex/store/notices';
 import quicklinks from './vuex/store/quicklinks';
 import hfs from './vuex/store/hfs';
@@ -83,7 +83,7 @@ vueConf.store.commit('addVarToState', {
   value: 'Home',
 });
 
-// Bootstrap-Vue components as plugins
+// bootstrap-vue components as plugins
 Vue.use(AlertPlugin);
 Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
