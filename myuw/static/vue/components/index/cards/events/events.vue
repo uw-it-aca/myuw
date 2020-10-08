@@ -15,25 +15,29 @@
     </template>
     <template v-else #card-body>
       <div v-if="futureCalLinks.length > 0">
-        No events in the next 14 days.
-        <strong>{{ futureCalCount }}</strong>
-        {{ futureCalCount > 1 ? 'events' : 'event' }}
-        from {{ futureCalLinks.length }} calendars in the next 30 days.
-        <ul>
+        <p class="myuw-text-md">
+          No events in the next 14 days.
+          <strong>{{ futureCalCount }}</strong>
+          {{ futureCalCount > 1 ? 'events' : 'event' }}
+          from {{ futureCalLinks.length }} calendars in the next 30 days.
+        </p>
+        <ul class="list-unstyled mb-0 myuw-text-md">
           <li v-for="(event, i) in futureCalLinks" :key="i">
             <a :href="event.base_url">{{ event.title }}</a>
           </li>
         </ul>
       </div>
       <div v-else>
-        No events in the next 14 days.
-        <strong>{{ futureCalCount }}</strong>
-        {{ futureCalCount > 1 ? 'events' : 'event' }}
-        from
-        <span v-for="(event, i) in futureCalLinks" :key="i">
-          <a :href="event.base_url">{{ event.title }}</a>
-        </span>
-        in the next 30 days.
+        <p class="myuw-text-md">
+          No events in the next 14 days.
+          <strong>{{ futureCalCount }}</strong>
+          {{ futureCalCount > 1 ? 'events' : 'event' }}
+          from
+          <span v-for="(event, i) in futureCalLinks" :key="i">
+            <a :href="event.base_url">{{ event.title }}</a>
+          </span>
+          in the next 30 days.
+        </p>
       </div>
     </template>
     <!-- v-if condition is common with #card-footer -->
