@@ -5,50 +5,49 @@
         <h3 class="sr-only">
           Upcoming quarters you are registered for
         </h3>
-        <uw-card
-          v-for="(term, i) in terms"
-          :key="i" :loaded="true"
-        >
-          <template #card-heading>
-            <h4 class="h3 text-dark-beige">
-              {{ term.quarter }} {{ term.year }}
-              <span v-if="term.summer_term" class="text-capitalize">
-                {{ term.summer_term }}
-              </span>
-            </h4>
-          </template>
-          <template #card-body>
-            <div>
-              <div class="myuw-text-md mr-auto">
-                <div>
-                  You have registered for {{ term.credits }} credits
-                </div>
-                <div>
-                  ({{ term.section_count }}
-                  {{ term.section_count > 1 ? "sections" : "section" }})
-                  for {{ term.quarter }} {{ term.year }}
-                  <span v-if="term.summer_term" class="text-capitalize">
-                    {{ term.summer_term }}
-                  </span>
-                </div>
-              </div>
-              <div class="position-absolute myuw-future-quarter">
-                <a :href="`../future_quarters${term.url}`"
-                   class="d-inline-block text-center"
-                >
-                  <span class="sr-only">
-                    View {{ term.quarter }} {{ term.year }}
+        <div v-for="(term, i) in terms" :key="i" >
+          <uw-card v-if="term.has_registration" loaded>
+            <template #card-heading>
+              <h4 class="h3 text-dark-beige">
+                {{ term.quarter }} {{ term.year }}
+                <span v-if="term.summer_term" class="text-capitalize">
+                  {{ term.summer_term }}
+                </span>
+              </h4>
+            </template>
+            <template #card-body>
+              <div>
+                <div class="myuw-text-md mr-auto">
+                  <div>
+                    You have registered for {{ term.credits }} credits
+                  </div>
+                  <div>
+                    ({{ term.section_count }}
+                    {{ term.section_count > 1 ? "sections" : "section" }})
+                    for {{ term.quarter }} {{ term.year }}
                     <span v-if="term.summer_term" class="text-capitalize">
                       {{ term.summer_term }}
                     </span>
-                    information
-                  </span>
-                  <font-awesome-icon :icon="['fa', 'chevron-right']" class="" />
-                </a>
+                  </div>
+                </div>
+                <div class="position-absolute myuw-future-quarter">
+                  <a :href="`../future_quarters${term.url}`"
+                    class="d-inline-block text-center"
+                  >
+                    <span class="sr-only">
+                      View {{ term.quarter }} {{ term.year }}
+                      <span v-if="term.summer_term" class="text-capitalize">
+                        {{ term.summer_term }}
+                      </span>
+                      information
+                    </span>
+                    <font-awesome-icon :icon="['fa', 'chevron-right']" class="" />
+                  </a>
+                </div>
               </div>
-            </div>
-          </template>
-        </uw-card>
+            </template>
+          </uw-card>
+        </div>
       </div>
     </div>
     <uw-card
