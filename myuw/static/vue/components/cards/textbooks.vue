@@ -6,39 +6,47 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3>Textbooks</h3>
+      <h3 class="text-dark-beige">
+        Textbooks
+      </h3>
     </template>
     <template #card-body>
-      <ul>
-        <li v-for="(section, i) in bookData.sections" :key="i">
-          <font-awesome-icon
-            :icon="['fas', 'square-full']"
-            :class="`text-c${section.colorId}`"
-            class="mr-1"
-          />
-          <span>
-            {{ section.courseId }}:
-          </span>
-          <span v-if="section.noCourseBooks">
-            No books
-          </span>
-          <span v-else>
-            {{ section.totalBooks }}
-            {{ section.totalBooks > 1 ? 'books' : 'book' }}
+      <ul class="list-unstyled mb-0 myuw-text-md">
+        <li v-for="(section, i) in bookData.sections" :key="i" class="d-flex">
+          <div class="w-50">
+            <font-awesome-icon
+              :icon="['fas', 'square-full']"
+              :class="`text-c${section.colorId}`"
+              class="mr-1"
+            />
             <span>
-              ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
-              required)
+              {{ section.courseId }}:
             </span>
-          </span>
+          </div>
+          <div class="w-50">
+            <span v-if="section.noCourseBooks" class="font-weight-bold">
+              No books
+            </span>
+            <span v-else class="font-weight-bold">
+              {{ section.totalBooks }}
+              {{ section.totalBooks > 1 ? 'books' : 'book' }}
+              <span class="font-weight-normal font-italic">
+                ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
+                required)
+              </span>
+            </span>
+          </div>
         </li>
       </ul>
-      <div v-if="!bookData.noBookAssigned">
+      <div v-if="!bookData.noBookAssigned"
+           class="position-absolute myuw-chevron"
+      >
         <a :href="`/textbooks/${bookData.year},${bookData.quarter}${
-          bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
+             bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
+           class="d-inline-block text-center"
         >
           <font-awesome-icon
             :icon="['fa', 'chevron-right']"
-            class="mr-1"
           />
         </a>
       </div>

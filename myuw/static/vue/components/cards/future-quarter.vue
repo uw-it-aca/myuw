@@ -30,7 +30,7 @@
                     </span>
                   </div>
                 </div>
-                <div class="position-absolute myuw-future-quarter">
+                <div class="position-absolute myuw-chevron">
                   <a :href="`../future_quarters${term.url}`"
                      class="d-inline-block text-center"
                   >
@@ -118,14 +118,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../css/myuw/variables.scss";
-.myuw-future-quarter {
-  right: 1rem; top: 50%; margin-top: -20px;
-  a {
-    line-height:40px; width: 40px;
-    &:focus, &:focus-within, &:hover {
-      background-color: $gray-200;
-    }
-  }
-}
 </style>
