@@ -20,28 +20,29 @@ import {
 } from 'bootstrap-vue';
 
 // layout componenets
-import Boilerplate from './components/layouts/boilerplate.vue';
+import Boilerplate from './components/templates/boilerplate.vue';
 
 // shared components
-import Grades from './components/shared/cards/grades.vue';
-import HuskyExperience from './components/shared/cards/husky-experience.vue';
-import Outage from './components/shared/cards/outage.vue';
-import FutureQuarterCards from './components/shared/cards/future-quarter.vue';
-import VisualSchedule from './components/shared/cards/schedule/visual-schedule.vue';
+import Grades from './components/common/grades.vue';
+import HuskyExperience from './components/common/husky-experience.vue';
+import Outage from './components/common/outage.vue';
+import FutureQuarterCards from './components/common/future-quarter.vue';
+import VisualSchedule from './components/common/schedule/visual-schedule.vue';
 
 // home components
-import Summaries from './components/pages/home/summaries.vue';
-import Notices from './components/pages/home/cards/notices.vue';
-import Applicant from './components/pages/home/cards/applicant/applicant.vue';
-import Events from './components/pages/home/cards/events/events.vue';
-import InterStudent from './components/pages/home/cards/international/student.vue';
-import NewInterStudent from './components/pages/home/cards/international/new-student.vue';
-import Quicklinks from './components/pages/home/cards/quicklinks/quicklinks.vue';
-import ToRegister from './components/pages/home/cards/new_student/to-register.vue';
-import ThankYou from './components/pages/home/cards/new_student/thank-you.vue';
-import CriticalInfo from './components/pages/home/cards/new_student/critical-info.vue';
-import RegStatus from './components/pages/home/cards/registration/status.vue';
-import UWNetID from './components/pages/home/cards/accounts/uwnetid.vue';
+import Summaries from './components/home/summaries.vue';
+import Notices from './components/home/cards/notices.vue';
+import Applicant from './components/home/cards/applicant/applicant.vue';
+import Events from './components/home/cards/events/events.vue';
+import InterStudent from './components/home/cards/international/student.vue';
+import NewInterStudent from './components/home/cards/international/new-student.vue';
+import Quicklinks from './components/home/cards/quicklinks/quicklinks.vue';
+import ToRegister from './components/home/cards/new_student/to-register.vue';
+import ThankYou from './components/home/cards/new_student/thank-you.vue';
+import SummerEfs from './components/index/cards/new_student/summer-efs.vue';
+import CriticalInfo from './components/home/cards/new_student/critical-info.vue';
+import RegStatus from './components/home/cards/registration/status.vue';
+import UWNetID from './components/home/cards/accounts/uwnetid.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -113,6 +114,7 @@ Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
+Vue.component('myuw-summer-efs', SummerEfs);
 Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
 Vue.component('myuw-reg-status', RegStatus);

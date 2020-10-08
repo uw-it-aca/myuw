@@ -103,7 +103,7 @@ export default {
       ) || !this.highlighted && !this.highlightFutureQuarters;
     },
     showError: function() {
-      return this.statusCode === 543;
+      return this.statusCode !== 404;
     },
   },
   created() {

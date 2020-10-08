@@ -3,7 +3,7 @@ import {mount, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import profile from '../vuex/store/profile';
-import UWNetidCard from '../components/pages/home/cards/accounts/uwnetid.vue';
+import UWNetidCard from '../components/home/cards/accounts/uwnetid.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {

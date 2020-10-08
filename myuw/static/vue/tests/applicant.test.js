@@ -3,11 +3,11 @@ import { mount, shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import ApplicantModel from '../vuex/store/applicant';
-import ApplicantCard from '../components/pages/home/cards/applicant/applicant.vue';
-import SeattleComp from '../components/pages/home/cards/applicant/seattle.vue';
-import BothellComp from '../components/pages/home/cards/applicant/bothell.vue';
-import TacomaComp from '../components/pages/home/cards/applicant/tacoma.vue';
-import UwCard from '../components/layouts/card.vue';
+import ApplicantCard from '../components/home/cards/applicant/applicant.vue';
+import SeattleComp from '../components/home/cards/applicant/seattle.vue';
+import BothellComp from '../components/home/cards/applicant/bothell.vue';
+import TacomaComp from '../components/home/cards/applicant/tacoma.vue';
+import UwCard from '../components/templates/card.vue';
 
 import mockApplicant from './mock_data/applicant.json';
 
