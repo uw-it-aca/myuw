@@ -30,10 +30,8 @@
                     </span>
                   </div>
                 </div>
-                <div class="position-absolute myuw-chevron">
-                  <a :href="`../future_quarters${term.url}`"
-                     class="d-inline-block text-center"
-                  >
+                <div class="myuw-chevron">
+                  <a :href="`../future_quarters${term.url}`">
                     <span class="sr-only">
                       View {{ term.quarter }} {{ term.year }}
                       <span v-if="term.summer_term" class="text-capitalize">
@@ -43,7 +41,6 @@
                     </span>
                     <font-awesome-icon
                       :icon="['fa', 'chevron-right']"
-                      class=""
                     />
                   </a>
                 </div>

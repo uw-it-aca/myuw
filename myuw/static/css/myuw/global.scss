@@ -35,12 +35,17 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   font-size: 0.6875rem !important;
 } //11px
 
-
 // myuw chevron card link
 .myuw-chevron {
-  right: 1rem; top: 50%; margin-top: -20px;
+  position: absolute;
+  right: 1rem; 
+  top: 50%; 
+  margin-top: -20px;
   a {
-    line-height:40px; width: 40px;
+    line-height:40px; 
+    width: 40px;
+    display: inline-block;
+    text-align: center;
     &:focus, &:focus-within, &:hover {
       background-color: $gray-200;
     }

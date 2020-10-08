@@ -39,11 +39,10 @@
         </li>
       </ul>
       <div v-if="!bookData.noBookAssigned"
-           class="position-absolute myuw-chevron"
+           class="myuw-chevron"
       >
         <a :href="`/textbooks/${bookData.year},${bookData.quarter}${
-             bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
-           class="d-inline-block text-center"
+          bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
         >
           <font-awesome-icon
             :icon="['fa', 'chevron-right']"
