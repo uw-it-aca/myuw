@@ -41,7 +41,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../components/layouts/card.vue';
+import Card from '../layouts/card.vue';
 
 export default {
   components: {
@@ -108,6 +108,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../css/myuw/variables.scss";
+
 .myuw-huskyexp {
   a {
     &:hover {
