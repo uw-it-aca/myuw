@@ -6,7 +6,7 @@
   >
     <template #card-heading>
       <h3 v-if="isErrored">
-        Summer & Early Fall Start
+        Summer &amp; Early Fall Start
       </h3>
     </template>
 
