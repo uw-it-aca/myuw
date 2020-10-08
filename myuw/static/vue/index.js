@@ -35,7 +35,6 @@ import Quicklinks from './components/pages/index/cards/quicklinks/quicklinks.vue
 import ToRegister from './components/pages/index/cards/new_student/to-register.vue';
 import RegStatus from './components/pages/index/cards/registration/status.vue';
 import CriticalInfo from './components/pages/index/cards/new_student/critical-info.vue';
-//import ThankYou from './components/pages/index/cards/new_student/thank-you.vue';
 import ThankYou from './components/pages/index/cards/new_student/thanks.vue';
 import NewInterStudent from './components/pages/index/cards/international/new-student.vue';
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
