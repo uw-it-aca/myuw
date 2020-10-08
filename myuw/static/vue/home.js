@@ -31,18 +31,18 @@ import VisualSchedule from './components/common/schedule/visual-schedule.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
-import Notices from './components/home/cards/notices.vue';
-import Applicant from './components/home/cards/applicant/applicant.vue';
-import Events from './components/home/cards/events/events.vue';
-import InterStudent from './components/home/cards/international/student.vue';
-import NewInterStudent from './components/home/cards/international/new-student.vue';
-import Quicklinks from './components/home/cards/quicklinks/quicklinks.vue';
-import ToRegister from './components/home/cards/new_student/to-register.vue';
-import ThankYou from './components/home/cards/new_student/thank-you.vue';
+import Notices from './components/home/notices.vue';
+import Applicant from './components/home/applicant/applicant.vue';
+import Events from './components/home/events/events.vue';
+import InterStudent from './components/home/international/student.vue';
+import NewInterStudent from './components/home/international/new-student.vue';
+import Quicklinks from './components/home/quicklinks/quicklinks.vue';
+import ToRegister from './components/home/new_student/to-register.vue';
+import ThankYou from './components/home/new_student/thank-you.vue';
 import SummerEfs from './components/index/cards/new_student/summer-efs.vue';
-import CriticalInfo from './components/home/cards/new_student/critical-info.vue';
-import RegStatus from './components/home/cards/registration/status.vue';
-import UWNetID from './components/home/cards/accounts/uwnetid.vue';
+import CriticalInfo from './components/home/new_student/critical-info.vue';
+import RegStatus from './components/home/registration/status.vue';
+import UWNetID from './components/home/accounts/uwnetid.vue';
 
 // stores
 import notices from './vuex/store/notices';
