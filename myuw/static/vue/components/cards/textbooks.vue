@@ -17,21 +17,25 @@
             class="mr-1"
           />
           <span>
-            {{section.courseId}}:
+            {{ section.courseId }}:
           </span>
           <span v-if="section.noCourseBooks">
             No books
           </span>
           <span v-else>
-            {{section.totalBooks}} {{section.totalBooks > 1 ? 'books' : 'book'}}
+            {{ section.totalBooks }}
+            {{ section.totalBooks > 1 ? 'books' : 'book' }}
             <span>
-              ({{section.requiredBooks ? section.requiredBooks : 'not'}} required)
+              ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
+              required)
             </span>
           </span>
         </li>
       </ul>
       <div v-if="!bookData.noBookAssigned">
-        <a :href="`/textbooks/${bookData.year},${bookData.quarter}${bookData.summerTerm ? ',' + bookData.summerTerm : ''}`">
+        <a :href="`/textbooks/${bookData.year},${bookData.quarter}${
+          bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
+        >
           <font-awesome-icon
             :icon="['fa', 'chevron-right']"
             class="mr-1"
@@ -54,21 +58,23 @@ export default {
     term: {
       type: String,
       required: true,
-    }
+    },
   },
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
-      isBeforeEndOfFirstWeek: (state) => 
+      isBeforeEndOfFirstWeek: (state) =>
         state.cardDisplayDates.is_before_eof_7days_of_term,
     }),
     ...mapState('schedule', {
-      courseData: function (state) { return state.value[this.term]; },
+      courseData: function(state) {
+        return state.value[this.term];
+      },
     }),
     ...mapGetters('schedule', {
       isReadySchedule: 'isReadyTagged',
       isErroredSchedule: 'isErroredTagged',
-      statusCodeSchedule: 'statusCodeTagged'
+      statusCodeSchedule: 'statusCodeTagged',
     }),
     ...mapGetters('textbooks', {
       isReadyTextbook: 'isReadyTagged',
@@ -90,9 +96,9 @@ export default {
     },
     bookData() {
       if (this.isReadyTextbook(this.term) && this.isReadySchedule(this.term)) {
-        let data = this.getProcessedData(this.courseData);
+        const data = this.getProcessedData(this.courseData);
         let noBookAssigned = true;
-        let sectionBookData = [];
+        const sectionBookData = [];
 
         data.enrolledSections.forEach((section) => {
           let required = 0;
@@ -109,14 +115,16 @@ export default {
               }
             });
           }
-          let courseId = `${section.curriculum} ${section.courseNumber} ${section.sectionId}`;
+          const courseId = `${section.curriculum} ${section.courseNumber} ${
+            section.sectionId
+          }`;
 
-          let sectionData = {
+          const sectionData = {
             courseId: courseId,
             colorId: section.colorId,
             requiredBooks: required,
             totalBooks: required + optional,
-            noCourseBooks: (required + optional) ? false :true
+            noCourseBooks: (required + optional) ? false :true,
           };
           sectionBookData.push(sectionData);
         });
@@ -129,8 +137,8 @@ export default {
           sections: sectionBookData,
         };
       }
-      return {}
-    }
+      return {};
+    },
   },
   // Called when the function in injected into the page
   created() {

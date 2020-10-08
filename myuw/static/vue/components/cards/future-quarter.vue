@@ -5,7 +5,7 @@
         <h3 class="sr-only">
           Upcoming quarters you are registered for
         </h3>
-        <div v-for="(term, i) in terms" :key="i" >
+        <div v-for="(term, i) in terms" :key="i">
           <uw-card v-if="term.has_registration" loaded>
             <template #card-heading>
               <h4 class="h3 text-dark-beige">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="position-absolute myuw-future-quarter">
                   <a :href="`../future_quarters${term.url}`"
-                    class="d-inline-block text-center"
+                     class="d-inline-block text-center"
                   >
                     <span class="sr-only">
                       View {{ term.quarter }} {{ term.year }}
@@ -41,7 +41,10 @@
                       </span>
                       information
                     </span>
-                    <font-awesome-icon :icon="['fa', 'chevron-right']" class="" />
+                    <font-awesome-icon
+                      :icon="['fa', 'chevron-right']"
+                      class=""
+                    />
                   </a>
                 </div>
               </div>
