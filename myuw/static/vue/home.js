@@ -35,12 +35,12 @@ import Notices from './components/pages/home/cards/notices.vue';
 import Applicant from './components/pages/home/cards/applicant/applicant.vue';
 import Events from './components/pages/home/cards/events/events.vue';
 import InterStudent from './components/pages/home/cards/international/student.vue';
+import NewInterStudent from './components/pages/home/cards/international/new-student.vue';
 import Quicklinks from './components/pages/home/cards/quicklinks/quicklinks.vue';
 import ToRegister from './components/pages/home/cards/new_student/to-register.vue';
-import RegStatus from './components/pages/home/cards/registration/status.vue';
-import CriticalInfo from './components/pages/home/cards/new_student/critical-info.vue';
 import ThankYou from './components/pages/home/cards/new_student/thank-you.vue';
-import NewInterStudent from './components/pages/home/cards/international/new-student.vue';
+import CriticalInfo from './components/pages/home/cards/new_student/critical-info.vue';
+import RegStatus from './components/pages/home/cards/registration/status.vue';
 import UWNetID from './components/pages/home/cards/accounts/uwnetid.vue';
 
 // stores
