@@ -227,7 +227,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../../css/myuw/variables.scss";
+@import "../../../../../css/myuw/variables.scss";
 
 .course-section {
   width: 100%;

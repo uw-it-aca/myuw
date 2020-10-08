@@ -416,7 +416,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../css/myuw/variables.scss";
+@import "../../../../../css/myuw/variables.scss";
 
 $heading-height: 45px;
 $cell-height: 35px;

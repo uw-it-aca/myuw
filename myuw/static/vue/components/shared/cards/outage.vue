@@ -69,7 +69,7 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex';
-import Card from '../layouts/card.vue';
+import Card from '../../layouts/card.vue';
 
 export default {
   components: {
@@ -140,7 +140,8 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../css/myuw/variables.scss';
+@import '../../../../css/myuw/variables.scss';
+
 .myuw-outage {
   // override card background color using new warning theme background
   ::v-deep .card {

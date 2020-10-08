@@ -72,7 +72,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../layouts/card.vue';
+import Card from '../../layouts/card.vue';
 
 export default {
   components: {
@@ -116,7 +116,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../css/myuw/variables.scss";
+@import '../../../../css/myuw/variables.scss';
+
 .myuw-future-quarter {
   right: 1rem; top: 50%; margin-top: -20px;
   a {
