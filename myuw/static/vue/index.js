@@ -1,4 +1,4 @@
-import {Vue, vueConf} from './base.js';
+import { Vue, vueConf } from './base.js';
 
 // Bootstrap vue plugins
 import {
@@ -34,12 +34,9 @@ import Quicklinks from './components/pages/index/cards/quicklinks/quicklinks.vue
 
 import ToRegister from './components/pages/index/cards/new_student/to-register.vue';
 import RegStatus from './components/pages/index/cards/registration/status.vue';
-import CriticalInfo from
-  './components/pages/index/cards/new_student/critical-info.vue';
-import ThankYou from './components/pages/index/cards/new_student/thank-you.vue';
-import NewInterStudent from
-  './components/pages/index/cards/international/new-student.vue';
-
+import CriticalInfo from './components/pages/index/cards/new_student/critical-info.vue';
+//import ThankYou from './components/pages/index/cards/new_student/thank-you.vue';
+import NewInterStudent from './components/pages/index/cards/international/new-student.vue';
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 import FutureQuarterCards from './components/cards/future-quarter.vue';
 import UWNetID from './components/pages/index/cards/accounts/uwnetid.vue';
@@ -71,10 +68,9 @@ vueConf.store.registerModule('oquarter', oquarter);
 vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('myplan', myplan);
 
-
 vueConf.store.commit('addVarToState', {
   name: 'termData',
-  value: window.term_data
+  value: window.term_data,
 });
 vueConf.store.commit('addVarToState', {
   name: 'cardDisplayDates',
@@ -82,7 +78,7 @@ vueConf.store.commit('addVarToState', {
 });
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
-  value: 'Home'
+  value: 'Home',
 });
 
 // Bootstrap-Vue components as plugins
@@ -115,7 +111,7 @@ Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
-Vue.component('myuw-ns-thank-you', ThankYou);
+//Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
 Vue.component('myuw-reg-status', RegStatus);
 Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
