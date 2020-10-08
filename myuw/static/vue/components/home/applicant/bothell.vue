@@ -73,7 +73,8 @@
 </template>
 
 <script>
-import Card from '../../../../layouts/card.vue';
+import Card from '../../templates/card.vue';
+
 export default {
   components: {
     'uw-card': Card,
@@ -91,4 +92,3 @@ export default {
 };
 </script>
 
-<style scoped></style>

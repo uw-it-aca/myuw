@@ -127,7 +127,8 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../../../layouts/card.vue';
+
+import Card from '../../templates/card.vue';
 import Link from './link.vue';
 import CovidLinks from './covid-links.vue';
 
@@ -186,5 +187,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>

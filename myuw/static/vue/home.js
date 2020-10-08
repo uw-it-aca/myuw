@@ -22,7 +22,7 @@ import {
 // layout componenets
 import Boilerplate from './components/templates/boilerplate.vue';
 
-// shared components
+// common components
 import Grades from './components/common/grades.vue';
 import HuskyExperience from './components/common/husky-experience.vue';
 import Outage from './components/common/outage.vue';
@@ -39,7 +39,7 @@ import NewInterStudent from './components/home/international/new-student.vue';
 import Quicklinks from './components/home/quicklinks/quicklinks.vue';
 import ToRegister from './components/home/new_student/to-register.vue';
 import ThankYou from './components/home/new_student/thank-you.vue';
-import SummerEfs from './components/index/cards/new_student/summer-efs.vue';
+import SummerEfs from './components/home/new_student/summer-efs.vue';
 import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
 import UWNetID from './components/home/accounts/uwnetid.vue';
