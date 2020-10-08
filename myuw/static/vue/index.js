@@ -34,6 +34,7 @@ import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue';
 
 import ToRegister from './components/index/cards/new_student/to-register.vue';
 import RegStatus from './components/index/cards/registration/status.vue';
+import SummerEfs from './components/index/cards/new_student/summer-efs.vue';
 import CriticalInfo from
   './components/index/cards/new_student/critical-info.vue';
 import ThankYou from './components/index/cards/new_student/thank-you.vue';
@@ -41,10 +42,6 @@ import NewInterStudent from
   './components/index/cards/international/new-student.vue';
 
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
-import HuskyExperience from './components/cards/husky-experience.vue'
-import Outage from './components/cards/outage.vue'
-import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue'
-import SummerEfs from './components/index/cards/new_student/summer-efs.vue';
 import FutureQuarterCards from './components/cards/future-quarter.vue';
 import UWNetID from './components/index/cards/accounts/uwnetid.vue';
 
