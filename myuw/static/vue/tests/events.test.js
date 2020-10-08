@@ -5,8 +5,8 @@ import {createLocalVue, expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
 import events from '../vuex/store/events';
-import EventsCard from '../components/pages/index/cards/events/events.vue';
-import ListEvents from '../components/pages/index/cards/events/list-events.vue';
+import EventsCard from '../components/pages/home/cards/events/events.vue';
+import ListEvents from '../components/pages/home/cards/events/list-events.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {

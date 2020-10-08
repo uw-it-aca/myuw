@@ -3,7 +3,7 @@ import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import notices from '../vuex/store/notices';
-import ToRegisterCard from '../components/pages/index/cards/new_student/to-register.vue';
+import ToRegisterCard from '../components/pages/home/cards/new_student/to-register.vue';
 
 import mockNotices from './mock_data/notices.json';
 import interNotices from './mock_data/inter_notices.json';

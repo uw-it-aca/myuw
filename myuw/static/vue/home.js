@@ -21,25 +21,25 @@ import {
 
 // Vue componenets
 import Boilerplate from './components/layouts/boilerplate.vue';
-import Summaries from './components/pages/index/summaries.vue';
-import Notices from './components/pages/index/cards/notices.vue';
-import Applicant from './components/pages/index/cards/applicant/applicant.vue';
-import Events from './components/pages/index/cards/events/events.vue';
+import Summaries from './components/pages/home/summaries.vue';
+import Notices from './components/pages/home/cards/notices.vue';
+import Applicant from './components/pages/home/cards/applicant/applicant.vue';
+import Events from './components/pages/home/cards/events/events.vue';
 import Grades from './components/cards/grades.vue';
 import HuskyExperience from './components/cards/husky-experience.vue';
-import InterStudent from './components/pages/index/cards/international/student.vue';
+import InterStudent from './components/pages/home/cards/international/student.vue';
 
 import Outage from './components/cards/outage.vue';
-import Quicklinks from './components/pages/index/cards/quicklinks/quicklinks.vue';
+import Quicklinks from './components/pages/home/cards/quicklinks/quicklinks.vue';
 
-import ToRegister from './components/pages/index/cards/new_student/to-register.vue';
-import RegStatus from './components/pages/index/cards/registration/status.vue';
-import CriticalInfo from './components/pages/index/cards/new_student/critical-info.vue';
-import ThankYou from './components/pages/index/cards/new_student/thank-you.vue';
-import NewInterStudent from './components/pages/index/cards/international/new-student.vue';
+import ToRegister from './components/pages/home/cards/new_student/to-register.vue';
+import RegStatus from './components/pages/home/cards/registration/status.vue';
+import CriticalInfo from './components/pages/home/cards/new_student/critical-info.vue';
+import ThankYou from './components/pages/home/cards/new_student/thank-you.vue';
+import NewInterStudent from './components/pages/home/cards/international/new-student.vue';
 import VisualSchedule from './components/cards/schedule/visual-schedule.vue';
 import FutureQuarterCards from './components/cards/future-quarter.vue';
-import UWNetID from './components/pages/index/cards/accounts/uwnetid.vue';
+import UWNetID from './components/pages/home/cards/accounts/uwnetid.vue';
 
 // Stores
 import notices from './vuex/store/notices';

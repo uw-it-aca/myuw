@@ -39,7 +39,7 @@ module.exports = {
   },
   entry: {
     index: [
-      "./myuw/static/vue/index.js",
+      "./myuw/static/vue/home.js",
     ],
     teaching: [
       "./myuw/static/vue/teaching.js",

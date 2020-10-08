@@ -3,7 +3,7 @@ import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
-import CriticalInfoCard from '../components/pages/index/cards/new_student/critical-info.vue';
+import CriticalInfoCard from '../components/pages/home/cards/new_student/critical-info.vue';
 
 import mockNotices from './mock_data/notices.json';
 
