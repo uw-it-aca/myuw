@@ -90,7 +90,7 @@ export default {
       return this.isErroredTagged(this.urlExtra);
     },
     showError: function() {
-      return (this.statusCode == 543);
+      return this.statusCode !== 404;
     },
   },
   created() {

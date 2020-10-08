@@ -51,8 +51,8 @@ export default {
       'isErrored',
       'statusCode',
     ]),
-    showError() {
-      return this.statusCode != 404;
+    showError: function() {
+      return this.statusCode !== 404;
     },
   },
   created() {

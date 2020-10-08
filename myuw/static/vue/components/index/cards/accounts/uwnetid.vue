@@ -59,7 +59,7 @@ export default {
       'statusCode',
     ]),
     showError: function() {
-      return (this.statusCode == 543);
+      return this.statusCode !== 404;
     },
     showCard: function() {
       return !(this.applicant || this.employee || this.student);
