@@ -4,7 +4,7 @@ import { BCollapse } from 'bootstrap-vue'
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
-import NoticeCard from '../components/index/cards/notices';
+import NoticeCard from '../components/pages/index/cards/notices';
 import {
   FontAwesomeIcon,
 } from '@fortawesome/vue-fontawesome';

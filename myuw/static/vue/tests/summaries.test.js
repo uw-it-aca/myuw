@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import hfs from '../vuex/store/hfs';
 import library from '../vuex/store/library';
-import Summaries from '../components/index/summaries.vue';
+import Summaries from '../components/pages/index/summaries.vue';
 
 import mockNotices from './mock_data/notices.json';
 
