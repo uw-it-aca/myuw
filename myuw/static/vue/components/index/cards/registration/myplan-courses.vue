@@ -107,9 +107,12 @@ export default {
   },
   computed: {
     currentPlanData() {
-      return this.myPlanData.terms.find(
+      if (this.myPlanData && this.myPlanData.terms) {
+        return this.myPlanData.terms.find(
           (term) => term.quarter === this.nextTermQuarter,
-      );
+        );
+      }
+      return {};
     },
     hadReadyCourses() {
       return this.currentPlanData.has_ready_courses;

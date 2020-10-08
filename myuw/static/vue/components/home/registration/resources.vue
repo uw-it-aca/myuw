@@ -55,7 +55,7 @@
     </div>
     <div>
       <h4 class="h6 font-weight-bold">
-        Registration resources lsakdjlsadkjf
+        Registration resources
       </h4>
       <ul class="m-0 list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
@@ -161,9 +161,12 @@ export default {
       ),
     }),
     currentPlanData() {
-      return this.myPlanData.terms.find(
+      if (this.myPlanData && this.myPlanData.terms) {
+        return this.myPlanData.terms.find(
           (term) => term.quarter === this.nextTermQuarter,
-      );
+        );
+      }
+      return {};
     },
     hasReadyCourses() {
       return this.currentPlanData.has_ready_courses;
