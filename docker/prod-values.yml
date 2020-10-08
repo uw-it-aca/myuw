@@ -156,14 +156,14 @@ environmentVariables:
   - name: GWS_TIMEOUT
     value: "5"
   - name: GWS_POOL_SIZE
-    value: "50"
+    value: "30"
 
   - name: HFS_ENV
     value: PROD
   - name: HFS_TIMEOUT
     value: "5"
   - name: HFS_POOL_SIZE
-    value: "50"
+    value: "30"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
@@ -233,7 +233,7 @@ environmentVariables:
   - name: PWS_TIMEOUT
     value: "10"
   - name: PWS_POOL_SIZE
-    value: "50"
+    value: "30"
 
   - name: SDBMYUW_ENV
     value: PROD
@@ -259,7 +259,7 @@ environmentVariables:
   - name: UWNETID_ENV
     value: PROD
   - name: UWNETID_POOL_SIZE
-    value: "50"
+    value: "30"
   - name: UWNETID_TIMEOUT
     value: "10"
 
