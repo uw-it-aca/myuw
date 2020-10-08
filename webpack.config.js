@@ -38,7 +38,7 @@ module.exports = {
     // },
   },
   entry: {
-    index: [
+    home: [
       "./myuw/static/vue/home.js",
     ],
     teaching: [
