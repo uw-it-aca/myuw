@@ -3,5 +3,5 @@ from myuw.views.page import page
 
 
 @page_view
-def index(request):
-    return page(request, 'index.html', add_quicklink_context=True)
+def home(request):
+    return page(request, 'home.html', add_quicklink_context=True)

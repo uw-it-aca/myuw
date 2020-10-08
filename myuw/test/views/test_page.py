@@ -146,7 +146,7 @@ class TestPageMethods(MyuwApiTest):
     @skipIf(missing_url("myuw_home"), "myuw urls not configured")
     def test_user_not_in_pws(self):
         req = get_request_with_user('usernotinpws')
-        response = page(req, 'index.html', add_quicklink_context=True)
+        response = page(req, 'home.html', add_quicklink_context=True)
         self.assertEquals(response.status_code, 403)
         self.assertEquals(
             response.reason_phrase,
