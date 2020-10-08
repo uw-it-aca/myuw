@@ -90,7 +90,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../../css/myuw/variables.scss";
+@import "../../../../../../css/myuw/variables.scss";
 .myuw-thank-you {
   // override card background color using $success background
   ::v-deep .card {
