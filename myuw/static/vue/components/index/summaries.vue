@@ -47,15 +47,15 @@
       </a>
     </b-col>
     <b-col v-if="isHfsReady && isLibraryReady" md="10">
-      <div class="row float-md-right">
+      <div class="row float-md-right" style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col px-3 py-2
+          class="d-inline-block col px-3 py-2 ml-1
           font-weight-light text-dark text-nowrap
           myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left myuw-min-width-25'
+              ? 'border-left text-left'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -67,12 +67,12 @@
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col px-3 py-2
+          class="d-inline-block col px-3 py-2 ml-1
           font-weight-light text-dark text-nowrap
           myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left myuw-min-width-25'
+              ? 'border-left text-left'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -85,12 +85,12 @@
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col px-3 py-2
+          class="d-inline-block col px-3 py-2 ml-1
           font-weight-light text-dark text-nowrap
           myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left myuw-min-width-25'
+              ? 'border-left text-left'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -102,12 +102,12 @@
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col px-3 py-2
+          class="d-inline-block col px-3 py-2 ml-1
           font-weight-light text-dark text-nowrap
           myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left myuw-min-width-25'
+              ? 'border-left text-left'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -119,12 +119,12 @@
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col px-3 py-2
+          class="d-inline-block col px-3 py-2 ml-1
           font-weight-light text-dark text-nowrap
           myuw-text-xs"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left myuw-min-width-25'
+              ? 'border-left text-left'
               : 'border-none text-center',
           ]"
           href="https://search.lib.uw.edu/account"
@@ -196,9 +196,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.myuw-min-width-25 {
-  min-width: 25%;
-}
-</style>
