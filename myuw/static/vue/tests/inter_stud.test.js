@@ -8,7 +8,7 @@ import StudentCard from '../components/index/cards/international/student.vue';
 import SeattleComp from '../components/index/cards/international/seattle.vue';
 import BothellComp from '../components/index/cards/international/bothell.vue';
 import TacomaComp from '../components/index/cards/international/tacoma.vue';
-import UwCard from '../layouts/card.vue';
+import UwCard from '../components/layouts/card.vue';
 
 import mockNotices from './mock_data/inter_notices.json';
 

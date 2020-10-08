@@ -20,7 +20,7 @@ import {
 } from 'bootstrap-vue';
 
 // Vue componenets
-import Boilerplate from './layouts/boilerplate.vue';
+import Boilerplate from './components/layouts/boilerplate.vue';
 import Summaries from './components/index/summaries.vue';
 import Notices from './components/index/cards/notices.vue';
 import Applicant from './components/index/cards/applicant/applicant.vue';

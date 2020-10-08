@@ -1,6 +1,6 @@
 import {Vue, vueConf} from './base.js';
 
-import Boilerplate from './layouts/boilerplate.vue';
+import Boilerplate from './components/layouts/boilerplate.vue';
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',

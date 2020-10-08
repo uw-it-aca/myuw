@@ -100,7 +100,7 @@
 <script>
 import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../layouts/card.vue';
+import Card from '../../components/layouts/card.vue';
 
 export default {
   components: {

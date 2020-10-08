@@ -351,7 +351,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../css/myuw/variables.scss";
+@import "../../../css/myuw/variables.scss";
 
 // boilerplate
 
@@ -376,7 +376,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 45px;
     background-position: right 20px bottom;
-    background-image: url(../../images/w-logo-white.png);
+    background-image: url(../../../images/w-logo-white.png);
   }
 }
 

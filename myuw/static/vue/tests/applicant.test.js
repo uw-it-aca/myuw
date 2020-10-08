@@ -7,7 +7,7 @@ import ApplicantCard from '../components/index/cards/applicant/applicant.vue';
 import SeattleComp from '../components/index/cards/applicant/seattle.vue';
 import BothellComp from '../components/index/cards/applicant/bothell.vue';
 import TacomaComp from '../components/index/cards/applicant/tacoma.vue';
-import UwCard from '../layouts/card.vue';
+import UwCard from '../components/layouts/card.vue';
 
 import mockApplicant from './mock_data/applicant.json';
 

@@ -49,7 +49,7 @@
 
 <script>
 import {mapState} from 'vuex';
-import Card from '../../../../layouts/card.vue';
+import Card from '../../../../components/layouts/card.vue';
 import Seattle from './seattle.vue';
 import Bothell from './bothell.vue';
 import Tacoma from './tacoma.vue';
