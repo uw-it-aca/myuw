@@ -3,7 +3,7 @@
     <b-card v-if="loaded"
             class="rounded-0 shadow-sm mb-3"
             body-class="p-3"
-            footer-class="px-3 pt-1 pb-2"
+            footer-class="border-0 px-3 pt-1 pb-2"
     >
       <slot name="card-heading" />
       <slot name="card-body" />

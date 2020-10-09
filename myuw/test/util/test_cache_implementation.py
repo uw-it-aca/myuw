@@ -7,12 +7,12 @@ from rc_django.models import CacheEntryTimed
 from restclients_core.exceptions import DataFailureException
 from uw_sws.dao import SWS_DAO
 from uw_sws.util import fdao_sws_override
-from myuw.util.cache_implementation import MyUWCache, get_cache_time,\
-    MyUWMemcachedCache
+from myuw.util.cache_implementation import MyUWCache
+from myuw.util.cache import MyUWMemcachedCache
 
 
 CACHE = 'myuw.util.cache_implementation.MyUWCache'
-MEMCACHE = 'myuw.util.cache_implementation.MyUWMemcachedCache'
+MEMCACHE = 'myuw.util.cache.MyUWMemcachedCache'
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
@@ -24,52 +24,53 @@ ONE_DAY = ONE_HOUR * 24
 class TestCustomCachePolicy(TestCase):
 
     def test_get_cache_time(self):
-        self.assertEquals(get_cache_time(
+        cache = MyUWMemcachedCache()
+        self.assertEquals(cache.get_cache_expiration_time(
             "uwidp", "/idp/profile/oidc/keyset"), ONE_DAY)
 
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "myplan", "/api/plan/"), FIVE_SECONDS)
 
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/term/current.json"), ONE_DAY)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/course/.../status.json"), FOUR_HOURS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/course/"), FIFTEEN_MINS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/person/"), ONE_HOUR)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/enrollment"), FIFTEEN_MINS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/notice"), FIFTEEN_MINS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/registration"), FIFTEEN_MINS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/section"), FIFTEEN_MINS)
 
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "gws", "/group_sws/v3"), FIFTEEN_MINS)
 
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/nws/v1/uwnetid"), ONE_HOUR)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
 
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "grad", "/services/students"), FOUR_HOURS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "iasystem_uw", "/uw/api/v1/evaluation"), FOUR_HOURS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "iasystem_uwb", "/uwb/api/v1/evaluation"), FOUR_HOURS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "iasystem_uwt", "/uwt/api/v1/evaluation"), FOUR_HOURS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "digitlib", "/php/currics/service.php"), FOUR_HOURS)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "kws", "/key/v1/encryption/"), ONE_DAY * 30)
-        self.assertEquals(get_cache_time(
+        self.assertEquals(cache.get_cache_expiration_time(
             "kws", "/key/v1/type/"), ONE_DAY * 7)
 
     def test_sws_default_policies(self):
@@ -284,9 +285,3 @@ class TestCustomCachePolicy(TestCase):
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
-
-    def test_myuwmemcachedcache(self):
-        with self.settings(RESTCLIENTS_DAO_CACHE_CLASS=MEMCACHE):
-            cache = MyUWMemcachedCache()
-            self.assertEquals(cache.get_cache_expiration_time(
-                'sws', '/student/v5/term/2013,summer.json'), ONE_DAY)

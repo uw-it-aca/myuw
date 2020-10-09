@@ -1,26 +1,33 @@
 <template>
-  <div>
-    <h4>Financial Aid</h4>
-    <ul>
+  <div class="mt-4">
+    <h4 class="h6 text-dark font-weight-bold">
+      Financial Aid
+    </h4>
+    <ul class="list-unstyled m-0">
       <li v-for="(notice, i) in finAidNotices" :key="i">
-        <button
-          v-b-toggle="`finAid-${notice.id_hash}-collapse`"
+        <b-button
+          v-b-toggle="`finAid-${notice.id_hash}-collapse-${_uid}`"
+          variant="link"
+          class="p-0 border-0 mb-2 bg-transparent myuw-text-md"
+          size="md"
         >
           <font-awesome-icon
             v-if="collapseOpen"
             :icon="['fas', 'caret-down']"
           />
-          <font-awesome-icon
-            v-else
-            :icon="['fas', 'caret-right']"
-          />
+          <font-awesome-icon v-else :icon="['fas', 'caret-right']" />
           {{ notice.short_content }}
-        </button>
+        </b-button>
         <b-collapse
-          :id="`finAid-${notice.id_hash}-collapse`"
+          :id="`finAid-${notice.id_hash}-collapse-${_uid}`"
           v-model="collapseOpen"
-          v-html="notice.notice_content"
-        />
+          class="myuw-fin-aid"
+        >
+          <div
+            class="bg-warning m-0 p-3 border-0 rounded-0 myuw-text-sm"
+            v-html="notice.notice_body"
+          />
+        </b-collapse>
       </li>
     </ul>
   </div>
@@ -41,3 +48,22 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@use "sass:map";
+@import '../../../../css/myuw/variables.scss';
+.myuw-fin-aid {
+  // override warning background
+  ::v-deep .bg-warning {
+    background-color: lighten(
+      map.get($theme-colors, 'warning'),
+      47%
+    ) !important;
+  }
+
+  ::v-deep .notice-title {
+    font-weight: bold;
+    display: block;
+  }
+}
+</style>
