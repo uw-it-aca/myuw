@@ -27,7 +27,6 @@ import Grades from './components/_common/grades.vue';
 import HuskyExperience from './components/_common/husky-experience.vue';
 import Outage from './components/_common/outage.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';
-// import VisualSchedule from './components/_common/schedule/visual-schedule.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
 
