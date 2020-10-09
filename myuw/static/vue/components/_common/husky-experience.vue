@@ -15,7 +15,7 @@
              style="max-height:300px;"
         >
           <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt">
-          <div class="position-absolute h-100 myuw-huskyexp-body">
+          <div class="position-absolute h-100 w-100 myuw-huskyexp-body">
             <a :href="expLink"
                :aria-label="`${articleTeaserTitle}. ${articleTeaserBody}`"
                class="d-block h-100 px-3 py-4"
