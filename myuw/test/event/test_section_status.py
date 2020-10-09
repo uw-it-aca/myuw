@@ -52,7 +52,6 @@ M1 = {
         "Status": "open"}
 }
 override = override_settings(
-    MEMCACHED_SERVERS=['localhost:11211'],
     AWS_SQS={'SECTION_STATUS_V1': {
         'QUEUE_ARN': "arn:aws:sqs:us-xxxx-1:123456789012:xxxx_xxxx",
         'KEY_ID': 'XXXXXXXXXXXXXXXX',
@@ -65,7 +64,6 @@ override = override_settings(
 
 @override
 class TestSectionStatusProcessor(TestCase):
-
     def test_message_validation(self):
         event_hdlr = SectionStatusProcessor()
         self.assertFalse(event_hdlr.validate_message_body(None))

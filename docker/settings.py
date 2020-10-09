@@ -244,6 +244,7 @@ LOGGING = {
 
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
+    MEMCACHED_SERVERS=['localhost:11211']
 else:
     RESTCLIENTS_DAO_CACHE_CLASS = 'myuw.util.cache.MyUWMemcachedCache'
 
