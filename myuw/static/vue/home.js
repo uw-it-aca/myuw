@@ -45,6 +45,9 @@ import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
 import UWNetID from './components/home/accounts/uwnetid.vue';
 
+// account components
+import GradStatus from './components/home/accounts/grad-status.vue';
+
 // stores
 import notices from './vuex/store/notices';
 import quicklinks from './vuex/store/quicklinks';
@@ -60,6 +63,7 @@ import profile from './vuex/store/profile';
 import myplan from './vuex/store/myplan';
 import textbooks from './vuex/store/textbooks';
 import schedule from './vuex/store/schedule';
+import grad from './vuex/store/grad';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -75,6 +79,7 @@ vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('myplan', myplan);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('schedule', schedule);
+vueConf.store.registerModule('grad', grad);
 
 vueConf.store.commit('addVarToState', {
   name: 'termData',
@@ -126,6 +131,7 @@ Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-uwnetid', UWNetID);
+Vue.component('myuw-grad-status', GradStatus);
 
 new Vue({
   ...vueConf,
