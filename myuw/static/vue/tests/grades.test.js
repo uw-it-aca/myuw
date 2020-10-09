@@ -4,7 +4,7 @@ import {createLocalVue, expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
 import Courses from '../vuex/store/courses';
-import GradesCard from '../components/cards/grades.vue';
+import GradesCard from '../components/_common/grades.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {

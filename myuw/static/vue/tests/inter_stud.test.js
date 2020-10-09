@@ -3,12 +3,12 @@ import { shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import Notices from '../vuex/store/notices';
-import NewStudentCard from '../components/index/cards/international/new-student.vue';
-import StudentCard from '../components/index/cards/international/student.vue';
-import SeattleComp from '../components/index/cards/international/seattle.vue';
-import BothellComp from '../components/index/cards/international/bothell.vue';
-import TacomaComp from '../components/index/cards/international/tacoma.vue';
-import UwCard from '../containers/card.vue';
+import NewStudentCard from '../components/home/international/new-student.vue';
+import StudentCard from '../components/home/international/student.vue';
+import SeattleComp from '../components/home/international/seattle.vue';
+import BothellComp from '../components/home/international/bothell.vue';
+import TacomaComp from '../components/home/international/tacoma.vue';
+import UwCard from '../components/_templates/card.vue';
 
 import mockNotices from './mock_data/inter_notices.json';
 

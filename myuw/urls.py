@@ -2,7 +2,7 @@ from django.conf import settings
 from django.urls import re_path
 from django.contrib.auth.decorators import login_required
 from myuw.views.page import logout
-from myuw.views.index import index
+from myuw.views.home import home
 from myuw.views.teaching import teaching, teaching_section, student_photo_list
 from myuw.views.notices import notices
 from myuw.views.thrive import thrive
@@ -274,5 +274,5 @@ urlpatterns += [
             LTIPhotoList.as_view(), name='myuw_lti_photo_list'),
     re_path(r'photo/(?P<url_key>.*)', show_photo),
     re_path(r'out/?', outbound_link, name='myuw_outbound_link'),
-    re_path(r'.*', index, name="myuw_home"),
+    re_path(r'.*', home, name="myuw_home"),
 ]

@@ -2,7 +2,7 @@ import axios from 'axios';
 import {mount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
-import RegStatus from '../components/index/cards/registration/status.vue';
+import RegStatus from '../components/home/registration/status.vue';
 import notices from '../vuex/store/notices';
 import oquarter from '../vuex/store/oquarter';
 import profile from '../vuex/store/profile';

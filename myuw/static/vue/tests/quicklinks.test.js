@@ -3,8 +3,8 @@ import {mount, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import quicklinks from '../vuex/store/quicklinks';
-import Link from '../components/index/cards/quicklinks/link.vue';
-import Quicklinks from '../components/index/cards/quicklinks/quicklinks.vue';
+import Link from '../components/home/quicklinks/link.vue';
+import Quicklinks from '../components/home/quicklinks/quicklinks.vue';
 
 import mockQuicklinks from './mock_data/quicklinks.json';
 

@@ -38,8 +38,8 @@ module.exports = {
     // },
   },
   entry: {
-    index: [
-      "./myuw/static/vue/index.js",
+    home: [
+      "./myuw/static/vue/home.js",
     ],
     teaching: [
       "./myuw/static/vue/teaching.js",
