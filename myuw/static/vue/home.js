@@ -29,6 +29,7 @@ import Outage from './components/_common/outage.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
+import UWNetID from './components/_common/uw-netid.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
@@ -43,7 +44,6 @@ import ThankYou from './components/home/new_student/thank-you.vue';
 import SummerEfs from './components/home/new_student/summer-efs.vue';
 import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
-import UWNetID from './components/home/accounts/uw-netid.vue';
 
 // stores
 import notices from './vuex/store/notices';

@@ -6,7 +6,7 @@
   >
     <template #card-heading>
       <h3 class="text-dark-beige">
-        UW NetID
+        UW NetIDsss
       </h3>
     </template>
     <template #card-body>
@@ -41,7 +41,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../_templates/card.vue';
 
 export default {
   components: {
