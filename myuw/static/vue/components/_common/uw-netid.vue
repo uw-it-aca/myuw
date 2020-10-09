@@ -6,7 +6,7 @@
   >
     <template #card-heading>
       <h3 class="text-dark-beige">
-        UW NetIDsss
+        UW NetID
       </h3>
     </template>
     <template #card-body>
