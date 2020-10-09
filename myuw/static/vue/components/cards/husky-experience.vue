@@ -11,7 +11,9 @@
     </template>
     <template #card-body>
       <div class="mx-n3 mb-n3 myuw-huskyexp">
-        <div class="position-relative">
+        <div class="position-relative overflow-hidden"
+             style="max-height:300px;"
+        >
           <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt">
           <div class="position-absolute h-100 myuw-huskyexp-body">
             <a :href="expLink"
@@ -90,7 +92,7 @@ export default {
       return this.isErroredTagged(this.urlExtra);
     },
     showError: function() {
-      return (this.statusCode == 543);
+      return this.statusCode !== 404;
     },
   },
   created() {
@@ -122,6 +124,7 @@ export default {
   }
   .myuw-huskyexp-body {
     top: 0;
+    padding: 2px;
   }
 }
 </style>

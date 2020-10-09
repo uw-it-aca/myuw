@@ -34,6 +34,7 @@ import Quicklinks from './components/index/cards/quicklinks/quicklinks.vue';
 
 import ToRegister from './components/index/cards/new_student/to-register.vue';
 import RegStatus from './components/index/cards/registration/status.vue';
+import SummerEfs from './components/index/cards/new_student/summer-efs.vue';
 import CriticalInfo from
   './components/index/cards/new_student/critical-info.vue';
 import ThankYou from './components/index/cards/new_student/thank-you.vue';
@@ -118,6 +119,7 @@ Vue.component('myuw-grades', Grades);
 Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
+Vue.component('myuw-summer-efs', SummerEfs);
 Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
 Vue.component('myuw-reg-status', RegStatus);
