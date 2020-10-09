@@ -93,6 +93,7 @@ class TestSectionStatusProcessor(TestCase):
         M1["EventDate"] = str(timezone.now())
 
         self.assertTrue(event_hdlr.validate_message_body(M1))
+        event_hdlr.process_message_body(M1)
         mock_fn.assert_called_with(
             "/student/v5/course/2018,autumn,HCDE,210/A/status.json",
             M1["Current"], event_hdlr.modified)
