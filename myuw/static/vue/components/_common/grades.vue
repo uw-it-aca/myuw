@@ -125,9 +125,9 @@ export default {
       isAfterSummerBStart: (state) => state.cardDisplayDates.is_after_summer_b,
       isAfterGradeSubmissionDeadline: (state) =>
         state.cardDisplayDates.is_after_grade_submission_deadline,
-      courses: (state) => state.courses.value,
+      courses: (state) => state.stud_schedule.value,
     }),
-    ...mapGetters('courses', [
+    ...mapGetters('stud_schedule', [
       'isReadyTagged',
       'isErroredTagged',
     ]),
@@ -200,7 +200,7 @@ export default {
       }
       return dayjs(dateStr).format('ddd, MMM D');
     },
-    ...mapActions('courses', ['fetch']),
+    ...mapActions('stud_schedule', ['fetch']),
   },
 };
 </script>
