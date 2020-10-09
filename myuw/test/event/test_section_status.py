@@ -52,7 +52,7 @@ M1 = {
         "Status": "open"}
 }
 override = override_settings(
-    MEMCACHED_SERVERS=(['localhost:11211']),
+    MEMCACHED_SERVERS=['localhost:11211'],
     AWS_SQS={'SECTION_STATUS_V1': {
         'QUEUE_ARN': "arn:aws:sqs:us-xxxx-1:123456789012:xxxx_xxxx",
         'KEY_ID': 'XXXXXXXXXXXXXXXX',
