@@ -1,6 +1,7 @@
 import logging
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
-from myuw.util.cache_implementation import MyUWMemcachedCache
+from myuw.util.cache import MyUWMemcachedCache
 
 logger = logging.getLogger(__name__)
 
@@ -13,7 +14,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         flush = options["flush"]
-        client = MyUWMemcachedCache().client
+        client = MyUWMemcachedCache()
         # logger.info("Stats {}".format(client.stats()))
         if flush:
-            logger.info("Flushed: {}".format(client.flush_all()))
+            try:
+                logger.info("Flushed: {}".format(client.flush_all()))
+            except Exception as ex:
+                logger.error("Memcached: {}, Servers: {}".format(
+                    ex, getattr(settings, "MEMCACHED_SERVERS")))
