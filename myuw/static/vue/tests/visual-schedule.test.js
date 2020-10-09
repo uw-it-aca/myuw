@@ -4,13 +4,21 @@ import dayjs from 'dayjs';
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import schedule from '../vuex/store/schedule';
+import visual_schedule from '../vuex/store/visual_schedule';
 import {statusOptions} from '../vuex/store/model_builder';
 import {expectAction} from './helper';
 
+<<<<<<< HEAD
 import CourseSection from '../components/_common/schedule/course-section.vue';
 import ScheduleTab from '../components/_common/schedule/schedule-tab.vue';
 import VisualSchedule from '../components/_common/schedule/visual-schedule.vue';
+=======
+import CourseSection from
+  '../components/cards/visual_schedule/course-section.vue';
+import ScheduleTab from
+   '../components/cards/visual_schedule/schedule-tab.vue';
+import VisualSchedule from '../components/cards/visual_schedule/schedule.vue';
+>>>>>>> feature/vue
 
 import mockScheduleBill from './mock_data/schedule/bill2013.json';
 import mockScheduleBillsea2020 from './mock_data/schedule/billsea2020.json';
@@ -28,7 +36,7 @@ describe('Schedule Model', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'schedule': schedule,
+        'visual_schedule': visual_schedule,
       },
     });
   });
@@ -40,7 +48,7 @@ describe('Schedule Model', () => {
       isFetchingTagged: () => false,
     };
 
-    return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
+    return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
       {type: 'setValue', payload: mockScheduleBill},
       {type: 'setStatus', payload: statusOptions[0]},
@@ -53,7 +61,7 @@ describe('Schedule Model', () => {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
-    return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
+    return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
       {type: 'setStatus', payload: statusOptions[2]},
     ]);
@@ -67,7 +75,7 @@ describe('Schedule Model', () => {
       isFetchingTagged: () => false,
     };
 
-    return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
+    return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
       {type: 'setValue', payload: mockScheduleBill},
       {type: 'setStatus', payload: statusOptions[0]},
@@ -81,7 +89,7 @@ describe('Schedule Model', () => {
       isFetchingTagged: () => false,
     };
 
-    return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
+    return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
       {type: 'setValue', payload: mockScheduleBillsea2020},
       {type: 'setStatus', payload: statusOptions[0]},
@@ -95,7 +103,7 @@ describe('Schedule Model', () => {
       isFetchingTagged: () => false,
     };
 
-    return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
+    return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
       {type: 'setValue', payload: mockScheduleJaverage},
       {type: 'setStatus', payload: statusOptions[0]},
@@ -109,7 +117,7 @@ describe('Schedule Model', () => {
       isFetchingTagged: () => false,
     };
 
-    return expectAction(schedule.actions.fetch, null, schedule.state, getters, [
+    return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
       {type: 'setStatus', payload: statusOptions[1]},
       {type: 'setValue', payload: mockScheduleJeos},
       {type: 'setStatus', payload: statusOptions[0]},
@@ -118,65 +126,65 @@ describe('Schedule Model', () => {
 
   it ('Check earliest and latest meeting times', async () => {
     axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
-    store.dispatch('schedule/fetch', 'testCurrent');
+    store.dispatch('visual_schedule/fetch', 'testCurrent');
 
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
-    expect(store.getters['schedule/isReadyTagged']('testCurrent')).toBeTruthy();
+    expect(store.getters['visual_schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
-    expect(store.state.schedule.value).toBeDefined();
-    expect(store.state.schedule.value.testCurrent).toBeDefined();
-    expect(store.state.schedule.value.testCurrent.periods).toHaveLength(2);
+    expect(store.state.visual_schedule.value).toBeDefined();
+    expect(store.state.visual_schedule.value.testCurrent).toBeDefined();
+    expect(store.state.visual_schedule.value.testCurrent.periods).toHaveLength(2);
 
     expect(
-      store.state.schedule.value.testCurrent.periods[0].earliestMeetingTime
+      store.state.visual_schedule.value.testCurrent.periods[0].earliestMeetingTime
     ).toBeInstanceOf(dayjs);
     expect(
-      store.state.schedule.value.testCurrent.periods[0].earliestMeetingTime.format('hh:mm A')
+      store.state.visual_schedule.value.testCurrent.periods[0].earliestMeetingTime.format('hh:mm A')
     ).toBe("08:30 AM");
 
     expect(
-      store.state.schedule.value.testCurrent.periods[0].latestMeetingTime
+      store.state.visual_schedule.value.testCurrent.periods[0].latestMeetingTime
     ).toBeInstanceOf(dayjs);
     expect(
-      store.state.schedule.value.testCurrent.periods[0].latestMeetingTime.format('hh:mm A')
+      store.state.visual_schedule.value.testCurrent.periods[0].latestMeetingTime.format('hh:mm A')
     ).toBe("06:20 PM");
 
     expect(
-      store.state.schedule.value.testCurrent.periods[1].earliestMeetingTime
+      store.state.visual_schedule.value.testCurrent.periods[1].earliestMeetingTime
     ).toBeInstanceOf(dayjs);
     expect(
-      store.state.schedule.value.testCurrent.periods[1].earliestMeetingTime.format('hh:mm A')
+      store.state.visual_schedule.value.testCurrent.periods[1].earliestMeetingTime.format('hh:mm A')
     ).toBe("08:30 AM");
 
     expect(
-      store.state.schedule.value.testCurrent.periods[1].latestMeetingTime
+      store.state.visual_schedule.value.testCurrent.periods[1].latestMeetingTime
     ).toBeInstanceOf(dayjs);
     expect(
-      store.state.schedule.value.testCurrent.periods[1].latestMeetingTime.format('hh:mm A')
+      store.state.visual_schedule.value.testCurrent.periods[1].latestMeetingTime.format('hh:mm A')
     ).toBe("04:20 PM");
   });
 
   it ('Check eos data', async () => {
     axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
-    store.dispatch('schedule/fetch', 'testCurrent');
+    store.dispatch('visual_schedule/fetch', 'testCurrent');
 
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
-    expect(store.getters['schedule/isReadyTagged']('testCurrent')).toBeTruthy();
+    expect(store.getters['visual_schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
-    expect(store.state.schedule.value).toBeDefined();
-    expect(store.state.schedule.value.testCurrent).toBeDefined();
-    expect(store.state.schedule.value.testCurrent.periods).toHaveLength(6);
+    expect(store.state.visual_schedule.value).toBeDefined();
+    expect(store.state.visual_schedule.value.testCurrent).toBeDefined();
+    expect(store.state.visual_schedule.value.testCurrent.periods).toHaveLength(6);
 
     expect(
-      store.state.schedule.value.testCurrent.periods[0].eosData
+      store.state.visual_schedule.value.testCurrent.periods[0].eosData
     ).toHaveLength(1);
     expect(
-      store.state.schedule.value.testCurrent.periods[0].eosData[0].curriculum_abbr
+      store.state.visual_schedule.value.testCurrent.periods[0].eosData[0].curriculum_abbr
     ).toBe("BIGDATA");
     expect(
-      store.state.schedule.value.testCurrent.periods[0].eosData[0].meetings
+      store.state.visual_schedule.value.testCurrent.periods[0].eosData[0].meetings
     ).toHaveLength(3);
   });
 });
@@ -187,7 +195,7 @@ describe('Vue SFC Tests', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'schedule': schedule,
+        'visual_schedule': visual_schedule,
       },
       state: {
         user: {
