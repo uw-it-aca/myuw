@@ -67,3 +67,4 @@ class SectionStatusProcessor(MessageBodyProcessor):
                 "Memcached: {}, Servers: {}, Data: {}, Traceback: {}".format(
                     ex, getattr(settings, "MEMCACHED_SERVERS"), msg,
                     traceback.format_exc(chain=False).splitlines()))
+            raise SectionStatusProcessorException("{}, {}".format(ex, msg))
