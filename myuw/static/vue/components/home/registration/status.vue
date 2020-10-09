@@ -17,7 +17,6 @@
       <uw-est-reg-date :est-reg-data="estRegData" />
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
-        :isMyPlanPeakLoad="myPlanPeakLoad"
         :reg-holds-notices="regHoldsNotices"
       />
 

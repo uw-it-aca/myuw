@@ -1,7 +1,7 @@
 <template>
   <div v-if="estRegData.estRegDate" class="mb-4">
     <div v-if="estRegData.isMy1stRegDay"
-         class="font-weight-bold"
+         class="alert alert-primary" role="alert"
     >
       Registration opens at 6:00AM
     </div>
