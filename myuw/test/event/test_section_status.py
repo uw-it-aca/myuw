@@ -1,6 +1,7 @@
 import os
 import json
 from copy import deepcopy
+from unittest.mock import patch
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
@@ -86,11 +87,12 @@ class TestSectionStatusProcessor(TestCase):
         m2.pop("Current")
         self.assertFalse(event_hdlr.validate_message_body(m2))
 
-    def test_process_message_content(self):
+    @patch("myuw.event.section_status.update_sws_entry_in_cache")
+    def test_process_message_content(self, mock_fn):
         event_hdlr = SectionStatusProcessor()
         M1["EventDate"] = str(timezone.now())
-        self.assertRaises(SectionStatusProcessorException,
-                          event_hdlr.process_message_body, M1)
 
         self.assertTrue(event_hdlr.validate_message_body(M1))
-        event_hdlr.process_message_body(M1)
+        mock_fn.assert_called_with(
+            "/student/v5/course/2018,autumn,HCDE,210/A/status.json",
+            M1["Current"], event_hdlr.modified)
