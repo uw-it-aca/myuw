@@ -22,7 +22,6 @@ from myuw.test.api.cur_books import TestApiCurBooks
 from myuw.test.api.hfs import TestHFS as TestHFSAPI
 from myuw.test.api.profile import TestProfile
 from myuw.test.api.emaillist import TestEmaillistApi
-from myuw.test.api.myplan import TestMyPlanApi
 from myuw.test.api.category_links import TestLinks
 from myuw.test.api.finance import TestFinance as TestFinanceAPI
 from myuw.test.api.notices import TestNotices as TestNoticesAPI
