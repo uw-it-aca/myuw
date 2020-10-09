@@ -7,12 +7,12 @@ from rc_django.models import CacheEntryTimed
 from restclients_core.exceptions import DataFailureException
 from uw_sws.dao import SWS_DAO
 from uw_sws.util import fdao_sws_override
-from myuw.util.cache_implementation import MyUWCache, get_cache_time,\
-    MyUWMemcachedCache
+from myuw.util.cache_implementation import MyUWCache, get_cache_time
+from myuw.util.cache import MyUWMemcachedCache
 
 
 CACHE = 'myuw.util.cache_implementation.MyUWCache'
-MEMCACHE = 'myuw.util.cache_implementation.MyUWMemcachedCache'
+MEMCACHE = 'myuw.util.cache.MyUWMemcachedCache'
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
 ONE_HOUR = 60 * 60
