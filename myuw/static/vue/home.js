@@ -43,7 +43,7 @@ import ThankYou from './components/home/new_student/thank-you.vue';
 import SummerEfs from './components/home/new_student/summer-efs.vue';
 import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
-import UWNetID from './components/home/accounts/uwnetid.vue';
+import UWNetID from './components/home/accounts/uw-netid.vue';
 
 // stores
 import notices from './vuex/store/notices';
