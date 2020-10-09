@@ -1,6 +1,6 @@
 [
     {
-        "Term":{"Quarter":"Spring","Year":2013},
+        "Term":{"Quarter":"Summer","Year":2013},
         "RegistrationHref":"http://example.com/RegistrationHref",
         "MyPlanHref":"http://example.com/MyPlan",
         "AuditHref":"https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit",
