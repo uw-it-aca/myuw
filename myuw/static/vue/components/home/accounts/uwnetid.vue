@@ -11,10 +11,14 @@
     </template>
     <template #card-body>
       <div>
-        <a href="https://uwnetid.washington.edu/manage/" target="_blank" title="Manage UW NetID" class="btn btn-default card-action-btn myuw-button">Manage UW NetID account</a>
+        <a href="https://uwnetid.washington.edu/manage/" target="_blank" title="Manage UW NetID"
+           class="btn btn-primary"
+        >
+          Manage UW NetID account
+        </a>
       </div>
-      <div class="links-container actionlink-list">
-        <ul class="unstyled-list">
+      <div class="">
+        <ul class="list-unstyled m-0 myuw-text-md">
           <li>
             <a href="https://uwnetid.washington.edu/manage/?password" target="_blank" title="Change UW NetID password">Change UW NetID password</a>
           </li>
