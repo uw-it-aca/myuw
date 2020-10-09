@@ -62,9 +62,13 @@ class SectionStatusProcessor(MessageBodyProcessor):
         try:
             update_sws_entry_in_cache(url, new_value, self.modified)
         except Exception as ex:
-            data = "(svc=sws, url={}, new value={})".format(url, new_value)
-            msg = "Memcached: {}, Servers: {}, Data: {}, Trace: {}".format(
-                ex, getattr(settings, "MEMCACHED_SERVERS"), data,
-                traceback.format_exc(chain=False).splitlines())
+            msg = {
+                "at": "SectionStatusProcessor",
+                "memcachedServers": getattr(settings, "MEMCACHED_SERVERS"),
+                "svc": "sws",
+                "url": url,
+                "newValue": new_value,
+                "err": ex,
+                "stacktrace": traceback.format_exc(chain=False).splitlines()}
             logger.error(msg)
             raise SectionStatusProcessorException(msg)
