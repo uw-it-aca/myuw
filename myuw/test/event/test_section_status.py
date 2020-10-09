@@ -1,10 +1,9 @@
+import os
 import json
-from bmemcached.exceptions import MemcachedException
 from copy import deepcopy
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
-from myuw.event import myuwcache
 from myuw.event.section_status import (
     SectionStatusProcessor, SectionStatusProcessorException)
 
@@ -53,7 +52,7 @@ M1 = {
         "Status": "open"}
 }
 override = override_settings(
-    RESTCLIENTS_MEMCACHED_SERVERS=('localhost:11211',),
+    MEMCACHED_SERVERS=(['localhost:11211']),
     AWS_SQS={'SECTION_STATUS_V1': {
         'QUEUE_ARN': "arn:aws:sqs:us-xxxx-1:123456789012:xxxx_xxxx",
         'KEY_ID': 'XXXXXXXXXXXXXXXX',
@@ -90,7 +89,6 @@ class TestSectionStatusProcessor(TestCase):
         self.assertFalse(event_hdlr.validate_message_body(m2))
 
     def test_process_message_content(self):
-        return
         event_hdlr = SectionStatusProcessor()
         M1["EventDate"] = str(timezone.now())
         self.assertRaises(SectionStatusProcessorException,

@@ -1,6 +1,6 @@
 import logging
 from django.core.management.base import BaseCommand, CommandError
-from myuw.util.cache_implementation import MyUWMemcachedCache
+from myuw.util.cache import MyUWMemcachedCache
 
 logger = logging.getLogger(__name__)
 
