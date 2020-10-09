@@ -82,7 +82,7 @@
         </a> calendar.
       </div>
     </template>
-    <template v-if="hiddenEvents.length > 0" #card-footer footer-class="xxxx">
+    <template v-if="hiddenEvents.length > 0" #card-footer>
       <b-button
         v-if="!isOpen"
         v-b-toggle.hidden_events_collapse

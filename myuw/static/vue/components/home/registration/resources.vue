@@ -1,25 +1,28 @@
 <template>
   <div>
-    <div v-if="registrationIsOpen">
+    <div v-if="registrationIsOpen" class="my-4 text-center">
       <a
         target="_blank" title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+        class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
       >
         Register using SLN codes
       </a>
 
-      <div v-if="currentPlanData">
+      <div v-if="currentPlanData" class="d-inline-block">
         <a
           v-if="!hasReadyCourses"
           target="_blank" title="Edit plan in MyPlan"
           :href="myplanHref"
+          class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
         >
-          Edit Plan in MyPlan
+          Edit plan in MyPlan
         </a>
         <a
           v-else
           target="_blank" title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
+          class="mb-2  btn btn-outline-beige text-dark myuw-text-md"
         >
           Use MyPlan to Register
         </a>
@@ -28,12 +31,12 @@
         <a
           target="_blank" title="Register using MyPlan"
           :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`"
+          class="btn btn-outline-beige text-dark myuw-text-md"
         >
-          Use MyPlan to Register
+          Register using MyPlan
         </a>
       </div>
-
-      <div v-if="isC2">
+      <div v-if="isC2" class="text-center myuw-text-md">
         <a
           target="_blank"
           href="https://www.degreereg.uw.edu/user-guide"
@@ -42,7 +45,7 @@
         </a>
       </div>
     </div>
-    <div v-else-if="preRegNotices && preRegNotices.length">
+    <div v-else-if="preRegNotices && preRegNotices.length" class="mb-4">
       <a
         target="_blank"
         href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
@@ -51,8 +54,10 @@
       </a>
     </div>
     <div>
-      <h4>Registration resources</h4>
-      <ul>
+      <h4 class="h6 text-dark font-weight-bold">
+        Registration resources
+      </h4>
+      <ul class="m-0 list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
           <a
             target="_blank"
@@ -156,9 +161,12 @@ export default {
       ),
     }),
     currentPlanData() {
-      return this.myPlanData.terms.find(
-          (term) => term.quarter === this.nextTermQuarter,
-      );
+      if (this.myPlanData && this.myPlanData.terms) {
+        return this.myPlanData.terms.find(
+            (term) => term.quarter === this.nextTermQuarter,
+        );
+      }
+      return {};
     },
     hasReadyCourses() {
       return this.currentPlanData.has_ready_courses;
