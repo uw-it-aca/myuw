@@ -48,6 +48,8 @@ const fetchBuilder = (url, postProcess, type) => {
   };
 };
 
+
+// TODO: Add comments explaing the parameters
 const buildWith = (
     {
       customState={
