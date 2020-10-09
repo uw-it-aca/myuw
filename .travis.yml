@@ -35,7 +35,7 @@ before_script:
 script:
 
   - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" node-test-container bash -c ". ./travis-ci/test_js.sh"
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" app-test-container bash -c ". ./travis-ci/test.sh"
+  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" app-test-container bash -c ". ./travis-ci/test_python.sh"
 
 after_success:
   - cp /tmp/.coverage.* /tmp/lcov.info .
