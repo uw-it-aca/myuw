@@ -44,7 +44,7 @@
 <script>
 import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../templates/card.vue';
+import Card from '../../_templates/card.vue';
 import ScheduleTab from './schedule-tab.vue';
 
 export default {

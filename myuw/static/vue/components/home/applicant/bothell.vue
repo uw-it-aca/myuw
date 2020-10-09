@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import Card from '../../templates/card.vue';
+import Card from '../../_templates/card.vue';
 
 export default {
   components: {

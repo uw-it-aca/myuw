@@ -20,14 +20,14 @@ import {
 } from 'bootstrap-vue';
 
 // layout componenets
-import Boilerplate from './components/templates/boilerplate.vue';
+import Boilerplate from './components/_templates/boilerplate.vue';
 
 // common components
-import Grades from './components/common/grades.vue';
-import HuskyExperience from './components/common/husky-experience.vue';
-import Outage from './components/common/outage.vue';
-import FutureQuarterCards from './components/common/future-quarter.vue';
-import VisualSchedule from './components/common/schedule/visual-schedule.vue';
+import Grades from './components/_common/grades.vue';
+import HuskyExperience from './components/_common/husky-experience.vue';
+import Outage from './components/_common/outage.vue';
+import FutureQuarterCards from './components/_common/future-quarter.vue';
+import VisualSchedule from './components/_common/schedule/visual-schedule.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';

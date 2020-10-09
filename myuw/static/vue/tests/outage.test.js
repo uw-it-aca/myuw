@@ -1,7 +1,7 @@
 import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
-import Outage from '../components/common/outage.vue';
+import Outage from '../components/_common/outage.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
