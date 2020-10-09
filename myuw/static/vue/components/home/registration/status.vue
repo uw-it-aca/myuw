@@ -125,7 +125,7 @@ import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
-import EstRegComponent from './estRegDate.vue';
+import EstRegComponent from './est-reg-date.vue';
 import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
 import InMyPlanComponent from './in-myplan.vue';

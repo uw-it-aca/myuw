@@ -9,9 +9,11 @@
       </h5>
       <ul class="list-unstyled m-0 myuw-text-sm">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
-          <h6>{{ course.curriculum_abbr }} {{ course.course_number }}</h6>
-          <table>
-            <thead>
+          <h6 class="myuw-text-md m-0">
+            {{ course.curriculum_abbr }} {{ course.course_number }}
+          </h6>
+          <table class="table table-borderless table-sm myuw-text-sm">
+            <thead class="sr-only">
               <tr>
                 <td>Section</td>
                 <td>Day</td>
@@ -32,6 +34,7 @@
                     v-if="meeting.days_tdb"
                     :key="`meeting-1-${k}`"
                     colspan="2"
+                    class="w-25"
                   >
                     Days and times to be arranged
                   </td>
@@ -104,9 +107,12 @@ export default {
   },
   computed: {
     currentPlanData() {
-      return this.myPlanData.terms.find(
+      if (this.myPlanData && this.myPlanData.terms) {
+        return this.myPlanData.terms.find(
           (term) => term.quarter === this.nextTermQuarter,
-      );
+        ) || {};
+      }
+      return {};
     },
     hadReadyCourses() {
       return this.currentPlanData.has_ready_courses;

@@ -51,7 +51,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../../../css/myuw/variables.scss';
+@import '../../../../css/myuw/variables.scss';
 .myuw-fin-aid {
   // override warning background
   ::v-deep .bg-warning {

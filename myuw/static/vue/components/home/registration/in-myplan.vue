@@ -101,9 +101,12 @@ export default {
   },
   computed: {
     currentPlanData() {
-      return this.myPlanData.terms.find(
+      if (this.myPlanData && this.myPlanData.terms) {
+        return this.myPlanData.terms.find(
           (term) => term.quarter === this.quarter,
-      );
+        ) || {};
+      }
+      return {};
     },
     readyCount() {
       return this.currentPlanData.ready_count;
@@ -133,3 +136,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>

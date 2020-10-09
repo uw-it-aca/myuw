@@ -1,10 +1,11 @@
 <template>
   <div class="mb-4">
     <div class="d-flex align-items-center mb-2">
-      <h4 v-if="myPlanData" class="h6 m-0 text-dark flex-fill">
+      <!-- hide Holds header and move button to left side if myplan data -->
+      <h4 v-if="!isMyPlanPeakLoad" class="h6 m-0 text-dark flex-fill">
         Holds
       </h4>
-      <div class="flex-fill text-right">
+      <div :class="[!isMyPlanPeakLoad ? 'text-right' : '']" class="flex-fill">
         <font-awesome-icon
           :icon="['fas', 'exclamation-triangle']"
           class="mr-1 align-middle text-danger"
@@ -45,9 +46,9 @@
 <script>
 export default {
   props: {
-    myPlanData: {
-      type: Object,
-      default: null,
+    isMyPlanPeakLoad: {
+      type: Boolean,
+      default: false,
     },
     summerCardLabel: {
       type: String,
@@ -74,7 +75,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../../../css/myuw/variables.scss";
+@import "../../../../css/myuw/variables.scss";
 
 .myuw-reg-holds {
   // override danger background

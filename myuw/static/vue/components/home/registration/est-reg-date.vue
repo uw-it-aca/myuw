@@ -1,6 +1,11 @@
 <template>
   <div v-if="estRegData.estRegDate" class="mb-4">
-    <div class="d-flex align-items-center">
+    <div v-if="estRegData.isMy1stRegDay"
+         class="font-weight-bold"
+    >
+      Registration opens at 6:00AM
+    </div>
+    <div v-else class="d-flex align-items-center">
       <h4 class="h6 m-0 text-dark flex-fill"
           aria-label="Estimated Registration Date"
       >
@@ -31,3 +36,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+
+</style>
