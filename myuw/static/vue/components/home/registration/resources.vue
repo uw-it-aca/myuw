@@ -54,7 +54,7 @@
       </a>
     </div>
     <div>
-      <h4 class="h6 font-weight-bold">
+      <h4 class="h6 text-dark font-weight-bold">
         Registration resources
       </h4>
       <ul class="m-0 list-unstyled myuw-text-md">
@@ -163,7 +163,7 @@ export default {
     currentPlanData() {
       if (this.myPlanData && this.myPlanData.terms) {
         return this.myPlanData.terms.find(
-          (term) => term.quarter === this.nextTermQuarter,
+            (term) => term.quarter === this.nextTermQuarter,
         );
       }
       return {};

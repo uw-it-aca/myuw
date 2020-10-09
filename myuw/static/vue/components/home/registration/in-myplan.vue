@@ -1,7 +1,7 @@
 <template>
   <div v-if="courses" class="mb-4">
     <div class="d-flex align-items-center mb-2">
-      <h4 class="h6 text-dark flex-fill">
+      <h4 class="h6 text-dark font-weight-bold flex-fill">
         In MyPlan
       </h4>
       <div class="flex-fill text-right">
@@ -103,7 +103,7 @@ export default {
     currentPlanData() {
       if (this.myPlanData && this.myPlanData.terms) {
         return this.myPlanData.terms.find(
-          (term) => term.quarter === this.quarter,
+            (term) => term.quarter === this.quarter,
         ) || {};
       }
       return {};

@@ -109,7 +109,7 @@ export default {
     currentPlanData() {
       if (this.myPlanData && this.myPlanData.terms) {
         return this.myPlanData.terms.find(
-          (term) => term.quarter === this.nextTermQuarter,
+            (term) => term.quarter === this.nextTermQuarter,
         ) || {};
       }
       return {};

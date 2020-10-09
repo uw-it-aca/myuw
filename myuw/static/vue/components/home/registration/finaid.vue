@@ -1,6 +1,6 @@
 <template>
   <div class="mt-4">
-    <h4 class="h6 font-weight-bold">
+    <h4 class="h6 text-dark font-weight-bold">
       Financial Aid
     </h4>
     <ul class="list-unstyled m-0">

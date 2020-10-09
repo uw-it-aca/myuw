@@ -6,7 +6,7 @@
       Registration opens at 6:00AM
     </div>
     <div v-else class="d-flex align-items-center">
-      <h4 class="h6 m-0 text-dark flex-fill"
+      <h4 class="h6 m-0 text-dark font-weight-bold flex-fill"
           aria-label="Estimated Registration Date"
       >
         Est. Registration Date

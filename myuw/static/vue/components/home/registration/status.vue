@@ -22,7 +22,7 @@
 
       <div v-if="pendingMajors.length" class="mb-4">
         <div class="d-flex align-items-center">
-          <h4 class="h6 m-0 text-dark flex-fill">
+          <h4 class="h6 m-0 text-dark font-weight-bold flex-fill">
             {{ pendingMajors.length > 1 ? 'Majors' : 'Major' }}
             Beginning <br>
             {{ quarter }}
@@ -41,7 +41,7 @@
 
       <div v-if="pendingMinors.length" class="mb-4">
         <div class="d-flex align-items-center">
-          <h4 class="h6 m-0 text-dark flex-fill">
+          <h4 class="h6 m-0 text-dark font-weight-bold flex-fill">
             {{ pendingMinors.length > 1 ? 'Minors' : 'Minor' }}
             Beginning <br>
             {{ quarter }}
