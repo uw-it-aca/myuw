@@ -1,13 +1,12 @@
+import os
 import json
-from bmemcached.exceptions import MemcachedException
 from copy import deepcopy
+from unittest.mock import patch
 from django.test import TestCase
 from django.test.utils import override_settings
 from django.utils import timezone
-from myuw.event import myuwcache
 from myuw.event.section_status import (
     SectionStatusProcessor, SectionStatusProcessorException)
-
 
 M1 = {
     "EventID": "...",
@@ -53,7 +52,6 @@ M1 = {
         "Status": "open"}
 }
 override = override_settings(
-    RESTCLIENTS_MEMCACHED_SERVERS=('localhost:11211',),
     AWS_SQS={'SECTION_STATUS_V1': {
         'QUEUE_ARN': "arn:aws:sqs:us-xxxx-1:123456789012:xxxx_xxxx",
         'KEY_ID': 'XXXXXXXXXXXXXXXX',
@@ -61,12 +59,12 @@ override = override_settings(
         'VISIBILITY_TIMEOUT': 10,
         'MESSAGE_GATHER_SIZE': 10,
         'VALIDATE_SNS_SIGNATURE': False,
-        'PAYLOAD_SETTINGS': {}}})
+        'PAYLOAD_SETTINGS': {}}},
+    MEMCACHED_SERVERS="")
 
 
 @override
 class TestSectionStatusProcessor(TestCase):
-
     def test_message_validation(self):
         event_hdlr = SectionStatusProcessor()
         self.assertFalse(event_hdlr.validate_message_body(None))
@@ -89,12 +87,17 @@ class TestSectionStatusProcessor(TestCase):
         m2.pop("Current")
         self.assertFalse(event_hdlr.validate_message_body(m2))
 
-    def test_process_message_content(self):
-        return
+    @patch("myuw.event.section_status.update_sws_entry_in_cache")
+    def test_process_message_content(self, mock_fn):
         event_hdlr = SectionStatusProcessor()
-        M1["EventDate"] = str(timezone.now())
-        self.assertRaises(SectionStatusProcessorException,
-                          event_hdlr.process_message_body, M1)
+        m1 = deepcopy(M1)
+        m1["EventDate"] = str(timezone.now())
+        self.assertTrue(event_hdlr.validate_message_body(m1))
+        event_hdlr.process_message_body(m1)
+        mock_fn.assert_called_with(
+            "/student/v5/course/2018,autumn,HCDE,210/A/status.json",
+            m1["Current"], event_hdlr.modified)
 
-        self.assertTrue(event_hdlr.validate_message_body(M1))
-        event_hdlr.process_message_body(M1)
+        mock_fn.side_effect = Exception("mock")
+        self.assertRaises(SectionStatusProcessorException,
+                          event_hdlr.process_message_body, m1)

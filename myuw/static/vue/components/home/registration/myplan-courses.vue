@@ -1,25 +1,31 @@
 <template>
   <div>
-    <h4>Your {{ nextTermQuarter }} {{ nextTermYear }} plan</h4>
+    <h4 class="text-dark-beige">
+      Your {{ nextTermQuarter }} {{ nextTermYear }} plan
+    </h4>
     <div v-if="hadReadyCourses">
-      <h5>Ready for registration</h5>
-      <ul>
+      <h5 class="h6 font-weight-bold">
+        Ready for registration
+      </h5>
+      <ul class="list-unstyled m-0 myuw-text-sm">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
-          <h6>{{ course.curriculum_abbr }} {{ course.course_number }}</h6>
-          <table>
-            <thead>
+          <h6 class="myuw-text-md m-0">
+            {{ course.curriculum_abbr }} {{ course.course_number }}
+          </h6>
+          <table class="table table-borderless table-sm myuw-text-sm">
+            <thead class="sr-only">
               <tr>
                 <td>Section</td>
                 <td>Day</td>
                 <td>Time</td>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-dark">
               <tr v-for="(section, j) in course.sections" :key="`section-${j}`">
                 <template
                   v-for="(meeting, k) in section.section_data.meetings"
                 >
-                  <td :key="`meeting-0-${k}`">
+                  <td :key="`meeting-0-${k}`" class="w-25 pl-0">
                     <span v-if="k == 0">Section </span>
                     <span v-else class="sr-only">Section </span>
                     {{ section.section_id }}
@@ -28,10 +34,11 @@
                     v-if="meeting.days_tdb"
                     :key="`meeting-1-${k}`"
                     colspan="2"
+                    class="w-25"
                   >
                     Days and times to be arranged
                   </td>
-                  <td v-else :key="`meeting-2-${k}`">
+                  <td v-else :key="`meeting-2-${k}`" class="w-25">
                     <abbr v-if="meeting.meeting_days.monday" title="Monday">
                       M
                     </abbr>
@@ -57,7 +64,9 @@
                       Su
                     </abbr>
                   </td>
-                  <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`">
+                  <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`"
+                      class="w-50 text-nowrap"
+                  >
                     {{ meeting.start_time }} &ndash; {{ meeting.end_time }}
                   </td>
                 </template>
@@ -68,8 +77,10 @@
       </ul>
     </div>
     <div v-if="hadUnReadyCourses">
-      <h5>Not ready for registration</h5>
-      <ul>
+      <h5 class="h6 font-weight-bold">
+        Not ready for registration
+      </h5>
+      <ul class="list-unstyled myuw-text-sm">
         <li v-for="(course, i) in courses" :key="i">
           {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>
@@ -96,9 +107,12 @@ export default {
   },
   computed: {
     currentPlanData() {
-      return this.myPlanData.terms.find(
-          (term) => term.quarter === this.nextTermQuarter,
-      );
+      if (this.myPlanData && this.myPlanData.terms) {
+        return this.myPlanData.terms.find(
+            (term) => term.quarter === this.nextTermQuarter,
+        ) || {};
+      }
+      return {};
     },
     hadReadyCourses() {
       return this.currentPlanData.has_ready_courses;
