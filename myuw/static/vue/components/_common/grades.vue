@@ -1,5 +1,9 @@
 <template>
-  <uw-card v-if="showGradeCard" :loaded="isReady" :errored="isErrored">
+  <uw-card v-if="showGradeCard"
+    :loaded="isReady"
+    :errored="isErrored"
+    :errored-show="showError"
+  >
     <template #card-heading>
       <h3 class="text-dark-beige">
         Final Grades
@@ -118,11 +122,11 @@ export default {
       currentSummerTerm: (state) => state.cardDisplayDates.current_summer_term,
       isAfterLastDayOfClasses: (state) =>
         state.cardDisplayDates.is_after_last_day_of_classes,
-      isBeforeLastDayOfClasses: (state) =>
+      isBeforeFirstDayOfTerm: (state) =>
         state.cardDisplayDates.is_before_first_day_of_term,
       isSummer: (state) => state.cardDisplayDates.is_summer,
       lastTerm: (state) => state.cardDisplayDates.last_term,
-      isAfterSummerBStart: (state) => state.cardDisplayDates.is_after_summer_b,
+      isAfterBtermStart: (state) => state.cardDisplayDates.is_after_summer_b,
       isAfterGradeSubmissionDeadline: (state) =>
         state.cardDisplayDates.is_after_grade_submission_deadline,
       courses: (state) => state.stud_schedule.value,
@@ -130,12 +134,16 @@ export default {
     ...mapGetters('stud_schedule', [
       'isReadyTagged',
       'isErroredTagged',
+      'statusCodeTagged',
     ]),
     isReady() {
       return this.isReadyTagged(this.term);
     },
     isErrored() {
       return this.isErroredTagged(this.term);
+    },
+    showError() {
+      return this.statusCodeTagged(this.term) !== 404;
     },
     gradeSubmissionDeadline: function() {
       if (this.term in this.courses) {
@@ -147,7 +155,7 @@ export default {
     filteredSections: function() {
       if (this.term in this.courses) {
         return this.courses[this.term].sections.filter((section) => {
-          let shouldDisplay = true;
+          let shouldDisplay = true; // display grade
 
           if (this.showOnlyATerm && section.summer_term !== 'A-term') {
             section.hide_for_early_summer_display = true;
@@ -179,16 +187,16 @@ export default {
     },
   },
   mounted() {
-    if (this.isAfterLastDayOfClasses) {
-      this.term = 'current';
-
+    if (this.isBeforeFirstDayOfTerm) { // grade display window
+      this.term = this.lastTerm;
+    } else if (this.isAfterLastDayOfClasses) {
       if (this.isSummer) {
         this.term = this.currentSummerTerm;
+      } else {
+        this.term = 'current';
       }
-    } else if (this.isBeforeLastDayOfClasses) {
-      this.term = this.lastTerm;
-    } else if (this.isSummer && this.isAfterSummerBStart) {
-      this.term = this.currentSummerTerm;
+    } else if (this.isSummer && this.isAfterBtermStart) {
+      this.term = this.currentSummerTerm.concat(',a-term');
       this.showOnlyATerm = true;
     }
     if (this.term) this.fetch(this.term);
