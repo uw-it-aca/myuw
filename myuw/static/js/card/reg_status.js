@@ -70,7 +70,7 @@ var RegStatusCard = {
     },
 
     render_error: function (status) {
-        // none of the api data returns 404.
+        // only mock data may return 404, not live data.
         // if any data failure, display error
         RegStatusCard.dom_target.html(CardWithError.render("Registration"));
     },

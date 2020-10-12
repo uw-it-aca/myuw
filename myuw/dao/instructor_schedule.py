@@ -6,14 +6,16 @@ import logging
 import traceback
 from restclients_core.exceptions import DataFailureException
 from uw_sws.models import ClassSchedule
-from uw_sws.section import get_sections_by_instructor_and_term,\
-    get_section_by_url, get_section_by_label
+from uw_sws.registration import get_active_registrations_by_section
+from uw_sws.section import (
+    get_sections_by_instructor_and_term, get_section_by_url,
+    get_section_by_label)
 from uw_sws.section_status import get_section_status_by_label
 from myuw.util.thread import ThreadWithResponse
 from myuw.dao import log_err
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
-from myuw.dao.registration import get_active_registrations_for_section
+from myuw.dao.registration import filter_sections_by_summer_term
 from myuw.dao.term import get_current_quarter, get_comparison_datetime
 from myuw.dao.user_course_display import set_course_display_pref
 
@@ -21,13 +23,27 @@ from myuw.dao.user_course_display import set_course_display_pref
 logger = logging.getLogger(__name__)
 
 
-def get_instructor_schedule_by_term(request, term):
-    id = "instchedule{}{}".format(term.year, term.quarter)
-    if not hasattr(request, id):
-        inst_schedule = __get_instructor_schedule_by_term(request, term)
+def get_instructor_schedule_by_term(request, term=None, summer_term=None):
+    """
+    :return: the instructor's class schedule (uw_sws.models.ClassSchedule) of
+    the given quarter/term and corresponding summer term.
+    :param Term term: None uses current term related to the given request
+    :param str summer_term: 'full-term': includes all sections;
+    'a-term', 'b-term': expects a term-specific schedule;
+    None: a term-specific schedule if "currently" in the summer term and
+    the schedule has some A-term or B-term course(s).
+    """
+    inst_schedule = __get_instructor_schedule_by_term(
+        request, term if term is not None else get_current_quarter(request))
+
+    if (len(inst_schedule.sections) and
+            inst_schedule.term.is_summer_quarter()):
+        filter_sections_by_summer_term(request, inst_schedule, summer_term)
+
+    if len(inst_schedule.sections):
         set_course_display_pref(request, inst_schedule)
-        request.id = inst_schedule
-    return request.id
+
+    return inst_schedule
 
 
 def __get_instructor_schedule_by_term(request, term):
@@ -53,8 +69,8 @@ def __get_instructor_schedule_by_term(request, term):
         transcriptable_course='all',
         delete_flag=['active', 'suspended'])
 
-    schedule.sections = _get_sections_by_section_reference(section_references,
-                                                           term)
+    schedule.sections, schedule.registered_summer_terms = (
+        _get_sections_by_section_reference(section_references, term))
     return schedule
 
 
@@ -62,6 +78,7 @@ def _get_sections_by_section_reference(section_references, term):
     """
     Return sections in the same order as the section_references
     """
+    registered_summer_terms = {}
     sections = []
     section_threads = []
 
@@ -79,7 +96,9 @@ def _get_sections_by_section_reference(section_references, term):
         section = t.response
         if section:
             sections.append(section)
-    return sections
+            if len(section.summer_term):
+                registered_summer_terms[section.summer_term.lower()] = True
+    return sections, registered_summer_terms
 
 
 def _set_section_from_url(section_url, term):
@@ -114,6 +133,7 @@ def get_instructor_section(request,
 
     section = get_section_by_label(section_id)
     schedule.term = section.term
+    schedule.summer_term = section.summer_term
 
     if include_registrations:
         section.registrations = get_active_registrations_for_section(
@@ -173,3 +193,10 @@ def check_section_instructor(section, person):
 
 def get_primary_section(secondary_section):
     return get_section_by_label(secondary_section.primary_section_label())
+
+
+def get_active_registrations_for_section(section, instructor_regid):
+    if section.is_independent_study:
+        section.independent_study_instructor_regid = instructor_regid
+    return get_active_registrations_by_section(section,
+                                               transcriptable_course="all")

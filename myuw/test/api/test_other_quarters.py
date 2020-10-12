@@ -13,30 +13,30 @@ class TestOtherQuarters(MyuwApiTest):
         self.set_user('javerage')
         response = self.get_oquarters_response()
         self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        self.assertFalse(data["terms"][0]["has_registration"])
+        self.assertFalse(data["next_term_data"]["has_registration"])
 
+        self.set_date("2013-05-15")
+        response = self.get_oquarters_response()
         data = json.loads(response.content)
         self.assertEquals(data["next_term_data"]["has_registration"], True)
         self.assertEquals(data["next_term_data"]["quarter"], "Autumn")
         self.assertEquals(data["next_term_data"]["year"], 2013)
 
         self.assertEquals(len(data["terms"]), 3)
-
-        self.assertEquals(data["terms"][0]['section_count'], 2)
-        self.assertEquals(data["terms"][0]['url'], '/2013,summer,a-term')
+        self.assertEquals(data['next_term_data']['label'], '2013,autumn')
         self.assertEquals(data["terms"][0]['summer_term'], 'a-term')
         self.assertEquals(data["terms"][0]['year'], 2013)
         self.assertEquals(data["terms"][0]['quarter'], 'Summer')
         self.assertEquals(data["terms"][0]['credits'], '2.0')
-        self.assertEquals(data["terms"][0]['last_final_exam_date'],
-                          '2013-08-23 23:59:59')
+        self.assertEquals(data["terms"][0]['section_count'], 2)
+        self.assertEquals(data["terms"][0]['url'], '/2013,summer,a-term')
+        self.assertTrue(data["terms"][0]['highlight'])
+        self.assertTrue(data["terms"][0]['has_registration'])
+        self.assertTrue(data["highlight_future_quarters"])
 
     def test_error(self):
         self.set_user('jerror')
         response = self.get_oquarters_response()
         self.assertEquals(response.status_code, 543)
-
-        self.set_user('nouser')
-        response = self.get_oquarters_response()
-        self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEquals(len(data["terms"]), 0)

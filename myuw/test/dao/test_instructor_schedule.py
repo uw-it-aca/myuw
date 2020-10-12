@@ -5,9 +5,10 @@ from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
-from myuw.dao.instructor_schedule import get_instructor_schedule_by_term,\
-    get_section_by_label, _set_section_from_url,\
-    get_instructor_section, get_primary_section, check_section_instructor
+from myuw.dao.instructor_schedule import (
+    get_instructor_schedule_by_term, get_section_by_label,
+    _set_section_from_url, get_active_registrations_for_section,
+    get_instructor_section, get_primary_section, check_section_instructor)
 from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.exceptions import NotSectionInstructorException
@@ -21,8 +22,7 @@ class TestInstructorSchedule(TestCase):
     def test_get_instructor_schedule_by_term(self):
         # current quarter instructor schedule
         request = get_request_with_user('bill')
-        term = get_current_quarter(request)
-        schedule = get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 6)
         self.assertEqual(schedule.sections[0].color_id, 1)
         self.assertEqual(schedule.sections[1].color_id, 2)
@@ -33,34 +33,64 @@ class TestInstructorSchedule(TestCase):
 
         # current quarter TA schedule
         request = get_request_with_user('billseata')
-        term = get_current_quarter(request)
-        schedule = get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 7)
 
         # PCE courses
         request = get_request_with_user('billpce',
                                         get_request_with_date("2013-10-01"))
-        term = get_current_quarter(request)
-        schedule = get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 2)
         self.assertEqual(schedule.sections[0].current_enrollment, 3)
 
         # unpublished term
         request = get_request_with_user('billsea',
                                         get_request_with_date("2018-01-01"))
-        term = get_next_quarter(request)
-        get_instructor_schedule_by_term(request, term)
-        schedule = get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(
+            request, term=get_next_quarter(request))
         self.assertEqual(len(schedule.sections), 0)
 
         # remote learning
         request = get_request_with_user('billsea',
                                         get_request_with_date("2020-10-01"))
-        term = get_current_quarter(request)
-        schedule = get_instructor_schedule_by_term(request, term)
+        schedule = get_instructor_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 5)
         self.assertTrue(schedule.sections[0].is_remote)
         self.assertTrue(schedule.sections[3].is_remote)
+
+    def test_specific_summer_term(self):
+        request = get_request_with_user(
+            'bill', get_request_with_date("2013-07-12"))
+        schedule = get_instructor_schedule_by_term(request)
+        self.assertEqual(len(schedule.sections), 0)
+
+        request = get_request_with_user(
+            'bill', get_request_with_date("2013-05-12"))
+        schedule = get_instructor_schedule_by_term(
+            request, term=get_next_quarter(request), summer_term='b-term')
+        self.assertEqual(len(schedule.sections), 1)
+
+        request = get_request_with_user(
+            'bill', get_request_with_date("2013-07-12"))
+        schedule = get_instructor_schedule_by_term(
+            request, summer_term='full-term')
+        self.assertEqual(len(schedule.sections), 1)
+
+        request = get_request_with_user(
+            'bill', get_request_with_date("2013-07-25"))
+        schedule = get_instructor_schedule_by_term(request)
+        self.assertEqual(len(schedule.sections), 1)
+        self.assertEqual(schedule.registered_summer_terms,
+                         {'b-term': True})
+
+        request = get_request_with_user(
+            'billpce', get_request_with_date("2013-07-25"))
+        schedule = get_instructor_schedule_by_term(request)
+        self.assertEqual(len(schedule.sections), 3)
+        self.assertEqual(schedule.registered_summer_terms,
+                         {'b-term': True, 'full-term': True})
+        self.assertEqual(str(schedule.sections[1].start_date), "2013-07-22")
+        self.assertEqual(str(schedule.sections[1].end_date), "2013-07-26")
 
     def test_set_section_from_url(self):
         section_url = "/student/v5/course/2018,spring,JAPAN,573/A.json"
@@ -159,3 +189,20 @@ class TestInstructorSchedule(TestCase):
         section = get_primary_section(secondary_section)
         self.assertEqual(secondary_section.primary_section_label(),
                          section.section_label())
+
+    def test_get_active_registrations_for_section(self):
+        section = get_section_by_label("2013,autumn,MUSEUM,700/A")
+        regid = "10000000000000000000000000000011"
+        registrations = get_active_registrations_for_section(section, regid)
+        self.assertEqual(len(registrations), 1)
+        enrolled_student = registrations[0].person
+        self.assertEqual(enrolled_student.uwnetid, "javg001")
+
+        section = get_section_by_label('2017,autumn,EDC&I,552/A')
+        self.assertEqual(section.section_label(), '2017,autumn,EDC&I,552/A')
+
+        regid = "10000000000000000000000000000006"
+        reg = get_active_registrations_for_section(section, regid)
+        self.assertEqual(len(reg), 2)
+        enrolled_student = reg[0].person
+        self.assertEqual(enrolled_student.uwnetid, "javg003")
