@@ -11,17 +11,21 @@
     </template>
     <template #card-body>
       <div>
-        <a href="https://uwnetid.washington.edu/manage/" target="_blank" title="Manage UW NetID" class="btn btn-default card-action-btn myuw-button">Manage UW NetID account</a>
+        <a href="https://uwnetid.washington.edu/manage/" target="_blank" title="Manage UW NetID"
+           class="btn btn-outline-beige text-dark myuw-text-md mb-4"
+        >
+          Manage UW NetID account
+        </a>
       </div>
-      <div class="links-container actionlink-list">
-        <ul class="unstyled-list">
-          <li>
+      <div class="">
+        <ul class="list-unstyled m-0 myuw-text-md">
+          <li class="mb-1">
             <a href="https://uwnetid.washington.edu/manage/?password" target="_blank" title="Change UW NetID password">Change UW NetID password</a>
           </li>
           <li>
             <a href="https://identity.uw.edu/account/recovery/" target="_blank" title="NetID account recovery options">Set account recovery options</a>
           </li>
-          <li v-if="two_factor">
+          <li v-if="two_factor" class="mt-1">
             <a href="https://identity.uw.edu/2fa/" target="_blank" title="Manage two-factor authentication">Manage two-factor authentication (2FA)</a>
           </li>
         </ul>
@@ -37,7 +41,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../_templates/card.vue';
 
 export default {
   components: {
