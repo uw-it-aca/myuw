@@ -29,6 +29,7 @@ import Outage from './components/_common/outage.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
+import GradStatus from './components/home/_common/grad-status.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
@@ -46,7 +47,6 @@ import RegStatus from './components/home/registration/status.vue';
 import UWNetID from './components/home/accounts/uwnetid.vue';
 
 // account components
-import GradStatus from './components/home/accounts/grad-status.vue';
 
 // stores
 import notices from './vuex/store/notices';

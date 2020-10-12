@@ -10,7 +10,7 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-if="petitions.length > 0">
+      <div v-if="petitions">
         <div class="card-badge-container" id="petition-reqs">
           <h4>Petition Requests</h4>
 
@@ -32,9 +32,7 @@
                     <div class="pull-left">
                       <span class="card-badge-label">Graduate School Decision</span>
                     </div>
-                    <span>
-                      <span class="card-badge-value">{{ petition.gradschool_decision }}</span>
-                    </span>
+                    <span class="card-badge-value">{{ petition.gradschool_decision }}</span>
                   </li>
                 </ul>
               </div>
@@ -43,7 +41,7 @@
         </div>
       </div>
 
-      <div v-if="leaves.length > 0">
+      <div v-if="leaves">
         <div class="card-badge-container" id="leave-reqs">
           <h4>Leave Requests</h4>
 
@@ -52,8 +50,7 @@
               <div class="card-badge clearfix">
                 <h5>
                   <template v-for="(term, termIndex) in leave.terms">
-                    <span :key="termIndex">
-                      <span v-if="termIndex > 0">
+                      <span :key="termIndex" v-if="termIndex > 0">
                         , 
                       </span>
                       {{ term.quarter + ' ' + term.year }} Leave
@@ -62,8 +59,13 @@
                 <div class="pull-left">
                   <span class="card-badge-label">Status</span>
                 </div>
-                <span>
-                  <span class="card-badge-value">
+                <span class="card-badge-value">
+                  <span v-if="leave.status === 'Approved'">
+                    Approved<br />
+                    <a target="_blank" href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx" class="pull-right" style="font-weight: normal;" data-linklabel="MyGrad Payment Portal">Pay Your Fee To Confirm</a>
+                  </span>
+                  <span v-else>
+                    {{ leave.status }}
                   </span>
                 </span>
               </div>
@@ -72,8 +74,20 @@
         </div>
       </div>
 
-      <div v-if="degrees.length > 0">
-
+      <div v-if="degrees">
+        <h4>Degree and Exam Requests</h4>
+          <ul class="card_list" v-for="(degree, index) in degrees" :key="index">
+            <li>
+              <div class="card-badge clearfix">
+                <h5>{{degree.req_type}}, {{degree.target_award_quarter}} {{degree.target_award_year}}</h5>
+                <div class="degree-title">{{degree.degree_title}}</div>
+                <div class="pull-left">
+                  <span class="card-badge-label">Status</span>
+                </div>
+                <span class="card-badge-value">{{degree.status}}</span>
+              </div>
+            </li>
+          </ul>
       </div>
         
       <div class="clearfix">
@@ -102,17 +116,19 @@ export default {
     ...mapState({
       petitions: (state) => {
         const petitionList = state.grad.value.petitions;
-        petitionList.forEach((petition) => {
-          if (petition.dept_recommend === "Pending" ||
-              petition.dept_recommend === "Withdraw") {
+        if(petitionList) {
+          petitionList.forEach((petition) => {
+            if (petition.dept_recommend === "Pending" ||
+                petition.dept_recommend === "Withdraw") {
 
-            petition.gradschool_decision = null;
-          }
-          if (petition.gradschool_decision === "Approved") {
-            petition.dept_recommend = null;
-          }
-        });
-        return petitionList;
+              petition.gradschool_decision = null;
+            }
+            if (petition.gradschool_decision === "Approved") {
+              petition.dept_recommend = null;
+            }
+          });
+          return petitionList;
+        }
       },
       leaves: (state) => state.grad.value.leaves,
       degrees: (state) => state.grad.value.degrees,
