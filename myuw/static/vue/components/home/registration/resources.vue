@@ -11,18 +11,9 @@
 
       <div v-if="currentPlanData" class="d-inline-block">
         <a
-          v-if="!hasReadyCourses"
-          target="_blank" title="Edit plan in MyPlan"
-          :href="myplanHref"
-          class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
-        >
-          Edit plan in MyPlan
-        </a>
-        <a
-          v-else
           target="_blank" title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
-          class="mb-2  btn btn-outline-beige text-dark myuw-text-md"
+          class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
         >
           Use MyPlan to Register
         </a>
