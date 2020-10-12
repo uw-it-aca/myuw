@@ -1,8 +1,8 @@
 <template>
   <uw-card v-if="showGradeCard"
-    :loaded="isReady"
-    :errored="isErrored"
-    :errored-show="showError"
+           :loaded="isReady"
+           :errored="isErrored"
+           :errored-show="showError"
   >
     <template #card-heading>
       <h3 class="text-dark-beige">
@@ -187,7 +187,8 @@ export default {
     },
   },
   mounted() {
-    if (this.isBeforeFirstDayOfTerm) { // grade display window
+    // display window: [lastDayOfClasses..firstDayOfTerm]
+    if (this.isBeforeFirstDayOfTerm) {
       this.term = this.lastTerm;
     } else if (this.isAfterLastDayOfClasses) {
       if (this.isSummer) {
