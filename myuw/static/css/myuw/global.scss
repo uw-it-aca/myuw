@@ -1,5 +1,5 @@
 @import "./variables.scss";
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Roboto:wght@400;700&display=swap');
 
 /******************************************************************************************
 PIXEL TO REM CONVERSION TABLE - Root Size: 16px
@@ -36,9 +36,12 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   font-size: 0.6875rem !important;
 } //11px
 
-// myuw encode sans
-.myuw-encode-sans {
+// myuw custom fonds
+.myuw-font-encode {
   font-family: 'Encode Sans', sans-serif;
+}
+.myuw-font-roboto {
+  font-family: 'Roboto', sans-serif;
 }
 
 // myuw chevron card link

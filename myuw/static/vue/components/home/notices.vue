@@ -4,7 +4,7 @@
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-encode-sans">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode">
         Notices
       </h3>
     </template>

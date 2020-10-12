@@ -2,6 +2,8 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
 // override max width of containers
 $container-max-widths: map.merge($container-max-widths, (xl: 1400px));
 
@@ -49,3 +51,7 @@ $theme-colors: (
 
 // override all links
 $link-color: #4d66ca; //a11y blue
+
+// override global font-family
+$font-family-sans-serif: "Open Sans", Helvetica, Arial, Verdana, sans-serif;
+$font-family-base: $font-family-sans-serif;
