@@ -78,13 +78,26 @@
     </div>
     <div v-if="hadUnReadyCourses">
       <h5 class="h6 font-weight-bold">
-        Not ready for registration
+        Issues
       </h5>
+      <p class="myuw-text-md">
+        The following plan items have issues you must resolve before they
+        can be sent to Registration.
+      </p>
       <ul class="list-unstyled myuw-text-sm">
         <li v-for="(course, i) in courses" :key="i">
           {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>
       </ul>
+      <div class="text-right myuw-text-sm">
+        <a
+          title="Edit plan to fix issues" target="_blank"
+          :href="myplanHref"
+        >
+          Go to your {{ nextTermQuarter }} {{ nextTermYear }}
+          plan to resolve these issues
+        </a>
+      </div>
     </div>
   </div>
 </template>

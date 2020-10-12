@@ -31,35 +31,8 @@
       v-model="collapseOpen"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">
-        <h5>Your TERM YEAR Plan</h5>
-        <h6 class="font-weight-bold">
-          Issues
-        </h6>
-        <p class="myuw-text-md">
-          The following plan items have issues you must resolve before they
-          can be sent to Registration:
-        </p>
-
-        <ul class="list-unstyled myuw-text-sm">
-          <li v-for="(course, i) in coursesUnavailable" :key="i">
-            {{ course.curriculum_abbr }} {{ course.course_number }}
-          </li>
-        </ul>
-
-        <div class="text-right myuw-text-sm">
-          <a
-            title="Edit plan to fix issues" target="_blank"
-            :href="myplanHref"
-          >
-            Go to your TERM YEAR plan to resolve these issues
-          </a>
-        </div>
-
-        <h6 class="font-weight-bold">
-          Ready for registration
-        </h6>
         <div class="text-danger">
-          TODO: myplan table from footer collapse goes here
+          TODO: myplan-courses.vue component goes here
         </div>
       </div>
     </b-collapse>
