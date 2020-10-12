@@ -13,11 +13,7 @@
           </li>
           <li v-if="unreadyCount" class="myuw-text-sm">
             {{ unreadyCount }} not ready
-            <a v-if="!hasSections" target="_blank" :href="myplanHref">
-              Add Sections
-            </a>
             <b-button
-              v-else
               v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
               :title="buttonTitle"
               size="sm"
@@ -35,34 +31,35 @@
       v-model="collapseOpen"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">
-        <h5 class="h6 font-weight-bold">
-          Not ready for registration
-        </h5>
-        <ul class="myuw-text-sm">
+        <h5>Your TERM YEAR Plan</h5>
+        <h6 class="font-weight-bold">
+          Issues
+        </h6>
+        <p class="myuw-text-md">
+          The following plan items have issues you must resolve before they
+          can be sent to Registration:
+        </p>
+
+        <ul class="list-unstyled myuw-text-sm">
           <li v-for="(course, i) in coursesUnavailable" :key="i">
             {{ course.curriculum_abbr }} {{ course.course_number }}
           </li>
         </ul>
 
-        <div class="myuw-text-sm">
-          <p>
-            One or more of the issues below will prevent these courses from
-            being sent to registration:
-          </p>
-          <ul>
-            <li>Too many/too few sections selected for a course</li>
-            <li>Time conflict with registered course</li>
-            <li>Time conflict with a selected section</li>
-            <li>Planned courses are jointly offered versions of one course</li>
-          </ul>
-        </div>
         <div class="text-right myuw-text-sm">
           <a
             title="Edit plan to fix issues" target="_blank"
             :href="myplanHref"
           >
-            Edit plan in MyPlan
+            Go to your TERM YEAR plan to resolve these issues
           </a>
+        </div>
+
+        <h6 class="font-weight-bold">
+          Ready for registration
+        </h6>
+        <div class="text-danger">
+          TODO: myplan table from footer collapse goes here
         </div>
       </div>
     </b-collapse>
