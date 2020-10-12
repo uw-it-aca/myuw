@@ -1,0 +1,176 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "BlockRegistrationChildren": [],
+    "BlockRegistrationParents": [],
+    "ClassWebsiteUrl": "",
+    "Course": {
+        "CourseNumber": "230",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/course/2020,spring,BIGDATA,230.json",
+        "Quarter": "spring",
+        "Year": 2020
+    },
+    "CourseCampus": "PCE",
+    "CourseDescription": null,
+    "CourseHasVariableContent": false,
+    "CourseTitle": "Emerging Technologies in Big Data",
+    "CourseTitleLong": "Emerging Technologies in Big Data",
+    "CreditControl": null,
+    "CurrentEnrollment": 8,
+    "Curriculum": {
+        "CollegeName": null,
+        "DepartmentAbbreviation": null,
+        "TimeScheduleLinkAbbreviation": ""
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": true,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EOS_CID": "136214",
+    "EndDate": "2020-06-17",
+    "EnrollmentRestrictions": false,
+    "FeeAmount": null,
+    "FeeBudget": null,
+    "FeeType": null,
+    "FinalExam": null,
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": null,
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [],
+    "GradingSystem": "",
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": null,
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": "PCE_OL",
+    "LimitEstimateEnrollment": 15,
+    "LimitEstimateEnrollmentIndicator": "L",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Wednesday"
+                    }
+                ],
+                "Text": "..W...."
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EOS_EndDate": "2020-06-17",
+            "EOS_StartDate": "2020-04-15",
+            "EndTime": "21:00:00",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": "1",
+                    "GradeRoster": null,
+                    "PercentInvolve": "",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": null,
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": false
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "CLS",
+            "RoomNumber": "120",
+            "RoomToBeArranged": false,
+            "StartTime": "18:00:00"
+        }
+    ],
+    "Metadata": "SectionSourceKey=EOS;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "PrimaryLMS": "CANVAS",
+    "PrimarySection": {
+        "CourseNumber": "230",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/course/2020,spring,BIGDATA,230/B.json",
+        "Quarter": "spring",
+        "SectionID": "B",
+        "Year": 2020
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "230",
+        "CurriculumAbbreviation": "BIGDATA",
+        "Href": "/student/v5/registration.json?year=2020&quarter=spring&curriculum_abbreviation=BIGDATA&course_number=230&section_id=B&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "spring",
+        "RegID": null,
+        "SectionID": "B",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2020
+    },
+    "RepositoryTimeStamp": "7/25/2020 4:04:21 AM",
+    "ResearchCredit": false,
+    "RoomCapacity": 0,
+    "SLN": "00000",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": false,
+    "SectionID": "B",
+    "SectionType": null,
+    "SelfRegistrationAllowed": false,
+    "ServiceLearning": false,
+    "StartDate": "2020-04-15",
+    "StudentCreditHours": null,
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2020,spring.json",
+        "Quarter": "spring",
+        "Year": 2020
+    },
+    "TimeMaskException": false,
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": []
+        }
+    }
+}

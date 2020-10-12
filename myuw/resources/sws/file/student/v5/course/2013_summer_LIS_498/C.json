@@ -25,7 +25,7 @@
     "DistanceLearning": false,
     "DuplicateEnrollmentAllowed": false,
     "EOS_CID": null,
-    "EndDate": "2013-12-21",
+    "EndDate": "2013-07-26",
     "EnrollmentRestrictions": false,
     "FeeAmount": "",
     "FeeBudget": "",
@@ -174,7 +174,7 @@
     "SectionType": "lecture",
     "SelfRegistrationAllowed": false,
     "ServiceLearning": false,
-    "StartDate": "2013-07-17",
+    "StartDate": "2013-07-22",
     "StudentCreditHours": "   0.0",
     "SummerTerm": "B-term",
     "Term": {

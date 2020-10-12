@@ -190,7 +190,7 @@ class TestInstructorSection(MyuwApiTest):
 
         self.assertEqual(len(data['sections']), 6)
         section1 = data['sections'][0]
-        self.assertFalse('cc_display_dates' in section1)
+        self.assertTrue('cc_display_dates' in section1)
         self.assertFalse(section1['sln'] == 0)
         self.assertEqual(section1['eos_cid'], None)
 

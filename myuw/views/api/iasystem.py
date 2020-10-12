@@ -4,9 +4,7 @@ import traceback
 from operator import itemgetter
 from myuw.dao import get_netid_of_current_user
 from myuw.dao.pws import is_student
-from myuw.dao.schedule import filter_schedule_sections_by_summer_term,\
-    get_current_quarter_schedule
-from myuw.dao.registered_term import get_current_summer_term_in_schedule
+from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.iasystem import (
     get_evaluations_by_section, json_for_evaluation, in_coursevel_fetch_window)
 from myuw.logger.logresp import (
@@ -45,24 +43,19 @@ class IASystem(ProtectedAPI):
                 log_msg(logger, timer, "Not in fetching window")
                 return data_not_found()
 
-            schedule = get_current_quarter_schedule(request)
-
-            summer_term = get_current_summer_term_in_schedule(schedule,
-                                                              request)
-
-            filter_schedule_sections_by_summer_term(schedule, summer_term)
+            schedule = get_schedule_by_term(request)
             if len(schedule.sections) == 0:
                 log_data_not_found_response(logger, timer)
                 return data_not_found()
 
-            resp_data = load_course_eval(request, schedule, summer_term)
+            resp_data = load_course_eval(request, schedule)
             log_api_call(timer, request, "Get IASystem")
             return self.json_response(resp_data)
         except Exception:
             return handle_exception(logger, timer, traceback)
 
 
-def load_course_eval(request, schedule, summer_term=""):
+def load_course_eval(request, schedule):
     """
     @return the course schedule sections having
     the attribute ["evaluation_data"] with the evaluations
@@ -71,7 +64,8 @@ def load_course_eval(request, schedule, summer_term=""):
     None if a data error.
     """
     json_data = schedule.json_data()
-    json_data["summer_term"] = summer_term
+    if schedule.term.is_summer_quarter():
+        json_data["summer_term"] = schedule.summer_term
 
     section_index = 0
     for section in schedule.sections:
