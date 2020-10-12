@@ -176,7 +176,7 @@ export default {
 @import "../../../../css/myuw/variables.scss";
 
 .myuw-covid-links {
-  background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
+  background-color: lighten(map.get($theme-colors, "beige"), 10%) !important;
 }
 
 </style>
