@@ -12,14 +12,16 @@
         Est. Registration Date
       </h4>
       <div class="flex-fill text-right">
-        <div class="font-weight-bold" aria-label="asdasd">
+        <div
+          class="font-weight-bold"
+          :aria-label="`${
+            estRegData.estRegDate.date.format('ddd, MMM D')
+          } at 6:00 AM`"
+        >
           {{ estRegData.estRegDate.date.format('ddd, MMM D') }}
         </div>
         <span class="myuw-text-sm">
           at 6:00 AM
-        </span>
-        <span class="d-block myuw-text-xs font-weight-light">
-          {{ estRegData.estRegDate.date }}
         </span>
       </div>
     </div>

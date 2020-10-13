@@ -92,7 +92,7 @@
       <div class="text-right myuw-text-sm">
         <a
           title="Edit plan to fix issues" target="_blank"
-          :href="myplanHref"
+          :href="currentPlanData.myplan_href"
         >
           Go to your {{ nextTermQuarter }} {{ nextTermYear }}
           plan to resolve these issues
