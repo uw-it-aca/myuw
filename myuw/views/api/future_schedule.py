@@ -27,7 +27,7 @@ class StudClasScheFutureQuar(StudClasSche):
         timer = Timer()
         year = kwargs.get("year")
         quarter = kwargs.get("quarter")
-        summer_term = kwargs.get("summer_term", None)
+        summer_term = kwargs.get("summer_term", "full-term")
         try:
             request_term = get_specific_term(year, quarter)
             if is_past(request_term, request):

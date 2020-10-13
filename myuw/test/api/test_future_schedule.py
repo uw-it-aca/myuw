@@ -39,6 +39,11 @@ class TestFutureSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(len(data["sections"]), 2)
 
+        response = self.get_schedule(year=2013, quarter='summer')
+        data = json.loads(response.content)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(len(data["sections"]), 3)
+
     def test_error(self):
         self.set_user('jerror')
         response = self.get_schedule(year=2013, quarter='summer')
