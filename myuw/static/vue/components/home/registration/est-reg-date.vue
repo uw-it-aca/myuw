@@ -20,7 +20,7 @@
         >
           {{ estRegData.estRegDate.date.format('ddd, MMM D') }}
         </div>
-        <span class="myuw-text-sm">
+        <span class="myuw-text-sm" aria-hidden="true">
           at 6:00 AM
         </span>
       </div>
