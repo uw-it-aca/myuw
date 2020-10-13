@@ -54,6 +54,9 @@
 import MyplanCoursesComponent from './myplan-courses.vue';
 
 export default {
+  components: {
+    'uw-myplan-courses': MyplanCoursesComponent,
+  },
   props: {
     myPlanData: {
       type: Object,
@@ -71,9 +74,6 @@ export default {
       type: String,
       default: '',
     },
-  },
-  components: {
-    'uw-myplan-courses': MyplanCoursesComponent,
   },
   data: function() {
     return {

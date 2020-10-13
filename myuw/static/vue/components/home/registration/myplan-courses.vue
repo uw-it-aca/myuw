@@ -85,7 +85,7 @@
         can be sent to Registration.
       </p>
       <ul class="list-unstyled myuw-text-sm">
-        <li v-for="(course, i) in courses" :key="i">
+        <li v-for="(course, i) in coursesUnRegistrable" :key="i">
           {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>
       </ul>
