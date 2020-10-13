@@ -61,6 +61,7 @@
       <uw-in-myplan
         v-if="myPlanData"
         :my-plan-data="myPlanData"
+        :year="year"
         :quarter="quarter"
       />
 
@@ -80,42 +81,6 @@
         :fin-aid-notices="finAidNotices"
       />
     </template>
-    <template v-if="isQuarterReady && myPlanData" #card-disclosure>
-      <b-collapse
-        :id="`myplan-courses-collapse-${_uid}`"
-        v-model="isOpen" class="mt-4"
-      >
-        <uw-myplan-courses
-          :next-term-year="year"
-          :next-term-quarter="quarter"
-          :my-plan-data="myPlanData"
-        />
-      </b-collapse>
-    </template>
-    <template v-if="isQuarterReady && myPlanData" #card-footer>
-      <b-button
-        v-if="!isOpen"
-        v-b-toggle="`myplan-courses-collapse-${_uid}`"
-        :aria-label="`Expand to show your ${quarter} ${year} plan`"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 border-0 text-dark text-uppercase"
-      >
-        <!-- TODO: @charlon add a css capital class for this button -->
-        SHOW {{ quarter }} {{ year }} PLAN
-      </b-button>
-      <b-button
-        v-else
-        v-b-toggle="`myplan-courses-collapse-${_uid}`"
-        :aria-label="`Collapse to hide your ${quarter} ${year} plan`"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 border-0 text-dark text-uppercase"
-      >
-        <!-- TODO: @charlon add a css capital class for this button -->
-        HIDE {{ quarter }} {{ year }} PLAN
-      </b-button>
-    </template>
   </uw-card>
 </template>
 
@@ -128,7 +93,6 @@ import EstRegComponent from './est-reg-date.vue';
 import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
 import InMyPlanComponent from './in-myplan.vue';
-import MyplanCoursesComponent from './myplan-courses.vue';
 import ResourcesComponent from './resources.vue';
 
 export default {
@@ -138,7 +102,6 @@ export default {
     'uw-fin-aid': FinAidComponent,
     'uw-holds': HoldsComponent,
     'uw-in-myplan': InMyPlanComponent,
-    'uw-myplan-courses': MyplanCoursesComponent,
     'uw-resources': ResourcesComponent,
   },
   props: {

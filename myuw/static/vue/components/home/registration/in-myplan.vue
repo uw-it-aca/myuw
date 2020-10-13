@@ -31,9 +31,11 @@
       v-model="collapseOpen"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">
-        <div class="text-danger">
-          TODO: myplan-courses.vue component goes here
-        </div>
+        <uw-myplan-courses
+          :next-term-year="year"
+          :next-term-quarter="quarter"
+          :my-plan-data="myPlanData"
+        />
       </div>
     </b-collapse>
   </div>
@@ -49,10 +51,16 @@
 </template>
 
 <script>
+import MyplanCoursesComponent from './myplan-courses.vue';
+
 export default {
   props: {
     myPlanData: {
       type: Object,
+      required: true,
+    },
+    year: {
+      type: Number,
       required: true,
     },
     quarter: {
@@ -63,6 +71,9 @@ export default {
       type: String,
       default: '',
     },
+  },
+  components: {
+    'uw-myplan-courses': MyplanCoursesComponent,
   },
   data: function() {
     return {
