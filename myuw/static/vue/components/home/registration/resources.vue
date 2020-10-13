@@ -45,7 +45,7 @@
       </a>
     </div>
     <div>
-      <h4 class="h6 text-dark font-weight-bold">
+      <h4 class="sr-only">
         Registration resources
       </h4>
       <ul class="m-0 list-unstyled myuw-text-md">
