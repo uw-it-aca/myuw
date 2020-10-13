@@ -10,16 +10,16 @@
           aria-label="Estimated Registration Date"
       >
         Est. Registration Date
-        <span class="d-block myuw-text-xs font-weight-light">
-          SR-ONLY:  {{ estRegData.estRegDate.date }}
-        </span>
       </h4>
       <div class="flex-fill text-right">
-        <div class="font-weight-bold">
+        <div class="font-weight-bold" aria-label="asdasd">
           {{ estRegData.estRegDate.date.format('ddd, MMM D') }}
         </div>
         <span class="myuw-text-sm">
           at 6:00 AM
+        </span>
+        <span class="d-block myuw-text-xs font-weight-light">
+          {{ estRegData.estRegDate.date }}
         </span>
       </div>
     </div>
