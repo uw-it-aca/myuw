@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <uw-in-myplan
+      <uw-myplan
         v-if="myPlanData"
         :my-plan-data="myPlanData"
         :year="year"
@@ -92,7 +92,7 @@ import Card from '../../_templates/card.vue';
 import EstRegComponent from './est-reg-date.vue';
 import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
-import InMyPlanComponent from './in-myplan.vue';
+import MyPlanComponent from './myplan.vue';
 import ResourcesComponent from './resources.vue';
 
 export default {
@@ -101,7 +101,7 @@ export default {
     'uw-est-reg-date': EstRegComponent,
     'uw-fin-aid': FinAidComponent,
     'uw-holds': HoldsComponent,
-    'uw-in-myplan': InMyPlanComponent,
+    'uw-myplan': MyPlanComponent,
     'uw-resources': ResourcesComponent,
   },
   props: {
