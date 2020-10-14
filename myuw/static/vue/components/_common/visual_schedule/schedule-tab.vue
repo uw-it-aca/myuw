@@ -431,7 +431,7 @@ $cell-height: 35px;
   flex-basis: 45px;
   display: flex;
   flex-direction: column;
-  width: 42px;
+  min-width: 42px;
 
   .time-cell {
     flex-grow: 1;
@@ -448,7 +448,7 @@ $cell-height: 35px;
   }
 }
 .day-column-desktop {
-  max-width: 150px;
+  max-width: 136px;
 }
 .day-column, .day-column-desktop {
   height: 100%;
