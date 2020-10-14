@@ -2,6 +2,11 @@ from .base_settings import *
 import sys
 import os
 
+ALLOWED_HOSTS += [
+    'myuw.washington.edu',
+    'myuw.uw.edu'
+]
+
 INSTALLED_APPS += [
     'uw_oidc',
     'compressor',
