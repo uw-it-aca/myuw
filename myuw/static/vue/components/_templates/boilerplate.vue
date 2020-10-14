@@ -243,20 +243,13 @@
             <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
-            <!-- page content inserted here -->
-            <slot />
-            <b-row v-if="$mq !== 'mobile'">
-              <b-col md="8">
-                <slot name="main" />
-              </b-col>
-              <b-col md="4">
-                <slot name="side-bar" />
-              </b-col>
+            <slot name="summaries" />
+            <b-row v-if="$mq === 'mobile'">
+              <slot name="main" />
             </b-row>
             <b-row v-else>
-              <b-col class="px-0">
-                <slot name="main" />
-              </b-col>
+              <slot name="main" />
+              <slot name="sidebar" />
             </b-row>
           </b-col>
         </b-row>
