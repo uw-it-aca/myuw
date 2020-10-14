@@ -18,7 +18,7 @@
         <div v-for="day in Object.keys(period.daySlots)" :key="day"
              :aria-labelledby="`${day}-${period.id}`"
              role="group"
-             class="day-column"
+             class="day-column-desktop"
         >
           <div class="font-weight-bold text-center myuw-text-xs day-heading">
             <div :id="`${day}-${period.id}`">
@@ -431,6 +431,7 @@ $cell-height: 35px;
   flex-basis: 45px;
   display: flex;
   flex-direction: column;
+  width: 42px;
 
   .time-cell {
     flex-grow: 1;
@@ -446,7 +447,10 @@ $cell-height: 35px;
     }
   }
 }
-.day-column {
+.day-column-desktop {
+  max-width: 150px;
+}
+.day-column, .day-column-desktop {
   height: 100%;
   flex-grow: 1;
   flex-basis: 0;
