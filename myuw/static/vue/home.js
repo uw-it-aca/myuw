@@ -29,7 +29,7 @@ import Outage from './components/_common/outage.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
-import GradStatus from './components/home/_common/grad-status.vue';
+import GradStatus from './components/_common/grad-status.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';

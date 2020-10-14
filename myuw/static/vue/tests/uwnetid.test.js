@@ -99,7 +99,7 @@ describe('UWNetID Card', () => {
 
   it('Show custom error msg for 543', async () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
-    const wrapper = shallowMount(UWNetidCard, {store, localVue});
+    const wrapper = mount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.showError).toBeTruthy();
