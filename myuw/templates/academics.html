@@ -1,4 +1,31 @@
 {% extends 'base.html' %}
+
+{% load settings_value %}
+{% load json_script %}
+
+{% block django_json_data %}
+{% endblock django_json_data %}
+
 {% block body_content %}
-    <p>place holder</p>
+<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
+    <!--MARK: #main template (mobile only) -->
+    <template #main>
+        <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
+            <!--MARK: card components go here in order -->
+            left content
+        </b-col>
+    </template>
+    <!-- MARK: #sidebar template (tablet/desktop) -->
+    <template #sidebar>
+        <b-col md="4">
+            <!--MARK: card components go here in order -->
+            right content
+        </b-col>
+    </template>
+</myuw-boilerplate>
 {% endblock body_content %}
+
+{% block vue_script %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'academics' %}
+{% endblock vue_script %}

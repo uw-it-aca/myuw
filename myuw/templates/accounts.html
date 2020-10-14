@@ -11,12 +11,14 @@
     <!--MARK: #main template (mobile only) -->
     <template #main>
         <b-col md="6" :class="[$mq === 'mobile' ? 'px-0' : '']">
+            <!--MARK: card components go here in order -->
             left content
         </b-col>
     </template>
     <!-- MARK: #sidebar template (tablet/desktop) -->
     <template #sidebar>
         <b-col md="6">
+            <!--MARK: card components go here in order -->
             right content
         </b-col>
     </template>

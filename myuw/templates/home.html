@@ -34,15 +34,14 @@
 
     <!--MARK: #main template (mobile only) -->
     <template #main>
+      
       <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
         <!--MARK: inherent card ordering -->
         <myuw-notice-card></myuw-notice-card>
         <myuw-grades></myuw-grades>
         <myuw-husky-experience></myuw-husky-experience>
         <myuw-outage></myuw-outage>
-
         <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
-
         <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
         <myuw-quicklinks mobile-only></myuw-quicklinks>
         <myuw-ns-thank-you></myuw-ns-thank-you>
@@ -52,28 +51,28 @@
         <myuw-reg-status for-quarter="Summer" period="A"></myuw-reg-status>
         <myuw-ns-critical-info></myuw-ns-critical-info>
         <myuw-ns-international-student></myuw-ns-international-student>
-
         <myuw-visual-schedule></myuw-visual-schedule>
         <myuw-textbooks term="{{ term|default:"current" }}"></myuw-textbooks>
         <myuw-future-quarter-cards></myuw-future-quarter-cards>
         <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
-
         <myuw-applicant></myuw-applicant>
         <myuw-international-student></myuw-international-student>
         <myuw-uwnetid></myuw-uwnetid>
-
         <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
         <myuw-events mobile-only></myuw-events>
+
       </b-col>
     </template>
   
     <!-- MARK: #sidebar template (tablet/desktop) -->
     <template #sidebar>
+
       <b-col md="4">
         <!--MARK: inherent card ordering -->
         <myuw-quicklinks></myuw-quicklinks>
         <myuw-events></myuw-events>
       </b-col>
+      
     </template>
   </myuw-boilerplate>
 {% endblock body_content %}
