@@ -1,24 +1,5 @@
 import { Vue, vueConf } from './base.js';
 
-// bootstrap vue plugins
-import {
-  AlertPlugin,
-  BadgePlugin,
-  ButtonPlugin,
-  CardPlugin,
-  CollapsePlugin,
-  FormPlugin,
-  FormGroupPlugin,
-  FormInputPlugin,
-  FormSelectPlugin,
-  LayoutPlugin,
-  LinkPlugin,
-  NavPlugin,
-  SpinnerPlugin,
-  TabsPlugin,
-  VBTogglePlugin,
-} from 'bootstrap-vue';
-
 // layout componenets
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
@@ -75,10 +56,6 @@ vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 
 vueConf.store.commit('addVarToState', {
-  name: 'termData',
-  value: window.term_data,
-});
-vueConf.store.commit('addVarToState', {
   name: 'cardDisplayDates',
   value: JSON.parse(document.getElementById('card_display_dates').innerHTML),
 });
@@ -86,23 +63,6 @@ vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
   value: 'Home',
 });
-
-// bootstrap-vue components as plugins
-Vue.use(AlertPlugin);
-Vue.use(BadgePlugin);
-Vue.use(ButtonPlugin);
-Vue.use(CardPlugin);
-Vue.use(CollapsePlugin);
-Vue.use(FormPlugin);
-Vue.use(FormGroupPlugin);
-Vue.use(FormInputPlugin);
-Vue.use(FormSelectPlugin);
-Vue.use(LayoutPlugin);
-Vue.use(LinkPlugin);
-Vue.use(NavPlugin);
-Vue.use(SpinnerPlugin);
-Vue.use(TabsPlugin);
-Vue.use(VBTogglePlugin);
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
