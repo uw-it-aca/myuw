@@ -18,6 +18,7 @@
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
         :reg-holds-notices="regHoldsNotices"
+        :is-my-plan-peak-load="myPlanPeakLoad"
       />
 
       <div v-if="pendingMajors.length" class="mb-4">
@@ -58,9 +59,10 @@
         </div>
       </div>
 
-      <uw-in-myplan
+      <uw-myplan
         v-if="myPlanData"
         :my-plan-data="myPlanData"
+        :year="year"
         :quarter="quarter"
       />
 
@@ -80,42 +82,6 @@
         :fin-aid-notices="finAidNotices"
       />
     </template>
-    <template v-if="isQuarterReady && myPlanData" #card-disclosure>
-      <b-collapse
-        :id="`myplan-courses-collapse-${_uid}`"
-        v-model="isOpen" class="mt-4"
-      >
-        <uw-myplan-courses
-          :next-term-year="year"
-          :next-term-quarter="quarter"
-          :my-plan-data="myPlanData"
-        />
-      </b-collapse>
-    </template>
-    <template v-if="isQuarterReady && myPlanData" #card-footer>
-      <b-button
-        v-if="!isOpen"
-        v-b-toggle="`myplan-courses-collapse-${_uid}`"
-        :aria-label="`Expand to show your ${quarter} ${year} plan`"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 border-0 text-dark text-uppercase"
-      >
-        <!-- TODO: @charlon add a css capital class for this button -->
-        SHOW {{ quarter }} {{ year }} PLAN
-      </b-button>
-      <b-button
-        v-else
-        v-b-toggle="`myplan-courses-collapse-${_uid}`"
-        :aria-label="`Collapse to hide your ${quarter} ${year} plan`"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 border-0 text-dark text-uppercase"
-      >
-        <!-- TODO: @charlon add a css capital class for this button -->
-        HIDE {{ quarter }} {{ year }} PLAN
-      </b-button>
-    </template>
   </uw-card>
 </template>
 
@@ -127,8 +93,7 @@ import Card from '../../_templates/card.vue';
 import EstRegComponent from './est-reg-date.vue';
 import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
-import InMyPlanComponent from './in-myplan.vue';
-import MyplanCoursesComponent from './myplan-courses.vue';
+import MyPlanComponent from './myplan.vue';
 import ResourcesComponent from './resources.vue';
 
 export default {
@@ -137,8 +102,7 @@ export default {
     'uw-est-reg-date': EstRegComponent,
     'uw-fin-aid': FinAidComponent,
     'uw-holds': HoldsComponent,
-    'uw-in-myplan': InMyPlanComponent,
-    'uw-myplan-courses': MyplanCoursesComponent,
+    'uw-myplan': MyPlanComponent,
     'uw-resources': ResourcesComponent,
   },
   props: {

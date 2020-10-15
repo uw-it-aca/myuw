@@ -13,11 +13,7 @@
           </li>
           <li v-if="unreadyCount" class="myuw-text-sm">
             {{ unreadyCount }} not ready
-            <a v-if="!hasSections" target="_blank" :href="myplanHref">
-              Add Sections
-            </a>
             <b-button
-              v-else
               v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
               :title="buttonTitle"
               size="sm"
@@ -35,35 +31,11 @@
       v-model="collapseOpen"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">
-        <h5 class="h6 font-weight-bold">
-          Not ready for registration
-        </h5>
-        <ul class="myuw-text-sm">
-          <li v-for="(course, i) in coursesUnavailable" :key="i">
-            {{ course.curriculum_abbr }} {{ course.course_number }}
-          </li>
-        </ul>
-
-        <div class="myuw-text-sm">
-          <p>
-            One or more of the issues below will prevent these courses from
-            being sent to registration:
-          </p>
-          <ul>
-            <li>Too many/too few sections selected for a course</li>
-            <li>Time conflict with registered course</li>
-            <li>Time conflict with a selected section</li>
-            <li>Planned courses are jointly offered versions of one course</li>
-          </ul>
-        </div>
-        <div class="text-right myuw-text-sm">
-          <a
-            title="Edit plan to fix issues" target="_blank"
-            :href="myplanHref"
-          >
-            Edit plan in MyPlan
-          </a>
-        </div>
+        <uw-myplan-courses
+          :next-term-year="year"
+          :next-term-quarter="quarter"
+          :my-plan-data="myPlanData"
+        />
       </div>
     </b-collapse>
   </div>
@@ -79,10 +51,19 @@
 </template>
 
 <script>
+import MyplanCoursesComponent from './myplan-courses.vue';
+
 export default {
+  components: {
+    'uw-myplan-courses': MyplanCoursesComponent,
+  },
   props: {
     myPlanData: {
       type: Object,
+      required: true,
+    },
+    year: {
+      type: Number,
       required: true,
     },
     quarter: {
