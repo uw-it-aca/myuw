@@ -11,6 +11,7 @@ import {
   FormGroupPlugin,
   FormInputPlugin,
   FormSelectPlugin,
+  InputGroupPlugin,
   LayoutPlugin,
   LinkPlugin,
   NavPlugin,
@@ -97,6 +98,7 @@ Vue.use(FormPlugin);
 Vue.use(FormGroupPlugin);
 Vue.use(FormInputPlugin);
 Vue.use(FormSelectPlugin);
+Vue.use(InputGroupPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(LinkPlugin);
 Vue.use(NavPlugin);
