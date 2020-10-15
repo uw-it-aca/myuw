@@ -3,7 +3,7 @@ import {mount} from '@vue/test-utils';
 import {createLocalVue, expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
-import Courses from '../vuex/store/courses';
+import Courses from '../vuex/store/stud_schedule';
 import GradesCard from '../components/_common/grades.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
@@ -37,7 +37,7 @@ describe('Courses Store', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'courses': Courses,
+        'stud_schedule': Courses,
       },
     });
   });
@@ -74,7 +74,7 @@ describe('Events Card', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'courses': Courses,
+        'stud_schedule': Courses,
       },
       state: {
         cardDisplayDates: {
