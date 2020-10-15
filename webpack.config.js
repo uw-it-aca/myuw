@@ -41,6 +41,9 @@ module.exports = {
     home: [
       "./myuw/static/vue/home.js",
     ],
+    academics: [
+      "./myuw/static/vue/academics.js"
+    ],
     teaching: [
       "./myuw/static/vue/teaching.js",
     ],
