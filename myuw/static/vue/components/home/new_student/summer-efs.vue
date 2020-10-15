@@ -5,19 +5,22 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 v-if="isErrored">
+      <h3 v-if="isErrored" class="text-dark-beige">
         Summer &amp; Early Fall Start
       </h3>
     </template>
 
     <template #card-body>
-      <div v-for="notice in notices" :key="notice.id_hash">
-        <h3>Review Critical Summer Registration Info</h3>
-        <div v-html="notice.notice_body" />
+      <div v-for="notice in notices" :key="notice.id_hash" class="mb-3">
+        <h3 class="text-dark-beige">
+          Review Critical Summer Registration Info
+        </h3>
+        <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
-
-      <h3>Consider Early Fall Start</h3>
-      <div>
+      <h3 class="text-dark-beige">
+        Consider Early Fall Start
+      </h3>
+      <div class="myuw-text-md">
         Early Fall Start is a single 5-credit intensive course held
         over four weeks before autumn quarter begins. Benefit from a small
         class size, an early introduction to college life, and a lighter
