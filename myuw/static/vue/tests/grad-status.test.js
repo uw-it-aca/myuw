@@ -3,7 +3,7 @@ import {mount, shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import grad from '../vuex/store/grad';
-import GradStatusCard from '../components/_common/grad-status.vue';
+import GradStatusCard from '../components/academics/grad-status.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
