@@ -16,7 +16,7 @@
       </div>
 
       <b-collapse id="app_search" class="myuw-search bg-gold">
-        this is search
+        <uw-search />
       </b-collapse>
 
       <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
@@ -243,20 +243,9 @@
             <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
-            <!-- page content inserted here -->
-            <slot />
-            <b-row v-if="$mq !== 'mobile'">
-              <b-col md="8">
-                <slot name="main" />
-              </b-col>
-              <b-col md="4">
-                <slot name="side-bar" />
-              </b-col>
-            </b-row>
-            <b-row v-else>
-              <b-col class="px-0">
-                <slot name="main" />
-              </b-col>
+            <b-row>
+              <slot name="primary" />
+              <slot v-if="$mq !== 'mobile'" name="secondary" />
             </b-row>
           </b-col>
         </b-row>
@@ -315,9 +304,12 @@
 
 <script>
 import {mapState} from 'vuex';
+import Search from './search.vue';
 
 export default {
-  components: {},
+  components: {
+    'uw-search': Search,
+  },
   props: {
     logoutUrl: {
       type: String,
@@ -351,7 +343,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../css/myuw/variables.scss";
+@import "../../../../css/myuw/variables.scss";
 
 // boilerplate
 
@@ -376,7 +368,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 45px;
     background-position: right 20px bottom;
-    background-image: url(../../../images/w-logo-white.png);
+    background-image: url(../../../../images/w-logo-white.png);
   }
 }
 
@@ -401,7 +393,6 @@ export default {
 //.myuw-body { }
 
 .myuw-footer {
-
   ul {
     li {
       &:not(:last-child)::after {

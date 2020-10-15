@@ -8,26 +8,16 @@
       >
         Register using SLN codes
       </a>
-
       <div v-if="currentPlanData" class="d-inline-block">
         <a
-          v-if="!hasReadyCourses"
-          target="_blank" title="Edit plan in MyPlan"
-          :href="myplanHref"
-          class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
-        >
-          Edit plan in MyPlan
-        </a>
-        <a
-          v-else
           target="_blank" title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
-          class="mb-2  btn btn-outline-beige text-dark myuw-text-md"
+          class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
         >
           Use MyPlan to Register
         </a>
       </div>
-      <div v-else>
+      <div v-else class="d-inline-block">
         <a
           target="_blank" title="Register using MyPlan"
           :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`"
@@ -45,16 +35,19 @@
         </a>
       </div>
     </div>
-    <div v-else-if="preRegNotices && preRegNotices.length" class="mb-4">
+    <div v-else-if="preRegNotices && preRegNotices.length"
+         class="mb-4 text-center"
+    >
       <a
         target="_blank"
         href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
+        class="mb-2 btn btn-outline-beige text-dark myuw-text-md"
       >
         Complete Pre-Registration Requirements
       </a>
     </div>
     <div>
-      <h4 class="h6 text-dark font-weight-bold">
+      <h4 class="sr-only">
         Registration resources
       </h4>
       <ul class="m-0 list-unstyled myuw-text-md">
