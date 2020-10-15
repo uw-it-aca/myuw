@@ -41,6 +41,25 @@ import {
   faCircle,
 } from '@fortawesome/free-regular-svg-icons';
 
+// Bootstrap vue plugins
+import {
+  AlertPlugin,
+  BadgePlugin,
+  ButtonPlugin,
+  CardPlugin,
+  CollapsePlugin,
+  FormPlugin,
+  FormGroupPlugin,
+  FormInputPlugin,
+  FormSelectPlugin,
+  LayoutPlugin,
+  LinkPlugin,
+  NavPlugin,
+  SpinnerPlugin,
+  TabsPlugin,
+  VBTogglePlugin,
+} from 'bootstrap-vue';
+
 // Mixins
 import outlink from './mixins/outlink';
 import utils from './mixins/utils';
@@ -81,6 +100,23 @@ library.add(faChevronRight);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
+
+// Bootstrap-Vue components as plugins
+Vue.use(AlertPlugin);
+Vue.use(BadgePlugin);
+Vue.use(ButtonPlugin);
+Vue.use(CardPlugin);
+Vue.use(CollapsePlugin);
+Vue.use(FormPlugin);
+Vue.use(FormGroupPlugin);
+Vue.use(FormInputPlugin);
+Vue.use(FormSelectPlugin);
+Vue.use(LayoutPlugin);
+Vue.use(LinkPlugin);
+Vue.use(NavPlugin);
+Vue.use(SpinnerPlugin);
+Vue.use(TabsPlugin);
+Vue.use(VBTogglePlugin);
 
 // vuex
 Vue.use(Vuex);

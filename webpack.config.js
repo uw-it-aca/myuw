@@ -47,8 +47,8 @@ module.exports = {
     teaching: [
       "./myuw/static/vue/teaching.js",
     ],
-    accounts: [
-      "./myuw/static/vue/accounts.js"
+    academics: [
+      "./myuw/static/vue/academics.js"
     ]
   },
   output: {
