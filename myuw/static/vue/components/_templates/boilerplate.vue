@@ -240,22 +240,22 @@
             </b-collapse>
           </b-col>
           <b-col lg="10" role="main" aria-labelledby="mainHeader">
-            <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+            <h2 id="mainHeader" :class="pageTitle == 'Home' ? 'sr-only' : ''">
               {{ pageTitle }}
             </h2>
             <!-- page content inserted here -->
             <slot />
-            <b-row v-if="$mq !== 'mobile'">
-              <b-col md="8">
+            <b-row v-if="$mq === 'mobile'">
+              <b-col class="px-0">
                 <slot name="main" />
-              </b-col>
-              <b-col md="4">
-                <slot name="side-bar" />
               </b-col>
             </b-row>
             <b-row v-else>
-              <b-col class="px-0">
+              <b-col :md="pageTitle == 'Accounts' ? '6' : '8'">
                 <slot name="main" />
+              </b-col>
+              <b-col :md="pageTitle == 'Accounts' ? '6' : '4'">
+                <slot name="sidebar" />
               </b-col>
             </b-row>
           </b-col>

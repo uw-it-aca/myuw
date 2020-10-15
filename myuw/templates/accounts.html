@@ -7,9 +7,16 @@
 {% endblock django_json_data %}
 
 {% block body_content %}
-    <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
-        <p>accounts place holder</p>
-    </myuw-boilerplate>
+  <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
+    <!--MARK: #main template (mobile-desktop) -->
+    <template #main>
+     <p>asdfasdfdasfasdf
+    </template>
+    <!-- MARK: #side-bar template (tablet/desktop only) -->
+    <template #sidebar>
+      asdfadsfadf
+    </template>
+  </myuw-boilerplate>
 {% endblock body_content %}
 
 {% block vue_script %}
