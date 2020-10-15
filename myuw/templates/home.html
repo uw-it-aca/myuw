@@ -27,8 +27,8 @@
 
   <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
     
-    <!--MARK: #main template (mobile only) -->
-    <template #main>
+    <!--MARK: #primary template (column 1, mobile only) -->
+    <template #primary>
       <b-col md="12"> 
         <myuw-banner-summaries></myuw-banner-summaries>
       </b-col>
@@ -60,8 +60,8 @@
       </b-col>
     </template>
   
-    <!-- MARK: #sidebar template (tablet/desktop) -->
-    <template #sidebar>
+    <!-- MARK: #secondary template (column 2, table/desktop) -->
+    <template #secondary>
       <b-col md="4">
         <!--MARK: inherent card ordering -->
         <myuw-quicklinks></myuw-quicklinks>

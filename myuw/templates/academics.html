@@ -8,15 +8,15 @@
 
 {% block body_content %}
 <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
-    <!--MARK: #main template (mobile only) -->
-    <template #main>
+    <!--MARK: #primary template (column 1, mobile only) -->
+    <template #primary>
         <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
             <!--MARK: card components go here in order -->
             left content
         </b-col>
     </template>
-    <!-- MARK: #sidebar template (tablet/desktop) -->
-    <template #sidebar>
+    <!-- MARK: #secondary template (column 2, table/desktop) -->
+    <template #secondary>
         <b-col md="4">
             <!--MARK: card components go here in order -->
             right content

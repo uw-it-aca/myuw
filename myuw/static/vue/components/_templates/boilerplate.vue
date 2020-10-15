@@ -244,11 +244,11 @@
               {{ pageTitle }}
             </h2>
             <b-row v-if="$mq === 'mobile'">
-              <slot name="main" />
+              <slot name="primary" />
             </b-row>
             <b-row v-else>
-              <slot name="main" />
-              <slot name="sidebar" />
+              <slot name="primary" />
+              <slot name="secondary" />
             </b-row>
           </b-col>
         </b-row>
