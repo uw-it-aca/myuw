@@ -29,6 +29,7 @@ import Textbooks from './components/_common/textbooks.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';
 
 // academics components
+import GradStatus from './components/academics/grad-status.vue';
 // import CourseCards from './components/academics/schedule/course-cards.vue';
 
 // stores
@@ -36,11 +37,13 @@ import oquarter from './vuex/store/oquarter';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/stud_schedule';
 import visual_schedule from './vuex/store/visual_schedule';
+import grad from './vuex/store/grad';
 
 vueConf.store.registerModule('oquarter', oquarter);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('visual_schedule', visual_schedule);
+vueConf.store.registerModule('grad', grad);
 
 vueConf.store.commit('addVarToState', {
   name: 'termData',
@@ -80,7 +83,7 @@ Vue.component('myuw-outage', Outage);
 Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
-
+Vue.component('myuw-grad-status', GradStatus);
 
 new Vue({
   ...vueConf,
