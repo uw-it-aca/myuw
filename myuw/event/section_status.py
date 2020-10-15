@@ -6,6 +6,7 @@ https://wiki.cac.washington.edu/x/sNFdB
 import logging
 from datetime import timedelta
 import traceback
+from django.conf import settings
 from django.utils import timezone
 from dateutil.parser import parse
 from aws_message.processor import MessageBodyProcessor, ProcessorException
@@ -60,9 +61,14 @@ class SectionStatusProcessor(MessageBodyProcessor):
 
         try:
             update_sws_entry_in_cache(url, new_value, self.modified)
-        except Exception:
-            msg = "Updating memcache (svc=sws, url={}, new value={})".format(
-                url, new_value)
-            logger.error("{} => {}".format(
-                msg, traceback.format_exc(chain=False).splitlines()))
+        except Exception as ex:
+            msg = {
+                "at": "SectionStatusProcessor",
+                "memcachedServers": getattr(settings, "MEMCACHED_SERVERS"),
+                "svc": "sws",
+                "url": url,
+                "newValue": new_value,
+                "err": ex,
+                "stacktrace": traceback.format_exc(chain=False).splitlines()}
+            logger.error(msg)
             raise SectionStatusProcessorException(msg)

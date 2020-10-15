@@ -73,12 +73,12 @@ export default {
       isBeforeEndOfFirstWeek: (state) =>
         state.cardDisplayDates.is_before_eof_7days_of_term,
     }),
-    ...mapState('schedule', {
+    ...mapState('stud_schedule', {
       courseData: function(state) {
         return state.value[this.term];
       },
     }),
-    ...mapGetters('schedule', {
+    ...mapGetters('stud_schedule', {
       isReadySchedule: 'isReadyTagged',
       isErroredSchedule: 'isErroredTagged',
       statusCodeSchedule: 'statusCodeTagged',
@@ -160,7 +160,7 @@ export default {
     ...mapActions('textbooks', {
       fetchTextbooks: 'fetch',
     }),
-    ...mapActions('schedule', {
+    ...mapActions('stud_schedule', {
       fetchSchedule: 'fetch',
     }),
   },
