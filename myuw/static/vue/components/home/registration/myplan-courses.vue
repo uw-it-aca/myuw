@@ -1,17 +1,17 @@
 <template>
   <div>
-    <h4 class="text-dark-beige">
+    <h5 class="text-dark-beige">
       Your {{ nextTermQuarter }} {{ nextTermYear }} plan
-    </h4>
+    </h5>
     <div v-if="hadReadyCourses">
-      <h5 class="h6 font-weight-bold">
+      <h6 class="font-weight-bold">
         Ready for registration
-      </h5>
+      </h6>
       <ul class="list-unstyled m-0 myuw-text-sm">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
-          <h6 class="myuw-text-md m-0">
+          <div class="myuw-text-md m-0">
             {{ course.curriculum_abbr }} {{ course.course_number }}
-          </h6>
+          </div>
           <table class="table table-borderless table-sm myuw-text-sm">
             <thead class="sr-only">
               <tr>
@@ -77,14 +77,27 @@
       </ul>
     </div>
     <div v-if="hadUnReadyCourses">
-      <h5 class="h6 font-weight-bold">
-        Not ready for registration
-      </h5>
+      <h6 class="font-weight-bold">
+        Issues
+      </h6>
+      <p class="myuw-text-md">
+        The following plan items have issues you must resolve before they
+        can be sent to Registration.
+      </p>
       <ul class="list-unstyled myuw-text-sm">
-        <li v-for="(course, i) in courses" :key="i">
+        <li v-for="(course, i) in coursesUnRegistrable" :key="i">
           {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>
       </ul>
+      <div class="text-right myuw-text-sm">
+        <a
+          title="Edit plan to fix issues" target="_blank"
+          :href="currentPlanData.myplan_href"
+        >
+          Go to your {{ nextTermQuarter }} {{ nextTermYear }}
+          plan to resolve these issues
+        </a>
+      </div>
     </div>
   </div>
 </template>

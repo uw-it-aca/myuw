@@ -53,6 +53,10 @@ export default {
       type: Array,
       required: true,
     },
+    isMyPlanPeakLoad: {
+      type: Boolean,
+      required: true,
+    },
   },
   data: function() {
     return {
