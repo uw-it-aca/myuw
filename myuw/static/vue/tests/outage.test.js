@@ -31,7 +31,7 @@ describe('Outage card', () => {
           }
         },
         getters: {
-          'courses/statusCode': () => 200,
+          'stud_schedule/statusCode': () => 200,
           'notices/statusCode': () => 200,
           // 'profile/statusCode': () => 200,
         },
@@ -56,7 +56,7 @@ describe('Outage card', () => {
 
     it('showOutageCard for Student - Successful calls', () => {
       let getters = {
-        'courses/statusCode': () => 200,
+        'stud_schedule/statusCode': () => 200,
         'notices/statusCode': () => 200,
         // 'profile/statusCode': () => 200,
       };
@@ -71,7 +71,7 @@ describe('Outage card', () => {
 
     it('showOutageCard for Student - 404 Error', () => {
       let getters = {
-        'courses/statusCode': () => 404,
+        'stud_schedule/statusCode': () => 404,
         'notices/statusCode': () => 200,
         // 'profile/statusCode': () => 200,
       };
@@ -86,7 +86,7 @@ describe('Outage card', () => {
 
     it('showOutageCard for Student - 543 Error', () => {
       let getters = {
-        'courses/statusCode': () => 543,
+        'stud_schedule/statusCode': () => 543,
         'notices/statusCode': () => 200,
         // 'profile/statusCode': () => 200,
       };
