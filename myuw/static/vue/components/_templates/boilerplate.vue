@@ -243,12 +243,9 @@
             <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
-            <b-row v-if="$mq === 'mobile'">
+            <b-row>
               <slot name="primary" />
-            </b-row>
-            <b-row v-else>
-              <slot name="primary" />
-              <slot name="secondary" />
+              <slot v-if="$mq !== 'mobile'" name="secondary" />
             </b-row>
           </b-col>
         </b-row>
