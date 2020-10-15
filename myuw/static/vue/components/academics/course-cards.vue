@@ -40,12 +40,12 @@ export default {
     ...mapState({
       student: (state) => state.user.affiliations.student,
     }),
-    ...mapState('studSchedule', {
+    ...mapState('stud_schedule', {
       course(state) {
         return state.value[this.term];
       }
     }),
-    ...mapGetters('studSchedule', {
+    ...mapGetters('stud_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
     }),
@@ -60,7 +60,7 @@ export default {
     if(this.student) this.fetch(this.term);
   },
   methods: {
-    ...mapActions('studSchedule', ['fetch']),
+    ...mapActions('stud_schedule', ['fetch']),
   },
 };
 </script>

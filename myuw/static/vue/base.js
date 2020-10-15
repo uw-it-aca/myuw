@@ -160,4 +160,9 @@ const vueConf = {
   },
   store: store,
 };
+
+vueConf.store.commit('addVarToState', {
+  name: 'termData',
+  value: window.term_data,
+});
 export {Vue, vueConf};

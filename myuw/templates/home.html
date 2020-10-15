@@ -5,21 +5,6 @@
 {% load set_context %}
 
 {% block django_json_data %}
-<script> 
-  // TODO: Replace this with a object in the context and a json_script.
-  window.term_data = {
-    today: '{{ today|date:"l, F j, Y" }}',
-    year: '{{ year }}',
-    quarter: '{{ quarter }}',
-    breakYear: '{{ break_year }}',
-    breakQuarter: '{{ break_quarter }}',
-    isFinals: {{ is_finals|yesno:"true, false"}},
-    isBreak: {{ is_break|yesno:"true, false"}},
-    todayDate: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
-    firstDay: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
-    lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
-  };
-</script>
 {{ card_display_dates|json_script:'card_display_dates' }}
 {% endblock django_json_data %}
 
