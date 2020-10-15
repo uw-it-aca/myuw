@@ -16,7 +16,7 @@
       </div>
 
       <b-collapse id="app_search" class="myuw-search bg-gold">
-        this is search
+        <uw-search />
       </b-collapse>
 
       <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
@@ -304,9 +304,12 @@
 
 <script>
 import {mapState} from 'vuex';
+import Search from './search.vue';
 
 export default {
-  components: {},
+  components: {
+    'uw-search': Search,
+  },
   props: {
     logoutUrl: {
       type: String,
@@ -340,7 +343,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../css/myuw/variables.scss";
+@import "../../../../css/myuw/variables.scss";
 
 // boilerplate
 
@@ -365,7 +368,7 @@ export default {
     background-repeat: no-repeat;
     background-size: 45px;
     background-position: right 20px bottom;
-    background-image: url(../../../images/w-logo-white.png);
+    background-image: url(../../../../images/w-logo-white.png);
   }
 }
 
@@ -390,7 +393,6 @@ export default {
 //.myuw-body { }
 
 .myuw-footer {
-
   ul {
     li {
       &:not(:last-child)::after {

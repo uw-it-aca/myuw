@@ -19,7 +19,7 @@ import {
   VBTogglePlugin,
 } from 'bootstrap-vue';
 
-import Boilerplate from './components/_templates/boilerplate.vue';
+import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',

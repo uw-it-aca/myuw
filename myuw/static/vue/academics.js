@@ -19,7 +19,7 @@ import {
   VBTogglePlugin,
 } from 'bootstrap-vue';
 
-import Boilerplate from './components/_templates/boilerplate.vue';
+import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
 import Grades from './components/_common/grades.vue';
