@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.student">
+  <div v-if="student">
     <div v-if="isReady">
       <h3 class="sr-only">
         Your {{ ucfirst(course.quarter) }} {{ course.year }} Courses

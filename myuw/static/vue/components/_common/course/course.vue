@@ -25,13 +25,7 @@
           </div>
         </div>
         <span v-if="section.summer_term">
-          Summer
-          {{
-            section.summer_term
-              .split('-')
-              .map(ucfirst)
-              .join('-')
-          }}
+          Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
         </span>
       </template>
       <template #card-body>
@@ -52,7 +46,10 @@
       </template>
       <template #card-disclosure>
         <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
-          <uw-instructor-info v-if="instructors" :instructors="instructors" />
+          <uw-instructor-info
+            v-if="instructors"
+            :instructors="instructors"
+          />
         </b-collapse>
       </template>
       <template #card-footer>
@@ -123,21 +120,18 @@ export default {
   computed: {
     instructors() {
       const seenUWRegId = new Set();
-      return this.section.meetings
-          .map((s) => s.instructors || [])
-          .flat()
-          .filter((i) => {
-            if (seenUWRegId.has(i.uwregid)) return false;
-            seenUWRegId.add(i.uwregid);
-            return true;
-          })
-          .sort((i1, i2) => {
-            if (i1.surname < i2.surname) return -1;
-            if (i1.surname > i2.surname) return 1;
-            return 0;
-          });
+      return this.section.meetings.map(
+          (s) => s.instructors || [],
+      ).flat().filter((i) => {
+        if (seenUWRegId.has(i.uwregid)) return false;
+        seenUWRegId.add(i.uwregid);
+        return true;
+      }).sort((i1, i2) => {
+        if (i1.surname < i2.surname) return -1;
+        if (i1.surname > i2.surname) return 1;
+        return 0;
+      });
     },
   },
 };
 </script>
-

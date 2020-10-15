@@ -55,20 +55,23 @@ export default {
     course: {
       type: Object,
       required: true,
-    }
+    },
   },
   computed: {
     slnHref() {
       let url = `/textbooks/${this.course.year},${this.course.quarter}`;
+
       if (this.course.summer_term) {
         url += `,${this.course.summer_term.toLowerCase()}`;
       }
       url += `/${this.section.curriculum_abbr}${
         this.section.course_number
       }${this.section.section_id}`;
-    }
-  }
-}
+
+      return url;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
