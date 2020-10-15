@@ -16,13 +16,14 @@
       <!-- schedule tabs -->
       <b-tabs v-model="tabIndex" pills
               nav-wrapper-class="mb-3 p-1"
-              nav-class=""
-              active-nav-item-class="bg-beige text-body font-weight-bold"
+              active-nav-item-class="bg-transparent rounded-0
+              myuw-border-bottom border-dark text-body font-weight-bold"
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
-               title-item-class="bg-light text-nowrap text-uppercase
+               title-item-class="text-nowrap text-uppercase
                myuw-text-xs mr-1 mb-1"
-               title-link-class="text-body h-100"
+               title-link-class="rounded-0 px-2 py-1 h-100
+               text-body myuw-border-bottom"
                :active="period.id == activePeriod.id"
         >
           <!-- tab content -->
