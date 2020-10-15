@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700&display=swap');
 
 /******************************************************************************************
 PIXEL TO REM CONVERSION TABLE - Root Size: 16px
@@ -35,6 +36,17 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   font-size: 0.6875rem !important;
 } //11px
 
+// myuw custom fonts
+.myuw-font-open-sans {
+  font-family: 'Open Sans', sans-serif !important;
+}
+.myuw-font-encode-sans {
+  font-family: 'Encode Sans', sans-serif !important;
+}
+.myuw-font-roboto {
+  font-family: 'Roboto', sans-serif !important;
+}
+
 // myuw chevron card link
 .myuw-chevron {
   position: absolute;
@@ -50,4 +62,12 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
       background-color: $gray-200;
     }
   }
+}
+
+// myuw border top and bottom
+.myuw-border-top {
+  border-top: 0.5rem solid #ddd; // 8px
+}
+.myuw-border-bottom {
+  border-bottom: 0.3125rem solid #ddd; // 5px
 }

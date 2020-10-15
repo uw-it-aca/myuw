@@ -86,7 +86,7 @@ export default {
       isEmployee: (state) => state.user.affiliations.employee,
     }),
     ...mapGetters({
-      courseStatusCode: 'courses/statusCode',
+      studentScheduleStatusCode: 'stud_schedule/statusCode',
       noticeStatusCode: 'notices/statusCode',
       /** These modules don't exist yet.
        * Commenting them for later implementation.
@@ -99,9 +99,9 @@ export default {
     }),
     showOutageCard: function() {
       if (this.isStudent) {
-        if (this.courseStatusCode && this.noticeStatusCode
+        if (this.studentScheduleStatusCode && this.noticeStatusCode
         /** && this.profileStatusCode **/) {
-          if (this.non404Error(this.courseStatusCode) ||
+          if (this.non404Error(this.studentScheduleStatusCode) ||
               this.non404Error(this.noticeStatusCode)
               /** || non404Error(this.profileStatusCode) **/) {
             return true;

@@ -56,7 +56,7 @@
           </a>
         </li>
       </ul>
-      <ul v-if="links.bot_student">
+      <ul v-if="links.bot_student" class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a href="https://www.uwb.edu/it/student-continuity">
             Student Help for Learning Online
@@ -73,7 +73,7 @@
           </a>
         </li>
       </ul>
-      <ul v-if="links.tac_student">
+      <ul v-if="links.tac_student" class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a href="https://www.tacoma.uw.edu/digital-learning/student-online-support">
             Online Learning Support
