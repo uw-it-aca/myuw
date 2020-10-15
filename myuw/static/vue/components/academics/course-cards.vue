@@ -1,13 +1,13 @@
 <template>
-  <div v-if="this.student">
+  <div v-if="student">
     <div v-if="isReady">
-      <h3>Your {{ucfirst(course.quarter)}} {{course.year}} Courses</h3>
+      <h3>Your {{ ucfirst(course.quarter) }} {{ course.year }} Courses</h3>
       <uw-course-card
         v-for="(section, i) in course.sections" :key="i"
         :course="course" :section="section" :index="i"
       />
     </div>
-    <uw-card :errored="isErrored" v-else>
+    <uw-card v-else :errored="isErrored">
       <template #card-heading>
         Schedule &amp; Course Info
       </template>
@@ -33,7 +33,7 @@ export default {
   },
   data: function() {
     return {
-      term: "current",
+      term: 'current',
     };
   },
   computed: {
@@ -43,7 +43,7 @@ export default {
     ...mapState('stud_schedule', {
       course(state) {
         return state.value[this.term];
-      }
+      },
     }),
     ...mapGetters('stud_schedule', {
       isReadyTagged: 'isReadyTagged',
@@ -57,7 +57,7 @@ export default {
     },
   },
   created() {
-    if(this.student) this.fetch(this.term);
+    if (this.student) this.fetch(this.term);
   },
   methods: {
     ...mapActions('stud_schedule', ['fetch']),

@@ -17,7 +17,7 @@
           <abbr v-if="meeting.meeting_days.sunday" title="Sunday">Su</abbr>
         </td>
         <td>
-          {{meeting.start_time}} &ndash; {{meeting.end_time}}
+          {{ meeting.start_time }} &ndash; {{ meeting.end_time }}
         </td>
         <td>
           <a
@@ -26,20 +26,20 @@
             target="_blank"
             :title="`Map ${meeting.building}`"
           >
-            {{meeting.building}}
+            {{ meeting.building }}
           </a>
           <a
             v-if="meeting.classroom_info_url"
             :href="meeting.classroom_info_url"
             target="_blank"
           >
-            {{room}}
+            {{ room }}
           </a>
           <span
             v-else-if="meeting.room"
             title="No classroom information available"
           >
-            {{meeting.room === '*' ? 'Room to be arranged' : meeting.room}}
+            {{ meeting.room === '*' ? 'Room to be arranged' : meeting.room }}
           </span>
         </td>
       </tr>
@@ -58,7 +58,7 @@ export default {
     meetings: {
       type: Array,
       required: true,
-    }
+    },
   },
   computed: {
     locationUrl() {
@@ -71,9 +71,9 @@ export default {
     },
     meetingsWithTime() {
       return this.meetings.filter((m) => m.start_time);
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,31 +1,31 @@
 <template>
   <div>
-    <div :class="`top-ribbon w-100 bg-c${section.color_id}`"></div>
+    <div :class="`top-ribbon w-100 bg-c${section.color_id}`" />
     <uw-card loaded>
       <template #card-heading>
         <div class="d-flex justify-content-between">
           <div>
             <h4>
-              {{section.curriculum_abbr}}
-              {{section.course_number}}
-              {{section.section_id}}
+              {{ section.curriculum_abbr }}
+              {{ section.course_number }}
+              {{ section.section_id }}
             </h4>
-            <span>{{section.course_title}}</span>
+            <span>{{ section.course_title }}</span>
           </div>
           <div>
             <span class="d-block">
-              {{ucfirst(section.meetings[0].type)}}
+              {{ ucfirst(section.meetings[0].type) }}
             </span>
             <span
               v-if="section.is_primary_section && section.for_credit"
               class="d-block text-right"
             >
-              {{section.credits}} CR
+              {{ section.credits }} CR
             </span>
           </div>
         </div>
         <span v-if="section.summer_term">
-          Summer {{section.summer_term.split('-').map(ucfirst).join('-')}}
+          Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
         </span>
       </template>
       <template #card-body>
@@ -34,19 +34,19 @@
             <b-col v-if="showRowHeading" cols="3">
               Meeting Time
             </b-col>
-            <uw-meeting-info :meetings="section.meetings"/>
+            <uw-meeting-info :meetings="section.meetings" />
           </b-row>
           <b-row no-gutters>
             <b-col v-if="showRowHeading" cols="3">
               Meeting Time
             </b-col>
-            <uw-resources :section="section" :course="course"/>
+            <uw-resources :section="section" :course="course" />
           </b-row>
         </b-container>
       </template>
       <template #card-disclosure>
         <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
-          <uw-instructor-info 
+          <uw-instructor-info
             v-if="instructors"
             :instructors="instructors"
           />
@@ -110,18 +110,18 @@ export default {
     index: {
       type: Number,
       required: true,
-    }
+    },
   },
   data() {
     return {
       isOpen: false,
-    }
+    };
   },
   computed: {
     instructors() {
-      let seenUWRegId = new Set();
+      const seenUWRegId = new Set();
       return this.section.meetings.map(
-        (s) => s.instructors || []
+          (s) => s.instructors || [],
       ).flat().filter((i) => {
         if (seenUWRegId.has(i.uwregid)) return false;
         seenUWRegId.add(i.uwregid);
@@ -131,8 +131,8 @@ export default {
         if (i1.surname > i2.surname) return 1;
         return 0;
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
