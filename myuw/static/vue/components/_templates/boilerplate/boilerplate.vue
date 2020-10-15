@@ -15,7 +15,7 @@
         </b-container>
       </div>
 
-      <b-collapse id="app_search" class="myuw-search bg-gold">
+      <b-collapse id="app_search" class="myuw-search bg-light">
         <uw-search />
       </b-collapse>
 
