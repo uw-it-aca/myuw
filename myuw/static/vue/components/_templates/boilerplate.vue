@@ -243,7 +243,6 @@
             <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
-            <slot name="summaries" />
             <b-row v-if="$mq === 'mobile'">
               <slot name="main" />
             </b-row>
