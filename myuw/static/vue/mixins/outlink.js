@@ -9,8 +9,8 @@ export default {
           if (link.href !== "") {
             let label = link.innerText;
             link.href = `${document.location.origin}/out?u=${
-              encodeURI(link.href)
-            }&l=${encodeURI(label)}`;
+              encodeURIComponent(link.href)
+            }&l=${encodeURIComponent(label)}`;
             link.classList.add('out-link');
           }
         }
