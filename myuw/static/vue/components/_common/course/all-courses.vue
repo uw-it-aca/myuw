@@ -35,7 +35,7 @@ export default {
     term: {
       type: String,
       default: 'current',
-    }
+    },
   },
   computed: {
     ...mapState({
