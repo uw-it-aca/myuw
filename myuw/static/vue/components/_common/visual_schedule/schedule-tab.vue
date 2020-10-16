@@ -179,9 +179,7 @@ export default {
   },
   computed: {
     ...mapState({
-      quarterLastDate: (state) => dayjs(
-          state.termData.lastDay, 'dddd, MMMM D, YYYY',
-      ),
+      quarterLastDate: (state) => dayjs(state.termData.lastDay),
       today: (state) => dayjs(state.termData.todayDate),
     }),
   },
