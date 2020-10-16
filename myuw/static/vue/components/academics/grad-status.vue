@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="!isReady || is_grad"
+    v-if="showCard"
     :loaded="isReady" :errored="isErrored"
     :errored-show="showError"
   >
@@ -157,6 +157,9 @@ export default {
     showError: function() {
       return this.statusCode !== 404;
     },
+    showCard: function() {
+      return !this.isReady || (this.leaves || this.petitions || this.degrees);
+    }
   },
   created() {
     this.fetch();
