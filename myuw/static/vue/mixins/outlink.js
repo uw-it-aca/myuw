@@ -6,11 +6,13 @@ export default {
         if (link.href.includes(document.location.origin)) {
           link.classList.add('in-link');
         } else {
-          let label = link.innerText;
-          link.href = `${document.location.origin}/out?u=${
-            encodeURI(link.href)
-          }&l=${encodeURI(label)}`;
-          link.classList.add('out-link');
+          if (link.href !== "") {
+            let label = link.innerText;
+            link.href = `${document.location.origin}/out?u=${
+              encodeURI(link.href)
+            }&l=${encodeURI(label)}`;
+            link.classList.add('out-link');
+          }
         }
       });
     }
