@@ -6,7 +6,9 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="text-dark-beige">Graduate Request Status</h3>
+      <h3 class="text-dark-beige">
+        Graduate Request Status
+      </h3>
     </template>
     <template #card-body>
       <div v-if="petitions">
@@ -49,21 +51,19 @@
           <ul v-for="(leave, index) in leaves" :key="index">
             <li>
               <h5>
-                <template v-for="(term, termIndex) in leave.terms"
-                  ><span :key="termIndex" v-if="termIndex > 0">, </span
-                  >{{ term.quarter + " " + term.year }}</template
-                >
-                Leave
+                <template v-for="(term, termIndex) in leave.terms">
+                  <span v-if="termIndex > 0" :key="termIndex">, </span>
+                  {{ term.quarter + " " + term.year }}
+                </template> Leave
               </h5>
               <div>Status</div>
               <span v-if="leave.status === 'Approved'">
-                Approved<br />
+                Approved<br>
                 <a
                   target="_blank"
                   href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
                   data-linklabel="MyGrad Payment Portal"
-                  >Pay Your Fee To Confirm</a
-                >
+                >Pay Your Fee To Confirm</a>
               </span>
               <span v-else>
                 {{ leave.status }}
@@ -97,8 +97,7 @@
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
           data-linklabel="MyGrad"
           target="_blank"
-          >Go to MyGrad</a
-        >
+        >Go to MyGrad</a>
       </div>
     </template>
     <template #card-error>
@@ -108,19 +107,18 @@
         href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
         data-linklabel="MyGrad"
         target="_blank"
-        >MyGrad program page</a
-      >.
+      >MyGrad program page</a>.
     </template>
   </uw-card>
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from "vuex";
-import Card from "../_templates/card.vue";
+import {mapGetters, mapState, mapActions} from 'vuex';
+import Card from '../_templates/card.vue';
 
 export default {
   components: {
-    "uw-card": Card,
+    'uw-card': Card,
   },
   computed: {
     ...mapState({
@@ -128,13 +126,11 @@ export default {
         const petitionList = state.grad.value.petitions;
         if (petitionList) {
           petitionList.forEach((petition) => {
-            if (
-              petition.dept_recommend === "Pending" ||
-              petition.dept_recommend === "Withdraw"
-            ) {
+            if (petition.dept_recommend === 'Pending' ||
+                petition.dept_recommend === 'Withdraw') {
               petition.gradschool_decision = null;
             }
-            if (petition.gradschool_decision === "Approved") {
+            if (petition.gradschool_decision === 'Approved') {
               petition.dept_recommend = null;
             }
           });
@@ -145,19 +141,20 @@ export default {
       degrees: (state) => state.grad.value.degrees,
       isGrad: (state) => state.user.affiliations.grad,
     }),
-    ...mapGetters("grad", ["isReady", "isErrored", "statusCode"]),
-    showError: function () {
+    ...mapGetters('grad', ['isReady', 'isErrored', 'statusCode']),
+    showError: function() {
       return this.statusCode !== 404;
     },
-    showCard: function () {
-      return !this.isReady || this.isGrad && (this.leaves || this.petitions || this.degrees);
+    showCard: function() {
+      return !this.isReady || this.isGrad &&
+              (this.leaves || this.petitions || this.degrees);
     },
   },
   created() {
     this.fetch();
   },
   methods: {
-    ...mapActions("grad", ["fetch"]),
+    ...mapActions('grad', ['fetch']),
   },
 };
 </script>
