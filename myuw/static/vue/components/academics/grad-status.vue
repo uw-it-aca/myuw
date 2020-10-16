@@ -141,7 +141,11 @@ export default {
       degrees: (state) => state.grad.value.degrees,
       isGrad: (state) => state.user.affiliations.grad,
     }),
-    ...mapGetters('grad', ['isReady', 'isErrored', 'statusCode']),
+    ...mapGetters('grad', [
+      'isReady',
+      'isErrored',
+      'statusCode'
+    ]),
     showError: function() {
       return this.statusCode !== 404;
     },
