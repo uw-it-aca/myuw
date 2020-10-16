@@ -59,13 +59,11 @@
           <ul v-for="(leave, index) in leaves" :key="index" class="card_list">
             <li>
               <div class="card-badge clearfix">
-                <h5>
-                  <template v-for="(term, termIndex) in leave.terms">
-                    <span v-if="termIndex > 0" :key="termIndex">
-                      ,
-                    </span>
-                    {{ term.quarter + ' ' + term.year }} Leave
-                  </template>
+                <h5 v-for="(term, termIndex) in leave.terms" :key="termIndex">
+                  <span v-if="termIndex > 0">
+                    ,
+                  </span>
+                  {{ term.quarter + ' ' + term.year }} Leave
                 </h5>
                 <div class="pull-left">
                   <span class="card-badge-label">Status</span>
