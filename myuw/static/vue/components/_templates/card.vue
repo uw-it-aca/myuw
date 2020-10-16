@@ -5,9 +5,17 @@
             body-class="p-3"
             footer-class="border-0 px-3 pt-1 pb-2"
     >
-      <slot name="card-heading" />
-      <slot name="card-body" />
-      <slot name="card-disclosure" />
+      <!-- only show loading for cards that are loaded -->
+      <div v-show="visible">
+        <b-card-text class="d-flex justify-content-center card-loading m-0">
+          <b-spinner small variant="muted" class="my-auto" label="Loading..." />
+        </b-card-text>
+      </div>
+      <div v-show="!visible">
+        <slot name="card-heading" />
+        <slot name="card-body" />
+        <slot name="card-disclosure" />
+      </div>
       <template v-if="!!this.$slots['card-footer']"
                 v-slot:footer
                 footer-tag="footer"
@@ -35,12 +43,6 @@
         </b-alert>
       </b-card>
     </div>
-    <b-card v-else class="rounded-0 shadow-sm mb-3" body-class="p-3">
-      <b-card-text class="d-flex justify-content-center card-loading">
-        <!-- TODO: replace this with a cog -->
-        <b-spinner small variant="muted" class="my-auto" label="Loading..." />
-      </b-card-text>
-    </b-card>
   </div>
 </template>
 
@@ -65,7 +67,13 @@ export default {
     },
   },
   data: function() {
-    return {};
+    return {
+      visible: true,
+    };
+  },
+  updated: function() {
+    // update visibility after 500ms
+    setTimeout(() => this.visible = false, 500);
   },
 };
 </script>
