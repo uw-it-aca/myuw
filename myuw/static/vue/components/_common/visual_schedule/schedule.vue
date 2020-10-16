@@ -53,9 +53,14 @@ export default {
     'uw-card': Card,
     'uw-schedule-tab': ScheduleTab,
   },
+  props: {
+    term: {
+      type: String,
+      default: 'current',
+    },
+  },
   data: function() {
     return {
-      term: 'current',
       tabIndex: 0,
     };
   },

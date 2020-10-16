@@ -19,8 +19,8 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../_templates/card.vue';
-import CourseCard from '../_common/course/course.vue';
+import Card from '../../_templates/card.vue';
+import CourseCard from './course.vue';
 
 export default {
   components: {
@@ -32,11 +32,10 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  data: function() {
-    return {
-      term: 'current',
-    };
+    term: {
+      type: String,
+      default: 'current',
+    }
   },
   computed: {
     ...mapState({

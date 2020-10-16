@@ -1,9 +1,10 @@
 import {Vue, vueConf} from './base.js';
+import utils from './mixins/utils.js';
 
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import AllCourses from './components/academics/course-cards.vue';
+import AllCourses from './components/_common/course/all-courses.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
 
@@ -17,8 +18,17 @@ vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('visual_schedule', visualSchedule);
 
 vueConf.store.commit('addVarToState', {
+  name: 'futureTerm',
+  value: window.futureTerm,
+});
+vueConf.store.commit('addVarToState', {
+  name: 'futureTermData',
+  value: window.futureTermData,
+});
+
+vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
-  value: 'Future Quarter',
+  value: `Preview ${utils.methods.pageTitleFromTerm(window.futureTerm)}`,
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

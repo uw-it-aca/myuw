@@ -3,7 +3,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import AllCourses from './components/academics/course-cards.vue';
+import AllCourses from './components/_common/course/all-courses.vue';
 import Grades from './components/_common/grades.vue';
 import Outage from './components/_common/outage.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
