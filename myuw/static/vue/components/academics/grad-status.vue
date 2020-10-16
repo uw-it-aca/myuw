@@ -144,7 +144,7 @@ export default {
     ...mapGetters('grad', [
       'isReady',
       'isErrored',
-      'statusCode'
+      'statusCode',
     ]),
     showError: function() {
       return this.statusCode !== 404;
