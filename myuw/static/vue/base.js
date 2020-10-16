@@ -29,7 +29,7 @@ import {
   faCheck,
   faPlus,
   faCheckCircle,
-  faChevronRight
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
