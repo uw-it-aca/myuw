@@ -35,6 +35,13 @@ export default {
       }
       return "";
     },
+    pageTitleFromTerm(termStr) {
+      let pageTitle = termStr.split(',');
+      let term = pageTitle[1];
+      pageTitle[1] = pageTitle[0];
+      pageTitle[0] = term;
+      return pageTitle.map((s) => this.ucfirst(s)).join(' ');
+    },
     ucfirst(s) {
       return s.replace(/^([a-z])/, (c) => c.toUpperCase());
     },

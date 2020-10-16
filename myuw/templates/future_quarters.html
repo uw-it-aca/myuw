@@ -5,6 +5,18 @@
 {% load set_context %}
 
 {% block django_json_data %}
+  <script>
+    // TODO: Replace this with a object in the context and a json_script.
+    window.futureTerm = "{{ future_term }}";
+    window.futureTermData = {
+      "year": "{{term_data.year}}",
+      "quarter": "{{term_data.quarter}}",
+      "firstDayQuarter": "{{ term_data.first_day_quarter |date:'l, F j, Y' }}",
+      "lastDayInstruction": "{{ term_data.last_day_instruction |date:'l, F j, Y' }}",
+      "atermLastDate": "{{term_data.aterm_last_date |date:'l, F j, Y' }}",
+      "btermFirstDate": "{{ term_data.bterm_first_date |date:'l, F j, Y' }}"
+    };
+  </script>
 {% endblock django_json_data %}
 
 {% block body_content %}
@@ -14,7 +26,9 @@
   <template #primary>
     <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
       <!--MARK: card components go here in order -->
-        main content
+      <myuw-visual-schedule term="{{ future_term }}"></myuw-visual-schedule>
+      <myuw-all-courses term="{{ future_term }}"></myuw-all-courses>
+      <myuw-textbooks term="{{ future_term }}"></myuw-textbooks>
     </b-col>
   </template>
   <!-- MARK: #secondary template (column 2, table/desktop) -->
