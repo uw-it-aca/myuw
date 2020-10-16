@@ -59,12 +59,7 @@
           <ul v-for="(leave, index) in leaves" :key="index" class="card_list">
             <li>
               <div class="card-badge clearfix">
-                <h5 v-for="(term, termIndex) in leave.terms" :key="termIndex">
-                  <span v-if="termIndex > 0">
-                    ,
-                  </span>
-                  {{ term.quarter + ' ' + term.year }} Leave
-                </h5>
+                <h5 v-for="(term, termIndex) in leave.terms" :key="termIndex"><span v-if="termIndex > 0">,</span><span>{{ term.quarter + ' ' + term.year }} Leave</span></h5>
                 <div class="pull-left">
                   <span class="card-badge-label">Status</span>
                 </div>
@@ -88,10 +83,7 @@
         <ul v-for="(degree, index) in degrees" :key="index" class="card_list">
           <li>
             <div class="card-badge clearfix">
-              <h5>
-                {{ degree.req_type }}, {{ degree.target_award_quarter }}
-                {{ degree.target_award_year }}
-              </h5>
+              <h5>{{ degree.req_type }}, {{ degree.target_award_quarter }} {{ degree.target_award_year }}</h5>
               <div class="degree-title">
                 {{ degree.degree_title }}
               </div>
