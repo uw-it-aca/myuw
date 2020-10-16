@@ -134,7 +134,7 @@ class TestDaoGrad(TestCase):
         # paid shows until eof 2013 winter
         leave = json_data[4]
         self.assertEquals(leave["status"], "Approved")
-        self.assertEquals(len(leave["terms"]), 1)
+        self.assertEquals(len(leave["terms"]), 2)
 
         now_request = get_request_with_date("2013-01-07")
         json_data = leave_to_json(leave_reqs, now_request)
