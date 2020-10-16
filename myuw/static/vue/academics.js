@@ -34,10 +34,6 @@ vueConf.store.registerModule('visual_schedule', visualSchedule);
 vueConf.store.registerModule('category_links', categoryLinks);
 
 vueConf.store.commit('addVarToState', {
-  name: 'cardDisplayDates',
-  value: JSON.parse(document.getElementById('card_display_dates').innerHTML),
-});
-vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
   value: 'Academics',
 });

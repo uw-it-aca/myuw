@@ -49,7 +49,10 @@ module.exports = {
     ],
     accounts: [
       "./myuw/static/vue/accounts.js"
-    ]
+    ],
+    future_quarters: [
+      "./myuw/static/vue/future_quarters.js"
+    ],
   },
   output: {
       path: path.resolve('../static/myuw/'),
