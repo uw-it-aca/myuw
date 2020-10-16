@@ -6,31 +6,33 @@
   >
     <b-row class="justify-content-md-center">
       <b-col md="7">
-        <b-input-group>
-          <label
-            class="sr-only" for="search_nav"
-          >Search the UW website</label>
-          <b-form-input
-            id="search_nav"
-            v-model="searchText"
-            size="lg"
-            placeholder="Search the UW website"
-          />
-          <b-input-group-append>
-            <b-button
-              :click="performSearch(searchText)"
-              variant="purple"
-              class="rounded-0"
-            >
-              <font-awesome-icon
-                :icon="['fas', 'search']"
-                flip="horizontal"
-                class="mr-1"
-              />
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
-        <div class="mt-2">Value: {{ searchText }}</div>
+        <b-form @submit.prevent="performSearch">
+          <b-input-group>
+            <label
+              class="sr-only" for="search_nav"
+            >Search the UW website</label>
+            <b-form-input
+              id="search_nav"
+              v-model="searchText"
+              size="lg"
+              type="text"
+              placeholder="Search the UW website"
+            />
+            <b-input-group-append>
+              <b-button
+                variant="purple"
+                class="rounded-0"
+                type="submit"
+              >
+                <font-awesome-icon
+                  :icon="['fas', 'search']"
+                  flip="horizontal"
+                  class="mr-1"
+                />
+              </b-button>
+            </b-input-group-append>
+          </b-input-group>
+        </b-form>
       </b-col>
     </b-row>
   </b-container>
@@ -41,12 +43,12 @@ export default {
   data: function() {
     return {
       searchText: '',
-      searchURL: 'https://www.washington.edu/search/?q=' + this.searchText,
     };
   },
   methods: {
     performSearch: function() {
-      console.log('perform search..', this.searchURL);
+      const searchURL = 'https://www.washington.edu/search/?q=' + this.searchText;
+      window.location.href = searchURL;
     },
   },
 };
