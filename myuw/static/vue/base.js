@@ -165,4 +165,8 @@ vueConf.store.commit('addVarToState', {
   name: 'termData',
   value: window.term_data,
 });
+vueConf.store.commit('addVarToState', {
+  name: 'cardDisplayDates',
+  value: JSON.parse(document.getElementById('card_display_dates').innerHTML),
+});
 export {Vue, vueConf};
