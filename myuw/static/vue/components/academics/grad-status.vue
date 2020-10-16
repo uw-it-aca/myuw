@@ -159,7 +159,7 @@ export default {
     },
     showCard: function() {
       return !this.isReady || (this.leaves || this.petitions || this.degrees);
-    }
+    },
   },
   created() {
     this.fetch();
