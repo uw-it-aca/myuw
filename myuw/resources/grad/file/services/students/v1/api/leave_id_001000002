@@ -4,6 +4,8 @@
      "submitDate":"2012-09-10T09:40:03.36",
      "status":"requested",
      "quarters":[{"year":2013,
+                  "quarter":"winter"},
+                  {"year":2013,
                   "quarter":"spring"}]},
     {"leaveReason":"Dissertation/Thesis research/writing",
      "submitDate":"2013-01-02T12:05:14.37",
@@ -23,8 +25,8 @@
     {"leaveReason":"Dissertation/Thesis research/writing",
      "submitDate":"2014-03-31T11:32:48.583",
      "status":"approved",
-     "quarters":[{"year":2012,
-                  "quarter":"autumn"},
+     "quarters":[{"year":2013,
+                  "quarter":"winter"},
                  {"year":2013,
                   "quarter":"spring"}]
     }
