@@ -53,9 +53,11 @@ class TestApiGrad(MyuwApiTest):
         self.assertEqual(leave['submit_date'],
                          "2012-09-10T09:40:03")
         self.assertEqual(leave['status'], "Requested")
-        self.assertEqual(len(leave['terms']), 1)
-        self.assertEqual(leave['terms'][0]['quarter'], "Spring")
+        self.assertEqual(len(leave['terms']), 2)
+        self.assertEqual(leave['terms'][0]['quarter'], "Winter")
         self.assertEqual(leave['terms'][0]['year'], 2013)
+        self.assertEqual(leave['terms'][1]['quarter'], "Spring")
+        self.assertEqual(leave['terms'][1]['year'], 2013)
         # petitions
         self.assertIsNotNone(data.get("petitions"))
         self.assertEquals(len(data["petitions"]), 7)
