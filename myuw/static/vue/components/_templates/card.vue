@@ -72,8 +72,8 @@ export default {
     };
   },
   updated: function() {
-    // update visibility after 700ms
-    setTimeout(() => this.visible = false, 700);
+    // update visibility after 400ms
+    setTimeout(() => this.visible = false, 400);
   },
 };
 </script>
