@@ -21,8 +21,8 @@
         </td>
         <td>
           <a
-            v-if="locationUrl"
-            :href="locationUrl"
+            v-if="locationUrl(meeting)"
+            :href="locationUrl(meeting)"
             target="_blank"
             :title="`Map ${meeting.building}`"
           >
@@ -33,7 +33,7 @@
             :href="meeting.classroom_info_url"
             target="_blank"
           >
-            {{ room }}
+            {{ meeting.room }}
           </a>
           <span
             v-else-if="meeting.room"
@@ -61,18 +61,20 @@ export default {
     },
   },
   computed: {
-    locationUrl() {
-      if (this.latitude) {
-        return `http://maps.google.com/maps?q=${this.meeting.latitude},${
-          this.meeting.longitude
-        }+(${this.encodeForMaps(this.meeting.building_name)})&z=18`;
-      }
-      return null;
-    },
     meetingsWithTime() {
       return this.meetings.filter((m) => m.start_time);
     },
   },
+  methods: {
+    locationUrl(meeting) {
+      if (meeting.latitude) {
+        return `http://maps.google.com/maps?q=${meeting.latitude},${
+          meeting.longitude
+        }+(${this.encodeForMaps(meeting.building_name)})&z=18`;
+      }
+      return null;
+    },
+  }
 };
 </script>
 
