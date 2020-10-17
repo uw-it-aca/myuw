@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div class="mb-4 schedule-body">
-      <div class="time-column myuw-text-xs" aria-hidden="true">
+    <div class="mb-4 d-flex">
+      <div class="time-column border border-warning myuw-text-xs"
+           aria-hidden="true"
+      >
         <div v-for="(time, i) in timeSlots" :key="i"
              class="time-cell"
         >
@@ -14,7 +16,9 @@
         </div>
       </div>
       <!-- Desktop Version -->
-      <div v-if="$mq !== 'mobile'" class="d-flex w-100">
+      <div v-if="$mq !== 'mobile'"
+           class="d-flex flex-fill border border-success"
+      >
         <div v-for="day in Object.keys(period.daySlots)" :key="day"
              :aria-labelledby="`${day}-${period.id}`"
              role="group"
@@ -34,8 +38,26 @@
             <div v-if="(
               meetingMap[day][formatToUnique(time)] &&
               meetingMap[day][formatToUnique(time)].length > 0
-            )" class="d-flex"
+            )" class="border border-danger"
             >
+              <uw-course-section
+                v-for="(meetingData, j) in
+                  meetingMap[day][formatToUnique(time)]"
+                :key="j" :meeting-data="meetingData"
+                :is-finals-card="isFinalsTab" :day="day"
+              />
+              <uw-course-section
+                v-for="(meetingData, j) in
+                  meetingMap[day][formatToUnique(time)]"
+                :key="j" :meeting-data="meetingData"
+                :is-finals-card="isFinalsTab" :day="day"
+              />
+              <uw-course-section
+                v-for="(meetingData, j) in
+                  meetingMap[day][formatToUnique(time)]"
+                :key="j" :meeting-data="meetingData"
+                :is-finals-card="isFinalsTab" :day="day"
+              />
               <uw-course-section
                 v-for="(meetingData, j) in
                   meetingMap[day][formatToUnique(time)]"
@@ -422,8 +444,8 @@ $heading-height: 45px;
 $cell-height: 35px;
 
 .schedule-body {
-  width: 100%;
-  display: flex;
+  //width: 100%;
+  //display: flex;
 }
 .time-column {
   padding-top: $heading-height - ($cell-height / 2) ;
