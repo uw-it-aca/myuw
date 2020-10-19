@@ -13,6 +13,7 @@ import FutureQuarterCards from './components/_common/future-quarter.vue';
 // academics components
 import GradStatus from './components/academics/grad-status.vue';
 // import CourseCards from './components/academics/schedule/course-cards.vue';
+import GradCommittee from './components/academics/grad-committee.vue';
 
 // stores
 import grad from './vuex/store/grad';
@@ -46,6 +47,7 @@ Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-grad-status', GradStatus);
+Vue.component('myuw-grad-committee', GradCommittee);
 
 new Vue({
   ...vueConf,
