@@ -38,7 +38,7 @@
             <div v-if="(
               meetingMap[day][formatToUnique(time)] &&
               meetingMap[day][formatToUnique(time)].length > 0
-            )" class="border border-danger"
+            )" class="border border-danger d-flex"
             >
               <uw-course-section
                 v-for="(meetingData, j) in
@@ -470,7 +470,7 @@ $cell-height: 35px;
   }
 }
 .day-column-desktop {
-  max-width: 136px;
+  //max-width: 136px;
 }
 .day-column, .day-column-desktop {
   height: 100%;
