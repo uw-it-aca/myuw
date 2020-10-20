@@ -51,26 +51,6 @@
                   :key="j" :meeting-data="meetingData"
                   :is-finals-card="isFinalsTab" :day="day"
                 />
-                <uw-course-section
-                  v-for="(meetingData, j) in
-                    meetingMap[day][formatToUnique(time)]"
-                  :key="j" :meeting-data="meetingData"
-                  :is-finals-card="isFinalsTab" :day="day"
-                />
-                <!--
-                <uw-course-section
-                  v-for="(meetingData, j) in
-                    meetingMap[day][formatToUnique(time)]"
-                  :key="j" :meeting-data="meetingData"
-                  :is-finals-card="isFinalsTab" :day="day"
-                />
-                <uw-course-section
-                  v-for="(meetingData, j) in
-                    meetingMap[day][formatToUnique(time)]"
-                  :key="j" :meeting-data="meetingData"
-                  :is-finals-card="isFinalsTab" :day="day"
-                />
-                -->
               </div>
             </div>
           </div>
@@ -451,16 +431,9 @@ export default {
 $heading-height: 45px;
 $cell-height: 35px;
 
-.schedule-body {
-  //width: 100%;
-  //display: flex;
-}
 .time-column {
   padding-top: $heading-height - ($cell-height / 2) ;
   height: 100%;
-  //flex-basis: 45px;
-  // display: flex;
-  //flex-direction: column;
   min-width: 42px;
 
   .time-cell {
@@ -478,13 +451,10 @@ $cell-height: 35px;
   }
 }
 .day-column-desktop {
-  //max-width: 136px;
   max-width: 20%;
 }
 .day-column, .day-column-desktop {
   height: 100%;
-  //flex-grow: 1;
-  //flex-basis: 0;
 
   .day-heading {
     height: $heading-height;
@@ -501,24 +471,22 @@ $cell-height: 35px;
   .day-cell {
     height: $cell-height;
 
-    // Border logic for empty cells
-    // &:empty {
-      &:nth-child(even) {
-        border-top: 1px solid darken($table-border-color, 5%);
+    &:nth-child(even) {
+      border-top: 1px solid darken($table-border-color, 5%);
 
-        &:last-child {
-          border-bottom: 1px dashed darken($table-border-color, 5%);
-        }
+      &:last-child {
+        border-bottom: 1px dashed darken($table-border-color, 5%);
+      }
+    }
+
+    &:nth-child(odd) {
+      border-top: 1px dashed darken($table-border-color, 5%);
+
+      &:last-child {
+        border-bottom: 1px solid darken($table-border-color, 5%);
+      }
       }
 
-      &:nth-child(odd) {
-        border-top: 1px dashed darken($table-border-color, 5%);
-
-        &:last-child {
-          border-bottom: 1px solid darken($table-border-color, 5%);
-        }
-      }
-    // }
     border-left: 1px solid darken($table-border-color, 5%);
   }
 
