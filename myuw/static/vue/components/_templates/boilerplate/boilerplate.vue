@@ -245,7 +245,11 @@
             </b-collapse>
           </b-col>
           <b-col lg="10" role="main" aria-labelledby="mainHeader">
-            <h2 v-if="$mq != 'mobile'" id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+            <h2
+              v-if="$mq != 'mobile'"
+              id="mainHeader"
+              :class="[pageTitle == 'Home' ? 'sr-only' : '']"
+            >
               {{ pageTitle }}
             </h2>
             <b-row>
