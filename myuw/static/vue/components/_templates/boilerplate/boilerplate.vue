@@ -107,7 +107,12 @@
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
-            MyUW <span class="sr-only">Home</span>
+            <slot v-if="$mq != 'mobile'" name="desktop-title">
+              MyUW <span class="sr-only">Home</span>
+            </slot>
+            <slot v-else name="mobile-title">
+              MyUW <span class="sr-only">Home</span>
+            </slot>
           </h1>
         </b-container>
       </div>
@@ -240,7 +245,7 @@
             </b-collapse>
           </b-col>
           <b-col lg="10" role="main" aria-labelledby="mainHeader">
-            <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+            <h2 v-if="$mq != 'mobile'" id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
             <b-row>
