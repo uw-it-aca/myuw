@@ -19,11 +19,19 @@ vueConf.store.registerModule('visual_schedule', visualSchedule);
 
 vueConf.store.commit('addVarToState', {
   name: 'futureTerm',
-  value: window.futureTerm,
+  value: window.futureTerm,  // "year,quarter,[ab]-term"
 });
 vueConf.store.commit('addVarToState', {
   name: 'futureTermData',
   value: window.futureTermData,
+  // For 2013,summer,a-term, window.futureTermData has {
+  // atermLastDate:"Wednesday, July 24, 2013",
+  // btermFirstDate:"Thursday, July 25, 2013",
+  // firstDayQuarter:"Monday, June 24, 2013",
+  // lastDayInstruction:"Friday, August 23, 2013",
+  // summerTerm: "a-term",  missing!
+  // quarter:"summer",
+  // year:"2013"}
 });
 
 vueConf.store.commit('addVarToState', {
