@@ -24,9 +24,15 @@
             </span>
           </div>
         </div>
-        <span v-if="section.summer_term">
+        <div v-if="section.summer_term">
           Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
-        </span>
+        </div>
+        <div v-if="section.cc_display_dates">
+          Dates: {{ sectionFormattedDates(section) }}
+        </div>
+        <div v-if="section.on_standby">
+          Your status: On Standby
+        </div>
       </template>
       <template #card-body>
         <b-container fluid class="px-0">
@@ -82,6 +88,8 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
+
 import Card from '../../_templates/card.vue';
 import MeetingInfo from './meeting-info.vue';
 import Resources from './resources.vue';
@@ -131,6 +139,13 @@ export default {
         if (i1.surname > i2.surname) return 1;
         return 0;
       });
+    },
+  },
+  methods: {
+    sectionFormattedDates(section) {
+      return `${
+        dayjs(section.start_date).format('MMM D')
+      } - ${dayjs(section.end_date).format('MMM D')}`;
     },
   },
 };
