@@ -403,7 +403,12 @@ export default {
       if (this.isFinalsTab) {
         this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
-        this.mobile['current'] = dayjs().format('dddd').toLowerCase();
+        const dayToday = dayjs().format('dddd').toLowerCase();
+        if (dayToday in Object.keys(this.period.daySlots)) {
+          this.mobile['current'] = dayToday;
+        } else {
+          this.mobile['current'] = Object.keys(this.period.daySlots)[0];
+        }
       }
     },
     // Initalize the meeting map.
