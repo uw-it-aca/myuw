@@ -189,7 +189,7 @@ export default {
     ...mapState({
       quarterLastDate: (state) => dayjs(state.termData.lastDay),
       today: (state) => dayjs(state.termData.todayDate),
-      isSummerQuarter: (state) => state.termData.quarter == "summer",
+      isSummerQuarter: (state) => state.termData.quarter == 'summer',
     }),
   },
   created() {
