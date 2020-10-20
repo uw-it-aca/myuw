@@ -5,39 +5,25 @@
 {% load set_context %}
 
 {% block django_json_data %}
-    <script> 
-        // TODO: Replace this with a object in the context and a json_script.
-        window.term_data = {
-            today: '{{ today|date:"l, F j, Y" }}',
-            year: '{{ year }}',
-            quarter: '{{ quarter }}',
-            breakYear: '{{ break_year }}',
-            breakQuarter: '{{ break_quarter }}',
-            isFinals: {{ is_finals|yesno:"true, false"}},
-            isBreak: {{ is_break|yesno:"true, false"}},
-            todayDate: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
-            firstDay: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
-            lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
-        };
-    </script>
-    {{ card_display_dates|json_script:'card_display_dates' }}
+{{ card_display_dates|json_script:'card_display_dates' }}
 {% endblock django_json_data %}
 
 {% block body_content %}
 
-  <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
-    <myuw-banner-summaries></myuw-banner-summaries>
-    <!--MARK: #main template (mobile-desktop) -->
-    <template #main>
+<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
 
+  <!--MARK: #primary template (column 1, mobile only) -->
+  <template #primary>
+    <b-col md="12">
+      <myuw-banner-summaries></myuw-banner-summaries>
+    </b-col>
+    <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
       <!--MARK: inherent card ordering -->
       <myuw-notice-card></myuw-notice-card>
       <myuw-grades></myuw-grades>
       <myuw-husky-experience></myuw-husky-experience>
       <myuw-outage></myuw-outage>
-
       <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
-
       <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
       <myuw-quicklinks mobile-only></myuw-quicklinks>
       <myuw-ns-thank-you></myuw-ns-thank-you>
@@ -47,30 +33,30 @@
       <myuw-reg-status for-quarter="Summer" period="A"></myuw-reg-status>
       <myuw-ns-critical-info></myuw-ns-critical-info>
       <myuw-ns-international-student></myuw-ns-international-student>
-
       <myuw-visual-schedule></myuw-visual-schedule>
       <myuw-textbooks term="{{ term|default:"current" }}"></myuw-textbooks>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
       <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
-
       <myuw-applicant></myuw-applicant>
       <myuw-international-student></myuw-international-student>
       <myuw-uwnetid></myuw-uwnetid>
-
       <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
       <myuw-events mobile-only></myuw-events>
+    </b-col>
+  </template>
 
-    </template>
-    <!-- MARK: #side-bar template (tablet/desktop only) -->
-    <template #side-bar>
+  <!-- MARK: #secondary template (column 2, table/desktop) -->
+  <template #secondary>
+    <b-col md="4">
       <!--MARK: inherent card ordering -->
       <myuw-quicklinks></myuw-quicklinks>
       <myuw-events></myuw-events>
-    </template>
-  </myuw-boilerplate>
+    </b-col>
+  </template>
+</myuw-boilerplate>
 {% endblock body_content %}
 
 {% block vue_script %}
-  {% load render_bundle from webpack_loader %}
-  {% render_bundle 'home' %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'home' %}
 {% endblock vue_script %}

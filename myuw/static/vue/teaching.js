@@ -1,11 +1,47 @@
 import {Vue, vueConf} from './base.js';
 
-import Boilerplate from './components/_templates/boilerplate.vue';
+// bootstrap vue plugins
+import {
+  AlertPlugin,
+  BadgePlugin,
+  ButtonPlugin,
+  CardPlugin,
+  CollapsePlugin,
+  FormPlugin,
+  FormGroupPlugin,
+  FormInputPlugin,
+  FormSelectPlugin,
+  LayoutPlugin,
+  LinkPlugin,
+  NavPlugin,
+  SpinnerPlugin,
+  TabsPlugin,
+  VBTogglePlugin,
+} from 'bootstrap-vue';
+
+import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
   value: 'Teaching'
 });
+
+// bootstrap-vue components as plugins
+Vue.use(AlertPlugin);
+Vue.use(BadgePlugin);
+Vue.use(ButtonPlugin);
+Vue.use(CardPlugin);
+Vue.use(CollapsePlugin);
+Vue.use(FormPlugin);
+Vue.use(FormGroupPlugin);
+Vue.use(FormInputPlugin);
+Vue.use(FormSelectPlugin);
+Vue.use(LayoutPlugin);
+Vue.use(LinkPlugin);
+Vue.use(NavPlugin);
+Vue.use(SpinnerPlugin);
+Vue.use(TabsPlugin);
+Vue.use(VBTogglePlugin);
 
 Vue.component('myuw-boilerplate', Boilerplate);
 
