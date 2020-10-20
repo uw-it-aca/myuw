@@ -1,5 +1,10 @@
 <template>
   <div>
+    <b-alert :show="isSummerQuarter && isFinalsTab">
+      Most Summer quarter final examinations are given on the final meeting
+      day of the course instead of a final examination week. Consult with
+      your instructors when your final examinations will be.
+    </b-alert>
     <div class="mb-4 d-flex">
       <div class="flex-shrink-1 myuw-text-xs"
            aria-hidden="true"
@@ -181,6 +186,7 @@ export default {
     ...mapState({
       quarterLastDate: (state) => dayjs(state.termData.lastDay),
       today: (state) => dayjs(state.termData.todayDate),
+      isSummerQuarter: (state) => state.termData.quarter == "summer",
     }),
   },
   created() {
