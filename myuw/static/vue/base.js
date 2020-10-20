@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VueGtag from 'vue-gtag';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
@@ -97,6 +98,10 @@ library.add(faCheckCircle);
 library.add(faCircle);
 library.add(faChevronRight);
 
+const gaCode = document.body.getAttribute('data-google-analytics');
+const debugMode = document.body.getAttribute('data-django-debug');
+const hashedNetId = document.body.getAttribute('data-user-id');
+
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('font-awesome-layers', FontAwesomeLayers);
@@ -122,6 +127,16 @@ Vue.use(VBTogglePlugin);
 
 // vuex
 Vue.use(Vuex);
+
+// vue-gtag
+Vue.use(VueGtag, {
+  config: {
+    id: gaCode,
+    params: {
+      anonymize_ip: true,
+    },
+  },
+});
 
 // vue-mq (media queries)
 Vue.use(VueMq, {
