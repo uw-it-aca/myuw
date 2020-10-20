@@ -1,5 +1,5 @@
 <template>
-  <div class="course-section" :style="computedStyles">
+  <div class="course-section flex-fill" :style="computedStyles">
     <div
       role="group"
       tabindex="0"
@@ -248,7 +248,7 @@ export default {
 
   &:focus, &:focus-within, &:hover {
     z-index:9999;
-    flex-shrink: 0.3;
+    flex-shrink: 0.3 !important;
     border: 2px solid $link-color;
     & + .course-section {
       border-left: 0;

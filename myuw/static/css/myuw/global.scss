@@ -1,6 +1,11 @@
 @import "./variables.scss";
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700&display=swap');
 
+// add bootstrap flex utility for even column widths
+.flex-even {
+  flex: 1;
+}
+
 /******************************************************************************************
 PIXEL TO REM CONVERSION TABLE - Root Size: 16px
 -------------------------------------------------------------------------------------------
