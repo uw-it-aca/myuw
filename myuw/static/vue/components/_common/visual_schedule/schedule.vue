@@ -4,7 +4,7 @@
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         {{ termName }} Schedule
         <span class="sr-only">
           Final exam schedule and Visual Schedule
@@ -15,13 +15,13 @@
     <template #card-body>
       <!-- schedule tabs -->
       <b-tabs v-model="tabIndex" pills
-              nav-wrapper-class="mb-3 p-1"
+              nav-wrapper-class="mb-3 p-0"
               active-nav-item-class="bg-transparent rounded-0
               myuw-border-bottom border-dark text-body font-weight-bold"
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
                title-item-class="text-nowrap text-uppercase
-               myuw-text-xs mr-1 mb-1"
+               myuw-text-xs mr-2 mb-1"
                title-link-class="rounded-0 px-2 py-1 h-100
                text-body myuw-border-bottom"
                :active="period.id == activePeriod.id"

@@ -1,5 +1,5 @@
 <template>
-  <div class="course-section" :style="computedStyles">
+  <div class="course-section flex-fill" :style="computedStyles">
     <div
       role="group"
       tabindex="0"
@@ -233,8 +233,6 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
-  border-radius: 4px;
-  border: 2px solid rgba(255, 255, 255, 0);
 
   .course-section-inner {
     background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
@@ -243,16 +241,18 @@ export default {
   }
 
   &:not(:last-child) {
-    border-right: 0;
+    border-right: solid 1px transparent;
   }
 
   &:focus, &:focus-within, &:hover {
     z-index:9999;
-    flex-shrink: 0.3;
-    border: 2px solid $link-color;
+    flex-shrink: 0.3 !important;
+    outline: 2px solid $link-color;
+    border: 0;
+    /*
     & + .course-section {
-      border-left: 0;
-    }
+      border: 0;
+    }*/
   }
 }
 </style>
