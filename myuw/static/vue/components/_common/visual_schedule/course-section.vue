@@ -241,16 +241,18 @@ export default {
   }
 
   &:not(:last-child) {
-    border-right: 0;
+    border-right: solid 1px transparent;
   }
 
   &:focus, &:focus-within, &:hover {
     z-index:9999;
     flex-shrink: 0.3 !important;
     outline: 2px solid $link-color;
+    border: 0;
+    /*
     & + .course-section {
-      border-left: 0;
-    }
+      border: 0;
+    }*/
   }
 }
 </style>

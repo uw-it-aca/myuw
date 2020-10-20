@@ -451,7 +451,8 @@ $cell-height: 35px;
   }
 }
 .day-column-desktop {
-  max-width: 20%;
+  min-width: 50px;
+  //max-width: 20%;
 }
 .day-column, .day-column-desktop {
   height: 100%;
@@ -470,6 +471,7 @@ $cell-height: 35px;
 
   .day-cell {
     height: $cell-height;
+    border-left: 1px solid darken($table-border-color, 5%);
 
     &:nth-child(even) {
       border-top: 1px solid darken($table-border-color, 5%);
@@ -485,9 +487,7 @@ $cell-height: 35px;
       &:last-child {
         border-bottom: 1px solid darken($table-border-color, 5%);
       }
-      }
-
-    border-left: 1px solid darken($table-border-color, 5%);
+    }
   }
 
   .day-disabled {
