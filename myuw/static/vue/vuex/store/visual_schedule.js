@@ -57,7 +57,12 @@ const postProcess = (response, urlExtra) => {
 
       section.meetings.forEach((meeting) => {
         // Skip if time and date are tdb or null anyways
-        if (!meeting.days_tbd && meeting.start_time && meeting.end_time) {
+        if (
+          !meeting.days_tbd &&
+          !meeting.no_meeting &&
+          meeting.start_time &&
+          meeting.end_time
+        ) {
           meeting.start_time = dayjs(
             meeting.start_time, "hh:mm"
           ).second(0).millisecond(0);
