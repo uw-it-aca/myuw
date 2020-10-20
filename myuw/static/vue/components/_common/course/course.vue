@@ -38,7 +38,7 @@
           </b-row>
           <b-row no-gutters>
             <b-col v-if="showRowHeading" cols="3">
-              Meeting Time
+              Resources
             </b-col>
             <uw-resources :section="section" :course="course" />
           </b-row>
