@@ -182,7 +182,7 @@ export default {
       quarterLastDate: (state) => dayjs(
           state.termData.lastDay, 'dddd, MMMM D, YYYY',
       ),
-      today: (state) => dayjs(state.termData.today, 'dddd, MMMM D, YYYY'),
+      today: (state) => dayjs(state.termData.todayDate),
     }),
   },
   created() {
@@ -403,7 +403,12 @@ export default {
       if (this.isFinalsTab) {
         this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
-        this.mobile['current'] = dayjs().format('dddd').toLowerCase();
+        const dayToday = this.today.format('dddd').toLowerCase();
+        if (dayToday in this.period.daySlots) {
+          this.mobile['current'] = dayToday;
+        } else {
+          this.mobile['current'] = Object.keys(this.period.daySlots)[0];
+        }
       }
     },
     // Initalize the meeting map.
