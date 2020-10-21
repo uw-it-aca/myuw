@@ -98,6 +98,7 @@ library.add(faCheckCircle);
 library.add(faCircle);
 library.add(faChevronRight);
 
+// MARK: google analytics data stream measurement_id
 const gaCode = document.body.getAttribute('data-google-analytics');
 const hashedNetId = document.body.getAttribute('data-user-id');
 
