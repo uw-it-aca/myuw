@@ -1,13 +1,13 @@
 <template>
   <div v-if="(mobileOnly && $mq === 'mobile') || !mobileOnly">
-    <b-container v-if="loaded" class="">
+    <div v-if="loaded" class="">
       <slot name="panel-body" />
-    </b-container>
-    <b-container v-else>
+    </div>
+    <div v-else>
       <div class="p-3 d-flex justify-content-center">
         <b-spinner small variant="muted" class="my-auto" label="Loading..." />
       </div>
-    </b-container>
+    </div>
   </div>
 </template>
 
