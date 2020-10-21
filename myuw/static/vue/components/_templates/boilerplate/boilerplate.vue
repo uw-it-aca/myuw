@@ -338,6 +338,12 @@ export default {
     pageTitle: (state) => state.pageTitle,
     disableActions: (state) => state.disableActions,
   }),
+  mounted() {
+    console.log('Component has been mounted at: ', window.location.pathname);
+    this.$gtag.pageview({
+      page_path: window.location.pathname,
+    });
+  },
 };
 </script>
 
