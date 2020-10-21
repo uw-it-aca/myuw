@@ -50,8 +50,7 @@ export default {
       const searchURL = 'https://www.washington.edu/search/?q=' + this.searchText;
       // MARK: google analytics gtag
       this.$gtag.pageview({
-        page_location: searchURL,
-        page_path: window.location.pathname,
+        page_path: '/search?q=' + this.searchText,
       });
       // navigate to search url
       window.location.href = searchURL;
