@@ -339,7 +339,7 @@ export default {
     disableActions: (state) => state.disableActions,
   }),
   mounted() {
-    console.log('Component has been mounted at: ', window.location.pathname);
+    // MARK: google analytics gtag
     this.$gtag.pageview({
       page_path: window.location.pathname,
     });

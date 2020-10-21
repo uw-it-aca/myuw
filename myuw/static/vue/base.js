@@ -99,7 +99,6 @@ library.add(faCircle);
 library.add(faChevronRight);
 
 const gaCode = document.body.getAttribute('data-google-analytics');
-const debugMode = document.body.getAttribute('data-django-debug');
 const hashedNetId = document.body.getAttribute('data-user-id');
 
 // fontawesome 5
@@ -134,6 +133,7 @@ Vue.use(VueGtag, {
     id: gaCode,
     params: {
       anonymize_ip: true,
+      user_id: hashedNetId,
     },
   },
 });

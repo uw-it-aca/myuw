@@ -48,16 +48,11 @@ export default {
   methods: {
     performSearch: function() {
       const searchURL = 'https://www.washington.edu/search/?q=' + this.searchText;
-
-      // google event category, action, label, value
-      // this.$ga.event('send', 'pageview', searchURL);
-
-      this.$gtag.event('send', {
-        'event_category': 'pageview',
-        'event_label': 'eventlabel',
-        'value': searchURL,
+      // MARK: google analytics gtag
+      this.$gtag.pageview({
+        page_location: searchURL,
+        page_path: window.location.pathname,
       });
-
       // navigate to search url
       window.location.href = searchURL;
     },
