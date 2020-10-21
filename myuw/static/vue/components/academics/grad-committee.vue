@@ -7,7 +7,7 @@
   >
     <template #card-heading>
       <h3 class="text-dark-beige">
-        Graduate Request Status
+        Your Committees
       </h3>
     </template>
     <template #card-body>
@@ -32,6 +32,9 @@
             </ol>
           </li>
         </ul>
+      </div>
+      <div>
+        <a href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/" data-linklabel="MyGrad" target="_blank">Go to MyGrad</a>
       </div>
     </template>
     <template #card-error>
