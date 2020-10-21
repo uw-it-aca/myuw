@@ -4,11 +4,11 @@
   >
     <template #panel-body>
       <div v-for="linkCategory in linkData" :key="linkCategory.subcat_slug">
-        <h3 :id="linkCategory.subcat_slug">
+        <h3 :id="linkCategory.subcat_slug" class="h5">
           {{ linkCategory.subcategory }}
         </h3>
-        <ul>
-          <li v-for="link in linkCategory.links" :key="link.url">
+        <ul class="list-unstyled myuw-text-md mb-4">
+          <li v-for="link in linkCategory.links" :key="link.url" class="mb-1">
             <a v-if="link.new_tab" :href="link.url" target="_blank">
               {{ link.title }}
             </a>
