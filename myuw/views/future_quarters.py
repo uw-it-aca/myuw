@@ -15,7 +15,6 @@ def future_quarters(request, quarter):
         "last_day_instruction": term.last_day_instruction,
         "aterm_last_date": term.aterm_last_date,
         "bterm_first_date": term.bterm_first_date,
-        "last_final_exam_date ": term.last_final_exam_date
     }
     context = {
         'future_term': quarter,
