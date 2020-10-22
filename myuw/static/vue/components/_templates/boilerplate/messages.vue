@@ -12,7 +12,6 @@
         <b-link v-b-modal.tourModal class="text-white">
           <u>See MyUW at a glance</u>
         </b-link>
-        <!-- TODO: wire close button -->
         <b-button-close text-variant="light" @click="hideTourMessage" />
       </div>
     </div>
@@ -28,7 +27,7 @@ export default {
   },
   methods: {
     hideTourMessage: function(event) {
-      console.log('sadfasdf');
+      // TODO: set a cookie to control visibility of tour message
       this.isHidden = true;
     },
   },
