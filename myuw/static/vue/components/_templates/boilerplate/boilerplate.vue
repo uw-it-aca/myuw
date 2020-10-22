@@ -319,7 +319,14 @@
       header-class="border-0"
       footer-class="border-0"
     >
-      <img :src="staticUrl+'images/myuw-tour-2.0x.png'" class="img-fluid">
+      <img v-if="$mq === 'mobile' || $mq === 'tablet'"
+           :src="staticUrl+'images/myuw-tour-mobile-2.0x.png'"
+           class="img-fluid"
+      >
+      <img v-else
+           :src="staticUrl+'images/myuw-tour-2.0x.png'"
+           class="img-fluid"
+      >
       <p class="my-4">
         Watch a video tour of MyUW for Instructors, for staff, or
         for students. Visit the MyUW help guide for more
