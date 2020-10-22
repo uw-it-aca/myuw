@@ -1,6 +1,11 @@
 @import "./variables.scss";
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700&display=swap');
 
+// add bootstrap flex utility for even column widths
+.flex-even {
+  flex: 1;
+}
+
 /******************************************************************************************
 PIXEL TO REM CONVERSION TABLE - Root Size: 16px
 -------------------------------------------------------------------------------------------
@@ -24,14 +29,14 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   font-size: 1.125rem !important;
 } // 18px
 .myuw-text-md {
-  font-size: 0.9375rem !important;
-} //15px
-.myuw-text-sm {
   font-size: 0.875rem !important;
 } //14px
-.myuw-text-xs {
+.myuw-text-sm {
   font-size: 0.8125rem !important;
 } //13px
+.myuw-text-xs {
+  font-size: 0.75rem !important;
+} //12px
 .myuw-text-xxs {
   font-size: 0.6875rem !important;
 } //11px

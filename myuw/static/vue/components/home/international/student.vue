@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="internationalStudent" :loaded="true">
     <template #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         International Student
       </h3>
     </template>

@@ -7,7 +7,7 @@
     class="myuw-thank-you"
   >
     <template #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Payment Received, Thank You
       </h3>
     </template>

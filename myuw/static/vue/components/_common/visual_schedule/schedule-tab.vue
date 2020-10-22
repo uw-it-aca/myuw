@@ -1,47 +1,57 @@
 <template>
   <div>
-    <div class="mb-4 schedule-body">
-      <div class="time-column myuw-text-xs" aria-hidden="true">
-        <div v-for="(time, i) in timeSlots" :key="i"
-             class="time-cell"
-        >
-          <div v-if="time.minute() == 0" class="font-weight-bold text-nowrap">
-            {{ time.format('ha') }}
-          </div>
-          <div v-else class="d-none">
-            {{ time.format('h:mma') }}
+    <div class="mb-4 d-flex">
+      <div class="flex-shrink-1 myuw-text-xs"
+           aria-hidden="true"
+      >
+        <div class="d-flex flex-column time-column">
+          <div v-for="(time, i) in timeSlots" :key="i"
+               class="time-cell"
+          >
+            <div v-if="time.minute() == 0" class="font-weight-bold text-nowrap">
+              {{ time.format('ha') }}
+            </div>
+            <div v-else class="d-none">
+              {{ time.format('h:mma') }}
+            </div>
           </div>
         </div>
       </div>
       <!-- Desktop Version -->
-      <div v-if="$mq !== 'mobile'" class="d-flex w-100">
-        <div v-for="day in Object.keys(period.daySlots)" :key="day"
-             :aria-labelledby="`${day}-${period.id}`"
-             role="group"
-             class="day-column"
-        >
-          <div class="font-weight-bold text-center myuw-text-xs day-heading">
-            <div :id="`${day}-${period.id}`">
-              {{ days[day] }}
-              <span v-if="isFinalsTab && period.daySlots[day]" class="d-block">
-                {{ period.daySlots[day].format('MMM D') }}
-              </span>
-            </div>
-          </div>
-          <div v-for="(time, i) in timeSlots" :key="i"
-               :class="{'day-cell': true, 'day-disabled': isDayDisabled(day)}"
+      <div v-if="$mq !== 'mobile'"
+           class="w-100"
+      >
+        <div class="d-flex flex-wrap">
+          <div v-for="day in Object.keys(period.daySlots)" :key="day"
+               :aria-labelledby="`${day}-${period.id}`"
+               role="group"
+               class="day-column-desktop flex-even"
           >
-            <div v-if="(
-              meetingMap[day][formatToUnique(time)] &&
-              meetingMap[day][formatToUnique(time)].length > 0
-            )" class="d-flex"
+            <div class="font-weight-bold text-center myuw-text-xs day-heading">
+              <div :id="`${day}-${period.id}`">
+                {{ days[day] }}
+                <span v-if="isFinalsTab && period.daySlots[day]"
+                      class="d-block"
+                >
+                  {{ period.daySlots[day].format('MMM D') }}
+                </span>
+              </div>
+            </div>
+            <div v-for="(time, i) in timeSlots" :key="i"
+                 :class="{'day-cell': true, 'day-disabled': isDayDisabled(day)}"
             >
-              <uw-course-section
-                v-for="(meetingData, j) in
-                  meetingMap[day][formatToUnique(time)]"
-                :key="j" :meeting-data="meetingData"
-                :is-finals-card="isFinalsTab" :day="day"
-              />
+              <div v-if="(
+                meetingMap[day][formatToUnique(time)] &&
+                meetingMap[day][formatToUnique(time)].length > 0
+              )" class="d-flex"
+              >
+                <uw-course-section
+                  v-for="(meetingData, j) in
+                    meetingMap[day][formatToUnique(time)]"
+                  :key="j" :meeting-data="meetingData"
+                  :is-finals-card="isFinalsTab" :day="day"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -122,6 +132,7 @@
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
            class="d-inline-block w-auto mr-2"
+           style="min-width:110px;"
       >
         <uw-course-section :meeting-data="meeting" />
       </div>
@@ -172,7 +183,7 @@ export default {
       quarterLastDate: (state) => dayjs(
           state.termData.lastDay, 'dddd, MMMM D, YYYY',
       ),
-      today: (state) => dayjs(state.termData.today, 'dddd, MMMM D, YYYY'),
+      today: (state) => dayjs(state.termData.todayDate),
     }),
   },
   created() {
@@ -393,7 +404,12 @@ export default {
       if (this.isFinalsTab) {
         this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
-        this.mobile['current'] = dayjs().format('dddd').toLowerCase();
+        const dayToday = this.today.format('dddd').toLowerCase();
+        if (dayToday in this.period.daySlots) {
+          this.mobile['current'] = dayToday;
+        } else {
+          this.mobile['current'] = Object.keys(this.period.daySlots)[0];
+        }
       }
     },
     // Initalize the meeting map.
@@ -421,19 +437,13 @@ export default {
 $heading-height: 45px;
 $cell-height: 35px;
 
-.schedule-body {
-  width: 100%;
-  display: flex;
-}
 .time-column {
   padding-top: $heading-height - ($cell-height / 2) ;
   height: 100%;
-  flex-basis: 45px;
-  display: flex;
-  flex-direction: column;
+  min-width: 42px;
 
   .time-cell {
-    flex-grow: 1;
+    //flex-grow: 1;
     height: $cell-height;
     position: relative;
 
@@ -446,10 +456,12 @@ $cell-height: 35px;
     }
   }
 }
-.day-column {
+.day-column-desktop {
+  min-width: 50px;
+  //max-width: 20%;
+}
+.day-column, .day-column-desktop {
   height: 100%;
-  flex-grow: 1;
-  flex-basis: 0;
 
   .day-heading {
     height: $heading-height;
@@ -465,26 +477,23 @@ $cell-height: 35px;
 
   .day-cell {
     height: $cell-height;
-
-    // Border logic for empty cells
-    // &:empty {
-      &:nth-child(even) {
-        border-top: 1px solid darken($table-border-color, 5%);
-
-        &:last-child {
-          border-bottom: 1px dashed darken($table-border-color, 5%);
-        }
-      }
-
-      &:nth-child(odd) {
-        border-top: 1px dashed darken($table-border-color, 5%);
-
-        &:last-child {
-          border-bottom: 1px solid darken($table-border-color, 5%);
-        }
-      }
-    // }
     border-left: 1px solid darken($table-border-color, 5%);
+
+    &:nth-child(even) {
+      border-top: 1px solid darken($table-border-color, 5%);
+
+      &:last-child {
+        border-bottom: 1px dashed darken($table-border-color, 5%);
+      }
+    }
+
+    &:nth-child(odd) {
+      border-top: 1px dashed darken($table-border-color, 5%);
+
+      &:last-child {
+        border-bottom: 1px solid darken($table-border-color, 5%);
+      }
+    }
   }
 
   .day-disabled {
