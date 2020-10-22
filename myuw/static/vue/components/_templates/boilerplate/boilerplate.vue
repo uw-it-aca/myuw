@@ -113,6 +113,8 @@
       </div>
     </header>
 
+    <uw-banner-messages v-if="$mq === 'desktop'" />
+
     <div class="bg-light pt-4 pb-4 myuw-body">
       <b-container fluid="xl">
         <b-row :no-gutters="$mq !== 'desktop'">
@@ -307,11 +309,13 @@
 import {mapState} from 'vuex';
 import Search from './search.vue';
 import Welcome from './welcome.vue';
+import BannerMessages from './banner-messages.vue';
 
 export default {
   components: {
     'uw-search': Search,
     'uw-welcome': Welcome,
+    'uw-banner-messages': BannerMessages,
   },
   props: {
     logoutUrl: {

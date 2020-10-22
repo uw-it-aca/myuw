@@ -25,10 +25,11 @@
       id="tourModal"
       size="lg"
       title="Welcome! Here's MyUW at a glance"
+      title-class="text-dark-beige myuw-font-encode-sans"
+      header-class="border-0"
+      footer-class="border-0"
     >
-      <b-img fluid
-             :src="staticUrl+'images/myuw-tour-1.0x.png'"
-      />
+      <img :src="staticUrl+'images/myuw-tour-2.0x.png'" class="img-fluid">
       <p class="my-4">
         Watch a video tour of MyUW for Instructors, for staff, or
         for students. Visit the MyUW help guide for more
