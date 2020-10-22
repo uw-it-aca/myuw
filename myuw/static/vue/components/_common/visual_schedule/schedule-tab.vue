@@ -132,6 +132,7 @@
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
            class="d-inline-block w-auto mr-2"
+           style="min-width:110px;"
       >
         <uw-course-section :meeting-data="meeting" />
       </div>
@@ -182,7 +183,7 @@ export default {
       quarterLastDate: (state) => dayjs(
           state.termData.lastDay, 'dddd, MMMM D, YYYY',
       ),
-      today: (state) => dayjs(state.termData.today, 'dddd, MMMM D, YYYY'),
+      today: (state) => dayjs(state.termData.todayDate),
     }),
   },
   created() {
@@ -403,7 +404,12 @@ export default {
       if (this.isFinalsTab) {
         this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
-        this.mobile['current'] = dayjs().format('dddd').toLowerCase();
+        const dayToday = this.today.format('dddd').toLowerCase();
+        if (dayToday in this.period.daySlots) {
+          this.mobile['current'] = dayToday;
+        } else {
+          this.mobile['current'] = Object.keys(this.period.daySlots)[0];
+        }
       }
     },
     // Initalize the meeting map.

@@ -6,10 +6,10 @@
     :errored-show="!isSummerReg || (isSummerReg && period === 'A')"
   >
     <template #card-heading>
-      <h3 v-if="!errored" class="text-dark-beige">
+      <h3 v-if="!errored" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Registration: {{ quarter }} {{ year }}
       </h3>
-      <h3 v-else class="text-dark-beige">
+      <h3 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         {{ forQuarter }} Registration
       </h3>
     </template>

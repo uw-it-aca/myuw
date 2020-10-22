@@ -13,7 +13,9 @@ import FutureQuarterCards from './components/_common/future-quarter.vue';
 
 // academics components
 import GradStatus from './components/academics/grad-status.vue';
+import SidebarLinks from './components/academics/sidebar-links.vue';
 // import CourseCards from './components/academics/schedule/course-cards.vue';
+import GradCommittee from './components/academics/grad-committee.vue';
 
 // stores
 import grad from './vuex/store/grad';
@@ -22,6 +24,7 @@ import oquarter from './vuex/store/oquarter';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/stud_schedule';
 import visualSchedule from './vuex/store/visual_schedule';
+import categoryLinks from './vuex/store/category_links';
 
 vueConf.store.registerModule('grad', grad);
 vueConf.store.registerModule('notices', notices);
@@ -29,6 +32,7 @@ vueConf.store.registerModule('oquarter', oquarter);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('visual_schedule', visualSchedule);
+vueConf.store.registerModule('category_links', categoryLinks);
 
 vueConf.store.commit('addVarToState', {
   name: 'cardDisplayDates',
@@ -47,6 +51,8 @@ Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-grad-status', GradStatus);
+Vue.component('myuw-grad-committee', GradCommittee);
+Vue.component('myuw-sidebar-links', SidebarLinks);
 
 new Vue({
   ...vueConf,
