@@ -1,5 +1,5 @@
 <template>
-  <div class="myuw-messages bg-info">
+  <div class="myuw-messages bg-teal">
     <div class="px-3 py-2 text-center text-white myuw-text-md">
       <div>
         custom messages go here
