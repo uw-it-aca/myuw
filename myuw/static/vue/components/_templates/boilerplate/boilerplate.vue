@@ -237,6 +237,7 @@
                   />UW Resources
                 </b-nav-item>
               </b-nav>
+              <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
           </b-col>
           <b-col lg="10" role="main" aria-labelledby="mainHeader">
@@ -305,10 +306,12 @@
 <script>
 import {mapState} from 'vuex';
 import Search from './search.vue';
+import Welcome from './welcome.vue';
 
 export default {
   components: {
     'uw-search': Search,
+    'uw-welcome': Welcome,
   },
   props: {
     logoutUrl: {
@@ -389,6 +392,11 @@ export default {
     }
   }
 }
+
+.myuw-welcome {
+  background: $gray-300;
+}
+
 
 //.myuw-body { }
 

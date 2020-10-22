@@ -58,6 +58,7 @@ import {
   SpinnerPlugin,
   TabsPlugin,
   VBTogglePlugin,
+  ModalPlugin,
 } from 'bootstrap-vue';
 
 // Mixins
@@ -117,6 +118,7 @@ Vue.use(NavPlugin);
 Vue.use(SpinnerPlugin);
 Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
+Vue.use(ModalPlugin);
 
 // vuex
 Vue.use(Vuex);
