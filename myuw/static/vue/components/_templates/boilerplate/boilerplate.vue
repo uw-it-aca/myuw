@@ -107,7 +107,9 @@
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
-            MyUW <span class="sr-only">Home</span>
+            <a href="/" class="text-white">
+              MyUW <span class="sr-only">Home</span>
+            </a>
           </h1>
         </b-container>
       </div>
