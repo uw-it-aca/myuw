@@ -8,7 +8,6 @@ def future_quarters(request, quarter):
     term_label = quarter.split(",")
     term = get_specific_term(term_label[0], term_label[1])
     term_data = {
-        "url": quarter,
         "year": term.year,
         "quarter": term.quarter,
         'summer_term': term_label[2] if len(term_label) == 3 else "",
