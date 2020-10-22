@@ -3,7 +3,7 @@
     <p class="mb-1 text-dark myuw-text-md">
       Welcome!
     </p>
-    <ul class="m-0 list-unstyled myuw-text-xs">
+    <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li>
         <b-button v-b-modal.tourModal variant="link" size="sm"
                   class="p-0 m-0 text-muted myuw-text-xs"
