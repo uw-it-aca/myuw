@@ -7,6 +7,7 @@
       <li>
         <b-button v-b-modal.tourModal variant="link" size="sm"
                   class="p-0 m-0 text-muted myuw-text-xs"
+                  aria-hidden="true"
         >
           See MyUW at a glance
         </b-button>
@@ -21,26 +22,6 @@
         </b-link>
       </li>
     </ul>
-    <b-modal
-      id="tourModal"
-      size="lg"
-      title="Welcome! Here's MyUW at a glance"
-      title-class="text-dark-beige myuw-font-encode-sans"
-      header-class="border-0"
-      footer-class="border-0"
-    >
-      <img :src="staticUrl+'images/myuw-tour-2.0x.png'" class="img-fluid">
-      <p class="my-4">
-        Watch a video tour of MyUW for Instructors, for staff, or
-        for students. Visit the MyUW help guide for more
-        information.
-      </p>
-      <template v-slot:modal-footer="{ hide }">
-        <b-button variant="primary" @click="hide()">
-          Close
-        </b-button>
-      </template>
-    </b-modal>
   </div>
 </template>
 

@@ -113,9 +113,10 @@
       </div>
     </header>
 
-    <uw-banner-messages v-if="$mq === 'desktop'" />
+    <!-- MARK: message banner display for desktop -->
+    <uw-messages v-if="$mq === 'desktop'" />
 
-    <div class="bg-light pt-4 pb-4 myuw-body">
+    <div class="bg-light myuw-body">
       <b-container fluid="xl">
         <b-row :no-gutters="$mq !== 'desktop'">
           <b-col lg="2">
@@ -123,7 +124,7 @@
             <b-collapse
               v-if="!isHybrid"
               id="nav-collapse"
-              class="text-nowrap myuw-navigation"
+              class="pt-3 text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
             >
@@ -242,7 +243,15 @@
               <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
           </b-col>
-          <b-col lg="10" role="main" aria-labelledby="mainHeader">
+
+          <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
+            <!-- MARK: message banner display for mobile and tablet -->
+            <div style="margin-left: -10px; margin-right:-10px;">
+              <uw-messages />
+            </div>
+          </b-col>
+
+          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-3">
             <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
@@ -302,6 +311,26 @@
         </div>
       </b-container>
     </footer>
+    <b-modal
+      id="tourModal"
+      dialog-class="myuw-modal"
+      title="Welcome! Here's MyUW at a glance"
+      title-class="text-dark-beige myuw-font-encode-sans"
+      header-class="border-0"
+      footer-class="border-0"
+    >
+      <img :src="staticUrl+'images/myuw-tour-2.0x.png'" class="img-fluid">
+      <p class="my-4">
+        Watch a video tour of MyUW for Instructors, for staff, or
+        for students. Visit the MyUW help guide for more
+        information.
+      </p>
+      <template v-slot:modal-footer="{ hide }">
+        <b-button variant="primary" @click="hide()">
+          Close
+        </b-button>
+      </template>
+    </b-modal>
   </div>
 </template>
 
@@ -309,13 +338,13 @@
 import {mapState} from 'vuex';
 import Search from './search.vue';
 import Welcome from './welcome.vue';
-import BannerMessages from './banner-messages.vue';
+import Messages from './messages.vue';
 
 export default {
   components: {
     'uw-search': Search,
     'uw-welcome': Welcome,
-    'uw-banner-messages': BannerMessages,
+    'uw-messages': Messages,
   },
   props: {
     logoutUrl: {
@@ -397,11 +426,6 @@ export default {
   }
 }
 
-.myuw-welcome {
-  background: $gray-300;
-}
-
-
 //.myuw-body { }
 
 .myuw-footer {
@@ -414,5 +438,9 @@ export default {
       }
     }
   }
+}
+
+::v-deep .myuw-modal {
+  max-width: 600px !important;
 }
 </style>
