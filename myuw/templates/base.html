@@ -1,3 +1,4 @@
+{% load hashing_tag %}
 {% load static %}
 {% load settings_value %}
 <!DOCTYPE html>
@@ -77,7 +78,7 @@
     {% endblock django_json_data %}
 </head>
 
-<body class="myuw-font-open-sans">
+<body data-gtag="{{ google_analytics_key }}" data-hashid="{% hash_netid user.netid %}" data-tracking-enabled="{{ django_debug|lower }}" class="myuw-font-open-sans">
     {% csrf_token %}
 
     <div id="vue_root" hidden>

@@ -1,4 +1,4 @@
-import { Vue, vueConf } from './base.js';
+import {Vue, vueConf} from './base.js';
 
 // layout componenets
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
