@@ -15,7 +15,7 @@
         </b-container>
       </div>
 
-      <b-collapse id="app_search" class="myuw-search bg-gold">
+      <b-collapse id="app_search" class="myuw-search bg-light">
         <uw-search />
       </b-collapse>
 
@@ -347,6 +347,12 @@ export default {
     pageTitle: (state) => state.pageTitle,
     disableActions: (state) => state.disableActions,
   }),
+  mounted() {
+    // MARK: google analytics gtag
+    this.$gtag.pageview({
+      page_path: window.location.pathname,
+    });
+  },
 };
 </script>
 

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import VueGtag from 'vue-gtag';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
@@ -29,7 +30,7 @@ import {
   faCheck,
   faPlus,
   faCheckCircle,
-  faChevronRight
+  faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -41,7 +42,7 @@ import {
   faCircle,
 } from '@fortawesome/free-regular-svg-icons';
 
-// Bootstrap vue plugins
+// bootstrap vue plugins
 import {
   AlertPlugin,
   BadgePlugin,
@@ -52,6 +53,7 @@ import {
   FormGroupPlugin,
   FormInputPlugin,
   FormSelectPlugin,
+  InputGroupPlugin,
   LayoutPlugin,
   LinkPlugin,
   NavPlugin,
@@ -96,12 +98,17 @@ library.add(faCheckCircle);
 library.add(faCircle);
 library.add(faChevronRight);
 
+// MARK: google analytics data stream measurement_id
+const gaCode = document.body.getAttribute('data-gtag');
+const hashId = document.body.getAttribute('data-hashid');
+const trackingEnabled = document.body.getAttribute('data-tracking-enabled');
+
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
-// Bootstrap-Vue components as plugins
+// bootstrap-vue components as plugins
 Vue.use(AlertPlugin);
 Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
@@ -111,6 +118,7 @@ Vue.use(FormPlugin);
 Vue.use(FormGroupPlugin);
 Vue.use(FormInputPlugin);
 Vue.use(FormSelectPlugin);
+Vue.use(InputGroupPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(LinkPlugin);
 Vue.use(NavPlugin);
@@ -120,6 +128,18 @@ Vue.use(VBTogglePlugin);
 
 // vuex
 Vue.use(Vuex);
+
+// vue-gtag
+Vue.use(VueGtag, {
+  config: {
+    id: gaCode,
+    params: {
+      anonymize_ip: true,
+      user_id: hashId,
+    },
+  },
+  enabled: trackingEnabled,
+});
 
 // vue-mq (media queries)
 Vue.use(VueMq, {
