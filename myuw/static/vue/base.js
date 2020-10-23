@@ -99,8 +99,9 @@ library.add(faCircle);
 library.add(faChevronRight);
 
 // MARK: google analytics data stream measurement_id
-const gaCode = document.body.getAttribute('data-google-analytics');
-const hashedNetId = document.body.getAttribute('data-user-id');
+const gaCode = document.body.getAttribute('data-gtag');
+const hashedNetId = document.body.getAttribute('data-hashid');
+const trackingEnabled = document.body.getAttribute('data-debug');
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -137,6 +138,7 @@ Vue.use(VueGtag, {
       user_id: hashedNetId,
     },
   },
+  enabled: trackingEnabled,
 });
 
 // vue-mq (media queries)
