@@ -80,7 +80,7 @@ export default {
         return this.meetings;
       }
       return [];
-    }
+    },
   },
   methods: {
     locationUrl(meeting) {
@@ -99,7 +99,7 @@ export default {
       } else {
         return `${startFormatted} - ${endFormatted}`;
       }
-    }
+    },
   },
 };
 </script>

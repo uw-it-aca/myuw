@@ -194,8 +194,12 @@ export default {
     ...mapState({
       today: (state) => dayjs(state.termData.todayDate),
     }),
-    quarterLastDate() { return this.term.last_day_instruction; },
-    isSummerQuarter() { return this.term.quarter === 'summer'; },
+    quarterLastDate() {
+      return this.term.last_day_instruction;
+    },
+    isSummerQuarter() {
+      return this.term.quarter === 'summer';
+    },
   },
   created() {
     // Set if this tab is for finals

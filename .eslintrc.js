@@ -7,12 +7,6 @@ module.exports = {
     'browser': true,
     'jest/globals': true,
   },
-  parserOptions: {
-    parser: 'babel-eslint',
-    // specifying a module sourcetype prevent eslint from marking
-    // import statements as errors
-    sourceType: 'module',
-  },
   plugins: ['jest'],
   extends: [
     // use the recommended rule set for both plain javascript and vue
