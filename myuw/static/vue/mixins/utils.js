@@ -43,7 +43,10 @@ export default {
       return pageTitle.map((s) => this.ucfirst(s)).join(' ');
     },
     ucfirst(s) {
-      return s.replace(/^([a-z])/, (c) => c.toUpperCase());
+      if (s) {
+        return s.replace(/^([a-z])/, (c) => c.toUpperCase());
+      }
+      return "";
     },
   },
 }
