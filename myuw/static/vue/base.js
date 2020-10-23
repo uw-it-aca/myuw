@@ -100,8 +100,8 @@ library.add(faChevronRight);
 
 // MARK: google analytics data stream measurement_id
 const gaCode = document.body.getAttribute('data-gtag');
-const hashedNetId = document.body.getAttribute('data-hashid');
-const trackingEnabled = document.body.getAttribute('data-debug');
+const hashId = document.body.getAttribute('data-hashid');
+const trackingEnabled = document.body.getAttribute('data-tracking-enabled');
 
 // fontawesome 5
 Vue.component('font-awesome-icon', FontAwesomeIcon);
@@ -135,7 +135,7 @@ Vue.use(VueGtag, {
     id: gaCode,
     params: {
       anonymize_ip: true,
-      user_id: hashedNetId,
+      user_id: hashId,
     },
   },
   enabled: trackingEnabled,
