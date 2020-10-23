@@ -103,7 +103,7 @@ def page(request,
 
     context['google_search_key'] = get_google_search_key()
     context['google_analytics_key'] = get_google_analytics_key()
-    context['django_debug'] = get_django_debug()
+    context['google_tracking_enabled'] = not get_django_debug()
 
     if add_quicklink_context:
         _add_quicklink_context(request, context)
