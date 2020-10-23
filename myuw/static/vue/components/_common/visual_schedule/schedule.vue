@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="!isErrored && term && (!isReady || periods.length > 0)"
+    v-if="!isErrored && termLabel && (!isReady || periods.length > 0)"
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
@@ -27,7 +27,10 @@
                :active="period.id == activePeriod.id"
         >
           <!-- tab content -->
-          <uw-schedule-tab :period="period" />
+          <uw-schedule-tab
+            :period="period"
+            :term="allSchedules[termLabel].term"
+          />
         </b-tab>
       </b-tabs>
       <!-- TODO: charlon style this, use billpce on 2019-06-26 to test it -->
@@ -54,7 +57,7 @@ export default {
     'uw-schedule-tab': ScheduleTab,
   },
   props: {
-    term: {
+    termLabel: {
       type: String,
       default: 'current',
     },
@@ -74,19 +77,19 @@ export default {
       'isErroredTagged',
     ]),
     isReady() {
-      return this.isReadyTagged(this.term);
+      return this.isReadyTagged(this.termLabel);
     },
     isErrored() {
-      return this.isErroredTagged(this.term);
+      return this.isErroredTagged(this.termLabel);
     },
     offTerm: function() {
-      return this.allSchedules[this.term].off_term_trimmed;
+      return this.allSchedules[this.termLabel].off_term_trimmed;
     },
     periods: function() {
-      return this.allSchedules[this.term].periods;
+      return this.allSchedules[this.termLabel].periods;
     },
     termName: function() {
-      const termData = this.allSchedules[this.term].term;
+      const termData = this.allSchedules[this.termLabel].term;
       let name = this.ucfirst(termData.quarter) + ' ' + termData.year;
       if (termData.summer_term) {
         name += ' ' + termData.summer_term.split('-')
@@ -107,7 +110,7 @@ export default {
     },
   },
   mounted() {
-    if (this.term) this.fetch(this.term);
+    if (this.termLabel) this.fetch(this.termLabel);
   },
   methods: {
     ...mapActions('visual_schedule', ['fetch']),

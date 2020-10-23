@@ -57,7 +57,7 @@
                   v-for="(meetingData, j) in
                     meetingMap[day][formatToUnique(time)]"
                   :key="j" :meeting-data="meetingData"
-                  :is-finals-card="isFinalsTab" :day="day"
+                  :is-finals-card="isFinalsTab" :day="day" :term="term"
                 />
               </div>
             </div>
@@ -84,7 +84,7 @@
               <uw-course-section
                 v-for="(meetingData, j) in
                   meetingMap[mobile['current']][formatToUnique(time)]"
-                :key="j" :meeting-data="meetingData"
+                :key="j" :meeting-data="meetingData" :term="term"
                 :is-finals-card="isFinalsTab" :day="mobile['current']"
               />
             </div>
@@ -100,7 +100,7 @@
       </p>
       <uw-course-section
         v-for="(eosSection, i) in period.eosData" :key="i"
-        :meeting-data="{section: eosSection}"
+        :meeting-data="{section: eosSection}" :term="term"
         :is-finals-card="false" class="d-inline-block w-auto mr-2"
       >
         <ol class="m-0 px-4 text-left">
@@ -142,7 +142,7 @@
            class="d-inline-block w-auto mr-2"
            style="min-width:110px;"
       >
-        <uw-course-section :meeting-data="meeting" />
+        <uw-course-section :meeting-data="meeting" :term="term" />
       </div>
     </div>
   </div>
@@ -159,6 +159,10 @@ export default {
   },
   props: {
     period: {
+      type: Object,
+      required: true,
+    },
+    term: {
       type: Object,
       required: true,
     },
@@ -188,10 +192,10 @@ export default {
   },
   computed: {
     ...mapState({
-      quarterLastDate: (state) => dayjs(state.termData.lastDay),
       today: (state) => dayjs(state.termData.todayDate),
-      isSummerQuarter: (state) => state.termData.quarter == 'summer',
     }),
+    quarterLastDate() { return this.term.last_day_instruction; },
+    isSummerQuarter() { return this.term.quarter === 'summer'; },
   },
   created() {
     // Set if this tab is for finals
