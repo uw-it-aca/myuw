@@ -9,6 +9,30 @@
         :course="course" :section="section" :index="i"
       />
     </div>
+    <uw-card v-else-if="isErrored && statusCodeTagged(term) == 404" loaded>
+      <template #card-heading>
+        No {{ucfirst(quarter)}} {{ucfirst(summerTerm)}} Registration Found
+      </template>
+      <template #card-body>
+        <p>
+          You don’t appear to be registered for any credit courses in {{quarter}}
+          {{summerTerm}} quarter. If you think this is an error, please
+          <a
+            href="mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20"
+            title="Send email to help@uw.edu"
+          >
+            contact MyUW
+          </a>.
+        </p>
+
+        <p>
+          If you are interested in registration, 
+          <a href="../resource/academics">
+            view registration resources.
+          </a>
+        </p>
+      </template>
+    </uw-card>
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
         Schedule &amp; Course Info
@@ -40,6 +64,8 @@ export default {
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
+      quarter: (state) => state.termData.quarter,
+      summerTerm: (state) => state.termData.summer_term,
     }),
     ...mapState('stud_schedule', {
       course(state) {
@@ -49,6 +75,7 @@ export default {
     ...mapGetters('stud_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
+      statusCodeTagged: 'statusCodeTagged',
     }),
     isReady() {
       return this.isReadyTagged(this.term);

@@ -1,4 +1,4 @@
-import dayjs, { max } from 'dayjs';
+import dayjs from 'dayjs';
 import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')

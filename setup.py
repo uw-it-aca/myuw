@@ -28,7 +28,7 @@ setup(
         'django-compressor==2.2',
         'beautifulsoup4',
         'urllib3',
-        'uw-memcached-clients>=1.0.1,<2.0',
+        'uw-memcached-clients>=1.0.2,<2.0',
         'UW-Django-SAML2<2.0',
         'django-aws-message<2.0',
         'UW-RestClients-Core>=1.3.3,<2.0',

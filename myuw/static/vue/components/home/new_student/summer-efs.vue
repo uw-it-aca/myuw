@@ -12,12 +12,12 @@
 
     <template #card-body>
       <div v-for="notice in notices" :key="notice.id_hash" class="mb-3">
-        <h3 class="text-dark-beige">
+        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
           Review Critical Summer Registration Info
         </h3>
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Consider Early Fall Start
       </h3>
       <div class="myuw-text-md">

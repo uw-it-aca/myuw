@@ -140,6 +140,7 @@
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
            class="d-inline-block w-auto mr-2"
+           style="min-width:110px;"
       >
         <uw-course-section :meeting-data="meeting" />
       </div>

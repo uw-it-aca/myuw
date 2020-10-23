@@ -53,7 +53,7 @@ class TestRegistrationsDao(TestCase):
         self.assertEqual(_get_current_summer_term(request, schedule, None),
                          'full-term')
 
-    def test_get_current_schedule(self):
+    def test_get_schedule_by_term(self):
         request = get_request_with_user('javerage',
                                         get_request_with_date("2013-10-01"))
         schedule = get_schedule_by_term(request)
@@ -96,6 +96,17 @@ class TestRegistrationsDao(TestCase):
         self.assertEqual(len(schedule.sections), 2)
         self.assertEqual(schedule.sections[0].summer_term, "B-term")
         self.assertEqual(schedule.sections[1].summer_term, "Full-term")
+
+        request = get_request_with_user('javerage',
+                                        get_request_with_date("2013-07-25"))
+        schedule = get_schedule_by_term(
+            request, term=get_specific_term(2013, 'summer'),
+            summer_term="full-term")
+        self.assertEqual(schedule.summer_term, "full-term")
+        self.assertEqual(len(schedule.sections), 3)
+        self.assertEqual(schedule.sections[0].summer_term, "A-term")
+        self.assertEqual(schedule.sections[1].summer_term, "B-term")
+        self.assertEqual(schedule.sections[2].summer_term, "Full-term")
 
         request = get_request_with_user('jeos',
                                         get_request_with_date("2013-07-24"))
