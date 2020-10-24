@@ -61,8 +61,6 @@ export default {
       default: 'current',
     },
   },
-  data() {
-  },
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
