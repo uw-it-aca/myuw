@@ -17,12 +17,11 @@
         <p>
           You don’t appear to be registered for any credit courses in
           {{ quarter }} {{ summerTerm }} quarter. If you think this is an
-          error, please
-          <a
-            :href="helpMyUW"
-            title="Send email to help@uw.edu"
+          error, please contact the
+          <a href="https://itconnect.uw.edu/it-connect-home/question/"
+            title="Send email to UW-IT Service Center"
           >
-            contact MyUW
+            UW-IT Service Center
           </a>.
         </p>
 
@@ -63,10 +62,6 @@ export default {
     },
   },
   data() {
-    return {
-      // Work around eslint for strings inside vue template
-      helpMyUW: 'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20',
-    };
   },
   computed: {
     ...mapState({
