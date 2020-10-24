@@ -9,30 +9,10 @@
         :course="course" :section="section" :index="i"
       />
     </div>
-    <uw-card v-else-if="isErrored && statusCodeTagged(term) == 404" loaded>
-      <template #card-heading>
-        No {{ ucfirst(quarter) }} {{ ucfirst(summerTerm) }} Registration Found
-      </template>
-      <template #card-body>
-        <p>
-          You don’t appear to be registered for any credit courses in
-          {{ quarter }} {{ summerTerm }} quarter. If you think this is an
-          error, please contact the
-          <a href="https://itconnect.uw.edu/it-connect-home/question/"
-            title="Send email to UW-IT Service Center"
-          >
-            UW-IT Service Center
-          </a>.
-        </p>
-
-        <p>
-          If you are interested in registration,
-          <a href="../resource/academics">
-            view registration resources.
-          </a>
-        </p>
-      </template>
-    </uw-card>
+    <uw-no-course-card
+      v-else-if="isErrored && statusCodeTagged(term) == 404" loaded
+      :quarter="quarter" :summer-term="summerTerm"
+    />
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
         Schedule &amp; Course Info
@@ -45,11 +25,13 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import CourseCard from './course.vue';
+import NoCourseCard from './no-course.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-course-card': CourseCard,
+    'uw-no-course-card': NoCourseCard,
   },
   props: {
     mobileOnly: {
