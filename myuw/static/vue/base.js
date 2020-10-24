@@ -138,7 +138,7 @@ Vue.use(VueGtag, {
       user_id: hashId,
     },
   },
-  enabled: trackingEnabled,
+  enabled: trackingEnabled == 'true',
 });
 
 // vue-mq (media queries)
