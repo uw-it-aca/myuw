@@ -6,6 +6,10 @@ function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   data[urlExtra].sections.forEach((section) => {
+    section.id = (data.year + "-" + data.quarter + "-" +
+                  section.curriculum_abbr + "-" +
+                  section.course_number + "-" + section.section_id);
+
     // MUWM-549 and MUWM-552
     let canvasUrl = section.canvas_url;
     if (canvasUrl) {
@@ -22,8 +26,10 @@ function postProcess(response, urlExtra) {
       }
     }
 
+    section.has_eos_dates = false;
     // Convert dates and times to datejs objects
     section.meetings.forEach((meeting) => {
+      meeting.id = section.id + "-meeting-" + meeting.index;
       if (meeting.start_time && meeting.end_time) {
         meeting.start_time = dayjs(meeting.start_time, "hh:mm")
           .second(0)
@@ -34,6 +40,7 @@ function postProcess(response, urlExtra) {
       }
 
       if (meeting.eos_start_date && meeting.eos_end_date) {
+        section.has_eos_dates = true;
         meeting.eos_start_date = dayjs(meeting.eos_start_date)
           .second(0)
           .millisecond(0);
@@ -42,8 +49,8 @@ function postProcess(response, urlExtra) {
           .millisecond(0);
       }
 
-      if (meeting.type !== section.section_type &&
-          meeting.type !== 'NON') {
+      if (meeting.type && meeting.type !== 'NON' &&
+          meeting.type !== section.section_type) {
         meeting.display_type = true;
       }
     });

@@ -40,7 +40,10 @@
             <b-col v-if="showRowHeading" cols="3">
               Meeting Time
             </b-col>
-            <uw-meeting-info :meetings="section.meetings" />
+            <uw-meeting-info
+             :hasEosDates="section.has_eos_dates"
+             :meetings="section.meetings"
+             :sectionId="section.id" />
           </b-row>
           <b-row no-gutters>
             <b-col v-if="showRowHeading" cols="3">
