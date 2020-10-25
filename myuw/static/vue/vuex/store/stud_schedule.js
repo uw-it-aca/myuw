@@ -41,6 +41,11 @@ function postProcess(response, urlExtra) {
           .second(0)
           .millisecond(0);
       }
+
+      if (meeting.type !== section.section_type &&
+          meeting.type !== 'NON') {
+        meeting.display_type = true;
+      }
     });
   });
 
