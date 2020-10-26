@@ -11,7 +11,7 @@ import UwCard from '../components/_templates/card.vue';
 
 import mockApplicant from './mock_data/applicant.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
 

@@ -38,10 +38,10 @@ const expectAction = (
   }
 });
 
-const createLocalVue = () => {
+const createLocalVue = (vuexMoudule) => {
   const localVue = createLocalVueOriginal();
   localVue.use(BootstrapVue);
-  localVue.use(Vuex);
+  localVue.use(vuexMoudule);
 
   localVue.mixin(utils);
 

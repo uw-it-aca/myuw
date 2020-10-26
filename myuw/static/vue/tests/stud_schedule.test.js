@@ -16,6 +16,8 @@ import mockCoursesJeos2013Spring from
 import mockCoursesJeos2013SummerB from
   './mock_data/stud_schedule/jeos2013SummerB.json';
 
+const localVue = createLocalVue(Vuex);
+
 jest.mock('axios');
 
 describe('Stud Course model', () => {

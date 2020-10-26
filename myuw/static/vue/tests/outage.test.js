@@ -12,7 +12,7 @@ import {
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 library.add(faExclamationTriangle);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
