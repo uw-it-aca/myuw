@@ -2150,6 +2150,10 @@
     "term": {
         "year": 2013,
         "quarter": "spring",
+        "first_day_quarter": "2013-04-01",
+        "last_day_instruction": "2013-06-07",
+        "aterm_last_date": null,
+        "bterm_first_date": null,
         "last_final_exam_date": "2013-06-14",
         "summer_term": null
     },

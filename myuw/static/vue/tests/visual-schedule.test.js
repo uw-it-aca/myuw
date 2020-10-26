@@ -18,7 +18,7 @@ import mockScheduleJaverage from './mock_data/schedule/javerage2013.json';
 import mockScheduleJaverageSummer from './mock_data/schedule/javerageSummer2013.json';
 import mockScheduleJeos from './mock_data/schedule/jeos2013.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
 
@@ -167,7 +167,7 @@ describe('Schedule Model', () => {
 
     expect(store.state.visual_schedule.value).toBeDefined();
     expect(store.state.visual_schedule.value.testCurrent).toBeDefined();
-    expect(store.state.visual_schedule.value.testCurrent.periods).toHaveLength(6);
+    expect(store.state.visual_schedule.value.testCurrent.periods).toHaveLength(5);
 
     expect(
       store.state.visual_schedule.value.testCurrent.periods[0].eosData
@@ -236,20 +236,18 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.find('h3').exists()).toBeTruthy();
     expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
 
-    expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(6);
+    expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(5);
     expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Apr 05");
     expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Apr 07 - May 03");
-    expect(wrapper.findAll('a[role=tab]').at(2).text()).toBe("May 05 - May 11");
-    expect(wrapper.findAll('a[role=tab]').at(3).text()).toBe("May 13 - Sep 14");
-    expect(wrapper.findAll('a[role=tab]').at(4).text()).toBe("Sep 16 - Sep 18");
-    expect(wrapper.findAll('a[role=tab]').at(5).text()).toBe("finals");
+    expect(wrapper.findAll('a[role=tab]').at(2).text()).toBe("May 05 - Jun 15");
+    expect(wrapper.findAll('a[role=tab]').at(3).text()).toBe("Jun 17 - Jul 06");
+    expect(wrapper.findAll('a[role=tab]').at(4).text()).toBe("finals");
 
     expect(wrapper.vm.periods[0].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[1].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[2].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[3].eosData).toHaveLength(0);
-    expect(wrapper.vm.periods[4].eosData).toHaveLength(0);
-    expect(wrapper.vm.periods[5].eosData).toHaveLength(1);
+    expect(wrapper.vm.periods[4].eosData).toHaveLength(1);
   });
 
   it ('Check Overlapping classes', async () => {
