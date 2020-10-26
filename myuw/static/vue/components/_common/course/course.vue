@@ -41,10 +41,11 @@
               Meeting Time
             </b-col>
             <uw-meeting-info
-             :hasEosDates="section.has_eos_dates"
-             :displayMeetingType="section.display_mtype"
-             :meetings="section.meetings"
-             :sectionId="section.id" />
+              :has-eos-dates="section.has_eos_dates"
+              :display-meeting-type="section.display_mtype"
+              :meetings="section.meetings"
+              :section-id="section.id"
+            />
           </b-row>
           <b-row no-gutters>
             <b-col v-if="showRowHeading" cols="3">
