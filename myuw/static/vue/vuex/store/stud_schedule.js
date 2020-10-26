@@ -5,8 +5,10 @@ import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
-  data[urlExtra].sections.forEach((section) => {
-    section.id = (data.year + "-" + data.quarter + "-" +
+  let course_data = data[urlExtra];
+  for (let i = 0; i < course_data.sections.length; i++) {
+    let section = course_data.sections[i];
+    section.id = (course_data.year + "-" + course_data.quarter + "-" +
                   section.curriculum_abbr + "-" +
                   section.course_number + "-" + section.section_id);
 
@@ -20,7 +22,6 @@ function postProcess(response, urlExtra) {
       let matches = canvasUrl.match(/\/([0-9]+)$/);
       let canvasId = matches[1];
       let alternateUrl = `https://uw.instructure.com/courses/${canvasId}`;
-
       if (section.class_website_url === alternateUrl) {
         section.class_website_url = null
       }
@@ -28,7 +29,8 @@ function postProcess(response, urlExtra) {
 
     section.has_eos_dates = false;
     // Convert dates and times to datejs objects
-    section.meetings.forEach((meeting) => {
+    for (let idx = 0; idx < section.meetings.length; idx++) {
+      let meeting = section.meetings[idx];
       meeting.id = section.id + "-meeting-" + meeting.index;
       if (meeting.start_time && meeting.end_time) {
         meeting.start_time = dayjs(meeting.start_time, "hh:mm")
@@ -50,11 +52,12 @@ function postProcess(response, urlExtra) {
       }
 
       if (meeting.type && meeting.type !== 'NON' &&
-          meeting.type !== section.section_type) {
+          meeting.type.toLowerCase() !== section.section_type.toLowerCase()) {
         meeting.display_type = true;
+        section.display_mtype = true;
       }
-    });
-  });
+    }
+  }
 
   return data;
 }

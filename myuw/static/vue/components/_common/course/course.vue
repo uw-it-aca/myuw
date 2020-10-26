@@ -42,6 +42,7 @@
             </b-col>
             <uw-meeting-info
              :hasEosDates="section.has_eos_dates"
+             :displayMeetingType="section.display_mtype"
              :meetings="section.meetings"
              :sectionId="section.id" />
           </b-row>

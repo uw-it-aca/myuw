@@ -8,7 +8,8 @@
             <th :id="'days-' + sectionId">Meeting Day(s)</th>
             <th :id="'time-' + sectionId">Meeting Time</th>
             <th :id="'location-' + sectionId">Meeting Location</th>
-            <th :id="'type-' + sectionId">Meeting Type</th>
+            <th v-if="displayMeetingType" :id="'type-' + sectionId">
+              Meeting Type</th>
         </tr>
     </thead>
     <tbody>
@@ -83,7 +84,7 @@
             </span>
           </td>
         </template>
-        <td :headers="'type-' + meeting.id">
+        <td v-if="displayMeetingType" :headers="'type-' + meeting.id">
           <span v-if="meeting.display_type">
             {{ meeting.type }}
           </span>
@@ -98,6 +99,11 @@
 export default {
   props: {
     hasEosDates: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    displayMeetingType: {
       type: Boolean,
       required: true,
       default: false,
