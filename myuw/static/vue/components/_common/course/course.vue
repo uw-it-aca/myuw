@@ -14,7 +14,7 @@
           </div>
           <div>
             <span class="d-block">
-              {{ ucfirst(section.meetings[0].type) }}
+              {{ ucfirst(section.section_type) }}
             </span>
             <span
               v-if="section.is_primary_section && section.for_credit"
