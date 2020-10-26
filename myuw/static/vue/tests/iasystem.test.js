@@ -2,9 +2,10 @@ import axios from 'axios';
 import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 
-import {expectAction} from './helper';
+import {createLocalVue} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import iasystem from '../vuex/store/iasystem';
+import {expectAction} from './helper';
 
 import mockJaverage2013Spring from
   './mock_data/iasystem/javerage2013Spring.json';
