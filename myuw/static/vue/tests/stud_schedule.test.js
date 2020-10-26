@@ -4,7 +4,6 @@ import Vuex from 'vuex';
 import {expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import stud_schedule from '../vuex/store/stud_schedule';
-import {expectAction} from './helper';
 import mockCoursesJaverage2013Spring from
   './mock_data/stud_schedule/javerage2013Spring.json';
 import mockCoursesJeos2013Spring from
