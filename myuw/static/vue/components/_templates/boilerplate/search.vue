@@ -51,12 +51,7 @@ export default {
 
       // MARK: google analytics: log uw search queries as an event
       // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-
-      this.$gtag.event('search', {
-        'event_category': 'engagement',
-        'event_label': 'search_term',
-        'value': this.searchText,
-      });
+      this.$gtag.event('search', {search_term: this.searchText});
 
       // navigate to uw search query
       window.location.href = searchURL;
