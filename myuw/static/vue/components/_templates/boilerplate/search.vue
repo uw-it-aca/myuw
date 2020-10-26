@@ -49,12 +49,15 @@ export default {
     performSearch: function() {
       const searchURL = 'https://www.washington.edu/search/?q=' + this.searchText;
 
-      // console.log( window.location.pathname + '?q=' + this.searchText)
+      // MARK: google analytics: log uw search queries as an event
+      // https://developers.google.com/analytics/devguides/collection/gtagjs/events
 
-      // MARK: google analytics: log uw search queries as pageviews
-      this.$gtag.pageview({
-        page_path: window.location.pathname + '?q=' + this.searchText,
+      this.$gtag.event('search', {
+        'event_category': 'engagement',
+        'event_label': 'search_term',
+        'value': this.searchText,
       });
+
       // navigate to uw search query
       window.location.href = searchURL;
     },
