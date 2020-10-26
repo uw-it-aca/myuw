@@ -34,10 +34,12 @@ export default {
   props: {
     quarter: {
       type: String,
+      required: true,
       default: '',
     },
     summerTerm: {
       type: String,
+      required: true,
       default: '',
     },
   },
