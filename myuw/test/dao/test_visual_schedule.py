@@ -1097,3 +1097,18 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(
             schedule_json['periods'][3]['sections'][0]['course_number'],
             '233')
+
+    def test_json(self):
+        request = get_request_with_user(
+            'jeos', get_request_with_date("2013-08-12"))
+        term = get_current_quarter(request)
+        schedule, term, summer_term = get_current_visual_schedule(request)
+        self.assertEqual(len(schedule), 2)
+        schedule_json = get_schedule_json(schedule, term)
+        self.assertTrue('year', schedule_json['term'])
+        self.assertTrue('quarter', schedule_json['term'])
+        self.assertTrue('first_day_quarter', schedule_json['term'])
+        self.assertTrue('last_day_instruction', schedule_json['term'])
+        self.assertTrue('aterm_last_date', schedule_json['term'])
+        self.assertTrue('bterm_first_date', schedule_json['term'])
+        self.assertTrue('last_final_exam_date', schedule_json['term'])

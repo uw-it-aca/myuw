@@ -30,6 +30,11 @@
             Counseling &amp; Psychological Services
           </a>
         </li>
+        <li v-if="links.tac_student" class="mb-1">
+          <a href="https://apps.tacoma.uw.edu/attest/">
+            Student Wellness Check-In
+          </a>
+        </li>
         <li class="mb-1">
           <a href="https://www.washington.edu/counseling/covid-19/">
             Coping with COVID-19 Stress
