@@ -4,7 +4,7 @@ function postProcess(response, urlExtra) {
   let data = extractData(response);
 
   if (Array.isArray(data) && data.length === 0) {
-    data = null;
+    data = {};
   }
 
   return {[urlExtra]: data};
