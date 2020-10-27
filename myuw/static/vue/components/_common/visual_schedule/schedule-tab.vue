@@ -347,7 +347,16 @@ export default {
       let meetingsToAdd = [{
         section: section,
         meeting: meeting,
+        renderTime: null,
       }];
+
+      // Get time slot in 30 minutes interval
+      if (startTime.minute() > 30) {
+        startTime = startTime.add(30 - startTime.minute(), 'minutes');
+      } else if (startTime.minute() < 30 && startTime.minute() !== 0) {
+        startTime = startTime.subtract(startTime.minute(), 'minutes');
+      }
+      meetingsToAdd[0].renderTime = startTime;
 
       if (
         this.meetingMap[day][this.formatToUnique(startTime)] &&
@@ -367,15 +376,23 @@ export default {
     // Make a array of all the possible time slots with the interval
     // of this.timestep
     initializeTimeSlots() {
+      // Generate start time
       let start = this.period.earliestMeetingTime.clone();
-      if (start.minute() === 30) {
-        start = start.subtract(...this.timestep);
-      } else if (start.minute() === 0) {
-        start = start.subtract(...this.timestep).subtract(...this.timestep);
+      if (start.minute() === 0) {
+        start = start.subtract(1, 'hours');
+      } else if (start.minute() > 30) {
+        start = start.add(30 - start.minute(), 'minutes');
+      } else {
+        start = start.subtract(start.minute(), 'minutes');
       }
 
+      // Generate end time
       let end = this.period.latestMeetingTime.clone();
-      if (end.minute() !== 0 && end.minute() !== 30) {
+      if (end.minute() === 0) {
+        end = end.add(30, 'minutes');
+      } else if (end.minute() > 30) {
+        end = end.add(60 - end.minute(), 'minutes');
+      } else {
         end = end.add(30 - end.minute(), 'minutes');
       }
 

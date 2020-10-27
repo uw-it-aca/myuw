@@ -72,16 +72,26 @@ const postProcess = (response, urlExtra) => {
       // Skip if no exam is defined or no time is set
       if (section.final_exam && section.final_exam.start_date) {
         if (isFinalPeriod(period)) {
+          // Generate time relative to today so that it can be compared
+          let startTime = dayjs()
+            .hour(section.final_exam.start_date.hour())
+            .minute(section.final_exam.start_date.minute())
+            .second(0);
+          let endTime = dayjs()
+            .hour(section.final_exam.end_date.hour())
+            .minute(section.final_exam.end_date.minute())
+            .second(0);
+
           // Update min and max time if needed
           if (earliestTime === null && latestTime === null) {
-            earliestTime = section.final_exam.start_date;
-            latestTime = section.final_exam.end_date;
+            earliestTime = startTime;
+            latestTime = endTime;
           } else {
-            if (section.final_exam.start_date < earliestTime) {
-              earliestTime = section.final_exam.start_date;
+            if (startTime < earliestTime) {
+              earliestTime = startTime;
             }
-            if (section.final_exam.end_date > latestTime) {
-              latestTime = section.final_exam.end_date;
+            if (endTime > latestTime) {
+              latestTime = endTime;
             }
           }
         }
