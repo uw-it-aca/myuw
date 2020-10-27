@@ -12,7 +12,7 @@ import UwCard from '../components/_templates/card.vue';
 
 import mockNotices from './mock_data/inter_notices.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 describe('International Student Card - student.vue', () => {
   let store;

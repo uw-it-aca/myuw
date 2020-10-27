@@ -7,7 +7,7 @@ import CriticalInfoCard from '../components/home/new_student/critical-info.vue';
 
 import mockNotices from './mock_data/notices.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
 

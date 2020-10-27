@@ -2011,6 +2011,10 @@
     "term": {
         "year": 2020,
         "quarter": "autumn",
+        "first_day_quarter": "2020-09-30",
+        "last_day_instruction": "2020-12-11",
+        "aterm_last_date": null,
+        "bterm_first_date": null,
         "last_final_exam_date": "2020-12-18",
         "summer_term": null
     },

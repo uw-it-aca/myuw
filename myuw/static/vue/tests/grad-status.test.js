@@ -15,7 +15,7 @@ import {
 
 import mockGradData from './mock_data/sea_grad.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 library.add(faExclamationTriangle);
 

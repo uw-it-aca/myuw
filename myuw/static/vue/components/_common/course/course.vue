@@ -14,7 +14,7 @@
           </div>
           <div>
             <span class="d-block">
-              {{ ucfirst(section.meetings[0].type) }}
+              {{ ucfirst(section.section_type) }}
             </span>
             <span
               v-if="section.is_primary_section && section.for_credit"
@@ -40,7 +40,12 @@
             <b-col v-if="showRowHeading" cols="3">
               Meeting Time
             </b-col>
-            <uw-meeting-info :meetings="section.meetings" />
+            <uw-meeting-info
+              :has-eos-dates="section.has_eos_dates"
+              :display-meeting-type="section.display_mtype"
+              :meetings="section.meetings"
+              :section-id="section.id"
+            />
           </b-row>
           <b-row no-gutters>
             <b-col v-if="showRowHeading" cols="3">

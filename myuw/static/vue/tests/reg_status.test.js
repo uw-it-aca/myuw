@@ -26,7 +26,7 @@ import {
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 localVue.use(BootstrapVue);
 localVue.use(Vuex);
 

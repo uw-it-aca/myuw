@@ -11,7 +11,7 @@ import {
 
 import mockNotices from './mock_data/notices.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 jest.mock('axios');
