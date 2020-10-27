@@ -350,7 +350,9 @@ export default {
   mounted() {
     // MARK: google analytics gtag
     this.$gtag.pageview({
+      page_location: window.location.href,
       page_path: window.location.pathname,
+      page_title: this.pageTitle,
     });
   },
 };
