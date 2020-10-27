@@ -9,6 +9,10 @@
         :course="course" :section="section" :index="i"
       />
     </div>
+    <uw-no-course-card
+      v-else-if="isErrored && statusCodeTagged(term) == 404" loaded
+      :quarter="quarter" :summer-term="summerTerm"
+    />
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
         Schedule &amp; Course Info
@@ -19,28 +23,31 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../_templates/card.vue';
-import CourseCard from '../_common/course/course.vue';
+import Card from '../../_templates/card.vue';
+import CourseCard from './course.vue';
+import NoCourseCard from './no-course.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-course-card': CourseCard,
+    'uw-no-course-card': NoCourseCard,
   },
   props: {
     mobileOnly: {
       type: Boolean,
       default: false,
     },
-  },
-  data: function() {
-    return {
-      term: 'current',
-    };
+    term: {
+      type: String,
+      default: 'current',
+    },
   },
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
+      quarter: (state) => state.termData.quarter,
+      summerTerm: (state) => state.termData.summer_term,
     }),
     ...mapState('stud_schedule', {
       course(state) {
@@ -50,6 +57,7 @@ export default {
     ...mapGetters('stud_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
+      statusCodeTagged: 'statusCodeTagged',
     }),
     isReady() {
       return this.isReadyTagged(this.term);

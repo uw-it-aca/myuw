@@ -64,15 +64,21 @@ export default {
       type: String,
       default: null,
     },
+    term: {
+      type: Object,
+      required: true,
+    },
   },
   computed: {
     ...mapState({
       netid: (state) => state.user.netid,
-      quarter: (state) => state.termData.quarter.replace(
-          /^([a-z])/, (c) => c.toUpperCase(),
-      ),
-      year: (state) => state.termData.year,
     }),
+    quarter() {
+      return this.ucfirst(this.term.quarter);
+    },
+    year() {
+      return this.term.year;
+    },
     computedStyles: function() {
       if (this.meetingData.meeting && !this.meetingData.meeting.no_meeting) {
         const startTime = (

@@ -139,7 +139,7 @@
                         "room_number": "012",
                         "room": "012"
                     },
-                    "color_id": 3,
+                    "color_id": 2,
                     "is_teaching": false
                 }
             ],
@@ -284,7 +284,7 @@
                         "room_number": "012",
                         "room": "012"
                     },
-                    "color_id": 3,
+                    "color_id": 2,
                     "is_teaching": false
                 }
             ],
@@ -303,6 +303,10 @@
     "term": {
         "year": 2013,
         "quarter": "summer",
+        "first_day_quarter": "2013-06-24",
+        "last_day_instruction": "2013-08-23",
+        "aterm_last_date": "2013-07-24",
+        "bterm_first_date": "2013-07-25",
         "last_final_exam_date": "2013-08-23",
         "summer_term": "a-term"
     },

@@ -57,10 +57,6 @@ vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 
 vueConf.store.commit('addVarToState', {
-  name: 'cardDisplayDates',
-  value: JSON.parse(document.getElementById('card_display_dates').innerHTML),
-});
-vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
   value: 'Home',
 });

@@ -20,7 +20,7 @@ import {
 
 import mockCourses from './mock_data/courses.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faLocationArrow);

@@ -9,7 +9,7 @@ import Summaries from '../components/home/summaries.vue';
 
 import mockNotices from './mock_data/notices.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
 jest.mock('dayjs');

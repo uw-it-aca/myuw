@@ -58,6 +58,7 @@
     {% load json_script %}
     {{ user|json_script:'user' }}
     {{ disable_actions|json_script:'disable_actions' }}
+    {{ card_display_dates|json_script:'card_display_dates' }}
 
     <script>
     // TODO: Replace this with a object in the context and a json_script.

@@ -7,7 +7,7 @@ import ThankYouCard from '../components/home/new_student/thank-you.vue';
 
 import mockNotices from './mock_data/notices.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 localVue.use(BootstrapVue);
 localVue.use(Vuex);
 
