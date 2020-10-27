@@ -13,15 +13,20 @@
     <template #card-body>
       <div v-if="petitions">
         <div id="petition-reqs">
-          <h4>Petition Requests</h4>
-
-          <ul v-for="(petition, index) in petitions" :key="index">
+          <h4 class="h5 text-dark-beige">
+            Petition Requests
+          </h4>
+          <ul v-for="(petition, index) in petitions" :key="index"
+              class="list-unstyled myuw-text-md"
+          >
             <li>
-              <h5>{{ petition.description }}</h5>
+              <h5 class="h6">
+                {{ petition.description }}
+              </h5>
               <ul>
                 <li v-if="petition.dept_recommend">
                   <div>
-                    <span> Department Recommendation </span>
+                    <span>Department Recommendation</span>
                   </div>
                   <span>
                     <span>
@@ -32,7 +37,7 @@
 
                 <li v-if="petition.gradschool_decision">
                   <div>
-                    <span> Graduate School Decision </span>
+                    <span>Graduate School Decision</span>
                   </div>
                   <span>
                     {{ petition.gradschool_decision }}
@@ -46,11 +51,14 @@
 
       <div v-if="leaves">
         <div id="leave-reqs">
-          <h4>Leave Requests</h4>
-
-          <ul v-for="(leave, index) in leaves" :key="index">
+          <h4 class="h5 text-dark-beige">
+            Leave Requests
+          </h4>
+          <ul v-for="(leave, index) in leaves" :key="index"
+              class="list-unstyled myuw-text-md"
+          >
             <li>
-              <h5>
+              <h5 class="h6">
                 <template v-for="(term, termIndex) in leave.terms">
                   <span v-if="termIndex > 0" :key="termIndex">, </span>
                   {{ term.quarter + " " + term.year }}
@@ -74,10 +82,14 @@
       </div>
 
       <div v-if="degrees">
-        <h4>Degree and Exam Requests</h4>
-        <ul v-for="(degree, index) in degrees" :key="index">
+        <h4 class="h5 text-dark-beige">
+          Degree and Exam Requests
+        </h4>
+        <ul v-for="(degree, index) in degrees" :key="index"
+            class="list-unstyled myuw-text-md"
+        >
           <li>
-            <h5>
+            <h5 class="h6">
               {{ degree.req_type }}, {{ degree.target_award_quarter }}
               {{ degree.target_award_year }}
             </h5>
@@ -92,7 +104,7 @@
         </ul>
       </div>
 
-      <div>
+      <div class="text-right myuw-text-md">
         <a
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
           data-linklabel="MyGrad"
