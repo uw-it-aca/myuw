@@ -93,7 +93,10 @@ export default {
         if (startTime && endTime) {
           return {
             'height': `${(this.getMFM(endTime) - this.getMFM(startTime))*35/30}px`,
-            'margin-top': '-1px',
+            'margin-top': `${
+              startTime.minute() -
+              (this.meetingData.renderTime.minute() + 1)
+            }px`,
           };
         }
       }
