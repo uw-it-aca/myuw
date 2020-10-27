@@ -8,17 +8,17 @@
         <ul class="list-unstyled m-0">
           <li class="font-weight-bold">
             {{ readyCount }}
-            {{ readyCount > 1 ? "courses" : "course" }}
+            {{ readyCount == 1 ? "course" : "courses" }}
             ready
           </li>
-          <li class="myuw-text-sm">
+          <li class="myuw-text-md">
             <span v-if="unreadyCount">{{ unreadyCount }} not ready</span>
             <b-button
               v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
               :title="buttonTitle"
               size="sm"
               variant="link"
-              class="p-0 border-0 bg-transparent align-baseline"
+              class="ml-1 p-0 border-0 bg-transparent align-baseline"
             >
               {{ collapseOpen ? "Hide Details" : "See Details" }}
             </b-button>
@@ -39,13 +39,21 @@
       </div>
     </b-collapse>
   </div>
-  <div v-else>
-    <h4>In MyPlan</h4>
-    <div>No courses in your plan</div>
-    <div>
-      <a target="_blank" :href="myplanCourseSearchHref">
-        Add courses
-      </a>
+  <div v-else class="mb-4">
+    <div class="d-flex align-items-center mb-2">
+      <h4 class="h6 text-dark font-weight-bold flex-fill">
+        In MyPlan
+      </h4>
+      <div class="flex-fill text-right">
+        <div class="font-weight-bold">
+          No courses in your plan
+        </div>
+        <div>
+          <a class="myuw-text-md" target="_blank"
+             :href="myplanCourseSearchHref"
+          >Add courses</a>
+        </div>
+      </div>
     </div>
   </div>
 </template>

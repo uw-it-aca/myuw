@@ -60,7 +60,7 @@
       </div>
 
       <uw-myplan
-        v-if="myPlanData"
+        v-if="myPlanData || myPlanData === null"
         :my-plan-data="myPlanData"
         :year="year"
         :quarter="quarter"
