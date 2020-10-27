@@ -11,8 +11,8 @@
             {{ readyCount > 1 ? "courses" : "course" }}
             ready
           </li>
-          <li v-if="unreadyCount" class="myuw-text-sm">
-            {{ unreadyCount }} not ready
+          <li class="myuw-text-sm">
+            <span v-if="unreadyCount">{{ unreadyCount }} not ready</span>
             <b-button
               v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
               :title="buttonTitle"
