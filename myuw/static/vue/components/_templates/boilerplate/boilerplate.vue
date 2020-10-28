@@ -107,7 +107,7 @@
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
-            <slot v-if="$mq == 'mobile' || $mq == 'tablet'" name="mobile-title">
+            <template v-if="$mq != 'desktop'">
               <template v-if="pageTitle == 'Home'">
                 MyUW
               </template>
@@ -115,10 +115,10 @@
                 <span class="sr-only">MyUW</span>
                 <span aria-hidden="true">{{ pageTitle }}</span>
               </template>
-            </slot>
-            <slot v-else name="desktop-title">
+            </template>
+            <template v-else>
               MyUW
-            </slot>
+            </template>
           </h1>
         </b-container>
       </div>
