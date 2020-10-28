@@ -85,7 +85,10 @@ def page(request,
     context["home_url"] = "/"
     context["err"] = None
     context["user"]["affiliations"] = affiliations
-    context["banner_messages"] = get_current_messages(request)
+    banner_messages = []
+    for message in get_current_messages(request):
+        banner_messages.append(message.message_body)
+    context["banner_messages"] = banner_messages
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
     context["disable_actions"] = is_action_disabled()

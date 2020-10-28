@@ -140,6 +140,12 @@ const store = new Vuex.Store({
     disableActions: JSON.parse(
         document.getElementById('disable_actions').innerHTML,
     ),
+    bannerMessages: JSON.parse(
+      document.getElementById('banner_messages').innerHTML,
+    ),
+    displayOnboardMessage: JSON.parse(
+      document.getElementById('display_onboard_message').innerHTML,
+    ),
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },
   mutations: {

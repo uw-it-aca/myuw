@@ -57,6 +57,8 @@
     {% load json_script %}
     {{ user|json_script:'user' }}
     {{ disable_actions|json_script:'disable_actions' }}
+    {{ banner_messages|json_script:'banner_messages' }}
+    {{ display_onboard_message|json_script:'display_onboard_message' }}
 
     <script>
     // TODO: Replace this with a object in the context and a json_script.

@@ -4,21 +4,14 @@
       <h2 class="sr-only">
         Announcements
       </h2>
-      <div id="message_banner_location">
-        custom messages go here
-      </div>
-      <!-- {% if banner_messages %}
-      <div id="message_banner_location">
-        <div v-for="(message, i) in banner_messages" id="messages" :key="i"
-             class="message-text myuw-wrapper"
-        >
+      <div v-if="bannerMessages.length > 0" id="message_banner_location">
+        <div v-for="(message, i) in bannerMessages" id="messages" :key="i">
           <div class="message">
-            <p>{{ message.message_body }}</p>
+            {{ message }}
           </div>
         </div>
-      </div> -->
-      <!-- {% if display_onboard_message %} -->
-      <div v-if="!isHidden">
+      </div>
+      <div v-if="!isHidden && displayOnboardMessage">
         New here?
         <b-link v-b-modal.tourModal class="text-white">
           <u>See MyUW at a glance</u>
@@ -31,6 +24,7 @@
 
 <script>
 import {mapState} from 'vuex';
+import axios from 'axios';
 export default {
   data: function() {
     return {
@@ -39,13 +33,20 @@ export default {
   },
   computed: {
     ...mapState({
-      // banner_messages: (state) => state.
+      bannerMessages: (state) => state.bannerMessages,
+      displayOnboardMessage: (state) => state.displayOnboardMessage,
     }),
   },
   methods: {
     hideTourMessage: function(event) {
       // TODO: wire up with api
-      this.isHidden = true;
+      axios.get('/api/v1/close_banner_message', {
+        responseType: 'json'
+      }).then((response) => {
+        if (response.data.done) {
+          this.isHidden = true;
+        }
+      }).catch()
       /*
       $.ajax({
             url: "/api/v1/close_banner_message",
