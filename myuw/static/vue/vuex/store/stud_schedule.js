@@ -5,10 +5,10 @@ import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
-  let course_data = data[urlExtra];
-  for (let i = 0; i < course_data.sections.length; i++) {
-    let section = course_data.sections[i];
-    section.id = (course_data.year + "-" + course_data.quarter + "-" +
+  let courseData = data[urlExtra];
+  for (let i = 0; i < courseData.sections.length; i++) {
+    let section = courseData.sections[i];
+    section.id = (courseData.year + "-" + courseData.quarter + "-" +
                   section.curriculum_abbr + "-" +
                   section.course_number + "-" + section.section_id);
 
@@ -27,11 +27,22 @@ function postProcess(response, urlExtra) {
       }
     }
 
-    section.has_eos_dates = false;
+    seenInstRegids = {};
+    section.instructors = [];
+    section.hasEosDates = false;
     // Convert dates and times to datejs objects
     for (let idx = 0; idx < section.meetings.length; idx++) {
       let meeting = section.meetings[idx];
       meeting.id = section.id + "-meeting-" + meeting.index;
+
+      for (let ii = 0; ii < meeting.instructors.length; ii++) {
+        let inst = meeting.instructors[ii];
+        if (!seenInstRegids.has(inst.uwregid)) {
+          seenInstRegids.add(inst.uwregid);
+          section.instructors.push(inst);
+        }
+      }
+
       if (meeting.start_time && meeting.end_time) {
         meeting.start_time = dayjs(meeting.start_time, "hh:mm")
           .second(0)
@@ -42,7 +53,7 @@ function postProcess(response, urlExtra) {
       }
 
       if (meeting.eos_start_date && meeting.eos_end_date) {
-        section.has_eos_dates = true;
+        section.hasEosDates = true;
         meeting.eos_start_date = dayjs(meeting.eos_start_date)
           .second(0)
           .millisecond(0);
@@ -53,10 +64,16 @@ function postProcess(response, urlExtra) {
 
       if (meeting.type && meeting.type !== 'NON' &&
           meeting.type.toLowerCase() !== section.section_type.toLowerCase()) {
-        meeting.display_type = true;
-        section.display_mtype = true;
+        meeting.displayType = true;
+        section.showMtgType = true;
       }
     }
+
+    section.instructors = section.instructors.sort((i1, i2) => {
+        if (i1.surname < i2.surname) return -1;
+        if (i1.surname > i2.surname) return 1;
+        return 0;
+      });
   }
 
   return data;

@@ -1,15 +1,9 @@
 <template>
   <b-col>
-    <div v-if="section.cc_display_dates">
-       Dates: {{ sectionFormattedDates(section) }}
-    </div>
-    <div v-if="section.on_standby">
-      Your status: On Standby
-    </div>
     <table class="w-100" style="table-layout: fixed;">
       <thead class="sr-only">
         <tr>
-          <th v-if="section.has_eos_dates"
+          <th v-if="section.hasEosDates"
               :id="'dates-' + section.id"
           >
             Meeting Date(s)
@@ -23,7 +17,7 @@
           <th :id="'location-' + section.id">
             Meeting Location
           </th>
-          <th v-if="section.display_mtype" :id="'type-' + section.id">
+          <th v-if="section.showMtgType" :id="'type-' + section.id">
             Meeting Type
           </th>
         </tr>
@@ -100,20 +94,29 @@
               </span>
             </td>
           </template>
-          <td v-if="section.display_mtype" :headers="'type-' + meeting.id">
-            <span v-if="meeting.display_type">
+          <td v-if="section.showMtgType" :headers="'type-' + meeting.id">
+            <span v-if="meeting.displayType">
               {{ meeting.type }}
             </span>
           </td>
         </tr>
       </tbody>
     </table>
+    <uw-instructor-info
+      v-if="section.is_ended && instructors"
+      :instructors="instructors"
+    />
   </b-col>
 </template>
 
 <script>
-import dayjs from 'dayjs';
+import InstructorInfo from './instructor-info.vue';
+
 export default {
+  components: {
+    'uw-instructor-info': InstructorInfo,
+  },
+
   props: {
     section: {
       type: Object,
@@ -121,11 +124,6 @@ export default {
     },
   },
   methods: {
-    sectionFormattedDates(section) {
-      return `${
-        dayjs(section.start_date).format('MMM D')
-      } - ${dayjs(section.end_date).format('MMM D')}`;
-    },
     locationUrl(meeting) {
       if (meeting.latitude) {
         return `http://maps.google.com/maps?q=${meeting.latitude},${
