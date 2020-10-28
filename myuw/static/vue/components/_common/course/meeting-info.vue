@@ -136,7 +136,7 @@ export default {
         return typeStr.substring(0, 3);
       }
       return typeStr;
-    }
+    },
   },
 };
 </script>
