@@ -15,7 +15,9 @@
     />
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
-        Schedule &amp; Course Info
+        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+          Schedule &amp; Course Info
+        </h3>
       </template>
     </uw-card>
   </div>
