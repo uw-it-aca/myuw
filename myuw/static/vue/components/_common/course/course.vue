@@ -23,25 +23,25 @@
               {{ section.credits }} CR
             </span>
           </div>
-          <div v-if="section.summer_term">
-            Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
-          </div>
-          <div v-if="section.cc_display_dates">
-            Dates: {{ sectionFormattedDates(section) }}
-          </div>
-          <div v-if="section.on_standby">
-            Your status: On Standby
-          </div>
+        </div>
+        <div v-if="section.summer_term">
+          Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
+        </div>
+        <div v-if="section.cc_display_dates">
+          Dates: {{ sectionFormattedDates(section) }}
+        </div>
+        <div v-if="section.on_standby">
+          Your status: On Standby
         </div>
       </template>
 
       <template #card-body>
-         <uw-course-details
-            v-if="!section.is_ended"
-            :course="course"
-            :section="section"
-            :show-row-heading="showRowHeading "
-         />
+        <uw-course-details
+          v-if="!section.is_ended"
+          :course="course"
+          :section="section"
+          :show-row-heading="showRowHeading "
+        />
       </template>
 
       <template #card-disclosure>
@@ -112,7 +112,6 @@
           </span>
         </template>
       </template>
-
     </uw-card>
   </div>
 </template>
