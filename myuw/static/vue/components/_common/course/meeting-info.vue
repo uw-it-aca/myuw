@@ -1,29 +1,35 @@
 <template>
   <b-col>
+    <div v-if="section.cc_display_dates">
+       Dates: {{ sectionFormattedDates(section) }}
+    </div>
+    <div v-if="section.on_standby">
+      Your status: On Standby
+    </div>
     <table class="w-100" style="table-layout: fixed;">
       <thead class="sr-only">
         <tr>
-          <th v-if="hasEosDates"
-              :id="'dates-' + sectionId"
+          <th v-if="section.has_eos_dates"
+              :id="'dates-' + section.id"
           >
             Meeting Date(s)
           </th>
-          <th :id="'days-' + sectionId">
+          <th :id="'days-' + section.id">
             Meeting Day(s)
           </th>
-          <th :id="'time-' + sectionId">
+          <th :id="'time-' + section.id">
             Meeting Time
           </th>
-          <th :id="'location-' + sectionId">
+          <th :id="'location-' + section.id">
             Meeting Location
           </th>
-          <th v-if="displayMeetingType" :id="'type-' + sectionId">
+          <th v-if="section.display_mtype" :id="'type-' + section.id">
             Meeting Type
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(meeting, i) in meetings" :key="i">
+        <tr v-for="(meeting, i) in section.meetings" :key="i">
           <td v-if="meeting.eos_start_date && meeting.eos_end_date"
               :headers="'dates-' + meeting.id"
           >
@@ -94,7 +100,7 @@
               </span>
             </td>
           </template>
-          <td v-if="displayMeetingType" :headers="'type-' + meeting.id">
+          <td v-if="section.display_mtype" :headers="'type-' + meeting.id">
             <span v-if="meeting.display_type">
               {{ meeting.type }}
             </span>
@@ -106,28 +112,20 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 export default {
   props: {
-    hasEosDates: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    displayMeetingType: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    meetings: {
-      type: Array,
-      required: true,
-    },
-    sectionId: {
-      type: String,
+    section: {
+      type: Object,
       required: true,
     },
   },
   methods: {
+    sectionFormattedDates(section) {
+      return `${
+        dayjs(section.start_date).format('MMM D')
+      } - ${dayjs(section.end_date).format('MMM D')}`;
+    },
     locationUrl(meeting) {
       if (meeting.latitude) {
         return `http://maps.google.com/maps?q=${meeting.latitude},${
