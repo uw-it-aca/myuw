@@ -46,7 +46,7 @@
 
       <template #card-disclosure>
         <template v-if="section.is_ended">
-          <b-collapse :id="`course-details--${index}`" v-model="isOpen">
+          <b-collapse :id="`course-details-${index}`" v-model="isOpen">
             <uw-course-details
               :course="course"
               :section="section"
