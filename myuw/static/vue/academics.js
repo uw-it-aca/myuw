@@ -4,7 +4,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import AllCourses from './components/_common/course/all-courses.vue';
+import CourseCards from './components/_common/course/course-cards.vue';
 import Grades from './components/_common/grades.vue';
 import Outage from './components/_common/outage.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
@@ -40,7 +40,7 @@ vueConf.store.commit('addVarToState', {
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);
-Vue.component('myuw-all-courses', AllCourses);
+Vue.component('myuw-course-cards', CourseCards);
 Vue.component('myuw-grades', Grades);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
