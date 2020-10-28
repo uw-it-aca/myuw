@@ -133,9 +133,9 @@ export default {
     },
     shortenMtgType(typeStr) {
       if (typeStr.length > 4) {
-        return typeStr.substring(0, 3);
+        return typeStr.substring(0, 3).toUpperCase();
       }
-      return typeStr;
+      return typeStr.toUpperCase();
     },
   },
 };
