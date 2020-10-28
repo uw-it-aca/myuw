@@ -107,11 +107,15 @@
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
-            <slot v-if="$mq != 'mobile'" name="desktop-title">
-              MyUW <span class="sr-only">Home</span>
+            <slot v-if="$mq == 'mobile' || $mq == 'tablet'" name="mobile-title">
+              <template v-if="pageTitle == 'Home'">MyUW</template>
+              <template v-else>
+                <span class="sr-only">MyUW</span>
+                <span aria-hidden="true">{{ pageTitle }}</span>
+              </template>
             </slot>
-            <slot v-else name="mobile-title">
-              MyUW <span class="sr-only">Home</span>
+            <slot v-else name="desktop-title">
+              MyUW
             </slot>
           </h1>
         </b-container>
@@ -246,9 +250,10 @@
           </b-col>
           <b-col lg="10" role="main" aria-labelledby="mainHeader">
             <h2
-              v-if="$mq != 'mobile'"
               id="mainHeader"
-              :class="[pageTitle == 'Home' ? 'sr-only' : '']"
+              class="h3 text-dark myuw-font-encode-sans"
+              :class="[pageTitle == 'Home'
+                || $mq != 'desktop' ? 'sr-only' : '']"
             >
               {{ pageTitle }}
             </h2>
