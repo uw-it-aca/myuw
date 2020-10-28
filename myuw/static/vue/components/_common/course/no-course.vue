@@ -1,10 +1,12 @@
 <template>
   <uw-card loaded>
     <template #card-heading>
-      No {{ ucfirst(quarter) }} {{ ucfirst(summerTerm) }} Registration Found
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+        No {{ ucfirst(quarter) }} {{ ucfirst(summerTerm) }} Registration Found
+      </h3>
     </template>
     <template #card-body>
-      <p>
+      <p class="myuw-text-md">
         You don’t appear to be registered for any credit courses in
         {{ quarter }} {{ summerTerm }} quarter. If you think this is an
         error, please contact the
@@ -15,7 +17,7 @@
         </a>.
       </p>
 
-      <p>
+      <p class="mb-0 myuw-text-md">
         If you are interested in registration,
         <a href="../resource/academics">
           view registration resources.
