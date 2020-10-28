@@ -27,7 +27,7 @@ function postProcess(response, urlExtra) {
       }
     }
 
-    seenInstRegids = {};
+    let seenInstRegids = {};
     section.instructors = [];
     section.hasEosDates = false;
     // Convert dates and times to datejs objects
@@ -75,7 +75,6 @@ function postProcess(response, urlExtra) {
         return 0;
       });
   }
-
   return data;
 }
 
