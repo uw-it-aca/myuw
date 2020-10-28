@@ -107,12 +107,25 @@
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
-            <slot v-if="$mq != 'mobile'" name="desktop-title">
-              MyUW <span class="sr-only">Home</span>
-            </slot>
-            <slot v-else name="mobile-title">
-              MyUW <span class="sr-only">Home</span>
-            </slot>
+            <template v-if="$mq != 'desktop'">
+              <template v-if="pageTitle == 'Home'">
+                MyUW
+              </template>
+              <template v-else>
+                <span class="sr-only">MyUW</span>
+                <span aria-hidden="true">
+                  <template v-if="pageTitle.includes('Preview')">
+                    Preview Quarter
+                  </template>
+                  <template v-else>
+                    {{ pageTitle }}
+                  </template>
+                </span>
+              </template>
+            </template>
+            <template v-else>
+              MyUW
+            </template>
           </h1>
         </b-container>
       </div>
@@ -246,9 +259,10 @@
           </b-col>
           <b-col lg="10" role="main" aria-labelledby="mainHeader">
             <h2
-              v-if="$mq != 'mobile'"
               id="mainHeader"
-              :class="[pageTitle == 'Home' ? 'sr-only' : '']"
+              class="h3 text-dark myuw-font-encode-sans"
+              :class="[pageTitle == 'Home'
+                || $mq != 'desktop' ? 'sr-only' : '']"
             >
               {{ pageTitle }}
             </h2>

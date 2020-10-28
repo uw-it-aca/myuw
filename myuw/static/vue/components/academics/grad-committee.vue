@@ -6,34 +6,38 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Committees
       </h3>
     </template>
     <template #card-body>
       <div>
-        <ul>
-          <li v-for="(committee, index) in committees" :key="index">
-            <h4>
+        <ul class="list-unstyled myuw-text-md">
+          <li v-for="(committee, index) in committees" :key="index"
+              class="mb-4"
+          >
+            <h4 class="h5 text-dark-beige">
               {{ committee.committee_type }}
             </h4>
-            <ol>
-              <li v-for="(member, mindex) in committee.members" :key="mindex">
-                <span v-text="formatMemberString(member)" />
-                <br>
-                <span v-if="member.dept">{{ member.dept }}</span>
-                <br>
-                <span v-if="member.email">
+            <ol class="list-unstyled">
+              <li v-for="(member, mindex) in committee.members" :key="mindex"
+                  class="mb-3"
+              >
+                <div v-text="formatMemberString(member)" />
+                <div v-if="member.dept">
+                  {{ member.dept }}
+                </div>
+                <div v-if="member.email">
                   <a :href="`mailto:${member.email}`">
                     {{ member.email }}
                   </a>
-                </span>
+                </div>
               </li>
             </ol>
           </li>
         </ul>
       </div>
-      <div>
+      <div class="text-right myuw-text-md">
         <a href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/" data-linklabel="MyGrad" target="_blank">Go to MyGrad</a>
       </div>
     </template>

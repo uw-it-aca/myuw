@@ -14,8 +14,6 @@
 {% block body_content %}
 <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
 
-  <template #mobile-title>Preview Quarter</template>
-
   <!--MARK: #primary template (column 1, mobile only) -->
   <template #primary>
     <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
