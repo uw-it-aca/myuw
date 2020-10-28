@@ -95,7 +95,7 @@
             </td>
           </template>
           <td v-if="section.showMtgType" :headers="`type-${meeting.id}`">
-            <span v-if="meeting.displayType">
+            <span v-if="meeting.displayType" :title="`${meeting.type}`">
               {{ shortenMtgType(meeting.type) }}
             </span>
           </td>
