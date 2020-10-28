@@ -151,7 +151,7 @@ export default {
       isOpen: false,
     };
   },
-  computed: {
+  methods: {
     sectionFormattedDates(section) {
       return `${
         dayjs(section.start_date).format('MMM D')
