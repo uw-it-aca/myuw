@@ -96,7 +96,7 @@
           </template>
           <td v-if="section.showMtgType" :headers="'type-' + meeting.id">
             <span v-if="meeting.displayType">
-              {{ meeting.type }}
+              {{ shortenMtgType(meeting.type) }}
             </span>
           </td>
         </tr>
@@ -131,6 +131,12 @@ export default {
         return `${startFormatted} - ${endFormatted}`;
       }
     },
+    shortenMtgType(typeStr) {
+      if (typeStr.length > 4) {
+        return typeStr.substring(0, 3);
+      }
+      return typeStr;
+    }
   },
 };
 </script>
