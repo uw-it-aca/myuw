@@ -108,7 +108,9 @@
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
             <slot v-if="$mq == 'mobile' || $mq == 'tablet'" name="mobile-title">
-              <template v-if="pageTitle == 'Home'">MyUW</template>
+              <template v-if="pageTitle == 'Home'">
+                MyUW
+              </template>
               <template v-else>
                 <span class="sr-only">MyUW</span>
                 <span aria-hidden="true">{{ pageTitle }}</span>

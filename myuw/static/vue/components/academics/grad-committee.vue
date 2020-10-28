@@ -23,15 +23,15 @@
               <li v-for="(member, mindex) in committee.members" :key="mindex"
                   class="mb-3"
               >
-                <span v-text="formatMemberString(member)" />
-                <br>
-                <span v-if="member.dept">{{ member.dept }}</span>
-                <br>
-                <span v-if="member.email">
+                <div v-text="formatMemberString(member)" />
+                <div v-if="member.dept">
+                  {{ member.dept }}
+                </div>
+                <div v-if="member.email">
                   <a :href="`mailto:${member.email}`">
                     {{ member.email }}
                   </a>
-                </span>
+                </div>
               </li>
             </ol>
           </li>

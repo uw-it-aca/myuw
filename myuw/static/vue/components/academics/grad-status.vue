@@ -19,31 +19,30 @@
           <ul v-for="(petition, index) in petitions" :key="index"
               class="list-unstyled myuw-text-md"
           >
-            <li>
-              <h5 class="h6">
+            <li class="mb-3">
+              <h5 class="h6 mb-0">
                 {{ petition.description }}
               </h5>
-              <ul>
-                <li v-if="petition.dept_recommend">
-                  <div>
-                    <span>Department Recommendation</span>
-                  </div>
-                  <span>
-                    <span>
-                      {{ petition.dept_recommend }}
-                    </span>
-                  </span>
-                </li>
-
-                <li v-if="petition.gradschool_decision">
-                  <div>
-                    <span>Graduate School Decision</span>
-                  </div>
-                  <span>
-                    {{ petition.gradschool_decision }}
-                  </span>
-                </li>
-              </ul>
+              <div v-if="petition.dept_recommend"
+                   class="d-flex font-weight-bold"
+              >
+                <div class="flex-fill w-50">
+                  Department Recommendation
+                </div>
+                <div class="flex-fill w-50 text-right">
+                  {{ petition.dept_recommend }}
+                </div>
+              </div>
+              <div v-if="petition.gradschool_decision"
+                   class="d-flex font-weight-bold"
+              >
+                <div class="flex-fill w-50">
+                  Graduate School Decision
+                </div>
+                <div class="flex-fill w-50 text-right">
+                  {{ petition.gradschool_decision }}
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -58,24 +57,31 @@
               class="list-unstyled myuw-text-md"
           >
             <li>
-              <h5 class="h6">
+              <h5 class="h6 mb-0">
                 <template v-for="(term, termIndex) in leave.terms">
                   <span v-if="termIndex > 0" :key="termIndex">, </span>
                   {{ term.quarter + " " + term.year }}
                 </template> Leave
               </h5>
-              <div>Status</div>
-              <span v-if="leave.status === 'Approved'">
-                Approved<br>
-                <a
-                  target="_blank"
-                  href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
-                  data-linklabel="MyGrad Payment Portal"
-                >Pay Your Fee To Confirm</a>
-              </span>
-              <span v-else>
-                {{ leave.status }}
-              </span>
+              <div class="d-flex font-weight-bold">
+                <div class="flex-fill w-50">
+                  Status
+                </div>
+                <div class="flex-fill w-50 text-right">
+                  <span v-if="leave.status === 'Approved'">
+                    Approved<br>
+                    <a
+                      target="_blank"
+                      href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
+                      data-linklabel="MyGrad Payment Portal"
+                      class="font-weight-normal"
+                    >Pay Your Fee To Confirm</a>
+                  </span>
+                  <span v-else>
+                    {{ leave.status }}
+                  </span>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -89,17 +95,21 @@
             class="list-unstyled myuw-text-md"
         >
           <li>
-            <h5 class="h6">
+            <h5 class="h6 mb-0">
               {{ degree.req_type }}, {{ degree.target_award_quarter }}
               {{ degree.target_award_year }}
             </h5>
             <div>
               {{ degree.degree_title }}
             </div>
-            <div>
-              <span>Status</span>
+            <div class="d-flex font-weight-bold">
+              <div class="flex-fill w-50">
+                Status
+              </div>
+              <div class="flex-fill w-50 text-right">
+                {{ degree.status }}
+              </div>
             </div>
-            <span>{{ degree.status }}</span>
           </li>
         </ul>
       </div>
