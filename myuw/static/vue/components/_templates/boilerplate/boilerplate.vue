@@ -113,7 +113,14 @@
               </template>
               <template v-else>
                 <span class="sr-only">MyUW</span>
-                <span aria-hidden="true">{{ pageTitle }}</span>
+                <span aria-hidden="true">
+                  <template v-if="pageTitle.includes('Preview')">
+                    Preview Quarter
+                  </template>
+                  <template v-else>
+                    {{ pageTitle }}
+                  </template>
+                </span>
               </template>
             </template>
             <template v-else>
