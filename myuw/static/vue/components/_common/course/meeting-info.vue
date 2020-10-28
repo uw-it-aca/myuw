@@ -102,21 +102,11 @@
         </tr>
       </tbody>
     </table>
-    <uw-instructor-info
-      v-if="section.is_ended && instructors"
-      :instructors="instructors"
-    />
   </b-col>
 </template>
 
 <script>
-import InstructorInfo from './instructor-info.vue';
-
 export default {
-  components: {
-    'uw-instructor-info': InstructorInfo,
-  },
-
   props: {
     section: {
       type: Object,
