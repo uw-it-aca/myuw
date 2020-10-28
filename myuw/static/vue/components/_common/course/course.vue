@@ -72,6 +72,8 @@
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
+            aria-label="SHOW COURSE DETAILS"
+            title="Expand to show course details"
           >
             SHOW COURSE DETAILS
           </b-button>
@@ -81,6 +83,8 @@
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
+            aria-label="HIDE COURSE DETAILS"
+            title="Collapse to hide course details"
           >
             HIDE COURSE DETAILS
           </b-button>
@@ -94,6 +98,8 @@
               variant="link"
               size="sm"
               class="w-100 p-0 border-0 text-dark"
+              aria-label="SHOW INSTRUCTORS"
+              title="Expand to show instructors"
             >
               SHOW INSTRUCTORS
             </b-button>
@@ -103,6 +109,8 @@
               variant="link"
               size="sm"
               class="w-100 p-0 border-0 text-dark"
+              aria-label="HIDE INSTRUCTORS"
+              title="Collapse to hide instructors"
             >
               HIDE INSTRUCTORS
             </b-button>
