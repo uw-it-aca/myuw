@@ -1,4 +1,4 @@
-
+import dayjs from 'dayjs';
 export default {
   methods: {
     encodeForMaps(s) {
@@ -47,6 +47,14 @@ export default {
         return s.replace(/^([a-z])/, (c) => c.toUpperCase());
       }
       return "";
+    },
+    toFriendlyDate(date_str) {
+      return (!date_str || date_str.length === 0 ? '' :
+              moment(date_str).format("ddd, MMM D"));
+    },
+    toFriendlyDatetime(date_str) {
+      return (!date_str || date_str.length === 0 ? '' :
+              moment(date_str).format("ddd, MMM D, h:mmA"));
     },
   },
 }
