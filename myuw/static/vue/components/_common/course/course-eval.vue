@@ -52,7 +52,7 @@ export default {
     evalData: {
       type: Array,
       required: true,
-      default: new Array(),
+      default: () => [],
     },
     section: {
       type: Object,
