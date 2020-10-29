@@ -1,5 +1,5 @@
 <template>
-  <div v-if="evalData && evalData.length > 0">
+  <div v-if="evalData.length > 0">
     <h5>Course Evaluations</h5>
     <p>
       <span>Evaluations close
@@ -52,7 +52,7 @@ export default {
     evalData: {
       type: Array,
       required: true,
-      default: [],
+      default: new Array(),
     },
     section: {
       type: Object,
