@@ -38,7 +38,7 @@
       <template #card-body>
         <uw-course-eval
           v-if="isReadyEval"
-          :evalData="getSectionEval(evalData, section.index)"
+          :eval-data="getSectionEval(evalData, section.index)"
           :section="section"
         />
         <uw-course-details
@@ -51,7 +51,8 @@
 
       <template #card-disclosure>
         <template
-          v-if="section.is_ended || getSectionEval(evalData, section.index)">
+          v-if="section.is_ended || getSectionEval(evalData, section.index)"
+        >
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
             <uw-course-details
               :course="course"
@@ -72,7 +73,8 @@
 
       <template #card-footer>
         <template
-          v-if="section.is_ended || getSectionEval(evalData, section.index)">
+          v-if="section.is_ended || getSectionEval(evalData, section.index)"
+        >
           <b-button
             v-if="!isOpen"
             v-b-toggle="`course-details-${index}`"
@@ -132,6 +134,7 @@
 </template>
 
 <script>
+import {mapGetters, mapState, mapActions} from 'vuex';
 import dayjs from 'dayjs';
 import Card from '../../_templates/card.vue';
 import CourseDetails from './course-details.vue';
