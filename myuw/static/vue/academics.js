@@ -21,12 +21,14 @@ import GradCommittee from './components/academics/grad-committee.vue';
 import grad from './vuex/store/grad';
 import notices from './vuex/store/notices';
 import oquarter from './vuex/store/oquarter';
+import iasystem from './vuex/store/iasystem';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/stud_schedule';
 import visualSchedule from './vuex/store/visual_schedule';
 import categoryLinks from './vuex/store/category_links';
 
 vueConf.store.registerModule('grad', grad);
+vueConf.store.registerModule('iasystem', iasystem);
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('oquarter', oquarter);
 vueConf.store.registerModule('stud_schedule', studSchedule);
