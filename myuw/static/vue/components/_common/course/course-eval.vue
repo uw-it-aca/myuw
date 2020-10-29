@@ -6,14 +6,16 @@
       (at 11:59PM), and only take a few minutes to complete.
     </p>
 
-    <div v-for="(eval, index) in evalData" :key="index">
+    <div v-for="(eval, index) in evalData"
+      :key="`${section.id}-eval-${index}`">
       <template v-if="eval.is_multi_instr">
         <!-- evaluation is on the course -->
         <a :href="`${eval.url}`" target="_blank">
           {{ section.curriculum_abbr }} {{ section.course_number }} {{ section.section_id }} Evaluation</span>
         </a>
         <ul>
-          <li v-for="(instructor, index) in eval.instructors" :key="index">
+          <li v-for="(instructor, index) in eval.instructors"
+            :key="`${section.id}-eval-inst-${index}`">
             <span>
               {{ instructor.instructor_name }}
             </span>
@@ -25,7 +27,8 @@
       </template>
       <template v-else>
         <ul>
-          <li v-for="(instructor, index) in eval.instructors" :key="index">
+          <li v-for="(instructor, index) in eval.instructors"
+            :key="`${section.id}-eval-inst-${index}`">
             <a :href="`${eval.url}`" target="_blank">
               {{ titleCaseName(instructor.dinstructor_name) }}
             </a>
@@ -53,7 +56,7 @@ export default {
   },
   methods: {
     titleCaseName(str) {
-      str.split(' ').map(function(w) {
+      return str.split(' ').map(function(w) {
         return w[0].toUpperCase() + w.substr(1).toLowerCase();
       }).join(' ');
     },
