@@ -36,6 +36,11 @@
       </template>
 
       <template #card-body>
+        <uw-course-eval
+          v-if="isReadyEval"
+          :evalData="getSectionEval(evalData, section.index)"
+          :section="section"
+        />
         <uw-course-details
           v-if="!section.is_ended"
           :course="course"
@@ -45,7 +50,8 @@
       </template>
 
       <template #card-disclosure>
-        <template v-if="section.is_ended">
+        <template
+          v-if="section.is_ended || getSectionEval(evalData, section.index)">
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
             <uw-course-details
               :course="course"
@@ -65,7 +71,8 @@
       </template>
 
       <template #card-footer>
-        <template v-if="section.is_ended">
+        <template
+          v-if="section.is_ended || getSectionEval(evalData, section.index)">
           <b-button
             v-if="!isOpen"
             v-b-toggle="`course-details-${index}`"
@@ -127,13 +134,15 @@
 <script>
 import dayjs from 'dayjs';
 import Card from '../../_templates/card.vue';
-import CardDetails from './course-details.vue';
+import CourseDetails from './course-details.vue';
+import EvalInfo from './course-eval.vue';
 import InstructorInfo from './instructor-info.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-course-details': CardDetails,
+    'uw-course-details': CourseDetails,
+    'uw-course-eval': EvalInfo,
     'uw-instructor-info': InstructorInfo,
   },
   props: {
@@ -159,11 +168,27 @@ export default {
       isOpen: false,
     };
   },
+  computed: {
+    ...mapState('iasystem', {
+      evalData(state) {
+        return state.value;
+      },
+    }),
+    ...mapGetters('iasystem', {
+      isReadyEval: 'isReadyTagged',
+      isErroredEval: 'isErroredTagged',
+      statusCodeEvals: 'statusCodeTagged',
+    }),
+  },
   methods: {
+    ...mapActions('iasystem', ['fetch']),
     sectionFormattedDates(section) {
       return `${
         dayjs(section.start_date).format('MMM D')
       } - ${dayjs(section.end_date).format('MMM D')}`;
+    },
+    getSectionEval(evalData, index) {
+      return evalData ? evalData[index] : null;
     },
   },
 };
