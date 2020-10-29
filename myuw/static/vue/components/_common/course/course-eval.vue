@@ -10,7 +10,7 @@
       :key="`${section.id}-eval-${index}`">
       <template v-if="eval.is_multi_instr">
         <!-- evaluation is on the course -->
-        <a :href="`${eval.url}`" target="_blank">
+        <a :href="eval.url" target="_blank">
           {{ section.curriculum_abbr }} {{ section.course_number }} {{ section.section_id }} Evaluation</span>
         </a>
         <ul>
@@ -29,7 +29,7 @@
         <ul>
           <li v-for="(instructor, index) in eval.instructors"
             :key="`${section.id}-eval-inst-${index}`">
-            <a :href="`${eval.url}`" target="_blank">
+            <a :href="eval.url" target="_blank">
               {{ titleCaseName(instructor.dinstructor_name) }}
             </a>
             <span v-if="instructor.instructor_title.length > 0">
