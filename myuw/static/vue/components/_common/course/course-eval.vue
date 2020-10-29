@@ -7,16 +7,18 @@
       (at 11:59PM), and only take a few minutes to complete.
     </p>
 
-    <div v-for="(ieval, index) in evalData"
+    <div v-for="(evalObj, index) in evalData"
       :key="`${section.id}-eval-${index}`">
-      <template v-if="ieval.is_multi_instr">
+      <template v-if="evalObj.is_multi_instr">
         <!-- evaluation is on the course -->
-        <a :href="ieval.url" target="_blank">
-          {{ section.curriculum_abbr }} {{ section.course_number }}
-          {{ section.section_id }} Evaluation</span>
+        <a :href="evalObj.url" target="_blank">
+          {{ section.curriculum_abbr }}
+          {{ section.course_number }}
+          {{ section.section_id }}
+          Evaluation
         </a>
         <ul>
-          <li v-for="(instructor, index) in ieval.instructors"
+          <li v-for="(instructor, index) in evalObj.instructors"
             :key="`${section.id}-eval-inst-${index}`">
             <span>
               {{ ucfirst(instructor.instructor_name) }}
@@ -29,9 +31,9 @@
       </template>
       <template v-else>
         <ul>
-          <li v-for="(instructor, index) in ieval.instructors"
+          <li v-for="(instructor, index) in evalObj.instructors"
             :key="`${section.id}-eval-inst-${index}`">
-            <a :href="ieval.url" target="_blank">
+            <a :href="evalObj.url" target="_blank">
               {{ ucfirst(instructor.instructor_name) }}
             </a>
             <span v-if="instructor.instructor_title.length > 0">
