@@ -51,7 +51,7 @@
 
       <template #card-disclosure>
         <template
-          v-if="section.is_ended || getSectionEval(section.index)"
+          v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
             <uw-course-details
@@ -73,7 +73,7 @@
 
       <template #card-footer>
         <template
-          v-if="section.is_ended || getSectionEval(section.index)"
+          v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <b-button
             v-if="!isOpen"
