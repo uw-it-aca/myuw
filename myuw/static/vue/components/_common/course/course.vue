@@ -194,7 +194,7 @@ export default {
       } - ${dayjs(section.end_date).format('MMM D')}`;
     },
     getSectionEval(evalData, index) {
-      return evalData ? evalData[index] : null;
+      return evalData ? evalData.sections[index] : null;
     },
   },
 };
