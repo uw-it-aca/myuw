@@ -1,6 +1,6 @@
 <template>
-  <panel
-    :loaded="isReady"
+  <uw-panel
+    :loaded="isReady" :mobile-only="mobileOnly"
   >
     <template #panel-body>
       <div v-for="linkCategory in linkData" :key="linkCategory.subcat_slug">
@@ -19,7 +19,7 @@
         </ul>
       </div>
     </template>
-  </panel>
+  </uw-panel>
 </template>
 
 <script>
@@ -28,7 +28,13 @@ import Panel from '../_templates/panel.vue';
 
 export default {
   components: {
-    'panel': Panel,
+    'uw-panel': Panel,
+  },
+  props: {
+    mobileOnly: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: function() {
     return {
