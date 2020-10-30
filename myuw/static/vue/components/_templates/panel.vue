@@ -3,6 +3,9 @@
     <div v-if="loaded" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
       <slot name="panel-body" />
     </div>
+    <div v-else-if="errored" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+      <slot name="panel-error" />
+    </div>
     <div v-else>
       <div class="p-3 d-flex justify-content-center">
         <b-spinner small variant="muted" class="my-auto" label="Loading..." />
@@ -15,6 +18,10 @@
 export default {
   props: {
     loaded: {
+      type: Boolean,
+      default: false,
+    },
+    errored: {
       type: Boolean,
       default: false,
     },
