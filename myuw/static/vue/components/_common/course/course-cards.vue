@@ -67,12 +67,31 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
+    ...mapState('iasystem', {
+      evalData(state) {
+        return state.value;
+      },
+    }),
+    ...mapGetters('iasystem', {
+      isReadyEval: 'isReady',
+      isErroredEval: 'isErrored',
+      statusCodeEvals: 'statusCode',
+    }),
   },
   created() {
-    if (this.student) this.fetch(this.term);
+    if (this.student) {
+      this.fetchStudSche(this.term);
+      this.fetchEvalData();
+    },
   },
+
   methods: {
-    ...mapActions('stud_schedule', ['fetch']),
+    ...mapActions('stud_schedule', {
+      fetchStudSche: 'fetch',
+    }),
+    ...mapActions('iasystem', {
+      fetchEvalData: 'fetch',
+    }),
   },
 };
 </script>

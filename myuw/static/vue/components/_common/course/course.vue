@@ -137,8 +137,8 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import dayjs from 'dayjs';
 import Card from '../../_templates/card.vue';
-import CourseDetails from './course-details.vue';
 import EvalInfo from './course-eval.vue';
+import CourseDetails from './course-details.vue';
 import InstructorInfo from './instructor-info.vue';
 
 export default {
@@ -171,23 +171,7 @@ export default {
       isOpen: false,
     };
   },
-  computed: {
-    ...mapState('iasystem', {
-      evalData(state) {
-        return state.value;
-      },
-    }),
-    ...mapGetters('iasystem', {
-      isReadyEval: 'isReady',
-      isErroredEval: 'isErrored',
-      statusCodeEvals: 'statusCode',
-    }),
-  },
-  created() {
-    this.fetch();
-  },
   methods: {
-    ...mapActions('iasystem', ['fetch']),
     sectionFormattedDates(section) {
       return `${
         dayjs(section.start_date).format('MMM D')
