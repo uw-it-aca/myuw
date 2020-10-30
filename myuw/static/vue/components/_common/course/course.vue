@@ -171,6 +171,18 @@ export default {
       isOpen: false,
     };
   },
+  computed: {
+    ...mapState('iasystem', {
+      evalData(state) {
+        return state.value;
+      },
+    }),
+    ...mapGetters('iasystem', {
+      isReadyEval: 'isReady',
+      isErroredEval: 'isErrored',
+      statusCodeEvals: 'statusCode',
+    }),
+  },
   methods: {
     sectionFormattedDates(section) {
       return `${
