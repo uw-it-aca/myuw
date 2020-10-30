@@ -29,6 +29,7 @@
                   flip="horizontal"
                   class="mr-1"
                 />
+                <span class="sr-only">Search</span>
               </b-button>
             </b-input-group-append>
           </b-input-group>

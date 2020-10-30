@@ -1,6 +1,6 @@
 <template>
   <div v-if="(mobileOnly && $mq === 'mobile') || !mobileOnly">
-    <div v-if="loaded" class="">
+    <div v-if="loaded" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
       <slot name="panel-body" />
     </div>
     <div v-else>
