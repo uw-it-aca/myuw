@@ -183,6 +183,9 @@ export default {
       statusCodeEvals: 'statusCodeTagged',
     }),
   },
+  created() {
+    this.fetch();
+  },
   methods: {
     ...mapActions('iasystem', ['fetch']),
     sectionFormattedDates(section) {
