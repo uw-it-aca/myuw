@@ -117,6 +117,9 @@
                   <template v-if="pageTitle.includes('Preview')">
                     Preview Quarter
                   </template>
+                  <template v-else-if="pageTitle.includes('Textbooks')">
+                    Textbooks
+                  </template>
                   <template v-else>
                     {{ pageTitle }}
                   </template>
@@ -260,7 +263,7 @@
           <b-col lg="10" role="main" aria-labelledby="mainHeader">
             <h2
               id="mainHeader"
-              class="h3 text-dark myuw-font-encode-sans"
+              class="h3 mb-3 text-dark myuw-font-encode-sans"
               :class="[pageTitle == 'Home'
                 || $mq != 'desktop' ? 'sr-only' : '']"
             >
