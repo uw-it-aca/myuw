@@ -13,18 +13,12 @@
 
 {% block body_content %}
 <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
-
-  <!--MARK: #primary template (column 1, mobile only) -->
   <template #primary>
     <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
-      <!--MARK: card components go here in order -->
       <myuw-visual-schedule term-label="{{ future_term }}"></myuw-visual-schedule>
       <myuw-all-courses term="{{ future_term }}"></myuw-all-courses>
       <myuw-textbooks term="{{ future_term }}"></myuw-textbooks>
     </b-col>
-  </template>
-  <!-- MARK: #secondary template (column 2, table/desktop) -->
-  <template #secondary>
   </template>
 </myuw-boilerplate>
 {% endblock body_content %}
