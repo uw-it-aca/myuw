@@ -72,7 +72,6 @@
       <b-collapse
         id="custom_qlinks"
         role="form"
-        aria-labelledby="custom_qlinks_label"
         class="bg-light mx-n3 p-3 mt-3"
       >
         <b-form class="myuw-text-md" @submit="addLink" @reset="onReset">
