@@ -178,9 +178,9 @@ export default {
       },
     }),
     ...mapGetters('iasystem', {
-      isReadyEval: 'isReadyTagged',
-      isErroredEval: 'isErroredTagged',
-      statusCodeEvals: 'statusCodeTagged',
+      isReadyEval: 'isReady',
+      isErroredEval: 'isErrored',
+      statusCodeEvals: 'statusCode',
     }),
   },
   created() {
