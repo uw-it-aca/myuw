@@ -38,7 +38,7 @@
       <template #card-body>
         <uw-course-eval
           v-if="isReadyEval"
-          :eval-data="getSectionEval(evalData, section.index)"
+          :eval-data="getSectionEval(section.index)"
           :section="section"
         />
         <uw-course-details
@@ -51,7 +51,7 @@
 
       <template #card-disclosure>
         <template
-          v-if="section.is_ended || getSectionEval(evalData, section.index)"
+          v-if="section.is_ended || getSectionEval(section.index)"
         >
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
             <uw-course-details
@@ -73,7 +73,7 @@
 
       <template #card-footer>
         <template
-          v-if="section.is_ended || getSectionEval(evalData, section.index)"
+          v-if="section.is_ended || getSectionEval(section.index)"
         >
           <b-button
             v-if="!isOpen"
@@ -189,8 +189,15 @@ export default {
         dayjs(section.start_date).format('MMM D')
       } - ${dayjs(section.end_date).format('MMM D')}`;
     },
-    getSectionEval(evalData, index) {
-      return evalData ? evalData.sections[index] : null;
+    getSectionEval(index) {
+      if (
+        this.evalData &&
+        this.evalData.sections &&
+        this.evalData.sections[index]
+      ) {
+        return this.evalData.sections[index].evaluation_data || [];
+      }
+      return [];
     },
   },
 };

@@ -50,11 +50,11 @@ export default {
     },
     toFriendlyDate(date_str) {
       return (!date_str || date_str.length === 0 ? '' :
-              moment(date_str).format("ddd, MMM D"));
+              dayjs(date_str).format("ddd, MMM D"));
     },
     toFriendlyDatetime(date_str) {
       return (!date_str || date_str.length === 0 ? '' :
-              moment(date_str).format("ddd, MMM D, h:mmA"));
+              dayjs(date_str).format("ddd, MMM D, h:mmA"));
     },
   },
 }
