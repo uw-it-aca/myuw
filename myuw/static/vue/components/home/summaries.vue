@@ -17,7 +17,7 @@
         ]"
         href="/academic_calendar/"
       >
-        <span class="d-inline-block bg-light myuw-text-sm">
+        <span class="d-inline-block bg-light myuw-text-md">
           <font-awesome-icon :icon="['far', 'calendar-alt']" />
           <span v-if="termData.isBreak">
             <span v-if="termData.breakYear !== termData.year">
@@ -59,7 +59,7 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light myuw-text-sm">
+          <span class="d-inline-block bg-light myuw-text-md">
             Student Husky</span>
           <span class="text-dark d-block font-weight-bold">
             ${{ hfs.student_husky_card.balance.toFixed(2) }}
@@ -76,7 +76,7 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light myuw-text-sm">
+          <span class="d-inline-block bg-light myuw-text-md">
             Resident Dining</span>
           <span class="text-dark d-block font-weight-bold">
             ${{ hfs.resident_dining.balance.toFixed(2) }}
@@ -94,7 +94,7 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light myuw-text-sm">
+          <span class="d-inline-block bg-light myuw-text-md">
             Employee Husky</span>
           <span class="text-dark d-block font-weight-bold">
             ${{ hfs.employee_husky_card.balance.toFixed(2) }}
@@ -111,7 +111,7 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light myuw-text-sm">
+          <span class="d-inline-block bg-light myuw-text-md">
             Library Item Due</span>
           <span class="text-dark d-block font-weight-bold">
             {{ toFromNowDate(library.next_due) }}
@@ -130,7 +130,7 @@
           target="_blank"
           aria-label="Library Account Requests"
         >
-          <span class="d-inline-block bg-light myuw-text-sm">
+          <span class="d-inline-block bg-light myuw-text-md">
             Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
           </span>
           <span class="text-dark d-block font-weight-bold">

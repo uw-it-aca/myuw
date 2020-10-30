@@ -44,7 +44,7 @@
               <b-badge
                 v-if="!notice.is_read"
                 variant="warning"
-                class="font-weight-normal notice-status"
+                class="font-weight-normal notice-status myuw-text-sm"
               >
                 New
               </b-badge>
