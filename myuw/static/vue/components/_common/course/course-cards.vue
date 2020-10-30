@@ -82,7 +82,7 @@ export default {
     if (this.student) {
       this.fetchStudSche(this.term);
       this.fetchEvalData();
-    },
+    }
   },
 
   methods: {
