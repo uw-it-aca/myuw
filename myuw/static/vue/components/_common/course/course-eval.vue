@@ -3,12 +3,13 @@
     <h5>Course Evaluations</h5>
     <p>
       <span>Evaluations close
-      {{ toFriendlyDate(evalData[0].close_date) }}</span>
+        {{ toFriendlyDate(evalData[0].close_date) }}</span>
       (at 11:59PM), and only take a few minutes to complete.
     </p>
 
-    <div v-for="(evalObj, index) in evalData"
-      :key="`${section.id}-eval-${index}`">
+    <div v-for="(evalObj, idx) in evalData"
+         :key="`${section.id}-eval-${idx}`"
+    >
       <template v-if="evalObj.is_multi_instr">
         <!-- evaluation is on the course -->
         <a :href="evalObj.url" target="_blank">
@@ -19,7 +20,8 @@
         </a>
         <ul>
           <li v-for="(instructor, index) in evalObj.instructors"
-            :key="`${section.id}-eval-inst-${index}`">
+              :key="`${section.id}-eval-inst-${index}`"
+          >
             <span>
               {{ ucfirst(instructor.instructor_name) }}
             </span>
@@ -32,7 +34,8 @@
       <template v-else>
         <ul>
           <li v-for="(instructor, index) in evalObj.instructors"
-            :key="`${section.id}-eval-inst-${index}`">
+              :key="`${section.id}-eval-inst-${index}`"
+          >
             <a :href="evalObj.url" target="_blank">
               {{ ucfirst(instructor.instructor_name) }}
             </a>

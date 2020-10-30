@@ -134,7 +134,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import {mapGetters, mapState} from 'vuex';
 import dayjs from 'dayjs';
 import Card from '../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';

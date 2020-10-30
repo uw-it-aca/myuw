@@ -67,16 +67,6 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
-    ...mapState('iasystem', {
-      evalData(state) {
-        return state.value;
-      },
-    }),
-    ...mapGetters('iasystem', {
-      isReadyEval: 'isReady',
-      isErroredEval: 'isErrored',
-      statusCodeEvals: 'statusCode',
-    }),
   },
   created() {
     if (this.student) {
