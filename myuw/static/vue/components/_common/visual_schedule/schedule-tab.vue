@@ -3,6 +3,8 @@
     <b-alert
       v-if="isSummerQuarter && isFinalsTab && !hasMeetingsWithTime"
       show
+      variant="primary"
+      class="myuw-text-md"
     >
       Most Summer quarter final examinations are given on the final meeting
       day of the course instead of a final examination week. Consult with
