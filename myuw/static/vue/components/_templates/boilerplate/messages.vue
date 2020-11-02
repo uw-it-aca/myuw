@@ -46,25 +46,7 @@ export default {
         if (response.data.done) {
           this.isHidden = true;
         }
-      }).catch()
-      /*
-      $.ajax({
-            url: "/api/v1/close_banner_message",
-            dataType: "JSON",
-            async: true,
-            type: 'GET',
-            accepts: {html: "text/html"},
-            success: function(results) {
-                if (results.done) {
-                    desktop_div.className += " hidden";
-                    mobile_div.className += " hidden";
-                }
-            },
-            error: function(xhr, status, error) {
-                return false;
-            }
-        });
-      */
+      });
     },
   },
 };
