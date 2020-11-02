@@ -22,9 +22,9 @@
         "stud_employee": {{ user.affiliations.stud_employee|yesno:"true, false" }},
         "employee": {{ user.affiliations.employee|yesno:"true, false" }},
         // employee means full time employee not stud_employee
-        "fyp": {{ user.affiliations.fyp|yesno:"true, false" }},
-        "aut_transfer": {{ user.affiliations.aut_transfer|yesno:"true, false" }},
-        "win_transfer": {{ user.affiliations.win_transfer|yesno:"true, false" }},
+        "fyp": "false",
+        "aut_transfer": "false",
+        "win_transfer": "false",
         "clinician": {{ user.affiliations.clinician|yesno:"true, false" }},
         "pmt_2fa": {{ user.affiliations.2fa_permitted|yesno:"true, false" }},
         "instructor": {{ user.affiliations.instructor|yesno:"true, false" }},
