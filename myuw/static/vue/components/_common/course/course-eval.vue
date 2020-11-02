@@ -23,7 +23,7 @@
               :key="`${section.id}-eval-inst-${index}`"
           >
             <span>
-              {{ ucfirst(instructor.instructor_name) }}
+              {{ titleCaseName(instructor.instructor_name) }}
             </span>
             <span v-if="instructor.instructor_title.length > 0">
               {{ instructor.instructor_title }}
@@ -37,7 +37,7 @@
               :key="`${section.id}-eval-inst-${index}`"
           >
             <a :href="evalObj.url" target="_blank">
-              {{ ucfirst(instructor.instructor_name) }}
+              {{ titleCaseName(instructor.instructor_name) }}
             </a>
             <span v-if="instructor.instructor_title.length > 0">
               {{ instructor.instructor_title }}
