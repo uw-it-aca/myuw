@@ -3,49 +3,49 @@
     <table class="w-100" style="table-layout: fixed;">
       <thead class="sr-only">
         <tr>
-          <th v-if="hasEosDates"
-              :id="'dates-' + sectionId"
+          <th v-if="section.hasEosDates"
+              :id="`dates-${section.id}`"
           >
             Meeting Date(s)
           </th>
-          <th :id="'days-' + sectionId">
+          <th :id="`days-${section.id}`">
             Meeting Day(s)
           </th>
-          <th :id="'time-' + sectionId">
+          <th :id="`time-${section.id}`">
             Meeting Time
           </th>
-          <th :id="'location-' + sectionId">
+          <th :id="`location-${section.id}`">
             Meeting Location
           </th>
-          <th v-if="displayMeetingType" :id="'type-' + sectionId">
+          <th v-if="section.showMtgType" :id="`type-${section.id}`">
             Meeting Type
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(meeting, i) in meetings" :key="i">
+        <tr v-for="(meeting, i) in section.meetings" :key="i">
           <td v-if="meeting.eos_start_date && meeting.eos_end_date"
-              :headers="'dates-' + meeting.id"
+              :headers="`dates-${meeting.id}`"
           >
             {{ formatEos(meeting) }}
           </td>
           <td v-if="meeting.wont_meet" colspan="3"
-              :headers="'days-time-location-' + meeting.id"
+              :headers="`days-${meeting.id}`"
           >
             Class does not meet
           </td>
           <td v-else-if="meeting.days_tbd" colspan="3"
-              :headers="'days-time-location-' + meeting.id"
+              :headers="`days-${meeting.id}`"
           >
             Days and times to be arranged
           </td>
           <td v-else-if="meeting.no_meeting" colspan="3"
-              :headers="'days-time-location-' + meeting.id"
+              :headers="`days-${meeting.id}`"
           >
             No classroom meeting: online learning
           </td>
           <template v-else-if="meeting.start_time && meeting.end_time">
-            <td :headers="'days-' + meeting.id">
+            <td :headers="`days-${meeting.id}`">
               <abbr v-if="meeting.meeting_days.monday" title="Monday">M</abbr>
               <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">T</abbr>
               <abbr v-if="meeting.meeting_days.wednesday" title="Wednesday">W
@@ -57,11 +57,11 @@
               </abbr>
               <abbr v-if="meeting.meeting_days.sunday" title="Sunday">Su</abbr>
             </td>
-            <td :headers="'time-' + meeting.id">
+            <td :headers="`time-${meeting.id}`">
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
-            <td :headers="'location-' + meeting.id">
+            <td :headers="`location-${meeting.id}`">
               <span v-if="meeting.is_remote">
                 Remote
               </span>
@@ -94,9 +94,9 @@
               </span>
             </td>
           </template>
-          <td v-if="displayMeetingType" :headers="'type-' + meeting.id">
-            <span v-if="meeting.display_type">
-              {{ meeting.type }}
+          <td v-if="section.showMtgType" :headers="`type-${meeting.id}`">
+            <span v-if="meeting.displayType" :title="`${meeting.type}`">
+              {{ shortenMtgType(meeting.type) }}
             </span>
           </td>
         </tr>
@@ -108,22 +108,8 @@
 <script>
 export default {
   props: {
-    hasEosDates: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    displayMeetingType: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    meetings: {
-      type: Array,
-      required: true,
-    },
-    sectionId: {
-      type: String,
+    section: {
+      type: Object,
       required: true,
     },
   },
@@ -144,6 +130,12 @@ export default {
       } else {
         return `${startFormatted} - ${endFormatted}`;
       }
+    },
+    shortenMtgType(typeStr) {
+      if (typeStr.length > 4) {
+        return typeStr.substring(0, 3).toUpperCase();
+      }
+      return typeStr.toUpperCase();
     },
   },
 };

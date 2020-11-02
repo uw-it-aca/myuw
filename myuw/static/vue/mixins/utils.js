@@ -1,4 +1,4 @@
-
+import dayjs from 'dayjs';
 export default {
   methods: {
     encodeForMaps(s) {
@@ -47,6 +47,19 @@ export default {
         return s.replace(/^([a-z])/, (c) => c.toUpperCase());
       }
       return "";
+    },
+    titleCaseName(nameStr) {
+      return nameStr.split(' ').map(function(w) {
+        return w[0].toUpperCase() + w.substr(1).toLowerCase();
+      }).join(' ');
+    },
+    toFriendlyDate(date_str) {
+      return (!date_str || date_str.length === 0 ? '' :
+              dayjs(date_str).format("ddd, MMM D"));
+    },
+    toFriendlyDatetime(date_str) {
+      return (!date_str || date_str.length === 0 ? '' :
+              dayjs(date_str).format("ddd, MMM D, h:mmA"));
     },
   },
 }

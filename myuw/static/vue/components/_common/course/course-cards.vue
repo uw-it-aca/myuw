@@ -69,10 +69,19 @@ export default {
     },
   },
   created() {
-    if (this.student) this.fetch(this.term);
+    if (this.student) {
+      this.fetchStudSche(this.term);
+      this.fetchEvalData();
+    }
   },
+
   methods: {
-    ...mapActions('stud_schedule', ['fetch']),
+    ...mapActions('stud_schedule', {
+      fetchStudSche: 'fetch',
+    }),
+    ...mapActions('iasystem', {
+      fetchEvalData: 'fetch',
+    }),
   },
 };
 </script>

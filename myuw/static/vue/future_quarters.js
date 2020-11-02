@@ -4,7 +4,7 @@ import utils from './mixins/utils.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import AllCourses from './components/_common/course/all-courses.vue';
+import CourseCards from './components/_common/course/course-cards.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
 
@@ -28,7 +28,7 @@ vueConf.store.commit('addVarToState', {
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);
-Vue.component('myuw-all-courses', AllCourses);
+Vue.component('myuw-course-cards', CourseCards);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 
