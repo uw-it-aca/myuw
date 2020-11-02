@@ -35,7 +35,6 @@ class TestPwsDao(TestCase):
         self.assertFalse(is_grad_student(req))
         self.assertFalse(is_staff_employee(req))
 
-        """
         req = get_request_with_user('jnew')
         self.assertTrue(in_fyp_group(req))
 
@@ -49,7 +48,6 @@ class TestPwsDao(TestCase):
         self.assertTrue(in_au_xfer_group(req))
         self.assertTrue(in_wi_xfer_group(req))
         self.assertFalse(in_fyp_group(req))
-        """
 
         req = get_request_with_user('jbothell')
         self.assertFalse(is_student_employee(req))
