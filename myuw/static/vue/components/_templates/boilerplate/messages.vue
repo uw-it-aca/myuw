@@ -41,7 +41,7 @@ export default {
     hideTourMessage: function(event) {
       // TODO: wire up with api
       axios.get('/api/v1/close_banner_message', {
-        responseType: 'json'
+        responseType: 'json',
       }).then((response) => {
         if (response.data.done) {
           this.isHidden = true;
