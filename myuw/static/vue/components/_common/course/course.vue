@@ -37,7 +37,7 @@
 
       <template #card-body>
         <uw-course-eval
-          v-if="isReadyEval"
+          v-if="isReadyEval && getSectionEval(section.index).length > 0"
           :eval-data="getSectionEval(section.index)"
           :section="section"
         />
@@ -49,7 +49,7 @@
           </p>
         </template>
         <uw-course-details
-          v-if="!section.is_ended"
+          v-else-if="!section.is_ended"
           :course="course"
           :section="section"
           :show-row-heading="showRowHeading "
