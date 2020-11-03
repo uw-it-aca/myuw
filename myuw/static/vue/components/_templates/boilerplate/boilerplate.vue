@@ -102,7 +102,6 @@
                 class="m-0"
               />
             </font-awesome-layers>
-            TOGGLE MENU
           </b-button>
           <h1
             class="d-inline align-middle text-white"

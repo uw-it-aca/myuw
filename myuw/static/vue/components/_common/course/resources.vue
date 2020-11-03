@@ -1,7 +1,8 @@
 <template>
   <b-col>
-    <ul>
-      <li v-if="section.class_website_url">
+    <h5 class="h6 font-weight-bold text-danger">Course Resources</h5>
+    <ul class="list-unstyled myuw-text-md">
+      <li v-if="section.class_website_url" class="mb-1">
         <a
           :href="section.class_website_url"
           :label="`${
@@ -11,7 +12,7 @@
           Course Website
         </a>
       </li>
-      <li v-if="section.lib_subj_guide">
+      <li v-if="section.lib_subj_guide" class="mb-1">
         <a
           :href="section.lib_subj_guide"
           :label="`${
@@ -21,7 +22,7 @@
           Library Research Guides
         </a>
       </li>
-      <li v-if="section.canvas_url">
+      <li v-if="section.canvas_url" class="mb-1">
         <a
           :href="section.canvas_url"
           :label="`${
@@ -31,7 +32,7 @@
           Course Canvas
         </a>
       </li>
-      <li v-if="section.sln">
+      <li v-if="section.sln" class="mb-1">
         <a
           :href="slnHref"
           :label="`${

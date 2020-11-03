@@ -1,6 +1,18 @@
 <template>
   <b-col>
-    <table class="w-100" style="table-layout: fixed;">
+    <h5 class="h6 font-weight-bold text-danger">
+      Meeting Information
+    </h5>
+    <div v-if="section.summer_term" class="myuw-text-md">
+      Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
+    </div>
+    <div v-if="section.cc_display_dates" class="myuw-text-md">
+      Dates: {{ sectionFormattedDates(section) }}
+    </div>
+    <div v-if="section.on_standby" class="myuw-text-md">
+      Your status: On Standby
+    </div>
+    <table class="mb-3 w-100 table table-sm table-borderless myuw-text-md">
       <thead class="sr-only">
         <tr>
           <th v-if="section.hasEosDates"
@@ -26,26 +38,32 @@
         <tr v-for="(meeting, i) in section.meetings" :key="i">
           <td v-if="meeting.eos_start_date && meeting.eos_end_date"
               :headers="`dates-${meeting.id}`"
+              class="p-0"
           >
             {{ formatEos(meeting) }}
           </td>
           <td v-if="meeting.wont_meet" colspan="3"
               :headers="`days-${meeting.id}`"
+              p-0
           >
-            Class does not meet
+            <span class="text-muted">Class does not meet</span>
           </td>
           <td v-else-if="meeting.days_tbd" colspan="3"
               :headers="`days-${meeting.id}`"
+              class="p-0"
           >
-            Days and times to be arranged
+            <span class="text-muted">Days and times to be arranged</span>
           </td>
           <td v-else-if="meeting.no_meeting" colspan="3"
               :headers="`days-${meeting.id}`"
+              class="p-0"
           >
-            No classroom meeting: online learning
+            <span class="text-muted">
+              No classroom meeting: online learning
+            </span>
           </td>
           <template v-else-if="meeting.start_time && meeting.end_time">
-            <td :headers="`days-${meeting.id}`">
+            <td :headers="`days-${meeting.id}`" class="p-0 text-nowrap">
               <abbr v-if="meeting.meeting_days.monday" title="Monday">M</abbr>
               <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">T</abbr>
               <abbr v-if="meeting.meeting_days.wednesday" title="Wednesday">W
@@ -57,15 +75,17 @@
               </abbr>
               <abbr v-if="meeting.meeting_days.sunday" title="Sunday">Su</abbr>
             </td>
-            <td :headers="`time-${meeting.id}`">
+            <td :headers="`time-${meeting.id}`"
+                class="p-0 text-center text-nowrap"
+            >
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
-            <td :headers="`location-${meeting.id}`">
+            <td :headers="`location-${meeting.id}`" class="p-0 text-right">
               <span v-if="meeting.is_remote">
                 Remote
               </span>
-              <span v-else-if="meeting.building_tbd">
+              <span v-else-if="meeting.building_tbd" class="text-muted">
                 Room to be arranged
               </span>
               <span v-else>
@@ -94,7 +114,9 @@
               </span>
             </td>
           </template>
-          <td v-if="section.showMtgType" :headers="`type-${meeting.id}`">
+          <td v-if="section.showMtgType" :headers="`type-${meeting.id}`"
+              class="p-0"
+          >
             <span v-if="meeting.displayType" :title="`${meeting.type}`">
               {{ shortenMtgType(meeting.type) }}
             </span>
@@ -106,6 +128,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 export default {
   props: {
     section: {
@@ -114,6 +137,11 @@ export default {
     },
   },
   methods: {
+    sectionFormattedDates(section) {
+      return `${
+        dayjs(section.start_date).format('MMM D')
+      } - ${dayjs(section.end_date).format('MMM D')}`;
+    },
     locationUrl(meeting) {
       if (meeting.latitude) {
         return `http://maps.google.com/maps?q=${meeting.latitude},${

@@ -1,34 +1,36 @@
 <template>
   <div>
-    <h5>Instructors</h5>
-    <ol>
-      <li v-for="(instructor, i) in instructors" :key="i">
+    <h5 class="h6 font-weight-bold text-dark-beige">Instructors</h5>
+    <ol class="list-unstyled myuw-text-md">
+      <li v-for="(instructor, i) in instructors" :key="i" class="mb-2">
         <strong>{{ instructor.display_name }}</strong>
-        <span v-if="instructorPrimaryTitle(instructor)">
+        <div v-if="instructorPrimaryTitle(instructor)" class="text-muted">
           {{ instructorPrimaryTitle(instructor) }}
-        </span>
-        <span v-if="!hasContactDetails(instructor)">
+        </div>
+        <div v-if="!hasContactDetails(instructor)" class="text-muted">
           No contact information available for this instructor.
-        </span>
+        </div>
         <div v-else>
           <a
             v-for="(email, j) in instructor.email_addresses"
             :key="`email-${j}`" :href="`mailto:${email}`"
+            class="d-block"
           >
             {{ email }}
           </a>
           <a
             v-for="(phone, j) in instructor.phones"
             :key="`phone-${j}`" :href="`tel:${formatPhoneNumberLink(phone)}`"
+            class="d-block"
           >
             {{ formatPhoneNumberDisaply(phone) }}
           </a>
-          <span
+          <div
             v-for="(address, j) in instructor.addresses"
             :key="`address-${j}`"
           >
             {{ address }}
-          </span>
+          </div>
         </div>
       </li>
     </ol>

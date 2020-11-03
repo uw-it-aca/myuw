@@ -3,35 +3,29 @@
     <div :class="`w-100 myuw-border-top border-c${section.color_id}`" />
     <uw-card loaded>
       <template #card-heading>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mb-3">
           <div>
-            <h4>
+            <h4 class="h5 mb-0 text-dark-beige myuw-font-encode-sans">
               {{ section.curriculum_abbr }}
               {{ section.course_number }}
               {{ section.section_id }}
             </h4>
-            <span>{{ section.course_title }}</span>
+            <div>{{ section.course_title }}</div>
           </div>
           <div>
-            <span class="d-block">
+            <div :class="`px-1 border myuw-text-sm
+            text-uppercase text-c${section.color_id}`"
+            >
               {{ ucfirst(section.section_type) }}
-            </span>
-            <span
+            </div>
+            <div
               v-if="section.is_primary_section && section.for_credit"
-              class="d-block text-right"
+              :class="`px-1 myuw-text-sm text-right
+              text-uppercase text-c${section.color_id}`"
             >
               {{ section.credits }} CR
-            </span>
+            </div>
           </div>
-        </div>
-        <div v-if="section.summer_term">
-          Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
-        </div>
-        <div v-if="section.cc_display_dates">
-          Dates: {{ sectionFormattedDates(section) }}
-        </div>
-        <div v-if="section.on_standby">
-          Your status: On Standby
         </div>
       </template>
 
@@ -48,6 +42,7 @@
             information right now. Please try again later.
           </p>
         </template>
+
         <uw-course-details
           v-else-if="!section.is_ended"
           :course="course"
@@ -142,7 +137,6 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex';
-import dayjs from 'dayjs';
 import Card from '../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
 import CourseDetails from './course-details.vue';
@@ -191,11 +185,6 @@ export default {
     }),
   },
   methods: {
-    sectionFormattedDates(section) {
-      return `${
-        dayjs(section.start_date).format('MMM D')
-      } - ${dayjs(section.end_date).format('MMM D')}`;
-    },
     getSectionEval(index) {
       if (
         this.evalData &&
