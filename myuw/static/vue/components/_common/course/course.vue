@@ -65,7 +65,7 @@
         </template>
         <template v-else>
           <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
-            <uw-instructor-info
+            <uw-instructors
               v-if="section.instructors.length > 0"
               :instructors="section.instructors"
               :show-row-heading="true"
@@ -143,14 +143,14 @@ import {mapGetters, mapState} from 'vuex';
 import Card from '../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
 import CourseDetails from './course-details.vue';
-import InstructorInfo from './instructor-info.vue';
+import Instructors from './instructors.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-course-details': CourseDetails,
     'uw-course-eval': EvalInfo,
-    'uw-instructor-info': InstructorInfo,
+    'uw-instructors': Instructors,
   },
   props: {
     course: {
