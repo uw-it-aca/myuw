@@ -1,27 +1,20 @@
 <template>
-  <b-container fluid class="px-0">
-    <b-row no-gutters>
-      <b-col v-if="showRowHeading" cols="3">
-        Meetings
-      </b-col>
-      <uw-meeting-info :section="section" />
-    </b-row>
-    <b-row no-gutters>
-      <b-col v-if="showRowHeading" cols="3">
-        Resources
-      </b-col>
-      <uw-resources :section="section" :course="course" />
-    </b-row>
-    <b-row no-gutters>
-      <b-col v-if="showRowHeading" cols="3">
-        Instructors
-      </b-col>
-      <uw-instructor-info
-        v-if="section.is_ended && section.instructors.length > 0"
-        :instructors="section.instructors"
-      />
-    </b-row>
-  </b-container>
+  <div>
+    <uw-meeting-info
+      :section="section"
+      :show-row-heading="true"
+    />
+    <uw-resources
+      :section="section"
+      :course="course"
+      :show-row-heading="true"
+    />
+    <uw-instructor-info
+      v-if="section.is_ended && section.instructors.length > 0"
+      :instructors="section.instructors"
+      :show-row-heading="true"
+    />
+  </div>
 </template>
 
 <script>

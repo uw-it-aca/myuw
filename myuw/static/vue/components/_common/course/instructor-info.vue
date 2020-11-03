@@ -1,39 +1,46 @@
 <template>
-  <div>
-    <h5 class="h6 font-weight-bold text-dark-beige">Instructors</h5>
-    <ol class="list-unstyled myuw-text-md">
-      <li v-for="(instructor, i) in instructors" :key="i" class="mb-2">
-        <strong>{{ instructor.display_name }}</strong>
-        <div v-if="instructorPrimaryTitle(instructor)" class="text-muted">
-          {{ instructorPrimaryTitle(instructor) }}
-        </div>
-        <div v-if="!hasContactDetails(instructor)" class="text-muted">
-          No contact information available for this instructor.
-        </div>
-        <div v-else>
-          <a
-            v-for="(email, j) in instructor.email_addresses"
-            :key="`email-${j}`" :href="`mailto:${email}`"
-            class="d-block"
-          >
-            {{ email }}
-          </a>
-          <a
-            v-for="(phone, j) in instructor.phones"
-            :key="`phone-${j}`" :href="`tel:${formatPhoneNumberLink(phone)}`"
-            class="d-block"
-          >
-            {{ formatPhoneNumberDisaply(phone) }}
-          </a>
-          <div
-            v-for="(address, j) in instructor.addresses"
-            :key="`address-${j}`"
-          >
-            {{ address }}
+  <div class="d-flex">
+    <h5
+      :class="[!showRowHeading ? 'sr-only' : '']"
+      class="w-25 h6 font-weight-bold text-danger"
+    >
+      Instructors
+    </h5>
+    <div class="flex-fill">
+      <ol class="list-unstyled myuw-text-md">
+        <li v-for="(instructor, i) in instructors" :key="i" class="mb-2">
+          <strong>{{ instructor.display_name }}</strong>
+          <div v-if="instructorPrimaryTitle(instructor)" class="text-muted">
+            {{ instructorPrimaryTitle(instructor) }}
           </div>
-        </div>
-      </li>
-    </ol>
+          <div v-if="!hasContactDetails(instructor)" class="text-muted">
+            No contact information available for this instructor.
+          </div>
+          <div v-else>
+            <a
+              v-for="(email, j) in instructor.email_addresses"
+              :key="`email-${j}`" :href="`mailto:${email}`"
+              class="d-block"
+            >
+              {{ email }}
+            </a>
+            <a
+              v-for="(phone, j) in instructor.phones"
+              :key="`phone-${j}`" :href="`tel:${formatPhoneNumberLink(phone)}`"
+              class="d-block"
+            >
+              {{ formatPhoneNumberDisaply(phone) }}
+            </a>
+            <div
+              v-for="(address, j) in instructor.addresses"
+              :key="`address-${j}`"
+            >
+              {{ address }}
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
 
@@ -43,6 +50,10 @@ export default {
     instructors: {
       type: Array,
       required: true,
+    },
+    showRowHeading: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {
