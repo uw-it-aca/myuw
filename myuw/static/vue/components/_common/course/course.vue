@@ -47,7 +47,7 @@
           v-else-if="!section.is_ended"
           :course="course"
           :section="section"
-          :show-row-heading="showRowHeading "
+          :show-row-heading="showRowHeading"
         />
       </template>
 
@@ -59,7 +59,7 @@
             <uw-course-details
               :course="course"
               :section="section"
-              :show-row-heading="showRowHeading "
+              :show-row-heading="showRowHeading"
             />
           </b-collapse>
         </template>
@@ -68,6 +68,7 @@
             <uw-instructor-info
               v-if="section.instructors.length > 0"
               :instructors="section.instructors"
+              :show-row-heading="true"
             />
           </b-collapse>
         </template>

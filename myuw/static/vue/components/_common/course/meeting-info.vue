@@ -1,10 +1,13 @@
 <template>
-  <b-col>
-    <h5 class="h6 font-weight-bold text-danger">
-      Meeting Information
-    </h5>
+  <div>
     <div v-if="section.summer_term" class="myuw-text-md">
-      Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
+      Summer
+      {{
+        section.summer_term
+          .split('-')
+          .map(ucfirst)
+          .join('-')
+      }}
     </div>
     <div v-if="section.cc_display_dates" class="myuw-text-md">
       Dates: {{ sectionFormattedDates(section) }}
@@ -12,119 +15,143 @@
     <div v-if="section.on_standby" class="myuw-text-md">
       Your status: On Standby
     </div>
-    <table class="mb-3 w-100 table table-sm table-borderless myuw-text-md">
-      <thead class="sr-only">
-        <tr>
-          <th v-if="section.hasEosDates"
-              :id="`dates-${section.id}`"
-          >
-            Meeting Date(s)
-          </th>
-          <th :id="`days-${section.id}`">
-            Meeting Day(s)
-          </th>
-          <th :id="`time-${section.id}`">
-            Meeting Time
-          </th>
-          <th :id="`location-${section.id}`">
-            Meeting Location
-          </th>
-          <th v-if="section.showMtgType" :id="`type-${section.id}`">
-            Meeting Type
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(meeting, i) in section.meetings" :key="i">
-          <td v-if="meeting.eos_start_date && meeting.eos_end_date"
-              :headers="`dates-${meeting.id}`"
-              class="p-0"
-          >
-            {{ formatEos(meeting) }}
-          </td>
-          <td v-if="meeting.wont_meet" colspan="3"
-              :headers="`days-${meeting.id}`"
-              p-0
-          >
-            <span class="text-muted">Class does not meet</span>
-          </td>
-          <td v-else-if="meeting.days_tbd" colspan="3"
-              :headers="`days-${meeting.id}`"
-              class="p-0"
-          >
-            <span class="text-muted">Days and times to be arranged</span>
-          </td>
-          <td v-else-if="meeting.no_meeting" colspan="3"
-              :headers="`days-${meeting.id}`"
-              class="p-0"
-          >
-            <span class="text-muted">
-              No classroom meeting: online learning
-            </span>
-          </td>
-          <template v-else-if="meeting.start_time && meeting.end_time">
-            <td :headers="`days-${meeting.id}`" class="p-0 text-nowrap">
-              <abbr v-if="meeting.meeting_days.monday" title="Monday">M</abbr>
-              <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">T</abbr>
-              <abbr v-if="meeting.meeting_days.wednesday" title="Wednesday">W
-              </abbr>
-              <abbr v-if="meeting.meeting_days.thursday" title="Thursday">Th
-              </abbr>
-              <abbr v-if="meeting.meeting_days.friday" title="Friday">F</abbr>
-              <abbr v-if="meeting.meeting_days.saturday" title="Saturday">Sa
-              </abbr>
-              <abbr v-if="meeting.meeting_days.sunday" title="Sunday">Su</abbr>
-            </td>
-            <td :headers="`time-${meeting.id}`"
-                class="p-0 text-center text-nowrap"
-            >
-              {{ meeting.start_time.format('h:mm A') }} &ndash;
-              {{ meeting.end_time.format('h:mm A') }}
-            </td>
-            <td :headers="`location-${meeting.id}`" class="p-0 text-right">
-              <span v-if="meeting.is_remote">
-                Remote
-              </span>
-              <span v-else-if="meeting.building_tbd" class="text-muted">
-                Room to be arranged
-              </span>
-              <span v-else>
-                <a
-                  v-if="locationUrl(meeting)"
-                  :href="locationUrl(meeting)"
-                  target="_blank"
-                  :title="`Map ${meeting.building}`"
-                >
-                  {{ meeting.building }}
-                </a>
-                <a
-                  v-if="meeting.classroom_info_url"
-                  :href="meeting.classroom_info_url"
-                  target="_blank"
-                  title="View classroom information"
-                >
-                  {{ meeting.room }}
-                </a>
-                <span
-                  v-else-if="meeting.room"
-                  title="No classroom information available"
-                >
-                  {{ meeting.room }}
+
+    <div class="d-flex">
+      <h5
+        :class="[!showRowHeading ? 'sr-only' : '']"
+        class="w-25 h6 font-weight-bold text-danger"
+      >
+        Meeting Time
+      </h5>
+
+      <div class="flex-fill">
+        <table class="mb-3 w-100 table table-sm table-borderless myuw-text-md">
+          <thead class="sr-only">
+            <tr>
+              <th v-if="section.hasEosDates" :id="`dates-${section.id}`">
+                Meeting Date(s)
+              </th>
+              <th :id="`days-${section.id}`">
+                Meeting Day(s)
+              </th>
+              <th :id="`time-${section.id}`">
+                Meeting Time
+              </th>
+              <th :id="`location-${section.id}`">
+                Meeting Location
+              </th>
+              <th v-if="section.showMtgType" :id="`type-${section.id}`">
+                Meeting Type
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(meeting, i) in section.meetings" :key="i">
+              <td
+                v-if="meeting.eos_start_date && meeting.eos_end_date"
+                :headers="`dates-${meeting.id}`"
+                class="p-0"
+              >
+                {{ formatEos(meeting) }}
+              </td>
+              <td
+                v-if="meeting.wont_meet"
+                colspan="3"
+                :headers="`days-${meeting.id}`"
+                p-0
+              >
+                <span class="text-muted">Class does not meet</span>
+              </td>
+              <td
+                v-else-if="meeting.days_tbd"
+                colspan="3"
+                :headers="`days-${meeting.id}`"
+                class="p-0"
+              >
+                <span class="text-muted">Days and times to be arranged</span>
+              </td>
+              <td
+                v-else-if="meeting.no_meeting"
+                colspan="3"
+                :headers="`days-${meeting.id}`"
+                class="p-0"
+              >
+                <span class="text-muted">
+                  No classroom meeting: online learning
                 </span>
-              </span>
-            </td>
-          </template>
-          <td v-if="section.showMtgType" :headers="`type-${meeting.id}`"
-              class="p-0"
-          >
-            <span v-if="meeting.displayType" :title="`${meeting.type}`">
-              {{ shortenMtgType(meeting.type) }}
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </b-col>
+              </td>
+              <template v-else-if="meeting.start_time && meeting.end_time">
+                <td :headers="`days-${meeting.id}`" class="p-0 text-nowrap">
+                  <abbr v-if="meeting.meeting_days.monday" title="Monday">
+                    M</abbr>
+                  <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">
+                    T</abbr>
+                  <abbr v-if="meeting.meeting_days.wednesday" title="Wednesday">
+                    W</abbr>
+                  <abbr v-if="meeting.meeting_days.thursday" title="Thursday">
+                    Th</abbr>
+                  <abbr v-if="meeting.meeting_days.friday" title="Friday">
+                    F</abbr>
+                  <abbr v-if="meeting.meeting_days.saturday" title="Saturday">
+                    Sa</abbr>
+                  <abbr v-if="meeting.meeting_days.sunday" title="Sunday">
+                    Su</abbr>
+                </td>
+                <td
+                  :headers="`time-${meeting.id}`"
+                  class="p-0 text-center text-nowrap"
+                >
+                  {{ meeting.start_time.format('h:mm A') }} &ndash;
+                  {{ meeting.end_time.format('h:mm A') }}
+                </td>
+                <td :headers="`location-${meeting.id}`" class="p-0 text-right">
+                  <span v-if="meeting.is_remote">
+                    Remote
+                  </span>
+                  <span v-else-if="meeting.building_tbd" class="text-muted">
+                    Room to be arranged
+                  </span>
+                  <span v-else>
+                    <a
+                      v-if="locationUrl(meeting)"
+                      :href="locationUrl(meeting)"
+                      target="_blank"
+                      :title="`Map ${meeting.building}`"
+                    >
+                      {{ meeting.building }}
+                    </a>
+                    <a
+                      v-if="meeting.classroom_info_url"
+                      :href="meeting.classroom_info_url"
+                      target="_blank"
+                      title="View classroom information"
+                    >
+                      {{ meeting.room }}
+                    </a>
+                    <span
+                      v-else-if="meeting.room"
+                      title="No classroom information available"
+                    >
+                      {{ meeting.room }}
+                    </span>
+                  </span>
+                </td>
+              </template>
+              <td
+                v-if="section.showMtgType"
+                :headers="`type-${meeting.id}`"
+                class="p-0"
+              >
+                <span v-if="meeting.displayType" :title="`${meeting.type}`">
+                  {{ shortenMtgType(meeting.type) }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -135,12 +162,15 @@ export default {
       type: Object,
       required: true,
     },
+    showRowHeading: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     sectionFormattedDates(section) {
-      return `${
-        dayjs(section.start_date).format('MMM D')
-      } - ${dayjs(section.end_date).format('MMM D')}`;
+      return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(
+          section.end_date).format('MMM D')}`;
     },
     locationUrl(meeting) {
       if (meeting.latitude) {
