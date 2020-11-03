@@ -1,7 +1,6 @@
 <template>
-  <div class="d-flex">
+  <div :class="[!showRowHeading ? 'flex-column' : '']" class="d-flex">
     <h5
-      :class="[!showRowHeading ? 'sr-only' : '']"
       class="w-25 h6 font-weight-bold text-danger"
     >
       Instructors
