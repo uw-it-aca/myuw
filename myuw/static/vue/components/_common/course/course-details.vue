@@ -9,7 +9,7 @@
       :course="course"
       :show-row-heading="true"
     />
-    <uw-instructor-info
+    <uw-instructors
       v-if="section.is_ended && section.instructors.length > 0"
       :instructors="section.instructors"
       :show-row-heading="true"
@@ -20,13 +20,13 @@
 <script>
 import MeetingInfo from './meeting-info.vue';
 import Resources from './resources.vue';
-import InstructorInfo from './instructor-info.vue';
+import Instructors from './instructors.vue';
 
 export default {
   components: {
     'uw-meeting-info': MeetingInfo,
     'uw-resources': Resources,
-    'uw-instructor-info': InstructorInfo,
+    'uw-instructors': Instructors,
   },
   props: {
     course: {
