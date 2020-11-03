@@ -43,7 +43,7 @@
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
-            <i class="fa fa-exclamation-triangle"></i>
+            <i class="fa fa-exclamation-triangle" />
             An error has occurred and MyUW cannot display the course evaluation
             information right now. Please try again later.
           </p>

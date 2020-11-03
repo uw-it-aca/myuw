@@ -109,8 +109,11 @@ export default {
     }),
     isReady() {
       return (
-        this.isStudScheduleReady(this.term) &&
         this.isTextbookReady(this.term) &&
+        (
+          this.isStudScheduleReady(this.term) ||
+          this.isStudScheduleErrored(this.term)
+        ) &&
         (
           this.isInstScheduleReady(this.term) ||
           this.isInstScheduleErrored(this.term)
