@@ -73,7 +73,7 @@ export default {
       if (event.event_location.indexOf('.zoom.') >= 0) {
         return 'Zoom';
       }
-      return event.event_location
+      return event.event_location;
     },
   },
 };

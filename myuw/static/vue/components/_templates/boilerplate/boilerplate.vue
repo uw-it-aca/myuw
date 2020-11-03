@@ -118,6 +118,9 @@
                   <template v-if="pageTitle.includes('Preview')">
                     Preview Quarter
                   </template>
+                  <template v-else-if="pageTitle.includes('Textbooks')">
+                    Textbooks
+                  </template>
                   <template v-else>
                     {{ pageTitle }}
                   </template>

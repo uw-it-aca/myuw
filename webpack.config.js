@@ -53,6 +53,9 @@ module.exports = {
     future_quarters: [
       "./myuw/static/vue/future_quarters.js"
     ],
+    textbooks: [
+      "./myuw/static/vue/textbooks.js"
+    ],
   },
   output: {
       path: path.resolve('../static/myuw/'),
