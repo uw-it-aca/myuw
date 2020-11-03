@@ -102,7 +102,7 @@
         </template>
 
         <template v-else>
-          <span v-if="section.instructors.length > 0">
+          <template v-if="section.instructors.length > 0">
             <b-button
               v-if="!isOpen"
               v-b-toggle="`instructors-collapse-${index}`"
@@ -125,10 +125,12 @@
             >
               HIDE INSTRUCTORS
             </b-button>
-          </span>
-          <span v-else>
+          </template>
+          <div v-else class="text-center text-muted font-italic myuw-text-md"
+               style="line-height:1.5rem"
+          >
             No instructor information available
-          </span>
+          </div>
         </template>
       </template>
     </uw-card>
