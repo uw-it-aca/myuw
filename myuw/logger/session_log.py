@@ -31,10 +31,6 @@ def _get_session_data(request):
 def _get_affi(request):
     affiliations = get_all_affiliations(request)
     return {'class_level': affiliations["class_level"],
-            'fyp': affiliations["fyp"],
-            'fyp': affiliations["fyp"],
-            'aut_transfer': affiliations["aut_transfer"],
-            'win_transfer': affiliations["win_transfer"],
             'hxt_viewer': affiliations["hxt_viewer"],
             'is_applicant': affiliations["applicant"],
             'is_ugrad': affiliations["undergrad"],
