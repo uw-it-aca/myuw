@@ -250,9 +250,12 @@ def _get_link_by_affiliation(link, campus, affiliations):
             affiliations["undergrad"] and link.for_undergrad():
         return link
 
+    """
+    MUWM-4831
     if link.campus_matched(campus) and \
             affiliations["fyp"] and link.for_fyp():
         return link
+    """
 
     if link.campus_matched(campus) and \
             affiliations["pce"] and link.for_pce():

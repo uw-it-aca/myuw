@@ -62,39 +62,39 @@ class TestHXTDao(TestCase):
 
     def test_is_hxt_viewer(self):
         request = get_request_with_user('javerage')
-        self.assertTrue(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[2])
 
         # not-sea
         request = get_request_with_user('tacgrad')
-        self.assertFalse(get_is_hxt_viewer(request)[5])
+        self.assertFalse(get_is_hxt_viewer(request)[2])
 
         # not-ugrad
         request = get_request_with_user('botgrad')
-        self.assertFalse(get_is_hxt_viewer(request)[5])
+        self.assertFalse(get_is_hxt_viewer(request)[2])
 
         # fyp
         request = get_request_with_user('jnew')
-        self.assertFalse(get_is_hxt_viewer(request)[5])
+        self.assertFalse(get_is_hxt_viewer(request)[2])
 
         # au transfer in au MUWM-4798
         request = get_request_with_user('javg001',
                                         get_request_with_date("2017-09-18"))
-        self.assertTrue(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[2])
 
         # au transfter outside au
         request = get_request_with_user('javg001',
                                         get_request_with_date("2017-02-18"))
-        self.assertTrue(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[2])
 
         # wi transfer in wi MUWM-4798
         request = get_request_with_user('javg002',
                                         get_request_with_date("2017-02-18"))
-        self.assertTrue(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[2])
 
         # wi transfter outside wi
         request = get_request_with_user('javg002',
                                         get_request_with_date("2017-09-18"))
-        self.assertTrue(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[2])
 
     def test_get_article_links(self):
         links = get_article_links()
