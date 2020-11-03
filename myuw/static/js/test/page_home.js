@@ -183,40 +183,6 @@ describe("HomePage", function() {
                           EventsCard]);
     });
 
-    it('Desktop cards for fyp', function() {
-        window.innerWidth = 800;
-        window.user.netid = "jnew";
-        window.user.fyp = true;
-        var desktop_body_cards = Landing._get_desktop_body_cards();
-        assert.equal(desktop_body_cards.length, 3);
-        assert.equal(desktop_body_cards[0].name, 'ThriveCard');
-        assert.equal(desktop_body_cards[1].name, 'ResourcesCard');
-        assert.equal(desktop_body_cards[2].name, 'ResourcesExploreCard');
-        var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
-        assert.deepEqual(desktop_sidebar_cards,
-                         [QuickLinksCard,
-                          AcadCalSnippet,
-                          EventsCard]);
-    });
-
-    it('Desktop cards for aut_transfer', function() {
-        window.innerWidth = 800;
-        window.user.netid = "jnew";
-        window.user.aut_transfer = true;
-        var desktop_body_cards = Landing._get_desktop_body_cards();
-        assert.equal(desktop_body_cards.length, 3);
-        assert.equal(desktop_body_cards[0].name, 'ThriveCard');
-    });
-
-    it('Desktop cards for win_transfer', function() {
-        window.innerWidth = 800;
-        window.user.netid = "jnew";
-        window.user.win_transfer = true;
-        var desktop_body_cards = Landing._get_desktop_body_cards();
-        assert.equal(desktop_body_cards.length, 3);
-        assert.equal(desktop_body_cards[0].name, 'ThriveCard');
-    });
-
     it('Desktop for international student should have', function() {
         window.innerWidth = 800;
         window.user.netid = "jinter";
@@ -300,19 +266,6 @@ describe("HomePage", function() {
                           TextbookCard,
                           FutureQuarterCard1,
                           SummerRegStatusCard1,
-                          AcadCalSnippet,
-                          EventsCard,
-                          ResourcesCard,
-                          ResourcesExploreCard]);
-    });
-
-    it('Mobile cards for fyp', function() {
-        window.user.netid = "jnew";
-        window.user.fyp = true;
-        var mobile_cards = Landing._get_mobile_cards();
-        assert.deepEqual(mobile_cards,
-                         [QuickLinksCard,
-                          ThriveCard,
                           AcadCalSnippet,
                           EventsCard,
                           ResourcesCard,

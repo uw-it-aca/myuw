@@ -54,12 +54,6 @@ var Landing = {
             desktop_body_cards.push(HuskyExperienceCard);
             }
 
-        if (window.user.fyp ||
-            window.user.aut_transfer ||
-            window.user.win_transfer) {
-            desktop_body_cards.push(ThriveCard);
-        }
-
         if (window.user.student ||
             window.user.instructor ||
             window.user.employee) {
@@ -165,11 +159,6 @@ var Landing = {
 
         mobile_cards.push(QuickLinksCard);
 
-        if (window.user.fyp ||
-            window.user.aut_transfer ||
-            window.user.win_transfer) {
-            mobile_cards.push(ThriveCard);
-        }
         if (window.user.student ||
             window.user.instructor ||
             window.user.employee) {
