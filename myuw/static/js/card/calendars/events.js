@@ -35,6 +35,9 @@ var EventsCard = {
             event.start_time = start_date.format('h:mm A');
             event.start_date = start_date.format('YYYY-MM-DD');
             event.end_date = end_date.format('YYYY-MM-DD');
+            if (event.event_location.indexOf('.zoom.') >= 0) {
+                event.event_location = 'Zoom';
+            }
         });
 
         var grouped_events = EventsCard.group_by_date(event_data.events);
