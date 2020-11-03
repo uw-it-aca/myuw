@@ -72,7 +72,7 @@
                     Approved<br>
                     <a
                       target="_blank"
-                      href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
+                      href="https://webapps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
                       data-linklabel="MyGrad Payment Portal"
                       class="font-weight-normal"
                     >Pay Your Fee To Confirm</a>
