@@ -44,6 +44,10 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
     response['term'] = {
         'year': term.year,
         'quarter': term.quarter,
+        'first_day_quarter': term.first_day_quarter,
+        'last_day_instruction': term.last_day_instruction,
+        'aterm_last_date': term.aterm_last_date,
+        'bterm_first_date': term.bterm_first_date,
         'last_final_exam_date': term.last_final_exam_date,
         'summer_term': summer_term
     }

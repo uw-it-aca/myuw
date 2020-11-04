@@ -5,7 +5,6 @@
 {% load set_context %}
 
 {% block django_json_data %}
-{{ card_display_dates|json_script:'card_display_dates' }}
 {% endblock django_json_data %}
 
 {% block body_content %}
@@ -39,6 +38,7 @@
       <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
       <myuw-applicant></myuw-applicant>
       <myuw-international-student></myuw-international-student>
+      <myuw-transcripts></myuw-transcripts>
       <myuw-uwnetid></myuw-uwnetid>
       <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
       <myuw-events mobile-only></myuw-events>

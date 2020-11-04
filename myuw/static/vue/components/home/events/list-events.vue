@@ -23,7 +23,7 @@
       font-weight-light myuw-text-xs"
       >
         <font-awesome-icon :icon="['fas', 'location-arrow']" size="sm" />
-        {{ event.event_location }}
+        {{ getLocation(event) }}
       </em>
       <em v-else class="text-muted font-weight-light myuw-text-xs">
         Location not available
@@ -59,13 +59,21 @@ export default {
 
       label += `${event.summary}`;
 
-      if (event.event_location) {
+      if (event.event_location.indexOf('.zoom.') >= 0) {
+        label = '. Zoom';
+      } else if (event.event_location) {
         label += `. ${event.event_location}`;
       } else {
         label += `. Location not available`;
       }
 
       return label;
+    },
+    getLocation(event) {
+      if (event.event_location.indexOf('.zoom.') >= 0) {
+        return 'Zoom';
+      }
+      return event.event_location;
     },
   },
 };

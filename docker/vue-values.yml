@@ -183,7 +183,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: vue.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/test/secrets
+      externalKey: axdd/kv/data/my/vue/secrets
       data:
         - name: django-secret
           property: django-secret

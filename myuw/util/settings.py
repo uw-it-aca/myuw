@@ -14,6 +14,14 @@ def get_google_search_key():
     return getattr(settings, "GOOGLE_SEARCH_KEY", None)
 
 
+def get_google_analytics_key():
+    return getattr(settings, "GOOGLE_ANALYTICS_KEY", None)
+
+
+def get_django_debug():
+    return getattr(settings, "DEBUG", False)
+
+
 def get_logout_url():
     return getattr(settings, "LOGOUT_URL", "/user_logout")
 

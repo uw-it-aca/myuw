@@ -1,12 +1,12 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="applicantData.is_returning" #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Returning Student Application
       </h3>
     </template>
     <template v-else #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Seattle Application for
         {{ ucfirst(applicantData.quarter) }} {{ applicantData.year }}
       </h3>

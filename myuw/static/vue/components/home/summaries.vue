@@ -8,8 +8,8 @@
     <b-col md="2">
       <a
         v-if="termData"
-        class="d-block px-3 py-2 text-dark text-nowrap
-        font-weight-light myuw-text-xs"
+        class="d-block px-3 py-1 text-dark text-nowrap
+        font-weight-light"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-left text-left'
@@ -17,7 +17,7 @@
         ]"
         href="/academic_calendar/"
       >
-        <span class="d-inline-block bg-light">
+        <span class="d-inline-block bg-light myuw-text-sm">
           <font-awesome-icon :icon="['far', 'calendar-alt']" />
           <span v-if="termData.isBreak">
             <span v-if="termData.breakYear !== termData.year">
@@ -31,16 +31,16 @@
           </span>
         </span>
         <span v-if="termData.isFinal"
-              class="text-dark d-block font-weight-bold myuw-text-md"
+              class="text-dark d-block font-weight-bold"
         >Finals Week</span>
         <span
           v-else-if="termData.isBreak"
-          class="text-dark d-block font-weight-bold myuw-text-md"
+          class="text-dark d-block font-weight-bold"
         >
           {{ ucfirst(termData.breakQuarter) }}
           Break
         </span>
-        <span v-else class="text-dark d-block font-weight-bold myuw-text-md">
+        <span v-else class="text-dark d-block font-weight-bold">
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
         </span>
@@ -50,9 +50,8 @@
       <div class="row float-md-right" style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
-          class="d-inline-block col px-3 py-2 ml-1
-          font-weight-light text-dark text-nowrap
-          myuw-text-xs"
+          class="d-inline-block col px-3 py-1 ml-1
+          font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -60,16 +59,16 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light">Student Husky</span>
-          <span class="text-dark d-block font-weight-bold myuw-text-md">
+          <span class="d-inline-block bg-light myuw-text-sm">
+            Student Husky</span>
+          <span class="text-dark d-block font-weight-bold">
             ${{ hfs.student_husky_card.balance.toFixed(2) }}
           </span>
         </a>
         <a
           v-if="hfs.resident_dining"
-          class="d-inline-block col px-3 py-2 ml-1
-          font-weight-light text-dark text-nowrap
-          myuw-text-xs"
+          class="d-inline-block col px-3 py-1 ml-1
+          font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -77,17 +76,17 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light">Resident Dining</span>
-          <span class="text-dark d-block font-weight-bold myuw-text-md">
+          <span class="d-inline-block bg-light myuw-text-sm">
+            Resident Dining</span>
+          <span class="text-dark d-block font-weight-bold">
             ${{ hfs.resident_dining.balance.toFixed(2) }}
           </span>
         </a>
 
         <a
           v-if="hfs.employee_husky_card"
-          class="d-inline-block col px-3 py-2 ml-1
-          font-weight-light text-dark text-nowrap
-          myuw-text-xs"
+          class="d-inline-block col px-3 py-1 ml-1
+          font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -95,16 +94,16 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light">Employee Husky</span>
-          <span class="text-dark d-block font-weight-bold myuw-text-md">
+          <span class="d-inline-block bg-light myuw-text-sm">
+            Employee Husky</span>
+          <span class="text-dark d-block font-weight-bold">
             ${{ hfs.employee_husky_card.balance.toFixed(2) }}
           </span>
         </a>
         <a
           v-if="library.next_due"
-          class="d-inline-block col px-3 py-2 ml-1
-          font-weight-light text-dark text-nowrap
-          myuw-text-xs"
+          class="d-inline-block col px-3 py-1 ml-1
+          font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -112,16 +111,16 @@
           ]"
           href="/accounts/"
         >
-          <span class="d-inline-block bg-light">Library Item Due</span>
-          <span class="text-dark d-block font-weight-bold myuw-text-md">
+          <span class="d-inline-block bg-light myuw-text-sm">
+            Library Item Due</span>
+          <span class="text-dark d-block font-weight-bold">
             {{ toFromNowDate(library.next_due) }}
           </span>
         </a>
         <a
           v-else-if="library.holds_ready"
-          class="d-inline-block col px-3 py-2 ml-1
-          font-weight-light text-dark text-nowrap
-          myuw-text-xs"
+          class="d-inline-block col px-3 py-1 ml-1
+          font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-left text-left'
@@ -131,10 +130,10 @@
           target="_blank"
           aria-label="Library Account Requests"
         >
-          <span class="d-inline-block bg-light">
+          <span class="d-inline-block bg-light myuw-text-sm">
             Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
           </span>
-          <span class="text-dark d-block font-weight-bold myuw-text-md">
+          <span class="text-dark d-block font-weight-bold">
             {{ library.holds_ready }}
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
           </span>

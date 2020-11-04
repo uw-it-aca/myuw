@@ -1,6 +1,16 @@
 <template>
   <div>
-    <div class="mb-4 d-flex">
+    <b-alert
+      v-if="isSummerQuarter && isFinalsTab && !hasMeetingsWithTime"
+      show
+      variant="primary"
+      class="myuw-text-md"
+    >
+      Most Summer quarter final examinations are given on the final meeting
+      day of the course instead of a final examination week. Consult with
+      your instructors when your final examinations will be.
+    </b-alert>
+    <div v-else class="mb-4 d-flex">
       <div class="flex-shrink-1 myuw-text-xs"
            aria-hidden="true"
       >
@@ -49,7 +59,7 @@
                   v-for="(meetingData, j) in
                     meetingMap[day][formatToUnique(time)]"
                   :key="j" :meeting-data="meetingData"
-                  :is-finals-card="isFinalsTab" :day="day"
+                  :is-finals-card="isFinalsTab" :day="day" :term="term"
                 />
               </div>
             </div>
@@ -76,7 +86,7 @@
               <uw-course-section
                 v-for="(meetingData, j) in
                   meetingMap[mobile['current']][formatToUnique(time)]"
-                :key="j" :meeting-data="meetingData"
+                :key="j" :meeting-data="meetingData" :term="term"
                 :is-finals-card="isFinalsTab" :day="mobile['current']"
               />
             </div>
@@ -92,7 +102,7 @@
       </p>
       <uw-course-section
         v-for="(eosSection, i) in period.eosData" :key="i"
-        :meeting-data="{section: eosSection}"
+        :meeting-data="{section: eosSection}" :term="term"
         :is-finals-card="false" class="d-inline-block w-auto mr-2"
       >
         <ol class="m-0 px-4 text-left">
@@ -132,8 +142,9 @@
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
            class="d-inline-block w-auto mr-2"
+           style="min-width:110px;"
       >
-        <uw-course-section :meeting-data="meeting" />
+        <uw-course-section :meeting-data="meeting" :term="term" />
       </div>
     </div>
   </div>
@@ -150,6 +161,10 @@ export default {
   },
   props: {
     period: {
+      type: Object,
+      required: true,
+    },
+    term: {
       type: Object,
       required: true,
     },
@@ -179,11 +194,14 @@ export default {
   },
   computed: {
     ...mapState({
-      quarterLastDate: (state) => dayjs(
-          state.termData.lastDay, 'dddd, MMMM D, YYYY',
-      ),
       today: (state) => dayjs(state.termData.todayDate),
     }),
+    quarterLastDate() {
+      return this.term.last_day_instruction;
+    },
+    isSummerQuarter() {
+      return this.term.quarter === 'summer';
+    },
   },
   created() {
     // Set if this tab is for finals
@@ -331,7 +349,16 @@ export default {
       let meetingsToAdd = [{
         section: section,
         meeting: meeting,
+        renderTime: null,
       }];
+
+      // Get time slot in 30 minutes interval
+      if (startTime.minute() > 30) {
+        startTime = startTime.add(30 - startTime.minute(), 'minutes');
+      } else if (startTime.minute() < 30 && startTime.minute() !== 0) {
+        startTime = startTime.subtract(startTime.minute(), 'minutes');
+      }
+      meetingsToAdd[0].renderTime = startTime;
 
       if (
         this.meetingMap[day][this.formatToUnique(startTime)] &&
@@ -351,15 +378,23 @@ export default {
     // Make a array of all the possible time slots with the interval
     // of this.timestep
     initializeTimeSlots() {
+      // Generate start time
       let start = this.period.earliestMeetingTime.clone();
-      if (start.minute() === 30) {
-        start = start.subtract(...this.timestep);
-      } else if (start.minute() === 0) {
-        start = start.subtract(...this.timestep).subtract(...this.timestep);
+      if (start.minute() === 0) {
+        start = start.subtract(1, 'hours');
+      } else if (start.minute() > 30) {
+        start = start.add(30 - start.minute(), 'minutes');
+      } else {
+        start = start.subtract(start.minute(), 'minutes');
       }
 
+      // Generate end time
       let end = this.period.latestMeetingTime.clone();
-      if (end.minute() !== 0 && end.minute() !== 30) {
+      if (end.minute() === 0) {
+        end = end.add(30, 'minutes');
+      } else if (end.minute() > 30) {
+        end = end.add(60 - end.minute(), 'minutes');
+      } else {
         end = end.add(30 - end.minute(), 'minutes');
       }
 

@@ -1,4 +1,4 @@
-import dayjs, { max } from 'dayjs';
+import dayjs from 'dayjs';
 import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')
@@ -6,18 +6,57 @@ dayjs.extend(customParseFormat)
 
 // Helper functions
 const isFinalPeriod = (period) => period.id === 'finals';
+const tryConvertDayJS = (obj, format=undefined) => {
+  if (obj) {
+    return dayjs(obj, format);
+  }
+  return obj;
+};
+const convertPeriodTimeAndDateToDateJSObj = (period) => {
+  period.start_date = tryConvertDayJS(period.start_date);
+  period.end_date = tryConvertDayJS(period.end_date);
+
+  // Convert inside every section
+  period.sections.forEach((section) => {
+    section.start_date = tryConvertDayJS(section.start_date);
+    section.end_date = tryConvertDayJS(section.end_date);
+
+    // Convert everything in the final_exam field
+    if (section.final_exam) {
+      section.final_exam.start_date =
+        tryConvertDayJS(section.final_exam.start_date);
+      section.final_exam.end_date =
+        tryConvertDayJS(section.final_exam.end_date);
+    }
+
+    // Convert inside every meeting
+    section.meetings.forEach((meeting) => {
+      meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
+      meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
+      meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
+      meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
+    });
+  });
+};
+const convertTermTimeAndDateToDateJSObj = (term) => {
+  term.aterm_last_date = tryConvertDayJS(term.aterm_last_date);
+  term.bterm_first_date = tryConvertDayJS(term.bterm_first_date);
+  term.first_day_quarter = tryConvertDayJS(term.first_day_quarter);
+  term.end_date = tryConvertDayJS(term.end_date);
+  term.last_day_instruction = tryConvertDayJS(term.last_day_instruction);
+  term.last_final_exam_date = tryConvertDayJS(term.last_final_exam_date);
+};
 
 const postProcess = (response, urlExtra) => {
   const schedule = setTermAndExtractData(response, urlExtra);
 
+  convertTermTimeAndDateToDateJSObj(schedule[urlExtra].term);
   schedule[urlExtra].periods.forEach((period) => {
+    // Do conversions to dayjs objects from time and date
+    convertPeriodTimeAndDateToDateJSObj(period);
     period.eosData = [];
 
     if (period.end_date && period.start_date) {
-      // Convert dates into dayjs objects
-      period.end_date = dayjs(period.end_date);
-      period.start_date = dayjs(period.start_date);
-
       // Construct the title
       period.title = period.start_date.format("MMM DD") +
                      ' - ' + period.end_date.format("MMM DD");
@@ -32,24 +71,27 @@ const postProcess = (response, urlExtra) => {
       let eosAlreadyAdded = false;
       // Skip if no exam is defined or no time is set
       if (section.final_exam && section.final_exam.start_date) {
-        section.final_exam.start_date = dayjs(
-          section.final_exam.start_date
-        ).second(0).millisecond(0);
-        section.final_exam.end_date = dayjs(
-          section.final_exam.end_date
-        ).second(0).millisecond(0);
-
         if (isFinalPeriod(period)) {
+          // Generate time relative to today so that it can be compared
+          let startTime = dayjs()
+            .hour(section.final_exam.start_date.hour())
+            .minute(section.final_exam.start_date.minute())
+            .second(0);
+          let endTime = dayjs()
+            .hour(section.final_exam.end_date.hour())
+            .minute(section.final_exam.end_date.minute())
+            .second(0);
+
           // Update min and max time if needed
           if (earliestTime === null && latestTime === null) {
-            earliestTime = section.final_exam.start_date;
-            latestTime = section.final_exam.end_date;
+            earliestTime = startTime;
+            latestTime = endTime;
           } else {
-            if (section.final_exam.start_date < earliestTime) {
-              earliestTime = section.final_exam.start_date;
+            if (startTime < earliestTime) {
+              earliestTime = startTime;
             }
-            if (section.final_exam.end_date > latestTime) {
-              latestTime = section.final_exam.end_date;
+            if (endTime > latestTime) {
+              latestTime = endTime;
             }
           }
         }
@@ -57,14 +99,12 @@ const postProcess = (response, urlExtra) => {
 
       section.meetings.forEach((meeting) => {
         // Skip if time and date are tdb or null anyways
-        if (!meeting.days_tbd && meeting.start_time && meeting.end_time) {
-          meeting.start_time = dayjs(
-            meeting.start_time, "hh:mm"
-          ).second(0).millisecond(0);
-          meeting.end_time = dayjs(
-            meeting.end_time, "hh:mm"
-          ).second(0).millisecond(0);
-
+        if (
+          !meeting.days_tbd &&
+          !meeting.no_meeting &&
+          meeting.start_time &&
+          meeting.end_time
+        ) {
           if (!isFinalPeriod(period)) {
             // Update min and max time if needed
             if (earliestTime === null && latestTime === null) {
@@ -83,11 +123,8 @@ const postProcess = (response, urlExtra) => {
 
         if (meeting.eos_start_date && meeting.eos_end_date) {
           meeting.start_end_same = (
-            meeting.eos_start_date === meeting.eos_end_date
+            meeting.eos_start_date.format() === meeting.eos_end_date.format()
           );
-
-          meeting.eos_start_date = dayjs(meeting.eos_start_date);
-          meeting.eos_end_date = dayjs(meeting.eos_end_date);
         }
 
         if (section.eos_cid && !eosAlreadyAdded) {

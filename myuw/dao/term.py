@@ -453,7 +453,7 @@ def add_term_data_to_context(request, context):
     context["last_day_instruction"] = cur_term.last_day_instruction
     context["aterm_last_date"] = cur_term.aterm_last_date
     context["bterm_first_date"] = cur_term.bterm_first_date
-
+    context["last_final_exam_date"] = cur_term.last_final_exam_date
     context["next_year"] = next_term.year
     context["next_quarter"] = next_term.quarter
 

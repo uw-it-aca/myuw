@@ -10,6 +10,8 @@ class TestAffilliationDao(TransactionTestCase):
     def setUp(self):
         get_request()
 
+    """
+    MUWM-4830
     def test_fyp(self):
         now_request = get_request_with_user('jnew')
         affiliations = get_all_affiliations(now_request)
@@ -30,16 +32,17 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertFalse(affiliations['fyp'])
         self.assertFalse(affiliations['aut_transfer'])
         self.assertTrue(affiliations['win_transfer'])
+    """
 
     def test_get_is_hxt_viewer(self):
         request = get_request_with_user('staff')
-        self.assertTrue(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[2])
         request = get_request_with_user('javg001')
-        self.assertTrue(get_is_hxt_viewer(request)[5])
+        self.assertTrue(get_is_hxt_viewer(request)[2])
         request = get_request_with_user('jbothell')
-        self.assertFalse(get_is_hxt_viewer(request)[5])
+        self.assertFalse(get_is_hxt_viewer(request)[2])
         request = get_request_with_user('seagrad')
-        self.assertFalse(get_is_hxt_viewer(request)[5])
+        self.assertFalse(get_is_hxt_viewer(request)[2])
 
     def test_is_instructor(self):
         now_request = get_request_with_user('bill')

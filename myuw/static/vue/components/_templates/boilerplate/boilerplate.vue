@@ -15,7 +15,7 @@
         </b-container>
       </div>
 
-      <b-collapse id="app_search" class="myuw-search bg-gold">
+      <b-collapse id="app_search" class="myuw-search bg-light">
         <uw-search />
       </b-collapse>
 
@@ -102,14 +102,34 @@
                 class="m-0"
               />
             </font-awesome-layers>
+            TOGGLE MENU
           </b-button>
           <h1
             class="d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
           >
-            <a href="/" class="text-white">
-              MyUW <span class="sr-only">Home</span>
-            </a>
+            <template v-if="$mq != 'desktop'">
+              <template v-if="pageTitle == 'Home'">
+                MyUW
+              </template>
+              <template v-else>
+                <span class="sr-only">MyUW</span>
+                <span aria-hidden="true">
+                  <template v-if="pageTitle.includes('Preview')">
+                    Preview Quarter
+                  </template>
+                  <template v-else-if="pageTitle.includes('Textbooks')">
+                    Textbooks
+                  </template>
+                  <template v-else>
+                    {{ pageTitle }}
+                  </template>
+                </span>
+              </template>
+            </template>
+            <template v-else>
+              MyUW
+            </template>
           </h1>
         </b-container>
       </div>
@@ -245,16 +265,13 @@
               <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
           </b-col>
-
-          <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
-            <!-- MARK: message banner display for mobile and tablet -->
-            <div style="margin-left: -10px; margin-right:-10px;">
-              <uw-messages />
-            </div>
-          </b-col>
-
-          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-3">
-            <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+          <b-col lg="10" role="main" aria-labelledby="mainHeader">
+            <h2
+              id="mainHeader"
+              class="mb-3 h3 text-dark myuw-font-encode-sans"
+              :class="[pageTitle == 'Home'
+                || $mq != 'desktop' ? 'sr-only' : '']"
+            >
               {{ pageTitle }}
             </h2>
             <b-row>
@@ -382,6 +399,14 @@ export default {
     pageTitle: (state) => state.pageTitle,
     disableActions: (state) => state.disableActions,
   }),
+  mounted() {
+    // MARK: google analytics gtag
+    this.$gtag.pageview({
+      page_location: window.location.href,
+      page_path: window.location.pathname,
+      page_title: this.pageTitle,
+    });
+  },
 };
 </script>
 

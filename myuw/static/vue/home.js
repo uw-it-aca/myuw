@@ -1,4 +1,4 @@
-import { Vue, vueConf } from './base.js';
+import {Vue, vueConf} from './base.js';
 
 // layout componenets
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
@@ -25,6 +25,7 @@ import ThankYou from './components/home/new_student/thank-you.vue';
 import SummerEfs from './components/home/new_student/summer-efs.vue';
 import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
+import Transcripts from './components/home/former_student/transcripts.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -56,10 +57,6 @@ vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 
 vueConf.store.commit('addVarToState', {
-  name: 'cardDisplayDates',
-  value: JSON.parse(document.getElementById('card_display_dates').innerHTML),
-});
-vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
   value: 'Home',
 });
@@ -84,6 +81,7 @@ Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-uwnetid', UWNetID);
+Vue.component('myuw-transcripts', Transcripts);
 
 new Vue({
   ...vueConf,

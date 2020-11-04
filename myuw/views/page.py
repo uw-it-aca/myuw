@@ -23,7 +23,8 @@ from myuw.logger.logresp import (
 from myuw.logger.session_log import (
     log_session, is_native, log_session_end)
 from myuw.util.settings import (
-    get_google_search_key, get_logout_url, no_access_check)
+    get_google_search_key, get_google_analytics_key, get_django_debug,
+    get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import (
     unknown_uwnetid, no_access, blocked_uwnetid, pws_error_404)
@@ -104,6 +105,8 @@ def page(request,
     context['enabled_features'] = get_enabled_features()
 
     context['google_search_key'] = get_google_search_key()
+    context['google_analytics_key'] = get_google_analytics_key()
+    context['google_tracking_enabled'] = not get_django_debug()
 
     if add_quicklink_context:
         _add_quicklink_context(request, context)
