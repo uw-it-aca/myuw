@@ -42,20 +42,22 @@
             information right now. Please try again later.
           </p>
         </template>
-        <uw-meeting-info
-          :section="section"
-          :show-row-heading="true"
-        />
-        <uw-resources
-          :section="section"
-          :course="course"
-          :show-row-heading="true"
-        />
-        <uw-instructors
-          v-if="section.is_ended && section.instructors.length > 0"
-          :instructors="section.instructors"
-          :show-row-heading="true"
-        />
+        <template v-else-if="!section.is_ended">
+          <uw-meeting-info
+            :section="section"
+            :show-row-heading="true"
+          />
+          <uw-resources
+            :section="section"
+            :course="course"
+            :show-row-heading="true"
+          />
+          <uw-instructors
+            v-if="section.is_ended && section.instructors.length > 0"
+            :instructors="section.instructors"
+            :show-row-heading="true"
+          />
+        </template>
       </template>
 
       <template #card-disclosure>
