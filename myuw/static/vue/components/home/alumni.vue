@@ -47,7 +47,7 @@
 
 <script>
 import {mapState} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../_templates/card.vue';
 
 export default {
   components: {
