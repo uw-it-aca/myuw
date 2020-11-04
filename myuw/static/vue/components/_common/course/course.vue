@@ -42,12 +42,19 @@
             information right now. Please try again later.
           </p>
         </template>
-
-        <uw-course-details
-          v-else-if="!section.is_ended"
-          :course="course"
+        <uw-meeting-info
           :section="section"
-          :show-row-heading="showRowHeading"
+          :show-row-heading="true"
+        />
+        <uw-resources
+          :section="section"
+          :course="course"
+          :show-row-heading="true"
+        />
+        <uw-instructors
+          v-if="section.is_ended && section.instructors.length > 0"
+          :instructors="section.instructors"
+          :show-row-heading="true"
         />
       </template>
 
@@ -56,10 +63,19 @@
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
-            <uw-course-details
-              :course="course"
+            <uw-meeting-info
               :section="section"
-              :show-row-heading="showRowHeading"
+              :show-row-heading="true"
+            />
+            <uw-resources
+              :section="section"
+              :course="course"
+              :show-row-heading="true"
+            />
+            <uw-instructors
+              v-if="section.is_ended && section.instructors.length > 0"
+              :instructors="section.instructors"
+              :show-row-heading="true"
             />
           </b-collapse>
         </template>
@@ -142,14 +158,16 @@
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
-import CourseDetails from './course-details.vue';
+import MeetingInfo from './meeting-info.vue';
+import Resources from './resources.vue';
 import Instructors from './instructors.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-course-details': CourseDetails,
     'uw-course-eval': EvalInfo,
+    'uw-meeting-info': MeetingInfo,
+    'uw-resources': Resources,
     'uw-instructors': Instructors,
   },
   props: {
