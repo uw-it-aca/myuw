@@ -68,16 +68,18 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex';
+import {mapGetters, mapActions, mapState} from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
   },
-  data: function() {
-    return {
-    };
+  props: {
+    term: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     ...mapState({
@@ -86,27 +88,22 @@ export default {
       isEmployee: (state) => state.user.affiliations.employee,
     }),
     ...mapGetters({
-      studentScheduleStatusCode: 'stud_schedule/statusCode',
+      studentScheduleStatusCode: 'stud_schedule/statusCodeTagged',
       noticeStatusCode: 'notices/statusCode',
+      profileStatusCode: 'profile/statusCode',
       /** These modules don't exist yet.
        * Commenting them for later implementation.
        * TODO: Implement the profile, instructorSchedule,
        * and directory api calls.
-      profileStatusCode: 'profile/statusCode',
       instructorScheduleStatusCode: 'instructorSchedule/statusCode',
       directoryStatusCode: 'directory/statusCode',
       */
     }),
     showOutageCard: function() {
       if (this.isStudent) {
-        if (this.studentScheduleStatusCode && this.noticeStatusCode
-        /** && this.profileStatusCode **/) {
-          if (this.non404Error(this.studentScheduleStatusCode) ||
-              this.non404Error(this.noticeStatusCode)
-              /** || non404Error(this.profileStatusCode) **/) {
-            return true;
-          }
-        }
+        return this.non404Error(this.studentScheduleStatusCode(this.term)) ||
+            this.non404Error(this.noticeStatusCode) ||
+            this.non404Error(this.profileStatusCode);
       }
       /** This is the logic for instructor and employee
       if (this.isInstructor) {
@@ -128,12 +125,40 @@ export default {
       return false;
     },
   },
+  created() {
+    if (this.isStudent) {
+      this.fetchSchedule(this.term);
+      this.fetchProfile();
+      this.fetchNotices();
+    }
+
+    if (this.isInstructor) {
+      // Fetch instructor data
+    }
+
+    if (this.isEmployee) {
+      // Fetch employee data
+    }
+  },
   methods: {
     // Client errors (400–499)
     // and Server errors (500–599).
     non404Error(statusCode) {
+      // The status codes could be undefined before page is loaded.
+      if (!statusCode) {
+        return false;
+      }
       return (statusCode < 600 && statusCode >= 400 && statusCode !== 404);
     },
+    ...mapActions('notices', {
+      fetchNotices: 'fetch',
+    }),
+    ...mapActions('stud_schedule', {
+      fetchSchedule: 'fetch',
+    }),
+    ...mapActions('profile', {
+      fetchProfile: 'fetch',
+    }),
   },
 };
 </script>

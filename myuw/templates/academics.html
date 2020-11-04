@@ -14,7 +14,7 @@
   <template #primary>
     <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
       <!--MARK: card components go here in order -->
-      <myuw-outage></myuw-outage>
+      <myuw-outage term="{{ term|default:"current" }}"></myuw-outage>
       <myuw-grades></myuw-grades>
       <myuw-course-cards></myuw-course-cards>
       <myuw-visual-schedule></myuw-visual-schedule>
