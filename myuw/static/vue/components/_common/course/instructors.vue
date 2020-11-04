@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- creates line spacer above instructor info -->
-    <div class="d-flex">
+    <div v-if="showRowHeading" class="d-flex">
       <div class="w-25">
         &nbsp;
       </div>
