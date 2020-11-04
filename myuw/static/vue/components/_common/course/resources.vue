@@ -1,12 +1,12 @@
 <template>
   <div class="d-flex">
     <h5 :class="[!showRowHeading ? 'sr-only' : '']"
-        class="w-25 h6 font-weight-bold text-danger"
+        class="w-25 font-weight-bold myuw-text-md"
     >
       Course Resources
     </h5>
     <div class="flex-fill">
-      <ul class="list-unstyled myuw-text-md">
+      <ul class="list-unstyled myuw-text-md mb-0">
         <li v-if="section.class_website_url" class="mb-1">
           <a
             :href="section.class_website_url"
