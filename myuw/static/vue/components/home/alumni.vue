@@ -14,25 +14,29 @@
       <ul>
         <li>
           <a href="https://www.washington.edu/alumni" target="_blank"
-             data-linklabel="Alumni Info">Alumni News, Events and Services
+             data-linklabel="Alumni Info"
+          >Alumni News, Events and Services
           </a>
         </li>
         <li>
           <a href="https://magazine.washington.edu/" target="_blank"
-             data-linklabel="Columns Magazine">Columns Magazine
+             data-linklabel="Columns Magazine"
+          >Columns Magazine
           </a>
         </li>
       </ul>
       <h4>
         University of Washington Alumni Association (UWAA)
       </h4>
-      <p>With 56,000 members, UWAA helps Huskies of all ages stay in touch
+      <p>
+        With 56,000 members, UWAA helps Huskies of all ages stay in touch
         and in the know.
       </p>
       <ul class="unstyled-list">
         <li>
           <a href="https://www.washington.edu/cms/alumni/membership/"
-            target="_blank" data-linklabel="Alumni Association">
+             target="_blank" data-linklabel="Alumni Association"
+          >
             Learn about the UWAA
           </a>
         </li>
