@@ -265,14 +265,12 @@
               <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
           </b-col>
-          
           <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
             <!-- MARK: message banner display for mobile and tablet -->
             <div style="margin-left: -10px; margin-right:-10px;">
               <uw-messages />
             </div>
           </b-col>
-
           <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-3">
             <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
