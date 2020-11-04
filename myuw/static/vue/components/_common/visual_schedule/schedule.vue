@@ -34,7 +34,7 @@
         </b-tab>
       </b-tabs>
       <!-- TODO: charlon style this, use billpce on 2019-06-26 to test it -->
-      <p v-if="offTerm.length > 0">
+      <p v-if="offTerm.length > 0" class="m-0 text-muted myuw-text-md">
         Note:
         <span v-for="(termData, i) in offTerm" :key="i">
           {{ termData.section }} course continues until
