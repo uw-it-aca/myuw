@@ -50,7 +50,7 @@ const customGetters = {
     if (instructedCourseData) {
       instructedCourseData.sections.forEach((section, i) => {
         const sectionBook = makeSectionData(i, section, false);
-        processedData.enrolledSections.push(sectionBook);
+        processedData.teachingSections.push(sectionBook);
         processedData.sections.push(sectionBook);
       })
     }

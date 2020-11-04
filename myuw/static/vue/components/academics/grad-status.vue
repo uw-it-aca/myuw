@@ -6,39 +6,43 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Graduate Request Status
       </h3>
     </template>
     <template #card-body>
       <div v-if="petitions">
         <div id="petition-reqs">
-          <h4>Petition Requests</h4>
-
-          <ul v-for="(petition, index) in petitions" :key="index">
-            <li>
-              <h5>{{ petition.description }}</h5>
-              <ul>
-                <li v-if="petition.dept_recommend">
-                  <div>
-                    <span> Department Recommendation </span>
-                  </div>
-                  <span>
-                    <span>
-                      {{ petition.dept_recommend }}
-                    </span>
-                  </span>
-                </li>
-
-                <li v-if="petition.gradschool_decision">
-                  <div>
-                    <span> Graduate School Decision </span>
-                  </div>
-                  <span>
-                    {{ petition.gradschool_decision }}
-                  </span>
-                </li>
-              </ul>
+          <h4 class="h5 text-dark-beige">
+            Petition Requests
+          </h4>
+          <ul v-for="(petition, index) in petitions" :key="index"
+              class="list-unstyled myuw-text-md"
+          >
+            <li class="mb-3">
+              <h5 class="h6 mb-0">
+                {{ petition.description }}
+              </h5>
+              <div v-if="petition.dept_recommend"
+                   class="d-flex font-weight-bold"
+              >
+                <div class="flex-fill w-50">
+                  Department Recommendation
+                </div>
+                <div class="flex-fill w-50 text-right">
+                  {{ petition.dept_recommend }}
+                </div>
+              </div>
+              <div v-if="petition.gradschool_decision"
+                   class="d-flex font-weight-bold"
+              >
+                <div class="flex-fill w-50">
+                  Graduate School Decision
+                </div>
+                <div class="flex-fill w-50 text-right">
+                  {{ petition.gradschool_decision }}
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -46,53 +50,71 @@
 
       <div v-if="leaves">
         <div id="leave-reqs">
-          <h4>Leave Requests</h4>
-
-          <ul v-for="(leave, index) in leaves" :key="index">
+          <h4 class="h5 text-dark-beige">
+            Leave Requests
+          </h4>
+          <ul v-for="(leave, index) in leaves" :key="index"
+              class="list-unstyled myuw-text-md"
+          >
             <li>
-              <h5>
+              <h5 class="h6 mb-0">
                 <template v-for="(term, termIndex) in leave.terms">
                   <span v-if="termIndex > 0" :key="termIndex">, </span>
                   {{ term.quarter + " " + term.year }}
                 </template> Leave
               </h5>
-              <div>Status</div>
-              <span v-if="leave.status === 'Approved'">
-                Approved<br>
-                <a
-                  target="_blank"
-                  href="https://apps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
-                  data-linklabel="MyGrad Payment Portal"
-                >Pay Your Fee To Confirm</a>
-              </span>
-              <span v-else>
-                {{ leave.status }}
-              </span>
+              <div class="d-flex font-weight-bold">
+                <div class="flex-fill w-50">
+                  Status
+                </div>
+                <div class="flex-fill w-50 text-right">
+                  <span v-if="leave.status === 'Approved'">
+                    Approved<br>
+                    <a
+                      target="_blank"
+                      href="https://webapps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
+                      data-linklabel="MyGrad Payment Portal"
+                      class="font-weight-normal"
+                    >Pay Your Fee To Confirm</a>
+                  </span>
+                  <span v-else>
+                    {{ leave.status }}
+                  </span>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
       </div>
 
       <div v-if="degrees">
-        <h4>Degree and Exam Requests</h4>
-        <ul v-for="(degree, index) in degrees" :key="index">
+        <h4 class="h5 text-dark-beige">
+          Degree and Exam Requests
+        </h4>
+        <ul v-for="(degree, index) in degrees" :key="index"
+            class="list-unstyled myuw-text-md"
+        >
           <li>
-            <h5>
+            <h5 class="h6 mb-0">
               {{ degree.req_type }}, {{ degree.target_award_quarter }}
               {{ degree.target_award_year }}
             </h5>
             <div>
               {{ degree.degree_title }}
             </div>
-            <div>
-              <span>Status</span>
+            <div class="d-flex font-weight-bold">
+              <div class="flex-fill w-50">
+                Status
+              </div>
+              <div class="flex-fill w-50 text-right">
+                {{ degree.status }}
+              </div>
             </div>
-            <span>{{ degree.status }}</span>
           </li>
         </ul>
       </div>
 
-      <div>
+      <div class="text-right myuw-text-md">
         <a
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
           data-linklabel="MyGrad"

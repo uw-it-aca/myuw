@@ -5,7 +5,6 @@
 {% load set_context %}
 
 {% block django_json_data %}
-    {{ card_display_dates|json_script:'card_display_dates' }}
 {% endblock django_json_data %}
 
 {% block body_content %}
@@ -17,22 +16,21 @@
       <!--MARK: card components go here in order -->
       <myuw-outage></myuw-outage>
       <myuw-grades></myuw-grades>
-      <myuw-all-courses></myuw-all-courses>
+      <myuw-course-cards></myuw-course-cards>
       <myuw-visual-schedule></myuw-visual-schedule>
       <myuw-textbooks term="{{ term|default:"current" }}"></myuw-textbooks>
       <myuw-grad-status></myuw-grad-status>
-      <!-- <myuw-grad-committee></myuw-grad-committee> -->
+      <myuw-grad-committee></myuw-grad-committee>
       <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
-
+      <myuw-sidebar-links mobile-only></myuw-sidebar-links>
     </b-col>
   </template>
   <!-- MARK: #secondary template (column 2, table/desktop) -->
   <template #secondary>
     <b-col md="4">
       <!--MARK: card components go here in order -->
-      right content
-      <!-- <myuw-sidebar-links></myuw-sidebar-links> -->
+      <myuw-sidebar-links></myuw-sidebar-links>
     </b-col>
   </template>
 </myuw-boilerplate>

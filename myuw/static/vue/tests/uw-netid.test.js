@@ -15,7 +15,7 @@ import {
 
 import mockProfileData from './mock_data/profile/jinter.json';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 library.add(faExclamationTriangle);
 

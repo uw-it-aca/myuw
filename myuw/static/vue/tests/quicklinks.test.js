@@ -21,7 +21,7 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
-const localVue = createLocalVue();
+const localVue = createLocalVue(Vuex);
 
 library.add(faExclamationTriangle);
 library.add(faPencilAlt);

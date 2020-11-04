@@ -3,7 +3,7 @@
            :loaded="isReady" :errored="isErrored" :mobile-only="mobileOnly"
   >
     <template #card-heading>
-      <h3 class="text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Events
       </h3>
     </template>

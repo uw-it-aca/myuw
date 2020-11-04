@@ -14,7 +14,7 @@
           </div>
           <div>
             <span class="d-block">
-              {{ ucfirst(section.meetings[0].type) }}
+              {{ ucfirst(section.section_type) }}
             </span>
             <span
               v-if="section.is_primary_section && section.for_credit"
@@ -24,74 +24,135 @@
             </span>
           </div>
         </div>
-        <span v-if="section.summer_term">
+        <div v-if="section.summer_term">
           Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
-        </span>
+        </div>
+        <div v-if="section.cc_display_dates">
+          Dates: {{ sectionFormattedDates(section) }}
+        </div>
+        <div v-if="section.on_standby">
+          Your status: On Standby
+        </div>
       </template>
+
       <template #card-body>
-        <b-container fluid class="px-0">
-          <b-row no-gutters>
-            <b-col v-if="showRowHeading" cols="3">
-              Meeting Time
-            </b-col>
-            <uw-meeting-info :meetings="section.meetings" />
-          </b-row>
-          <b-row no-gutters>
-            <b-col v-if="showRowHeading" cols="3">
-              Meeting Time
-            </b-col>
-            <uw-resources :section="section" :course="course" />
-          </b-row>
-        </b-container>
+        <uw-course-eval
+          v-if="isReadyEval && getSectionEval(section.index).length > 0"
+          :eval-data="getSectionEval(section.index)"
+          :section="section"
+        />
+        <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
+          <p>
+            <i class="fa fa-exclamation-triangle" />
+            An error has occurred and MyUW cannot display the course evaluation
+            information right now. Please try again later.
+          </p>
+        </template>
+        <uw-course-details
+          v-else-if="!section.is_ended"
+          :course="course"
+          :section="section"
+          :show-row-heading="showRowHeading "
+        />
       </template>
+
       <template #card-disclosure>
-        <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
-          <uw-instructor-info
-            v-if="instructors"
-            :instructors="instructors"
-          />
-        </b-collapse>
+        <template
+          v-if="section.is_ended || getSectionEval(section.index).length > 0"
+        >
+          <b-collapse :id="`course-details-${index}`" v-model="isOpen">
+            <uw-course-details
+              :course="course"
+              :section="section"
+              :show-row-heading="showRowHeading "
+            />
+          </b-collapse>
+        </template>
+        <template v-else>
+          <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
+            <uw-instructor-info
+              v-if="section.instructors.length > 0"
+              :instructors="section.instructors"
+            />
+          </b-collapse>
+        </template>
       </template>
+
       <template #card-footer>
-        <span v-if="instructors.length > 0">
+        <template
+          v-if="section.is_ended || getSectionEval(section.index).length > 0"
+        >
           <b-button
             v-if="!isOpen"
-            v-b-toggle="`instructors-collapse-${index}`"
+            v-b-toggle="`course-details-${index}`"
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
+            aria-label="SHOW COURSE DETAILS"
+            title="Expand to show course details"
           >
-            SHOW INSTRUCTORS
+            SHOW COURSE DETAILS
           </b-button>
           <b-button
             v-else
-            v-b-toggle="`instructors-collapse-${index}`"
+            v-b-toggle="`course-details-${index}`"
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
+            aria-label="HIDE COURSE DETAILS"
+            title="Collapse to hide course details"
           >
-            HIDE INSTRUCTORS
+            HIDE COURSE DETAILS
           </b-button>
-        </span>
-        <span v-else>
-          No instructor information available
-        </span>
+        </template>
+
+        <template v-else>
+          <span v-if="section.instructors.length > 0">
+            <b-button
+              v-if="!isOpen"
+              v-b-toggle="`instructors-collapse-${index}`"
+              variant="link"
+              size="sm"
+              class="w-100 p-0 border-0 text-dark"
+              aria-label="SHOW INSTRUCTORS"
+              title="Expand to show instructors"
+            >
+              SHOW INSTRUCTORS
+            </b-button>
+            <b-button
+              v-else
+              v-b-toggle="`instructors-collapse-${index}`"
+              variant="link"
+              size="sm"
+              class="w-100 p-0 border-0 text-dark"
+              aria-label="HIDE INSTRUCTORS"
+              title="Collapse to hide instructors"
+            >
+              HIDE INSTRUCTORS
+            </b-button>
+          </span>
+          <span v-else>
+            No instructor information available
+          </span>
+        </template>
       </template>
     </uw-card>
   </div>
 </template>
 
 <script>
+import {mapGetters, mapState} from 'vuex';
+import dayjs from 'dayjs';
 import Card from '../../_templates/card.vue';
-import MeetingInfo from './meeting-info.vue';
-import Resources from './resources.vue';
+import EvalInfo from './course-eval.vue';
+import CourseDetails from './course-details.vue';
 import InstructorInfo from './instructor-info.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-meeting-info': MeetingInfo,
-    'uw-resources': Resources,
+    'uw-course-details': CourseDetails,
+    'uw-course-eval': EvalInfo,
     'uw-instructor-info': InstructorInfo,
   },
   props: {
@@ -118,19 +179,32 @@ export default {
     };
   },
   computed: {
-    instructors() {
-      const seenUWRegId = new Set();
-      return this.section.meetings.map(
-          (s) => s.instructors || [],
-      ).flat().filter((i) => {
-        if (seenUWRegId.has(i.uwregid)) return false;
-        seenUWRegId.add(i.uwregid);
-        return true;
-      }).sort((i1, i2) => {
-        if (i1.surname < i2.surname) return -1;
-        if (i1.surname > i2.surname) return 1;
-        return 0;
-      });
+    ...mapState('iasystem', {
+      evalData(state) {
+        return state.value;
+      },
+    }),
+    ...mapGetters('iasystem', {
+      isReadyEval: 'isReady',
+      isErroredEval: 'isErrored',
+      statusCodeEvals: 'statusCode',
+    }),
+  },
+  methods: {
+    sectionFormattedDates(section) {
+      return `${
+        dayjs(section.start_date).format('MMM D')
+      } - ${dayjs(section.end_date).format('MMM D')}`;
+    },
+    getSectionEval(index) {
+      if (
+        this.evalData &&
+        this.evalData.sections &&
+        this.evalData.sections[index]
+      ) {
+        return this.evalData.sections[index].evaluation_data || [];
+      }
+      return [];
     },
   },
 };

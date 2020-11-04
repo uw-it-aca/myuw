@@ -9,9 +9,15 @@
         :course="course" :section="section" :index="i"
       />
     </div>
+    <uw-no-course-card
+      v-else-if="isErrored && statusCodeTagged(term) == 404" loaded
+      :quarter="quarter" :summer-term="summerTerm"
+    />
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
-        Schedule &amp; Course Info
+        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+          Schedule &amp; Course Info
+        </h3>
       </template>
     </uw-card>
   </div>
@@ -19,28 +25,31 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../_templates/card.vue';
-import CourseCard from '../_common/course/course.vue';
+import Card from '../../_templates/card.vue';
+import CourseCard from './course.vue';
+import NoCourseCard from './no-course.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-course-card': CourseCard,
+    'uw-no-course-card': NoCourseCard,
   },
   props: {
     mobileOnly: {
       type: Boolean,
       default: false,
     },
-  },
-  data: function() {
-    return {
-      term: 'current',
-    };
+    term: {
+      type: String,
+      default: 'current',
+    },
   },
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
+      quarter: (state) => state.termData.quarter,
+      summerTerm: (state) => state.termData.summer_term,
     }),
     ...mapState('stud_schedule', {
       course(state) {
@@ -50,6 +59,7 @@ export default {
     ...mapGetters('stud_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
+      statusCodeTagged: 'statusCodeTagged',
     }),
     isReady() {
       return this.isReadyTagged(this.term);
@@ -59,10 +69,19 @@ export default {
     },
   },
   created() {
-    if (this.student) this.fetch(this.term);
+    if (this.student) {
+      this.fetchStudSche(this.term);
+      this.fetchEvalData();
+    }
   },
+
   methods: {
-    ...mapActions('stud_schedule', ['fetch']),
+    ...mapActions('stud_schedule', {
+      fetchStudSche: 'fetch',
+    }),
+    ...mapActions('iasystem', {
+      fetchEvalData: 'fetch',
+    }),
   },
 };
 </script>

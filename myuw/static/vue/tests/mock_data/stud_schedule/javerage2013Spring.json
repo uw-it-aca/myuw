@@ -1,0 +1,766 @@
+{
+  "year": 2013,
+  "quarter": "spring",
+  "term": {
+    "quarter": "Spring",
+    "year": 2013,
+    "label": "2013,spring",
+    "last_day_add": "2013-04-21",
+    "last_day_drop": "2013-05-19",
+    "first_day_quarter": "2013-04-01",
+    "census_day": "2013-04-12",
+    "last_day_instruction": "2013-06-07",
+    "grading_period_open": "2020-10-25 17:00:00",
+    "aterm_grading_period_open": "2020-10-25 17:00:00",
+    "grade_submission_deadline": "2020-10-27 17:00:00",
+    "registration_periods": [
+      {
+        "start": "2013-02-15",
+        "end": "2013-03-03"
+      },
+      {
+        "start": "2013-03-04",
+        "end": "2013-03-31"
+      },
+      {
+        "start": "2013-04-01",
+        "end": "2013-04-07"
+      }
+    ],
+    "time_schedule_published": {
+      "bothell": true,
+      "seattle": true,
+      "tacoma": true
+    },
+    "last_final_exam_date": "2013-06-14 23:59:59"
+  },
+  "sections": [
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "121",
+      "section_id": "A",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "MECHANICS",
+      "course_campus": "Seattle",
+      "course_description": "Basic principles of mechanics and experiments in mechanics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 114 and PHYS 121. Prerequisite: either MATH 124 or MATH 134, which may be taken concurrently; recommended: one year high school physics. Offered: AWSpS.",
+      "class_website_url": "http://courses.washington.edu/pedigo/phys121sum12/",
+      "sln": 18529,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 220,
+      "limit_estimate_enrollment": 220,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": true,
+            "tuesday": null,
+            "wednesday": true,
+            "thursday": null,
+            "friday": true,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "09:30",
+          "end_time": "11:20",
+          "building_tbd": false,
+          "building": "PAA",
+          "room_tbd": false,
+          "room": "A102",
+          "room_number": "A102",
+          "instructors": [],
+          "is_remote": false,
+          "latitude": 47.652991135758,
+          "longitude": -122.31110674603,
+          "building_name": "Physics / Astronomy Auditorium (PAA)"
+        },
+        {
+          "index": "2",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "thursday": true,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "17:00",
+          "end_time": "18:20",
+          "building_tbd": false,
+          "building": "PAA",
+          "room_tbd": false,
+          "room": "A102",
+          "room_number": "A102",
+          "instructors": [
+            {
+              "uwnetid": "mwinslowe",
+              "uwregid": "6DF0A9206A7D11D5A4AE0004AC494FFE",
+              "is_test_entity": true,
+              "first_name": "Jim",
+              "surname": "WINSLOWE",
+              "full_name": "Bags",
+              "display_name": "Jim Bags",
+              "whitepages_publish": false,
+              "employee_id": "123456789",
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": "Math",
+              "publish_in_emp_directory": true,
+              "student_number": "1443336",
+              "student_system_key": "000083857",
+              "student_class": null,
+              "student_departments": [
+                "Math"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "mwinslowe",
+              "uwregid": "6DF0A9206A7D11D5A4AE0004AC494FFE",
+              "is_test_entity": true,
+              "first_name": "Jim",
+              "surname": "WINSLOWE",
+              "full_name": "Bags",
+              "display_name": "Jim Bags",
+              "whitepages_publish": false,
+              "employee_id": "123456789",
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": "Math",
+              "publish_in_emp_directory": true,
+              "student_number": "1443336",
+              "student_system_key": "000083857",
+              "student_class": null,
+              "student_departments": [
+                "Math"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "mwinslowe",
+              "uwregid": "6DF0A9206A7D11D5A4AE0004AC494FFE",
+              "is_test_entity": true,
+              "first_name": "Jim",
+              "surname": "WINSLOWE",
+              "full_name": "Bags",
+              "display_name": "Jim Bags",
+              "whitepages_publish": false,
+              "employee_id": "123456789",
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": "Math",
+              "publish_in_emp_directory": true,
+              "student_number": "1443336",
+              "student_system_key": "000083857",
+              "student_class": null,
+              "student_departments": [
+                "Math"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "mwinslowe",
+              "uwregid": "6DF0A9206A7D11D5A4AE0004AC494FFE",
+              "is_test_entity": true,
+              "first_name": "Jim",
+              "surname": "WINSLOWE",
+              "full_name": "Bags",
+              "display_name": "Jim Bags",
+              "whitepages_publish": false,
+              "employee_id": "123456789",
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": "Math",
+              "publish_in_emp_directory": true,
+              "student_number": "1443336",
+              "student_system_key": "000083857",
+              "student_class": null,
+              "student_departments": [
+                "Math"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.652991135758,
+          "longitude": -122.31110674603,
+          "building_name": "Physics / Astronomy Auditorium (PAA)"
+        }
+      ],
+      "for_credit": true,
+      "credits": "5.0",
+      "is_auditor": false,
+      "grade": "4.0",
+      "grade_date": "2013-06-12",
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": false,
+        "no_exam_or_nontraditional": false,
+        "is_remote": false
+      },
+      "color_id": 3,
+      "on_standby": 0,
+      "canvas_url": "https://canvas.uw.edu/courses/249652",
+      "lib_subj_guide": "http://guides.lib.uw.edu/friendly.php?s=research/physics_astronomy",
+      "has_eos_dates": false,
+      "index": 0
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "121",
+      "section_id": "AC",
+      "eos_cid": null,
+      "is_primary_section": false,
+      "is_independent_study": false,
+      "section_type": "quiz",
+      "independent_study_instructor_regid": null,
+      "course_title": "MECHANICS",
+      "course_campus": "Seattle",
+      "course_description": "Basic principles of mechanics and experiments in mechanics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 114 and PHYS 121. Prerequisite: either MATH 124 or MATH 134, which may be taken concurrently; recommended: one year high school physics. Offered: AWSpS.",
+      "class_website_url": "http://courses.washington.edu/pedigo/phys121sum12/",
+      "sln": 18532,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 22,
+      "limit_estimate_enrollment": 22,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "quiz",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": true,
+            "wednesday": null,
+            "thursday": null,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "14:30",
+          "end_time": "15:20",
+          "building_tbd": false,
+          "building": "PAB",
+          "room_tbd": false,
+          "room": "B164",
+          "room_number": "B164",
+          "instructors": [],
+          "is_remote": false,
+          "latitude": 47.653644681181,
+          "longitude": -122.311302,
+          "building_name": "Physics / Astronomy Building (PAB)"
+        }
+      ],
+      "for_credit": true,
+      "credits": "3.0",
+      "is_auditor": false,
+      "grade": "4.0",
+      "grade_date": "2013-06-11",
+      "grading_system": "",
+      "is_remote": false,
+      "color_id": "3a",
+      "on_standby": 0,
+      "canvas_url": "https://canvas.uw.edu/courses/249652",
+      "lib_subj_guide": "http://guides.lib.uw.edu/friendly.php?s=research/physics_astronomy",
+      "has_eos_dates": false,
+      "index": 1
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "121",
+      "section_id": "AQ",
+      "eos_cid": null,
+      "is_primary_section": false,
+      "is_independent_study": false,
+      "section_type": "laboratory",
+      "independent_study_instructor_regid": null,
+      "course_title": "MECHANICS",
+      "course_campus": "Seattle",
+      "course_description": "Basic principles of mechanics and experiments in mechanics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 114 and PHYS 121. Prerequisite: either MATH 124 or MATH 134, which may be taken concurrently; recommended: one year high school physics. Offered: AWSpS.",
+      "class_website_url": "http://courses.washington.edu/pedigo/phys121sum12/",
+      "sln": 18545,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 22,
+      "limit_estimate_enrollment": 22,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "laboratory",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": true,
+            "thursday": null,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "10:30",
+          "end_time": "12:20",
+          "building_tbd": false,
+          "building": "PAB",
+          "room_tbd": false,
+          "room": "B108",
+          "room_number": "B108",
+          "instructors": [],
+          "is_remote": false,
+          "latitude": 47.653644681181,
+          "longitude": -122.311302,
+          "building_name": "Physics / Astronomy Building (PAB)"
+        }
+      ],
+      "for_credit": true,
+      "credits": "1.5",
+      "is_auditor": false,
+      "grade": "3.5",
+      "grade_date": "2013-06-11",
+      "grading_system": "",
+      "is_remote": false,
+      "color_id": "3a",
+      "on_standby": 0,
+      "canvas_url": "https://canvas.uw.edu/courses/249652",
+      "has_eos_dates": false,
+      "index": 2
+    },
+    {
+      "curriculum_abbr": "TRAIN",
+      "course_number": "100",
+      "section_id": "A",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "SCRUM MASTER",
+      "course_campus": "Seattle",
+      "course_description": null,
+      "class_website_url": "http://localhost/page404",
+      "sln": 13830,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 0,
+      "limit_estimate_enrollment": 0,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": true,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "thursday": null,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": true,
+          "start_time": null,
+          "end_time": null,
+          "building_tbd": true,
+          "building": "*",
+          "room_tbd": true,
+          "room": "*",
+          "room_number": "*",
+          "instructors": [
+            {
+              "uwnetid": "bill",
+              "uwregid": "FBB38FE46A7C11D5A4AE0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "BILL AVERAGE",
+              "surname": "TEACHER",
+              "full_name": "BILL AVERAGE TEACHER",
+              "display_name": "BILL AVERAGE TEACHER",
+              "whitepages_publish": true,
+              "employee_id": "123456782",
+              "addresses": [
+                "Seattle, WA 98105"
+              ],
+              "email_addresses": [
+                "bill@uw.edu"
+              ],
+              "faxes": [
+                "+1 425 111-1111"
+              ],
+              "mobiles": [
+                "+1 425 666-6666"
+              ],
+              "pagers": [
+                "+1 425-555-1237"
+              ],
+              "phones": [
+                "+1 206 333-3333",
+                "+1 425 555-1236"
+              ],
+              "voice_mails": [
+                "+1 425 222-2222"
+              ],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "Family Medicine",
+                  "title": "Associate Professor",
+                  "is_primary": true
+                },
+                {
+                  "department": "Family Medicine",
+                  "title": "Associate Professor - Non Salaried",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "354744",
+              "home_department": "Family Medicine",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000995897",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            }
+          ],
+          "is_remote": false
+        }
+      ],
+      "for_credit": true,
+      "credits": "1.5",
+      "is_auditor": false,
+      "grade": "P",
+      "grade_date": "2013-06-10",
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-10 08:30",
+        "end_date": "2013-06-10 10:20",
+        "building": "*",
+        "room_number": "*",
+        "room": "*",
+        "is_remote": false
+      },
+      "color_id": 1,
+      "on_standby": 0,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/friendly.php?s=research/pnw",
+      "has_eos_dates": false,
+      "index": 3
+    },
+    {
+      "curriculum_abbr": "TRAIN",
+      "course_number": "101",
+      "section_id": "A",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "INTRO TRAIN I",
+      "course_campus": "Seattle",
+      "course_description": null,
+      "class_website_url": "",
+      "sln": 13833,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 0,
+      "limit_estimate_enrollment": 5,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": true,
+            "tuesday": true,
+            "wednesday": null,
+            "thursday": null,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "08:30",
+          "end_time": "09:20",
+          "building_tbd": true,
+          "building": "*",
+          "room_tbd": true,
+          "room": "*",
+          "room_number": "*",
+          "instructors": [
+            {
+              "uwnetid": "bill",
+              "uwregid": "FBB38FE46A7C11D5A4AE0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "BILL AVERAGE",
+              "surname": "TEACHER",
+              "full_name": "BILL AVERAGE TEACHER",
+              "display_name": "BILL AVERAGE TEACHER",
+              "whitepages_publish": true,
+              "employee_id": "123456782",
+              "addresses": [
+                "Seattle, WA 98105"
+              ],
+              "email_addresses": [
+                "bill@uw.edu"
+              ],
+              "faxes": [
+                "+1 425 111-1111"
+              ],
+              "mobiles": [
+                "+1 425 666-6666"
+              ],
+              "pagers": [
+                "+1 425-555-1237"
+              ],
+              "phones": [
+                "+1 206 333-3333",
+                "+1 425 555-1236"
+              ],
+              "voice_mails": [
+                "+1 425 222-2222"
+              ],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "Family Medicine",
+                  "title": "Associate Professor",
+                  "is_primary": true
+                },
+                {
+                  "department": "Family Medicine",
+                  "title": "Associate Professor - Non Salaried",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "354744",
+              "home_department": "Family Medicine",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000995897",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "bill100",
+              "uwregid": "FBB38FE46A7C11D5A4AE0004AC494100",
+              "is_test_entity": false,
+              "first_name": "BILL100 AVERAGE",
+              "surname": "TEACHER",
+              "full_name": "BILL100 TEACHER",
+              "display_name": "BILL AVERAGE TEACHER",
+              "whitepages_publish": true,
+              "employee_id": "123456782",
+              "addresses": [
+                "Seattle, WA 98105"
+              ],
+              "email_addresses": [
+                "bill100@uw.edu"
+              ],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [
+                "+1 425-555-1237"
+              ],
+              "phones": [
+                "+1 206 555-1235"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "Family Medicine",
+                  "title": "Dept Admin",
+                  "is_primary": true
+                }
+              ],
+              "mailstop": "354744",
+              "home_department": "Family Medicine",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000995897",
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "javerage",
+              "uwregid": "F5D57F346AF811D5BFCC0004AC494FFE",
+              "is_test_entity": true,
+              "first_name": "EIGHT CLASS",
+              "surname": "INSTRUCTOR",
+              "full_name": "EIGHT CLASS STUDENT",
+              "display_name": "EIGHT CLASS INSTRUCTOR",
+              "whitepages_publish": true,
+              "employee_id": "903456789",
+              "addresses": [
+                "750 Republican St Bldg E room E691A Seattle, WA 98109"
+              ],
+              "email_addresses": [
+                "eight@uw.edu"
+              ],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "206 685-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": "C&C TEST BUDGET",
+              "publish_in_emp_directory": true,
+              "student_number": "1443336",
+              "student_system_key": "000083857",
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false
+        }
+      ],
+      "for_credit": true,
+      "credits": "1.0",
+      "is_auditor": false,
+      "grade": "X",
+      "grade_date": null,
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": false,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-14 13:30",
+        "end_date": "2013-06-14 16:20",
+        "building": "KNE",
+        "room_number": "012",
+        "room": "012",
+        "is_remote": false,
+        "longitude": -122.309198619,
+        "latitude": 47.6565514399,
+        "building_name": "Kane Hall (KNE)"
+      },
+      "color_id": 2,
+      "on_standby": 0,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "has_eos_dates": false,
+      "index": 4
+    }
+  ],
+  "registered_summer_terms": {},
+  "has_eos_dates": false
+}

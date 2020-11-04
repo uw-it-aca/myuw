@@ -64,15 +64,21 @@ export default {
       type: String,
       default: null,
     },
+    term: {
+      type: Object,
+      required: true,
+    },
   },
   computed: {
     ...mapState({
       netid: (state) => state.user.netid,
-      quarter: (state) => state.termData.quarter.replace(
-          /^([a-z])/, (c) => c.toUpperCase(),
-      ),
-      year: (state) => state.termData.year,
     }),
+    quarter() {
+      return this.ucfirst(this.term.quarter);
+    },
+    year() {
+      return this.term.year;
+    },
     computedStyles: function() {
       if (this.meetingData.meeting && !this.meetingData.meeting.no_meeting) {
         const startTime = (
@@ -87,7 +93,10 @@ export default {
         if (startTime && endTime) {
           return {
             'height': `${(this.getMFM(endTime) - this.getMFM(startTime))*35/30}px`,
-            'margin-top': '-1px',
+            'margin-top': `${
+              startTime.minute() -
+              (this.meetingData.renderTime.minute() + 1)
+            }px`,
           };
         }
       }
