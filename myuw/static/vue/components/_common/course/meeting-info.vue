@@ -1,31 +1,56 @@
 <template>
   <div>
-    <div v-if="section.summer_term" class="myuw-text-md">
-      Summer
-      {{
-        section.summer_term
-          .split('-')
-          .map(ucfirst)
-          .join('-')
-      }}
+    <div v-if="section.summer_term" class="d-flex">
+      <h5
+        :class="[!showRowHeading ? 'sr-only' : '']"
+        class="w-25 font-weight-bold myuw-text-md"
+      >
+        Term
+      </h5>
+      <div class="flex-fill myuw-text-md">
+        Summer
+        {{
+          section.summer_term
+            .split('-')
+            .map(ucfirst)
+            .join('-')
+        }}
+      </div>
     </div>
-    <div v-if="section.cc_display_dates" class="myuw-text-md">
-      Dates: {{ sectionFormattedDates(section) }}
+
+    <div v-if="section.cc_display_dates" class="d-flex">
+      <h5
+        :class="[!showRowHeading ? 'sr-only' : '']"
+        class="w-25 font-weight-bold myuw-text-md"
+      >
+        Dates
+      </h5>
+      <div class="flex-fill myuw-text-md">
+        {{ sectionFormattedDates(section) }}
+      </div>
     </div>
-    <div v-if="section.on_standby" class="myuw-text-md">
-      Your status: On Standby
+
+    <div v-if="section.on_standby" class="d-flex">
+      <h5
+        :class="[!showRowHeading ? 'sr-only' : '']"
+        class="w-25 font-weight-bold myuw-text-md"
+      >
+        Your Status
+      </h5>
+      <div class="flex-fill myuw-text-md">
+        On Standby
+      </div>
     </div>
 
     <div class="d-flex">
       <h5
         :class="[!showRowHeading ? 'sr-only' : '']"
-        class="w-25 h6 font-weight-bold text-danger"
+        class="w-25 font-weight-bold myuw-text-md"
       >
         Meeting Time
       </h5>
-
       <div class="flex-fill">
-        <table class="mb-3 w-100 table table-sm table-borderless myuw-text-md">
+        <table class="mb-0 w-100 table table-sm table-borderless myuw-text-md">
           <thead class="sr-only">
             <tr>
               <th v-if="section.hasEosDates" :id="`dates-${section.id}`">
@@ -149,6 +174,7 @@
             </tr>
           </tbody>
         </table>
+        <hr v-if="showRowHeading">
       </div>
     </div>
   </div>
