@@ -9,7 +9,9 @@
       <ol class="list-unstyled myuw-text-md mb-0">
         <li v-for="(instructor, i) in instructors" :key="i" class="mb-2">
           <strong>{{ instructor.display_name }}</strong>
-          <div v-if="instructorPrimaryTitle(instructor)" class="text-muted">
+          <div v-if="instructorPrimaryTitle(instructor)"
+               class="text-muted font-italic"
+          >
             {{ instructorPrimaryTitle(instructor) }}
           </div>
           <div v-if="!hasContactDetails(instructor)" class="text-muted">
