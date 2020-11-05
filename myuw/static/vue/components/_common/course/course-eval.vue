@@ -1,25 +1,32 @@
 <template>
-  <div v-if="evalData.length > 0">
-    <h5>Course Evaluations</h5>
-    <p>
-      <span>Evaluations close
-        {{ toFriendlyDate(evalData[0].close_date) }}</span>
-      (at 11:59PM), and only take a few minutes to complete.
-    </p>
-
-    <div v-for="(evalObj, idx) in evalData"
-         :key="`${section.id}-eval-${idx}`"
+  <div v-if="evalData.length > 0" class="d-flex">
+    <h5
+      :class="[!showRowHeading ? 'sr-only' : '']"
+      class="w-25 font-weight-bold myuw-text-md"
     >
-      <template v-if="evalObj.is_multi_instr">
-        <!-- evaluation is on the course -->
-        <a :href="evalObj.url" target="_blank">
-          {{ section.curriculum_abbr }}
-          {{ section.course_number }}
-          {{ section.section_id }}
-          Evaluation
-        </a>
-        <ul>
-          <li v-for="(instructor, index) in evalObj.instructors"
+      Course Evaluations
+    </h5>
+    <div class="w-75">
+      <div
+        v-for="(evalObj, idx) in evalData"
+        :key="`${section.id}-eval-${idx}`"
+      >
+        <template v-if="evalObj.is_multi_instr">
+          <!-- evaluation is on the course -->
+          <a :href="evalObj.url" target="_blank">
+            {{ section.curriculum_abbr }}
+            {{ section.course_number }}
+            {{ section.section_id }}
+            Evaluation
+          </a>
+          <p class="myuw-text-md">
+            <strong>Evaluations close
+              {{ toFriendlyDate(evalData[idx].close_date) }}</strong>
+            (at 11:59PM), and only take a few minutes to complete.
+          </p>
+          <ul class="list-unstyled myuw-text-md mb-0">
+            <li
+              v-for="(instructor, index) in evalObj.instructors"
               :key="`${section.id}-eval-inst-${index}`"
           >
             {{ titleCaseName(instructor.instructor_name) }}
@@ -58,6 +65,10 @@ export default {
       type: Object,
       required: true,
     },
+    showRowHeading: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     hasTitle(instructor) {
@@ -67,3 +78,7 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+li:last-child { margin-bottom: 0 !important;}
+</style>
