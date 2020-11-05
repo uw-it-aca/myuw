@@ -34,6 +34,7 @@
           v-if="isReadyEval && getSectionEval(section.index).length > 0"
           :eval-data="getSectionEval(section.index)"
           :section="section"
+          :show-row-heading="true"
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
@@ -65,6 +66,15 @@
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
+            <!-- creates line spacer above meeting info -->
+            <div class="d-flex">
+              <div class="w-25">
+                &nbsp;
+              </div>
+              <div class="w-75">
+                <hr>
+              </div>
+            </div>
             <uw-meeting-info
               :section="section"
               :show-row-heading="true"
@@ -83,6 +93,15 @@
         </template>
         <template v-else>
           <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
+            <!-- creates line spacer above instructor info -->
+            <div class="d-flex">
+              <div class="w-25">
+                &nbsp;
+              </div>
+              <div class="w-75">
+                <hr>
+              </div>
+            </div>
             <uw-instructors
               v-if="section.instructors.length > 0"
               :instructors="section.instructors"

@@ -165,9 +165,12 @@
               <td
                 v-if="section.showMtgType"
                 :headers="`type-${meeting.id}`"
-                class="p-0"
+                class="p-0 text-right"
               >
-                <span v-if="meeting.displayType" :title="`${meeting.type}`">
+                <span v-if="meeting.displayType" :title="`${meeting.type}`"
+                      :class="`px-1 border myuw-text-sm
+                      text-uppercase text-c${section.color_id}`"
+                >
                   {{ shortenMtgType(meeting.type) }}
                 </span>
               </td>
