@@ -20,11 +20,11 @@
             Evaluation
           </a>
           <p class="myuw-text-md">
-            <strong>Evaluations close
+            <strong>Evaluation closes
               {{ toFriendlyDate(evalData[idx].close_date) }}</strong>
             (at 11:59PM), and only take a few minutes to complete.
           </p>
-          <ul class="list-unstyled myuw-text-md mb-0">
+          <ul class="list-unstyled myuw-text-md">
             <li
               v-for="(instructor, index) in evalObj.instructors"
               :key="`${section.id}-eval-inst-${index}`"
@@ -80,5 +80,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-li:last-child { margin-bottom: 0 !important;}
 </style>
