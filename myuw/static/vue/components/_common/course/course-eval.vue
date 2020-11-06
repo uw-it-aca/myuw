@@ -22,10 +22,8 @@
           <li v-for="(instructor, index) in evalObj.instructors"
               :key="`${section.id}-eval-inst-${index}`"
           >
-            <span>
-              {{ titleCaseName(instructor.instructor_name) }}
-            </span>
-            <span v-if="instructor.instructor_title.length > 0">
+            {{ titleCaseName(instructor.instructor_name) }}
+            <span v-if="hasTitle(instructor)">
               {{ instructor.instructor_title }}
             </span>
           </li>
@@ -39,7 +37,7 @@
             <a :href="evalObj.url" target="_blank">
               {{ titleCaseName(instructor.instructor_name) }}
             </a>
-            <span v-if="instructor.instructor_title.length > 0">
+            <span v-if="hasTitle(instructor)">
               {{ instructor.instructor_title }}
             </span>
           </li>
@@ -59,6 +57,12 @@ export default {
     section: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    hasTitle(instructor) {
+      return (instructor.instructor_title &&
+       instructor.instructor_title.length > 0);
     },
   },
 };
