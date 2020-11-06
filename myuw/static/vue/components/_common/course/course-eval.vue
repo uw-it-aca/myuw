@@ -6,47 +6,61 @@
     >
       Course Evaluations
     </h5>
-    <div class="w-75">
+    <div class="w-75 myuw-text-md">
       <div
         v-for="(evalObj, idx) in evalData"
         :key="`${section.id}-eval-${idx}`"
+        class="mb-3 myuw-eval-list"
       >
         <template v-if="evalObj.is_multi_instr">
           <!-- evaluation is on the course -->
-          <a :href="evalObj.url" target="_blank">
-            {{ section.curriculum_abbr }}
-            {{ section.course_number }}
-            {{ section.section_id }}
-            Evaluation
-          </a>
-          <p class="myuw-text-md">
-            <strong>Evaluation closes
-              {{ toFriendlyDate(evalData[idx].close_date) }}</strong>
-            (at 11:59PM), and only take a few minutes to complete.
+          <p>
+            <a :href="evalObj.url" target="_blank">
+              {{ section.curriculum_abbr }}
+              {{ section.course_number }}
+              {{ section.section_id }}
+              Evaluation
+            </a>
           </p>
+
           <ul class="list-unstyled myuw-text-md">
             <li
               v-for="(instructor, index) in evalObj.instructors"
               :key="`${section.id}-eval-inst-${index}`"
+              class="mb-2"
             >
-              {{ titleCaseName(instructor.instructor_name) }}
-              <span v-if="hasTitle(instructor)">
+              <strong>{{ titleCaseName(instructor.instructor_name) }}</strong>
+              <div v-if="hasTitle(instructor)" class="font-italic text-muted">
                 {{ instructor.instructor_title }}
-              </span>
+              </div>
             </li>
           </ul>
+
+          <p class="myuw-text-md m-0">
+            Evaluations close
+            <strong>{{ toFriendlyDate(evalData[idx].close_date) }}</strong>
+            (at 11:59PM), and only take a few minutes to complete.
+          </p>
         </template>
         <template v-else>
-          <ul>
+          <ul class="list-unstyled myuw-text-md mb-0">
             <li v-for="(instructor, index) in evalObj.instructors"
                 :key="`${section.id}-eval-inst-${index}`"
+                class="mb-0"
             >
               <a :href="evalObj.url" target="_blank">
                 {{ titleCaseName(instructor.instructor_name) }}
               </a>
-              <span v-if="hasTitle(instructor)">
+              <div v-if="hasTitle(instructor)"
+                   class="font-italic text-muted mb-2"
+              >
                 {{ instructor.instructor_title }}
-              </span>
+              </div>
+              <p class="myuw-text-md m-0">
+                Evaluations close
+                <strong>{{ toFriendlyDate(evalData[idx].close_date) }}</strong>
+                (at 11:59PM), and only take a few minutes to complete.
+              </p>
             </li>
           </ul>
         </template>
@@ -81,4 +95,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.myuw-eval-list {
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
+}
 </style>
