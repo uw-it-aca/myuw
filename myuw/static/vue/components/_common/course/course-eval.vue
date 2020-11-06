@@ -28,28 +28,29 @@
             <li
               v-for="(instructor, index) in evalObj.instructors"
               :key="`${section.id}-eval-inst-${index}`"
-          >
-            {{ titleCaseName(instructor.instructor_name) }}
-            <span v-if="hasTitle(instructor)">
-              {{ instructor.instructor_title }}
-            </span>
-          </li>
-        </ul>
-      </template>
-      <template v-else>
-        <ul>
-          <li v-for="(instructor, index) in evalObj.instructors"
-              :key="`${section.id}-eval-inst-${index}`"
-          >
-            <a :href="evalObj.url" target="_blank">
+            >
               {{ titleCaseName(instructor.instructor_name) }}
-            </a>
-            <span v-if="hasTitle(instructor)">
-              {{ instructor.instructor_title }}
-            </span>
-          </li>
-        </ul>
-      </template>
+              <span v-if="hasTitle(instructor)">
+                {{ instructor.instructor_title }}
+              </span>
+            </li>
+          </ul>
+        </template>
+        <template v-else>
+          <ul>
+            <li v-for="(instructor, index) in evalObj.instructors"
+                :key="`${section.id}-eval-inst-${index}`"
+            >
+              <a :href="evalObj.url" target="_blank">
+                {{ titleCaseName(instructor.instructor_name) }}
+              </a>
+              <span v-if="hasTitle(instructor)">
+                {{ instructor.instructor_title }}
+              </span>
+            </li>
+          </ul>
+        </template>
+      </div>
     </div>
   </div>
 </template>
