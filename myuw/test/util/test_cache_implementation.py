@@ -8,7 +8,7 @@ from restclients_core.exceptions import DataFailureException
 from uw_sws.dao import SWS_DAO
 from uw_sws.util import fdao_sws_override
 from myuw.util.cache_implementation import MyUWCache
-from myuw.util.cache import MyUWMemcachedCache
+from myuw.util.cache import MyUWMemcachedCache, during_peak_load
 
 
 CACHE = 'myuw.util.cache_implementation.MyUWCache'
@@ -285,3 +285,21 @@ class TestCustomCachePolicy(TestCase):
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
+
+    def test_during_peak_load(self):
+        now = datetime(2020, 11, 6, hour=5, minute=30, second=0)
+        self.assertFalse(during_peak_load(now))
+        now = datetime(2020, 11, 6, hour=5, minute=30, second=1)
+        self.assertTrue(during_peak_load(now))
+        now = datetime(2020, 11, 6, hour=6, minute=30, second=0)
+        self.assertTrue(during_peak_load(now))
+        now = datetime(2020, 11, 6, hour=6, minute=30, second=1)
+        self.assertFalse(during_peak_load(now))
+        now = datetime(2020, 9, 29, hour=23, minute=59, second=59)
+        self.assertFalse(during_peak_load(now))
+        now = datetime(2020, 9, 30, hour=0, minute=0, second=1)
+        self.assertTrue(during_peak_load(now))
+        now = datetime(2020, 9, 30, hour=23, minute=59, second=59)
+        self.assertTrue(during_peak_load(now))
+        now = datetime(2020, 9, 31, hour=0, minute=0, second=1)
+        self.assertFalse(during_peak_load(now))
