@@ -53,19 +53,19 @@ class InstSche(ProtectedAPI):
         schedule = get_instructor_schedule_by_term(
             request, term=term, summer_term=summer_term)
         resp_data = load_schedule(request, schedule, summer_term)
-        threads = []
+        if not is_future(term, request):
+            threads = []
+            for section in resp_data['sections']:
 
-        for section in resp_data['sections']:
+                _set_current(term, request, section)
+                t = Thread(target=coda.get_course_card_details,
+                           args=(section['section_label'],
+                                 section,))
+                threads.append(t)
+                t.start()
 
-            _set_current(term, request, section)
-            t = Thread(target=coda.get_course_card_details,
-                       args=(section['section_label'],
-                             section,))
-            threads.append(t)
-            t.start()
-
-        for thread in threads:
-            thread.join()
+            for thread in threads:
+                thread.join()
 
         log_api_call(timer, request,
                      "Get Instructor Schedule for {},{}".format(
