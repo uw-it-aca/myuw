@@ -8,13 +8,14 @@ from restclients_core.exceptions import DataFailureException
 from uw_sws.dao import SWS_DAO
 from uw_sws.util import fdao_sws_override
 from myuw.util.cache_implementation import MyUWCache
-from myuw.util.cache import MyUWMemcachedCache, during_peak_load
+from myuw.util.cache import MyUWMemcachedCache
 
 
 CACHE = 'myuw.util.cache_implementation.MyUWCache'
 MEMCACHE = 'myuw.util.cache.MyUWMemcachedCache'
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
+HALF_HOUR = 60 * 30
 ONE_HOUR = 60 * 60
 FOUR_HOURS = ONE_HOUR * 4
 ONE_DAY = ONE_HOUR * 24
@@ -52,6 +53,8 @@ class TestCustomCachePolicy(TestCase):
 
         self.assertEquals(cache.get_cache_expiration_time(
             "gws", "/group_sws/v3"), FIFTEEN_MINS)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "gws", "/group_sws/v3/group"), HALF_HOUR)
 
         self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/nws/v1/uwnetid"), ONE_HOUR)
@@ -285,21 +288,3 @@ class TestCustomCachePolicy(TestCase):
             cache_entry.save()
             response = cache.getCache('sws', '/student/v5/notice/xx', {})
             self.assertEquals(response, None)
-
-    def test_during_peak_load(self):
-        now = datetime(2020, 11, 6, hour=5, minute=30, second=0)
-        self.assertFalse(during_peak_load(now))
-        now = datetime(2020, 11, 6, hour=5, minute=30, second=1)
-        self.assertTrue(during_peak_load(now))
-        now = datetime(2020, 11, 6, hour=6, minute=30, second=0)
-        self.assertTrue(during_peak_load(now))
-        now = datetime(2020, 11, 6, hour=6, minute=30, second=1)
-        self.assertFalse(during_peak_load(now))
-        now = datetime(2020, 9, 29, hour=23, minute=59, second=59)
-        self.assertFalse(during_peak_load(now))
-        now = datetime(2020, 9, 30, hour=0, minute=0, second=1)
-        self.assertTrue(during_peak_load(now))
-        now = datetime(2020, 9, 30, hour=23, minute=59, second=59)
-        self.assertTrue(during_peak_load(now))
-        now = datetime(2020, 9, 31, hour=0, minute=0, second=1)
-        self.assertFalse(during_peak_load(now))
