@@ -89,6 +89,7 @@ class TestInstructorTermSchedule(MyuwApiTest):
         data = json.loads(response.content)
         section = data['sections'][0]
         self.assertFalse('failure_rate' in section)
+        self.assertFalse('evaluation' in section)
 
     def test_bill_past_term(self):
         self.set_user('bill')

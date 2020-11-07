@@ -131,7 +131,7 @@ def set_section_evaluation(section, person):
             log_exception(logger, 'set_section_evaluation', traceback)
 
 
-def set_course_resources(section_data, section, person):
+def set_course_resources(section_data, section, person, is_future_term):
     threads = []
 
     t = ThreadWithResponse(
@@ -161,10 +161,11 @@ def set_course_resources(section_data, section, person):
     t.start()
     threads.append((t, 'grading_status', section_data))
 
-    t = ThreadWithResponse(target=set_section_evaluation,
-                           args=(section, person,))
-    t.start()
-    threads.append((t, 'evaluation', section_data))
+    if not is_future_term:
+        t = ThreadWithResponse(target=set_section_evaluation,
+                               args=(section, person,))
+        t.start()
+        threads.append((t, 'evaluation', section_data))
 
     for i, meeting in enumerate(section.meetings):
         t = ThreadWithResponse(target=set_classroom_info_url,
@@ -321,7 +322,8 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
                 })
 
         t = Thread(target=set_course_resources, args=(
-            section_data, section, schedule.person))
+            section_data, section, schedule.person,
+            is_future(schedule.term, request)))
         course_resource_threads.append(t)
         t.start()
 
