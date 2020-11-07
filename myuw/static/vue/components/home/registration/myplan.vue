@@ -92,7 +92,7 @@ export default {
     currentPlanData() {
       if (this.myPlanData && this.myPlanData.terms) {
         return this.myPlanData.terms.find(
-            (term) => term.quarter === this.quarter,
+            (term) => term.quarter.toLowerCase() === this.quarter.toLowerCase(),
         ) || {};
       }
       return {};
