@@ -53,19 +53,19 @@ class InstSche(ProtectedAPI):
         schedule = get_instructor_schedule_by_term(
             request, term=term, summer_term=summer_term)
         resp_data = load_schedule(request, schedule, summer_term)
-        threads = []
+        if not is_future(term, request):
+            threads = []
+            for section in resp_data['sections']:
 
-        for section in resp_data['sections']:
+                _set_current(term, request, section)
+                t = Thread(target=coda.get_course_card_details,
+                           args=(section['section_label'],
+                                 section,))
+                threads.append(t)
+                t.start()
 
-            _set_current(term, request, section)
-            t = Thread(target=coda.get_course_card_details,
-                       args=(section['section_label'],
-                             section,))
-            threads.append(t)
-            t.start()
-
-        for thread in threads:
-            thread.join()
+            for thread in threads:
+                thread.join()
 
         log_api_call(timer, request,
                      "Get Instructor Schedule for {},{}".format(
@@ -131,7 +131,7 @@ def set_section_evaluation(section, person):
             log_exception(logger, 'set_section_evaluation', traceback)
 
 
-def set_course_resources(section_data, section, person):
+def set_course_resources(section_data, section, person, is_future_term):
     threads = []
 
     t = ThreadWithResponse(
@@ -161,10 +161,11 @@ def set_course_resources(section_data, section, person):
     t.start()
     threads.append((t, 'grading_status', section_data))
 
-    t = ThreadWithResponse(target=set_section_evaluation,
-                           args=(section, person,))
-    t.start()
-    threads.append((t, 'evaluation', section_data))
+    if not is_future_term:
+        t = ThreadWithResponse(target=set_section_evaluation,
+                               args=(section, person,))
+        t.start()
+        threads.append((t, 'evaluation', section_data))
 
     for i, meeting in enumerate(section.meetings):
         t = ThreadWithResponse(target=set_classroom_info_url,
@@ -321,7 +322,8 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
                 })
 
         t = Thread(target=set_course_resources, args=(
-            section_data, section, schedule.person))
+            section_data, section, schedule.person,
+            is_future(schedule.term, request)))
         course_resource_threads.append(t)
         t.start()
 
