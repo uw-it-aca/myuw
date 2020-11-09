@@ -30,6 +30,7 @@
       v-else
       :id="`books-${section.sln}`"
       v-model="isOpen"
+      class="myuw-text-md"
     >
       <slot name="no-books">
         No textbooks have been ordered for this course.
