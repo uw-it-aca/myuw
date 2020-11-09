@@ -333,13 +333,13 @@
     </footer>
     <b-modal
       id="tourModal"
+      ref="tourModal"
       dialog-class="myuw-modal"
       title="Welcome! Here's MyUW at a glance"
       title-class="text-dark-beige myuw-font-encode-sans"
       header-class="border-0"
       body-class="py-0"
       footer-class="border-0"
-      ref="tourModal"
     >
       <img v-if="$mq === 'mobile' || $mq === 'tablet'"
            :src="staticUrl+'images/myuw-tour-mobile-2.0x.png'"
@@ -411,8 +411,8 @@ export default {
       page_title: this.pageTitle,
     });
 
-    if (this.pageTitle === "Home" && this.displayPopUp) {
-      window.addEventListener("load", this.showTourModal);
+    if (this.displayPopUp) {
+      window.addEventListener('load', this.showTourModal);
     }
   },
   methods: {
@@ -422,8 +422,8 @@ export default {
         responseType: 'json',
       }).then((response) => {
         this.addVarToState({
-          name: 'display_pop_up',
-          value: 'false',
+          name: 'displayPopUp',
+          value: false,
         });
       });
     },
