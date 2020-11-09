@@ -16,7 +16,7 @@
         <b-link v-b-modal.tourModal class="text-white">
           <u>See MyUW at a glance</u>
         </b-link>
-        <b-button-close text-variant="light" @click="hideTourMessage" />
+        <b-button-close text-variant="light" @click="hideOnboardMessage" />
       </div>
     </div>
   </div>
@@ -38,8 +38,7 @@ export default {
     }),
   },
   methods: {
-    hideTourMessage: function(event) {
-      // TODO: wire up with api
+    hideOnboardMessage: function(event) {
       axios.get('/api/v1/close_banner_message', {
         responseType: 'json',
       }).then((response) => {

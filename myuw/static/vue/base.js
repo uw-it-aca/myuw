@@ -166,6 +166,9 @@ const store = new Vuex.Store({
     displayOnboardMessage: JSON.parse(
       document.getElementById('display_onboard_message').innerHTML,
     ),
+    displayPopUp: JSON.parse(
+      document.getElementById('display_pop_up').innerHTML,
+    ),
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },
   mutations: {

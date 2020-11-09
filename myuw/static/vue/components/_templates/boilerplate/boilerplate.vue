@@ -339,6 +339,7 @@
       header-class="border-0"
       body-class="py-0"
       footer-class="border-0"
+      ref="tourModal"
     >
       <img v-if="$mq === 'mobile' || $mq === 'tablet'"
            :src="staticUrl+'images/myuw-tour-mobile-2.0x.png'"
@@ -361,7 +362,8 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
+import axios from 'axios';
 import Search from './search.vue';
 import Welcome from './welcome.vue';
 import Messages from './messages.vue';
@@ -399,6 +401,7 @@ export default {
     staticUrl: (state) => state.staticUrl,
     pageTitle: (state) => state.pageTitle,
     disableActions: (state) => state.disableActions,
+    displayPopUp: (state) => state.displayPopUp,
   }),
   mounted() {
     // MARK: google analytics gtag
@@ -407,6 +410,26 @@ export default {
       page_path: window.location.pathname,
       page_title: this.pageTitle,
     });
+
+    if (this.pageTitle === "Home" && this.displayPopUp) {
+      window.addEventListener("load", this.showTourModal);
+    }
+  },
+  methods: {
+    showTourModal: function() {
+      this.$refs['tourModal'].show();
+      axios.get('/api/v1/turn_off_tour_popup', {
+        responseType: 'json',
+      }).then((response) => {
+        this.addVarToState({
+          name: 'display_pop_up',
+          value: 'false',
+        });
+      });
+    },
+    ...mapMutations([
+      'addVarToState',
+    ]),
   },
 };
 </script>
