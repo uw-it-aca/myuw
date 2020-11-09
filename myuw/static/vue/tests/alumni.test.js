@@ -31,23 +31,20 @@ describe('User Is an Alumni', () => {
     expect(
       wrapper.findAll('h4').at(0).text()
     ).toBe('University of Washington Alumni Association (UWAA)');
-    expect(
-      wrapper.findAll('a').at(0).text()
-    ).toBe('Alumni News, Events and Services');
-    expect(
-      wrapper.findAll('a').at(0).attributes().hrep
+    
+    let link1 = wrapper.findAll('a').at(0);
+    expect(link1.text()).toBe('Alumni News, Events and Services');
+    expect(link1.attributes().href
     ).toBe('https://www.washington.edu/alumni');
-    expect(
-      wrapper.findAll('a').at(1).text()
-    ).toBe('Columns Magazine');
-    expect(
-      wrapper.findAll('a').at(1).attributes().hrep
+
+    let link2 = wrapper.findAll('a').at(1);
+    expect(link2.text()).toBe('Columns Magazine');
+    expect(link2.attributes().href
     ).toBe('https://magazine.washington.edu/');
-    expect(
-      wrapper.findAll('a').at(2).text()
-    ).toBe('Learn about the UWAA');
-    expect(
-      wrapper.findAll('a').at(2).attributes().hrep
+
+    let link3 = wrapper.findAll('a').at(2)
+    expect(link3.text()).toBe('Learn about the UWAA');
+    expect(link3.attributes().href
     ).toBe('https://www.washington.edu/cms/alumni/membership/');
   });
 
