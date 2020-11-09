@@ -18,12 +18,3 @@
     </b-alert>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-  },
-  computed: {
-  },
-};
-</script>
