@@ -5,7 +5,7 @@ import AlumniCard from '../components/home/alumni.vue';
 import UwCard from '../components/_templates/card.vue';
 const localVue = createLocalVue(Vuex);
 
-describe('User Is an Alumni', () => {
+describe('Alumni Card', () => {
   let store;
 
   beforeEach(() => {
@@ -13,14 +13,15 @@ describe('User Is an Alumni', () => {
       state: {
         user: {
           affiliations: {
-            alumni: true,
+            alumni: false,
           }
         }
       }
     });
   });
 
-  it('Display Alumni Card', () => {
+  it('Display card if user is alumni', () => {
+    store.state.user.affiliations.alumni = true;
     const wrapper = shallowMount(AlumniCard, { store, localVue });
     expect(
       wrapper.findComponent(UwCard).exists()
@@ -31,7 +32,7 @@ describe('User Is an Alumni', () => {
     expect(
       wrapper.findAll('h4').at(0).text()
     ).toBe('University of Washington Alumni Association (UWAA)');
-    
+
     let link1 = wrapper.findAll('a').at(0);
     expect(link1.text()).toBe('Alumni News, Events and Services');
     expect(link1.attributes().href
@@ -47,25 +48,9 @@ describe('User Is an Alumni', () => {
     expect(link3.attributes().href
     ).toBe('https://www.washington.edu/cms/alumni/membership/');
   });
-
-  describe('User Not an Alumni', () => {
-    let store;
   
-    beforeEach(() => {
-      store = new Vuex.Store({
-        state: {
-          user: {
-            affiliations: {
-              alumni: false,
-            }
-          }
-        }
-      });
-    });
-  
-    it('Hide Alumni Card', () => {
-      const wrapper = shallowMount(AlumniCard, { store, localVue });
-      expect(wrapper.findComponent(UwCard).exists()).toBe(false);
-    });
+  it('Hide card is user is not alumni', () => {
+    const wrapper = shallowMount(AlumniCard, { store, localVue });
+    expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 });
