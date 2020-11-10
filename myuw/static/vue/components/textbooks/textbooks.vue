@@ -30,7 +30,7 @@
 
       <div class="my-4 text-center">
         <a target="_blank" :href="orderUrl"
-           class="btn btn-outline-dark-beige myuw-text-md"
+           class="btn btn-outline-beige text-dark myuw-text-md"
         >
           Start textbook shopping
         </a>
