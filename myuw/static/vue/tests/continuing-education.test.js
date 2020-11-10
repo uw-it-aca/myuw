@@ -2,7 +2,7 @@ import {shallowMount} from '@vue/test-utils';
 import {createLocalVue} from './helper';
 import Vuex from 'vuex';
 import UwCard from '../components/_templates/card.vue';
-import ContinuingEducationCard from '../components/home/former_student/ctnu-edu.vue';
+import ContinuingEducationCard from '../components/home/former_student/continuing-education.vue';
 
 const localVue = createLocalVue(Vuex);
 

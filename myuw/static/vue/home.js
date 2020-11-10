@@ -26,7 +26,7 @@ import SummerEfs from './components/home/new_student/summer-efs.vue';
 import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
 import Transcripts from './components/home/former_student/transcripts.vue';
-import ContinuingEducation from './components/home/former_student/ctnu-edu.vue';
+import ContinuingEducation from './components/home/former_student/continuing-education.vue';
 import Alumni from './components/home/alumni.vue';
 
 // stores
