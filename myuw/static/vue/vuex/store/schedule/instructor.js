@@ -1,14 +1,8 @@
-import dayjs from 'dayjs';
-
-import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
-
-// Helper Functions
-const tryConvertDayJS = (obj, format=undefined) => {
-  if (obj) {
-    return dayjs(obj, format);
-  }
-  return obj;
-};
+import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
+import {
+  convertSectionsTimeAndDateToDateJSObj,
+  generateMeetingLocationData,
+} from './common';
 
 function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
@@ -18,6 +12,7 @@ function postProcess(response, urlExtra) {
         // {"bothell": true, "seattle": true, "tacoma": true}
 
   let linkedPrimaryLabel = undefined;
+  convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
     section.year = courseData.year;
@@ -67,17 +62,9 @@ function postProcess(response, urlExtra) {
 
     section.instructors = [];
     section.hasEosDates = false;
-    for (let idx = 0; idx < section.meetings.length; idx++) {
-      let meeting = section.meetings[idx];
-      meeting.id = section.id + "-meeting-" + (idx + 1);
-      meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
-      meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
-
-      if (meeting.eos_start_date && meeting.eos_end_date) {
-        section.hasEosDates = true;
-        meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
-        meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
-      }
+    section.meetings.forEach((meeting, j) => {
+      meeting.id = section.id + "-meeting-" + (j + 1);
+      meeting.locationData = generateMeetingLocationData(meeting);
 
       meeting.curriculumAbbr = section.curriculum_abbr;
       meeting.courseNumber = section.course_number;
@@ -89,12 +76,16 @@ function postProcess(response, urlExtra) {
           section.instructors.push(instructor);
         }
       });
-    }
+    });
     section.instructors.sort((ia, ib) => {
       if (ia.surname < ib.surname) { return -1;}
       if (ia.surname > ib.surname) { return 1; }
       return 0;
     });
+    if (section.final_exam) {
+      section.final_exam.locationData =
+        generateMeetingLocationData(section.final_exam);
+    }
   }
 
   return data;

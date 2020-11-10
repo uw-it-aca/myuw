@@ -40,14 +40,14 @@ import hfs from './vuex/store/hfs';
 import library from './vuex/store/library';
 import applicant from './vuex/store/applicant';
 import events from './vuex/store/events';
-import inst_schedule from './vuex/store/inst_schedule';
-import visual_schedule from './vuex/store/visual_schedule';
+import inst_schedule from './vuex/store/schedule/instructor';
+import visual_schedule from './vuex/store/schedule/visual';
 import hx_toolkit from './vuex/store/hx_toolkit';
 import oquarter from './vuex/store/oquarter';
 import profile from './vuex/store/profile';
 import myplan from './vuex/store/myplan';
 import textbooks from './vuex/store/textbooks';
-import studSchedule from './vuex/store/stud_schedule';
+import studSchedule from './vuex/store/schedule/student';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);

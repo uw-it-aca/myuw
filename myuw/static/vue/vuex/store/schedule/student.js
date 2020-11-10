@@ -1,11 +1,14 @@
-import dayjs from 'dayjs';
-
-import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
+import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
+import {
+  convertSectionsTimeAndDateToDateJSObj,
+  generateMeetingLocationData,
+} from './common';
 
 function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   let courseData = data[urlExtra];
+  convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
     section.id = (courseData.year + "-" + courseData.quarter + "-" +
@@ -34,6 +37,7 @@ function postProcess(response, urlExtra) {
     for (let idx = 0; idx < section.meetings.length; idx++) {
       let meeting = section.meetings[idx];
       meeting.id = section.id + "-meeting-" + (idx + 1);
+      meeting.locationData = generateMeetingLocationData(meeting);
 
       for (let ii = 0; ii < meeting.instructors.length; ii++) {
         let inst = meeting.instructors[ii];
@@ -43,25 +47,7 @@ function postProcess(response, urlExtra) {
         }
       }
 
-      if (meeting.start_time && meeting.end_time) {
-        meeting.start_time = dayjs(meeting.start_time, "hh:mm")
-          .second(0)
-          .millisecond(0);
-        meeting.end_time = dayjs(meeting.end_time, "hh:mm")
-          .second(0)
-          .millisecond(0);
-      }
-
-      if (meeting.eos_start_date && meeting.eos_end_date) {
-        section.hasEosDates = true;
-        meeting.eos_start_date = dayjs(meeting.eos_start_date)
-          .second(0)
-          .millisecond(0);
-        meeting.eos_end_date = dayjs(meeting.eos_end_date)
-          .second(0)
-          .millisecond(0);
-      }
-
+      section.hasEosDates = meeting.eos_start_date && meeting.eos_end_date;
       if (meeting.type && meeting.type !== 'NON' &&
           meeting.type.toLowerCase() !== section.section_type.toLowerCase()) {
         meeting.displayType = true;
@@ -74,6 +60,11 @@ function postProcess(response, urlExtra) {
         if (i1.surname > i2.surname) return 1;
         return 0;
       });
+
+    if (section.final_exam) {
+      section.final_exam.locationData =
+        generateMeetingLocationData(section.final_exam);
+    }
   }
   return data;
 }
