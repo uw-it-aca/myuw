@@ -60,6 +60,7 @@ import {
   SpinnerPlugin,
   TabsPlugin,
   VBTogglePlugin,
+  ModalPlugin,
 } from 'bootstrap-vue';
 
 // Mixins
@@ -125,6 +126,7 @@ Vue.use(NavPlugin);
 Vue.use(SpinnerPlugin);
 Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
+Vue.use(ModalPlugin);
 
 // vuex
 Vue.use(Vuex);
@@ -157,6 +159,15 @@ const store = new Vuex.Store({
     staticUrl: JSON.parse(document.getElementById('static_url').innerHTML),
     disableActions: JSON.parse(
         document.getElementById('disable_actions').innerHTML,
+    ),
+    bannerMessages: JSON.parse(
+      document.getElementById('banner_messages').innerHTML,
+    ),
+    displayOnboardMessage: JSON.parse(
+      document.getElementById('display_onboard_message').innerHTML,
+    ),
+    displayPopUp: JSON.parse(
+      document.getElementById('display_pop_up').innerHTML,
     ),
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },

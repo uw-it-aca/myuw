@@ -102,7 +102,6 @@
                 class="m-0"
               />
             </font-awesome-layers>
-            TOGGLE MENU
           </b-button>
           <h1
             class="d-inline align-middle text-white"
@@ -135,7 +134,10 @@
       </div>
     </header>
 
-    <div class="bg-light pt-4 pb-4 myuw-body">
+    <!-- MARK: message banner display for desktop -->
+    <uw-messages v-if="$mq === 'desktop'" />
+
+    <div class="bg-light myuw-body">
       <b-container fluid="xl">
         <b-row :no-gutters="$mq !== 'desktop'">
           <b-col lg="2">
@@ -143,7 +145,7 @@
             <b-collapse
               v-if="!isHybrid"
               id="nav-collapse"
-              class="text-nowrap myuw-navigation"
+              class="pt-3 text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
             >
@@ -259,15 +261,17 @@
                   />UW Resources
                 </b-nav-item>
               </b-nav>
+              <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
           </b-col>
-          <b-col lg="10" role="main" aria-labelledby="mainHeader">
-            <h2
-              id="mainHeader"
-              class="mb-3 h3 text-dark myuw-font-encode-sans"
-              :class="[pageTitle == 'Home'
-                || $mq != 'desktop' ? 'sr-only' : '']"
-            >
+          <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
+            <!-- MARK: message banner display for mobile and tablet -->
+            <div style="margin-left: -10px; margin-right:-10px;">
+              <uw-messages />
+            </div>
+          </b-col>
+          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-3">
+            <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
               {{ pageTitle }}
             </h2>
             <b-row>
@@ -326,16 +330,48 @@
         </div>
       </b-container>
     </footer>
+    <b-modal
+      id="tourModal"
+      ref="tourModal"
+      dialog-class="myuw-modal"
+      title="Welcome! Here's MyUW at a glance"
+      title-class="text-dark-beige myuw-font-encode-sans"
+      header-class="border-0"
+      body-class="py-0"
+      footer-class="border-0"
+    >
+      <img v-if="$mq === 'mobile' || $mq === 'tablet'"
+           :src="staticUrl+'images/myuw-tour-mobile-2.0x.png'"
+           class="img-fluid"
+      >
+      <img v-else
+           :src="staticUrl+'images/myuw-tour-2.0x.png'"
+           class="img-fluid"
+      >
+      <p class="mt-3 mb-0 myuw-text-md">
+        Watch a video tour of <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/" target="_blank" title="MyUW video tour for instructors" data-linklabel="MyUW video for Instructors">MyUW for Instructors</a>, <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/" target="_blank" title="MyUW video tour for staff" data-linklabel="MyUW video for staff">for staff</a>, or <a href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1" target="_blank" title="MyUW video tour for students" data-linklabel="MyUW video for students">for students</a>. <br><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated" target="_blank" title="MyUW Help Center in IT Connect" data-linklabel="MyUW Help Center">Visit the MyUW help guide for more information</a>.
+      </p>
+      <template v-slot:modal-footer="{ hide }">
+        <b-button variant="primary" size="sm" @click="hide()">
+          Close
+        </b-button>
+      </template>
+    </b-modal>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
+import axios from 'axios';
 import Search from './search.vue';
+import Welcome from './welcome.vue';
+import Messages from './messages.vue';
 
 export default {
   components: {
     'uw-search': Search,
+    'uw-welcome': Welcome,
+    'uw-messages': Messages,
   },
   props: {
     logoutUrl: {
@@ -364,6 +400,7 @@ export default {
     staticUrl: (state) => state.staticUrl,
     pageTitle: (state) => state.pageTitle,
     disableActions: (state) => state.disableActions,
+    displayPopUp: (state) => state.displayPopUp,
   }),
   mounted() {
     // MARK: google analytics gtag
@@ -372,6 +409,26 @@ export default {
       page_path: window.location.pathname,
       page_title: this.pageTitle,
     });
+
+    if (this.displayPopUp) {
+      window.addEventListener('load', this.showTourModal);
+    }
+  },
+  methods: {
+    showTourModal: function() {
+      this.$refs['tourModal'].show();
+      axios.get('/api/v1/turn_off_tour_popup', {
+        responseType: 'json',
+      }).then((response) => {
+        this.addVarToState({
+          name: 'displayPopUp',
+          value: false,
+        });
+      });
+    },
+    ...mapMutations([
+      'addVarToState',
+    ]),
   },
 };
 </script>
@@ -437,5 +494,9 @@ export default {
       }
     }
   }
+}
+
+::v-deep .myuw-modal {
+  max-width: 600px !important;
 }
 </style>

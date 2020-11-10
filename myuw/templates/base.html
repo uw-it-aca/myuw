@@ -58,6 +58,9 @@
     {% load json_script %}
     {{ user|json_script:'user' }}
     {{ disable_actions|json_script:'disable_actions' }}
+    {{ banner_messages|json_script:'banner_messages' }}
+    {{ display_onboard_message|json_script:'display_onboard_message' }}
+    {{ display_pop_up|json_script:'display_pop_up' }}
     {{ card_display_dates|json_script:'card_display_dates' }}
 
     <script>
