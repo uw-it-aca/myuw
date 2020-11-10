@@ -9,15 +9,15 @@
       </h3>
     </template>
     <template #card-body>
-      <p>
+      <p class="myuw-text-md">
         Whether you want to update your skills or delve into a new field,
         UW Professional &amp; Continuing Education can help.
       </p>
       <p><a href="https://www.pce.uw.edu" target="_blank" data-linklabel="PCE Info">About PCE</a></p>
-      <h4 class="myuw-card-heading">
+      <h4 class="h6 text-dark-beige myuw-font-roboto">
         Available programs
       </h4>
-      <ul class="unstyled-list">
+      <ul class="list-unstyled mb-0 myuw-text-md">
         <li><a href="https://www.pce.uw.edu/career-accelerator-certificates" target="_blank" data-linklabel="PCE Career Accelerator Programs">Career Accelerator Certificate Programs</a></li>
         <li><a href="https://www.pce.uw.edu/certificates" target="_blank" data-linklabel="PCE Certificate Programs">Certificate Programs</a></li>
         <li><a href="https://www.pce.uw.edu/degrees" target="_blank" data-linklabel="PCE Degree Programs">Degree Programs</a></li>
