@@ -6,7 +6,7 @@
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li>
         <b-button v-b-modal.tourModal variant="link" size="sm"
-                  class="p-0 m-0 text-muted myuw-text-xs"
+                  class="p-0 m-0 text-body text-left myuw-text-xs"
                   aria-hidden="true"
         >
           See MyUW at a glance
@@ -15,7 +15,7 @@
       <li>
         <b-link
           :href="learnMoreURL"
-          class="text-muted"
+          class="text-body"
           target="_blank"
         >
           Learn more about MyUW
