@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="no_1st_class_affi"
+    v-if="showCard"
     :loaded="true"
   >
     <template #card-heading>
@@ -13,7 +13,7 @@
 	    <p><a href="https://www.pce.uw.edu" target="_blank" data-linklabel="PCE Info">About PCE</a></p>
 	    <h4 class="myuw-card-heading">Available programs</h4>
 	    <ul class="unstyled-list">
-		    <li><a href="https://www.pce.uw.edu/career-accelerator-certificates" target="_blank" data-linklabel="PCE Career Accelerator Programs">Career Accelerator Certificate Programs	</a></li>
+		    <li><a href="https://www.pce.uw.edu/career-accelerator-certificates" target="_blank" data-linklabel="PCE Career Accelerator Programs">Career Accelerator Certificate Programs</a></li>
 		    <li><a href="https://www.pce.uw.edu/certificates" target="_blank" data-linklabel="PCE Certificate Programs">Certificate Programs</a></li>
 		    <li><a href="https://www.pce.uw.edu/degrees" target="_blank" data-linklabel="PCE Degree Programs">Degree Programs</a></li>
 		    <li><a href="https://www.pce.uw.edu/courses" target="_blank" data-linklabel="PCE Courses">Courses</a></li>
@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     ...mapState({
-      pastStudent: (state) => state.user.affiliations.past_stud,
+      showCard: (state) => state.user.affiliations.no_1st_class_affi,
     }),
   },
 };
