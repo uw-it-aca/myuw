@@ -1,54 +1,67 @@
 <template>
   <div>
-    <h4>{{ book.title }}</h4>
-    <img
-      v-if="formattedCoverImageUrl"
-      :src="formattedCoverImageUrl"
-      :alt="`${book.title} book cover`"
-      width="80px"
-    >
-    <div v-else title="No cover image available">
-      No Image Available
-    </div>
-    <div>
-      <dl>
-        <dt>
-          {{ book.authors > 1 ? "Authors" : "Author" }}
-        </dt>
-        <dd
-          v-for="(author, i) in book.authors"
-          :key="`book-${book.isbn}-author-${i}`"
+    <h4 class="h5">
+      {{ book.title }}
+    </h4>
+
+    <div class="d-flex">
+      <div class="mr-3"
+           style="min-width:80px !important; width:80px !important;"
+      >
+        <img
+          v-if="formattedCoverImageUrl"
+          :src="formattedCoverImageUrl"
+          :alt="`${book.title} book cover`"
+          width="80px"
+          class=""
         >
-          {{ author.name }}
-        </dd>
-        <dt>Price </dt>
-        <dd>
-          <p v-if="book.lowest_price && book.highest_price">
-            {{ book.lowest_price.toFixed(2) }}
-            to
-            {{ book.highest_price.toFixed(2) }}
-          </p>
-          <p>
-            Visit
-            <a target="_blank" :href="orderUrl">
-              ubookstore.com
-            </a>
-            for pricing on all available formats.
-          </p>
-        </dd>
-        <dt v-if="book.notes">
-          Notes
-        </dt>
-        <dd v-if="book.notes">
-          {{ book.notes }}
-        </dd>
-        <dt v-if="book.isbn">
-          ISBN
-        </dt>
-        <dd v-if="book.isbn">
-          {{ book.isbn }}
-        </dd>
-      </dl>
+        <div v-else title="No cover image available"
+             class="py-5 bg-white border text-center text-muted text-uppercase
+             myuw-text-md"
+        >
+          No<br>image
+        </div>
+      </div>
+      <div class="flex-fill myuw-text-md">
+        <dl>
+          <dt>
+            {{ book.authors > 1 ? "Authors" : "Author" }}
+          </dt>
+          <dd
+            v-for="(author, i) in book.authors"
+            :key="`book-${book.isbn}-author-${i}`"
+          >
+            {{ author.name }}
+          </dd>
+          <dt>Price </dt>
+          <dd>
+            <div v-if="book.lowest_price && book.highest_price">
+              ${{ book.lowest_price.toFixed(2) }}
+              to
+              ${{ book.highest_price.toFixed(2) }}
+            </div>
+            <div>
+              Visit
+              <a target="_blank" :href="orderUrl">
+                ubookstore.com
+              </a>
+              for pricing on all available formats.
+            </div>
+          </dd>
+          <dt v-if="book.notes">
+            Notes
+          </dt>
+          <dd v-if="book.notes">
+            <span class="text-capitalize">{{ book.notes }}</span>
+          </dd>
+          <dt v-if="book.isbn">
+            ISBN
+          </dt>
+          <dd v-if="book.isbn">
+            {{ book.isbn }}
+          </dd>
+        </dl>
+      </div>
     </div>
   </div>
 </template>
