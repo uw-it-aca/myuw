@@ -28,25 +28,18 @@
         </template>
       </uw-section>
 
-      <div>
-        <a target="_blank" :href="orderUrl">
+      <div class="my-4 text-center">
+        <a target="_blank" :href="orderUrl"
+           class="btn btn-outline-dark-beige myuw-text-md"
+        >
           Start textbook shopping
         </a>
       </div>
-      <div>
-        <div>
-          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-          <strong>University Book Store autumn 2020 update</strong>
-        </div>
-        <div>
-          In order to ensure public health, all course materials purchases for
-          Fall 2020 quarter are online only; University Book Store&rsquo;s
-          course materials department will be closed to the public.
-        </div>
-      </div>
+
+      <uw-covid />
 
       <div>
-        <p>
+        <p class="text-muted myuw-text-md">
           Information on course textbooks is collected by and provided
           courtesy of
           <a href="http://www.bookstore.washington.edu">
@@ -57,22 +50,33 @@
       </div>
     </template>
     <template #panel-error>
-      <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
-      An error has occurred and we can't load this content right now.
-      Please try again later.
+      <!-- error message for textbooks -->
+      <b-alert show variant="light" class="p-0 border-0 bg-transparent">
+        <div class="d-flex text-danger m-0 myuw-text-md">
+          <div class="pr-2 flex-shrink-1">
+            <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+          </div>
+          <div class="w-100">
+            An error has occurred and we can't load this content right now.
+            Please try again later.
+          </div>
+        </div>
+      </b-alert>
     </template>
   </uw-panel>
 </template>
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Section from './section.vue';
 import Panel from '../_templates/panel.vue';
+import Section from './section.vue';
+import Covid from './covid.vue';
 
 export default {
   components: {
     'uw-panel': Panel,
     'uw-section': Section,
+    'uw-covid': Covid,
   },
   props: {
     term: {
