@@ -27,6 +27,7 @@ import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
 import Transcripts from './components/home/former_student/transcripts.vue';
 import ContinuingEducation from './components/home/former_student/ctnu-edu.vue';
+import Alumni from './components/home/alumni.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -84,6 +85,7 @@ Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-uwnetid', UWNetID);
 Vue.component('myuw-transcripts', Transcripts);
 Vue.component('myuw-continuing-education', ContinuingEducation);
+Vue.component('myuw-alumni', Alumni);
 
 new Vue({
   ...vueConf,
