@@ -23,8 +23,8 @@ import notices from './vuex/store/notices';
 import oquarter from './vuex/store/oquarter';
 import iasystem from './vuex/store/iasystem';
 import textbooks from './vuex/store/textbooks';
-import studSchedule from './vuex/store/stud_schedule';
-import visualSchedule from './vuex/store/visual_schedule';
+import studSchedule from './vuex/store/schedule/student';
+import visualSchedule from './vuex/store/schedule/visual';
 import categoryLinks from './vuex/store/category_links';
 
 vueConf.store.registerModule('grad', grad);

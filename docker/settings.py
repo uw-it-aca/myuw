@@ -260,3 +260,5 @@ WEBPACK_LOADER = {
         'LOADER_CLASS': 'webpack_loader.loader.WebpackLoader',
     }
 }
+
+# MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False

@@ -61,5 +61,26 @@ export default {
       return (!date_str || date_str.length === 0 ? '' :
               dayjs(date_str).format("ddd, MMM D, h:mmA"));
     },
+    getQuarterAbbr(quarter_str) {
+      if (quarter_str && quarter_str.length) {
+        return "";
+      }
+      var q = quarter_str.toLowerCase();
+      if(q === "winter") {
+          return "WIN";
+      }
+      else if(q === "spring") {
+          return "SPR";
+      }
+      else if(q === "summer") {
+          return "SUM";
+      }
+      else if(q === "autumn") {
+          return "AUT";
+      }
+    },
+    idForSection(section) {
+      return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
+    },
   },
 }
