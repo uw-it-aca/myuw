@@ -26,6 +26,7 @@ import SummerEfs from './components/home/new_student/summer-efs.vue';
 import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
 import Transcripts from './components/home/former_student/transcripts.vue';
+import Alumni from './components/home/alumni.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -82,6 +83,7 @@ Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-uwnetid', UWNetID);
 Vue.component('myuw-transcripts', Transcripts);
+Vue.component('myuw-alumni', Alumni);
 
 new Vue({
   ...vueConf,
