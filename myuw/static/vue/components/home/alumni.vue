@@ -6,33 +6,33 @@
       </h3>
     </template>
     <template #card-body>
-      <p>
+      <p class="myuw-text-md">
         Sharing a connection across three campuses and extending to places
         all over the world, UW alumni are united in the belief that together
         we will make a difference.
       </p>
-      <ul>
-        <li>
+      <ul class="list-unstyled myuw-text-md">
+        <li class="mb-1">
           <a href="https://www.washington.edu/alumni" target="_blank"
              data-linklabel="Alumni Info"
           >Alumni News, Events and Services
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a href="https://magazine.washington.edu/" target="_blank"
              data-linklabel="Columns Magazine"
           >Columns Magazine
           </a>
         </li>
       </ul>
-      <h4>
+      <h4 class="h6 text-dark-beige myuw-font-roboto">
         University of Washington Alumni Association (UWAA)
       </h4>
-      <p>
+      <p class="myuw-text-md">
         With 56,000 members, UWAA helps Huskies of all ages stay in touch
         and in the know.
       </p>
-      <ul class="unstyled-list">
+      <ul class="list-unstyled mb-0 myuw-text-md">
         <li>
           <a href="https://www.washington.edu/cms/alumni/membership/"
              target="_blank" data-linklabel="Alumni Association"
