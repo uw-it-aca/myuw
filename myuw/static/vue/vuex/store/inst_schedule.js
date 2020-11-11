@@ -36,13 +36,18 @@ function postProcess(response, urlExtra) {
                          section.section_id);
 
     section.instructors = [];
+    section.hasEosDates = false;
     for (let idx = 0; idx < section.meetings.length; idx++) {
       let meeting = section.meetings[idx];
       meeting.id = section.id + "-meeting-" + (idx + 1);
       meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
       meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
-      meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
-      meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
+
+      if (meeting.eos_start_date && meeting.eos_end_date) {
+        section.hasEosDates = true;
+        meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
+        meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
+      }
 
       meeting.curriculumAbbr = section.curriculum_abbr;
       meeting.courseNumber = section.course_number;
