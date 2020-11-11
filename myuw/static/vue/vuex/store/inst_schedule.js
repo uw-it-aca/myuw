@@ -16,12 +16,24 @@ function postProcess(response, urlExtra) {
   const courseData = data[urlExtra];
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
-    section.id = (courseData.year + "-" + courseData.quarter + "-" +
+
+    section.id = (courseData.year + "-" +
+                  courseData.quarter + "-" +
                   section.curriculum_abbr.replace(/ /g, '-') + "-" +
-                  section.course_number + "-" + section.section_id);
-    section.href = (courseData.year + "," + courseData.quarter + "," +
+                  section.course_number + "-" +
+                  section.section_id);
+
+    section.href = (courseData.year + "," +
+                    courseData.quarter + "#" +
                     section.curriculum_abbr.replace(/ /g, '-') + "-" +
-                    section.course_number + "-" + section.section_id);
+                    section.course_number + "-" +
+                    section.section_id);
+
+    section.navtarget = (courseData.year + "," +
+                         courseData.quarter + "," +
+                         section.curriculum_abbr + "-" +
+                         section.course_number + "-" +
+                         section.section_id);
 
     section.instructors = [];
     for (let idx = 0; idx < section.meetings.length; idx++) {
