@@ -61,5 +61,11 @@ export default {
       return (!date_str || date_str.length === 0 ? '' :
               dayjs(date_str).format("ddd, MMM D, h:mmA"));
     },
+    quarterAbbr(quarter_str) {
+      if (!quarter_str || quarter_str.length === 0) {
+        return "";
+      }
+      return quarter_str.substring(0, 3).toUpperCase();
+    },
   },
 }
