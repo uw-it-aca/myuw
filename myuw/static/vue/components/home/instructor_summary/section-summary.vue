@@ -3,24 +3,25 @@
     <div class="c{{section.color_id}} simplesquare" aria-hidden="true" />
     <a
      :href="`/teaching/${section.href}`"
-     :future-nav-target="section.href">
-      <span>
+     :future-nav-target="section.navtarget">
         {{ section.curriculum_abbr }}
-        {{ section.course_number }}
-        {{ section.section_id }}
-      </span>
-    </a>
+        <span class="text-nowrap">
+          {{ section.course_number }}
+          {{ section.section_id }}
+        </span>
+     </a>
   </h4>
+
   <div>
     <span>
-      {{ ucfirst(section.section_type) }}
+      {{ section.section_type }}
     </span>
-    <span v-if="section.sln">
+    <span v-if="section.sln && section.sln.length">
       <a
         :href="getTimeScheHref(schedule, section)"
         :title="`Time Schedule for SLN ${section.sln}`"
-        target="_blank"
-        :data-linklabel="getTimeScheLinkLable(section)">
+        :data-linklabel="getTimeScheLinkLable(section)"
+        target="_blank">
          {{ section.sln }}
       </a>
     </span>
