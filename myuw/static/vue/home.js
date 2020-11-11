@@ -29,7 +29,6 @@ import Transcripts from './components/home/former_student/transcripts.vue';
 import ContinuingEducation from './components/home/former_student/continuing-education.vue';
 import Alumni from './components/home/alumni.vue';
 import Retiree from './components/home/former_employee/retiree.vue';
-import ContinuingEducation from './components/home/former_student/ctnu-edu.vue';
 
 // stores
 import notices from './vuex/store/notices';
