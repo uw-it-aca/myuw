@@ -9,7 +9,7 @@ function postProcess(response, urlExtra) {
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
     section.id = (courseData.year + "-" + courseData.quarter + "-" +
-                  section.curriculum_abbr + "-" +
+                  section.curriculum_abbr.replace(/ /g, '-') + "-" +
                   section.course_number + "-" + section.section_id);
 
     // MUWM-549 and MUWM-552
@@ -33,7 +33,7 @@ function postProcess(response, urlExtra) {
     // Convert dates and times to datejs objects
     for (let idx = 0; idx < section.meetings.length; idx++) {
       let meeting = section.meetings[idx];
-      meeting.id = section.id + "-meeting-" + meeting.index;
+      meeting.id = section.id + "-meeting-" + (idx + 1);
 
       for (let ii = 0; ii < meeting.instructors.length; ii++) {
         let inst = meeting.instructors[ii];

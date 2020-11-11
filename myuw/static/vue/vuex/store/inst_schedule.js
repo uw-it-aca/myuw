@@ -14,9 +14,19 @@ function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
-  courseData.sections.forEach((section) => {
+  for (let i = 0; i < courseData.sections.length; i++) {
+    let section = courseData.sections[i];
+    section.id = (courseData.year + "-" + courseData.quarter + "-" +
+                  section.curriculum_abbr.replace(/ /g, '-') + "-" +
+                  section.course_number + "-" + section.section_id);
+    section.href = (courseData.year + "," + courseData.quarter + "," +
+                    section.curriculum_abbr.replace(/ /g, '-') + "-" +
+                    section.course_number + "-" + section.section_id);
+
     section.instructors = [];
-    section.meetings.forEach((meeting) => {
+    for (let idx = 0; idx < section.meetings.length; idx++) {
+      let meeting = section.meetings[idx];
+      meeting.id = section.id + "-meeting-" + (idx + 1);
       meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
       meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
       meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
