@@ -6,7 +6,7 @@ import UwCard from '../components/_templates/card.vue';
 const localVue = createLocalVue(Vuex);
 
 
-describe('User is retireee', () => {
+describe('User is a retireee', () => {
 
   let store;
 
@@ -41,6 +41,35 @@ describe('User is retireee', () => {
     expect(link1.text()).toBe('Learn more about UWRA');
     expect(link1.attributes().href
     ).toBe('http://www.washington.edu/uwra/');
+  });
+
+});
+
+
+describe('User is not a retiree', () => {
+
+  let store;
+
+  beforeEach(() => {
+    store = new Vuex.Store({
+      state: {
+        user: {
+          affiliations: {
+            retiree: false,
+          }
+        }
+      }
+    });
+  });
+
+  it('Hide card if user is not a retiree', () => {
+    const wrapper = shallowMount(RetireeCard,
+                                 {store, localVue});
+
+    expect(
+      wrapper.findComponent(UwCard).exists()
+    ).toBe(false);
+
   });
 
 });
