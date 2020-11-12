@@ -18,7 +18,7 @@
       <span>
         {{ section.section_type }}
       </span>
-      <span v-if="section.sln && section.sln.length">
+      <span v-if="section.sln">
         <a
           :href="getTimeScheHref(schedule, section)"
           :title="`Time Schedule for SLN ${section.sln}`"
