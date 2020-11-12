@@ -25,7 +25,6 @@
           <td
             v-if="meeting.eos_start_date && meeting.eos_end_date"
             :headers="`dates-${meeting.id}`"
-            class="p-0"
           >
             {{ formatEos(meeting) }}
           </td>
@@ -35,28 +34,26 @@
             :headers="`days-${meeting.id}`"
             p-0
           >
-            <span class="text-muted">Class does not meet</span>
+            <span>Class does not meet</span>
           </td>
           <td
             v-else-if="meeting.days_tbd"
             colspan="3"
             :headers="`days-${meeting.id}`"
-            class="p-0"
           >
-            <span class="text-muted">Days and times to be arranged</span>
+            <span>Days and times to be arranged</span>
           </td>
           <td
             v-else-if="meeting.no_meeting"
             colspan="3"
             :headers="`days-${meeting.id}`"
-            class="p-0"
           >
-            <span class="text-muted">
+            <span>
               No classroom meeting: online learning
             </span>
           </td>
           <template v-else-if="meeting.start_time && meeting.end_time">
-            <td :headers="`days-${meeting.id}`" class="p-0 text-nowrap">
+            <td :headers="`days-${meeting.id}`">
               <abbr v-if="meeting.meeting_days.monday" title="Monday">
                 M</abbr>
               <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">
@@ -74,16 +71,15 @@
             </td>
             <td
               :headers="`time-${meeting.id}`"
-              class="p-0 text-center text-nowrap"
             >
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
-            <td :headers="`location-${meeting.id}`" class="p-0 text-right">
+            <td :headers="`location-${meeting.id}`">
               <span v-if="meeting.is_remote">
                 Remote
               </span>
-              <span v-else-if="meeting.building_tbd" class="text-muted">
+              <span v-else-if="meeting.building_tbd">
                 Room to be arranged
               </span>
               <span v-else>
@@ -113,10 +109,32 @@
             </td>
           </template>
           <td
-            :headers="`type-${meeting.id}`"
+            :headers="`enrollment-${meeting.id}`"
           >
-            <span>
-              {{ meeting.type }}
+            <span v-if="section.is_prev_term_enrollment">
+              0<!-- the current_enrollment value is of previous term -->
+              <span v-if="!section.is_independent_study">
+                &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
+              </span>
+            </span>
+            <span v-else-if="!section.current_enrollment">
+               0<span v-if="!section.is_independent_study">
+                &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
+              </span>
+            </span>
+            <span v-else>
+              <a
+                target="_blank"
+                :href="classListHref(section)"
+                :rel="section.section_label"
+                title="View class list">
+                {{ section.current_enrollment }}
+
+                <span v-if="!section.is_independent_study">
+                  <span>&nbsp;of&nbsp;</span><span>/</span>
+                  {{ section.limit_estimate_enrollment }}
+                </span>
+               </a>
             </span>
           </td>
         </tr>
@@ -158,6 +176,11 @@ export default {
       }
       return typeStr.toUpperCase();
     },
+    classListHref(section) {
+      return ("/teaching/" + section.year + "," +
+              section.quarter + "," + section.curriculum_abbr + "," +
+              section.course_number + "/" + section.section_id + "/students");
+     },
   },
 };
 </script>

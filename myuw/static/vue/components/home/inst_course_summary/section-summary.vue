@@ -16,7 +16,7 @@
 
     <div>
       <span>
-        {{ section.section_type }}
+        {{ section.section_type.toUpperCase() }}
       </span>
       <span v-if="section.sln">
         <a
