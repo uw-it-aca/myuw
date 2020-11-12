@@ -1,23 +1,44 @@
 <template>
   <div>
-    <h4>
-      <div :class="`c${section.color_id} simplesquare`" aria-hidden="true" />
+    <div v-if="section.is_primary_section">
+      <h4>
+        <div :class="`c${section.color_id} simplesquare`" />
+        <a
+          :href="`/teaching/${section.href}`"
+          :future-nav-target="section.navtarget"
+        >
+          {{ section.curriculum_abbr }}
+          <span class="text-nowrap">
+            {{ section.course_number }}
+            {{ section.section_id }}
+          </span>
+        </a>
+      </h4>
+
+      <div>
+        <span>
+          {{ section.section_type.toUpperCase() }}
+        </span>
+        <span v-if="section.sln">
+          <a
+            :href="getTimeScheHref(schedule, section)"
+            :title="`Time Schedule for SLN ${section.sln}`"
+            :data-linklabel="getTimeScheLinkLable(section)"
+            target="_blank"
+          >
+            {{ section.sln }}
+          </a>
+        </span>
+      </div>
+    </div>
+    <div v-else>
+      <div :class="`c${section.color_id}`" />
       <a
         :href="`/teaching/${section.href}`"
         :future-nav-target="section.navtarget"
       >
-        {{ section.curriculum_abbr }}
-        <span class="text-nowrap">
-          {{ section.course_number }}
-          {{ section.section_id }}
-        </span>
+        {{ section.section_id }}
       </a>
-    </h4>
-
-    <div>
-      <span>
-        {{ section.section_type.toUpperCase() }}
-      </span>
       <span v-if="section.sln">
         <a
           :href="getTimeScheHref(schedule, section)"
@@ -27,6 +48,9 @@
         >
           {{ section.sln }}
         </a>
+      </span>
+      <span>
+        {{ section.section_type.toUpperCase() }}
       </span>
     </div>
 
