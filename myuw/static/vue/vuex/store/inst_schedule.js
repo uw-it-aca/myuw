@@ -59,13 +59,13 @@ function postProcess(response, urlExtra) {
           section.instructors.push(instructor);
         }
       });
-    });
+    }
     section.instructors.sort((ia, ib) => {
       if (ia.surname < ib.surname) { return -1;}
       if (ia.surname > ib.surname) { return 1; }
       return 0;
     });
-  });
+  }
 
   return data;
 }
