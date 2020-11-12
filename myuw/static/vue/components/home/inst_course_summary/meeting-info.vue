@@ -118,7 +118,7 @@
               </span>
             </span>
             <span v-else-if="!section.current_enrollment">
-               0<span v-if="!section.is_independent_study">
+              0<span v-if="!section.is_independent_study">
                 &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
               </span>
             </span>
@@ -127,14 +127,15 @@
                 target="_blank"
                 :href="classListHref(section)"
                 :rel="section.section_label"
-                title="View class list">
+                title="View class list"
+              >
                 {{ section.current_enrollment }}
 
                 <span v-if="!section.is_independent_study">
                   <span>&nbsp;of&nbsp;</span><span>/</span>
                   {{ section.limit_estimate_enrollment }}
                 </span>
-               </a>
+              </a>
             </span>
           </td>
         </tr>
@@ -177,10 +178,10 @@ export default {
       return typeStr.toUpperCase();
     },
     classListHref(section) {
-      return ("/teaching/" + section.year + "," +
-              section.quarter + "," + section.curriculum_abbr + "," +
-              section.course_number + "/" + section.section_id + "/students");
-     },
+      return ('/teaching/' + section.year + ',' +
+              section.quarter + ',' + section.curriculum_abbr + ',' +
+              section.course_number + '/' + section.section_id + '/students');
+    },
   },
 };
 </script>
