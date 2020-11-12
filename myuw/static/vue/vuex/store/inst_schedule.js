@@ -16,21 +16,22 @@ function postProcess(response, urlExtra) {
   const courseData = data[urlExtra];
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
-
-    section.id = (courseData.year + "-" +
-                  courseData.quarter + "-" +
+    section.year = courseData.year;
+    section.quarter = courseData.quarter;
+    section.id = (section.year + "-" +
+                  section.quarter + "-" +
                   section.curriculum_abbr.replace(/ /g, '-') + "-" +
                   section.course_number + "-" +
                   section.section_id);
 
-    section.href = (courseData.year + "," +
-                    courseData.quarter + "#" +
+    section.href = (section.year + "," +
+                    section.quarter + "#" +
                     section.curriculum_abbr.replace(/ /g, '-') + "-" +
                     section.course_number + "-" +
                     section.section_id);
 
-    section.navtarget = (courseData.year + "," +
-                         courseData.quarter + "," +
+    section.navtarget = (section.year + "," +
+                         section.quarter + "," +
                          section.curriculum_abbr + "-" +
                          section.course_number + "-" +
                          section.section_id);
