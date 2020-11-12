@@ -1,4 +1,5 @@
 import {Vue, vueConf} from './base.js';
+import utils from './mixins/utils.js';
 
 // layout componenets
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
@@ -18,6 +19,8 @@ import Notices from './components/home/notices.vue';
 import Applicant from './components/home/applicant/applicant.vue';
 import Events from './components/home/events/events.vue';
 import InterStudent from './components/home/international/student.vue';
+import InstructorCourseSummery from
+  './components/home/inst_course_summary/curterm-summary.vue';
 import NewInterStudent from './components/home/international/new-student.vue';
 import Quicklinks from './components/home/quicklinks/quicklinks.vue';
 import ToRegister from './components/home/new_student/to-register.vue';
@@ -36,6 +39,7 @@ import hfs from './vuex/store/hfs';
 import library from './vuex/store/library';
 import applicant from './vuex/store/applicant';
 import events from './vuex/store/events';
+import inst_schedule from './vuex/store/inst_schedule';
 import visual_schedule from './vuex/store/visual_schedule';
 import hx_toolkit from './vuex/store/hx_toolkit';
 import oquarter from './vuex/store/oquarter';
@@ -57,6 +61,7 @@ vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('myplan', myplan);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
+vueConf.store.registerModule('inst_schedule', inst_schedule);
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
@@ -80,6 +85,7 @@ Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
 Vue.component('myuw-reg-status', RegStatus);
 Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
+Vue.component('myuw-inst-course-summary', InstructorCourseSummery);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-uwnetid', UWNetID);

@@ -2,47 +2,47 @@
   <div v-if="instructor">
     <uw-card v-if="isReady" loaded>
       <template #card-heading>
-        <h3>{{ cardHeading }}</h3>
+        <h3>{{ quarter }} {{ year }} Teaching Schedule</h3>
       </template>
       <template #card-body>
         <p v-if="!instSchedule.sections.length">
           You are not teaching any courses.
         </p>
         <div v-else>
-        <uw-section-summarys
-          v-for="(section, i) in instSchedule.sections"
-          :key="i"
-          :schedule="instSchedule"
-          :section="section" :index="i"
-        />
-        <div>
-          <a :href="`/academic_calendar/#${year},${quarter}`">
-            View {{ ucfirst(quarter) }} {{ year }} important dates
-            and deadlines
-          </a>
-        </div>
+          <uw-section-summary
+            v-for="(section, i) in instSchedule.sections"
+            :key="i"
+            :schedule="instSchedule"
+            :section="section" :index="i"
+          />
+          <div>
+            <a :href="`/academic_calendar/#${year},${quarter}`">
+              View {{ ucfirst(quarter) }} {{ year }} important dates
+              and deadlines
+            </a>
+          </div>
         </div>
       </template>
     </uw-card>
 
     <uw-card v-else-if="isErrored && statusCodeTagged(term) == 404" loaded>
       <template #card-heading>
-        <h3>{{ cardHeading }}</h3>
+        <h3>{{ quarter }} {{ year }} Teaching Schedule</h3>
       </template>
       <template #card-body>
         <p>
-          <i class="fa fa-exclamation-triangle"/>
+          <i class="fa fa-exclamation-triangle" />
           An error occurred and MyUW cannot load your teaching schedule
-          right now. In the meantime, try the 
+          right now. In the meantime, try the
           <a
             href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
-            data-linklabel="MyClass" target="_blank">
-              My Class Instructor Resources
+            data-linklabel="MyClass" target="_blank"
+          >
+            My Class Instructor Resources
           </a> page.
         </p>
       </template>
     </uw-card>
-
   </div>
 </template>
 
@@ -89,9 +89,6 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
-    cardHeading() {
-      return ucfirst(quarter).concat(year).concat("Teaching Schedule");
-    },
   },
 
   mounted() {
@@ -104,7 +101,7 @@ export default {
     }
   },
 
- methods: {
+  methods: {
     ...mapActions('inst_schedule', {
       fetchInstSche: 'fetch',
     }),
