@@ -50,7 +50,7 @@
         </a>
       </span>
       <span>
-        {{ section.section_type.toUpperCase() }}
+        {{ ucfirst(section.section_type) }}
       </span>
     </div>
 
