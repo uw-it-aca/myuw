@@ -2,7 +2,7 @@
   <div v-if="instructor">
     <uw-card v-if="isReady" loaded>
       <template #card-heading>
-        <h3>{{ quarter }} {{ year }} Teaching Schedule</h3>
+        <h3>{{ ucfirst(quarter) }} {{ year }} Teaching Schedule</h3>
       </template>
       <template #card-body>
         <p v-if="!instSchedule.sections.length">
@@ -27,7 +27,7 @@
 
     <uw-card v-else-if="isErrored && statusCodeTagged(term) == 404" loaded>
       <template #card-heading>
-        <h3>{{ quarter }} {{ year }} Teaching Schedule</h3>
+        <h3>{{ ucfirst(quarter) }} {{ year }} Teaching Schedule</h3>
       </template>
       <template #card-body>
         <p>
