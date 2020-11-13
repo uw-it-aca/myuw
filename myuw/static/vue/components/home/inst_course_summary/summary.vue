@@ -8,7 +8,7 @@
         You are not teaching any courses.
       </p>
       <div v-else>
-        <uw-section-group
+        <uw-section
           v-for="section in instSchedule.sections"
           :key="section.id"
           :section="section"
@@ -48,7 +48,7 @@
               :section="sec"
             />
           </b-collapse>
-        </uw-section-group>
+        </uw-section>
       </div>
       <div>
         <a :href="`/academic_calendar/#${year},${quarter}`">
@@ -82,13 +82,11 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
-import SectionGroup from './section-group.vue';
 import Section from './section.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-section-group': SectionGroup,
     'uw-section': Section,
   },
   props: {
@@ -100,6 +98,11 @@ export default {
       type: String,
       default: 'current',
     },
+  },
+  data() {
+    return {
+      isOpen: false,
+    };
   },
   computed: {
     ...mapState({
@@ -125,19 +128,11 @@ export default {
       return this.isErroredTagged(this.term);
     },
   },
-
   created() {
     if (this.instructor) {
       this.fetchInstSche(this.term);
     }
   },
-
-  data() {
-    return {
-      isOpen: false,
-    };
-  },
-
   methods: {
     ...mapActions('inst_schedule', {
       fetchInstSche: 'fetch',
