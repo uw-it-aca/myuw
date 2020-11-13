@@ -20,7 +20,7 @@ import Applicant from './components/home/applicant/applicant.vue';
 import Events from './components/home/events/events.vue';
 import InterStudent from './components/home/international/student.vue';
 import InstructorCourseSummery from
-  './components/home/inst_course_summary/curterm-summary.vue';
+  './components/home/inst_course_summary/summary.vue';
 import NewInterStudent from './components/home/international/new-student.vue';
 import Quicklinks from './components/home/quicklinks/quicklinks.vue';
 import ToRegister from './components/home/new_student/to-register.vue';

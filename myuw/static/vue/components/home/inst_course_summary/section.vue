@@ -1,5 +1,6 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
+    <!-- show by default -->
     <h4>
       <div :class="`c${section.color_id} simplesquare`" />
       <a
@@ -30,11 +31,12 @@
       </span>
     </div>
 
-    <uw-meeting-info :section="section" />
+    <uw-meeting :section="section" />
     <hr v-if="section.separateSection">
   </div>
 
   <div v-else-if="!section.is_primary_section && section.isLinkedSecondary">
+    <!-- hide under the disclosure by default -->
     <div :class="`c${section.color_id}`" />
     <a
       :href="`/teaching/${section.href}`"
@@ -56,17 +58,17 @@
       {{ ucfirst(section.section_type) }}
     </span>
 
-    <uw-meeting-info :section="section" />
+    <uw-meeting :section="section" />
     <hr v-if="section.separateSection">
   </div>
 </template>
 
 <script>
-import MeetingInfo from './meeting-info.vue';
+import MeetingInfo from './meeting.vue';
 
 export default {
   components: {
-    'uw-meeting-info': MeetingInfo,
+    'uw-meeting': MeetingInfo,
   },
   props: {
     section: {
