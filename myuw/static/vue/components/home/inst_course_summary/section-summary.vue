@@ -1,5 +1,5 @@
 <template>
-  <div v-if="section.is_primary_section || !section.underDisclosure">
+  <div v-if="section.is_primary_section || !section.isLinkedSecondary">
     <h4>
       <div :class="`c${section.color_id} simplesquare`" />
       <a
@@ -31,10 +31,10 @@
     </div>
 
     <uw-meeting-info :section="section" />
-    <hr v-if="section.separate_section">
+    <hr v-if="section.separateSection">
   </div>
 
-  <div v-else-if="!section.is_primary_section && section.underDisclosure">
+  <div v-else-if="!section.is_primary_section && section.isLinkedSecondary">
     <div :class="`c${section.color_id}`" />
     <a
       :href="`/teaching/${section.href}`"
@@ -57,7 +57,7 @@
     </span>
 
     <uw-meeting-info :section="section" />
-    <hr v-if="section.separate_section">
+    <hr v-if="section.separateSection">
   </div>
 </template>
 
