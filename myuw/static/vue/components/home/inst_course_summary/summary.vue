@@ -13,10 +13,41 @@
           :key="section.id"
           :section="section"
         >
-          <uw-section
-            v-for="(sec, j) in getLinkedSections(section)" :key="j"
-            :section="sec"
-          />
+          <b-button
+            v-if="!isOpen"
+            v-b-toggle="`linked-sections-${section.id}`"
+            variant="link"
+            size="sm"
+            aria-controls="`linked-sections-${section.id}`"
+            aria-label="`SHOW LINKED SECTIONS for ${section.navtarget}`"
+            title="Expand to show linked sections"
+          >
+            Show Linked Sections of {{ section.curriculum_abbr }}
+            {{ section.course_number }} {{ section.section_id }}
+          </b-button>
+          <b-button
+            v-else
+            v-b-toggle="`linked-sections-${section.id}`"
+            variant="link"
+            size="sm"
+            aria-controls="`linked-sections-${section.id}`"
+            aria-label="`HIDE LINKED SECTIONS for ${section.navtarget}`"
+            title="Collapse to show linked sections"
+          >
+            Hide Linked Sections of {{ section.curriculum_abbr }}
+            {{ section.course_number }} {{ section.section_id }}
+          </b-button>
+
+          <b-collapse
+            :id="`linked-sections-${section.id}`"
+            v-model="isOpen"
+            aria-label="`LINKED SECTIONS FOR ${section.navtarget}`"
+          >
+            <uw-section
+              v-for="(sec, j) in getLinkedSections(section)" :key="j"
+              :section="sec"
+            />
+          </b-collapse>
         </uw-section-group>
       </div>
       <div>
@@ -95,14 +126,16 @@ export default {
     },
   },
 
-  mounted() {
-    this.fetch(this.term);
-  },
-
   created() {
     if (this.instructor) {
       this.fetchInstSche(this.term);
     }
+  },
+
+  data() {
+    return {
+      isOpen: false,
+    };
   },
 
   methods: {
