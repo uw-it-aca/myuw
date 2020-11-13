@@ -10,11 +10,16 @@
         </p>
         <div v-else>
           <uw-section-summary
-            v-for="(section, i) in instSchedule.sections"
-            :key="i"
-            :schedule="instSchedule"
-            :section="section" :index="i"
-          />
+            v-for="section in instSchedule.sections"
+            :key="section.id"
+            :section="section"
+          >
+            <uw-section-summary
+              v-for="(sec, j) in getLinkedSections(section)" :key="j"
+              :section="sec"
+            />
+          </uw-section-summary>
+
           <div>
             <a :href="`/academic_calendar/#${year},${quarter}`">
               View {{ ucfirst(quarter) }} {{ year }} important dates
@@ -105,6 +110,12 @@ export default {
     ...mapActions('inst_schedule', {
       fetchInstSche: 'fetch',
     }),
+    getLinkedSections(pSection) {
+      return this.instSchedule.sections.filter(
+          (section) => (!section.is_primary_section &&
+          section.primary_section_label === pSection.section_label),
+      );
+    },
   },
 };
 </script>
