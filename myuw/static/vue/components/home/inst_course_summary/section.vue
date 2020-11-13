@@ -32,6 +32,7 @@
     </div>
 
     <uw-meeting :section="section" />
+    <slot />
     <hr v-if="section.separateSection">
   </div>
 
