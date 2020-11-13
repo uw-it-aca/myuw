@@ -19,6 +19,7 @@ from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.instructor_schedule import get_instructor_section,\
     check_section_instructor
 from myuw.dao.pws import get_url_key_for_regid
+from myuw.dao.term import is_future
 from myuw.logger.logresp import log_api_call
 from myuw.logger.timer import Timer
 from myuw.util.thread import Thread, ThreadWithResponse
@@ -96,15 +97,14 @@ class OpenInstSectionDetails(OpenAPI):
         threads.append(t)
         t.start()
 
-        for section in resp_data['sections']:
-            _set_current(schedule.term, request, section)
+        if not is_future(self.term, request):
+            for section in resp_data['sections']:
+                _set_current(self.term, request, section)
 
-            t = Thread(target=coda.get_classlist_details,
-                       args=(section['section_label'],
-                             section,))
-
-            threads.append(t)
-            t.start()
+                t = Thread(target=coda.get_classlist_details,
+                           args=(section['section_label'], section,))
+                threads.append(t)
+                t.start()
 
         for thread in threads:
             thread.join()

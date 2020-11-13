@@ -39,6 +39,9 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(
             section1["email_list"]['section_list']['list_address'],
             'ess102a_sp13')
+        section2 = data['sections'][1]
+        # Coda data
+        self.assertEqual(section2['failure_rate'], 0.01790613718411552)
 
         section3 = data['sections'][2]
         self.assertEqual(section3["color_id"], "2a")
@@ -64,7 +67,7 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')
         self.assertEqual(data['related_terms'][5]['year'], 2013)
-
+        # Coda data
         self.assertEqual(data['sections'][1]['failure_rate'],
                          0.01790613718411552)
 
@@ -83,6 +86,10 @@ class TestInstructorTermSchedule(MyuwApiTest):
         self.set_user('bill')
         response = self.get_schedule(year=2013, quarter='summer')
         self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        section = data['sections'][0]
+        self.assertFalse('failure_rate' in section)
+        self.assertFalse('evaluation' in section)
 
     def test_bill_past_term(self):
         self.set_user('bill')
