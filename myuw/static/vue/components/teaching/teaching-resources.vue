@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>Remote Teaching</h3>
     <ul class="unstyled-list">
       <li><a href="https://teachingremotely.washington.edu/">Teaching Remotely</a></li>
       <!-- BOTHELL ONLY --->
@@ -51,15 +52,16 @@ export default {
       seattle_emp: (state) => state.user.affiliations.official_seattle,
       bothell_emp: (state) => state.user.affiliations.official_bothell,
       tacoma_emp: (state) => state.user.affiliations.official_tacoma,
-      linkData: () => {
+      linkData() {
         let textbookLink, courseEvalLink = '';
-        if (bothell_emp) {
+        console.log(this.bothell_emp);
+        if (this.bothell_emp) {
           textbookLink = 'uwbothell';
           courseEvalLink = 'https://uwb.iasystem.org/faculty';
-        } else if (tacoma_emp) {
+        } else if (this.tacoma_emp) {
           textbookLink = 'uwtacoma';
           courseEvalLink = 'https://uwt.iasystem.org/faculty';
-        } else if (seattle_emp) {
+        } else if (this.seattle_emp) {
           textbookLink = 'uwmain';
           courseEvalLink = 'https://uw.iasystem.org/faculty'
         } else {
