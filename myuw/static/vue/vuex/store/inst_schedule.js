@@ -14,6 +14,7 @@ function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
+  let linked_primary_label = undefined;
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
     section.year = courseData.year;
@@ -36,6 +37,19 @@ function postProcess(response, urlExtra) {
                          section.course_number + "-" +
                          section.section_id);
 
+    if (section.is_primary_section) {
+      if (section.total_linked_secondaries) {
+        linked_primary_label = section.section_label;
+      }
+    } else {
+      if (!section.mini_card &&
+          linked_primary_label &&
+          section.primary_section_label === linked_primary_label) {
+        section.underDisclosure = true;
+      } else {
+        linked_primary_label = undefined;
+      }
+    }
     section.instructors = [];
     section.hasEosDates = false;
     for (let idx = 0; idx < section.meetings.length; idx++) {
