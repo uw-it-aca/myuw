@@ -14,7 +14,7 @@ function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
-  let linked_primary_label = undefined;
+  let linkedPrimaryLabel = undefined;
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
     section.year = courseData.year;
@@ -37,19 +37,41 @@ function postProcess(response, urlExtra) {
                          section.course_number + "-" +
                          section.section_id);
 
+    section.separateSection = true;  // the next section is not related
+    section.isLinkedSecondary = false;
+    let nextSection = (i + 1 < courseData.sections.length ?
+                       courseData.sections[i+1] :
+                       null);
     if (section.is_primary_section) {
       if (section.total_linked_secondaries) {
-        linked_primary_label = section.section_label;
+        linkedPrimaryLabel = section.section_label;
       }
+      if (nextSection &&
+          !nextSection.is_primary_section &&
+          nextSection.primary_section_label === section.section_label) {
+        section.separateSection = false;
+      }
+
     } else {
-      if (!section.mini_card &&
-          linked_primary_label &&
-          section.primary_section_label === linked_primary_label) {
-        section.underDisclosure = true;
+      // secondary section
+
+      if (linkedPrimaryLabel &&
+          section.primary_section_label === linkedPrimaryLabel) {
+        // this secondary section is related to
+        // the last primary section
+        section.isLinkedSecondary = true;
+
+        if (nextSection &&
+            !nextSection.is_primary_section &&
+            nextSection.primary_section_label === linkedPrimaryLabel) {
+          section.separateSection = false;
+        }
+
       } else {
-        linked_primary_label = undefined;
+        linkedPrimaryLabel = undefined;
       }
     }
+
     section.instructors = [];
     section.hasEosDates = false;
     for (let idx = 0; idx < section.meetings.length; idx++) {
