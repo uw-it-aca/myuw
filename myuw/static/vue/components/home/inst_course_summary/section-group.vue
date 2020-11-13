@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <uw-section :section="section">
-      <slot />
-    </uw-section>
-  </div>
+  <uw-section :section="section">
+    <slot />
+  </uw-section>
 </template>
 
 <script>

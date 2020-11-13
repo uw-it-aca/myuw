@@ -19,12 +19,12 @@
           />
         </uw-section-group>
       </div>
-    </template>
-    <template #card-footer>
-      <a :href="`/academic_calendar/#${year},${quarter}`">
-        View {{ ucfirst(quarter) }} {{ year }} important dates
-        and deadlines
-      </a>
+      <div>
+        <a :href="`/academic_calendar/#${year},${quarter}`">
+          View {{ ucfirst(quarter) }} {{ year }} important dates
+          and deadlines
+        </a>
+      </div>
     </template>
   </uw-card>
 
