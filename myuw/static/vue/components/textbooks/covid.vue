@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-alert show variant="warning">
+    <b-alert show variant="dark-beige" class="myuw-textbook-covid">
       <div class="d-flex text-dark-beige m-0 myuw-text-md">
         <div class="pr-2 flex-shrink-1">
           <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
@@ -9,7 +9,7 @@
           University Book Store Autumn 2020 Update
         </div>
       </div>
-      <hr class="text-danger">
+      <hr>
       <div class="text-dark-beige myuw-text-md">
         In order to ensure public health, all course materials purchases for
         Fall 2020 quarter are online only; University Book Store&rsquo;s
@@ -18,3 +18,11 @@
     </b-alert>
   </div>
 </template>
+
+<style lang="scss" scoped>
+@use "sass:map";
+@import "../../../css/myuw/variables.scss";
+.myuw-textbook-covid {
+  background: lighten(map.get($theme-colors, "warning"), 48%) !important;
+}
+</style>
