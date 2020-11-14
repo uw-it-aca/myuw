@@ -7,6 +7,7 @@
       <p v-if="!instSchedule.sections.length">
         You are not teaching any courses.
       </p>
+
       <div v-else>
         <uw-section
           v-for="section in instSchedule.sections"
@@ -14,43 +15,45 @@
           :section="section"
           :mobile-only="mobileOnly"
         >
-          <b-button
-            v-if="!isOpen"
-            v-b-toggle="`linked-sections-${section.id}`"
-            variant="link"
-            size="sm"
-            :aria-controls="`linked-sections-${section.id}`"
-            :aria-label="`SHOW LINKED SECTIONS for ${section.navtarget}`"
-            title="Expand to show linked sections"
-          >
-            Show Linked Sections of {{ section.curriculum_abbr }}
-            {{ section.course_number }} {{ section.section_id }}
-          </b-button>
+          <template v-if="hasLinkedSections(section)">
+            <b-button
+              v-if="!isOpen"
+              v-b-toggle="`linked-sections-${section.id}`"
+              variant="link"
+              size="sm"
+              :aria-controls="`linked-sections-${section.id}`"
+              :aria-label="`SHOW LINKED SECTIONS for ${section.id}`"
+              title="Expand to show linked sections"
+            >
+              Show Linked Sections of {{ section.curriculum_abbr }}
+              {{ section.course_number }} {{ section.section_id }}
+            </b-button>
 
-          <b-button
-            v-else
-            v-b-toggle="`linked-sections-${section.id}`"
-            variant="link"
-            size="sm"
-            :aria-controls="`linked-sections-${section.id}`"
-            :aria-label="`HIDE LINKED SECTIONS for ${section.navtarget}`"
-            title="Collapse to show linked sections"
-          >
-            Hide Linked Sections of {{ section.curriculum_abbr }}
-            {{ section.course_number }} {{ section.section_id }}
-          </b-button>
+            <b-button
+              v-else
+              v-b-toggle="`linked-sections-${section.id}`"
+              variant="link"
+              size="sm"
+              :aria-controls="`linked-sections-${section.id}`"
+              :aria-label="`HIDE LINKED SECTIONS for ${section.id}`"
+              title="Collapse to show linked sections"
+            >
+              Hide Linked Sections of {{ section.curriculum_abbr }}
+              {{ section.course_number }} {{ section.section_id }}
+            </b-button>
 
-          <b-collapse
-            :id="`linked-sections-${section.id}`"
-            v-model="isOpen"
-            :aria-label="`LINKED SECTIONS FOR ${section.navtarget}`"
-          >
-            <uw-linked-section
-              v-for="(sec, j) in getLinkedSections(section)" :key="j"
-              :section="sec"
-              :mobile-only="mobileOnly"
-            />
-          </b-collapse>
+            <b-collapse
+              :id="`linked-sections-${section.id}`"
+              v-model="isOpen"
+              :aria-label="`LINKED SECTIONS FOR ${section.id}`"
+            >
+              <uw-linked-section
+                v-for="(sec, j) in getLinkedSections(section)" :key="j"
+                :section="sec"
+                :mobile-only="mobileOnly"
+              />
+            </b-collapse>
+          </template>
           <hr>
         </uw-section>
       </div>
@@ -148,6 +151,10 @@ export default {
           (section) => (!section.is_primary_section &&
           section.primary_section_label === pSection.section_label),
       );
+    },
+    hasLinkedSections(section) {
+      return (section.is_primary_section &&
+       section.total_linked_secondaries);
     },
   },
 };

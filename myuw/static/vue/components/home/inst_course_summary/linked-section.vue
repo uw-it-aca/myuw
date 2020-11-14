@@ -26,6 +26,27 @@
       :section="section"
       :mobile-only="mobileOnly"
     />
+
+    <div>
+      <button
+        v-if="!section.mini_card"
+        type="button"
+        :value="`/teaching/${section.href}`"
+        :aria-label="`Pin ${section.id} mini-card to teaching page`"
+        title="Pin a mini-card onto teaching page"
+      >
+        Pin to teaching page
+      </button>
+      <button
+        v-else
+        type="button"
+        :value="`/teaching/${section.href}`"
+        :aria-label="`Remove ${section.id} mini-card from teaching page`"
+        title="Remove the mini-card from teaching page"
+      >
+        Unpin
+      </button>
+    </div>
   </div>
 </template>
 
