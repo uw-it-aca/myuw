@@ -1,6 +1,5 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <!-- show by default -->
     <h4>
       <div :class="`c${section.color_id} simplesquare`" />
       <a
@@ -31,36 +30,12 @@
       </span>
     </div>
 
-    <uw-meeting :section="section" />
+    <uw-meeting
+      :section="section"
+      :mobile-only="mobileOnly"
+    />
+
     <slot />
-    <hr v-if="section.separateSection">
-  </div>
-
-  <div v-else-if="!section.is_primary_section && section.isLinkedSecondary">
-    <!-- hide under the disclosure by default -->
-    <div :class="`c${section.color_id}`" />
-    <a
-      :href="`/teaching/${section.href}`"
-      :future-nav-target="section.navtarget"
-    >
-      {{ section.section_id }}
-    </a>
-    <span v-if="section.sln">
-      <a
-        :href="getTimeScheHref(section)"
-        :title="`Time Schedule for SLN ${section.sln}`"
-        :data-linklabel="getTimeScheLinkLable(section)"
-        target="_blank"
-      >
-        {{ section.sln }}
-      </a>
-    </span>
-    <span>
-      {{ ucfirst(section.section_type) }}
-    </span>
-
-    <uw-meeting :section="section" />
-    <hr v-if="section.separateSection">
   </div>
 </template>
 
@@ -72,21 +47,13 @@ export default {
     'uw-meeting': MeetingInfo,
   },
   props: {
+    mobileOnly: {
+      type: Boolean,
+      default: false,
+    },
     section: {
       type: Object,
       required: true,
-    },
-  },
-  methods: {
-    getTimeScheHref(section) {
-      const qAbb = (!section.quarter || section.quarter.length === 0) ?
-            '' : section.quarter.substring(0, 3).toUpperCase();
-      return ('http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR=' +
-              qAbb + '+' + section.year + '&SLN=' + section.sln);
-    },
-    getTimeScheLinkLable(section) {
-      return ('SLN ' + section.sln + ': ' + section.curriculum_abbr + ' ' +
-             section.course_number + ' ' + section.section_id);
     },
   },
 };

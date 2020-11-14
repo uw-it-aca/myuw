@@ -66,6 +66,7 @@ import {
 // Mixins
 import outlink from './mixins/outlink';
 import utils from './mixins/utils';
+import courses from './mixins/courses';
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
@@ -182,6 +183,7 @@ Vue.config.devtools = true;
 
 Vue.mixin(outlink);
 Vue.mixin(utils);
+Vue.mixin(courses);
 
 const vueConf = {
   el: '#vue_root',

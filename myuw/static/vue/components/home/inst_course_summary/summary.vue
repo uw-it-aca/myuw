@@ -12,26 +12,28 @@
           v-for="section in instSchedule.sections"
           :key="section.id"
           :section="section"
+          :mobile-only="mobileOnly"
         >
           <b-button
             v-if="!isOpen"
             v-b-toggle="`linked-sections-${section.id}`"
             variant="link"
             size="sm"
-            aria-controls="`linked-sections-${section.id}`"
-            aria-label="`SHOW LINKED SECTIONS for ${section.navtarget}`"
+            :aria-controls="`linked-sections-${section.id}`"
+            :aria-label="`SHOW LINKED SECTIONS for ${section.navtarget}`"
             title="Expand to show linked sections"
           >
             Show Linked Sections of {{ section.curriculum_abbr }}
             {{ section.course_number }} {{ section.section_id }}
           </b-button>
+
           <b-button
             v-else
             v-b-toggle="`linked-sections-${section.id}`"
             variant="link"
             size="sm"
-            aria-controls="`linked-sections-${section.id}`"
-            aria-label="`HIDE LINKED SECTIONS for ${section.navtarget}`"
+            :aria-controls="`linked-sections-${section.id}`"
+            :aria-label="`HIDE LINKED SECTIONS for ${section.navtarget}`"
             title="Collapse to show linked sections"
           >
             Hide Linked Sections of {{ section.curriculum_abbr }}
@@ -41,13 +43,15 @@
           <b-collapse
             :id="`linked-sections-${section.id}`"
             v-model="isOpen"
-            aria-label="`LINKED SECTIONS FOR ${section.navtarget}`"
+            :aria-label="`LINKED SECTIONS FOR ${section.navtarget}`"
           >
-            <uw-section
+            <uw-linked-section
               v-for="(sec, j) in getLinkedSections(section)" :key="j"
               :section="sec"
+              :mobile-only="mobileOnly"
             />
           </b-collapse>
+          <hr>
         </uw-section>
       </div>
       <div>
@@ -82,12 +86,14 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
+import LinkedSection from './linked-section.vue';
 import Section from './section.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-section': Section,
+    'uw-linked-section': LinkedSection,
   },
   props: {
     mobileOnly: {
