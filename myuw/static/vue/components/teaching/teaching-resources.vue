@@ -4,9 +4,7 @@
       Remote Teaching
     </h3>
     <ul>
-      <li>
-        <a href="https://teachingremotely.washington.edu/">Teaching Remotely</a>
-      </li>
+      <li><a href="https://teachingremotely.washington.edu/">Teaching Remotely</a></li>
       <!-- BOTHELL ONLY --->
       <li v-if="bothell_emp">
         <a href="https://www.uwb.edu/it/teaching">UWB Teach Anywhere</a>
