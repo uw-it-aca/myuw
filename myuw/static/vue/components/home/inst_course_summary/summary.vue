@@ -53,6 +53,12 @@
           </a>
         </div>
       </div>
+      <div v-else>
+        <p v-if="term === 'current'">
+          You are not teaching any courses {{ ucfirst(getQuarter()) }}
+          {{ getYear() }}.
+        </p>
+      </div>
     </template>
   </uw-card>
 
