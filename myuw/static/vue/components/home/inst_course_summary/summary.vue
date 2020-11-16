@@ -8,7 +8,9 @@
     </template>
     <template #card-body>
       <div v-if="instSchedule.sections.length">
+        <!-- teach some courses -->
         <div v-if="term !== 'current'">
+          <!-- diplay only for a future term -->
           <p>
             You are teaching
             <strong>
@@ -32,29 +34,26 @@
           </span>
         </div>
 
-        <uw-summer-section-list
-          v-if="getQuarter() === 'summer'"
-          :schedule="instSchedule"
-          :mobile-only="mobileOnly"
+        <uw-summer-section-list v-if="getQuarter() === 'summer'"
+                                :schedule="instSchedule"
+                                :mobile-only="mobileOnly"
         />
 
-        <uw-section-list
-          v-else
-          :sections="instSchedule.sections"
-          :mobile-only="mobileOnly"
+        <uw-section-list v-else
+                         :sections="instSchedule.sections"
+                         :mobile-only="mobileOnly"
         />
 
         <div>
           <a :href="getAcadCalLink()">
-            View
-            {{ ucfirst(getQuarter()) }}
-            {{ getYear() }}
+            View {{ ucfirst(getQuarter()) }} {{ getYear() }}
             important dates and deadlines
           </a>
         </div>
       </div>
       <div v-else>
-        <p v-if="term === 'current'">
+        <!-- teach no course -->
+        <p>
           You are not teaching any courses this term.
         </p>
       </div>
