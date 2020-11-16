@@ -17,6 +17,10 @@ const localVue = createLocalVue(Vuex);
 library.add(faExclamationTriangle);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
 
+const propData = {
+  term: 'current',
+};
+
 describe('Outage card', () => {
 
   it('non404Error checking', () => {
@@ -31,12 +35,12 @@ describe('Outage card', () => {
           }
         },
         getters: {
-          'stud_schedule/statusCodeTagged': () => 200,
+          'stud_schedule/statusCodeTagged': () => function () { return 200; },
           'notices/statusCode': () => 200,
           'profile/statusCode': () => 200,
         },
     });
-    const wrapper = shallowMount(Outage, {store, localVue});
+    const wrapper = shallowMount(Outage, {store, localVue, propData});
     expect(wrapper.vm.non404Error(200)).toBeFalsy();
     expect(wrapper.vm.non404Error(404)).toBeFalsy();
     expect(wrapper.vm.non404Error(543)).toBeTruthy();
@@ -56,7 +60,7 @@ describe('Outage card', () => {
 
     it('showOutageCard for Student - Successful calls', () => {
       let getters = {
-        'stud_schedule/statusCodeTagged': () => 200,
+        'stud_schedule/statusCodeTagged': () => function () { return 200; },
         'notices/statusCode': () => 200,
         'profile/statusCode': () => 200,
       };
@@ -65,13 +69,13 @@ describe('Outage card', () => {
         state,
       });
 
-      const wrapper = shallowMount(Outage, {store, localVue});
+      const wrapper = shallowMount(Outage, {store, localVue, propData});
       expect(wrapper.vm.showOutageCard).toBeFalsy();
     });
 
     it('showOutageCard for Student - 404 Error', () => {
       let getters = {
-        'stud_schedule/statusCodeTagged': () => 404,
+        'stud_schedule/statusCodeTagged': () => function () { return 404; },
         'notices/statusCode': () => 200,
         'profile/statusCode': () => 200,
       };
@@ -80,13 +84,13 @@ describe('Outage card', () => {
         state,
       });
   
-      const wrapper = shallowMount(Outage, {store, localVue});
+      const wrapper = shallowMount(Outage, {store, localVue, propData});
       expect(wrapper.vm.showOutageCard).toBeFalsy();
     });
 
     it('showOutageCard for Student - 543 Error', () => {
       let getters = {
-        'stud_schedule/statusCodeTagged': () => 543,
+        'stud_schedule/statusCodeTagged': () => function () { return 543; },
         'notices/statusCode': () => 200,
         'profile/statusCode': () => 200,
       };
@@ -95,7 +99,7 @@ describe('Outage card', () => {
         state,
       });
     
-      const wrapper = shallowMount(Outage, {store, localVue});
+      const wrapper = shallowMount(Outage, {store, localVue, propData});
       expect(wrapper.vm.showOutageCard).toBeTruthy();
     });
   });
