@@ -459,6 +459,7 @@ def add_term_data_to_context(request, context):
     context["future_term"] = "{},{}".format(
         next_term.year, next_term.quarter)
 
+
 def current_terms_prefetch(request):
     # This triggers a call to get_current_term when using the file dao.
     # That request won't happen on test/production
