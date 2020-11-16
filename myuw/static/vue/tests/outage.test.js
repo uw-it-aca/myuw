@@ -31,9 +31,9 @@ describe('Outage card', () => {
           }
         },
         getters: {
-          'stud_schedule/statusCode': () => 200,
+          'stud_schedule/statusCodeTagged': () => 200,
           'notices/statusCode': () => 200,
-          // 'profile/statusCode': () => 200,
+          'profile/statusCode': () => 200,
         },
     });
     const wrapper = shallowMount(Outage, {store, localVue});
@@ -56,9 +56,9 @@ describe('Outage card', () => {
 
     it('showOutageCard for Student - Successful calls', () => {
       let getters = {
-        'stud_schedule/statusCode': () => 200,
+        'stud_schedule/statusCodeTagged': () => 200,
         'notices/statusCode': () => 200,
-        // 'profile/statusCode': () => 200,
+        'profile/statusCode': () => 200,
       };
       let store = new Vuex.Store({
         getters,
@@ -71,9 +71,9 @@ describe('Outage card', () => {
 
     it('showOutageCard for Student - 404 Error', () => {
       let getters = {
-        'stud_schedule/statusCode': () => 404,
+        'stud_schedule/statusCodeTagged': () => 404,
         'notices/statusCode': () => 200,
-        // 'profile/statusCode': () => 200,
+        'profile/statusCode': () => 200,
       };
       let store = new Vuex.Store({
         getters,
@@ -86,9 +86,9 @@ describe('Outage card', () => {
 
     it('showOutageCard for Student - 543 Error', () => {
       let getters = {
-        'stud_schedule/statusCode': () => 543,
+        'stud_schedule/statusCodeTagged': () => 543,
         'notices/statusCode': () => 200,
-        // 'profile/statusCode': () => 200,
+        'profile/statusCode': () => 200,
       };
       let store = new Vuex.Store({
         getters,
