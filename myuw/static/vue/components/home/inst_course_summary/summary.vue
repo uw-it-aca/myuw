@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="instructor && isReady" loaded>
+  <uw-card v-if="showContent()" loaded>
     <template #card-heading>
       <h3>
         {{ ucfirst(getQuarter()) }}
@@ -126,6 +126,10 @@ export default {
     },
     isErrored() {
       return this.isErroredTagged(this.term);
+    },
+    showContent() {
+      return (this.instructor && this.isReady() &&
+        (this.instSchedule.sections.length || this.term === 'current'));
     },
   },
   created() {
