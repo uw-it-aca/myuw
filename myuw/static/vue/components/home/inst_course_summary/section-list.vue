@@ -33,7 +33,6 @@
 
         <b-collapse
           :id="`linked-sections-${section.id}`"
-          v-model="isOpen"
           :aria-label="`LINKED SECTIONS FOR ${section.id}`"
         >
           <uw-linked-section
