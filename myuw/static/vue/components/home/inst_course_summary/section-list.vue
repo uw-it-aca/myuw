@@ -12,7 +12,6 @@
           v-b-toggle="`linked-sections-${section.id}`"
           variant="link"
           size="sm"
-          :aria-controls="`linked-sections-${section.id}`"
           :aria-label="`SHOW LINKED SECTIONS for ${section.id}`"
           title="Expand to show linked sections"
         >
@@ -25,7 +24,6 @@
           v-b-toggle="`linked-sections-${section.id}`"
           variant="link"
           size="sm"
-          :aria-controls="`linked-sections-${section.id}`"
           :aria-label="`HIDE LINKED SECTIONS for ${section.id}`"
           title="Collapse to show linked sections"
         >
