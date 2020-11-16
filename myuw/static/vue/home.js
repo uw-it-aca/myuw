@@ -26,6 +26,9 @@ import SummerEfs from './components/home/new_student/summer-efs.vue';
 import CriticalInfo from './components/home/new_student/critical-info.vue';
 import RegStatus from './components/home/registration/status.vue';
 import Transcripts from './components/home/former_student/transcripts.vue';
+import ContinuingEducation from './components/home/former_student/continuing-education.vue';
+import Alumni from './components/home/alumni.vue';
+import Retiree from './components/home/former_employee/retiree.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -68,6 +71,7 @@ Vue.component('myuw-ns-critical-info', CriticalInfo);
 Vue.component('myuw-ns-international-student', NewInterStudent);
 Vue.component('myuw-applicant', Applicant);
 Vue.component('myuw-international-student', InterStudent);
+Vue.component('myuw-retiree', Retiree);
 Vue.component('myuw-events', Events);
 Vue.component('myuw-grades', Grades);
 Vue.component('myuw-husky-experience', HuskyExperience);
@@ -82,6 +86,8 @@ Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-uwnetid', UWNetID);
 Vue.component('myuw-transcripts', Transcripts);
+Vue.component('myuw-continuing-education', ContinuingEducation);
+Vue.component('myuw-alumni', Alumni);
 
 new Vue({
   ...vueConf,
