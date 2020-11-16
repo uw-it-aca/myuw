@@ -456,7 +456,8 @@ def add_term_data_to_context(request, context):
     context["last_final_exam_date"] = cur_term.last_final_exam_date
     context["next_year"] = next_term.year
     context["next_quarter"] = next_term.quarter
-
+    context["future_term"] = "{},{}".format(
+        next_term.year, next_term.quarter)
 
 def current_terms_prefetch(request):
     # This triggers a call to get_current_term when using the file dao.

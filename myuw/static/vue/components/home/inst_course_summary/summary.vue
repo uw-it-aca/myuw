@@ -1,111 +1,96 @@
 <template>
   <uw-card v-if="instructor && isReady" loaded>
     <template #card-heading>
-      <h3>{{ ucfirst(quarter) }} {{ year }} Teaching Schedule</h3>
+      <h3>
+        {{ ucfirst(getQuarter()) }}
+        {{ getYear() }} Teaching Schedule
+      </h3>
     </template>
     <template #card-body>
-      <p v-if="!instSchedule.sections.length">
-        You are not teaching any courses.
-      </p>
+      <div v-if="instSchedule.sections.length">
+        <div v-if="term !== 'current'">
+          <p>
+            You are teaching
+            <strong>
+              {{ instSchedule.sections.length }}
+              {{ instSchedule.sections.length > 1 ? 'courses' : 'course' }}
+            </strong>.
+            <br>
+            The first day of instruction is
+            {{ toFriendlyDate(instSchedule.term.first_day_quarter) }}
+            ({{ toFromNowDate(instSchedule.term.first_day_quarter) }})
+          </p>
+          <span>
+            <a
+              :href="`/teaching/${term}`"
+              :future-nav-target="`${term}`"
+              :data-linklabel="getTeachingLinkLabel()"
+              title="Open teaching page"
+            >
+              View details
+            </a>
+          </span>
+        </div>
 
-      <div v-else>
-        <uw-section
-          v-for="section in instSchedule.sections"
-          :key="section.id"
-          :section="section"
+        <uw-summer-section-list
+          v-if="getQuarter() === 'summer'"
+          :schedule="instSchedule"
           :mobile-only="mobileOnly"
-        >
-          <template v-if="hasLinkedSections(section)">
-            <b-button
-              v-if="!isOpen"
-              v-b-toggle="`linked-sections-${section.id}`"
-              variant="link"
-              size="sm"
-              :aria-controls="`linked-sections-${section.id}`"
-              :aria-label="`SHOW LINKED SECTIONS for ${section.id}`"
-              title="Expand to show linked sections"
-            >
-              Show Linked Sections of {{ section.curriculum_abbr }}
-              {{ section.course_number }} {{ section.section_id }}
-            </b-button>
+        />
 
-            <b-button
-              v-else
-              v-b-toggle="`linked-sections-${section.id}`"
-              variant="link"
-              size="sm"
-              :aria-controls="`linked-sections-${section.id}`"
-              :aria-label="`HIDE LINKED SECTIONS for ${section.id}`"
-              title="Collapse to show linked sections"
-            >
-              Hide Linked Sections of {{ section.curriculum_abbr }}
-              {{ section.course_number }} {{ section.section_id }}
-            </b-button>
+        <uw-section-list
+          v-else
+          :sections="instSchedule.sections"
+          :mobile-only="mobileOnly"
+        />
 
-            <b-collapse
-              :id="`linked-sections-${section.id}`"
-              v-model="isOpen"
-              :aria-label="`LINKED SECTIONS FOR ${section.id}`"
-            >
-              <uw-linked-section
-                v-for="(sec, j) in getLinkedSections(section)" :key="j"
-                :section="sec"
-                :mobile-only="mobileOnly"
-              />
-            </b-collapse>
-          </template>
-          <hr>
-        </uw-section>
-      </div>
-      <div>
-        <a :href="`/academic_calendar/#${year},${quarter}`">
-          View {{ ucfirst(quarter) }} {{ year }} important dates
-          and deadlines
-        </a>
+        <div>
+          <a :href="getAcadCalLink()">
+            View
+            {{ ucfirst(getQuarter()) }}
+            {{ getYear() }}
+            important dates and deadlines
+          </a>
+        </div>
       </div>
     </template>
   </uw-card>
 
-  <uw-card v-else-if="isErrored && statusCodeTagged(term) == 404" loaded>
-    <template #card-heading>
-      <h3>{{ ucfirst(quarter) }} {{ year }} Teaching Schedule</h3>
-    </template>
-    <template #card-body>
-      <p>
-        <i class="fa fa-exclamation-triangle" />
-        An error occurred and MyUW cannot load your teaching schedule
-        right now. In the meantime, try the
-        <a
-          href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
-          data-linklabel="MyClass" target="_blank"
-        >
-          My Class Instructor Resources
-        </a> page.
-      </p>
-    </template>
-  </uw-card>
+  <uw-error
+    v-else-if="isErrored"
+    :status-code="statusCodeTagged(term)"
+    :year="getYear()"
+    :quarter="getQuarter()"
+    loaded
+  />
 </template>
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
-import LinkedSection from './linked-section.vue';
-import Section from './section.vue';
+import Error from './error.vue';
+import SectionList from './section-list.vue';
+import SummerSectionList from './summer-list.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-section': Section,
-    'uw-linked-section': LinkedSection,
+    'uw-error': Error,
+    'uw-section-list': SectionList,
+    'uw-summer-section-list': SummerSectionList,
   },
   props: {
+    term: {
+      type: String,
+      default: 'current',
+    },
     mobileOnly: {
       type: Boolean,
       default: false,
     },
-    term: {
-      type: String,
-      default: 'current',
+    isFutureTerm: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -118,7 +103,8 @@ export default {
       instructor: (state) => state.user.affiliations.instructor,
       year: (state) => state.termData.year,
       quarter: (state) => state.termData.quarter,
-      summerTerm: (state) => state.termData.summer_term,
+      nextYear: (state) => state.nextTerm.year,
+      nextQuarter: (state) => state.nextTerm.quarter,
     }),
     ...mapState('inst_schedule', {
       instSchedule(state) {
@@ -146,15 +132,19 @@ export default {
     ...mapActions('inst_schedule', {
       fetchInstSche: 'fetch',
     }),
-    getLinkedSections(pSection) {
-      return this.instSchedule.sections.filter(
-          (section) => (!section.is_primary_section &&
-          section.primary_section_label === pSection.section_label),
-      );
+    getYear() {
+      return this.term === 'current' ? this.year : this.nextYear;
     },
-    hasLinkedSections(section) {
-      return (section.is_primary_section &&
-       section.total_linked_secondaries);
+    getQuarter() {
+      return this.term === 'current' ? this.quarter : this.nextQuarter;
+    },
+    getTeachingLinkLabel() {
+      return (this.ucfirst(this.getQuarter()) + ' ' + this.getYear() +
+       ' Teaching Details');
+    },
+    getAcadCalLink() {
+      return ('/academic_calendar/#' + this.getYear() + ',' +
+        this.getQuarter());
     },
   },
 };

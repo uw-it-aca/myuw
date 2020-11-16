@@ -15,9 +15,18 @@
     </h4>
 
     <div>
-      <span>
-        {{ section.section_type.toUpperCase() }}
+      <h5 class="sr-only">
+        Section Type
+      </h5>
+      <span class="text-capitalize">
+        {{ section.section_type }}
       </span>
+    </div>
+
+    <div>
+      <h5 class="sr-only">
+        Section SLN
+      </h5>
       <span v-if="section.sln">
         <a
           :href="getTimeScheHref(section)"
@@ -35,16 +44,22 @@
       :mobile-only="mobileOnly"
     />
 
+    <uw-enrollment
+      :section="section"
+    />
+
     <slot />
   </div>
 </template>
 
 <script>
 import MeetingInfo from './meeting.vue';
+import Enrollment from './enrollment.vue';
 
 export default {
   components: {
     'uw-meeting': MeetingInfo,
+    'uw-enrollment': Enrollment,
   },
   props: {
     mobileOnly: {

@@ -199,6 +199,10 @@ vueConf.store.commit('addVarToState', {
   value: window.term_data,
 });
 vueConf.store.commit('addVarToState', {
+  name: 'nextTerm',
+  value: window.next_term,
+});
+vueConf.store.commit('addVarToState', {
   name: 'cardDisplayDates',
   value: JSON.parse(document.getElementById('card_display_dates').innerHTML),
 });

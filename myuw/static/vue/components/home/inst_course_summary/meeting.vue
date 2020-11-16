@@ -15,9 +15,6 @@
           <th :id="`location-${section.id}`">
             Location
           </th>
-          <th :id="`enrollment-${section.id}`">
-            Enrollment
-          </th>
         </tr>
       </thead>
       <tbody>
@@ -111,39 +108,6 @@
               </span>
             </td>
           </template>
-          <td
-            :headers="`enrollment-${meeting.id}`"
-          >
-            <div>
-              <span v-if="section.is_prev_term_enrollment">
-                0<!-- the current_enrollment value is of previous term -->
-                <span v-if="!section.is_independent_study">
-                  &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
-                </span>
-              </span>
-
-              <span v-else-if="!section.current_enrollment">
-                0<span v-if="!section.is_independent_study">
-                  &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
-                </span>
-              </span>
-
-              <span v-else>
-                <a
-                  target="_blank"
-                  :href="classListHref(section)"
-                  :rel="section.section_label"
-                  title="View class list"
-                >
-                  {{ section.current_enrollment }}
-                  <span v-if="!section.is_independent_study">
-                    <span>&nbsp;of&nbsp;</span><span>/</span>
-                    {{ section.limit_estimate_enrollment }}
-                  </span>
-                </a>
-              </span>
-            </div>
-          </td>
         </tr>
       </tbody>
     </table>
@@ -185,11 +149,6 @@ export default {
         return typeStr.substring(0, 3).toUpperCase();
       }
       return typeStr.toUpperCase();
-    },
-    classListHref(section) {
-      return ('/teaching/' + section.year + ',' +
-              section.quarter + ',' + section.curriculum_abbr + ',' +
-              section.course_number + '/' + section.section_id + '/students');
     },
   },
 };
