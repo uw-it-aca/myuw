@@ -3,7 +3,9 @@
     <table>
       <thead class="sr-only">
         <tr>
-          <th v-if="section.hasEosDates" :id="`dates-${section.id}`">
+          <th v-if="section.hasEosDates"
+              :id="`dates-${section.id}`"
+          >
             Meeting Date(s)
           </th>
           <th :id="`days-${section.id}`">
@@ -18,35 +20,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr
-          v-for="meeting in section.meetings"
-          :key="meeting.id"
-        >
-          <td
-            v-if="meeting.eos_start_date && meeting.eos_end_date"
-            :headers="`dates-${meeting.id}`"
+        <tr v-for="meeting in section.meetings" :key="meeting.id">
+          <td v-if="meeting.eos_start_date && meeting.eos_end_date"
+              :headers="`dates-${meeting.id}`"
           >
             {{ formatEos(meeting) }}
           </td>
-          <td
-            v-if="meeting.wont_meet"
-            colspan="3"
-            :headers="`days-${meeting.id}`"
-            p-0
+          <td v-if="meeting.wont_meet" colspan="3"
+              :headers="`days-${meeting.id}`" p-0
           >
             <span>Class does not meet</span>
           </td>
-          <td
-            v-else-if="meeting.days_tbd"
-            colspan="3"
-            :headers="`days-${meeting.id}`"
+          <td v-else-if="meeting.days_tbd" colspan="3"
+              :headers="`days-${meeting.id}`"
           >
             <span>Days and times to be arranged</span>
           </td>
-          <td
-            v-else-if="meeting.no_meeting"
-            colspan="3"
-            :headers="`days-${meeting.id}`"
+          <td v-else-if="meeting.no_meeting" colspan="3"
+              :headers="`days-${meeting.id}`"
           >
             <span>
               No classroom meeting: online learning
@@ -69,9 +60,7 @@
               <abbr v-if="meeting.meeting_days.sunday" title="Sunday">
                 Su</abbr>
             </td>
-            <td
-              :headers="`time-${meeting.id}`"
-            >
+            <td :headers="`time-${meeting.id}`">
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
@@ -143,12 +132,6 @@ export default {
       } else {
         return `${startFormatted} - ${endFormatted}`;
       }
-    },
-    shortenMtgType(typeStr) {
-      if (typeStr.length > 4) {
-        return typeStr.substring(0, 3).toUpperCase();
-      }
-      return typeStr.toUpperCase();
     },
   },
 };
