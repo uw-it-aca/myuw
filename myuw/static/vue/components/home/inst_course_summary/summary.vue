@@ -55,8 +55,7 @@
       </div>
       <div v-else>
         <p v-if="term === 'current'">
-          You are not teaching any courses {{ ucfirst(getQuarter()) }}
-          {{ getYear() }}.
+          You are not teaching any courses this term.
         </p>
       </div>
     </template>
