@@ -7,33 +7,30 @@
       :mobile-only="mobileOnly"
     >
       <template v-if="getLinkedSections(section).length">
-        <b-button
-          v-if="!isOpen"
-          v-b-toggle="`linked-sections-${section.id}`"
-          variant="link"
-          size="sm"
-          :aria-label="`SHOW LINKED SECTIONS for ${section.id}`"
-          title="Expand to show linked sections"
+        <b-button v-if="!isOpen"
+                  v-b-toggle="`linked-sections-${section.id}`"
+                  variant="link"
+                  size="sm"
+                  :aria-label="`SHOW LINKED SECTIONS for ${section.id}`"
+                  title="Expand to show linked sections"
         >
           Show Linked Sections of {{ section.curriculum_abbr }}
           {{ section.course_number }} {{ section.section_id }}
         </b-button>
 
-        <b-button
-          v-else
-          v-b-toggle="`linked-sections-${section.id}`"
-          variant="link"
-          size="sm"
-          :aria-label="`HIDE LINKED SECTIONS for ${section.id}`"
-          title="Collapse to show linked sections"
+        <b-button v-else
+                  v-b-toggle="`linked-sections-${section.id}`"
+                  variant="link"
+                  size="sm"
+                  :aria-label="`HIDE LINKED SECTIONS for ${section.id}`"
+                  title="Collapse to show linked sections"
         >
           Hide Linked Sections of {{ section.curriculum_abbr }}
           {{ section.course_number }} {{ section.section_id }}
         </b-button>
 
-        <b-collapse
-          :id="`linked-sections-${section.id}`"
-          :aria-label="`LINKED SECTIONS FOR ${section.id}`"
+        <b-collapse :id="`linked-sections-${section.id}`"
+                    :aria-label="`LINKED SECTIONS FOR ${section.id}`"
         >
           <uw-linked-section
             v-for="(sec, j) in getLinkedSections(section)" :key="j"

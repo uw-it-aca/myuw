@@ -3,9 +3,7 @@
     <table>
       <thead class="sr-only">
         <tr>
-          <th v-if="section.hasEosDates"
-              :id="`dates-${section.id}`"
-          >
+          <th v-if="section.hasEosDates" :id="`dates-${section.id}`">
             Meeting Date(s)
           </th>
           <th :id="`days-${section.id}`">

@@ -39,16 +39,12 @@
       </span>
     </div>
 
-    <uw-meeting
-      :section="section"
-      :mobile-only="mobileOnly"
-    />
+    <uw-meeting :section="section" :mobile-only="mobileOnly" />
 
-    <uw-enrollment
-      :section="section"
-    />
+    <uw-enrollment :section="section" />
 
     <slot />
+    <!-- for linked secondary sections -->
   </div>
 </template>
 
