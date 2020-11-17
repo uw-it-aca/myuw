@@ -65,7 +65,6 @@ export default {
       linkData() {
         let textbookLink = '';
         let courseEvalLink = '';
-        console.log(this.bothell_emp);
         if (this.bothell_emp) {
           textbookLink = 'uwbothell';
           courseEvalLink = 'https://uwb.iasystem.org/faculty';
