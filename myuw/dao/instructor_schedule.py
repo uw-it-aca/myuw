@@ -12,7 +12,8 @@ from uw_sws.section import (
     get_section_by_label)
 from uw_sws.section_status import get_section_status_by_label
 from myuw.util.thread import ThreadWithResponse
-from myuw.dao import log_err
+from myuw.dao import (
+log_err, is_using_file_dao, get_netid_of_current_user)
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.pws import get_person_of_current_user
 from myuw.dao.registration import filter_sections_by_summer_term
@@ -51,6 +52,12 @@ def __get_instructor_schedule_by_term(request, term):
     Return the sections (ordered by course abbr, number, section id)
     the current user is instructing in the given term/quarter
     """
+    if (is_using_file_dao() and
+           get_netid_of_current_user(request) == 'jerror'):
+        raise DataFailureException(
+            "/student/v5/section.json?regid=&search_by=Instructor",
+            500, "mock 500 error")
+
     person = get_person_of_current_user(request)
     if person is None or term is None:
         return None
