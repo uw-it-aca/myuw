@@ -10,7 +10,11 @@
         <h4 class="sr-only">
           Workday
         </h4>
-        <myuw-workday-link />
+        <div>
+          <a id="og_workday" class="myuw-workday-btn myuw-btn btn btn-default" href="https://wd5.myworkday.com/uw/login.htmld" data-linklabel="Workday" :style="workdayIconStyle">
+            Sign in to Workday
+          </a>
+        </div>
         <p>
           Workday is the University’s cloud-based
           HR/payroll operations system.
@@ -24,11 +28,11 @@
         <h4>Get Help</h4>
         <ul class="unstyled-list">
           <li>
-            <a v-if="faculty" href="http://ap.washington.edu/ahr/" target="_blank">Academic HR</a>
-            <a v-else href="http://hr.uw.edu/">UW Human Resources</a>
+            <a v-if="faculty" href="https://ap.washington.edu/ahr/" target="_blank">Academic HR</a>
+            <a v-else href="https://hr.uw.edu/">UW Human Resources</a>
           </li>
           <li>
-            <a href="https://isc.uw.edu" target="_blank">Integrated Service Center (ISC)</a>
+            <a href="https://isc.uw.edu/" target="_blank">Integrated Service Center (ISC)</a>
             <p v-if="!truncateView" class="myuw-text-small">
               Learn how to <a href="https://isc.uw.edu/your-time-absence/time-off/" data-linklabel="ISC Time Off" target="_blank">look up sick and vacation time</a>, <a href="https://isc.uw.edu/your-time-absence/time-reporting/" target="_blank" data-linklabel="ISC Time Reporting">report time worked</a>, <a href="https://isc.uw.edu/user-guides/edit_personal_information/" data-linklabel="ISC Edit Personal Address" target="_blank">update personal information</a>, and more.
             </p>
@@ -61,17 +65,27 @@ export default {
   components: {
     'uw-card': Card,
   },
+  props: {
+    isHomePage: {
+      type: Boolean,
+      default: false,
+    },
+    isAccountsPage: {
+      type: Boolean,
+      default: false,
+    }
+  },
   computed: {
     ...mapState({
       showCard: (state) => {
-        if (state.pageTitle == 'Home' &&
-         (state.user.affiliations.employee &&
+        if (state.isHomePage &&
+          state.user.affiliations.employee &&
           !state.user.affiliations.student &&
-          !state.user.affiliations.instructor) ||
-         state.user.affiliations.retiree ||
-         state.user.affiliations.past_employee) {
+          !state.user.affiliations.instructor ||
+          state.user.affiliations.retiree ||
+          state.user.affiliations.past_employee) {
           return true;
-        } else if (state.pageTitle == 'Accounts' &&
+        } else if (state.isAccountsPage &&
                state.user.affiliations.stud_employee ||
                state.user.affiliations.instructor) {
           return true;
@@ -79,10 +93,11 @@ export default {
           return false;
         }
       },
-      studentEmployee: (state) => state.user.affiliations.stud_employee,
-      faculty: (state) => state.user.affiliations.faculty,
+      workdayIconStyle: (state) => 'background-image: url(\'' + state.staticUrl + 'images/wday_logo.png\';',
       truncateView: (state) => (state.user.affiliations.retiree ||
                                 state.user.affiliations.past_employee),
+      studentEmployee: (state) => state.user.affiliations.stud_employee,
+      faculty: (state) => state.user.affiliations.faculty,
     }),
   },
 };

@@ -186,9 +186,6 @@ Vue.config.devtools = true;
 Vue.mixin(outlink);
 Vue.mixin(utils);
 
-// global components
-Vue.component('myuw-workday-link', WorkdayLink);
-
 const vueConf = {
   el: '#vue_root',
   created: function() {
