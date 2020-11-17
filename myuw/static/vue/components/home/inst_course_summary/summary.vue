@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="showContent" loaded>
+  <uw-card v-if="showContent" :loaded="isReady">
     <template #card-heading>
       <h3>
         {{ ucfirst(getQuarter()) }}
@@ -60,27 +60,25 @@
     </template>
   </uw-card>
 
-  <uw-error
-    v-else-if="isErrored"
-    :status-code="statusCodeTagged(term)"
-    :year="getYear()"
-    :quarter="getQuarter()"
-    loaded
+  <uw-summary-error v-else-if="isErrored"
+                    :status-code="statusCodeTagged(term)"
+                    :year="getYear()"
+                    :quarter="getQuarter()"
   />
 </template>
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
-import Error from './error.vue';
 import SectionList from './section-list.vue';
 import SummerSectionList from './summer-list.vue';
+import SummerError from './error.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-error': Error,
     'uw-section-list': SectionList,
+    'uw-summary-error': SummerError,
     'uw-summer-section-list': SummerSectionList,
   },
   props: {
@@ -127,8 +125,8 @@ export default {
       return this.isErroredTagged(this.term);
     },
     showContent() {
-      return (this.instructor && this.isReady && this.instSchedule &&
-        (this.instSchedule.sections.length || this.term === 'current'));
+      return this.instructor && this.instSchedule &&
+        (this.instSchedule.sections.length || this.term === 'current');
     },
   },
   created() {
