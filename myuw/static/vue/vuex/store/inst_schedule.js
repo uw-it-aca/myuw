@@ -14,6 +14,9 @@ function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
+  const time_schedule_published = courseData.term.time_schedule_published;
+        // {"bothell": true, "seattle": true, "tacoma": true}
+
   let linkedPrimaryLabel = undefined;
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
@@ -52,6 +55,14 @@ function postProcess(response, urlExtra) {
       } else {
         linkedPrimaryLabel = undefined;
       }
+    }
+
+    // check if the enrollment is of previous term
+    section.is_prev_term_enrollment = false;
+    if (!section.sln &&
+        !time_schedule_published[section.course_campus.toLowerCase()]) {
+        section.is_prev_term_enrollment = true;
+        section.prev_enrollment_year = section.year - 1;
     }
 
     section.instructors = [];
