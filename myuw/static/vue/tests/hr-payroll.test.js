@@ -50,6 +50,9 @@ describe('HR Payroll Card - Home Page', () => {
       expect(
         h4s.at(0).text()
       ).toBe('Workday');
+      expect(
+        h4s.at(0).classes()
+      ).toContain('sr-only');
 
       let links = wrapper.findAll('a');
 
