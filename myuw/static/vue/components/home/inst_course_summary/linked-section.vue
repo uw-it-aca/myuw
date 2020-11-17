@@ -22,10 +22,8 @@
       {{ ucfirst(section.section_type) }}
     </span>
 
-    <uw-meeting
-      :section="section"
-      :mobile-only="mobileOnly"
-    />
+    <uw-meeting :section="section" :mobile-only="mobileOnly" />
+    <uw-enrollment :section="section" />
 
     <div>
       <button v-if="!section.mini_card"
@@ -50,10 +48,12 @@
 
 <script>
 import MeetingInfo from './meeting.vue';
+import Enrollment from './enrollment.vue';
 
 export default {
   components: {
     'uw-meeting': MeetingInfo,
+    'uw-enrollment': Enrollment,
   },
   props: {
     mobileOnly: {
