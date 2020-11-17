@@ -26,7 +26,7 @@ def is_instructor(request):
 
     user = get_user_model(request)
     if (is_using_file_dao() and
-           user.uwnetid == 'jerror'):
+            user.uwnetid == 'jerror'):
         return True
 
     if Instructor.is_seen_instructor(user):
