@@ -14,7 +14,6 @@
   <template #primary>
     <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
       <!--MARK: card components go here in order -->
-      <myuw-outage></myuw-outage>
       <myuw-grades></myuw-grades>
       <myuw-course-cards></myuw-course-cards>
       <myuw-visual-schedule></myuw-visual-schedule>
@@ -24,6 +23,7 @@
       <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
       <myuw-sidebar-links mobile-only></myuw-sidebar-links>
+      <myuw-outage term="{{ term|default:"current" }}"></myuw-outage>
     </b-col>
   </template>
   <!-- MARK: #secondary template (column 2, table/desktop) -->
