@@ -38,7 +38,7 @@
           <div>
 	          <h4>Account Credit<br><span>Student Fiscal Services</span></h4>
 	           <div>
-	            <span>+${{Math.abs(tuition.tuition_accbalance.toFixed(2))}} CR</span>
+	            <span>+${{Math.abs(tuition.tuition_accbalance).toFixed(2)}} CR</span>
 	            <span>No payment needed<br></span>
 	            <span><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a></span>
 	          </div>

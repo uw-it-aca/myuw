@@ -21,7 +21,6 @@ const postProcess = (response) => {
     }
   }
 
-  console.log(data);
   return data;
 };
 
