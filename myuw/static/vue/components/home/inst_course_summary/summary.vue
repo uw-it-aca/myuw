@@ -60,11 +60,31 @@
     </template>
   </uw-card>
 
-  <uw-summary-error v-else-if="isErrored"
-                    :status-code="statusCodeTagged(term)"
-                    :year="getYear()"
-                    :quarter="getQuarter()"
-  />
+  <uw-card v-else
+           :errored="isErrored"
+           :errored-show="statusCodeTagged(term) !== 404"
+           :mobile-only="mobileOnly"
+  >
+    <template #card-heading>
+      <h3>
+        {{ ucfirst(getQuarter()) }} {{ getYear() }} Teaching Schedule
+      </h3>
+    </template>
+    <template v-if="statusCodeTagged(term) === 410" #card-error>
+      The page you seek is for a past quarter and is no longer available.
+    </template>
+    <template v-else #card-error>
+      <i class="fa fa-exclamation-triangle" />
+      An error occurred and MyUW cannot load your teaching schedule
+      right now. In the meantime, try the
+      <a
+        href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
+        data-linklabel="MyClass" target="_blank"
+      >
+        My Class Instructor Resources
+      </a> page.
+    </template>
+  </uw-card>
 </template>
 
 <script>
@@ -72,13 +92,11 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import SectionList from './section-list.vue';
 import SummerSectionList from './summer-list.vue';
-import SummerError from './error.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-section-list': SectionList,
-    'uw-summary-error': SummerError,
     'uw-summer-section-list': SummerSectionList,
   },
   props: {
@@ -94,11 +112,6 @@ export default {
       type: Boolean,
       default: false,
     },
-  },
-  data() {
-    return {
-      isOpen: false,
-    };
   },
   computed: {
     ...mapState({
