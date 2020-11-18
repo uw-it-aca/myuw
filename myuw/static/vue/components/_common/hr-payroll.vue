@@ -73,19 +73,19 @@ export default {
     isAccountsPage: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   computed: {
     ...mapState({
-      showCard: (state) => {
-        if (state.isHomePage &&
+      showCard: function(state) {
+        if (this.isHomePage &&
           state.user.affiliations.employee &&
           !state.user.affiliations.student &&
           !state.user.affiliations.instructor ||
           state.user.affiliations.retiree ||
           state.user.affiliations.past_employee) {
           return true;
-        } else if (state.isAccountsPage &&
+        } else if (this.isAccountsPage &&
                state.user.affiliations.stud_employee ||
                state.user.affiliations.instructor) {
           return true;

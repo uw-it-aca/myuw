@@ -63,9 +63,6 @@ import {
   ModalPlugin,
 } from 'bootstrap-vue';
 
-// global components
-import WorkdayLink from './components/_common/workday-link.vue';
-
 // Mixins
 import outlink from './mixins/outlink';
 import utils from './mixins/utils';
