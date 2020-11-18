@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.contrib.auth.models import User
+from restclients_core.exceptions import DataFailureException
 from uw_sws.models import Term, Section
 from uw_sws.exceptions import InvalidSectionID
 from myuw.test import fdao_sws_override, fdao_pws_override,\
@@ -20,6 +21,11 @@ from userservice.user import UserServiceMiddleware
 class TestInstructorSchedule(TestCase):
 
     def test_get_instructor_schedule_by_term(self):
+        request = get_request_with_user('jerror')
+        self.assertRaises(
+            DataFailureException,
+            get_instructor_schedule_by_term, request)
+
         # current quarter instructor schedule
         request = get_request_with_user('bill')
         schedule = get_instructor_schedule_by_term(request)
