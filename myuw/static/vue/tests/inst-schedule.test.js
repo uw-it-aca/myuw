@@ -1,9 +1,7 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-
-import createLocalVue from '@vue/test-utils';
 import Vuex from 'vuex';
-
+import {createLocalVue} from '@vue/test-utils';
 import {statusOptions} from '../vuex/store/model_builder';
 import inst_schedule from '../vuex/store/inst_schedule';
 import {expectAction} from './helper';
@@ -19,6 +17,7 @@ import mockNoCourse2013Summer from
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+jest.mock('axios');
 
 describe('Instructor Schedule Data', () => {
   let store;
@@ -79,22 +78,26 @@ describe('Instructor Schedule Data', () => {
       ]);
   });
 
-  it ('Check postProcess - billsea 2013 spring', () => {
+  it ('Check postProcess - billsea 2013 spring', async () => {
     axios.get.mockResolvedValue(
         {data: mockBillsea2013Spring, status: 200}
     );
+    store.dispatch('inst_schedule/fetch', 'testCurrent');
+    await new Promise((r) => setTimeout(r, 10));
+    expect(
+      store.getters['inst_schedule/isReadyTagged']('testCurrent')
+      ).toBeTruthy();
 
-    const getters = {
-      isReadyTagged: () => false,
-      isFetchingTagged: () => false,
-    };
-
-    return expectAction(
-      inst_schedule.actions.fetch, null, inst_schedule.state, getters, [
-        {type: 'setStatus', payload: statusOptions[1]},
-        {type: 'setValue', payload: mockBillsea2013Spring},
-        {type: 'setStatus', payload: statusOptions[0]},
-      ]);
+    expect(store.state.inst_schedule.value).toBeDefined();
+    expect(store.state.inst_schedule.value.testCurrent).toBeDefined();
+    const sections = store.state.inst_schedule.value.testCurrent.sections;
+    expect(sections).toHaveLength(8);
+    expect(sections[0].year).toBe(2013);
+    expect(sections[0].quarter).toBe('spring');
+    expect(sections[0].id).toBe('2013-spring-PHYS-122-A');
+    expect(sections[0].href).toBe('2013,spring#PHYS-122-A');
+    expect(sections[0].navtarget).toBe('2013,spring,PHYS-122-A');
+    expect(sections[0].is_prev_term_enrollment).toBe(false);
   });
 
 });
