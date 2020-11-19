@@ -5,8 +5,8 @@ import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import InstructorCourseSummery from
   '../components/home/inst_course_summary/summary.vue';
-// import {statusOptions} from '../vuex/store/model_builder';
-// import {expectAction} from './helper';
+import {statusOptions} from '../vuex/store/model_builder';
+import {expectAction} from './helper';
 import inst_schedule from '../vuex/store/inst_schedule';
 
 import mockBill2013Summer from
@@ -20,6 +20,7 @@ import mockNoCourse2013Summer from
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
+localVue.use(Vuex);
 
 jest.mock('axios');
 
