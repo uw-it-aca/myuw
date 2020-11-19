@@ -1,12 +1,15 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import utils from '../mixins/utils';
+import courses from '../mixins/courses';
+
 import {mount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import InstructorCourseSummery from
   '../components/home/inst_course_summary/summary.vue';
-// import {statusOptions} from '../vuex/store/model_builder';
-// import {expectAction} from './helper';
+import {statusOptions} from '../vuex/store/model_builder';
+import {expectAction} from './helper';
 import inst_schedule from '../vuex/store/inst_schedule';
 
 import mockBill2013Summer from
@@ -20,6 +23,9 @@ import mockNoCourse2013Summer from
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
+localVue.use(Vuex);
+localVue.mixin(utils);
+localVue.mixin(courses);
 
 jest.mock('axios');
 
@@ -41,7 +47,6 @@ describe('Instructor Schedule Summary', () => {
         termData: {
           year: 2013,
           quarter: 'spring',
-          firstDay: "Apr 01 2013 00:00:00 GMT-0700",
         },
         nextTerm: {
           year: 2013,
