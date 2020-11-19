@@ -1,14 +1,13 @@
 <template>
   <li class="mb-1 myuw-quicklinks">
     <div class="d-flex">
-      <a :href="link.url"
-         target="_blank" class="mr-auto pr-1"
-      >
+      <a :href="link.url" target="_blank" class="mr-auto pr-1">
         {{ link.label }}
       </a>
       <span v-if="!isEditOpen">
         <b-button
-          v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
+          v-if="activeButtons['edit']"
+          v-b-toggle="`${customId}-collapse`"
           variant="link"
           :aria-label="`Edit ${link.label} link`"
           class="p-0 mr-1 border-0 align-bottom"
@@ -18,12 +17,13 @@
           <font-awesome-icon :icon="['fas', 'pencil-alt']" />
         </b-button>
         <b-button
-          v-if="activeButtons['remove']" variant="link"
+          v-if="activeButtons['remove']"
+          variant="link"
           :aria-label="`Remove ${link.label} link from Quick Links list`"
           class="p-0 m-0 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
-          @click="removeLink({link, canActuallyRemove})"
+          @click="removeLink({ link, canActuallyRemove })"
         >
           <font-awesome-icon :icon="['fas', 'times']" />
         </b-button>
@@ -37,7 +37,8 @@
             size="sm"
           />
           <b-button
-            v-else variant="link"
+            v-else
+            variant="link"
             :aria-label="`Save ${link.label} link to your Quick Links list`"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
@@ -64,7 +65,8 @@
           <b-form-input
             :id="`${customId}-edit-url`"
             v-model="currentCustomLink.url"
-            type="url" required
+            type="url"
+            required
             size="sm"
           />
         </b-form-group>
@@ -80,8 +82,11 @@
           />
         </b-form-group>
         <div class="d-flex justify-content-end">
-          <b-button v-b-toggle="`${customId}-collapse`"
-                    variant="link" size="sm" type="reset"
+          <b-button
+            v-b-toggle="`${customId}-collapse`"
+            variant="link"
+            size="sm"
+            type="reset"
           >
             Cancel
           </b-button>
@@ -164,9 +169,13 @@ export default {
 @import "../../../../css/myuw/variables.scss";
 
 .myuw-quicklinks {
-  &:focus, &:focus-within, &:hover {
+  &:focus,
+  &:focus-within,
+  &:hover {
     //handle visibility of remove/edit buttons
-    button.text-white, button.text-light, svg.text-light {
+    button.text-white,
+    button.text-light,
+    svg.text-light {
       color: $text-muted !important;
     }
   }
