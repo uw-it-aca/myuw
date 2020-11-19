@@ -753,7 +753,11 @@ label { font-weight: normal; margin-bottom: auto; }
             .myuw-qlinks-recent, .myuw-qlinks-active, .myuw-qlinks-popular {
 
                 li.list .link-controls {
-                        display: none;
+                        display: inline-block;
+
+                        @media @two-column {
+                            display: none;
+                        }
                 }
 
                 li.list:hover .link-controls {
