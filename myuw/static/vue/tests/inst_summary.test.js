@@ -42,7 +42,6 @@ describe('Instructor Schedule Summary', () => {
         termData: {
           year: 2013,
           quarter: 'spring',
-          firstDay: "Apr 01 2013 00:00:00 GMT-0700",
         },
         nextTerm: {
           year: 2013,
