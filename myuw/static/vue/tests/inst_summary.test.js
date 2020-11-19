@@ -74,14 +74,14 @@ describe('Instructor Schedule Summary', () => {
     );
 
     const getters = {
-      isReadyTagged: ('2013,summer') => false,
-      isFetchingTagged: ('2013,summer') => false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
 
     return expectAction(
       inst_schedule.actions.fetch, null, inst_schedule.state, getters, [
         {type: 'setStatus', payload: statusOptions[1]},
-        {type: 'setValue', payload: mockBillsea2013Spring},
+        {type: 'setValue', payload: mockNoCourse2013Summer},
         {type: 'setStatus', payload: statusOptions[0]},
       ]);
   });
@@ -90,8 +90,8 @@ describe('Instructor Schedule Summary', () => {
     axios.get.mockResolvedValue(
       Promise.reject({response: {status: 404}}));
     const getters = {
-      isReadyTagged: ('current') => false,
-      isFetchingTagged: ('current') => false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
     return expectAction(
       inst_schedule.actions.fetch, null, inst_schedule.state, getters, [
@@ -106,8 +106,8 @@ describe('Instructor Schedule Summary', () => {
     );
 
     const getters = {
-      isReadyTagged: ('current') => false,
-      isFetchingTagged: ('current') => false,
+      isReadyTagged: () => false,
+      isFetchingTagged: () => false,
     };
 
     return expectAction(
