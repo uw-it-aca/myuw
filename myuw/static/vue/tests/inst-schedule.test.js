@@ -1,5 +1,4 @@
 import axios from 'axios';
-import dayjs from 'dayjs';
 import Vuex from 'vuex';
 import {createLocalVue} from '@vue/test-utils';
 import {statusOptions} from '../vuex/store/model_builder';
@@ -83,7 +82,7 @@ describe('Instructor Schedule Data', () => {
         {data: mockBillsea2013Spring, status: 200}
     );
     store.dispatch('inst_schedule/fetch', 'testCurrent');
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise((r) => setTimeout(r, 30));
     expect(
       store.getters['inst_schedule/isReadyTagged']('testCurrent')
       ).toBeTruthy();
@@ -98,6 +97,24 @@ describe('Instructor Schedule Data', () => {
     expect(sections[0].href).toBe('2013,spring#PHYS-122-A');
     expect(sections[0].navtarget).toBe('2013,spring,PHYS-122-A');
     expect(sections[0].is_prev_term_enrollment).toBe(false);
+  });
+
+  it ('Check postProcess - billpce 2013 summer', async () => {
+    axios.get.mockResolvedValue(
+        {data: mockBillpce2013Summer, status: 200}
+    );
+    store.dispatch('inst_schedule/fetch', 'testCurrent');
+    await new Promise((r) => setTimeout(r, 10));
+    expect(
+      store.getters['inst_schedule/isReadyTagged']('testCurrent')
+      ).toBeTruthy();
+
+    expect(store.state.inst_schedule.value).toBeDefined();
+    expect(store.state.inst_schedule.value.testCurrent).toBeDefined();
+    const sections = store.state.inst_schedule.value.testCurrent.sections;
+    expect(sections).toHaveLength(3);
+    expect(sections[2].id).toBe("2013-summer-EDIT-120-C");
+    expect(sections[2].is_prev_term_enrollment).toBe(true);
   });
 
 });
