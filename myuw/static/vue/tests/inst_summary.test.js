@@ -23,7 +23,7 @@ localVue.use(BootstrapVue);
 
 jest.mock('axios');
 
-describe('Instructor Schedule model', () => {
+describe('Instructor Schedule Summary', () => {
   let store;
 
   beforeEach(() => {
@@ -37,15 +37,16 @@ describe('Instructor Schedule model', () => {
           affiliations: {
             instructor: true,
           }
-       },
-       termData: {
-         year: 2013,
-         quarter: 'spring',
-         firstDay: "Apr 01 2013 00:00:00 GMT-0700",
-      },
-      nextTerm: {
-         year: 2013,
-         quarter: 'summer',
+        },
+        termData: {
+          year: 2013,
+          quarter: 'spring',
+          firstDay: "Apr 01 2013 00:00:00 GMT-0700",
+        },
+        nextTerm: {
+          year: 2013,
+          quarter: 'summer',
+        }
       }
     });
   });
