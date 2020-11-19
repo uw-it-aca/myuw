@@ -1,5 +1,8 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import utils from '../mixins/utils';
+import courses from '../mixins/courses';
+
 import {mount, createLocalVue} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
@@ -21,6 +24,8 @@ import mockNoCourse2013Summer from
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
 localVue.use(Vuex);
+localVue.mixin(utils);
+localVue.mixin(courses);
 
 jest.mock('axios');
 
