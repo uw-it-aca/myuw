@@ -63,7 +63,7 @@
 
   <uw-card v-else-if="isErrored"
            :errored="isErrored"
-           :errored-show="statusCodeTagged(term) !== '404'"
+           :errored-show="statusCodeTagged(term) !== 404"
            :mobile-only="mobileOnly"
   >
     <template #card-heading>
@@ -71,7 +71,7 @@
         {{ ucfirst(getQuarter()) }} {{ getYear() }} Teaching Schedule
       </h3>
     </template>
-    <template v-if="statusCodeTagged(term) === '410'" #card-error>
+    <template v-if="statusCodeTagged(term) === 410" #card-error>
       The page you seek is for a past quarter and is no longer available.
     </template>
     <template v-else #card-error>
