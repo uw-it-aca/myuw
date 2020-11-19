@@ -3,12 +3,19 @@ import dayjs from 'dayjs';
 import utils from '../mixins/utils';
 import courses from '../mixins/courses';
 
-import createLocalVue from '@vue/test-utils';
+import {shallowMount, createLocalVue} from '@vue/test-utils';
 import Vuex from 'vuex';
+
+import {
+  FontAwesomeIcon,
+} from '@fortawesome/vue-fontawesome';
 
 import {statusOptions} from '../vuex/store/model_builder';
 import inst_schedule from '../vuex/store/inst_schedule';
 import {expectAction} from './helper';
+
+import InstructorCourseSummery from
+  '../components/home/inst_course_summary/summary.vue';
 
 import mockBill2013Summer from
   './mock_data/inst_schedule/bill2013summer.json';
@@ -24,6 +31,8 @@ localVue.use(Vuex);
 localVue.mixin(courses);
 localVue.mixin(utils);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
+
+jest.mock('axios');
 
 describe('Instructor Schedule Data', () => {
   let store;
@@ -110,7 +119,7 @@ describe('Instructor Schedule Data', () => {
       };
       return Promise.resolve({data: urlData[url], status: 200});
     });
-    const wrapper = mount(InstructorCourseSummery, {store, localVue});
+    const wrapper = shallowMount(InstructorCourseSummery, {store, localVue});
     await new Promise((r) => setTimeout(r, 30));
 
     expect(
