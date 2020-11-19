@@ -5,13 +5,18 @@
         Your {{ ucfirst(course.quarter) }} {{ course.year }} Courses
       </h3>
       <uw-course-card
-        v-for="(section, i) in course.sections" :key="i"
-        :course="course" :section="section" :index="i"
+        v-for="(section, i) in course.sections"
+        :key="i"
+        :course="course"
+        :section="section"
+        :index="i"
       />
     </div>
     <uw-no-course-card
-      v-else-if="isErrored && statusCodeTagged(term) == 404" loaded
-      :quarter="quarter" :summer-term="summerTerm"
+      v-else-if="isErrored && statusCodeTagged(term) == 404"
+      loaded
+      :quarter="quarter"
+      :summer-term="summerTerm"
     />
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
