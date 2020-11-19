@@ -11,7 +11,8 @@
           v-if="activeButtons['edit']" v-b-toggle="`${customId}-collapse`"
           variant="link"
           :aria-label="`Edit ${link.label} link`"
-          class="p-0 m-0 border-0 align-bottom text-white"
+          class="p-0 mr-1 border-0 align-bottom"
+          :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
         >
           <font-awesome-icon :icon="['fas', 'pencil-alt']" />
@@ -19,7 +20,8 @@
         <b-button
           v-if="activeButtons['remove']" variant="link"
           :aria-label="`Remove ${link.label} link from Quick Links list`"
-          class="p-0 m-0 border-0 align-bottom text-white"
+          class="p-0 m-0 border-0 align-bottom"
+          :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
           @click="removeLink({link, canActuallyRemove})"
         >
@@ -30,13 +32,15 @@
             v-if="link.added"
             :aria-label="`${link.label} link saved to Quick Links`"
             :icon="['fa', 'check']"
-            class="p-0 m-0 border-0 align-bottom text-light"
+            class="p-0 m-0 border-0 align-bottom"
+            :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"
           />
           <b-button
             v-else variant="link"
             :aria-label="`Save ${link.label} link to your Quick Links list`"
-            class="p-0 m-0 border-0 align-bottom text-light"
+            class="p-0 m-0 border-0 align-bottom"
+            :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"
             @click="saveLink"
           >
