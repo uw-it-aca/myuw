@@ -1,23 +1,22 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import courses from '../mixins/courses';
 import utils from '../mixins/utils';
+import courses from '../mixins/courses';
 
-import {mount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {shallowMount, createLocalVue} from '@vue/test-utils';
+
 import Vuex from 'vuex';
-import InstructorCourseSummery from
-  '../components/home/inst_course_summary/summary.vue';
-import {statusOptions} from '../vuex/store/model_builder';
-import {expectAction} from './helper';
-import inst_schedule from '../vuex/store/inst_schedule';
-import {library} from '@fortawesome/fontawesome-svg-core';
+
 import {
   FontAwesomeIcon,
 } from '@fortawesome/vue-fontawesome';
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
+
+import {statusOptions} from '../vuex/store/model_builder';
+import inst_schedule from '../vuex/store/inst_schedule';
+import {expectAction} from './helper';
+
+import InstructorCourseSummery from
+  '../components/home/inst_course_summary/summary.vue';
 
 import mockBill2013Summer from
   './mock_data/inst_schedule/bill2013summer.json';
@@ -28,9 +27,7 @@ import mockBillsea2013Spring from
 import mockNoCourse2013Summer from
   './mock_data/inst_schedule/2013summer.json';
 
-library.add(faExclamationTriangle);
 const localVue = createLocalVue();
-localVue.use(BootstrapVue);
 localVue.use(Vuex);
 localVue.mixin(courses);
 localVue.mixin(utils);
