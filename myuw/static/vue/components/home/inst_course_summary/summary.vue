@@ -1,15 +1,22 @@
 <template>
-  <uw-card v-if="showContent" :loaded="isReady">
-    <template #card-heading>
+  <uw-card v-if="instructor" :loaded="isReady">
+    <template v-if="showContent" #card-heading>
       <h3>
         {{ ucfirst(getQuarter()) }}
         {{ getYear() }} Teaching Schedule
       </h3>
     </template>
-    <template #card-body>
-      <div v-if="instSchedule.sections.length">
+    <template v-if="showContent" #card-body>
+      <div v-if="!instSchedule.sections.length">
+        >
+        <!-- teach no course -->
+        <p>
+          You are not teaching any courses this term.
+        </p>
+      </div>
+      <div v-else>
         <!-- teach some courses -->
-        <div v-if="term !== 'current'">
+        <div v-if="instSchedule.future_term">
           <!-- diplay only for a future term -->
           <p>
             You are teaching
@@ -50,12 +57,6 @@
             important dates and deadlines
           </a>
         </div>
-      </div>
-      <div v-else>
-        <!-- teach no course -->
-        <p>
-          You are not teaching any courses this term.
-        </p>
       </div>
     </template>
   </uw-card>
@@ -108,10 +109,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    isFutureTerm: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     ...mapState({
@@ -138,8 +135,8 @@ export default {
       return this.isErroredTagged(this.term);
     },
     showContent() {
-      return this.instructor && this.instSchedule &&
-        (this.instSchedule.sections.length || this.term === 'current');
+      return this.instSchedule &&
+        (this.instSchedule.sections.length || !this.instSchedule.future_term);
     },
   },
   created() {
