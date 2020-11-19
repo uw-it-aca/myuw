@@ -70,7 +70,7 @@ describe('Instructor Teaching Summary', () => {
       };
       return Promise.resolve({data: urlData[url], status: 200});
     });
-    const wrapper = mount(InstructorCourseSummery, {store, localVue});
+    const wrapper = shallowMount(InstructorCourseSummery, {store, localVue});
     await new Promise((r) => setTimeout(r, 30));
 
     expect(
