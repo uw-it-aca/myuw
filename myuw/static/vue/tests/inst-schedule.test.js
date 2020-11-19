@@ -1,5 +1,7 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import utils from '../mixins/utils';
+import courses from '../mixins/courses';
 
 import createLocalVue from '@vue/test-utils';
 import Vuex from 'vuex';
@@ -19,6 +21,9 @@ import mockNoCourse2013Summer from
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
+localVue.mixin(courses);
+localVue.mixin(utils);
+localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 describe('Instructor Schedule Data', () => {
   let store;
@@ -95,6 +100,40 @@ describe('Instructor Schedule Data', () => {
         {type: 'setValue', payload: mockBillsea2013Spring},
         {type: 'setStatus', payload: statusOptions[0]},
       ]);
+  });
+
+  it('Basic Mount', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/instructor_schedule/current': mockBillsea2013Spring,
+        '/api/v1/instructor_schedule/2013,summer': mockNoCourse2013Summer,
+      };
+      return Promise.resolve({data: urlData[url], status: 200});
+    });
+    const wrapper = mount(InstructorCourseSummery, {store, localVue});
+    await new Promise((r) => setTimeout(r, 30));
+
+    expect(
+      inst_schedule.getters.isReadyTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )('current'),
+    ).toBeTruthy();
+
+    expect(
+      inst_schedule.getters.isErroredTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )('current'),
+    ).toBeFalsy();
+
+    expect(
+      inst_schedule.getters.statusCodeTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )('current'),
+    ).toEqual(200);
+
+    expect(
+      wrapper.find('h3').text()).toEqual(
+        'Spring\n      2013 Teaching Schedule');
   });
 
 });
