@@ -15,6 +15,7 @@ import {statusOptions} from '../vuex/store/model_builder';
 import inst_schedule from '../vuex/store/inst_schedule';
 import {expectAction} from './helper';
 
+import UwCard from '../components/_templates/card.vue';
 import InstructorCourseSummery from
   '../components/home/inst_course_summary/summary.vue';
 
@@ -62,14 +63,14 @@ describe('Instructor Teaching Summary', () => {
     });
   });
 
-  it('Display the card for billsea 2013 spring', async () => {
+  it('Verify current quarter summary card', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/instructor_schedule/current': mockBillsea2013Spring,
-        '/api/v1/instructor_schedule/2013,summer': mockNoCourse2013Summer,
       };
       return Promise.resolve({data: urlData[url], status: 200});
     });
+
     const wrapper = shallowMount(InstructorCourseSummery, {store, localVue});
     await new Promise((r) => setTimeout(r, 30));
 
@@ -92,7 +93,52 @@ describe('Instructor Teaching Summary', () => {
     ).toEqual(200);
 
     expect(
-      wrapper.find('h3').text()).toEqual(
-        'Spring\n      2013 Teaching Schedule');
+      wrapper.findComponent(UwCard).exists()
+    ).toBe(true);
+
+    expect(
+      wrapper.find('h3').text()
+    ).toEqual('Spring 2013 Teaching Schedule');
+
+  });
+
+  it('Verify no future quarter summary card', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+          '/api/v1/instructor_schedule/2013,summer': mockNoCourse2013Summer,
+        };
+        return Promise.resolve({data: urlData[url], status: 200});
+      });
+
+    const wrapper = shallowMount(
+      InstructorCourseSummery, {
+        store,
+        localVue,
+        propsData: {
+          term: '2013,summer',
+        }
+      }
+    );
+    await new Promise((r) => setTimeout(r, 30));
+
+    expect(
+      inst_schedule.getters.isReadyTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )("2013,summer"),
+    ).toBeTruthy();
+
+    expect(
+      inst_schedule.getters.isErroredTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )("2013,summer"),
+    ).toBeFalsy();
+
+    expect(
+      inst_schedule.getters.statusCodeTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )("2013,summer"),
+    ).toEqual(200);
+
+    expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 });
