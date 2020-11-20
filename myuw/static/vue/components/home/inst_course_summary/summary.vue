@@ -2,8 +2,7 @@
   <uw-card v-if="instructor && showContent" :loaded="isReady">
     <template #card-heading>
       <h3>
-        {{ ucfirst(getQuarter()) }}
-        {{ getYear() }} Teaching Schedule
+        {{ ucfirst(getQuarter()) }} {{ getYear() }} Teaching Schedule
       </h3>
     </template>
     <template #card-body>
