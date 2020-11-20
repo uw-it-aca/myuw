@@ -1,19 +1,15 @@
 <template>
-  <div v-if="evalData.length > 0" class="d-flex">
-    <h5
-      :class="[!showRowHeading ? 'sr-only' : '']"
-      class="w-25 font-weight-bold myuw-text-md"
-    >
+  <div v-if="evalData.length > 0">
+    <h5 class="font-weight-bold myuw-text-md">
       Course Evaluations
     </h5>
-    <div class="w-75 myuw-text-md">
+    <div class="myuw-text-md">
       <div
         v-for="(evalObj, idx) in evalData"
         :key="`${section.id}-eval-${idx}`"
         class="mb-3 myuw-eval-list"
       >
         <template v-if="evalObj.is_multi_instr">
-          <!-- evaluation is on the course -->
           <p>
             <a :href="evalObj.url" target="_blank">
               {{ section.curriculum_abbr }}
@@ -21,6 +17,14 @@
               {{ section.section_id }}
               Evaluation
             </a>
+          </p>
+
+          <!-- evaluation is on the course -->
+          <p class="myuw-text-md m-0">
+            <span>
+              Evaluations close {{ toFriendlyDate(evalData[idx].close_date) }}
+            </span>
+            (at 11:59PM), and only take a few minutes to complete.
           </p>
 
           <ul class="list-unstyled myuw-text-md">
@@ -35,12 +39,6 @@
               </div>
             </li>
           </ul>
-
-          <p class="myuw-text-md m-0">
-            Evaluations close
-            <strong>{{ toFriendlyDate(evalData[idx].close_date) }}</strong>
-            (at 11:59PM), and only take a few minutes to complete.
-          </p>
         </template>
         <template v-else>
           <ul class="list-unstyled myuw-text-md mb-0">
@@ -56,13 +54,14 @@
               >
                 {{ instructor.instructor_title }}
               </div>
-              <p class="myuw-text-md m-0">
-                Evaluations close
-                <strong>{{ toFriendlyDate(evalData[idx].close_date) }}</strong>
-                (at 11:59PM), and only take a few minutes to complete.
-              </p>
             </li>
           </ul>
+          <p class="myuw-text-md m-0">
+            <span>
+              Evaluations close {{ toFriendlyDate(evalData[idx].close_date) }}
+            </span>
+            (at 11:59PM), and only take a few minutes to complete.
+          </p>
         </template>
       </div>
     </div>
@@ -79,10 +78,6 @@ export default {
     section: {
       type: Object,
       required: true,
-    },
-    showRowHeading: {
-      type: Boolean,
-      default: false,
     },
   },
   methods: {

@@ -91,7 +91,7 @@ export default {
         this.section.canvas_url ||
         this.section.sln
       );
-    }
+    },
   },
 };
 </script>

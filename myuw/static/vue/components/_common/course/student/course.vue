@@ -33,7 +33,6 @@
           v-if="isReadyEval && getSectionEval(section.index).length > 0"
           :eval-data="getSectionEval(section.index)"
           :section="section"
-          show-row-heading
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
