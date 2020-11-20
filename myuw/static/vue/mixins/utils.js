@@ -43,7 +43,7 @@ export default {
       return pageTitle.map((s) => this.ucfirst(s)).join(' ');
     },
     ucfirst(s) {
-      if (s) {
+      if (s && s.length) {
         return s.replace(/^([a-z])/, (c) => c.toUpperCase());
       }
       return "";
@@ -60,6 +60,9 @@ export default {
     toFriendlyDatetime(date_str) {
       return (!date_str || date_str.length === 0 ? '' :
               dayjs(date_str).format("ddd, MMM D, h:mmA"));
+    },
+    toFromNowDate(date_str) {
+      return dayjs(date_str).fromNow();
     },
   },
 }
