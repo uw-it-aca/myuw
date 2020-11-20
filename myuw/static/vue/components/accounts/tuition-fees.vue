@@ -23,15 +23,16 @@
         <li v-if="tuition.tuition_accbalance >= 0">
           <div>
             <h4>Amount Due <br><span>Student Fiscal Services</span></h4>
-					  <div>
-              <span v-if="tuition.tuition_accbalance > 0">${{tuition.tuition_accbalance.toFixed(2)}}</span>
-              <span v-else>$ 0</span>
-              <span><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a></span>
+					  <div v-if="tuition.tuition_accbalance > 0">
+              <span>${{tuition.tuition_accbalance.toFixed(2)}}</span>
+              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a>
+              <a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a>
+            </div>
+            <div v-else>
+              <span>$ 0</span>
+              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a>
             </div>
           </div>
-	        <div v-if="tuition.tuition_accbalance > 0">
-	          <a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment">Make payment</a>
-	        </div>
         </li>
         <!-- If there is credit on account -->
         <li v-else-if="tuition.tuition_accbalance < 0">
@@ -40,11 +41,32 @@
 	           <div>
 	            <span>+${{Math.abs(tuition.tuition_accbalance).toFixed(2)}} CR</span>
 	            <span>No payment needed<br></span>
-	            <span><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a></span>
+	            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement">Tuition Statement</a>
 	          </div>
 	        </div>
         </li>
+        <!-- If there is a PCE balance -->
+        <li v-if="tuition.pce_accbalance > 0">
+          <div>
+            <h4>Amount Due<br><span>PCE-Continuum College</span></h4>
+					  <div>
+              <span>${{tuition.pce_accbalance.toFixed(2)}}</span>
+              <a href="http://portal.continuum.uw.edu" target="_blank" data-linklabel="PCE Payment portal">Make payment</a>
+            </div>
+          </div>
+        </li>
+        <!-- If there is no PCE balance, either not pce or paid off -->
+        <li v-else-if="isC2">
+          <div>
+            <h4>Amount Due<br><span>PCE-Continuum College</span></h4>
+					  <div>
+              <span>$ 0</span>
+              <a href="http://portal.continuum.uw.edu" target="_blank" data-linklabel="Account Statement">Account Statement</a>
+            </div>
+          </div>
+        </li>
       </ul>
+
     </template>
   </uw-card>
 </template>
@@ -62,11 +84,10 @@ export default {
       isStudent: (state) => state.user.affiliations.student,
       isGrad: (state) => state.user.affiliations.grad,
       isC2: (state) => state.user.affiliations.grad_c2 || state.user.affiliations.undergrad_c2,
-      isTacoma: (state) => state.user.affiliations.tacoma,
-      isBothell: (state) => state.user.affiliations.bothell,
-      isSeattle: (state) => state.user.affiliations.seattle,
+      isPCE: (state) => state.user.affiliations.pce,
       tuition: (state) => state.tuition.value,
       notices: (state) => state.notices.value,
+      
     }),
     ...mapGetters('tuition', {
       isReadyTuition: 'isReady',
