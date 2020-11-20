@@ -2,7 +2,7 @@ import axios from 'axios';
 import Vuex from 'vuex';
 import {createLocalVue} from '@vue/test-utils';
 import {statusOptions} from '../vuex/store/model_builder';
-import inst_schedule from '../vuex/store/inst_schedule';
+import inst_schedule from '../vuex/store/schedule/instructor';
 import {expectAction} from './helper';
 
 import mockBill2013Summer from

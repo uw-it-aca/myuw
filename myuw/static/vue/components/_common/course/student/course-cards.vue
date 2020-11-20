@@ -25,9 +25,9 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../../../_templates/card.vue';
 import CourseCard from './course.vue';
-import NoCourseCard from './no-course.vue';
+import NoCourseCard from '../no-course.vue';
 
 export default {
   components: {

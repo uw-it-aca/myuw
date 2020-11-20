@@ -17,7 +17,7 @@
             Course Website
           </a>
         </li>
-        <li v-else-if="section.lib_subj_guide" class="mb-1">
+        <li v-if="section.lib_subj_guide" class="mb-1">
           <a
             :href="section.lib_subj_guide"
             :label="`${
@@ -27,7 +27,7 @@
             Library Research Guides
           </a>
         </li>
-        <li v-else-if="section.canvas_url" class="mb-1">
+        <li v-if="section.canvas_url" class="mb-1">
           <a
             :href="section.canvas_url"
             :label="`${
@@ -37,7 +37,7 @@
             Course Canvas
           </a>
         </li>
-        <li v-else-if="section.sln" class="mb-1">
+        <li v-if="section.sln" class="mb-1">
           <a
             :href="slnHref"
             :label="`${
@@ -47,7 +47,7 @@
             Textbooks
           </a>
         </li>
-        <li v-else class="text-muted">
+        <li v-if="!hasResources" class="text-muted">
           No course resources available
         </li>
       </ul>
@@ -84,6 +84,14 @@ export default {
 
       return url;
     },
+    hasResources() {
+      return (
+        this.section.class_website_url ||
+        this.section.lib_subj_guide ||
+        this.section.canvas_url ||
+        this.section.sln
+      );
+    }
   },
 };
 </script>

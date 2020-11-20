@@ -4,7 +4,7 @@ import utils from './mixins/utils.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import CourseCards from './components/_common/course/course-cards.vue';
+import CourseCards from './components/_common/course/student/course-cards.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
 

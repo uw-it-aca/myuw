@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div :class="`w-100 myuw-border-top border-c${section.color_id}`" />
-    <uw-card loaded>
+    <uw-card loaded :ribbon="{ side: 'top', colorId: section.color_id }">
       <template #card-heading>
         <div class="d-flex justify-content-between mb-3">
           <div>
@@ -34,7 +33,7 @@
           v-if="isReadyEval && getSectionEval(section.index).length > 0"
           :eval-data="getSectionEval(section.index)"
           :section="section"
-          :show-row-heading="true"
+          show-row-heading
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
@@ -51,7 +50,6 @@
           v-else-if="!section.is_ended"
           :course="course"
           :section="section"
-          :show-row-heading="showRowHeading"
         />
       </template>
 
@@ -72,7 +70,6 @@
             <uw-course-details
               :course="course"
               :section="section"
-              :show-row-heading="showRowHeading"
             />
           </b-collapse>
         </template>
@@ -90,7 +87,6 @@
             <uw-instructors
               v-if="section.instructors.length > 0"
               :instructors="section.instructors"
-              :show-row-heading="true"
             />
           </b-collapse>
         </template>
@@ -162,7 +158,7 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
 import CourseDetails from './course-details.vue';
 import Instructors from './instructors.vue';
@@ -182,10 +178,6 @@ export default {
     section: {
       type: Object,
       required: true,
-    },
-    showRowHeading: {
-      type: Boolean,
-      default: false,
     },
     index: {
       type: Number,
