@@ -16,18 +16,18 @@
 
     <div>
       <h5 class="sr-only">
-        Section Type
+        Section Type:
       </h5>
       <span class="text-capitalize">
         {{ section.section_type }}
       </span>
     </div>
 
-    <div>
+    <div v-if="section.sln">
       <h5 class="sr-only">
-        Section SLN
+        Section SLN:
       </h5>
-      <span v-if="section.sln">
+      <span>
         <a
           :href="getTimeScheHref(section)"
           :title="`Time Schedule for SLN ${section.sln}`"
@@ -39,9 +39,19 @@
       </span>
     </div>
 
-    <uw-meeting :section="section" :mobile-only="mobileOnly" />
+    <div>
+      <h5 class="sr-only">
+        Section Meetings:
+      </h5>
+      <uw-meeting :section="section" :mobile-only="mobileOnly" />
+    </div>
 
-    <uw-enrollment :section="section" />
+    <div>
+      <h5 class="sr-only">
+        Section Enrollments:
+      </h5>
+      <uw-enrollment :section="section" />
+    </div>
 
     <slot />
     <!-- for linked secondary sections -->

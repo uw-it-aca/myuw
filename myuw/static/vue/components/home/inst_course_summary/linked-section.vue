@@ -1,29 +1,57 @@
 <template>
   <div>
-    <!-- linked secondary section -->
-    <div :class="`c${section.color_id}`" />
-    <a
-      :href="`/teaching/${section.href}`"
-      :future-nav-target="`${section.navtarget}`"
-    >
-      {{ section.section_id }}
-    </a>
-    <span v-if="section.sln">
+    <!-- A linked secondary section -->
+    <div>
+      <div :class="`c${section.color_id}`" />
+      <h4 class="sr-only">
+        Linked Secondary Section ID:
+      </h4>
       <a
-        :href="getTimeScheHref(section)"
-        :title="`Time Schedule for SLN ${section.sln}`"
-        :data-linklabel="getTimeScheLinkLable(section)"
-        target="_blank"
+        :href="`/teaching/${section.href}`"
+        :future-nav-target="`${section.navtarget}`"
       >
-        {{ section.sln }}
+        {{ section.section_id }}
       </a>
-    </span>
-    <span>
-      {{ ucfirst(section.section_type) }}
-    </span>
+    </div>
 
-    <uw-meeting :section="section" :mobile-only="mobileOnly" />
-    <uw-enrollment :section="section" />
+    <div v-if="section.sln">
+      <h5 class="sr-only">
+        Section SLN:
+      </h5>
+      <span>
+        <a
+          :href="getTimeScheHref(section)"
+          :title="`Time Schedule for SLN ${section.sln}`"
+          :data-linklabel="getTimeScheLinkLable(section)"
+          target="_blank"
+        >
+          {{ section.sln }}
+        </a>
+      </span>
+    </div>
+
+    <div>
+      <h5 class="sr-only">
+        Section Type:
+      </h5>
+      <span class="text-capitalize">
+        {{ section.section_type }}
+      </span>
+    </div>
+
+    <div>
+      <h5 class="sr-only">
+        Section Meetings:
+      </h5>
+      <uw-meeting :section="section" :mobile-only="mobileOnly" />
+    </div>
+
+    <div>
+      <h5 class="sr-only">
+        Section Enrollments:
+      </h5>
+      <uw-enrollment :section="section" />
+    </div>
 
     <div>
       <button v-if="!section.mini_card"

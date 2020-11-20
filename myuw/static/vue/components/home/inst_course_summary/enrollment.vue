@@ -1,40 +1,31 @@
 <template>
-  <div>
-    <h5 class="sr-only">
-      {{ section.curriculum_abbr }}
-      {{ section.course_number }}
-      {{ section.section_id }}
-      current enrollment / estimate limit
-    </h5>
+  <span v-if="section.is_prev_term_enrollment">
+    0<!-- the current_enrollment value is of previous term -->
+    <span v-if="!section.is_independent_study">
+      &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
+    </span>
+  </span>
 
-    <span v-if="section.is_prev_term_enrollment">
-      0<!-- the current_enrollment value is of previous term -->
+  <span v-else-if="!section.current_enrollment">
+    0<span v-if="!section.is_independent_study">
+      &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
+    </span>
+  </span>
+
+  <span v-else>
+    <a
+      target="_blank"
+      :href="classListHref()"
+      :rel="section.section_label"
+      :title="getTitle()"
+    >
+      {{ section.current_enrollment }}
       <span v-if="!section.is_independent_study">
-        &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
+        <span>&nbsp;of&nbsp;</span><span aria-hidden="true">/</span>
+        {{ section.limit_estimate_enrollment }}
       </span>
-    </span>
-
-    <span v-else-if="!section.current_enrollment">
-      0<span v-if="!section.is_independent_study">
-        &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
-      </span>
-    </span>
-
-    <span v-else>
-      <a
-        target="_blank"
-        :href="classListHref()"
-        :rel="section.section_label"
-        :title="getTitle()"
-      >
-        {{ section.current_enrollment }}
-        <span v-if="!section.is_independent_study">
-          <span>&nbsp;of&nbsp;</span><span>/</span>
-          {{ section.limit_estimate_enrollment }}
-        </span>
-      </a>
-    </span>
-  </div>
+    </a>
+  </span>
 </template>
 
 <script>
