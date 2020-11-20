@@ -46,22 +46,13 @@
             information right now. Please try again later.
           </p>
         </template>
-        <template v-else-if="!section.is_ended">
-          <uw-meeting-info
-            :section="section"
-            :show-row-heading="true"
-          />
-          <uw-resources
-            :section="section"
-            :course="course"
-            :show-row-heading="true"
-          />
-          <uw-instructors
-            v-if="section.is_ended && section.instructors.length > 0"
-            :instructors="section.instructors"
-            :show-row-heading="true"
-          />
-        </template>
+
+        <uw-course-details
+          v-else-if="!section.is_ended"
+          :course="course"
+          :section="section"
+          :show-row-heading="showRowHeading"
+        />
       </template>
 
       <template #card-disclosure>
@@ -78,19 +69,10 @@
                 <hr>
               </div>
             </div>
-            <uw-meeting-info
-              :section="section"
-              :show-row-heading="true"
-            />
-            <uw-resources
-              :section="section"
+            <uw-course-details
               :course="course"
-              :show-row-heading="true"
-            />
-            <uw-instructors
-              v-if="section.is_ended && section.instructors.length > 0"
-              :instructors="section.instructors"
-              :show-row-heading="true"
+              :section="section"
+              :show-row-heading="showRowHeading"
             />
           </b-collapse>
         </template>
@@ -182,16 +164,14 @@
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
-import MeetingInfo from './meeting-info.vue';
-import Resources from './resources.vue';
+import CourseDetails from './course-details.vue';
 import Instructors from './instructors.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-course-details': CourseDetails,
     'uw-course-eval': EvalInfo,
-    'uw-meeting-info': MeetingInfo,
-    'uw-resources': Resources,
     'uw-instructors': Instructors,
   },
   props: {
