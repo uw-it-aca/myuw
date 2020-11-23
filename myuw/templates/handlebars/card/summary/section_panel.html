@@ -6,7 +6,7 @@
         <div class="col-sm-4">
             <h4 class="myuw-card-row-heading"><div class="c{{color_id}} simplesquare" aria-hidden="true"></div><a href="/teaching/{{@root.year}},{{@root.quarter}}#{{toAnchorName curriculum_abbr}}-{{course_number}}-{{section_id}}" class="future-nav-link" future-nav-target="{{@root.year}},{{@root.quarter}},{{curriculum_abbr}}-{{course_number}}-{{section_id}}">{{curriculum_abbr}} <span class="text-nowrap">{{course_number}} {{section_id}}</span></a></h4>
             <div class="section-meta">
-                <span class="myuw-meta course-meeting-type">{{meetings.0.type}}</span>
+                <span class="myuw-meta course-meeting-type">{{section_type}}</span>
                 {{#if sln}}
                     <span class="myuw-meta myuw-muted course-sln"><a href="http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR={{get_quarter_abbreviation @root.quarter}}+{{@root.year}}&SLN={{sln}}" title="Time Schedule for SLN {{sln}}" target="_blank" data-linklabel="SLN {{sln}}: {{curriculum_abbr}} {{course_number}} {{section_id}}">{{sln}}</a></span>
                 {{/if}}
