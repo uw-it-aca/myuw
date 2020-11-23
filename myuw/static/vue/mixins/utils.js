@@ -3,8 +3,8 @@ export default {
   methods: {
     encodeForMaps(s) {
       if (s) {
-        s = s.replace(/ \(/g, " - ");
-        s = s.replace(/[\)&]/g, "");
+        s = s.replace(/ \(/g, ' - ');
+        s = s.replace(/[\)&]/g, '');
         s = encodeURIComponent(s);
       }
       return s;
@@ -13,7 +13,9 @@ export default {
     parsePhoneNumber(phNumStr) {
       let parsed = null;
       if (phNumStr) {
-        let matches = phNumStr.match(/^(\+(?<country>\d+) )?(?<area>\d{3})[ -\.]?(?<exchange>\d{3})[ -\.]?(?<line>\d{4})$/);
+        let matches = phNumStr.match(
+          /^(\+(?<country>\d+) )?(?<area>\d{3})[ -\.]?(?<exchange>\d{3})[ -\.]?(?<line>\d{4})$/
+        );
         if (matches) {
           parsed = matches.groups;
         }
@@ -25,41 +27,42 @@ export default {
       if (parsed) {
         return `(${parsed.area}) ${parsed.exchange}-${parsed.line}`;
       }
-      return "";
+      return '';
     },
     formatPhoneNumberLink(phNumStr) {
       let parsed = this.parsePhoneNumber(phNumStr);
       if (parsed) {
-        if (parsed.country == undefined) parsed.country = "1";
+        if (parsed.country == undefined) parsed.country = '1';
         return `+${parsed.country}-${parsed.area}-${parsed.exchange}-${parsed.line}`;
       }
-      return "";
+      return '';
     },
     pageTitleFromTerm(termStr) {
       let pageTitle = termStr.split(',');
       let term = pageTitle[1];
       pageTitle[1] = pageTitle[0];
       pageTitle[0] = term;
-      return pageTitle.map((s) => this.ucfirst(s)).join(' ');
+      return pageTitle.map(s => this.ucfirst(s)).join(' ');
     },
     ucfirst(s) {
       if (s) {
-        return s.replace(/^([a-z])/, (c) => c.toUpperCase());
+        return s.replace(/^([a-z])/, c => c.toUpperCase());
       }
-      return "";
+      return '';
     },
     titleCaseName(nameStr) {
-      return nameStr.split(' ').map(function(w) {
-        return w[0].toUpperCase() + w.substr(1).toLowerCase();
-      }).join(' ');
+      return nameStr
+        .split(' ')
+        .map(function(w) {
+          return w[0].toUpperCase() + w.substr(1).toLowerCase();
+        })
+        .join(' ');
     },
     toFriendlyDate(date_str) {
-      return (!date_str || date_str.length === 0 ? '' :
-              dayjs(date_str).format("ddd, MMM D"));
+      return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format('ddd, MMM D');
     },
     toFriendlyDatetime(date_str) {
-      return (!date_str || date_str.length === 0 ? '' :
-              dayjs(date_str).format("ddd, MMM D, h:mmA"));
+      return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format('ddd, MMM D, h:mmA');
     },
   },
-}
+};
