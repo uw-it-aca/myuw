@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VueGtag from 'vue-gtag';
-import {library} from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
   FontAwesomeLayers,
@@ -157,22 +157,14 @@ const store = new Vuex.Store({
   state: {
     user: JSON.parse(document.getElementById('user').innerHTML),
     staticUrl: JSON.parse(document.getElementById('static_url').innerHTML),
-    disableActions: JSON.parse(
-        document.getElementById('disable_actions').innerHTML,
-    ),
-    bannerMessages: JSON.parse(
-      document.getElementById('banner_messages').innerHTML,
-    ),
-    displayOnboardMessage: JSON.parse(
-      document.getElementById('display_onboard_message').innerHTML,
-    ),
-    displayPopUp: JSON.parse(
-      document.getElementById('display_pop_up').innerHTML,
-    ),
+    disableActions: JSON.parse(document.getElementById('disable_actions').innerHTML),
+    bannerMessages: JSON.parse(document.getElementById('banner_messages').innerHTML),
+    displayOnboardMessage: JSON.parse(document.getElementById('display_onboard_message').innerHTML),
+    displayPopUp: JSON.parse(document.getElementById('display_pop_up').innerHTML),
     csrfToken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
   },
   mutations: {
-    addVarToState(state, {name, value}) {
+    addVarToState(state, { name, value }) {
       state[name] = value;
     },
   },
@@ -200,4 +192,4 @@ vueConf.store.commit('addVarToState', {
   name: 'cardDisplayDates',
   value: JSON.parse(document.getElementById('card_display_dates').innerHTML),
 });
-export {Vue, vueConf};
+export { Vue, vueConf };
