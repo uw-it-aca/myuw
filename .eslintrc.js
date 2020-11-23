@@ -5,7 +5,7 @@ module.exports = {
     // (i.e are we running in a browser environment or a node.js env)
     node: true,
     browser: true,
-    'jest/globals': true
+    'jest/globals': true,
   },
   plugins: ['jest'],
   extends: [
@@ -14,10 +14,10 @@ module.exports = {
     'plugin:vue/recommended',
     'plugin:jest/recommended',
     'prettier',
-    'prettier/vue'
+    'prettier/vue',
   ],
   parserOptions: {
-    parser: 'babel-eslint'
+    parser: 'babel-eslint',
   },
   rules: {
     // global rules
@@ -35,8 +35,8 @@ module.exports = {
     'jest/expect-expect': [
       'error',
       {
-        assertFunctionNames: ['expect*']
-      }
+        assertFunctionNames: ['expect*'],
+      },
     ],
     // vue
     'vue/no-mutating-props': 'off',
