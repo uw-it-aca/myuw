@@ -5,37 +5,38 @@ module.exports = {
     // (i.e are we running in a browser environment or a node.js env)
     node: true,
     browser: true,
-    "jest/globals": true,
+    'jest/globals': true
   },
-  plugins: ["jest"],
+  plugins: ['jest'],
   extends: [
     // use the recommended rule set for both plain javascript and vue
-    "eslint:recommended",
-    "plugin:vue/recommended",
-    "plugin:jest/recommended",
-    "prettier",
-    "prettier/vue",
+    'eslint:recommended',
+    'plugin:vue/recommended',
+    'plugin:jest/recommended',
+    'prettier',
+    'prettier/vue'
   ],
   parserOptions: {
-    parser: "babel-eslint",
+    parser: 'babel-eslint'
   },
   rules: {
-    // global
+    // global rules
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    "no-unused-vars": "off",
-    'max-len': ['error', { ignoreUrls: true, ignoreStrings: true }],
-    // jest 
+    'no-unused-vars': 'off',
+    'max-len': [2, { code: 100, tabWidth: 4, ignoreUrls: true, ignoreStrings: true }],
+
+    // jest rules
     'jest/no-disabled-tests': 'warn',
     'jest/no-focused-tests': 'error',
     'jest/no-identical-title': 'error',
     'jest/prefer-to-have-length': 'warn',
     'jest/valid-expect': 'error',
-    "jest/expect-expect": [
-      "error",
+    'jest/expect-expect': [
+      'error',
       {
-        assertFunctionNames: ["expect*"],
-      },
+        assertFunctionNames: ['expect*']
+      }
     ],
     // vue
     'vue/no-mutating-props': 'off',
