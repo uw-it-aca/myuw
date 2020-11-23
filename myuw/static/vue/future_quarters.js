@@ -1,4 +1,4 @@
-import {Vue, vueConf} from './base.js';
+import { Vue, vueConf } from './base.js';
 import utils from './mixins/utils.js';
 
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
@@ -19,7 +19,7 @@ vueConf.store.registerModule('visual_schedule', visualSchedule);
 
 vueConf.store.commit('addVarToState', {
   name: 'futureTerm',
-  value: window.futureTerm,  // "year,quarter,[ab]-term"
+  value: window.futureTerm, // "year,quarter,[ab]-term"
 });
 
 vueConf.store.commit('addVarToState', {

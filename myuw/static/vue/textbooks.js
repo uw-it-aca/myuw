@@ -1,4 +1,4 @@
-import {Vue, vueConf} from './base.js';
+import { Vue, vueConf } from './base.js';
 import utils from './mixins/utils.js';
 
 // layout componenets
