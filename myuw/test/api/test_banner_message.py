@@ -13,7 +13,7 @@ class TestBannerMessage(MyuwApiTest):
         self.assertEqual(resp.content, b'{"done": true}')
 
         # remove the entry in DB (delete CASCADE)
-        User.objects.get(uwnetid='bill').delete()
+        User.objects.filter(uwnetid='bill').delete()
 
         resp = self.get_response_by_reverse('myuw_close_banner_message')
         self.assertEqual(resp.content, b'{"done": true}')
