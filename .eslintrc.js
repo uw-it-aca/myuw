@@ -24,7 +24,7 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-unused-vars': 'off',
-    'max-len': [2, { code: 100, tabWidth: 4, ignoreUrls: true, ignoreStrings: true }],
+    'max-len': [2, { code: 100, tabWidth: 2, ignoreUrls: true, ignoreStrings: true }],
 
     // jest rules
     'jest/no-disabled-tests': 'warn',
