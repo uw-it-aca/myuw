@@ -39,5 +39,5 @@
 {% block vue_script %}
 {% load manifest %}
 {% manifest_match '*academics*.css' '<link rel="stylesheet" href="{match}">' %}
-{% manifest_match '*academics*.js' '<script src="{match}"></script>' %}
+{% manifest_match '*academics*.js' '<script src="{match}" async></script>' %}
 {% endblock vue_script %}
