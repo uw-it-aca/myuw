@@ -1,6 +1,6 @@
 'use strict'
 const path = require('path');
-const BundleTracker = require('webpack-bundle-tracker');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -32,10 +32,9 @@ module.exports = {
         },
       })
     ],
-    // TODO: USE THIS WHEN DJANGO WEBPACK LOADER SUPPORTS IT
-    // splitChunks: {
-    //   chunks: 'all',
-    // },
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   entry: {
     home: [
@@ -61,7 +60,7 @@ module.exports = {
       path: path.resolve('../static/myuw/'),
       filename: "[name]-[hash].js",
       chunkFilename: '[id]-[chunkhash].js',
-      publicPath: '/static/myuw/',
+      publicPath: '/myuw/',
   },
 
   module: {
@@ -115,7 +114,7 @@ module.exports = {
   },
 
   plugins: [
-    new BundleTracker({filename: './../static/myuw-webpack-stats.json'}),
+    new ManifestPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]-[hash].css',

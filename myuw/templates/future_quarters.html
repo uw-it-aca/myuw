@@ -24,6 +24,7 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'future_quarters' %}
+{% load manifest %}
+{% manifest_match '*future_quarters*.css' '<link rel="stylesheet" href="{match}">' %}
+{% manifest_match '*future_quarters*.js' '<script src="{match}"></script>' %}
 {% endblock vue_script %}

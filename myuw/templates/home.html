@@ -60,6 +60,7 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'home' %}
+{% load manifest %}
+{% manifest_match '*home*.css' '<link rel="stylesheet" href="{match}">' %}
+{% manifest_match '*home*.js' '<script src="{match}"></script>' %}
 {% endblock vue_script %}

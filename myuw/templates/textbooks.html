@@ -23,6 +23,7 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'textbooks' %}
+{% load manifest %}
+{% manifest_match '*textbooks*.css' '<link rel="stylesheet" href="{match}">' %}
+{% manifest_match '*textbooks*.js' '<script src="{match}"></script>' %}
 {% endblock vue_script %}
