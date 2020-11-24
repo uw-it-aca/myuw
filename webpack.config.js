@@ -12,17 +12,7 @@ module.exports = {
   context: __dirname,
   optimization: {
     minimizer: [
-      new TerserJSPlugin({
-        extractComments: true,
-        cache: true,
-        parallel: true,
-        terserOptions: {
-          extractComments: 'all',
-          compress: {
-            drop_console: true,
-          },
-        }
-      }),
+      new TerserJSPlugin(),
       new OptimizeCSSAssetsPlugin({
         cssProcessorOptions: {
           safe: true,
@@ -86,17 +76,6 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ];
-              },
-              sourceMap: true,
-            }
-          },
           'sass-loader'
         ],
       },
