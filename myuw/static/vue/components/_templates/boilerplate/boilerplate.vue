@@ -351,7 +351,7 @@
       <p class="mt-3 mb-0 myuw-text-md">
         Watch a video tour of <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/" target="_blank" title="MyUW video tour for instructors" data-linklabel="MyUW video for Instructors">MyUW for Instructors</a>, <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/" target="_blank" title="MyUW video tour for staff" data-linklabel="MyUW video for staff">for staff</a>, or <a href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1" target="_blank" title="MyUW video tour for students" data-linklabel="MyUW video for students">for students</a>. <br><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated" target="_blank" title="MyUW Help Center in IT Connect" data-linklabel="MyUW Help Center">Visit the MyUW help guide for more information</a>.
       </p>
-      <template v-slot:modal-footer="{ hide }">
+      <template #modal-footer="{ hide }">
         <b-button variant="primary" size="sm" @click="hide()">
           Close
         </b-button>
