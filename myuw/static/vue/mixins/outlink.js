@@ -6,7 +6,7 @@ export default {
         if (link.href.includes(document.location.origin)) {
           link.classList.add('in-link');
         } else {
-          if (link.href !== "" && !link.href.startsWith("mailto:")) {
+          if (link.href !== "" && link.href.startsWith("http")) {
             let label = link.innerText;
             link.href = `${document.location.origin}/out?u=${
               encodeURIComponent(link.href)
