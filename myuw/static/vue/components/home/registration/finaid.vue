@@ -12,7 +12,7 @@
           size="md"
         >
           <font-awesome-icon
-            v-if="collapseOpen"
+            v-if="collapseOpen[i]"
             :icon="['fas', 'caret-down']"
           />
           <font-awesome-icon v-else :icon="['fas', 'caret-right']" />
@@ -20,7 +20,7 @@
         </b-button>
         <b-collapse
           :id="`finAid-${notice.id_hash}-collapse-${_uid}`"
-          v-model="collapseOpen"
+          v-model="collapseOpen[i]"
           class="myuw-fin-aid"
         >
           <div
@@ -43,7 +43,7 @@ export default {
   },
   data: function() {
     return {
-      collapseOpen: false,
+      collapseOpen: Array(this.finAidNotices.length).fill(false),
     };
   },
 };

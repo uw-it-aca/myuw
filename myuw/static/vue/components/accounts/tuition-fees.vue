@@ -66,7 +66,18 @@
           </div>
         </li>
       </ul>
-
+      <div>
+        <p v-if="!isC2Grad">
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.
+        </p>
+        <p v-for="(msg, i) in pceTuitionDup" :key="i">
+          {{ msg.notice_content }}
+        </p>
+      </div>
+      <uw-fin-aid
+        v-if="finAidNotices"
+        :fin-aid-notices="finAidNotices">
+      </uw-fin-aid>
     </template>
   </uw-card>
 </template>
@@ -74,19 +85,42 @@
 <script>
 import {mapGetters, mapActions, mapState} from 'vuex';
 import Card from '../_templates/card.vue';
+import FinAidComponent from '../home/registration/finaid.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-fin-aid': FinAidComponent,
   },
   computed: {
     ...mapState({
       isStudent: (state) => state.user.affiliations.student,
-      isGrad: (state) => state.user.affiliations.grad,
+      isC2Grad: (state) => state.user.affiliations.grad,
       isC2: (state) => state.user.affiliations.grad_c2 || state.user.affiliations.undergrad_c2,
       isPCE: (state) => state.user.affiliations.pce,
       tuition: (state) => state.tuition.value,
       notices: (state) => state.notices.value,
+      finAidNotices: (state) => { 
+        return state.notices.value.filter(
+          (notice) => notice.location_tags.includes('tuition_aidhold_title') ||
+          notice.location_tags.includes('tuition_missingdocs_title') ||
+          notice.location_tags.includes('tuition_loanpromissory_title') ||
+          notice.location_tags.includes('tuition_loancounseling_title') ||
+          notice.location_tags.includes('tuition_acceptreject_title') ||
+          notice.location_tags.includes('tuition_disbursedateA_title') ||
+          notice.location_tags.includes('tuition_disbursedateB_title') ||
+          notice.location_tags.includes('tuition_direct_deposit_title') ||
+          notice.location_tags.includes('tuition_aid_prioritydate_title') ||
+          notice.location_tags.includes('tuition_aid_reminder_title') ||
+          notice.location_tags.includes('tuition_summeraid_date_title') ||
+          notice.location_tags.includes('tuition_summeraid_avail_title')
+        );
+      },
+      pceTuitionDup: (state) => {
+        return state.notices.value.filter(
+          (notice) => notice.location_tags.includes('pce_tuition_dup')
+        );
+      },
       
     }),
     ...mapGetters('tuition', {
