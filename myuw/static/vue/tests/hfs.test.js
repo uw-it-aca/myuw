@@ -1,6 +1,6 @@
 import axios from 'axios';
-import {expectAction} from './helper';
-import {statusOptions} from '../vuex/store/model_builder';
+import { expectAction } from './helper';
+import { statusOptions } from '../vuex/store/model_builder';
 import hfs from '../vuex/store/hfs';
 import mockRes from './mock_data/hfs.json';
 
@@ -8,27 +8,27 @@ jest.mock('axios');
 
 describe('Library model', () => {
   it('Check status changes on fetch - success', () => {
-    axios.get.mockResolvedValue({data: mockRes, status: 200});
+    axios.get.mockResolvedValue({ data: mockRes, status: 200 });
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
     return expectAction(hfs.actions.fetch, null, hfs.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setValue', payload: mockRes},
-      {type: 'setStatus', payload: statusOptions[0]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setValue', payload: mockRes },
+      { type: 'setStatus', payload: statusOptions[0] },
     ]);
   });
 
   it('Check status changes on fetch - failure', () => {
-    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
+    axios.get.mockResolvedValue(Promise.reject({ response: { status: 404 } }));
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
     return expectAction(hfs.actions.fetch, null, hfs.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setStatus', payload: statusOptions[2]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setStatus', payload: statusOptions[2] },
     ]);
   });
 });

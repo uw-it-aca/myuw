@@ -1,12 +1,12 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-import {mount} from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
+import { createLocalVue } from './helper';
 import visual_schedule from '../vuex/store/visual_schedule';
-import {statusOptions} from '../vuex/store/model_builder';
-import {expectAction} from './helper';
+import { statusOptions } from '../vuex/store/model_builder';
+import { expectAction } from './helper';
 
 import CourseSection from '../components/_common/visual_schedule/course-section.vue';
 import ScheduleTab from '../components/_common/visual_schedule/schedule-tab.vue';
@@ -28,100 +28,100 @@ describe('Schedule Model', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'visual_schedule': visual_schedule,
+        visual_schedule: visual_schedule,
       },
     });
   });
 
-  it ('Check status changes on fetch - success', () => {
-    axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
+  it('Check status changes on fetch - success', () => {
+    axios.get.mockResolvedValue({ data: mockScheduleBill, status: 200 });
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
 
     return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setValue', payload: mockScheduleBill},
-      {type: 'setStatus', payload: statusOptions[0]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setValue', payload: mockScheduleBill },
+      { type: 'setStatus', payload: statusOptions[0] },
     ]);
   });
 
   it('Check status changes on fetch - failure', () => {
-    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
+    axios.get.mockResolvedValue(Promise.reject({ response: { status: 404 } }));
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
     return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setStatus', payload: statusOptions[2]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setStatus', payload: statusOptions[2] },
     ]);
   });
 
   // Checks if the postProcess method can process data without failing
-  it ('Check can process - bill', () => {
-    axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
+  it('Check can process - bill', () => {
+    axios.get.mockResolvedValue({ data: mockScheduleBill, status: 200 });
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
 
     return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setValue', payload: mockScheduleBill},
-      {type: 'setStatus', payload: statusOptions[0]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setValue', payload: mockScheduleBill },
+      { type: 'setStatus', payload: statusOptions[0] },
     ]);
   });
 
-  it ('Check can process - billsea 2020', () => {
-    axios.get.mockResolvedValue({data: mockScheduleBillsea2020, status: 200});
+  it('Check can process - billsea 2020', () => {
+    axios.get.mockResolvedValue({ data: mockScheduleBillsea2020, status: 200 });
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
 
     return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setValue', payload: mockScheduleBillsea2020},
-      {type: 'setStatus', payload: statusOptions[0]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setValue', payload: mockScheduleBillsea2020 },
+      { type: 'setStatus', payload: statusOptions[0] },
     ]);
   });
 
-  it ('Check can process - javerage', () => {
-    axios.get.mockResolvedValue({data: mockScheduleJaverage, status: 200});
+  it('Check can process - javerage', () => {
+    axios.get.mockResolvedValue({ data: mockScheduleJaverage, status: 200 });
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
 
     return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setValue', payload: mockScheduleJaverage},
-      {type: 'setStatus', payload: statusOptions[0]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setValue', payload: mockScheduleJaverage },
+      { type: 'setStatus', payload: statusOptions[0] },
     ]);
   });
 
-  it ('Check can process - jeos', () => {
-    axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
+  it('Check can process - jeos', () => {
+    axios.get.mockResolvedValue({ data: mockScheduleJeos, status: 200 });
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
     };
 
     return expectAction(visual_schedule.actions.fetch, null, visual_schedule.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setValue', payload: mockScheduleJeos},
-      {type: 'setStatus', payload: statusOptions[0]},
+      { type: 'setStatus', payload: statusOptions[1] },
+      { type: 'setValue', payload: mockScheduleJeos },
+      { type: 'setStatus', payload: statusOptions[0] },
     ]);
   });
 
-  it ('Check earliest and latest meeting times', async () => {
-    axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
+  it('Check earliest and latest meeting times', async () => {
+    axios.get.mockResolvedValue({ data: mockScheduleBill, status: 200 });
     store.dispatch('visual_schedule/fetch', 'testCurrent');
 
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(store.getters['visual_schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
     expect(store.state.visual_schedule.value).toBeDefined();
@@ -133,48 +133,46 @@ describe('Schedule Model', () => {
     ).toBeInstanceOf(dayjs);
     expect(
       store.state.visual_schedule.value.testCurrent.periods[0].earliestMeetingTime.format('hh:mm A')
-    ).toBe("08:30 AM");
+    ).toBe('08:30 AM');
 
     expect(
       store.state.visual_schedule.value.testCurrent.periods[0].latestMeetingTime
     ).toBeInstanceOf(dayjs);
     expect(
       store.state.visual_schedule.value.testCurrent.periods[0].latestMeetingTime.format('hh:mm A')
-    ).toBe("06:20 PM");
+    ).toBe('06:20 PM');
 
     expect(
       store.state.visual_schedule.value.testCurrent.periods[1].earliestMeetingTime
     ).toBeInstanceOf(dayjs);
     expect(
       store.state.visual_schedule.value.testCurrent.periods[1].earliestMeetingTime.format('hh:mm A')
-    ).toBe("08:30 AM");
+    ).toBe('08:30 AM');
 
     expect(
       store.state.visual_schedule.value.testCurrent.periods[1].latestMeetingTime
     ).toBeInstanceOf(dayjs);
     expect(
       store.state.visual_schedule.value.testCurrent.periods[1].latestMeetingTime.format('hh:mm A')
-    ).toBe("04:20 PM");
+    ).toBe('04:20 PM');
   });
 
-  it ('Check eos data', async () => {
-    axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
+  it('Check eos data', async () => {
+    axios.get.mockResolvedValue({ data: mockScheduleJeos, status: 200 });
     store.dispatch('visual_schedule/fetch', 'testCurrent');
 
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(store.getters['visual_schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
     expect(store.state.visual_schedule.value).toBeDefined();
     expect(store.state.visual_schedule.value.testCurrent).toBeDefined();
     expect(store.state.visual_schedule.value.testCurrent.periods).toHaveLength(5);
 
-    expect(
-      store.state.visual_schedule.value.testCurrent.periods[0].eosData
-    ).toHaveLength(1);
+    expect(store.state.visual_schedule.value.testCurrent.periods[0].eosData).toHaveLength(1);
     expect(
       store.state.visual_schedule.value.testCurrent.periods[0].eosData[0].curriculum_abbr
-    ).toBe("BIGDATA");
+    ).toBe('BIGDATA');
     expect(
       store.state.visual_schedule.value.testCurrent.periods[0].eosData[0].meetings
     ).toHaveLength(3);
@@ -187,7 +185,7 @@ describe('Vue SFC Tests', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'visual_schedule': visual_schedule,
+        visual_schedule: visual_schedule,
       },
       state: {
         user: {
@@ -197,51 +195,96 @@ describe('Vue SFC Tests', () => {
           quarter: 'summer',
           year: 2013,
           todayDate: new Date('Mon Apr 1 2013 00:00:00 GMT-0700 (Pacific Daylight Time)'),
-        }
-      }
+        },
+      },
     });
   });
 
-  it ('Check Mount - javerage', async () => {
-    axios.get.mockResolvedValue({data: mockScheduleJaverage, status: 200});
-    const wrapper = mount(VisualSchedule, {store, localVue});
+  it('Check Mount - javerage', async () => {
+    axios.get.mockResolvedValue({ data: mockScheduleJaverage, status: 200 });
+    const wrapper = mount(VisualSchedule, { store, localVue });
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h3').text()).toMatch('Spring 2013 Schedule');
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
 
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("finals");
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(0)
+        .text()
+    ).toBe('Apr 01 - Jun 07');
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(1)
+        .text()
+    ).toBe('finals');
   });
 
-  it ('Check Mount - javerage summer', async () => {
-    axios.get.mockResolvedValue({data: mockScheduleJaverageSummer, status: 200});
-    const wrapper = mount(VisualSchedule, {store, localVue});
+  it('Check Mount - javerage summer', async () => {
+    axios.get.mockResolvedValue({ data: mockScheduleJaverageSummer, status: 200 });
+    const wrapper = mount(VisualSchedule, { store, localVue });
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Summer 2013 A-Term Schedule");
+    expect(wrapper.find('h3').text()).toMatch('Summer 2013 A-Term Schedule');
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
 
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Jun 24 - Jul 19");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Jul 22 - Jul 24");
-  }); 
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(0)
+        .text()
+    ).toBe('Jun 24 - Jul 19');
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(1)
+        .text()
+    ).toBe('Jul 22 - Jul 24');
+  });
 
-  it ('Check Mount - jeos', async () => {
-    axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
-    const wrapper = mount(VisualSchedule, {store, localVue});
+  it('Check Mount - jeos', async () => {
+    axios.get.mockResolvedValue({ data: mockScheduleJeos, status: 200 });
+    const wrapper = mount(VisualSchedule, { store, localVue });
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h3').text()).toMatch('Spring 2013 Schedule');
 
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(5);
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Apr 05");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Apr 07 - May 03");
-    expect(wrapper.findAll('a[role=tab]').at(2).text()).toBe("May 05 - Jun 15");
-    expect(wrapper.findAll('a[role=tab]').at(3).text()).toBe("Jun 17 - Jul 06");
-    expect(wrapper.findAll('a[role=tab]').at(4).text()).toBe("finals");
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(0)
+        .text()
+    ).toBe('Apr 01 - Apr 05');
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(1)
+        .text()
+    ).toBe('Apr 07 - May 03');
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(2)
+        .text()
+    ).toBe('May 05 - Jun 15');
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(3)
+        .text()
+    ).toBe('Jun 17 - Jul 06');
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(4)
+        .text()
+    ).toBe('finals');
 
     expect(wrapper.vm.periods[0].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[1].eosData).toHaveLength(1);
@@ -250,52 +293,70 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.vm.periods[4].eosData).toHaveLength(1);
   });
 
-  it ('Check Overlapping classes', async () => {
-    axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
-    const wrapper = mount(VisualSchedule, {store, localVue});
+  it('Check Overlapping classes', async () => {
+    axios.get.mockResolvedValue({ data: mockScheduleBill, status: 200 });
+    const wrapper = mount(VisualSchedule, { store, localVue });
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h3').text()).toMatch('Spring 2013 Schedule');
 
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("finals");
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(0)
+        .text()
+    ).toBe('Apr 01 - Jun 07');
+    expect(
+      wrapper
+        .findAll('a[role=tab]')
+        .at(1)
+        .text()
+    ).toBe('finals');
 
     expect(
-      wrapper.findAllComponents(ScheduleTab).at(0).vm
-        .meetingMap["tuesday"]["08:30 AM"]
+      wrapper.findAllComponents(ScheduleTab).at(0).vm.meetingMap['tuesday']['08:30 AM']
     ).toHaveLength(2);
 
     expect(
-      wrapper.findAllComponents(ScheduleTab).at(1).vm
-        .meetingMap["monday"]["08:30 AM"]
+      wrapper.findAllComponents(ScheduleTab).at(1).vm.meetingMap['monday']['08:30 AM']
     ).toHaveLength(2);
   });
 
-  it ('jeos - activePeriod', async () => {
-    axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
-    const wrapper = mount(VisualSchedule, {store, localVue});
+  it('jeos - activePeriod', async () => {
+    axios.get.mockResolvedValue({ data: mockScheduleJeos, status: 200 });
+    const wrapper = mount(VisualSchedule, { store, localVue });
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h3').text()).toMatch('Spring 2013 Schedule');
 
     expect(wrapper.vm.activePeriod.id).toEqual(0);
-    
-    store.state.termData.todayDate = new Date('Sat Apr 6 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
+
+    store.state.termData.todayDate = new Date(
+      'Sat Apr 6 2013 00:00:00 GMT-0700 (Pacific Daylight Time)'
+    );
     expect(wrapper.vm.activePeriod.id).toEqual(1);
 
-    store.state.termData.todayDate = new Date('Sun Apr 7 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
+    store.state.termData.todayDate = new Date(
+      'Sun Apr 7 2013 00:00:00 GMT-0700 (Pacific Daylight Time)'
+    );
     expect(wrapper.vm.activePeriod.id).toEqual(1);
 
-    store.state.termData.todayDate = new Date('Fri May 3 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
+    store.state.termData.todayDate = new Date(
+      'Fri May 3 2013 00:00:00 GMT-0700 (Pacific Daylight Time)'
+    );
     expect(wrapper.vm.activePeriod.id).toEqual(1);
 
-    store.state.termData.todayDate = new Date('Sat May 4 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
+    store.state.termData.todayDate = new Date(
+      'Sat May 4 2013 00:00:00 GMT-0700 (Pacific Daylight Time)'
+    );
     expect(wrapper.vm.activePeriod.id).toEqual(2);
 
-    store.state.termData.todayDate = new Date('Sun May 5 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
+    store.state.termData.todayDate = new Date(
+      'Sun May 5 2013 00:00:00 GMT-0700 (Pacific Daylight Time)'
+    );
     expect(wrapper.vm.activePeriod.id).toEqual(2);
   });
 });

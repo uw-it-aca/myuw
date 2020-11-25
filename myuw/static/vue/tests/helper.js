@@ -6,39 +6,38 @@ import Vuex from 'vuex';
 import utils from '../mixins/utils';
 
 // helper for testing action with expected mutations
-const expectAction = (
-    action, payload, state, getters, expectedMutations,
-) => new Promise((done) => {
-  let count = 0;
+const expectAction = (action, payload, state, getters, expectedMutations) =>
+  new Promise(done => {
+    let count = 0;
 
-  // mock commit
-  const commit = (type, payload) => {
-    const mutation = expectedMutations[count];
+    // mock commit
+    const commit = (type, payload) => {
+      const mutation = expectedMutations[count];
 
-    try {
-      expect(type).toEqual(mutation.type);
-      expect(payload).toEqual(mutation.payload);
-    } catch (error) {
-      done(error);
-    }
+      try {
+        expect(type).toEqual(mutation.type);
+        expect(payload).toEqual(mutation.payload);
+      } catch (error) {
+        done(error);
+      }
 
-    count++;
-    if (count >= expectedMutations.length) {
+      count++;
+      if (count >= expectedMutations.length) {
+        done();
+      }
+    };
+
+    // call the action with mocked store and arguments
+    action({ commit, getters, state }, payload);
+
+    // check if no mutations should have been dispatched
+    if (expectedMutations.length === 0) {
+      expect(count).toEqual(0);
       done();
     }
-  };
+  });
 
-  // call the action with mocked store and arguments
-  action({commit, getters, state}, payload);
-
-  // check if no mutations should have been dispatched
-  if (expectedMutations.length === 0) {
-    expect(count).toEqual(0);
-    done();
-  }
-});
-
-const createLocalVue = (vuexMoudule) => {
+const createLocalVue = vuexMoudule => {
   const localVue = createLocalVueOriginal();
   localVue.use(BootstrapVue);
   localVue.use(vuexMoudule);
@@ -48,7 +47,4 @@ const createLocalVue = (vuexMoudule) => {
   return localVue;
 };
 
-export {
-  expectAction,
-  createLocalVue,
-};
+export { expectAction, createLocalVue };

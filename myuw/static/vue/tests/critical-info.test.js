@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {mount} from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
+import { createLocalVue } from './helper';
 import notices from '../vuex/store/notices';
 import CriticalInfoCard from '../components/home/new_student/critical-info.vue';
 
@@ -23,17 +23,17 @@ describe('Critical Info Card', () => {
         user: {
           affiliations: {
             student: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Check the filter function - default', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    const wrapper = mount(CriticalInfoCard, {store, localVue});
+    axios.get.mockResolvedValue({ data: mockNotices });
+    const wrapper = mount(CriticalInfoCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.vm.notices).toHaveLength(1);
@@ -43,10 +43,10 @@ describe('Critical Info Card', () => {
 
   it('Check the filter function - not resident', async () => {
     mockNotices[20].attributes[0].value = 3;
-    axios.get.mockResolvedValue({data: mockNotices});
-    const wrapper = mount(CriticalInfoCard, {store, localVue});
+    axios.get.mockResolvedValue({ data: mockNotices });
+    const wrapper = mount(CriticalInfoCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.vm.notices).toHaveLength(1);

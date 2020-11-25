@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import notices from '../vuex/store/notices';
@@ -25,10 +25,10 @@ describe('Summer EFS Card', () => {
   });
 
   it('Summer EFS - default', async () => {
-    axios.get.mockResolvedValue({data: mockNotices, status: 200});
-    const wrapper = mount(SummerEFSCard, {store, localVue});
+    axios.get.mockResolvedValue({ data: mockNotices, status: 200 });
+    const wrapper = mount(SummerEFSCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.vm.notices).toHaveLength(1);

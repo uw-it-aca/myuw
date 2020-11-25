@@ -137,9 +137,7 @@
               "student_number": "1443336",
               "student_system_key": "000083857",
               "student_class": null,
-              "student_departments": [
-                "Math"
-              ],
+              "student_departments": ["Math"],
               "publish_in_stu_directory": true,
               "development_id": "0000773877",
               "alumni_state": null,
@@ -171,9 +169,7 @@
               "student_number": "1443336",
               "student_system_key": "000083857",
               "student_class": null,
-              "student_departments": [
-                "Math"
-              ],
+              "student_departments": ["Math"],
               "publish_in_stu_directory": true,
               "development_id": "0000773877",
               "alumni_state": null,
@@ -205,9 +201,7 @@
               "student_number": "1443336",
               "student_system_key": "000083857",
               "student_class": null,
-              "student_departments": [
-                "Math"
-              ],
+              "student_departments": ["Math"],
               "publish_in_stu_directory": true,
               "development_id": "0000773877",
               "alumni_state": null,
@@ -239,9 +233,7 @@
               "student_number": "1443336",
               "student_system_key": "000083857",
               "student_class": null,
-              "student_departments": [
-                "Math"
-              ],
+              "student_departments": ["Math"],
               "publish_in_stu_directory": true,
               "development_id": "0000773877",
               "alumni_state": null,
@@ -464,28 +456,13 @@
               "display_name": "BILL AVERAGE TEACHER",
               "whitepages_publish": true,
               "employee_id": "123456782",
-              "addresses": [
-                "Seattle, WA 98105"
-              ],
-              "email_addresses": [
-                "bill@uw.edu"
-              ],
-              "faxes": [
-                "+1 425 111-1111"
-              ],
-              "mobiles": [
-                "+1 425 666-6666"
-              ],
-              "pagers": [
-                "+1 425-555-1237"
-              ],
-              "phones": [
-                "+1 206 333-3333",
-                "+1 425 555-1236"
-              ],
-              "voice_mails": [
-                "+1 425 222-2222"
-              ],
+              "addresses": ["Seattle, WA 98105"],
+              "email_addresses": ["bill@uw.edu"],
+              "faxes": ["+1 425 111-1111"],
+              "mobiles": ["+1 425 666-6666"],
+              "pagers": ["+1 425-555-1237"],
+              "phones": ["+1 206 333-3333", "+1 425 555-1236"],
+              "voice_mails": ["+1 425 222-2222"],
               "touch_dials": [],
               "positions": [
                 {
@@ -597,28 +574,13 @@
               "display_name": "BILL AVERAGE TEACHER",
               "whitepages_publish": true,
               "employee_id": "123456782",
-              "addresses": [
-                "Seattle, WA 98105"
-              ],
-              "email_addresses": [
-                "bill@uw.edu"
-              ],
-              "faxes": [
-                "+1 425 111-1111"
-              ],
-              "mobiles": [
-                "+1 425 666-6666"
-              ],
-              "pagers": [
-                "+1 425-555-1237"
-              ],
-              "phones": [
-                "+1 206 333-3333",
-                "+1 425 555-1236"
-              ],
-              "voice_mails": [
-                "+1 425 222-2222"
-              ],
+              "addresses": ["Seattle, WA 98105"],
+              "email_addresses": ["bill@uw.edu"],
+              "faxes": ["+1 425 111-1111"],
+              "mobiles": ["+1 425 666-6666"],
+              "pagers": ["+1 425-555-1237"],
+              "phones": ["+1 206 333-3333", "+1 425 555-1236"],
+              "voice_mails": ["+1 425 222-2222"],
               "touch_dials": [],
               "positions": [
                 {
@@ -655,20 +617,12 @@
               "display_name": "BILL AVERAGE TEACHER",
               "whitepages_publish": true,
               "employee_id": "123456782",
-              "addresses": [
-                "Seattle, WA 98105"
-              ],
-              "email_addresses": [
-                "bill100@uw.edu"
-              ],
+              "addresses": ["Seattle, WA 98105"],
+              "email_addresses": ["bill100@uw.edu"],
               "faxes": [],
               "mobiles": [],
-              "pagers": [
-                "+1 425-555-1237"
-              ],
-              "phones": [
-                "+1 206 555-1235"
-              ],
+              "pagers": ["+1 425-555-1237"],
+              "phones": ["+1 206 555-1235"],
               "voice_mails": [],
               "touch_dials": [],
               "positions": [
@@ -701,18 +655,12 @@
               "display_name": "EIGHT CLASS INSTRUCTOR",
               "whitepages_publish": true,
               "employee_id": "903456789",
-              "addresses": [
-                "750 Republican St Bldg E room E691A Seattle, WA 98109"
-              ],
-              "email_addresses": [
-                "eight@uw.edu"
-              ],
+              "addresses": ["750 Republican St Bldg E room E691A Seattle, WA 98109"],
+              "email_addresses": ["eight@uw.edu"],
               "faxes": [],
               "mobiles": [],
               "pagers": [],
-              "phones": [
-                "206 685-1234"
-              ],
+              "phones": ["206 685-1234"],
               "voice_mails": [],
               "touch_dials": [],
               "positions": [],

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { mount, shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
+import { createLocalVue } from './helper';
 import ApplicantModel from '../vuex/store/applicant';
 import ApplicantCard from '../components/home/applicant/applicant.vue';
 import SeattleComp from '../components/home/applicant/seattle.vue';
@@ -21,20 +21,20 @@ describe('Applicant Card - applicant.vue', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'applicant': ApplicantModel,
+        applicant: ApplicantModel,
       },
       state: {
         user: {
           affiliations: {
             applicant: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Render Logic applicant = true', async () => {
-    axios.get.mockResolvedValue({data: mockApplicant});
+    axios.get.mockResolvedValue({ data: mockApplicant });
     const wrapper = shallowMount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(true);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(true);
@@ -44,7 +44,7 @@ describe('Applicant Card - applicant.vue', () => {
 
   it('Render Logic applicant = false', async () => {
     store.state.user.affiliations.applicant = false;
-    axios.get.mockResolvedValue({data: mockApplicant});
+    axios.get.mockResolvedValue({ data: mockApplicant });
     const wrapper = shallowMount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(false);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(false);
@@ -53,36 +53,54 @@ describe('Applicant Card - applicant.vue', () => {
   });
 
   it('Render Logic all campus', async () => {
-    axios.get.mockResolvedValue({data: mockApplicant});
+    axios.get.mockResolvedValue({ data: mockApplicant });
     const wrapper = mount(ApplicantCard, { store, localVue });
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(SeattleComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(SeattleComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(true);
     expect(
-      wrapper.findComponent(BothellComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(BothellComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(true);
     expect(
-      wrapper.findComponent(TacomaComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(TacomaComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(true);
   });
 
   it('Render Logic no campus', async () => {
-    axios.get.mockResolvedValue({data: []});
+    axios.get.mockResolvedValue({ data: [] });
     const wrapper = mount(ApplicantCard, { store, localVue });
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(SeattleComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(SeattleComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(false);
     expect(
-      wrapper.findComponent(BothellComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(BothellComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(false);
     expect(
-      wrapper.findComponent(TacomaComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(TacomaComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(false);
   });
 });
@@ -93,24 +111,27 @@ describe('Applicant Card - seattle.vue', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'applicant': ApplicantModel,
+        applicant: ApplicantModel,
       },
       state: {
         user: {
           affiliations: {
             applicant: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Render Logic seattle only', async () => {
-    axios.get.mockResolvedValue({data: [mockApplicant[1]]});
+    axios.get.mockResolvedValue({ data: [mockApplicant[1]] });
     const wrapper = mount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(SeattleComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(SeattleComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(true);
   });
 
@@ -121,7 +142,10 @@ describe('Applicant Card - seattle.vue', () => {
     const wrapper = shallowMount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(SeattleComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(SeattleComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(false);
   });
 });
@@ -132,24 +156,27 @@ describe('Applicant Card - bothell.vue', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'applicant': ApplicantModel,
+        applicant: ApplicantModel,
       },
       state: {
         user: {
           affiliations: {
             applicant: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Render Logic seattle only', async () => {
-    axios.get.mockResolvedValue({data: [mockApplicant[0]]});
+    axios.get.mockResolvedValue({ data: [mockApplicant[0]] });
     const wrapper = mount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(BothellComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(BothellComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(true);
   });
 
@@ -160,7 +187,10 @@ describe('Applicant Card - bothell.vue', () => {
     const wrapper = shallowMount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(BothellComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(BothellComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(false);
   });
 });
@@ -171,24 +201,27 @@ describe('Applicant Card - tacoma.vue', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        'applicant': ApplicantModel,
+        applicant: ApplicantModel,
       },
       state: {
         user: {
           affiliations: {
             applicant: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Render Logic seattle only', async () => {
-    axios.get.mockResolvedValue({data: [mockApplicant[2]]});
+    axios.get.mockResolvedValue({ data: [mockApplicant[2]] });
     const wrapper = mount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(TacomaComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(TacomaComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(true);
   });
 
@@ -199,7 +232,10 @@ describe('Applicant Card - tacoma.vue', () => {
     const wrapper = shallowMount(ApplicantCard, { store, localVue });
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
-      wrapper.findComponent(TacomaComp).findComponent(UwCard).exists()
+      wrapper
+        .findComponent(TacomaComp)
+        .findComponent(UwCard)
+        .exists()
     ).toBe(false);
   });
 });

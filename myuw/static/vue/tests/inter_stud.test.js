@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
+import { createLocalVue } from './helper';
 import Notices from '../vuex/store/notices';
 import NewStudentCard from '../components/home/international/new-student.vue';
 import StudentCard from '../components/home/international/student.vue';
@@ -27,9 +27,9 @@ describe('International Student Card - student.vue', () => {
             seattle: true,
             bothell: false,
             tacoma: false,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
@@ -91,16 +91,19 @@ describe('International Student Components - seattle.vue', () => {
             seattle: true,
             bothell: false,
             tacoma: false,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Render Logic J1', () => {
     const wrapper = shallowMount(SeattleComp, { store, localVue });
     expect(
-      wrapper.findAll('a').at(1).text()
+      wrapper
+        .findAll('a')
+        .at(1)
+        .text()
     ).toBe('Visa and Immigration Rules for J-1 students');
   });
 
@@ -108,7 +111,10 @@ describe('International Student Components - seattle.vue', () => {
     store.state.user.affiliations.J1 = false;
     const wrapper = shallowMount(SeattleComp, { store, localVue });
     expect(
-      wrapper.findAll('a').at(1).text()
+      wrapper
+        .findAll('a')
+        .at(1)
+        .text()
     ).toBe('Visa and Immigration Rules for F-1 students');
   });
 });
@@ -126,16 +132,19 @@ describe('International Student Components - bothell.vue', () => {
             seattle: false,
             bothell: true,
             tacoma: false,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Check url', () => {
     const wrapper = shallowMount(BothellComp, { store, localVue });
     expect(
-      wrapper.findAll('a').at(0).attributes().href
+      wrapper
+        .findAll('a')
+        .at(0)
+        .attributes().href
     ).toBe('http://www.uwb.edu/cie/current-students/travel');
   });
 });
@@ -153,16 +162,19 @@ describe('International Student Card - tacoma.vue', () => {
             seattle: true,
             bothell: false,
             tacoma: false,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Check url', () => {
     const wrapper = shallowMount(TacomaComp, { store, localVue });
     expect(
-      wrapper.findAll('a').at(0).attributes().href
+      wrapper
+        .findAll('a')
+        .at(0)
+        .attributes().href
     ).toBe('http://www.tacoma.uw.edu/iss/travel-visas');
   });
 });
@@ -175,37 +187,36 @@ describe('New International Student Card', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        "notices": Notices,
+        notices: Notices,
       },
       state: {
         user: {
           affiliations: {
             intl_stud: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Check url', async () => {
-    axios.get.mockResolvedValue({data: mockNotices, status: 200});
+    axios.get.mockResolvedValue({ data: mockNotices, status: 200 });
     const wrapper = shallowMount(NewStudentCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
 
-    expect(
-      Notices.getters.isReady(wrapper.vm.$store.state.notices),
-    ).toBeTruthy();
-    expect(
-      Notices.getters.isErrored(wrapper.vm.$store.state.notices),
-    ).toBeFalsy();
+    expect(Notices.getters.isReady(wrapper.vm.$store.state.notices)).toBeTruthy();
+    expect(Notices.getters.isErrored(wrapper.vm.$store.state.notices)).toBeFalsy();
 
     expect(wrapper.vm.notices).toHaveLength(1);
     expect(wrapper.findAll('div')).toHaveLength(1);
     // The html retuned from uw is a improper, it does not have the
     // closing span tag.
     expect(
-      wrapper.findAll('div').at(0).html()
+      wrapper
+        .findAll('div')
+        .at(0)
+        .html()
     ).toBe('<div class="myuw-text-md">' + mockNotices[23].notice_body + '</span></div>');
   });
 });

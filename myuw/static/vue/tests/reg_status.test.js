@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {mount, createLocalVue} from '@vue/test-utils';
+import { mount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import RegStatus from '../components/home/registration/status.vue';
@@ -16,15 +16,10 @@ import oQuarterAutumn from './mock_data/oquarter/autumn.json';
 import profileJavg001 from './mock_data/profile/javg001.json';
 import profileJinter from './mock_data/profile/jinter.json';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {
-  FontAwesomeIcon,
-  FontAwesomeLayers,
-} from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon, FontAwesomeLayers } from '@fortawesome/vue-fontawesome';
 
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
 const localVue = createLocalVue(Vuex);
 localVue.use(BootstrapVue);
@@ -46,13 +41,13 @@ describe('Quicklinks/Link', () => {
         notices,
         oquarter,
         profile,
-        myplan
+        myplan,
       },
       state: {
         user: {
           affiliations: {
             student: true,
-          }
+          },
         },
         cardDisplayDates: {
           is_after_start_of_registration_display_period: true,
@@ -60,13 +55,13 @@ describe('Quicklinks/Link', () => {
           is_after_start_of_summer_reg_display_periodA: false,
           is_after_start_of_summer_reg_display_period1: false,
           myplan_peak_load: false,
-        }
-      }
+        },
+      },
     });
   });
 
   it('Basic Mount', async () => {
-    axios.get.mockImplementation((url) => {
+    axios.get.mockImplementation(url => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
         '/api/v1/oquarters/': oQuarterSpring,
@@ -74,11 +69,11 @@ describe('Quicklinks/Link', () => {
         '/api/v1/myplan/2013/Spring': myPlanSpring,
       };
 
-      return Promise.resolve({data: urlData[url]});
+      return Promise.resolve({ data: urlData[url] });
     });
 
-    const wrapper = mount(RegStatus, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    const wrapper = mount(RegStatus, { store, localVue });
+    await new Promise(r => setTimeout(r, 10));
 
     expect(wrapper.vm.loaded).toBeTruthy();
     expect(wrapper.find('h3').text()).toEqual('Registration: Spring 2013');

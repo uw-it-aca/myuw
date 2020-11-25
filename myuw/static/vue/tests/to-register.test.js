@@ -1,27 +1,16 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
+import { mount, shallowMount, createLocalVue } from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import notices from '../vuex/store/notices';
 import ToRegisterCard from '../components/home/new_student/to-register.vue';
-
 import mockNotices from './mock_data/notices.json';
 import interNotices from './mock_data/inter_notices.json';
 import bothellNotices from './mock_data/bothell_notices.json';
-
-import {library} from '@fortawesome/fontawesome-svg-core';
-
-import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
-
-import {
-  faCheckCircle,
-} from '@fortawesome/free-solid-svg-icons';
-
-import {
-  faCircle,
-} from '@fortawesome/free-regular-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
@@ -46,17 +35,17 @@ describe('To Register Card', () => {
         user: {
           affiliations: {
             student: true,
-          }
-        }
-      }
+          },
+        },
+      },
     });
   });
 
   it('Check the computed properties - default', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    const wrapper = mount(ToRegisterCard, {store, localVue});
+    axios.get.mockResolvedValue({ data: mockNotices });
+    const wrapper = mount(ToRegisterCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
@@ -73,10 +62,10 @@ describe('To Register Card', () => {
   });
 
   it('Check the computed properties - international', async () => {
-    axios.get.mockResolvedValue({data: interNotices});
-    const wrapper = mount(ToRegisterCard, {store, localVue});
+    axios.get.mockResolvedValue({ data: interNotices });
+    const wrapper = mount(ToRegisterCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
@@ -93,10 +82,10 @@ describe('To Register Card', () => {
   });
 
   it('Check the computed properties - bothell', async () => {
-    axios.get.mockResolvedValue({data: bothellNotices});
-    const wrapper = mount(ToRegisterCard, {store, localVue});
+    axios.get.mockResolvedValue({ data: bothellNotices });
+    const wrapper = mount(ToRegisterCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();

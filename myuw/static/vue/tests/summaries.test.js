@@ -1,8 +1,8 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import {shallowMount} from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
+import { createLocalVue } from './helper';
 import hfs from '../vuex/store/hfs';
 import library from '../vuex/store/library';
 import Summaries from '../components/home/summaries.vue';
@@ -28,20 +28,20 @@ describe('Summaries', () => {
   });
 
   it('toFromNowDate', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    dayjs.mockImplementation((s) => {
+    axios.get.mockResolvedValue({ data: mockNotices });
+    dayjs.mockImplementation(s => {
       return {
         fromNow: jest.fn().mockReturnValueOnce(s),
       };
     });
-    const wrapper = shallowMount(Summaries, {store, localVue});
+    const wrapper = shallowMount(Summaries, { store, localVue });
     expect(wrapper.vm.toFromNowDate('test')).toEqual('test');
     expect(dayjs).toHaveBeenCalledTimes(1);
   });
 
   it('getWeeksApart', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    const wrapper = shallowMount(Summaries, {store, localVue});
+    axios.get.mockResolvedValue({ data: mockNotices });
+    const wrapper = shallowMount(Summaries, { store, localVue });
     dayjs.mockImplementation(jest.requireActual('dayjs'));
 
     // The week starts on Sundays
