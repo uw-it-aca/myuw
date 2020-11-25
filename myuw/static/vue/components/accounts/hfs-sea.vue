@@ -1,23 +1,28 @@
 <template>
-  <uw-card v-if="showCard" loaded>
+  <uw-card v-if="showCard"
+   :loaded="isReady"
+   :errored="isErrored"
+   :errored-show="showError"
+  >
     <template #card-heading>
       <h3>
         Housing &amp; Food Services
       </h3>
     </template>
-    <template v-if="isErrored && statusCode !== 404" #card-error>
+    <template #card-error>
       <p>
         <i class="fa fa-exclamation-triangle" />
         An error occurred and MyUW cannot load your information right now.
         In the meantime, try the
         <a href="https://hfs.uw.edu/myhfs/account.aspx"
-           data-linklabel="Housing & Food Services" target="_blank"
+           data-linklabel="Housing & Food Services"
+           target="_blank"
         >
           Housing &amp; Food Services
         </a>.
       </p>
     </template>
-    <template v-else #card-body>
+    <template #card-body>
       <div v-if="hfs.resident_dining">
         <div>
           <h4>Dining Balance</h4>
@@ -133,7 +138,11 @@ export default {
     }),
     ...mapState({
       showCard: (state) => (state.user.affiliations.seattle && (
-        state.user.affiliations.undergrad || state.user.affiliations.grad )),
+        state.user.affiliations.undergrad || state.user.affiliations.grad )
+      ),
+      showError: function() {
+        return this.statusCode !== 404;
+      },
     }),
     showError: function() {
       return this.statusCode !== 404;
