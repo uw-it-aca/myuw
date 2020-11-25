@@ -84,6 +84,9 @@
     </script>
     {% block django_json_data %}
     {% endblock django_json_data %}
+
+    {% block vue_script %}
+    {% endblock vue_script %}
 </head>
 
 <body data-gtag="{{ google_analytics_key }}" data-hashid="{% hash_netid user.netid %}" data-tracking-enabled="{{ google_tracking_enabled|lower }}" class="myuw-font-open-sans">
@@ -93,9 +96,6 @@
         {% block body_content %}
         {% endblock body_content %}
     </div>
-
-    {% block vue_script %}
-    {% endblock vue_script %}
 
 </body>
 

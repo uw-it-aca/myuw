@@ -64,7 +64,7 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
-        'django-webpack-loader',
+        'django-manifest-loader',
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),
