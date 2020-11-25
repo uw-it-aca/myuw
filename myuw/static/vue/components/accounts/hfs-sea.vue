@@ -18,7 +18,7 @@
       </p>
     </template>
     <template v-else #card-body>
-      <div v-if="hfs.resident_dining.length">
+      <div v-if="hfs.resident_dining">
         <div>
           <h4>Dining Balance</h4>
         </div>
@@ -117,7 +117,7 @@
 </template>
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../_templates/card.vue';
 export default {
   components: {
     'uw-card': Card,
