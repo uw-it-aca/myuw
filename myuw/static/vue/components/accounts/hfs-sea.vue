@@ -1,8 +1,8 @@
 <template>
   <uw-card v-if="showCard"
-   :loaded="isReady"
-   :errored="isErrored"
-   :errored-show="showError"
+           :loaded="isReady"
+           :errored="isErrored"
+           :errored-show="showError"
   >
     <template #card-heading>
       <h3>
@@ -140,9 +140,6 @@ export default {
       showCard: (state) => (state.user.affiliations.seattle && (
         state.user.affiliations.undergrad || state.user.affiliations.grad )
       ),
-      showError: function() {
-        return this.statusCode !== 404;
-      },
     }),
     showError: function() {
       return this.statusCode !== 404;
