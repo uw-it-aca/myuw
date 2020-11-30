@@ -66,6 +66,7 @@
           </div>
         </li>
       </ul>
+
       <div>
         <p v-if="!isC2Grad">
           <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.
@@ -74,10 +75,23 @@
           {{ msg.notice_content }}
         </p>
       </div>
+
       <uw-fin-aid
-        v-if="finAidNotices"
-        :fin-aid-notices="finAidNotices">
+        v-if="finAidNotices && finAidNotices.length"
+        :fin-aid-notices="finAidNotices"
+      >
+        <template #status>
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx" target="_blank" data-linklabel="Financial Aid Status">Financial Aid Status</a>
+        </template>
       </uw-fin-aid>
+
+      <uw-tuition-resources />
+    </template>
+    <template #card-error>
+      An error occurred and MyUW cannot load your information right now. In the meantime, try the
+      <a v-if="!isPCE" href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" data-linklabel="Tuition Statement" target="_blank">Tuition Statement page</a>
+      <a v-else href="https://portal.continuum.uw.edu" data-linklabel="PCE Tuition portal" target="_blank">PCE Tuition portal</a>.
+      <uw-tuition-resources />
     </template>
   </uw-card>
 </template>
@@ -86,16 +100,18 @@
 import {mapGetters, mapActions, mapState} from 'vuex';
 import Card from '../_templates/card.vue';
 import FinAidComponent from '../home/registration/finaid.vue';
+import TuitionResources from './tuition-resources.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-fin-aid': FinAidComponent,
+    'uw-tuition-resources': TuitionResources,
   },
   computed: {
     ...mapState({
       isStudent: (state) => state.user.affiliations.student,
-      isC2Grad: (state) => state.user.affiliations.grad,
+      isC2Grad: (state) => state.user.affiliations.grad_c2,
       isC2: (state) => state.user.affiliations.grad_c2 || state.user.affiliations.undergrad_c2,
       isPCE: (state) => state.user.affiliations.pce,
       tuition: (state) => state.tuition.value,
@@ -121,7 +137,6 @@ export default {
           (notice) => notice.location_tags.includes('pce_tuition_dup')
         );
       },
-      
     }),
     ...mapGetters('tuition', {
       isReadyTuition: 'isReady',

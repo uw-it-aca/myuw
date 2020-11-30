@@ -3,6 +3,7 @@
     <h4 class="h6 text-dark font-weight-bold">
       Financial Aid
     </h4>
+    <slot name="status" />
     <ul class="list-unstyled m-0">
       <li v-for="(notice, i) in finAidNotices" :key="i">
         <b-button
@@ -16,7 +17,7 @@
             :icon="['fas', 'caret-down']"
           />
           <font-awesome-icon v-else :icon="['fas', 'caret-right']" />
-          {{ notice.short_content }}
+          <span v-html="notice.short_content" />
         </b-button>
         <b-collapse
           :id="`finAid-${notice.id_hash}-collapse-${_uid}`"
