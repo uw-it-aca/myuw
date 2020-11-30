@@ -73,8 +73,9 @@ describe('HFS Sea Card', () => {
 
     expect(wrapper.findAll('span').at(0).text()
     ).toBe('$5.10');
+    expect(wrapper.findAll('a')).toHaveLength(10);
   });
-  
+
   it('Hide card is user is not seattle students', () => {
     const wrapper = shallowMount(HfsSeaCard, { store, localVue });
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
