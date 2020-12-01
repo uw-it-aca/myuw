@@ -4,7 +4,7 @@ export default {
     encodeForMaps(s) {
       if (s) {
         s = s.replace(/ \(/g, ' - ');
-        s = s.replace(/[\)&]/g, '');
+        s = s.replace(/[)&]/g, '');
         s = encodeURIComponent(s);
       }
       return s;
@@ -14,7 +14,7 @@ export default {
       let parsed = null;
       if (phNumStr) {
         let matches = phNumStr.match(
-          /^(\+(?<country>\d+) )?(?<area>\d{3})[ -\.]?(?<exchange>\d{3})[ -\.]?(?<line>\d{4})$/
+          /^(\+(?<country>\d+) )?(?<area>\d{3})[ -.]?(?<exchange>\d{3})[ -.]?(?<line>\d{4})$/
         );
         if (matches) {
           parsed = matches.groups;
