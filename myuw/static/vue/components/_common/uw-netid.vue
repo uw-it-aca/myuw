@@ -68,13 +68,13 @@ export default {
       'isErrored',
       'statusCode',
     ]),
+    showCard: function() {
+      return !this.isReady ||
+        !this.isHomePage ||
+        !this.applicant && !this.employee && !this.student;
+    },
     showError: function() {
       return this.statusCode !== 404;
-    },
-    showCard: function() {
-      return (!this.isReady ||
-        !this.isHomePage ||
-        !this.applicant && !this.employee && !this.student);
     },
   },
   created() {
