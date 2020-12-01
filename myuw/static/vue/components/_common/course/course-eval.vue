@@ -2,14 +2,11 @@
   <div v-if="evalData.length > 0">
     <h5>Course Evaluations</h5>
     <p>
-      <span>Evaluations close
-        {{ toFriendlyDate(evalData[0].close_date) }}</span>
+      <span>Evaluations close {{ toFriendlyDate(evalData[0].close_date) }}</span>
       (at 11:59PM), and only take a few minutes to complete.
     </p>
 
-    <div v-for="(evalObj, idx) in evalData"
-         :key="`${section.id}-eval-${idx}`"
-    >
+    <div v-for="(evalObj, idx) in evalData" :key="`${section.id}-eval-${idx}`">
       <template v-if="evalObj.is_multi_instr">
         <!-- evaluation is on the course -->
         <a :href="evalObj.url" target="_blank">
@@ -19,8 +16,9 @@
           Evaluation
         </a>
         <ul>
-          <li v-for="(instructor, index) in evalObj.instructors"
-              :key="`${section.id}-eval-inst-${index}`"
+          <li
+            v-for="(instructor, index) in evalObj.instructors"
+            :key="`${section.id}-eval-inst-${index}`"
           >
             {{ titleCaseName(instructor.instructor_name) }}
             <span v-if="hasTitle(instructor)">
@@ -31,8 +29,9 @@
       </template>
       <template v-else>
         <ul>
-          <li v-for="(instructor, index) in evalObj.instructors"
-              :key="`${section.id}-eval-inst-${index}`"
+          <li
+            v-for="(instructor, index) in evalObj.instructors"
+            :key="`${section.id}-eval-inst-${index}`"
           >
             <a :href="evalObj.url" target="_blank">
               {{ titleCaseName(instructor.instructor_name) }}
@@ -61,8 +60,7 @@ export default {
   },
   methods: {
     hasTitle(instructor) {
-      return (instructor.instructor_title &&
-       instructor.instructor_title.length > 0);
+      return instructor.instructor_title && instructor.instructor_title.length > 0;
     },
   },
 };

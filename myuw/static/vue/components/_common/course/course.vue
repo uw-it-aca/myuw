@@ -27,12 +27,8 @@
         <div v-if="section.summer_term">
           Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
         </div>
-        <div v-if="section.cc_display_dates">
-          Dates: {{ sectionFormattedDates(section) }}
-        </div>
-        <div v-if="section.on_standby">
-          Your status: On Standby
-        </div>
+        <div v-if="section.cc_display_dates">Dates: {{ sectionFormattedDates(section) }}</div>
+        <div v-if="section.on_standby">Your status: On Standby</div>
       </template>
 
       <template #card-body>
@@ -44,27 +40,25 @@
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
             <i class="fa fa-exclamation-triangle" />
-            An error has occurred and MyUW cannot display the course evaluation
-            information right now. Please try again later.
+            An error has occurred and MyUW cannot display the course evaluation information right
+            now. Please try again later.
           </p>
         </template>
         <uw-course-details
           v-else-if="!section.is_ended"
           :course="course"
           :section="section"
-          :show-row-heading="showRowHeading "
+          :show-row-heading="showRowHeading"
         />
       </template>
 
       <template #card-disclosure>
-        <template
-          v-if="section.is_ended || getSectionEval(section.index).length > 0"
-        >
+        <template v-if="section.is_ended || getSectionEval(section.index).length > 0">
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
             <uw-course-details
               :course="course"
               :section="section"
-              :show-row-heading="showRowHeading "
+              :show-row-heading="showRowHeading"
             />
           </b-collapse>
         </template>
@@ -79,9 +73,7 @@
       </template>
 
       <template #card-footer>
-        <template
-          v-if="section.is_ended || getSectionEval(section.index).length > 0"
-        >
+        <template v-if="section.is_ended || getSectionEval(section.index).length > 0">
           <b-button
             v-if="!isOpen"
             v-b-toggle="`course-details-${index}`"
@@ -131,9 +123,7 @@
               HIDE INSTRUCTORS
             </b-button>
           </span>
-          <span v-else>
-            No instructor information available
-          </span>
+          <span v-else> No instructor information available </span>
         </template>
       </template>
     </uw-card>
@@ -141,7 +131,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState} from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 import dayjs from 'dayjs';
 import Card from '../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
@@ -192,16 +182,12 @@ export default {
   },
   methods: {
     sectionFormattedDates(section) {
-      return `${
-        dayjs(section.start_date).format('MMM D')
-      } - ${dayjs(section.end_date).format('MMM D')}`;
+      return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(section.end_date).format(
+        'MMM D'
+      )}`;
     },
     getSectionEval(index) {
-      if (
-        this.evalData &&
-        this.evalData.sections &&
-        this.evalData.sections[index]
-      ) {
+      if (this.evalData && this.evalData.sections && this.evalData.sections[index]) {
         return this.evalData.sections[index].evaluation_data || [];
       }
       return [];

@@ -13,20 +13,19 @@
         <div v-else>
           <a
             v-for="(email, j) in instructor.email_addresses"
-            :key="`email-${j}`" :href="`mailto:${email}`"
+            :key="`email-${j}`"
+            :href="`mailto:${email}`"
           >
             {{ email }}
           </a>
           <a
             v-for="(phone, j) in instructor.phones"
-            :key="`phone-${j}`" :href="`tel:${formatPhoneNumberLink(phone)}`"
+            :key="`phone-${j}`"
+            :href="`tel:${formatPhoneNumberLink(phone)}`"
           >
             {{ formatPhoneNumberDisaply(phone) }}
           </a>
-          <span
-            v-for="(address, j) in instructor.addresses"
-            :key="`address-${j}`"
-          >
+          <span v-for="(address, j) in instructor.addresses" :key="`address-${j}`">
             {{ address }}
           </span>
         </div>
@@ -52,9 +51,7 @@ export default {
       );
     },
     instructorPrimaryTitle(instructor) {
-      const titles = instructor.positions
-          .filter((p) => p.is_primary)
-          .map((p) => p.title);
+      const titles = instructor.positions.filter((p) => p.is_primary).map((p) => p.title);
       return titles.length > 0 ? titles[0] : null;
     },
   },

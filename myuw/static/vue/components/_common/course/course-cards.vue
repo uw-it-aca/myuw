@@ -1,30 +1,31 @@
 <template>
   <div v-if="student">
     <div v-if="isReady">
-      <h3 class="sr-only">
-        Your {{ ucfirst(course.quarter) }} {{ course.year }} Courses
-      </h3>
+      <h3 class="sr-only">Your {{ ucfirst(course.quarter) }} {{ course.year }} Courses</h3>
       <uw-course-card
-        v-for="(section, i) in course.sections" :key="i"
-        :course="course" :section="section" :index="i"
+        v-for="(section, i) in course.sections"
+        :key="i"
+        :course="course"
+        :section="section"
+        :index="i"
       />
     </div>
     <uw-no-course-card
-      v-else-if="isErrored && statusCodeTagged(term) == 404" loaded
-      :quarter="quarter" :summer-term="summerTerm"
+      v-else-if="isErrored && statusCodeTagged(term) == 404"
+      loaded
+      :quarter="quarter"
+      :summer-term="summerTerm"
     />
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
-        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-          Schedule &amp; Course Info
-        </h3>
+        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Schedule &amp; Course Info</h3>
       </template>
     </uw-card>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import CourseCard from './course.vue';
 import NoCourseCard from './no-course.vue';

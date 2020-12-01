@@ -8,20 +8,17 @@
     <template #card-body>
       <p class="myuw-text-md">
         You don’t appear to be registered for any credit courses in
-        {{ quarter }} {{ summerTerm }} quarter. If you think this is an
-        error, please contact the
-        <a href="https://itconnect.uw.edu/it-connect-home/question/"
-           title="Send email to UW-IT Service Center"
+        {{ quarter }} {{ summerTerm }} quarter. If you think this is an error, please contact the
+        <a
+          href="https://itconnect.uw.edu/it-connect-home/question/"
+          title="Send email to UW-IT Service Center"
+          >UW-IT Service Center.</a
         >
-          UW-IT Service Center
-        </a>.
       </p>
 
       <p class="mb-0 myuw-text-md">
         If you are interested in registration,
-        <a href="../resource/academics">
-          view registration resources.
-        </a>
+        <a href="../resource/academics">view registration resources.</a>
       </p>
     </template>
   </uw-card>

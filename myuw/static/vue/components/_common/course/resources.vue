@@ -4,9 +4,7 @@
       <li v-if="section.class_website_url">
         <a
           :href="section.class_website_url"
-          :label="`${
-            section.curriculum_abbr
-          } ${section.course_number} Course Website`"
+          :label="`${section.curriculum_abbr} ${section.course_number} Course Website`"
         >
           Course Website
         </a>
@@ -14,9 +12,7 @@
       <li v-if="section.lib_subj_guide">
         <a
           :href="section.lib_subj_guide"
-          :label="`${
-            section.curriculum_abbr
-          } ${section.course_number} Library Research Guides`"
+          :label="`${section.curriculum_abbr} ${section.course_number} Library Research Guides`"
         >
           Library Research Guides
         </a>
@@ -24,9 +20,7 @@
       <li v-if="section.canvas_url">
         <a
           :href="section.canvas_url"
-          :label="`${
-            section.curriculum_abbr
-          } ${section.course_number} Course Canvas`"
+          :label="`${section.curriculum_abbr} ${section.course_number} Course Canvas`"
         >
           Course Canvas
         </a>
@@ -34,9 +28,7 @@
       <li v-if="section.sln">
         <a
           :href="slnHref"
-          :label="`${
-            section.curriculum_abbr
-          } ${section.course_number} Course Canvas`"
+          :label="`${section.curriculum_abbr} ${section.course_number} Course Canvas`"
         >
           Textbooks
         </a>
@@ -65,8 +57,7 @@ export default {
         url += `,${this.course.summer_term.toLowerCase()}`;
       }
       url += `/${this.section.curriculum_abbr}${
-        this.section.course_number
-      }${this.section.section_id}`;
+        this.section.course_number}${this.section.section_id}`;
 
       return url;
     },
