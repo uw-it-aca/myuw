@@ -8,6 +8,7 @@ import UWNetID from './components/_common/uw-netid.vue';
 
 // accounts components
 import HfsSea from './components/accounts/hfs-sea.vue';
+import HuskyCard from './components/accounts/husky.vue';
 
 // stores
 import hfs from './vuex/store/hfs';
@@ -25,6 +26,7 @@ vueConf.store.commit('addVarToState', {
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-hfs-sea', HfsSea);
+Vue.component('myuw-husky', HuskyCard);
 Vue.component('myuw-uwnetid', UWNetID);
 
 new Vue({
