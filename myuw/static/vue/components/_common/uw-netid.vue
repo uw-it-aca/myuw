@@ -1,8 +1,8 @@
 <template>
-  <uw-card
-    v-if="!isReady || showCard"
-    :loaded="isReady" :errored="isErrored"
-    :errored-show="showError"
+  <uw-card v-if="showCard"
+           :loaded="isReady"
+           :errored="isErrored"
+           :errored-show="showError"
   >
     <template #card-heading>
       <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -47,6 +47,12 @@ export default {
   components: {
     'uw-card': Card,
   },
+  props: {
+    isHomePage: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     ...mapState({
       data: (state) => {
@@ -66,7 +72,9 @@ export default {
       return this.statusCode !== 404;
     },
     showCard: function() {
-      return !(this.applicant || this.employee || this.student);
+      return (!this.isReady ||
+        !this.isHomePage ||
+        !this.applicant && !this.employee && !this.student);
     },
   },
   created() {

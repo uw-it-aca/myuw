@@ -137,10 +137,14 @@ export default {
       statusCode: 'statusCode',
     }),
     ...mapState({
-      showCard: (state) => (state.user.affiliations.seattle && (
-        state.user.affiliations.undergrad || state.user.affiliations.grad )
-      ),
+      seattle: (state) => state.user.affiliations.seattle,
+      undergrad: (state) => state.user.affiliations.undergrad,
+      grad: (state) => state.user.affiliations.grad,
     }),
+    showCard: function() {
+      return (!this.isReady ||
+        this.seattle && (this.undergrad || this.grad));
+    },
     showError: function() {
       return this.statusCode !== 404;
     },
