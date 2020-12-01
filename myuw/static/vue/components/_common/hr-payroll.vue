@@ -70,28 +70,19 @@ export default {
       type: Boolean,
       default: false,
     },
-    isAccountsPage: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     ...mapState({
       showCard: function(state) {
-        if (this.isHomePage &&
-          state.user.affiliations.employee &&
-          !state.user.affiliations.student &&
-          !state.user.affiliations.instructor ||
-          state.user.affiliations.retiree ||
-          state.user.affiliations.past_employee) {
-          return true;
-        } else if (this.isAccountsPage &&
-               state.user.affiliations.stud_employee ||
-               state.user.affiliations.instructor) {
-          return true;
-        } else {
-          return false;
+        if (this.isHomePage) {
+          return state.user.affiliations.employee &&
+            !state.user.affiliations.student &&
+            !state.user.affiliations.instructor ||
+            state.user.affiliations.retiree ||
+            state.user.affiliations.past_employee;
         }
+        return state.user.affiliations.stud_employee ||
+          state.user.affiliations.instructor;
       },
       workdayIconStyle: (state) => 'background-image: url(\'' + state.staticUrl + 'images/wday_logo.png\';',
       truncateView: (state) => (state.user.affiliations.retiree ||
