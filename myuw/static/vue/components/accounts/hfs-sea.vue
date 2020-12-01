@@ -10,17 +10,14 @@
       </h3>
     </template>
     <template #card-error>
-      <p>
-        <i class="fa fa-exclamation-triangle" />
-        An error occurred and MyUW cannot load your information right now.
-        In the meantime, try the
-        <a href="https://hfs.uw.edu/myhfs/account.aspx"
-           data-linklabel="Housing & Food Services"
-           target="_blank"
-        >
-          Housing &amp; Food Services
-        </a>.
-      </p>
+      An error occurred and MyUW cannot load your information right now.
+      In the meantime, try the
+      <a href="https://hfs.uw.edu/myhfs/account.aspx"
+         data-linklabel="Housing & Food Services"
+         target="_blank"
+      >
+        Housing &amp; Food Services
+      </a>.
     </template>
     <template #card-body>
       <div v-if="hfs.resident_dining">
