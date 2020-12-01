@@ -1,9 +1,8 @@
 <template>
-  <uw-card
-    v-if="showCard"
-    :loaded="isReady"
-    :errored="isErrored"
-    :errored-show="showError"
+  <uw-card v-if="showCard"
+           :loaded="isReady"
+           :errored="isErrored"
+           :errored-show="showError"
   >
     <template #card-heading>
       <h3>
@@ -11,23 +10,21 @@
       </h3>
     </template>
     <template #card-error>
-      <p>
-        <i class="fa fa-exclamation-triangle" />
-        An error occurred and MyUW cannot load your Husky card balance
-        right now. In the meantime, if you want to add funds, try the
-        <a href="https://hfs.uw.edu/olco/Secure/AccountSummary.aspx"
-           data-linklabel="Husky card account"
-           target="_blank"
-        >
-          UW HFS page
-        </a>.
-      </p>
+      An error occurred and MyUW cannot load your Husky card balance
+      right now. In the meantime, if you want to add funds, try the
+      <a href="https://hfs.uw.edu/olco/Secure/AccountSummary.aspx"
+         data-linklabel="Husky card account"
+         target="_blank"
+      >
+        UW HFS page
+      </a>.
     </template>
     <template #card-body>
       <div v-if="hfs.student_husky_card">
         <h4>
           Student Husky Account
         </h4>
+
         <div>
           <span>${{ hfs.student_husky_card.balance.toFixed(2) }}</span>
         </div>
@@ -42,6 +39,7 @@
         <h4>
           Employee Husky Account
         </h4>
+
         <div>
           <span>${{ hfs.employee_husky_card.balance.toFixed(2) }}</span>
         </div>
@@ -52,15 +50,8 @@
         </div>
       </div>
       <div>
-        <a v-if="hfs.student_husky_card"
-           :href="hfs.student_husky_card.add_funds_url"
-           target="_blank"
-           aria-label="Manage Husky account"
-        >
-          Manage account
-        </a>
-        <a v-else
-           :href="hfs.employee_husky_card.add_funds_url"
+        <a v-if="hasActionUrl"
+           :href="getActionUrl"
            target="_blank"
            aria-label="Manage Husky account"
         >
@@ -101,6 +92,18 @@ export default {
     showError: function() {
       return this.statusCode !== 404;
     },
+    hasActionUrl: function() {
+      return (this.hfs.student_husky_card &&
+              this.hfs.student_husky_card.add_funds_url ||
+              this.hfs.employee_husky_card &&
+              this.hfs.employee_husky_card.add_funds_url);
+    },
+    getActionUrl: function() {
+      if (this.hfs.student_husky_card) {
+        return this.hfs.student_husky_card.add_funds_url;
+      }
+      return this.hfs.employee_husky_card.add_funds_url;
+    },
   },
   mounted() {
     this.fetchHfs();
@@ -112,5 +115,3 @@ export default {
   },
 };
 </script>
-
-
