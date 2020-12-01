@@ -20,6 +20,9 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'max-len': ['error', { ignoreUrls: true, ignoreStrings: true }],
+    // TODO: remove this eventually by moving all the processing in to
+    // the vuex store
+    'vue/no-mutating-props': 'off',
     'jest/no-disabled-tests': 'warn',
     'jest/no-focused-tests': 'error',
     'jest/no-identical-title': 'error',

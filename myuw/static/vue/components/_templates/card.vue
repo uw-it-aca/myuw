@@ -9,7 +9,7 @@
       <slot name="card-body" />
       <slot name="card-disclosure" />
       <template v-if="!!this.$slots['card-footer']"
-                v-slot:footer
+                #footer
                 footer-tag="footer"
       >
         <slot name="card-footer" />

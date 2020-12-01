@@ -23,7 +23,7 @@ setup(
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
-        'Django>=2.0.13,<2.1',
+        'Django>=2.2.17,<3',
         'ordereddict',
         'django-compressor==2.2',
         'beautifulsoup4',
@@ -64,7 +64,7 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
-        'django-webpack-loader',
+        'django-manifest-loader',
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),
