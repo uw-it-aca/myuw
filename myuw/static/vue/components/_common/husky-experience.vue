@@ -1,34 +1,27 @@
 <template>
-  <uw-card v-if="hxtViewer"
-           :loaded="isReady"
-           :errored="isErrored"
-           :errored-show="showError"
-  >
+  <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Husky Experience Toolkit
-      </h3>
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Husky Experience Toolkit</h3>
     </template>
     <template #card-body>
       <div class="mx-n3 mb-n3 myuw-huskyexp">
-        <div class="position-relative overflow-hidden"
-             style="max-height:300px;"
-        >
-          <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt">
+        <div class="position-relative overflow-hidden" style="max-height: 300px">
+          <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt" />
           <div class="position-absolute h-100 w-100 myuw-huskyexp-body">
-            <a :href="expLink"
-               :aria-label="`${articleTeaserTitle}. ${articleTeaserBody}`"
-               class="d-block h-100 px-3 py-4"
+            <a
+              :href="expLink"
+              :aria-label="`${articleTeaserTitle}. ${articleTeaserBody}`"
+              class="d-block h-100 px-3 py-4"
             >
-              <h4 class="h5 d-inline bg-white px-2 py-1
-            text-body font-weight-bold"
-              >
+              <h4 class="h5 d-inline bg-white px-2 py-1 text-body font-weight-bold">
                 {{ articleTeaserTitle }}
               </h4>
               <div class="bg-white mt-3 px-2 py-1 text-body myuw-text-md">
                 {{ articleTeaserBody }}
-                <font-awesome-icon :icon="['fas', articleFaClass]"
-                                   aria-hidden="true" class="align-text-bottom"
+                <font-awesome-icon
+                  :icon="['fas', articleFaClass]"
+                  aria-hidden="true"
+                  class="align-text-bottom"
                 />
               </div>
             </a>
@@ -40,48 +33,44 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
   },
-  data: function() {
+  data: function () {
     return {
       urlExtra: 'week/',
     };
   },
   computed: {
     ...mapState({
-      expLink: function(state) {
+      expLink: function (state) {
         return state.hx_toolkit.value[this.urlExtra].expLink;
       },
-      srcset: function(state) {
+      srcset: function (state) {
         return state.hx_toolkit.value[this.urlExtra].srcset;
       },
-      src: function(state) {
+      src: function (state) {
         return state.hx_toolkit.value[this.urlExtra].src;
       },
-      alt: function(state) {
+      alt: function (state) {
         return state.hx_toolkit.value[this.urlExtra].alt;
       },
-      articleTeaserTitle: function(state) {
+      articleTeaserTitle: function (state) {
         return state.hx_toolkit.value[this.urlExtra].articleTeaserTitle;
       },
-      articleTeaserBody: function(state) {
+      articleTeaserBody: function (state) {
         return state.hx_toolkit.value[this.urlExtra].articleTeaserBody;
       },
-      articleFaClass: function(state) {
+      articleFaClass: function (state) {
         return state.hx_toolkit.value[this.urlExtra].articleFaClass;
       },
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
-    ...mapGetters('hx_toolkit', [
-      'isReadyTagged',
-      'isErroredTagged',
-      'statusCodeTagged',
-    ]),
+    ...mapGetters('hx_toolkit', ['isReadyTagged', 'isErroredTagged', 'statusCodeTagged']),
     isReady() {
       return this.isReadyTagged(this.urlExtra);
     },
@@ -91,7 +80,7 @@ export default {
     statusCode() {
       return this.isErroredTagged(this.urlExtra);
     },
-    showError: function() {
+    showError: function () {
       return this.statusCode !== 404;
     },
   },
@@ -117,7 +106,9 @@ export default {
         color: $link-color !important;
         text-decoration: underline !important;
       }
-      div { text-decoration: none !important; }
+      div {
+        text-decoration: none !important;
+      }
     }
   }
   img {

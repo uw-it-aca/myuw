@@ -1,9 +1,7 @@
 <template>
   <uw-card v-if="showOutageCard" :loaded="true" class="myuw-outage">
     <template #card-heading>
-      <h3 class="text-danger">
-        Limited data due to technical difficulties
-      </h3>
+      <h3 class="text-danger">Limited data due to technical difficulties</h3>
     </template>
     <template #card-body>
       <!-- custom error message for outages -->
@@ -18,9 +16,7 @@
         </div>
       </b-alert>
 
-      <h4 class="h6 font-weight-bold">
-        Things you might be looking for:
-      </h4>
+      <h4 class="h6 font-weight-bold">Things you might be looking for:</h4>
 
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
@@ -30,22 +26,34 @@
           <a href="https://catalyst.uw.edu/" target="_blank">Catalyst Web Tools</a>
         </li>
         <li class="mb-1">
-          <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank">Student Registration</a>
+          <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank"
+            >Student Registration</a
+          >
         </li>
         <li class="mb-1">
-          <a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp" target="_blank">Student Class Schedule</a>
+          <a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp" target="_blank"
+            >Student Class Schedule</a
+          >
         </li>
         <li class="mb-1">
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank">Student Tuition Statement</a>
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank"
+            >Student Tuition Statement</a
+          >
         </li>
         <li class="mb-1">
           <a href="https://www.washington.edu/students/timeschd/" target="_blank">Time Schedule</a>
         </li>
         <li class="mb-1">
-          <a href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/" target="_blank">MyPlan</a>
+          <a
+            href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/"
+            target="_blank"
+            >MyPlan</a
+          >
         </li>
         <li class="mb-1">
-          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx" target="_blank">My Class Instructor Resources</a>
+          <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx" target="_blank"
+            >My Class Instructor Resources</a
+          >
         </li>
         <li class="mb-1">
           <a href="https://gradepage.uw.edu/" target="_blank">GradePage</a>
@@ -54,7 +62,11 @@
           <a href="https://uw.hosted.panopto.com/" target="_blank">Panopto Lecture Capture</a>
         </li>
         <li class="mb-1">
-          <a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp" target="_blank">UW Professional &amp; Continuing Education</a>
+          <a
+            href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp"
+            target="_blank"
+            >UW Professional &amp; Continuing Education</a
+          >
         </li>
         <li class="mb-1">
           <a href="https://wd5.myworkday.com/uw/d/home.htmld" target="_blank">Workday</a>
@@ -68,7 +80,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions, mapState} from 'vuex';
+import { mapGetters, mapActions, mapState } from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
@@ -99,11 +111,13 @@ export default {
       directoryStatusCode: 'directory/statusCode',
       */
     }),
-    showOutageCard: function() {
+    showOutageCard: function () {
       if (this.isStudent) {
-        return this.non404Error(this.studentScheduleStatusCode(this.term)) ||
-            this.non404Error(this.noticeStatusCode) ||
-            this.non404Error(this.profileStatusCode);
+        return (
+          this.non404Error(this.studentScheduleStatusCode(this.term)) ||
+          this.non404Error(this.noticeStatusCode) ||
+          this.non404Error(this.profileStatusCode)
+        );
       }
       /** This is the logic for instructor and employee
       if (this.isInstructor) {
@@ -148,7 +162,7 @@ export default {
       if (!statusCode) {
         return false;
       }
-      return (statusCode < 600 && statusCode >= 400 && statusCode !== 404);
+      return statusCode < 600 && statusCode >= 400 && statusCode !== 404;
     },
     ...mapActions('notices', {
       fetchNotices: 'fetch',
@@ -170,9 +184,7 @@ export default {
 .myuw-outage {
   // override card background color using new warning theme background
   ::v-deep .card {
-    background-color: lighten(
-      map.get($theme-colors, 'warning'), 49%
-    ) !important;
+    background-color: lighten(map.get($theme-colors, 'warning'), 49%) !important;
   }
 }
 </style>

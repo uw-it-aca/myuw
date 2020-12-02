@@ -6,18 +6,14 @@
       variant="primary"
       class="myuw-text-md"
     >
-      Most Summer quarter final examinations are given on the final meeting
-      day of the course instead of a final examination week. Consult with
-      your instructors when your final examinations will be.
+      Most Summer quarter final examinations are given on the final meeting day of the course
+      instead of a final examination week. Consult with your instructors when your final
+      examinations will be.
     </b-alert>
     <div v-else class="mb-4 d-flex">
-      <div class="flex-shrink-1 myuw-text-xs"
-           aria-hidden="true"
-      >
+      <div class="flex-shrink-1 myuw-text-xs" aria-hidden="true">
         <div class="d-flex flex-column time-column">
-          <div v-for="(time, i) in timeSlots" :key="i"
-               class="time-cell"
-          >
+          <div v-for="(time, i) in timeSlots" :key="i" class="time-cell">
             <div v-if="time.minute() == 0" class="font-weight-bold text-nowrap">
               {{ time.format('ha') }}
             </div>
@@ -28,38 +24,42 @@
         </div>
       </div>
       <!-- Desktop Version -->
-      <div v-if="$mq !== 'mobile'"
-           class="w-100"
-      >
+      <div v-if="$mq !== 'mobile'" class="w-100">
         <div class="d-flex flex-wrap">
-          <div v-for="day in Object.keys(period.daySlots)" :key="day"
-               :aria-labelledby="`${day}-${period.id}`"
-               role="group"
-               class="day-column-desktop flex-even"
+          <div
+            v-for="day in Object.keys(period.daySlots)"
+            :key="day"
+            :aria-labelledby="`${day}-${period.id}`"
+            role="group"
+            class="day-column-desktop flex-even"
           >
             <div class="font-weight-bold text-center myuw-text-xs day-heading">
               <div :id="`${day}-${period.id}`">
                 {{ days[day] }}
-                <span v-if="isFinalsTab && period.daySlots[day]"
-                      class="d-block"
-                >
+                <span v-if="isFinalsTab && period.daySlots[day]" class="d-block">
                   {{ period.daySlots[day].format('MMM D') }}
                 </span>
               </div>
             </div>
-            <div v-for="(time, i) in timeSlots" :key="i"
-                 :class="{'day-cell': true, 'day-disabled': isDayDisabled(day)}"
+            <div
+              v-for="(time, i) in timeSlots"
+              :key="i"
+              :class="{ 'day-cell': true, 'day-disabled': isDayDisabled(day) }"
             >
-              <div v-if="(
-                meetingMap[day][formatToUnique(time)] &&
-                meetingMap[day][formatToUnique(time)].length > 0
-              )" class="d-flex"
+              <div
+                v-if="
+                  meetingMap[day][formatToUnique(time)] &&
+                  meetingMap[day][formatToUnique(time)].length > 0
+                "
+                class="d-flex"
               >
                 <uw-course-section
-                  v-for="(meetingData, j) in
-                    meetingMap[day][formatToUnique(time)]"
-                  :key="j" :meeting-data="meetingData"
-                  :is-finals-card="isFinalsTab" :day="day" :term="term"
+                  v-for="(meetingData, j) in meetingMap[day][formatToUnique(time)]"
+                  :key="j"
+                  :meeting-data="meetingData"
+                  :is-finals-card="isFinalsTab"
+                  :day="day"
+                  :term="term"
                 />
               </div>
             </div>
@@ -78,16 +78,20 @@
             />
           </div>
           <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
-            <div v-if="(
-              meetingMap[mobile['current']][formatToUnique(time)] &&
-              meetingMap[mobile['current']][formatToUnique(time)].length > 0
-            )" class="d-flex"
+            <div
+              v-if="
+                meetingMap[mobile['current']][formatToUnique(time)] &&
+                meetingMap[mobile['current']][formatToUnique(time)].length > 0
+              "
+              class="d-flex"
             >
               <uw-course-section
-                v-for="(meetingData, j) in
-                  meetingMap[mobile['current']][formatToUnique(time)]"
-                :key="j" :meeting-data="meetingData" :term="term"
-                :is-finals-card="isFinalsTab" :day="mobile['current']"
+                v-for="(meetingData, j) in meetingMap[mobile['current']][formatToUnique(time)]"
+                :key="j"
+                :meeting-data="meetingData"
+                :term="term"
+                :is-finals-card="isFinalsTab"
+                :day="mobile['current']"
               />
             </div>
           </div>
@@ -97,13 +101,14 @@
 
     <!-- eos message display -->
     <div v-if="period.eosData.length > 0 && !isFinalsTab" class="mb-2">
-      <p class="text-muted myuw-text-md mb-1">
-        Meeting time notes:
-      </p>
+      <p class="text-muted myuw-text-md mb-1">Meeting time notes:</p>
       <uw-course-section
-        v-for="(eosSection, i) in period.eosData" :key="i"
-        :meeting-data="{section: eosSection}" :term="term"
-        :is-finals-card="false" class="d-inline-block w-auto mr-2"
+        v-for="(eosSection, i) in period.eosData"
+        :key="i"
+        :meeting-data="{ section: eosSection }"
+        :term="term"
+        :is-finals-card="false"
+        class="d-inline-block w-auto mr-2"
       >
         <ol class="m-0 px-4 text-left">
           <li v-for="(meeting, j) in eosSection.meetings" :key="j">
@@ -114,16 +119,11 @@
                 &ndash; {{ formatDate(meeting.eos_end_date) }}
               </span>
             </span>
-            <span v-if="meeting.wont_meet">
-              (Class does not meet)
-            </span>
-            <span v-else-if="meeting.no_meeting">
-              (Online learning)
-            </span>
+            <span v-if="meeting.wont_meet"> (Class does not meet) </span>
+            <span v-else-if="meeting.no_meeting"> (Online learning) </span>
             <span v-else>
               <span v-if="meeting.start_time">
-                ({{ formatTime(meeting.start_time) }} &ndash;
-                {{ formatTime(meeting.end_time) }})
+                ({{ formatTime(meeting.start_time) }} &ndash; {{ formatTime(meeting.end_time) }})
               </span>
             </span>
           </li>
@@ -133,16 +133,15 @@
 
     <!-- no meeting specified notes -->
     <div v-if="meetingsWithoutTime.length > 0">
-      <p v-if="!isFinalsTab" class="text-muted myuw-text-md mb-1">
-        No meeting time specified:
-      </p>
+      <p v-if="!isFinalsTab" class="text-muted myuw-text-md mb-1">No meeting time specified:</p>
       <p v-else class="text-muted myuw-text-md mb-1">
-        Courses with final exam meeting times to be determined or courses with
-        no final exam:
+        Courses with final exam meeting times to be determined or courses with no final exam:
       </p>
-      <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
-           class="d-inline-block w-auto mr-2"
-           style="min-width:110px;"
+      <div
+        v-for="(meeting, i) in meetingsWithoutTime"
+        :key="i"
+        class="d-inline-block w-auto mr-2"
+        style="min-width: 110px"
       >
         <uw-course-section :meeting-data="meeting" :term="term" />
       </div>
@@ -152,7 +151,7 @@
 
 <script>
 import dayjs from 'dayjs';
-import {mapState} from 'vuex';
+import { mapState } from 'vuex';
 import CourseSection from './course-section.vue';
 
 export default {
@@ -169,7 +168,7 @@ export default {
       required: true,
     },
   },
-  data: function() {
+  data: function () {
     return {
       days: {
         sunday: 'SUN',
@@ -206,15 +205,10 @@ export default {
   created() {
     // Set if this tab is for finals
     this.isFinalsTab = this.period.id == 'finals';
-    if (!(
-      this.period.earliestMeetingTime &&
-      this.period.latestMeetingTime
-    )) {
+    if (!(this.period.earliestMeetingTime && this.period.latestMeetingTime)) {
       if (this.isFinalsTab) {
-        this.period.earliestMeetingTime = this.quarterLastDate
-            .clone().day(8).hour(8).minute(30);
-        this.period.latestMeetingTime = this.quarterLastDate
-            .clone().day(8).hour(11).minute(50);
+        this.period.earliestMeetingTime = this.quarterLastDate.clone().day(8).hour(8).minute(30);
+        this.period.latestMeetingTime = this.quarterLastDate.clone().day(8).hour(11).minute(50);
 
         const refrenceDate = this.period.earliestMeetingTime.clone();
         for (const day in this.period.daySlots) {
@@ -222,25 +216,20 @@ export default {
             if (day === 'saturday') {
               this.period.daySlots[day] = refrenceDate.clone().day(6);
             } else {
-              this.period.daySlots[day] = refrenceDate.clone().day(
-                  7 + Object.keys(this.days).indexOf(day),
-              );
+              this.period.daySlots[day] = refrenceDate
+                .clone()
+                .day(7 + Object.keys(this.days).indexOf(day));
             }
           }
         }
       } else {
-        this.period.earliestMeetingTime = this.today
-            .clone().day(1).hour(8).minute(30);
-        this.period.latestMeetingTime = this.today
-            .clone().day(5).hour(11).minute(50);
+        this.period.earliestMeetingTime = this.today.clone().day(1).hour(8).minute(30);
+        this.period.latestMeetingTime = this.today.clone().day(5).hour(11).minute(50);
       }
     }
 
     // If there are no meetings with defined time in this period
-    if (!(
-      this.period.earliestMeetingTime == null &&
-        this.period.latestMeetingTime == null
-    )) {
+    if (!(this.period.earliestMeetingTime == null && this.period.latestMeetingTime == null)) {
       // Initialize the rendering logic
       this.initializeTimeSlots();
       this.initializeMeetingMap();
@@ -249,35 +238,22 @@ export default {
       this.period.sections.forEach((section) => {
         if (!this.isFinalsTab) {
           section.meetings.forEach((meeting) => {
-            if (
-              !meeting.no_meeting &&
-              meeting.start_time &&
-              meeting.end_time
-            ) {
+            if (!meeting.no_meeting && meeting.start_time && meeting.end_time) {
               for (const day in meeting.meeting_days) {
                 if (meeting.meeting_days[day]) {
-                  this.putMeeting(
-                      section,
-                      meeting,
-                      meeting.start_time,
-                      day,
-                  );
+                  this.putMeeting(section, meeting, meeting.start_time, day);
                   this.hasMeetingsWithTime = true;
                 }
               }
             }
           });
         } else {
-          if (
-            section.final_exam &&
-            section.final_exam.start_date &&
-            section.final_exam.end_date
-          ) {
+          if (section.final_exam && section.final_exam.start_date && section.final_exam.end_date) {
             this.putMeeting(
-                section,
-                section.final_exam,
-                section.final_exam.start_date,
-                section.final_exam.start_date.format('dddd').toLowerCase(),
+              section,
+              section.final_exam,
+              section.final_exam.start_date,
+              section.final_exam.start_date.format('dddd').toLowerCase()
             );
             this.hasMeetingsWithTime = true;
           }
@@ -290,29 +266,14 @@ export default {
       if (!this.isFinalsTab) {
         section.meetings.forEach((meeting) => {
           if (
-            (
-              meeting.no_meeting ||
-              !(meeting.start_time && meeting.end_time)
-            ) &&
-            (
-              !(
-                meeting.eos_start_date &&
-                meeting.eos_end_date
-              ) ||
-              (
-                meeting.eos_start_date &&
+            (meeting.no_meeting || !(meeting.start_time && meeting.end_time)) &&
+            (!(meeting.eos_start_date && meeting.eos_end_date) ||
+              (meeting.eos_start_date &&
                 meeting.eos_end_date &&
-                (
-                  (
-                    meeting.eos_start_date >= this.period.start_date &&
-                    meeting.eos_start_date <= this.period.end_date
-                  ) || (
-                    meeting.eos_end_date >= this.period.start_date &&
-                    meeting.eos_end_date <= this.period.end_date
-                  )
-                )
-              )
-            )
+                ((meeting.eos_start_date >= this.period.start_date &&
+                  meeting.eos_start_date <= this.period.end_date) ||
+                  (meeting.eos_end_date >= this.period.start_date &&
+                    meeting.eos_end_date <= this.period.end_date))))
           ) {
             this.meetingsWithoutTime.push({
               section: section,
@@ -321,13 +282,7 @@ export default {
           }
         });
       } else {
-        if (
-          !(
-            section.final_exam &&
-            section.final_exam.start_date &&
-            section.final_exam.end_date
-          )
-        ) {
+        if (!(section.final_exam && section.final_exam.start_date && section.final_exam.end_date)) {
           this.meetingsWithoutTime.push({
             section: section,
             meeting: section.final_exam,
@@ -346,11 +301,13 @@ export default {
     // Puts a meeting in meetingMap at time startTime and calculates variables
     // needed to render the meetingMap.
     putMeeting(section, meeting, startTime, day) {
-      let meetingsToAdd = [{
-        section: section,
-        meeting: meeting,
-        renderTime: null,
-      }];
+      let meetingsToAdd = [
+        {
+          section: section,
+          meeting: meeting,
+          renderTime: null,
+        },
+      ];
 
       // Get time slot in 30 minutes interval
       if (startTime.minute() > 30) {
@@ -364,9 +321,7 @@ export default {
         this.meetingMap[day][this.formatToUnique(startTime)] &&
         this.meetingMap[day][this.formatToUnique(startTime)].length > 0
       ) {
-        meetingsToAdd = meetingsToAdd.concat(
-            this.meetingMap[day][this.formatToUnique(startTime)],
-        );
+        meetingsToAdd = meetingsToAdd.concat(this.meetingMap[day][this.formatToUnique(startTime)]);
       }
 
       this.meetingMap[day][this.formatToUnique(startTime)] = meetingsToAdd;
@@ -414,9 +369,7 @@ export default {
           text: day.replace(/^([a-z])/, (c) => c.toUpperCase()),
         });
         if (this.isFinalsTab && this.period.daySlots[day]) {
-          this.mobile['options'][i - 1].text += (
-            ' - ' + this.period.daySlots[day].format('MMM D')
-          );
+          this.mobile['options'][i - 1].text += ' - ' + this.period.daySlots[day].format('MMM D');
         }
 
         let hasMeetingToday = false;
@@ -466,13 +419,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../css/myuw/variables.scss";
+@import '../../../../css/myuw/variables.scss';
 
 $heading-height: 45px;
 $cell-height: 35px;
 
 .time-column {
-  padding-top: $heading-height - ($cell-height / 2) ;
+  padding-top: $heading-height - ($cell-height / 2);
   height: 100%;
   min-width: 42px;
 
@@ -483,8 +436,9 @@ $cell-height: 35px;
 
     div {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100%;
       text-align: center;
     }
@@ -494,7 +448,8 @@ $cell-height: 35px;
   min-width: 50px;
   //max-width: 20%;
 }
-.day-column, .day-column-desktop {
+.day-column,
+.day-column-desktop {
   height: 100%;
 
   .day-heading {
@@ -503,8 +458,9 @@ $cell-height: 35px;
 
     div {
       position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       width: 100%;
     }
   }

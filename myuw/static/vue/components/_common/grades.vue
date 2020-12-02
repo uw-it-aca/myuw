@@ -1,28 +1,15 @@
 <template>
-  <uw-card v-if="showGradeCard"
-           :loaded="isReady"
-           :errored="isErrored"
-           :errored-show="showError"
-  >
+  <uw-card v-if="showGradeCard" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Final Grades
-      </h3>
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Final Grades</h3>
     </template>
     <template #card-body>
-      <p
-        v-if="!isAfterGradeSubmissionDeadline"
-        class="text-muted font-italic myuw-text-md"
-      >
+      <p v-if="!isAfterGradeSubmissionDeadline" class="text-muted font-italic myuw-text-md">
         These grades are not official until 11:59 p.m. on
         {{ toFriendlyDate(gradeSubmissionDeadline) }}.
       </p>
       <ul class="list-unstyled">
-        <li
-          v-for="section in filteredSections"
-          :key="section.course_number"
-          class="mb-2"
-        >
+        <li v-for="section in filteredSections" :key="section.course_number" class="mb-2">
           <div class="d-flex align-content-center">
             <div class="w-50">
               <font-awesome-icon
@@ -49,9 +36,7 @@
     </template>
     <template #card-disclosure>
       <b-collapse id="grade_card_collapse" v-model="isOpen">
-        <h4 class="h6 font-weight-bold">
-          Resources
-        </h4>
+        <h4 class="h6 font-weight-bold">Resources</h4>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">
@@ -103,14 +88,14 @@
 
 <script>
 import dayjs from 'dayjs';
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
   },
-  data: function() {
+  data: function () {
     return {
       term: null,
       showOnlyATerm: false,
@@ -120,10 +105,8 @@ export default {
   computed: {
     ...mapState({
       currentSummerTerm: (state) => state.cardDisplayDates.current_summer_term,
-      isAfterLastDayOfClasses: (state) =>
-        state.cardDisplayDates.is_after_last_day_of_classes,
-      isBeforeFirstDayOfTerm: (state) =>
-        state.cardDisplayDates.is_before_first_day_of_term,
+      isAfterLastDayOfClasses: (state) => state.cardDisplayDates.is_after_last_day_of_classes,
+      isBeforeFirstDayOfTerm: (state) => state.cardDisplayDates.is_before_first_day_of_term,
       isSummer: (state) => state.cardDisplayDates.is_summer,
       lastTerm: (state) => state.cardDisplayDates.last_term,
       isAfterBtermStart: (state) => state.cardDisplayDates.is_after_summer_b,
@@ -131,11 +114,7 @@ export default {
         state.cardDisplayDates.is_after_grade_submission_deadline,
       courses: (state) => state.stud_schedule.value,
     }),
-    ...mapGetters('stud_schedule', [
-      'isReadyTagged',
-      'isErroredTagged',
-      'statusCodeTagged',
-    ]),
+    ...mapGetters('stud_schedule', ['isReadyTagged', 'isErroredTagged', 'statusCodeTagged']),
     isReady() {
       return this.isReadyTagged(this.term);
     },
@@ -145,14 +124,14 @@ export default {
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
     },
-    gradeSubmissionDeadline: function() {
+    gradeSubmissionDeadline: function () {
       if (this.term in this.courses) {
         return this.courses[this.term].term.grade_submission_deadline;
       } else {
         return [];
       }
     },
-    filteredSections: function() {
+    filteredSections: function () {
       if (this.term in this.courses) {
         return this.courses[this.term].sections.filter((section) => {
           let shouldDisplay = true; // display grade
@@ -176,7 +155,7 @@ export default {
         return [];
       }
     },
-    showGradeCard: function() {
+    showGradeCard: function () {
       return (
         this.term &&
         // This is done so that when there is a error it goes to the second

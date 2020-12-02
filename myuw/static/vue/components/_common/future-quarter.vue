@@ -2,9 +2,7 @@
   <div v-if="student">
     <div v-if="isReady">
       <div v-if="terms.length && shouldRender">
-        <h3 class="sr-only">
-          Upcoming quarters you are registered for
-        </h3>
+        <h3 class="sr-only">Upcoming quarters you are registered for</h3>
         <div v-for="(term, i) in terms" :key="i">
           <uw-card v-if="term.has_registration" loaded>
             <template #card-heading>
@@ -18,12 +16,9 @@
             <template #card-body>
               <div>
                 <div class="myuw-text-md mr-auto">
+                  <div>You have registered for {{ term.credits }} credits</div>
                   <div>
-                    You have registered for {{ term.credits }} credits
-                  </div>
-                  <div>
-                    ({{ term.section_count }}
-                    {{ term.section_count > 1 ? "sections" : "section" }})
+                    ({{ term.section_count }} {{ term.section_count > 1 ? 'sections' : 'section' }})
                     for {{ term.quarter }} {{ term.year }}
                     <span v-if="term.summer_term" class="text-capitalize">
                       {{ term.summer_term }}
@@ -39,9 +34,7 @@
                       </span>
                       information
                     </span>
-                    <font-awesome-icon
-                      :icon="['fa', 'chevron-right']"
-                    />
+                    <font-awesome-icon :icon="['fa', 'chevron-right']" />
                   </a>
                 </div>
               </div>
@@ -50,27 +43,20 @@
         </div>
       </div>
     </div>
-    <uw-card
-      v-else-if="highlighted"
-      :loaded="false"
-      :errored="isErrored"
-      :errored-show="showError"
-    >
+    <uw-card v-else-if="highlighted" :loaded="false" :errored="isErrored" :errored-show="showError">
       <template #card-heading>
-        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-          Future Quarter
-        </h3>
+        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Future Quarter</h3>
       </template>
       <template #card-error>
-        An error occurred and MyUW cannot load your registration information
-        right now. Please try again later.
+        An error occurred and MyUW cannot load your registration information right now. Please try
+        again later.
       </template>
     </uw-card>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
@@ -91,17 +77,14 @@ export default {
       terms: (state) => state.value.terms,
       highlightFutureQuarters: (state) => state.value.highlight_future_quarters,
     }),
-    ...mapGetters('oquarter', [
-      'isReady',
-      'isErrored',
-      'statusCode',
-    ]),
+    ...mapGetters('oquarter', ['isReady', 'isErrored', 'statusCode']),
     shouldRender() {
       return (
-        this.highlightFutureQuarters && this.highlighted
-      ) || !this.highlighted && !this.highlightFutureQuarters;
+        (this.highlightFutureQuarters && this.highlighted) ||
+        (!this.highlighted && !this.highlightFutureQuarters)
+      );
     },
-    showError: function() {
+    showError: function () {
       return this.statusCode !== 404;
     },
   },

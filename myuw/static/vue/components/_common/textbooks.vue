@@ -6,9 +6,7 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Textbooks
-      </h3>
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Textbooks</h3>
     </template>
     <template #card-body>
       <ul class="list-unstyled mb-0 myuw-text-md">
@@ -19,14 +17,10 @@
               :class="`text-c${section.colorId}`"
               class="mr-1"
             />
-            <span>
-              {{ section.courseId }}:
-            </span>
+            <span> {{ section.courseId }}: </span>
           </div>
           <div class="w-50">
-            <span v-if="section.noCourseBooks" class="font-weight-bold">
-              No books
-            </span>
+            <span v-if="section.noCourseBooks" class="font-weight-bold"> No books </span>
             <span v-else class="font-weight-bold">
               {{ section.totalBooks }}
               {{ section.totalBooks > 1 ? 'books' : 'book' }}
@@ -38,15 +32,13 @@
           </div>
         </li>
       </ul>
-      <div v-if="!bookData.noBookAssigned"
-           class="myuw-chevron"
-      >
-        <a :href="`/textbooks/${bookData.year},${bookData.quarter}${
-          bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
+      <div v-if="!bookData.noBookAssigned" class="myuw-chevron">
+        <a
+          :href="`/textbooks/${bookData.year},${bookData.quarter}${
+            bookData.summerTerm ? ',' + bookData.summerTerm : ''
+          }`"
         >
-          <font-awesome-icon
-            :icon="['fa', 'chevron-right']"
-          />
+          <font-awesome-icon :icon="['fa', 'chevron-right']" />
         </a>
       </div>
     </template>
@@ -54,7 +46,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
@@ -70,11 +62,10 @@ export default {
   computed: {
     ...mapState({
       student: (state) => state.user.affiliations.student,
-      isBeforeEndOfFirstWeek: (state) =>
-        state.cardDisplayDates.is_before_eof_7days_of_term,
+      isBeforeEndOfFirstWeek: (state) => state.cardDisplayDates.is_before_eof_7days_of_term,
     }),
     ...mapState('stud_schedule', {
-      courseData: function(state) {
+      courseData: function (state) {
         return state.value[this.term];
       },
     }),
@@ -90,15 +81,11 @@ export default {
       getProcessedData: 'getProcessedData',
     }),
     show() {
-      return (
-        this.student &&
-        (this.term !== 'current' || this.isBeforeEndOfFirstWeek)
-      );
+      return this.student && (this.term !== 'current' || this.isBeforeEndOfFirstWeek);
     },
     showError() {
       return (
-        this.statusCodeSchedule(this.term) != 404 &&
-        this.statusCodeTextbooks(this.term) != 404
+        this.statusCodeSchedule(this.term) != 404 && this.statusCodeTextbooks(this.term) != 404
       );
     },
     bookData() {
@@ -122,16 +109,14 @@ export default {
               }
             });
           }
-          const courseId = `${section.curriculum} ${section.courseNumber} ${
-            section.sectionId
-          }`;
+          const courseId = `${section.curriculum} ${section.courseNumber} ${section.sectionId}`;
 
           const sectionData = {
             courseId: courseId,
             colorId: section.colorId,
             requiredBooks: required,
             totalBooks: required + optional,
-            noCourseBooks: (required + optional) ? false :true,
+            noCourseBooks: required + optional ? false : true,
           };
           sectionBookData.push(sectionData);
         });
