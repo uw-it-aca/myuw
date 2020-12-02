@@ -57,7 +57,7 @@
             <a href="mailto:hfsinfo@uw.edu"
                data-linklabel="Contact HFS"
             >
-              Contact Us
+              Contact HFS
             </a>
           </li>
         </ul>
