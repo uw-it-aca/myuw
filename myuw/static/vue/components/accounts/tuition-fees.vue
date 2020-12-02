@@ -11,10 +11,10 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-if="tuition.due_today">
+      <div v-if="tuitionDate.diff === 0 && tuition.tuition_accbalance > 0">
         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Tuition and fees are due today.
       </div>
-      <div v-if="tuition.past_due">
+      <div v-if="tuitionDate.diff < 0 && tuition.tuition_accbalance > 0">
         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> You have a balance that may be past due. See your statement for details.
       </div>
 
@@ -65,6 +65,20 @@
             </div>
           </div>
         </li>
+
+        <li v-if="tuitionDueNotice">
+          <div>
+            <h4>
+              Payment Due
+            </h4>
+            <div>
+              <span>{{ tuitionDate.formatted }}</span>
+              <span v-if="tuitionDate.diff === 0">Today</span>
+              <span v-else-if="tuitionDate.diff === 1">Tomorrow</span>
+              <span v-else>in {{ tuitionDate.diff }} days</span>
+            </div>
+          </div>
+        </li>
       </ul>
 
       <div>
@@ -101,6 +115,7 @@ import {mapGetters, mapActions, mapState} from 'vuex';
 import Card from '../_templates/card.vue';
 import FinAidComponent from '../home/registration/finaid.vue';
 import TuitionResources from './tuition-resources.vue';
+import dayjs from 'dayjs';
 
 export default {
   components: {
@@ -116,9 +131,9 @@ export default {
       isPCE: (state) => state.user.affiliations.pce,
       tuition: (state) => state.tuition.value,
       notices: (state) => state.notices.value,
-      finAidNotices: (state) => { 
-        return state.notices.value.filter(
-          (notice) => notice.location_tags.includes('tuition_aidhold_title') ||
+      finAidNotices: (state) => {
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('tuition_aidhold_title') ||
           notice.location_tags.includes('tuition_missingdocs_title') ||
           notice.location_tags.includes('tuition_loanpromissory_title') ||
           notice.location_tags.includes('tuition_loancounseling_title') ||
@@ -137,6 +152,11 @@ export default {
           (notice) => notice.location_tags.includes('pce_tuition_dup')
         );
       },
+      tuitionDueNotice: (state) => {
+        return state.notices.value.filter(
+          (notice) => notice.location_tags.includes('tuition_due_date')
+        )[0];
+      },
     }),
     ...mapGetters('tuition', {
       isReadyTuition: 'isReady',
@@ -152,6 +172,21 @@ export default {
       return (
         this.statusCodeNotices != 404 && this.statusCodeTuition != 404
       );
+    },
+    tuitionDate() {
+      let result = {};
+      if (this.tuitionDueNotice !== undefined) {
+        this.tuitionDueNotice.attributes.forEach((attr) => {
+          if (attr.name === "Date") {
+            result.date = attr.value;
+            result.formatted = attr.formatted_value;
+            let tuition_due = dayjs(result.date, 'YYYY-MM-DD');
+            let diff = Math.ceil(tuition_due.diff(dayjs(), 'day', true));
+            result.diff = diff;
+          }
+        });
+      }
+      return result;
     },
   },
   created() {
