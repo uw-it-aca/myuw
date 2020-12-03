@@ -46,10 +46,10 @@ describe('HFS Sea Card', () => {
   });
 
   it('Display card if user is seattle student', async () => {
-    axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
     store.state.user.affiliations.undergrad = true;
     store.state.user.affiliations.seattle = true;
-    const wrapper = shallowMount(HfsSeaCard, {store, localVue});
+    axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
+    const wrapper = shallowMount(HfsSeaCard, { store, localVue });
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(
@@ -76,16 +76,17 @@ describe('HFS Sea Card', () => {
     expect(wrapper.findAll('a')).toHaveLength(10);
   });
 
-  it('Hide card if not seattle students', () => {
+  it('Hide card if not a seattle student', () => {
+    axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
     const wrapper = shallowMount(HfsSeaCard, { store, localVue });
     expect(wrapper.vm.showCard).toBe(false)
+    expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 
   it('Hide card if api returns 404', async () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
-    const wrapper = shallowMount(HfsSeaCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    const wrapper = shallowMount(HfsSeaCard, { store, localVue });
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
   });
