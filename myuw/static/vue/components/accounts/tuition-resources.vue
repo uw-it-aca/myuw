@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h4>
+    <h4 class="h6 text-dark">
       Related
     </h4>
-    <ul>
+    <ul class="list-unstyled myuw-text-md">
       <li v-if="is_C2">
         <a href="https://degreereg.uw.edu/payment-procedures" target="_blank">Paying PCE-Continuum College</a>
       </li>
