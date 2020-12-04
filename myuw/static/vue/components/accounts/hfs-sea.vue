@@ -10,17 +10,14 @@
       </h3>
     </template>
     <template #card-error>
-      <p>
-        <i class="fa fa-exclamation-triangle" />
-        An error occurred and MyUW cannot load your information right now.
-        In the meantime, try the
-        <a href="https://hfs.uw.edu/myhfs/account.aspx"
-           data-linklabel="Housing & Food Services"
-           target="_blank"
-        >
-          Housing &amp; Food Services
-        </a>.
-      </p>
+      An error occurred and MyUW cannot load your information right now.
+      In the meantime, try the
+      <a href="https://hfs.uw.edu/myhfs/account.aspx"
+         data-linklabel="Housing & Food Services"
+         target="_blank"
+      >
+        Housing &amp; Food Services
+      </a>.
     </template>
     <template #card-body>
       <div v-if="hfs.resident_dining">
@@ -60,7 +57,7 @@
             <a href="mailto:hfsinfo@uw.edu"
                data-linklabel="Contact HFS"
             >
-              Contact Us
+              Contact HFS
             </a>
           </li>
         </ul>
@@ -142,8 +139,8 @@ export default {
       grad: (state) => state.user.affiliations.grad,
     }),
     showCard: function() {
-      return (!this.isReady ||
-        this.seattle && (this.undergrad || this.grad));
+      return this.seattle && (this.undergrad || this.grad) &&
+      (!this.isReady || this.hfs !== undefined);
     },
     showError: function() {
       return this.statusCode !== 404;
