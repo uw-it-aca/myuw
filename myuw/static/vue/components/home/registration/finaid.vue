@@ -67,4 +67,10 @@ export default {
     display: block;
   }
 }
+
+span {
+  ::v-deep .date {
+    font-weight: bold;
+  }
+}
 </style>

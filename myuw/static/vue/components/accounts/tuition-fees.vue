@@ -72,7 +72,7 @@
           </div>
         </li>
 
-        <li v-if="tuitionDueNotice">
+        <li v-if="tuitionDate.formatted && tuitionDate.diff">
           <div>
             <h4 class="h6 text-dark font-weight-bold">
               Payment Due
@@ -87,9 +87,9 @@
         </li>
       </ul>
 
-      <div>
+      <div class="myuw-text-md">
         <p v-if="!isC2Grad">
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank" class="myuw-text-md">Give access to your tuition account and financial aid information</a> to parents or other third parties.
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.
         </p>
         <p v-for="(msg, i) in pceTuitionDup" :key="i">
           {{ msg.notice_content }}
@@ -177,6 +177,7 @@ export default {
         });
       }
       return result;
+      //return (Object.keys(result).length !== 0) ? result : undefined;
     },
     finAidNotices: function() {
       let tags = ["tuition_aidhold_title",
