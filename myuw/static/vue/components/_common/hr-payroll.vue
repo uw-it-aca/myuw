@@ -75,11 +75,11 @@ export default {
     ...mapState({
       showCard: function(state) {
         if (this.isHomePage) {
-          return state.user.affiliations.employee &&
-            !state.user.affiliations.student &&
-            !state.user.affiliations.instructor ||
+          return !state.user.affiliations.student &&
+            !state.user.affiliations.instructor &&
+            (state.user.affiliations.employee ||
             state.user.affiliations.retiree ||
-            state.user.affiliations.past_employee;
+            state.user.affiliations.past_employee);
         }
         return state.user.affiliations.stud_employee ||
           state.user.affiliations.instructor;
