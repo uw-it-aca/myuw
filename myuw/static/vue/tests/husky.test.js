@@ -69,6 +69,7 @@ describe('Husky Card', () => {
 
   it('Hide card if not the right user type', async () => {
     const wrapper = mount(HuskyCard, { store, localVue });
+    await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
