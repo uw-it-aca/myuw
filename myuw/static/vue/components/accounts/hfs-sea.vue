@@ -139,8 +139,7 @@ export default {
       grad: (state) => state.user.affiliations.grad,
     }),
     showCard: function() {
-      return (!this.isReady ||
-        this.seattle && (this.undergrad || this.grad));
+      return this.seattle && (this.undergrad || this.grad);
     },
     showError: function() {
       return this.statusCode !== 404;

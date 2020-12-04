@@ -9,7 +9,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 library.add(faExclamationTriangle);
 
-import {shallowMount, createLocalVue} from '@vue/test-utils';
+import {createLocalVue} from './helper';
+import {mount, shallowMount} from '@vue/test-utils';
 import {expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
@@ -19,9 +20,9 @@ import UwCard from '../components/_templates/card.vue';
 import HfsSeaCard from '../components/accounts/hfs-sea.vue';
 import mockJaverageHfs from './mock_data/hfs.json';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+const localVue = createLocalVue(Vuex);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
+localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 
@@ -49,7 +50,7 @@ describe('HFS Sea Card', () => {
     store.state.user.affiliations.undergrad = true;
     store.state.user.affiliations.seattle = true;
     axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
-    const wrapper = shallowMount(HfsSeaCard, { store, localVue });
+    const wrapper = mount(HfsSeaCard, { store, localVue });
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(
@@ -73,7 +74,7 @@ describe('HFS Sea Card', () => {
 
     expect(wrapper.findAll('span').at(0).text()
     ).toBe('$5.10');
-    expect(wrapper.findAll('a')).toHaveLength(10);
+    expect(wrapper.findAll('a').length).toBe(10);
   });
 
   it('Hide card if not a seattle student', () => {
@@ -97,7 +98,7 @@ describe('HFS Sea Card', () => {
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
-    expect(wrapper.findAll('a')).toHaveLength(1);
+    expect(wrapper.findAll('a').length).toBe(1);
     expect(wrapper.findAll('a').at(0).attributes().href
     ).toBe('https://hfs.uw.edu/myhfs/account.aspx');
   });
