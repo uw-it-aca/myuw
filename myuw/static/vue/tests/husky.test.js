@@ -75,22 +75,22 @@ describe('Husky Card', () => {
   });
 
   it('Hide card if api returns 404', async () => {
-    store.state.user.affiliations.student = true;
+    store.state.user.affiliations.past_stud = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(HuskyCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
-    expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 
   it('Show error msg if api returns 543', async () => {
-    store.state.user.affiliations.student = true;
+    store.state.user.affiliations.employee = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = mount(HuskyCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.findAll('a').length).toBe(1);
     expect(wrapper.find('a').attributes().href
     ).toBe('https://hfs.uw.edu/olco/Secure/AccountSummary.aspx');
