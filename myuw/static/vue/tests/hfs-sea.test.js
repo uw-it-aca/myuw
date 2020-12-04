@@ -1,18 +1,13 @@
 import axios from 'axios';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
-import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 library.add(faExclamationTriangle);
 
-import {createLocalVue} from './helper';
-import {mount, shallowMount} from '@vue/test-utils';
-import {expectAction} from './helper';
-import {statusOptions} from '../vuex/store/model_builder';
+import { createLocalVue } from './helper';
+import { mount } from '@vue/test-utils';
+
 import Vuex from 'vuex';
 import hfs from '../vuex/store/hfs';
 
@@ -77,9 +72,10 @@ describe('HFS Sea Card', () => {
     expect(wrapper.findAll('a').length).toBe(10);
   });
 
-  it('Hide card if not a seattle student', () => {
+  it('Hide card if not a seattle student', async () => {
     axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
-    const wrapper = shallowMount(HfsSeaCard, { store, localVue });
+    const wrapper = mount(HfsSeaCard, { store, localVue });
+    await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.showCard).toBe(false)
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
@@ -87,14 +83,15 @@ describe('HFS Sea Card', () => {
 
   it('Hide card if api returns 404', async () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
-    const wrapper = shallowMount(HfsSeaCard, { store, localVue });
+    const wrapper = mount(HfsSeaCard, { store, localVue });
+    await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
   });
 
   it('Show error msg if api returns 543', async () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
-    const wrapper = shallowMount(HfsSeaCard, {store, localVue});
+    const wrapper = mount(HfsSeaCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
