@@ -1,17 +1,13 @@
 import axios from 'axios';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 library.add(faExclamationTriangle);
 
-import {shallowMount, createLocalVue} from '@vue/test-utils';
-import {expectAction} from './helper';
-import {statusOptions} from '../vuex/store/model_builder';
+import { mount } from '@vue/test-utils';
+import { createLocalVue } from './helper';
+
 import Vuex from 'vuex';
 import hfs from '../vuex/store/hfs';
 
@@ -19,9 +15,9 @@ import UwCard from '../components/_templates/card.vue';
 import HuskyCard from '../components/accounts/husky.vue';
 import mockJaverageHfs from './mock_data/hfs.json';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+const localVue = createLocalVue(Vuex);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
+localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 
@@ -49,7 +45,7 @@ describe('Husky Card', () => {
   it('Display card to student', async () => {
     axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
     store.state.user.affiliations.student = true;
-    const wrapper = shallowMount(HuskyCard, {store, localVue});
+    const wrapper = mount(HuskyCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(
@@ -68,18 +64,18 @@ describe('Husky Card', () => {
     ).toBe('$1.23');
     expect(wrapper.findAll('span').at(2).text()
     ).toBe('$1.00');
-    expect(wrapper.findAll('a')).toHaveLength(1);
+    expect(wrapper.findAll('a').length).toBe(1);
   });
 
-  it('Hide card if not the right user type', () => {
-    const wrapper = shallowMount(HuskyCard, { store, localVue });
+  it('Hide card if not the right user type', async () => {
+    const wrapper = mount(HuskyCard, { store, localVue });
     expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 
   it('Hide card if api returns 404', async () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
-    const wrapper = shallowMount(HuskyCard, {store, localVue});
+    const wrapper = mount(HuskyCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
@@ -88,11 +84,11 @@ describe('Husky Card', () => {
 
   it('Show error msg if api returns 543', async () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
-    const wrapper = shallowMount(HuskyCard, {store, localVue});
+    const wrapper = mount(HuskyCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
-    expect(wrapper.findAll('a')).toHaveLength(1);
+    expect(wrapper.findAll('a').length).toBe(1);
     expect(wrapper.findAll('a').at(0).attributes().href
     ).toBe('https://hfs.uw.edu/olco/Secure/AccountSummary.aspx');
   });

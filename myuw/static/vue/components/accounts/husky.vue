@@ -84,9 +84,9 @@ export default {
       past_employee: (state) => state.user.affiliations.past_employee,
     }),
     showCard: function() {
-      return !this.isReady ||
-        (this.student || this.past_stud ||
-        this.employee || this.past_employee) && this.hfs &&
+      return (this.student || this.past_stud ||
+        this.employee || this.past_employee) &&
+        !this.isReady || this.hfs &&
         (this.hfs.student_husky_card || this.hfs.employee_husky_card);
     },
     showError: function() {
