@@ -82,6 +82,8 @@ describe('HFS Sea Card', () => {
   });
 
   it('Hide card if api returns 404', async () => {
+    store.state.user.affiliations.grad = true;
+    store.state.user.affiliations.seattle = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(HfsSeaCard, { store, localVue });
     await new Promise((r) => setTimeout(r, 10));
@@ -90,6 +92,8 @@ describe('HFS Sea Card', () => {
   });
 
   it('Show error msg if api returns 543', async () => {
+    store.state.user.affiliations.undergrad = true;
+    store.state.user.affiliations.seattle = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = mount(HfsSeaCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
