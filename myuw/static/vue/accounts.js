@@ -5,6 +5,7 @@ import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
 import UWNetID from './components/_common/uw-netid.vue';
+import HRPayroll from './components/_common/hr-payroll.vue';
 
 // accounts components
 import HfsSea from './components/accounts/hfs-sea.vue';
@@ -28,6 +29,7 @@ Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-hfs-sea', HfsSea);
 Vue.component('myuw-husky', HuskyCard);
 Vue.component('myuw-uwnetid', UWNetID);
+Vue.component('myuw-hr-payroll', HRPayroll);
 
 new Vue({
   ...vueConf,
