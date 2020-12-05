@@ -27,9 +27,11 @@ describe('HR Payroll Card - Home Page', () => {
           affiliations: {
             employee: false,
             student: false,
+            stud_employee: false,
             instructor: false,
             retiree: false,
             past_employee: false,
+            faculty: false,
           }
         }
       }
@@ -149,6 +151,7 @@ describe('HR Payroll Card - Home Page', () => {
 
   it('Show HR-Payroll card for employee', () => {
     store.state.user.affiliations.employee = true;
+    store.state.user.affiliations.faculty = true;
     return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
@@ -164,21 +167,38 @@ describe('HR Payroll Card - Home Page', () => {
     return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
+  it('Show HR-Payroll card on Accounts page for instructor', () => {
+    store.state.isHomePage = false;
+    store.state.user.affiliations.instructor = true;
+    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+  });
+
+  it('Show HR-Payroll card on Accounts page for instructor', () => {
+    store.state.isHomePage = false;
+    store.state.user.affiliations.stud_employee = true;
+    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+  });
+
   /* Hide card test cases */
 
-  it('Hide HR-Payroll card for page that is not home', () => {
+  it('Hide HR-Payroll card from Account page', () => {
     store.state.isHomePage = false;
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
-  it('Hide HR-Payroll card for user with student and employee true', () => {
+  it('Hide HR-Payroll card for employee', () => {
+    store.state.isHomePage = false;
     store.state.user.affiliations.employee = true;
+    return testCardHidden(mount(HRPayrollCard, { store, localVue }));
+  });
+
+  it('Hide HR-Payroll card for student', () => {
     store.state.user.affiliations.student = true
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
-  it('Hide HR-Payroll card for user with stud_employee true', () => {
-    store.state.user.affiliations.stud_employee = true;
+  it('Hide HR-Payroll card for instructor', () => {
+    store.state.user.affiliations.instructor = true;
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
