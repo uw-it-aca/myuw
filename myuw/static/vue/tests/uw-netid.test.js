@@ -73,15 +73,46 @@ describe('UWNetID Card', () => {
     ).toBeFalsy();
   });
 
-  it('Check showCard method', async () => {
+  it('Check showCard on Accounts page for applicant', async () => {
+    store.state.user.affiliations.applicant = true;
+    axios.get.mockResolvedValue({data: mockProfileData, status: 200});
+    const wrapper = mount(UWNetidCard, {store, localVue});
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+  });
+
+  it('Check showCard on Accounts page for employee', async () => {
+    store.state.user.affiliations.employee = true;
+    axios.get.mockResolvedValue({data: mockProfileData, status: 200});
+    const wrapper = mount(UWNetidCard, {store, localVue});
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+  });
+
+  it('Check showCard on Accounts page for student', async () => {
     store.state.user.affiliations.student = true;
     axios.get.mockResolvedValue({data: mockProfileData, status: 200});
     const wrapper = mount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.vm.isReady).toBeTruthy();
+    expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+  });
 
-    expect(wrapper.vm.showCard).toBeFalsy();
+  it('Check showCard on Home page', async () => {
+    axios.get.mockResolvedValue({data: mockProfileData, status: 200});
+    const wrapper = mount(UWNetidCard, {
+      store, localVue, propsData: {
+        isHomePage: true,
+      }});
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
   });
 
   it('Display card with 2-factor-auth', async () => {
