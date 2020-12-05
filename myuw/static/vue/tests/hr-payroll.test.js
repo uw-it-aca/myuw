@@ -1,9 +1,19 @@
-import { shallowMount } from '@vue/test-utils';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+library.add(faExclamationTriangle);
+
+import { mount } from '@vue/test-utils';
+import { createLocalVue } from './helper';
+
 import Vuex from 'vuex';
-import {createLocalVue} from './helper';
+
 import HRPayrollCard from '../components/_common/hr-payroll.vue';
 import UwCard from '../components/_templates/card.vue';
+
 const localVue = createLocalVue(Vuex);
+localVue.component('font-awesome-icon', FontAwesomeIcon);
+localVue.component('uw-card', UwCard);
 
 describe('HR Payroll Card - Home Page', () => {
   let store;
@@ -20,39 +30,34 @@ describe('HR Payroll Card - Home Page', () => {
             instructor: false,
             retiree: false,
             past_employee: false,
-            stud_employee: false,
-            faculty: false
           }
         }
       }
     });
   });
 
-  function testCardHidden() {
-    const wrapper = shallowMount(HRPayrollCard, { store, localVue }); 
-    expect(wrapper.findComponent(UwCard).exists()).toBe(false);
+  const testCardHidden = (wrapper) => {
+    expect(wrapper.vm.showCard).toBe(false);
   }
 
-  function testCardVisible() {
-      const wrapper = shallowMount(HRPayrollCard, { store, localVue });
-      
-      expect(
-        wrapper.findComponent(UwCard).exists()
-      ).toBe(true);
+  const testCardVisible = (wrapper, store) => {
+    expect(
+      wrapper.findComponent(UwCard).exists()
+    ).toBe(true);
 
-      let h3s = wrapper.findAll('h3');
-      let h4s = wrapper.findAll('h4');
+    let h3s = wrapper.findAll('h3');
+    let h4s = wrapper.findAll('h4');
 
-      expect(
-        h3s.at(0).text()
-      ).toBe('HR and Payroll');
+    expect(
+      h3s.at(0).text()
+    ).toBe('HR and Payroll');
 
-      expect(
-        h4s.at(0).text()
-      ).toBe('Workday');
-      expect(
-        h4s.at(0).classes()
-      ).toContain('sr-only');
+    expect(
+      h4s.at(0).text()
+    ).toBe('Workday');
+    expect(
+      h4s.at(0).classes()
+    ).toContain('sr-only');
 
       let links = wrapper.findAll('a');
 
@@ -134,37 +139,37 @@ describe('HR Payroll Card - Home Page', () => {
 
   it('Show HR-Payroll card for employee', () => {
     store.state.user.affiliations.employee = true;
-    testCardVisible();
+    testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
   it('Show HR-Payroll card for retiree', () => {
     store.state.user.affiliations.retiree = true;
     store.state.truncateView = true;
-    testCardVisible();
+    testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
   it('Show HR-Payroll card for past-employee', () => {
     store.state.user.affiliations.past_employee = true;
     store.state.truncateView = true;
-    testCardVisible();
+    testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
   /* Hide card test cases */
 
   it('Hide HR-Payroll card for page that is not home', () => {
     store.state.isHomePage = false;
-    testCardHidden();
+    testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
   it('Hide HR-Payroll card for user with student and employee true', () => {
     store.state.user.affiliations.employee = true;
     store.state.user.affiliations.student = true
-    testCardHidden();
+    testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
   it('Hide HR-Payroll card for user with stud_employee true', () => {
     store.state.user.affiliations.stud_employee = true;
-    testCardHidden();
+    testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
 });
