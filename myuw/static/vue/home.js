@@ -11,6 +11,7 @@ import FutureQuarterCards from './components/_common/future-quarter.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
 import UWNetID from './components/_common/uw-netid.vue';
+import HRPayroll from './components/_common/hr-payroll.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
@@ -93,6 +94,7 @@ Vue.component('myuw-uwnetid', UWNetID);
 Vue.component('myuw-transcripts', Transcripts);
 Vue.component('myuw-continuing-education', ContinuingEducation);
 Vue.component('myuw-alumni', Alumni);
+Vue.component('myuw-hr-payroll', HRPayroll);
 
 new Vue({
   ...vueConf,

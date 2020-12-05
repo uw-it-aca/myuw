@@ -34,18 +34,27 @@
       "id":"uw_affiliation_graduate-grad",
       "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_graduate-grad"
     },
-    {
-      "regid":"642d545076c7481a9d27e9ccf936b381",
-      "displayName":"UW Staff Employees",
-      "id":"uw_affiliation_staff-employee",
-      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_staff-employee"
+    { "regid":"c0bb186dd509480dae99280d682f573c",
+      "displayName":"UW Student Employees",
+      "id":"uw_affiliation_student-employee",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_student-employee"
     },
     {
      "id":"uw_affiliation_wwami-medical-resident",
      "regid":"00ce8ac4aace4275b690ecbe668c5114",
      "displayName":"Current WWAMI area Medical Residents",
      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_wwami-medical-resident"
+    },
+    {
+      "regid":"8a6449feb1f14fd88d8785aa05931687",
+      "displayName":"Current Seattle students",
+      "id":"uw_affiliation_seattle-student",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_seattle-student"
+    },
+    { "regid":"8acdc23c0c4c43498c95c8997642d691",
+      "displayName":"UW Extension Students",
+      "id":"uw_affiliation_extension-student",
+      "url":"https://iam-ws.u.washington.edu/group_sws/v3/group/uw_affiliation_extension-student"
     }
-
   ]
 }

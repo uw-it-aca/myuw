@@ -2,6 +2,7 @@
 
 {% load settings_value %}
 {% load json_script %}
+{% load set_context %}
 
 {% block django_json_data %}
 {% endblock django_json_data %}
@@ -12,14 +13,16 @@
   <template #primary>
     <b-col md="6" :class="[$mq === 'mobile' ? 'px-0' : '']">
       <!--MARK: card components go here in order -->
-      left content
+      <myuw-husky></myuw-husky>
+      <myuw-hfs-sea></myuw-hfs-sea>
+      <myuw-hr-payroll></myuw-hr-payroll>
+      <myuw-uwnetid></myuw-uwnetid>
     </b-col>
   </template>
   <!-- MARK: #secondary template (column 2, table/desktop) -->
   <template #secondary>
     <b-col md="6">
       <!--MARK: card components go here in order -->
-      right content
     </b-col>
   </template>
 </myuw-boilerplate>
