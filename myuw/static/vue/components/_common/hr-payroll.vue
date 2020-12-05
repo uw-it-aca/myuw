@@ -73,23 +73,25 @@ export default {
   },
   computed: {
     ...mapState({
-      showCard: function(state) {
-        if (this.isHomePage) {
-          return !state.user.affiliations.student &&
-            !state.user.affiliations.instructor &&
-            (state.user.affiliations.employee ||
-            state.user.affiliations.retiree ||
-            state.user.affiliations.past_employee);
-        }
-        return state.user.affiliations.stud_employee ||
-          state.user.affiliations.instructor;
-      },
-      workdayIconStyle: (state) => 'background-image: url(\'' + state.staticUrl + 'images/wday_logo.png\';',
-      truncateView: (state) => (state.user.affiliations.retiree ||
-                                state.user.affiliations.past_employee),
-      studentEmployee: (state) => state.user.affiliations.stud_employee,
+      employee: (state) => state.user.affiliations.employee,
       faculty: (state) => state.user.affiliations.faculty,
+      student: (state) => state.user.affiliations.student,
+      studEmployee: (state) => state.user.affiliations.stud_employee,
+      instructor: (state) => state.user.affiliations.instructor,
+      retire: (state) => state.user.affiliations.retire,
+      pastEmployee: (state) => state.user.affiliations.past_employee,
+      workdayIconStyle: (state) => 'background-image: url(\'' + state.staticUrl + 'images/wday_logo.png\';',
     }),
+    showCard: function() {
+      if (this.isHomePage) {
+        return !this.student && !this.instructor &&
+          (this.employee || this.retiree || this.pastEmployee);
+      }
+      return this.studEmployee || this.instructor;
+    },
+    truncateView: function() {
+      return this.retiree || this.pastEmployee;
+    },
   },
 };
 </script>
