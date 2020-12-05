@@ -36,28 +36,34 @@ describe('HR Payroll Card - Home Page', () => {
     });
   });
 
-  const testCardHidden = (wrapper) => {
-    expect(wrapper.vm.showCard).toBe(false);
-  }
+  const testCardHidden = (wrapper) => new Promise((done) => {
+    try {
+      expect(wrapper.vm.showCard).toBe(false);
+    } catch (e) {
+      done(e);
+    }
+    done();
+  });
 
-  const testCardVisible = (wrapper, store) => {
-    expect(
-      wrapper.findComponent(UwCard).exists()
-    ).toBe(true);
+  const testCardVisible = (wrapper, store) => new Promise((done) => {
+    try {
+      expect(
+        wrapper.findComponent(UwCard).exists()
+      ).toBe(true);
 
-    let h3s = wrapper.findAll('h3');
-    let h4s = wrapper.findAll('h4');
+      let h3s = wrapper.findAll('h3');
+      let h4s = wrapper.findAll('h4');
 
-    expect(
-      h3s.at(0).text()
-    ).toBe('HR and Payroll');
+      expect(
+        h3s.at(0).text()
+      ).toBe('HR and Payroll');
 
-    expect(
-      h4s.at(0).text()
-    ).toBe('Workday');
-    expect(
-      h4s.at(0).classes()
-    ).toContain('sr-only');
+      expect(
+        h4s.at(0).text()
+      ).toBe('Workday');
+      expect(
+        h4s.at(0).classes()
+      ).toContain('sr-only');
 
       let links = wrapper.findAll('a');
 
@@ -135,41 +141,45 @@ describe('HR Payroll Card - Home Page', () => {
         expect(link7.attributes().href
         ).toBe('https://isc.uw.edu/your-pay-taxes/paycheck-info/#direct-deposit');
       }
-  }
+    } catch (e) {
+      done(e);
+    }
+    done();
+  });
 
   it('Show HR-Payroll card for employee', () => {
     store.state.user.affiliations.employee = true;
-    testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
   it('Show HR-Payroll card for retiree', () => {
     store.state.user.affiliations.retiree = true;
     store.state.truncateView = true;
-    testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
   it('Show HR-Payroll card for past-employee', () => {
     store.state.user.affiliations.past_employee = true;
     store.state.truncateView = true;
-    testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
   /* Hide card test cases */
 
   it('Hide HR-Payroll card for page that is not home', () => {
     store.state.isHomePage = false;
-    testCardHidden(mount(HRPayrollCard, { store, localVue }));
+    return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
   it('Hide HR-Payroll card for user with student and employee true', () => {
     store.state.user.affiliations.employee = true;
     store.state.user.affiliations.student = true
-    testCardHidden(mount(HRPayrollCard, { store, localVue }));
+    return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
   it('Hide HR-Payroll card for user with stud_employee true', () => {
     store.state.user.affiliations.stud_employee = true;
-    testCardHidden(mount(HRPayrollCard, { store, localVue }));
+    return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
 });
