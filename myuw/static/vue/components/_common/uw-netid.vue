@@ -69,8 +69,7 @@ export default {
       'statusCode',
     ]),
     showCard: function() {
-      return !this.isReady ||
-        !this.isHomePage ||
+      return !this.isHomePage ||
         !this.applicant && !this.employee && !this.student;
     },
     showError: function() {
