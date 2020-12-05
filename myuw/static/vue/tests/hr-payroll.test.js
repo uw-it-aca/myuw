@@ -173,7 +173,7 @@ describe('HR Payroll Card - Home Page', () => {
     return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
   });
 
-  it('Show HR-Payroll card on Accounts page for instructor', () => {
+  it('Show HR-Payroll card on Accounts page for stud_employee', () => {
     store.state.isHomePage = false;
     store.state.user.affiliations.stud_employee = true;
     return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
