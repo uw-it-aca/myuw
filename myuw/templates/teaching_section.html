@@ -1,4 +1,29 @@
 {% extends 'base.html' %}
+{% load settings_value %}
+{% load json_script %}
+{% load set_context %}
+
+{% block django_json_data %}
+  <script>
+    // TODO: Replace this with a object in the context and a json_script.
+    window.section = "{{ section }}";
+  </script>
+{% endblock django_json_data %}
+
 {% block body_content %}
-    <p>place holder</p>
+<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
+  <template #primary>
+    <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
+      <myuw-classlist
+        section-label="{{ section.replace(/&amp;/g, '%26') }}">
+      </myuw-classlist>
+    </b-col>
+  </template>
+</myuw-boilerplate>
 {% endblock body_content %}
+
+{% block vue_script %}
+{% load manifest %}
+{% manifest_match '*future_quarters*.css' '<link rel="stylesheet" href="{match}">' %}
+{% manifest_match '*future_quarters*.js' '<script src="{match}" async></script>' %}
+{% endblock vue_script %}
