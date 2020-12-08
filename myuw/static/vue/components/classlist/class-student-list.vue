@@ -4,7 +4,7 @@
            :errored="isErroredTagged"
            :errored-show="showError"
   >
-    <template #card-heading>
+    <template v-if="showContent" #card-heading>
       <h3>
         {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
         {{ sectionData.sectionId }},
@@ -15,7 +15,27 @@
         <span>{{ sectionData.sln }}</span>
       </div>
     </template>
-    <template #card-body />
+    <template v-else-if="isErroredTagged" #card-heading>
+      <h3>Class List of {{ sectionLabel.replace(/[,/]/g, ' ') }}</h3>
+    </template>
+
+    <template #card-body>
+      YES!
+    </template>
+
+    <template v-if="noData" #card-error>
+      No class information was found.
+    </template>
+    <template v-else-if="noAccesssPermission" #card-error>
+      You need to be the class instructor to view student information.
+    </template>
+    <template v-else-if="invalidCourse" #card-error>
+      The page you seek is for a past quarter and is no longer available.
+    </template>
+    <template v-else-if="showError" #card-error>
+      An error occurred and MyUW cannot load the class student information
+      right now. Please try again later.
+    </template>
   </uw-card>
 </template>
 
@@ -54,20 +74,28 @@ export default {
     isReady() {
       return this.isReadyTagged(this.sectionLabel);
     },
-    isErrored() {
-      return this.isErroredTagged(this.sectionLabel);
-    },
     showContent() {
       return this.instructor && this.sectionData.sections.length;
     },
+    isErrored() {
+      return this.isErroredTagged(this.sectionLabel);
+    },
+    noAccessPermission() {
+      return this.statusCodeTagged(this.sectionLabel) === 403;
+    },
+    noData() {
+      return this.statusCodeTagged(this.sectionLabel) === 404;
+    },
+    invalidCourse() {
+      return this.statusCodeTagged(this.sectionLabel) === 410;
+    },
     showError() {
-      return this.statusCodeTagged(this.sectionLabel) !== 404;
+      return !this.nodData() && !this.noAccessPermission() &&
+        !this.invalidCourse();
     },
   },
   created() {
-    if (this.instructor) {
-      this.fetchClasslist(this.sectionLabel);
-    }
+    this.fetchClasslist(this.sectionLabel);
   },
   methods: {
     ...mapActions('classlist', {

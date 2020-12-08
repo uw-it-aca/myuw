@@ -1,16 +1,17 @@
 import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 
-function postProcess(response, urlExtra) {
+function postProcess(response, sectionLabel) {
   let data = setTermAndExtractData(
-    response, urlExtra.replace(/&amp;/g, "%26"));
+    response, sectionLabel.replace(/&amp;/g, '%26'));
 
-  const sectionData = data[urlExtra];
+  const sectionData = data[sectionLabel];
   
   let section = sectionData.sections[0];
-  sectionData.curric = section.curriculum_abbr;
-  sectionData.courseNumber = section.course_number;
+  sectionData.currAbbr = section.curriculum_abbr;
+  sectionData.courseNum = section.course_number;
   sectionData.sectionId = section.section_id;
-  
+  sectionData.sln = section.sln;
+
   if("joint_sections" in section) {
     let jointRegistrations = [];
   
