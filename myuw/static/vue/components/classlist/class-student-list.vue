@@ -1,8 +1,8 @@
 <template>
-  <uw-card v-if="showContent"
-           :loaded="isReadyTagged"
-           :errored="isErroredTagged"
-           :errored-show="showError"
+  <uw-card v-if="instructor && showContent"
+           :loaded="isReady"
+           :errored="isErrored"
+           :errored-show="isErrored"
   >
     <template v-if="showContent" #card-heading>
       <h3>
@@ -26,7 +26,7 @@
     <template v-if="noData" #card-error>
       No class information was found.
     </template>
-    <template v-else-if="noAccesssPermission" #card-error>
+    <template v-else-if="noAccessPermission" #card-error>
       You need to be the class instructor to view student information.
     </template>
     <template v-else-if="invalidCourse" #card-error>
@@ -62,47 +62,50 @@ export default {
       instructor: (state) => state.user.affiliations.instructor,
     }),
     ...mapState('classlist', {
-      sectionData(state) {
-        return state.value[this.sectionLabel];
-      },
+      allData: (state) => state.value,
     }),
     ...mapGetters('classlist', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
       statusCodeTagged: 'statusCodeTagged',
     }),
-    getUrlSuffix() {
+    getKey() {
       return this.sectionLabel.replace(/&amp;/g, '%26');
     },
     isReady() {
-      return this.isReadyTagged(this.getUrlSuffix());
+      return this.isReadyTagged(this.getKey);
+    },
+    sectionData() {
+      return this.allData[this.getKey];
     },
     showContent() {
-      return this.instructor && this.sectionData.sections.length;
+      return !this.isReady ||
+        this.sectionData && this.sectionData.sections.length &&
+        this.sectionData.sections[0].registrations.length;
     },
     isErrored() {
-      return this.isErroredTagged(this.getUrlSuffix());
+      return this.isErroredTagged(this.getKey);
     },
     getErrorCode() {
-      return this.statusCodeTagged(this.getUrlSuffix());
+      return this.statusCodeTagged(this.getKey);
     },
     noAccessPermission() {
-      return this.getErrorCode() === 403;
+      return this.getErrorCode === 403;
     },
     noData() {
-      return this.getErrorCode() === 404;
+      return this.getErrorCode === 404;
     },
     invalidCourse() {
-      return this.getErrorCode() === 410;
+      return this.getErrorCode === 410;
     },
     showError() {
-      return !this.nodData() && !this.noAccessPermission() &&
-        !this.invalidCourse();
+      return !this.nodData && !this.noAccessPermission &&
+        !this.invalidCourse;
     },
   },
   created() {
     if (this.instructor) {
-      this.fetchClasslist(this.getUrlSuffix());
+      this.fetchClasslist(this.getKey);
     }
   },
   methods: {
