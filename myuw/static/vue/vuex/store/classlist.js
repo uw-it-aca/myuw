@@ -1,10 +1,10 @@
 import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 
 function postProcess(response, sectionLabel) {
-  let data = setTermAndExtractData(
-    response, sectionLabel.replace(/&amp;/g, '%26'));
+  const urlExtra = sectionLabel.replace(/&amp;/g, '%26');
+  let data = setTermAndExtractData(response, urlExtra);
 
-  const sectionData = data[sectionLabel];
+  const sectionData = data[urlExtra];
   
   let section = sectionData.sections[0];
   sectionData.currAbbr = section.curriculum_abbr;

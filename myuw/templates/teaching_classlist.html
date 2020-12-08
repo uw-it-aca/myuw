@@ -22,6 +22,6 @@
 
 {% block vue_script %}
 {% load manifest %}
-{% manifest_match '*teaching_classlist*.css' '<link rel="stylesheet" href="{match}">' %}
+{% manifest_match '*teaching*.css' '<link rel="stylesheet" href="{match}">' %}
 {% manifest_match '*teaching_classlist*.js' '<script src="{match}" async></script>' %}
 {% endblock vue_script %}

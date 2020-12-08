@@ -41,7 +41,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../_templates/card.vue';
 
 export default {
   components: {
@@ -71,23 +71,29 @@ export default {
       isErroredTagged: 'isErroredTagged',
       statusCodeTagged: 'statusCodeTagged',
     }),
+    getUrlSuffix() {
+      return this.sectionLabel.replace(/&amp;/g, '%26');
+    },
     isReady() {
-      return this.isReadyTagged(this.sectionLabel);
+      return this.isReadyTagged(this.getUrlSuffix());
     },
     showContent() {
       return this.instructor && this.sectionData.sections.length;
     },
     isErrored() {
-      return this.isErroredTagged(this.sectionLabel);
+      return this.isErroredTagged(this.getUrlSuffix());
+    },
+    getErrorCode() {
+      return this.statusCodeTagged(this.getUrlSuffix());
     },
     noAccessPermission() {
-      return this.statusCodeTagged(this.sectionLabel) === 403;
+      return this.getErrorCode() === 403;
     },
     noData() {
-      return this.statusCodeTagged(this.sectionLabel) === 404;
+      return this.getErrorCode() === 404;
     },
     invalidCourse() {
-      return this.statusCodeTagged(this.sectionLabel) === 410;
+      return this.getErrorCode() === 410;
     },
     showError() {
       return !this.nodData() && !this.noAccessPermission() &&
@@ -95,7 +101,9 @@ export default {
     },
   },
   created() {
-    this.fetchClasslist(this.sectionLabel);
+    if (this.instructor) {
+      this.fetchClasslist(this.getUrlSuffix());
+    }
   },
   methods: {
     ...mapActions('classlist', {
