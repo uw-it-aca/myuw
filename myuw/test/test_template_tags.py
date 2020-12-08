@@ -57,8 +57,6 @@ class TestWebpackManifest(TestCase):
                 'test2-123.css': '/myuw/test2-123.css',
             },
         }
-        self.find_manifest_path_mock = \
-            patch('myuw.templatetags.webpack_manifest.find_manifest_path')
 
     @override_settings(STATICFILES_DIRS=["/static/myuw/"])
     @patch('os.path.isfile', return_value=True)
