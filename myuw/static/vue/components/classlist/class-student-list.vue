@@ -4,19 +4,18 @@
            :errored="isErrored"
            :errored-show="isErrored"
   >
-    <template v-if="showContent" #card-heading>
-      <h3>
-        {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
-        {{ sectionData.sectionId }},
-        {{ sectionData.quarter }} {{ sectionData.year }}
-      </h3>
-      <div>
-        <h4>SLN</h4>
-        <span>{{ sectionData.sln }}</span>
+    <template #card-heading>
+      <div v-if="showContent">
+        <h3>
+          {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
+          {{ sectionData.sectionId }},
+          {{ sectionData.quarter }} {{ sectionData.year }}
+        </h3>
+        <div>
+          <h4>SLN</h4>
+          <span>{{ sectionData.sln }}</span>
+        </div>
       </div>
-    </template>
-    <template v-else-if="isErroredTagged" #card-heading>
-      <h3>Class List of {{ sectionLabel.replace(/[,/]/g, ' ') }}</h3>
     </template>
 
     <template #card-body>
@@ -32,7 +31,7 @@
     <template v-else-if="invalidCourse" #card-error>
       The page you seek is for a past quarter and is no longer available.
     </template>
-    <template v-else-if="showError" #card-error>
+    <template v-else-if="dataError" #card-error>
       An error occurred and MyUW cannot load the class student information
       right now. Please try again later.
     </template>
@@ -79,8 +78,7 @@ export default {
       return this.allData[this.getKey];
     },
     showContent() {
-      return !this.isReady ||
-        this.sectionData && this.sectionData.sections.length &&
+      return this.sectionData && this.sectionData.sections.length &&
         this.sectionData.sections[0].registrations.length;
     },
     isErrored() {
@@ -98,9 +96,10 @@ export default {
     invalidCourse() {
       return this.getErrorCode === 410;
     },
-    showError() {
-      return !this.nodData && !this.noAccessPermission &&
-        !this.invalidCourse;
+    dataError() {
+      return !(this.noData ||
+        this.noAccessPermission ||
+        this.invalidCourse);
     },
   },
   created() {

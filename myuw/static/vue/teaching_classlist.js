@@ -2,6 +2,8 @@ import {Vue, vueConf} from './base.js';
 import utils from './mixins/utils.js';
 
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
+
+// page components
 import Classlist from './components/classlist/class-student-list.vue';
 
 // stores
@@ -16,7 +18,7 @@ vueConf.store.commit('addVarToState', {
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
-  value: `Classlist ${window.section}`,
+  value: `Class of ${window.section.replace(/[,\/]/g, ' ')}`,
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);
