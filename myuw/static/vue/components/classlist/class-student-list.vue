@@ -19,7 +19,15 @@
     </template>
 
     <template #card-body>
-      YES!
+      <uw-course-stats
+        v-if="sectionData.current"
+        :curr-abbr="sectionData.currAbbr"
+        :course-num="sectionData.courseNum"
+        :section-id="sectionData.sectionId"
+        :quarter="sectionData.quarter"
+        :year="sectionData.year"
+        :current-student-majors="sectionData.sections[0].current_student_majors"
+      />
     </template>
 
     <template v-if="noData" #card-error>
@@ -41,10 +49,12 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import CourseStats from './statistics.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-course-stats': CourseStats,
   },
   props: {
     sectionLabel: {
