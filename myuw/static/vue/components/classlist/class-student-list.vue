@@ -5,7 +5,7 @@
            :errored-show="isErrored"
   >
     <template #card-heading>
-      <div v-if="showContent">
+      <div v-if="sectionData">
         <h3>
           {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
           {{ sectionData.sectionId }},
@@ -77,12 +77,13 @@ export default {
     sectionData() {
       return this.allData[this.getKey];
     },
-    showContent() {
-      return this.sectionData && this.sectionData.sections.length &&
-        this.sectionData.sections[0].registrations.length;
-    },
     isErrored() {
       return this.isErroredTagged(this.getKey);
+    },
+    showContent() {
+      return !this.isReady || this.isErrored ||
+        this.sectionData && this.sectionData.sections.length &&
+        this.sectionData.sections[0].registrations.length;
     },
     getErrorCode() {
       return this.statusCodeTagged(this.getKey);
@@ -97,9 +98,8 @@ export default {
       return this.getErrorCode === 410;
     },
     dataError() {
-      return !(this.noData ||
-        this.noAccessPermission ||
-        this.invalidCourse);
+      return this.isErrored && !(this.noData ||
+        this.noAccessPermission || this.invalidCourse);
     },
   },
   created() {
