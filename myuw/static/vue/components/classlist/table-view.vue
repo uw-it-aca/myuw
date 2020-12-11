@@ -50,9 +50,9 @@
         </thead>
         <tbody id="student-sort">
           <tr v-for="(reg, i) in section.registrations"
-              id="`student-${reg.regid}`"
+              :id="`student-${reg.regid}`"
               :key="i"
-              class="getClass(reg)"
+              :class="getClass(reg)"
           >
             <td headers="student-number">
               {{ reg.student_number }}
@@ -139,7 +139,7 @@ export default {
       required: true,
     },
   },
-  computed: {
+  methods: {
     getClass(reg) {
       return reg.is_joint ? 'joint' : '';
     },

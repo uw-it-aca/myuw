@@ -10,12 +10,12 @@
     </h4>
     <ol class="">
       <li v-for="(reg, i) in registrations"
-          id="`student-photo-${reg.regid}`"
+          :id="`student-photo-${reg.regid}`"
           :key="i"
-          class="getClass(reg)"
+          :class="getClass(reg)"
       >
         <div class="">
-          <img src="`/photo/${reg.url_key}`"
+          <img :src="getImgUrl(reg)"
                class=""
                width="120px" height="150px"
           >
@@ -42,6 +42,9 @@ export default {
   methods: {
     getClass(reg) {
       return reg.is_joint ? 'joint' : '';
+    },
+    getImgUrl(reg) {
+      return '/photo/' + reg.url_key;
     },
   },
 };
