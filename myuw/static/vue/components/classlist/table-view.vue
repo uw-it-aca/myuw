@@ -1,7 +1,6 @@
 <template>
   <div id="classlist_table_view"
-       aria-labelledby="list-view"
-       role="tabpanel" aria-hidden="false"
+       aria-labelledby="table-view"
   >
     <h4 class="sr-only">
       Table of Student Information

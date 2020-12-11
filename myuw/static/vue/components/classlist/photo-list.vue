@@ -1,9 +1,7 @@
 <template>
   <div id="classlist_photo_view"
        class=""
-       aria-labelledby="grid_view"
-       role="tabpanel"
-       aria-hidden="true" hidden="true"
+       aria-labelledby="photo-grid"
   >
     <h4 class="sr-only">
       Grid of Student Photos
