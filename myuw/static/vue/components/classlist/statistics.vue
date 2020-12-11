@@ -25,7 +25,7 @@ export default {
       required: true,
     },
     courseNum: {
-      type: Number,
+      type: String,
       required: true,
     },
     sectionId: {
@@ -41,7 +41,7 @@ export default {
       required: true,
     },
     currentStudentMajors: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },
