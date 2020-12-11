@@ -4,8 +4,8 @@
       Statistics for {{ currAbbr }} {{ courseNum }} {{ sectionId }}
     </h4>
     <p>
-      {{ currentStudentMajors[0].percent_students }}% of your students
-      are {{ ucfirst(currentStudentMajors[0].major) }} majors.
+      {{ majors[0].percent_students }}% of your students
+      are {{ ucfirst(majors[0].major) }} majors.
     </p>
     <a :href="getUrl" target="_blank" :data-linklabel="getLabel">
       View more statistics for
@@ -40,7 +40,7 @@ export default {
       type: Number,
       required: true,
     },
-    currentStudentMajors: {
+    majors: {
       type: Array,
       required: true,
     },

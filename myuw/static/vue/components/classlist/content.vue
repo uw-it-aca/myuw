@@ -1,133 +1,92 @@
 <template>
-  <div id="classlist-table-view"
-       aria-labelledby="list-view"
-       role="tabpanel" aria-hidden="false"
-  >
-    <h4 class="sr-only">
-      Table of Student Information
-    </h4>
-    <div class="">
-      <table id="student-list" class="">
-        <thead>
-          <tr>
-            <th id="student-number">
-              Student No.
-            </th>
-            <th id="uwnetid">
-              UW NetID
-            </th>
-            <th id="last-name">
-              Last Name
-            </th>
-            <th id="first-name">
-              First Name
-            </th>
-            <th v-if="section.has_joint" id="joint-section" class="">
-              Joint Course
-            </th>
-            <th v-if="section.has_linked_sections" id="linked-section">
-              Secondary Section
-            </th>
-            <th id="credits">
-              Credits
-            </th>
-            <th id="class-level">
-              Class
-            </th>
-            <th id="majors">
-              Majors
-            </th>
-            <th v-if="section.is_independent_start" id="start-date">
-              Start Date
-            </th>
-            <th v-if="section.is_independent_start" id="end-date">
-              End Date
-            </th>
-            <th id="email">
-              <span class="sr-only">Email</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody id="student-sort">
-          <tr v-for="(reg, i) in section.registrations"
-              id="`student-${reg.netid}`"
-              :key="i"
+  <div>
+    <div id="classlist_controls">
+      <div role="tablist" aria-label="Views">
+        <div>
+          <a id="list_view"
+             href="#" role="tab"
+             aria-controls="classlist_table_view"
+             aria-selected="true"
           >
-            <td headers="student-number">
-              {{ reg.student_number }}
-            </td>
-            <td headers="uwnetid">
-              {{ reg.netid }}
-            </td>
-            <td headers="last-name">
-              {{ reg.surname }}
-            </td>
-            <td headers="first-name">
-              {{ reg.first_name }}
-            </td>
-            <td v-if="section.has_joint"
-                headers="joint-section"
-                class=""
+            <i class="fa fa-table" aria-hidden="true" />Table
+          </a>
+        </div>
+
+        <div>
+          <a id="grid_view"
+             href="#" role="tab"
+             aria-controls="classlist_photo_view"
+             aria-selected="false"
+          >
+            <i class="fa fa-user-circle-o" aria-hidden="true" />Photo Grid
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div id="classlist-sort-controls">
+          <label for="sort_list">Sort: </label>
+          <select id="sort_list" class="">
+            <option value="surname,first_name" selected="selected">
+              Last Name
+            </option>
+            <option value="first_name,surname">
+              First Name
+            </option>
+            <option value="netid">
+              UW NetID
+            </option>
+            <option value="class_code">
+              Class
+            </option>
+            <option value="credits">
+              Credits
+            </option>
+            <option v-if="section.has_linked_sections"
+                    value="linked_sections"
             >
-              <span v-if="reg.is_joint">
-                {{ reg.joint_curric }}
-                {{ reg.joint_course_number }}
-                {{ reg.joint_section_id }}
-              </span>
-              <span v-else>
-                {{ section.curriculum_abbr }}
-                {{ section.course_number }}
-                {{ section.section_id }}
-              </span>
-            </td>
-            <td v-if="section.has_linked_sections"
-                headers="linked-section"
-            >
-              {{ reg.linked_sections }}
-            </td>
-            <td headers="credits">
-              <span v-if="reg.is_auditor">Audit</span>
-              <span v-else>{{ reg.credits }}</span>
-            </td>
-            <td headers="class-level">
-              {{ ucfirst(reg.class_level) }}
-            </td>
-            <td headers="majors">
-              <div v-for="(major, j) in reg.majors" :key="j">
-                <span v-if="major.name">
-                  {{ ucfirst(major.name) }}
-                </span>
-                <span v-if="(j < reg.majors.length - 1)">
-                  ,&nbsp;
-                </span>
-              </div>
-            </td>
-            <td v-if="section.is_independent_start"
-                headers="start-date"
-            >
-              {{ reg.start_date }}
-            </td>
-            <td v-if="section.is_independent_start"
-                headers="end-date"
-            >
-              {{ reg.end_date }}
-            </td>
-            <td headers="email">
-              <a href="`mailto:${reg.email}`"
-                 title="`Email ${reg.first_name} ${reg.surname}`"
-              >
-                <i class="fa fa-envelope-o" />
-                <span class="sr-only">{{ reg.email }}</span>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+              Secondary Section
+            </option>
+          </select>
+        </div>
+
+        <button v-if="section.has_joint"
+                id="toggle_joint"
+                type="button" class=""
+                aria-pressed="false"
+                title="Show students from joint courses"
+        >
+          <i class="fa fa-square-o" aria-hidden="true" />
+          Joint Course Students
+        </button>
+      </div>
+
+      <div class="">
+        <a id="download_class_list" href="#" class="">
+          <i class="fa fa-download" />Download (CSV)
+        </a>
+
+        <a href="javascript:window.print()" class="">
+          <i class="fa fa-print" />Print
+        </a>
+      </div>
     </div>
+
+    <uw-table-view :section="section" />
+
+    <uw-photo-list :registrations="section.registrations" />
   </div>
 </template>
+
 <script>
+import TableView from './table-view.vue';
+import PhotoList from './photo-list.vue';
+
 export default {
+  components: {
+    'uw-table-view': TableView,
+    'uw-photo-list': PhotoList,
+  },
   props: {
     mobileOnly: {
       type: Boolean,
@@ -138,7 +97,7 @@ export default {
       required: true,
     },
   },
-  computed: {
+  methods: {
 
   },
 };
