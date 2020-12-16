@@ -1,5 +1,26 @@
 import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
 
+function compareFn (a, b) {
+  // sort by Last name then First name
+  let aLname = a.surname.toUpperCase();
+  let bLname = b.surname.toUpperCase();
+  if (aLname < bLname) {
+      return -1;
+  }
+  if(aLname > bLname) {
+      return 1;
+  }
+  let aFname = a.first_name.toUpperCase();
+  let bFname = b.first_name.toUpperCase();
+  if (aFname < bFname) {
+      return -1;
+  }
+  if(aFname > bFname) {
+      return 1;
+  }
+  return 0;
+}
+
 function postProcess(response, sectionLabel) {
   const urlExtra = sectionLabel.replace(/&amp;/g, '%26');
   let data = setTermAndExtractData(response, urlExtra);
@@ -28,6 +49,7 @@ function postProcess(response, sectionLabel) {
     }
     section.registrations = section.registrations.concat(jointRegistrations);
   }
+  section.registrations = section.registrations.sort(compareFn);
   return data;
 }
 

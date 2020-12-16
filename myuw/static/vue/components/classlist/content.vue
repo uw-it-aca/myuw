@@ -1,32 +1,6 @@
 <template>
   <div>
     <div>
-      <div id="classlist-sort-controls">
-        <label for="sort_list">Sort: </label>
-        <select id="sort_list" class="">
-          <option value="surname,first_name" selected="selected">
-            Last Name
-          </option>
-          <option value="first_name,surname">
-            First Name
-          </option>
-          <option value="netid">
-            UW NetID
-          </option>
-          <option value="class_code">
-            Class
-          </option>
-          <option value="credits">
-            Credits
-          </option>
-          <option v-if="section.has_linked_sections"
-                  value="linked_sections"
-          >
-            Secondary Section
-          </option>
-        </select>
-      </div>
-
       <button v-if="section.has_joint"
               id="toggle_joint"
               type="button" class=""

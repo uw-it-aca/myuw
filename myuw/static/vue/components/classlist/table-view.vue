@@ -123,6 +123,16 @@
           </tr>
         </tbody>
       </table>
+      <b-table striped hover :fields="fields" :items="items">
+        <template #cell(email)="data">
+          <a href="`mailto:${data.item.email}`"
+             title="`Email ${data.item.firstName} ${data.item.surName}`"
+          >
+            <i class="fa fa-envelope-o" />
+            <span class="sr-only">{{ data.item.email }}</span>
+          </a>
+        </template>
+      </b-table>
     </div>
   </div>
 </template>
@@ -136,6 +146,127 @@ export default {
     section: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    fields() {
+      let data = [
+        {
+          key: 'studentNumber',
+          label: 'Student No.',
+          sortable: true,
+        },
+        {
+          key: 'netid',
+          label: 'UW NetID',
+          sortable: true,
+        },
+        {
+          key: 'surName',
+          label: 'Last Name',
+          sortable: true,
+        },
+        {
+          key: 'firstName',
+          label: 'First Name',
+          sortable: true,
+        },
+      ];
+      if (this.section.has_joint) {
+        data.push(
+            {
+              class: 'joint',
+              key: 'jointCourse',
+              label: 'Joint Course',
+            },
+        );
+      }
+      if (this.section.has_linked_sections) {
+        data.push(
+            {
+              key: 'linkedSection',
+              label: 'Secondary Section',
+              sortable: true,
+            },
+        );
+      }
+      data = data.concat([
+        {
+          key: 'credits',
+          label: 'Credits',
+          sortable: true,
+        },
+        {
+          key: 'classLevel',
+          label: 'Class',
+          sortable: true,
+        },
+        {
+          key: 'majors',
+          label: 'Majors',
+          sortable: true,
+        }],
+      );
+      if (this.section.is_independent_start) {
+        data = data.concat([
+          {
+            key: 'startDate',
+            label: 'Start Date',
+            sortable: true,
+          },
+          {
+            key: 'endDate',
+            label: 'End Date',
+            sortable: true,
+          }],
+        );
+      }
+      data.push(
+          {
+            key: 'email',
+            label: 'Email',
+          },
+      );
+      return data;
+    },
+    items() {
+      const data = [];
+      for (let i = 0; i < this.section.registrations.length; i++) {
+        const reg = this.section.registrations[i];
+        const dataItem = {
+          studentNumber: reg.student_number,
+          netid: reg.netid,
+          surName: reg.surname,
+          firstName: reg.first_name,
+        };
+        if (this.section.has_joint) {
+          dataItem.jointCourse = reg.is_joint ?
+            (reg.joint_curric + ' ' + reg.joint_course_number + ' ' + reg.joint_section_id) :
+            (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
+            this.section.section_id);
+        }
+        if (this.section.has_linked_sections) {
+          dataItem.linkedSection = reg.linked_sections;
+        }
+        dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
+        dataItem.classLevel = this.ucfirst(reg.class_level);
+        let majors = '';
+        for (let j = 0; j < reg.majors.length; j++) {
+          if (j < reg.majors.length -1) {
+            majors = majors.concat(',&nbsp;');
+          }
+          majors = majors.concat(this.ucfirst(reg.majors[j].name));
+        }
+        dataItem.majors = majors;
+        if (this.section.is_independent_start) {
+          dataItem.startDate = reg.start_date;
+          dataItem.endDate = reg.end_date;
+        }
+        dataItem.email = reg.email;
+        console.log(dataItem);
+        data.push(dataItem);
+      }
+      return data;
     },
   },
   methods: {
