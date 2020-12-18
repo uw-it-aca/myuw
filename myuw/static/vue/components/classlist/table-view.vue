@@ -63,7 +63,6 @@ export default {
       if (this. showJointCourseStud && this.section.has_joint) {
         data.push(
             {
-              class: 'joint',
               key: 'jointCourse',
               label: 'Joint Course',
             },
@@ -163,9 +162,7 @@ export default {
     },
   },
   methods: {
-    getClass(reg) {
-      return reg.is_joint ? 'joint' : '';
-    },
+
   },
 };
 </script>
