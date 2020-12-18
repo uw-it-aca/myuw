@@ -32,6 +32,10 @@ export default {
       type: Object,
       required: true,
     },
+    showJointCourseStud: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     fields() {
@@ -56,7 +60,7 @@ export default {
           sortable: true,
         },
       ];
-      if (this.section.has_joint) {
+      if (this. showJointCourseStud && this.section.has_joint) {
         data.push(
             {
               class: 'joint',
@@ -121,7 +125,7 @@ export default {
           surName: reg.surname,
           firstName: reg.first_name,
         };
-        if (this.section.has_joint) {
+        if (this.showJointCourseStud && this.section.has_joint) {
           dataItem.jointCourse = reg.is_joint ?
             (reg.joint_curric + ' ' + reg.joint_course_number + ' ' + reg.joint_section_id) :
             (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +

@@ -1,24 +1,31 @@
 <template>
   <div>
     <div>
-      <button v-if="section.has_joint"
-              id="toggle_joint"
-              type="button" class=""
-              aria-pressed="false"
-              title="Show students from joint courses"
+      <b-button
+        v-if="section.has_joint"
+        id="toggle_joint"
+        :pressed.sync="showJointCourse"
+        title="Show students from joint courses"
+        variant="light"
       >
         <i class="fa fa-square-o" aria-hidden="true" />
         Joint Course Students
-      </button>
+      </b-button>
     </div>
 
     <div id="classlist_controls">
       <b-tabs role="tablist" aria-label="Views">
         <b-tab title="Table" active>
-          <uw-table-view :section="section" />
+          <uw-table-view
+            :section="section"
+            :show-joint-course-stud="showJointCourse"
+          />
         </b-tab>
         <b-tab title="Photo Grid">
-          <uw-photo-list :registrations="section.registrations" />
+          <uw-photo-list
+            :registrations="section.registrations"
+            :show-joint-course-stud="showJointCourse"
+          />
         </b-tab>
       </b-tabs>
     </div>
@@ -53,6 +60,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      showJointCourse: false,
+    };
   },
   methods: {
     switchView: function(event) {
