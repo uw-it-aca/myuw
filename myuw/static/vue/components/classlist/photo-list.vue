@@ -10,7 +10,7 @@
       <li v-for="(reg, i) in registrations"
           :id="`student-photo-${reg.regid}`"
           :key="i"
-          :class="getClass(reg)"
+          :style="getClass(reg)"
       >
         <div class="">
           <img :src="getImgUrl(reg)"
@@ -36,10 +36,17 @@ export default {
       type: Array,
       required: true,
     },
+    showJointCourseStud: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     getClass(reg) {
-      return reg.is_joint ? 'joint' : '';
+      if (reg.is_joint) {
+        return this.showJointCourseStud ? 'display: inline' : 'display: none';
+      }
+      return 'display: inline';
     },
     getImgUrl(reg) {
       return '/photo/' + reg.url_key;
