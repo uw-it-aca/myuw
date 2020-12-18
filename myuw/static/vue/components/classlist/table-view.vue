@@ -7,8 +7,9 @@
     </h4>
     <div class="">
       <b-table id="student-list"
-               hover head-variant="light"
+               sort-icon-left hover head-variant="light" responsive="sm"
                :fields="fields" :items="items"
+               primary-key="netid"
       >
         <template #cell(email)="data">
           <a :href="data.value.href" :title="data.value.title">
@@ -139,13 +140,9 @@ export default {
             const mj = reg.majors[j];
             if (mj.name) {
               majors.push(this.ucfirst(mj.name));
-              majors.push(',');
             }
           }
-          if (majors.length > 1) {
-            majors.pop(',');
-          }
-          dataItem.majors = majors.join('&nbsp;');
+          dataItem.majors = majors.length > 1 ? majors.join(', ') : majors[0];
         }
         if (this.section.is_independent_start) {
           dataItem.startDate = reg.start_date;
