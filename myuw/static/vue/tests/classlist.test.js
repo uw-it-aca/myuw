@@ -80,12 +80,12 @@ describe('Classlist Data', () => {
     const section = store.state.classlist.value['2013,autumn,POL S,306/A'].sections[0];
     expect(section.registrations).toHaveLength(7);
 
-    expect(section.registrations[0].netid).toBe('javg004');
-    expect(section.registrations[1].netid).toBe('javg005');
-    expect(section.registrations[2].netid).toBe('javg006');
-    expect(section.registrations[3].netid).toBe('javg003');
-    expect(section.registrations[4].netid).toBe('javg002');
-    expect(section.registrations[5].netid).toBe('javg001');
-    expect(section.registrations[6].netid).toBe('javg016');
+    expect(section.registrations[0].netid).toBe('javg005');
+    expect(section.registrations[1].netid).toBe('javg004');
+    expect(section.registrations[2].netid).toBe('javg016');
+    expect(section.registrations[3].netid).toBe('javg006');
+    expect(section.registrations[4].netid).toBe('javg001');
+    expect(section.registrations[5].netid).toBe('javg002');
+    expect(section.registrations[6].netid).toBe('javg003');
   });
 });
