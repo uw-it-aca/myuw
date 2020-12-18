@@ -10,7 +10,6 @@
         id="student-list"
         sort-icon-left
         hover
-        sticky-header
         head-variant="light" responsive="sm"
         :fields="fields" :items="items"
         primary-key="netid"
