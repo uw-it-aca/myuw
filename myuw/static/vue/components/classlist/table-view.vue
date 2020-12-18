@@ -34,7 +34,7 @@ export default {
     },
     showJointCourseStud: {
       type: Boolean,
-      default: false,
+      required: true,
     },
   },
   computed: {
@@ -60,7 +60,7 @@ export default {
           sortable: true,
         },
       ];
-      if (this. showJointCourseStud && this.section.has_joint) {
+      if (this.showJointCourseStud) {
         data.push(
             {
               key: 'jointCourse',
@@ -118,17 +118,21 @@ export default {
       const data = [];
       for (let i = 0; i < this.section.registrations.length; i++) {
         const reg = this.section.registrations[i];
+        if (reg.isJoint && !this.showJointCourseStud) {
+          continue;
+        }
         const dataItem = {
           studentNumber: reg.student_number,
           netid: reg.netid,
           surName: reg.surname,
           firstName: reg.first_name,
         };
-        if (this.showJointCourseStud && this.section.has_joint) {
-          dataItem.jointCourse = reg.is_joint ?
-            (reg.joint_curric + ' ' + reg.joint_course_number + ' ' + reg.joint_section_id) :
+        if (this.showJointCourseStud) {
+          dataItem.jointCourse = (
+            reg.isJoint ?
+            (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
             (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
-            this.section.section_id);
+            this.section.section_id));
         }
         if (this.section.has_linked_sections) {
           dataItem.linkedSection = reg.linked_sections;
