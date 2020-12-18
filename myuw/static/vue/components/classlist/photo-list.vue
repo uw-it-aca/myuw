@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getClass(reg) {
-      if (reg.is_joint) {
+      if (reg.isJoint) {
         return this.showJointCourseStud ? 'display: inline' : 'display: none';
       }
       return 'display: inline';
