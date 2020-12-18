@@ -142,7 +142,7 @@ export default {
           dataItem.linkedSection = reg.linked_sections;
         }
         dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
-        dataItem.classLevel = this.ucfirst(reg.class_level);
+        dataItem.classLevel = this.titleCaseName(reg.class_level);
         if (reg.majors === undefined || reg.majors.length == 0) {
           dataItem.majors = '';
         } else {
@@ -150,7 +150,7 @@ export default {
           for (let j = 0; j < reg.majors.length; j++) {
             const mj = reg.majors[j];
             if (mj.name) {
-              majors.push(this.ucfirst(mj.name));
+              majors.push(this.titleCaseName(mj.name));
             }
           }
           dataItem.majors = majors.length > 1 ? majors.join(', ') : majors[0];
