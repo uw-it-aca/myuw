@@ -3,7 +3,7 @@
     <h4>
       Statistics for {{ currAbbr }} {{ courseNum }} {{ sectionId }}
     </h4>
-    <p>
+    <p v-if="majors && majors.length">
       {{ majors[0].percent_students }}% of your students
       are {{ ucfirst(majors[0].major) }} majors.
     </p>
@@ -42,7 +42,7 @@ export default {
     },
     majors: {
       type: Array,
-      required: true,
+      default: undefined,
     },
   },
   computed: {
