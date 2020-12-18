@@ -5,10 +5,11 @@
         v-if="section.has_joint"
         id="toggle_joint"
         :pressed.sync="showJointCourse"
-        title="Show students from joint courses"
+        :title="buttonTitle(showJointCourse)"
         variant="light"
       >
-        <i class="fa fa-square-o" aria-hidden="true" />
+        <i v-if="showJointCourse" class="fa fa-check-square" />
+        <i v-else class="fa fa-square-o" />
         Joint Course Students
       </b-button>
     </div>
@@ -67,8 +68,10 @@ export default {
     };
   },
   methods: {
-    switchView: function(event) {
-      alert('Switch ');
+    buttonTitle(showJointCourse) {
+      return (showJointCourse ?
+        'To hide students from joint courses' :
+        'To show students from joint courses');
     },
   },
 };
