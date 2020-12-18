@@ -131,18 +131,22 @@ export default {
         }
         dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
         dataItem.classLevel = this.ucfirst(reg.class_level);
-        const majors = [];
-        for (let j = 0; j < reg.majors.length; j++) {
-          const mj = reg.majors[j];
-          if (mj.name) {
-            majors.push(this.ucfirst(mj.name));
-            majors.push(',');
+        if (reg.majors === undefined || reg.majors.length == 0) {
+          dataItem.majors = '';
+        } else {
+          const majors = [];
+          for (let j = 0; j < reg.majors.length; j++) {
+            const mj = reg.majors[j];
+            if (mj.name) {
+              majors.push(this.ucfirst(mj.name));
+              majors.push(',');
+            }
           }
+          if (majors.length > 1) {
+            majors.pop(',');
+          }
+          dataItem.majors = majors.join('&nbsp;');
         }
-        if (majors.length > 1) {
-          majors.pop(',');
-        }
-        dataItem.majors = majors.join('&nbsp;');
         if (this.section.is_independent_start) {
           dataItem.startDate = reg.start_date;
           dataItem.endDate = reg.end_date;
@@ -152,7 +156,6 @@ export default {
           href: 'mailto:' + reg.email,
           title: 'Email ' + reg.first_name + ' ' + reg.surname,
         };
-        console.log(dataItem);
         data.push(dataItem);
       }
       return data;
