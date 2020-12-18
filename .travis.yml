@@ -54,7 +54,7 @@ after_success:
         "develop")
           export APP_INSTANCE="dev";
           ;;
-        "feature/vue")
+        "f/class-list")
           export APP_INSTANCE="vue";
           ;;
         *)
