@@ -26,8 +26,7 @@ function postProcess(response, sectionLabel) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const sectionData = data[urlExtra];
-  
-  let section = sectionData.sections[0];
+  const section = sectionData.sections[0];
   sectionData.currAbbr = section.curriculum_abbr;
   sectionData.courseNum = section.course_number;
   sectionData.sectionId = section.section_id;
@@ -35,15 +34,14 @@ function postProcess(response, sectionLabel) {
 
   if("joint_sections" in section) {
     let jointRegistrations = [];
-  
     for (let i = 0; i < section.joint_sections.length; i++) {
       let jsection = section.joint_sections[i];
-      for (let j = 0; j < jsection.registrations; j++) {
-        let registration = jsection.registrations[j];
-        registration.isJoint = true;
-        registration.jointCurric = jsection.course_abbr;
-        registration.jointCourseNumber = jsection.course_number;
-        registration.jointSectionId = jsection.section_id;
+      for (let j = 0; j < jsection.registrations.length; j++) {
+        let reg = jsection.registrations[j];
+        reg.isJoint = true;
+        reg.jointCurric = jsection.course_abbr;
+        reg.jointCourseNumber = jsection.course_number;
+        reg.jointSectionId = jsection.section_id;
       }
       jointRegistrations = jointRegistrations.concat(jsection.registrations);
     }
