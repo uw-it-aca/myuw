@@ -6,10 +6,14 @@
       Table of Student Information
     </h4>
     <div class="">
-      <b-table id="student-list"
-               sort-icon-left hover head-variant="light" responsive="sm"
-               :fields="fields" :items="items"
-               primary-key="netid"
+      <b-table
+        id="student-list"
+        sort-icon-left
+        hover
+        sticky-header
+        head-variant="light" responsive="sm"
+        :fields="fields" :items="items"
+        primary-key="netid"
       >
         <template #cell(email)="data">
           <a :href="data.value.href" :title="data.value.title">
