@@ -8,10 +8,13 @@
     <div class="">
       <b-table
         id="student-list"
-        sort-icon-left
         hover
-        head-variant="light" responsive="sm"
-        :fields="fields" :items="items"
+        show-empty
+        sort-icon-left
+        responsive
+        head-variant="light"
+        :fields="fields"
+        :items="items"
         primary-key="netid"
       >
         <template #cell(email)="data">
@@ -42,7 +45,7 @@ export default {
   },
   computed: {
     fields() {
-      let data = [
+      const data = [
         {
           key: 'studentNumber',
           label: 'Student No.',
@@ -75,37 +78,37 @@ export default {
         data.push(
             {
               key: 'linkedSection',
-              label: 'Secondary Section',
+              label: 'Linked Section',
               sortable: true,
             },
         );
       }
-      data = data.concat([
-        {
-          key: 'credits',
-          label: 'Credits',
-          sortable: true,
-        },
-        {
-          key: 'classLevel',
-          label: 'Class',
-          sortable: true,
-        },
-        {
-          key: 'majors',
-          label: 'Majors',
-        }],
-      );
-      if (this.section.is_independent_start) {
-        data = data.concat([
+      data.push(
           {
-            key: 'startDate',
-            label: 'Start Date',
+            key: 'credits',
+            label: 'Credits',
+            sortable: true,
           },
           {
-            key: 'endDate',
-            label: 'End Date',
-          }],
+            key: 'classLevel',
+            label: 'Class',
+            sortable: true,
+          },
+          {
+            key: 'majors',
+            label: 'Majors',
+          },
+      );
+      if (this.section.is_independent_start) {
+        data.push(
+            {
+              key: 'startDate',
+              label: 'Start Date',
+            },
+            {
+              key: 'endDate',
+              label: 'End Date',
+            },
         );
       }
       data.push(
@@ -141,19 +144,8 @@ export default {
           dataItem.linkedSection = reg.linked_sections;
         }
         dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
-        dataItem.classLevel = this.titleCaseName(reg.class_level);
-        if (reg.majors === undefined || reg.majors.length == 0) {
-          dataItem.majors = '';
-        } else {
-          const majors = [];
-          for (let j = 0; j < reg.majors.length; j++) {
-            const mj = reg.majors[j];
-            if (mj.name) {
-              majors.push(this.titleCaseName(mj.name));
-            }
-          }
-          dataItem.majors = majors.length > 1 ? majors.join(', ') : majors[0];
-        }
+        dataItem.classLevel = this.titleCaseWord(reg.class_level);
+        dataItem.majors = this.combineMajors(reg.majors);
         if (this.section.is_independent_start) {
           dataItem.startDate = reg.start_date;
           dataItem.endDate = reg.end_date;

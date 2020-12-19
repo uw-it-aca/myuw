@@ -35,14 +35,13 @@ function postProcess(response, sectionLabel) {
   if("joint_sections" in section) {
     let jointRegistrations = [];
     for (let i = 0; i < section.joint_sections.length; i++) {
-      let jsection = section.joint_sections[i];
-      for (let j = 0; j < jsection.registrations.length; j++) {
-        let reg = jsection.registrations[j];
+      const jsection = section.joint_sections[i];
+      jsection.registrations.forEach(function(reg){
         reg.isJoint = true;
         reg.jointCurric = jsection.course_abbr;
         reg.jointCourseNumber = jsection.course_number;
         reg.jointSectionId = jsection.section_id;
-      }
+      });
       jointRegistrations = jointRegistrations.concat(jsection.registrations);
     }
     section.registrations = section.registrations.concat(jointRegistrations);
