@@ -36,7 +36,7 @@ export default {
                 continue;
             }
             const fields = [
-              reg.student_number,  // MUWM-3978
+              "\t" + reg.student_number,  // MUWM-3978
               reg.netid,
               reg.surname,
               reg.first_name];

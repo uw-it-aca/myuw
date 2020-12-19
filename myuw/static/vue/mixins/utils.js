@@ -53,16 +53,14 @@ export default {
     },
     titleCaseName(nameStr) {
       return nameStr.split(' ').map(function(w) {
-        return this.titleCaseWord(w)
+        return w[0].toUpperCase() + w.substr(1).toLowerCase();
       }).join(' ');
     },
     toFriendlyDate(date_str) {
-      return (!date_str || date_str.length === 0 ? '' :
-              dayjs(date_str).format("ddd, MMM D"));
+      return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D");
     },
     toFriendlyDatetime(date_str) {
-      return (!date_str || date_str.length === 0 ? '' :
-              dayjs(date_str).format("ddd, MMM D, h:mmA"));
+      return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D, h:mmA");
     },
     toFromNowDate(date_str) {
       return dayjs(date_str).fromNow();
