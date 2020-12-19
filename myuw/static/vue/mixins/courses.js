@@ -14,10 +14,9 @@ export default {
       }
       const rmajors = [];
       for (let j = 0; j < majors.length; j++) {
-        let mj = majors[j];
-        if (mj.name) {
-          rmajors.push(this.titleCaseName(mj.name));
-        }
+        const mj = majors[j];
+        let v = mj.full_name ? mj.full_name : utils.methods.titleCaseName(mj.name);
+        rmajors.push(v.replace(/, /g, ' '));
       }
       return rmajors.length > 1 ? rmajors.join(', ') : rmajors[0];
     },
