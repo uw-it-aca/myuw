@@ -53,15 +53,16 @@ import {
   FormGroupPlugin,
   FormInputPlugin,
   FormSelectPlugin,
+  IconsPlugin,
   InputGroupPlugin,
+  ModalPlugin,
   LayoutPlugin,
   LinkPlugin,
   NavPlugin,
   SpinnerPlugin,
+  TablePlugin ,
   TabsPlugin,
   VBTogglePlugin,
-  ModalPlugin,
-  TablePlugin ,
 } from 'bootstrap-vue';
 
 // Mixins
@@ -130,6 +131,7 @@ Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
 Vue.use(ModalPlugin);
 Vue.use(TablePlugin );
+Vue.use(IconsPlugin);
 
 // vuex
 Vue.use(Vuex);
