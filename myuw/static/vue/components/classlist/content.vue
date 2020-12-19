@@ -14,6 +14,19 @@
       </b-button>
     </div>
 
+    <div class="">
+      <b-link
+        id="csv_download_class_list"
+        @click="downloadClassList"
+      >
+        <i class="fa fa-download" />Download (CSV)
+      </b-link>
+
+      <a href="javascript:window.print()" class="">
+        <i class="fa fa-print" />Print
+      </a>
+    </div>
+
     <div id="classlist_controls">
       <b-tabs role="tablist" aria-label="Views">
         <b-tab title="Table" active>
@@ -29,16 +42,6 @@
           />
         </b-tab>
       </b-tabs>
-    </div>
-
-    <div class="">
-      <a id="download_class_list" href="#" class="">
-        <i class="fa fa-download" />Download (CSV)
-      </a>
-
-      <a href="javascript:window.print()" class="">
-        <i class="fa fa-print" />Print
-      </a>
     </div>
   </div>
 </template>
@@ -72,6 +75,20 @@ export default {
       return (showJointCourse ?
         'To hide students from joint courses' :
         'To show students from joint courses');
+    },
+    fileName() {
+      const fn = this.section.section_label + '_students.csv';
+      return fn.replace(/[^a-z0-9._]/ig, '_');
+    },
+    downloadClassList() {
+      const hiddenElement = document.createElement('a');
+      const csvData = this.buildClasslistCsv(
+          this.section.registrations, this.section.has_linked_sections);
+
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = this.fileName;
+      hiddenElement.click();
     },
   },
 };

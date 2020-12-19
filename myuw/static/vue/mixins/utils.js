@@ -48,9 +48,12 @@ export default {
       }
       return "";
     },
+    titleCaseWord(w) {
+      return w[0].toUpperCase() + w.substr(1).toLowerCase();
+    },
     titleCaseName(nameStr) {
       return nameStr.split(' ').map(function(w) {
-        return w[0].toUpperCase() + w.substr(1).toLowerCase();
+        return this.titleCaseWord(w)
       }).join(' ');
     },
     toFriendlyDate(date_str) {
