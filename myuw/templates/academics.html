@@ -37,7 +37,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load manifest %}
-{% manifest_match '*academics*.css' '<link rel="stylesheet" href="{match}">' %}
-{% manifest_match '*academics*.js' '<script src="{match}" async></script>' %}
+{% load webpack_manifest %}
+{% render_webpack_entry 'academics' js='defer' %}
 {% endblock vue_script %}

@@ -23,7 +23,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load manifest %}
-{% manifest_match '*textbooks*.css' '<link rel="stylesheet" href="{match}">' %}
-{% manifest_match '*textbooks*.js' '<script src="{match}" async></script>' %}
+{% load webpack_manifest %}
+{% render_webpack_entry 'textbooks' js='defer' %}
 {% endblock vue_script %}
