@@ -1,17 +1,14 @@
 <template>
   <div>
     <div>
-      <b-button
+      <b-form-checkbox
         v-if="section.has_joint"
         id="toggle_joint"
-        :pressed.sync="showJointCourse"
+        v-model="showJointCourse"
         :title="buttonTitle(showJointCourse)"
-        variant="light"
       >
-        <i v-if="showJointCourse" class="fa fa-check-square" />
-        <i v-else class="fa fa-square-o" />
         Joint Course Students
-      </b-button>
+      </b-form-checkbox>
     </div>
 
     <div class="">

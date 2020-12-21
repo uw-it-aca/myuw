@@ -2,7 +2,6 @@
   <uw-card v-if="showCard"
            :loaded="isReady"
            :errored="isErrored"
-           :errored-show="isErrored"
   >
     <template #card-heading>
       <div v-if="sectionData">

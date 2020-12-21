@@ -53,7 +53,7 @@ import {
   FormGroupPlugin,
   FormInputPlugin,
   FormSelectPlugin,
-  IconsPlugin,
+  FormCheckboxPlugin ,
   InputGroupPlugin,
   ModalPlugin,
   LayoutPlugin,
@@ -118,6 +118,7 @@ Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
 Vue.use(CardPlugin);
 Vue.use(CollapsePlugin);
+Vue.use(FormCheckboxPlugin );
 Vue.use(FormPlugin);
 Vue.use(FormGroupPlugin);
 Vue.use(FormInputPlugin);
@@ -131,7 +132,6 @@ Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
 Vue.use(ModalPlugin);
 Vue.use(TablePlugin );
-Vue.use(IconsPlugin);
 
 // vuex
 Vue.use(Vuex);
