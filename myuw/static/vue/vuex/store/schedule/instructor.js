@@ -61,7 +61,6 @@ function postProcess(response, urlExtra) {
     }
 
     section.instructors = [];
-    section.hasEosDates = false;
     section.meetings.forEach((meeting, j) => {
       meeting.id = section.id + "-meeting-" + (j + 1);
       meeting.locationData = generateMeetingLocationData(meeting);

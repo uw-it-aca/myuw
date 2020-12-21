@@ -32,7 +32,6 @@ function postProcess(response, urlExtra) {
 
     let seenInstRegids = new Set();
     section.instructors = [];
-    section.hasEosDates = false;
     // Convert dates and times to datejs objects
     for (let idx = 0; idx < section.meetings.length; idx++) {
       let meeting = section.meetings[idx];
@@ -47,7 +46,6 @@ function postProcess(response, urlExtra) {
         }
       }
 
-      section.hasEosDates = meeting.eos_start_date && meeting.eos_end_date;
       if (meeting.type && meeting.type !== 'NON' &&
           meeting.type.toLowerCase() !== section.section_type.toLowerCase()) {
         meeting.displayType = true;

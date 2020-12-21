@@ -22,7 +22,7 @@
           <!-- evaluation is on the course -->
           <p class="myuw-text-md m-0">
             <span>
-              Evaluations close {{ toFriendlyDate(evalData[idx].close_date) }}
+              Evaluations close {{ toFriendlyDate(evalObj.close_date) }}
             </span>
             (at 11:59PM), and only take a few minutes to complete.
           </p>
@@ -58,7 +58,7 @@
           </ul>
           <p class="myuw-text-md m-0">
             <span>
-              Evaluations close {{ toFriendlyDate(evalData[idx].close_date) }}
+              Evaluations close {{ toFriendlyDate(evalObj.close_date) }}
             </span>
             (at 11:59PM), and only take a few minutes to complete.
           </p>

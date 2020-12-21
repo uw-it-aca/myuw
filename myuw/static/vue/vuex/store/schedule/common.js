@@ -22,6 +22,7 @@ export const convertTermTimeAndDateToDateJSObj = (term) => {
 
 export const convertSectionsTimeAndDateToDateJSObj = (sections) => {
   sections.forEach((section) => {
+    section.hasEosDates = false;
     section.start_date = tryConvertDayJS(section.start_date);
     section.end_date = tryConvertDayJS(section.end_date);
 
@@ -37,6 +38,8 @@ export const convertSectionsTimeAndDateToDateJSObj = (sections) => {
     section.meetings.forEach((meeting) => {
       meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
       meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
+      section.hasEosDates = section.hasEosDates ||
+        meeting.eos_start_date && meeting.eos_end_date;
       meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
       meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
     });

@@ -39,7 +39,7 @@
         </li>
         <li v-if="section.sln" class="mb-1">
           <a
-            :href="slnHref"
+            :href="textbookHref"
             :label="`${
               section.curriculum_abbr
             } ${section.course_number} Course Canvas`"
@@ -72,7 +72,7 @@ export default {
     },
   },
   computed: {
-    slnHref() {
+    textbookHref() {
       let url = `/textbooks/${this.course.year},${this.course.quarter}`;
 
       if (this.course.summer_term) {
