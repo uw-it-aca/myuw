@@ -13,8 +13,8 @@
       An error occurred and MyUW cannot load your Husky card balance
       right now. In the meantime, if you want to add funds, try the
       <a href="http://facilities.uw.edu/transportation/index"
-         data-linklabel="UW Transportation"
-         target="_blank"
+            data-linklabel="UW Transportation"
+            target="_blank"
       >UW Transportation page</a>.
     </template>
     <template #card-body>
@@ -31,34 +31,34 @@
             Your U-PASS does not work during summer quarter unless you are registered
             for a class or are a
             <a href="https://facilities.uw.edu/transportation/employee-u-pass#8"
-               data-linklabel="TEMP Pass"
+                  data-linklabel="TEMP Pass"
             >
               temporary employee
             </a>.
           </p>
         </div>
         <a v-if="is_employee"
-           href="https://facilities.uw.edu/transportation/employee-u-pass#10"
-           data-linklabel="Employee U-Pass"
+              href="https://facilities.uw.edu/transportation/employee-u-pass#10"
+              data-linklabel="Employee U-Pass"
         >
           U-PASS not working?
         </a>
         <a v-else-if="bothell"
-           href="https://www.uwb.edu/facility/commuter-services/upass"
-           data-linklabel="Bothell U-Pass"
+              href="https://www.uwb.edu/facility/commuter-services/upass"
+              data-linklabel="Bothell U-Pass"
         >
           U-PASS not working?
         </a>
         <a v-else-if="tacoma"
-           href="https://www.tacoma.uw.edu/getting-campus/u-pass-orca"
-           data-linklabel="Tacoma U-Pass and ORCA"
+              href="https://www.tacoma.uw.edu/getting-campus/u-pass-orca"
+              data-linklabel="Tacoma U-Pass and ORCA"
         >
           U-PASS not working?
         </a>
         <!-- PCE students and students without a campus (same link as Seattle's) -->
         <a v-else
-             href="https://facilities.uw.edu/transportation/student-u-pass#3"
-           data-linklabel="Student U-Pass"
+              href="https://facilities.uw.edu/transportation/student-u-pass#3"
+              data-linklabel="Student U-Pass"
         >
           U-PASS not working?
         </a>
@@ -67,7 +67,7 @@
         <ul v-if="is_employee">
           <li>
             <a href="http://www.washington.edu/u-pass"
-               data-linklabel="Employee U-Pass"
+                  data-linklabel="Employee U-Pass"
             >
               What is the U-PASS?
             </a>
@@ -75,7 +75,8 @@
         </ul>
         <div v-else-if="seattle">
           <p>
-            If you are registered for a quarter, your U-PASS will work one week before the quarter starts.
+            If you are registered for a quarter, your U-PASS will work one week before
+            the quarter starts.
           </p>
           <div v-if="in_summer">
             <h4>Summer U-PASS Use</h4>
@@ -83,7 +84,7 @@
               Your U-PASS does not work during summer quarter unless you are registered
               for a class or are a
               <a href="https://facilities.uw.edu/transportation/employee-u-pass#8"
-                 data-linklabel="Temporary Employee U-PASS"
+                    data-linklabel="Temporary Employee U-PASS"
               >
                 temporary employee
               </a>.
@@ -94,7 +95,7 @@
           <p>
             If you
             <a href="https://www.uwb.edu/facility/commuter-services/upass"
-               data-linklabel="Bothell U-PASS"
+                  data-linklabel="Bothell U-PASS"
             >
               purchase
             </a>
@@ -105,7 +106,7 @@
           <p>
             If you
             <a href="https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass"
-               data-linklabel="Tacoma Student U-PASS"
+                  data-linklabel="Tacoma Student U-PASS"
             >
               purchase
             </a>
@@ -116,14 +117,14 @@
         <ul v-if="pce">
           <li>
             <a href="https://facilities.uw.edu/transportation/student-u-pass#9"
-               data-linklabel="CC Student U-PASS"
+                 data-linklabel="CC Student U-PASS"
             >
               What is the U-PASS?
             </a>
           </li>
           <li>
             <a href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
-               data-linklabel="CC Student Purchase U-PASS"
+                 data-linklabel="CC Student Purchase U-PASS"
             >
               Purchasing a U-PASS
             </a>
@@ -133,7 +134,7 @@
         <ul v-else-if="seattle">
           <li>
             <a href="https://facilities.uw.edu/transportation/student-u-pass"
-               data-linklabel="Seattle Student U-PASS"
+                 data-linklabel="Seattle Student U-PASS"
             >
               What is the U-PASS?
             </a>
@@ -143,7 +144,7 @@
         <ul v-else-if="tacoma">
           <li>
             <a href="https://www.tacoma.uw.edu/getting-campus/what-u-pass"
-               data-linklabel="Tacoma Student U-PASS"
+                 data-linklabel="Tacoma Student U-PASS"
             >
               What is the U-PASS?
             </a>
@@ -153,7 +154,7 @@
         <ul v-else-if="!bothell">
           <li>
             <a href="http://www.washington.edu/u-pass/"
-               data-linklabel="Student U-PASS"
+                 data-linklabel="Student U-PASS"
             >
               What is the U-PASS?
             </a>
