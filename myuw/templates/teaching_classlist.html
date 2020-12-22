@@ -21,7 +21,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load manifest %}
-{% manifest_match '*teaching_classlist*.css' '<link rel="stylesheet" href="{match}">' %}
-{% manifest_match '*teaching_classlist*.js' '<script src="{match}" async></script>' %}
+{% load webpack_manifest %}
+{% render_webpack_entry 'teaching_classlist' js='defer' %}
 {% endblock vue_script %}
