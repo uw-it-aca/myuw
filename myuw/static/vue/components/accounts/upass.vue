@@ -1,8 +1,9 @@
 <template>
-  <uw-card v-if="showCard"
-           :loaded="isReady"
-           :errored="isErrored"
-           :errored-show="showError"
+  <uw-card
+    v-if="showCard"
+    :loaded="isReady"
+    :errored="isErrored"
+    :errored-show="showError"
   >
     <template #card-heading>
       <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -13,8 +14,8 @@
       An error occurred and MyUW cannot load your Husky card balance
       right now. In the meantime, if you want to add funds, try the
       <a href="http://facilities.uw.edu/transportation/index"
-            data-linklabel="UW Transportation"
-            target="_blank"
+        data-linklabel="UW Transportation"
+        target="_blank"
       >UW Transportation page</a>.
     </template>
     <template #card-body>
@@ -25,141 +26,69 @@
         <p v-if="display_activation">
           Finalize activation by tapping your card on a reader.
         </p>
-        <div v-if="!is_employee && in_summer && (pce || seattle)">
+        <div v-if="!employee && in_summer && (pce || seattle)">
           <h4>Summer U-PASS Use</h4>
           <p>
             Your U-PASS does not work during summer quarter unless you are registered
             for a class or are a
             <a href="https://facilities.uw.edu/transportation/employee-u-pass#8"
-                  data-linklabel="TEMP Pass"
+              data-linklabel="TEMP Pass"
             >
               temporary employee
             </a>.
           </p>
         </div>
-        <a v-if="is_employee"
-              href="https://facilities.uw.edu/transportation/employee-u-pass#10"
-              data-linklabel="Employee U-Pass"
-        >
-          U-PASS not working?
-        </a>
-        <a v-else-if="bothell"
-              href="https://www.uwb.edu/facility/commuter-services/upass"
-              data-linklabel="Bothell U-Pass"
-        >
-          U-PASS not working?
-        </a>
-        <a v-else-if="tacoma"
-              href="https://www.tacoma.uw.edu/getting-campus/u-pass-orca"
-              data-linklabel="Tacoma U-Pass and ORCA"
-        >
-          U-PASS not working?
-        </a>
-        <!-- PCE students and students without a campus (same link as Seattle's) -->
-        <a v-else
-              href="https://facilities.uw.edu/transportation/student-u-pass#3"
-              data-linklabel="Student U-Pass"
-        >
+        <a :href="getUrl" data-linklabel="U-Pass">
           U-PASS not working?
         </a>
       </div>
-      <div v-else>
-        <ul v-if="is_employee">
-          <li>
-            <a href="http://www.washington.edu/u-pass"
-                  data-linklabel="Employee U-Pass"
-            >
-              What is the U-PASS?
-            </a>
-          </li>
-        </ul>
-        <div v-else-if="seattle">
-          <p>
-            If you are registered for a quarter, your U-PASS will work one week before
-            the quarter starts.
-          </p>
-          <div v-if="in_summer">
-            <h4>Summer U-PASS Use</h4>
+      <div v-else id="upass-not-current">
+        <div v-if="employee" id="upass-link-for-emp">
+          <a href="http://www.washington.edu/u-pass"
+            data-linklabel="Employee U-Pass"
+          >
+            What is the U-PASS?
+          </a>
+        </div>
+        <div v-else id="upass-notices-for-students">
+          <div v-if="seattle">
             <p>
-              Your U-PASS does not work during summer quarter unless you are registered
-              for a class or are a
-              <a href="https://facilities.uw.edu/transportation/employee-u-pass#8"
-                    data-linklabel="Temporary Employee U-PASS"
-              >
-                temporary employee
-              </a>.
+              If you are registered for a quarter, your U-PASS will work one week before
+              the quarter starts.
+            </p>
+            <div v-if="in_summer">
+              <h4>Summer U-PASS Use</h4>
+              <p>
+                Your U-PASS does not work during summer quarter unless you are registered
+                for a class or are a
+                <a
+                  href="https://facilities.uw.edu/transportation/employee-u-pass#8"
+                  data-linklabel="Temporary Employee U-PASS"
+                >
+                  temporary employee
+                </a>.
+              </p>
+            </div>
+          </div>
+          <div v-else id="upass-notices-for-non-sea-studs">
+            <p v-if="(bothell || tacoma)">
+              If you <a :href="getPurchaseUrl">purchase</a>
+              a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
             </p>
           </div>
+          <ul v-if="pce || seattle || tacoma || !bothell">
+            <li>
+              <a id="upass-links" :href="getWhatIsUrl">What is the U-PASS?</a>
+            </li>
+            <li v-if="pce">
+              <a href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
+                    data-linklabel="CC Student Purchase U-PASS"
+              >
+                Purchasing a U-PASS
+              </a>
+            </li>
+          </ul>
         </div>
-        <div v-else-if="bothell">
-          <p>
-            If you
-            <a href="https://www.uwb.edu/facility/commuter-services/upass"
-                  data-linklabel="Bothell U-PASS"
-            >
-              purchase
-            </a>
-            a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
-          </p>
-        </div>
-        <div v-else-if="tacoma">
-          <p>
-            If you
-            <a href="https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass"
-                  data-linklabel="Tacoma Student U-PASS"
-            >
-              purchase
-            </a>
-            a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
-          </p>
-        </div>
-
-        <ul v-if="pce">
-          <li>
-            <a href="https://facilities.uw.edu/transportation/student-u-pass#9"
-                 data-linklabel="CC Student U-PASS"
-            >
-              What is the U-PASS?
-            </a>
-          </li>
-          <li>
-            <a href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
-                 data-linklabel="CC Student Purchase U-PASS"
-            >
-              Purchasing a U-PASS
-            </a>
-          </li>
-        </ul>
-
-        <ul v-else-if="seattle">
-          <li>
-            <a href="https://facilities.uw.edu/transportation/student-u-pass"
-                 data-linklabel="Seattle Student U-PASS"
-            >
-              What is the U-PASS?
-            </a>
-          </li>
-        </ul>
-
-        <ul v-else-if="tacoma">
-          <li>
-            <a href="https://www.tacoma.uw.edu/getting-campus/what-u-pass"
-                 data-linklabel="Tacoma Student U-PASS"
-            >
-              What is the U-PASS?
-            </a>
-          </li>
-        </ul>
-
-        <ul v-else-if="!bothell">
-          <li>
-            <a href="http://www.washington.edu/u-pass/"
-                 data-linklabel="Student U-PASS"
-            >
-              What is the U-PASS?
-            </a>
-          </li>
-        </ul>
       </div>
     </template>
   </uw-card>
@@ -194,6 +123,39 @@ export default {
     showError() {
       return this.statusCode !== 404;
     },
+    getUrl() {
+      if (this.employee) {
+        return "https://facilities.uw.edu/transportation/employee-u-pass#10";
+      }
+      if (this.bothell) {
+        return "https://www.uwb.edu/facility/commuter-services/upass";
+      }
+       if (this.tacoma) {
+        return "https://www.tacoma.uw.edu/getting-campus/u-pass-orca";
+      }
+      // PCE students and students without a campus (same link as Seattle's
+      return "https://facilities.uw.edu/transportation/student-u-pass#3";
+    },
+    getPurchaseUrl() {
+      if (this.bothell) {
+        return "https://www.uwb.edu/facility/commuter-services/upass";
+      }
+      // tacoma
+      return "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass";
+    },
+    getWhatIsUrl() {
+      if (this.pce) {
+        return "https://facilities.uw.edu/transportation/student-u-pass#9";
+      }
+      if (this.seattle) {
+        return "https://facilities.uw.edu/transportation/student-u-pass";
+      }
+       if (this.tacoma) {
+        return "https://www.tacoma.uw.edu/getting-campus/what-u-pass";
+      }
+      // Students without a campus
+      return "http://www.washington.edu/u-pass/";
+    }
   },
   mounted() {
     this.fetch();
