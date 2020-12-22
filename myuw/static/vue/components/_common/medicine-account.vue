@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="w-100 myuw-border-top border-c7" />
+    <img :src="uw_medicine_image" width="100px" alt="">
     <uw-card v-if="showCard"
              :loaded="isReady"
              :errored="isErrored"
@@ -24,12 +25,12 @@
           This password is for UW Medicine applications
           like Epic, ORCA, MINDscape, AMC network, etc.
         </p>
-        <div v-if="password.med_pw_expired">
+        <div v-if="med_pw_expired">
           <p>Password expired on {{ toFriendlyDate(expires_med) }}.
 	          <a href="https://services.uwmedicine.org/passwordportal/login.htm" data-linklabel="Change UW Medicine Password" class="password-alert"><br>Change your password to regain access.</a>
           </p>
         </div>
-        <div v-else>
+        <div>
           <h4>
             Password expiration
           </h4>
@@ -45,6 +46,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
+import dayjs from 'dayjs';
 import Card from '../_templates/card.vue';
 
 export default {
@@ -54,7 +56,9 @@ export default {
   computed: {
     ...mapState({
       has_active_med_pw: (state) => state.profile.value.password.has_active_med_pw,
+      med_pw_expired: (state) => state.profile.value.password.med_pw_expired,
       expires_med: (state) => state.profile.value.password.expires_med,
+      uw_medicine_image: (state) => 'url(\'' + state.staticUrl + 'images/wday_logo.png\'',
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
@@ -65,7 +69,7 @@ export default {
       return this.statusCode !== 404;
     },
     showCard() {
-      return this.has_active_med_pw;
+      return true; //this.has_active_med_pw;
     },
   },
   mounted() {
