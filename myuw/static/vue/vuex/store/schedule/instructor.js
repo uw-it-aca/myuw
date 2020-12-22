@@ -1,15 +1,21 @@
+import dayjs from 'dayjs';
 import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
 import {
   convertSectionsTimeAndDateToDateJSObj,
   generateMeetingLocationData,
 } from './common';
 
+dayjs.extend(require('dayjs/plugin/advancedFormat'))
+dayjs.extend(require('dayjs/plugin/calendar'))
+dayjs.extend(require('dayjs/plugin/relativeTime'))
+dayjs.extend(require('dayjs/plugin/timezone'))
+
 function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
   const time_schedule_published = courseData.term.time_schedule_published;
-        // {"bothell": true, "seattle": true, "tacoma": true}
+  // {"bothell": true, "seattle": true, "tacoma": true}
 
   let linkedPrimaryLabel = undefined;
   convertSectionsTimeAndDateToDateJSObj(courseData.sections);
@@ -87,7 +93,94 @@ function postProcess(response, urlExtra) {
     }
   }
 
+  addCourseGradeData(courseData);
+
   return data;
+}
+
+function addCourseGradeData(courseData) {
+  let now = dayjs();
+  let data = {
+    isOpen: courseData.grading_period_is_open,
+    isClosed: courseData.grading_period_is_past,
+    open: dayjs(courseData.term.grading_period_open),
+    deadline: dayjs(courseData.term.grade_submission_deadline),
+  };
+
+  data.openRelative = data.open.from(now);
+  data.deadlineRelative = data.deadline.from(now);
+
+  const fmt = 'MMM D [at] h:mm A z';
+  const near_date_threshold = 5;
+
+  if (Math.abs(data.open.diff(now, 'days')) > near_date_threshold) {
+    data.openFmt = data.open.format(fmt);
+  } else {
+    data.openFmt = data.open.calendar(now);
+  }
+
+  if (Math.abs(data.deadline.diff(now, 'days')) > near_date_threshold) {
+    data.deadlineFmt = data.deadline.format(fmt);
+  } else {
+    data.deadlineFmt = data.deadline.calendar(now);
+  }
+
+  data.opensIn24Hours = !data.open.diff(now, 'days');
+  data.deadlineIn24Hours = !data.deadline.diff(now, 'days');
+
+  courseData.sections.forEach((section) => {
+    const courseCampus = section.course_campus.toLowerCase();
+    section.isSeattle = courseCampus === 'seattle';
+    section.isBothell = courseCampus === 'bothell';
+    section.isTacoma = courseCampus === 'tacoma';
+
+    section.year = courseData.year;
+    section.quarter = courseData.quarter;
+    section.futureTerm = courseData.future_term;
+    section.pastTerm = courseData.past_term;
+    section.requestSummerTerm = courseData.summer_term;
+
+    section.registrationStart = courseData.term.registration_periods[0].start;
+    section.timeSchedulePublished = courseData.term.time_schedule_published;
+
+    let allPublished = true;
+    for (let campus in section.timeSchedulePublished) {
+      allPublished = allPublished && section.timeSchedulePublished[campus];
+      if (!allPublished) { break; }
+    }
+
+    const notPublishedOnCourseCampus = courseCampus in section.timeSchedulePublished &&
+      !section.timeSchedulePublished[courseCampus];
+    
+    section.isPrevTermEnrollment = false;
+    if (!allPublished && section.sln === 0 && notPublishedOnCourseCampus) {
+      section.isPrevTermEnrollment = true;
+      section.prevEnrollmentYear = this.year - 1;
+    }
+
+    // Copy over all the fields we generated in data
+    section['gradingPeriod'] = data;
+
+    if ('grading_status' in section && section.grading_status) {
+      section.grading_status.allGradesSubmitted =
+        section.grading_status.unsubmitted_count === 0;
+
+      if (
+        section.grading_status.submitted_date &&
+        section.grading_status.submitted_date !== 'None'
+      ) {
+        let submitted = dayjs(section.grading_status.submitted_date);
+        if (Math.abs(submitted.diff(now, 'days')) > near_date_threshold) {
+          section.grading_status.submittedFmt = submitted.format(fmt);
+        } else {
+          section.grading_status.submittedFmt = submitted.calendar(now);
+        }
+      }
+    }
+
+    section.gradeSubmissionSectionDelegate =
+      section.grade_submission_delegates.some((delegate) => delegate.level === 'section');
+  });
 }
 
 const customActions = {

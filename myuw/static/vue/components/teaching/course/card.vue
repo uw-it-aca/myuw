@@ -21,6 +21,7 @@
         :section="section"
         :past-term="schedule.past_term"
       />
+      <uw-grading show-row-heading :section="section"/>
     </template>
   </uw-card>
 </template>
@@ -34,6 +35,7 @@ import FinalExam from './final-exam.vue';
 import ClassList from './class-list.vue';
 import Stats from './stats.vue';
 import Materials from './materials.vue';
+import Grading from './grading.vue';
 
 export default {
   components: {
@@ -45,6 +47,7 @@ export default {
     'uw-class-list': ClassList,
     'uw-stats': Stats,
     'uw-materials': Materials,
+    'uw-grading': Grading,
   },
   props: {
     schedule: {
