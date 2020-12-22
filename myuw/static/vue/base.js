@@ -63,7 +63,6 @@ import {
   TablePlugin ,
   TabsPlugin,
   VBTogglePlugin,
-  ModalPlugin,
   TooltipPlugin,
 } from 'bootstrap-vue';
 
