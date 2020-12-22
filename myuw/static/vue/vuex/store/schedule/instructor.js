@@ -1,3 +1,4 @@
+import axios from 'axios';
 import dayjs from 'dayjs';
 import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
 import {
@@ -30,6 +31,10 @@ function postProcess(response, urlExtra, rootState) {
                   section.curriculum_abbr.replace(/ /g, '-') + "-" +
                   section.course_number + "-" +
                   section.section_id);
+    
+    section.apiTag = `${section.year},${section.quarter.toLowerCase()},${
+      section.curriculum_abbr
+    },${section.course_number}/${section.section_id}`;
 
     section.href = (section.year + "," +
                     section.quarter + "#" +
@@ -216,14 +221,37 @@ function addCourseEvalData(courseData, rootState) {
   });
 }
 
+const customMutations = {
+  updateMiniPinned: (state, {section, pin}) => {
+    for (let term in state.value) {
+      state.value[term].sections.filter(
+        (s) => s.section_label === section.section_label
+      ).forEach((section) => section.mini_card = pin);
+    }
+  }
+}
+
 const customActions = {
   fetch: fetchBuilder(
     '/api/v1/instructor_schedule/',
     postProcess,
     'json'
   ),
+  toggleMini: ({commit}, section) => {
+    if (section.mini_card) {
+      axios.get(`api/v1/inst_section_display/${section.apiTag}/close_mini`)
+        .then((resp) => {
+          commit('updateMiniPinned', {section, pin: false});
+        });
+    } else {
+      axios.get(`api/v1/inst_section_display/${section.apiTag}/pin_mini`)
+        .then((resp) => {
+          commit('updateMiniPinned', {section, pin: true});
+        });
+    }
+  },
 };
 
 export default buildWith(
-  { customActions },
+  { customMutations, customActions },
 );

@@ -27,6 +27,9 @@
             {{ section.credits }} CR
           </div>
         </div>
+        <button v-if="section.mini_card" @click="toggleMini(section)">
+          <font-awesome-icon :icon="faTimes" />
+        </button>
       </div>
     </div>
     <div v-if="section.summer_term" class="d-flex">
@@ -73,6 +76,11 @@
 </template>
 
 <script>
+import {
+  faTimes,
+} from '@fortawesome/free-solid-svg-icons';
+import {mapActions} from 'vuex';
+
 export default {
   props: {
     schedule: {
@@ -84,7 +92,15 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      faTimes,
+    };
+  },
   methods: {
+    ...mapActions('inst_schedule', [
+      'toggleMini',
+    ]),
     slnHref() {
       const quarterAbbr = this.getQuarterAbbr(this.schedule.quarter);
       const queryParams =

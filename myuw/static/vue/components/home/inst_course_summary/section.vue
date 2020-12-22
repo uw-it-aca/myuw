@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import MeetingInfo from './meeting.vue';
-import Enrollment from './enrollment.vue';
+import MeetingInfo from '../../_common/course/inst/meeting.vue';
+import Enrollment from '../../_common/course/inst/enrollment.vue';
 
 export default {
   components: {

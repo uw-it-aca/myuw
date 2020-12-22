@@ -24,10 +24,37 @@
       <uw-grading show-row-heading :section="section"/>
       <uw-evaluation show-row-heading :section="section"/>
     </template>
+    <template v-if="linkedSections.length > 0" #card-disclosure>
+      <b-collapse :id="`secondary-${section.section_label}`" v-model="isOpen">
+        <uw-linked-section
+          v-for="(linkedSection, i) in linkedSections"
+          :key="`secondary-${section.section_label}-${i}`"
+          :section="linkedSection"
+        />
+      </b-collapse>
+    </template>
+    <template v-if="linkedSections.length > 0" #card-footer>
+      <b-button
+        v-b-toggle="`secondary-${section.section_label}`"
+        variant="link"
+        size="sm"
+        class="w-100 p-0 border-0 text-dark"
+      >
+        <font-awesome-icon v-if="!isOpen" :icon="faCaretRight" />
+        <font-awesome-icon v-else :icon="faCaretDown" />
+        Secondary Sections ({{linkedSections.length}})
+      </b-button>
+    </template>
   </uw-card>
 </template>
 
 <script>
+import {
+  faThumbtack,
+  faCaretRight,
+  faCaretDown,
+} from '@fortawesome/free-solid-svg-icons';
+
 import Card from '../../_templates/card.vue';
 import CourseHeader from '../../_common/course/header.vue';
 import MeetingInfo from '../../_common/course/meeting-info.vue';
@@ -38,6 +65,7 @@ import Stats from './stats.vue';
 import Materials from './materials.vue';
 import Grading from './grading.vue';
 import Evaluation from './evaluation.vue';
+import LinkedSection from '../../_common/course/inst/linked-section.vue';
 
 export default {
   components: {
@@ -51,6 +79,7 @@ export default {
     'uw-materials': Materials,
     'uw-grading': Grading,
     'uw-evaluation': Evaluation,
+    'uw-linked-section': LinkedSection,
   },
   props: {
     schedule: {
@@ -62,7 +91,20 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      isOpen: false,
+      faThumbtack,
+      faCaretRight,
+      faCaretDown,
+    };
+  },
   computed: {
+    linkedSections() {
+      return this.schedule.sections.filter(
+        (section) => section.primary_section_label === this.section.section_label
+      );
+    }
   },
 };
 </script>

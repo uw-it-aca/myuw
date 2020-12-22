@@ -43,7 +43,7 @@
       <h5 class="sr-only">
         Section Meetings:
       </h5>
-      <uw-meeting :section="section" :mobile-only="mobileOnly" />
+      <uw-meeting :section="section" />
     </div>
 
     <div>
@@ -59,6 +59,7 @@
               :value="`/teaching/${section.href}`"
               :aria-label="`Pin ${section.id} mini-card to teaching page`"
               title="Pin a mini-card onto teaching page"
+              @click="toggleMini(section)"
       >
         Pin to teaching page
       </button>
@@ -67,6 +68,7 @@
               :value="`/teaching/${section.href}`"
               :aria-label="`Remove ${section.id} mini-card from teaching page`"
               title="Remove the mini-card from teaching page"
+              @click="toggleMini(section)"
       >
         Unpin
       </button>
@@ -75,6 +77,8 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+
 import MeetingInfo from './meeting.vue';
 import Enrollment from './enrollment.vue';
 
@@ -84,14 +88,15 @@ export default {
     'uw-enrollment': Enrollment,
   },
   props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
     section: {
       type: Object,
       required: true,
     },
   },
+  methods: {
+    ...mapActions('inst_schedule', [
+      'toggleMini',
+    ]),
+  }
 };
 </script>

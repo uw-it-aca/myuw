@@ -104,10 +104,6 @@
 <script>
 export default {
   props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
     section: {
       type: Object,
       required: true,

@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import LinkedSection from './linked-section.vue';
+import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import Section from './section.vue';
 
 export default {

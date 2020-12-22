@@ -1,11 +1,22 @@
 <template>
   <div v-if="isReady && instSchedule.sections.length">
-    <uw-course-card
-      v-for="(section, i) in instSchedule.sections"
-      :key="i"
-      :schedule="instSchedule"
-      :section="section"
-    />
+    <div v-for="(section, i) in instSchedule.sections" :key="i">
+      <uw-course-card
+        v-if="section.is_primary_section"
+        :schedule="instSchedule"
+        :section="section"
+      />
+      <b-collapse
+        v-else
+        :id="`collapse-${section.section_label}`"
+        :visible="section.mini_card"
+      >
+        <uw-mini-course-card
+          :schedule="instSchedule"
+          :section="section"
+        />
+      </b-collapse>
+    </div>
   </div>
   <uw-card
     v-else
@@ -21,11 +32,13 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import CourseCard from './card.vue';
+import MiniCourseCard from './mini-card.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-course-card': CourseCard,
+    'uw-mini-course-card': MiniCourseCard,
   },
   props: {
     term: {
