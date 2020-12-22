@@ -72,7 +72,6 @@ describe('Upass Card', () => {
       "https://www.uwb.edu/facility/commuter-services/upass");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "https://www.uwb.edu/facility/commuter-services/upass");
-
   });
   it('Evaluate the computed properties for tac stud', async () => {
     store.state.user.affiliations.tacoma = true;
@@ -87,7 +86,6 @@ describe('Upass Card', () => {
       "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "https://www.tacoma.uw.edu/getting-campus/what-u-pass");
-
   });
   it('Evaluate the computed properties for pce stud', async () => {
     store.state.user.affiliations.pce = true;
@@ -110,6 +108,5 @@ describe('Upass Card', () => {
        "https://facilities.uw.edu/transportation/employee-u-pass#10");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "http://www.washington.edu/u-pass");
-
   });
 });
