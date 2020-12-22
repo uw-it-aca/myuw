@@ -10,7 +10,9 @@ dayjs.extend(require('dayjs/plugin/calendar'))
 dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/timezone'))
 
-function postProcess(response, urlExtra) {
+const fmt = 'MMM D [at] h:mm A z';
+
+function postProcess(response, urlExtra, rootState) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
@@ -94,6 +96,7 @@ function postProcess(response, urlExtra) {
   }
 
   addCourseGradeData(courseData);
+  addCourseEvalData(courseData, rootState);
 
   return data;
 }
@@ -110,7 +113,6 @@ function addCourseGradeData(courseData) {
   data.openRelative = data.open.from(now);
   data.deadlineRelative = data.deadline.from(now);
 
-  const fmt = 'MMM D [at] h:mm A z';
   const near_date_threshold = 5;
 
   if (Math.abs(data.open.diff(now, 'days')) > near_date_threshold) {
@@ -180,6 +182,37 @@ function addCourseGradeData(courseData) {
 
     section.gradeSubmissionSectionDelegate =
       section.grade_submission_delegates.some((delegate) => delegate.level === 'section');
+  });
+}
+
+function addCourseEvalData(courseData, rootState) {
+  const comparisonDate = dayjs(rootState.cardDisplayDates.cardDisplayDates);
+  courseData.sections.forEach((section) => {
+    if (section.evaluation) {
+      section.evaluation.responseRatePercent = 0;
+      section.evaluation.isPast = false;
+      if (section.evaluation.response_rate) {
+        section.evaluation.responseRatePercent = Math.round(section.evaluation.response_rate * 100);
+      }
+      if (section.evaluation.eval_open_date) {
+        let evalOpen = dayjs(section.evaluation.eval_open_date);
+        section.evaluation.evalOpenDateDisplay = evalOpen.format(fmt);
+        section.evaluation.isOpen = comparisonDate.isAfter(evalOpen);
+      }
+      if (section.evaluation.eval_close_date) {
+        let evalClose = dayjs(section.evaluation.eval_close_date);
+        section.evaluation.evalCloseDateDisplay = evalClose.format(fmt);
+        section.evaluation.inPast = comparisonDate.isAfter(evalClose);
+        if (section.evaluation.isPast) {
+          section.evaluation.is_open = false;
+        }
+      }
+      if (section.evaluation.report_available_date) {
+        var reportDate = dayjs(section.evaluation.report_available_date);
+        section.evaluation.reportAvailableDateDisplay = reportDate.format(fmt);
+        section.evaluation.reportIsAvailable = comparisonDate.isAfter(reportDate);
+      }
+    }
   });
 }
 

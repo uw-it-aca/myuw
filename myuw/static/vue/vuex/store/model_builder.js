@@ -12,7 +12,7 @@ const setTermAndExtractData = (response, urlExtra) => {
 }
 
 const fetchBuilder = (url, postProcess, type) => {
-  return ({commit, getters}, urlExtra = '') => {
+  return ({commit, getters, rootState}, urlExtra = '') => {
     if (
       !getters.isReadyTagged(urlExtra) &&
       !getters.isFetchingTagged(urlExtra)
@@ -22,7 +22,7 @@ const fetchBuilder = (url, postProcess, type) => {
         responseType: type,
       }).then((response) => {
         return {
-          data: postProcess(response, urlExtra),
+          data: postProcess(response, urlExtra, rootState),
           statusCode: response.status
         };
       }).then(({data, statusCode}) => {
