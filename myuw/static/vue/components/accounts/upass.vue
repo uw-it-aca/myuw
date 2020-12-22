@@ -43,7 +43,7 @@
         </a>
       </div>
       <div v-else id="upass-not-current">
-        <div v-if="student" id="upass-notices-for-students">
+        <div v-if="!employee" id="upass-notices-for-students">
           <div v-if="seattle">
             <p>
               If you are registered for a quarter, your U-PASS will work one week before
@@ -119,29 +119,29 @@ export default {
       return this.statusCode !== 404;
     },
     getUrl() {
-      if (this.student) {
-        return (
-          this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
-            this.tacoma ? "https://www.tacoma.uw.edu/getting-campus/u-pass-orca" :
-              "https://facilities.uw.edu/transportation/student-u-pass#3"));
+      if (this.employee) {
+        return "https://facilities.uw.edu/transportation/employee-u-pass#10";
       }
-      return "https://facilities.uw.edu/transportation/employee-u-pass#10";
+      return (
+        this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
+          this.tacoma ? "https://www.tacoma.uw.edu/getting-campus/u-pass-orca" :
+            "https://facilities.uw.edu/transportation/student-u-pass#3"));
     },
     getPurchaseUrl() {
       return (this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" :
         "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass");
     },
     getWhatIsUrl() {
-      if (this.student) {
-        return (
-          this.tacoma ?  "https://www.tacoma.uw.edu/getting-campus/what-u-pass" : (
-            this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
-              this.seattle ? "https://facilities.uw.edu/transportation/student-u-pass" : (
-                this.pce ?  "https://facilities.uw.edu/transportation/student-u-pass#9" :
-                  "http://www.washington.edu/u-pass/"))));
+      if (this.employee) {
+        return "http://www.washington.edu/u-pass";
       }
-      return "http://www.washington.edu/u-pass";
-    }
+      return (
+        this.tacoma ?  "https://www.tacoma.uw.edu/getting-campus/what-u-pass" : (
+          this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
+            this.seattle ? "https://facilities.uw.edu/transportation/student-u-pass" : (
+              this.pce ?  "https://facilities.uw.edu/transportation/student-u-pass#9" :
+                "http://www.washington.edu/u-pass/"))));
+      }
   },
   mounted() {
     this.fetch();
