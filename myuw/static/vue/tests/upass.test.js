@@ -28,23 +28,88 @@ describe('Upass Card', () => {
       state: {
         user: {
           affiliations: {
-            student: true,
+            student: false,
+            pce: false,
+            seattle: false,
+            bothell: false,
+            tacoma: false,
+            employee: false,
           }
         }
       }
     });
   });
 
-  it('Evaluate the computed properties', async () => {
+  it('Evaluate the computed properties for sea stud', async () => {
+    store.state.user.affiliations.seattle = true;
+    store.state.user.affiliations.student = true;
     axios.get.mockResolvedValue({data: mockUpass});
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
-
     expect(wrapper.vm.is_current).toBeFalsy();
-    expect(wrapper.vm.is_employee).toBeFalsy();
+    expect(wrapper.vm.employee).toBeFalsy();
+    expect(wrapper.vm.student).toBe(true);
+    expect(wrapper.vm.seattle).toBe(true);
     expect(wrapper.vm.in_summer).toBeTruthy();
     expect(wrapper.vm.display_activation).toBeTruthy();
+    expect(wrapper.vm.getUrl).toBe(
+      "https://facilities.uw.edu/transportation/student-u-pass#3");
+    expect(wrapper.vm.getWhatIsUrl).toBe(
+      "https://facilities.uw.edu/transportation/student-u-pass");
+  });
+  it('Evaluate the computed properties for bot stud', async () => {
+    store.state.user.affiliations.bothell = true;
+    store.state.user.affiliations.student = true;
+    axios.get.mockResolvedValue({data: mockUpass});
+    const wrapper = mount(UpassCard, {store, localVue});
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.vm.getUrl).toBe(
+       "https://www.uwb.edu/facility/commuter-services/upass");
+    expect(wrapper.vm.getPurchaseUrl).toBe(
+      "https://www.uwb.edu/facility/commuter-services/upass");
+    expect(wrapper.vm.getWhatIsUrl).toBe(
+      "https://www.uwb.edu/facility/commuter-services/upass");
+
+  });
+  it('Evaluate the computed properties for tac stud', async () => {
+    store.state.user.affiliations.tacoma = true;
+    store.state.user.affiliations.student = true;
+    axios.get.mockResolvedValue({data: mockUpass});
+    const wrapper = mount(UpassCard, {store, localVue});
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.vm.getUrl).toBe(
+       "https://www.tacoma.uw.edu/getting-campus/u-pass-orca");
+    expect(wrapper.vm.getPurchaseUrl).toBe(
+      "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass");
+    expect(wrapper.vm.getWhatIsUrl).toBe(
+      "https://www.tacoma.uw.edu/getting-campus/what-u-pass");
+
+  });
+  it('Evaluate the computed properties for pce stud', async () => {
+    store.state.user.affiliations.pce = true;
+    axios.get.mockResolvedValue({data: mockUpass});
+    const wrapper = mount(UpassCard, {store, localVue});
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.vm.getUrl).toBe(
+       "https://facilities.uw.edu/transportation/student-u-pass#3");
+    expect(wrapper.vm.getWhatIsUrl).toBe(
+      "https://facilities.uw.edu/transportation/student-u-pass#9");
+  });
+   it('Evaluate the computed properties for employee', async () => {
+    store.state.user.affiliations.employee = true;
+    axios.get.mockResolvedValue({data: mockUpass});
+    const wrapper = mount(UpassCard, {store, localVue});
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise((r) => setTimeout(r, 10));
+    expect(wrapper.vm.getUrl).toBe(
+       "https://facilities.uw.edu/transportation/employee-u-pass#10");
+    expect(wrapper.vm.getWhatIsUrl).toBe(
+      "http://www.washington.edu/u-pass");
+
   });
 });
