@@ -32,9 +32,9 @@
             </a>
           </td>
           <td :headers="`list-csv-${section.id}`">
-            <a href="#">
-              TODO: Download class list csv
-            </a>
+            <button v-if="isDownloadPossible" @click="downloadClassList">
+              <font-awesome-icon :icon="faDownload" /> Download (CSV)
+            </button>
           </td>
         </tr>
       </tbody>
@@ -43,6 +43,11 @@
 </template>
 
 <script>
+import {mapGetters, mapState, mapActions} from 'vuex';
+import {
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
+
 export default {
   props: {
     section: {
@@ -54,5 +59,54 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      faDownload,
+    };
+  },
+  computed: {
+    ...mapState('classlist', {
+      allData: (state) => state.value,
+    }),
+    ...mapGetters('classlist', {
+      isReadyTagged: 'isReadyTagged',
+    }),
+    sectionDetail() {
+      return this.allData[this.sectionLabel];
+    },
+    sectionLabel() {
+      let s = this.section;
+      return `${s.year},${s.quarter.toLowerCase()},${s.curriculum_abbr},${
+        s.course_number
+      }/${s.section_id}`;
+    },
+    isDownloadPossible() {
+      return this.isReadyTagged(this.sectionLabel);
+    }
+  },
+  created() {
+    this.fetchClasslist(this.sectionLabel);
+  },
+  methods: {
+    ...mapActions('classlist', {
+      fetchClasslist: 'fetch',
+    }),
+    fileName() {
+      const fn = this.section.section_label + '_students.csv';
+      return fn.replace(/[^a-z0-9._]/ig, '_');
+    },
+    downloadClassList() {
+      const hiddenElement = document.createElement('a');
+      const csvData = this.buildClasslistCsv(
+        this.sectionDetail.section[0].registrations,
+        this.sectionDetail.section[0].has_linked_sections
+      );
+
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = this.fileName();
+      hiddenElement.click();
+    },
+  }
 };
 </script>

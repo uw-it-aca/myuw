@@ -27,7 +27,8 @@
       <a
         :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
         :label="(section.gradeSubmissionSectionDelegate ? 'Update' : 'Add')
-          + `Grading Delegate: ${section.curriculum_abbr} ${section.course_number} ${section.section_id}`"
+          + `Grading Delegate: ${section.curriculum_abbr} ${
+            section.course_number} ${section.section_id}`"
       >
         <span v-if="section.gradeSubmissionSectionDelegate">
           Update grade submission delegate

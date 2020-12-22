@@ -7,8 +7,10 @@ import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 import CourseTabs from './components/teaching/course/tabs.vue';
 
 // store
+import classlist from './vuex/store/classlist';
 import instSchedule from './vuex/store/schedule/instructor';
 
+vueConf.store.registerModule('classlist', classlist);
 vueConf.store.registerModule('inst_schedule', instSchedule);
 
 vueConf.store.commit('addVarToState', {

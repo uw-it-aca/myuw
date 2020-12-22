@@ -84,7 +84,7 @@ export default {
 
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
       hiddenElement.target = '_blank';
-      hiddenElement.download = this.fileName;
+      hiddenElement.download = this.fileName();
       hiddenElement.click();
     },
   },
