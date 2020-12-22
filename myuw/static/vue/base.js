@@ -53,14 +53,16 @@ import {
   FormGroupPlugin,
   FormInputPlugin,
   FormSelectPlugin,
+  FormCheckboxPlugin ,
   InputGroupPlugin,
+  ModalPlugin,
   LayoutPlugin,
   LinkPlugin,
   NavPlugin,
   SpinnerPlugin,
+  TablePlugin ,
   TabsPlugin,
   VBTogglePlugin,
-  ModalPlugin,
 } from 'bootstrap-vue';
 
 // Mixins
@@ -116,6 +118,7 @@ Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
 Vue.use(CardPlugin);
 Vue.use(CollapsePlugin);
+Vue.use(FormCheckboxPlugin );
 Vue.use(FormPlugin);
 Vue.use(FormGroupPlugin);
 Vue.use(FormInputPlugin);
@@ -128,6 +131,7 @@ Vue.use(SpinnerPlugin);
 Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
 Vue.use(ModalPlugin);
+Vue.use(TablePlugin );
 
 // vuex
 Vue.use(Vuex);
