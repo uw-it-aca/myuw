@@ -43,14 +43,7 @@
         </a>
       </div>
       <div v-else id="upass-not-current">
-        <div v-if="employee" id="upass-link-for-emp">
-          <a href="http://www.washington.edu/u-pass"
-            data-linklabel="Employee U-Pass"
-          >
-            What is the U-PASS?
-          </a>
-        </div>
-        <div v-else id="upass-notices-for-students">
+        <div v-if="student" id="upass-notices-for-students">
           <div v-if="seattle">
             <p>
               If you are registered for a quarter, your U-PASS will work one week before
@@ -72,23 +65,25 @@
           </div>
           <div v-else id="upass-notices-for-non-sea-studs">
             <p v-if="(bothell || tacoma)">
-              If you <a :href="getPurchaseUrl">purchase</a>
+              If you <a :href="getPurchaseUrl" data-linklabel="Purchase U-PASS">purchase</a>
               a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
             </p>
           </div>
-          <ul v-if="pce || seattle || tacoma || !bothell">
-            <li>
-              <a id="upass-links" :href="getWhatIsUrl">What is the U-PASS?</a>
-            </li>
-            <li v-if="pce">
-              <a href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
-                    data-linklabel="CC Student Purchase U-PASS"
-              >
-                Purchasing a U-PASS
-              </a>
-            </li>
-          </ul>
         </div>
+        <ul>
+          <li>
+            <a :href="getWhatIsUrl" data-linklabel="What is U-PASS">
+              What is the U-PASS?
+            </a>
+          </li>
+          <li v-if="pce">
+            <a href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
+                  data-linklabel="CC Student Purchase U-PASS"
+            >
+              Purchasing a U-PASS
+            </a>
+          </li>
+        </ul>
       </div>
     </template>
   </uw-card>
@@ -124,37 +119,27 @@ export default {
       return this.statusCode !== 404;
     },
     getUrl() {
-      if (this.employee) {
-        return "https://facilities.uw.edu/transportation/employee-u-pass#10";
+      if (this.student) {
+        return (
+          this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
+            this.tacoma ? "https://www.tacoma.uw.edu/getting-campus/u-pass-orca" :
+              "https://facilities.uw.edu/transportation/student-u-pass#3"));
       }
-      if (this.bothell) {
-        return "https://www.uwb.edu/facility/commuter-services/upass";
-      }
-       if (this.tacoma) {
-        return "https://www.tacoma.uw.edu/getting-campus/u-pass-orca";
-      }
-      // PCE students and students without a campus (same link as Seattle's
-      return "https://facilities.uw.edu/transportation/student-u-pass#3";
+      return "https://facilities.uw.edu/transportation/employee-u-pass#10";
     },
     getPurchaseUrl() {
-      if (this.bothell) {
-        return "https://www.uwb.edu/facility/commuter-services/upass";
-      }
-      // tacoma
-      return "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass";
+      return (this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" :
+        "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass");
     },
     getWhatIsUrl() {
-      if (this.pce) {
-        return "https://facilities.uw.edu/transportation/student-u-pass#9";
+      if (this.student) {
+        return (
+          this.pce ?  "https://facilities.uw.edu/transportation/student-u-pass#9" : (
+            this.seattle ? "https://facilities.uw.edu/transportation/student-u-pass" : (
+              this.tacoma ?  "https://www.tacoma.uw.edu/getting-campus/what-u-pass" :
+                "http://www.washington.edu/u-pass/")));
       }
-      if (this.seattle) {
-        return "https://facilities.uw.edu/transportation/student-u-pass";
-      }
-       if (this.tacoma) {
-        return "https://www.tacoma.uw.edu/getting-campus/what-u-pass";
-      }
-      // Students without a campus
-      return "http://www.washington.edu/u-pass/";
+      return "http://www.washington.edu/u-pass";
     }
   },
   mounted() {
