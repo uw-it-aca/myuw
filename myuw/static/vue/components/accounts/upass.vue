@@ -134,10 +134,11 @@ export default {
     getWhatIsUrl() {
       if (this.student) {
         return (
-          this.pce ?  "https://facilities.uw.edu/transportation/student-u-pass#9" : (
-            this.seattle ? "https://facilities.uw.edu/transportation/student-u-pass" : (
-              this.tacoma ?  "https://www.tacoma.uw.edu/getting-campus/what-u-pass" :
-                "http://www.washington.edu/u-pass/")));
+          this.tacoma ?  "https://www.tacoma.uw.edu/getting-campus/what-u-pass" : (
+            this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
+              this.seattle ? "https://facilities.uw.edu/transportation/student-u-pass" : (
+                this.pce ?  "https://facilities.uw.edu/transportation/student-u-pass#9" :
+                  "http://www.washington.edu/u-pass/"))));
       }
       return "http://www.washington.edu/u-pass";
     }
