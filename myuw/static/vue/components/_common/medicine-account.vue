@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="w-100 myuw-border-top border-c7" />
-    <img :src="uw_medicine_image" width="100px" alt="">
     <uw-card v-if="showCard"
              :loaded="isReady"
              :errored="isErrored"
@@ -11,6 +10,7 @@
         <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
           UW Medicine Account
         </h3>
+        <img :src="staticUrl+'images/UWMedicine_Logo_RGB@2x.png'" width="100px" alt="">
       </template>
       <template #card-error>
       An error occurred and MyUW cannot load your information right now.
@@ -26,17 +26,33 @@
           like Epic, ORCA, MINDscape, AMC network, etc.
         </p>
         <div v-if="med_pw_expired">
+          <!--Maybe add a b-alert instead..?-->
           <p>Password expired on {{ toFriendlyDate(expires_med) }}.
 	          <a href="https://services.uwmedicine.org/passwordportal/login.htm" data-linklabel="Change UW Medicine Password" class="password-alert"><br>Change your password to regain access.</a>
           </p>
         </div>
-        <div>
+        <div v-else>
           <h4>
             Password expiration
           </h4>
-          <div>
+          <component :is="expires_30_days ? b-alert : div"
+                     :variant="expires_30_days ? danger : ''"
+                     show
+          >
+            <span>{{ toFriendlyDate(expires_med) }}</span>
+            <span>in {{ days_before_expires }} days*</span>
+          </component>
+          <!--
+          <b-alert v-if="expires_30_days" show variant="danger">
             
+          </b-alert>
+          <div v-else>
+            <span>{{ toFriendlyDate(expires_med) }}</span>
+            <span>in {{ days_before_expires }} days*</span>
           </div>
+          <p>*Expiration date gets updated nightly.</p>
+          <a href="https://services.uwmedicine.org/passwordportal/login.htm">Change UW Medicine password</a>
+        -->
         </div>
       </template>
 
@@ -58,7 +74,15 @@ export default {
       has_active_med_pw: (state) => state.profile.value.password.has_active_med_pw,
       med_pw_expired: (state) => state.profile.value.password.med_pw_expired,
       expires_med: (state) => state.profile.value.password.expires_med,
-      uw_medicine_image: (state) => 'url(\'' + state.staticUrl + 'images/wday_logo.png\'',
+      time_stamp: (state) => state.profile.value.password.time_stamp,
+      days_before_expires: (state) => {
+        console.log(daysjs(time_stamp).diff(expires_med, 'day'));
+        return daysjs(time_stamp).diff(expires_med, 'day');
+      },
+      expires_30_days: (state) => {
+        return this.days_before_expires <= 30;
+      },
+      staticUrl: (state) => state.staticUrl,
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
@@ -69,7 +93,7 @@ export default {
       return this.statusCode !== 404;
     },
     showCard() {
-      return true; //this.has_active_med_pw;
+      return !this.isReady || (this.isReady && this.has_active_med_pw);
     },
   },
   mounted() {
@@ -82,7 +106,9 @@ export default {
       }
       return dayjs(dateStr).format('ddd, MMM D');
     },
-    ...mapActions('profile', ['fetch']),
+    ...mapActions('profile', {
+      fetch: 'fetch',
+    }),
   },
 };
 </script>
