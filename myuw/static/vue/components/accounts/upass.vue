@@ -119,28 +119,24 @@ export default {
       return this.statusCode !== 404;
     },
     getUrl() {
-      if (this.employee) {
-        return "https://facilities.uw.edu/transportation/employee-u-pass#10";
-      }
       return (
-        this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
-          this.tacoma ? "https://www.tacoma.uw.edu/getting-campus/u-pass-orca" :
-            "https://facilities.uw.edu/transportation/student-u-pass#3"));
+        this.employee ? "https://facilities.uw.edu/transportation/employee-u-pass#10" : (
+          this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
+            this.tacoma ? "https://www.tacoma.uw.edu/getting-campus/u-pass-orca" :
+              "https://facilities.uw.edu/transportation/student-u-pass#3")));
     },
     getPurchaseUrl() {
       return (this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" :
         "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass");
     },
     getWhatIsUrl() {
-      if (this.employee) {
-        return "http://www.washington.edu/u-pass";
-      }
       return (
-        this.tacoma ?  "https://www.tacoma.uw.edu/getting-campus/what-u-pass" : (
-          this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
-            this.seattle ? "https://facilities.uw.edu/transportation/student-u-pass" : (
-              this.pce ?  "https://facilities.uw.edu/transportation/student-u-pass#9" :
-                "http://www.washington.edu/u-pass/"))));
+        this.employee ? "http://www.washington.edu/u-pass" : (
+          this.tacoma ?  "https://www.tacoma.uw.edu/getting-campus/what-u-pass" : (
+            this.bothell ? "https://www.uwb.edu/facility/commuter-services/upass" : (
+              this.seattle ? "https://facilities.uw.edu/transportation/student-u-pass" : (
+                this.pce ?  "https://facilities.uw.edu/transportation/student-u-pass#9" :
+                  "http://www.washington.edu/u-pass/")))));
       }
   },
   mounted() {
