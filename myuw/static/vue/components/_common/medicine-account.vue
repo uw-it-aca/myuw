@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <div v-if="showCard">
     <div class="w-100 myuw-border-top border-c7" />
-    <uw-card v-if="showCard"
-             :loaded="isReady"
+    <uw-card :loaded="isReady"
              :errored="isErrored"
              :errored-show="showError"
     >
