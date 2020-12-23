@@ -13,8 +13,8 @@
     <template #card-error>
       An error occurred and MyUW cannot load your Husky card balance
       right now. In the meantime, if you want to add funds, try the
-      <a href="http://facilities.uw.edu/transportation/index"
-        data-linklabel="UW Transportation"
+      <a href="https://transportation.uw.edu/"
+        data-linklabel="UW Transportation Service"
         target="_blank"
       >UW Transportation page</a>.
     </template>
