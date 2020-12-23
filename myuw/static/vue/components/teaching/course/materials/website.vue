@@ -18,7 +18,7 @@
       </span>
     </span>
   </li>
-  <li v-else-if="pastTerm">
+  <li v-else-if="section.pastTerm">
     <span>Website:&nbsp;&nbsp;</span>
     <span>None provided</span>
   </li>

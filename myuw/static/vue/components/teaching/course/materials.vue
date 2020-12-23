@@ -4,7 +4,7 @@
       Course Materials
     </h5>
     <ul>
-      <uw-website :section="section" :past-term="pastTerm" />
+      <uw-website :section="section" />
       <uw-email-list :section="section" />
     </ul>
   </div>
@@ -25,10 +25,6 @@ export default {
       required: true,
     },
     showRowHeader: {
-      type: Boolean,
-      default: false,
-    },
-    pastTerm: {
       type: Boolean,
       default: false,
     },
