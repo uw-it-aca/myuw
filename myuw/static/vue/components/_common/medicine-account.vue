@@ -50,7 +50,11 @@
             <span>in {{ daysBeforeExpires }} days*</span>
           </div>
           <p>*Expiration date gets updated nightly.</p>
-          <a :href="passwordChange">Change UW Medicine password</a>
+          <a :href="passwordChange"
+             target="_blank"
+          >
+            Change UW Medicine password
+          </a>
         </div>
       </template>
     </uw-card>
