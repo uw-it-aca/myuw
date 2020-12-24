@@ -12,7 +12,7 @@ import Vuex from 'vuex';
 import profile from '../vuex/store/profile';
 
 import UwCard from '../components/_templates/card.vue';
-import MedicineAccountCard from '../components/_common/medicine-account.vue';
+import MedicineAccountCard from '../components/accounts/medicine-account.vue';
 import mockJinterProfile from './mock_data/profile/jinter.json';
 
 const localVue = createLocalVue(Vuex);
