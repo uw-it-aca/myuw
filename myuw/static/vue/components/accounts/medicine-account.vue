@@ -103,12 +103,6 @@ export default {
     this.fetch();
   },
   methods: {
-    toFriendlyDate(dateStr) {
-      if (dateStr === undefined || dateStr.length === 0) {
-        return '';
-      }
-      return dayjs(dateStr).format('ddd, MMM D');
-    },
     ...mapActions('profile', {
       fetch: 'fetch',
     }),

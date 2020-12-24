@@ -20,7 +20,7 @@
     </template>
     <template #card-body>
       <h4>Status</h4>
-      <span>{{ is_current ? 'Current' : 'Not current' }}</span>
+      <span>{{ isCurrent ? 'Current' : 'Not current' }}</span>
 
       <div v-if="isCurrent" id="upass-notices">
         <p v-if="displayActivation">
