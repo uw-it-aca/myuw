@@ -27,6 +27,32 @@
         ></a>
       </b-alert>
 
+      <div>
+        <h4>
+          Items out
+        </h4>
+        <span>
+          {{ itemsLoaned + (isPlural(itemsLoaned) ? ' item' : ' items')}}
+        </span>
+      </div>
+
+      <div v-if="nextDue">
+        <h4>
+          Next item due
+        </h4>
+        <span>
+
+        </span>
+      </div>
+
+      <div>
+        <a href="http://search.lib.uw.edu/account"
+           target="_blank"
+           aria-label="Your Library Account"
+        >
+          Access library account
+        </a>
+      </div>
 
     </template>
   </uw-card>
@@ -80,7 +106,7 @@ export default {
       return dayjs(dateStr).format('ddd, MMM D');
     },
     isPlural(count) {
-      return count > 1;
+      return count !== 1;
     },
     ...mapActions('library', {
       fetch: 'fetch',
