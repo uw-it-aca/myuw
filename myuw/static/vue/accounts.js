@@ -6,11 +6,11 @@ import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 // common components
 import UWNetID from './components/_common/uw-netid.vue';
 import HRPayroll from './components/_common/hr-payroll.vue';
-import MedicineAccount from './components/_common/medicine-account.vue';
 
 // accounts components
 import HfsSea from './components/accounts/hfs-sea.vue';
 import HuskyCard from './components/accounts/husky.vue';
+import MedicineAccount from './components/accounts/medicine-account.vue';
 
 // stores
 import hfs from './vuex/store/hfs';
