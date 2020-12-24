@@ -48,12 +48,12 @@ describe('Upass Card', () => {
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
-    expect(wrapper.vm.is_current).toBeFalsy();
+    expect(wrapper.vm.isCurrent).toBeFalsy();
     expect(wrapper.vm.employee).toBeFalsy();
     expect(wrapper.vm.student).toBe(true);
     expect(wrapper.vm.seattle).toBe(true);
-    expect(wrapper.vm.in_summer).toBeTruthy();
-    expect(wrapper.vm.display_activation).toBeTruthy();
+    expect(wrapper.vm.inSummer).toBeTruthy();
+    expect(wrapper.vm.displayActivation).toBeTruthy();
     expect(wrapper.vm.getUrl).toBe(
       "https://facilities.uw.edu/transportation/student-u-pass#3");
     expect(wrapper.vm.getWhatIsUrl).toBe(

@@ -22,11 +22,11 @@
       <h4>Status</h4>
       <span>{{ is_current ? 'Current' : 'Not current' }}</span>
 
-      <div v-if="is_current" id="upass-notices">
-        <p v-if="display_activation">
+      <div v-if="isCurrent" id="upass-notices">
+        <p v-if="displayActivation">
           Finalize activation by tapping your card on a reader.
         </p>
-        <div v-if="!employee && in_summer && (pce || seattle)">
+        <div v-if="!employee && inSummer && (pce || seattle)">
           <h4>Summer U-PASS Use</h4>
           <p>
             Your U-PASS does not work during summer quarter unless you are registered
@@ -49,7 +49,7 @@
               If you are registered for a quarter, your U-PASS will work one week before
               the quarter starts.
             </p>
-            <div v-if="in_summer">
+            <div v-if="inSummer">
               <h4>Summer U-PASS Use</h4>
               <p>
                 Your U-PASS does not work during summer quarter unless you are registered
@@ -108,9 +108,9 @@ export default {
       bothell: (state) => state.user.affiliations.bothell,
       seattle: (state) => state.user.affiliations.seattle,
       pce: (state) => state.user.affiliations.pce,
-      display_activation: (state) => state.upass.value.display_activation,
-      in_summer: (state) => state.upass.value.in_summer,
-      is_current: (state) => state.upass.value.is_current,
+      displayActivation: (state) => state.upass.value.display_activation,
+      inSummer: (state) => state.upass.value.in_summer,
+      isCurrent: (state) => state.upass.value.is_current,
     }),
     showCard() {
       return this.employee || this.student;
