@@ -13,11 +13,13 @@
   <template #primary>
     <b-col md="6" :class="[$mq === 'mobile' ? 'px-0' : '']">
       <!--MARK: card components go here in order -->
+      <myuw-medicine-account></myuw-medicine-account>
       <myuw-husky></myuw-husky>
       <myuw-hfs-sea></myuw-hfs-sea>
       <myuw-hr-payroll></myuw-hr-payroll>
+      <myuw-upass></myuw-upass>
       <myuw-uwnetid></myuw-uwnetid>
-      <myuw-medicine-account></myuw-medicine-account>
+
     </b-col>
   </template>
   <!-- MARK: #secondary template (column 2, table/desktop) -->
