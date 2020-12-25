@@ -40,16 +40,12 @@ export default {
     ...mapGetters('directory', {
       isReady: 'isReady',
       isErrored: 'isErrored',
-      statusCode: 'statusCode',
     }),
-    showError() {
-      return this.statusCode !== 404;
-    },
     hasName() {
       return this.displayName !== undefined || this.fullName !== undefined;
     },
     showCard() {
-      return !this.isReady || this.isErrored || this.hasName;
+      return !this.isReady || this.hasName;
     },
     hasPreferred() {
       return this.displayName !== undefined &&
