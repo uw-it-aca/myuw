@@ -62,7 +62,6 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import dayjs from 'dayjs';
 import Card from '../_templates/card.vue';
 
 export default {
@@ -93,7 +92,7 @@ export default {
       return this.statusCode !== 404;
     },
     showCard() {
-      return !this.isReady || (this.isReady && this.hasActiveMedPw);
+      return !this.isReady || this.hasActiveMedPw || this.isErrored;
     },
     expires30Days() {
       return this.daysBeforeExpires <= 30;
