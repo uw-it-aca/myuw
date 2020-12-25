@@ -45,11 +45,15 @@ export default {
     showError() {
       return this.statusCode !== 404;
     },
+    hasName() {
+      return this.displayName !== undefined || this.fullName !== undefined;
+    },
     showCard() {
-      return !this.isReady || this.isErrored || this.displayName || this.fullName;
+      return !this.isReady || this.isErrored || this.hasName;
     },
     hasPreferred() {
-      return this.displayName !== this.fullName;
+      return this.displayName !== undefined &&
+        this.displayName !== this.fullName;
     },
   },
   mounted() {
