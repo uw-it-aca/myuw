@@ -3,6 +3,7 @@ import re
 
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
+HALF_HOUR = 60 * 30
 ONE_HOUR = 60 * 60
 FOUR_HOURS = ONE_HOUR * 4
 ONE_DAY = ONE_HOUR * 24
@@ -37,7 +38,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY
 
         if "gws" == service:
-            return FIFTEEN_MINS
+            return HALF_HOUR
 
         if "pws" == service:
             return ONE_HOUR
