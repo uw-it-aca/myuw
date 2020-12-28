@@ -43,8 +43,7 @@ class TestUserDao(TransactionTestCase):
         self.assertNotEqual(last_visit, user.last_visit)
         last_visit = user.last_visit
 
-        user = User.get_user("javerage")
-        user.delete()
+        User.get_user("javerage").delete()
         user = User.get_user("javerage", ['javg001'])
         self.assertEqual(user.uwnetid, "javerage")
         self.assertNotEqual(last_visit, user.last_visit)
