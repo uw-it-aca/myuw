@@ -30,8 +30,11 @@ def get_schedule_by_term(request, term=None, summer_term=None, tsprint=True):
         term if term is not None else get_current_quarter(request),
         per_section_prefetch_callback=myuw_section_prefetch,
         transcriptable_course="all")
-    logger.error("student_schedule.sections={}".format(
+    logger.error("sarahs23 SCHE={}".format(student_schedule))
+
+    logger.error("sarahs23 {} student_schedule.sections={}".format(
         len(student_schedule.sections)))
+
     if (len(student_schedule.sections) and
             student_schedule.term.is_summer_quarter()):
         filter_sections_by_summer_term(request, student_schedule, summer_term)
@@ -54,6 +57,7 @@ def myuw_section_prefetch(data):
               ]
 
     key = "library-{}-{}-{}-{}-{}".format(tuple(params))
+    logger.error("sarahs23  KEY={}".format(key))
     method = generic_prefetch(get_subject_guide_for_section_params,
                               params)
     return [[key, method]]
