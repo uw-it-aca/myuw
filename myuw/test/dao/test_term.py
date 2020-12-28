@@ -2,21 +2,23 @@ from datetime import datetime
 from django.test import TestCase
 from commonconf import override_settings
 from uw_sws.models import ClassSchedule, Term, Section, Person
-from myuw.dao.term import get_specific_term, is_past, is_future,\
-    get_default_date, get_comparison_date,\
-    get_current_quarter, get_next_quarter,\
-    get_previous_quarter, get_previous_number_quarters,\
-    get_future_number_quarters,\
-    get_next_non_summer_quarter, get_next_autumn_quarter,\
-    is_in_summer_a_term, is_in_summer_b_term,\
-    get_bod_current_term_class_start, get_eod_7d_after_class_start,\
-    get_eod_current_term, get_eod_current_term_last_instruction,\
-    get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,\
-    get_bod_class_start_quarter_after, get_eod_specific_quarter,\
-    get_eod_specific_quarter_after, get_eod_specific_quarter_last_instruction,\
-    get_current_and_next_quarters, add_term_data_to_context
-from myuw.test import get_request_with_date, get_request_with_user,\
-    get_request, fdao_sws_override
+from myuw.dao.term import (
+    get_specific_term, is_past, is_future, sws_now,
+    get_default_date, get_comparison_date,
+    get_current_quarter, get_next_quarter,
+    get_previous_quarter, get_previous_number_quarters,
+    get_future_number_quarters,
+    get_next_non_summer_quarter, get_next_autumn_quarter,
+    is_in_summer_a_term, is_in_summer_b_term,
+    get_bod_current_term_class_start, get_eod_7d_after_class_start,
+    get_eod_current_term, get_eod_current_term_last_instruction,
+    get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,
+    get_bod_class_start_quarter_after, get_eod_specific_quarter,
+    get_eod_specific_quarter_after, get_eod_specific_quarter_last_instruction,
+    get_current_and_next_quarters, add_term_data_to_context)
+from myuw.test import (
+    get_request_with_date, get_request_with_user,
+    get_request, fdao_sws_override)
 
 
 ldao_sws_override = override_settings(RESTCLIENTS_SWS_DAO_CLASS='Live')
@@ -58,11 +60,12 @@ class TestTerm(TestCase):
 
     @ldao_sws_override
     def test_live_default_date(self):
-        now = datetime.now()
+        now = sws_now()
         date = get_default_date()
         self.assertEquals(date.year, now.year)
         self.assertEquals(date.month, now.month)
         self.assertEquals(date.day, now.day)
+        self.assertEquals(date.hour, now.hour)
 
     def test_comparison_date(self):
         now_request = get_request()

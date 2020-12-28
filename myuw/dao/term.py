@@ -13,7 +13,7 @@ from uw_sws.term import get_term_by_date, get_specific_term, \
     get_term_before, get_term_after, get_next_autumn_term, \
     get_next_non_summer_term
 from restclients_core.exceptions import DataFailureException
-from myuw.dao import is_using_file_dao
+from myuw.dao import is_using_file_dao, sws_now
 
 
 logger = logging.getLogger(__name__)

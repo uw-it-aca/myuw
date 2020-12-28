@@ -1,7 +1,7 @@
 import logging
 import os
 from django.conf import settings
-from uw_sws import DAO as SWS_DAO
+from uw_sws import DAO as SWS_DAO, sws_now
 from userservice.user import (
     UserService, get_user, get_original_user)
 from myuw.util.settings import get_disable_actions_when_override
