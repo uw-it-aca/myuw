@@ -25,7 +25,7 @@ from myuw.dao.instructor_schedule import (
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.term import (
-    get_current_quarter, is_past, is_future, get_comparison_datetime,
+    get_current_quarter, is_past, is_future,
     get_previous_number_quarters, get_future_number_quarters)
 from myuw.logger.logresp import log_api_call, log_exception
 from myuw.logger.timer import Timer
@@ -253,12 +253,9 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
 
     # the override datetime doesn't affect these
     json_data["grading_period_is_open"] =\
-        schedule.term.is_grading_period_open(
-            get_comparison_datetime(request))
+        schedule.term.is_grading_period_open()
     json_data["grading_period_is_past"] =\
-        schedule.term.is_grading_period_past(
-            get_comparison_datetime(request))
-
+        schedule.term.is_grading_period_past()
     buildings = get_buildings_by_schedule(schedule)
     json_data["has_eos_dates"] = False
     section_index = 0
