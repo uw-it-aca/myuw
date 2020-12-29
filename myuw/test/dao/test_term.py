@@ -4,7 +4,7 @@ from commonconf import override_settings
 from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import (
     get_specific_term, is_past, is_future, sws_now,
-    get_default_date, get_comparison_date,
+    get_default_date, get_default_datetime, get_comparison_date,
     get_current_quarter, get_next_quarter,
     get_previous_quarter, get_previous_number_quarters,
     get_future_number_quarters,
@@ -61,7 +61,7 @@ class TestTerm(TestCase):
     @ldao_sws_override
     def test_live_default_date(self):
         now = sws_now()
-        date = get_default_date()
+        date = get_default_datetime()
         self.assertEquals(date.year, now.year)
         self.assertEquals(date.month, now.month)
         self.assertEquals(date.day, now.day)
