@@ -13,9 +13,10 @@ from myuw.dao.pws import get_student_number_of_current_user,\
     get_person_by_employee_id
 from myuw.dao import log_err
 from myuw.dao.student_profile import get_profile_of_current_user
-from myuw.dao.term import get_comparison_datetime, is_b_term,\
-    get_current_summer_term, get_bod_7d_before_last_instruction,\
-    get_eod_current_term
+from myuw.dao.term import (
+    get_comparison_datetime, get_comparison_datetime_with_tz,
+    get_current_summer_term, get_bod_7d_before_last_instruction,
+    get_eod_current_term, is_b_term,)
 
 
 logger = logging.getLogger(__name__)
@@ -75,10 +76,6 @@ def summer_term_overlaped(request, given_section):
             is_b_term(current_summer_term))
 
 
-def _get_local_tz():
-    return timezone.get_current_timezone()
-
-
 def in_coursevel_fetch_window(request):
     """
     @return true if the comparison date is inside the
@@ -119,7 +116,7 @@ def json_for_evaluation(request, evaluations, section):
         return None
 
     # to compare with timezone aware datetime object
-    now = _get_local_tz().localize(get_comparison_datetime(request))
+    now = get_comparison_datetime_with_tz(request)
     json_data = []
     for evaluation in evaluations:
 
