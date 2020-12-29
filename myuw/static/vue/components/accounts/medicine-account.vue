@@ -92,7 +92,7 @@ export default {
       return this.statusCode !== 404;
     },
     showCard() {
-      return !this.isReady || this.hasActiveMedPw || this.isErrored;
+      return !this.isReady || this.hasActiveMedPw;
     },
     expires30Days() {
       return this.daysBeforeExpires <= 30;
