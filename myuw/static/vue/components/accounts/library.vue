@@ -1,6 +1,5 @@
 <template>
-  <uw-card :v-if="showCard"
-           :loaded="isReady"
+  <uw-card :loaded="isReady"
            :errored="isErrored"
            :errored-show="showError"
   >
@@ -26,7 +25,6 @@
            :v-text="itemsRequested"
         ></a>
       </b-alert>
-
       <div>
         <h4>
           Items out
@@ -86,9 +84,6 @@ export default {
     }),
     showError() {
       return this.statusCode !== 404;
-    },
-    showCard() {
-      return true;
     },
     itemsRequestedText() {
       return this.holdsReady + ' requested ' +
