@@ -5,6 +5,7 @@ This module direct interfaces with restclient for the term data
 from datetime import date, datetime, timedelta
 import logging
 from uw_sws.models import Term
+from uw_sws import SWS_TIMEZONE, sws_now
 from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
 from uw_sws.term import get_term_by_date, get_specific_term, \
@@ -12,7 +13,7 @@ from uw_sws.term import get_term_by_date, get_specific_term, \
     get_term_before, get_term_after, get_next_autumn_term, \
     get_next_non_summer_term
 from restclients_core.exceptions import DataFailureException
-from myuw.dao import is_using_file_dao, sws_now, SWS_TIMEZONE
+from myuw.dao import is_using_file_dao
 
 
 logger = logging.getLogger(__name__)
