@@ -12,7 +12,7 @@ from uw_gradepage.grading_status import get_grading_status
 from uw_iasystem.exceptions import TermEvalNotCreated
 from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
-from uw_sws.term import get_specific_term, get_comparison_datetime
+from uw_sws.term import get_specific_term
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
@@ -25,7 +25,7 @@ from myuw.dao.instructor_schedule import (
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.term import (
-    get_current_quarter, is_past, is_future,
+    get_current_quarter, is_past, is_future, get_comparison_datetime,
     get_previous_number_quarters, get_future_number_quarters)
 from myuw.logger.logresp import log_api_call, log_exception
 from myuw.logger.timer import Timer
