@@ -12,7 +12,7 @@ from uw_gradepage.grading_status import get_grading_status
 from uw_iasystem.exceptions import TermEvalNotCreated
 from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
-from uw_sws.term import get_specific_term
+from uw_sws.term import get_specific_term, get_comparison_datetime
 from myuw.dao.exceptions import NotSectionInstructorException
 from myuw.dao.building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
@@ -253,9 +253,11 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
 
     # the override datetime doesn't affect these
     json_data["grading_period_is_open"] =\
-        schedule.term.is_grading_period_open()
+        schedule.term.is_grading_period_open(
+            get_comparison_datetime(request))
     json_data["grading_period_is_past"] =\
-        schedule.term.is_grading_period_past()
+        schedule.term.is_grading_period_past(
+            get_comparison_datetime(request))
 
     buildings = get_buildings_by_schedule(schedule)
     json_data["has_eos_dates"] = False
