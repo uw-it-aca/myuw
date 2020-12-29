@@ -18,40 +18,50 @@
     </template>
     <template #card-body>
       <b-alert v-if="holdsReady" show variant="info">
+        <!-- TODO: Add info-circle to font-awesome -->
         <font-awesome-icon :icon="['fas', 'info-circle']" />
         <a href="https://search.lib.uw.edu/account"
            target="_blank"
            data-linklabel="Library Account Requests"
-           :v-text="itemsRequested"
-        ></a>
+        >{{ itemsRequestedText }}</a>
       </b-alert>
-      <div>
-        <h4>
-          Items out
-        </h4>
-        <span>
-          {{ itemsLoaned + (isPlural(itemsLoaned) ? ' item' : ' items')}}
-        </span>
-      </div>
-
-      <div v-if="nextDue">
-        <h4>
-          Next item due
-        </h4>
-        <span>
-
-        </span>
-      </div>
-
-      <div>
-        <a href="http://search.lib.uw.edu/account"
-           target="_blank"
-           aria-label="Your Library Account"
-        >
-          Access library account
-        </a>
-      </div>
-
+      <ul>
+        <li>
+          <h4>
+            Items out
+          </h4>
+          <span>
+            {{ itemsLoaned + (isPlural(itemsLoaned) ? ' items' : ' item')}}
+          </span>
+        </li>
+        <li v-if="nextDue">
+          <h4>
+            Next item due
+          </h4>
+          <span>
+            {{ toFromNowDate(nextDue) }}
+            &nbsp;
+            {{ toFriendlyDatetime(nextDue) }}
+          </span>
+        </li>
+        <li v-if="fines">
+          <h4>
+            You owe
+          </h4>
+          <span class="text-danger">
+            {{ formatPrice(fines) }}
+          </span>
+          <a href="https://p.lib.washington.edu/payfines/" target="_blank" data-linklabel="Pay Library Fees">
+            Pay fees
+          </a>
+        </li>
+      </ul>
+      <a href="http://search.lib.uw.edu/account"
+        target="_blank"
+        aria-label="Your Library Account"
+      >
+        Access library account
+      </a>
     </template>
   </uw-card>
 </template>
@@ -64,11 +74,6 @@ import Card from '../_templates/card.vue';
 export default {
   components: {
     'uw-card': Card,
-  },
-  data: function() {
-    return {
-      passwordChange: '',
-    };
   },
   computed: {
     ...mapState({
@@ -87,7 +92,7 @@ export default {
     },
     itemsRequestedText() {
       return this.holdsReady + ' requested ' +
-             (isPlural(this.holdsReady) ? ' item ' : ' items ') + ' ready';
+             (this.isPlural(this.holdsReady) ? 'items ' : 'item ') + 'ready';
     },
   },
   mounted() {
