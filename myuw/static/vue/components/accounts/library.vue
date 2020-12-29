@@ -31,7 +31,7 @@
             Items out
           </h4>
           <span>
-            {{ itemsLoaned + (isPlural(itemsLoaned) ? ' items' : ' item')}}
+            {{ itemsLoaned + (isPlural(itemsLoaned) ? ' items' : ' item') }}
           </span>
         </li>
         <li v-if="nextDue">
@@ -51,14 +51,17 @@
           <span class="text-danger">
             {{ formatPrice(fines) }}
           </span>
-          <a href="https://p.lib.washington.edu/payfines/" target="_blank" data-linklabel="Pay Library Fees">
+          <a href="https://p.lib.washington.edu/payfines/"
+             target="_blank"
+             data-linklabel="Pay Library Fees"
+          >
             Pay fees
           </a>
         </li>
       </ul>
       <a href="http://search.lib.uw.edu/account"
-        target="_blank"
-        aria-label="Your Library Account"
+         target="_blank"
+         aria-label="Your Library Account"
       >
         Access library account
       </a>
@@ -68,7 +71,6 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import dayjs from 'dayjs';
 import Card from '../_templates/card.vue';
 
 export default {
@@ -99,12 +101,6 @@ export default {
     this.fetch();
   },
   methods: {
-    toFriendlyDate(dateStr) {
-      if (dateStr === undefined || dateStr.length === 0) {
-        return '';
-      }
-      return dayjs(dateStr).format('ddd, MMM D');
-    },
     isPlural(count) {
       return count !== 1;
     },
