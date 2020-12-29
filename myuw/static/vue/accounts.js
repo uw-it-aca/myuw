@@ -12,6 +12,7 @@ import HfsSea from './components/accounts/hfs-sea.vue';
 import HuskyCard from './components/accounts/husky.vue';
 import MedicineAccount from './components/accounts/medicine-account.vue';
 import UpassCard from './components/accounts/upass.vue';
+import LibraryCard from './components/accounts/library.vue';
 
 // stores
 import hfs from './vuex/store/hfs';
@@ -36,6 +37,8 @@ Vue.component('myuw-uwnetid', UWNetID);
 Vue.component('myuw-hr-payroll', HRPayroll);
 Vue.component('myuw-medicine-account', MedicineAccount);
 Vue.component('myuw-upass', UpassCard);
+Vue.component('myuw-library', LibraryCard);
+
 new Vue({
   ...vueConf,
 });
