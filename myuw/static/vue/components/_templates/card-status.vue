@@ -5,7 +5,7 @@
         <slot name="status-label" />
       </h4>
       <div class="flex-fill text-right">
-        <span class="h5 font-weight-bold">
+        <span class="h4 font-weight-bold">
           <slot name="status-value" />
         </span>
       </div>

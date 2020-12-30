@@ -5,7 +5,7 @@
            :errored-show="showError"
   >
     <template #card-heading>
-      <h3>
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Housing &amp; Food Services
       </h3>
     </template>
@@ -13,28 +13,27 @@
       An error occurred and MyUW cannot load your information right now.
       In the meantime, try the
       <a href="https://hfs.uw.edu/myhfs/account.aspx"
-         data-linklabel="Housing & Food Services"
+         data-linklabel="Housing &amp; Food Services"
          target="_blank"
       >
         Housing &amp; Food Services
       </a>.
     </template>
     <template #card-body>
-      <div v-if="hfs.resident_dining">
-        <div>
-          <h4>Dining Balance</h4>
-        </div>
-        <div>
-          <span>${{ hfs.resident_dining.balance.toFixed(2) }}</span>
-        </div>
-      </div>
+
+      <uw-card-status v-if="hfs.resident_dining">
+        <template #status-label>Dining Balance</template>
+        <template #status-value>
+          ${{ hfs.resident_dining.balance.toFixed(2) }}
+        </template>
+      </uw-card-status>
 
       <div>
         <h4>Explore Campus Housing</h4>
         <ul>
           <li>
             <a href="https://www.hfs.uw.edu"
-               data-linklabel="Housing & Food Services"
+               data-linklabel="Housing &amp; Food Services"
             >
               Housing &amp; Food Services
             </a>
@@ -120,9 +119,12 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import CardStatus from '../_templates/card-status.vue';
+
 export default {
   components: {
     'uw-card': Card,
+    'uw-card-status': CardStatus,
   },
   computed: {
     ...mapState('hfs', {
