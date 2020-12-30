@@ -19,8 +19,13 @@
       >UW Transportation page</a>.
     </template>
     <template #card-body>
-      <h4>Status</h4>
-      <span>{{ isCurrent ? 'Current' : 'Not current' }}</span>
+
+      <uw-card-status>
+        <template #status-label>Status</template>
+        <template #status-value>
+          {{ isCurrent ? 'Current' : 'Not current' }}
+        </template>
+      </uw-card-status>
 
       <div v-if="isCurrent" id="upass-notices">
         <p v-if="displayActivation">
@@ -91,9 +96,12 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import CardStatus from '../_templates/card-status.vue';
+
 export default {
   components: {
     'uw-card': Card,
+    'uw-card-status': CardStatus
   },
   computed: {
     ...mapGetters('upass', {
