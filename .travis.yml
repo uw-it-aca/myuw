@@ -39,28 +39,27 @@ after_success:
   - coverage combine
   - coveralls-lcov -v -n lcov.info > js-coverage.json
   - coveralls --merge=js-coverage.json
-  - |
-    if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-      case "$TRAVIS_BRANCH" in
-        "master")
-          export APP_INSTANCE="prod";
-          ;;
-        "qa")
-          export APP_INSTANCE="test";
-          ;;
-        "develop")
-          export APP_INSTANCE="dev";
-          ;;
-        *)
-          unset APP_INSTANCE
-          ;;
-      esac
-      if [[ "$APP_INSTANCE" ]]; then
-        curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
-      fi
-    fi
 
-cache:
-  directories:
-    - "$HOME/helm"
-    - "$HOME/kubeval"
+deploy:
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: master
+      condition: $TRAVIS_PULL_REQUEST == "false"
+    script: >-
+      curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: qa
+      condition: $TRAVIS_PULL_REQUEST == "false"
+    script: >-
+      curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: develop
+      condition: $TRAVIS_PULL_REQUEST == "false"
+    script: >-
+      export APP_INSTANCE="dev" &&
+      curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash
