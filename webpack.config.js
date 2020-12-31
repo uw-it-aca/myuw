@@ -34,7 +34,7 @@ module.exports = {
     future_quarters: [
       "./myuw/static/vue/future_quarters.js"
     ],
-     profile: [
+    profile: [
       "./myuw/static/vue/profile.js"
     ],
     textbooks: [
