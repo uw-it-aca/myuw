@@ -1,5 +1,3 @@
-sudo: required
-
 language: python
 python:
   - 3.6
@@ -13,6 +11,7 @@ os:
 
 env:
   global:
+    - DOCKER_COMPOSE_VERSION=1.25.0
     - RELEASE_NAME="myuw"
     - DJANGO_APP="myuw"
     - COMMIT_HASH="$(git rev-parse --short=7 HEAD)"
@@ -21,6 +20,12 @@ env:
     - secure: "Ms3F/3R08D7/DN+Ix/sbc8cGbdpF6F4lUL5gWSYAhjaya82tKLbu0WmfagSCWTUkMDBSP1RpPHJYNmOaCv6S9iXLyZ9t3ErNLhLY44VgcC0b94ebZYk7Tl9zRktodbTkq7LBBVUWNEPzdMZR5nL9H86m8h6D85YX/SheXynQZCE="
     - secure: "SQFn4ziHQMZ7HnHJ0G4hiaam+CaDKLgRMe3XHiOfR8vDI9ziQ2C1qL4he2G51iSgdD8WyZkGCiJJ4SjcgdNGuXrOpKpPojFwTwHumfGZq/eebU3RBxEITj7zfbedSf6A9wWsgLzNToQ/vOQtl/G0WD3gCUaGh0xjZ6VrJkmlIho="
     - secure: "JMVV0SG9a04GNq2F304OWnkf6xIaI87Nhf45RoZoU717IMi+xvrz8qX3fYibcv/15eLt+XdeQeu0CxM8/ZSlrReWXf/0/9Qe7m8SxoQj6W35kBIHOEfPln06hP5fq0ruhg5k4eZKQrwCwoeIt3+iOWCtKE+yQJyWvd92t1WX080="
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 install:
   - docker build --target node-bundler -t node-test-container .
@@ -33,12 +38,13 @@ before_script:
   - pip install coveralls
 
 script:
-
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" node-test-container bash -c ". ./travis-ci/test_js.sh"
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" app-test-container bash -c ". ./travis-ci/test_python.sh"
+  - docker-compose run python-tests
+  - docker-compose run eslint
+  - docker-compose run jest
+  - docker-compose run cypress
 
 after_success:
-  - cp /tmp/.coverage.* /tmp/lcov.info .
+  - cp /tmp/myuw/.coverage.* /tmp/myuw/lcov.info .
   - coverage combine
   - coveralls-lcov -v -n lcov.info > js-coverage.json
   - coveralls --merge=js-coverage.json
