@@ -12,7 +12,7 @@
     </div>
     <div>
       <slot name="status-content" />
-    </div>  
+    </div>
   </div>
 </template>
 
