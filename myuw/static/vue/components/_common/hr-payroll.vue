@@ -24,7 +24,7 @@
           to use Kronos for time-tracking and payroll.
         </p>
       </div>
-      <div v-if="!studentEmployee">
+      <div v-if="!studEmployee">
         <h4>Get Help</h4>
         <ul class="unstyled-list">
           <li>

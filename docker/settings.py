@@ -13,7 +13,6 @@ INSTALLED_APPS += [
     'supporttools',
     'blti',
     'myuw.apps.MyUWConfig',
-    'manifest_loader',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
