@@ -11,7 +11,7 @@ os:
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.25.0
+    - DOCKER_COMPOSE_VERSION=1.27.4
     - RELEASE_NAME="myuw"
     - DJANGO_APP="myuw"
     - COMMIT_HASH="$(git rev-parse --short=7 HEAD)"
@@ -30,7 +30,6 @@ before_install:
 install:
   - docker build --target node-bundler -t node-test-container .
   - docker build --target app-container -t "$IMAGE_TAG" .
-  - docker build -t app-test-container .
 
 before_script:
   - gem install coveralls-lcov
@@ -38,10 +37,10 @@ before_script:
   - pip install coveralls
 
 script:
-  - docker-compose -f travis-ci/docker-compose.yml run python-tests
-  - docker-compose -f travis-ci/docker-compose.yml run eslint
-  - docker-compose -f travis-ci/docker-compose.yml run jest
-  - docker-compose -f travis-ci/docker-compose.yml run cypress
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run python-tests
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run eslint
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run jest
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run cypress
 
 after_success:
   - cp /tmp/myuw/.coverage.* /tmp/myuw/lcov.info .
