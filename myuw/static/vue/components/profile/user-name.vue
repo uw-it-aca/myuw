@@ -1,11 +1,10 @@
 <template>
-  <uw-card
-      v-if="showCard"
+  <uw-panel
+      v-if="hasName"
       :loaded="isReady"
       :errored="isErrored"
-      :errored-show="false"
   >
-    <template #card-heading>
+    <template #panel-body>
       <h2 class="heading-profile">
         <span v-if="hasPreferred">{{ titleCaseName(displayName) }}
           ({{ titleCaseName(fullName) }})</span>
@@ -20,16 +19,16 @@
         </a>
       </h2>
     </template>
-  </uw-card>
+  </uw-panel>
 </template>
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../_templates/card.vue';
+import Card from '../_templates/panel.vue';
 
 export default {
   components: {
-    'uw-card': Card,
+    'uw-panel': Card,
   },
 
   computed: {
@@ -43,9 +42,6 @@ export default {
     }),
     hasName() {
       return this.displayName !== undefined || this.fullName !== undefined;
-    },
-    showCard() {
-      return !this.isReady || this.hasName;
     },
     hasPreferred() {
       return this.displayName !== undefined &&
