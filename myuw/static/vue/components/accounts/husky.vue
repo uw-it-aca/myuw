@@ -9,7 +9,7 @@
         <li>
           <uw-card-status v-if="hfs.student_husky_card">
             <template #status-label>Student Husky Account</template>
-            <template #status-value> ${{ hfs.student_husky_card.balance.toFixed(2) }} </template>
+            <template #status-value>${{ hfs.student_husky_card.balance.toFixed(2) }}</template>
             <template #status-content>
               <div v-if="hfs.student_husky_card.last_updated" class="myuw-text-sm text-muted">
                 Last transaction: {{ hfs.student_husky_card.last_updated }}
@@ -20,7 +20,7 @@
         <li>
           <uw-card-status v-if="hfs.employee_husky_card">
             <template #status-label>Employee Husky Account</template>
-            <template #status-value> ${{ hfs.employee_husky_card.balance.toFixed(2) }} </template>
+            <template #status-value>${{ hfs.employee_husky_card.balance.toFixed(2) }}</template>
             <template #status-content>
               <div v-if="hfs.student_husky_card.last_updated" class="myuw-text-sm text-muted">
                 Last transaction: {{ hfs.employee_husky_card.last_updated }}
