@@ -16,8 +16,8 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
 
         if "sws" == service:
             if (re.match(r'^/student/v5/registration.json', url) and
-                    "curriculum_abbreviation=PSYCH" in url  and
-                    "course_number=210" in url) :
+                    "curriculum_abbreviation=PSYCH" in url and
+                    "course_number=210" in url):
                 return None
 
             if re.match(r'^/student/v5/term/', url):
