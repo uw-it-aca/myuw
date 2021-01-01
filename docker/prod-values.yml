@@ -276,6 +276,8 @@ environmentVariables:
 
   - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
+  - name: MEMCACHED_TIMEOUT
+    value: "10"
 
 externalSecrets:
   enabled: true
