@@ -18,7 +18,7 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
             if (re.match(r'^/student/v5/registration.json', url) and
                     "curriculum_abbreviation=PSYCH" in url  and
                     "course_number=210" in url) :
-                return FIVE_SECONDS
+                return None
 
             if re.match(r'^/student/v5/term/', url):
                 return ONE_DAY
