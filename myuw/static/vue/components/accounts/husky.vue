@@ -31,15 +31,9 @@
       </ul>
 
       <div class="text-right">
-        <a
-          v-if="hasActionUrl"
-          :href="getActionUrl"
-          target="_blank"
-          aria-label="Manage Husky account"
-          class="btn btn-outline-beige text-dark myuw-text-md"
-        >
-          Manage account
-        </a>
+        <uw-link-button v-if="hasActionUrl" :href="getActionUrl" target="_blank">
+          Manage Husky account
+        </uw-link-button>
       </div>
     </template>
     <template #card-error>
@@ -59,11 +53,13 @@
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardStatus from '../_templates/card-status.vue';
+import LinkButton from '../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-card-status': CardStatus,
+    'uw-link-button': LinkButton,
   },
   computed: {
     ...mapState('hfs', {

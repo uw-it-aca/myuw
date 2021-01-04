@@ -7,16 +7,16 @@
       <div style="position: relative">
         <h4 class="sr-only">Workday</h4>
         <p>
-          <a
+          <uw-link-button
             id="og_workday"
-            class="btn btn-outline-beige text-dark myuw-text-md out-link myuw-workday"
+            class="myuw-workday"
             href="https://wd5.myworkday.com/uw/login.htmld"
             target="_blank"
             data-linklabel="Workday"
             :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
+            >Sign in to Workday
+          </uw-link-button
           >
-            Sign in to Workday
-          </a>
         </p>
         <p class="myuw-text-sm">
           Workday is the University’s cloud-based HR/payroll operations system.
@@ -103,10 +103,12 @@
 <script>
 import { mapState } from 'vuex';
 import Card from '../_templates/card.vue';
+import LinkButton from '../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-link-button': LinkButton,
   },
   props: {
     isHomePage: {

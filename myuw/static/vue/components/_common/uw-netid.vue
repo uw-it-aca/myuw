@@ -4,16 +4,14 @@
       <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">UW NetID</h3>
     </template>
     <template #card-body>
-      <div>
-        <a
+      <p>
+        <uw-link-button 
           href="https://uwnetid.washington.edu/manage/"
-          target="_blank"
-          title="Manage UW NetID"
-          class="btn btn-outline-beige text-dark myuw-text-md mb-3"
+          target="_blank"  
         >
           Manage UW NetID account
-        </a>
-      </div>
+        </uw-link-button>
+      </p>
       <div class="">
         <ul class="list-unstyled m-0 myuw-text-md">
           <li class="mb-1">
@@ -59,10 +57,12 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
+import LinkButton from '../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-link-button': LinkButton,
   },
   props: {
     isHomePage: {
