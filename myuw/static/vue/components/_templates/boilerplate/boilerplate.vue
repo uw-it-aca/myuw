@@ -82,7 +82,10 @@
       </div>
 
       <div class="bg-purple myuw-brand">
-        <b-container fluid="xl" class="px-3 myuw-brand-logo">
+        <b-container fluid="xl"
+          class="px-3 myuw-brand-logo"
+          :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
+        >
           <b-button
             v-b-toggle.nav-collapse
             variant="link"
@@ -364,7 +367,7 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import axios from 'axios';
 import Search from './search.vue';
 import Welcome from './welcome.vue';
@@ -418,32 +421,34 @@ export default {
     }
   },
   methods: {
-    showTourModal: function() {
+    showTourModal: function () {
       this.$refs['tourModal'].show();
-      axios.get('/api/v1/turn_off_tour_popup', {
-        responseType: 'json',
-      }).then((response) => {
-        this.addVarToState({
-          name: 'displayPopUp',
-          value: false,
+      axios
+        .get('/api/v1/turn_off_tour_popup', {
+          responseType: 'json',
+        })
+        .then((response) => {
+          this.addVarToState({
+            name: 'displayPopUp',
+            value: false,
+          });
         });
-      });
     },
-    ...mapMutations([
-      'addVarToState',
-    ]),
+    ...mapMutations(['addVarToState']),
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../../css/myuw/variables.scss";
+@import '../../../../css/myuw/variables.scss';
 
 // boilerplate
 
 .myuw-override {
-  a { color: darken($link-color, 12%) !important; }
+  a {
+    color: darken($link-color, 12%) !important;
+  }
 }
 //.myuw-search {}
 
@@ -451,8 +456,9 @@ export default {
   line-height: 40px;
 
   // override danger color to fix a11y contrast
-  .text-danger, .text-danger:hover {
-    color: lighten(map.get($theme-colors, "danger"), 25%) !important;
+  .text-danger,
+  .text-danger:hover {
+    color: lighten(map.get($theme-colors, 'danger'), 25%) !important;
   }
 }
 
@@ -463,7 +469,6 @@ export default {
     background-repeat: no-repeat;
     background-size: 45px;
     background-position: right 20px bottom;
-    background-image: url(../../../../images/w-logo-white.png);
   }
 }
 
@@ -477,9 +482,9 @@ export default {
 
     &.active {
       background: $gray-300;
-      color: map.get($theme-colors, "purple") !important;
+      color: map.get($theme-colors, 'purple') !important;
       svg {
-        color: map.get($theme-colors, "purple") !important;
+        color: map.get($theme-colors, 'purple') !important;
       }
     }
   }
@@ -491,7 +496,7 @@ export default {
   ul {
     li {
       &:not(:last-child)::after {
-        content: "·";
+        content: '·';
         color: #fff;
         //margin-left: 0.5rem;
       }
