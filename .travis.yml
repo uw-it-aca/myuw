@@ -59,7 +59,7 @@ after_success:
         "develop")
           export APP_INSTANCE="dev";
           ;;
-        "vue/cypress")
+        "feature/vue")
           export APP_INSTANCE="vue";
           ;;
         *)
