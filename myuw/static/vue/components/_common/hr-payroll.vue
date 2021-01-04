@@ -13,7 +13,7 @@
             href="https://wd5.myworkday.com/uw/login.htmld"
             target="_blank"
             data-linklabel="Workday"
-            :style="workdayIconStyle"
+            :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
           >
             Sign in to Workday
           </a>
@@ -123,8 +123,7 @@ export default {
       instructor: (state) => state.user.affiliations.instructor,
       retire: (state) => state.user.affiliations.retire,
       pastEmployee: (state) => state.user.affiliations.past_employee,
-      workdayIconStyle: (state) =>
-        "background-image: url('" + state.staticUrl + "images/wday_logo.png';",
+      staticUrl: (state) => state.staticUrl,
     }),
     showCard: function () {
       if (this.isHomePage) {
