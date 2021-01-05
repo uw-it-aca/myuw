@@ -15,6 +15,7 @@ CACHE = 'myuw.util.cache_implementation.MyUWCache'
 MEMCACHE = 'myuw.util.cache.MyUWMemcachedCache'
 FIVE_SECONDS = 5
 FIFTEEN_MINS = 60 * 15
+HALF_HOUR = FIFTEEN_MINS * 2
 ONE_HOUR = 60 * 60
 FOUR_HOURS = ONE_HOUR * 4
 ONE_DAY = ONE_HOUR * 24
@@ -51,7 +52,7 @@ class TestCustomCachePolicy(TestCase):
             "sws", "/student/v5/section"), FIFTEEN_MINS)
 
         self.assertEquals(cache.get_cache_expiration_time(
-            "gws", "/group_sws/v3"), FIFTEEN_MINS)
+            "gws", "/group_sws/v3"), HALF_HOUR)
 
         self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/nws/v1/uwnetid"), ONE_HOUR)
