@@ -72,6 +72,8 @@ services:
   cypress:
     build:
       context: ../e2e
+    environment:
+      CYPRESS_BASE_URL: http://e2e-myuw:8000
     volumes:
       - ../e2e/cypress.json:/e2e/cypress.json
       - ../e2e/cypress/fixtures:/e2e/cypress/fixtures
