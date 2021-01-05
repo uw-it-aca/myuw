@@ -18,8 +18,7 @@
     </template>
     <template #card-body>
       <b-alert v-if="holdsReady" show variant="info">
-        <!-- TODO: Add info-circle to font-awesome -->
-        <font-awesome-icon :icon="['fas', 'info-circle']" />
+        <!-- TODO: Add info-circle icon -->
         <a href="https://search.lib.uw.edu/account"
            target="_blank"
            data-linklabel="Library Account Requests"
