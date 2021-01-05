@@ -278,6 +278,9 @@
               {{ pageTitle }}
             </h2>
             <b-row>
+              <slot v-if="$mq === 'mobile'" name="mobile" />
+              <slot v-else name="desktop" />
+              <!-- TODO: remove primary/secondary later! -->
               <slot name="primary" />
               <slot v-if="$mq !== 'mobile'" name="secondary" />
             </b-row>
