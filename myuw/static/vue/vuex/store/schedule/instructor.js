@@ -31,21 +31,15 @@ function postProcess(response, urlExtra, rootState) {
     let section = courseData.sections[i];
     section.year = courseData.year;
     section.quarter = courseData.quarter;
-    section.id = (section.year + "-" +
-                  section.quarter + "-" +
-                  section.curriculum_abbr.replace(/ /g, '-') + "-" +
-                  section.course_number + "-" +
-                  section.section_id);
-    
+    section.anchor = (section.curriculum_abbr.replace(/ /g, '-') + "-" +
+                  section.course_number + "-" + section.section_id);
+    section.id = section.year + "-" + section.quarter + "-" + section.anchor;
+
     section.apiTag = `${section.year},${section.quarter.toLowerCase()},${
       section.curriculum_abbr
     },${section.course_number}/${section.section_id}`;
 
-    section.href = (section.year + "," +
-                    section.quarter + "#" +
-                    section.curriculum_abbr.replace(/ /g, '-') + "-" +
-                    section.course_number + "-" +
-                    section.section_id);
+    section.href = section.year + "," + section.quarter + "#" + section.anchor;
 
     section.navtarget = (section.year + "," +
                          section.quarter + "," +

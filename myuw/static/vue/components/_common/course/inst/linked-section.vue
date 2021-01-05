@@ -6,9 +6,18 @@
       <h4 class="sr-only">
         Linked Secondary Section ID:
       </h4>
-      <a
+      <a v-if="section.mini_card"
         :href="`/teaching/${section.href}`"
         :future-nav-target="`${section.navtarget}`"
+        title="View the mini-card on teaching page"
+      >
+        {{ section.section_id }}
+      </a>
+      <a v-else
+        :href="`/teaching/${section.href}`"
+        :aria-label="`Pin ${section.id} mini-card to teaching page`"
+        title="Pin the mini-card onto teaching page"
+        @click="toggleMini(section)"
       >
         {{ section.section_id }}
       </a>
