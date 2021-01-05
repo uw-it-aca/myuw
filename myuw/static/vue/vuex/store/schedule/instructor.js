@@ -196,7 +196,16 @@ function addCourseGradeData(courseData) {
 }
 
 function addCourseEvalData(courseData, rootState) {
-  const comparisonDate = dayjs(rootState.cardDisplayDates.comparison_date);
+  if (
+    rootState &&
+    rootState.cardDisplayDates &&
+    rootState.cardDisplayDates.comparison_date
+  ) {
+    const comparisonDate = dayjs(rootState.cardDisplayDates.comparison_date);
+  } else {
+    const comparisonDate = dayjs()
+  }
+  
   courseData.sections.forEach((section) => {
     if (section.evaluation) {
       section.evaluation.responseRatePercent = 0;
