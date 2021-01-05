@@ -13,10 +13,13 @@
   <template #primary>
     <b-col md="6" :class="[$mq === 'mobile' ? 'px-0' : '']">
       <!--MARK: card components go here in order -->
+      <myuw-medicine-account></myuw-medicine-account>
       <myuw-husky></myuw-husky>
       <myuw-hfs-sea></myuw-hfs-sea>
       <myuw-hr-payroll></myuw-hr-payroll>
+      <myuw-upass></myuw-upass>
       <myuw-uwnetid></myuw-uwnetid>
+
     </b-col>
   </template>
   <!-- MARK: #secondary template (column 2, table/desktop) -->
@@ -29,7 +32,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load manifest %}
-{% manifest_match '*accounts*.css' '<link rel="stylesheet" href="{match}">' %}
-{% manifest_match '*accounts*.js' '<script src="{match}" async></script>' %}
+{% load webpack_manifest %}
+{% render_webpack_entry 'accounts' js='defer' %}
 {% endblock vue_script %}
