@@ -186,7 +186,8 @@ Vue.mixin(utils);
 const vueConf = {
   el: '#vue_root',
   created: function() {
-    document.title = 'MyUW: ' + store.state['pageTitle'];
+    // MARK: construct the page title
+    document.title = store.state['pageTitle'] + ' - MyUW';
     document.getElementById('vue_root').hidden = false;
   },
   store: store,
