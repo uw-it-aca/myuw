@@ -81,3 +81,7 @@ package-lock.json
 *.new
 *.old
 *.pyc
+
+# Cypress
+e2e/cypress/videos
+e2e/cypress/screenshots
