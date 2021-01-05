@@ -256,7 +256,6 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
         schedule.term.is_grading_period_open()
     json_data["grading_period_is_past"] =\
         schedule.term.is_grading_period_past()
-
     buildings = get_buildings_by_schedule(schedule)
     json_data["has_eos_dates"] = False
     section_index = 0
