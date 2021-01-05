@@ -96,6 +96,7 @@ describe('Instructor Schedule Data', () => {
     expect(sections).toHaveLength(8);
     expect(sections[0].year).toBe(2013);
     expect(sections[0].quarter).toBe('spring');
+    expect(sections[0].anchor).toBe('PHYS-122-A');
     expect(sections[0].id).toBe('2013-spring-PHYS-122-A');
     expect(sections[0].href).toBe('2013,spring#PHYS-122-A');
     expect(sections[0].navtarget).toBe('2013,spring,PHYS-122-A');

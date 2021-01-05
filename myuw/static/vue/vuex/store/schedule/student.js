@@ -11,9 +11,10 @@ function postProcess(response, urlExtra) {
   convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
-    section.id = (courseData.year + "-" + courseData.quarter + "-" +
-                  section.curriculum_abbr.replace(/ /g, '-') + "-" +
+    section.anchor = (section.curriculum_abbr.replace(/ /g, '-') + "-" +
                   section.course_number + "-" + section.section_id);
+    section.id = (courseData.year + "-" + courseData.quarter + "-" +
+                  section.anchor);
 
     // MUWM-549 and MUWM-552
     let canvasUrl = section.canvas_url;
