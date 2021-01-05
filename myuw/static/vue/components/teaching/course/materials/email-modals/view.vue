@@ -2,8 +2,8 @@
   <div>
     <b-modal
       :id="`emaillist_view_${sln}`"
-      :title="`${emailList.course_abbr} ${emailList.course_number} Mailing Lists`"
       v-model="show"
+      :title="`${emailList.course_abbr} ${emailList.course_number} Mailing Lists`"
     >
       <div v-if="!emailList.is_primary && emailList.section_list.list_admin_url">
         <span>
@@ -57,7 +57,7 @@
           </tr>
 
           <template v-for="(email, i) in emailList.secondary_section_lists">
-            <tr :key="i" v-if="email.list_exists">
+            <tr v-if="email.list_exists" :key="i">
               <td :headers="`emaillist_section_${sln}`">
                 {{emailList.course_abbr}}
                 {{emailList.course_number}}
@@ -88,13 +88,13 @@
         >Mailman help documentation</a>
       </p>
       <template #modal-footer>
-        <b-button @click="show=false" v-b-modal="`emaillist_request_${sln}`">
+        <b-button v-b-modal="`emaillist_request_${sln}`" @click="show=false">
           Add Mailing List
         </b-button>
         <button @click="show=false">Close</button>
       </template>
     </b-modal>
-    <uw-request-model :emailList="emailList" :sln="sln" />
+    <uw-request-model :email-list="emailList" :sln="sln" />
   </div>
 </template>
 
@@ -111,7 +111,7 @@ export default {
   },
   props: {
     emailList: {
-      type: Array,
+      type: Object,
       required: true,
     },
     sln: {

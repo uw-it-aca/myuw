@@ -1,6 +1,11 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
+import {
+  fetchBuilder,
+  tryForceFetchBuilder,
+  setTermAndExtractData,
+  buildWith
+} from '../model_builder';
 import {
   convertSectionsTimeAndDateToDateJSObj,
   generateMeetingLocationData,
@@ -191,7 +196,7 @@ function addCourseGradeData(courseData) {
 }
 
 function addCourseEvalData(courseData, rootState) {
-  const comparisonDate = dayjs(rootState.cardDisplayDates.cardDisplayDates);
+  const comparisonDate = dayjs(rootState.cardDisplayDates.comparison_date);
   courseData.sections.forEach((section) => {
     if (section.evaluation) {
       section.evaluation.responseRatePercent = 0;
@@ -233,6 +238,11 @@ const customMutations = {
 
 const customActions = {
   fetch: fetchBuilder(
+    '/api/v1/instructor_schedule/',
+    postProcess,
+    'json'
+  ),
+  tryForceFetch: tryForceFetchBuilder(
     '/api/v1/instructor_schedule/',
     postProcess,
     'json'

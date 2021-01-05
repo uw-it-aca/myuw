@@ -5,7 +5,7 @@
     </h5>
     <div>
       <ul>
-        <template v-if="section.evaluation.eval_status">
+        <template v-if="section.evaluation && section.evaluation.eval_status">
           <template v-if="section.evaluation.is_online">
             <template v-if="section.evaluation.eval_open_date">
               <template v-if="section.evaluation.is_closed">
@@ -101,7 +101,7 @@
           </template>
         </template>
         <template v-else>
-          <li v-if="section.evaluation.eval_not_exist">
+          <li v-if="section.evaluation && section.evaluation.eval_not_exist">
             You {{section.pastTerm ? 'did' : 'do'}}
             not have an evaluation set up for this course.
             <a href="https://www.washington.edu/assessment/course-evaluations/"

@@ -1,6 +1,7 @@
 <template>
   <b-modal
     :id="`emaillist_request_${sln}`"
+    v-model="show"
     title="Create Mailing List"
   >
     <b-alert variant="danger" :show="disableActions">
@@ -76,14 +77,30 @@
           </li>
           <li>Mailing list will stay synced with the official class list</li>
         </ul>
-        <input type="hidden" value="{{emailList.section_list.section_label}}"/>
+        <input type="hidden" :value="emailList.section_list.section_label"/>
       </div>
       <div v-if="!emailList.no_secondary_section">
-        <div v-show="!emailList.has_lists">
-          <strong>
-            Request multiple email lists, one for each section selected:
-          </strong>
-          <!-- TODO: continue from here https://github.com/uw-it-aca/myuw/blob/addf0042dd310a7d80c65636d8a6bf07b3d847d2/myuw/templates/handlebars/card/instructor_schedule/mailman/request_email_lists.html#L94 -->
+        <div v-show="emailList.has_lists">
+          <b-form-group
+            v-slot="{ ariaDescribedby }"
+            label="Request multiple email lists, one for each section selected:"
+          >
+            <b-form-checkbox
+              v-model="allSelected"
+              :indeterminate="indeterminate"
+              aria-describedby="flavours"
+              aria-controls="flavours"
+              @change="toggleAll"
+            >
+              {{ allSelected ? 'Un-Select All' : 'Select All' }}
+            </b-form-checkbox>
+            <b-form-checkbox-group
+              v-model="selected"
+              :options="selectableEmailList"
+              :aria-describedby="ariaDescribedby"
+              stacked
+            ></b-form-checkbox-group>
+          </b-form-group>
         </div>
       </div>
     </div>
@@ -91,8 +108,16 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <button>Close</button>
-      <button v-if="!emailList.request_sent">Submit</button>
+      <button v-if="!emailList.no_secondary_section && !emailList.has_lists">
+        <font-awesome-icon :icon="faArrowLeft" />
+        Back: request a single mailing list
+      </button>
+      <button @click="show = false">Close</button>
+      <button v-if="!emailList.request_sent"
+              :disabled="selected.length === 0"
+      >
+        Submit
+      </button>
     </template>
   </b-modal>
 </template>
@@ -100,13 +125,14 @@
 <script>
 import {
   faCheck,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
-import {mapState} from 'vuex';
+import {mapState, mapActions} from 'vuex';
 
 export default {
   props: {
     emailList: {
-      type: Array,
+      type: Object,
       required: true,
     },
     sln: {
@@ -118,6 +144,10 @@ export default {
     return {
       show: false,
       faCheck,
+      faArrowLeft,
+      selected: [],
+      indeterminate: false,
+      allSelected: false,
     };
   },
   computed: {
@@ -125,6 +155,69 @@ export default {
       netid: (state) => state.user.netid,
       disableActions: (state) => state.disableActions,
     }),
+    selectableEmailList() {
+      const options = [];
+      if (this.emailList.section_list.list_exists) {
+        options.push({
+          text: `${this.emailList.course_abbr} ${
+            this.emailList.course_number
+          } ${this.emailList.section_list.section_id} - List already exists`,
+          value: `section_single_${this.emailList.section_list.section_id}`,
+          disabled: true,
+        });
+      } else {
+        options.push({
+          text: `${this.emailList.course_abbr} ${
+            this.emailList.course_number
+          } ${this.emailList.section_list.section_id}`,
+          value: `section_single_${this.emailList.section_list.section_id}`,
+        });
+      }
+
+      this.emailList.secondary_section_lists.forEach((section) => {
+        if (section.list_exists) {
+          options.push({
+            text: `${this.emailList.course_abbr} ${
+              this.emailList.course_number
+            } ${section.section_id} - List already exists`,
+            value: `secondary_single_${section.section_id}`,
+            disabled: true,
+          });
+        } else {
+          options.push({
+            text: `${this.emailList.course_abbr} ${
+              this.emailList.course_number
+            } ${section.section_id}`,
+            value: `secondary_single_${section.section_id}`,
+          });
+        }
+      });
+
+      return options;
+    }
+  },
+  watch: {
+    selected(newValue, oldValue) {
+      if (newValue.length === 0) {
+        this.indeterminate = false
+        this.allSelected = false
+      } else if (newValue.length === 
+        this.selectableEmailList.filter((o) => !o.disabled).length
+      ) {
+        this.indeterminate = false
+        this.allSelected = true
+      } else {
+        this.indeterminate = true
+        this.allSelected = false
+      }
+    }
+  },
+  methods: {
+    ...mapActions('emaillist', ['requestCreateEmail']),
+    toggleAll(checked) {
+      this.selected = checked ? 
+        this.selectableEmailList.filter((o) => !o.disabled).map((o) => o.value) : [];
+    },
   },
 }
 </script>

@@ -48,6 +48,24 @@ const fetchBuilder = (url, postProcess, type) => {
   };
 };
 
+const tryForceFetchBuilder = (url, postProcess, type) => {
+  return ({commit, rootState}, urlExtra = '') => {
+    return axios.get(url + urlExtra, {
+      responseType: type,
+    }).then((response) => {
+      return {
+        data: postProcess(response, urlExtra, rootState),
+        statusCode: response.status
+      };
+    }).then(({data, statusCode}) => {
+      commit('setValue', data);
+      commit(
+        'setStatus',
+        {[urlExtra]: {type: statusOptions[0], code: statusCode}}
+      );
+    });
+  };
+}
 
 // TODO: Add comments explaing the parameters
 const buildWith = (
@@ -139,4 +157,5 @@ export {
   // Builders
   buildWith,
   fetchBuilder,
+  tryForceFetchBuilder,
 };

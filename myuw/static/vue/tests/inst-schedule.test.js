@@ -40,7 +40,10 @@ describe('Instructor Schedule Data', () => {
         nextTerm: {
           year: 2013,
           quarter: 'summer',
-        }
+        },
+        cardDisplayDates: {
+          comparison_date: '2013-04-15T00:00:01',
+        },
       }
     });
   });

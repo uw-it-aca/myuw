@@ -125,7 +125,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 export default {
   props: {
     section: {
@@ -138,10 +137,6 @@ export default {
     },
   },
   methods: {
-    sectionFormattedDates(section) {
-      return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(
-          section.end_date).format('MMM D')}`;
-    },
     locationUrl(meeting) {
       if (meeting.latitude) {
         return `http://maps.google.com/maps?q=${meeting.latitude},${
