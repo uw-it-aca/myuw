@@ -80,7 +80,7 @@ services:
       - ../e2e/cypress/integration:/e2e/cypress/integration
       - ../e2e/cypress/plugins:/e2e/cypress/plugins
       - ../e2e/cypress/support:/e2e/cypress/support
-      - /tmp/cypress/screenshots:/e2e/cypress/screenshots
-      - /tmp/cypress/videos:/e2e/cypress/videos
+      - /tmp/myuw/cypress/screenshots:/e2e/cypress/screenshots
+      - /tmp/myuw/cypress/videos:/e2e/cypress/videos
     depends_on:
       - e2e-myuw
