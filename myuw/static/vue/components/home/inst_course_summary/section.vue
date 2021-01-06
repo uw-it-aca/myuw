@@ -1,6 +1,6 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <h4>
+    <h4 class="h5 myuw-font-encode-sans">
       <div :class="`c${section.color_id} simplesquare`" />
       <a
         :href="`/teaching/${section.href}`"

@@ -5,7 +5,7 @@
            :errored-show="statusCodeTagged(term) !== 404"
   >
     <template #card-heading>
-      <h3>
+      <h3 class="h4 text-dark-beige myuw-font-encode-sans">
         {{ ucfirst(getQuarter()) }} {{ getYear() }} Teaching Schedule
       </h3>
     </template>
