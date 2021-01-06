@@ -3,24 +3,9 @@
     <!-- A linked secondary section -->
     <div>
       <div :class="`c${section.color_id}`" />
-      <h4 class="sr-only">
-        Linked Secondary Section ID:
+      <h4 class="h5 mb-0 text-dark-beige myuw-font-encode-sans">
+        {{ section.section_id }}
       </h4>
-      <a v-if="section.mini_card"
-        :href="`/teaching/${section.href}`"
-        :future-nav-target="`${section.navtarget}`"
-        title="View the mini-card on teaching page"
-      >
-        {{ section.section_id }}
-      </a>
-      <a v-else
-        :href="`/teaching/${section.href}`"
-        :aria-label="`Pin ${section.id} mini-card to teaching page`"
-        title="Pin the mini-card onto teaching page"
-        @click="toggleMini(section)"
-      >
-        {{ section.section_id }}
-      </a>
     </div>
 
     <div v-if="section.sln">
@@ -68,7 +53,7 @@
               :value="`/teaching/${section.href}`"
               :aria-label="`Pin ${section.id} mini-card to teaching page`"
               title="Pin a mini-card onto teaching page"
-              @click="toggleMini(section)"
+              @click="miniCard"
       >
         Pin to teaching page
       </button>
@@ -77,7 +62,7 @@
               :value="`/teaching/${section.href}`"
               :aria-label="`Remove ${section.id} mini-card from teaching page`"
               title="Remove the mini-card from teaching page"
-              @click="toggleMini(section)"
+              @click="miniCard"
       >
         Unpin
       </button>
@@ -106,6 +91,12 @@ export default {
     ...mapActions('inst_schedule', [
       'toggleMini',
     ]),
+    miniCard() {
+      this.toggleMini(this.section);
+      if (!this.section.mini_card) {
+        window.location.href = `/teaching/${this.section.href}`;
+      }
+    }
   }
 };
 </script>

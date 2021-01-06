@@ -61,5 +61,8 @@ export default {
       return ('SLN ' + section.sln + ': ' + section.curriculum_abbr + ' ' +
              section.course_number + ' ' + section.section_id);
     },
+    idForSection(section) {
+      return `${section.course_abbr_slug}_${section.course_number}_${section.section_id}`;
+    },
   },
 }

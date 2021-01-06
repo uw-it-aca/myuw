@@ -52,5 +52,19 @@ export default {
   },
   computed: {
   },
+  mounted() {
+    const currentUrl = window.location.href;
+    if (currentUrl.endsWith(this.section.anchor)) {
+      this.selfAnchored();
+    }
+  },
+  methods: {
+    selfAnchored() {
+      const el = document.getElementById(this.section.anchor);
+      if (el) {
+        el.scrollIntoView({behavior: 'smooth'});
+      }
+    }
+  }
 };
 </script>
