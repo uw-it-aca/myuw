@@ -3,7 +3,7 @@
     <!-- A linked secondary section -->
     <div>
       <div :class="`c${section.color_id}`" />
-      <h4 class="h5 mb-0 text-dark-beige myuw-font-encode-sans">
+      <h4 class="h6 myuw-font-encode-sans">
         {{ section.section_id }}
       </h4>
     </div>
@@ -48,24 +48,22 @@
     </div>
 
     <div>
-      <button v-if="!section.mini_card"
-              type="button"
-              :value="`/teaching/${section.href}`"
+      <b-button v-if="!section.mini_card"
+              variant="light"
               :aria-label="`Pin ${section.id} mini-card to teaching page`"
               title="Pin a mini-card onto teaching page"
               @click="miniCard"
       >
-        Pin to teaching page
-      </button>
-      <button v-else
-              type="button"
-              :value="`/teaching/${section.href}`"
+        Pin to Teaching
+      </b-button>
+      <b-button v-else
+              variant="dark"
               :aria-label="`Remove ${section.id} mini-card from teaching page`"
               title="Remove the mini-card from teaching page"
               @click="miniCard"
       >
         Unpin
-      </button>
+      </b-button>
     </div>
   </div>
 </template>

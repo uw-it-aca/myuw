@@ -62,7 +62,7 @@ export default {
              section.course_number + ' ' + section.section_id);
     },
     idForSection(section) {
-      return `${section.course_abbr_slug}_${section.course_number}_${section.section_id}`;
+      return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
     },
   },
 }
