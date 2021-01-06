@@ -106,5 +106,11 @@ export default {
       );
     }
   },
+  mounted() {
+    const currentUrl = window.location.href;
+    if (currentUrl.endsWith(this.section.anchor)) {
+      this.selfAnchored(this.section);
+    }
+  },
 };
 </script>

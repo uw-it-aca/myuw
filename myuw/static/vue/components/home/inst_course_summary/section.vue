@@ -5,6 +5,7 @@
       <a
         :href="`/teaching/${section.href}`"
         :future-nav-target="section.navtarget"
+        title="Click to view the card on Teaching page"
       >
         {{ section.curriculum_abbr }}
         <span class="text-nowrap">
