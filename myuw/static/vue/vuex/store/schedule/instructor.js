@@ -190,11 +190,13 @@ function addCourseGradeData(courseData) {
 }
 
 function addCourseEvalData(courseData, rootState) {
-  let comparisonDate = dayjs();
+  let comparisonDate = null;
   if (rootState &&
       rootState.cardDisplayDates &&
       rootState.cardDisplayDates.comparison_date) {
     comparisonDate = dayjs(rootState.cardDisplayDates.comparison_date);
+  } else {
+    comparisonDate = dayjs();
   }
   
   courseData.sections.forEach((section) => {
