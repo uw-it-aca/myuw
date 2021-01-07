@@ -2,7 +2,7 @@
   <div v-if="isReady && instSchedule.sections.length">
     <div v-for="(section, i) in instSchedule.sections" :key="i">
       <uw-course-card
-        v-if="section.is_primary_section"
+        v-if="section.is_primary_section || !section.isLinkedSecondary"
         :schedule="instSchedule"
         :section="section"
       />
