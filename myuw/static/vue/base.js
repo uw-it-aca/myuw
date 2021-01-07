@@ -24,6 +24,7 @@ import {
   faSquareFull,
   faCaretRight,
   faCaretDown,
+  faCaretUp,
   faSquare as fasSquare,
   faTimes,
   faPencilAlt,
@@ -95,6 +96,7 @@ library.add(faBars);
 library.add(faLocationArrow);
 library.add(faCaretRight);
 library.add(faCaretDown);
+library.add(faCaretUp);
 library.add(faTimes);
 library.add(faPencilAlt);
 library.add(faCheck);
