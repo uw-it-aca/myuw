@@ -30,6 +30,8 @@
         </div>
         <b-button v-if="section.mini_card"
             variant="dark"
+            :aria-label="`Remove ${section.id} mini-card`"
+            title="Click to remove this mini-card"
             @click="toggleMini(section)">
           <font-awesome-icon :icon="faTimes" />
         </b-button>
