@@ -5,6 +5,7 @@
       :current-quarter="quarter"
       :current-year="year"
       :all-tabs="instSchedule.related_terms"
+      :selectedTerm="term"
     >
       <template #default="slotData">
         <uw-course-cards :term="slotData.tab.label" />
@@ -27,7 +28,14 @@ export default {
     ...mapState({
       year: (state) => parseInt(state.termData.year),
       quarter: (state) => state.termData.quarter,
-      term: (state) => `${state.termData.year},${state.termData.quarter}`,
+      term: (state) => {
+        let term = window.location.pathname.replace("/teaching/", "");
+
+        if (term !== "") {
+          return term;
+        }
+        return `${state.termData.year},${state.termData.quarter}`;
+      },
     }),
     ...mapState('inst_schedule', {
       instSchedule(state) {
