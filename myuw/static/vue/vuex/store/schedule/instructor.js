@@ -31,7 +31,7 @@ function postProcess(response, urlExtra, rootState) {
     let section = courseData.sections[i];
     section.year = courseData.year;
     section.quarter = courseData.quarter;
-    section.anchor = (section.curriculum_abbr.replace(/ /g, '-') + "-" +
+    section.anchor = (section.course_abbr_slug + "-" +
                   section.course_number + "-" + section.section_id);
     section.id = section.year + "-" + section.quarter + "-" + section.anchor;
 

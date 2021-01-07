@@ -3,7 +3,7 @@
     :id="idForSection(section)"
     loaded
     :ribbon="{
-      side: section.is_primary_section ? 'top' : 'left',
+      side: section.mini_card ? 'left' : 'top',
       colorId: section.color_id,
     }"
   >
@@ -104,6 +104,12 @@ export default {
       return this.schedule.sections.filter(
         (section) => section.primary_section_label === this.section.section_label
       );
+    }
+  },
+  mounted() {
+    const currentUrl = window.location.href;
+    if (currentUrl.endsWith(this.section.anchor)) {
+      this.selfAnchored(this.section);
     }
   },
 };

@@ -1,10 +1,11 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <h4>
+    <h4 class="h5 myuw-font-encode-sans">
       <div :class="`c${section.color_id} simplesquare`" />
       <a
         :href="`/teaching/${section.href}`"
         :future-nav-target="section.navtarget"
+        title="Click to view the card on Teaching page"
       >
         {{ section.curriculum_abbr }}
         <span class="text-nowrap">

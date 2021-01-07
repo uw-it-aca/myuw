@@ -3,24 +3,23 @@
     <!-- A linked secondary section -->
     <div>
       <div :class="`c${section.color_id}`" />
-      <h4 class="sr-only">
-        Linked Secondary Section ID:
+      <h4 class="h5 myuw-font-encode-sans">
+        <a v-if="section.mini_card"
+          :href="`/teaching/${section.href}`"
+          :future-nav-target="section.navtarget"
+          title="Click to view the mini-card on Teaching page"
+        >
+          {{ section.section_id }}
+        </a>
+        <a v-else
+          :href="`/teaching/${section.href}`"
+          :future-nav-target="section.navtarget"
+          title="Click to pin the mini-card onto Teaching page"
+          @click="miniCard"
+        >
+          {{ section.section_id }}
+        </a>
       </h4>
-      <a v-if="section.mini_card"
-        :href="`/teaching/${section.href}`"
-        :future-nav-target="`${section.navtarget}`"
-        title="View the mini-card on teaching page"
-      >
-        {{ section.section_id }}
-      </a>
-      <a v-else
-        :href="`/teaching/${section.href}`"
-        :aria-label="`Pin ${section.id} mini-card to teaching page`"
-        title="Pin the mini-card onto teaching page"
-        @click="toggleMini(section)"
-      >
-        {{ section.section_id }}
-      </a>
     </div>
 
     <div v-if="section.sln">
@@ -63,24 +62,22 @@
     </div>
 
     <div>
-      <button v-if="!section.mini_card"
-              type="button"
-              :value="`/teaching/${section.href}`"
+      <b-button v-if="!section.mini_card"
+              variant="light"
               :aria-label="`Pin ${section.id} mini-card to teaching page`"
-              title="Pin a mini-card onto teaching page"
-              @click="toggleMini(section)"
+              title="Click to pin the mini-card onto Teaching page"
+              @click="miniCard"
       >
-        Pin to teaching page
-      </button>
-      <button v-else
-              type="button"
-              :value="`/teaching/${section.href}`"
+        Pin to Teaching
+      </b-button>
+      <b-button v-else
+              variant="dark"
               :aria-label="`Remove ${section.id} mini-card from teaching page`"
-              title="Remove the mini-card from teaching page"
-              @click="toggleMini(section)"
+              title="Click to remove the mini-card from Teaching page"
+              @click="miniCard"
       >
         Unpin
-      </button>
+      </b-button>
     </div>
   </div>
 </template>
@@ -106,6 +103,12 @@ export default {
     ...mapActions('inst_schedule', [
       'toggleMini',
     ]),
+    miniCard() {
+      this.toggleMini(this.section);
+      if (!this.section.mini_card) {
+        window.location.href = `/teaching/${this.section.href}`;
+      }
+    }
   }
 };
 </script>

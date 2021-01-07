@@ -83,8 +83,5 @@ export default {
           return "AUT";
       }
     },
-    idForSection(section) {
-      return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
-    },
   },
 }

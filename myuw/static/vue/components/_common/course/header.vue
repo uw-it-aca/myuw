@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex justify-content-between mb-3">
       <div>
-        <h4 :id="section.anchor"
+        <h4
           class="h5 mb-0 text-dark-beige myuw-font-encode-sans">
           {{ section.curriculum_abbr }}
           {{ section.course_number }}
@@ -28,9 +28,13 @@
             {{ section.credits }} CR
           </div>
         </div>
-        <button v-if="section.mini_card" @click="toggleMini(section)">
+        <b-button v-if="section.mini_card"
+            variant="dark"
+            :aria-label="`Remove ${section.id} mini-card`"
+            title="Click to remove this mini-card"
+            @click="toggleMini(section)">
           <font-awesome-icon :icon="faTimes" />
-        </button>
+        </b-button>
       </div>
     </div>
     <div v-if="section.summer_term" class="d-flex">
