@@ -3,7 +3,7 @@
     <!-- A linked secondary section -->
     <div>
       <div :class="`c${section.color_id}`" />
-      <h4 class="h6 myuw-font-encode-sans">
+      <h4 class="h5 myuw-font-encode-sans">
         <a v-if="section.mini_card"
           :href="`/teaching/${section.href}`"
           :future-nav-target="section.navtarget"
