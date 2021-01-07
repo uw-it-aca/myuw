@@ -28,9 +28,11 @@
             {{ section.credits }} CR
           </div>
         </div>
-        <button v-if="section.mini_card" @click="toggleMini(section)">
+        <b-button v-if="section.mini_card"
+            variant="dark"
+            @click="toggleMini(section)">
           <font-awesome-icon :icon="faTimes" />
-        </button>
+        </b-button>
       </div>
     </div>
     <div v-if="section.summer_term" class="d-flex">
