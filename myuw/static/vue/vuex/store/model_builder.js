@@ -20,6 +20,9 @@ const fetchBuilder = (url, postProcess, type) => {
       commit('setStatus', {[urlExtra]: {type: statusOptions[1]}});
       axios.get(url + urlExtra, {
         responseType: type,
+        headers: {
+          'Pragma': 'no-cache',
+        },
       }).then((response) => {
         return {
           data: postProcess(response, urlExtra, rootState),
