@@ -11,7 +11,6 @@
     </template>
     <template #card-body>
       <div v-if="!instSchedule.sections.length">
-        >
         <!-- teach no course -->
         <p>
           You are not teaching any courses this term.
