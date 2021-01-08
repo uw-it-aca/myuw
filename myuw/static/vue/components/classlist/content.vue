@@ -16,7 +16,8 @@
         id="csv_download_class_list"
         @click="downloadClassList"
       >
-        <i class="fa fa-download" />Download (CSV)
+        <font-awesome-icon :icon="faDownload" />
+        Download (CSV)
       </b-link>
 
       <a href="javascript:window.print()" class="">
@@ -44,6 +45,9 @@
 </template>
 
 <script>
+import {
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
 import TableView from './table-view.vue';
 import PhotoList from './photo-list.vue';
 
@@ -65,6 +69,7 @@ export default {
   data() {
     return {
       showJointCourse: false,
+      faDownload,
     };
   },
   methods: {
