@@ -14,7 +14,7 @@
     <div class="">
       <b-link
         id="csv_download_class_list"
-        @click="downloadClassList"
+        @click="downloadCL"
       >
         <font-awesome-icon :icon="faDownload" />
         Download (CSV)
@@ -82,15 +82,8 @@ export default {
       const fn = this.section.section_label + '_students.csv';
       return fn.replace(/[^a-z0-9._]/ig, '_');
     },
-    downloadClassList() {
-      const hiddenElement = document.createElement('a');
-      const csvData = this.buildClasslistCsv(
-          this.section.registrations, this.section.has_linked_sections);
-
-      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
-      hiddenElement.target = '_blank';
-      hiddenElement.download = this.fileName();
-      hiddenElement.click();
+    downloadCL() {
+      this.downloadClassList(this.section);
     },
   },
 };

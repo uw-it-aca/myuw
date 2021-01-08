@@ -51,6 +51,16 @@ export default {
         }
         return lines.join("\n");
     },
+    downloadClassList(classlist) {
+      const hiddenElement = document.createElement('a');
+      const csvData = this.buildClasslistCsv(
+          classlist.registrations, classlist.has_linked_sections);
+
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = this.fileName();
+      hiddenElement.click();
+    },
     getQuarterAbbr(quarter_str) {
       // return the first 3 letter word in upper case
       return (!quarter_str || quarter_str.length === 0) ? '' :
