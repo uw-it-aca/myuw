@@ -65,23 +65,5 @@ export default {
     toFromNowDate(date_str) {
       return dayjs(date_str).fromNow();
     },
-    getQuarterAbbr(quarter_str) {
-      if (quarter_str && quarter_str.length) {
-        return "";
-      }
-      var q = quarter_str.toLowerCase();
-      if(q === "winter") {
-          return "WIN";
-      }
-      else if(q === "spring") {
-          return "SPR";
-      }
-      else if(q === "summer") {
-          return "SUM";
-      }
-      else if(q === "autumn") {
-          return "AUT";
-      }
-    },
   },
 }

@@ -112,12 +112,6 @@ export default {
     ...mapActions('inst_schedule', [
       'toggleMini',
     ]),
-    slnHref() {
-      const quarterAbbr = this.getQuarterAbbr(this.schedule.quarter);
-      const queryParams =
-        `QTRYR=${quarterAbbr}+${this.schedule.year}&SLN=${this.section.sln}`;
-      return `https://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?${queryParams}`;
-    },
     sectionFormattedDates(section) {
       return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(
           section.end_date).format('MMM D')}`;

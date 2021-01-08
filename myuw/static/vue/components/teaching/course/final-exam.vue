@@ -26,8 +26,8 @@
           <tbody>
             <td>{{ section.final_exam.start_date.format('ddd, MMM D') }}</td>
             <td>
-              {{ section.final_exam.start_date.format('hh:mm A') }}
-              - {{ section.final_exam.end_date.format('hh:mm A') }}
+              {{ section.final_exam.start_date.format('h:mm A') }} &ndash;
+              {{ section.final_exam.end_date.format('h:mm A') }}
             </td>
             <td>
               <span
