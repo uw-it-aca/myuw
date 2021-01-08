@@ -12,7 +12,15 @@
       </div>
       <div class="d-flex">
         <span class="mr-2">
-          SLN <a target="_blank" :href="slnHref()">{{ section.sln }}</a>
+          SLN
+          <a
+          :href="getTimeScheHref(section)"
+          :title="`Time Schedule for SLN ${section.sln}`"
+          :data-linklabel="getTimeScheLinkLable(section)"
+          target="_blank"
+        >
+          {{ section.sln }}
+        </a>
         </span>
         <div>
           <div :class="`px-1 border myuw-text-sm
