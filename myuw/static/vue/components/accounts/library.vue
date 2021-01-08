@@ -14,7 +14,7 @@
       <b-alert v-if="holdsReady" show variant="info">
         <div class="d-flex text-default m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
-            <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+            <font-awesome-icon :icon="faQuestionCircle" />
           </div>
           <div class="w-100">
             <a
@@ -82,6 +82,9 @@
 </template>
 
 <script>
+import {
+  faQuestionCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardStatus from '../_templates/card-status.vue';
@@ -92,6 +95,11 @@ export default {
     'uw-card': Card,
     'uw-card-status': CardStatus,
     'uw-link-button': LinkButton,
+  },
+  data() {
+    return {
+      faQuestionCircle,
+    }
   },
   computed: {
     ...mapState({
