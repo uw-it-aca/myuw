@@ -40,6 +40,9 @@ module.exports = {
     textbooks: [
       "./myuw/static/vue/textbooks.js"
     ],
+    notices: [
+      "./myuw/static/vue/notices.js"
+    ],
   },
   output: {
       path: path.resolve('../static/myuw/'),

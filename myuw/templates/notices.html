@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
+
+{% load settings_value %}
+{% load json_script %}
+{% load set_context %}
+
+{% block django_json_data %}
+{% endblock django_json_data %}
+
 {% block body_content %}
-    <p>place holder</p>
+<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
+  <!--MARK: #primary template (column 1, mobile only) -->
+  <template #primary>
+    <b-col md="12" :class="[$mq === 'mobile' ? 'px-0' : '']">
+      <!--MARK: card components go here in order -->
+      <myuw-all-notices></myuw-all-notices>
+    </b-col>
+  </template>
+</myuw-boilerplate>
 {% endblock body_content %}
+
+{% block vue_script %}
+{% load webpack_manifest %}
+{% render_webpack_entry 'notices' js='defer' %}
+{% endblock vue_script %}
