@@ -5,7 +5,6 @@
       :key="section.id"
       :section="section"
     >
-      <hr>
     </uw-section>
   </div>
 </template>
