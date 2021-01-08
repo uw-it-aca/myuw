@@ -22,15 +22,18 @@
     </b-col>
   </template>
   <template #desktop>
-    <b-card-group columns class="px-1">
-      <myuw-medicine-account></myuw-medicine-account>
-      <myuw-husky></myuw-husky>
-      <myuw-hfs-sea></myuw-hfs-sea>
-      <myuw-hr-payroll></myuw-hr-payroll>
-      <myuw-library></myuw-library>
-      <myuw-upass></myuw-upass>
-      <myuw-uwnetid></myuw-uwnetid>
-    </b-card-group>
+    <b-col md="12">
+      <!-- MARK: use card group to create 2 column auto layout -->
+      <b-card-group columns>
+        <myuw-medicine-account></myuw-medicine-account>
+        <myuw-husky></myuw-husky>
+        <myuw-hfs-sea></myuw-hfs-sea>
+        <myuw-hr-payroll></myuw-hr-payroll>
+        <myuw-library></myuw-library>
+        <myuw-upass></myuw-upass>
+        <myuw-uwnetid></myuw-uwnetid>
+      </b-card-group>
+    </b-col>
   </template>
 </myuw-boilerplate>
 {% endblock body_content %}
