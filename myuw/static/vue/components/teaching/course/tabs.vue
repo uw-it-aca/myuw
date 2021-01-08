@@ -5,7 +5,7 @@
       :current-quarter="quarter"
       :current-year="year"
       :all-tabs="instSchedule.related_terms"
-      :selectedTerm="term"
+      :selected-term="term"
     >
       <template #default="slotData">
         <uw-course-cards :term="slotData.tab.label" />
