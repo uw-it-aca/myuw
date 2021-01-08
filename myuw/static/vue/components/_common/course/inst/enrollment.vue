@@ -21,7 +21,7 @@
     >
       {{ section.current_enrollment }}
       <span v-if="!section.is_independent_study">
-        <span>&nbsp;of&nbsp;</span><span aria-hidden="true">/</span>
+        <span>&nbsp;of&nbsp;</span>
         {{ section.limit_estimate_enrollment }}
       </span>
     </a>
@@ -38,10 +38,7 @@ export default {
   },
   methods: {
     classListHref() {
-      return ('/teaching/' + this.section.year + ',' +
-              this.section.quarter + ',' + this.section.curriculum_abbr + ',' +
-              this.section.course_number + '/' +
-              this.section.section_id + '/students');
+      return ('/teaching/' + this.section.apiTag + '/students');
     },
     getTitle() {
       return ('View class list of ' +
