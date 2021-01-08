@@ -14,7 +14,7 @@
       <b-alert v-if="holdsReady" show variant="info">
         <div class="d-flex text-default m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
-            <font-awesome-icon :icon="faQuestionCircle" />
+            <font-awesome-icon :icon="['fas', 'info-circle']" />
           </div>
           <div class="w-100">
             <a
