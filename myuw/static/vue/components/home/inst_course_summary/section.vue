@@ -44,7 +44,7 @@
       <h5 class="sr-only">
         Section Meetings:
       </h5>
-      <uw-meeting :section="section" :mobile-only="mobileOnly" />
+      <uw-meeting :section="section" />
     </div>
 
     <div>
@@ -54,28 +54,68 @@
       <uw-enrollment :section="section" />
     </div>
 
-    <slot />
-    <!-- for linked secondary sections -->
+    <template v-if="getLinkedSections(section).length > 0">
+      <b-button
+        v-b-toggle="`linked-sections-${section.id}`"
+        variant="light" block
+        class="p-0 text-dark"
+        title="Show/Hide linked secondary sections"
+      >
+        <font-awesome-icon v-if="!isOpen" :icon="faCaretRight" />
+        <font-awesome-icon v-else :icon="faCaretDown" />
+        Linked Sections of {{ section.curriculum_abbr }}
+        {{ section.course_number }} {{ section.section_id }}
+      </b-button>
+
+      <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
+        <uw-linked-section
+          v-for="(sec, j) in getLinkedSections(section)"
+          :key="`secondary-${section.id}-${j}`"
+          :section="sec"
+        />
+      </b-collapse>
+    </template>
+
+    <hr>
   </div>
 </template>
 
 <script>
+import {
+  faThumbtack,
+  faCaretRight,
+  faCaretDown,
+} from '@fortawesome/free-solid-svg-icons';
+import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import MeetingInfo from '../../_common/course/inst/meeting.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
 
 export default {
   components: {
+    'uw-linked-section': LinkedSection,
     'uw-meeting': MeetingInfo,
     'uw-enrollment': Enrollment,
   },
   props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
     section: {
       type: Object,
       required: true,
+    },
+  },
+  data() {
+    return {
+      isOpen: false,
+      faThumbtack,
+      faCaretRight,
+      faCaretDown,
+    };
+  },
+  methods: {
+    getLinkedSections(pSection) {
+      return this.$parent.sections.filter(
+        (section) => (!section.is_primary_section &&
+          section.primary_section_label === pSection.section_label),
+      );
     },
   },
 };

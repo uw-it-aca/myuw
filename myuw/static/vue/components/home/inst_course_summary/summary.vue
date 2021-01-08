@@ -43,15 +43,8 @@
           </span>
         </div>
 
-        <uw-summer-section-list v-if="getQuarter() === 'summer'"
-                                :schedule="instSchedule"
-                                :mobile-only="mobileOnly"
-        />
-
-        <uw-section-list v-else
-                         :sections="instSchedule.sections"
-                         :mobile-only="mobileOnly"
-        />
+        <uw-summer-section-list v-if="getQuarter() === 'summer'" :schedule="instSchedule" />
+        <uw-section-list v-else :sections="instSchedule.sections" />
 
         <div>
           <a :href="getAcadCalLink()">
@@ -95,10 +88,6 @@ export default {
     term: {
       type: String,
       default: 'current',
-    },
-    mobileOnly: {
-      type: Boolean,
-      default: false,
     },
   },
   computed: {
