@@ -20,16 +20,9 @@
           >
             {{ ucfirst(section.section_type) }}
           </div>
-          <div
-            v-if="section.is_primary_section && section.for_credit"
-            :class="`px-1 myuw-text-sm text-right
-            text-uppercase text-c${section.color_id}`"
-          >
-            {{ section.credits }} CR
-          </div>
         </div>
         <b-button v-if="section.mini_card"
-            variant="dark"
+            variant="dark" size="sm"
             :aria-label="`Remove ${section.id} mini-card`"
             title="Click to remove this mini-card"
             @click="toggleMini(section)">
@@ -100,7 +93,7 @@ export default {
     showRowHeading: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data() {
     return {
