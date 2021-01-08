@@ -41,7 +41,7 @@
         class="w-100 p-0 border-0 text-dark"
       >
         <font-awesome-icon v-if="!isOpen" :icon="faCaretRight" />
-        <font-awesome-icon v-else :icon="faCaretDown" />
+        <font-awesome-icon v-else :icon="faCaretUp" />
         Secondary Sections ({{linkedSections.length}})
       </b-button>
     </template>
@@ -52,7 +52,7 @@
 import {
   faThumbtack,
   faCaretRight,
-  faCaretDown,
+  faCaretUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Card from '../../_templates/card.vue';
@@ -96,7 +96,7 @@ export default {
       isOpen: false,
       faThumbtack,
       faCaretRight,
-      faCaretDown,
+      faCaretUp,
     };
   },
   computed: {
