@@ -29,9 +29,15 @@ function postProcess(response, urlExtra, rootState) {
   convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
+
     section.year = courseData.year;
     section.quarter = courseData.quarter;
+    section.futureTerm = courseData.future_term;
     section.pastTerm = courseData.past_term;
+    section.requestSummerTerm = courseData.summer_term;
+    section.registrationStart = courseData.term.registration_periods[0].start;
+    section.timeSchedulePublished = courseData.term.time_schedule_published;
+
     section.anchor = (section.course_abbr_slug + "-" +
                   section.course_number + "-" + section.section_id);
     section.id = section.year + "-" + section.quarter + "-" + section.anchor;
@@ -63,14 +69,6 @@ function postProcess(response, urlExtra, rootState) {
       } else {
         linkedPrimaryLabel = undefined;
       }
-    }
-
-    // check if the enrollment is of previous term
-    section.is_prev_term_enrollment = false;
-    if (!section.sln &&
-        !time_schedule_published[section.course_campus.toLowerCase()]) {
-        section.is_prev_term_enrollment = true;
-        section.prev_enrollment_year = section.year - 1;
     }
 
     section.instructors = [];
@@ -140,15 +138,6 @@ function addCourseGradeData(courseData) {
     section.isSeattle = courseCampus === 'seattle';
     section.isBothell = courseCampus === 'bothell';
     section.isTacoma = courseCampus === 'tacoma';
-
-    section.year = courseData.year;
-    section.quarter = courseData.quarter;
-    section.futureTerm = courseData.future_term;
-    section.pastTerm = courseData.past_term;
-    section.requestSummerTerm = courseData.summer_term;
-
-    section.registrationStart = courseData.term.registration_periods[0].start;
-    section.timeSchedulePublished = courseData.term.time_schedule_published;
 
     let allPublished = true;
     for (let campus in section.timeSchedulePublished) {
