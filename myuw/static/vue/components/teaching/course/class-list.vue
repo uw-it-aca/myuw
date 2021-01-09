@@ -35,7 +35,7 @@
       </p>
       <p>
         ({{section.current_enrollment}} of {{section.limit_estimate_enrollment}}
-        students registered for course in 
+        students registered for course in
         {{ titleCaseWord(section.quarter) }}
         {{ section.prevEnrollmentYear }})
       </p>
@@ -57,13 +57,7 @@
           &nbsp;of&nbsp; {{ section.limit_estimate_enrollment }}
         </span>
       </span>
-      <span v-if="section.no_2nd_registration"
-        title="There is no enrollment/registration data for secondary sections once the course work has been posted to transcripts"
-        class="myuw-muted"
-      >
-        Class list not available
-      </span>
-      <span v-else>
+      <span>
         <b-link
           target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
