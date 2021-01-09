@@ -28,15 +28,56 @@
         </b-popover>
       </p>
     </div>
-    <div v-else>
-      <uw-enrollment :section="section" />
-      <span>
-      <b-link v-if="displayDownloadLink"
-        id="csv_download_class_list"
-        @click="downloadCL"
+    <div v-else-if="section.isPrevTermEnrollment">
+      <p>Registration opens
+        {{  toFriendlyDate(section.registrationStart) }}
+         at 6:00 AM PST.
+      </p>
+      <p>
+        ({{section.current_enrollment}} of {{section.limit_estimate_enrollment}}
+        students registered for course in 
+        {{ titleCaseWord(section.quarter) }}
+        {{ section.prevEnrollmentYear }})
+      </p>
+    </div>
+    <div v-else-if="section.enrollment_student_name">
+      <span>{{ section.enrollment_student_name }}</span>
+      <b-link
+        target="_blank"
+        :href="`/teaching/${section.apiTag}/students`"
+        :rel="section.section_label"
       >
-        <font-awesome-icon :icon="faDownload" /> Download (CSV)
+        View student
       </b-link>
+    </div>
+    <div v-else-if="section.current_enrollment">
+      <span>
+        {{ section.current_enrollment }}
+        <span v-if="!section.is_independent_study">
+          &nbsp;of&nbsp; {{ section.limit_estimate_enrollment }}
+        </span>
+      </span>
+      <span v-if="section.no_2nd_registration"
+        title="There is no enrollment/registration data for secondary sections once the course work has been posted to transcripts"
+        class="myuw-muted"
+      >
+        Class list not available
+      </span>
+      <span v-else>
+        <b-link
+          target="_blank"
+          :href="`/teaching/${section.apiTag}/students`"
+          :rel="section.section_label"
+        >
+          View class list
+        </b-link>
+
+        <b-link v-if="displayDownloadLink"
+          id="csv_download_class_list"
+          @click="downloadCL"
+        >
+          <font-awesome-icon :icon="faDownload" /> Download (CSV)
+        </b-link>
       </span>
     </div>
   </div>
@@ -48,12 +89,8 @@ import {
   faDownload,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import Enrollment from '../../_common/course/inst/enrollment.vue';
 
 export default {
-  components: {
-    'uw-enrollment': Enrollment,
-  },
   props: {
     section: {
       type: Object,
