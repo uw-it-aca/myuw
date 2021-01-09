@@ -11,7 +11,7 @@
         <div>{{ section.course_title }}</div>
       </div>
       <div class="d-flex">
-        <span class="mr-2">
+        <span v-if="section.sln" class="mr-2">
           SLN
           <a
           :href="getTimeScheHref(section)"
