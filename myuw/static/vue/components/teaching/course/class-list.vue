@@ -3,17 +3,42 @@
     <h5 :class="{'sr-only': showRowHeader}">
       Enrollment
     </h5>
-    <div class="mb-0 w-100 myuw-text-md">
-        <uw-enrollment :section="section" />
-        <span>
-        <b-link v-if="isDownloadPossible"
-          id="csv_download_class_list"
-          @click="downloadCL"
+    <div v-if="useLegacyViewClasslist">
+      <p>
+        View class list in
+        <b-link
+          class="myuw-muted"
+          :href="legacyLink"
+          target="_blank"
+          :rel="`class_list_${section.section_label}`"
+          :title="`View ${section.section_label} class list`"
         >
-          <font-awesome-icon :icon="faDownload" /> Download (CSV)
+          My Class Resources
         </b-link>
-        </span>
-      </div>
+        <b-button id="`cl_info_${section.id}`">
+          <font-awesome-icon :icon="faQuestionCircle" />
+          <span class="sr-only">More information</span>
+        </b-button>
+        <b-popover
+          :target="`cl_info_${section.id}`"
+          triggers="hover focus"
+        >
+          Class lists for independent study and secondary sections
+          in previous quarters are only available via My Class Resources.
+        </b-popover>
+      </p>
+    </div>
+    <div v-else>
+      <uw-enrollment :section="section" />
+      <span>
+      <b-link v-if="displayDownloadLink"
+        id="csv_download_class_list"
+        @click="downloadCL"
+      >
+        <font-awesome-icon :icon="faDownload" /> Download (CSV)
+      </b-link>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -21,6 +46,7 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import {
   faDownload,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
 
@@ -41,6 +67,7 @@ export default {
   data() {
     return {
       faDownload,
+      faInfoCircle,
     };
   },
   computed: {
@@ -56,9 +83,25 @@ export default {
     isDownloadPossible() {
       return this.isReadyTagged(this.getKey);
     },
+    displayDownloadLink() {
+      return (this.section.current_enrollment &&
+        !this.section.is_prev_term_enrollment &&
+        this.isDownloadPossible);
+    },
     sectionDetail() {
       return this.allData[this.getKey];
     },
+    useLegacyViewClasslist() {
+      return this.section.pastTerm && (
+        this.section.is_independent_study ||
+        !this.section.is_primary_section);
+    },
+    legacyLink() {
+      return 'https://sdb.admin.uw.edu/sisMyUWClass/' +
+      'uwnetid/pop/classlist.aspx?quarter=' +
+      this.section.quarter + '+' +  this.section.year +
+      '&sln=' + this.section.sln;
+    }
   },
   created() {
     this.fetchClasslist(this.getKey);
