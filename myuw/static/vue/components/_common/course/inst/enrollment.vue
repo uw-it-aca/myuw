@@ -1,5 +1,5 @@
 <template>
-  <span v-if="section.is_prev_term_enrollment">
+  <span v-if="section.isPrevTermEnrollment">
     0<!-- the current_enrollment value is of previous term -->
     <span v-if="!section.is_independent_study">
       &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
