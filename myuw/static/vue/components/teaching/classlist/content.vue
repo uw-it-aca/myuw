@@ -78,10 +78,6 @@ export default {
         'To hide students from joint courses' :
         'To show students from joint courses');
     },
-    fileName() {
-      const fn = this.section.section_label + '_students.csv';
-      return fn.replace(/[^a-z0-9._]/ig, '_');
-    },
     downloadCL() {
       this.downloadClassList(this.section);
     },

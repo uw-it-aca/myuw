@@ -68,7 +68,7 @@ export default {
       fetchClasslist: 'fetch',
     }),
     downloadCL() {
-      this.downloadClassList(this.sectionDetail);
+      this.downloadClassList(this.sectionDetail.sections[0]);
     },
   }
 };

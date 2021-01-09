@@ -51,6 +51,10 @@ export default {
         }
         return lines.join("\n");
     },
+    classlistFileName() {
+      const fn = this.section.section_label + '_students.csv';
+      return fn.replace(/[^a-z0-9._]/ig, '_');
+    },
     downloadClassList(classlist) {
       const hiddenElement = document.createElement('a');
       const csvData = this.buildClasslistCsv(
@@ -58,7 +62,7 @@ export default {
 
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
       hiddenElement.target = '_blank';
-      hiddenElement.download = this.fileName();
+      hiddenElement.download = this.classlistFileName();
       hiddenElement.click();
     },
     getQuarterAbbr(quarter_str) {
