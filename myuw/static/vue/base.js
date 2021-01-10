@@ -60,6 +60,7 @@ import {
   LayoutPlugin,
   LinkPlugin,
   NavPlugin,
+  PopoverPlugin ,
   SpinnerPlugin,
   TablePlugin ,
   TabsPlugin,
@@ -130,6 +131,7 @@ Vue.use(InputGroupPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(LinkPlugin);
 Vue.use(NavPlugin);
+Vue.use(PopoverPlugin)
 Vue.use(SpinnerPlugin);
 Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
