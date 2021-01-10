@@ -4,7 +4,7 @@
       Enrollment
     </h5>
     <div v-if="useLegacyViewClasslist">
-      <p>
+      <span>
         View class list in
         <b-link
           class="myuw-muted"
@@ -15,19 +15,20 @@
         >
           My Class Resources
         </b-link>
-        <b-button id="`cl_info_${section.id}`">
-          <font-awesome-icon :icon="faQuestionCircle" />
+        <b-button :id="`cinfo_${section.id}`" variant="link">
+          <font-awesome-icon :icon="faInfoCircle" />
           <span class="sr-only">More information</span>
         </b-button>
         <b-popover
-          :target="`cl_info_${section.id}`"
-          triggers="hover focus"
+          :target="`cinfo_${section.id}`"
+          triggers="hover"
         >
           Class lists for independent study and secondary sections
           in previous quarters are only available via My Class Resources.
         </b-popover>
-      </p>
+      </span>
     </div>
+
     <div v-else-if="section.isPrevTermEnrollment">
       <p>Registration opens
         {{  toFriendlyDate(section.registrationStart) }}
@@ -36,10 +37,10 @@
       <p>
         ({{section.current_enrollment}} of {{section.limit_estimate_enrollment}}
         students registered for course in
-        {{ titleCaseWord(section.quarter) }}
-        {{ section.prevEnrollmentYear }})
+        {{ titleCaseWord(section.quarter) }} {{ section.year - 1 }})
       </p>
     </div>
+
     <div v-else-if="section.enrollment_student_name">
       <span>{{ section.enrollment_student_name }}</span>
       <b-link
@@ -50,22 +51,26 @@
         View student
       </b-link>
     </div>
-    <div v-else-if="section.current_enrollment">
+
+    <div v-else>
       <span>
         {{ section.current_enrollment }}
         <span v-if="!section.is_independent_study">
           &nbsp;of&nbsp; {{ section.limit_estimate_enrollment }}
         </span>
       </span>
+
       <span>
-        <b-link
+        <b-link v-if="section.current_enrollment"
           target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
           :rel="section.section_label"
         >
           View class list
         </b-link>
+      </span>
 
+      <span>
         <b-link v-if="displayDownloadLink"
           id="csv_download_class_list"
           @click="downloadCL"
@@ -116,7 +121,7 @@ export default {
     },
     displayDownloadLink() {
       return (this.section.current_enrollment &&
-        !this.section.is_prev_term_enrollment &&
+        !this.section.isPrevTermEnrollment &&
         this.isDownloadPossible);
     },
     sectionDetail() {
