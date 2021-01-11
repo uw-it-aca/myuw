@@ -1,4 +1,6 @@
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 export default {
   methods: {
     encodeForMaps(s) {
@@ -64,6 +66,20 @@ export default {
     },
     toFromNowDate(date_str) {
       return dayjs(date_str).fromNow();
+    },
+    toFromNowDate(date_str) {
+      return (!date_str || date_str.length === 0 ? '' :
+              dayjs(date_str).fromNow());
+    },
+    formatPrice(price) {
+      let formatted = price.toString().split(".");
+      if (formatted[1] && formatted[1].length === 1) {
+        formatted[1] += "0";
+      }
+      if (!formatted[1] || formatted[1].length === 0) {
+        formatted[1] = "00";
+      }
+      return formatted.join(".");
     },
   },
 }

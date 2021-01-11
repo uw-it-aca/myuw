@@ -62,9 +62,9 @@ describe('Husky Card', () => {
     ).toBe('Employee Husky Account');
     expect(wrapper.findAll('span').at(0).text()
     ).toBe('$1.23');
-    expect(wrapper.findAll('span').at(2).text()
+    expect(wrapper.findAll('span').at(1).text()
     ).toBe('$1.00');
-    expect(wrapper.findAll('a').length).toBe(1);
+    expect(wrapper.findAll('a')).toHaveLength(1);
   });
 
   it('Hide card if not the right user type', async () => {
@@ -91,7 +91,7 @@ describe('Husky Card', () => {
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
-    expect(wrapper.findAll('a').length).toBe(1);
+    expect(wrapper.findAll('a')).toHaveLength(1);
     expect(wrapper.find('a').attributes().href
     ).toBe('https://hfs.uw.edu/olco/Secure/AccountSummary.aspx');
   });

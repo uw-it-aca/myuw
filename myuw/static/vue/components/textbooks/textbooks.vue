@@ -29,11 +29,9 @@
       </uw-section>
 
       <div class="my-4 text-center">
-        <a target="_blank" :href="orderUrl"
-           class="btn btn-outline-beige text-dark myuw-text-md"
-        >
+        <uw-link-button target="_blank" :href="orderUrl">
           Start textbook shopping
-        </a>
+        </uw-link-button>
       </div>
 
       <uw-covid />
@@ -69,6 +67,7 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Panel from '../_templates/panel.vue';
+import LinkButton from '../_templates/link-button.vue';
 import Section from './section.vue';
 import Covid from './covid.vue';
 
@@ -77,6 +76,7 @@ export default {
     'uw-panel': Panel,
     'uw-section': Section,
     'uw-covid': Covid,
+    'uw-link-button': LinkButton,
   },
   props: {
     term: {

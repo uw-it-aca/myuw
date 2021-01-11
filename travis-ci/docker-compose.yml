@@ -10,11 +10,12 @@
 version: '3.4'
 
 services:
-  django-test:
-    build: .
+  python-tests:
+    build: ../
     user: root
     volumes:
-      - ./myuw:/app/myuw
+      - ../myuw:/app/myuw
+      - /tmp/myuw:/coverage
     environment:
       ENV: localdev
       AUTH: SAML_MOCK
@@ -28,39 +29,58 @@ services:
     command: bash -c ". ./travis-ci/test_python.sh"
   memcached:
     image: memcached
-  eslint-fix:
-    build:
-      context: .
-      target: node-bundler
-    environment:
-      NODE_ENV: development
-      ENV: localdev
-    volumes:
-      - ./myuw:/app/myuw
-    stdin_open: true
-    tty: true
-    command: bash -c "cd /app/ && npx eslint myuw/static/vue --ext .vue --fix"
   eslint:
     build:
-      context: .
+      context: ../
       target: node-bundler
     environment:
       NODE_ENV: producation
       ENV: localdev
     volumes:
-      - ./myuw:/app/myuw
+      - ../myuw:/app/myuw
+    working_dir: /app/
     stdin_open: true
     tty: true
-    command: bash -c "cd /app/ && npx eslint myuw/static/vue --ext .vue"
+    entrypoint:
+      - npx
+      - eslint
+      - myuw/static/vue
+      - --ext
+      - .vue
   jest:
     build:
-      context: .
+      context: ../
       target: node-bundler
     environment:
       NODE_ENV: producation
       ENV: localdev
     volumes:
-      - ./myuw:/app/myuw
+      - ../myuw:/app/myuw
     stdin_open: true
     tty: true
-    command: bash -c "cd /app/ && npx jest --watchAll"
+    working_dir: /app/
+    entrypoint:
+      - npx
+      - jest
+  e2e-myuw:
+    build:
+      context: ../
+      target: app-container
+    environment:
+      ENV: localdev
+      AUTH: SAML_MOCK
+  cypress:
+    build:
+      context: ../e2e
+    environment:
+      CYPRESS_BASE_URL: http://e2e-myuw:8000
+    volumes:
+      - ../e2e/cypress.json:/e2e/cypress.json
+      - ../e2e/cypress/fixtures:/e2e/cypress/fixtures
+      - ../e2e/cypress/integration:/e2e/cypress/integration
+      - ../e2e/cypress/plugins:/e2e/cypress/plugins
+      - ../e2e/cypress/support:/e2e/cypress/support
+      - /tmp/myuw/cypress/screenshots:/e2e/cypress/screenshots
+      - /tmp/myuw/cypress/videos:/e2e/cypress/videos
+    depends_on:
+      - e2e-myuw
