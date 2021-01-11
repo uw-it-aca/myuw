@@ -118,7 +118,7 @@ describe('Instructor Schedule Data', () => {
     const sections = store.state.inst_schedule.value.testCurrent.sections;
     expect(sections).toHaveLength(3);
     expect(sections[2].id).toBe("2013-summer-EDIT-120-C");
-    expect(sections[2].isPrevTermEnrollment).toBe(true);
+    expect(sections[2].isPrevTermEnrollment).toBe(false);
   });
 
 });
