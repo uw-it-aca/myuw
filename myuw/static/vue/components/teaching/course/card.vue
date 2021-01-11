@@ -16,11 +16,7 @@
       <uw-final-exam show-row-heading :section="section" />
       <uw-class-list show-row-heading :section="section" />
       <uw-stats show-row-heading :section="section" />
-      <uw-materials
-        show-row-heading
-        :section="section"
-        :past-term="schedule.past_term"
-      />
+      <uw-materials show-row-heading :section="section"/>
       <uw-grading show-row-heading :section="section"/>
       <uw-evaluation show-row-heading :section="section"/>
     </template>

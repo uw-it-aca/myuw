@@ -14,11 +14,7 @@
     <template #card-body>
       <uw-meeting-info show-row-heading :section="section" />
       <uw-class-list show-row-heading :section="section" />
-      <uw-materials
-        show-row-heading
-        :section="section"
-        :past-term="schedule.past_term"
-      />
+      <uw-materials show-row-heading :section="section" />
     </template>
   </uw-card>
 </template>
