@@ -3,7 +3,7 @@
     :id="idForSection(section)"
     loaded
     :ribbon="{
-      side: section.is_primary_section ? 'top' : 'left',
+      side: 'left',
       colorId: section.color_id,
     }"
   >
