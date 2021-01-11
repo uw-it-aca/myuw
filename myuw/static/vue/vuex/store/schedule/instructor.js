@@ -138,21 +138,10 @@ function addCourseGradeData(courseData) {
     section.isSeattle = courseCampus === 'seattle';
     section.isBothell = courseCampus === 'bothell';
     section.isTacoma = courseCampus === 'tacoma';
-
-    let allPublished = true;
-    for (let campus in section.timeSchedulePublished) {
-      allPublished = allPublished && section.timeSchedulePublished[campus];
-      if (!allPublished) { break; }
-    }
-
-    const notPublishedOnCourseCampus = courseCampus in section.timeSchedulePublished &&
-      !section.timeSchedulePublished[courseCampus];
     
-    section.isPrevTermEnrollment = false;
-    if (!allPublished && section.sln === 0 && notPublishedOnCourseCampus) {
-      section.isPrevTermEnrollment = true;
-      section.prevEnrollmentYear = this.year - 1;
-    }
+    section.isPrevTermEnrollment = (section.sln === 0 &&
+      courseCampus in section.timeSchedulePublished &&
+      !section.timeSchedulePublished[courseCampus]);
 
     // Copy over all the fields we generated in data
     section['gradingPeriod'] = data;
