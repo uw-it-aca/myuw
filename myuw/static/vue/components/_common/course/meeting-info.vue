@@ -95,6 +95,7 @@
                     v-if="locationData.link"
                     :href="locationData.link"
                     :title="locationData.label"
+                    target="_blank"
                   >
                     {{ locationData.text }}
                   </a>
