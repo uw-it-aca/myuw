@@ -6,6 +6,7 @@
     <ul>
       <uw-website :section="section" />
       <uw-email-list :section="section" />
+      <uw-textbook v-if="!section.mini_card" :section="section" />
     </ul>
   </div>
 </template>
@@ -13,11 +14,13 @@
 <script>
 import Website from './materials/website.vue';
 import EmailList from './materials/email-list.vue';
+import Textbook from './materials/textbook.vue';
 
 export default {
   components: {
     'uw-website': Website,
     'uw-email-list': EmailList,
+    'uw-textbook': Textbook,
   },
   props: {
     section: {
