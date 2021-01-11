@@ -10,7 +10,7 @@
           {{ sectionData.sectionId }},
           {{ sectionData.quarter }} {{ sectionData.year }}
         </h3>
-        <div>
+        <div v-if="sectionData.sln">
           <h4>SLN</h4>
           <span>{{ sectionData.sln }}</span>
         </div>
