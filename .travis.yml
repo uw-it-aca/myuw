@@ -1,5 +1,3 @@
-sudo: required
-
 language: python
 python:
   - 3.6
@@ -13,6 +11,7 @@ os:
 
 env:
   global:
+    - DOCKER_COMPOSE_VERSION=1.27.4
     - RELEASE_NAME="myuw"
     - DJANGO_APP="myuw"
     - COMMIT_HASH="$(git rev-parse --short=7 HEAD)"
@@ -22,10 +21,15 @@ env:
     - secure: "SQFn4ziHQMZ7HnHJ0G4hiaam+CaDKLgRMe3XHiOfR8vDI9ziQ2C1qL4he2G51iSgdD8WyZkGCiJJ4SjcgdNGuXrOpKpPojFwTwHumfGZq/eebU3RBxEITj7zfbedSf6A9wWsgLzNToQ/vOQtl/G0WD3gCUaGh0xjZ6VrJkmlIho="
     - secure: "JMVV0SG9a04GNq2F304OWnkf6xIaI87Nhf45RoZoU717IMi+xvrz8qX3fYibcv/15eLt+XdeQeu0CxM8/ZSlrReWXf/0/9Qe7m8SxoQj6W35kBIHOEfPln06hP5fq0ruhg5k4eZKQrwCwoeIt3+iOWCtKE+yQJyWvd92t1WX080="
 
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
 install:
   - docker build --target node-bundler -t node-test-container .
   - docker build --target app-container -t "$IMAGE_TAG" .
-  - docker build -t app-test-container .
 
 before_script:
   - gem install coveralls-lcov
@@ -33,40 +37,47 @@ before_script:
   - pip install coveralls
 
 script:
-
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" node-test-container bash -c ". ./travis-ci/test_js.sh"
-  - docker run -u root -it -v /tmp:/coverage -e DJANGO_APP="$DJANGO_APP" -e "ENV=localdev" -e "AUTH=SAML_MOCK" app-test-container bash -c ". ./travis-ci/test_python.sh"
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run python-tests
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run eslint
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run jest
+  - COMPOSE_DOCKER_CLI_BUILD=1 docker-compose -f travis-ci/docker-compose.yml run cypress
 
 after_success:
-  - cp /tmp/.coverage.* /tmp/lcov.info .
+  - cp /tmp/myuw/.coverage.* /tmp/myuw/lcov.info .
   - coverage combine
   - coveralls-lcov -v -n lcov.info > js-coverage.json
   - coveralls --merge=js-coverage.json
-  - |
-    if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-      case "$TRAVIS_BRANCH" in
-        "master")
-          export APP_INSTANCE="prod";
-          ;;
-        "qa")
-          export APP_INSTANCE="test";
-          ;;
-        "develop")
-          export APP_INSTANCE="dev";
-          ;;
-        "vue/teaching-page")
-          export APP_INSTANCE="vue";
-          ;;
-        *)
-          unset APP_INSTANCE
-          ;;
-      esac
-      if [[ "$APP_INSTANCE" ]]; then
-        curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash;
-      fi
-    fi
 
-cache:
-  directories:
-    - "$HOME/helm"
-    - "$HOME/kubeval"
+deploy:
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: master
+      condition: $TRAVIS_PULL_REQUEST == "false"
+    script: >-
+      curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: qa
+      condition: $TRAVIS_PULL_REQUEST == "false"
+    script: >-
+      curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash
+
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: develop
+      condition: $TRAVIS_PULL_REQUEST == "false"
+    script: >-
+      export APP_INSTANCE="dev" &&
+      curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash
+
+  - provider: script
+    skip_cleanup: true
+    on:
+      branch: feature/vue
+      condition: $TRAVIS_PULL_REQUEST == "false"
+    script: >-
+      export APP_INSTANCE="vue" &&
+      curl -Ls ${DEPLOY_SCRIPT_BASE}/travis-ci/deploy.sh | bash

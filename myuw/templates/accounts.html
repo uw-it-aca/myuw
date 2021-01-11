@@ -9,20 +9,30 @@
 
 {% block body_content %}
 <myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
-  <!--MARK: #primary template (column 1, mobile only) -->
-  <template #primary>
-    <b-col md="6" :class="[$mq === 'mobile' ? 'px-0' : '']">
-      <!--MARK: card components go here in order -->
+  <template #mobile>
+    <b-col md="12" class="px-0">
+      <!-- tuition card-->
+      <myuw-medicine-account></myuw-medicine-account>
       <myuw-husky></myuw-husky>
       <myuw-hfs-sea></myuw-hfs-sea>
       <myuw-hr-payroll></myuw-hr-payroll>
+      <myuw-library></myuw-library>
+      <myuw-upass></myuw-upass>
       <myuw-uwnetid></myuw-uwnetid>
     </b-col>
   </template>
-  <!-- MARK: #secondary template (column 2, table/desktop) -->
-  <template #secondary>
-    <b-col md="6">
-      <!--MARK: card components go here in order -->
+  <template #desktop>
+    <b-col md="12">
+      <!-- MARK: use card group to create 2 column auto layout -->
+      <b-card-group columns class="myuw-card-columns-2">
+        <myuw-medicine-account></myuw-medicine-account>
+        <myuw-husky></myuw-husky>
+        <myuw-hfs-sea></myuw-hfs-sea>
+        <myuw-hr-payroll></myuw-hr-payroll>
+        <myuw-library></myuw-library>
+        <myuw-upass></myuw-upass>
+        <myuw-uwnetid></myuw-uwnetid>
+      </b-card-group>
     </b-col>
   </template>
 </myuw-boilerplate>

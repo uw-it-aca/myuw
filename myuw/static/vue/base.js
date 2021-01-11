@@ -32,6 +32,7 @@ import {
   faPlus,
   faCheckCircle,
   faChevronRight,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -90,6 +91,7 @@ library.add(faCalendarAlt);
 library.add(faCalendarCheck);
 library.add(faBookmark);
 library.add(faExclamationTriangle);
+library.add(faInfoCircle);
 library.add(faSquare);
 library.add(faSquareFull);
 library.add(fasSquare);

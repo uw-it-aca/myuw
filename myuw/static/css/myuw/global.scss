@@ -95,4 +95,16 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
       border-color: $hex;
     }
   }
+
+// myuw border top and bottom
+.myuw-border-top {
+  border-top: 0.5rem solid #ddd; // 8px
+}
+.myuw-border-bottom {
+  border-bottom: 0.3125rem solid #ddd; // 5px
+}
+
+// adds card group (2 columns) support
+.myuw-card-columns-2 {
+  column-count: 2 !important;
 }
