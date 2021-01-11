@@ -11,12 +11,6 @@
 
 <script>
 export default {
-  data: function() {
-    return {
-      titleWidth: 3,
-      contentWidth: 9,
-    }
-  },
   props: {
     title: {
       type: String,
@@ -27,6 +21,12 @@ export default {
       required: false,
       default: null,
     },
+  },
+  data: function() {
+    return {
+      titleWidth: 3,
+      contentWidth: 9,
+    }
   },
 };
 </script>
