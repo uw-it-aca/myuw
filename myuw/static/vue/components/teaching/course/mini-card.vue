@@ -8,7 +8,7 @@
     }"
   >
     <template #card-heading>
-      <uw-course-header :schedule="schedule" :section="section" />
+      <uw-course-header :section="section" />
       <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
     <template #card-body>

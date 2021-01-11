@@ -90,10 +90,6 @@ import {mapActions} from 'vuex';
 
 export default {
   props: {
-    schedule: {
-      type: Object,
-      required: true,
-    },
     section: {
       type: Object,
       required: true,
