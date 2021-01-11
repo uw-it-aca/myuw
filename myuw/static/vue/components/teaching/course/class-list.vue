@@ -15,8 +15,6 @@
         >
           My Class Resources
         </b-link>
-      </span>
-      <span>
         <b-button :id="`cl_info_${section.id}`" variant="link">
           <font-awesome-icon :icon="faInfoCircle" />
           <span class="sr-only">More information</span>
