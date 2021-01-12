@@ -4,46 +4,62 @@
       Final Exam
     </h5>
     <div v-if="section.final_exam">
-      <span v-if="section.final_exam.no_exam_or_nontraditional">
+      <div v-if="section.final_exam.no_exam_or_nontraditional">
         No Exam or Non-Traditional
-      </span>
+      </div>
       <div v-else-if="section.final_exam.start_date">
-        <div v-if="!section.is_primary_section">
+        <p v-if="!section.is_primary_section">
           The final exam for the primary section is:
-          <br>
-        </div>
+        </p>
         <table
-          v-else
           class="mb-0 w-100 table table-sm table-borderless myuw-text-md"
         >
           <thead class="sr-only">
             <tr>
-              <th>Day</th>
-              <th>Time</th>
-              <th>Location</th>
+              <th :id="`final-days-${section.id}`">Day</th>
+              <th :id="`final-time-${section.id}`">Time</th>
+              <th :id="`final-location-${section.id}`">Location</th>
             </tr>
           </thead>
           <tbody>
-            <td>{{ section.final_exam.start_date.format('ddd, MMM D') }}</td>
-            <td>
+            <td :headers="`final-days-${section.id}`">
+              {{ section.final_exam.start_date.format('ddd, MMM D') }}
+            </td>
+            <td :headers="`final-time-${section.id}`"
+              class="p-0 text-center text-nowrap">
               {{ section.final_exam.start_date.format('h:mm A') }} &ndash;
               {{ section.final_exam.end_date.format('h:mm A') }}
             </td>
-            <td>
-              <span
-                v-for="(locationData, i) in section.final_exam.locationData"
-                :key="i"
-              >
-                <a
-                  v-if="locationData.link"
-                  :href="locationData.link"
-                  :title="locationData.label"
-                  target="_blank"
-                >
-                  {{ locationData.text }}
-                </a>
-                <span v-else :title="locationData.label">
-                  {{ locationData.text }}
+            <td :headers="`final-location-${section.id}`" class="p-0 text-right">
+              <span v-if="section.final_exam.is_remote">
+                Remote
+              </span>
+              <span v-else>
+                <span v-if="section.final_exam.building">
+                  <a v-if="section.final_exam.latitude"
+                    :href="locationUrl(section.final_exam)"
+                    target="_blank"
+                    :title="`Map of ${section.final_exam.building}`"
+                  >
+                    {{ section.final_exam.building }}
+                  </a>
+                  <span v-else title="No building information available">
+                    {{ section.final_exam.building }}
+                  </span>
+                </span>
+
+                <span v-if="section.final_exam.room">
+                  <a
+                    v-if="section.final_exam.classroom_info_url"
+                    :href="section.final_exam.classroom_info_url"
+                    target="_blank"
+                    title="View classroom information"
+                  >
+                    {{ section.final_exam.room }}
+                  </a>
+                  <span v-else title="No classroom information available">
+                    {{ section.final_exam.room }}
+                  </span>
                 </span>
               </span>
             </td>
@@ -99,7 +115,7 @@ export default {
       !this.section.final_exam.is_confirmed &&
       this.section.sln
     ) {
-      if (this.section.quarter.toLowerCase() === 'Summer') {
+      if (this.section.quarter.toLowerCase() === 'summer') {
         this.displayNoFinalPeriod = true;
       } else {
         this.displayConfirmFinalLink = true;

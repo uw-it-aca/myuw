@@ -8,7 +8,6 @@ import {
 } from '../model_builder';
 import {
   convertSectionsTimeAndDateToDateJSObj,
-  generateMeetingLocationData,
 } from './common';
 
 dayjs.extend(require('dayjs/plugin/advancedFormat'))
@@ -74,7 +73,6 @@ function postProcess(response, urlExtra, rootState) {
     section.instructors = [];
     section.meetings.forEach((meeting, j) => {
       meeting.id = section.id + "-meeting-" + (j + 1);
-      meeting.locationData = generateMeetingLocationData(meeting);
 
       meeting.curriculumAbbr = section.curriculum_abbr;
       meeting.courseNumber = section.course_number;
@@ -92,10 +90,6 @@ function postProcess(response, urlExtra, rootState) {
       if (ia.surname > ib.surname) { return 1; }
       return 0;
     });
-    if (section.final_exam) {
-      section.final_exam.locationData =
-        generateMeetingLocationData(section.final_exam);
-    }
   }
 
   addCourseGradeData(courseData);

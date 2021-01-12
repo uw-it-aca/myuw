@@ -37,7 +37,6 @@ function postProcess(response, urlExtra) {
     for (let idx = 0; idx < section.meetings.length; idx++) {
       let meeting = section.meetings[idx];
       meeting.id = section.id + "-meeting-" + (idx + 1);
-      meeting.locationData = generateMeetingLocationData(meeting);
 
       for (let ii = 0; ii < meeting.instructors.length; ii++) {
         let inst = meeting.instructors[ii];

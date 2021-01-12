@@ -16,7 +16,7 @@
 
 <script>
 import MeetingInfo from '../meeting-info.vue';
-import Resources from '../resources.vue';
+import Resources from './resources.vue';
 import Instructors from './instructors.vue';
 
 export default {

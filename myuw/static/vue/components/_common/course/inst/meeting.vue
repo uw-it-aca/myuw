@@ -1,6 +1,6 @@
 <template>
   <div>
-    <table>
+    <table class="mb-0 table table-sm table-borderless myuw-text-md">
       <thead class="sr-only">
         <tr>
           <th v-if="section.hasEosDates" :id="`dates-${section.id}`">
@@ -42,7 +42,7 @@
             </span>
           </td>
           <template v-else-if="meeting.start_time && meeting.end_time">
-            <td :headers="`days-${meeting.id}`">
+            <td :headers="`days-${meeting.id}`" class="p-0 text-nowrap">
               <abbr v-if="meeting.meeting_days.monday" title="Monday">
                 M</abbr>
               <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">
@@ -58,11 +58,11 @@
               <abbr v-if="meeting.meeting_days.sunday" title="Sunday">
                 Su</abbr>
             </td>
-            <td :headers="`time-${meeting.id}`">
+            <td :headers="`time-${meeting.id}`" class="p-0 text-nowrap">
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
-            <td :headers="`location-${meeting.id}`">
+            <td :headers="`location-${meeting.id}`" class="p-0">
               <span v-if="meeting.is_remote">
                 Remote
               </span>
@@ -70,27 +70,27 @@
                 Room to be arranged
               </span>
               <span v-else>
-                <a
-                  v-if="locationUrl(meeting)"
-                  :href="locationUrl(meeting)"
-                  target="_blank"
-                  :title="`Map ${meeting.building}`"
-                >
-                  {{ meeting.building }}
-                </a>
-                <a
-                  v-if="meeting.classroom_info_url"
-                  :href="meeting.classroom_info_url"
-                  target="_blank"
-                  title="View classroom information"
-                >
-                  {{ meeting.room }}
-                </a>
-                <span
-                  v-else-if="meeting.room"
-                  title="No classroom information available"
-                >
-                  {{ meeting.room }}
+                <span v-if="meeting.building">
+                  <a v-if="meeting.latitude"
+                    :href="locationUrl(meeting)"
+                    target="_blank"
+                    :title="`Map of ${meeting.building}`"
+                  >{{ meeting.building }}</a>
+                  <span v-else title="No building information available">
+                    {{ meeting.building }}
+                  </span>
+                </span>
+
+                <span v-if="meeting.room">
+                  <a
+                    v-if="meeting.classroom_info_url"
+                    :href="meeting.classroom_info_url"
+                    target="_blank"
+                    title="View classroom information"
+                  >{{ meeting.room }}</a>
+                  <span v-else title="No classroom information available">
+                    {{ meeting.room }}
+                  </span>
                 </span>
               </span>
             </td>
@@ -110,14 +110,6 @@ export default {
     },
   },
   methods: {
-    locationUrl(meeting) {
-      if (meeting.latitude) {
-        return `http://maps.google.com/maps?q=${meeting.latitude},${
-          meeting.longitude
-        }+(${this.encodeForMaps(meeting.building_name)})&z=18`;
-      }
-      return null;
-    },
     formatEos(meeting) {
       const startFormatted = meeting.eos_start_date.format('MMM D');
       const endFormatted = meeting.eos_end_date.format('MMM D');

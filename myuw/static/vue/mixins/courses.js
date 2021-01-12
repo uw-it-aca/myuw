@@ -9,6 +9,11 @@ export default {
         }
         return '""';
     },
+    locationUrl(meeting) {
+      return `http://maps.google.com/maps?q=${meeting.latitude},${
+        meeting.longitude
+        }+(${this.encodeForMaps(meeting.building_name)})&z=18`;
+    },
     sectionFormattedDates(section) {
       return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(
           section.end_date).format('MMM D')}`;
