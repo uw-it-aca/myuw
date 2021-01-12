@@ -11,6 +11,7 @@
       <uw-course-header :section="section" />
       <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
+
     <template #card-body>
       <uw-meeting-info show-row-heading :section="section" />
       <uw-final-exam show-row-heading :section="section" />
@@ -52,7 +53,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import Card from '../../_templates/card.vue';
-import CourseHeader from '../../_common/course/header.vue';
+import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting-info.vue';
 import JointSection from './joint-section.vue';
 import FinalExam from './final-exam.vue';

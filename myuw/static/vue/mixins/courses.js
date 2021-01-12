@@ -1,4 +1,5 @@
 import utils from './utils';
+import dayjs from 'dayjs';
 export default {
   methods: {
     quoteField(x) {
@@ -7,6 +8,10 @@ export default {
             return '"'+x+'"';
         }
         return '""';
+    },
+    sectionFormattedDates(section) {
+      return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(
+          section.end_date).format('MMM D')}`;
     },
     combineMajors(majors) {
       if (majors === undefined || majors.length == 0) {

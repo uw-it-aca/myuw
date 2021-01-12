@@ -11,6 +11,7 @@
       <uw-course-header :section="section" />
       <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
+
     <template #card-body>
       <uw-meeting-info show-row-heading :section="section" />
       <uw-class-list show-row-heading :section="section" />
@@ -21,7 +22,7 @@
 
 <script>
 import Card from '../../_templates/card.vue';
-import CourseHeader from '../../_common/course/header.vue';
+import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting-info.vue';
 import JointSection from './joint-section.vue';
 import ClassList from './class-list.vue';
