@@ -31,6 +31,7 @@ import {
   faPlus,
   faCheckCircle,
   faChevronRight,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -84,6 +85,7 @@ library.add(faCalendarAlt);
 library.add(faCalendarCheck);
 library.add(faBookmark);
 library.add(faExclamationTriangle);
+library.add(faInfoCircle);
 library.add(faSquare);
 library.add(faSquareFull);
 library.add(fasSquare);
@@ -186,7 +188,8 @@ Vue.mixin(utils);
 const vueConf = {
   el: '#vue_root',
   created: function() {
-    document.title = 'MyUW: ' + store.state['pageTitle'];
+    // MARK: construct the page title
+    document.title = store.state['pageTitle'] + ' - MyUW';
     document.getElementById('vue_root').hidden = false;
   },
   store: store,
