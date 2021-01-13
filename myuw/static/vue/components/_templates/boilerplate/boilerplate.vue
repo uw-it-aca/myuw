@@ -7,11 +7,9 @@
         class="bg-gold myuw-override myuw-text-md"
       >
         <b-container fluid="xl" class="py-2 text-center">
-          <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>.
-          Overriding is read-only and no actions will be saved.
-          <a href="/support/">
-            Back to MyUW Support tool
-          </a>
+          <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
+          no actions will be saved.
+          <a href="/support/"> Back to MyUW Support tool </a>
         </b-container>
       </div>
 
@@ -23,9 +21,10 @@
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
-              <b-link href="/profile/"
-                      class="text-white font-weight-light"
-                      aria-label="View your profile"
+              <b-link
+                href="/profile/"
+                class="text-white font-weight-light"
+                aria-label="View your profile"
               >
                 <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
                 {{ netid }}
@@ -38,10 +37,8 @@
                 class="ml-2 text-danger font-weight-light"
                 aria-label="UW email services"
               >
-                <font-awesome-icon
-                  :icon="['fas', 'exclamation-triangle']"
-                  class="mr-1"
-                />Email error
+                <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email
+                error
               </b-link>
               <b-link
                 v-else
@@ -49,10 +46,7 @@
                 class="ml-2 text-white font-weight-light"
                 aria-label="Open your email in new tab"
               >
-                <font-awesome-icon
-                  :icon="['fas', 'envelope']"
-                  class="mr-1"
-                />Email
+                <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email
               </b-link>
               <b-link
                 v-b-toggle.app_search
@@ -60,21 +54,14 @@
                 class="ml-2 text-white font-weight-light"
                 aria-label="Open search area"
               >
-                <font-awesome-icon
-                  :icon="['fas', 'search']"
-                  flip="horizontal"
-                  class="mr-1"
-                />Search
+                <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 aria-label="Sign out of MyUW"
               >
-                <font-awesome-icon
-                  :icon="['fas', 'sign-out-alt']"
-                  class="mr-1"
-                />Sign Out
+                <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-1" />Sign Out
               </b-link>
             </b-col>
           </b-row>
@@ -82,7 +69,8 @@
       </div>
 
       <div class="bg-purple myuw-brand">
-        <b-container fluid="xl"
+        <b-container
+          fluid="xl"
           class="px-3 myuw-brand-logo"
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
@@ -94,11 +82,7 @@
             aria-label="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
-              <font-awesome-icon
-                :icon="['far', 'square']"
-                transform="right-1"
-                class="m-0"
-              />
+              <font-awesome-icon :icon="['far', 'square']" transform="right-1" class="m-0" />
               <font-awesome-icon
                 :icon="['fas', 'bars']"
                 transform="shrink-8 right-1 "
@@ -106,32 +90,21 @@
               />
             </font-awesome-layers>
           </b-button>
-          <h1
-            class="d-inline align-middle text-white"
-            :class="[$mq == 'desktop' ? 'h3' : 'h5']"
-          >
+          <h1 class="d-inline align-middle text-white" :class="[$mq == 'desktop' ? 'h3' : 'h5']">
             <template v-if="$mq != 'desktop'">
-              <template v-if="pageTitle == 'Home'">
-                MyUW
-              </template>
+              <template v-if="pageTitle == 'Home'"> MyUW </template>
               <template v-else>
                 <span class="sr-only">MyUW</span>
                 <span aria-hidden="true">
-                  <template v-if="pageTitle.includes('Preview')">
-                    Preview Quarter
-                  </template>
-                  <template v-else-if="pageTitle.includes('Textbooks')">
-                    Textbooks
-                  </template>
+                  <template v-if="pageTitle.includes('Preview')"> Preview Quarter </template>
+                  <template v-else-if="pageTitle.includes('Textbooks')"> Textbooks </template>
                   <template v-else>
                     {{ pageTitle }}
                   </template>
                 </span>
               </template>
             </template>
-            <template v-else>
-              MyUW
-            </template>
+            <template v-else> MyUW </template>
           </h1>
         </b-container>
       </div>
@@ -152,10 +125,7 @@
               role="navigation"
               :visible="$mq == 'desktop'"
             >
-              <b-nav
-                vertical
-                :class="[$mq == 'desktop' ? '' : 'border-bottom']"
-              >
+              <b-nav vertical :class="[$mq == 'desktop' ? '' : 'border-bottom']">
                 <b-nav-item
                   class="mb-2"
                   href="/"
@@ -171,8 +141,7 @@
                   :active="pageTitle == 'Husky Experience'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky
-                  Experience
+                  <font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience
                 </b-nav-item>
                 <b-nav-item
                   v-if="student || applicant"
@@ -181,10 +150,7 @@
                   :active="pageTitle == 'Academics'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['fas', 'graduation-cap']"
-                    class="mr-2"
-                  />Academics
+                  <font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics
                 </b-nav-item>
                 <b-nav-item
                   v-if="instructor"
@@ -193,10 +159,7 @@
                   :active="pageTitle == 'Teaching'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['far', 'edit']"
-                    class="mr-2"
-                  />Teaching
+                  <font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -204,10 +167,7 @@
                   :active="pageTitle == 'Accounts'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['far', 'credit-card']"
-                    class="mr-2"
-                  />Accounts
+                  <font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts
                 </b-nav-item>
                 <b-nav-item
                   v-if="student"
@@ -216,10 +176,7 @@
                   :active="pageTitle == 'Notices'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['fas', 'exclamation-triangle']"
-                    class="mr-2"
-                  />Notices
+                  <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -227,10 +184,7 @@
                   :active="pageTitle == 'Profile'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['fas', 'user']"
-                    class="mr-2"
-                  />Profile
+                  <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -238,8 +192,8 @@
                   disabled
                   :link-classes="'text-dark d-block p-0'"
                 >
-                  <hr class="m-0"><span class="sr-only">
-                    Navigation separator</span>
+                  <hr class="m-0" />
+                  <span class="sr-only"> Navigation separator</span>
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -247,10 +201,7 @@
                   :active="pageTitle == 'Academic Calendar'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['far', 'calendar-check']"
-                    class="mr-2"
-                  />Calendar
+                  <font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -258,10 +209,7 @@
                   :active="pageTitle == 'UW Resources'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon
-                    :icon="['fas', 'bookmark']"
-                    class="mr-2"
-                  />UW Resources
+                  <font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources
                 </b-nav-item>
               </b-nav>
               <uw-welcome v-if="$mq === 'desktop'" />
@@ -269,20 +217,20 @@
           </b-col>
           <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
             <!-- MARK: message banner display for mobile and tablet -->
-            <div style="margin-left: -10px; margin-right:-10px;">
+            <div style="margin-left: -10px; margin-right: -10px">
               <uw-messages />
             </div>
           </b-col>
           <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-3">
-            <h2 id="mainHeader" :class="[pageTitle == 'Home' ? 'sr-only' : '']">
+            <h2
+              id="mainHeader"
+              :class="[pageTitle == 'Home' || pageTitle == 'Profile' ? 'sr-only' : '']"
+            >
               {{ pageTitle }}
             </h2>
             <b-row>
               <slot v-if="$mq === 'mobile'" name="mobile" />
               <slot v-else name="desktop" />
-              <!-- TODO: remove primary/secondary later! -->
-              <slot name="primary" />
-              <slot v-if="$mq !== 'mobile'" name="secondary" />
             </b-row>
           </b-col>
         </b-row>
@@ -294,10 +242,7 @@
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-0">
             <b-link :href="mailToUrl + netid" class="text-white">
-              <font-awesome-icon
-                :icon="['fas', 'envelope']"
-                class="mr-1"
-              />Contact
+              <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Contact
             </b-link>
           </li>
           <li class="list-inline-item mr-0">
@@ -309,23 +254,15 @@
             </b-link>
           </li>
           <li class="list-inline-item mr-0 d-lg-none">
-            <b-link href="/logout/" class="text-white">
-              Sign Out
-            </b-link>
+            <b-link href="/logout/" class="text-white"> Sign Out </b-link>
           </li>
           <li class="list-inline-item mr-0">
-            <b-link
-              href="https://www.washington.edu/online/terms/"
-              class="text-white"
-            >
+            <b-link href="https://www.washington.edu/online/terms/" class="text-white">
               Terms
             </b-link>
           </li>
           <li class="list-inline-item">
-            <b-link
-              href="https://www.washington.edu/online/privacy/"
-              class="text-white"
-            >
+            <b-link href="https://www.washington.edu/online/privacy/" class="text-white">
               Privacy
             </b-link>
           </li>
@@ -346,21 +283,44 @@
       body-class="py-0"
       footer-class="border-0"
     >
-      <img v-if="$mq === 'mobile' || $mq === 'tablet'"
-           :src="staticUrl+'images/myuw-tour-mobile-2.0x.png'"
-           class="img-fluid"
-      >
-      <img v-else
-           :src="staticUrl+'images/myuw-tour-2.0x.png'"
-           class="img-fluid"
-      >
+      <img
+        v-if="$mq === 'mobile' || $mq === 'tablet'"
+        :src="staticUrl + 'images/myuw-tour-mobile-2.0x.png'"
+        class="img-fluid"
+      />
+      <img v-else :src="staticUrl + 'images/myuw-tour-2.0x.png'" class="img-fluid" />
       <p class="mt-3 mb-0 myuw-text-md">
-        Watch a video tour of <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/" target="_blank" title="MyUW video tour for instructors" data-linklabel="MyUW video for Instructors">MyUW for Instructors</a>, <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/" target="_blank" title="MyUW video tour for staff" data-linklabel="MyUW video for staff">for staff</a>, or <a href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1" target="_blank" title="MyUW video tour for students" data-linklabel="MyUW video for students">for students</a>. <br><a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated" target="_blank" title="MyUW Help Center in IT Connect" data-linklabel="MyUW Help Center">Visit the MyUW help guide for more information</a>.
+        Watch a video tour of
+        <a
+          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
+          target="_blank"
+          title="MyUW video tour for instructors"
+          data-linklabel="MyUW video for Instructors"
+          >MyUW for Instructors</a
+        >,
+        <a
+          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
+          target="_blank"
+          title="MyUW video tour for staff"
+          data-linklabel="MyUW video for staff"
+          >for staff</a
+        >, or
+        <a
+          href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
+          target="_blank"
+          title="MyUW video tour for students"
+          data-linklabel="MyUW video for students"
+          >for students</a
+        >. <br /><a
+          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
+          target="_blank"
+          title="MyUW Help Center in IT Connect"
+          data-linklabel="MyUW Help Center"
+          >Visit the MyUW help guide for more information</a
+        >.
       </p>
       <template #modal-footer="{ hide }">
-        <b-button variant="primary" size="sm" @click="hide()">
-          Close
-        </b-button>
+        <b-button variant="primary" size="sm" @click="hide()"> Close </b-button>
       </template>
     </b-modal>
   </div>
