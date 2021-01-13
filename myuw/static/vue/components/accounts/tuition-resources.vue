@@ -8,7 +8,11 @@
         <a href="https://degreereg.uw.edu/payment-procedures" target="_blank">Paying PCE-Continuum College</a>
       </li>
       <li>
-        <a :href="finAidScholarshipsLink" target="_blank">Financial Aid and Scholarships</a>
+        <a :href="finAidScholarshipsLink"
+           target="_blank"
+        >
+          Financial Aid and Scholarships
+        </a>
       </li>
       <li v-if="is_grad">
         <a href="http://www.lib.washington.edu/commons/services/gfis" target="_blank">Graduate Funding Information Service (GFIS)</a>
@@ -29,7 +33,10 @@ export default {
   computed: {
     ...mapState({
       is_grad: (state) => state.user.affiliations.grad,
-      is_C2: (state) => state.user.affiliations.grad_c2 || state.user.affiliations.undergrad_c2,
+      is_C2: (state) => {
+        return state.user.affiliations.grad_c2 ||
+               state.user.affiliations.undergrad_c2;
+      },
       is_bothell: (state) => state.user.affiliations.bothell,
       is_tacoma: (state) => state.user.affiliations.tacoma,
     }),
@@ -37,15 +44,15 @@ export default {
   methods: {
     finAidScholarshipsLink: function() {
       if (this.affiliations.is_tacoma) {
-        return "http://www.tacoma.uw.edu/uwt/financial-aid";
+        return 'http://www.tacoma.uw.edu/uwt/financial-aid';
       } else if (this.affiliations.is_bothell) {
-        return "https://www.uwb.edu/financialaid";
+        return 'https://www.uwb.edu/financialaid';
       } else if (this.affiliations.is_C2) {
-        return "https://www.washington.edu/financialaid/getting-started/eligibility/fee-based-programs/";
+        return 'https://www.washington.edu/financialaid/getting-started/eligibility/fee-based-programs/';
       } else {
-        return "http://www.washington.edu/students/osfa/";
+        return 'http://www.washington.edu/students/osfa/';
       }
-    }
+    },
   },
 };
 </script>
