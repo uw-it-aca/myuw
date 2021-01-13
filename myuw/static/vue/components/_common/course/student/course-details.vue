@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import MeetingInfo from '../meeting-info.vue';
+import MeetingInfo from '../meeting/schedule.vue';
 import Resources from './resources.vue';
 import Instructors from './instructors.vue';
 

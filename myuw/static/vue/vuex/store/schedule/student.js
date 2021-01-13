@@ -1,7 +1,6 @@
 import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
 import {
   convertSectionsTimeAndDateToDateJSObj,
-  generateMeetingLocationData,
 } from './common';
 
 function postProcess(response, urlExtra) {
@@ -45,12 +44,6 @@ function postProcess(response, urlExtra) {
           section.instructors.push(inst);
         }
       }
-
-      if (meeting.type && meeting.type !== 'NON' &&
-          meeting.type.toLowerCase() !== section.section_type.toLowerCase()) {
-        meeting.displayType = true;
-        section.showMtgType = true;
-      }
     }
 
     section.instructors = section.instructors.sort((i1, i2) => {
@@ -58,11 +51,6 @@ function postProcess(response, urlExtra) {
         if (i1.surname > i2.surname) return 1;
         return 0;
       });
-
-    if (section.final_exam) {
-      section.final_exam.locationData =
-        generateMeetingLocationData(section.final_exam);
-    }
   }
   return data;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex">
+<div class="d-flex">
     <h5
       :class="[!showRowHeading ? 'sr-only' : '']"
       class="w-25 font-weight-bold myuw-text-md"
@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(meeting, i) in section.meetings" :key="i">
+          <tr v-for="meeting in section.meetings" :key="meeting.id">
             <td v-if="section.hasEosDates"
               :headers="`dates-${meeting.id}`"
               class="p-0"
@@ -39,85 +39,42 @@
             </td>
 
             <td v-if="meeting.wont_meet"
-              colspan="3"
               :headers="`days-${meeting.id}`"
-              class="p-0"
+              colspan="3" class="p-0"
             >
               <span class="text-muted">Class does not meet</span>
             </td>
 
             <td v-else-if="meeting.days_tbd"
-              colspan="3"
               :headers="`days-${meeting.id}`"
-              class="p-0"
+              colspan="3" class="p-0"
             >
               <span class="text-muted">Days and times to be arranged</span>
             </td>
 
             <td v-else-if="meeting.no_meeting"
-              colspan="3"
               :headers="`days-${meeting.id}`"
-              class="p-0"
+              colspan="3" class="p-0"
             >
-              <span class="text-muted">
-                No classroom meeting: online learning
-              </span>
+              <span class="text-muted">No classroom meeting: online learning</span>
             </td>
 
             <template v-else-if="meeting.start_time && meeting.end_time">
-              <td :headers="`days-${meeting.id}`" class="p-0 text-nowrap">
-                <abbr v-if="meeting.meeting_days.monday" title="Monday">
-                  M</abbr>
-                <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">
-                  T</abbr>
-                <abbr v-if="meeting.meeting_days.wednesday" title="Wednesday">
-                  W</abbr>
-                <abbr v-if="meeting.meeting_days.thursday" title="Thursday">
-                  Th</abbr>
-                <abbr v-if="meeting.meeting_days.friday" title="Friday">
-                  F</abbr>
-                <abbr v-if="meeting.meeting_days.saturday" title="Saturday">
-                  Sa</abbr>
-                <abbr v-if="meeting.meeting_days.sunday" title="Sunday">
-                  Su</abbr>
+              <td :headers="`days-${meeting.id}`"
+                class="p-0 text-nowrap"
+              >
+                <uw-meeting-days :meeting="meeting" />
               </td>
-              <td
-                :headers="`time-${meeting.id}`"
+              <td :headers="`time-${meeting.id}`"
                 class="p-0 text-center text-nowrap"
               >
                 {{ meeting.start_time.format('h:mm A') }} &ndash;
                 {{ meeting.end_time.format('h:mm A') }}
               </td>
-              <td :headers="`location-${meeting.id}`" class="p-0 text-right">
-                <span v-if="meeting.is_remote">
-                  Remote
-                </span>
-                <span v-else-if="meeting.building_tbd">
-                  Room to be arranged
-                </span>
-                <span v-else>
-                  <span v-if="meeting.building">
-                    <a v-if="meeting.latitude"
-                      :href="locationUrl(meeting)"
-                      target="_blank"
-                      :title="`Map of ${meeting.building}`"
-                    >{{ meeting.building }}</a>
-                    <span v-else title="No classroom information available">
-                      {{ meeting.building }}
-                    </span>
-                  </span>
-
-                  <span v-if="meeting.room">
-                    <a v-if="meeting.classroom_info_url"
-                      :href="meeting.classroom_info_url"
-                      target="_blank"
-                      title="View classroom information"
-                    >{{ meeting.room }}</a>
-                    <span v-else title="No classroom information available">
-                      {{ meeting.room }}
-                    </span>
-                  </span>
-                </span>
+              <td :headers="`location-${meeting.id}`"
+                class="p-0 text-right text-nowrap"
+              >
+                <uw-meeting-location :meeting="meeting" />
               </td>
             </template>
 
@@ -135,13 +92,19 @@
           </tr>
         </tbody>
       </table>
-      <hr v-if="showRowHeading">
+    <hr v-if="showRowHeading">
     </div>
   </div>
 </template>
 
 <script>
+import Days from './days.vue';
+import Location from './location.vue';
 export default {
+  components: {
+    'uw-meeting-days': Days,
+    'uw-meeting-location': Location,
+  },
   props: {
     section: {
       type: Object,
@@ -151,6 +114,9 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  created() {
+
   },
   methods: {
     formatEos(meeting) {

@@ -31,37 +31,7 @@
               {{ section.final_exam.end_date.format('h:mm A') }}
             </td>
             <td :headers="`final-location-${section.id}`" class="p-0 text-right">
-              <span v-if="section.final_exam.is_remote">
-                Remote
-              </span>
-              <span v-else>
-                <span v-if="section.final_exam.building">
-                  <a v-if="section.final_exam.latitude"
-                    :href="locationUrl(section.final_exam)"
-                    target="_blank"
-                    :title="`Map of ${section.final_exam.building}`"
-                  >
-                    {{ section.final_exam.building }}
-                  </a>
-                  <span v-else title="No building information available">
-                    {{ section.final_exam.building }}
-                  </span>
-                </span>
-
-                <span v-if="section.final_exam.room">
-                  <a
-                    v-if="section.final_exam.classroom_info_url"
-                    :href="section.final_exam.classroom_info_url"
-                    target="_blank"
-                    title="View classroom information"
-                  >
-                    {{ section.final_exam.room }}
-                  </a>
-                  <span v-else title="No classroom information available">
-                    {{ section.final_exam.room }}
-                  </span>
-                </span>
-              </span>
+              <uw-meeting-location :meeting="section.final_exam" />
             </td>
           </tbody>
         </table>
@@ -89,7 +59,11 @@
 </template>
 
 <script>
+import Location from '../../_common/course/meeting/location.vue';
 export default {
+  components: {
+    'uw-meeting-location': Location,
+  },
   props: {
     section: {
       type: Object,

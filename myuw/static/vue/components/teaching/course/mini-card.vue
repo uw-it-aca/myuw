@@ -23,7 +23,7 @@
 <script>
 import Card from '../../_templates/card.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
-import MeetingInfo from '../../_common/course/meeting-info.vue';
+import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 import JointSection from './joint-section.vue';
 import ClassList from './class-list.vue';
 import Materials from './materials.vue';
@@ -46,8 +46,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  computed: {
   },
   mounted() {
     const currentUrl = window.location.href;

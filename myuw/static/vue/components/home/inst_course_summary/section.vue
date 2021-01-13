@@ -1,57 +1,60 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <h4 class="h5 myuw-font-encode-sans">
-      <div :class="`c${section.color_id} simplesquare`" />
-      <a
-        :href="`/teaching/${section.href}`"
-        :future-nav-target="section.navtarget"
-        title="Click to view the card on Teaching page"
-      >
-        {{ section.curriculum_abbr }}
-        <span class="text-nowrap">
-          {{ section.course_number }}
-          {{ section.section_id }}
-        </span>
-      </a>
-    </h4>
-
-    <div>
-      <h5 class="sr-only">
-        Section Type:
-      </h5>
-      <span class="text-capitalize">
-        {{ section.section_type }}
-      </span>
-    </div>
-
-    <div v-if="section.sln">
-      <h5 class="sr-only">
-        Section SLN:
-      </h5>
-      <span>
+    <div  class="d-flex">
+      <h4 class="h5 myuw-font-encode-sans">
+        <div :class="`c${section.color_id} simplesquare`" />
         <a
-          :href="getTimeScheHref(section)"
-          :title="`Time Schedule for SLN ${section.sln}`"
-          :data-linklabel="getTimeScheLinkLable(section)"
-          target="_blank"
+          :href="`/teaching/${section.href}`"
+          :future-nav-target="section.navtarget"
+          title="Click to view the card on Teaching page"
         >
-          {{ section.sln }}
+          {{ section.curriculum_abbr }}
+          <span class="text-nowrap">
+            {{ section.course_number }}
+            {{ section.section_id }}
+          </span>
         </a>
-      </span>
-    </div>
+      </h4>
 
-    <div>
-      <h5 class="sr-only">
-        Section Meetings:
-      </h5>
-      <uw-meeting :section="section" />
-    </div>
+      <div>
+        <div>
+          <h5 class="sr-only">
+            Section Type:
+          </h5>
+          <span class="text-capitalize">
+            {{ section.section_type }}
+          </span>
+        </div>
+        <div v-if="section.sln">
+          <h5 class="sr-only">
+            Section SLN:
+          </h5>
+          <span>
+            <a
+              :href="getTimeScheHref(section)"
+              :title="`Time Schedule for SLN ${section.sln}`"
+              :data-linklabel="getTimeScheLinkLable(section)"
+              target="_blank"
+            >
+              {{ section.sln }}
+            </a>
+          </span>
+        </div>
+      </div>
 
-    <div>
-      <h5 class="sr-only">
-        Section Enrollments:
-      </h5>
-      <uw-enrollment :section="section" />
+      <div class="flex-fill">
+        <h5 class="sr-only">
+          Section Meetings:
+        </h5>
+        <uw-meeting-info :section="section" />
+      </div>
+
+      <div>
+        <h5 class="sr-only">
+          Section Enrollments:
+        </h5>
+        <uw-enrollment :section="section" />
+      </div>
     </div>
 
     <template v-if="getLinkedSections(section).length > 0">
@@ -75,7 +78,6 @@
         />
       </b-collapse>
     </template>
-
     <hr>
   </div>
 </template>
@@ -87,13 +89,13 @@ import {
   faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
-import MeetingInfo from '../../_common/course/inst/meeting.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
+import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 
 export default {
   components: {
     'uw-linked-section': LinkedSection,
-    'uw-meeting': MeetingInfo,
+    'uw-meeting-info': MeetingInfo,
     'uw-enrollment': Enrollment,
   },
   props: {

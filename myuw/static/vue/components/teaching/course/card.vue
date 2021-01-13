@@ -3,7 +3,7 @@
     :id="idForSection(section)"
     loaded
     :ribbon="{
-      side: section.mini_card ? 'left' : 'top',
+      side: 'top',
       colorId: section.color_id,
     }"
   >
@@ -54,7 +54,7 @@ import {
 
 import Card from '../../_templates/card.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
-import MeetingInfo from '../../_common/course/meeting-info.vue';
+import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 import JointSection from './joint-section.vue';
 import FinalExam from './final-exam.vue';
 import ClassList from './class-list.vue';

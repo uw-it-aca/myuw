@@ -23,6 +23,7 @@ export const convertTermTimeAndDateToDateJSObj = (term) => {
 export const convertSectionsTimeAndDateToDateJSObj = (sections) => {
   sections.forEach((section) => {
     section.hasEosDates = false;
+    section.showMtgType = false;
     section.start_date = tryConvertDayJS(section.start_date);
     section.end_date = tryConvertDayJS(section.end_date);
 
@@ -42,6 +43,10 @@ export const convertSectionsTimeAndDateToDateJSObj = (sections) => {
         meeting.eos_start_date && meeting.eos_end_date;
       meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
       meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
+
+      meeting.displayType = (meeting.type && meeting.type !== 'NON' &&
+          meeting.type.toLowerCase() !== section.section_type.toLowerCase());
+      section.showMtgType = section.showMtgType || meeting.displayType;
     });
   });
 }
