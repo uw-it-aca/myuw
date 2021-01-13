@@ -5,19 +5,19 @@
     </p>
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li>
-        <b-button v-b-modal.tourModal variant="link" size="sm"
-                  class="p-0 m-0 text-body text-left myuw-text-xs"
-                  aria-hidden="true"
-        >
-          See MyUW at a glance
-        </b-button>
+        <div>
+          <b-button
+            v-b-modal.tourModal
+            variant="link"
+            size="sm"
+            class="p-0 m-0 text-body text-left myuw-text-xs"
+          >
+            See MyUW at a glance
+          </b-button>
+        </div>
       </li>
       <li>
-        <b-link
-          :href="learnMoreURL"
-          class="text-body"
-          target="_blank"
-        >
+        <b-link :href="learnMoreURL" class="text-body" target="_blank">
           Learn more about MyUW
         </b-link>
       </li>

@@ -33,6 +33,9 @@ class User(models.Model):
     def __eq__(self, other):
         return self.uwnetid == other.uwnetid
 
+    def __hash__(self):
+        return super().__hash__()
+
     @classmethod
     def get_user_by_netid(cls, uwnetid):
         # doesn't change last_visit value
