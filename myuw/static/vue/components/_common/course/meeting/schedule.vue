@@ -115,9 +115,6 @@ export default {
       default: false,
     },
   },
-  created() {
-
-  },
   methods: {
     formatEos(meeting) {
       const startFormatted = meeting.eos_start_date.format('MMM D');

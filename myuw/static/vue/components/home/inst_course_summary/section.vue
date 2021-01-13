@@ -1,7 +1,7 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
     <div  class="d-flex">
-      <h4 class="h5 myuw-font-encode-sans">
+      <h4 class="">
         <div :class="`c${section.color_id} simplesquare`" />
         <a
           :href="`/teaching/${section.href}`"
@@ -15,7 +15,6 @@
           </span>
         </a>
       </h4>
-
       <div>
         <div>
           <h5 class="sr-only">
