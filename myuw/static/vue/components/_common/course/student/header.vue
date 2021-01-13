@@ -48,7 +48,7 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
-import CourseTitle from '../header.vue';
+import CourseTitle from '../course-title.vue';
 
 export default {
   components: {
