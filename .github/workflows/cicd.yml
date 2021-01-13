@@ -1,0 +1,148 @@
+---
+name: Build, Test and Deploy
+
+env:
+  RELEASE_NAME: myuw
+  DJANGO_APP: myuw
+  GCR_TAG_BASE: gcr.io/uwit-mci-axdd
+
+on:
+  push:
+    branches: [master, qa, develop, feature/github-actions]
+  pull_request:
+    branches: [master, qa, develop, feature/github-actions]
+    types: [opened, reopened, synchronize]
+
+jobs:
+  environment:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Global Environment
+        id: global-env
+        run: |
+          export FULL_COMMIT_HASH="${{ github.sha }}"
+          export COMMIT_HASH="${FULL_COMMIT_HASH:0:7}"
+          echo "::set-output name=commit_hash::${COMMIT_HASH}"
+    outputs:
+      commit_hash: ${{ steps.global-env.outputs.commit_hash }}
+
+  build:
+    needs: environment
+
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Setup Environment
+        run: |
+          export COMMIT_HASH="${{ needs.environment.outputs.commit_hash }}"
+          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
+          echo "IMAGE_TAG=${{ env.RELEASE_NAME }}:$COMMIT_HASH" >> $GITHUB_ENV
+
+      - name: Prep Image Cache
+        run: >-
+          echo "${{ secrets.GITHUB_TOKEN }}" |
+          docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin &&
+          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache || true
+
+      - name: Build App Image
+        run: >-
+          docker build --target app-container -t "$IMAGE_TAG"
+          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache .
+
+      - name: Cache App Image
+        run: >-
+          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache &&
+          docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache || true
+
+      - name: Build Test Image
+        run: >-
+          docker build --target app-test-container -t app-test-container
+          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache .
+
+      - name: Run Tests in Image
+        id: tests
+        shell: bash
+        run: >-
+          docker run -u root -t
+          -v ${PWD}:/coverage
+          -e DJANGO_APP="$DJANGO_APP"
+          -e "ENV=localdev" -e "AUTH=SAML_MOCK"
+          app-test-container
+          bash -c ". ./docker/test.sh"
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      - name: Record Test Results
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          gem install coveralls-lcov
+          python -m pip install --upgrade pip coverage coveralls==2.2.0
+          coverage combine
+          coveralls-lcov -v -n lcov.info > js-coverage.json
+          coveralls --merge=js-coverage.json
+
+      - name: Push Image to GCR
+        if: github.event_name == 'push'
+        env:
+          GCR_TAG: ${{ env.GCR_TAG_BASE }}/${{ env.IMAGE_TAG }}
+        run: >-
+          echo "${{ secrets.GCP_JSON_KEY }}" | base64 -d |
+          docker login --username=_json_key --password-stdin https://gcr.io &&
+          docker tag "$IMAGE_TAG" "$GCR_TAG" &&
+          docker push "$GCR_TAG"
+
+  deploy:
+    if: github.event_name == 'push'
+
+    needs: [environment, build]
+
+    runs-on: ubuntu-18.04
+
+    env:
+      GH_AUTH_TOKEN: ${{ secrets.GH_AUTH_TOKEN }}
+      GIT_REPO_SLUG: ${{ github.repository }}
+      BUILD_NUMBER: ${{ github.run_id }}
+      BUILD_WEB_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      DEPLOY_APP_BASE: https://raw.githubusercontent.com/uw-it-aca/gcp-app-deploy
+      DEPLOY_APP_BRANCH: master
+
+    steps:
+      - name: Setup Environment
+        run: |
+          export COMMIT_HASH="${{ needs.environment.outputs.commit_hash }}"
+          echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
+          echo "IMAGE_TAG=${{ env.RELEASE_NAME }}:$COMMIT_HASH" >> $GITHUB_ENV
+          echo "GIT_REPO_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
+
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Deploy Production
+        if: env.GIT_REPO_BRANCH == 'main' || env.GIT_REPO_BRANCH == 'master'
+        run: curl -Ls ${DEPLOY_APP_BASE}/${DEPLOY_APP_BRANCH}/deploy.sh | bash
+
+      - name: Deploy Test Branch
+        if: env.GIT_REPO_BRANCH == 'qa'
+        run: curl -Ls ${DEPLOY_APP_BASE}/${DEPLOY_APP_BRANCH}/deploy.sh | bash
+
+      - name: Deploy Develop Branch
+        if: env.GIT_REPO_BRANCH == 'develop'
+        env:
+          APP_INSTANCE: dev
+        run: curl -Ls ${DEPLOY_APP_BASE}/${DEPLOY_APP_BRANCH}/deploy.sh | bash
+
+      - name: Review Deploy Config
+        if: env.GIT_REPO_BRANCH == 'feature/github-actions'
+        env:
+          DRY_RUN: true
+          APP_INSTANCE: xxx
+        run: curl -Ls ${DEPLOY_APP_BASE}/${DEPLOY_APP_BRANCH}/deploy.sh | bash

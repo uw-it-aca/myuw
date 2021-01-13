@@ -65,7 +65,7 @@ database:
 repo: myuw
 instance: prod
 image:
-  repository: registry.hub.docker.com/acait/myuw
+  repository: gcr.io/uwit-mci-axdd/myuw
   tag: IMAGE_TAG
 memcached:
   enabled: true
