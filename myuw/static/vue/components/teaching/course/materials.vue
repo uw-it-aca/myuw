@@ -4,10 +4,10 @@
       Course Materials
     </h5>
     <ul>
-      <uw-website :section="section" />
-      <uw-email-list :section="section" />
-      <uw-canvas :section="section" />
-      <uw-textbook v-if="!section.mini_card" :section="section" />
+      <uw-teac-website :section="section" />
+      <uw-teac-email-list :section="section" />
+      <uw-teac-canvas :section="section" />
+      <uw-teac-textbook v-if="!section.mini_card" :section="section" />
     </ul>
   </div>
 </template>
@@ -20,10 +20,10 @@ import Textbook from './materials/textbook.vue';
 
 export default {
   components: {
-    'uw-canvas': Canvas,
-    'uw-website': Website,
-    'uw-email-list': EmailList,
-    'uw-textbook': Textbook,
+    'uw-teac-canvas': Canvas,
+    'uw-teac-website': Website,
+    'uw-teac-email-list': EmailList,
+    'uw-teac-textbook': Textbook,
   },
   props: {
     section: {
