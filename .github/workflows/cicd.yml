@@ -149,5 +149,5 @@ jobs:
         if: env.GIT_REPO_BRANCH == 'feature/github-actions'
         env:
           DRY_RUN: true
-          APP_INSTANCE: xxx
+          APP_INSTANCE: dev
         run: curl -Ls ${DEPLOY_APP_BASE}/${DEPLOY_APP_BRANCH}/deploy.sh | bash
