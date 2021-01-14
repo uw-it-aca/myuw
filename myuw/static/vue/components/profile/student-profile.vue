@@ -173,7 +173,7 @@ export default {
       studentEmployee: (state) => state.user.affiliations.stud_employee,
     }),
     showCard: function () {
-      return (this.student || this.studentEmployee) && this.profile;
+      return (this.student || this.studentEmployee) && Boolean(this.profile);
     },
     showError: function () {
       return false;

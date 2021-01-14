@@ -1,6 +1,10 @@
 <template>
   <b-row>
-    <b-col :sm="titleWidth">{{ title }}</b-col>
+    <b-col :sm="titleWidth">
+      <h4>
+        {{ title }}
+      </h4>
+    </b-col>
     <b-col :sm="contentWidth">
       <slot name="content">
         {{ content }}
