@@ -28,7 +28,12 @@
                   <li v-else-if="termMajor.degrees_modified" :key="index">
                     Beginning {{ titilizeTerm(termMajor.quarter) }} {{ termMajor.year }}:
                     &nbsp;&nbsp;
-                    {{ degreeListString(termMajor.majors) }}
+                    <span v-if="termMajor.majors.length > 0">
+                      {{ degreeListString(termMajor.majors) }}
+                    </span>
+                    <span v-else>
+                      None
+                    </span>
                   </li>
                 </template>
               </ul>
@@ -44,7 +49,12 @@
                   <li v-else-if="termMinor.degrees_modified" :key="index">
                     Beginning {{ titilizeTerm(termMinor.quarter) }} {{ termMinor.year }}:
                     &nbsp;&nbsp;
-                    {{ degreeListString(termMinor.minors) }}
+                    <span v-if="termMinor.minors.length > 0">
+                      {{ degreeListString(termMinor.minors) }}
+                    </span>
+                    <span v-else>
+                      None
+                    </span>
                   </li>
                 </template>
               </ul>
