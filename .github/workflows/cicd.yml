@@ -41,27 +41,31 @@ jobs:
           export COMMIT_HASH="${{ needs.environment.outputs.commit_hash }}"
           echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
           echo "IMAGE_TAG=${{ env.RELEASE_NAME }}:$COMMIT_HASH" >> $GITHUB_ENV
+          echo "CACHE_TAG=$(echo ${{ hashFiles('Dockerfile') }} | head -c 16)" >> $GITHUB_ENV
 
       - name: Prep Image Cache
-        run: >-
-          echo "${{ secrets.GITHUB_TOKEN }}" |
-          docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin &&
-          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} || true
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+          docker images
+          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG || true
+          docker images
 
       - name: Build App Image
         run: >-
           docker build --target app-container -t "$IMAGE_TAG"
-          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} .
+          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG .
 
       - name: Cache App Image
-        run: >-
-          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} &&
-          docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} || true
+        run: |
+          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG
+          docker images
+          docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG || true
+          docker images
 
       - name: Build Test Image
         run: >-
           docker build --target app-test-container -t app-test-container
-          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} .
+          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG .
 
       - name: Run Tests in Image
         id: tests
