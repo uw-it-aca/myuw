@@ -55,8 +55,9 @@
               >
                 {{section.grading_status.submitted_count}}
                 grade{{section.grading_status.submitted_count ? 's' : ''}}
-                submitted by {{section.grading_status.submitted_by}} on 
+                submitted
               </a>
+               by {{section.grading_status.submitted_by}} on
               <span>{{section.grading_status.submittedFmt}}</span>
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
