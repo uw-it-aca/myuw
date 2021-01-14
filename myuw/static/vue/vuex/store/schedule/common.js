@@ -45,8 +45,9 @@ export const convertSectionsTimeAndDateToDateJSObj = (sections) => {
       meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
       meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
 
-      meeting.displayType = (meeting.type && meeting.type !== 'NON' &&
-          meeting.type.toLowerCase() !== section.section_type.toLowerCase());
+      meeting.displayType = (
+        section.section_type && meeting.type && meeting.type !== 'NON' &&
+        meeting.type.toLowerCase() !== section.section_type.toLowerCase());
       section.showMtgType = section.showMtgType || meeting.displayType;
     });
   });
