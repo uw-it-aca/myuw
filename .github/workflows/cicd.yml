@@ -41,31 +41,34 @@ jobs:
           export COMMIT_HASH="${{ needs.environment.outputs.commit_hash }}"
           echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
           echo "IMAGE_TAG=${{ env.RELEASE_NAME }}:$COMMIT_HASH" >> $GITHUB_ENV
-          echo "CACHE_TAG=$(echo ${{ hashFiles('Dockerfile') }} | head -c 16)" >> $GITHUB_ENV
+#          echo "CACHE_TAG=$(echo ${{ hashFiles('Dockerfile') }} | head -c 16)" >> $GITHUB_ENV
 
-      - name: Prep Image Cache
+      - name: Fetch latest image
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-          docker images
-          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG || true
+#          echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+#          docker images
+#          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG || true
+          echo "${{ secrets.GCP_JSON_KEY }}" | base64 -d | docker login --username=_json_key --password-stdin https://gcr.io
+          docker pull ${{ env.GCR_TAG_BASE }}/${{ env.RELEASE_NAME }}:latest
           docker images
 
       - name: Build App Image
         run: >-
           docker build --target app-container -t "$IMAGE_TAG"
-          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG .
+          --cache-from=${{ env.GCR_TAG_BASE }}/${{ env.RELEASE_NAME }}:latest .
+#          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG .
 
-      - name: Cache App Image
-        run: |
-          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG
-          docker images
-          docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG || true
-          docker images
+#      - name: Cache App Image
+#        run: |
+#          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG
+#          docker images
+#          docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG || true
+#          docker images
 
       - name: Build Test Image
         run: >-
-          docker build --target app-test-container -t app-test-container
-          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG .
+          docker build --target app-test-container -t app-test-container .
+#          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-$CACHE_TAG .
 
       - name: Run Tests in Image
         id: tests
@@ -103,10 +106,8 @@ jobs:
         if: github.event_name == 'push'
         env:
           GCR_TAG: ${{ env.GCR_TAG_BASE }}/${{ env.IMAGE_TAG }}
-        run: >-
-          echo "${{ secrets.GCP_JSON_KEY }}" | base64 -d |
-          docker login --username=_json_key --password-stdin https://gcr.io &&
-          docker tag "$IMAGE_TAG" "$GCR_TAG" &&
+        run: |
+          docker tag "$IMAGE_TAG" "$GCR_TAG"
           docker push "$GCR_TAG"
 
   deploy:
