@@ -18,7 +18,7 @@
       <uw-class-list show-row-heading :section="section" />
       <uw-stats show-row-heading :section="section" />
       <uw-materials show-row-heading :section="section"/>
-      <uw-grading show-row-heading :section="section"/>
+      <uw-grading v-if="section.for_credit" show-row-heading :section="section"/>
       <uw-evaluation show-row-heading :section="section"/>
     </template>
     <template v-if="linkedSections.length > 0" #card-disclosure>
