@@ -46,22 +46,22 @@ jobs:
         run: >-
           echo "${{ secrets.GITHUB_TOKEN }}" |
           docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin &&
-          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache || true
+          docker pull docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} || true
 
       - name: Build App Image
         run: >-
           docker build --target app-container -t "$IMAGE_TAG"
-          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache .
+          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} .
 
       - name: Cache App Image
         run: >-
-          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache &&
-          docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache || true
+          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }}
+          docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} || true
 
       - name: Build Test Image
         run: >-
           docker build --target app-test-container -t app-test-container
-          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache .
+          --cache-from=docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} .
 
       - name: Run Tests in Image
         id: tests
