@@ -55,7 +55,7 @@ jobs:
 
       - name: Cache App Image
         run: >-
-          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }}
+          docker tag "$IMAGE_TAG" docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} &&
           docker push docker.pkg.github.com/$GITHUB_REPOSITORY/build-cache-${{ hashFiles('Dockerfile') }} || true
 
       - name: Build Test Image
