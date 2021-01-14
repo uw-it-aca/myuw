@@ -1,6 +1,9 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
+dayjs.extend(require('dayjs/plugin/calendar'));
+dayjs.extend(require('dayjs/plugin/timezone'))
+
 export default {
   methods: {
     encodeForMaps(s) {
@@ -65,11 +68,10 @@ export default {
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D, h:mmA");
     },
     toFromNowDate(date_str) {
-      return dayjs(date_str).fromNow();
+      return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).fromNow());
     },
-    toFromNowDate(date_str) {
-      return (!date_str || date_str.length === 0 ? '' :
-              dayjs(date_str).fromNow());
+    toCalendar(date_str) {
+      return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).calendar());
     },
     formatPrice(price) {
       let formatted = price.toString().split(".");
