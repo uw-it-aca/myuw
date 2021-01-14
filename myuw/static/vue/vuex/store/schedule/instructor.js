@@ -25,7 +25,7 @@ function postProcess(response, urlExtra, rootState) {
   const time_schedule_published = courseData.term.time_schedule_published;
   // {"bothell": true, "seattle": true, "tacoma": true}
   courseData.now = getNow(rootState);
-  alert(courseData.now);
+
   let linkedPrimaryLabel = undefined;
   convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
