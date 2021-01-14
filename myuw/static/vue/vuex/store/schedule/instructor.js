@@ -8,6 +8,7 @@ import {
 } from '../model_builder';
 import {
   convertSectionsTimeAndDateToDateJSObj,
+  getNow,
 } from './common';
 
 dayjs.extend(require('dayjs/plugin/advancedFormat'))
@@ -23,7 +24,8 @@ function postProcess(response, urlExtra, rootState) {
   const courseData = data[urlExtra];
   const time_schedule_published = courseData.term.time_schedule_published;
   // {"bothell": true, "seattle": true, "tacoma": true}
-
+  courseData.now = getNow(rootState);
+  alert(courseData.now);
   let linkedPrimaryLabel = undefined;
   convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
@@ -93,13 +95,13 @@ function postProcess(response, urlExtra, rootState) {
   }
 
   addCourseGradeData(courseData);
-  addCourseEvalData(courseData, rootState);
+  addCourseEvalData(courseData);
 
   return data;
 }
 
 function addCourseGradeData(courseData) {
-  let now = dayjs();
+  const now = courseData.now;
   let data = {
     isOpen: courseData.grading_period_is_open,
     isClosed: courseData.grading_period_is_past,
@@ -162,16 +164,8 @@ function addCourseGradeData(courseData) {
   });
 }
 
-function addCourseEvalData(courseData, rootState) {
-  let comparisonDate = null;
-  if (rootState &&
-      rootState.cardDisplayDates &&
-      rootState.cardDisplayDates.comparison_date) {
-    comparisonDate = dayjs(rootState.cardDisplayDates.comparison_date);
-  } else {
-    comparisonDate = dayjs();
-  }
-  
+function addCourseEvalData(courseData) {
+  const comparisonDate = courseData.now;
   courseData.sections.forEach((section) => {
     if (section.evaluation) {
       section.evaluation.responseRatePercent = 0;

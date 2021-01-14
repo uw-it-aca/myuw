@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 dayjs.extend(customParseFormat)
+dayjs.extend(require('dayjs/plugin/timezone'))
 
 export const tryConvertDayJS = (obj, format=undefined) => {
   if (obj) {
@@ -60,41 +61,11 @@ function encodeForMaps(s) {
   return s;
 }
 
-export const generateMeetingLocationData = (meeting) => {
-  const data = [{}];
-
-  if (meeting.is_remote) {
-    data[0].text = "Remote";
-    data[0].label = data[0].text;
-  } else if (meeting.building_tbd) {
-    data[0].text = "Room to be arranged";
-    data[0].label = data[0].text;
-  } else {
-    let i = 0;
-    if (meeting.latitude && meeting.longitude) {
-      data[i].text = `${meeting.building}`;
-      data[i].label = `Map ${data[i].text}`;
-      data[i].link = `http://maps.google.com/maps?q=${meeting.latitude},${
-        meeting.longitude
-      }+(${encodeForMaps(meeting.building_name)})&z=18`;
-      i++;
-      data[i] = {};
-    } else if (meeting.building == '*') {
-      data[i].text = meeting.building;
-      data[i].label = "No building information available";
-      i++;
-      data[i] = {};
-    }
-    if (meeting.classroom_info_url) {
-      data[i].text = meeting.room;
-      data[i].label = "View classroom information";
-      data[i].link = meeting.classroom_info_url;
-    } else if (meeting.room) {
-      data[i].text = meeting.room;
-      data[i].label = "No classroom information available";
-    }
+export const getNow = (rootState) => {
+  // dayjs.tz.setDefault("America/Los_Angeles");
+  if (rootState && rootState.cardDisplayDates &&
+      rootState.cardDisplayDates.comparison_date) {
+    return dayjs(rootState.cardDisplayDates.comparison_date);
   }
-
-  if (!data[0].text || data[0].text.length == 0) return [];
-  return data;
+  return dayjs();
 }
