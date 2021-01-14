@@ -34,7 +34,7 @@
               </ul>
             </template>
           </profile-entry>
-          <profile-entry :v-if="hasMinors" title="Minor">
+          <profile-entry v-if="hasMinors" title="Minor">
             <template #content>
               <ul>
                 <template v-for="(termMinor, index) in termMinors">
@@ -141,6 +141,7 @@ export default {
   },
   computed: {
     ...mapState('profile', {
+      profile: (state) => state.value,
       studentNumber: (state) => state.value.student_number,
       classStanding: (state) => state.value.class_level,
       termMajors: (state) => state.value.term_majors,
@@ -162,7 +163,8 @@ export default {
       studentEmployee: (state) => state.user.affiliations.stud_employee,
     }),
     showCard: function () {
-      return this.student || this.studentEmployee;
+      return this.student || this.studentEmployee &&
+             !(this.isErrored || this.profile);
     },
     showError: function () {
       return this.statusCode !== 404;
