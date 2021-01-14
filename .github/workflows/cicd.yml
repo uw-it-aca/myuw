@@ -69,6 +69,10 @@ jobs:
           target: app-test-container
           tags: app-test-container
 
+      - name: Local Images
+        shell: bash
+        run: docker images
+
       - name: Run Tests in Image
         id: tests
         shell: bash
