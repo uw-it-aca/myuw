@@ -163,11 +163,10 @@ export default {
       studentEmployee: (state) => state.user.affiliations.stud_employee,
     }),
     showCard: function () {
-      return this.student || this.studentEmployee &&
-             !(this.isErrored || this.profile);
+      return (this.student || this.studentEmployee) && this.profile;
     },
     showError: function () {
-      return this.statusCode !== 404;
+      return false;
     },
   },
   created() {
