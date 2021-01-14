@@ -55,6 +55,37 @@ export default {
         return w[0].toUpperCase() + w.substr(1).toLowerCase();
       }).join(' ');
     },
+    titilizeTerm(term) {
+      //Takes a term string (Eg summer 2013, b-term)
+      //returns a title (Eg Summer 2013 B-Term)
+      let i;
+      let pieces = term.split(/ |, |,/);
+      let string = "";
+      for (i = 0; i < pieces.length; i += 1) {
+          if (i > 0) {
+              string += " ";
+          }
+          string += this.capitalizeString(pieces[i]);
+      }
+      return string;
+    },
+    capitalizeString(string) {
+      if (string === undefined) {
+        return;
+      }
+      if (string.match(/^(full|[ab])-term$/gi)) {
+          value = string.split("-");
+          return value[0].charAt(0).toUpperCase() + value[0].slice(1) + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
+      }
+      if (!string) {
+          return "";
+      }
+      return string.replace(/\w\S*/g,
+                            function(txt){
+                                return (txt.charAt(0).toUpperCase() +
+                                        txt.substr(1).toLowerCase());
+                            });
+    },
     toFriendlyDate(date_str) {
       return (!date_str || date_str.length === 0 ? '' :
               dayjs(date_str).format("ddd, MMM D"));
