@@ -27,10 +27,18 @@
           <profile-entry title="Phone Number">
             <template #content>
               <p v-if="noFormsOfContact">No phone numbers listed</p>
-              <span v-if="phone">Office:</span>&nbsp;&nbsp;<span>{{ formatPhoneNumberDisaply(phone) }}</span><br />
-              <span v-if="mobile">Mobile:</span>&nbsp;&nbsp;<span>{{ formatPhoneNumberDisaply(mobile) }}</span><br />
-              <span v-if="voiceMail">Voicemail:</span>&nbsp;&nbsp;<span>{{ formatPhoneNumberDisaply(voiceMail) }}</span><br />
-              <span v-if="fax">Fax:</span>&nbsp;&nbsp;<span>{{ formatPhoneNumberDisaply(fax) }}</span><br />
+              <span v-if="phone">
+                Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
+              </span><br />
+              <span v-if="mobile">
+                Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
+              </span><br />
+              <span v-if="voiceMail">
+                Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
+              </span><br />
+              <span v-if="fax">
+                Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
+              </span><br />
             </template>
           </profile-entry>
           <profile-entry title="Address">
@@ -75,8 +83,8 @@
                 >UW Tacoma Directory</a>
                 <a v-else
                    href="https://www.washington.edu/home/peopledir/"
-                >UW Directory</a>
-              .</p>
+                >UW Directory</a>.
+              </p>
             </template>
           </profile-entry>
         </b-container>
@@ -86,7 +94,6 @@
 </template>
 
 <script>
-// ARRAYS ARE EMPTY NOT NULL
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import ProfileEntry from './profile-entry.vue';
