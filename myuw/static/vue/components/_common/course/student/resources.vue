@@ -1,11 +1,7 @@
 <template>
-  <div class="d-flex">
-    <h5 :class="[!showRowHeading ? 'sr-only' : '']"
-        class="w-25 font-weight-bold myuw-text-md"
-    >
-      Course Resources
-    </h5>
-    <div class="flex-fill">
+  <div>
+    <h5 class="sr-only">Course Resources</h5>
+    <div>
       <ul class="list-unstyled myuw-text-md mb-0">
         <template v-if="hasResources">
           <li v-if="section.class_website_url" class="mb-1">
@@ -64,10 +60,6 @@ export default {
     course: {
       type: Object,
       required: true,
-    },
-    showRowHeading: {
-      type: Boolean,
-      default: false,
     },
   },
   computed: {

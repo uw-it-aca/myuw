@@ -34,10 +34,6 @@ export default {
       type: Object,
       required: true,
     },
-    showRowHeading: {
-      type: Boolean,
-      default: false,
-    },
   },
 };
 </script>
