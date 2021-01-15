@@ -45,7 +45,7 @@ export default {
       let term = pageTitle[1];
       pageTitle[1] = pageTitle[0];
       pageTitle[0] = term;
-      return pageTitle.map((s) => this.ucfirst(s)).join(' ');
+      return pageTitle.map((s) => this.titleCaseWord(s)).join(' ');
     },
     ucfirst(s) {
       if (s && s.length) {
@@ -54,11 +54,14 @@ export default {
       return "";
     },
     titleCaseWord(w) {
-      return w[0].toUpperCase() + w.substr(1).toLowerCase();
+      if (w && w.length) {
+        return w[0].toUpperCase() + w.substr(1).toLowerCase();
+      }
+      return "";
     },
     titleCaseName(nameStr) {
       return nameStr.split(' ').map(function(w) {
-        return w[0].toUpperCase() + w.substr(1).toLowerCase();
+        return this.titleCaseWord(w);
       }).join(' ');
     },
     titilizeTerm(term) {
@@ -80,17 +83,12 @@ export default {
         return;
       }
       if (string.match(/^(full|[ab])-term$/gi)) {
-          value = string.split("-");
-          return value[0].charAt(0).toUpperCase() + value[0].slice(1) + "-" + value[1].charAt(0).toUpperCase() + value[1].slice(1);
+          return string.split("-").map(this.titleCaseWord).join('-');
       }
       if (!string) {
           return "";
       }
-      return string.replace(/\w\S*/g,
-                            function(txt){
-                                return (txt.charAt(0).toUpperCase() +
-                                        txt.substr(1).toLowerCase());
-                            });
+      return this.titleCaseWord(string);
     },
     toFriendlyDate(date_str) {
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D");

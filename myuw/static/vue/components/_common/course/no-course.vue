@@ -2,7 +2,7 @@
   <uw-card loaded>
     <template #card-heading>
       <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        No {{ ucfirst(quarter) }} {{ ucfirst(summerTerm) }} Registration Found
+        No {{ titleCaseWord(quarter) }} {{ capitalizeString(summerTerm) }} Registration Found
       </h3>
     </template>
     <template #card-body>

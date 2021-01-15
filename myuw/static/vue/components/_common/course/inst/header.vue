@@ -21,13 +21,7 @@
         Term
       </h5>
       <div class="flex-fill myuw-text-md">
-        Summer
-        {{
-          section.summer_term
-            .split('-')
-            .map(ucfirst)
-            .join('-')
-        }}
+        Summer {{ capitalizeString(section.summer_term) }}
       </div>
     </div>
 

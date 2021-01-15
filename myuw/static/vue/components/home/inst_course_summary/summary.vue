@@ -6,7 +6,7 @@
   >
     <template #card-heading>
       <h3 class="h4 text-dark-beige myuw-font-encode-sans">
-        {{ ucfirst(getQuarter()) }} {{ getYear() }} Teaching Schedule
+        {{ titleCaseWord(getQuarter()) }} {{ getYear() }} Teaching Schedule
       </h3>
     </template>
     <template #card-body>
@@ -48,7 +48,7 @@
 
         <div>
           <a :href="getAcadCalLink()">
-            View {{ ucfirst(getQuarter()) }} {{ getYear() }}
+            View {{ titleCaseWord(getQuarter()) }} {{ getYear() }}
             important dates and deadlines
           </a>
         </div>
@@ -135,7 +135,7 @@ export default {
       return this.term === 'current' ? this.quarter : this.nextQuarter;
     },
     getTeachingLinkLabel() {
-      return (this.ucfirst(this.getQuarter()) + ' ' + this.getYear() +
+      return (this.titleCaseWord(this.getQuarter()) + ' ' + this.getYear() +
        ' Teaching Details');
     },
     getAcadCalLink() {

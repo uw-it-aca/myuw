@@ -2,7 +2,7 @@
   <div v-if="student">
     <template v-if="isReady">
       <h3 class="sr-only">
-        Your {{ ucfirst(course.quarter) }} {{ course.year }} Courses
+        Your {{ titleCaseWord(course.quarter) }} {{ course.year }} Courses
       </h3>
       <uw-course-card
         v-for="(section, i) in course.sections" :key="i"

@@ -90,10 +90,9 @@ export default {
     },
     termName: function() {
       const termData = this.allSchedules[this.termLabel].term;
-      let name = this.ucfirst(termData.quarter) + ' ' + termData.year;
+      let name = this.titleCaseWord(termData.quarter) + ' ' + termData.year;
       if (termData.summer_term) {
-        name += ' ' + termData.summer_term.split('-')
-            .map(this.ucfirst).join('-');
+        name += ' ' + this.capitalizeString(termData.summer_term);
       }
       return name;
     },
