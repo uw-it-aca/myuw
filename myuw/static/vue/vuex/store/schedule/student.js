@@ -10,6 +10,11 @@ function postProcess(response, urlExtra) {
   convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
+    section.year = courseData.year;
+    section.quarter = courseData.quarter;
+    section.futureTerm = courseData.future_term;
+    section.pastTerm = courseData.past_term;
+    section.requestSummerTerm = courseData.summer_term;
     section.anchor = (section.curriculum_abbr.replace(/ /g, '-') + "-" +
                   section.course_number + "-" + section.section_id);
     section.id = (courseData.year + "-" + courseData.quarter + "-" +

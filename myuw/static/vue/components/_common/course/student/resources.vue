@@ -57,17 +57,13 @@ export default {
       type: Object,
       required: true,
     },
-    course: {
-      type: Object,
-      required: true,
-    },
   },
   computed: {
     textbookHref() {
-      let url = `/textbooks/${this.course.year},${this.course.quarter}`;
+      let url = `/textbooks/${this.section.year},${this.section.quarter}`;
 
-      if (this.course.summer_term) {
-        url += `,${this.course.summer_term.toLowerCase()}`;
+      if (this.section.requestSummerTerm) {
+        url += `,${this.section.requestSummerTerm.toLowerCase()}`;
       }
       url += `/${this.section.curriculum_abbr}${
         this.section.course_number

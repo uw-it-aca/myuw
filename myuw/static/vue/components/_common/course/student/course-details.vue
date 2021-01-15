@@ -1,12 +1,7 @@
 <template>
   <div>
-    <uw-meeting-info
-      :section="section"
-    />
-    <uw-resources
-      :section="section"
-      :course="course"
-    />
+    <uw-meeting-info :section="section"/>
+    <uw-resources :section="section"/>
     <uw-instructors
       v-if="section.is_ended && section.instructors.length > 0"
       :instructors="section.instructors"
@@ -26,10 +21,6 @@ export default {
     'uw-instructors': Instructors,
   },
   props: {
-    course: {
-      type: Object,
-      required: true,
-    },
     section: {
       type: Object,
       required: true,
