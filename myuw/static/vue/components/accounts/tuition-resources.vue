@@ -8,7 +8,7 @@
         <a href="https://degreereg.uw.edu/payment-procedures" target="_blank">Paying PCE-Continuum College</a>
       </li>
       <li>
-        <a :href="finAidScholarshipsLink"
+        <a :href="finAidScholarshipsLink()"
            target="_blank"
         >
           Financial Aid and Scholarships
@@ -43,11 +43,11 @@ export default {
   },
   methods: {
     finAidScholarshipsLink: function() {
-      if (this.affiliations.is_tacoma) {
+      if (this.is_tacoma) {
         return 'http://www.tacoma.uw.edu/uwt/financial-aid';
-      } else if (this.affiliations.is_bothell) {
+      } else if (this.is_bothell) {
         return 'https://www.uwb.edu/financialaid';
-      } else if (this.affiliations.is_C2) {
+      } else if (this.is_C2) {
         return 'https://www.washington.edu/financialaid/getting-started/eligibility/fee-based-programs/';
       } else {
         return 'http://www.washington.edu/students/osfa/';
