@@ -5,19 +5,19 @@
       :errored="isErrored"
   >
     <template #panel-body>
-      <h2 class="heading-profile">
+      <h3>
         <span v-if="hasPreferred">{{ titleCaseName(displayName) }}
-          ({{ titleCaseName(fullName) }})</span>
+          <span class="myuw-text-md text-uppercase">({{ titleCaseName(fullName) }})</span>
+        </span>
         <span v-else>{{ titleCaseName(fullName) }}</span>
-        &nbsp;
         <a
           href="https://identity.uw.edu/"
           title="Manage your preferred name"
           data-linklabel="Manage preferred name - Identity.UW">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
+            <font-awesome-icon :icon="['fas', 'pencil-alt']" class="myuw-text-md" />
             <span class="sr-only">Manage your preferred name</span>
         </a>
-      </h2>
+      </h3>
     </template>
   </uw-panel>
 </template>
