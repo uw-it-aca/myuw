@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/vue-fontawesome';
 
 import {statusOptions} from '../vuex/store/model_builder';
-import inst_schedule from '../vuex/store/inst_schedule';
+import inst_schedule from '../vuex/store/schedule/instructor';
 import {expectAction} from './helper';
 
 import UwCard from '../components/_templates/card.vue';
@@ -58,7 +58,10 @@ describe('Instructor Teaching Summary', () => {
         nextTerm: {
           year: 2013,
           quarter: 'summer',
-        }
+        },
+        cardDisplayDates: {
+          comparison_date: '2013-04-15T00:00:01',
+        },
       }
     });
   });

@@ -105,7 +105,7 @@ module.exports = {
         entryFiles = Array.from(entryFiles);
         files.forEach((file) => {
           for (const i in entryFiles) {
-            if (file['path'].includes(entryFiles[i])) {
+            if (file['path'].includes(`/${entryFiles[i]}`)) {
               bundles[entryFiles[i]] = file['path'];
               entryFiles.splice(i, 1);
               break;

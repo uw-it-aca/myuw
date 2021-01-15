@@ -24,6 +24,7 @@ import {
   faSquareFull,
   faCaretRight,
   faCaretDown,
+  faCaretUp,
   faSquare as fasSquare,
   faTimes,
   faPencilAlt,
@@ -60,10 +61,12 @@ import {
   LayoutPlugin,
   LinkPlugin,
   NavPlugin,
+  PopoverPlugin ,
   SpinnerPlugin,
   TablePlugin ,
   TabsPlugin,
   VBTogglePlugin,
+  TooltipPlugin,
 } from 'bootstrap-vue';
 
 // Mixins
@@ -96,6 +99,7 @@ library.add(faBars);
 library.add(faLocationArrow);
 library.add(faCaretRight);
 library.add(faCaretDown);
+library.add(faCaretUp);
 library.add(faTimes);
 library.add(faPencilAlt);
 library.add(faCheck);
@@ -129,11 +133,13 @@ Vue.use(InputGroupPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(LinkPlugin);
 Vue.use(NavPlugin);
+Vue.use(PopoverPlugin)
 Vue.use(SpinnerPlugin);
 Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
 Vue.use(ModalPlugin);
-Vue.use(TablePlugin );
+Vue.use(TablePlugin);
+Vue.use(TooltipPlugin);
 
 // vuex
 Vue.use(Vuex);

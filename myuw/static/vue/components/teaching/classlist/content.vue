@@ -14,9 +14,10 @@
     <div class="">
       <b-link
         id="csv_download_class_list"
-        @click="downloadClassList"
+        @click="downloadCL"
       >
-        <i class="fa fa-download" />Download (CSV)
+        <font-awesome-icon :icon="faDownload" />
+        Download (CSV)
       </b-link>
 
       <a href="javascript:window.print()" class="">
@@ -44,6 +45,9 @@
 </template>
 
 <script>
+import {
+  faDownload,
+} from '@fortawesome/free-solid-svg-icons';
 import TableView from './table-view.vue';
 import PhotoList from './photo-list.vue';
 
@@ -65,6 +69,7 @@ export default {
   data() {
     return {
       showJointCourse: false,
+      faDownload,
     };
   },
   methods: {
@@ -73,19 +78,8 @@ export default {
         'To hide students from joint courses' :
         'To show students from joint courses');
     },
-    fileName() {
-      const fn = this.section.section_label + '_students.csv';
-      return fn.replace(/[^a-z0-9._]/ig, '_');
-    },
-    downloadClassList() {
-      const hiddenElement = document.createElement('a');
-      const csvData = this.buildClasslistCsv(
-          this.section.registrations, this.section.has_linked_sections);
-
-      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
-      hiddenElement.target = '_blank';
-      hiddenElement.download = this.fileName;
-      hiddenElement.click();
+    downloadCL() {
+      this.downloadClassList(this.section);
     },
   },
 };

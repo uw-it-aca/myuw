@@ -1,16 +1,19 @@
-import dayjs from 'dayjs';
-
-import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
+import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
+import {
+  convertSectionsTimeAndDateToDateJSObj,
+} from './common';
 
 function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   let courseData = data[urlExtra];
+  convertSectionsTimeAndDateToDateJSObj(courseData.sections);
   for (let i = 0; i < courseData.sections.length; i++) {
     let section = courseData.sections[i];
-    section.id = (courseData.year + "-" + courseData.quarter + "-" +
-                  section.curriculum_abbr.replace(/ /g, '-') + "-" +
+    section.anchor = (section.curriculum_abbr.replace(/ /g, '-') + "-" +
                   section.course_number + "-" + section.section_id);
+    section.id = (courseData.year + "-" + courseData.quarter + "-" +
+                  section.anchor);
 
     // MUWM-549 and MUWM-552
     let canvasUrl = section.canvas_url;
@@ -29,7 +32,6 @@ function postProcess(response, urlExtra) {
 
     let seenInstRegids = new Set();
     section.instructors = [];
-    section.hasEosDates = false;
     // Convert dates and times to datejs objects
     for (let idx = 0; idx < section.meetings.length; idx++) {
       let meeting = section.meetings[idx];
@@ -41,31 +43,6 @@ function postProcess(response, urlExtra) {
           seenInstRegids.add(inst.uwregid);
           section.instructors.push(inst);
         }
-      }
-
-      if (meeting.start_time && meeting.end_time) {
-        meeting.start_time = dayjs(meeting.start_time, "hh:mm")
-          .second(0)
-          .millisecond(0);
-        meeting.end_time = dayjs(meeting.end_time, "hh:mm")
-          .second(0)
-          .millisecond(0);
-      }
-
-      if (meeting.eos_start_date && meeting.eos_end_date) {
-        section.hasEosDates = true;
-        meeting.eos_start_date = dayjs(meeting.eos_start_date)
-          .second(0)
-          .millisecond(0);
-        meeting.eos_end_date = dayjs(meeting.eos_end_date)
-          .second(0)
-          .millisecond(0);
-      }
-
-      if (meeting.type && meeting.type !== 'NON' &&
-          meeting.type.toLowerCase() !== section.section_type.toLowerCase()) {
-        meeting.displayType = true;
-        section.showMtgType = true;
       }
     }
 

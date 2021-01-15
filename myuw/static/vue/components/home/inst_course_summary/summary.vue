@@ -5,13 +5,12 @@
            :errored-show="statusCodeTagged(term) !== 404"
   >
     <template #card-heading>
-      <h3>
-        {{ ucfirst(getQuarter()) }} {{ getYear() }} Teaching Schedule
+      <h3 class="h4 text-dark-beige myuw-font-encode-sans">
+        {{ titleCaseWord(getQuarter()) }} {{ getYear() }} Teaching Schedule
       </h3>
     </template>
     <template #card-body>
       <div v-if="!instSchedule.sections.length">
-        >
         <!-- teach no course -->
         <p>
           You are not teaching any courses this term.
@@ -44,19 +43,12 @@
           </span>
         </div>
 
-        <uw-summer-section-list v-if="getQuarter() === 'summer'"
-                                :schedule="instSchedule"
-                                :mobile-only="mobileOnly"
-        />
-
-        <uw-section-list v-else
-                         :sections="instSchedule.sections"
-                         :mobile-only="mobileOnly"
-        />
+        <uw-summer-section-list v-if="getQuarter() === 'summer'" :schedule="instSchedule" />
+        <uw-section-list v-else :sections="instSchedule.sections" />
 
         <div>
           <a :href="getAcadCalLink()">
-            View {{ ucfirst(getQuarter()) }} {{ getYear() }}
+            View {{ titleCaseWord(getQuarter()) }} {{ getYear() }}
             important dates and deadlines
           </a>
         </div>
@@ -96,10 +88,6 @@ export default {
     term: {
       type: String,
       default: 'current',
-    },
-    mobileOnly: {
-      type: Boolean,
-      default: false,
     },
   },
   computed: {
@@ -147,7 +135,7 @@ export default {
       return this.term === 'current' ? this.quarter : this.nextQuarter;
     },
     getTeachingLinkLabel() {
-      return (this.ucfirst(this.getQuarter()) + ' ' + this.getYear() +
+      return (this.titleCaseWord(this.getQuarter()) + ' ' + this.getYear() +
        ' Teaching Details');
     },
     getAcadCalLink() {

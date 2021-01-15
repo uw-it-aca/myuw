@@ -1,5 +1,5 @@
 <template>
-  <span v-if="section.is_prev_term_enrollment">
+  <span v-if="section.isPrevTermEnrollment">
     0<!-- the current_enrollment value is of previous term -->
     <span v-if="!section.is_independent_study">
       &nbsp;of&nbsp;{{ section.limit_estimate_enrollment }}
@@ -13,7 +13,7 @@
   </span>
 
   <span v-else>
-    <a
+    <b-link
       target="_blank"
       :href="classListHref()"
       :rel="section.section_label"
@@ -21,10 +21,10 @@
     >
       {{ section.current_enrollment }}
       <span v-if="!section.is_independent_study">
-        <span>&nbsp;of&nbsp;</span><span aria-hidden="true">/</span>
+        <span>&nbsp;of&nbsp;</span>
         {{ section.limit_estimate_enrollment }}
       </span>
-    </a>
+    </b-link>
   </span>
 </template>
 
@@ -38,10 +38,7 @@ export default {
   },
   methods: {
     classListHref() {
-      return ('/teaching/' + this.section.year + ',' +
-              this.section.quarter + ',' + this.section.curriculum_abbr + ',' +
-              this.section.course_number + '/' +
-              this.section.section_id + '/students');
+      return ('/teaching/' + this.section.apiTag + '/students');
     },
     getTitle() {
       return ('View class list of ' +

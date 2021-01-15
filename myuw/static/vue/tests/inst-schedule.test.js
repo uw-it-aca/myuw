@@ -2,7 +2,7 @@ import axios from 'axios';
 import Vuex from 'vuex';
 import {createLocalVue} from '@vue/test-utils';
 import {statusOptions} from '../vuex/store/model_builder';
-import inst_schedule from '../vuex/store/inst_schedule';
+import inst_schedule from '../vuex/store/schedule/instructor';
 import {expectAction} from './helper';
 
 import mockBill2013Summer from
@@ -40,7 +40,10 @@ describe('Instructor Schedule Data', () => {
         nextTerm: {
           year: 2013,
           quarter: 'summer',
-        }
+        },
+        cardDisplayDates: {
+          comparison_date: '2013-04-15T00:00:01',
+        },
       }
     });
   });
@@ -93,10 +96,11 @@ describe('Instructor Schedule Data', () => {
     expect(sections).toHaveLength(8);
     expect(sections[0].year).toBe(2013);
     expect(sections[0].quarter).toBe('spring');
+    expect(sections[0].anchor).toBe('PHYS-122-A');
     expect(sections[0].id).toBe('2013-spring-PHYS-122-A');
     expect(sections[0].href).toBe('2013,spring#PHYS-122-A');
     expect(sections[0].navtarget).toBe('2013,spring,PHYS-122-A');
-    expect(sections[0].is_prev_term_enrollment).toBe(false);
+    expect(sections[0].isPrevTermEnrollment).toBe(false);
   });
 
   it ('Check postProcess - billpce 2013 summer', async () => {
@@ -114,7 +118,7 @@ describe('Instructor Schedule Data', () => {
     const sections = store.state.inst_schedule.value.testCurrent.sections;
     expect(sections).toHaveLength(3);
     expect(sections[2].id).toBe("2013-summer-EDIT-120-C");
-    expect(sections[2].is_prev_term_enrollment).toBe(true);
+    expect(sections[2].isPrevTermEnrollment).toBe(false);
   });
 
 });

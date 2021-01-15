@@ -2,7 +2,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // page components
-import Classlist from './components/classlist/class-student-list.vue';
+import Classlist from './components/teaching/classlist/class-student-list.vue';
 
 // stores
 import classlist from './vuex/store/classlist';

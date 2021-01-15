@@ -6,7 +6,6 @@
       </h4>
       <uw-section-list
         :sections="getFulltermSections()"
-        :mobile-only="mobileOnly"
       />
     </div>
 
@@ -16,7 +15,6 @@
       </h4>
       <uw-section-list
         :sections="getAtermSections()"
-        :mobile-only="mobileOnly"
       />
     </div>
 
@@ -26,7 +24,6 @@
       </h4>
       <uw-section-list
         :sections="getBtermSections()"
-        :mobile-only="mobileOnly"
       />
     </div>
   </div>
@@ -43,10 +40,6 @@ export default {
     schedule: {
       type: Object,
       required: true,
-    },
-    mobileOnly: {
-      type: Boolean,
-      default: false,
     },
   },
   methods: {

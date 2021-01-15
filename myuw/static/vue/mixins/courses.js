@@ -1,4 +1,5 @@
 import utils from './utils';
+import dayjs from 'dayjs';
 export default {
   methods: {
     quoteField(x) {
@@ -7,6 +8,10 @@ export default {
             return '"'+x+'"';
         }
         return '""';
+    },
+    sectionFormattedDates(section) {
+      return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(
+          section.end_date).format('MMM D')}`;
     },
     combineMajors(majors) {
       if (majors === undefined || majors.length == 0) {
@@ -51,15 +56,42 @@ export default {
         }
         return lines.join("\n");
     },
+    classlistFileName() {
+      const fn = this.section.section_label + '_students.csv';
+      return fn.replace(/[^a-z0-9._]/ig, '_');
+    },
+    downloadClassList(classlist) {
+      const hiddenElement = document.createElement('a');
+      const csvData = this.buildClasslistCsv(
+          classlist.registrations, classlist.has_linked_sections);
+
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
+      hiddenElement.target = '_blank';
+      hiddenElement.download = this.classlistFileName();
+      hiddenElement.click();
+    },
+    getQuarterAbbr(quarter_str) {
+      // return the first 3 letter word in upper case
+      return (!quarter_str || quarter_str.length === 0) ? '' :
+        quarter_str.substring(0, 3).toUpperCase();
+    },
     getTimeScheHref(section) {
-      const qAbb = (!section.quarter || section.quarter.length === 0) ?
-            '' : section.quarter.substring(0, 3).toUpperCase();
       return ('http://sdb.admin.uw.edu/timeschd/uwnetid/sln.asp?QTRYR=' +
-              qAbb + '+' + section.year + '&SLN=' + section.sln);
+              this.getQuarterAbbr(section.quarter) + '+' +
+              section.year + '&SLN=' + section.sln);
     },
     getTimeScheLinkLable(section) {
       return ('SLN ' + section.sln + ': ' + section.curriculum_abbr + ' ' +
              section.course_number + ' ' + section.section_id);
     },
+    idForSection(section) {
+      return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
+    },
+    selfAnchored(section) {
+      const el = document.getElementById(section.anchor);
+      if (el) {
+        el.scrollIntoView({behavior: 'smooth'});
+      }
+    }
   },
 }

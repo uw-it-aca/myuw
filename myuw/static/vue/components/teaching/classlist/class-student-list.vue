@@ -10,7 +10,7 @@
           {{ sectionData.sectionId }},
           {{ sectionData.quarter }} {{ sectionData.year }}
         </h3>
-        <div>
+        <div v-if="sectionData.sln">
           <h4>SLN</h4>
           <span>{{ sectionData.sln }}</span>
         </div>
@@ -51,7 +51,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../_templates/card.vue';
+import Card from '../../_templates/card.vue';
 import CourseStats from './statistics.vue';
 import Content from './content.vue';
 
