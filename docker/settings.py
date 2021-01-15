@@ -256,5 +256,3 @@ GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 STATICFILES_DIRS = [
     '../static/myuw/'
 ]
-
-MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
