@@ -1,0 +1,36 @@
+<template>
+  <b-row>
+    <b-col :sm="titleWidth">{{ title }}</b-col>
+    <b-col :sm="contentWidth">
+      <slot name="content">
+        {{ content }}
+      </slot>
+    </b-col>
+  </b-row>
+</template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    content: {
+      type: String,
+      required: false,
+      default: null,
+    },
+  },
+  data: function() {
+    return {
+      titleWidth: 3,
+      contentWidth: 9,
+    }
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+
+</style>
