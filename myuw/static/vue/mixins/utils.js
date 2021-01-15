@@ -40,13 +40,6 @@ export default {
       }
       return "";
     },
-    pageTitleFromTerm(termStr) {
-      let pageTitle = termStr.split(',');
-      let term = pageTitle[1];
-      pageTitle[1] = pageTitle[0];
-      pageTitle[0] = term;
-      return pageTitle.map((s) => this.titleCaseWord(s)).join(' ');
-    },
     ucfirst(s) {
       if (s && s.length) {
         return s.replace(/^([a-z])/, (c) => c.toUpperCase());
@@ -87,6 +80,13 @@ export default {
           return "";
       }
       return this.titleCaseWord(string);
+    },
+    pageTitleFromTerm(termStr) {
+      let pageTitle = termStr.split(',');
+      let term = pageTitle[1];
+      pageTitle[1] = pageTitle[0];
+      pageTitle[0] = term;
+      return pageTitle.map((s) => this.capitalizeString(s)).join(' ');
     },
     toFriendlyDate(date_str) {
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D");
