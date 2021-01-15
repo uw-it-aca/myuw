@@ -49,6 +49,8 @@ lifecycle:
   enabled: true
   preStop:
     enabled: true
+securityPolicy:
+  enabled: true
 readiness:
   enabled: true
 externalService:

@@ -34,6 +34,8 @@ lifecycle:
     enabled: true
 readiness:
   enabled: true
+securityPolicy:
+  enabled: true
 externalService:
   enabled: true
   name: dev-my-uw-db
