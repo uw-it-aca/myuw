@@ -6,6 +6,7 @@ import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 // components
 import Uname from './components/profile/user-name.vue';
 import StudentProfile from './components/profile/student-profile.vue';
+import ApplicantProfile from './components/profile/applicant-profile.vue';
 
 // stores
 import directory from './vuex/store/directory';
@@ -22,6 +23,7 @@ vueConf.store.commit('addVarToState', {
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-uname', Uname);
 Vue.component('myuw-student-profile', StudentProfile);
+Vue.component('myuw-applicant-profile', ApplicantProfile);
 
 new Vue({
   ...vueConf,
