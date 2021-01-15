@@ -4,7 +4,7 @@
       <uw-course-title show-credits :section="section" />
     </div>
 
-    <div v-if="section.summer_term" class="d-flex">
+    <div v-if="section.summer_term">
       <h5 class="sr-only">
         Term:
       </h5>
@@ -38,9 +38,6 @@
 </template>
 
 <script>
-import {
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
 import CourseTitle from '../course-title.vue';
 
@@ -53,11 +50,6 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  data() {
-    return {
-      faTimes,
-    };
   },
   methods: {
     ...mapActions('inst_schedule', [
