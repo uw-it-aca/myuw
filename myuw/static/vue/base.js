@@ -24,6 +24,7 @@ import {
   faSquareFull,
   faCaretRight,
   faCaretDown,
+  faCaretUp,
   faSquare as fasSquare,
   faTimes,
   faPencilAlt,
@@ -54,19 +55,24 @@ import {
   FormGroupPlugin,
   FormInputPlugin,
   FormSelectPlugin,
+  FormCheckboxPlugin ,
   InputGroupPlugin,
+  ModalPlugin,
   LayoutPlugin,
   LinkPlugin,
   NavPlugin,
+  PopoverPlugin ,
   SpinnerPlugin,
+  TablePlugin ,
   TabsPlugin,
   VBTogglePlugin,
-  ModalPlugin,
+  TooltipPlugin,
 } from 'bootstrap-vue';
 
 // Mixins
 import outlink from './mixins/outlink';
 import utils from './mixins/utils';
+import courses from './mixins/courses';
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
@@ -93,6 +99,7 @@ library.add(faBars);
 library.add(faLocationArrow);
 library.add(faCaretRight);
 library.add(faCaretDown);
+library.add(faCaretUp);
 library.add(faTimes);
 library.add(faPencilAlt);
 library.add(faCheck);
@@ -117,6 +124,7 @@ Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
 Vue.use(CardPlugin);
 Vue.use(CollapsePlugin);
+Vue.use(FormCheckboxPlugin );
 Vue.use(FormPlugin);
 Vue.use(FormGroupPlugin);
 Vue.use(FormInputPlugin);
@@ -125,10 +133,13 @@ Vue.use(InputGroupPlugin);
 Vue.use(LayoutPlugin);
 Vue.use(LinkPlugin);
 Vue.use(NavPlugin);
+Vue.use(PopoverPlugin)
 Vue.use(SpinnerPlugin);
 Vue.use(TabsPlugin);
 Vue.use(VBTogglePlugin);
 Vue.use(ModalPlugin);
+Vue.use(TablePlugin);
+Vue.use(TooltipPlugin);
 
 // vuex
 Vue.use(Vuex);
@@ -184,6 +195,7 @@ Vue.config.devtools = true;
 
 Vue.mixin(outlink);
 Vue.mixin(utils);
+Vue.mixin(courses);
 
 const vueConf = {
   el: '#vue_root',
@@ -198,6 +210,10 @@ const vueConf = {
 vueConf.store.commit('addVarToState', {
   name: 'termData',
   value: window.term_data,
+});
+vueConf.store.commit('addVarToState', {
+  name: 'nextTerm',
+  value: window.next_term,
 });
 vueConf.store.commit('addVarToState', {
   name: 'cardDisplayDates',

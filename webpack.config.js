@@ -40,6 +40,9 @@ module.exports = {
     textbooks: [
       "./myuw/static/vue/textbooks.js"
     ],
+    teaching_classlist: [
+      "./myuw/static/vue/teaching_classlist.js"
+    ]
   },
   output: {
       path: path.resolve('../static/myuw/'),
@@ -102,7 +105,7 @@ module.exports = {
         entryFiles = Array.from(entryFiles);
         files.forEach((file) => {
           for (const i in entryFiles) {
-            if (file['path'].includes(entryFiles[i])) {
+            if (file['path'].includes(`/${entryFiles[i]}`)) {
               bundles[entryFiles[i]] = file['path'];
               entryFiles.splice(i, 1);
               break;
