@@ -1,0 +1,54 @@
+<template>
+  <li v-if="section.class_website_url">
+    <span>Website:&nbsp;&nbsp;</span>
+    <span>
+      <a
+        :href="section.class_website_url"
+        target="_blank"
+        :label="`Course Website: ${section.curriculum_abbr} ${
+          section.course_number} ${section.section_id}`"
+      >View class website</a>
+      <span v-if="!pastTerm">
+        <a
+          target="_blank"
+          :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
+          :label="`Update Course Website: ${section.curriculum_abbr} ${
+            section.course_number} ${section.section_id}`"
+        >Update</a>
+      </span>
+    </span>
+  </li>
+  <li v-else-if="section.pastTerm">
+    <span>Website:&nbsp;&nbsp;</span>
+    <span>None provided</span>
+  </li>
+  <li v-else-if="section.sln">
+    <span>Website:&nbsp;&nbsp;</span>
+    <a
+      target="_blank"
+      :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
+      :label="`Add Course Website: ${section.curriculum_abbr} ${
+        section.course_number} ${section.section_id}`"
+    >Add</a>
+    <div>
+      A link to the course Canvas is automatically shown to students.
+      Changes to the course website may take up to one hour to display
+      on MyUW.
+    </div>
+  </li>
+</template>
+
+<script>
+export default {
+  props: {
+    section: {
+      type: Object,
+      required: true,
+    },
+    pastTerm: {
+      type: Boolean,
+      default: false,
+    },
+  },
+};
+</script>

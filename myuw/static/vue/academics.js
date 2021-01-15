@@ -4,7 +4,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import CourseCards from './components/_common/course/course-cards.vue';
+import CourseCards from './components/_common/course/student/course-cards.vue';
 import Grades from './components/_common/grades.vue';
 import Outage from './components/_common/outage.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
@@ -23,8 +23,9 @@ import notices from './vuex/store/notices';
 import oquarter from './vuex/store/oquarter';
 import iasystem from './vuex/store/iasystem';
 import textbooks from './vuex/store/textbooks';
-import studSchedule from './vuex/store/stud_schedule';
-import visualSchedule from './vuex/store/visual_schedule';
+import studSchedule from './vuex/store/schedule/student';
+import profile from './vuex/store/profile';
+import visualSchedule from './vuex/store/schedule/visual';
 import categoryLinks from './vuex/store/category_links';
 
 vueConf.store.registerModule('grad', grad);
@@ -32,6 +33,7 @@ vueConf.store.registerModule('iasystem', iasystem);
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('oquarter', oquarter);
 vueConf.store.registerModule('stud_schedule', studSchedule);
+vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('visual_schedule', visualSchedule);
 vueConf.store.registerModule('category_links', categoryLinks);

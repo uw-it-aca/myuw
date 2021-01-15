@@ -1,0 +1,49 @@
+<template>
+  <span v-if="meeting.is_remote">
+    Remote
+  </span>
+  <span v-else-if="meeting.building_tbd">
+    Room to be arranged
+  </span>
+  <span v-else>
+    <span v-if="meeting.building">
+      <a v-if="meeting.latitude"
+        :href="locationUrl"
+        target="_blank"
+        :title="`Map of ${meeting.building}`"
+      >{{ meeting.building }}</a>
+      <span v-else title="No building information available">
+        {{ meeting.building }}
+      </span>
+    </span>
+
+    <span v-if="meeting.room">
+      <a v-if="meeting.classroom_info_url"
+        :href="meeting.classroom_info_url"
+        target="_blank"
+        title="View classroom information"
+      >{{ meeting.room }}</a>
+      <span v-else title="No classroom information available">
+        {{ meeting.room }}
+      </span>
+    </span>
+  </span>
+</template>
+
+<script>
+export default {
+  props: {
+    meeting: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    locationUrl() {
+      return `http://maps.google.com/maps?q=${this.meeting.latitude},${
+        this.meeting.longitude
+        }+(${this.encodeForMaps(this.meeting.building_name)})&z=18`;
+    },
+  },
+};
+</script>
