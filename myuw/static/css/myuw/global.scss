@@ -69,6 +69,33 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   }
 }
 
+// myuw ribbion
+.myuw-ribbon {
+  border-style: solid;
+  border-width: 0;
+
+  &.myuw-ribbon-top {
+    border-top-width: $ribbon-width;
+  }
+
+  &.myuw-ribbon-left {
+    border-left-width: $ribbon-width;
+  }
+
+  &.myuw-ribbon-right {
+    border-right-width: $ribbon-width;
+  }
+
+  &.myuw-ribbon-bottom {
+    border-bottom-width: $ribbon-width;
+  }
+
+  @each $name, $hex in $theme-colors {
+    &.myuw-ribbon-#{$name} {
+      border-color: $hex;
+    }
+  }
+}
 // myuw border top and bottom
 .myuw-border-top {
   border-top: 0.5rem solid #ddd; // 8px
