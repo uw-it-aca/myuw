@@ -203,12 +203,6 @@ export default {
     if (this.term) this.fetch(this.term);
   },
   methods: {
-    toFriendlyDate(dateStr) {
-      if (dateStr === undefined || dateStr.length === 0) {
-        return '';
-      }
-      return dayjs(dateStr).format('ddd, MMM D');
-    },
     ...mapActions('stud_schedule', ['fetch']),
   },
 };

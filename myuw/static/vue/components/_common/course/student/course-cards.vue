@@ -1,14 +1,14 @@
 <template>
   <div v-if="student">
-    <div v-if="isReady">
+    <template v-if="isReady">
       <h3 class="sr-only">
-        Your {{ ucfirst(course.quarter) }} {{ course.year }} Courses
+        Your {{ titleCaseWord(course.quarter) }} {{ course.year }} Courses
       </h3>
       <uw-course-card
         v-for="(section, i) in course.sections" :key="i"
         :course="course" :section="section" :index="i"
       />
-    </div>
+    </template>
     <uw-no-course-card
       v-else-if="isErrored && statusCodeTagged(term) == 404" loaded
       :quarter="quarter" :summer-term="summerTerm"
@@ -25,9 +25,9 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../../_templates/card.vue';
+import Card from '../../../_templates/card.vue';
 import CourseCard from './course.vue';
-import NoCourseCard from './no-course.vue';
+import NoCourseCard from '../no-course.vue';
 
 export default {
   components: {

@@ -6,8 +6,8 @@ import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 import Textbooks from './components/textbooks/textbooks.vue';
 
 // Vuex Stores
-import instSchedule from './vuex/store/inst_schedule';
-import studSchedule from './vuex/store/stud_schedule';
+import instSchedule from './vuex/store/schedule/instructor';
+import studSchedule from './vuex/store/schedule/student';
 import textbooks from './vuex/store/textbooks';
 
 vueConf.store.registerModule('inst_schedule', instSchedule);

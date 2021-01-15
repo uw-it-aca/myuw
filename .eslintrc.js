@@ -23,6 +23,7 @@ module.exports = {
     // global rules
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // TODO: Remove this rule
     'no-unused-vars': 'off',
     "camelcase": [2, {"properties": "never"}],
     'max-len': [

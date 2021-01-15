@@ -3,7 +3,7 @@ import {mount} from '@vue/test-utils';
 import {createLocalVue, expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
-import Courses from '../vuex/store/stud_schedule';
+import Courses from '../vuex/store/schedule/student';
 import GradesCard from '../components/_common/grades.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
