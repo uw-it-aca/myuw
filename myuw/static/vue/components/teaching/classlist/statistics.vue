@@ -5,7 +5,7 @@
     </h4>
     <p v-if="majors && majors.length">
       {{ majors[0].percent_students }}% of your students
-      are {{ ucfirst(majors[0].major) }} majors.
+      are {{ titleCaseWord(majors[0].major) }} majors.
     </p>
     <a :href="getUrl" target="_blank" :data-linklabel="getLabel">
       View more statistics for

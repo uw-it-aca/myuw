@@ -55,7 +55,7 @@
             {{emailList.course_abbr}}
             {{emailList.course_number}}
             {{emailList.section_id}},
-            {{ucfirst(emailList.quarter)}}
+            {{titleCaseWord(emailList.quarter)}}
             {{emailList.year}}.
           </strong>
           <span v-if="!emailList.no_secondary_section && !emailList.has_lists">

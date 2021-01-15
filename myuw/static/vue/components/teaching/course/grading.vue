@@ -5,7 +5,7 @@
     </h5>
     <div>
       <span v-if="section.grading_system">
-        {{section.grading_system}}
+        {{titleCaseWord(section.grading_system)}}
       </span>
       <span v-else>
         Unspecified
@@ -18,7 +18,7 @@
       <ul v-if="section.grade_submission_delegates">
         <li v-for="(delegate, i) in section.grade_submission_delegates" :key="i">
           {{titleCaseName(delegate.person.display_name)}}
-          ({{ucfirst(delegate.level)}})
+          ({{titleCaseWord(delegate.level)}})
         </li>
       </ul>
       <span v-else>
@@ -145,8 +145,7 @@
             </a>
             <span>{{section.grading_status.submittedFmt}}</span>
             <div>
-              Grade submission for {{ucfirst(section.quarter)}}
-              {{ucfirst(section.year)}} closed
+              Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
               <span>{{section.gradingPeriod.deadlineFmt}}</span>
             </div>
           </span>
@@ -160,8 +159,7 @@
             not submitted through GradePage
           </span>
           <div>
-            Grade submission for {{ucfirst(section.quarter)}}
-            {{ucfirst(section.year)}} closed
+            Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
             {{section.gradingPeriod.deadlineFmt}}
             <span v-if="section.grading_status">
               <br />

@@ -93,7 +93,10 @@ export default {
         this.displayNoFinalPeriod = true;
       } else {
         this.displayConfirmFinalLink = true;
-        this.confirmFinalLink = `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=${this.ucfirst(this.section.quarter)}+${this.section.year}&sln=${this.section.sln}&chanid=`;
+        this.confirmFinalLink = (
+          `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=' +
+          this.titleCaseWord(this.section.quarter) + '+' + this.section.year +
+          '&sln=' + this.section.sln + '&chanid=`);
       }
     }
   },
