@@ -1,0 +1,3669 @@
+{
+  "year": 2013,
+  "quarter": "spring",
+  "term": {
+    "quarter": "Spring",
+    "year": 2013,
+    "label": "2013,spring",
+    "last_day_add": "2013-04-21",
+    "last_day_drop": "2013-05-19",
+    "first_day_quarter": "2013-04-01",
+    "census_day": "2013-04-12",
+    "last_day_instruction": "2013-06-07",
+    "grading_period_open": "2020-11-17 17:00:00",
+    "aterm_grading_period_open": "2020-11-17 17:00:00",
+    "grade_submission_deadline": "2020-11-19 17:00:00",
+    "registration_periods": [
+      {
+        "start": "2013-02-15",
+        "end": "2013-03-03"
+      },
+      {
+        "start": "2013-03-04",
+        "end": "2013-03-31"
+      },
+      {
+        "start": "2013-04-01",
+        "end": "2013-04-07"
+      }
+    ],
+    "time_schedule_published": {
+      "bothell": true,
+      "seattle": true,
+      "tacoma": true
+    },
+    "last_final_exam_date": "2013-06-14 23:59:59"
+  },
+  "sections": [
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "122",
+      "section_id": "A",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "ELECTROMAGNETISM",
+      "course_campus": "Seattle",
+      "course_description": "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 115 and PHYS 122. Prerequisite: either MATH 125 or MATH 134, which may be taken concurrently; PHYS 121. Offered: AWSpS.",
+      "class_website_url": "https://catalyst.uw.edu/workspace/segladys/36819/",
+      "sln": 17983,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 181,
+      "limit_estimate_enrollment": 176,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": true,
+            "tuesday": null,
+            "wednesday": true,
+            "thursday": null,
+            "friday": true,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "10:30",
+          "end_time": "11:20",
+          "building_tbd": false,
+          "building": "PAA",
+          "room_tbd": false,
+          "room": "A118",
+          "room_number": "A118",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "3C91AC2A553E11DA839BBB9DA4768082",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "SVETLANA GLADYCHEVA",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "EF4A1C1CA9D511D58EB60004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "R. Daryl Pedigo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "319B396E69CC11D6AC1E0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "NINA M TOSTI",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.652991135758,
+          "longitude": -122.31110674603,
+          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
+        },
+        {
+          "index": "2",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "thursday": true,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "17:00",
+          "end_time": "18:20",
+          "building_tbd": false,
+          "building": "PAA",
+          "room_tbd": false,
+          "room": "A118",
+          "room_number": "A118",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "3C91AC2A553E11DA839BBB9DA4768082",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "SVETLANA GLADYCHEVA",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "EF4A1C1CA9D511D58EB60004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "R. Daryl Pedigo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "319B396E69CC11D6AC1E0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "NINA M TOSTI",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.652991135758,
+          "longitude": -122.31110674603,
+          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-10 08:30",
+        "end_date": "2013-06-10 10:20",
+        "building": "PAA",
+        "room_number": "A118",
+        "room": "A118",
+        "is_remote": false,
+        "longitude": -122.31110674603,
+        "latitude": 47.652991135758,
+        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
+      },
+      "index": 0,
+      "color_id": 1,
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_122_A",
+      "total_linked_secondaries": 11,
+      "allows_secondary_grading": false,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 176,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "122",
+        "section_id": "A",
+        "is_primary": true,
+        "has_multiple_sections": true,
+        "total_course_wo_list": 10,
+        "section_list": {
+          "list_exists": false,
+          "list_address": "phys122a_sp13",
+          "list_admin_url": null,
+          "section_id": "A",
+          "section_label": "2013,spring,PHYS,122/A"
+        },
+        "no_secondary_section": false,
+        "secondary_section_lists": [
+          {
+            "list_exists": false,
+            "list_address": "phys122aa_sp13",
+            "list_admin_url": null,
+            "section_id": "AA",
+            "section_label": "2013,spring,PHYS,122/AA"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122ab_sp13",
+            "list_admin_url": null,
+            "section_id": "AB",
+            "section_label": "2013,spring,PHYS,122/AB"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122ac_sp13",
+            "list_admin_url": null,
+            "section_id": "AC",
+            "section_label": "2013,spring,PHYS,122/AC"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122ad_sp13",
+            "list_admin_url": null,
+            "section_id": "AD",
+            "section_label": "2013,spring,PHYS,122/AD"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122ae_sp13",
+            "list_admin_url": null,
+            "section_id": "AE",
+            "section_label": "2013,spring,PHYS,122/AE"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122af_sp13",
+            "list_admin_url": null,
+            "section_id": "AF",
+            "section_label": "2013,spring,PHYS,122/AF"
+          },
+          {
+            "list_exists": true,
+            "list_address": "phys122ag_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys122ag_sp13",
+            "section_id": "AG",
+            "section_label": "2013,spring,PHYS,122/AG"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122aq_sp13",
+            "list_admin_url": null,
+            "section_id": "AQ",
+            "section_label": "2013,spring,PHYS,122/AQ"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122ar_sp13",
+            "list_admin_url": null,
+            "section_id": "AR",
+            "section_label": "2013,spring,PHYS,122/AR"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122as_sp13",
+            "list_admin_url": null,
+            "section_id": "AS",
+            "section_label": "2013,spring,PHYS,122/AS"
+          },
+          {
+            "list_exists": true,
+            "list_address": "phys122at_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys122at_sp13",
+            "section_id": "AT",
+            "section_label": "2013,spring,PHYS,122/AT"
+          }
+        ],
+        "has_secondary_lists": true,
+        "secondary_combined_list": {
+          "list_exists": false,
+          "list_address": "multi_phys122a_sp13",
+          "list_admin_url": null
+        },
+        "has_lists": true
+      },
+      "grading_status": null,
+      "evaluation": null,
+      "current": true
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "122",
+      "section_id": "B",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "ELECTROMAGNETISM",
+      "course_campus": "Seattle",
+      "course_description": "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 115 and PHYS 122. Prerequisite: either MATH 125 or MATH 134, which may be taken concurrently; PHYS 121. Offered: AWSpS.",
+      "class_website_url": "https://catalyst.uw.edu/workspace/snoozy/37165/",
+      "sln": 17998,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 145,
+      "limit_estimate_enrollment": 154,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": true,
+            "tuesday": null,
+            "wednesday": true,
+            "thursday": null,
+            "friday": true,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "12:30",
+          "end_time": "13:20",
+          "building_tbd": false,
+          "building": "PAA",
+          "room_tbd": false,
+          "room": "A118",
+          "room_number": "A118",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "168152F26A7D11D5A4AE0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "Raymond Golingo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "EF4A1C1CA9D511D58EB60004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "R. Daryl Pedigo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "319B396E69CC11D6AC1E0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "NINA M TOSTI",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.652991135758,
+          "longitude": -122.31110674603,
+          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
+        },
+        {
+          "index": "2",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "thursday": true,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "17:00",
+          "end_time": "18:20",
+          "building_tbd": true,
+          "building": "*",
+          "room_tbd": true,
+          "room": "*",
+          "room_number": "*",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "168152F26A7D11D5A4AE0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "Raymond Golingo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "EF4A1C1CA9D511D58EB60004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "R. Daryl Pedigo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "319B396E69CC11D6AC1E0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "NINA M TOSTI",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "classroom_info_url": null
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-13 08:30",
+        "end_date": "2013-06-13 10:20",
+        "building": "PAA",
+        "room_number": "A118",
+        "room": "A118",
+        "is_remote": false,
+        "longitude": -122.31110674603,
+        "latitude": 47.652991135758,
+        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
+      },
+      "index": 1,
+      "color_id": 2,
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_122_B",
+      "total_linked_secondaries": 2,
+      "allows_secondary_grading": false,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 154,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "122",
+        "section_id": "B",
+        "is_primary": true,
+        "has_multiple_sections": true,
+        "total_course_wo_list": 3,
+        "section_list": {
+          "list_exists": false,
+          "list_address": "phys122b_sp13",
+          "list_admin_url": null,
+          "section_id": "B",
+          "section_label": "2013,spring,PHYS,122/B"
+        },
+        "no_secondary_section": false,
+        "secondary_section_lists": [
+          {
+            "list_exists": false,
+            "list_address": "phys122ba_sp13",
+            "list_admin_url": null,
+            "section_id": "BA",
+            "section_label": "2013,spring,PHYS,122/BA"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys122bs_sp13",
+            "list_admin_url": null,
+            "section_id": "BS",
+            "section_label": "2013,spring,PHYS,122/BS"
+          }
+        ],
+        "has_secondary_lists": false,
+        "secondary_combined_list": {
+          "list_exists": false,
+          "list_address": "multi_phys122b_sp13",
+          "list_admin_url": null
+        },
+        "has_lists": false
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "122",
+      "section_id": "BA",
+      "eos_cid": null,
+      "is_primary_section": false,
+      "is_independent_study": false,
+      "section_type": "quiz",
+      "independent_study_instructor_regid": null,
+      "course_title": "ELECTROMAGNETISM",
+      "course_campus": "Seattle",
+      "course_description": "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 115 and PHYS 122. Prerequisite: either MATH 125 or MATH 134, which may be taken concurrently; PHYS 121. Offered: AWSpS.",
+      "class_website_url": null,
+      "sln": 17999,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 19,
+      "limit_estimate_enrollment": 22,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "quiz",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": true,
+            "wednesday": null,
+            "thursday": null,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "09:30",
+          "end_time": "10:20",
+          "building_tbd": false,
+          "building": "PAB",
+          "room_tbd": false,
+          "room": "B164",
+          "room_number": "B164",
+          "instructors": [
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "billseata",
+              "uwregid": "10000000000000000000000000000009",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "TA",
+              "full_name": "SEATTLE TA",
+              "display_name": "Seattle Ta",
+              "whitepages_publish": false,
+              "employee_id": "100000009",
+              "addresses": [],
+              "email_addresses": [
+                "billseata@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: History: Admin JM Student",
+                  "title": "Reader/Grader (NE H UAW ASE)",
+                  "is_primary": true
+                }
+              ],
+              "mailstop": "353560",
+              "home_department": "CAS: History: Admin JM Student",
+              "publish_in_emp_directory": true,
+              "student_number": "8938640",
+              "student_system_key": "000223560",
+              "student_class": "Graduate",
+              "student_departments": [
+                "History"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": "current"
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.653644681181,
+          "longitude": -122.311302,
+          "building_name": "Physics / Astronomy Building (PAB)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAB+B164"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": null,
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-13 08:30",
+        "end_date": "2013-06-13 10:20",
+        "building": "PAA",
+        "room_number": "A118",
+        "room": "A118"
+      },
+      "index": 2,
+      "color_id": "2a",
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_122_BA",
+      "primary_section_label": "2013_spring_PHYS_122_B",
+      "allows_secondary_grading": false,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 22,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "122",
+        "section_id": "BA",
+        "is_primary": false,
+        "has_multiple_sections": false,
+        "total_course_wo_list": 1,
+        "section_list": {
+          "list_exists": false,
+          "list_address": "phys122ba_sp13",
+          "list_admin_url": null,
+          "section_id": "BA",
+          "section_label": "2013,spring,PHYS,122/BA"
+        },
+        "no_secondary_section": true,
+        "has_lists": false
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "122",
+      "section_id": "BS",
+      "eos_cid": null,
+      "is_primary_section": false,
+      "is_independent_study": false,
+      "section_type": "laboratory",
+      "independent_study_instructor_regid": null,
+      "course_title": "ELECTROMAGNETISM",
+      "course_campus": "Seattle",
+      "course_description": "Covers the basic principles of electromagnetism and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 115 and PHYS 122. Prerequisite: either MATH 125 or MATH 134, which may be taken concurrently; PHYS 121. Offered: AWSpS.",
+      "class_website_url": null,
+      "sln": 18012,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 22,
+      "limit_estimate_enrollment": 22,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "laboratory",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "thursday": null,
+            "friday": true,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "09:30",
+          "end_time": "11:20",
+          "building_tbd": false,
+          "building": "PAB",
+          "room_tbd": false,
+          "room": "B176",
+          "room_number": "B176",
+          "instructors": [
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "billseata",
+              "uwregid": "10000000000000000000000000000009",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "TA",
+              "full_name": "SEATTLE TA",
+              "display_name": "Seattle Ta",
+              "whitepages_publish": false,
+              "employee_id": "100000009",
+              "addresses": [],
+              "email_addresses": [
+                "billseata@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: History: Admin JM Student",
+                  "title": "Reader/Grader (NE H UAW ASE)",
+                  "is_primary": true
+                }
+              ],
+              "mailstop": "353560",
+              "home_department": "CAS: History: Admin JM Student",
+              "publish_in_emp_directory": true,
+              "student_number": "8938640",
+              "student_system_key": "000223560",
+              "student_class": "Graduate",
+              "student_departments": [
+                "History"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": "current"
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.653644681181,
+          "longitude": -122.311302,
+          "building_name": "Physics / Astronomy Building (PAB)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAB+B176"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": null,
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-13 08:30",
+        "end_date": "2013-06-13 10:20",
+        "building": "PAA",
+        "room_number": "A118",
+        "room": "A118"
+      },
+      "index": 3,
+      "color_id": "2a",
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_122_BS",
+      "primary_section_label": "2013_spring_PHYS_122_B",
+      "allows_secondary_grading": false,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 22,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "122",
+        "section_id": "BS",
+        "is_primary": false,
+        "has_multiple_sections": false,
+        "total_course_wo_list": 1,
+        "section_list": {
+          "list_exists": false,
+          "list_address": "phys122bs_sp13",
+          "list_admin_url": null,
+          "section_id": "BS",
+          "section_label": "2013,spring,PHYS,122/BS"
+        },
+        "no_secondary_section": true,
+        "has_lists": false
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "123",
+      "section_id": "A",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "WAVES",
+      "course_campus": "Seattle",
+      "course_description": "Explores electromagnetic waves, the mechanics of oscillatory motion, optics, waves in matter, and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 116 and PHYS 123. Prerequisite: either MATH 126 or MATH 134, which may be taken concurrently; PHYS 122. Offered: AWSpS.",
+      "class_website_url": "http://courses.washington.edu/pedigo/phys123spr13/",
+      "sln": 18013,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 155,
+      "limit_estimate_enrollment": 154,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": true,
+            "tuesday": null,
+            "wednesday": true,
+            "thursday": null,
+            "friday": true,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "09:30",
+          "end_time": "10:20",
+          "building_tbd": false,
+          "building": "PAA",
+          "room_tbd": false,
+          "room": "A102",
+          "room_number": "A102",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "EF4A1C1CA9D511D58EB60004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "R. Daryl Pedigo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "319B396E69CC11D6AC1E0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "NINA M TOSTI",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.652991135758,
+          "longitude": -122.31110674603,
+          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
+        },
+        {
+          "index": "2",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "thursday": true,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "17:00",
+          "end_time": "18:20",
+          "building_tbd": true,
+          "building": "*",
+          "room_tbd": true,
+          "room": "*",
+          "room_number": "*",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "EF4A1C1CA9D511D58EB60004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "R. Daryl Pedigo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "319B396E69CC11D6AC1E0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "NINA M TOSTI",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "classroom_info_url": null
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": false,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-12 08:30",
+        "end_date": "2013-06-12 10:20",
+        "building": "PAA",
+        "room_number": "A102",
+        "room": "A102",
+        "is_remote": false,
+        "longitude": -122.31110674603,
+        "latitude": 47.652991135758,
+        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
+      },
+      "index": 4,
+      "color_id": 3,
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_123_A",
+      "total_linked_secondaries": 4,
+      "allows_secondary_grading": false,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 154,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "123",
+        "section_id": "A",
+        "is_primary": true,
+        "has_multiple_sections": true,
+        "total_course_wo_list": 2,
+        "section_list": {
+          "list_exists": true,
+          "list_address": "phys123a_sp13",
+          "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123a_sp13",
+          "section_id": "A",
+          "section_label": "2013,spring,PHYS,123/A"
+        },
+        "no_secondary_section": false,
+        "secondary_section_lists": [
+          {
+            "list_exists": false,
+            "list_address": "phys123aa_sp13",
+            "list_admin_url": null,
+            "section_id": "AA",
+            "section_label": "2013,spring,PHYS,123/AA"
+          },
+          {
+            "list_exists": true,
+            "list_address": "phys123ag_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123ag_sp13",
+            "section_id": "AG",
+            "section_label": "2013,spring,PHYS,123/AG"
+          },
+          {
+            "list_exists": false,
+            "list_address": "phys123am_sp13",
+            "list_admin_url": null,
+            "section_id": "AM",
+            "section_label": "2013,spring,PHYS,123/AM"
+          },
+          {
+            "list_exists": true,
+            "list_address": "phys123as_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123as_sp13",
+            "section_id": "AS",
+            "section_label": "2013,spring,PHYS,123/AS"
+          }
+        ],
+        "has_secondary_lists": true,
+        "secondary_combined_list": {
+          "list_exists": false,
+          "list_address": "multi_phys123a_sp13",
+          "list_admin_url": null
+        },
+        "has_lists": true
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "123",
+      "section_id": "B",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "WAVES",
+      "course_campus": "Seattle",
+      "course_description": "Explores electromagnetic waves, the mechanics of oscillatory motion, optics, waves in matter, and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 116 and PHYS 123. Prerequisite: either MATH 126 or MATH 134, which may be taken concurrently; PHYS 122. Offered: AWSpS.",
+      "class_website_url": "http://www.phys.washington.edu/users/bulgac/12xH/",
+      "sln": 18028,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 35,
+      "limit_estimate_enrollment": 66,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": true,
+            "tuesday": null,
+            "wednesday": true,
+            "thursday": null,
+            "friday": true,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "09:30",
+          "end_time": "10:20",
+          "building_tbd": false,
+          "building": "PAA",
+          "room_tbd": false,
+          "room": "A110",
+          "room_number": "A110",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "4ADF75386A7D11D5A4AE0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "Aurel Bulgac",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "EF4A1C1CA9D511D58EB60004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "R. Daryl Pedigo",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            },
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "",
+              "uwregid": "319B396E69CC11D6AC1E0004AC494FFE",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "NINA M TOSTI",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.652991135758,
+          "longitude": -122.31110674603,
+          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAA+A110"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-12 08:30",
+        "end_date": "2013-06-12 10:20",
+        "building": "PAA",
+        "room_number": "A110",
+        "room": "A110",
+        "is_remote": false,
+        "longitude": -122.31110674603,
+        "latitude": 47.652991135758,
+        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "classroom_info_url": "http://www.washington.edu/classroom/PAA+A110"
+      },
+      "index": 5,
+      "color_id": 4,
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_123_B",
+      "total_linked_secondaries": 4,
+      "allows_secondary_grading": true,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 66,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "123",
+        "section_id": "B",
+        "is_primary": true,
+        "has_multiple_sections": true,
+        "total_course_wo_list": 0,
+        "section_list": {
+          "list_exists": true,
+          "list_address": "phys123b_sp13",
+          "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123b_sp13",
+          "section_id": "B",
+          "section_label": "2013,spring,PHYS,123/B"
+        },
+        "no_secondary_section": false,
+        "secondary_section_lists": [
+          {
+            "list_exists": true,
+            "list_address": "phys123ba_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123ba_sp13",
+            "section_id": "BA",
+            "section_label": "2013,spring,PHYS,123/BA"
+          },
+          {
+            "list_exists": true,
+            "list_address": "phys123bc_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123bc_sp13",
+            "section_id": "BC",
+            "section_label": "2013,spring,PHYS,123/BC"
+          },
+          {
+            "list_exists": true,
+            "list_address": "phys123bm_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123bm_sp13",
+            "section_id": "BM",
+            "section_label": "2013,spring,PHYS,123/BM"
+          },
+          {
+            "list_exists": true,
+            "list_address": "phys123bo_sp13",
+            "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123bo_sp13",
+            "section_id": "BO",
+            "section_label": "2013,spring,PHYS,123/BO"
+          }
+        ],
+        "has_secondary_lists": true,
+        "secondary_combined_list": {
+          "list_exists": false,
+          "list_address": "multi_phys123b_sp13",
+          "list_admin_url": null
+        },
+        "has_lists": true
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "123",
+      "section_id": "BA",
+      "eos_cid": null,
+      "is_primary_section": false,
+      "is_independent_study": false,
+      "section_type": "quiz",
+      "independent_study_instructor_regid": null,
+      "course_title": "WAVES",
+      "course_campus": "Seattle",
+      "course_description": "Explores electromagnetic waves, the mechanics of oscillatory motion, optics, waves in matter, and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 116 and PHYS 123. Prerequisite: either MATH 126 or MATH 134, which may be taken concurrently; PHYS 122. Offered: AWSpS.",
+      "class_website_url": null,
+      "sln": 18029,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 17,
+      "limit_estimate_enrollment": 22,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "quiz",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": null,
+            "wednesday": null,
+            "thursday": true,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "08:30",
+          "end_time": "09:20",
+          "building_tbd": false,
+          "building": "PAB",
+          "room_tbd": false,
+          "room": "B156",
+          "room_number": "B156",
+          "instructors": [
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "billseata",
+              "uwregid": "10000000000000000000000000000009",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "TA",
+              "full_name": "SEATTLE TA",
+              "display_name": "Seattle Ta",
+              "whitepages_publish": false,
+              "employee_id": "100000009",
+              "addresses": [],
+              "email_addresses": [
+                "billseata@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: History: Admin JM Student",
+                  "title": "Reader/Grader (NE H UAW ASE)",
+                  "is_primary": true
+                }
+              ],
+              "mailstop": "353560",
+              "home_department": "CAS: History: Admin JM Student",
+              "publish_in_emp_directory": true,
+              "student_number": "8938640",
+              "student_system_key": "000223560",
+              "student_class": "Graduate",
+              "student_departments": [
+                "History"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": "current"
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.653644681181,
+          "longitude": -122.311302,
+          "building_name": "Physics / Astronomy Building (PAB)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAB+B156"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": null,
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-12 08:30",
+        "end_date": "2013-06-12 10:20",
+        "building": "PAA",
+        "room_number": "A110",
+        "room": "A110"
+      },
+      "index": 6,
+      "color_id": "4a",
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_123_BA",
+      "primary_section_label": "2013_spring_PHYS_123_B",
+      "allows_secondary_grading": true,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 22,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "123",
+        "section_id": "BA",
+        "is_primary": false,
+        "has_multiple_sections": false,
+        "total_course_wo_list": 0,
+        "section_list": {
+          "list_exists": true,
+          "list_address": "phys123ba_sp13",
+          "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123ba_sp13",
+          "section_id": "BA",
+          "section_label": "2013,spring,PHYS,123/BA"
+        },
+        "no_secondary_section": true,
+        "has_lists": true
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    },
+    {
+      "curriculum_abbr": "PHYS",
+      "course_number": "123",
+      "section_id": "CA",
+      "eos_cid": null,
+      "is_primary_section": false,
+      "is_independent_study": false,
+      "section_type": "quiz",
+      "independent_study_instructor_regid": null,
+      "course_title": "WAVES",
+      "course_campus": "Seattle",
+      "course_description": "Explores electromagnetic waves, the mechanics of oscillatory motion, optics, waves in matter, and experiments in these topics for physical science and engineering majors. Lecture tutorial and lab components must all be taken to receive credit. Credit is not given for both PHYS 116 and PHYS 123. Prerequisite: either MATH 126 or MATH 134, which may be taken concurrently; PHYS 122. Offered: AWSpS.",
+      "class_website_url": null,
+      "sln": 18036,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 22,
+      "limit_estimate_enrollment": 22,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 0,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "quiz",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": true,
+            "wednesday": null,
+            "thursday": null,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "12:30",
+          "end_time": "13:20",
+          "building_tbd": false,
+          "building": "PAB",
+          "room_tbd": false,
+          "room": "B156",
+          "room_number": "B156",
+          "instructors": [
+            {
+              "uwnetid": "billsea",
+              "uwregid": "10000000000000000000000000000006",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "FACULTY",
+              "full_name": "SEATTLE FACULTY",
+              "display_name": "Seattle Faculty",
+              "whitepages_publish": false,
+              "employee_id": "100000006",
+              "addresses": [],
+              "email_addresses": [
+                "billsea@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [
+                "+1 206 123-1234",
+                "+1 206 543-1234"
+              ],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: Asian Languages & Literature",
+                  "title": "Senior Lecturer",
+                  "is_primary": true
+                },
+                {
+                  "department": "Asian Languages and Literature",
+                  "title": "Senior Lecturer, full-time",
+                  "is_primary": false
+                }
+              ],
+              "mailstop": "356390",
+              "home_department": "CAS: Asian Languages & Literature",
+              "publish_in_emp_directory": true,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": null
+            },
+            {
+              "uwnetid": "billseata",
+              "uwregid": "10000000000000000000000000000009",
+              "is_test_entity": true,
+              "first_name": "SEATTLE",
+              "surname": "TA",
+              "full_name": "SEATTLE TA",
+              "display_name": "Seattle Ta",
+              "whitepages_publish": false,
+              "employee_id": "100000009",
+              "addresses": [],
+              "email_addresses": [
+                "billseata@uw.edu"
+              ],
+              "faxes": [
+                "+1 206 123-4321"
+              ],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [
+                {
+                  "department": "CAS: History: Admin JM Student",
+                  "title": "Reader/Grader (NE H UAW ASE)",
+                  "is_primary": true
+                }
+              ],
+              "mailstop": "353560",
+              "home_department": "CAS: History: Admin JM Student",
+              "publish_in_emp_directory": true,
+              "student_number": "8938640",
+              "student_system_key": "000223560",
+              "student_class": "Graduate",
+              "student_departments": [
+                "History"
+              ],
+              "publish_in_stu_directory": true,
+              "development_id": "0000773877",
+              "alumni_state": "current",
+              "employee_state": "current",
+              "student_state": "current"
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.653644681181,
+          "longitude": -122.311302,
+          "building_name": "Physics / Astronomy Building (PAB)",
+          "classroom_info_url": "http://www.washington.edu/classroom/PAB+B156"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": null,
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-10 08:30",
+        "end_date": "2013-06-10 10:20",
+        "building": "ARC",
+        "room_number": "147",
+        "room": "147"
+      },
+      "index": 7,
+      "color_id": "5a",
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "PHYS",
+      "section_label": "2013_spring_PHYS_123_CA",
+      "primary_section_label": "2013_spring_PHYS_123_C",
+      "allows_secondary_grading": false,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "department"
+        },
+        {
+          "person": {
+            "uwnetid": "billsea",
+            "uwregid": "10000000000000000000000000000006",
+            "is_test_entity": true,
+            "first_name": "SEATTLE",
+            "surname": "FACULTY",
+            "full_name": "SEATTLE FACULTY",
+            "display_name": "Seattle Faculty",
+            "whitepages_publish": false,
+            "employee_id": "100000006",
+            "addresses": [],
+            "email_addresses": [
+              "billsea@uw.edu"
+            ],
+            "faxes": [
+              "+1 206 123-4321"
+            ],
+            "mobiles": [],
+            "pagers": [],
+            "phones": [
+              "+1 206 123-1234",
+              "+1 206 543-1234"
+            ],
+            "voice_mails": [],
+            "touch_dials": [],
+            "positions": [
+              {
+                "department": "CAS: Asian Languages & Literature",
+                "title": "Senior Lecturer",
+                "is_primary": true
+              },
+              {
+                "department": "Asian Languages and Literature",
+                "title": "Senior Lecturer, full-time",
+                "is_primary": false
+              }
+            ],
+            "mailstop": "356390",
+            "home_department": "CAS: Asian Languages & Literature",
+            "publish_in_emp_directory": true,
+            "student_number": null,
+            "student_system_key": null,
+            "student_class": null,
+            "student_departments": [],
+            "publish_in_stu_directory": null,
+            "development_id": "0000773877",
+            "alumni_state": "current",
+            "employee_state": "current",
+            "student_state": null
+          },
+          "level": "curriculum"
+        }
+      ],
+      "has_eos_dates": false,
+      "limit_estimated_enrollment": 22,
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "spring",
+        "course_abbr": "PHYS",
+        "course_number": "123",
+        "section_id": "CA",
+        "is_primary": false,
+        "has_multiple_sections": false,
+        "total_course_wo_list": 0,
+        "section_list": {
+          "list_exists": true,
+          "list_address": "phys123ca_sp13",
+          "list_admin_url": "https://mailman.u.washington.edu/mailman/admin/phys123ca_sp13",
+          "section_id": "CA",
+          "section_label": "2013,spring,PHYS,123/CA"
+        },
+        "no_secondary_section": true,
+        "has_lists": true
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    }
+  ],
+  "registered_summer_terms": {},
+  "summer_term": "full-term",
+  "related_terms": [
+    {
+      "quarter": "Winter",
+      "year": 2012,
+      "label": "2012,winter",
+      "last_day_add": "2012-01-23",
+      "last_day_drop": "2012-02-20",
+      "first_day_quarter": "2012-01-03",
+      "census_day": "2012-01-13",
+      "last_day_instruction": "2012-03-09",
+      "grading_period_open": "2012-02-27 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2012-03-20 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2011-11-04",
+          "end": "2011-11-27"
+        },
+        {
+          "start": "2011-11-28",
+          "end": "2012-01-02"
+        },
+        {
+          "start": "2012-01-03",
+          "end": "2012-01-09"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-03-16 23:59:59"
+    },
+    {
+      "quarter": "Spring",
+      "year": 2012,
+      "label": "2012,spring",
+      "last_day_add": "2012-04-15",
+      "last_day_drop": "2012-05-13",
+      "first_day_quarter": "2012-03-26",
+      "census_day": "2012-04-06",
+      "last_day_instruction": "2012-06-01",
+      "grading_period_open": "2012-05-21 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2012-06-12 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-02-17",
+          "end": "2012-03-04"
+        },
+        {
+          "start": "2012-03-05",
+          "end": "2012-03-25"
+        },
+        {
+          "start": "2012-03-26",
+          "end": "2012-04-01"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-06-08 23:59:59"
+    },
+    {
+      "quarter": "Summer",
+      "year": 2012,
+      "label": "2012,summer",
+      "last_day_add": "2012-07-08",
+      "last_day_drop": "2012-08-05",
+      "first_day_quarter": "2012-06-18",
+      "census_day": "2012-06-29",
+      "last_day_instruction": "2012-08-17",
+      "grading_period_open": "2012-08-10 08:00:00",
+      "aterm_grading_period_open": "2012-07-12 08:00:00",
+      "grade_submission_deadline": "2012-08-21 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-04-16",
+          "end": "2012-05-22"
+        },
+        {
+          "start": "2012-05-23",
+          "end": "2012-06-17"
+        },
+        {
+          "start": "2012-06-18",
+          "end": "2012-06-24"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-08-17 23:59:59"
+    },
+    {
+      "quarter": "Autumn",
+      "year": 2012,
+      "label": "2012,autumn",
+      "last_day_add": "2012-10-14",
+      "last_day_drop": "2012-11-11",
+      "first_day_quarter": "2012-09-24",
+      "census_day": "2012-10-05",
+      "last_day_instruction": "2012-12-07",
+      "grading_period_open": "2012-11-19 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2012-12-18 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-05-04",
+          "end": "2012-06-17"
+        },
+        {
+          "start": "2012-06-18",
+          "end": "2012-09-23"
+        },
+        {
+          "start": "2012-09-24",
+          "end": "2012-09-30"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-12-14 23:59:59"
+    },
+    {
+      "quarter": "Winter",
+      "year": 2013,
+      "label": "2013,winter",
+      "last_day_add": "2013-01-27",
+      "last_day_drop": "2013-02-24",
+      "first_day_quarter": "2013-01-07",
+      "census_day": "2013-01-18",
+      "last_day_instruction": "2013-03-15",
+      "grading_period_open": "2013-02-25 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2013-03-26 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-11-02",
+          "end": "2012-11-25"
+        },
+        {
+          "start": "2012-11-26",
+          "end": "2013-01-06"
+        },
+        {
+          "start": "2013-01-07",
+          "end": "2013-01-13"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-03-22 23:59:59"
+    },
+    {
+      "quarter": "Spring",
+      "year": 2013,
+      "label": "2013,spring",
+      "last_day_add": "2013-04-21",
+      "last_day_drop": "2013-05-19",
+      "first_day_quarter": "2013-04-01",
+      "census_day": "2013-04-12",
+      "last_day_instruction": "2013-06-07",
+      "grading_period_open": "2020-11-17 17:00:00",
+      "aterm_grading_period_open": "2020-11-17 17:00:00",
+      "grade_submission_deadline": "2020-11-19 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-02-15",
+          "end": "2013-03-03"
+        },
+        {
+          "start": "2013-03-04",
+          "end": "2013-03-31"
+        },
+        {
+          "start": "2013-04-01",
+          "end": "2013-04-07"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-06-14 23:59:59"
+    },
+    {
+      "quarter": "Summer",
+      "year": 2013,
+      "label": "2013,summer",
+      "last_day_add": "2013-07-14",
+      "last_day_drop": "2013-08-11",
+      "first_day_quarter": "2013-06-24",
+      "census_day": "2013-07-05",
+      "last_day_instruction": "2013-08-23",
+      "grading_period_open": "2013-08-16 08:00:00",
+      "aterm_grading_period_open": "2013-07-18 08:00:00",
+      "grade_submission_deadline": "2013-08-27 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-04-15",
+          "end": "2013-05-22"
+        },
+        {
+          "start": "2013-05-23",
+          "end": "2013-06-23"
+        },
+        {
+          "start": "2013-06-24",
+          "end": "2013-06-30"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-08-23 23:59:59"
+    },
+    {
+      "quarter": "Autumn",
+      "year": 2013,
+      "label": "2013,autumn",
+      "last_day_add": "2013-10-15",
+      "last_day_drop": "2013-11-12",
+      "first_day_quarter": "2013-09-25",
+      "census_day": "2013-10-04",
+      "last_day_instruction": "2013-12-06",
+      "grading_period_open": "2013-11-18 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2013-12-17 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-05-10",
+          "end": "2013-06-23"
+        },
+        {
+          "start": "2013-06-24",
+          "end": "2013-09-24"
+        },
+        {
+          "start": "2013-09-25",
+          "end": "2013-10-01"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-12-13 23:59:59"
+    }
+  ],
+  "past_term": false,
+  "future_term": false,
+  "grading_period_is_open": true,
+  "grading_period_is_past": false,
+  "has_eos_dates": false
+}

@@ -12,7 +12,7 @@ const setTermAndExtractData = (response, urlExtra) => {
 }
 
 const fetchBuilder = (url, postProcess, type) => {
-  return ({commit, getters}, urlExtra = '') => {
+  return ({commit, getters, rootState}, urlExtra = '') => {
     if (
       !getters.isReadyTagged(urlExtra) &&
       !getters.isFetchingTagged(urlExtra)
@@ -20,9 +20,12 @@ const fetchBuilder = (url, postProcess, type) => {
       commit('setStatus', {[urlExtra]: {type: statusOptions[1]}});
       axios.get(url + urlExtra, {
         responseType: type,
+        headers: {
+          'Pragma': 'no-cache',
+        },
       }).then((response) => {
         return {
-          data: postProcess(response, urlExtra),
+          data: postProcess(response, urlExtra, rootState),
           statusCode: response.status
         };
       }).then(({data, statusCode}) => {
@@ -48,6 +51,24 @@ const fetchBuilder = (url, postProcess, type) => {
   };
 };
 
+const tryForceFetchBuilder = (url, postProcess, type) => {
+  return ({commit, rootState}, urlExtra = '') => {
+    return axios.get(url + urlExtra, {
+      responseType: type,
+    }).then((response) => {
+      return {
+        data: postProcess(response, urlExtra, rootState),
+        statusCode: response.status
+      };
+    }).then(({data, statusCode}) => {
+      commit('setValue', data);
+      commit(
+        'setStatus',
+        {[urlExtra]: {type: statusOptions[0], code: statusCode}}
+      );
+    });
+  };
+}
 
 // TODO: Add comments explaing the parameters
 const buildWith = (
@@ -139,4 +160,5 @@ export {
   // Builders
   buildWith,
   fetchBuilder,
+  tryForceFetchBuilder,
 };

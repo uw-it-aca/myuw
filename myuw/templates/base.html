@@ -75,7 +75,11 @@
         isBreak: {{ is_break|yesno:"true, false"}},
         todayDate: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
         firstDay: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
-        lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
+        lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}}),
+    };
+    window.next_term = {
+      year: '{{ next_year }}',
+      quarter: '{{ next_quarter }}',
     };
     </script>
     {% block django_json_data %}
