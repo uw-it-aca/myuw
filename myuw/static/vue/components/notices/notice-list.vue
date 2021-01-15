@@ -5,7 +5,7 @@
         <h3>{{title}}</h3>
         <div class="ml-auto">
           <span v-if="unreadCount">
-            {{unreadCount}} New
+            {{unreadCount}} Unread
           </span>
           <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
           <font-awesome-icon v-else :icon="faChevronUp" />
@@ -20,7 +20,7 @@
         <div class="d-flex">
           <div>{{notice.category}}</div>
           <div class="ml-auto">
-            <span v-if="!notice.is_read">New</span>
+            <span v-if="!notice.is_read">Unread</span>
             <font-awesome-icon v-if="notice.is_critical" :icon="faExclamationTriangle" />
           </div>
         </div>
@@ -28,7 +28,7 @@
           <div v-html="notice.notice_title" />
         </h4>
         <div v-html="notice.notice_body" />
-        <button @click="onShowNotice(notice)">Mark Read</button>
+        <button @click="onShowNotice(notice)" v-if="!notice.is_read">Mark Read</button>
       </div>
     </b-collapse>
   </div>

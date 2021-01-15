@@ -53,6 +53,7 @@ export default {
   },
   computed: {
     ...mapState('notices', {
+      // Note: This needs checking on prod data to evalute sort order
       allNotices: (state) => state.value.sort((n1, n2) => n2.date - n1.date),
     }),
     ...mapGetters('notices', ['isReady']),
