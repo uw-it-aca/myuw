@@ -25,7 +25,7 @@
         None assigned
       </span>
       <a
-        :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
+        :href="gradeDelegateUrl"
         :label="(section.gradeSubmissionSectionDelegate ? 'Update' : 'Add')
           + `Grading Delegate: ${section.curriculum_abbr} ${
             section.course_number} ${section.section_id}`"
@@ -58,7 +58,7 @@
                 submitted
               </a>
                by {{section.grading_status.submitted_by}} on
-              <span>{{section.grading_status.submittedFmt}}</span>
+              <span class="text-nowrap">{{section.grading_status.submittedFmt}}</span>
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
               <a
@@ -73,10 +73,8 @@
                 to submit
               </a>
             </span>
-            <span v-else-if="
-              section.is_primary_section ||
-              section.allows_secondary_grading
-            ">
+            <span v-else-if="section.is_primary_section ||
+             section.allows_secondary_grading">
               <a
                 v-if="section.grading_status.no_grades_submitted"
                 :href="section.grading_status.section_url"
@@ -117,17 +115,17 @@
             href="https://gradepage.uw.edu/"
             label="Gradepage"
             target="_blank"
-          >
-            Gradepage
-          </a>. Please try again later.
+          >Gradepage</a>. Please try again later.
         </div>
-        Grade submission closes
-        <strong>
-          {{section.gradingPeriod.deadlineFmt}}
-        </strong>
-        <span v-if="!section.deadline_in_24_hours">
-          ({{section.gradingPeriod.deadlineRelative}})
-        </span>
+        <div>
+          Grade submission closes
+          <strong>
+            {{section.gradingPeriod.deadlineFmt}}
+          </strong>
+          <span v-if="!section.deadline_in_24_hours">
+            ({{section.gradingPeriod.deadlineRelative}})
+          </span>
+        </div>
       </div>
       <div v-else-if="section.gradingPeriod.isClosed">
         <div v-if="section.grading_status">
@@ -143,15 +141,16 @@
               grade{{section.grading_status.submitted_count ? 's' : ''}}
               submitted by {{section.grading_status.submitted_by}} on 
             </a>
-            <span>{{section.grading_status.submittedFmt}}</span>
+            <span class="text-nowrap">{{section.grading_status.submittedFmt}}</span>
+            <br />
             <div>
               Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
-              <span>{{section.gradingPeriod.deadlineFmt}}</span>
+              <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
             </div>
           </span>
         </div>
         <div v-else>
-          <span v-if="section.grading_status">
+          <span v-if="section.grading_status" class="capitalize">
             {{section.grading_status.grading_status ?
               section.grading_status.grading_status :
               section.grading_status.unsubmitted_count
@@ -217,7 +216,12 @@ export default {
         return this.section.grade_submission_delegates.length;
       }
       return 0;
-    }
-  }
+    },
+    gradeDelegateUrl() {
+      return 'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=' +
+        this.titleCaseWord(this.section.quarter) + '+' + this.section.year + '&sln=' +
+         this.section.sln + '&chanid=11';
+    },
+  },
 };
 </script>
