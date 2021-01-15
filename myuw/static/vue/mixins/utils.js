@@ -60,9 +60,7 @@ export default {
       return "";
     },
     titleCaseName(nameStr) {
-      return nameStr.split(' ').map(function(w) {
-        return this.titleCaseWord(w);
-      }).join(' ');
+      return nameStr.split(' ').map(this.titleCaseWord).join(' ');
     },
     titilizeTerm(term) {
       //Takes a term string (Eg summer 2013, b-term)
