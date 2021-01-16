@@ -3,8 +3,8 @@
     <div v-for="(resource, i) in pinnedResources" :key="i">
       <uw-card
         v-for="(subcategories, j) in Object.values(resource.subcategories)"
-        :key="j"
         :id="subcategories.subcat_id"
+        :key="j"
         loaded
       >
         <template #card-heading>
@@ -23,7 +23,7 @@
         </template>
         <template #card-body>
           <ul>
-            <li v-for="(link, i) in subcategories.links" :key="i">
+            <li v-for="(link, k) in subcategories.links" :key="k">
               <a :href="link.url">{{link.title}}</a>
             </li>
           </ul>

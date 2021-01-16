@@ -2,27 +2,27 @@
   <div>
     <b-card-group columns class="myuw-card-columns-2">
       <uw-card
-        v-for="(resource, i) in Object.values(resource.subcategories)"
+        v-for="(resourceCat, i) in Object.values(resource.subcategories)"
+        :id="resourceCat.subcat_id"
         :key="i"
-        :id="resource.subcat_id"
         loaded
       >
         <template #card-heading>
           <div>
             <h4>
-              {{resource.subcat_name}}
+              {{resourceCat.subcat_name}}
             </h4>
-            <button v-if="!resource.is_pinned" @click="pin(resource)">
+            <button v-if="!resourceCat.is_pinned" @click="pin(resourceCat)">
               Pin to Home
             </button>
-            <button v-else @click="unpin(resource)">
+            <button v-else @click="unpin(resourceCat)">
               Unpin
             </button>
           </div>
         </template>
         <template #card-body>
           <ul>
-            <li v-for="(link, i) in resource.links" :key="i">
+            <li v-for="(link, j) in resourceCat.links" :key="j">
               <a :href="link.url">{{link.title}}</a>
             </li>
           </ul>
@@ -37,14 +37,14 @@ import { mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
+  components: {
+    'uw-card': Card,
+  },
   props: {
     resource: {
       type: Object,
       required: true,
     }
-  },
-  components: {
-    'uw-card': Card,
   },
   methods: {
     ...mapActions('resources', ['pin', 'unpin']),
