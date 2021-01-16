@@ -32,6 +32,7 @@ import Transcripts from './components/home/former_student/transcripts.vue';
 import ContinuingEducation from './components/home/former_student/continuing-education.vue';
 import Alumni from './components/home/alumni.vue';
 import Retiree from './components/home/former_employee/retiree.vue';
+import ResourceCards from './components/home/resource-cards.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -48,6 +49,7 @@ import profile from './vuex/store/profile';
 import myplan from './vuex/store/myplan';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
+import resources from './vuex/store/resources';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -63,6 +65,7 @@ vueConf.store.registerModule('myplan', myplan);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('inst_schedule', inst_schedule);
+vueConf.store.registerModule('resources', resources);
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
@@ -95,6 +98,7 @@ Vue.component('myuw-transcripts', Transcripts);
 Vue.component('myuw-continuing-education', ContinuingEducation);
 Vue.component('myuw-alumni', Alumni);
 Vue.component('myuw-hr-payroll', HRPayroll);
+Vue.component('myuw-resource-cards', ResourceCards);
 
 new Vue({
   ...vueConf,

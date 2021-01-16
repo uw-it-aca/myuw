@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     ...mapState('resources', {
-      resources: (state) => state.value, 
+      resources: (state) => state.value[''], 
     }),
     ...mapGetters('resources', ['isReady'])
   },
