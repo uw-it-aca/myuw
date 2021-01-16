@@ -16,7 +16,7 @@ def teaching_section(request,
                      quarter,
                      section):
     context = get_context(year, quarter, section)
-    return page(request, 'teaching_section.html', context=context)
+    return page(request, 'teaching.html', context=context)
 
 
 @page_view
