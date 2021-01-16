@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% load settings_value %}
-{% load json_script %}
 {% load set_context %}
 
 {% block django_json_data %}
 {% endblock django_json_data %}
 
 {% block body_content %}
-<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
+<myuw-boilerplate logout-url="{% settings_value 'LOGOUT_URL' %}">
   <template #mobile>
     <b-col md="12" class="px-0">
       <!-- tuition card-->

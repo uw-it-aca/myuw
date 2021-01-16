@@ -4,14 +4,14 @@ import utils from './mixins/utils.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import CourseCards from './components/_common/course/course-cards.vue';
+import CourseCards from './components/_common/course/student/course-cards.vue';
 import VisualSchedule from './components/_common/visual_schedule/schedule.vue';
 import Textbooks from './components/_common/textbooks.vue';
 
 // stores
 import textbooks from './vuex/store/textbooks';
-import studSchedule from './vuex/store/stud_schedule';
-import visualSchedule from './vuex/store/visual_schedule';
+import studSchedule from './vuex/store/schedule/student';
+import visualSchedule from './vuex/store/schedule/visual';
 
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('textbooks', textbooks);

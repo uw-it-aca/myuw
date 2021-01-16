@@ -61,13 +61,13 @@
 
       <uw-myplan
         v-if="!myPlanPeakLoad && myPlanData !== null"
-        :my-plan-data="myPlanData"
+        :my-plan-data="myPlanData || {}"
         :year="year"
         :quarter="quarter"
       />
 
       <uw-resources
-        :my-plan-data="myPlanData"
+        :my-plan-data="myPlanData || {}"
         :registration-is-open="
           estRegData.noticeMyRegIsOpen ||
             (!estRegData.hasEstRegDataNotice && regPeriod1Started)
