@@ -4,7 +4,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // teaching componenets
-import CourseTabs from './components/teaching/course/tabs.vue';
+import CourseTabs from './components/teaching/course/chooser_tabs.vue';
 
 // store
 import classlist from './vuex/store/classlist';
