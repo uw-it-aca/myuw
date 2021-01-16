@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% load settings_value %}
-{% load json_script %}
 {% load set_context %}
 
 {% block django_json_data %}
+   <script>
+    // TODO: Replace this with a object in the context and a json_script.
+    window.futureTerm = "{{ future_term }}";
+  </script>
 {% endblock django_json_data %}
 
 {% block body_content %}
@@ -27,8 +30,11 @@
       <myuw-reg-status for-quarter="Summer" period="A"></myuw-reg-status>
       <myuw-ns-critical-info></myuw-ns-critical-info>
       <myuw-ns-international-student></myuw-ns-international-student>
+      <myuw-inst-course-summary></myuw-inst-course-summary>
       <myuw-visual-schedule id="visual-schedule"></myuw-visual-schedule>
-      <myuw-textbooks term="{{ term|default:'current' }}"></myuw-textbooks>
+      <myuw-textbooks term="{{ term|default:"current" }}"></myuw-textbooks>
+      <myuw-inst-course-summary term="{{ future_term }}">
+      </myuw-inst-course-summary>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
       <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
       <myuw-applicant></myuw-applicant>
@@ -59,8 +65,11 @@
       <myuw-reg-status for-quarter="Summer" period="A"></myuw-reg-status>
       <myuw-ns-critical-info></myuw-ns-critical-info>
       <myuw-ns-international-student></myuw-ns-international-student>
+      <myuw-inst-course-summary></myuw-inst-course-summary>
       <myuw-visual-schedule id="visual-schedule"></myuw-visual-schedule>
       <myuw-textbooks term="{{ term|default:'current' }}"></myuw-textbooks>
+      <myuw-inst-course-summary term="{{ future_term }}">
+      </myuw-inst-course-summary>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
       <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
       <myuw-applicant></myuw-applicant>

@@ -1,50 +1,23 @@
 import dayjs from 'dayjs';
-import {fetchBuilder, setTermAndExtractData, buildWith} from './model_builder';
+import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
+import {
+  tryConvertDayJS,
+  convertSectionsTimeAndDateToDateJSObj,
+  convertTermTimeAndDateToDateJSObj,
+  generateMeetingLocationData,
+} from './common';
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
 // Helper functions
 const isFinalPeriod = (period) => period.id === 'finals';
-const tryConvertDayJS = (obj, format=undefined) => {
-  if (obj) {
-    return dayjs(obj, format);
-  }
-  return obj;
-};
 const convertPeriodTimeAndDateToDateJSObj = (period) => {
   period.start_date = tryConvertDayJS(period.start_date);
   period.end_date = tryConvertDayJS(period.end_date);
 
   // Convert inside every section
-  period.sections.forEach((section) => {
-    section.start_date = tryConvertDayJS(section.start_date);
-    section.end_date = tryConvertDayJS(section.end_date);
-
-    // Convert everything in the final_exam field
-    if (section.final_exam) {
-      section.final_exam.start_date =
-        tryConvertDayJS(section.final_exam.start_date);
-      section.final_exam.end_date =
-        tryConvertDayJS(section.final_exam.end_date);
-    }
-
-    // Convert inside every meeting
-    section.meetings.forEach((meeting) => {
-      meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
-      meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
-      meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
-      meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
-    });
-  });
-};
-const convertTermTimeAndDateToDateJSObj = (term) => {
-  term.aterm_last_date = tryConvertDayJS(term.aterm_last_date);
-  term.bterm_first_date = tryConvertDayJS(term.bterm_first_date);
-  term.first_day_quarter = tryConvertDayJS(term.first_day_quarter);
-  term.end_date = tryConvertDayJS(term.end_date);
-  term.last_day_instruction = tryConvertDayJS(term.last_day_instruction);
-  term.last_final_exam_date = tryConvertDayJS(term.last_final_exam_date);
+  convertSectionsTimeAndDateToDateJSObj(period.sections);
 };
 
 const postProcess = (response, urlExtra) => {
@@ -71,6 +44,8 @@ const postProcess = (response, urlExtra) => {
       let eosAlreadyAdded = false;
       // Skip if no exam is defined or no time is set
       if (section.final_exam && section.final_exam.start_date) {
+        section.final_exam.locationData =
+          generateMeetingLocationData(section.final_exam);
         if (isFinalPeriod(period)) {
           // Generate time relative to today so that it can be compared
           let startTime = dayjs()
@@ -121,6 +96,7 @@ const postProcess = (response, urlExtra) => {
           }
         }
 
+        meeting.locationData = generateMeetingLocationData(meeting);
         if (meeting.eos_start_date && meeting.eos_end_date) {
           meeting.start_end_same = (
             meeting.eos_start_date.format() === meeting.eos_end_date.format()

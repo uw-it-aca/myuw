@@ -2,8 +2,8 @@
   <div v-if="(mobileOnly && $mq === 'mobile') || !mobileOnly">
     <b-card v-if="loaded"
             class="rounded-0 shadow-sm mb-3"
-            body-class="p-3"
-            footer-class="border-0 px-3 pt-1 pb-2"
+            :body-class="bodyClasses"
+            footer-class="border-0 px-3 py-2"
     >
       <slot name="card-heading" />
       <slot name="card-body" />
@@ -65,9 +65,28 @@ export default {
       type: Boolean,
       default: false,
     },
+    ribbon: {
+      type: Object,
+      default: null,
+    },
   },
   data: function() {
     return {};
+  },
+  computed: {
+    bodyClasses() {
+      const classes = {
+        'p-3': true,
+      };
+
+      if (this.ribbon && this.ribbon.side && this.ribbon.colorId) {
+        classes['myuw-ribbon'] = true;
+        classes[`myuw-ribbon-${this.ribbon.side}`] = true;
+        classes[`myuw-ribbon-c${this.ribbon.colorId}`] = true;
+      }
+
+      return classes;
+    },
   },
 };
 </script>

@@ -8,7 +8,7 @@
     <template v-else #card-heading>
       <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Bothell Application for
-        {{ ucfirst(applicantData.quarter) }} {{ applicantData.year }}
+        {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
       </h3>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
