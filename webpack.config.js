@@ -42,6 +42,9 @@ module.exports = {
     ],
     teaching_classlist: [
       "./myuw/static/vue/teaching_classlist.js"
+    ],
+    resources: [
+      "./myuw/static/vue/resources.js"
     ]
   },
   output: {
