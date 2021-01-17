@@ -27,26 +27,26 @@
           <profile-entry title="Phone Number">
             <template #content>
               <p v-if="noFormsOfContact">No phone numbers listed</p>
-              <span v-if="phone">
+              <p v-if="phone">
                 Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
-              </span><br />
-              <span v-if="mobile">
+              </p>
+              <p v-if="mobile">
                 Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
-              </span><br />
-              <span v-if="voiceMail">
+              </p>
+              <p v-if="voiceMail">
                 Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
-              </span><br />
-              <span v-if="fax">
+              </p>
+              <p v-if="fax">
                 Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
-              </span><br />
+              </p>
             </template>
           </profile-entry>
           <profile-entry title="Address">
             <template #content>
               <p v-if="!mailstop && !address">No address available</p>
               <div v-else>
-                <span v-if="mailstop">Box {{ mailstop }}</span>
-                <span v-if="address">{{ address }}</span>
+                <p v-if="mailstop">Box {{ mailstop }}</p>
+                <p v-if="address">{{ address }}</p>
               </div>
             </template>
           </profile-entry>
