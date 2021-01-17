@@ -24,11 +24,8 @@ vueConf.store.commit('addVarToState', {
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-uname', Uname);
 Vue.component('myuw-student-profile', StudentProfile);
-<<<<<<< HEAD
 Vue.component('myuw-employee-profile', EmployeeProfile);
-=======
 Vue.component('myuw-applicant-profile', ApplicantProfile);
->>>>>>> feature/vue
 
 new Vue({
   ...vueConf,
