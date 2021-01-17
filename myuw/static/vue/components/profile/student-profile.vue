@@ -43,7 +43,7 @@
             <template #content>
               <ul>
                 <template v-for="(termMinor, index) in termMinors">
-                  <li v-if="index == 0" :key="index">
+                  <li v-if="index == 0 && termMinor.minors.length" :key="index">
                     {{ degreeListString(termMinor.minors) }}
                   </li>
                   <li v-else-if="termMinor.degrees_modified" :key="index">
