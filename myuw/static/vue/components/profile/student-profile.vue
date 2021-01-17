@@ -43,7 +43,7 @@
             <template #content>
               <ul>
                 <template v-for="(termMinor, index) in termMinors">
-                  <li v-if="index == 0" :key="index">
+                  <li v-if="index == 0 && termMinor.minors.length" :key="index">
                     {{ degreeListString(termMinor.minors) }}
                   </li>
                   <li v-else-if="termMinor.degrees_modified" :key="index">
@@ -173,7 +173,7 @@ export default {
       studentEmployee: (state) => state.user.affiliations.stud_employee,
     }),
     showCard: function () {
-      return (this.student || this.studentEmployee) && this.profile;
+      return (this.student || this.studentEmployee) && Boolean(this.profile);
     },
     showError: function () {
       return false;
