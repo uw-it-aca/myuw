@@ -161,8 +161,14 @@ jobs:
           APP_INSTANCE: dev
         run: curl -Ls ${DEPLOY_APP_BASE}/${DEPLOY_APP_BRANCH}/deploy.sh | bash
 
+      - name: Deploy feature/vue Branch
+        if: env.GIT_REPO_BRANCH == 'feature/vue'
+        env:
+          APP_INSTANCE: vue
+        run: curl -Ls ${DEPLOY_APP_BASE}/${DEPLOY_APP_BRANCH}/deploy.sh | bash
+
       - name: Review Deploy Config
-        if: env.GIT_REPO_BRANCH == 'vue/github-actions'
+        if: env.GIT_REPO_BRANCH == 'feature/github-actions'
         env:
           DRY_RUN: true
           APP_INSTANCE: dev
