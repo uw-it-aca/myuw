@@ -1,8 +1,8 @@
 <template>
   <div v-if="isReady">
-    <div v-for="(resource, i) in pinnedResources" :key="i">
+    <div v-for="(resource, i) in maybePinnedResources" :key="i">
       <uw-card
-        v-for="(subcategories, j) in Object.values(resource.subcategories)"
+        v-for="(subcategories, j) in pinnedSubcategories(resource.subcategories)"
         :id="subcategories.subcat_id"
         :key="j"
         loaded
@@ -13,10 +13,7 @@
             <h4>
               {{subcategories.subcat_name}}
             </h4>
-            <button v-if="!subcategories.is_pinned" @click="pin(subcategories)">
-              Pin to Home
-            </button>
-            <button v-else @click="unpin(subcategories)">
+            <button @click="unpin(subcategories)">
               Unpin
             </button>
           </div>
@@ -52,7 +49,9 @@ export default {
       resources: (state) => state.value, 
     }),
     ...mapGetters('resources', ['isReadyTagged']),
-    pinnedResources() {
+    // Maybe pinned because the pin/unpin only updates
+    // the flag and does not remove the resource
+    maybePinnedResources() {
       return this.resources[this.urlExtra];
     },
     isReady() { return this.isReadyTagged(this.urlExtra); }
@@ -61,7 +60,10 @@ export default {
     this.fetch(this.urlExtra);
   },
   methods: {
-    ...mapActions('resources', ['fetch', 'pin', 'unpin']),
+    ...mapActions('resources', ['fetch', 'unpin']),
+    pinnedSubcategories(subcategories) {
+      return Object.values(subcategories).filter((s) => s.is_pinned);
+    }
   }
 }
 </script>
