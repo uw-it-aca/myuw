@@ -32,6 +32,7 @@ import Transcripts from './components/home/former_student/transcripts.vue';
 import ContinuingEducation from './components/home/former_student/continuing-education.vue';
 import Alumni from './components/home/alumni.vue';
 import Retiree from './components/home/former_employee/retiree.vue';
+import AcadCalSnippet from './components/home/calendar/acad-cal-snippet.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -48,6 +49,7 @@ import profile from './vuex/store/profile';
 import myplan from './vuex/store/myplan';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
+import academic_calendar from './vuex/store/academic_calendar';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -63,6 +65,7 @@ vueConf.store.registerModule('myplan', myplan);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('inst_schedule', inst_schedule);
+vueConf.store.registerModule('acad_calendar', academic_calendar);
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
@@ -72,6 +75,7 @@ vueConf.store.commit('addVarToState', {
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
 Vue.component('myuw-notice-card', Notices);
+Vue.component('myuw-acad-cal-snippet', AcadCalSnippet);
 Vue.component('myuw-ns-critical-info', CriticalInfo);
 Vue.component('myuw-ns-international-student', NewInterStudent);
 Vue.component('myuw-applicant', Applicant);
