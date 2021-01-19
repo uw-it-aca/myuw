@@ -31,6 +31,8 @@ lifecycle:
   enabled: true
   preStop:
     enabled: true
+securityPolicy:
+  enabled: true
 affinity:
    podsSpanNodes: true
 readiness:
@@ -49,7 +51,7 @@ database:
 repo: myuw
 instance: test
 image:
-  repository: registry.hub.docker.com/acait/myuw
+  repository: gcr.io/uwit-mci-axdd/myuw
   tag: IMAGE_TAG
 memcached:
   enabled: true
