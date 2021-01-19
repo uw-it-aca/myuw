@@ -168,7 +168,7 @@
 <script>
 import {mapGetters, mapActions, mapState} from 'vuex';
 import Card from '../_templates/card.vue';
-import FinAidComponent from '../home/registration/finaid.vue';
+import FinAidComponent from '../_common/finaid.vue';
 import TuitionResources from './tuition-resources.vue';
 import dayjs from 'dayjs';
 
