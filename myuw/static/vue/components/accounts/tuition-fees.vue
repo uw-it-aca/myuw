@@ -2,7 +2,7 @@
   <uw-card v-if="isStudent"
            :loaded="isReadyNotices && isReadyTuition"
            :errored="isErroredNotices || isErroredTuition"
-           :erroredShow="showError"
+           :errored-show="showError"
   >
     <template #card-heading>
       <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -28,79 +28,95 @@
           <font-awesome-icon
             :icon="['fas', 'exclamation-triangle']"
           />
-          You have a balance that may be past due.
-          See your statement for details.
+          You have a balance that may be past due. See your statement for details.
         </b-alert>
       </div>
 
       <ul class="list-unstyled">
         <!-- If there is some or no tuition due -->
         <li v-if="tuition.tuition_accbalance >= 0">
-          <div>
-            <h4 class="h6 text-dark font-weight-bold">
-              Amount Due
+          <div class="d-flex">
+            <div>
+              <h4 class="h6 text-dark font-weight-bold">Amount Due<br>
+              <span class="myuw-text-md">Student Fiscal Services</span>
             </h4>
-            <span class="myuw-text-md">Student Fiscal Services</span>
+            </div>
             <div v-if="tuition.tuition_accbalance > 0">
               <span
                 class="h6 text-danger font-weight-bold"
               >${{ tuition.tuition_accbalance.toFixed(2) }}</span>
-              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement" class="myuw-text-md">Tuition Statement</a>
-              <a href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank" data-linklabel="Make Tuition Payment" class="mb-2 btn btn-outline-beige text-dark myuw-text-md out-link">Make payment</a>
+              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+                target="_blank" data-linklabel="Tuition Statement"
+                class="myuw-text-md">Tuition Statement</a>
+              <a href="http://f2.washington.edu/fm/sfs/tuition/payment"
+                target="_blank" data-linklabel="Make Tuition Payment"
+                class="mb-2 btn btn-outline-beige text-dark myuw-text-md out-link"
+              >Make payment</a>
             </div>
             <div v-else>
               <span class="h6 text-dark font-weight-bold">$ 0</span>
-              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement" class="myuw-text-md">Tuition Statement</a>
+              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+                target="_blank" data-linklabel="Tuition Statement"
+                class="myuw-text-md">Tuition Statement</a>
             </div>
           </div>
         </li>
         <!-- If there is credit on account -->
         <li v-else-if="tuition.tuition_accbalance < 0">
-          <div>
-            <h4 class="h6 text-dark font-weight-bold">
-              Account Credit
+          <div class="d-flex">
+            <div>
+              <h4 class="h6 text-dark font-weight-bold">Account Credit<br>
+              <span class="myuw-text-md">Student Fiscal Services</span>
             </h4>
-            <span class="myuw-text-md">Student Fiscal Services</span>
+            </div>
             <div>
               <span
                 class="h6 text-dark font-weight-bold"
               >+${{ Math.abs(tuition.tuition_accbalance).toFixed(2) }} CR</span>
-              <span>No payment needed<br></span>
-              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank" data-linklabel="Tuition Statement" class="myuw-text-md">Tuition Statement</a>
+              <span>No payment needed</span><br>
+              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+                target="_blank" data-linklabel="Tuition Statement"
+                class="myuw-text-md">Tuition Statement</a>
             </div>
           </div>
         </li>
         <!-- If there is a PCE balance -->
         <li v-if="tuition.pce_accbalance > 0">
-          <div>
-            <h4 class="h6 text-dark font-weight-bold">
-              Amount due
+          <div class="d-flex">
+            <div>
+              <h4 class="h6 text-dark font-weight-bold">Amount due<br>
+              <span class="myuw-text-md">PCE-Continuum College</span>
             </h4>
-            <span class="myuw-text-md">PCE-Continuum College</span>
+            </div>
             <div>
               <span
                 class="h6 text-danger font-weight-bold"
               >${{ tuition.pce_accbalance.toFixed(2) }}</span>
-              <a href="http://portal.continuum.uw.edu" target="_blank" data-linklabel="PCE Payment portal" class="mb-2 btn btn-outline-beige text-dark myuw-text-md out-link">Make payment</a>
+              <a href="http://portal.continuum.uw.edu" target="_blank"
+                data-linklabel="PCE Payment portal"
+                class="mb-2 btn btn-outline-beige text-dark myuw-text-md out-link">Make payment</a>
             </div>
           </div>
         </li>
         <!-- If there is no PCE balance, either not pce or paid off -->
         <li v-else-if="isC2">
-          <div>
-            <h4 class="h6 text-dark font-weight-bold">
-              Amount Due
+          <div class="d-flex">
+            <div>
+              <h4 class="h6 text-dark font-weight-bold">Amount Due<br>
+              <span class="myuw-text-md">PCE-Continuum College</span>
             </h4>
-            <span class="myuw-text-md">PCE-Continuum College</span>
+            </div>
             <div>
               <span class="h6 text-dark font-weight-bold">$ 0</span>
-              <a href="http://portal.continuum.uw.edu" target="_blank" data-linklabel="Account Statement" class="myuw-text-md">Account Statement</a>
+              <a href="http://portal.continuum.uw.edu" target="_blank"
+                data-linklabel="Account Statement" class="myuw-text-md"
+              >Account Statement</a>
             </div>
           </div>
         </li>
 
         <li v-if="tuitionDate.formatted && tuitionDate.diff">
-          <div>
+          <div class="d-flex">
             <h4 class="h6 text-dark font-weight-bold">
               Payment Due
             </h4>
@@ -116,7 +132,10 @@
 
       <div class="myuw-text-md">
         <p v-if="!isC2Grad">
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank">Give access to your tuition account and financial aid information</a> to parents or other third parties.
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
+            target="_blank">Give access to your tuition account and financial aid information
+          </a>
+          to parents or other third parties.
         </p>
         <p v-for="(msg, i) in pceTuitionDup" :key="i">
           {{ msg.notice_content }}
@@ -127,17 +146,20 @@
         :fin-aid-notices="finAidNotices"
       >
         <template #status>
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx" target="_blank" data-linklabel="Financial Aid Status" class="myuw-text-md">Financial Aid Status</a>
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
+            target="_blank" data-linklabel="Financial Aid Status"
+            class="myuw-text-md">Financial Aid Status</a>
         </template>
       </uw-fin-aid>
 
       <uw-tuition-resources />
     </template>
     <template #card-error>
-      An error occurred and MyUW cannot load your
-      information right now. In the meantime, try the
-      <a v-if="!isPCE" href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" data-linklabel="Tuition Statement" target="_blank">Tuition Statement page</a>
-      <a v-else href="https://portal.continuum.uw.edu" data-linklabel="PCE Tuition portal" target="_blank">PCE Tuition portal</a>.
+      An error occurred and MyUW cannot load your information right now. In the meantime, try the
+      <a v-if="!isPCE" href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+        data-linklabel="Tuition Statement" target="_blank">Tuition Statement page</a>
+      <a v-else href="https://portal.continuum.uw.edu" data-linklabel="PCE Tuition portal"
+        target="_blank">PCE Tuition portal</a>.
       <uw-tuition-resources />
     </template>
   </uw-card>
