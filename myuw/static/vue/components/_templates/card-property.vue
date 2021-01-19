@@ -25,10 +25,7 @@ export default {
     },
   },
   data: function () {
-    return {
-      titleWidth: 3,
-      contentWidth: 9,
-    };
+    return {};
   },
 };
 </script>
