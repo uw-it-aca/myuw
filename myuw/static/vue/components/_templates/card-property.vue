@@ -4,9 +4,7 @@
       {{ title }}
     </div>
     <div class="flex-md-fill">
-      <slot name="content">
-        {{ content }}
-      </slot>
+      <slot name="content"></slot>
     </div>
   </div>
 </template>
@@ -17,11 +15,6 @@ export default {
     title: {
       type: String,
       required: true,
-    },
-    content: {
-      type: String,
-      required: false,
-      default: null,
     },
   },
   data: function () {
