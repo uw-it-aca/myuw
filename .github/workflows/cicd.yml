@@ -29,9 +29,16 @@ jobs:
 
   build:
     needs: environment
-
     runs-on: ubuntu-18.04
-
+    env:
+      COMPOSE_DOCKER_CLI_BUILD: 1
+    strategy:
+      matrix:
+        test-container:
+          - python-tests
+          - eslint
+          - jest
+          - cypress
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -71,20 +78,6 @@ jobs:
           push: false
           load: true
   
-  test:
-    needs: build
-    runs-on: ubuntu-18.04
-    env:
-      COMPOSE_DOCKER_CLI_BUILD: 1
-    strategy:
-      matrix:
-        test-container:
-          - python-tests
-          - eslint
-          - jest
-          - cypress
-
-    steps:
       - name: Run Tests in Image
         id: tests
         shell: bash
