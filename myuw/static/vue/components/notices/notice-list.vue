@@ -28,7 +28,7 @@
           <div v-html="notice.notice_title" />
         </h4>
         <div v-html="notice.notice_body" />
-        <button @click="onShowNotice(notice)" v-if="!notice.is_read">Mark Read</button>
+        <button v-if="!notice.is_read" @click="onShowNotice(notice)">Mark Read</button>
       </div>
     </b-collapse>
   </div>
