@@ -179,8 +179,7 @@ export default {
       isStudent: (state) => state.user.affiliations.student,
       isC2Grad: (state) => state.user.affiliations.grad_c2,
       isC2: (state) => {
-        return state.user.affiliations.grad_c2 ||
-               state.user.affiliations.undergrad_c2;
+        return state.user.affiliations.grad_c2 || state.user.affiliations.undergrad_c2;
       },
       isPCE: (state) => state.user.affiliations.pce,
       tuition: (state) => state.tuition.value,
@@ -211,15 +210,16 @@ export default {
         this.statusCodeNotices != 404 && this.statusCodeTuition != 404
       );
     },
-    tuitionDate: function() {
+    tuitionDate() {
       const result = {};
+      const now = this.tuition.now;
       if (this.tuitionDueNotice !== undefined) {
         this.tuitionDueNotice.attributes.forEach((attr) => {
           if (attr.name === 'Date') {
             result.date = attr.value;
             result.formatted = attr.formatted_value;
             const tuitionDue = dayjs(result.date, 'YYYY-MM-DD');
-            const diff = Math.ceil(tuitionDue.diff(dayjs(), 'day', true));
+            const diff = Math.ceil(tuitionDue.diff(now, 'day', true));
             result.diff = diff;
           }
         });

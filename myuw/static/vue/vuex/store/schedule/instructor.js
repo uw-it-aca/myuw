@@ -8,8 +8,10 @@ import {
 } from '../model_builder';
 import {
   convertSectionsTimeAndDateToDateJSObj,
-  getNow,
 } from './common';
+import {
+  getNow,
+} from '../common';
 
 dayjs.extend(require('dayjs/plugin/advancedFormat'))
 dayjs.extend(require('dayjs/plugin/calendar'))
