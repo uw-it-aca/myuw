@@ -75,12 +75,7 @@ export default {
   },
   computed: {
     ...mapState({
-      hasActiveMedPw: (state) => state.profile.value.password.has_active_med_pw,
-      medPwExpired: (state) => state.profile.value.password.med_pw_expired,
-      expiresMed: (state) => state.profile.value.password.expires_med,
-      daysBeforeExpires: (state) => {
-        return state.profile.value.password.days_before_med_pw_expires;
-      },
+      password: (state) => state.profile.value.password,
       staticUrl: (state) => state.staticUrl,
     }),
     ...mapGetters('profile', {
@@ -91,8 +86,20 @@ export default {
     showError() {
       return this.statusCode !== 404;
     },
+    hasActiveMedPw() {
+      return this.password.has_active_med_pw;
+    },
+    medPwExpired() {
+      return this.password.med_pw_expired;
+    },
+    expiresMed() {
+      return this.password.expires_med;
+    },
+    daysBeforeExpires() {
+      return this.password.days_before_med_pw_expires;
+    },
     showCard() {
-      return !this.isReady || this.hasActiveMedPw;
+      return !this.isReady || Boolean(this.password) && this.hasActiveMedPw;
     },
     expires30Days() {
       return this.daysBeforeExpires <= 30;
