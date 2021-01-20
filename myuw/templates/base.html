@@ -90,6 +90,8 @@
 
 <body data-gtag="{{ google_analytics_key }}" data-hashid="{% hash_netid user.netid %}" data-tracking-enabled="{{ google_tracking_enabled|lower }}" class="myuw-font-open-sans">
     {% csrf_token %}
+    <!-- Testing uw-alert does not work on localhost try 127.0.0.1 instead -->
+    <script src="//www.washington.edu/static/alert.js" type="text/javascript"></script>
 
     <div id="vue_root" hidden>
         {% block body_content %}
