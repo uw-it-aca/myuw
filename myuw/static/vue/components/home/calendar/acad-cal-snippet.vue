@@ -10,9 +10,16 @@
       </h3>
     </template>
     <template #card-body>
-      <div v-for="(ev, index) in events" :key="index">
-        {{ formatBannerDate(ev) }} <br>
-        <a :href="ev.event_url">{{ ev.summary }}</a>
+      <ul>
+        <li v-for="(ev, index) in events" :key="index">
+          {{ formatBannerDate(ev) }} <br>
+          <a :href="ev.event_url">{{ ev.summary }}</a>
+        </li>
+      </ul>
+      <div>
+        <a href="/academic_calendar/"
+           title="Navigate to Academic calendar"
+        >View all events</a>
       </div>
     </template>
     <template #card-error>
@@ -35,15 +42,29 @@ export default {
   components: {
     'uw-card': Card,
   },
+  data: function() {
+    return {
+      urlExtra: '/current/',
+    };
+  },
   computed: {
     ...mapState('acad_calendar', {
       events: (state) => state.value,
     }),
-    ...mapGetters('acad_calendar', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
-      statusCode: 'statusCode',
-    }),
+    ...mapGetters('acad_calendar', [
+      'isReadyTagged',
+      'isErroredTagged',
+      'statusCodeTagged',
+    ]),
+    isReady() {
+      return this.isReadyTagged(this.urlExtra);
+    },
+    isErrored() {
+      return this.isErroredTagged(this.urlExtra);
+    },
+    statusCode() {
+      return this.statusCodeTagged(this.urlExtra);
+    },
     ...mapState({
       instructor: (state) => state.user.affiliations.instructor,
     }),
@@ -55,7 +76,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    this.fetch(this.urlExtra);
   },
   methods: {
     ...mapActions('acad_calendar', ['fetch']),
