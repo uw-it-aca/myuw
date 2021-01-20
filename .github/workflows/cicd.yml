@@ -128,7 +128,7 @@ jobs:
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
 
       - name: Deploy Develop Branch
-        if: env.GIT_REPO_BRANCH == 'develop'
+        if: steps.cicd.outputs.git_repo_branch == 'develop'
         uses: uw-it-aca/actions/cicd-deploy@v1.2
         with:
           release_name: ${{ env.RELEASE_NAME }}
