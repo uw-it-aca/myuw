@@ -74,7 +74,7 @@ export default {
       netid: (state) => state.user.netid,
     }),
     quarter() {
-      return this.ucfirst(this.term.quarter);
+      return this.titleCaseWord(this.term.quarter);
     },
     year() {
       return this.term.year;
@@ -192,7 +192,7 @@ export default {
         label += 'Meeting time: ';
 
         if (this.day) {
-          label += `${this.ucfirst(this.day)}, `;
+          label += `${this.titleCaseWord(this.day)}, `;
         }
 
         if (startTime && endTime) {

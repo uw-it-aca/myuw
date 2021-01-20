@@ -1,38 +1,8 @@
 <template>
   <div>
-    <div :class="`w-100 myuw-border-top border-c${section.color_id}`" />
-    <uw-card loaded>
+    <uw-card loaded :ribbon="{ side: 'top', colorId: section.color_id }">
       <template #card-heading>
-        <div class="d-flex justify-content-between">
-          <div>
-            <h4>
-              {{ section.curriculum_abbr }}
-              {{ section.course_number }}
-              {{ section.section_id }}
-            </h4>
-            <span>{{ section.course_title }}</span>
-          </div>
-          <div>
-            <span class="d-block">
-              {{ ucfirst(section.section_type) }}
-            </span>
-            <span
-              v-if="section.is_primary_section && section.for_credit"
-              class="d-block text-right"
-            >
-              {{ section.credits }} CR
-            </span>
-          </div>
-        </div>
-        <div v-if="section.summer_term">
-          Summer {{ section.summer_term.split('-').map(ucfirst).join('-') }}
-        </div>
-        <div v-if="section.cc_display_dates">
-          Dates: {{ sectionFormattedDates(section) }}
-        </div>
-        <div v-if="section.on_standby">
-          Your status: On Standby
-        </div>
+        <uw-course-header :section="section" />
       </template>
 
       <template #card-body>
@@ -43,16 +13,19 @@
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
-            <i class="fa fa-exclamation-triangle" />
+            <font-awesome-icon
+              :icon="['fas', 'exclamation-triangle']"
+              class="mr-1"
+            />
             An error has occurred and MyUW cannot display the course evaluation
             information right now. Please try again later.
           </p>
         </template>
+
         <uw-course-details
           v-else-if="!section.is_ended"
           :course="course"
           :section="section"
-          :show-row-heading="showRowHeading "
         />
       </template>
 
@@ -61,16 +34,33 @@
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <b-collapse :id="`course-details-${index}`" v-model="isOpen">
+            <!-- creates line spacer above meeting info -->
+            <div class="d-flex">
+              <div class="w-25">
+                &nbsp;
+              </div>
+              <div class="w-75">
+                <hr>
+              </div>
+            </div>
             <uw-course-details
               :course="course"
               :section="section"
-              :show-row-heading="showRowHeading "
             />
           </b-collapse>
         </template>
         <template v-else>
           <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
-            <uw-instructor-info
+            <!-- creates line spacer above instructor info -->
+            <div class="d-flex">
+              <div class="w-25">
+                &nbsp;
+              </div>
+              <div class="w-75">
+                <hr>
+              </div>
+            </div>
+            <uw-instructors
               v-if="section.instructors.length > 0"
               :instructors="section.instructors"
             />
@@ -107,7 +97,7 @@
         </template>
 
         <template v-else>
-          <span v-if="section.instructors.length > 0">
+          <template v-if="section.instructors.length > 0">
             <b-button
               v-if="!isOpen"
               v-b-toggle="`instructors-collapse-${index}`"
@@ -130,10 +120,12 @@
             >
               HIDE INSTRUCTORS
             </b-button>
-          </span>
-          <span v-else>
+          </template>
+          <div v-else class="text-center text-muted font-italic myuw-text-md"
+               style="line-height:1.5rem"
+          >
             No instructor information available
-          </span>
+          </div>
         </template>
       </template>
     </uw-card>
@@ -142,18 +134,19 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex';
-import dayjs from 'dayjs';
-import Card from '../../_templates/card.vue';
+import Card from '../../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
 import CourseDetails from './course-details.vue';
-import InstructorInfo from './instructor-info.vue';
+import Instructors from './instructors.vue';
+import CourseHeader from './header.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-course-details': CourseDetails,
     'uw-course-eval': EvalInfo,
-    'uw-instructor-info': InstructorInfo,
+    'uw-instructors': Instructors,
+    'uw-course-header': CourseHeader,
   },
   props: {
     course: {
@@ -163,10 +156,6 @@ export default {
     section: {
       type: Object,
       required: true,
-    },
-    showRowHeading: {
-      type: Boolean,
-      default: false,
     },
     index: {
       type: Number,
@@ -191,11 +180,6 @@ export default {
     }),
   },
   methods: {
-    sectionFormattedDates(section) {
-      return `${
-        dayjs(section.start_date).format('MMM D')
-      } - ${dayjs(section.end_date).format('MMM D')}`;
-    },
     getSectionEval(index) {
       if (
         this.evalData &&
