@@ -156,9 +156,11 @@
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
-      <a v-if="!isPCE" href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+      <a v-if="!isPCE"
+        href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
         data-linklabel="Tuition Statement" target="_blank">Tuition Statement page</a>
-      <a v-else href="https://portal.continuum.uw.edu" data-linklabel="PCE Tuition portal"
+      <a v-else
+        href="https://portal.continuum.uw.edu" data-linklabel="PCE Tuition portal"
         target="_blank">PCE Tuition portal</a>.
       <uw-tuition-resources />
     </template>
