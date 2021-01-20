@@ -48,8 +48,11 @@ export default {
     };
   },
   computed: {
-    ...mapState('acad_calendar', {
-      events: (state) => state.value,
+    ...mapState({
+      instructor: (state) => state.user.affiliations.instructor,
+      events: function(state) {
+        return state.acad_calendar.value[this.urlExtra];
+      },
     }),
     ...mapGetters('acad_calendar', [
       'isReadyTagged',
@@ -65,9 +68,6 @@ export default {
     statusCode() {
       return this.statusCodeTagged(this.urlExtra);
     },
-    ...mapState({
-      instructor: (state) => state.user.affiliations.instructor,
-    }),
     showCard: function () {
       return !this.isReady || (this.instructor && this.events.length > 0);
     },
