@@ -4,7 +4,6 @@ name: Build, Test and Deploy
 env:
   RELEASE_NAME: myuw
   DJANGO_APP: myuw
-  GCR_TAG_BASE: gcr.io/uwit-mci-axdd
 
 on:
   push:
@@ -23,7 +22,7 @@ jobs:
 
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.2
+        uses: uw-it-aca/actions/cicd-context@v1.3
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
@@ -90,19 +89,15 @@ jobs:
 
       - name: Push Image to GCR
         if: github.event_name == 'push'
-        env:
-          GCR_TAG: ${{ env.GCR_TAG_BASE }}/${{ steps.cicd.outputs.image_tag }}
-        run: |
-          echo "${{ secrets.GCP_JSON_KEY }}" |
-            base64 -d |
-            docker login --username=_json_key --password-stdin https://gcr.io
-          docker tag "${{ steps.cicd.outputs.image_tag }}" "$GCR_TAG"
-          docker push "$GCR_TAG"
+        uses: uw-it-aca/actions/gcr-push@v1.3
+        with:
+          image_tag: ${{ steps.cicd.outputs.image_tag }}
+          gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
   deploy:
     if: github.event_name == 'push'
 
-    needs: [build]
+    needs: build
 
     runs-on: ubuntu-18.04
 
@@ -112,7 +107,7 @@ jobs:
 
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.2
+        uses: uw-it-aca/actions/cicd-context@v1.3
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
@@ -120,7 +115,7 @@ jobs:
         if: >-
           contains(fromJSON('["main", "master", "qa"]'),
             steps.cicd.outputs.git_repo_branch)
-        uses: uw-it-aca/actions/cicd-deploy@v1.2
+        uses: uw-it-aca/actions/cicd-deploy@v1.3
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
