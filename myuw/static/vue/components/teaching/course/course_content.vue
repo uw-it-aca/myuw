@@ -57,7 +57,7 @@ import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 import JointSection from './joint-section.vue';
 import FinalExam from './final-exam.vue';
-import ClassList from './class-list.vue';
+import ClassList from './classlist.vue';
 import Stats from './stats.vue';
 import Materials from './materials.vue';
 import Grading from './grading.vue';
@@ -106,7 +106,7 @@ export default {
   mounted() {
     const currentUrl = window.location.href;
     if (currentUrl.endsWith(this.section.anchor)) {
-      this.selfAnchored(this.section);
+      this.selfAnchoredOnce(this.section);
     }
   },
 };
