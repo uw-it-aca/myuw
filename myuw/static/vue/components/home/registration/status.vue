@@ -91,10 +91,10 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
 import EstRegComponent from './est-reg-date.vue';
-import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
 import MyPlanComponent from './myplan.vue';
 import ResourcesComponent from './resources.vue';
+import FinAidComponent from '../../_common/finaid.vue';
 
 export default {
   components: {
