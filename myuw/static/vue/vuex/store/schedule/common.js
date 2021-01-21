@@ -98,12 +98,3 @@ export const generateMeetingLocationData = (meeting) => {
   if (!data[0].text || data[0].text.length == 0) return [];
   return data;
 }
-
-export const getNow = (rootState) => {
-  // dayjs.tz.setDefault("America/Los_Angeles");
-  if (rootState && rootState.cardDisplayDates &&
-      rootState.cardDisplayDates.comparison_date) {
-    return dayjs(rootState.cardDisplayDates.comparison_date);
-  }
-  return dayjs();
-}
