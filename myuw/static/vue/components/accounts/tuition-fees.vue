@@ -173,6 +173,7 @@ import Card from '../_templates/card.vue';
 import FinAidComponent from '../_common/finaid.vue';
 import TuitionResources from './tuition-resources.vue';
 import dayjs from 'dayjs';
+dayjs.extend(require('dayjs/plugin/timezone'))
 
 export default {
   components: {
@@ -208,6 +209,9 @@ export default {
       isPCE: (state) => state.user.affiliations.pce,
       tuition: (state) => state.tuition.value,
       notices: (state) => state.notices.value,
+      now: (state) => {
+        return dayjs(state.cardDisplayDates.comparison_date);
+      },
       pceTuitionDup: (state) => {
         return state.notices.value.filter(
             (notice) => notice.location_tags.includes('pce_tuition_dup'),
@@ -234,22 +238,6 @@ export default {
         this.statusCodeNotices != 404 && this.statusCodeTuition != 404
       );
     },
-    tuitionDate() {
-      const result = {};
-      const now = this.tuition.now;
-      if (this.tuitionDueNotice !== undefined) {
-        this.tuitionDueNotice.attributes.forEach((attr) => {
-          if (attr.name === 'Date') {
-            result.date = attr.value;
-            result.formatted = attr.formatted_value;
-            const tuitionDue = dayjs(result.date, 'YYYY-MM-DD');
-            const diff = Math.ceil(tuitionDue.diff(now, 'day', true));
-            result.diff = diff;
-          }
-        });
-      }
-      return result;
-    },
     finAidNotices: function() {
       const notices = [];
       for (let i = 0; i < this.finAidTags.length; i++) {
@@ -261,6 +249,22 @@ export default {
         }
       }
       return notices;
+    },
+    tuitionDate() {
+      // from notice
+      const result = {};
+      if (this.tuitionDueNotice !== undefined) {
+        this.tuitionDueNotice.attributes.forEach((attr) => {
+          if (attr.name === 'Date') {
+            result.date = attr.value;
+            result.formatted = attr.formatted_value;
+            const tuitionDue = dayjs(result.date, 'YYYY-MM-DD');
+            const diff = Math.ceil(tuitionDue.diff(this.now, 'day', true));
+            result.diff = diff;
+          }
+        });
+      }
+      return result;
     },
   },
   created() {

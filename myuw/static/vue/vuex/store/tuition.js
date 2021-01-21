@@ -1,11 +1,7 @@
 import {fetchBuilder, extractData, buildWith} from './model_builder';
-import {
-  getNow,
-} from './common';
 
-function postProcess(response, rootState) {
+function postProcess(response) {
   const data = response.data;
-  data.now = getNow(rootState);
   if (data.tuition_accbalance.match(' CR')) {
     data.tuition_accbalance = -1 * parseFloat(data.tuition_accbalance.replace(' CR', ''));
   } else {
