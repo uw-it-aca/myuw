@@ -1,5 +1,8 @@
 import utils from './utils';
 import dayjs from 'dayjs';
+
+let firstSelfAnchored = true;
+
 export default {
   methods: {
     quoteField(x) {
@@ -87,10 +90,13 @@ export default {
     idForSection(section) {
       return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
     },
-    selfAnchored(section) {
-      const el = document.getElementById(section.anchor);
-      if (el) {
-        el.scrollIntoView({behavior: 'smooth'});
+    selfAnchoredOnce(section) {
+      if (firstSelfAnchored) {
+        const el = document.getElementById(section.anchor);
+        if (el) {
+          el.scrollIntoView({behavior: 'smooth'});
+        }
+        firstSelfAnchored = false;
       }
     }
   },
