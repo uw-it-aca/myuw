@@ -1,5 +1,11 @@
+import dayjs from 'dayjs';
+dayjs.extend(require('dayjs/plugin/timezone'));
+dayjs.extend(require('dayjs/plugin/utc'));
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
+import {
+  strToDate,
+} from './common';
 
 const postProcess = (response) => {
   const notices = response.data;
@@ -36,13 +42,12 @@ const postProcess = (response) => {
         (attr) => (attr.name == 'StartDate' || attr.name == 'Date'),
     );
     if (dateFiled !== undefined) {
-      const parts = dateFiled.value.split('-');
-
-      notice.date = new Date(parts[0], parts[1]-1, parts[2]);
+      // alert(dateFiled.value);
+      notice.date = strToDate(dateFiled.value);
+      // alert(notice.date);
     } else {
-      notice.date = new Date();
+      notice.date = null;
     }
-
     return notice;
   });
 };
