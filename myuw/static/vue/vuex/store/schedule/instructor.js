@@ -11,6 +11,7 @@ import {
 } from './common';
 import {
   getNow,
+  strToDate,
 } from '../common';
 
 dayjs.extend(require('dayjs/plugin/advancedFormat'))
@@ -107,8 +108,8 @@ function addCourseGradeData(courseData) {
   let data = {
     isOpen: courseData.grading_period_is_open,
     isClosed: courseData.grading_period_is_past,
-    open: dayjs(courseData.term.grading_period_open),
-    deadline: dayjs(courseData.term.grade_submission_deadline),
+    open: strToDate(courseData.term.grading_period_open),
+    deadline: strToDate(courseData.term.grade_submission_deadline),
   };
 
   data.openRelative = data.open.from(now);

@@ -2,17 +2,19 @@
   <div v-if="isReady">
     <div class="d-flex">
       <div class="ml-auto">
-        <button v-if="!everyNoticeListExpanded" @click="expandAll()">
+        <b-link v-if="!everyNoticeListExpanded" @click="expandAll()"
+          title="Show all notice information"
+        >
           Expand All
-        </button>
-        <button v-else @click="collapseAll()">
+        </b-link>
+        <b-link v-else @click="collapseAll()" title="Hide all notice information">
           Collapse All
-        </button>
+        </b-link>
       </div>
     </div>
     <div v-if="hasAnyNotices">
       <notice-list
-        v-for="(noticeList, i) in noticesLists"
+        v-for="(noticeList, i) in noticeGroups"
         ref="notice_list"
         :key="i"
         :title="noticeList[0]"
@@ -37,7 +39,6 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../_templates/card.vue';
 import NoticeList from './notice-list.vue';
-
 dayjs.extend(require('dayjs/plugin/isToday'));
 dayjs.extend(require('dayjs/plugin/weekOfYear'));
 
@@ -54,7 +55,11 @@ export default {
   computed: {
     ...mapState('notices', {
       // Note: This needs checking on prod data to evalute sort order
-      allNotices: (state) => state.value.sort((n1, n2) => n2.date - n1.date),
+      allNotices: (state) => state.value.sort((n1, n2) => {
+        if (n1.date !== null && n2.date === null) { return -1;}
+        if (n1.date === null && n2.date !== null) { return 1;}
+        return n2.date - n1.date;
+      }),
     }),
     ...mapGetters('notices', ['isReady']),
     criticalNotices() {
@@ -87,19 +92,17 @@ export default {
         nextWeek: [],
         future: [],
       };
-      const today = dayjs();
-
+      const today = this.nowDatetime();
       this.allNotices
         .filter((n) => n.location_tags.includes('notices_date_sort'))
         .forEach((n) => {
-          const nDate = dayjs(new Date(n.date));
-          if (nDate.isToday()) {
+          if (n.date && n.date.isToday()) {
             notices.today.push(n);
-          } else if (nDate.week() === today.week()) {
+          } else if (n.date && n.date.week() === today.week()) {
             notices.thisWeek.push(n);
-          } else if (nDate.week() === today.week() + 1) {
+          } else if (n.date && n.date.week() === today.week() + 1) {
             notices.nextWeek.push(n);
-          } else if (nDate > today) {
+          } else if (n.date === null || n.date > today) {
             notices.future.push(n);
           }
         });
@@ -114,7 +117,7 @@ export default {
              this.timedNotices.nextWeek.length !== 0 ||
              this.timedNotices.future.length !== 0;
     },
-    noticesLists() {
+    noticeGroups() {
       return [
         [`${this.criticalNotices.length} Critical`, this.criticalNotices, true],
         ["Today", this.timedNotices.today, false],
