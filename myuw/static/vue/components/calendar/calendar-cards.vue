@@ -7,7 +7,7 @@
         </template>
         <template #card-body>
           <ul>
-            <li v-for="(event, i) in eventTerm.events" :key="i">
+            <li v-for="(event, j) in eventTerm.events" :key="j">
               {{formatDateRange(event.start, event.end)}}
               <font-awesome-icon v-if="event.myuw_categories.breaks" :icon="faCircle" />
               {{event.summary}}

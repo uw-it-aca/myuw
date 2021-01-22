@@ -24,6 +24,11 @@ export default {
   components: {
     'uw-calendar-cards': CalendarCards,
   },
+  data() {
+    return {
+      faCircle,
+    };
+  },
   computed: {
     ...mapState('academic_events', {
       allEvents: (state) => state.value.filter((e) => e.myuw_categories.all),
@@ -33,11 +38,6 @@ export default {
       isReady: 'isReady',
       isErrored: 'isErrored',
     }),
-  },
-  data() {
-    return {
-      faCircle,
-    };
   },
   created() {
     this.fetch();
