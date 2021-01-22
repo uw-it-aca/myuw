@@ -42,7 +42,10 @@ module.exports = {
     ],
     teaching_classlist: [
       "./myuw/static/vue/teaching_classlist.js"
-    ]
+    ],
+    calendar: [
+      "./myuw/static/vue/calendar.js"
+    ],
   },
   output: {
       path: path.resolve('../static/myuw/'),

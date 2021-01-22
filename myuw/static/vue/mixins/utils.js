@@ -110,5 +110,19 @@ export default {
       }
       return formatted.join(".");
     },
+    formatDateRange(d1, d2) {
+      if (d1 && d2) {
+        if (d1.isSame(d2)) {
+          return `${d1.format("MMM D")}`;
+        } else if (d1.isSame(d2, 'month')) {
+          return `${d1.format("MMM D")} - ${d2.format("D")}`;
+        } else {
+          return `${d1.format("MMM D")} - ${d2.format("MMM D")}`;
+        }
+      } else if (d1 || d2) {
+        let d = d1 ? d1 : d2;
+        return `${d.format("MMM D")}`;
+      }
+    }
   },
 }
