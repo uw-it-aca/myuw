@@ -31,7 +31,7 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
-import CourseCard from './card.vue';
+import CourseCard from './course_content.vue';
 import MiniCourseCard from './mini-card.vue';
 
 export default {
