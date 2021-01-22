@@ -22,11 +22,7 @@
           </p>
         </template>
 
-        <uw-course-details
-          v-else-if="!section.is_ended"
-          :course="course"
-          :section="section"
-        />
+        <uw-course-details v-else-if="!section.is_ended" :section="section"/>
       </template>
 
       <template #card-disclosure>
@@ -43,10 +39,7 @@
                 <hr>
               </div>
             </div>
-            <uw-course-details
-              :course="course"
-              :section="section"
-            />
+            <uw-course-details :section="section"/>
           </b-collapse>
         </template>
         <template v-else>
@@ -149,10 +142,6 @@ export default {
     'uw-course-header': CourseHeader,
   },
   props: {
-    course: {
-      type: Object,
-      required: true,
-    },
     section: {
       type: Object,
       required: true,
