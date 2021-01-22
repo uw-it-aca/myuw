@@ -76,7 +76,6 @@ export default {
           byGroup[groupName].events.push(event);
       });
 
-      console.log(groups);
       return groups;
     },
   },
