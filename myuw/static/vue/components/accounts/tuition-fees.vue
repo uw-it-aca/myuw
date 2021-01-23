@@ -51,13 +51,10 @@
                 class="myuw-text-md"
                 >Tuition Statement</a
               >
-              <a
-                href="http://f2.washington.edu/fm/sfs/tuition/payment"
-                target="_blank"
-                data-linklabel="Make Tuition Payment"
-                class="mb-2 btn btn-outline-beige text-dark myuw-text-md out-link"
-                >Make payment</a
-              >
+              <uw-link-button href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank">
+                Make payment
+              </uw-link-button>
+
             </div>
             <div v-else>
               <span class="h6 text-dark font-weight-bold">$ 0</span>
@@ -108,13 +105,9 @@
               <span class="h6 text-danger font-weight-bold"
                 >${{ tuition.pce_accbalance.toFixed(2) }}</span
               >
-              <a
-                href="http://portal.continuum.uw.edu"
-                target="_blank"
-                data-linklabel="PCE Payment portal"
-                class="mb-2 btn btn-outline-beige text-dark myuw-text-md out-link"
-                >Make payment</a
-              >
+              <uw-link-button href="http://portal.continuum.uw.edu" target="_blank">
+                Make payment
+              </uw-link-button>
             </div>
           </div>
         </li>
