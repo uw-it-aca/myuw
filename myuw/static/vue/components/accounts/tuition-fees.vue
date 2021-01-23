@@ -116,17 +116,17 @@
         </li>
 
         <li v-if="tuitionDate.formatted && tuitionDate.diff">
-          <div class="d-flex">
-            <h4 class="h6 text-dark font-weight-bold">
-              Payment Due
-            </h4>
-            <div class="myuw-text-md">
-              <span>{{ tuitionDate.formatted }}</span>
-              <span v-if="tuitionDate.diff === 0">Today</span>
-              <span v-else-if="tuitionDate.diff === 1">Tomorrow</span>
-              <span v-else>in {{ tuitionDate.diff }} days</span>
-            </div>
-          </div>
+          <uw-card-status>
+            <template #status-label>Payment Due</template>
+            <template #status-value>{{ tuitionDate.formatted }}</template>
+            <template #status-content>
+              <div class="myuw-text-md text-body text-right">
+                <span v-if="tuitionDate.diff === 0">Today</span>
+                <span v-else-if="tuitionDate.diff === 1">Tomorrow</span>
+                <span v-else>in {{ tuitionDate.diff }} days</span>
+              </div>
+            </template>
+          </uw-card-status>
         </li>
       </ul>
 
@@ -170,6 +170,8 @@
 <script>
 import {mapGetters, mapActions, mapState} from 'vuex';
 import Card from '../_templates/card.vue';
+import CardStatus from '../_templates/card-status.vue';
+import LinkButton from '../_templates/link-button.vue';
 import FinAidComponent from '../_common/finaid.vue';
 import TuitionResources from './tuition-resources.vue';
 import dayjs from 'dayjs';
@@ -178,6 +180,8 @@ dayjs.extend(require('dayjs/plugin/timezone'))
 export default {
   components: {
     'uw-card': Card,
+    'uw-card-status': CardStatus,
+    'uw-link-button': LinkButton,
     'uw-fin-aid': FinAidComponent,
     'uw-tuition-resources': TuitionResources,
   },
