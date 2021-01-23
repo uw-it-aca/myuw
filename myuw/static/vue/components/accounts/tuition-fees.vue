@@ -33,40 +33,34 @@
       <ul class="list-unstyled">
         <!-- If there is some or no tuition due -->
         <li v-if="tuition.tuition_accbalance >= 0">
-          <div class="d-flex">
-            <div>
-              <h4 class="h6 text-dark font-weight-bold">
-                Amount Due<br />
-                <span class="myuw-text-md">Student Fiscal Services</span>
-              </h4>
-            </div>
-            <div v-if="tuition.tuition_accbalance > 0">
-              <span class="h6 text-danger font-weight-bold"
-                >${{ tuition.tuition_accbalance.toFixed(2) }}</span
-              >
-              <a
-                href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                target="_blank"
-                data-linklabel="Tuition Statement"
-                class="myuw-text-md"
-                >Tuition Statement</a
-              >
-              <uw-link-button href="http://f2.washington.edu/fm/sfs/tuition/payment" target="_blank">
-                Make payment
-              </uw-link-button>
-
-            </div>
-            <div v-else>
-              <span class="h6 text-dark font-weight-bold">$ 0</span>
-              <a
-                href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                target="_blank"
-                data-linklabel="Tuition Statement"
-                class="myuw-text-md"
-                >Tuition Statement</a
-              >
-            </div>
-          </div>
+          <uw-card-status>
+            <template #status-label>Amount Due</template>
+            <template v-if="tuition.tuition_accbalance > 0" #status-value>
+              <span class="text-danger">${{ tuition.tuition_accbalance.toFixed(2) }}</span>
+            </template>
+            <template v-else #status-value>$ 0</template>
+            <template #status-content>
+              <div class="d-flex mb-2 myuw-text-md">
+                <div class="flex-fill w-50">Student Fiscal Services</div>
+                <div class="flex-fill w-50 text-right">
+                  <a
+                    href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+                    target="_blank"
+                    data-linklabel="Tuition Statement"
+                    >Tuition Statement</a
+                  >
+                </div>
+              </div>
+              <div class="text-right">
+                <uw-link-button
+                  href="http://f2.washington.edu/fm/sfs/tuition/payment"
+                  target="_blank"
+                >
+                  Make payment
+                </uw-link-button>
+              </div>
+            </template>
+          </uw-card-status>
         </li>
         <!-- If there is credit on account -->
         <li v-else-if="tuition.tuition_accbalance < 0">
@@ -94,34 +88,28 @@
         </li>
         <!-- If there is a PCE balance -->
         <li v-if="tuition.pce_accbalance > 0">
-          <div class="d-flex">
-            <div>
-              <h4 class="h6 text-dark font-weight-bold">
-                Amount due<br />
-                <span class="myuw-text-md">PCE-Continuum College</span>
-              </h4>
-            </div>
-            <div>
-              <span class="h6 text-danger font-weight-bold"
-                >${{ tuition.pce_accbalance.toFixed(2) }}</span
-              >
-              <uw-link-button href="http://portal.continuum.uw.edu" target="_blank">
-                Make payment
-              </uw-link-button>
-            </div>
-          </div>
+          <uw-card-status>
+            <template #status-label>Amount Due</template>
+            <template #status-value>
+              <span class="text-danger">${{ tuition.pce_accbalance.toFixed(2) }}</span>
+            </template>
+            <template #status-content>
+              <div class="myuw-text-md">PCE-Continuum College</div>
+              <div class="text-right">
+                <uw-link-button href="http://portal.continuum.uw.edu" target="_blank">
+                  Make payment
+                </uw-link-button>
+              </div>
+            </template>
+          </uw-card-status>
         </li>
         <!-- If there is no PCE balance, either not pce or paid off -->
         <li v-else-if="isC2">
-          <div class="d-flex">
-            <div>
-              <h4 class="h6 text-dark font-weight-bold">
-                Amount Due<br />
-                <span class="myuw-text-md">PCE-Continuum College</span>
-              </h4>
-            </div>
-            <div>
-              <span class="h6 text-dark font-weight-bold">$ 0</span>
+          <uw-card-status>
+            <template #status-label>Amount Due</template>
+            <template #status-value>$ 0</template>
+            <template #status-content>
+              <span class="myuw-text-md">PCE-Continuum College</span>
               <a
                 href="http://portal.continuum.uw.edu"
                 target="_blank"
@@ -129,10 +117,9 @@
                 class="myuw-text-md"
                 >Account Statement</a
               >
-            </div>
-          </div>
+            </template>
+          </uw-card-status>
         </li>
-
         <li v-if="tuitionDate.formatted && tuitionDate.diff">
           <uw-card-status>
             <template #status-label>Payment Due</template>
