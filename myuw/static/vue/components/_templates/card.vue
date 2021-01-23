@@ -23,7 +23,7 @@
 
         <!-- default card error message -->
         <b-alert show variant="light" class="p-0 m-0 border-0 bg-transparent">
-          <div class="d-flex text-danger m-0 myuw-text-md">
+          <div class="d-flex text-danger mb-3 myuw-text-md">
             <div class="pr-2 flex-shrink-1">
               <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
             </div>
@@ -34,6 +34,7 @@
               </slot>
             </div>
           </div>
+          <slot name="card-error-extra" />
         </b-alert>
       </b-card>
     </div>
