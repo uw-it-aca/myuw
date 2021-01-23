@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 dayjs.extend(require('dayjs/plugin/timezone'))
 import axios from 'axios';
-import {mount} from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import tuition from '../vuex/store/tuition';
@@ -47,7 +47,7 @@ describe('Tuition store', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = mount(TuitionFees, {store, localVue});
+    const wrapper = shallowMount(TuitionFees, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
 
     expect(wrapper.vm.isStudent).toBe(true);
@@ -72,7 +72,7 @@ describe('Tuition store', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = mount(TuitionFees, {store, localVue});
+    const wrapper = shallowMount(TuitionFees, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.tuitionDate.date).toBe("2021-02-09");
     expect(wrapper.vm.tuitionDate.formatted ).toBe('Tue, Feb 9');
