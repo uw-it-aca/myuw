@@ -13,7 +13,7 @@
         </uw-link-button>
       </p>
       <div class="">
-        <ul class="list-unstyled m-0 myuw-text-md">
+        <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a
               href="https://uwnetid.washington.edu/manage/?password"
