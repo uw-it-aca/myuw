@@ -115,8 +115,7 @@
           </div>
         </li>
 
-        <li v-if="(tuition.tuition_accbalance > 0 || tuition.pce_accbalance > 0) &&
-          tuitionDate.formatted && tuitionDate.diff >= 0">
+        <li v-if="tuitionDate.formatted && tuitionDate.diff >= 0">
           <div class="d-flex">
             <h4 class="h6 text-dark font-weight-bold">
               Payment Due
