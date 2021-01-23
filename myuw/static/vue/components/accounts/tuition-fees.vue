@@ -181,6 +181,8 @@
         target="_blank"
         >PCE Tuition portal</a
       >.
+    </template>
+    <template #card-error-extra>
       <uw-tuition-resources />
     </template>
   </uw-card>
