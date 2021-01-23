@@ -115,7 +115,7 @@
           </div>
         </li>
 
-        <li v-if="tuitionDate.formatted && tuitionDate.diff">
+        <li v-if="tuitionDate.formatted && tuitionDate.diff >= 0">
           <div class="d-flex">
             <h4 class="h6 text-dark font-weight-bold">
               Payment Due
