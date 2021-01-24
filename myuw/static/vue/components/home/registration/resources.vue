@@ -136,12 +136,6 @@ export default {
       }
       return {};
     },
-    hasReadyCourses() {
-      return this.currentPlanData.has_ready_courses;
-    },
-    myplanHref() {
-      return this.currentPlanData.myplan_href;
-    },
     myplanRegistrationHref() {
       return this.currentPlanData.registration_href;
     },
