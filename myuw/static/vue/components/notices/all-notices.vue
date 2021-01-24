@@ -2,12 +2,12 @@
   <div v-if="isReady">
     <div class="d-flex">
       <div class="ml-auto">
-        <b-link v-if="!everyNoticeListExpanded" @click="expandAll()"
-          title="Show all notice information"
+        <b-link v-if="!everyNoticeListExpanded" title="Show all notice information"
+          @click="expandAll()"
         >
           Expand All
         </b-link>
-        <b-link v-else @click="collapseAll()" title="Hide all notice information">
+        <b-link v-else title="Hide all notice information" @click="collapseAll()">
           Collapse All
         </b-link>
       </div>

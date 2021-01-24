@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
@@ -243,7 +242,7 @@ export default {
             .filter((a) => a.name === 'Date')
             .slice(0, 1)
             .forEach((a) => {
-              registrationDate = dayjs(a.value);
+              registrationDate = strToDayjs(a.value);
             });
 
         notice.attributes
