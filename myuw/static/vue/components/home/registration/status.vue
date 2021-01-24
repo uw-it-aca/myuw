@@ -242,7 +242,7 @@ export default {
             .filter((a) => a.name === 'Date')
             .slice(0, 1)
             .forEach((a) => {
-              registrationDate = strToDayjs(a.value);
+              registrationDate = this.strToDayjs(a.value);
             });
 
         notice.attributes
