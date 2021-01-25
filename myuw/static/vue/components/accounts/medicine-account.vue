@@ -12,6 +12,7 @@
         <img :src="staticUrl+'images/UWMedicine_Logo_RGB@2x.png'"
              width="100px"
              alt=""
+             class="position-absolute"
         >
       </template>
       <template #card-error>
@@ -115,3 +116,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+img {
+  top: 1rem;
+  right: 1rem;
+}
+</style>

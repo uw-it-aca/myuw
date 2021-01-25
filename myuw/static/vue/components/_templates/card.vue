@@ -34,8 +34,8 @@
               </slot>
             </div>
           </div>
-          <slot name="card-error-extra" />
         </b-alert>
+        <slot name="card-error-extra"></slot>
       </b-card>
     </div>
     <b-card v-else class="rounded-0 shadow-sm mb-3" body-class="p-3">
