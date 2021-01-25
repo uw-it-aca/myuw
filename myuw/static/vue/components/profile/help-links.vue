@@ -66,7 +66,5 @@ export default {
       isBothell: (state) => state.user.affiliations.bothell,
     }),
   },
-  methods: {
-  },
 };
 </script>
