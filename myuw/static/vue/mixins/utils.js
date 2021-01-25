@@ -1,7 +1,8 @@
 import dayjs from 'dayjs';
-dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/calendar'))
+dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/timezone'))
+dayjs.extend(require('dayjs/plugin/utc'))
 
 export default {
   methods: {
