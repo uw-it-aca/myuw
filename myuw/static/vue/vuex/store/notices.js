@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
+import {strToDate} from './common';  // when uw_sws  is 2.3.8
 import dayjs from 'dayjs';
 dayjs.extend(require('dayjs/plugin/timezone'))
 
@@ -38,7 +39,8 @@ const postProcess = (response) => {
         (attr) => (attr.name == 'StartDate' || attr.name == 'Date'),
     );
     if (dateFiled !== undefined) {
-      notice.date = dayjs(dateFiled.value);  // datetime in UTC
+      notice.date = strToDate(dateFiled.value);  // when uw_sws  is 2.3.8
+      // notice.date = dayjs(dateFiled.value);  // datetime in UTC
     } else {
       notice.date = null;
     }
