@@ -1,5 +1,6 @@
 <template>
-  <div v-if="courses" class="mb-4">
+  <!-- Having myplan courses -->
+  <div v-if="hasSections" class="mb-4">
     <div class="d-flex align-items-center mb-2">
       <h4 class="h6 text-dark font-weight-bold flex-fill">
         In MyPlan
@@ -7,9 +8,7 @@
       <div class="flex-fill text-right">
         <ul class="list-unstyled m-0">
           <li class="font-weight-bold">
-            {{ readyCount }}
-            {{ readyCount == 1 ? "course" : "courses" }}
-            ready
+            {{ readyCount }} {{ readyCount == 1 ? "course" : "courses" }} ready
           </li>
           <li class="myuw-text-md">
             <span v-if="unreadyCount">{{ unreadyCount }} not ready</span>
@@ -39,6 +38,7 @@
       </div>
     </b-collapse>
   </div>
+  <!-- no myplan courses -->
   <div v-else class="mb-4">
     <div class="d-flex align-items-center mb-2">
       <h4 class="h6 text-dark font-weight-bold flex-fill">
@@ -105,9 +105,6 @@ export default {
     },
     hasSections() {
       return this.currentPlanData.has_sections;
-    },
-    myplanHref() {
-      return this.currentPlanData.myplan_href;
     },
     myplanCourseSearchHref() {
       return this.currentPlanData.course_search_href;
