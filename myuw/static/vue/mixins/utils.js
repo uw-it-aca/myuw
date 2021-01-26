@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-dayjs.extend(relativeTime);
-dayjs.extend(require('dayjs/plugin/calendar'));
+dayjs.extend(require('dayjs/plugin/calendar'))
+dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/timezone'))
+dayjs.extend(require('dayjs/plugin/utc'))
 
 export default {
   methods: {
@@ -87,6 +87,18 @@ export default {
       pageTitle[1] = pageTitle[0];
       pageTitle[0] = term;
       return pageTitle.map((s) => this.capitalizeString(s)).join(' ');
+    },
+    nowDatetime(cardDisplayDates = null) {
+      if (cardDisplayDates && cardDisplayDates.comparison_date) {
+        return dayjs(cardDisplayDates.comparison_date);
+      }
+      // dayjs.tz.setDefault("America/Los_Angeles");
+      // using client device's timezone
+      return dayjs();
+    },
+    strToDayjs(dateStr) {
+      // convert date or datetime string to dayjs
+      return dayjs.tz(dateStr, "America/Los_Angeles");
     },
     toFriendlyDate(date_str) {
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D");

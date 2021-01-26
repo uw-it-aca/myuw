@@ -137,7 +137,7 @@
                 <b-nav-item
                   v-if="(undergrad && seattle) || hxtViewer"
                   class="mb-2"
-                  href="/husky_exp/"
+                  href="/husky_experience/"
                   :active="pageTitle == 'Husky Experience'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >

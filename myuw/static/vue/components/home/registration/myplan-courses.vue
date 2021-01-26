@@ -39,30 +39,7 @@
                     Days and times to be arranged
                   </td>
                   <td v-else :key="`meeting-2-${k}`" class="w-25">
-                    <abbr v-if="meeting.meeting_days.monday" title="Monday">
-                      M
-                    </abbr>
-                    <abbr v-if="meeting.meeting_days.tuesday" title="Tuesday">
-                      T
-                    </abbr>
-                    <abbr
-                      v-if="meeting.meeting_days.wednesday"
-                      title="Wednesday"
-                    >
-                      W
-                    </abbr>
-                    <abbr v-if="meeting.meeting_days.thursday" title="Thursday">
-                      Th
-                    </abbr>
-                    <abbr v-if="meeting.meeting_days.friday" title="Friday">
-                      F
-                    </abbr>
-                    <abbr v-if="meeting.meeting_days.saturday" title="Saturday">
-                      Sa
-                    </abbr>
-                    <abbr v-if="meeting.meeting_days.sunday" title="Sunday">
-                      Su
-                    </abbr>
+                    <uw-meeting-days :meeting="meeting" />
                   </td>
                   <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`"
                       class="w-50 text-nowrap"
@@ -103,7 +80,11 @@
 </template>
 
 <script>
+import Days from '../../_common/course/meeting/days.vue';
 export default {
+  components: {
+    'uw-meeting-days': Days,
+  },
   props: {
     nextTermYear: {
       type: Number,
