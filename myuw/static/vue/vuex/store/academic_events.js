@@ -14,7 +14,7 @@ const postProccess = (response) => {
 }
 
 const customActions = {
-  fetch: fetchBuilder('/api/v1/academic_events', postProccess, 'json'),
+  fetch: fetchBuilder('/api/v1/academic_events/', postProccess, 'json'),
 };
 
 export default buildWith(
