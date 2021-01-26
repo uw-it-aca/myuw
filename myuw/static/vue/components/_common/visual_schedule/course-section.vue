@@ -109,7 +109,10 @@ export default {
       } ${this.meetingData.section.section_id}`;
     },
     sectionUrl: function() {
-      return `/academics/#${this.meetingData.section.curriculum_abbr}-${
+      let page = this.meetingData.section.is_teaching ? 'teaching' : 'academics';
+      return `/${page}/#${
+        this.meetingData.section.curriculum_abbr
+      }-${
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;
     },

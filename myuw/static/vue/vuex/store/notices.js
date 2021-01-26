@@ -1,8 +1,7 @@
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
-import {
-  strToDate,
-} from './common';
+import dayjs from 'dayjs';
+dayjs.extend(require('dayjs/plugin/timezone'))
 
 const postProcess = (response) => {
   const notices = response.data;
@@ -39,10 +38,11 @@ const postProcess = (response) => {
         (attr) => (attr.name == 'StartDate' || attr.name == 'Date'),
     );
     if (dateFiled !== undefined) {
-      notice.date = strToDate(dateFiled.value); //beginning of the day
+      notice.date = dayjs(dateFiled.value);  // datetime in UTC
     } else {
       notice.date = null;
     }
+
     return notice;
   });
 };
