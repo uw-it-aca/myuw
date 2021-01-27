@@ -7,9 +7,9 @@ env:
 
 on:
   push:
-    branches: [master, qa, develop]
+    branches: [master, qa, develop, vue/github-actions]
   pull_request:
-    branches: [master, qa, develop]
+    branches: [master, qa, develop, vue/github-actions]
     types: [opened, reopened, synchronize]
 
 jobs:
