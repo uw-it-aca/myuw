@@ -71,21 +71,10 @@ jobs:
         with:
           python-version: 3.6
 
-      - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-
       - name: Record Test Results
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        shell: bash
-        run: |
-          gem install coveralls-lcov
-          python -m pip install --upgrade pip coverage coveralls==2.2.0
-          coverage combine
-          coveralls-lcov -v -n lcov.info > js-coverage.json
-          coveralls --merge=js-coverage.json
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Image to GCR
         if: github.event_name == 'push'
@@ -95,8 +84,10 @@ jobs:
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
   eslint:
+    runs-on: ubuntu-18.04
+
     container:
-      image: node:15.7.0-stretch
+      image: node:14.6.0-stretch
 
     steps:
       - name: Checkout Repo
@@ -116,8 +107,10 @@ jobs:
         run: ./node_modules/.bin/eslint myuw/static/vue --ext .vue
 
   jest:
+    runs-on: ubuntu-18.04
+
     container:
-      image: node:15.7.0-stretch
+      image: node:14.6.0-stretch
 
     steps:
       - name: Checkout Repo
@@ -134,7 +127,7 @@ jobs:
         run: npm install .
       
       - name: Run jest
-        run: npx jest
+        run: npx jest --ci myuw/*
 
   # cypress:
   #   container:
@@ -159,7 +152,7 @@ jobs:
   deploy:
     if: github.event_name == 'push'
 
-    needs: build
+    needs: [build, eslint, jest]
 
     runs-on: ubuntu-18.04
 

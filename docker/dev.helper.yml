@@ -26,7 +26,7 @@ services:
       - memcached
     stdin_open: true
     tty: true
-    command: bash -c ". ./travis-ci/test_python.sh"
+    command: bash -c ". ./docker/test_python.sh"
   memcached:
     image: memcached
   eslint:
