@@ -8,6 +8,7 @@
 "Quarter":"autumn",
 "Year":2014},
 "LastName":"Newsome",
+"Pronouns": null,
 "LocalAddress":{"City":"Renton",
         "Country":"",
         "Line1":"621 Rainier Ave S",

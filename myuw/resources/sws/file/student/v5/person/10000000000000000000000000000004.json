@@ -10,6 +10,7 @@
         "Quarter":"winter",
         "Year":2012},
 "LastName":"Student",
+"Pronouns": "he/him/his",
 "LocalAddress":{
         "City":"Tacoma",
         "Country":"United States",
