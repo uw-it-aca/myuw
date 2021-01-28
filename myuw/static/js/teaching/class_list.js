@@ -239,7 +239,7 @@ var PhotoClassList = {
         var registrations = PhotoClassList.sort_last(data.registrations);
         var add_qz_sect = data.has_linked_sections;
         var lines = [];
-        var header = ["StudentNo","UWNetID","LastName","FirstName"];
+        var header = ["StudentNo","UWNetID","LastName","FirstName","Pronouns"];
         if (add_qz_sect) {
             header.push("Section");
             }
@@ -254,7 +254,8 @@ var PhotoClassList = {
             var fields = ["\t" + reg.student_number,  // MUWM-3978
                           reg.netid,
                           reg.surname,
-                          reg.first_name];
+                          reg.first_name,
+                          reg.pronouns];
 
             if (add_qz_sect) {
                 fields.push(reg.linked_sections);
