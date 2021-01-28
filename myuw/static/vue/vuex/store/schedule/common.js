@@ -5,6 +5,7 @@ dayjs.extend(require('dayjs/plugin/timezone'))
 
 export const tryConvertDayJS = (obj, format=undefined) => {
   if (obj) {
+    dayjs.tz.setDefault("America/Los_Angeles");  // default tz of dates in SDB
     return dayjs(obj, format).second(0).millisecond(0);
   }
   return obj;
@@ -97,13 +98,4 @@ export const generateMeetingLocationData = (meeting) => {
   }
   if (!data[0].text || data[0].text.length == 0) return [];
   return data;
-}
-
-export const getNow = (rootState) => {
-  // dayjs.tz.setDefault("America/Los_Angeles");
-  if (rootState && rootState.cardDisplayDates &&
-      rootState.cardDisplayDates.comparison_date) {
-    return dayjs(rootState.cardDisplayDates.comparison_date);
-  }
-  return dayjs();
 }

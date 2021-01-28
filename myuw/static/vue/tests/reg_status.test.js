@@ -81,8 +81,13 @@ describe('Quicklinks/Link', () => {
     await new Promise((r) => setTimeout(r, 10));
 
     expect(wrapper.vm.loaded).toBeTruthy();
-    expect(wrapper.find('h3').text()).toEqual('Registration: Spring 2013');
+    expect(wrapper.vm.year).toEqual(2013);
+    expect(wrapper.vm.quarter).toEqual('Spring');
+    expect(wrapper.vm.terms).toEqual([]);
+    expect(wrapper.vm.isAfterStartOfRegistrationDisplayPeriod).toBe(true);
+    expect(wrapper.vm.isBeforeEndOfRegistrationDisplayPeriod).toBe(true);
+    expect(wrapper.vm.isAfterStartOfSummerRegDisplayPeriodA).toBe(false);
+    expect(wrapper.vm.shouldDisplayAtAll).toBe(true);
+    expect(wrapper.vm.nextTermHasReg).toBe(false);
   });
-
-  // TODO: ADD MORE TEST CASES
 });

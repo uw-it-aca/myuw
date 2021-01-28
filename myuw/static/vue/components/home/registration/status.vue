@@ -86,15 +86,14 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
 import EstRegComponent from './est-reg-date.vue';
-import FinAidComponent from './finaid.vue';
 import HoldsComponent from './holds.vue';
 import MyPlanComponent from './myplan.vue';
 import ResourcesComponent from './resources.vue';
+import FinAidComponent from '../../_common/finaid.vue';
 
 export default {
   components: {
@@ -243,7 +242,7 @@ export default {
             .filter((a) => a.name === 'Date')
             .slice(0, 1)
             .forEach((a) => {
-              registrationDate = dayjs(a.value);
+              registrationDate = this.strToDayjs(a.value);
             });
 
         notice.attributes

@@ -3,6 +3,7 @@
     <h4 class="h6 text-dark font-weight-bold">
       Financial Aid
     </h4>
+    <slot name="status" />
     <ul class="list-unstyled m-0">
       <li v-for="(notice, i) in finAidNotices" :key="i">
         <b-button
@@ -12,15 +13,15 @@
           size="md"
         >
           <font-awesome-icon
-            v-if="collapseOpen"
+            v-if="collapseOpen[i]"
             :icon="['fas', 'caret-down']"
           />
           <font-awesome-icon v-else :icon="['fas', 'caret-right']" />
-          {{ notice.short_content }}
+          <span v-html="notice.short_content" />
         </b-button>
         <b-collapse
           :id="`finAid-${notice.id_hash}-collapse-${_uid}`"
-          v-model="collapseOpen"
+          v-model="collapseOpen[i]"
           class="myuw-fin-aid"
         >
           <div
@@ -43,7 +44,7 @@ export default {
   },
   data: function() {
     return {
-      collapseOpen: false,
+      collapseOpen: Array(this.finAidNotices.length).fill(false),
     };
   },
 };
@@ -51,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import '../../../../css/myuw/variables.scss';
+@import '../../../css/myuw/variables.scss';
 .myuw-fin-aid {
   // override warning background
   ::v-deep .bg-warning {
@@ -64,6 +65,12 @@ export default {
   ::v-deep .notice-title {
     font-weight: bold;
     display: block;
+  }
+}
+
+span {
+  ::v-deep .date {
+    font-weight: bold;
   }
 }
 </style>

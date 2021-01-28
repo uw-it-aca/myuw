@@ -94,7 +94,7 @@ urlpatterns += [
     re_path(r'api/v1/turn_off_tour_popup',
             TurnOffPopup.as_view(),
             name="myuw_turn_off_tour_popup"),
-    re_path(r'^api/v1/academic_events$',
+    re_path(r'^api/v1/academic_events/$',
             AcademicEvents.as_view(),
             name="myuw_academic_calendar"),
     re_path(r'^api/v1/academic_events/current/$',
