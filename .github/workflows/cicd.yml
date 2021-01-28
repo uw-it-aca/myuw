@@ -66,15 +66,10 @@ jobs:
           app-test-container
           bash -c ". ./docker/test_python.sh"
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
-
-      - name: Record Test Results
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Record Test Results
+      #   uses: coverallsapp/github-action@master
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Image to GCR
         if: github.event_name == 'push'
@@ -82,6 +77,9 @@ jobs:
         with:
           image_tag: ${{ steps.cicd.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
+
+    outputs:
+      image_tag: ${{ steps.cicd.outputs.image_tag }}
 
   eslint:
     runs-on: ubuntu-18.04
@@ -129,30 +127,49 @@ jobs:
       - name: Run jest
         run: npx jest --ci myuw/*
 
-  # cypress:
-  #   container:
-  #     image: node:15.7.0-stretch
+  cypress:
+    runs-on: ubuntu-18.04
 
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v2
-      
-  #     - uses: actions/cache@v2
-  #       with:
-  #         path: ~/.npm
-  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-node-
+    needs: build
 
-  #     - name: Install packages
-  #       run: npm install .
-      
-  #     - name: Run cypress
+    container:
+      image: cypress/browsers:node12.18.3-chrome87-ff82
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install node modules
+        run: |
+          cd e2e
+          npm install .
+
+      - name: Run cypress tests
+        env:
+          CYPRESS_BASE_URL: http://myuw:8000
+        run: |
+          cd e2e
+          ./node_modules/.bin/cypress run
+
+    services:
+      myuw:
+        image: gcr.io/uwit-mci-axdd/${{needs.build.outputs.image_tag}}
+        env:
+          AUTH: SAML_MOCK
+        ports:
+          - 8000:8000
 
   deploy:
     if: github.event_name == 'push'
 
-    needs: [build, eslint, jest]
+    needs: [build, eslint, jest, cypress]
 
     runs-on: ubuntu-18.04
 

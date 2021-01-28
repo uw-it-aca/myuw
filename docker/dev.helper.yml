@@ -67,7 +67,6 @@ services:
       context: ../
       target: app-container
     environment:
-      ENV: localdev
       AUTH: SAML_MOCK
   cypress:
     build:
