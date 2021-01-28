@@ -1,13 +1,16 @@
-import dayjs from 'dayjs';
 import {fetchBuilder, extractData, buildWith} from './model_builder';
+import {
+  strToDate,
+} from './common';
 
 const postProccess = (response) => {
   let data = extractData(response);
 
   data.forEach((event) => {
-    event.start = dayjs(event.start);
-    event.end = dayjs(event.end);
+    event.start = strToDate(event.start);
+    event.end = strToDate(event.end);
     event.year = String(event.year);
+    event.label = event.year + ' '+ event.quarter + ', ' + event.summary;
   });
 
   return data;

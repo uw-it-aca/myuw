@@ -10,14 +10,18 @@
             <li v-for="(event, j) in eventTerm.events" :key="j">
               {{formatDateRange(event.start, event.end)}}
               <font-awesome-icon v-if="event.myuw_categories.breaks" :icon="faCircle" />
-              {{event.summary}}
+              <a :href="event.event_url" :label="event.label">
+                {{event.summary}}
+              </a>
             </li>
           </ul>
         </template>
       </uw-card>
       <div v-else :key="i">
         <font-awesome-icon :icon="faCircle" />
-        {{eventTerm.events[0].summary}}
+        <a :href="eventTerm.event_url" :label="eventTerm.label">
+          {{eventTerm.events[0].summary}}
+        </a>
         {{formatDateRange(eventTerm.events[0].start, eventTerm.events[0].end)}}
       </div>
     </template>
