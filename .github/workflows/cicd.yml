@@ -7,9 +7,9 @@ env:
 
 on:
   push:
-    branches: [master, qa, develop, vue/github-actions]
+    branches: [master, qa, develop, feature/vue]
   pull_request:
-    branches: [master, qa, develop, vue/github-actions]
+    branches: [master, qa, develop, feature/vue]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -257,3 +257,13 @@ jobs:
           git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           app_instance: dev
+
+      - name: Deploy Vue Branch
+        if: steps.cicd.outputs.git_repo_branch == 'feature/vue'
+        uses: uw-it-aca/actions/cicd-deploy@v1.4
+        with:
+          release_name: ${{ env.RELEASE_NAME }}
+          commit_hash: ${{ steps.cicd.outputs.commit_hash }}
+          git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
+          gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
+          app_instance: vue
