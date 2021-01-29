@@ -49,7 +49,7 @@ import profile from './vuex/store/profile';
 import myplan from './vuex/store/myplan';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
-import academic_calendar from './vuex/store/academic_calendar';
+import academicEvents from './vuex/store/academic_events';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -65,7 +65,7 @@ vueConf.store.registerModule('myplan', myplan);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('inst_schedule', inst_schedule);
-vueConf.store.registerModule('acad_calendar', academic_calendar);
+vueConf.store.registerModule('academic_events', academicEvents);
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',

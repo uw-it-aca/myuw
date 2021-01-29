@@ -44,17 +44,17 @@ export default {
   },
   data: function() {
     return {
-      urlExtra: '/current/',
+      urlExtra: 'current/',
     };
   },
   computed: {
     ...mapState({
       instructor: (state) => state.user.affiliations.instructor,
       events: function(state) {
-        return state.acad_calendar.value[this.urlExtra];
+        return state.academic_events.value[this.urlExtra];
       },
     }),
-    ...mapGetters('acad_calendar', [
+    ...mapGetters('academic_events', [
       'isReadyTagged',
       'isErroredTagged',
       'statusCodeTagged',
@@ -79,10 +79,10 @@ export default {
     this.fetch(this.urlExtra);
   },
   methods: {
-    ...mapActions('acad_calendar', ['fetch']),
+    ...mapActions('academic_events', ['fetch']),
     formatBannerDate(event) {
-      let start = dayjs(event.start);
-      let end = dayjs(event.end);
+      let start = event.start;
+      let end = event.end;
       let result = '';
       result += start.format('MMM D');
       if (event.is_all_day) {
