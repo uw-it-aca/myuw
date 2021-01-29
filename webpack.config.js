@@ -40,6 +40,9 @@ module.exports = {
     textbooks: [
       "./myuw/static/vue/textbooks.js"
     ],
+    husky_experience: [
+      "./myuw/static/vue/husky_experience.js"
+    ],
     notices: [
       "./myuw/static/vue/notices.js"
     ],

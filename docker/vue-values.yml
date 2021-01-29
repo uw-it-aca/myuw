@@ -1,3 +1,15 @@
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 2
+targetAverageUtilization: 90
+resources:
+  limits:
+    cpu: 1.0
+    memory: 768Mi
+  requests:
+    cpu: 100m
+    memory: 700Mi
 ingress:
   enabled: true
   tls:
@@ -14,10 +26,13 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
     nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
 lifecycle:
   enabled: true
   preStop:
     enabled: true
+securityPolicy:
+  enabled: true
 affinity:
    podsSpanNodes: true
 readiness:
@@ -36,13 +51,18 @@ database:
 repo: myuw
 instance: vue
 image:
-  repository: registry.hub.docker.com/acait/myuw
+  repository: gcr.io/uwit-mci-axdd/myuw
   tag: IMAGE_TAG
 memcached:
   enabled: true
   replicaCount: 1
   updateStrategy:
     type: RollingUpdate
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      memory: 256Mi
 certs:
   mounted: true
   certPath: /certs/myuw.s.uw.edu-uwca.cert
@@ -50,11 +70,20 @@ certs:
   secretName: vue.my.uw.edu-uwca-certs
 cronjob:
   enabled: true
+  jobs:
+    - name: clear-expired-sessions
+      schedule: "1 10 * * 6"
+      command: ["/scripts/management_command.sh"]
+      args: ["clear_expired_sessions", "7"]
 environmentVariables:
   - name: AUTH
     value: SAML
+
   - name: ENV
     value: dev
+
+  - name: WEBSERVER
+    value: nginx
 
   - name: BOOKSTORE_ENV
     value: PROD
