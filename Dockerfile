@@ -1,4 +1,4 @@
-FROM acait/django-container:1.1.7 as pre-container
+FROM acait/django-container:1.2.5 as app-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -29,7 +29,7 @@ COPY --chown=acait:acait --from=node-bundler /static /static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 
-FROM acait/django-test-container:1.1.7 as app-test-container
+FROM acait/django-test-container:1.2.5 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/
