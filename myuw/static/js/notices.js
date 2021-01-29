@@ -133,33 +133,28 @@ var Notices = {
 
 
     sort_notices_by_start_date: function(notices){
-        return notices.sort(function(a, b){
-            return Notices._get_critical_notice_sort_date(b) -
-                Notices._get_critical_notice_sort_date(a);
+        return notices.sort(function(n1, n2){
+            if (n1.date === null && n2.date === null) { return 0;}
+            if (n1.date !== null && n2.date === null) { return -1;}
+            if (n1.date === null && n2.date !== null) { return 1;}
+            return Notices._get_critical_notice_sort_date(n1) -
+                Notices._get_critical_notice_sort_date(n2);
         });
     },
 
     _get_critical_notice_sort_date: function (notice){
-        // Defaulting to something, using current time for now
-        var date = new Date();
-
+        var date = null;
         var start_date_string = Notices.get_attribute_by_name('StartDate',
                                                               notice);
         var date_string = Notices.get_attribute_by_name('Date', notice);
 
         if(start_date_string !== undefined){
-            date = Notices.parse_notice_date(start_date_string);
+            date = moment.utc(start_date_string);
         } else if (date_string !== undefined){
-            date = Notices.parse_notice_date(date_string);
+            date = moment.utc(date_string);
         }
         return date;
 
-    },
-
-    parse_notice_date: function (notice_date) {
-        var parts = notice_date.split("-");
-
-        return new Date(parts[0], parts[1]-1, parts[2]);
     },
 
     get_attribute_by_name: function(attrib_name, notice){
@@ -235,7 +230,7 @@ var Notices = {
             notices_next_week = [],
             notices_future = [];
 
-        today = Notices._get_utc_date(new Date());
+        today = Notices._get_today();
 
         for (i = 0; i < notices.length; i += 1) {
             notice = notices[i];
@@ -244,17 +239,15 @@ var Notices = {
                 for (j = 0; j < notice.attributes.length; j += 1){
                     if (notice.attributes[j].name === "Date"){
                         notice_has_date = true;
-                        date = notice.attributes[j].value.replace(/-/g, "/");
-                        date = date.replace("+00:00", " GMT");
-                        date = new Date(date);
-
-                        if (today.getDate() === date.getDate()) {
+                        var date = (notice.attributes[j].value ?
+                            moment.utc(notice.attributes[j].value) : null);
+                        if (date && today.toDate() === date.toDate()) {
                             notices_today.push(notice);
-                        } else if (Notices._get_week_number(date) === Notices._get_week_number(today)) {
+                        } else if (date && date.week() === today.week()) {
                             notices_week.push(notice);
-                        } else if (Notices._get_week_number(date) === Notices._get_week_number(today) + 1) {
+                        } else if (date && date.week() === today.week() + 1) {
                             notices_next_week.push(notice);
-                        } else if (date > today) {
+                        } else if (date === null || date > today) {
                             notices_future.push(notice);
                         }
                     }
@@ -375,9 +368,9 @@ var Notices = {
         return Notices._get_critical_count(WSData.notice_data());
     },
 
-    _get_utc_date: function (date) {
+    _get_today: function () {
         "use strict";
-        return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
+        return moment(window.card_display_dates.comparison_date);
     },
 
     _get_week_number: function (d) {
