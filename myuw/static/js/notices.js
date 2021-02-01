@@ -144,7 +144,7 @@ var Notices = {
 
     _get_critical_notice_sort_date: function (notice){
         var date = null;
-        var start_date_string = Notices.get_attribute_by_name('StartDate',
+        var start_date_string = Notices.get_attribute_by_name('DisplayBegin',
                                                               notice);
         var date_string = Notices.get_attribute_by_name('Date', notice);
 
