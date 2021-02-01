@@ -132,57 +132,57 @@ jobs:
           name: jest-coverage
           path: coverage/*
 
-  cypress:
-    runs-on: ubuntu-18.04
+  # cypress:
+  #   runs-on: ubuntu-18.04
 
-    needs: build
+  #   needs: build
 
-    container:
-      image: cypress/browsers:node12.18.3-chrome87-ff82
+  #   container:
+  #     image: cypress/browsers:node12.18.3-chrome87-ff82
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v2
 
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+  #     - uses: actions/cache@v2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
 
-      - name: Install node modules
-        run: |
-          cd e2e
-          npm install .
+  #     - name: Install node modules
+  #       run: |
+  #         cd e2e
+  #         npm install .
 
-      - name: Run cypress tests
-        env:
-          CYPRESS_BASE_URL: http://myuw:8000
-        run: |
-          cd e2e
-          ./node_modules/.bin/cypress run
+  #     - name: Run cypress tests
+  #       env:
+  #         CYPRESS_BASE_URL: http://myuw:8000
+  #       run: |
+  #         cd e2e
+  #         ./node_modules/.bin/cypress run
       
-      # TODO: Make cypress collect the coverage report and store
-      #       it as an artifact
+  #     # TODO: Make cypress collect the coverage report and store
+  #     #       it as an artifact
 
-      - name: Collect failure screenshots
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-screenshots
-          path: e2e/cypress/screenshots
+  #     - name: Collect failure screenshots
+  #       uses: actions/upload-artifact@v2
+  #       if: failure()
+  #       with:
+  #         name: cypress-screenshots
+  #         path: e2e/cypress/screenshots
 
-    services:
-      myuw:
-        image: gcr.io/uwit-mci-axdd/${{needs.build.outputs.image_tag}}
-        env:
-          AUTH: SAML_MOCK
-        ports:
-          - 8000:8000
+  #   services:
+  #     myuw:
+  #       image: gcr.io/uwit-mci-axdd/${{needs.build.outputs.image_tag}}
+  #       env:
+  #         AUTH: SAML_MOCK
+  #       ports:
+  #         - 8000:8000
 
   collect-coverage:
-    needs: [build, jest, cypress]
+    needs: [build, jest]
     runs-on: ubuntu-18.04
 
     steps:
@@ -223,7 +223,7 @@ jobs:
   deploy:
     if: github.event_name == 'push'
 
-    needs: [build, eslint, jest, cypress]
+    needs: [build, eslint, jest]
 
     runs-on: ubuntu-18.04
 
