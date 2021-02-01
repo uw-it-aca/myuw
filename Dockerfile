@@ -1,4 +1,4 @@
-FROM acait/django-container:1.2.5 as app-container
+FROM acait/django-container:1.2.5 as pre-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
