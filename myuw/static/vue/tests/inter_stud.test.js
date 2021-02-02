@@ -10,7 +10,7 @@ import BothellComp from '../components/home/international/bothell.vue';
 import TacomaComp from '../components/home/international/tacoma.vue';
 import UwCard from '../components/_templates/card.vue';
 
-import mockNotices from './mock_data/inter_notices.json';
+import mockNotices from './mock_data/notice/jinter.json';
 
 const localVue = createLocalVue(Vuex);
 

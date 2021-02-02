@@ -57,10 +57,10 @@ export default {
       // Note: This needs checking on prod data to evalute sort order
       allNotices: (state) => state.value.sort((n1, n2) => {
         // sort in acending order
-        if (n1.date === null && n2.date === null) { return 0;}
-        if (n1.date !== null && n2.date === null) { return -1;}
-        if (n1.date === null && n2.date !== null) { return 1;}
-        return n1.date - n2.date;
+        if (n1.sortDate === null && n2.sortDate === null) { return 0;}
+        if (n1.sortDate !== null && n2.sortDate === null) { return -1;}
+        if (n1.sortDate === null && n2.sortDate !== null) { return 1;}
+        return n1.sortDate - n2.sortDate;
       }),
     }),
     ...mapGetters('notices', ['isReady']),

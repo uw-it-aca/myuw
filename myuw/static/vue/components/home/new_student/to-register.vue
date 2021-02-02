@@ -147,12 +147,7 @@ export default {
       let date = false;
       if (this.isReady) {
         if (this.no_orient.length > 0) {
-          const noMsgAttr = this.no_orient[0].attributes;
-          noMsgAttr.forEach((attribute) => {
-            if (attribute.name === 'Date') {
-              date = attribute.formatted_value;
-            }
-          });
+          date = this.no_orient[0].formattedDate;
         }
       }
       return date;

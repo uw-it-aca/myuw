@@ -5,7 +5,7 @@ import Vuex from 'vuex';
 import notices from '../vuex/store/notices';
 import ThankYouCard from '../components/home/new_student/thank-you.vue';
 
-import mockNotices from './mock_data/notices.json';
+import mockNotices from './mock_data/notice/javg004.json';
 
 const localVue = createLocalVue(Vuex);
 localVue.use(BootstrapVue);

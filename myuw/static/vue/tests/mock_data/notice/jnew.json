@@ -1,0 +1,406 @@
+[
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Withdraw</span><span class=\"notice-body-with-title\">The last day to withdraw completely (dropping all courses) from spring quarter is <span class=\"date\"> Fri, June 6</span>.</span>",
+        "attributes": [],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "0c2a573c0e21f1959098d7b7fa07ea58",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your spring quarter schedule is <span class=\"date\"> Fri, Apr 11</span>.</span>",
+        "attributes": [],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "365341bcb89f5db559988562d33778a8",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "Here is a summary of your expected status at the University:<br/>Campus: SEATTLE <br/>Class Standing: FRESHMAN <br/>School/College: Arts and Sciences <br/> Department: PRE MAJOR (A&S) <br/>Student Number: 1033333 <br/>Residency Status: RESIDENT<br/><a href='http://www.washington.edu/students/reg/whatsthis.html'><small>Notes and Definitions</small></a>",
+        "attributes": [],
+        "category": "Admission",
+        "sws_category": "NewStudentGEN",
+        "is_critical": false,
+        "id_hash": "432403ea3c78d63f793dde2ec121f8c5",
+        "is_read": false,
+        "location_tags": [
+            "checklist_residence"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period, you can make all the required Notices and Insurance/Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so, <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance/Optional Charges</a> services now to complete these requirements prior to registering for summer quarter.</span>",
+        "attributes": [
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2014-04-07 07:00:00+00:00",
+                "formatted_value": "Mon, Apr 7"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2014-04-14 07:00:00+00:00",
+                "formatted_value": "Mon, Apr 14"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentALR",
+        "is_critical": true,
+        "id_hash": "4bf0b1d12f7e2b2bc7eb955bb94afe90",
+        "is_read": false,
+        "location_tags": [
+            "reg_card_messages"
+        ]
+    },
+    {
+        "notice_content": "Thank you for confirming your intention to enroll at the University of Washington for autumn quarter 2014. Your new Student Enrollment and Orientation Fee has been accepted and recorded.",
+        "attributes": [],
+        "category": "Admission",
+        "sws_category": "NewStudentGEN",
+        "is_critical": false,
+        "id_hash": "521e06f1ba12ef24edc663b6a8f9e5ba",
+        "is_read": false,
+        "location_tags": [
+            "checklist_thankyou"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Insurance Plan Change Deadline</span><span class=\"notice-body-with-title\">The last day to <a href=\"https://sdb.admin.washington.edu/students/UWNetID/op_charges.asp\">enroll in, withdraw from, or make changes to your Student Accident and Sickness Insurance Plan</a> for winter quarter is <span class=\"date\">January 24, 2014</span>. <a href=\"http://depts.washington.edu/ovpsl/insurance.html\">Learn more about student insurance plans.</a></span>",
+        "attributes": [
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2014-01-24 08:00:00+00:00",
+                "formatted_value": "Fri, Jan 24"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2014-01-06 08:00:00+00:00",
+                "formatted_value": "Mon, Jan 6"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2014-01-24 08:00:00+00:00",
+                "formatted_value": "Fri, Jan 24"
+            }
+        ],
+        "category": "Insurance",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "6acfb61939ea9c46427e62f6fc941f9f",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Submit Health Science Immunizations</span><span class=\"notice-body-with-title\">Your required annual Health Science Immunization documents must  be updated prior to <span class=\"date\">Wed, Oct 30</span> to maintain eligibility to register for classes. Please allow 2 weeks for processing after you submit your documents to CastleBranch.  <a href=\"https://www.ehs.washington.edu/workplace/health-sciences-immunization-program-hsip\">More information...</a>",
+        "attributes": [
+            {
+                "name": "Year",
+                "data_type": "string",
+                "value": "2019"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2019-10-30 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 30"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2019-10-16 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 16"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2019-10-30 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 30"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": true,
+        "id_hash": "7a027a71e6720c906c22e43cd4687c85",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Submit Health Science Immunizations</span><span class=\"notice-body-with-title\">Your required Health Science immunization documents must be submitted prior to <span class=\"date\">Wed, Oct 16</span> to maintain eligibility to register for classes. Please allow 2 weeks for processing after you submit your documents to CastleBranch.  <a href=\"https://www.ehs.washington.edu/workplace/health-sciences-immunization-program-hsip\">More information...</a>",
+        "attributes": [
+            {
+                "name": "Year",
+                "data_type": "string",
+                "value": "2019"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2019-10-16 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 16"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2019-10-01 07:00:00+00:00",
+                "formatted_value": "Tue, Oct 1"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2019-10-16 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 16"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": true,
+        "id_hash": "7c25362f8de92d682aa029db576a729e",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for winter quarter is due <span class=\"date\"></span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
+        "attributes": [],
+        "category": "Fees & Finances",
+        "sws_category": "StudentDAD",
+        "is_critical": true,
+        "id_hash": "88ead5ada783a8573ca5e09f5abaa094",
+        "is_read": false,
+        "location_tags": [
+            "tuition_due_date",
+            "finance_card",
+            "notice_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Change Grading Option</span><span class=\"notice-body-with-title\">The last day to change a class on your spring quarter schedule to or from an S/NS Grading Option is <span class=\"date\"> Sun, May 18</span>. <a href=\"http://www.washington.edu/students/gencat/front/Grading_Sys.html\">About Grading Options</a></span>",
+        "attributes": [],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "8e3337b6b39a52ffdb75e7917c057388",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Change to Audit</span><span class=\"notice-body-with-title\">The last day to change a class on your winter quarter schedule to or from an Audit Option is <span class=\"date\"></span>. <a href=\"http://www.washington.edu/students/reg/audit.html\">About Auditing Courses</a></span>",
+        "attributes": [],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "95d202e3f62682965600e5c735642e40",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Health Science Immunization Registration Block</span><span class=\"notice-body-with-title\">Your Health Science immunization documents must be submitted to CastleBranch and processed before you can register. <a href=\"https://www.ehs.washington.edu/workplace/health-sciences-immunization-program-hsip\">More Information...</a></span>",
+        "attributes": [
+            {
+                "name": "Holds",
+                "data_type": "string",
+                "value": "1"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2019-10-16 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 16"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2019-11-01 07:00:00+00:00",
+                "formatted_value": "Fri, Nov 1"
+            }
+        ],
+        "category": "Holds",
+        "sws_category": "StudentALR",
+        "is_critical": true,
+        "id_hash": "a36e0765e89858ea4e0458660b4c49f3",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Drop Without Using Annual Drop</span><span class=\"notice-body-with-title\">The last day to drop spring quarter classes without using your Annual Drop is <span class=\"date\"> Sun, Apr 13</span>. <a href=\"http://www.washington.edu/students/reg/wdpolicy.html\">About Annual Drop</a></span>",
+        "attributes": [],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "a3983495a68942246a4779a36a1ca64b",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline for Registration Changes Without Fees</span><span class=\"notice-body-with-title\">The last day to make changes to your winter quarter schedule without incurring a $20 change fee and possible tuition forfeiture is <span class=\"date\">January 12, 2014</span>.</span>",
+        "attributes": [
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2014-01-12 08:00:00+00:00",
+                "formatted_value": "Sun, Jan 12"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2014-01-06 08:00:00+00:00",
+                "formatted_value": "Mon, Jan 6"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2014-01-12 08:00:00+00:00",
+                "formatted_value": "Sun, Jan 12"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "cb03765877a1fec519b2378267c896cb",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Drop Without Transcript Entry</span><span class=\"notice-body-with-title\">The last day to drop a class from your winter quarter schedule without a transcript entry is <span class=\"date\">January 19, 2014</span>.</span>",
+        "attributes": [
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2014-01-19 08:00:00+00:00",
+                "formatted_value": "Sun, Jan 19"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2014-01-13 08:00:00+00:00",
+                "formatted_value": "Mon, Jan 13"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2014-01-19 08:00:00+00:00",
+                "formatted_value": "Sun, Jan 19"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "cbd8fd653ac8a815607c89745bdb336d",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">About Peer-to-Peer File-Sharing and Copyright Infringement</span><span class=\"notice-body-with-title\">Under copyright law it is illegal to download or share copyrighted materials such as music or movies without the permission of the copyright owner. Your actions when downloading or sharing files are traceable and could result in a significant financial penalty to you. For more information, go to the <a href=\"http://www.washington.edu/students/gencat/policy/p2pshare.html\">Peer-to-Peer File-Sharing and Copyright Infringement</a> page in the Student Guide.</span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2014-09-20 07:00:00+00:00",
+                "formatted_value": "Sat, Sep 20"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2014-10-15 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 15"
+            }
+        ],
+        "category": "Legal",
+        "sws_category": "StudentGEN",
+        "is_critical": false,
+        "id_hash": "d000c4b2b26d704acd5b66281a5a0866",
+        "is_read": false,
+        "location_tags": [
+            "notices_legal"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline for Registration Changes With Fees</span><span class=\"notice-body-with-title\">There is a $20 Change of Registration Fee and possible <a href=\"http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/\">tuition forfeiture</a> for all changes made to your winter quarter schedule on a single day through <span class=\"date\">February 23, 2013</span>.</span>",
+        "attributes": [
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2014-02-23 08:00:00+00:00",
+                "formatted_value": "Sun, Feb 23"
+            },
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2014-01-13 08:00:00+00:00",
+                "formatted_value": "Mon, Jan 13"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2014-02-23 08:00:00+00:00",
+                "formatted_value": "Sun, Feb 23"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "de9a0ea02ffa7b1f90dfc1d52b8a114a",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">FERPA</span><span class=\"notice-body-with-title\">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, your directory information may be released unless you inform the Registrar's Office. For further details check the <a href=\"http://www.washington.edu/students/reg/ferpa.html\">Family Educational Rights and Privacy Act web site</a>.</span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2014-09-20 07:00:00+00:00",
+                "formatted_value": "Sat, Sep 20"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2014-10-15 07:00:00+00:00",
+                "formatted_value": "Wed, Oct 15"
+            }
+        ],
+        "category": "Legal",
+        "sws_category": "StudentGEN",
+        "is_critical": false,
+        "id_hash": "e5fa5413b55f3300b0d038dd966aa9a4",
+        "is_read": false,
+        "location_tags": [
+            "notices_legal"
+        ]
+    }
+]

@@ -35,16 +35,25 @@ const postProcess = (response) => {
     }
 
     // Build dates for the notices
-    const dateFiled = notice.attributes.find(
-        (attr) => (attr.name == 'StartDate' || attr.name == 'Date'),
+    const dateAttr = notice.attributes.find(
+        (attr) => (attr.name == 'Date'),
     );
-    if (dateFiled !== undefined) {
-      notice.date = strToDate(dateFiled.value);  // when uw_sws  is 2.3.8
-      // notice.date = dayjs(dateFiled.value);  // datetime in UTC
-    } else {
-      notice.date = null;
+    const startDateAttr = notice.attributes.find(
+        (attr) => (attr.name == 'DisplayBegin'),
+    );
+    // datetime will reflect BOF
+    if (startDateAttr !== undefined && startDateAttr.value !== undefined) {
+      notice.startSate = dayjs.utc(startDateAttr.value);
     }
-
+    if (dateAttr !== undefined && dateAttr.value !== undefined) {
+      notice.date = dayjs.utc(dateAttr.value);
+      notice.formattedDate = dateAttr.formatted_value;
+    }
+    // Notices will be sorted by notice.sortDate
+    // some notice only has DisplayBegin date
+    notice.sortDate = notice.startSate ? notice.startSate : (
+      notice.date ? notice.date : null
+    );
     return notice;
   });
 };
