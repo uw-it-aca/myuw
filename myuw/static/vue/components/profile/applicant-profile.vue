@@ -86,17 +86,14 @@ export default {
     ...mapActions('profile', ['fetch']),
     addressLocationString(address) {
       let location = '';
-      if (address.city) {
-        location += address.city + ', ';
-      }
-      if (address.state) {
-        location += address.state + ' ';
+      if (address.city && address.state) {
+        location += address.city + ', ' + address.state;
       }
       if (address.postal_code) {
-        location += address.postal_code + ' ';
+        location += ' ' + address.postal_code;
       }
       if (address.zip_code) {
-        location += address.zip_code;
+        location += ' ' + address.zip_code;
       }
       return location;
     }

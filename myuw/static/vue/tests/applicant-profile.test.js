@@ -12,8 +12,8 @@ import Vuex from 'vuex';
 import profile from '../vuex/store/profile';
 
 import UwCard from '../components/_templates/card.vue';
-import ApplicantProfileCard from '../components/accounts/applicant-profile.vue';
-import mockJinterProfile from './mock_data/profile/jinter.json';
+import ApplicantProfileCard from '../components/profile/applicant-profile.vue';
+import japplicantProfile from './mock_data/profile/japplicant.json';
 
 const localVue = createLocalVue(Vuex);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
@@ -30,32 +30,48 @@ describe('Applicant Profile Card', () => {
         profile,
       },
       state: {
-        
-      }
+        user: {
+          affiliations: {
+            student: false,
+            applicant: true,
+          }
+        }
+      },
     });
   });
 
   it('Verify computed properties for japplicant', async () => {
-    // axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
-    // const wrapper = shallowMount(MedicineAccountCard, {store, localVue});
-    // await new Promise((r) => setTimeout(r, 10));
-    // expect(wrapper.vm.showCard).toBe(false);
-    // expect(wrapper.findComponent(UwCard).exists()).toBe(false);
+    axios.get.mockResolvedValue({data: japplicantProfile, status: 200});
+    const wrapper = shallowMount(ApplicantProfileCard, {store, localVue});
+    await new Promise((r) => setTimeout(r, 10));
+
+    expect(wrapper.vm.profile).not.toBe(null);
+    expect(wrapper.vm.email).toBe('japplicant@u.washington.edu');
+    expect(wrapper.vm.showCard).toBeTruthy();
   });
 
-  it('addressLocationString()', () => {
-    // axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
-    // const wrapper = mount(MedicineAccountCard, {store, localVue});
+  it('addressLocationString()', async () => {
+    axios.get.mockResolvedValue({data: japplicantProfile, status: 200});
+    const wrapper = shallowMount(ApplicantProfileCard, {store, localVue});
+    await new Promise((r) => setTimeout(r, 10));
 
-    // expect(
-    //   wrapper.vm.toFriendlyDate('2020-08-24')
-    // ).toEqual('Mon, Aug 24');
+    expect(
+      wrapper.vm.addressLocationString(wrapper.vm.permanentAddress)
+    ).toEqual('Bellevue, WA 98005-1234');
 
-    // expect(
-    //   wrapper.vm.toFriendlyDate(undefined)
-    // ).toEqual('');
-    // expect(
-    //   wrapper.vm.toFriendlyDate('')
-    // ).toEqual('');
+    expect(
+      wrapper.vm.addressLocationString({
+        city: 'Seattle',
+        state: 'WA',
+      })
+    ).toEqual('Seattle, WA');
+
+    expect(
+      wrapper.vm.addressLocationString({
+        city: null,
+        state: null,
+        country: null,
+      })
+    ).toEqual('');
   });
 });
