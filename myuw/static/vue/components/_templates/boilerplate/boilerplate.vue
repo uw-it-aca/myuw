@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <header v-if="!isHybrid">
+  <div class="bg-light d-flex align-items-end flex-column" style="min-height:100vh">
+    <header v-if="!isHybrid" class="w-100">
       <div
         v-if="disableActions"
         id="actions_disabled_banner"
@@ -113,7 +113,7 @@
     <!-- MARK: message banner display for desktop -->
     <uw-messages v-if="$mq === 'desktop'" />
 
-    <div class="bg-light myuw-body">
+    <div class="w-100 bg-light myuw-body">
       <b-container fluid="xl">
         <b-row :no-gutters="$mq !== 'desktop'">
           <b-col lg="2">
@@ -237,7 +237,7 @@
       </b-container>
     </div>
 
-    <footer v-if="!isHybrid" class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
+    <footer v-if="!isHybrid" class="w-100 mt-auto bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-0">
