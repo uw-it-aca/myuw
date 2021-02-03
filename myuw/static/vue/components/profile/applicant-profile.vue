@@ -13,7 +13,7 @@
       <div vocab="http://schema.org/" typeof="Person">
         <b-container class="bv-example-row">
           <profile-entry title="Permanent Address">
-            <template v-if="permanentAddress" #content>
+            <div v-if="permanentAddress">
               <span>
                 {{ permanentAddress.street_line1 }}
                 <br>
@@ -23,23 +23,19 @@
                 <br>
                 {{ permanentAddress.country }}
               </span>
-            </template>
-            <template v-else #content>
+            </div>
+            <div v-else>
               No address available
-            </template>
+            </div>
           </profile-entry>
           <profile-entry title="">
-            <template #content>
-              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-                 title="Change address on Student Personal Services website"
-              >Change Address</a>
-            </template>
+            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+                title="Change address on Student Personal Services website"
+            >Change Address</a>
           </profile-entry>
           <profile-entry title="Email Address">
-            <template #content>
-              <span v-if="email">{{ email }}</span>
-              <span v-else>No email address availabe</span>
-            </template>
+            <span v-if="email">{{ email }}</span>
+            <span v-else>No email address availabe</span>
           </profile-entry>
         </b-container>
       </div>

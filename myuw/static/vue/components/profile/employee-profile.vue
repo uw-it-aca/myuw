@@ -24,68 +24,66 @@
                          title="Email:"
                          :content="email"
           />
-          <profile-entry title="Phone Number">
-            <template #content>
-              <p v-if="noFormsOfContact">No phone numbers listed</p>
-              <p v-if="phone">
-                Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
-              </p>
-              <p v-if="mobile">
-                Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
-              </p>
-              <p v-if="voiceMail">
-                Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
-              </p>
-              <p v-if="fax">
-                Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
-              </p>
+          <profile-entry title="">
+            <template #title>
+              <span class="sr-only" property="name">UW Office</span>
+              <h4 class="h4 font-weight-bold myuw-text-md">
+                Phone Number
+              </h4>
             </template>
+            <p v-if="noFormsOfContact">No phone numbers listed</p>
+            <p v-if="phone">
+              Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
+            </p>
+            <p v-if="mobile">
+              Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
+            </p>
+            <p v-if="voiceMail">
+              Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
+            </p>
+            <p v-if="fax">
+              Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
+            </p>
           </profile-entry>
           <profile-entry title="Address">
-            <template #content>
-              <p v-if="!mailstop && !address">No address available</p>
-              <div v-else>
-                <p v-if="mailstop">Box {{ mailstop }}</p>
-                <p v-if="address">{{ address }}</p>
-              </div>
-            </template>
+            <p v-if="!mailstop && !address">No address available</p>
+            <div v-else>
+              <p v-if="mailstop">Box {{ mailstop }}</p>
+              <p v-if="address">{{ address }}</p>
+            </div>
           </profile-entry>
           <profile-entry title="">
-            <template #content>
-              <p>
-                <uw-link-button
-                  class="myuw-workday"
-                  href="https://wd5.myworkday.com/uw/login.htmld"
-                  target="_blank"
-                  data-linklabel="Workday"
-                  :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
-                  >Manage profile in Workday
-                </uw-link-button>
-              </p>
-            </template>
+            <p>
+              <uw-link-button
+                class="myuw-workday"
+                href="https://wd5.myworkday.com/uw/login.htmld"
+                target="_blank"
+                data-linklabel="Workday"
+                :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
+                >Manage profile in Workday
+              </uw-link-button>
+            </p>
           </profile-entry>
           <profile-entry title="UW Directory">
-            <template #content>
-              <p>
-                <template v-if="publishEmpDir">
-                  Name, position, work contact information are published.
-                </template>
-                <template v-else>
-                  Not published.
-                </template>
-                <br/>
-                <a href="https://identity.uw.edu/">Change directory settings</a>
-              </p>
-              <p>
-                Search for faculty, staff, and students in the
-                <a v-if="isTacoma"
-                   href="http://directory.tacoma.uw.edu/"
-                >UW Tacoma Directory</a>
-                <a v-else
-                   href="https://www.washington.edu/home/peopledir/"
-                >UW Directory</a>.
-              </p>
-            </template>
+            <p>
+              <template v-if="publishEmpDir">
+                Name, position, work contact information are published.
+              </template>
+              <template v-else>
+                Not published.
+              </template>
+              <br/>
+              <a href="https://identity.uw.edu/">Change directory settings</a>
+            </p>
+            <p>
+              Search for faculty, staff, and students in the
+              <a v-if="isTacoma"
+                  href="http://directory.tacoma.uw.edu/"
+              >UW Tacoma Directory</a>
+              <a v-else
+                  href="https://www.washington.edu/home/peopledir/"
+              >UW Directory</a>.
+            </p>
           </profile-entry>
         </b-container>
       </div>

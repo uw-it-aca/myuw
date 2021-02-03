@@ -19,49 +19,45 @@
                          :content="classStanding"
           />
           <profile-entry title="Major">
-            <template #content>
-              <ul>
-                <template v-for="(termMajor, index) in termMajors">
-                  <li v-if="index == 0" :key="index">
+            <ul>
+              <template v-for="(termMajor, index) in termMajors">
+                <li v-if="index == 0" :key="index">
+                  {{ degreeListString(termMajor.majors) }}
+                </li>
+                <li v-else-if="termMajor.degrees_modified" :key="index">
+                  Beginning {{ titilizeTerm(termMajor.quarter) }} {{ termMajor.year }}:
+                  &nbsp;&nbsp;
+                  <span v-if="termMajor.majors.length > 0">
                     {{ degreeListString(termMajor.majors) }}
-                  </li>
-                  <li v-else-if="termMajor.degrees_modified" :key="index">
-                    Beginning {{ titilizeTerm(termMajor.quarter) }} {{ termMajor.year }}:
-                    &nbsp;&nbsp;
-                    <span v-if="termMajor.majors.length > 0">
-                      {{ degreeListString(termMajor.majors) }}
-                    </span>
-                    <span v-else>
-                      None
-                    </span>
-                  </li>
-                </template>
-              </ul>
-            </template>
+                  </span>
+                  <span v-else>
+                    None
+                  </span>
+                </li>
+              </template>
+            </ul>
           </profile-entry>
           <profile-entry v-if="hasMinors" title="Minor">
-            <template #content>
-              <ul>
-                <template v-for="(termMinor, index) in termMinors">
-                  <li v-if="index == 0 && termMinor.minors.length" :key="index">
+            <ul>
+              <template v-for="(termMinor, index) in termMinors">
+                <li v-if="index == 0 && termMinor.minors.length" :key="index">
+                  {{ degreeListString(termMinor.minors) }}
+                </li>
+                <li v-else-if="termMinor.degrees_modified" :key="index">
+                  Beginning {{ titilizeTerm(termMinor.quarter) }} {{ termMinor.year }}:
+                  &nbsp;&nbsp;
+                  <span v-if="termMinor.minors.length > 0">
                     {{ degreeListString(termMinor.minors) }}
-                  </li>
-                  <li v-else-if="termMinor.degrees_modified" :key="index">
-                    Beginning {{ titilizeTerm(termMinor.quarter) }} {{ termMinor.year }}:
-                    &nbsp;&nbsp;
-                    <span v-if="termMinor.minors.length > 0">
-                      {{ degreeListString(termMinor.minors) }}
-                    </span>
-                    <span v-else>
-                      None
-                    </span>
-                  </li>
-                </template>
-              </ul>
-            </template>
+                  </span>
+                  <span v-else>
+                    None
+                  </span>
+                </li>
+              </template>
+            </ul>
           </profile-entry>
           <profile-entry title="Local Address">
-            <template v-if="localAddress" #content>
+            <div v-if="localAddress">
               <div v-if="localAddress.street_line1"
                    v-text="localAddress.street_line1">
               </div>
@@ -75,13 +71,13 @@
               <div v-if="localPhone">
                 Phone: {{ formatPhoneNumberDisaply(localPhone) }}
               </div>
-            </template>
-            <template v-else #content>
+            </div>
+            <div v-else>
               <span class="my-text-muted">No address available</span>
-            </template>
+            </div>
           </profile-entry>
           <profile-entry title="Permanent Address">
-            <template v-if="permanentAddress" #content>
+            <div v-if="permanentAddress">
               <div v-if="permanentAddress.street_line1"
                    v-text="permanentAddress.street_line1">
               </div>
@@ -95,43 +91,39 @@
               <div v-if="permanentPhone">
                 Phone: {{ formatPhoneNumberDisaply(permanentPhone) }}
               </div>
-            </template>
-            <template v-else #content>
+            </div>
+            <div v-else>
               No address available
-            </template>
+            </div>
           </profile-entry>
           <profile-entry title="">
-            <template #content>
-              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-                 title="Change address on Student Personal Services website"
-              >Change Address</a>
-            </template>
+            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+                title="Change address on Student Personal Services website"
+            >Change Address</a>
           </profile-entry>
           <profile-entry title="Student Directory Information">
-            <template #content>
-              <p>
-                Releasable: <span v-text="directoryRelease ? 'YES' : 'NO'"/>
-                <br><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-                  title="Change address release settings on Student Personal Services website"
-                >Change your release settings</a>
-              </p>
-              <p>
-                Name, phone number, email, major, and class standing are
-                <em v-text="directoryRelease ? 'visible' : 'not visible'"/>
-                in the UW Directory.
-              </p>
-              <p>
-                Information such as date of birth, street address, and dates
-                of attendance are
-                <em v-text="directoryRelease ?
-                            'releasable' : 'cannot be released'"
-                />
-                by the Office of the University Registrar when requested.
-                <a href="http://www.washington.edu/students/reg/ferpa.html">
-                  Learn more about your privacy (FERPA)
-                </a>
-              </p>
-            </template>
+            <p>
+              Releasable: <span v-text="directoryRelease ? 'YES' : 'NO'"/>
+              <br><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+                title="Change address release settings on Student Personal Services website"
+              >Change your release settings</a>
+            </p>
+            <p>
+              Name, phone number, email, major, and class standing are
+              <em v-text="directoryRelease ? 'visible' : 'not visible'"/>
+              in the UW Directory.
+            </p>
+            <p>
+              Information such as date of birth, street address, and dates
+              of attendance are
+              <em v-text="directoryRelease ?
+                          'releasable' : 'cannot be released'"
+              />
+              by the Office of the University Registrar when requested.
+              <a href="http://www.washington.edu/students/reg/ferpa.html">
+                Learn more about your privacy (FERPA)
+              </a>
+            </p>
           </profile-entry>
         </b-container>
       </div>

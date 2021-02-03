@@ -1,12 +1,14 @@
 <template>
   <b-row>
     <b-col :sm="titleWidth">
-      <h4 class="h4 font-weight-bold myuw-text-md">
-        {{ title }}
-      </h4>
+      <slot name="title">
+        <h4 class="h4 font-weight-bold myuw-text-md">
+          {{ title }}
+        </h4>
+      </slot>
     </b-col>
     <b-col :sm="contentWidth">
-      <slot name="content">
+      <slot>
         {{ content }}
       </slot>
     </b-col>
