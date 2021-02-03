@@ -113,7 +113,7 @@
     <!-- MARK: message banner display for desktop -->
     <uw-messages v-if="$mq === 'desktop'" />
 
-    <div class="w-100 bg-light myuw-body">
+    <div class="w-100 myuw-body">
       <b-container fluid="xl">
         <b-row :no-gutters="$mq !== 'desktop'">
           <b-col lg="2">
