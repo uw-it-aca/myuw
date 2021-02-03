@@ -40,12 +40,21 @@ module.exports = {
     textbooks: [
       "./myuw/static/vue/textbooks.js"
     ],
+    husky_experience: [
+      "./myuw/static/vue/husky_experience.js"
+    ],
+    notices: [
+      "./myuw/static/vue/notices.js"
+    ],
     teaching_classlist: [
       "./myuw/static/vue/teaching_classlist.js"
     ],
     resources: [
       "./myuw/static/vue/resources.js"
-    ]
+    ],
+    calendar: [
+      "./myuw/static/vue/calendar.js"
+    ],
   },
   output: {
       path: path.resolve('../static/myuw/'),

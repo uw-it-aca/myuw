@@ -8,7 +8,7 @@ function postProcess(response) {
     data.tuition_accbalance = parseFloat(data.tuition_accbalance);
   }
   data.pce_accbalance = parseFloat(data.pce_accbalance);
-
+  // data.tuition_due is ignored
   return data;
 };
 

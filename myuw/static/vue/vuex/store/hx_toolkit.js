@@ -1,44 +1,55 @@
-import {fetchBuilder, extractData, buildWith} from './model_builder';
+import {fetchBuilder, buildWith} from './model_builder';
 
-const postProccess = (response, urlExtra) => {
-  let proccessValue = {};
-  proccessValue[urlExtra] = {};
+const handeWeekParam = (data) => {
+  const processed = {};
 
   const parser = new DOMParser();
   const htmlDoc = parser.parseFromString(
-    response.data, 'text/html',
+    data, 'text/html',
   );
 
   if (htmlDoc.getElementsByTagName('a')[0]) {
-    proccessValue[urlExtra].expLink =
+    processed.expLink =
       htmlDoc.getElementsByTagName('a')[0].href;
   }
 
   if (htmlDoc.getElementsByClassName('myuw-card-image-full')[0]) {
-    proccessValue[urlExtra].srcset = htmlDoc.getElementsByClassName(
+    processed.srcset = htmlDoc.getElementsByClassName(
       'myuw-card-image-full'
     )[0].srcset;
-    proccessValue[urlExtra].src = htmlDoc.getElementsByClassName(
+    processed.src = htmlDoc.getElementsByClassName(
       'myuw-card-image-full'
     )[0].src;
-    proccessValue[urlExtra].alt = htmlDoc.getElementsByClassName(
+    processed.alt = htmlDoc.getElementsByClassName(
       'myuw-card-image-full'
     )[0].alt;
   }
 
   if (htmlDoc.getElementsByClassName('myuw-highlight')[0]) {
-    proccessValue[urlExtra].articleTeaserTitle = 
+    processed.articleTeaserTitle = 
       htmlDoc.getElementsByClassName('myuw-highlight')[0].innerHTML;
   }
 
   if (htmlDoc.getElementsByClassName('myuw-highlight')[1]) {
-    proccessValue[urlExtra].articleTeaserBody = 
+    processed.articleTeaserBody = 
       htmlDoc.getElementsByClassName('myuw-highlight')[1].textContent;
     if (htmlDoc.getElementsByClassName('myuw-highlight')[1].children[0]) {
-      proccessValue[urlExtra].articleFaClass = htmlDoc.getElementsByClassName(
+      processed.articleFaClass = htmlDoc.getElementsByClassName(
         'myuw-highlight'
       )[1].children[0].classList[1].slice(3);
     }
+  }
+
+  return processed;
+}
+
+const postProccess = (response, urlExtra) => {
+  let proccessValue = {};
+
+  if (urlExtra === 'week/') {
+    proccessValue[urlExtra] = handeWeekParam(response.data);
+  } else {
+    proccessValue[urlExtra] = response.data;
   }
 
   return proccessValue;
