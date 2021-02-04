@@ -33,6 +33,7 @@ import ContinuingEducation from './components/home/former_student/continuing-edu
 import Alumni from './components/home/alumni.vue';
 import Retiree from './components/home/former_employee/retiree.vue';
 import ResourceCards from './components/home/resource-cards.vue';
+import ResourceExplore from './components/home/resources/resource-explore.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -99,6 +100,7 @@ Vue.component('myuw-continuing-education', ContinuingEducation);
 Vue.component('myuw-alumni', Alumni);
 Vue.component('myuw-hr-payroll', HRPayroll);
 Vue.component('myuw-resource-cards', ResourceCards);
+Vue.component('myuw-resource-explore', ResourceExplore);
 
 new Vue({
   ...vueConf,
