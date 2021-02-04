@@ -79,13 +79,13 @@
                                 <th>UW NetID</th>
                                 <th>Last Name</th>
                                 <th>First Name</th>
+                                <th>Pronouns</th>
                                 {{#if sections.0.has_joint}}
                                     <th class="joint-col">Joint Course</th>
                                 {{/if}}
                                 {{#if sections.0.has_linked_sections}}
                                     <th>Secondary Section</th>
                                 {{/if}}
-                                <th>Pronouns</th>
                                 <th>Credits</th>
                                 <th>Class</th>
                                 <th>Major</th>
@@ -103,6 +103,7 @@
                                 <td>{{netid}}</td>
                                 <td>{{surname}}</td>
                                 <td>{{first_name}}</td>
+                                <td style="max-width: 150px;">{{pronouns}}</td>
                                 {{#if ../sections.0.has_joint}}
                                     <td class="joint-col">
                                         {{#if is_joint}}
@@ -115,7 +116,6 @@
                                 {{#if @root.sections.0.has_linked_sections}}
                                     <td>{{linked_sections}}</td>
                                 {{/if}}
-                                <td>Pronouns go here</td>
                                 <td>
                                     {{#if is_auditor}}Audit{{else}}{{credits}}{{/if}}
                                 </td>
@@ -150,6 +150,7 @@
                                  src="/photo/{{url_key}}" width="120px" height="150px">
                              </div>
                             <div class="myuw-photo-list-content">{{first_name}} {{surname}}</div>
+                            <div class="myuw-text-small">{{pronouns}}</div>
                         </li>
                     {{/each}}
                 </ol>
