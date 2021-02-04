@@ -22,7 +22,7 @@ jobs:
 
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.3
+        uses: uw-it-aca/actions/cicd-context@v1.4
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
@@ -89,7 +89,7 @@ jobs:
 
       - name: Push Image to GCR
         if: github.event_name == 'push'
-        uses: uw-it-aca/actions/gcr-push@v1.3
+        uses: uw-it-aca/actions/gcr-push@v1.4
         with:
           image_tag: ${{ steps.cicd.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
@@ -107,7 +107,7 @@ jobs:
 
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.3
+        uses: uw-it-aca/actions/cicd-context@v1.4
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
@@ -115,7 +115,7 @@ jobs:
         if: >-
           contains(fromJSON('["main", "master", "qa"]'),
             steps.cicd.outputs.git_repo_branch)
-        uses: uw-it-aca/actions/cicd-deploy@v1.3
+        uses: uw-it-aca/actions/cicd-deploy@v1.4
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
@@ -125,7 +125,7 @@ jobs:
 
       - name: Deploy Develop Branch
         if: steps.cicd.outputs.git_repo_branch == 'feature/MUWM-4643'
-        uses: uw-it-aca/actions/cicd-deploy@v1.2
+        uses: uw-it-aca/actions/cicd-deploy@v1.4
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
