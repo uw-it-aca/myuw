@@ -18,11 +18,12 @@
     </b-col>
     <b-col md="12" class="px-0">
       <myuw-notice-card></myuw-notice-card>
-      <myuw-grades></myuw-grades>
       <myuw-husky-experience></myuw-husky-experience>
-      <myuw-outage term="{{ term|default:'current' }}"></myuw-outage>
-      <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
+      <myuw-applicant></myuw-applicant>
       <myuw-quicklinks></myuw-quicklinks>
+      <myuw-outage term="{{ term|default:'current' }}"></myuw-outage>
+      <myuw-grades></myuw-grades>
+      <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
       <myuw-ns-thank-you></myuw-ns-thank-you>
       <myuw-ns-to-register></myuw-ns-to-register>
       <myuw-reg-status></myuw-reg-status>
@@ -37,15 +38,15 @@
       </myuw-inst-course-summary>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
       <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
-      <myuw-applicant></myuw-applicant>
+      <myuw-acad-cal-snippet></myuw-acad-cal-snippet>
+      <myuw-events></myuw-events>
       <myuw-international-student></myuw-international-student>
-      <myuw-retiree></myuw-retiree>
       <myuw-hr-payroll is-home-page></myuw-hr-payroll>
+      <myuw-retiree></myuw-retiree>
       <myuw-transcripts></myuw-transcripts>
       <myuw-continuing-education></myuw-continuing-education>
       <myuw-uwnetid is-home-page></myuw-uwnetid>
       <myuw-alumni></myuw-alumni>
-      <myuw-events></myuw-events>
       <myuw-resource-explore></myuw-resource-explore>
     </b-col>      
   </template>
@@ -55,9 +56,9 @@
     </b-col>
     <b-col md="8">
       <myuw-notice-card></myuw-notice-card>
-      <myuw-grades></myuw-grades>
       <myuw-husky-experience></myuw-husky-experience>
       <myuw-outage term="{{ term|default:'current' }}"></myuw-outage>
+      <myuw-grades></myuw-grades>
       <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
       <myuw-ns-thank-you></myuw-ns-thank-you>
       <myuw-ns-to-register></myuw-ns-to-register>
@@ -86,6 +87,7 @@
     </b-col>
     <b-col md="4">
       <myuw-quicklinks></myuw-quicklinks>
+      <myuw-acad-cal-snippet></myuw-acad-cal-snippet>
       <myuw-events></myuw-events>
     </b-col>
   </template>
