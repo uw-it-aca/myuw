@@ -1,0 +1,49 @@
+[
+  {
+    "summary": "Example Event Pre + More",
+    "start": "2013-04-10",
+    "end": "2013-04-24",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": {
+      "all": true,
+      "breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": false
+  },
+  {
+    "summary": "Example Event First Day",
+    "start": "2013-04-15",
+    "end": "2013-04-15",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": { "all": true, "breaks": true },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": true
+  },
+  {
+    "summary": "Example Event Few Days In",
+    "start": "2013-04-18",
+    "end": "2013-04-20",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": { "all": true, "breaks": true },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": false
+  },
+  {
+    "summary": "Example Event End of 4Weeks",
+    "start": "2013-05-12 17:30:00",
+    "end": "2013-06-12",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": { "all": true, "breaks": true },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": false
+  }
+]
