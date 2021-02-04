@@ -3,10 +3,11 @@ import {
   strToDate,
 } from './common';
 
-const postProccess = (response) => {
-  let data = extractData(response);
+const postProccess = (response, urlExtra) => {
+  let data = {};
+  data[urlExtra] = extractData(response);
 
-  data.forEach((event) => {
+  data[urlExtra].forEach((event) => {
     event.start = strToDate(event.start);
     event.end = strToDate(event.end);
     event.year = String(event.year);
