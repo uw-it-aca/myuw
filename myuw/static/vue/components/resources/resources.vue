@@ -14,7 +14,8 @@
       </h3>
       <uw-resource-card :resource="resource"/>
     </div>
-    <button type="button" id='scroll-to-top' class="myuw-back-to-top" title="Back to Top" data-spy="affix" data-offset-bottom="110">
+    <button id='scroll-to-top' type="button" class="myuw-back-to-top"
+      title="Back to Top" data-spy="affix" data-offset-bottom="110">
         <font-awesome-icon :icon="['fa', 'chevron-up']" />
         <span><span class="sr-only">Back to</span> Top</span>
     </button>
