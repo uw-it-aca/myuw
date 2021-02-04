@@ -16,7 +16,7 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
-import CourseCards from './cards.vue';
+import CourseCards from './course_cards.vue';
 import TermSelector from '../../_common/term-selector.vue';
 
 export default {
