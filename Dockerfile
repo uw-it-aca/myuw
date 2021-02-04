@@ -1,4 +1,4 @@
-FROM acait/django-container:1.2.5 as app-container
+FROM acait/django-container:1.2.5 as pre-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -10,9 +10,6 @@ ADD --chown=acait:acait requirements.txt /app/
 RUN . /app/bin/activate && pip install -r requirements.txt
 
 RUN . /app/bin/activate && pip install mysqlclient
-
-ADD --chown=acait:acait . /app/
-ADD --chown=acait:acait docker/ project/
 
 FROM node:14.6.0-stretch AS node-bundler
 
@@ -26,6 +23,9 @@ RUN npx webpack
 FROM pre-container as app-container
 
 COPY --chown=acait:acait --from=node-bundler /static /static
+
+ADD --chown=acait:acait . /app/
+ADD --chown=acait:acait docker/ project/
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 
