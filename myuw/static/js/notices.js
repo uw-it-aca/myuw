@@ -239,8 +239,9 @@ var Notices = {
                 for (j = 0; j < notice.attributes.length; j += 1){
                     if (notice.attributes[j].name === "Date"){
                         notice_has_date = true;
-                        var date = (notice.attributes[j].value ?
-                            moment.utc(notice.attributes[j].value) : null);
+                        date = (notice.attributes[j].value ?
+                                moment.utc(notice.attributes[j].value) : null);
+                        notice.date = date;
                         if (date && today.toDate() === date.toDate()) {
                             notices_today.push(notice);
                         } else if (date && date.week() === today.week()) {
