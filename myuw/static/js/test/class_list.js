@@ -79,6 +79,7 @@ describe("PhotoClassList", function() {
               "has_linked_sections": true,
               "registrations": [{"surname": "Student3",
                                  "first_name": "June",
+                                 "pronouns": "he/him/his; they/them/theirs",
                                  "credits": "2.0",
                                  "full_name": "June Average Student",
                                  "regid": "9136CCB8F66711D5BE060004AC494003",
@@ -101,6 +102,7 @@ describe("PhotoClassList", function() {
                                  "email": "javg003@uw.edu"},
                                 {"surname": "Student2",
                                  "first_name": "Jade",
+                                 "pronouns": "she, her, hers or they/them/theirs",
                                  "credits": "2.0",
                                  "full_name": "Jade Average Student",
                                  "regid": "9136CCB8F66711D5BE060004AC494002",
@@ -123,6 +125,7 @@ describe("PhotoClassList", function() {
                                  "email": "javg002@uw.edu"},
                                 {"surname": "Student1",
                                  "first_name": "Jake",
+                                 "pronouns": "he/him/his",
                                  "credits": "2.0",
                                  "full_name": "Jake Average Student",
                                  "regid": "9136CCB8F66711D5BE060004AC494001",
@@ -154,11 +157,12 @@ describe("PhotoClassList", function() {
             assert.equal(row1[1], '"javg001"');
             assert.equal(row1[2], '"Student1"');
             assert.equal(row1[3], '"Jake"');
-            assert.equal(row1[4], '"A1 AQ"');
-            assert.equal(row1[5], '"2.0"');
-            assert.equal(row1[6], '"SOPHOMORE"');
-            assert.equal(row1[7], '"UPCOM (Tacoma Campus)"');
-            assert.equal(row1[8], '"javg001@uw.edu"');
+            assert.equal(row1[4], '"he/him/his"');
+            assert.equal(row1[5], '"A1 AQ"');
+            assert.equal(row1[6], '"2.0"');
+            assert.equal(row1[7], '"SOPHOMORE"');
+            assert.equal(row1[8], '"UPCOM (Tacoma Campus)"');
+            assert.equal(row1[9], '"javg001@uw.edu"');
 
             var row2 = lines[2].split(",");
             assert.equal(row2[2], '"Student2"');
