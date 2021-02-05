@@ -148,7 +148,7 @@ describe("PhotoClassList", function() {
             var lines = result.split("\n");
             // Header...
             assert.equal(lines[0],
-                         'StudentNo,UWNetID,LastName,FirstName,Section,Credits,Class,Major,Email');
+                         'StudentNo,UWNetID,LastName,FirstName,Pronouns,Section,Credits,Class,Major,Email');
             var row1 = lines[1].split(",");
             assert.equal(row1[0], '"\t1033001"');
             assert.equal(row1[1], '"javg001"');
