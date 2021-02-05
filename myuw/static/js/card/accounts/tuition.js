@@ -88,7 +88,7 @@ var TuitionCard = {
         if (tuition_due_notice !== undefined) {
             for (var i = 0; i < tuition_due_notice.attributes.length; i += 1) {
                 if (tuition_due_notice.attributes[i].name === "Date") {
-                    due_date = new Date(tuition_due_notice.attributes[i].value.replace(/-/g, "/"));
+                    due_date = moment.utc(tuition_due_notice.attributes[i].value);
                     display_date = tuition_due_notice.attributes[i].formatted_value;
                 }
             }
