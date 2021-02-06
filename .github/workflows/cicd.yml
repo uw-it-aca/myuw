@@ -132,3 +132,4 @@ jobs:
           git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           app_instance: dev
+          checkov_version: "1.0.730"
