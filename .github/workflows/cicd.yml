@@ -7,9 +7,9 @@ env:
 
 on:
   push:
-    branches: [master, qa, develop]
+    branches: [master, qa, develop, feature/MUWM-4643]
   pull_request:
-    branches: [master, qa, develop]
+    branches: [master, qa, develop, feature/MUWM-4643]
     types: [opened, reopened, synchronize]
 
 jobs:
