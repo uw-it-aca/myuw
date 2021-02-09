@@ -151,12 +151,12 @@ describe("HomePage", function() {
         window.user.netid = "japplicant";
         window.user.applicant = true;
         var desktop_body_cards = Landing._get_desktop_body_cards();
-        assert.equal(desktop_body_cards.length, 5);
+        assert.equal(desktop_body_cards.length, 4);
         assert.equal(desktop_body_cards[0].name, 'SeattleApplicationCard');
-        assert.equal(desktop_body_cards[1].name, 'BothellApplicationCard');
-        assert.equal(desktop_body_cards[2].name, 'TacomaApplicationCard');
-        assert.equal(desktop_body_cards[3].name, 'ResourcesCard');
-        assert.equal(desktop_body_cards[4].name, 'ResourcesExploreCard');
+        // assert.equal(desktop_body_cards[1].name, 'BothellApplicationCard');
+        assert.equal(desktop_body_cards[1].name, 'TacomaApplicationCard');
+        assert.equal(desktop_body_cards[2].name, 'ResourcesCard');
+        assert.equal(desktop_body_cards[3].name, 'ResourcesExploreCard');
         var desktop_sidebar_cards = Landing._get_desktop_sidebar_cards();
         assert.deepEqual(desktop_sidebar_cards,
                          [QuickLinksCard,
@@ -216,7 +216,7 @@ describe("HomePage", function() {
         var mobile_cards = Landing._get_mobile_cards();
         assert.deepEqual(mobile_cards,
                          [SeattleApplicationCard,
-                          BothellApplicationCard,
+                          // BothellApplicationCard,
                           TacomaApplicationCard,
                           QuickLinksCard,
                           AcadCalSnippet,
@@ -226,7 +226,7 @@ describe("HomePage", function() {
 
         window.user.registered_stud = true;
         var mobile_cards = Landing._get_mobile_cards();
-        assert.equal(mobile_cards.length, 6);
+        assert.equal(mobile_cards.length, 5);
     });
 
     it('Mobile cards for instructor', function() {
