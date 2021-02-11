@@ -7,9 +7,9 @@ env:
 
 on:
   push:
-    branches: [master, qa, develop, feature/MUWM-4643]
+    branches: [master, qa, develop]
   pull_request:
-    branches: [master, qa, develop, feature/MUWM-4643]
+    branches: [master, qa, develop]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -115,21 +115,19 @@ jobs:
         if: >-
           contains(fromJSON('["main", "master", "qa"]'),
             steps.cicd.outputs.git_repo_branch)
-        uses: uw-it-aca/actions/cicd-deploy@main
+        uses: uw-it-aca/actions/cicd-deploy@v1.4
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
           git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
-          checkov_version: "1.0.730"
 
       - name: Deploy Develop Branch
-        if: steps.cicd.outputs.git_repo_branch == 'feature/MUWM-4643'
-        uses: uw-it-aca/actions/cicd-deploy@main
+        if: steps.cicd.outputs.git_repo_branch == 'develop'
+        uses: uw-it-aca/actions/cicd-deploy@v1.4
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
           git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           app_instance: dev
-          checkov_version: "1.0.730"
