@@ -164,7 +164,7 @@ describe("HomePage", function() {
                           EventsCard]);
         window.user.registered_stud = true;
         var desktop_body_cards = Landing._get_desktop_body_cards();
-        assert.equal(desktop_body_cards.length, 6);
+        assert.equal(desktop_body_cards.length, 5);
     });
 
     it('Desktop cards for hxt_viewer', function() {
@@ -226,7 +226,7 @@ describe("HomePage", function() {
 
         window.user.registered_stud = true;
         var mobile_cards = Landing._get_mobile_cards();
-        assert.equal(mobile_cards.length, 5);
+        assert.equal(mobile_cards.length, 6);
     });
 
     it('Mobile cards for instructor', function() {
