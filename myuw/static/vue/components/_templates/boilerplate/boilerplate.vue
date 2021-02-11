@@ -357,6 +357,7 @@ export default {
     netid: (state) => state.user.netid,
     emailError: (state) => state.user.email_error,
     emailForwardUrl: (state) => state.user.email_forward_url,
+    affiliations: (state) => state.user.affiliations,
     undergrad: (state) => state.user.affiliations.undergrad,
     seattle: (state) => state.user.affiliations.seattle,
     hxtViewer: (state) => state.user.affiliations.hxt_viewer,
@@ -369,6 +370,8 @@ export default {
     displayPopUp: (state) => state.displayPopUp,
   }),
   mounted() {
+    this.$gtag.set('user_properties', this.generateUserProperties());
+
     // MARK: google analytics gtag
     this.$gtag.pageview({
       page_location: window.location.href,
@@ -395,6 +398,85 @@ export default {
         });
     },
     ...mapMutations(['addVarToState']),
+    generateUserProperties() {
+      const properties = {};
+      const affiliationEntries = Object.entries(this.affiliations)
+        .filter((pair) => pair[1]);
+
+      this.populateProperty(
+        properties,
+        'affiliation',
+        {
+          'applicant': 'Applicant',
+          'student': 'Undergrad stud',
+          'grad': 'Grad stud',
+          'faculty': 'Faculty',
+          'staff_employee': 'Staff',
+          'alumni': 'Alumni',
+          'clinician': 'Clinician',
+          'stud_employee': 'Stud employee',
+          'instructor': 'Instructor',
+          'retiree': 'Retiree',
+          'intl_stud': 'Intl stud',
+          'undergrad_c2': 'C2',
+          'grad_c2': 'GradC2',
+          'pce': 'PCE',
+        },
+        affiliationEntries,
+      );
+      this.populateProperty(
+        properties,
+        'student_campus',
+        {
+          'seattle': 'Seattle',
+          'bothell': 'Bothell',
+          'tacoma': 'Tacoma',
+        },
+        affiliationEntries,
+        true,
+      );
+      this.populateProperty(
+        properties,
+        'employment_campus',
+        {
+          'official_seattle': 'Seattle',
+          'official_bothell': 'Bothell',
+          'official_tacoma': 'Tacoma',
+        },
+        affiliationEntries,
+        true,
+      );
+
+      if (this.affiliations['class_level']) {
+        properties['class_level'] = this.titleCaseWord(this.affiliations['class_level']);
+      }
+
+      return properties;
+    },
+    populateProperty(
+      properties,
+      propertyName,
+      propertyMap,
+      affiliationEntries,
+      singleValue = false
+    ) {
+      let value = affiliationEntries
+        .map((pair) => pair[0])
+        .filter((affiliation) => affiliation in propertyMap)
+        .map((affiliation) => propertyMap[affiliation]);
+      
+      if (singleValue) {
+        value = value[0];
+      }
+
+      if (value !== undefined) {
+        if (value instanceof Array && value.length > 0) {
+          properties[propertyName] = value;
+        } else {
+          properties[propertyName] = value;
+        }
+      }
+    }
   },
 };
 </script>
