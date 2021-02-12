@@ -5,7 +5,7 @@ from restclients_core.exceptions import (
 from myuw.dao.exceptions import (
     NotSectionInstructorException, InvalidResourceCategory)
 from myuw.models import ResourceCategoryPin
-from uw_sws.exceptions import InvalidSectionID
+from uw_sws.exceptions import InvalidSectionID, ThreadedDataError
 from myuw.logger.logresp import log_err, log_data_not_found_response
 from myuw.views.exceptions import (
     DisabledAction, NotInstructorError, InvalidInputFormData)
@@ -104,7 +104,9 @@ def data_error():
 
 def handle_exception(logger, timer, stack_trace):
     exc_type, exc_value, exc_traceback = sys.exc_info()
+
     if (isinstance(exc_value, DataFailureException) and
+            not isinstance(exc_value, ThreadedDataError) and
             (exc_value.status == 400 or exc_value.status == 404)):
         log_data_not_found_response(logger, timer)
         return data_not_found()
