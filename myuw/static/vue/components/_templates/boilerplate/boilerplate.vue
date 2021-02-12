@@ -473,7 +473,8 @@ export default {
 
       if (value !== undefined) {
         if (value instanceof Array && value.length > 0) {
-          properties[propertyName] = value;
+          properties[propertyName] = {};
+          value.forEach((val) => properties[propertyName][val] = true);
         } else {
           properties[propertyName] = value;
         }
