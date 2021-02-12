@@ -104,8 +104,14 @@ export default {
     'uw-link-button': LinkButton,
   },
   computed: {
+    ...mapState({
+      employee: (state) => state.user.affiliations.employee,
+      studentEmployee: (state) => state.user.affiliations.stud_employee,
+      isTacoma: (state) => state.user.affiliations.tacoma,
+      staticUrl: (state) => state.staticUrl,
+    }),
     ...mapState('directory', {
-      directory: (state) => state.value,
+      //directory: (state) => state.value,
       position: (state) => state.value.positions.find(position => position.is_primary),
       email: (state) => state.value.email_addresses[0],
       phone: (state) => state.value.phones[0],
@@ -121,14 +127,8 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
-    ...mapState({
-      employee: (state) => state.user.affiliations.employee,
-      studentEmployee: (state) => state.user.affiliations.stud_employee,
-      isTacoma: (state) => state.user.affiliations.tacoma,
-      staticUrl: (state) => state.staticUrl,
-    }),
     showCard: function () {
-      return (this.employee || this.studentEmployee) && Boolean(this.directory);
+      return true;//(this.employee || this.studentEmployee) && Boolean(this.directory);
     },
     showError: function () {
       return false;

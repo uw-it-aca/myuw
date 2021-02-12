@@ -46,7 +46,6 @@ describe('Applicant Profile Card', () => {
     await new Promise((r) => setTimeout(r, 10));
 
     expect(wrapper.vm.profile).not.toBe(null);
-    expect(wrapper.vm.email).toBe('japplicant@u.washington.edu');
     expect(wrapper.vm.showCard).toBeTruthy();
   });
 
