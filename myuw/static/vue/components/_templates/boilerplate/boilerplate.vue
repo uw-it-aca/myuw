@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <header v-if="!isHybrid">
+  <div class="bg-light d-flex align-items-end flex-column" style="min-height:100vh">
+    <header v-if="!isHybrid" class="w-100">
       <div
         v-if="disableActions"
         id="actions_disabled_banner"
@@ -113,7 +113,7 @@
     <!-- MARK: message banner display for desktop -->
     <uw-messages v-if="$mq === 'desktop'" />
 
-    <div class="bg-light myuw-body">
+    <div class="w-100 myuw-body">
       <b-container fluid="xl">
         <b-row :no-gutters="$mq !== 'desktop'">
           <b-col lg="2">
@@ -237,7 +237,7 @@
       </b-container>
     </div>
 
-    <footer v-if="!isHybrid" class="bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
+    <footer v-if="!isHybrid" class="w-100 mt-auto bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-0">
@@ -357,6 +357,7 @@ export default {
     netid: (state) => state.user.netid,
     emailError: (state) => state.user.email_error,
     emailForwardUrl: (state) => state.user.email_forward_url,
+    affiliations: (state) => state.user.affiliations,
     undergrad: (state) => state.user.affiliations.undergrad,
     seattle: (state) => state.user.affiliations.seattle,
     hxtViewer: (state) => state.user.affiliations.hxt_viewer,
@@ -369,6 +370,8 @@ export default {
     displayPopUp: (state) => state.displayPopUp,
   }),
   mounted() {
+    this.$gtag.set('user_properties', this.generateUserProperties());
+
     // MARK: google analytics gtag
     this.$gtag.pageview({
       page_location: window.location.href,
@@ -395,6 +398,87 @@ export default {
         });
     },
     ...mapMutations(['addVarToState']),
+    generateUserProperties() {
+      const properties = {};
+      const affiliationEntries = Object.entries(this.affiliations)
+        .filter((pair) => pair[1]);
+
+      this.populateProperty(
+        properties,
+        'affiliation',
+        {
+          'alumni': 'Alumni',
+          'applicant': 'Applicant',
+          'clinician': 'Clinician',
+          'faculty': 'Faculty',
+          'grad': 'Grad stud',
+          'grad_c2': 'GradC2',
+          'instructor': 'Instructor',
+          'intl_stud': 'Intl stud',
+          'past_stud': 'Former stud',
+          'pce': 'PCE',
+          'retiree': 'Retiree',
+          'staff_employee': 'Staff',
+          'stud_employee': 'Stud employee',
+          'student': 'Student',
+          'undergrad': 'Undergrad stud',
+          'undergrad_c2': 'UndergradC2',
+        },
+        affiliationEntries,
+      );
+      this.populateProperty(
+        properties,
+        'student_campus',
+        {
+          'seattle': 'Seattle',
+          'bothell': 'Bothell',
+          'tacoma': 'Tacoma',
+        },
+        affiliationEntries,
+        true,
+      );
+      this.populateProperty(
+        properties,
+        'employment_campus',
+        {
+          'official_seattle': 'Seattle',
+          'official_bothell': 'Bothell',
+          'official_tacoma': 'Tacoma',
+        },
+        affiliationEntries,
+        true,
+      );
+
+      if (this.affiliations['class_level']) {
+        properties['class_level'] = this.titleCaseWord(this.affiliations['class_level']);
+      }
+
+      return properties;
+    },
+    populateProperty(
+      properties,
+      propertyName,
+      propertyMap,
+      affiliationEntries,
+      singleValue = false
+    ) {
+      let value = affiliationEntries
+        .map((pair) => pair[0])
+        .filter((affiliation) => affiliation in propertyMap)
+        .map((affiliation) => propertyMap[affiliation]);
+      
+      if (singleValue) {
+        value = value[0];
+      }
+
+      if (value !== undefined) {
+        if (value instanceof Array && value.length > 0) {
+          properties[propertyName] = value;
+        } else {
+          properties[propertyName] = value;
+        }
+      }
+    }
   },
 };
 </script>
