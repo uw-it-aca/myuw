@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapActions } from 'vuex';
+import { mapState } from 'vuex';
 import Panel from '../_templates/panel.vue';
 
 export default {
