@@ -79,6 +79,15 @@ const customActions = {
       },
     }).then(() => commit('setReadTrue', notice)).catch(() => {});
   },
+  setReadNoUpdate: ({rootState}, notice) => {
+    axios.put('/api/v1/notices/', {
+      'notice_hashes': [notice.id_hash],
+    }, {
+      headers: {
+        'X-CSRFToken': rootState.csrfToken,
+      },
+    });
+  },
   fetch: fetchBuilder('/api/v1/notices/', postProcess, 'json'),
 };
 
