@@ -27,20 +27,28 @@ export default {
   data() {
     return {
       faCircle,
+      urlExtra: '',
     };
   },
   computed: {
     ...mapState('academic_events', {
-      allEvents: (state) => state.value.filter((e) => e.myuw_categories.all),
-      breakEvents: (state) => state.value.filter((e) => e.myuw_categories.breaks),
+      eventsByTerms: (state) => state.value,
     }),
     ...mapGetters('academic_events', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
+      isReadyTagged: 'isReadyTagged',
     }),
+    isReady() {
+      return this.isReadyTagged(this.urlExtra);
+    },
+    allEvents() {
+      return this.eventsByTerms[this.urlExtra].filter((e) => e.myuw_categories.all);
+    },
+    breakEvents() {
+      return this.eventsByTerms[this.urlExtra].filter((e) => e.myuw_categories.breaks);
+    },
   },
   created() {
-    this.fetch();
+    this.fetch(this.urlExtra);
   },
   methods: {
     ...mapActions('academic_events', ['fetch']),
