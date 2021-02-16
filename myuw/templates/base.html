@@ -93,6 +93,8 @@
   data-tracking-enabled="{{ google_tracking_enabled|lower }}"
   class="myuw-font-open-sans">
     {% csrf_token %}
+    <!-- Testing uw-alert with: http://127.0.0.1:8000/#uwalert-red -->
+    <script src="//www.washington.edu/static/alert.js" type="text/javascript"></script>
 
     <div id="vue_root" hidden>
         {% block body_content %}

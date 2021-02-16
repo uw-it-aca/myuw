@@ -16,7 +16,11 @@
       </span>
     </div>
     <b-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen">
-      <div v-for="(notice, i) in notices" :key="i">
+      <div
+        v-for="(notice, i) in notices"
+        :key="i"
+        v-observe-visibility="observerConfig(notice)"
+      >
         <div class="d-flex">
           <div>{{notice.category}}</div>
           <div class="ml-auto">
@@ -28,7 +32,6 @@
           <div v-html="notice.notice_title" />
         </h4>
         <div v-html="notice.notice_body" />
-        <button v-if="!notice.is_read" @click="onShowNotice(notice)">Mark Read</button>
       </div>
     </b-collapse>
   </div>
@@ -75,12 +78,23 @@ export default {
     }
   },
   methods: {
-    onShowNotice(notice) {
+    observerConfig(notice) {
+      return {
+        callback: (isVisible, entry) => {
+          if (isVisible) this.onNoticeVisible(notice, entry)
+        },
+        once: true,
+        intersection: {
+          threshold: 1.0,
+        }
+      };
+    },
+    onNoticeVisible(notice) {
       if (!notice.is_read) {
-        this.setRead(notice);
+        this.setReadNoUpdate(notice);
       }
     },
-    ...mapActions('notices', ['setRead']),
+    ...mapActions('notices', ['setReadNoUpdate']),
   },
 }
 </script>

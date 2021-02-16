@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="displayOnboardMessage || bannerMessages.length > 0"
-    class="myuw-messages bg-teal" role="complementary"
+    class="w-100 myuw-messages bg-teal" role="complementary"
   >
     <div class="text-center text-white myuw-text-md">
       <h2 class="sr-only">

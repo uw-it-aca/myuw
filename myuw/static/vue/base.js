@@ -32,6 +32,7 @@ import {
   faPlus,
   faCheckCircle,
   faChevronRight,
+  faChevronUp,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -107,6 +108,7 @@ library.add(faPlus);
 library.add(faCheckCircle);
 library.add(faCircle);
 library.add(faChevronRight);
+library.add(faChevronUp);
 
 // MARK: google analytics data stream measurement_id
 const gaCode = document.body.getAttribute('data-gtag');
@@ -165,6 +167,9 @@ Vue.use(VueMq, {
     desktop: Infinity,
   },
 });
+
+import VueObserveVisibility from 'vue-observe-visibility'
+Vue.use(VueObserveVisibility)
 
 const store = new Vuex.Store({
   state: {

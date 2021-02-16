@@ -7,9 +7,9 @@ env:
 
 on:
   push:
-    branches: [master, qa, develop]
+    branches: [master, qa, develop, feature/vue]
   pull_request:
-    branches: [master, qa, develop]
+    branches: [master, qa, develop, feature/vue]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -64,7 +64,140 @@ jobs:
           -e DJANGO_APP="$DJANGO_APP"
           -e "ENV=localdev" -e "AUTH=SAML_MOCK"
           app-test-container
-          bash -c ". ./docker/test.sh"
+          bash -c ". ./docker/test_python.sh"
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: python-coverage
+          path: .coverage.*
+
+      - name: Push Image to GCR
+        if: github.event_name == 'push'
+        uses: uw-it-aca/actions/gcr-push@v1.4
+        with:
+          image_tag: ${{ steps.cicd.outputs.image_tag }}
+          gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
+
+    outputs:
+      image_tag: ${{ steps.cicd.outputs.image_tag }}
+
+  eslint:
+    runs-on: ubuntu-18.04
+
+    container:
+      image: node:14.6.0-stretch
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install packages
+        run: npm install .
+      
+      - name: Run eslint
+        run: ./node_modules/.bin/eslint myuw/static/vue --ext .vue
+
+  jest:
+    runs-on: ubuntu-18.04
+
+    container:
+      image: node:14.6.0-stretch
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install packages
+        run: npm install .
+      
+      - name: Run jest
+        run: npx jest --ci --coverage myuw/*
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: jest-coverage
+          path: coverage/*
+
+  # cypress:
+  #   runs-on: ubuntu-18.04
+
+  #   needs: build
+
+  #   container:
+  #     image: cypress/browsers:node12.18.3-chrome87-ff82
+
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v2
+
+  #     - uses: actions/cache@v2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
+
+  #     - name: Install node modules
+  #       run: |
+  #         cd e2e
+  #         npm install .
+
+  #     - name: Run cypress tests
+  #       env:
+  #         CYPRESS_BASE_URL: http://myuw:8000
+  #       run: |
+  #         cd e2e
+  #         ./node_modules/.bin/cypress run
+      
+  #     # TODO: Make cypress collect the coverage report and store
+  #     #       it as an artifact
+
+  #     - name: Collect failure screenshots
+  #       uses: actions/upload-artifact@v2
+  #       if: failure()
+  #       with:
+  #         name: cypress-screenshots
+  #         path: e2e/cypress/screenshots
+
+  #   services:
+  #     myuw:
+  #       image: gcr.io/uwit-mci-axdd/${{needs.build.outputs.image_tag}}
+  #       env:
+  #         AUTH: SAML_MOCK
+  #       ports:
+  #         - 8000:8000
+
+  collect-coverage:
+    needs: [build, jest]
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: python-coverage
+      
+      - uses: actions/download-artifact@v2
+        with:
+          name: jest-coverage
+
+      # TODO: Download the cypress coverage artifact
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -87,17 +220,10 @@ jobs:
           coveralls-lcov -v -n lcov.info > js-coverage.json
           coveralls --merge=js-coverage.json
 
-      - name: Push Image to GCR
-        if: github.event_name == 'push'
-        uses: uw-it-aca/actions/gcr-push@v1.4
-        with:
-          image_tag: ${{ steps.cicd.outputs.image_tag }}
-          gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
-
   deploy:
     if: github.event_name == 'push'
 
-    needs: build
+    needs: [build, eslint, jest]
 
     runs-on: ubuntu-18.04
 
@@ -131,3 +257,13 @@ jobs:
           git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           app_instance: dev
+
+      - name: Deploy Vue Branch
+        if: steps.cicd.outputs.git_repo_branch == 'feature/vue'
+        uses: uw-it-aca/actions/cicd-deploy@v1.4
+        with:
+          release_name: ${{ env.RELEASE_NAME }}
+          commit_hash: ${{ steps.cicd.outputs.commit_hash }}
+          git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
+          gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
+          app_instance: vue

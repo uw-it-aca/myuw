@@ -1,10 +1,10 @@
 <template>
   <div class="mt-4">
-    <h4 class="h6 text-dark font-weight-bold">
+    <h4 class="h6 font-weight-bold text-dark-beige">
       Financial Aid
     </h4>
     <slot name="status" />
-    <ul class="list-unstyled m-0">
+    <ul class="list-unstyled">
       <li v-for="(notice, i) in finAidNotices" :key="i">
         <b-button
           v-b-toggle="`finAid-${notice.id_hash}-collapse-${_uid}`"
