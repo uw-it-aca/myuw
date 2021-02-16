@@ -201,11 +201,5 @@ describe('New International Student Card', () => {
     ).toBeFalsy();
 
     expect(wrapper.vm.notices).toHaveLength(1);
-    expect(wrapper.findAll('div')).toHaveLength(1);
-    // The html retuned from uw is a improper, it does not have the
-    // closing span tag.
-    expect(
-      wrapper.findAll('div').at(0).html()
-    ).toBe('<div class="myuw-text-md">' + mockNotices[23].notice_body + '</span></div>');
   });
 });
