@@ -60,11 +60,12 @@
         &:after { visibility: hidden; display: block; content: ""; clear: both; height: 0; } //clear fix
 
         li {
-            float: left;
+            display:inline-block;
             margin-right: 16px;
             width: 120px;
-            height: 230px;
+            min-height: 230px;
             overflow: hidden;
+            vertical-align: top;
 
             @media @two-column { margin-bottom: 16px;}
 
