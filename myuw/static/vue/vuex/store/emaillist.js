@@ -1,9 +1,21 @@
 import axios from 'axios';
 
 const customActions = {
-  requestCreateEmail({rootState}, data) {
-    data.csrfmiddlewaretoken = rootState.csrfToken;
-    return axios.post('/api/v1/emaillist/', data);
+  requestCreateEmail({rootState}, {list = [], onError = () => {}} = {}) {
+    let formDataStr = '';
+    formDataStr += `csrfmiddlewaretoken=${rootState.csrfToken}`;
+
+    list.forEach((item) => {
+      formDataStr += `&${encodeURIComponent(item.key)}=${encodeURIComponent(item.label)}`;
+    });
+
+    return axios.post(
+      '/api/v1/emaillist/',
+      formDataStr,
+      {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    ).catch(onError);
   }
 };
 
