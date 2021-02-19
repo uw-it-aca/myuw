@@ -10,10 +10,11 @@
       </h3>
     </template>
     <template #card-body>
-      <ul>
-        <li v-for="(ev, index) in events" :key="index">
+      <ul class="list-unstyled mb-0 myuw-text-md">
+        <li v-for="(ev, index) in events" :key="index"
+          class="mb-2">
           {{ formatBannerDate(ev) }} <br>
-          <a :href="ev.event_url">{{ ev.summary }}</a>
+          <a :href="ev.event_url" class="d-block">{{ ev.summary }}</a>
         </li>
       </ul>
       <div>
