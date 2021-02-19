@@ -16,7 +16,6 @@
           variant="link"
           class="p-0 border-0 text-danger font-weight-bold"
         >
-          <span v-if="collapseOpen">Hide</span>
           {{ regHoldsNotices.length }}
           {{ regHoldsNotices.length > 1 ? "holds" : "hold" }}
         </b-button>
