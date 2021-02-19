@@ -24,7 +24,7 @@
               <b-link
                 href="/profile/"
                 class="text-white font-weight-light"
-                aria-label="View your profile"
+                label="View your profile"
               >
                 <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
                 {{ netid }}
@@ -35,7 +35,7 @@
                 v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
-                aria-label="UW email services"
+                label="UW email services"
               >
                 <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email
                 error
@@ -44,7 +44,7 @@
                 v-else
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
-                aria-label="Open your email in new tab"
+                label="Open your email in new tab"
               >
                 <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email
               </b-link>
@@ -52,14 +52,14 @@
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
-                aria-label="Open search area"
+                label="Open search area"
               >
                 <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
-                aria-label="Sign out of MyUW"
+                label="Sign out of MyUW"
               >
                 <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-1" />Sign Out
               </b-link>
@@ -79,7 +79,7 @@
             variant="link"
             size="sm"
             class="d-lg-none p-0 border-0 text-white"
-            aria-label="Toggle Navigation Menu"
+            label="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="['far', 'square']" transform="right-1" class="m-0" />

@@ -86,11 +86,6 @@
       <b-button
         v-if="!isOpen"
         v-b-toggle.hidden_events_collapse
-        :aria-label="
-          `Show ${hiddenEvents.length} more ${
-            hiddenEvents.length > 1 ? 'events' : 'event'
-          }`
-        "
         variant="link"
         size="sm"
         class="w-100 p-0 border-0 text-dark"
@@ -100,7 +95,6 @@
       <b-button
         v-else
         v-b-toggle.hidden_events_collapse
-        aria-label="Show less"
         variant="link"
         size="sm"
         class="w-100 p-0 border-0 text-dark"

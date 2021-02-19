@@ -78,7 +78,6 @@
       <b-button
         v-if="!isOpen"
         v-b-toggle.grade_card_collapse
-        aria-label="SHOW MORE"
         title="Expand to show additional grade resources"
         variant="link"
         size="sm"
@@ -89,7 +88,6 @@
       <b-button
         v-else
         v-b-toggle.grade_card_collapse
-        aria-label="SHOW LESS"
         title="Collapse to hide additional grade resources"
         variant="link"
         size="sm"

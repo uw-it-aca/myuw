@@ -26,7 +26,7 @@
     </div>
 
     <div id="classlist_controls">
-      <b-tabs role="tablist" aria-label="Views">
+      <b-tabs role="tablist" title="Views">
         <b-tab title="Table" active>
           <uw-table-view
             :section="section"
