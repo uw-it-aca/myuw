@@ -21,7 +21,7 @@
     </div>
     <div v-else>
       <div v-if="!emailList.has_lists && emailList.has_joint">
-        <b-form-group label="Request a single email list for:">
+        <b-form-group title="Request a single email list for:">
             <b-form-radio value="joint" checked>
               {{emailList.course_abbr}}
               {{emailList.course_number}}
@@ -83,7 +83,7 @@
         <div v-show="emailList.has_lists">
           <b-form-group
             v-slot="{ ariaDescribedby }"
-            label="Request multiple email lists, one for each section selected:"
+            title="Request multiple email lists, one for each section selected:"
           >
             <b-form-checkbox
               v-model="allSelected"
@@ -106,7 +106,7 @@
     </div>
     <template #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-         rel="help" target="_blank" data-linklabel="Mailman Help"
+         rel="help" target="_blank" label="Mailman Help"
       >Mailman help</a>
       <button v-if="!emailList.no_secondary_section && !emailList.has_lists">
         <font-awesome-icon :icon="faArrowLeft" />
