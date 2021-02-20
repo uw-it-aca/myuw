@@ -65,9 +65,9 @@
             <br/>
             <span>
               Need more email lists for this class?
-              <b-button variant="link" @click="listView = true">
+              <b-link @click="listView = true">
                 Request multiple email lists.
-              </b-button>
+              </b-link>
             </span>
           </span>
         </p>
@@ -95,15 +95,19 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="$refs['request-modal'].hide()">Close</b-button>
+      <b-button @click="$refs['request-modal'].hide()" variant="light">
+        Close
+      </b-button>
     </template>
 
     <template v-else-if="!listView && !addError" #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="$refs['request-modal'].hide()">Close</b-button>
-      <b-button :disabled="disableActions" @click="requestSingle()">
+      <b-button @click="$refs['request-modal'].hide()" variant="light">
+        Close
+      </b-button>
+      <b-button :disabled="disableActions" @click="requestSingle()" variant="primary">
         Submit
       </b-button>
     </template>
@@ -112,14 +116,17 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="listView = false">
+      <b-button @click="listView = false" variant="outline-secondary">
         <font-awesome-icon :icon="faArrowLeft" />
         Back
       </b-button>
-      <b-button @click="$refs['request-modal'].hide()">Close</b-button>
+      <b-button @click="$refs['request-modal'].hide()" variant="light">
+        Close
+      </b-button>
       <b-button
         :disabled="selected.length === 0"
         @click="requestCreateEmail({list: selected, onError: () => addError = true})"
+        variant="primary"
       >
         Submit
       </b-button>
@@ -129,7 +136,9 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="$refs['request-modal'].hide()">Close</b-button>
+      <b-button @click="$refs['request-modal'].hide()" variant="light">
+        Close
+      </b-button>
     </template>
   </b-modal>
 </template>

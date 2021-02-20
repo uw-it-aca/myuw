@@ -102,34 +102,34 @@
       </template>
 
       <template v-if="!addView" #modal-footer>
-        <b-button
+        <b-button variant="primary"
           v-if="emailList.total_course_wo_list"
           @click="addView=true"
         >
           Add Mailing List
         </b-button>
-        <b-button @click="$refs['view-modal'].hide()">Close</b-button>
+        <b-button variant="light" @click="$refs['view-modal'].hide()">Close</b-button>
       </template>
 
       <template v-else-if="!addViewError" #modal-footer>
-        <b-button @click="addView=false">
+        <b-button @click="addView=false" variant="outline-secondary">
           <font-awesome-icon :icon="faArrowLeft" />
           Back
         </b-button>
-        <b-button
+        <b-button variant="primary"
           :disabled="selected.length === 0"
           @click="requestCreateEmail({list: selected, onError})"
         >
           Submit
         </b-button>
-        <b-button @click="$refs['view-modal'].hide()">Close</b-button>
+        <b-button variant="light" @click="$refs['view-modal'].hide()">Close</b-button>
       </template>
 
       <template v-else #modal-footer>
         <a href="http://watermelon.aca.uw.edu:8080/out?u=https%3A%2F%2Fitconnect.uw.edu%2Fconnect%2Femail%2Fresources%2Fmailman%2F&l=Mailman%20Help">
           Mailman Help
         </a>
-        <b-button @click="$refs['view-modal'].hide()">Close</b-button>
+        <b-button variant="light" @click="$refs['view-modal'].hide()">Close</b-button>
       </template>
     </b-modal>
   </div>
