@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 library.add(faExclamationTriangle);
 
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { createLocalVue } from './helper';
 
 import Vuex from 'vuex';
@@ -35,7 +35,6 @@ describe('Employee Profile Card', () => {
             employee: true,
             stud_employee: true,
             tacoma: false,
-            staticUrl: './',
           }
         }
       },
@@ -43,16 +42,12 @@ describe('Employee Profile Card', () => {
   });
 
   it('Verify computed properties', async () => {
-    debugger;
     axios.get.mockResolvedValue({data: javerageDirectory, status: 200});
-    debugger;
-    const wrapper = shallowMount(EmployeeProfileCard, {store, localVue});
-    debugger;
+    const wrapper = mount(EmployeeProfileCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
 
-    //expect(wrapper.vm.showCard).toBeFalsy();
-    expect(wrapper.vm.position).toBeFalsy();
-    
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.noFormsOfContact).toBe(false);
   });
 });
  

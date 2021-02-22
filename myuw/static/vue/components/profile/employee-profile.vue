@@ -13,23 +13,22 @@
       <div vocab="http://schema.org/" typeof="Person">
         <b-container class="bv-example-row">
           <template v-if="position">
-            <profile-entry title="Department"
-                          :content="position.department"
-            />
-            <profile-entry title="Job Title"
-                          :content="position.title"
-            />
+            <uw-card-property title="Department">
+              {{ position.department }}
+            </uw-card-property>
+            <uw-card-property title="Job Title">
+              {{ position.title }}
+            </uw-card-property>
           </template>
-          <profile-entry v-if="email"
-                         title="Email:"
-                         :content="email"
-          />
-          <profile-entry title="">
+          <uw-card-property v-if="email" title="Email:">
+            {{ email }}
+          </uw-card-property>
+          <uw-card-property title="">
             <template #title>
               <span class="sr-only" property="name">UW Office</span>
-              <h4 class="h4 font-weight-bold myuw-text-md">
+              <div class="flex-md-fill mr-3 bd-highlight font-weight-bold property-label">
                 Phone Number
-              </h4>
+              </div>
             </template>
             <p v-if="noFormsOfContact">No phone numbers listed</p>
             <p v-if="phone">
@@ -44,15 +43,15 @@
             <p v-if="fax">
               Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
             </p>
-          </profile-entry>
-          <profile-entry title="Address">
+          </uw-card-property>
+          <uw-card-property title="Address">
             <p v-if="!mailstop && !address">No address available</p>
             <div v-else>
               <p v-if="mailstop">Box {{ mailstop }}</p>
               <p v-if="address">{{ address }}</p>
             </div>
-          </profile-entry>
-          <profile-entry title="">
+          </uw-card-property>
+          <uw-card-property title="">
             <p>
               <uw-link-button
                 class="myuw-workday"
@@ -63,8 +62,9 @@
                 >Manage profile in Workday
               </uw-link-button>
             </p>
-          </profile-entry>
-          <profile-entry title="UW Directory">
+          </uw-card-property>
+          <hr>
+          <uw-card-property title="UW Directory">
             <p>
               <template v-if="publishEmpDir">
                 Name, position, work contact information are published.
@@ -84,7 +84,7 @@
                   href="https://www.washington.edu/home/peopledir/"
               >UW Directory</a>.
             </p>
-          </profile-entry>
+          </uw-card-property>
         </b-container>
       </div>
     </template>
@@ -94,13 +94,13 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
-import ProfileEntry from './profile-entry.vue';
+import CardProperty from '../_templates/card-property.vue';
 import LinkButton from '../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'profile-entry': ProfileEntry,
+    'uw-card-property': CardProperty,
     'uw-link-button': LinkButton,
   },
   computed: {
@@ -111,7 +111,7 @@ export default {
       staticUrl: (state) => state.staticUrl,
     }),
     ...mapState('directory', {
-      //directory: (state) => state.value,
+      directory: (state) => state.value,
       position: (state) => state.value.positions.find(position => position.is_primary),
       email: (state) => state.value.email_addresses[0],
       phone: (state) => state.value.phones[0],
@@ -128,14 +128,14 @@ export default {
       statusCode: 'statusCode',
     }),
     showCard: function () {
-      return true;//(this.employee || this.studentEmployee) && Boolean(this.directory);
+      return (this.employee || this.studentEmployee) && Boolean(this.directory);
     },
     showError: function () {
       return false;
     },
     noFormsOfContact() {
       return !this.phone && !this.mobile && !this.voiceMail && !this.fax;
-    }
+    },
   },
   created() {
     this.fetch();

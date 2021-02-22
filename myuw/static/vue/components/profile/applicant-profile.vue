@@ -12,7 +12,7 @@
     <template #card-body>
       <div vocab="http://schema.org/" typeof="Person">
         <b-container class="bv-example-row">
-          <profile-entry title="Permanent Address">
+          <uw-card-property title="Permanent Address">
             <div v-if="permanentAddress">
               <span>
                 {{ permanentAddress.street_line1 }}
@@ -27,16 +27,17 @@
             <div v-else>
               No address available
             </div>
-          </profile-entry>
-          <profile-entry title="">
+          </uw-card-property>
+          <uw-card-property title="">
             <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
                 title="Change address on Student Personal Services website"
             >Change Address</a>
-          </profile-entry>
-          <profile-entry title="Email Address">
+          </uw-card-property>
+          <hr>
+          <uw-card-property title="Email Address">
             <span v-if="email">{{ email }}</span>
             <span v-else>No email address availabe</span>
-          </profile-entry>
+          </uw-card-property>
         </b-container>
       </div>
     </template>
@@ -46,12 +47,12 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
-import ProfileEntry from './profile-entry.vue';
+import CardProperty from '../_templates/card-property.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'profile-entry': ProfileEntry,
+    'uw-card-property': CardProperty,
   },
   computed: {
     ...mapState('profile', {
@@ -92,7 +93,7 @@ export default {
         location += ' ' + address.zip_code;
       }
       return location;
-    }
+    },
   },
 };
 </script>
