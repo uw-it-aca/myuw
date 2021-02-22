@@ -34,6 +34,8 @@ lifecycle:
     enabled: true
 readiness:
   enabled: true
+securityPolicy:
+  enabled: true
 externalService:
   enabled: true
   name: dev-my-uw-db
@@ -48,7 +50,7 @@ database:
 repo: myuw
 instance: dev
 image:
-  repository: registry.hub.docker.com/acait/myuw
+  repository: gcr.io/uwit-mci-axdd/myuw
   tag: IMAGE_TAG
 memcached:
   enabled: true
@@ -71,6 +73,9 @@ environmentVariables:
 
   - name: ENV
     value: dev
+
+  - name: WEBSERVER
+    value: nginx
 
   - name: BOOKSTORE_ENV
     value: PROD

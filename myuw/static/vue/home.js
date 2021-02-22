@@ -32,6 +32,9 @@ import Transcripts from './components/home/former_student/transcripts.vue';
 import ContinuingEducation from './components/home/former_student/continuing-education.vue';
 import Alumni from './components/home/alumni.vue';
 import Retiree from './components/home/former_employee/retiree.vue';
+import AcadCalSnippet from './components/home/calendar/acad-cal-snippet.vue';
+import ResourceCards from './components/home/resource-cards.vue';
+import ResourceExplore from './components/home/resources/resource-explore.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -48,6 +51,8 @@ import profile from './vuex/store/profile';
 import myplan from './vuex/store/myplan';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
+import academicEvents from './vuex/store/academic_events';
+import resources from './vuex/store/resources';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -63,6 +68,8 @@ vueConf.store.registerModule('myplan', myplan);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('inst_schedule', inst_schedule);
+vueConf.store.registerModule('academic_events', academicEvents);
+vueConf.store.registerModule('resources', resources);
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
@@ -72,6 +79,7 @@ vueConf.store.commit('addVarToState', {
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
 Vue.component('myuw-notice-card', Notices);
+Vue.component('myuw-acad-cal-snippet', AcadCalSnippet);
 Vue.component('myuw-ns-critical-info', CriticalInfo);
 Vue.component('myuw-ns-international-student', NewInterStudent);
 Vue.component('myuw-applicant', Applicant);
@@ -95,6 +103,8 @@ Vue.component('myuw-transcripts', Transcripts);
 Vue.component('myuw-continuing-education', ContinuingEducation);
 Vue.component('myuw-alumni', Alumni);
 Vue.component('myuw-hr-payroll', HRPayroll);
+Vue.component('myuw-resource-cards', ResourceCards);
+Vue.component('myuw-resource-explore', ResourceExplore);
 
 new Vue({
   ...vueConf,

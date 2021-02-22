@@ -81,6 +81,7 @@ if os.getenv("ENV", "") == "localdev":
     MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
     MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
     MYUW_SKIP_ACCESS_CHECK = True
+    MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
 else:
     MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
     MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"

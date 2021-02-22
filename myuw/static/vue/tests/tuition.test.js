@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 dayjs.extend(require('dayjs/plugin/timezone'))
 import axios from 'axios';
-import {mount} from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import tuition from '../vuex/store/tuition';
@@ -47,21 +47,19 @@ describe('Tuition store', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = mount(TuitionFees, {store, localVue});
+    const wrapper = shallowMount(TuitionFees, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
 
     expect(wrapper.vm.isStudent).toBe(true);
     expect(wrapper.vm.isC2Grad).toBe(false);
     expect(wrapper.vm.isC2).toBe(false);
     expect(wrapper.vm.isPCE).toBe(false);
-    expect(wrapper.vm.now).toStrictEqual(dayjs('2013-04-15T00:00:01'));
     expect(wrapper.vm.notices.length).toBe(14);
     expect(wrapper.vm.finAidNotices.length).toBe(1);
     expect(wrapper.vm.pceTuitionDup.length).toBe(0);
     expect(wrapper.vm.tuitionDate.date).toBe("2014-08-20");
     expect(wrapper.vm.tuitionDate.formatted ).toBe('Wed, Aug 20');
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
-    expect(wrapper.vm.tuitionDate.diff).toBe(492);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(0);
     expect(wrapper.vm.tuition.tuition_accbalance).toBe(1);
     expect(wrapper.vm.tuition.tuition_due).toBe("2014-08-20");
@@ -74,12 +72,11 @@ describe('Tuition store', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = mount(TuitionFees, {store, localVue});
+    const wrapper = shallowMount(TuitionFees, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.tuitionDate.date).toBe("2021-02-09");
     expect(wrapper.vm.tuitionDate.formatted ).toBe('Tue, Feb 9');
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
-    expect(wrapper.vm.tuitionDate.diff).toBe(2857);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(1000.00);
     expect(wrapper.vm.tuition.tuition_accbalance).toBe(12345.00);
     expect(wrapper.vm.tuition.tuition_due).toBe("2013-04-09");

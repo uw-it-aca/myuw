@@ -86,6 +86,9 @@
         <li>
           <a target="_blank" :href="degreeAuditHref"> Audit your degree (DARS) </a>
         </li>
+        <li>
+          <a target="_blank" href="https://prereqmap.uw.edu/">Prereq Map</a>
+        </li>
       </ul>
     </div>
   </div>
@@ -135,12 +138,6 @@ export default {
         );
       }
       return {};
-    },
-    hasReadyCourses() {
-      return this.currentPlanData.has_ready_courses;
-    },
-    myplanHref() {
-      return this.currentPlanData.myplan_href;
     },
     myplanRegistrationHref() {
       return this.currentPlanData.registration_href;
