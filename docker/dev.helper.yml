@@ -56,8 +56,6 @@ services:
       ENV: localdev
     volumes:
       - ../myuw:/app/myuw
-    ports:
-      - "9229:9229"
     stdin_open: true
     tty: true
     working_dir: /app/
