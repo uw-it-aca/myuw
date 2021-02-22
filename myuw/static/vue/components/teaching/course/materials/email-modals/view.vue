@@ -6,7 +6,18 @@
       :title="`${emailList.course_abbr} ${emailList.course_number} Mailing Lists`"
       @hidden="onHide()"
     >
-      <template v-if="!addView">
+      <template v-if="emailList.request_sent || requestSuccess">
+        <b-alert variant="success" show>
+          <font-awesome-icon :icon="faCheck" />
+          Request submitted
+        </b-alert>
+        <p>Please note:</p>
+        <ul>
+          <li>An email confirmation will be sent to {{netid}}@uw.edu</li>
+          <li>Mailing lists may take up to 24 hours to activate</li>
+        </ul>
+      </template>
+      <template v-else-if="!addView">
         <div v-if="!emailList.is_primary && emailList.section_list.list_admin_url">
           <span>
             {{emailList.course_abbr}}
@@ -101,7 +112,17 @@
         </b-alert>
       </template>
 
-      <template v-if="!addView" #modal-footer>
+
+      <template v-if="emailList.request_sent || requestSuccess" #modal-footer>
+        <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+          rel="help" target="_blank" data-linklabel="Mailman Help"
+        >Mailman help</a>
+        <b-button @click="$refs['view-modal'].hide()" variant="light">
+          Close
+        </b-button>
+      </template>
+
+      <template v-else-if="!addView" #modal-footer>
         <b-button variant="primary"
           v-if="emailList.total_course_wo_list"
           @click="addView=true"
@@ -118,7 +139,7 @@
         </b-button>
         <b-button variant="primary"
           :disabled="selected.length === 0"
-          @click="requestCreateEmail({list: selected, onError})"
+          @click="requestCreateEmail({list: selected, onSuccess, onError})"
         >
           Submit
         </b-button>
@@ -160,6 +181,7 @@ export default {
     return {
       addView: false,
       addViewError: false,
+      requestSuccess: false,
       selected: [],
       faArrowLeft,
     };
@@ -175,7 +197,11 @@ export default {
     onHide() {
       this.addView = false;
       this.addViewError = false;
+      this.requestSuccess = false;
       this.selected = [];
+    },
+    onSuccess() {
+      this.requestSuccess = true;
     },
     onError() {
       this.addViewError = true;

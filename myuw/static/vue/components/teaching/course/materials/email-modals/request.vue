@@ -5,8 +5,8 @@
     title="Create Mailing List"
     @hidden="onHide()"
   >
-    <template v-if="emailList.request_sent">
-      <b-alert variant="success" :show="disableActions">
+    <template v-if="emailList.request_sent || requestSuccess">
+      <b-alert variant="success" show>
         <font-awesome-icon :icon="faCheck" />
         Request submitted
       </b-alert>
@@ -91,7 +91,7 @@
       </b-alert>
     </template>
 
-    <template v-if="emailList.request_sent" #modal-footer>
+    <template v-if="emailList.request_sent || requestSuccess" #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
@@ -125,7 +125,7 @@
       </b-button>
       <b-button
         :disabled="selected.length === 0"
-        @click="requestCreateEmail({list: selected, onError: () => addError = true})"
+        @click="requestCreateEmail({list: selected, onSuccess, onError})"
         variant="primary"
       >
         Submit
@@ -169,6 +169,7 @@ export default {
     return {
       listView: false,
       addError: false,
+      requestSuccess: false,
       faCheck,
       faArrowLeft,
       selected: [],
@@ -188,12 +189,20 @@ export default {
           key: `section_single_${this.emailList.section_list.section_id}`,
           label: this.emailList.section_list.section_label,
         }],
-        onError: () => this.addError = true,
+        onSuccess: this.onSuccess,
+        onError: this.onError,
       });
+    },
+    onSuccess() {
+      this.requestSuccess = true;
+    },
+    onError() {
+      this.addError = true;
     },
     onHide() {
       this.listView = false;
       this.addError = false;
+      this.requestSuccess = false;
       this.selected = [];
     },
   },

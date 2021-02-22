@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 const customActions = {
-  requestCreateEmail({rootState}, {list = [], onError = () => {}} = {}) {
+  requestCreateEmail(
+    {rootState},
+    {list = [], onSuccess = () => {}, onError = () => {}} = {}
+  ) {
     let formDataStr = '';
     formDataStr += `csrfmiddlewaretoken=${rootState.csrfToken}`;
 
@@ -15,7 +18,7 @@ const customActions = {
       {
         'Content-Type': 'application/x-www-form-urlencoded',
       }
-    ).catch(onError);
+    ).then(onSuccess).catch(onSuccess);
   }
 };
 
