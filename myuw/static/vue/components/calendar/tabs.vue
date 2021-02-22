@@ -1,12 +1,19 @@
 <template>
   <div v-if="isReady">
-    <b-tabs>
+    <b-tabs
+      pills 
+      justified
+      small
+      nav-class=""
+      active-nav-item-class="bg-purple"
+      nav-wrapper-class="mb-2 border rounded p-0 w-50 mx-auto"
+    >
       <b-tab title="All">
         <uw-calendar-cards :events="allEvents" />
       </b-tab>
       <b-tab>
         <template #title>
-          <font-awesome-icon :icon="faCircle" />
+          <font-awesome-icon :icon="faCircle" class="text-dark-beige" />
           Breaks
         </template>
         <uw-calendar-cards :events="breakEvents" />
