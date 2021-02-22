@@ -4,9 +4,9 @@
       pills
       justified
       small
-      nav-class=""
+      nav-class="bg-white rounded"
       active-nav-item-class="bg-purple"
-      nav-wrapper-class="mb-2 border rounded p-0 w-50 mx-auto"
+      nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto"
     >
       <b-tab title="All">
         <uw-calendar-cards :events="allEvents" />

@@ -23,13 +23,17 @@
           </ul>
         </template>
       </uw-card>
-      <div v-else :key="i">
+      <div v-else :key="i" class="mb-3 text-center myuw-text-md">
         <font-awesome-icon :icon="faCircle" class="align-baseline text-dark-beige myuw-text-tiny" />
         <a :href="eventTerm.event_url" :label="eventTerm.label">
           {{ eventTerm.events[0].summary }}
         </a>
-        {{ formatDateRange(eventTerm.events[0].start, eventTerm.events[0].end) }}
+        <div> {{ eventTerm.event_url }} </div>
+        <div class="font-weight-bold">
+          {{ formatDateRange(eventTerm.events[0].start, eventTerm.events[0].end) }}
+        </div>
       </div>
+      
     </template>
   </div>
 </template>
