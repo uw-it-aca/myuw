@@ -95,8 +95,8 @@ export default {
       pageTitle[0] = term;
       return pageTitle.map((s) => this.capitalizeString(s)).join(' ');
     },
-    nowDatetime(forceReal = false) {
-      if (this.cardDisplayDates && this.cardDisplayDates.comparison_date && !forceReal) {
+    nowDatetime(useCompDate = false) {
+      if (useCompDate && this.cardDisplayDates && this.cardDisplayDates.comparison_date) {
         return dayjs(this.cardDisplayDates.comparison_date);
       }
       // dayjs.tz.setDefault("America/Los_Angeles");
