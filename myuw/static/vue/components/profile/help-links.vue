@@ -11,13 +11,10 @@
         <li v-else-if="!isTacoma" class="mb-1">
           <a href="http://www.washington.edu/about/addressing-letters-to-the-uw/">Addressing Letters to the UW</a>
         </li>
-        <li v-if="isTacoma" class="mb-1">
-          <a href="https://www.tacoma.uw.edu/office-registrar/preferred-names">Preferred Names</a>
-        </li>
         <li class="mb-1">
-          <a :href="isTacoma ? prefNameLinkTac : prefNameLink">Preferred Names</a>
+          <a :href="prefNameLink">Preferred Names</a>
         </li>
-        <template v-if="student">
+        <template v-if="student || studEmployee">
           <li v-if="isTacoma" class="mb-1">
             <a href="http://www.tacoma.uw.edu/sites/default/files/sections/Registrar/Change-Student-Name.pdf">Change Your Legal Name</a>
           </li>
@@ -33,7 +30,7 @@
             </li>
           </template>
         </template>
-        <li v-if="employee" class="mb-1">
+        <li v-if="employee || studEmployee" class="mb-1">
           <a href="http://hr.uw.edu/benefits/life-events/change-your-address-name-gender-citizenship-or-birth-date/">Change Your Personal Information</a>
         </li>
         <li v-if="student" class="mb-1">
@@ -52,19 +49,19 @@ export default {
   components: {
     'uw-panel': Panel,
   },
-  data: function() {
-    return {
-      prefNameLinkTac: 'https://www.tacoma.uw.edu/office-registrar/preferred-names',
-      prefNameLink: 'https://registrar.washington.edu/students/preferred-names/',
-    };
-  },
   computed: {
     ...mapState({
       employee: (state) => state.user.affiliations.employee,
+      studEmployee: (state) => state.user.affiliations.stud_employee,
       student: (state) => state.user.affiliations.student,
       isTacoma: (state) => state.user.affiliations.tacoma,
       isBothell: (state) => state.user.affiliations.bothell,
     }),
+    prefNameLink() {
+      return (this.isTacoma
+      ? 'https://www.tacoma.uw.edu/office-registrar/preferred-names'
+      : 'https://registrar.washington.edu/students/preferred-names/');
+    },
   },
 };
 </script>
