@@ -95,7 +95,7 @@ export default {
       pageTitle[0] = term;
       return pageTitle.map((s) => this.capitalizeString(s)).join(' ');
     },
-    nowDatetime(useCompDate = false) {
+    nowDatetime(useCompDate = true) {
       if (useCompDate && this.cardDisplayDates && this.cardDisplayDates.comparison_date) {
         return dayjs(this.cardDisplayDates.comparison_date);
       }
