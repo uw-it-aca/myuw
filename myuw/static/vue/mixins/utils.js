@@ -1,10 +1,17 @@
 import dayjs from 'dayjs';
+import {mapState} from 'vuex';
+
 dayjs.extend(require('dayjs/plugin/calendar'))
 dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/timezone'))
 dayjs.extend(require('dayjs/plugin/utc'))
 
 export default {
+  computed: {
+    ...mapState({
+      cardDisplayDates: (state) => state.cardDisplayDates,
+    }),
+  },
   methods: {
     encodeForMaps(s) {
       if (s) {
@@ -88,9 +95,9 @@ export default {
       pageTitle[0] = term;
       return pageTitle.map((s) => this.capitalizeString(s)).join(' ');
     },
-    nowDatetime(cardDisplayDates = null) {
-      if (cardDisplayDates && cardDisplayDates.comparison_date) {
-        return dayjs(cardDisplayDates.comparison_date);
+    nowDatetime(useCompDate = true) {
+      if (useCompDate && this.cardDisplayDates && this.cardDisplayDates.comparison_date) {
+        return dayjs(this.cardDisplayDates.comparison_date);
       }
       // dayjs.tz.setDefault("America/Los_Angeles");
       // using client device's timezone
