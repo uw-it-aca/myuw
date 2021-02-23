@@ -300,7 +300,7 @@ def get_single_message_body(requestor_uwnetid,
                  **{'at': "get_single_message_body",
                     'err': thread.exception}})
     log_info(logger, {'msg': "Request emaillist For {}".format(
-        single_section_labels)})
+        " ".join(single_section_labels))})
     return message_body, num_sections_found
 
 
@@ -334,7 +334,7 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
                  **{'at': "get_joint_message_body",
                     'err': thread.exception}})
     log_info(logger, {'msg': "Request emaillist For {}".format(
-        joint_section_labels)})
+        " ".join(joint_section_labels))})
     return message_body, num_sections_found
 
 
