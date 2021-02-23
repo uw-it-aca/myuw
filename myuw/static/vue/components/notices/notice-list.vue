@@ -2,17 +2,15 @@
   <div v-if="notices.length !== 0" class="border-bottom py-3">
     <div v-b-toggle="collapseId">
       <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
-        <h3 class="m-0">{{title}}</h3>
+        <h3 class="m-0">{{ title }}</h3>
         <div class="ml-auto">
-          <span v-if="unreadCount">
-            {{unreadCount}} Unread
-          </span>
+          <span v-if="unreadCount"> {{ unreadCount }} Unread </span>
           <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" class="align-middle" />
-          <font-awesome-icon v-else :icon="faChevronUp" class="align-middle "/>
+          <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
         </div>
       </div>
       <span v-if="!critical && criticalCount !== 0" class="text-muted">
-        {{criticalCount}} Critical
+        {{ criticalCount }} Critical
       </span>
     </div>
     <b-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen" class="mt-3">
@@ -24,10 +22,14 @@
         class="bg-white mb-2 p-3"
       >
         <div class="d-flex">
-          <div>{{notice.category}}</div>
+          <div>{{ notice.category }}</div>
           <div class="ml-auto">
             <span v-if="!notice.is_read">Unread</span>
-            <font-awesome-icon v-if="notice.is_critical" :icon="faExclamationTriangle" />
+            <font-awesome-icon
+              v-if="notice.is_critical"
+              :icon="faExclamationTriangle"
+              class="text-danger"
+            />
           </div>
         </div>
         <h4>
@@ -43,9 +45,9 @@
 import {
   faChevronUp,
   faChevronDown,
-  faExclamationTriangle
+  faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
-import {mapActions} from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   props: {
@@ -69,7 +71,7 @@ export default {
       faChevronUp,
       faChevronDown,
       faExclamationTriangle,
-    }
+    };
   },
   computed: {
     unreadCount() {
@@ -77,18 +79,18 @@ export default {
     },
     criticalCount() {
       return this.notices.filter((n) => n.is_critical).length;
-    }
+    },
   },
   methods: {
     observerConfig(notice) {
       return {
         callback: (isVisible, entry) => {
-          if (isVisible) this.onNoticeVisible(notice, entry)
+          if (isVisible) this.onNoticeVisible(notice, entry);
         },
         once: true,
         intersection: {
           threshold: 1.0,
-        }
+        },
       };
     },
     onNoticeVisible(notice) {
@@ -98,5 +100,5 @@ export default {
     },
     ...mapActions('notices', ['setReadNoUpdate']),
   },
-}
+};
 </script>
