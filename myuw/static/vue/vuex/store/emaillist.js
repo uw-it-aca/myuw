@@ -18,7 +18,7 @@ const customActions = {
       {
         'Content-Type': 'application/x-www-form-urlencoded',
       }
-    ).then(onSuccess).catch(onSuccess);
+    ).then(onSuccess).catch(onError);
   }
 };
 
