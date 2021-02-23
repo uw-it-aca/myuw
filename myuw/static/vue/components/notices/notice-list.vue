@@ -1,25 +1,27 @@
 <template>
-  <div v-if="notices.length !== 0">
+  <div v-if="notices.length !== 0" class="border-bottom py-3">
     <div v-b-toggle="collapseId">
-      <div  class="d-flex">
-        <h3>{{title}}</h3>
+      <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
+        <h3 class="m-0">{{title}}</h3>
         <div class="ml-auto">
           <span v-if="unreadCount">
             {{unreadCount}} Unread
           </span>
-          <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
-          <font-awesome-icon v-else :icon="faChevronUp" />
+          <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" class="align-middle" />
+          <font-awesome-icon v-else :icon="faChevronUp" class="align-middle "/>
         </div>
       </div>
-      <span v-if="!critical && criticalCount !== 0">
+      <span v-if="!critical && criticalCount !== 0" class="text-muted">
         {{criticalCount}} Critical
       </span>
     </div>
-    <b-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen">
+    <b-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen" class="mt-3">
       <div
         v-for="(notice, i) in notices"
         :key="i"
         v-observe-visibility="observerConfig(notice)"
+        :class="[$mq === 'desktop' ? 'w-75 mx-auto' : '']"
+        class="bg-white mb-2 p-3"
       >
         <div class="d-flex">
           <div>{{notice.category}}</div>
