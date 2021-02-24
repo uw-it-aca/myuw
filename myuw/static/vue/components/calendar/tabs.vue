@@ -1,12 +1,22 @@
 <template>
   <div v-if="isReady">
-    <b-tabs>
+    <b-tabs
+      pills
+      justified
+      small
+      nav-class="bg-white rounded"
+      active-nav-item-class="bg-purple"
+      nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto"
+    >
       <b-tab title="All">
         <uw-calendar-cards :events="allEvents" />
       </b-tab>
       <b-tab>
         <template #title>
-          <font-awesome-icon :icon="faCircle" />
+          <font-awesome-icon
+            :icon="faCircle"
+            class="align-baseline text-dark-beige myuw-text-tiny"
+          />
           Breaks
         </template>
         <uw-calendar-cards :events="breakEvents" />
@@ -17,7 +27,7 @@
 
 <script>
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import CalendarCards from './calendar-cards.vue';
 
 export default {
@@ -53,5 +63,5 @@ export default {
   methods: {
     ...mapActions('academic_events', ['fetch']),
   },
-}
+};
 </script>
