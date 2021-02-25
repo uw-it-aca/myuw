@@ -60,7 +60,7 @@
           </li>
           <li>
             <a
-              href="https://myplan.uw.edu/audit/login/netid?rd=/student/myplan/dars"
+              href="https://myplan.uw.edu/dars"
               data-linklabel="MyPlan - Degree Audit"
             >
               Degree Audit Reporting System (DARS)
