@@ -4,7 +4,13 @@
       <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
         <h3 class="h4 m-0">{{ title }}</h3>
         <div class="ml-auto">
-          <span v-if="unreadCount"> {{ unreadCount }} New </span>
+          <span
+            v-if="unreadCount"
+            :class="[title.includes('Critical') ? 'border-danger' : 'border-secondary']"
+            class="mr-2 border rounded-pill px-2 myuw-text-md"
+          >
+            {{ unreadCount }} new
+          </span>
           <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" class="align-middle" />
           <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
         </div>
@@ -23,8 +29,10 @@
       >
         <div class="d-flex">
           <div class="text-muted mb-2 myuw-text-md">{{ notice.category }}</div>
-          <div class="ml-auto">
-            <span v-if="!notice.is_read">New</span>
+          <div class="ml-auto myuw-text-md">
+            <span v-if="!notice.is_read" class="badge badge-warning font-weight-normal"
+              >New</span
+            >
             <font-awesome-icon
               v-if="notice.is_critical"
               :icon="faExclamationTriangle"
