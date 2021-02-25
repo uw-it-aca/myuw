@@ -2,14 +2,14 @@
   <div v-if="notices.length !== 0" class="border-bottom py-3">
     <div v-b-toggle="collapseId">
       <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
-        <h3 class="m-0">{{ title }}</h3>
+        <h3 class="h4 m-0">{{ title }}</h3>
         <div class="ml-auto">
-          <span v-if="unreadCount"> {{ unreadCount }} Unread </span>
+          <span v-if="unreadCount"> {{ unreadCount }} New </span>
           <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" class="align-middle" />
           <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
         </div>
       </div>
-      <span v-if="!critical && criticalCount !== 0" class="text-muted">
+      <span v-if="!critical && criticalCount !== 0" class="text-muted myuw-text-md">
         {{ criticalCount }} Critical
       </span>
     </div>
@@ -22,9 +22,9 @@
         class="bg-white mb-2 p-3"
       >
         <div class="d-flex">
-          <div>{{ notice.category }}</div>
+          <div class="text-muted mb-2 myuw-text-md">{{ notice.category }}</div>
           <div class="ml-auto">
-            <span v-if="!notice.is_read">Unread</span>
+            <span v-if="!notice.is_read">New</span>
             <font-awesome-icon
               v-if="notice.is_critical"
               :icon="faExclamationTriangle"
@@ -32,10 +32,8 @@
             />
           </div>
         </div>
-        <h4>
-          <div v-html="notice.notice_title" />
-        </h4>
-        <div v-html="notice.notice_body" />
+        <h4 class="h5 font-weight-bold" v-html="notice.notice_title" />
+        <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
     </b-collapse>
   </div>
