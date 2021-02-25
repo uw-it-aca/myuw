@@ -73,7 +73,7 @@ def get_webpack_manifest():
         )
 
 
-@register.simple_tag
+# @register.simple_tag
 def render_webpack_entry(entry, **tag_attrs):
     entry_bundles = None
     if LOADER_SETTINGS['cache']:

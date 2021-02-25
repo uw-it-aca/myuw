@@ -95,6 +95,7 @@ export default {
         future: [],
       };
       const today = this.nowDatetime();
+      console.log(today);
       this.allNotices
         .filter((n) => n.location_tags.includes('notices_date_sort'))
         .forEach((n) => {

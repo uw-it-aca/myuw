@@ -18,6 +18,7 @@ INSTALLED_APPS += [
     'supporttools',
     'blti',
     'myuw.apps.MyUWConfig',
+    'webpack_bridge',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')

@@ -1,11 +1,11 @@
 'use strict'
 const path = require('path');
-const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const DjangoBridgePlugin = require('django-webpack-bridge');
 
 module.exports = {
   mode: (process.env.ENV === 'localdev' ? 'development' : 'production'),
@@ -104,34 +104,12 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(),
-    new WebpackManifestPlugin({
-      generate: (seed, files, entries) => {
-        const bundles = {};
-        let entryFiles = new Set();
-        for (const entryName in entries) {
-          entries[entryName].forEach((entryFile) => {
-            entryFiles.add(entryFile);
-          })
-        }
-
-        entryFiles = Array.from(entryFiles);
-        files.forEach((file) => {
-          for (const i in entryFiles) {
-            if (file['path'].includes(`/${entryFiles[i]}`)) {
-              bundles[entryFiles[i]] = file['path'];
-              entryFiles.splice(i, 1);
-              break;
-            }
-          }
-        });
-        return { entries: entries, bundles: bundles };
-      },
-    }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name]-[fullhash].css',
       chunkFilename: '[id]-[chunkhash].css',
     }),
+    new DjangoBridgePlugin(),
   ],
 
   resolve: {
