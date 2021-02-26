@@ -158,5 +158,6 @@ def _add_email_forwarding(request, context):
         except EmailServiceUrlException:
             logger.error('No email url for {}'.format(
                 my_uwemail_forwarding.fwd))
+            return  # MUWM-4700
     c_user['email_forward_url'] = None
     c_user['email_error'] = True

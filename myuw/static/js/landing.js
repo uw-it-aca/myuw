@@ -94,7 +94,7 @@ var Landing = {
         }
         if (window.user.applicant) {
             desktop_body_cards.push(SeattleApplicationCard);
-            desktop_body_cards.push(BothellApplicationCard);
+            // desktop_body_cards.push(BothellApplicationCard);
             desktop_body_cards.push(TacomaApplicationCard);
         }
 
@@ -153,7 +153,7 @@ var Landing = {
 
         if (window.user.applicant && !window.user.registered_stud) {
             mobile_cards.push(SeattleApplicationCard);
-            mobile_cards.push(BothellApplicationCard);
+            // mobile_cards.push(BothellApplicationCard);
             mobile_cards.push(TacomaApplicationCard);
         }
 

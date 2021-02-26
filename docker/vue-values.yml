@@ -1,0 +1,332 @@
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 2
+targetAverageUtilization: 90
+resources:
+  limits:
+    cpu: 1.0
+    memory: 768Mi
+  requests:
+    cpu: 100m
+    memory: 700Mi
+ingress:
+  enabled: true
+  tls:
+    myuw:
+      secretName: vue.my.uw.edu-ingress-cert
+      hosts:
+        - vue.my.uw.edu
+  hosts:
+    myuw:
+      host: vue.my.uw.edu
+      paths:
+        - "/"
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
+    nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
+lifecycle:
+  enabled: true
+  preStop:
+    enabled: true
+securityPolicy:
+  enabled: true
+affinity:
+   podsSpanNodes: true
+readiness:
+  enabled: true
+externalService:
+  enabled: true
+  name: vue-my-uw-db
+  type: ClusterIP
+  serviceAddress: 172.18.0.19
+  servicePort: 3306
+database:
+  engine: mysql
+  name: myuw_test
+  hostname: vue-my-uw-db
+  secretName: vue.my.uw.edu-sql-secrets
+repo: myuw
+instance: vue
+image:
+  repository: gcr.io/uwit-mci-axdd/myuw
+  tag: IMAGE_TAG
+memcached:
+  enabled: true
+  replicaCount: 1
+  updateStrategy:
+    type: RollingUpdate
+  resources:
+    limits:
+      memory: 256Mi
+    requests:
+      memory: 256Mi
+certs:
+  mounted: true
+  certPath: /certs/myuw.s.uw.edu-uwca.cert
+  keyPath: /certs/myuw.s.uw.edu-uwca.key
+  secretName: vue.my.uw.edu-uwca-certs
+cronjob:
+  enabled: true
+  jobs:
+    - name: clear-expired-sessions
+      schedule: "1 10 * * 6"
+      command: ["/scripts/management_command.sh"]
+      args: ["clear_expired_sessions", "7"]
+environmentVariables:
+  - name: AUTH
+    value: SAML
+
+  - name: ENV
+    value: dev
+
+  - name: WEBSERVER
+    value: nginx
+
+  - name: BOOKSTORE_ENV
+    value: PROD
+  - name: BOOK_TIMEOUT
+    value: "15"
+
+  - name: CALENDAR_ENV
+    value: PROD
+  - name: CALENDAR_TIMEOUT
+    value: "5"
+
+  - name: CANVAS_ENV
+    value: PROD
+  - name: CANVAS_TIMEOUT
+    value: "60"
+
+  - name: CODA_ENV
+    value: PROD
+  - name: CODA_TIMEOUT
+    value: "10"
+
+  - name: GRAD_ENV
+    value: PROD
+  - name: GRAD_TIMEOUT
+    value: "10"
+
+  - name: GRADEPAGE_ENV
+    value: PROD
+  - name: GRADEPAGE_TIMEOUT
+    value: "10"
+
+  - name: GWS_ENV
+    value: PROD
+  - name: GWS_TIMEOUT
+    value: "5"
+
+  - name: HFS_ENV
+    value: PROD
+  - name: HFS_TIMEOUT
+    value: "5"
+
+  - name: IASYSTEM_UW_ENV
+    value: PROD
+  - name: IASYSTEM_UW_TIMEOUT
+    value: "10"
+
+  - name: IASYSTEM_UWB_ENV
+    value: PROD
+  - name: IASYSTEM_UWB_TIMEOUT
+    value: "10"
+
+  - name: IASYSTEM_UWT_ENV
+    value: PROD
+  - name: IASYSTEM_UWT_TIMEOUT
+    value: "10"
+
+  - name: IASYSTEM_UWEO_AP_ENV
+    value: PROD
+  - name: IASYSTEM_UWEO_AP_TIMEOUT
+    value: "10"
+
+  - name: IASYSTEM_UWEO_IELP_ENV
+    value: PROD
+  - name: IASYSTEM_UWEO_IELP_TIMEOUT
+    value: "10"
+
+  - name: LIBCURRICS_ENV
+    value: PROD
+  - name: LIBCURRICS_TIMEOUT
+    value: "10"
+
+  - name: LIBRARIES_ENV
+    value: PROD
+  - name: LIBRARIES_TIMEOUT
+    value: "10"
+
+  - name: MAILMAN_ENV
+    value: PROD
+  - name: MAILMAN_TIMEOUT
+    value: "30"
+
+  - name: MYPLAN_ENV
+    value: PROD
+  - name: MYPLAN_TIMEOUT
+    value: "10"
+
+  - name: PWS_ENV
+    value: PROD
+  - name: PWS_TIMEOUT
+    value: "10"
+
+  - name: SDBMYUW_ENV
+    value: PROD
+  - name: SDBMYUW_TIMEOUT
+    value: "10"
+
+  - name: SWS_ENV
+    value: PROD
+  - name: SWS_TIMEOUT
+    value: "10"
+
+  - name: UPASS_ENV
+    value: PROD
+  - name: UPASS_TIMEOUT
+    value: "10"
+
+  - name: UWNETID_ENV
+    value: PROD
+  - name: UWNETID_TIMEOUT
+    value: "10"
+
+  - name: UWIDP_ENV
+    value: PROD
+  - name: UWIDP_POOL_SIZE
+    value: "5"
+  - name: UWIDP_TIMEOUT
+    value: "10"
+
+  - name: CLUSTER_CNAME
+    value: vue.my.uw.edu
+
+  - name: MEMCACHED_MAX_POOL_SIZE
+    value: "10"
+
+externalSecrets:
+  enabled: true
+  secrets:
+    - name: vue.my.uw.edu-secrets
+      externalKey: axdd/kv/data/my/vue/secrets
+      data:
+        - name: django-secret
+          property: django-secret
+        - name: canvas-account-id
+          property: canvas-account-id
+        - name: canvas-oauth-bearer
+          property: canvas-oauth-bearer
+        - name: coda-auth-token
+          property: coda-auth-token
+        - name: email-host
+          property: email-host
+        - name: mailman-auth-key
+          property: mailman-auth-key
+        - name: mailman-request-recipient
+          property: mailman-request-recipient
+        - name: safe-email-recipient
+          property: safe-email-recipient
+        - name: section-status-queue-arn
+          property: section-status-queue-arn
+        - name: section-status-key-id
+          property: section-status-key-id
+        - name: section-status-key
+          property: section-status-key
+        - name: google-analytics-key
+          property: google-analytics-key
+        - name: google-search-key
+          property: google-search-key
+
+    - name: vue.my.uw.edu-sql-secrets
+      externalKey: axdd/kv/data/my/test/sql-secrets
+      data:
+        - name: username
+          property: sql_user
+        - name: password
+          property: sql_pass
+
+    - name: vue.my.uw.edu-uwca-certs
+      externalKey: axdd/kv/data/my/prod/uwca-certs
+      data:
+        - name: myuw.s.uw.edu-uwca.key
+          property: key
+        - name: myuw.s.uw.edu-uwca.cert
+          property: cert
+
+    - name: vue.my.uw.edu-ic-certs
+      externalKey: axdd/kv/data/my/vue/ic-certs
+      data:
+        - name: vue.my.uw.edu.cert
+          property: cert
+
+    - name: vue.my.uw.edu-uw-idp-cert
+      externalKey: axdd/kv/data/idp-cert
+      data:
+        - name: uw-idp-cert
+          property: cert
+
+environmentVariablesSecrets:
+  django-secret:
+    name: DJANGO_SECRET
+    secretName: vue.my.uw.edu-secrets
+    secretKey: django-secret
+  canvas-account-secret:
+    name: CANVAS_ACCOUNT_ID
+    secretName: vue.my.uw.edu-secrets
+    secretKey: canvas-account-id
+  canvas-token-secret:
+    name: CANVAS_OAUTH_BEARER
+    secretName: vue.my.uw.edu-secrets
+    secretKey: canvas-oauth-bearer
+  coda-token-secret:
+    name: CODA_AUTH_TOKEN
+    secretName: vue.my.uw.edu-secrets
+    secretKey: coda-auth-token
+  email_host-secret:
+    name: EMAIL_HOST
+    secretName: vue.my.uw.edu-secrets
+    secretKey: email-host
+  mailman-token-secret:
+    name: MAILMAN_AUTH_KEY
+    secretName: vue.my.uw.edu-secrets
+    secretKey: mailman-auth-key
+  mailman-request-secret:
+    name: MAILMAN_REQUEST_RECIPIENT
+    secretName: vue.my.uw.edu-secrets
+    secretKey: mailman-request-recipient
+  safe_email_recipient-secret:
+    name: SAFE_EMAIL_RECIPIENT
+    secretName: vue.my.uw.edu-secrets
+    secretKey: safe-email-recipient
+  SectionStatusQueueARN:
+    name: SECTION_STATUS_QUEUE_ARN
+    secretName: vue.my.uw.edu-secrets
+    secretKey: section-status-queue-arn
+  SectionStatusKeyId:
+    name: SECTION_STATUS_KEY_ID
+    secretName: vue.my.uw.edu-secrets
+    secretKey: section-status-key-id
+  SectionStatusKey:
+    name: SECTION_STATUS_KEY
+    secretName: vue.my.uw.edu-secrets
+    secretKey: section-status-key
+  GoogleAnalyticsKey:
+    name: GOOGLE_ANALYTICS_KEY
+    secretName: vue.my.uw.edu-secrets
+    secretKey: google-analytics-key
+  GoogleSearchKey:
+    name: GOOGLE_SEARCH_KEY
+    secretName: vue.my.uw.edu-secrets
+    secretKey: google-search-key
+  SAMLServiceProviderCert:
+    name: SP_CERT
+    secretName: vue.my.uw.edu-ic-certs
+    secretKey: vue.my.uw.edu.cert
+  SAMLIDPCert:
+    name: IDP_CERT
+    secretName: vue.my.uw.edu-uw-idp-cert
+    secretKey: uw-idp-cert
