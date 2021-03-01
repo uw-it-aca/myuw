@@ -1,0 +1,51 @@
+{
+    "uwnetid": "javg002",
+    "uwregid": "9136CCB8F66711D5BE060004AC494002",
+    "birth_date": "1961-10-26",
+    "email": "japplicant@u.washington.edu",
+    "first_name": "Jade",
+    "last_name": "Student2",
+    "student_name": "Average,Jade Joseph",
+    "student_number": "1033002",
+    "employee_id": "123456789",
+    "directory_release": true,
+    "local_address": {
+        "city": "Seattle",
+        "country": "United States",
+        "street_line1": "4634 26th Ave NE",
+        "street_line2": "APT 102",
+        "postal_code": "",
+        "state": "WA",
+        "zip_code": "98105-4566"
+    },
+    "local_phone": null,
+    "permanent_address": {
+        "city": "Bellevue",
+        "country": "United States",
+        "street_line1": "1645 140th Ave NE",
+        "street_line2": "APT 980",
+        "postal_code": "",
+        "state": "WA",
+        "zip_code": "98005-1234"
+    },
+    "permanent_phone": "4255556789",
+    "visa_type": null,
+    "display_name": "J. Average Applicant",
+    "password": {
+        "uwnetid": "japplicant",
+        "kerb_status": "Active",
+        "last_change": "2013-01-27 10:49:42-08:00",
+        "interval": 10368000,
+        "last_change_med": null,
+        "expires_med": null,
+        "interval_med": null,
+        "minimum_length": 8,
+        "time_stamp": "2016-12-16 14:21:40-08:00",
+        "netid_status": [
+            "Person",
+            "Active"
+        ],
+        "days_after_last_pw_change": 77,
+        "has_active_med_pw": false
+    }
+}
