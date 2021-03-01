@@ -400,86 +400,47 @@ export default {
     ...mapMutations(['addVarToState']),
     generateUserProperties() {
       const properties = {};
-      const affiliationEntries = Object.entries(this.affiliations)
-        .filter((pair) => pair[1]);
-
-      this.populateProperty(
-        properties,
-        'affiliation',
-        {
-          'alumni': 'Alumni',
-          'applicant': 'Applicant',
-          'clinician': 'Clinician',
-          'faculty': 'Faculty',
-          'grad': 'Grad stud',
-          'grad_c2': 'GradC2',
-          'instructor': 'Instructor',
-          'intl_stud': 'Intl stud',
-          'past_stud': 'Former stud',
-          'pce': 'PCE',
-          'retiree': 'Retiree',
-          'staff_employee': 'Staff',
-          'stud_employee': 'Stud employee',
-          'student': 'Student',
-          'undergrad': 'Undergrad stud',
-          'undergrad_c2': 'UndergradC2',
-        },
-        affiliationEntries,
-      );
-      this.populateProperty(
-        properties,
-        'student_campus',
-        {
-          'seattle': 'Seattle',
-          'bothell': 'Bothell',
-          'tacoma': 'Tacoma',
-        },
-        affiliationEntries,
-        true,
-      );
-      this.populateProperty(
-        properties,
-        'employment_campus',
-        {
-          'official_seattle': 'Seattle',
-          'official_bothell': 'Bothell',
-          'official_tacoma': 'Tacoma',
-        },
-        affiliationEntries,
-        true,
+      properties['affiliation'] = (
+        this.affiliations['applicant'] ? 'Applicant' :
+        this.affiliations['faculty'] ? 'Faculty' :
+        this.affiliations['staff_employee'] ? 'Staff' :
+        this.affiliations['student'] ? 'Student' :
+        this.affiliations['alumni'] ? 'Alumni' : null
       );
 
-      if (this.affiliations['class_level']) {
-        properties['class_level'] = this.titleCaseWord(this.affiliations['class_level']);
-      }
+      properties['class_level'] = this.titleCaseWord(this.affiliations['class_level']);
 
+      properties['continuum_college'] = (
+        this.affiliations['grad_c2'] ? 'GradC2' :
+        this.affiliations['undergrad_c2'] ? 'UndergradC2' :
+        this.affiliations['pce'] ? 'PCE' : null
+      );
+
+      properties['emp_position'] = (
+        this.affiliations['instructor'] ? 'Instructor' :
+        this.affiliations['stud_employee'] ? 'Stud employee' :
+        this.affiliations['clinician'] ? 'Clinician' :
+        this.affiliations['retiree'] ? 'Retiree' : null
+      );
+
+      properties['student_prop'] = (
+        this.affiliations['intl_stud'] ? 'International' :
+        this.affiliations['past_stud'] ? 'Former' : null
+      );
+
+      properties['student_campus'] = (
+        this.affiliations['seattle'] ? 'Seattle' :
+        this.affiliations['bothell'] ? 'Bothell' :
+        this.affiliations['tacoma'] ? 'Tacoma' : null
+      );
+
+      properties['employment_campus'] = (
+        this.affiliations['official_seattle'] ? 'Seattle' :
+        this.affiliations['official_bothell'] ? 'Bothell' :
+        this.affiliations['official_tacoma'] ? 'Tacoma' : null
+      );
       return properties;
     },
-    populateProperty(
-      properties,
-      propertyName,
-      propertyMap,
-      affiliationEntries,
-      singleValue = false
-    ) {
-      let value = affiliationEntries
-        .map((pair) => pair[0])
-        .filter((affiliation) => affiliation in propertyMap)
-        .map((affiliation) => propertyMap[affiliation]);
-      
-      if (singleValue) {
-        value = value[0];
-      }
-
-      if (value !== undefined) {
-        if (value instanceof Array && value.length > 0) {
-          properties[propertyName] = {};
-          value.forEach((val) => properties[propertyName][val] = true);
-        } else {
-          properties[propertyName] = value;
-        }
-      }
-    }
   },
 };
 </script>
