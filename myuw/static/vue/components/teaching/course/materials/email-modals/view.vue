@@ -117,14 +117,14 @@
         <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
           rel="help" target="_blank" data-linklabel="Mailman Help"
         >Mailman help</a>
-        <b-button @click="$refs['view-modal'].hide()" variant="light">
+        <b-button variant="light" @click="$refs['view-modal'].hide()">
           Close
         </b-button>
       </template>
 
       <template v-else-if="!addView" #modal-footer>
-        <b-button variant="primary"
-          v-if="emailList.total_course_wo_list"
+        <b-button v-if="emailList.total_course_wo_list"
+          variant="primary"
           @click="addView=true"
         >
           Add Mailing List
@@ -133,7 +133,7 @@
       </template>
 
       <template v-else-if="!addViewError" #modal-footer>
-        <b-button @click="addView=false" variant="outline-secondary">
+        <b-button variant="outline-secondary" @click="addView=false">
           <font-awesome-icon :icon="faArrowLeft" />
           Back
         </b-button>

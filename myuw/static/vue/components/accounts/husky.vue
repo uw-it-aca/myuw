@@ -6,8 +6,8 @@
 
     <template #card-body>
       <ul class="list-unstyled">
-        <li>
-          <uw-card-status v-if="hfs.student_husky_card">
+        <li v-if="hfs.student_husky_card">
+          <uw-card-status>
             <template #status-label>Student Husky Account</template>
             <template #status-value>${{ hfs.student_husky_card.balance.toFixed(2) }}</template>
             <template #status-content>
@@ -17,12 +17,12 @@
             </template>
           </uw-card-status>
         </li>
-        <li>
-          <uw-card-status v-if="hfs.employee_husky_card">
+        <li v-if="hfs.employee_husky_card">
+          <uw-card-status>
             <template #status-label>Employee Husky Account</template>
             <template #status-value>${{ hfs.employee_husky_card.balance.toFixed(2) }}</template>
             <template #status-content>
-              <div v-if="hfs.student_husky_card.last_updated" class="myuw-text-sm text-muted">
+              <div v-if="hfs.employee_husky_card.last_updated" class="myuw-text-sm text-muted">
                 Last transaction: {{ hfs.employee_husky_card.last_updated }}
               </div>
             </template>
@@ -92,10 +92,9 @@ export default {
       );
     },
     getActionUrl: function () {
-      if (this.hfs.student_husky_card) {
-        return this.hfs.student_husky_card.add_funds_url;
-      }
-      return this.hfs.employee_husky_card.add_funds_url;
+      return (this.hfs.student_husky_card
+        ? this.hfs.student_husky_card.add_funds_url
+        : this.hfs.employee_husky_card.add_funds_url);
     },
   },
   mounted() {
