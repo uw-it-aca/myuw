@@ -1,12 +1,22 @@
 <template>
   <div v-if="isReady">
-    <b-tabs>
+    <b-tabs
+      pills
+      justified
+      small
+      nav-class="bg-white rounded"
+      active-nav-item-class="bg-purple"
+      nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto"
+    >
       <b-tab title="All">
         <uw-calendar-cards :events="allEvents" />
       </b-tab>
       <b-tab>
         <template #title>
-          <font-awesome-icon :icon="faCircle" />
+          <font-awesome-icon
+            :icon="faCircle"
+            class="align-baseline text-dark-beige myuw-text-tiny"
+          />
           Breaks
         </template>
         <uw-calendar-cards :events="breakEvents" />
@@ -17,7 +27,7 @@
 
 <script>
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import CalendarCards from './calendar-cards.vue';
 
 export default {
@@ -27,23 +37,31 @@ export default {
   data() {
     return {
       faCircle,
+      urlExtra: '',
     };
   },
   computed: {
     ...mapState('academic_events', {
-      allEvents: (state) => state.value.filter((e) => e.myuw_categories.all),
-      breakEvents: (state) => state.value.filter((e) => e.myuw_categories.breaks),
+      eventsByTerms: (state) => state.value,
     }),
     ...mapGetters('academic_events', {
-      isReady: 'isReady',
-      isErrored: 'isErrored',
+      isReadyTagged: 'isReadyTagged',
     }),
+    isReady() {
+      return this.isReadyTagged(this.urlExtra);
+    },
+    allEvents() {
+      return this.eventsByTerms[this.urlExtra].filter((e) => e.myuw_categories.all);
+    },
+    breakEvents() {
+      return this.eventsByTerms[this.urlExtra].filter((e) => e.myuw_categories.breaks);
+    },
   },
   created() {
-    this.fetch();
+    this.fetch(this.urlExtra);
   },
   methods: {
     ...mapActions('academic_events', ['fetch']),
   },
-}
+};
 </script>

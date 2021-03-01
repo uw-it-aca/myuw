@@ -168,6 +168,9 @@ Vue.use(VueMq, {
   },
 });
 
+import VueObserveVisibility from 'vue-observe-visibility'
+Vue.use(VueObserveVisibility)
+
 const store = new Vuex.Store({
   state: {
     user: JSON.parse(document.getElementById('user').innerHTML),
