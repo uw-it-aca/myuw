@@ -9,7 +9,7 @@
           v-if="activeButtons['edit']"
           v-b-toggle="`${customId}-collapse`"
           variant="link"
-          :aria-label="`Edit ${link.label} link`"
+          :label="`Edit ${link.label} link`"
           class="p-0 mr-1 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
@@ -19,7 +19,7 @@
         <b-button
           v-if="activeButtons['remove']"
           variant="link"
-          :aria-label="`Remove ${link.label} link from Quick Links list`"
+          :label="`Remove ${link.label} link from Quick Links list`"
           class="p-0 m-0 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
@@ -30,7 +30,7 @@
         <span v-if="activeButtons['save']">
           <font-awesome-icon
             v-if="link.added"
-            :aria-label="`${link.label} link saved to Quick Links`"
+            :label="`${link.label} link saved to Quick Links`"
             :icon="['fa', 'check']"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
@@ -39,7 +39,7 @@
           <b-button
             v-else
             variant="link"
-            :aria-label="`Save ${link.label} link to your Quick Links list`"
+            :label="`Save ${link.label} link to your Quick Links list`"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"

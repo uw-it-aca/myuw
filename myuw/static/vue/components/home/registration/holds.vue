@@ -16,9 +16,10 @@
           variant="link"
           class="p-0 border-0 text-danger font-weight-bold"
         >
-          <span v-if="collapseOpen">Hide</span>
           {{ regHoldsNotices.length }}
           {{ regHoldsNotices.length > 1 ? "holds" : "hold" }}
+          <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
+          <font-awesome-icon v-else :icon="faChevronUp" />
         </b-button>
       </div>
     </div>
@@ -43,6 +44,10 @@
 </template>
 
 <script>
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 export default {
   props: {
     summerCardLabel: {
@@ -61,6 +66,8 @@ export default {
   data: function() {
     return {
       collapseOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {

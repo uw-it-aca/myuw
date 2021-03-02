@@ -72,7 +72,7 @@
           <div class="mobile-column-selector">
             <b-form-select
               v-model="mobile['current']"
-              aria-label="Select the Day of Week:"
+              title="Select the Day of Week:"
               :options="mobile['options']"
               class="font-weight-bold myuw-text-md"
             />
