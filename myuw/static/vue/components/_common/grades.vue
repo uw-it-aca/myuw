@@ -76,24 +76,15 @@
     </template>
     <template #card-footer>
       <b-button
-        v-if="!isOpen"
         v-b-toggle.grade_card_collapse
-        title="Expand to show additional grade resources"
         variant="link"
         size="sm"
         class="w-100 p-0 text-dark"
+        :title="buttonTitle"
       >
-        Resources <font-awesome-icon :icon="faChevronDown" />
-      </b-button>
-      <b-button
-        v-else
-        v-b-toggle.grade_card_collapse
-        title="Collapse to hide additional grade resources"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 text-dark"
-      >
-        Resources <font-awesome-icon :icon="faChevronUp" />
+        Resources
+        <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
+        <font-awesome-icon v-else :icon="faChevronDown" />
       </b-button>
     </template>
   </uw-card>
@@ -148,6 +139,12 @@ export default {
     },
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
+    },
+    buttonTitle() {
+      return (this.isOpen
+          ? 'Collapse to hide additional grade resources'
+          : 'Expand to show additional grade resources'
+      );
     },
     gradeSubmissionDeadline: function() {
       if (this.term in this.courses) {
