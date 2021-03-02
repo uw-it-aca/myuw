@@ -7,6 +7,7 @@ class Logger {
     component.$nextTick(() => {
       let compTid = component.compTid;
       if (!compTid) {
+        // Try to create the compTid from the card heading
         const cardHeading = component.$slots['card-heading'];
         if (
           cardHeading &&
@@ -20,6 +21,7 @@ class Logger {
       }
 
       let parentCompTag = null;
+      // Try to find the component tag
       for (let comp=component.$parent; comp.$parent; comp = comp.$parent) {
         if (comp.$options._componentTag.startsWith("myuw")) {
           parentCompTag = comp.$options._componentTag;
