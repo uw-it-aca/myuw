@@ -83,7 +83,7 @@
         size="sm"
         class="w-100 p-0 text-dark"
       >
-        SHOW MORE
+        Resources <font-awesome-icon :icon="faChevronDown" />
       </b-button>
       <b-button
         v-else
@@ -93,7 +93,7 @@
         size="sm"
         class="w-100 p-0 text-dark"
       >
-        SHOW LESS
+        Resources <font-awesome-icon :icon="faChevronUp" />
       </b-button>
     </template>
   </uw-card>
@@ -101,6 +101,10 @@
 
 <script>
 import dayjs from 'dayjs';
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -113,6 +117,8 @@ export default {
       term: null,
       showOnlyATerm: false,
       isOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {
