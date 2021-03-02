@@ -6,6 +6,7 @@
       side: 'top',
       colorId: section.color_id,
     }"
+    comp-tid="Spring 2013 Instructor Course"
   >
     <template #card-heading>
       <uw-course-header :section="section" />

@@ -8,7 +8,7 @@
       <slot name="card-heading" />
       <slot name="card-body" />
       <slot name="card-disclosure" />
-      <template v-if="!!this.$slots['card-footer']"
+      <template v-if="!!$slots['card-footer']"
                 #footer
                 footer-tag="footer"
       >
@@ -70,6 +70,10 @@ export default {
       type: Object,
       default: null,
     },
+    compTid: {
+      type: String,
+      default: null,
+    }
   },
   data: function() {
     return {};
@@ -88,6 +92,14 @@ export default {
 
       return classes;
     },
+  },
+  watch: {
+    loaded(val) {
+      if (val) this.log.card_load(this);
+    },
+  },
+  created() {
+    if (this.loaded) this.log.card_load(this);
   },
 };
 </script>
