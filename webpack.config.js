@@ -58,8 +58,8 @@ module.exports = {
   },
   output: {
       path: path.resolve('../static/myuw/'),
-      filename: "[name]-[fullhash].js",
-      chunkFilename: '[id]-[chunkhash].js',
+      filename: "[name]-[contenthash].js",
+      chunkFilename: '[id]-[contenthash].js',
       publicPath: '/myuw/',
   },
 
@@ -106,8 +106,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name]-[fullhash].css',
-      chunkFilename: '[id]-[chunkhash].css',
+      filename: '[name]-[contenthash].css',
+      chunkFilename: '[id]-[contenthash].css',
     }),
     new DjangoBridgePlugin(),
   ],
