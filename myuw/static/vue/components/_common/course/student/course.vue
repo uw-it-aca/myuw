@@ -73,7 +73,8 @@
             class="w-100 p-0 border-0 text-dark"
             title="Expand to show course details"
           >
-            SHOW COURSE DETAILS
+            COURSE DETAILS
+            <font-awesome-icon :icon="faChevronDown" />
           </b-button>
           <b-button
             v-else
@@ -83,7 +84,8 @@
             class="w-100 p-0 border-0 text-dark"
             title="Collapse to hide course details"
           >
-            HIDE COURSE DETAILS
+            COURSE DETAILS
+            <font-awesome-icon :icon="faChevronUp" />
           </b-button>
         </template>
 
@@ -97,7 +99,8 @@
               class="w-100 p-0 border-0 text-dark"
               title="Expand to show instructors"
             >
-              SHOW INSTRUCTORS
+              INSTRUCTORS
+              <font-awesome-icon :icon="faChevronDown" />
             </b-button>
             <b-button
               v-else
@@ -107,7 +110,8 @@
               class="w-100 p-0 border-0 text-dark"
               title="Collapse to hide instructors"
             >
-              HIDE INSTRUCTORS
+              INSTRUCTORS
+              <font-awesome-icon :icon="faChevronUp" />
             </b-button>
           </template>
           <div v-else class="text-center text-muted font-italic myuw-text-md"
@@ -122,6 +126,10 @@
 </template>
 
 <script>
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
@@ -150,6 +158,8 @@ export default {
   data() {
     return {
       isOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {
