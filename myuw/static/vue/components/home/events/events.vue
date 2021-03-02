@@ -84,28 +84,25 @@
     </template>
     <template v-if="hiddenEvents.length > 0" #card-footer>
       <b-button
-        v-if="!isOpen"
         v-b-toggle.hidden_events_collapse
         variant="link"
         size="sm"
         class="w-100 p-0 border-0 text-dark"
+        :title="isOpen ? 'Show less' : 'Show more'"
       >
-        SHOW ({{ hiddenEvents.length }}) MORE
-      </b-button>
-      <b-button
-        v-else
-        v-b-toggle.hidden_events_collapse
-        variant="link"
-        size="sm"
-        class="w-100 p-0 border-0 text-dark"
-      >
-        SHOW LESS
+        {{ hiddenEvents.length }} MORE
+        <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
+        <font-awesome-icon v-else :icon="faChevronDown" />
       </b-button>
     </template>
   </uw-card>
 </template>
 
 <script>
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
@@ -125,6 +122,8 @@ export default {
   data: function() {
     return {
       isOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {
