@@ -1,30 +1,29 @@
 {% extends 'base.html' %}
 
 {% load settings_value %}
-{% load json_script %}
 {% load set_context %}
 
 {% block django_json_data %}
+   <script>
+    // TODO: Replace this with a object in the context and a json_script.
+    window.futureTerm = "{{ future_term }}";
+  </script>
 {% endblock django_json_data %}
 
 {% block body_content %}
-
-<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
-
-  <!--MARK: #primary template (column 1, mobile only) -->
-  <template #primary>
+<myuw-boilerplate logout-url="{% settings_value 'LOGOUT_URL' %}">
+  <template #mobile>
     <b-col md="12">
       <myuw-banner-summaries></myuw-banner-summaries>
     </b-col>
-    <b-col md="8" :class="[$mq === 'mobile' ? 'px-0' : '']">
-      <!--MARK: inherent card ordering -->
+    <b-col md="12" class="px-0">
       <myuw-notice-card></myuw-notice-card>
-      <myuw-grades></myuw-grades>
       <myuw-husky-experience></myuw-husky-experience>
-      <myuw-outage></myuw-outage>
+      <myuw-applicant></myuw-applicant>
+      <myuw-quicklinks></myuw-quicklinks>
+      <myuw-outage term="{{ term|default:'current' }}"></myuw-outage>
+      <myuw-grades></myuw-grades>
       <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
-      <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
-      <myuw-quicklinks mobile-only></myuw-quicklinks>
       <myuw-ns-thank-you></myuw-ns-thank-you>
       <myuw-ns-to-register></myuw-ns-to-register>
       <myuw-reg-status></myuw-reg-status>
@@ -32,27 +31,63 @@
       <myuw-reg-status for-quarter="Summer" period="A"></myuw-reg-status>
       <myuw-ns-critical-info></myuw-ns-critical-info>
       <myuw-ns-international-student></myuw-ns-international-student>
-      <myuw-visual-schedule></myuw-visual-schedule>
+      <myuw-inst-course-summary></myuw-inst-course-summary>
+      <myuw-visual-schedule id="visual-schedule"></myuw-visual-schedule>
       <myuw-textbooks term="{{ term|default:"current" }}"></myuw-textbooks>
+      <myuw-inst-course-summary term="{{ future_term }}">
+      </myuw-inst-course-summary>
+      <myuw-future-quarter-cards></myuw-future-quarter-cards>
+      <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
+      <myuw-acad-cal-snippet></myuw-acad-cal-snippet>
+      <myuw-events></myuw-events>
+      <myuw-international-student></myuw-international-student>
+      <myuw-hr-payroll is-home-page></myuw-hr-payroll>
+      <myuw-retiree></myuw-retiree>
+      <myuw-transcripts></myuw-transcripts>
+      <myuw-continuing-education></myuw-continuing-education>
+      <myuw-uwnetid is-home-page></myuw-uwnetid>
+      <myuw-alumni></myuw-alumni>
+      <myuw-resource-explore></myuw-resource-explore>
+    </b-col>      
+  </template>
+  <template #desktop>
+    <b-col md="12">
+      <myuw-banner-summaries></myuw-banner-summaries>
+    </b-col>
+    <b-col md="8">
+      <myuw-notice-card></myuw-notice-card>
+      <myuw-husky-experience></myuw-husky-experience>
+      <myuw-outage term="{{ term|default:'current' }}"></myuw-outage>
+      <myuw-grades></myuw-grades>
+      <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
+      <myuw-ns-thank-you></myuw-ns-thank-you>
+      <myuw-ns-to-register></myuw-ns-to-register>
+      <myuw-reg-status></myuw-reg-status>
+      <myuw-summer-efs></myuw-summer-efs>
+      <myuw-reg-status for-quarter="Summer" period="A"></myuw-reg-status>
+      <myuw-ns-critical-info></myuw-ns-critical-info>
+      <myuw-ns-international-student></myuw-ns-international-student>
+      <myuw-inst-course-summary></myuw-inst-course-summary>
+      <myuw-visual-schedule id="visual-schedule"></myuw-visual-schedule>
+      <myuw-textbooks term="{{ term|default:'current' }}"></myuw-textbooks>
+      <myuw-inst-course-summary term="{{ future_term }}">
+      </myuw-inst-course-summary>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
       <myuw-reg-status for-quarter="Summer" period="1"></myuw-reg-status>
       <myuw-applicant></myuw-applicant>
       <myuw-international-student></myuw-international-student>
       <myuw-retiree></myuw-retiree>
+      <myuw-hr-payroll is-home-page></myuw-hr-payroll>
       <myuw-transcripts></myuw-transcripts>
       <myuw-continuing-education></myuw-continuing-education>
-      <myuw-uwnetid></myuw-uwnetid>
+      <myuw-uwnetid is-home-page></myuw-uwnetid>
       <myuw-alumni></myuw-alumni>
-      <!-- MARK: use 'mobile-only' to suppress on tablet/desktop -->
-      <myuw-events mobile-only></myuw-events>
+      <myuw-resource-cards></myuw-resource-cards>
+      <myuw-resource-explore></myuw-resource-explore>
     </b-col>
-  </template>
-
-  <!-- MARK: #secondary template (column 2, table/desktop) -->
-  <template #secondary>
     <b-col md="4">
-      <!--MARK: inherent card ordering -->
       <myuw-quicklinks></myuw-quicklinks>
+      <myuw-acad-cal-snippet></myuw-acad-cal-snippet>
       <myuw-events></myuw-events>
     </b-col>
   </template>
@@ -60,6 +95,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load render_bundle from webpack_loader %}
-{% render_bundle 'home' %}
+{% load webpack_manifest %}
+{% render_webpack_entry 'home' js='defer' %}
 {% endblock vue_script %}

@@ -55,7 +55,6 @@
     <script id="static_url" type="application/json">
         "{% settings_value 'STATIC_URL' %}"
     </script>
-    {% load json_script %}
     {{ user|json_script:'user' }}
     {{ disable_actions|json_script:'disable_actions' }}
     {{ banner_messages|json_script:'banner_messages' }}
@@ -75,23 +74,29 @@
         isBreak: {{ is_break|yesno:"true, false"}},
         todayDate: new Date({{ today|date:"Y" }}, {{ today|date:"n" }}-1, {{ today|date:"j"}}),
         firstDay: new Date({{ first_day|date:"Y" }}, {{ first_day|date:"n" }}-1, {{ first_day|date:"j"}}),
-        lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}})
+        lastDay: new Date({{ last_day|date:"Y" }}, {{ last_day|date:"n" }}-1, {{ last_day|date:"j"}}),
+    };
+    window.next_term = {
+      year: '{{ next_year }}',
+      quarter: '{{ next_quarter }}',
     };
     </script>
     {% block django_json_data %}
     {% endblock django_json_data %}
+
+    {% block vue_script %}
+    {% endblock vue_script %}
 </head>
 
 <body data-gtag="{{ google_analytics_key }}" data-hashid="{% hash_netid user.netid %}" data-tracking-enabled="{{ google_tracking_enabled|lower }}" class="myuw-font-open-sans">
     {% csrf_token %}
+    <!-- Testing uw-alert with: http://127.0.0.1:8000/#uwalert-red -->
+    <script src="//www.washington.edu/static/alert.js" type="text/javascript"></script>
 
     <div id="vue_root" hidden>
         {% block body_content %}
         {% endblock body_content %}
     </div>
-
-    {% block vue_script %}
-    {% endblock vue_script %}
 
 </body>
 

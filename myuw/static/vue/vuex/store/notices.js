@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
+import {strToDate} from './common';  // when uw_sws  is 2.3.8
+import dayjs from 'dayjs';
+dayjs.extend(require('dayjs/plugin/timezone'))
 
 const postProcess = (response) => {
   const notices = response.data;
@@ -36,11 +39,10 @@ const postProcess = (response) => {
         (attr) => (attr.name == 'StartDate' || attr.name == 'Date'),
     );
     if (dateFiled !== undefined) {
-      const parts = dateFiled.value.split('-');
-
-      notice.date = new Date(parts[0], parts[1]-1, parts[2]);
+      notice.date = strToDate(dateFiled.value);  // when uw_sws  is 2.3.8
+      // notice.date = dayjs(dateFiled.value);  // datetime in UTC
     } else {
-      notice.date = new Date();
+      notice.date = null;
     }
 
     return notice;
@@ -76,6 +78,15 @@ const customActions = {
         'X-CSRFToken': rootState.csrfToken,
       },
     }).then(() => commit('setReadTrue', notice)).catch(() => {});
+  },
+  setReadNoUpdate: ({rootState}, notice) => {
+    axios.put('/api/v1/notices/', {
+      'notice_hashes': [notice.id_hash],
+    }, {
+      headers: {
+        'X-CSRFToken': rootState.csrfToken,
+      },
+    });
   },
   fetch: fetchBuilder('/api/v1/notices/', postProcess, 'json'),
 };

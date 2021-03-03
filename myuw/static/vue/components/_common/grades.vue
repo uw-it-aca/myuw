@@ -76,26 +76,15 @@
     </template>
     <template #card-footer>
       <b-button
-        v-if="!isOpen"
         v-b-toggle.grade_card_collapse
-        aria-label="SHOW MORE"
-        title="Expand to show additional grade resources"
         variant="link"
         size="sm"
         class="w-100 p-0 text-dark"
+        :title="buttonTitle"
       >
-        SHOW MORE
-      </b-button>
-      <b-button
-        v-else
-        v-b-toggle.grade_card_collapse
-        aria-label="SHOW LESS"
-        title="Collapse to hide additional grade resources"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 text-dark"
-      >
-        SHOW LESS
+        Resources
+        <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
+        <font-awesome-icon v-else :icon="faChevronDown" />
       </b-button>
     </template>
   </uw-card>
@@ -103,6 +92,10 @@
 
 <script>
 import dayjs from 'dayjs';
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -115,6 +108,8 @@ export default {
       term: null,
       showOnlyATerm: false,
       isOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {
@@ -144,6 +139,12 @@ export default {
     },
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
+    },
+    buttonTitle() {
+      return (this.isOpen
+          ? 'Collapse to hide additional grade resources'
+          : 'Expand to show additional grade resources'
+      );
     },
     gradeSubmissionDeadline: function() {
       if (this.term in this.courses) {
@@ -203,12 +204,6 @@ export default {
     if (this.term) this.fetch(this.term);
   },
   methods: {
-    toFriendlyDate(dateStr) {
-      if (dateStr === undefined || dateStr.length === 0) {
-        return '';
-      }
-      return dayjs(dateStr).format('ddd, MMM D');
-    },
     ...mapActions('stud_schedule', ['fetch']),
   },
 };

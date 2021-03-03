@@ -1,41 +1,22 @@
 'use strict'
 const path = require('path');
-const BundleTracker = require('webpack-bundle-tracker');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: (process.env.ENV === 'localdev' ? 'development' : 'production'),
   context: __dirname,
   optimization: {
     minimizer: [
-      new TerserJSPlugin({
-        extractComments: true,
-        cache: true,
-        parallel: true,
-        terserOptions: {
-          extractComments: 'all',
-          compress: {
-            drop_console: true,
-          },
-        }
-      }),
-      new OptimizeCSSAssetsPlugin({
-        cssProcessorOptions: {
-          safe: true,
-          discardComments: {
-            removeAll: true,
-          },
-        },
-      })
+      new TerserJSPlugin(),
     ],
-    // TODO: USE THIS WHEN DJANGO WEBPACK LOADER SUPPORTS IT
-    // splitChunks: {
-    //   chunks: 'all',
-    // },
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   entry: {
     home: [
@@ -53,15 +34,33 @@ module.exports = {
     future_quarters: [
       "./myuw/static/vue/future_quarters.js"
     ],
+    profile: [
+      "./myuw/static/vue/profile.js"
+    ],
     textbooks: [
       "./myuw/static/vue/textbooks.js"
+    ],
+    husky_experience: [
+      "./myuw/static/vue/husky_experience.js"
+    ],
+    notices: [
+      "./myuw/static/vue/notices.js"
+    ],
+    teaching_classlist: [
+      "./myuw/static/vue/teaching_classlist.js"
+    ],
+    resources: [
+      "./myuw/static/vue/resources.js"
+    ],
+    calendar: [
+      "./myuw/static/vue/calendar.js"
     ],
   },
   output: {
       path: path.resolve('../static/myuw/'),
-      filename: "[name]-[hash].js",
+      filename: "[name]-[fullhash].js",
       chunkFilename: '[id]-[chunkhash].js',
-      publicPath: '/static/myuw/',
+      publicPath: '/myuw/',
   },
 
   module: {
@@ -87,17 +86,6 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ];
-              },
-              sourceMap: true,
-            }
-          },
           'sass-loader'
         ],
       },
@@ -115,10 +103,33 @@ module.exports = {
   },
 
   plugins: [
-    new BundleTracker({filename: './../static/myuw-webpack-stats.json'}),
+    new CleanWebpackPlugin(),
+    new WebpackManifestPlugin({
+      generate: (seed, files, entries) => {
+        const bundles = {};
+        let entryFiles = new Set();
+        for (const entryName in entries) {
+          entries[entryName].forEach((entryFile) => {
+            entryFiles.add(entryFile);
+          })
+        }
+
+        entryFiles = Array.from(entryFiles);
+        files.forEach((file) => {
+          for (const i in entryFiles) {
+            if (file['path'].includes(`/${entryFiles[i]}`)) {
+              bundles[entryFiles[i]] = file['path'];
+              entryFiles.splice(i, 1);
+              break;
+            }
+          }
+        });
+        return { entries: entries, bundles: bundles };
+      },
+    }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name]-[hash].css',
+      filename: '[name]-[fullhash].css',
       chunkFilename: '[id]-[chunkhash].css',
     }),
   ],

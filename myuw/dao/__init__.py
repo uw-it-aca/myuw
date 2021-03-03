@@ -6,7 +6,6 @@ from userservice.user import (
     UserService, get_user, get_original_user)
 from myuw.util.settings import get_disable_actions_when_override
 
-
 logger = logging.getLogger(__name__)
 disable_actions_when_override = get_disable_actions_when_override()
 

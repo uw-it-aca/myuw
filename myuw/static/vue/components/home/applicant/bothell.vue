@@ -8,7 +8,7 @@
     <template v-else #card-heading>
       <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Bothell Application for
-        {{ ucfirst(applicantData.quarter) }} {{ applicantData.year }}
+        {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
       </h3>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
@@ -35,14 +35,14 @@
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a href="http://www.uwb.edu/financialaid"
-             target="_blank" aria-label="Student Financial Aid"
+             target="_blank" label="Student Financial Aid"
           >
             Learn all about student financial aid and scholarships
           </a>
         </li>
         <li>
           <a href="http://www.uwb.edu/studentaffairs"
-             target="_blank" aria-label="Student Resources"
+             target="_blank" label="Student Resources"
           >
             Check out the student resources for student life,
             career services, and more
@@ -50,7 +50,7 @@
         </li>
         <li>
           <a href="http://www.uwb.edu/calendars"
-             target="_blank" aria-label="UW Bothell Academic calendars"
+             target="_blank" label="UW Bothell Academic calendars"
           >
             View the UW Bothell Academic calendars
           </a>
@@ -59,7 +59,7 @@
     </template>
     <template v-else #card-body>
       <a class="btn btn-outline-secondary text-dark my-4" href="https://admissions.uwb.edu/apply/status"
-         aria-label="Your application status details"
+         label="Your application status details"
       >
         View your {{ applicantData.type }} application status and checklist
       </a>

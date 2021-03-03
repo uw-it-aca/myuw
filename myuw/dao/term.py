@@ -4,8 +4,8 @@ This module direct interfaces with restclient for the term data
 
 from datetime import date, datetime, timedelta
 import logging
-from django.utils import timezone
 from uw_sws.models import Term
+from uw_sws import SWS_TIMEZONE, sws_now
 from uw_sws.util import convert_to_begin_of_day, convert_to_end_of_day
 from uw_sws.section import is_a_term, is_b_term, is_full_summer_term
 from uw_sws.term import get_term_by_date, get_specific_term, \
@@ -40,7 +40,7 @@ def get_default_datetime():
                         default_date.month,
                         default_date.day,
                         0, 0, 1)
-    return datetime.now()
+    return sws_now()
 
 
 def get_comparison_datetime(request):
@@ -77,17 +77,16 @@ def get_comparison_datetime(request):
 
 def get_comparison_date(request):
     """
-    Convert the get_comparison_datetime to a date value
+    Convert the get_comparison_datetime to a date object
     """
-    now = get_comparison_datetime(request)
-    return now.date()
+    return get_comparison_datetime(request).date()
 
 
 def get_comparison_datetime_with_tz(request):
     """
-    @return the local timezone awared datetime object
+    @return the timezone aware datetime object
     """
-    return timezone.make_aware(get_comparison_datetime(request))
+    return SWS_TIMEZONE.localize(get_comparison_datetime(request))
 
 
 def get_current_quarter(request):
@@ -456,6 +455,10 @@ def add_term_data_to_context(request, context):
     context["last_final_exam_date"] = cur_term.last_final_exam_date
     context["next_year"] = next_term.year
     context["next_quarter"] = next_term.quarter
+    if "future_term" not in context:
+        # if no exsiting value set by future_quarter
+        context["future_term"] = "{},{}".format(
+            next_term.year, next_term.quarter)
 
 
 def current_terms_prefetch(request):

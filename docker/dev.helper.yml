@@ -1,0 +1,85 @@
+# This file provides preconfigured containers to run tests
+# in a development environment
+#
+# How to use this:
+# docker-compose -f dev.helper.yml run (django-test|eslint-fix|eslint|jest) 
+#
+# You can also run a command in the container by using:
+# docker-compose -f dev.helper.yml run <service-name> <command>
+
+version: '3.4'
+
+services:
+  python-tests:
+    build: ../
+    user: root
+    volumes:
+      - ../myuw:/app/myuw
+      - /tmp/myuw:/coverage
+    environment:
+      ENV: localdev
+      AUTH: SAML_MOCK
+      DJANGO_APP: "myuw"
+      MEMCACHED_SERVER_COUNT: 1
+      MEMCACHED_SERVER_SPEC: memcached
+    depends_on:
+      - memcached
+    stdin_open: true
+    tty: true
+    command: bash -c ". ./docker/test_python.sh"
+  memcached:
+    image: memcached
+  eslint:
+    build:
+      context: ../
+      target: node-bundler
+    environment:
+      NODE_ENV: producation
+      ENV: localdev
+    volumes:
+      - ../myuw:/app/myuw
+    working_dir: /app/
+    stdin_open: true
+    tty: true
+    entrypoint:
+      - npx
+      - eslint
+      - myuw/static/vue
+      - --ext
+      - .vue
+  jest:
+    build:
+      context: ../
+      target: node-bundler
+    environment:
+      NODE_ENV: producation
+      ENV: localdev
+    volumes:
+      - ../myuw:/app/myuw
+    stdin_open: true
+    tty: true
+    working_dir: /app/
+    entrypoint:
+      - npx
+      - jest
+  e2e-myuw:
+    build:
+      context: ../
+      target: app-container
+    environment:
+      AUTH: SAML_MOCK
+  cypress:
+    build:
+      context: ../e2e
+    environment:
+      CYPRESS_BASE_URL: http://e2e-myuw:8000
+    volumes:
+      - ../e2e/cypress.json:/e2e/cypress.json
+      - ../e2e/cypress/fixtures:/e2e/cypress/fixtures
+      - ../e2e/cypress/integration:/e2e/cypress/integration
+      - ../e2e/cypress/plugins:/e2e/cypress/plugins
+      - ../e2e/cypress/support:/e2e/cypress/support
+      - /tmp/myuw/cypress/screenshots:/e2e/cypress/screenshots
+      - /tmp/myuw/cypress/videos:/e2e/cypress/videos
+    depends_on:
+      - e2e-myuw

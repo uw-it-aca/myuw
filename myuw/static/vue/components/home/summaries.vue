@@ -26,7 +26,7 @@
             <span v-else>{{ termData.year }}</span>
           </span>
           <span v-else>
-            {{ ucfirst(termData.quarter) }}
+            {{ titleCaseWord(termData.quarter) }}
             {{ termData.year }}
           </span>
         </span>
@@ -37,7 +37,7 @@
           v-else-if="termData.isBreak"
           class="text-dark d-block font-weight-bold"
         >
-          {{ ucfirst(termData.breakQuarter) }}
+          {{ titleCaseWord(termData.breakQuarter) }}
           Break
         </span>
         <span v-else class="text-dark d-block font-weight-bold">
@@ -128,7 +128,7 @@
           ]"
           href="https://search.lib.uw.edu/account"
           target="_blank"
-          aria-label="Library Account Requests"
+          label="Library Account Requests"
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready

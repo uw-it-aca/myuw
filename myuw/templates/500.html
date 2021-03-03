@@ -1,4 +1,214 @@
-{% extends 'base.html' %}
-{% block body_content %}
-    <p>place holder</p>
-{% endblock body_content %}
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MyUW - Server Error</title>
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+        <meta http-equiv="cleartype" content="on">
+
+        <!-- add web fonts if needed -->
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+
+        <!-- mobile first styles -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+        <!-- copy the base styling from mobile.less -->
+        <style type="text/less">
+
+        /*** global ***/
+        html, body { height: 100%; font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
+        #app_header { background: #4b2e84;
+
+            .header-bar { position: relative; height: 30px;
+
+                .header-myuw h1 {
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 300;
+                    display: inline-block;
+                    margin: 0;
+                    padding: 0;
+                    font-size: 16px;
+                    color: #efe2cd;
+                    line-height: 30px;
+                }
+            }
+
+            .header-cover { background: #4f318c; height: 52px;
+                .uw-patch {
+                    display: block;
+                    text-indent: -9999px;
+                    width: 52px;
+                    height: 38px;
+                    background: url('https://www.washington.edu/static/home/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg') no-repeat 0 0 transparent;
+                    position: absolute;
+                    background-size: 370px;
+                    bottom: 0;
+                    right: 15px;
+                    z-index: 1;
+                }
+
+            }
+        }
+
+
+        #app_content {
+            h1 { font-size: 18px; font-weight: bold; text-transform: uppercase; }
+            .card {
+                border: 1px solid;
+                border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+                position: relative;
+                background-color: #fff;
+                margin-top: 20px;
+                padding: 10px;
+
+                .unstyled-list {
+                    padding-left: 0px;
+                    list-style-type: none;
+                    line-height: 20px;
+
+                    li { margin-bottom: 10px; }
+                }
+            }
+        }
+
+        #app_footer { background: #fff; margin-top: 20px;
+            .navigation-bar { margin-bottom: 10px;
+                .navigation-list {  list-style:none; padding-left:0; margin:0;
+                    li {  width: 49.5%; margin-right: 1%; margin-bottom: 1%; height: 100px; background:#e8e3d3; }
+                    li:nth-child(even) { margin-right: 0; }
+                    .navigation-item { display: inline-block; position: relative; padding: 5px;
+                        &:hover { text-decoration: none; }
+                        .navigation-item-text { color: #777; font-weight: bold; font-size: 14px; text-transform: uppercase; }
+                    }
+                }
+            }
+            .footer-bar { background:#333; padding: 10px 0;
+                .footer-links { color: #aaa; font-size: 11px;
+                    a {color: #fff; }
+                    ul { padding: 0; margin-bottom: .5em; line-height: 11px; list-style: none;
+                        li { display: inline-block; padding-right: 5px; margin-right: 3px; border-right: solid 1px #aaa; color: #222; }
+                    }
+                }
+            }
+        }
+        </style>
+
+        <!-- jquery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <!-- less js precomiler -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/detectizr/1.5.0/detectizr.min.js"></script>
+
+        <script type="text/javascript">
+            var mobile, tablet, desktop;
+
+            Modernizr.Detectizr.detect({ detectDeviceModel: false, detectScreen: false, detectOS: false, detectBrowser: false, detectPlugins: false });
+
+            if ( $('html').hasClass("mobile") ) {
+                mobile = true
+                tablet = false
+                desktop = false
+            }
+            else if ( $('html').hasClass("tablet") ) {
+                mobile = false
+                tablet = true
+                desktop = false
+            }
+            else if ( $('html').hasClass("desktop") ){
+                mobile = false
+                tablet = false
+                desktop = true
+            }
+
+            window.onload = function() {
+              document.getElementById('year').innerHTML = new Date().getFullYear()
+            }
+        </script>
+    </head>
+    <body>
+
+        <div id="app_header">
+            <div class="header-bar" role="navigation" title="Home, email, and categorized resources">
+                <div class="container clearfix">
+                    <div class="pull-left header-myuw"><a href="/" title="Go to MyUW Home"><h1 id="main_header">MYUW</h1></a></div>
+                    <div class="pull-right">&nbsp;</div>
+                </div>
+            </div>
+            <div class="header-cover">
+                <div class="container" role="presentation" style="position:relative;height:52px;">
+                    <div class="uw-patch">&nbsp;</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- content container -->
+        <div id="app_content" role="main" aria-labelledby="myuw-500-error">
+            <div class="container">
+
+                <div>
+                    <h1 id="myuw-500-error">Unable to Load Page</h1>
+                    <p>A server error has occurred. We are aware of the issue and are working on it. Please try again in a few minutes.</p>
+                    <h2 style="font-size:15px; font-weight: bold;">In the meantime, you may find what you need here:</h2>
+                    <ul class="unstyled-list" style="margin-top:1em;">
+                        <li style="margin-top:1em;">Email Services
+                            <ul style="margin-top: 10px;">
+                                <li><a href="http://gmail.uw.edu/" target="_blank">UW Gmail</a></li>
+                                <li><a href="https://outlook.office365.com/uw.edu" target="_blank">UW Outlook 365</a></li>
+                            </ul>
+                        </li>
+                        <li style="margin-top:1em;">Student &amp; Instructor Resources
+                            <ul style="margin-top: 10px;">
+                                <li><a href="https://canvas.uw.edu/" target="_blank">Canvas LMS</a></li>
+                                <li><a href="https://washington.zoom.us" target="_blank">UW Zoom</a></li>
+                                <li><a href="https://catalyst.uw.edu/" target="_blank">Catalyst Web Tools</a></li>
+                                <li><a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp" target="_blank">Student Registration</a></li>
+                                <li><a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp" target="_blank">Student Class Schedule</a></li>
+                                <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx" target="_blank">Student Tuition Statement</a></li>
+                                <li><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx" target="_blank">Financial Aid Status</a></li>
+                                <li><a href="https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx" target="_blank">HFS Account Summary</a></li>
+                                <li><a href="https://www.washington.edu/students/timeschd/" target="_blank">Time Schedule</a></li>
+                                <li><a href="https://myplan.uw.edu/" target="_blank">MyPlan</a></li>
+                                <li><a href="https://myplan.uw.edu/dars" target="_blank">Degree Audit (DARS)</a></li>
+                                <li><a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank">Unofficial Transcript</a></li>
+                                <li><a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx" target="_blank">My Class Instructor Resources</a></li>
+                                <li><a href="https://gradepage.uw.edu/" target="_blank">GradePage</a></li>
+                                <li><a href="https://uw.hosted.panopto.com/" target="_blank">Panopto Lecture Capture</a></li>
+                                <li><a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp" target="_blank">UW Professional &amp; Continuing Education</a></li>
+                            </ul>
+                        </li>
+                        <li style="margin-top:1em;"><a href="https://wd5.myworkday.com/uw/d/home.htmld" target="_blank">Workday</a></li>
+                        <li><a href="https://www.hfs.washington.edu/huskycard/Default.aspx?id=609" target="_blank">Husky Card Account</a></li>
+                        <li><a href="http://ucs.admin.uw.edu/myfd/" target="_blank">MyFinancial.desktop</a></li>
+                        <li><a href="http://www.washington.edu/home/peopledir/" target="_blank">Faculty/Staff/Student Directory</a></li>
+                        <li><a href="https://services.uwmedicine.org/passwordportal/" target="_blank">UW Medicine Password Portal</a></li>
+                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer -->
+        <div id="app_footer">
+
+            <div class="footer-bar" role="contentinfo">
+                <div class="container footer-links" style="position:relative;">
+                    <ul>
+                        <li><a href="mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20" title="Send email to help@uw.edu"><i class="icon-envelope"></i> Contact</a></li>
+                         <li><a href="http://www.washington.edu/online/terms/">Terms</a></li>
+                         <li style="border:none;"><a href="http://www.washington.edu/online/privacy/">Privacy</a></li>
+                    </ul>
+                    <div>&copy; <span id="year"></span> University of Washington</div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /footer -->
+
+    </body>
+</html>

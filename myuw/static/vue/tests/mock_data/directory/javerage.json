@@ -1,0 +1,47 @@
+{
+    "uwnetid": "javerage",
+    "uwregid": "9136CCB8F66711D5BE060004AC494FFE",
+    "is_test_entity": true,
+    "first_name": "JAMES AVERAGE",
+    "surname": "STUDENT",
+    "full_name": "JAMES AVERAGE STUDENT",
+    "display_name": "J. Average Student",
+    "pronouns": null,
+    "whitepages_publish": false,
+    "employee_id": "123456789",
+    "addresses": [],
+    "email_addresses": [
+        "javerage@uw.edu"
+    ],
+    "faxes": [],
+    "mobiles": [],
+    "pagers": [],
+    "phones": [
+        "+1 206 111-1234",
+        "+1 425 555-1236"
+    ],
+    "voice_mails": [],
+    "touch_dials": [],
+    "positions": [
+        {
+            "department": "Computer Science",
+            "title": "Teaching Assistant",
+            "is_primary": true
+        }
+    ],
+    "mailstop": "359540",
+    "home_department": "Computer Science",
+    "publish_in_emp_directory": true,
+    "student_number": "1033334",
+    "student_system_key": "000083856",
+    "student_class": "Senior",
+    "student_departments": [
+        "Computer Science",
+        "Anthropology"
+    ],
+    "publish_in_stu_directory": false,
+    "development_id": "0000773877",
+    "alumni_state": "current",
+    "employee_state": "current",
+    "student_state": "current"
+}

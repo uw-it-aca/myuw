@@ -26,10 +26,13 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/ssl-ciphers: "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256"
     nginx.ingress.kubernetes.io/permanent-redirect-code: "301"
+    nginx.ingress.kubernetes.io/client-body-buffer-size: "16K"
 lifecycle:
   enabled: true
   preStop:
     enabled: true
+securityPolicy:
+  enabled: true
 affinity:
    podsSpanNodes: true
 readiness:
@@ -48,7 +51,7 @@ database:
 repo: myuw
 instance: test
 image:
-  repository: registry.hub.docker.com/acait/myuw
+  repository: gcr.io/uwit-mci-axdd/myuw
   tag: IMAGE_TAG
 memcached:
   enabled: true

@@ -4,7 +4,6 @@
       role="group"
       tabindex="0"
       class="course-section-inner"
-      :aria-label="ariaLabel"
     >
       <div :class="`bg-c${meetingData.section.color_id}`"
            class="p-1 text-center myuw-text-xxs"
@@ -14,7 +13,7 @@
         </b-badge>
         <a :href="sectionUrl"
            class="text-white"
-           :aria-label="`Course section: ${sectionTitle}`"
+           :label="`Course section: ${sectionTitle}`"
         >
           {{ sectionTitle }}
         </a>
@@ -27,11 +26,11 @@
                meetingLocationUrl
              )"
              :href="meetingLocationUrl"
-             :aria-label="ariaMeetingLocation"
+             :label="ariaMeetingLocation"
           >
             {{ meetingLocation }}
           </a>
-          <span v-else :aria-label="ariaMeetingLocation">
+          <span v-else>
             {{ meetingLocation }}
           </span>
           <a v-if="showConfirmLink"
@@ -74,7 +73,7 @@ export default {
       netid: (state) => state.user.netid,
     }),
     quarter() {
-      return this.ucfirst(this.term.quarter);
+      return this.titleCaseWord(this.term.quarter);
     },
     year() {
       return this.term.year;
@@ -109,7 +108,10 @@ export default {
       } ${this.meetingData.section.section_id}`;
     },
     sectionUrl: function() {
-      return `/academics/#${this.meetingData.section.curriculum_abbr}-${
+      let page = this.meetingData.section.is_teaching ? 'teaching' : 'academics';
+      return `/${page}/#${
+        this.meetingData.section.curriculum_abbr
+      }-${
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;
     },
@@ -192,7 +194,7 @@ export default {
         label += 'Meeting time: ';
 
         if (this.day) {
-          label += `${this.ucfirst(this.day)}, `;
+          label += `${this.titleCaseWord(this.day)}, `;
         }
 
         if (startTime && endTime) {

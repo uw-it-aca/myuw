@@ -24,7 +24,7 @@ $theme-colors: (
   'beige': #e8e3d3, // tan
   'dark-beige': #85754d, // headers
   'gold': #ffbc24, //uw gold
-  'teal': #558097, // uw teal
+  'teal': #4c7286, // uw teal
 
   // myuw course colors
   'c1': #2E6884,
@@ -50,3 +50,5 @@ $theme-colors: (
 
 // override all links
 $link-color: #4d66ca; //a11y blue
+
+$ribbon-width: 0.4rem;

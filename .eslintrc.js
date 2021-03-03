@@ -11,15 +11,32 @@ module.exports = {
   extends: [
     // use the recommended rule set for both plain javascript and vue
     'eslint:recommended',
-    'google',
     'plugin:vue/recommended',
     'plugin:jest/recommended',
+    'prettier',
+    'prettier/vue',
   ],
+  parserOptions: {
+    parser: 'babel-eslint',
+  },
   rules: {
-    // we should always disable console logs and debugging in production
+    // global rules
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'max-len': ['error', { ignoreUrls: true, ignoreStrings: true }],
+    // TODO: Remove this rule
+    'no-unused-vars': 'off',
+    "camelcase": [2, {"properties": "never"}],
+    'max-len': [
+      2,
+      {
+        code: 100,
+        tabWidth: 2,
+        ignoreUrls: true,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: true,
+      },
+    ],
+    // jest rules
     'jest/no-disabled-tests': 'warn',
     'jest/no-focused-tests': 'error',
     'jest/no-identical-title': 'error',
@@ -31,7 +48,8 @@ module.exports = {
         assertFunctionNames: ['expect*'],
       },
     ],
-    // TODO: This is not ideal and needs to fixed at some point
+    // vue
+    'vue/no-mutating-props': 'off',
     'vue/no-v-html': 'off',
     'vue/max-attributes-per-line': 'off',
   },

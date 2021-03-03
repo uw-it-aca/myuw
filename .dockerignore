@@ -32,3 +32,6 @@ wheels/
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+
+# Cypress
+e2e/
