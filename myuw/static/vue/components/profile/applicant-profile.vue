@@ -12,8 +12,8 @@
     <template #card-body>
       <div vocab="http://schema.org/" typeof="Person">
         <b-container class="bv-example-row">
-          <profile-entry title="Permanent Address">
-            <template v-if="permanentAddress" #content>
+          <uw-card-property title="Permanent Address">
+            <div v-if="permanentAddress">
               <span>
                 {{ permanentAddress.street_line1 }}
                 <br>
@@ -23,24 +23,21 @@
                 <br>
                 {{ permanentAddress.country }}
               </span>
-            </template>
-            <template v-else #content>
+            </div>
+            <div v-else>
               No address available
-            </template>
-          </profile-entry>
-          <profile-entry title="">
-            <template #content>
-              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-                 title="Change address on Student Personal Services website"
-              >Change Address</a>
-            </template>
-          </profile-entry>
-          <profile-entry title="Email Address">
-            <template #content>
-              <span v-if="email">{{ email }}</span>
-              <span v-else>No email address availabe</span>
-            </template>
-          </profile-entry>
+            </div>
+          </uw-card-property>
+          <uw-card-property title="">
+            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+                title="Change address on Student Personal Services website"
+            >Change Address</a>
+          </uw-card-property>
+          <hr>
+          <uw-card-property title="Email Address">
+            <span v-if="email">{{ email }}</span>
+            <span v-else>No email address availabe</span>
+          </uw-card-property>
         </b-container>
       </div>
     </template>
@@ -50,12 +47,12 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
-import ProfileEntry from './profile-entry.vue';
+import CardProperty from '../_templates/card-property.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'profile-entry': ProfileEntry,
+    'uw-card-property': CardProperty,
   },
   computed: {
     ...mapState('profile', {
@@ -86,20 +83,17 @@ export default {
     ...mapActions('profile', ['fetch']),
     addressLocationString(address) {
       let location = '';
-      if (address.city) {
-        location += address.city + ', ';
-      }
-      if (address.state) {
-        location += address.state + ' ';
+      if (address.city && address.state) {
+        location += address.city + ', ' + address.state;
       }
       if (address.postal_code) {
-        location += address.postal_code + ' ';
+        location += ' ' + address.postal_code;
       }
       if (address.zip_code) {
-        location += address.zip_code;
+        location += ' ' + address.zip_code;
       }
       return location;
-    }
+    },
   },
 };
 </script>

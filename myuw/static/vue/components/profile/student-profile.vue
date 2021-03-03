@@ -5,63 +5,60 @@
            :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Student Profile</h3>
+      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+        Student Profile
+      </h3>
     </template>
     <template #card-body>
       <div vocab="http://schema.org/" typeof="Person">
         <b-container class="bv-example-row">
-          <profile-entry :v-if="studentNumber"
-                         title="Student Number"
-                         :content="studentNumber"
-          />
-          <profile-entry :v-if="classStanding"
-                         title="Class Standing"
-                         :content="classStanding"
-          />
-          <profile-entry title="Major">
-            <template #content>
-              <ul>
-                <template v-for="(termMajor, index) in termMajors">
-                  <li v-if="index == 0" :key="index">
+          <uw-card-property :v-if="studentNumber" title="Student Number">
+            {{ studentNumber }}
+          </uw-card-property>
+          <uw-card-property :v-if="classStanding" title="Class Standing">
+            {{ classStanding }}
+          </uw-card-property>
+          <uw-card-property title="Major">
+            <ul class="list-unstyled mb-0">
+              <template v-for="(termMajor, index) in termMajors">
+                <li v-if="index == 0" :key="index" class="mb-1">
+                  {{ degreeListString(termMajor.majors) }}
+                </li>
+                <li v-else-if="termMajor.degrees_modified" :key="index" class="mb-1">
+                  Beginning {{ titilizeTerm(termMajor.quarter) }} {{ termMajor.year }}:
+                  &nbsp;&nbsp;
+                  <span v-if="termMajor.majors.length > 0">
                     {{ degreeListString(termMajor.majors) }}
-                  </li>
-                  <li v-else-if="termMajor.degrees_modified" :key="index">
-                    Beginning {{ titilizeTerm(termMajor.quarter) }} {{ termMajor.year }}:
-                    &nbsp;&nbsp;
-                    <span v-if="termMajor.majors.length > 0">
-                      {{ degreeListString(termMajor.majors) }}
-                    </span>
-                    <span v-else>
-                      None
-                    </span>
-                  </li>
-                </template>
-              </ul>
-            </template>
-          </profile-entry>
-          <profile-entry v-if="hasMinors" title="Minor">
-            <template #content>
-              <ul>
-                <template v-for="(termMinor, index) in termMinors">
-                  <li v-if="index == 0 && termMinor.minors.length" :key="index">
+                  </span>
+                  <span v-else>
+                    None
+                  </span>
+                </li>
+              </template>
+            </ul>
+          </uw-card-property>
+          <uw-card-property v-if="hasMinors" title="Minor">
+            <ul class="list-unstyled mb-0">
+              <template v-for="(termMinor, index) in termMinors">
+                <li v-if="index == 0 && termMinor.minors.length" :key="index" class="mb-1">
+                  {{ degreeListString(termMinor.minors) }}
+                </li>
+                <li v-else-if="termMinor.degrees_modified" :key="index" class="mb-1">
+                  Beginning {{ titilizeTerm(termMinor.quarter) }} {{ termMinor.year }}:
+                  &nbsp;&nbsp;
+                  <span v-if="termMinor.minors.length > 0">
                     {{ degreeListString(termMinor.minors) }}
-                  </li>
-                  <li v-else-if="termMinor.degrees_modified" :key="index">
-                    Beginning {{ titilizeTerm(termMinor.quarter) }} {{ termMinor.year }}:
-                    &nbsp;&nbsp;
-                    <span v-if="termMinor.minors.length > 0">
-                      {{ degreeListString(termMinor.minors) }}
-                    </span>
-                    <span v-else>
-                      None
-                    </span>
-                  </li>
-                </template>
-              </ul>
-            </template>
-          </profile-entry>
-          <profile-entry title="Local Address">
-            <template v-if="localAddress" #content>
+                  </span>
+                  <span v-else>
+                    None
+                  </span>
+                </li>
+              </template>
+            </ul>
+          </uw-card-property>
+          <hr>
+          <uw-card-property title="Local Address">
+            <div v-if="localAddress">
               <div v-if="localAddress.street_line1"
                    v-text="localAddress.street_line1">
               </div>
@@ -75,13 +72,13 @@
               <div v-if="localPhone">
                 Phone: {{ formatPhoneNumberDisaply(localPhone) }}
               </div>
-            </template>
-            <template v-else #content>
+            </div>
+            <div v-else>
               <span class="my-text-muted">No address available</span>
-            </template>
-          </profile-entry>
-          <profile-entry title="Permanent Address">
-            <template v-if="permanentAddress" #content>
+            </div>
+          </uw-card-property>
+          <uw-card-property title="Permanent Address">
+            <div v-if="permanentAddress">
               <div v-if="permanentAddress.street_line1"
                    v-text="permanentAddress.street_line1">
               </div>
@@ -95,44 +92,41 @@
               <div v-if="permanentPhone">
                 Phone: {{ formatPhoneNumberDisaply(permanentPhone) }}
               </div>
-            </template>
-            <template v-else #content>
+            </div>
+            <div v-else>
               No address available
-            </template>
-          </profile-entry>
-          <profile-entry title="">
-            <template #content>
-              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-                 title="Change address on Student Personal Services website"
-              >Change Address</a>
-            </template>
-          </profile-entry>
-          <profile-entry title="Student Directory Information">
-            <template #content>
-              <p>
-                Releasable: <span v-text="directoryRelease ? 'YES' : 'NO'"/>
-                <br><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-                  title="Change address release settings on Student Personal Services website"
-                >Change your release settings</a>
-              </p>
-              <p>
-                Name, phone number, email, major, and class standing are
-                <em v-text="directoryRelease ? 'visible' : 'not visible'"/>
-                in the UW Directory.
-              </p>
-              <p>
-                Information such as date of birth, street address, and dates
-                of attendance are
-                <em v-text="directoryRelease ?
-                            'releasable' : 'cannot be released'"
-                />
-                by the Office of the University Registrar when requested.
-                <a href="http://www.washington.edu/students/reg/ferpa.html">
-                  Learn more about your privacy (FERPA)
-                </a>
-              </p>
-            </template>
-          </profile-entry>
+            </div>
+          </uw-card-property>
+          <uw-card-property title="">
+            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+                title="Change address on Student Personal Services website"
+            >Change Address</a>
+          </uw-card-property>
+          <hr>
+          <uw-card-property title="Student Directory Information">
+            <p>
+              Releasable: <span v-text="directoryRelease ? 'YES' : 'NO'"/>
+              <br><a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+                title="Change address release settings on Student Personal Services website"
+              >Change your release settings</a>
+            </p>
+            <p>
+              Name, phone number, email, major, and class standing are
+              <em v-text="directoryRelease ? 'visible' : 'not visible'"/>
+              in the UW Directory.
+            </p>
+            <p>
+              Information such as date of birth, street address, and dates
+              of attendance are
+              <em v-text="directoryRelease ?
+                          'releasable' : 'cannot be released'"
+              />
+              by the Office of the University Registrar when requested.
+              <a href="http://www.washington.edu/students/reg/ferpa.html">
+                Learn more about your privacy (FERPA)
+              </a>
+            </p>
+          </uw-card-property>
         </b-container>
       </div>
     </template>
@@ -142,12 +136,12 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
-import ProfileEntry from './profile-entry.vue';
+import CardProperty from '../_templates/card-property.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'profile-entry': ProfileEntry,
+    'uw-card-property': CardProperty,
   },
   computed: {
     ...mapState('profile', {
@@ -196,20 +190,17 @@ export default {
     },
     addressLocationString(address) {
       let location = '';
-      if (address.city) {
-        location += address.city + ', ';
-      }
-      if (address.state) {
-        location += address.state + ' ';
+      if (address.city && address.state) {
+        location += address.city + ', ' + address.state;
       }
       if (address.postal_code) {
-        location += address.postal_code + ' ';
+        location += ' ' + address.postal_code;
       }
       if (address.zip_code) {
-        location += address.zip_code;
+        location += ' ' + address.zip_code;
       }
       return location;
-    }
+    },
   },
 };
 </script>

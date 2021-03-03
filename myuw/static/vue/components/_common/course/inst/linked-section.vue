@@ -64,7 +64,7 @@
     <div>
       <b-button v-if="!section.mini_card"
               variant="light"
-              :aria-label="`Pin ${section.id} mini-card to teaching page`"
+              :label="`Pin ${section.id} mini-card to teaching page`"
               title="Click to pin the mini-card onto Teaching page"
               @click="miniCard"
       >
@@ -72,7 +72,7 @@
       </b-button>
       <b-button v-else
               variant="dark"
-              :aria-label="`Remove ${section.id} mini-card from teaching page`"
+              :label="`Remove ${section.id} mini-card from teaching page`"
               title="Click to remove the mini-card from Teaching page"
               @click="miniCard"
       >

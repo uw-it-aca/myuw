@@ -95,7 +95,7 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="$refs['request-modal'].hide()" variant="light">
+      <b-button variant="light" @click="$refs['request-modal'].hide()">
         Close
       </b-button>
     </template>
@@ -104,10 +104,10 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="$refs['request-modal'].hide()" variant="light">
+      <b-button variant="light" @click="$refs['request-modal'].hide()">
         Close
       </b-button>
-      <b-button :disabled="disableActions" @click="requestSingle()" variant="primary">
+      <b-button :disabled="disableActions" variant="primary" @click="requestSingle()">
         Submit
       </b-button>
     </template>
@@ -116,17 +116,17 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="listView = false" variant="outline-secondary">
+      <b-button variant="outline-secondary" @click="listView = false">
         <font-awesome-icon :icon="faArrowLeft" />
         Back
       </b-button>
-      <b-button @click="$refs['request-modal'].hide()" variant="light">
+      <b-button variant="light" @click="$refs['request-modal'].hide()">
         Close
       </b-button>
       <b-button
         :disabled="selected.length === 0"
-        @click="requestCreateEmail({list: selected, onSuccess, onError})"
         variant="primary"
+        @click="requestCreateEmail({list: selected, onSuccess, onError})"
       >
         Submit
       </b-button>
@@ -136,7 +136,7 @@
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
          rel="help" target="_blank" data-linklabel="Mailman Help"
       >Mailman help</a>
-      <b-button @click="$refs['request-modal'].hide()" variant="light">
+      <b-button variant="light" @click="$refs['request-modal'].hide()">
         Close
       </b-button>
     </template>
