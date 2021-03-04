@@ -49,11 +49,7 @@ export default {
   methods: {
     performSearch: function() {
       const searchURL = 'https://www.washington.edu/search/?q=' + this.searchText;
-
-      // MARK: google analytics: log uw search queries as an event
-      // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-      this.$gtag.event('search', {search_term: this.searchText});
-
+      this.$logger.search(this.searchText);
       // navigate to uw search query
       window.location.href = searchURL;
     },
