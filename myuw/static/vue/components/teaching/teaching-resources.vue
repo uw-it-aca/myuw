@@ -9,11 +9,9 @@
           <li class="mb-1">
             <a href="https://teachingremotely.washington.edu/" label="">Teaching Remotely</a>
           </li>
-          <!-- BOTHELL ONLY --->
           <li v-if="bothell_emp" class="mb-1">
             <a href="https://www.uwb.edu/it/teaching" label="">UWB Teach Anywhere</a>
           </li>
-          <!-- TACOMA ONLY --->
           <li v-if="tacoma_emp" class="mb-1">
             <a href="https://www.tacoma.uw.edu/digital-learning/instructional-continuity"
               label="">UWT Instructional Continuity</a>
