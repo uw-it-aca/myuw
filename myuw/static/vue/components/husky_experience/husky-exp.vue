@@ -152,8 +152,6 @@ export default {
 <style lang="scss" scoped>
 @use 'sass:map';
 @use '../../../css/myuw/variables.scss' as b-vars;
-@import '../../../css/myuw/global.scss';
-@import 'bootstrap';
 
 ::v-deep .myuw-article-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
@@ -162,13 +160,12 @@ export default {
 }
 
 ::v-deep .myuw-article-footer-title {
-  @extend .h6;
-  @extend .myuw-font-open-sans;
+  font-family: 'Open Sans', sans-serif !important;
   font-weight: bold;
 }
 
 ::v-deep h3 {
-  @extend .h5;
+  font-size: 1.25rem;
 }
 
 div.d-flex.card-cols > div {
