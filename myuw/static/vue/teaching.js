@@ -23,7 +23,7 @@ vueConf.store.commit('addVarToState', {
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-teaching-resources', TeachingResources);
-Vue.component('myuw-course-tabs', CourseTabs);
+Vue.component('myuw-teaching-term-tabs', CourseTabs);
 
 new Vue({
   ...vueConf,
