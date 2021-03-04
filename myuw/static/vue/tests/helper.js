@@ -46,6 +46,8 @@ const createLocalVue = (vuexModule) => {
   // Mock for vue-gtag
   localVue.prototype.$gtag = {
     event: () => {},
+    set: () => {},
+    pageview: () => {},
   };
   localVue.mixin(utils);
   localVue.mixin(log);
