@@ -372,10 +372,8 @@ export default {
     displayPopUp: (state) => state.displayPopUp,
   }),
   mounted() {
-    this.$gtag.set('user_properties', this.generateUserProperties());
-
-    // MARK: google analytics gtag
-    this.$gtag.pageview({
+    this.$logger.setUserProperties(this.affiliations);
+    this.$logger.pageview({
       page_location: window.location.href,
       page_path: window.location.pathname,
       page_title: this.pageTitle,
@@ -400,49 +398,6 @@ export default {
         });
     },
     ...mapMutations(['addVarToState']),
-    generateUserProperties() {
-      const properties = {};
-      properties['affiliation'] = (
-        this.affiliations['applicant'] ? 'Applicant' :
-        this.affiliations['faculty'] ? 'Faculty' :
-        this.affiliations['staff_employee'] ? 'Staff' :
-        this.affiliations['student'] ? 'Student' :
-        this.affiliations['alumni'] ? 'Alumni' : null
-      );
-
-      properties['class_level'] = this.titleCaseWord(this.affiliations['class_level']);
-
-      properties['continuum_college'] = (
-        this.affiliations['grad_c2'] ? 'GradC2' :
-        this.affiliations['undergrad_c2'] ? 'UndergradC2' :
-        this.affiliations['pce'] ? 'PCE' : null
-      );
-
-      properties['emp_position'] = (
-        this.affiliations['instructor'] ? 'Instructor' :
-        this.affiliations['stud_employee'] ? 'Stud employee' :
-        this.affiliations['clinician'] ? 'Clinician' :
-        this.affiliations['retiree'] ? 'Retiree' : null
-      );
-
-      properties['student_prop'] = (
-        this.affiliations['intl_stud'] ? 'International' :
-        this.affiliations['past_stud'] ? 'Former' : null
-      );
-
-      properties['student_campus'] = (
-        this.affiliations['seattle'] ? 'Seattle' :
-        this.affiliations['bothell'] ? 'Bothell' :
-        this.affiliations['tacoma'] ? 'Tacoma' : null
-      );
-
-      properties['employment_campus'] = (
-        this.affiliations['official_seattle'] ? 'Seattle' :
-        this.affiliations['official_bothell'] ? 'Bothell' :
-        this.affiliations['official_tacoma'] ? 'Tacoma' : null
-      );
-      return properties;
-    },
   },
 };
 </script>
