@@ -64,7 +64,7 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
-        'django-webpack-bridge @ https://github.com/SarthakSingh31/django-webpack-bridge/tarball/master',
+        'django-webpack-bridge @ https://github.com/uw-it-aca/django-webpack-bridge/tarball/master',
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),

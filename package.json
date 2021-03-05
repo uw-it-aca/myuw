@@ -23,7 +23,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "dayjs": "^1.9.6",
-    "django-webpack-bridge": "https://github.com/SarthakSingh31/django-webpack-bridge.git",
+    "django-webpack-bridge": "https://github.com/uw-it-aca/django-webpack-bridge.git",
     "eslint": "^7.14.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-jest": "^24.1.3",
