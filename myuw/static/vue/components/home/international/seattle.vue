@@ -80,6 +80,13 @@
     </h4>
     <ul class="mb-4 list-unstyled myuw-text-md">
       <li>
+        <a href="https://www.washington.edu/circle/calendar/"
+          target="_blank"
+          label="CIRCLE Event Calendar">
+          CIRCLE Events Calendar
+        </a>
+      </li>
+      <li>
         <a
           href="http://www.fiuts.org/events"
           target="_blank"
