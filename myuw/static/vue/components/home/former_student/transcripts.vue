@@ -14,7 +14,8 @@
       </p>
       <ul class="list-unstyled myuw-text-md mb-4">
         <li class="mb-1">
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/transcript.aspx" target="_blank" data-linklabel="Official Transcript">Order Official Transcripts</a>
+          <a href="https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php"
+            target="_blank" data-linklabel="Official Transcript">Order Official Transcripts</a>
         </li>
         <li class="mb-1">
           <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank" data-linklabel="Unofficial Transcript">View Unofficial Transcript</a>
