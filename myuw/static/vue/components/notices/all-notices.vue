@@ -1,7 +1,7 @@
 <template>
   <div v-if="isReady">
-    <div class="d-flex">
-      <div class="ml-auto">
+    <div class="d-flex border-bottom pb-3">
+      <div class="ml-auto myuw-text-md">
         <b-link v-if="!everyNoticeListExpanded" title="Show all notice information"
           @click="expandAll()"
         >

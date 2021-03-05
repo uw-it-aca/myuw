@@ -6,7 +6,7 @@
       <div>
         <b-button v-if="section.mini_card"
             variant="dark" size="sm"
-            :aria-label="`Remove ${section.id} mini-card`"
+            :label="`Remove ${section.id} mini-card`"
             title="Click to remove this mini-card"
             @click="toggleMini(section)">
           <font-awesome-icon :icon="faTimes" />

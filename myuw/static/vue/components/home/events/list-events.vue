@@ -1,13 +1,13 @@
 <template>
   <ul class="list-unstyled mb-0 myuw-text-md">
-    <li v-for="(event, i) in events" :key="i" class="border-bottom pb-2 mb-2">
+    <li v-for="(event, i) in events" :key="i" class="mb-2">
       <strong>
         {{ acalDateFormat(event.start_date, event.end_date) }}
       </strong>
       <a
         :href="event.event_url"
         class="d-block"
-        :aria-label="generateLabel(event)"
+        :label="generateLabel(event)"
       >
         <span v-if="event.is_all_day" class="text-dark font-weight-light
         d-inline-block mr-1"

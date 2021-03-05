@@ -95,7 +95,7 @@ Vue.component('myuw-ns-thank-you', ThankYou);
 Vue.component('myuw-ns-to-register', ToRegister);
 Vue.component('myuw-reg-status', RegStatus);
 Vue.component('myuw-future-quarter-cards', FutureQuarterCards);
-Vue.component('myuw-inst-course-summary', InstructorCourseSummery);
+Vue.component('myuw-teaching-course-summary', InstructorCourseSummery);
 Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-uwnetid', UWNetID);

@@ -1,10 +1,12 @@
 <template>
   <div class="d-md-flex mb-3 myuw-text-md">
-    <div class="flex-md-fill mr-3 bd-highlight font-weight-bold property-label">
-      {{ title }}
-    </div>
+    <slot name="title">
+      <div class="flex-md-fill mr-3 bd-highlight font-weight-bold property-label">
+        {{ title }}
+      </div>
+    </slot>
     <div class="flex-md-fill">
-      <slot name="content"></slot>
+      <slot></slot>
     </div>
   </div>
 </template>

@@ -5,6 +5,9 @@ import Vuex from 'vuex';
 // Global Mixins
 import utils from '../mixins/utils';
 
+// Custom Plugins
+import Logger from '../plugins/logger';
+
 // helper for testing action with expected mutations
 const expectAction = (
     action, payload, state, getters, expectedMutations,
@@ -42,7 +45,9 @@ const createLocalVue = (vuexModule) => {
   const localVue = createLocalVueOriginal();
   localVue.use(BootstrapVue);
   localVue.use(vuexModule);
-
+  localVue.use(Logger, {
+    console: {},
+  });
   localVue.mixin(utils);
 
   return localVue;

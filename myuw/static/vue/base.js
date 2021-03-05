@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import VueGtag from 'vue-gtag';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
@@ -146,18 +145,6 @@ Vue.use(TooltipPlugin);
 // vuex
 Vue.use(Vuex);
 
-// vue-gtag
-Vue.use(VueGtag, {
-  config: {
-    id: gaCode,
-    params: {
-      anonymize_ip: true,
-      user_id: hashId,
-    },
-  },
-  enabled: trackingEnabled == 'true',
-});
-
 // vue-mq (media queries)
 Vue.use(VueMq, {
   breakpoints: {
@@ -201,6 +188,23 @@ Vue.config.devtools = true;
 Vue.mixin(outlink);
 Vue.mixin(utils);
 Vue.mixin(courses);
+
+import Logger from './plugins/logger';
+Vue.use(Logger, {
+  gtag: {
+    config: {
+      id: gaCode,
+      params: {
+        anonymize_ip: true,
+        user_id: hashId,
+      },
+    },
+    enabled: trackingEnabled == 'true',
+  },
+  // console: {
+  //   print: true,
+  // },
+});
 
 const vueConf = {
   el: '#vue_root',

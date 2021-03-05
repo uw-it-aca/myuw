@@ -299,8 +299,11 @@ def get_single_message_body(requestor_uwnetid,
                 {**get_userids(),
                  **{'at': "get_single_message_body",
                     'err': thread.exception}})
-    log_info(logger, {'msg': "Request emaillist For {}".format(
-        single_section_labels)})
+    if len(single_section_labels):
+        log_info(
+            logger,
+            {'msg': "Request single message for: {}".format(
+                " ".join(single_section_labels))})
     return message_body, num_sections_found
 
 
@@ -333,8 +336,11 @@ def get_joint_message_body(requestor_uwnetid, joint_section_labels):
                 {**get_userids(),
                  **{'at': "get_joint_message_body",
                     'err': thread.exception}})
-    log_info(logger, {'msg': "Request emaillist For {}".format(
-        joint_section_labels)})
+    if len(joint_section_labels):
+        log_info(
+            logger,
+            {'msg': "Request joint message for: {}".format(
+                " ".join(joint_section_labels))})
     return message_body, num_sections_found
 
 

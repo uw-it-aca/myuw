@@ -24,7 +24,7 @@
               <b-link
                 href="/profile/"
                 class="text-white font-weight-light"
-                aria-label="View your profile"
+                title="View your profile"
               >
                 <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
                 {{ netid }}
@@ -35,7 +35,8 @@
                 v-if="emailError"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
-                aria-label="UW email services"
+                title="UW email services"
+                label="UW email services"
               >
                 <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email
                 error
@@ -44,7 +45,8 @@
                 v-else
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
-                aria-label="Open your email in new tab"
+                title="Open your email in new tab"
+                label="Open your email in new tab"
               >
                 <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email
               </b-link>
@@ -52,14 +54,14 @@
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
-                aria-label="Open search area"
+                title="Open search area"
               >
                 <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
-                aria-label="Sign out of MyUW"
+                title="Sign out of MyUW"
               >
                 <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-1" />Sign Out
               </b-link>
@@ -79,7 +81,7 @@
             variant="link"
             size="sm"
             class="d-lg-none p-0 border-0 text-white"
-            aria-label="Toggle Navigation Menu"
+            title="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="['far', 'square']" transform="right-1" class="m-0" />
@@ -370,10 +372,8 @@ export default {
     displayPopUp: (state) => state.displayPopUp,
   }),
   mounted() {
-    this.$gtag.set('user_properties', this.generateUserProperties());
-
-    // MARK: google analytics gtag
-    this.$gtag.pageview({
+    this.$logger.setUserProperties(this.affiliations);
+    this.$logger.pageview({
       page_location: window.location.href,
       page_path: window.location.pathname,
       page_title: this.pageTitle,
@@ -398,87 +398,6 @@ export default {
         });
     },
     ...mapMutations(['addVarToState']),
-    generateUserProperties() {
-      const properties = {};
-      const affiliationEntries = Object.entries(this.affiliations)
-        .filter((pair) => pair[1]);
-
-      this.populateProperty(
-        properties,
-        'affiliation',
-        {
-          'alumni': 'Alumni',
-          'applicant': 'Applicant',
-          'clinician': 'Clinician',
-          'faculty': 'Faculty',
-          'grad': 'Grad stud',
-          'grad_c2': 'GradC2',
-          'instructor': 'Instructor',
-          'intl_stud': 'Intl stud',
-          'past_stud': 'Former stud',
-          'pce': 'PCE',
-          'retiree': 'Retiree',
-          'staff_employee': 'Staff',
-          'stud_employee': 'Stud employee',
-          'student': 'Student',
-          'undergrad': 'Undergrad stud',
-          'undergrad_c2': 'UndergradC2',
-        },
-        affiliationEntries,
-      );
-      this.populateProperty(
-        properties,
-        'student_campus',
-        {
-          'seattle': 'Seattle',
-          'bothell': 'Bothell',
-          'tacoma': 'Tacoma',
-        },
-        affiliationEntries,
-        true,
-      );
-      this.populateProperty(
-        properties,
-        'employment_campus',
-        {
-          'official_seattle': 'Seattle',
-          'official_bothell': 'Bothell',
-          'official_tacoma': 'Tacoma',
-        },
-        affiliationEntries,
-        true,
-      );
-
-      if (this.affiliations['class_level']) {
-        properties['class_level'] = this.titleCaseWord(this.affiliations['class_level']);
-      }
-
-      return properties;
-    },
-    populateProperty(
-      properties,
-      propertyName,
-      propertyMap,
-      affiliationEntries,
-      singleValue = false
-    ) {
-      let value = affiliationEntries
-        .map((pair) => pair[0])
-        .filter((affiliation) => affiliation in propertyMap)
-        .map((affiliation) => propertyMap[affiliation]);
-      
-      if (singleValue) {
-        value = value[0];
-      }
-
-      if (value !== undefined) {
-        if (value instanceof Array && value.length > 0) {
-          properties[propertyName] = value;
-        } else {
-          properties[propertyName] = value;
-        }
-      }
-    }
   },
 };
 </script>
