@@ -155,7 +155,7 @@ export default {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
         return this.currentPlanData.degree_audit_href;
       }
-      return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
+      return 'https://myplan.uw.edu/dars';
     },
     nextTermQuarterCode() {
       if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
