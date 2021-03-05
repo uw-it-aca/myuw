@@ -48,7 +48,7 @@ describe('IntlStudCard', function(){
         assert.equal(IntlStudCard.dom_target.find('h3').length, 1);
         assert(IntlStudCard.dom_target.find('h3.myuw-card-title')[0].innerHTML.includes('International Student'));
         assert.equal(IntlStudCard.dom_target.find('h4').length, 3);
-        assert.equal(IntlStudCard.dom_target.find('li').length, 9);
+        assert.equal(IntlStudCard.dom_target.find('li').length, 10);
         assert.equal(IntlStudCard.dom_target.find('a[href="https://iss.washington.edu/regulations/f1/"]').length, 1);
         assert.equal(IntlStudCard.dom_target.find('a[href="http://www.fiuts.org/events"]').length, 1);
     });
