@@ -6,45 +6,59 @@
       </h3>
     </template>
     <template #card-body>
-      <p>Explore tools, services, and resources by popular topics.</p>
+      <p class="myuw-text-md">Explore tools, services, and resources by popular topics.</p>
       
-      <ul>
-        <li>
-          <font-awesome-icon :icon="['fa', 'chevron-right']"/>
-          <a href="/resources/#academics">Academic Resources</a>
-        </li>
-        <li>
-          <font-awesome-icon :icon="['fa', 'chevron-right']"/>
-          <a href="/resources/#accountsidentityandemail">Accounts, Identity, and Email</a>
-        </li>
-        <li>
-          <font-awesome-icon :icon="['fa', 'chevron-right']"/>
-          <a href="/resources/#studentfinances">Student Finances</a>
-        </li>
-        <li>
-          <font-awesome-icon :icon="['fa', 'chevron-right']"/>
-          <a href="/resources/#employment">Employment</a>
-        </li>
+      <ul class="list-unstyled">
+        <b-container fluid>
+          <b-row>
+            <b-col md="6">
+              <li>
+                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <a href="/resources/#academics">Academic Resources</a>
+              </li>
+            </b-col>
+            <b-col md="6">
+              <li>
+                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <a href="/resources/#studentfinances">Student Finances</a>
+              </li>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col md="6">
+              <li>
+                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <a href="/resources/#accountsidentityandemail">Accounts, Identity, and Email</a>
+              </li>
+            </b-col>
+            <b-col md="6">
+              <li>
+                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <a href="/resources/#employment">Employment</a>
+              </li>
+            </b-col>
+          </b-row>
+        </b-container>
       </ul>
-
+      <hr>
       <div>
-          <h4>
+          <h4 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
             More topics
           </h4>
-          <ul class="myuw-inline-list">
-            <li>
+          <ul class="list-inline myuw-text-md">
+            <li class="list-inline-item">
               <a href="/resources/#teaching">Teaching</a>
             </li>
-            <li>
+            <li class="list-inline-item">
               <a href="/resources/#libraries">Libraries</a>
             </li>
-            <li>
+            <li class="list-inline-item">
               <a href="/resources/#campuslife">Campus Life</a>
             </li>
-            <li>
+            <li class="list-inline-item">
               <a href="/resources/#eventsactivities">Events and Activities</a>
             </li>
-            <li>
+            <li class="list-inline-item">
               <a href="/resources/#servicesforfacultyandstaff">Services for Faculty and Staff</a>
             </li>
           </ul>
@@ -62,3 +76,12 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@use "sass:map";
+@import "../../../../css/myuw/variables.scss";
+
+.fa {
+  color: $link-color;
+}
+
+</style>
