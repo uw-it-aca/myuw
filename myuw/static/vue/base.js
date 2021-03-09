@@ -70,7 +70,7 @@ import {
 } from 'bootstrap-vue';
 
 // Mixins
-import outlink from './mixins/outlink';
+// import outlink from './mixins/outlink';
 import utils from './mixins/utils';
 import courses from './mixins/courses';
 
@@ -145,19 +145,6 @@ Vue.use(TooltipPlugin);
 // vuex
 Vue.use(Vuex);
 
-// vue-mq (media queries)
-Vue.use(VueMq, {
-  breakpoints: {
-    // breakpoints == min-widths of next size
-    mobile: 768, // tablet begins 768px
-    tablet: 992, // desktop begins 992px
-    desktop: Infinity,
-  },
-});
-
-import VueObserveVisibility from 'vue-observe-visibility'
-Vue.use(VueObserveVisibility)
-
 const store = new Vuex.Store({
   state: {
     user: JSON.parse(document.getElementById('user').innerHTML),
@@ -183,13 +170,23 @@ const store = new Vuex.Store({
   },
 });
 
-Vue.config.devtools = true;
+// vue-mq (media queries)
+Vue.use(VueMq, {
+  breakpoints: {
+    // breakpoints == min-widths of next size
+    mobile: 768, // tablet begins 768px
+    tablet: 992, // desktop begins 992px
+    desktop: Infinity,
+  },
+});
 
-Vue.mixin(outlink);
-Vue.mixin(utils);
-Vue.mixin(courses);
+// import VueObserveVisibility from 'vue-observe-visibility'
+// Vue.use(VueObserveVisibility)
 
 import Logger from './plugins/logger';
+import Observer from './plugins/observer';
+import TrackLink from './plugins/tracklink';
+
 Vue.use(Logger, {
   gtag: {
     config: {
@@ -205,6 +202,15 @@ Vue.use(Logger, {
   //   print: true,
   // },
 });
+Vue.use(Observer);
+Vue.use(TrackLink);
+
+
+Vue.config.devtools = true;
+
+// Vue.mixin(outlink);
+Vue.mixin(utils);
+Vue.mixin(courses);
 
 const vueConf = {
   el: '#vue_root',

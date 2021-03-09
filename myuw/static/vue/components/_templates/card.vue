@@ -2,9 +2,11 @@
   <div v-if="(mobileOnly && $mq === 'mobile') || !mobileOnly">
     <b-card v-if="loaded"
             class="rounded-0 shadow-sm mb-3"
+            v-visibility-change="loaded ? visibilityChanged : null"
             :body-class="bodyClasses"
             footer-class="border-0 px-3 py-2"
     >
+      <div>Percentage Of Card: {{percentageOfScreen}}%</div>
       <slot name="card-heading" />
       <slot name="card-body" />
       <slot name="card-disclosure" />
@@ -76,7 +78,12 @@ export default {
     }
   },
   data: function() {
-    return {};
+    return {
+      percentageOfScreen: 0,
+      screenSize: 0,
+      cardOnScreen: 0,
+      cardArea: 1,
+    };
   },
   computed: {
     bodyClasses() {
@@ -92,6 +99,9 @@ export default {
 
       return classes;
     },
+    percentageOfCard() {
+      return this.cardOnScreen / this.cardArea;
+    },
   },
   watch: {
     loaded(val) {
@@ -101,5 +111,22 @@ export default {
   created() {
     if (this.loaded) this.$logger.cardLoad(this);
   },
+  methods: {
+    visibilityChanged(entry) {
+      this.percentageOfScreen = Math.round(entry.intersectionRatio * 10000) / 100;
+      this.$logger.compInViewport(this, entry.intersectionRatio);
+    }
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+.card-overlay {
+  position: absolute;
+  height: 100px;
+  width: calc(100% - 20px);
+  background-color: rgba(1, 1, 1, 0.5);
+  z-index: 9999;
+  color: white;
+}
+</style>

@@ -10,6 +10,7 @@
         <uw-link
           v-for="(link, index) in defaultLinks" :key="`default-${index}`"
           :link="link" :buttons="['remove']" :custom-id="`default-${index}`"
+          v-out
         />
         <uw-link
           v-for="(link, index) in customLinks" :key="`custom-${index}`"

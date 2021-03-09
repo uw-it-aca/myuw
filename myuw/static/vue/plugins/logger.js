@@ -1,43 +1,20 @@
 import VueGtag from 'vue-gtag';
 import utils from '../mixins/utils';
+import { findParentMyUWComponentTag } from './utils';
 
 class Logger {
   constructor(sink) {
     this.sink = sink;
+    this.compsInViewport = [];
   }
 
   cardLoad(component) {
     component.$nextTick(() => {
-      let compTid = component.compTid;
-      if (!compTid) {
-        // Try to create the compTid from the card heading
-        const cardHeading = component.$slots['card-heading'];
-        if (
-          cardHeading &&
-          cardHeading[0] &&
-          cardHeading[0].children &&
-          cardHeading[0].children[0] &&
-          cardHeading[0].children[0].text
-        ) {
-          compTid = cardHeading[0].children[0].text.trim();
-        }
-      }
-
-      let parentCompTag = null;
-      // Try to find the component tag
-      for (let comp=component.$parent; comp.$parent; comp = comp.$parent) {
-        if (comp.$options._componentTag.startsWith("myuw")) {
-          parentCompTag = comp.$options._componentTag;
-          break;
-        }
-      }
-
-      if (compTid) {
-        this.sink.event('card_load', {
-          comp_tid: compTid,
-          comp_tag: parentCompTag,
-        });
-      }
+      this.sink.event('card_load', {
+        comp_tag: component.compTag ?
+          component.compTag :
+          findParentMyUWComponentTag(component),
+      });
     });
   }
 
@@ -92,6 +69,45 @@ class Logger {
 
   search(searchTerm) {
     this.sink.event('search', {search_term: searchTerm});
+  }
+
+  linkClick(component, url, label, out) {
+    this.sink.event('link_click', {
+      comp_tag: findParentMyUWComponentTag(component),
+      link_url: url,
+      link_label: label,
+      link_to_external: out,
+    });
+  }
+
+  compInViewport(component, intersectionRatio) {
+    let report = false;
+
+    // Update the array of components on the page
+    let inArrayInstance = this.compsInViewport.find((o) => component === o.comp);
+    if (inArrayInstance) {
+      inArrayInstance.ir = intersectionRatio;
+    } else {
+      this.compsInViewport.push({comp: component, ir: intersectionRatio});
+    }
+    this.compsInViewport.sort((a, b) => - (a.ir - b.ir));
+
+    // Report if the component it is mostly visible
+    if (intersectionRatio > 0.995) {
+      report = true;
+    }
+
+    // Report if the component is the most visible one
+    if (inArrayInstance === this.compsInViewport[0]) {
+      report = true;
+    }
+
+    if (report) console.log(report, intersectionRatio, component.$vnode.elm);
+    if (report) {
+      this.sink.event('comp_in_viewport', {
+        comp_tag: findParentMyUWComponentTag(component),
+      });
+    }
   }
 }
 
@@ -154,5 +170,5 @@ export default function (Vue, options) {
     throw '`gtag` or `console` config needed';
   }
 
-  Vue.prototype.$logger = new Logger(sink);
+  Vue.$logger = Vue.prototype.$logger = new Logger(sink);
 };
