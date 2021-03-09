@@ -8,10 +8,10 @@ class Logger {
     this.compsInViewport = {};
     this.options = options || {};
     if (!this.options.compInViewportRatioThreshold) {
-      this.options.compInViewportRatioThreshold = 0.7;
+      this.options.compInViewportRatioThreshold = 0.9;
     }
     if (!this.options.compInViewportDurationThreshold) {
-      this.options.compInViewportDurationThreshold = 3;
+      this.options.compInViewportDurationThreshold = 2;
     }
 
     document.addEventListener('visibilitychange', () => {
