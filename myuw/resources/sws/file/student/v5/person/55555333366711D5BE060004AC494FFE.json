@@ -9,6 +9,7 @@
 "Quarter":"spring",
 "Year":2013},
 "LastName":"Eos",
+"Pronouns": "he/him/his",
 "LocalAddress":{
         "City":"Seattle",
         "Country":"United States",

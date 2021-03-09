@@ -10,6 +10,7 @@
         "Quarter":"winter",
         "Year":2012},
 "LastName":"Staff",
+"Pronouns": "he/him/his",
 "LocalAddress":{
         "City":"Seattle",
         "Country":"United States",
