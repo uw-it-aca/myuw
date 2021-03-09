@@ -29,7 +29,8 @@ var NoticeBanner = {
             });
             NoticeBanner._split_notice_titles(critical_notices);
 
-            var notices = Notices.get_notice_page_notices(true);
+            var notices = Notices.sort_notices_by_start_date(
+                Notices.get_notice_page_notices(true));
             NoticeBanner._split_notice_titles(notices);
 
             NoticeBanner.render_with_context({

@@ -52,7 +52,7 @@ var Notices = {
         notices.legal = Notices.get_notices_for_category("Legal");
         notices.critical = {
             "count": critical_notices.length,
-            "notices": critical_notices,
+            "notices": Notices.sort_notices_by_start_date(critical_notices),
             "unread_count": Notices._get_unread_count(critical_notices)
         };
 
@@ -134,27 +134,26 @@ var Notices = {
 
     sort_notices_by_start_date: function(notices){
         return notices.sort(function(n1, n2){
-            if (n1.date === null && n2.date === null) { return 0;}
-            if (n1.date !== null && n2.date === null) { return -1;}
-            if (n1.date === null && n2.date !== null) { return 1;}
-            return Notices._get_critical_notice_sort_date(n1) -
-                Notices._get_critical_notice_sort_date(n2);
+            var n1_date = Notices._get_critical_notice_sort_date(n1);
+            var n2_date = Notices._get_critical_notice_sort_date(n2);
+            if (n1_date === null !== n2_date === null) {
+                return n1_date === null - n2_date === null;
+            }
+            return n1_date - n2_date;
         });
     },
 
     _get_critical_notice_sort_date: function (notice){
-        var date = null;
-        var start_date_string = Notices.get_attribute_by_name('DisplayBegin',
-                                                              notice);
-        var date_string = Notices.get_attribute_by_name('Date', notice);
-
-        if(start_date_string !== undefined){
-            date = moment.utc(start_date_string);
-        } else if (date_string !== undefined){
-            date = moment.utc(date_string);
+        var start_date_string = Notices.get_attribute_by_name(
+            'DisplayBegin', notice);
+        if(start_date_string !== undefined) {
+            return moment.utc(start_date_string);
         }
-        return date;
-
+        var date_string = Notices.get_attribute_by_name('Date', notice);
+        if (date_string !== undefined){
+            return moment.utc(date_string);
+        }
+        return null;
     },
 
     get_attribute_by_name: function(attrib_name, notice){
