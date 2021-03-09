@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
-import {strToDate} from './common';  // when uw_sws  is 2.3.8
 import dayjs from 'dayjs';
 dayjs.extend(require('dayjs/plugin/timezone'))
 
@@ -40,7 +39,7 @@ const postProcess = (response, _, rootState) => {
     );
     // datetime will reflect BOF
     if (startDateAttr !== undefined && startDateAttr.value !== undefined) {
-      notice.startSate = dayjs.utc(startDateAttr.value);
+      notice.startDate = dayjs.utc(startDateAttr.value);
     }
     if (dateAttr !== undefined && dateAttr.value !== undefined) {
       notice.date = dayjs.utc(dateAttr.value);
@@ -48,7 +47,7 @@ const postProcess = (response, _, rootState) => {
     }
     // Notices will be sorted by notice.sortDate
     // some notice only has DisplayBegin date
-    notice.sortDate = notice.startSate ? notice.startSate : (
+    notice.sortDate = notice.startDate ? notice.startDate : (
       notice.date ? notice.date : null
     );
     return notice;
