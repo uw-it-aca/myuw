@@ -106,11 +106,11 @@ export default {
   },
   props: {
     forQuarter: {
-      type: String,
+      type: String,   // optional value: Summer
       default: null,
     },
     period: {
-      type: String,
+      type: String,   // optional value: A
       default: null,
     },
   },
@@ -234,16 +234,7 @@ export default {
       const estRegData = {};
 
       this.estRegDateNotices.forEach((notice) => {
-        let registrationDate = null;
-
-        // Set registrationDate date to the first date value found in
-        // the notice attributes
-        notice.attributes
-            .filter((a) => a.name === 'Date')
-            .slice(0, 1)
-            .forEach((a) => {
-              registrationDate = this.strToDayjs(a.value);
-            });
+        let registrationDate = notice.date;
 
         notice.attributes
             .filter((a) => a.name === 'Quarter' && a.value === this.quarter)
