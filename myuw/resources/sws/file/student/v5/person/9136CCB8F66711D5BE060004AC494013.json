@@ -8,6 +8,7 @@
 "Quarter":"autumn",
 "Year":2013},
 "LastName":"Average",
+"Pronouns": "he/him/his",
 "LocalAddress":{"City":"Seattle",
         "Country":"United States",
         "Line1":"4634 26th Ave NE",

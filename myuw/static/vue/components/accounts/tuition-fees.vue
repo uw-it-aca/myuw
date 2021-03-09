@@ -276,15 +276,8 @@ export default {
       const now = this.nowDatetime();
       const result = {};
       if (this.tuitionDueNotice !== undefined) {
-        this.tuitionDueNotice.attributes.forEach((attr) => {
-          if (attr.name === 'Date') {
-            result.date = attr.value;
-            result.formatted = attr.formatted_value;
-            const tuitionDue = this.strToDayjs(result.date);
-            const diff = Math.ceil(tuitionDue.diff(now, 'day', true));
-            result.diff = diff;
-          }
-        });
+        result.diff = Math.ceil(this.tuitionDueNotice.date.diff(now, 'day', true));
+        result.formatted = this.tuitionDueNotice.formattedDate;
       }
       return result;
     },

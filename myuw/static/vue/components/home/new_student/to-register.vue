@@ -14,23 +14,21 @@
       <div v-if="formatted_date">
         <p class="myuw-text-md">
           Register on <strong>{{ formatted_date }}</strong> through
-          <a
-            target="_blank"
-            href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/"
+          <a target="_blank" label=""
+            href="https://myplan.uw.edu/"
           >MyPlan</a> or
-          <a
-            target="_blank"
+          <a target="_blank" label=""
             href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
           >the registration screen</a>.
         </p>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a
+            <a target="_blank" label=""
               href="https://depts.washington.edu/sislearn/registration-resources/"
             >How to register</a>
           </li>
           <li>
-            <a
+            <a target="_blank" label=""
               href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/"
             >How to choose courses</a>
           </li>
@@ -147,12 +145,7 @@ export default {
       let date = false;
       if (this.isReady) {
         if (this.no_orient.length > 0) {
-          const noMsgAttr = this.no_orient[0].attributes;
-          noMsgAttr.forEach((attribute) => {
-            if (attribute.name === 'Date') {
-              date = attribute.formatted_value;
-            }
-          });
+          date = this.no_orient[0].formattedDate;
         }
       }
       return date;

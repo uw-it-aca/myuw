@@ -4,7 +4,9 @@ import Vuex from 'vuex';
 
 // Global Mixins
 import utils from '../mixins/utils';
-import log from '../mixins/log';
+
+// Custom Plugins
+import Logger from '../plugins/logger';
 
 // helper for testing action with expected mutations
 const expectAction = (
@@ -43,12 +45,10 @@ const createLocalVue = (vuexModule) => {
   const localVue = createLocalVueOriginal();
   localVue.use(BootstrapVue);
   localVue.use(vuexModule);
-  // Mock for vue-gtag
-  localVue.prototype.$gtag = {
-    event: () => {},
-  };
+  localVue.use(Logger, {
+    console: {},
+  });
   localVue.mixin(utils);
-  localVue.mixin(log);
 
   return localVue;
 };

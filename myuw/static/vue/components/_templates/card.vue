@@ -95,11 +95,11 @@ export default {
   },
   watch: {
     loaded(val) {
-      if (val) this.log.card_load(this);
+      if (val) this.$logger.cardLoad(this);
     },
   },
   created() {
-    if (this.loaded) this.log.card_load(this);
+    if (this.loaded) this.$logger.cardLoad(this);
   },
 };
 </script>

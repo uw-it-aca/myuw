@@ -9,7 +9,9 @@ import {
   FontAwesomeIcon,
 } from '@fortawesome/vue-fontawesome';
 
-import mockNotices from './mock_data/notices.json';
+import javgNotices from './mock_data/notice/javerage.json';
+import jnewNotices from './mock_data/notice/jnew.json';
+import jbotNotices from './mock_data/notice/jbothell.json';
 
 const localVue = createLocalVue(Vuex);
 localVue.component('font-awesome-icon', FontAwesomeIcon);
@@ -28,7 +30,7 @@ describe('Notice Card', () => {
   });
 
   it('Check status changes on fetch', async () => {
-    axios.get.mockResolvedValue({data: mockNotices, status: 200});
+    axios.get.mockResolvedValue({data: javgNotices, status: 200});
     const wrapper = shallowMount(NoticeCard, {store, localVue});
     expect(
         notices.getters.isFetching(wrapper.vm.$store.state.notices),
@@ -44,7 +46,7 @@ describe('Notice Card', () => {
   });
 
   it('Check second fetch', async () => {
-    axios.get.mockResolvedValue({data: mockNotices, status: 200});
+    axios.get.mockResolvedValue({data: javgNotices, status: 200});
     const wrapper = shallowMount(NoticeCard, {store, localVue});
     expect(
         notices.getters.isFetching(wrapper.vm.$store.state.notices),
@@ -74,7 +76,7 @@ describe('Notice Card', () => {
   });
 
   it('Check postProcess fields', async () => {
-    axios.get.mockResolvedValue({data: mockNotices, status: 200});
+    axios.get.mockResolvedValue({data: jnewNotices, status: 200});
     const wrapper = shallowMount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
@@ -105,7 +107,7 @@ describe('Notice Card', () => {
   });
 
   it('Check notices populate and click', async () => {
-    axios.get.mockResolvedValue({data: mockNotices, status: 200});
+    axios.get.mockResolvedValue({data: javgNotices, status: 200});
     const wrapper = mount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise((r) => setTimeout(r, 10));
@@ -122,7 +124,7 @@ describe('Notice Card', () => {
   });
 
   it('Check show event', async () => {
-    axios.get.mockResolvedValue({data: mockNotices, status: 200});
+    axios.get.mockResolvedValue({data: javgNotices, status: 200});
     axios.put = jest.fn(() => Promise.resolve());
     const wrapper = mount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess

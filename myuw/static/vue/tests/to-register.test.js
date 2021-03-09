@@ -5,9 +5,9 @@ import Vuex from 'vuex';
 import notices from '../vuex/store/notices';
 import ToRegisterCard from '../components/home/new_student/to-register.vue';
 
-import mockNotices from './mock_data/notices.json';
-import interNotices from './mock_data/inter_notices.json';
-import bothellNotices from './mock_data/bothell_notices.json';
+import mockNotices from './mock_data/notice/javg004.json';
+import interNotices from './mock_data/notice/jinter.json';
+import bothellNotices from './mock_data/notice/jbothell.json';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 
