@@ -8,33 +8,33 @@
     <template #card-body>
       <p class="myuw-text-md">Explore tools, services, and resources by popular topics.</p>
       
-      <ul class="list-unstyled">
+      <ul class="list-unstyled myuw-text-lg myuw-resource-links">
         <b-container fluid>
           <b-row>
             <b-col md="6">
-              <li>
+              <li class="mb-2">
                 <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
-                <a href="/resources/#academics">Academic Resources</a>
+                <a class="ml-1" href="/resources/#academics">Academic Resources</a>
               </li>
             </b-col>
             <b-col md="6">
-              <li>
+              <li class="mb-2">
                 <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
-                <a href="/resources/#studentfinances">Student Finances</a>
+                <a class="ml-1" href="/resources/#studentfinances">Student Finances</a>
               </li>
             </b-col>
           </b-row>
           <b-row>
             <b-col md="6">
-              <li>
+              <li class="mb-2">
                 <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
-                <a href="/resources/#accountsidentityandemail">Accounts, Identity, and Email</a>
+                <a class="ml-1" href="/resources/#accountsidentityandemail">Accounts, Identity, and Email</a>
               </li>
             </b-col>
             <b-col md="6">
-              <li>
+              <li class="mb-2">
                 <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
-                <a href="/resources/#employment">Employment</a>
+                <a class="ml-1" href="/resources/#employment">Employment</a>
               </li>
             </b-col>
           </b-row>
@@ -42,26 +42,26 @@
       </ul>
       <hr>
       <div>
-          <h4 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
-            More topics
-          </h4>
-          <ul class="list-inline myuw-text-md">
-            <li class="list-inline-item">
-              <a href="/resources/#teaching">Teaching</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="/resources/#libraries">Libraries</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="/resources/#campuslife">Campus Life</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="/resources/#eventsactivities">Events and Activities</a>
-            </li>
-            <li class="list-inline-item">
-              <a href="/resources/#servicesforfacultyandstaff">Services for Faculty and Staff</a>
-            </li>
-          </ul>
+        <h4 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+          More topics
+        </h4>
+        <ul class="list-inline myuw-text-md">
+          <li class="list-inline-item">
+            <a href="/resources/#teaching">Teaching</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="/resources/#libraries">Libraries</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="/resources/#campuslife">Campus Life</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="/resources/#eventsactivities">Events and Activities</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="/resources/#servicesforfacultyandstaff">Services for Faculty and Staff</a>
+          </li>
+        </ul>
       </div>
     </template>
   </uw-card>
@@ -80,8 +80,14 @@ export default {
 @use "sass:map";
 @import "../../../../css/myuw/variables.scss";
 
-.fa {
-  color: $link-color;
+.myuw-resource-links {
+  a {
+    color: black;
+  }
+  svg {
+    color: $link-color;
+  }
+
 }
 
 </style>
