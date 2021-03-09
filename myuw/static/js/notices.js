@@ -263,17 +263,17 @@ var Notices = {
                     "critical_count": Notices._get_critical_count(notices_today)
                     },
                 "week":
-                    {"notices": notices_week,
+                    {"notices": Notices.sort_notices_by_start_date(notices_week),
                     "unread_count": Notices._get_unread_count(notices_week),
                     "critical_count": Notices._get_critical_count(notices_week)
                     },
                 "next_week":
-                    {"notices": notices_next_week,
+                    {"notices": Notices.sort_notices_by_start_date(notices_next_week),
                     "unread_count": Notices._get_unread_count(notices_next_week),
                     "critical_count": Notices._get_critical_count(notices_next_week)
                     },
                 "future":
-                    {"notices": notices_future,
+                    {"notices": Notices.sort_notices_by_start_date(notices_future),
                     "unread_count": Notices._get_unread_count(notices_future),
                     "critical_count": Notices._get_critical_count(notices_future)
                     }
