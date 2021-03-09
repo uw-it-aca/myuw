@@ -28,7 +28,9 @@
             <b-col md="6">
               <li class="mb-2">
                 <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
-                <a class="ml-1" href="/resources/#accountsidentityandemail">Accounts, Identity, and Email</a>
+                <a class="ml-1"
+                   href="/resources/#accountsidentityandemail"
+                >Accounts, Identity, and Email</a>
               </li>
             </b-col>
             <b-col md="6">
