@@ -40,33 +40,24 @@ const postProcess = (response, urlExtra) => {
 
     let earliestTime = null;
     let latestTime = null;
+    let finalPeriod = isFinalPeriod(period);
     period.sections.forEach((section) => {
       let eosAlreadyAdded = false;
       // Skip if no exam is defined or no time is set
       if (section.final_exam && section.final_exam.start_date) {
         section.final_exam.locationData =
           generateMeetingLocationData(section.final_exam);
-        if (isFinalPeriod(period)) {
-          // Generate time relative to today so that it can be compared
-          let startTime = dayjs()
-            .hour(section.final_exam.start_date.hour())
-            .minute(section.final_exam.start_date.minute())
-            .second(0);
-          let endTime = dayjs()
-            .hour(section.final_exam.end_date.hour())
-            .minute(section.final_exam.end_date.minute())
-            .second(0);
-
+        if (finalPeriod) {
           // Update min and max time if needed
           if (earliestTime === null && latestTime === null) {
-            earliestTime = startTime;
-            latestTime = endTime;
+            earliestTime = section.final_exam.start_date;
+            latestTime = section.final_exam.end_date;
           } else {
-            if (startTime < earliestTime) {
-              earliestTime = startTime;
+            if (section.final_exam.start_date < earliestTime) {
+              earliestTime = section.final_exam.start_date;
             }
-            if (endTime > latestTime) {
-              latestTime = endTime;
+            if (section.final_exam.end_date > latestTime) {
+              latestTime = section.final_exam.end_date;
             }
           }
         }
@@ -80,7 +71,7 @@ const postProcess = (response, urlExtra) => {
           meeting.start_time &&
           meeting.end_time
         ) {
-          if (!isFinalPeriod(period)) {
+          if (!finalPeriod) {
             // Update min and max time if needed
             if (earliestTime === null && latestTime === null) {
               earliestTime = meeting.start_time;
@@ -120,7 +111,7 @@ const postProcess = (response, urlExtra) => {
 
     // Generate Days
     period.daySlots = {};
-    if (!isFinalPeriod(period)) {
+    if (!finalPeriod) {
       if (period.meets_sunday) {
         period.daySlots['sunday'] = null;
       }
@@ -134,7 +125,6 @@ const postProcess = (response, urlExtra) => {
       }
     } else if (earliestTime) {
       // Generate dates if on a final period
-
       let refrenceDate = earliestTime;
 
       if (refrenceDate.day() === 6) {
