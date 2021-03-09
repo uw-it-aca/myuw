@@ -6,7 +6,6 @@
             :body-class="bodyClasses"
             footer-class="border-0 px-3 py-2"
     >
-      <div>Percentage Of Card: {{percentageOfScreen}}%</div>
       <slot name="card-heading" />
       <slot name="card-body" />
       <slot name="card-disclosure" />
@@ -78,12 +77,7 @@ export default {
     }
   },
   data: function() {
-    return {
-      percentageOfScreen: 0,
-      screenSize: 0,
-      cardOnScreen: 0,
-      cardArea: 1,
-    };
+    return {};
   },
   computed: {
     bodyClasses() {
@@ -99,9 +93,6 @@ export default {
 
       return classes;
     },
-    percentageOfCard() {
-      return this.cardOnScreen / this.cardArea;
-    },
   },
   watch: {
     loaded(val) {
@@ -113,8 +104,7 @@ export default {
   },
   methods: {
     visibilityChanged(entry) {
-      this.percentageOfScreen = Math.round(entry.intersectionRatio * 10000) / 100;
-      this.$logger.compInViewport(this, entry.intersectionRatio);
+      this.$logger.compInViewport(this, entry);
     }
   }
 };

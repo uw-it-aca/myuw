@@ -3,7 +3,7 @@ export default function (Vue, options) {
     options = {};
   }
   if (!options.threshold) {
-    options.threshold = Array(101).fill(0).map((_, i) => i / 100);
+    options.threshold = Array(11).fill(0).map((_, i) => i / 10);
   }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {

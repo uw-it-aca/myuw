@@ -3,9 +3,24 @@ import utils from '../mixins/utils';
 import { findParentMyUWComponentTag } from './utils';
 
 class Logger {
-  constructor(sink) {
+  constructor(sink, options) {
     this.sink = sink;
-    this.compsInViewport = [];
+    this.compsInViewport = {};
+    this.options = options || {};
+    if (!this.options.compInViewportRatioThreshold) {
+      this.options.compInViewportRatioThreshold = 0.7;
+    }
+    if (!this.options.compInViewportDurationThreshold) {
+      this.options.compInViewportDurationThreshold = 3;
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        this.flushCompInViewPort();
+      } else if (document.visibilityState === 'visible') {
+        this.restartCompInViewPort();
+      }
+    });
   }
 
   cardLoad(component) {
@@ -80,34 +95,76 @@ class Logger {
     });
   }
 
-  compInViewport(component, intersectionRatio) {
-    let report = false;
+  compInViewport(component, entry) {
+    let onScreen = false;
 
-    // Update the array of components on the page
-    let inArrayInstance = this.compsInViewport.find((o) => component === o.comp);
-    if (inArrayInstance) {
-      inArrayInstance.ir = intersectionRatio;
-    } else {
-      this.compsInViewport.push({comp: component, ir: intersectionRatio});
+    let screenCoveredRatio = 0;
+    if (entry.rootBounds) {
+      const rootArea = entry.rootBounds.height * entry.rootBounds.width;
+      const cardArea = entry.boundingClientRect.height * entry.boundingClientRect.width;
+      screenCoveredRatio = 1 - (rootArea - (cardArea * entry.intersectionRatio)) / rootArea;
     }
-    this.compsInViewport.sort((a, b) => - (a.ir - b.ir));
+
+    // Update the array (dict in reality) of components on the page
+    this.compsInViewport[component.uid] = {
+      instance: component,
+      compOnScreenRatio: entry.intersectionRatio,
+      screenCoveredRatio: screenCoveredRatio,
+      timer: this.compsInViewport[component.uid] ?
+        this.compsInViewport[component.uid].timer : null,
+    };
 
     // Report if the component it is mostly visible
-    if (intersectionRatio > 0.995) {
-      report = true;
+    if (entry.intersectionRatio > this.options.compInViewportRatioThreshold) {
+      onScreen = true;
     }
 
-    // Report if the component is the most visible one
-    if (inArrayInstance === this.compsInViewport[0]) {
-      report = true;
-    }
+    // Covers the most screen space
+    onScreen = onScreen || (Object.values(this.compsInViewport).every(
+      (comp) => comp.screenCoveredRatio <= screenCoveredRatio,
+    ) && screenCoveredRatio > 0.1);
 
-    if (report) console.log(report, intersectionRatio, component.$vnode.elm);
-    if (report) {
-      this.sink.event('comp_in_viewport', {
-        comp_tag: findParentMyUWComponentTag(component),
+    if (onScreen) {
+      if (!this.compsInViewport[component.uid].timer) {
+        this.compsInViewport[component.uid].timer = Date.now();
+      }
+    } else if (this.compsInViewport[component.uid].timer) {
+      const duration = (Date.now() - this.compsInViewport[component.uid].timer) / 1000;
+      this.compsInViewport[component.uid].timer = null;
+
+      if (duration > this.options.compInViewportDurationThreshold) {
+        this.sink.event('comp_in_viewport', {
+          comp_tag: findParentMyUWComponentTag(component),
+          duration: duration,
+        });
+      }
+    }
+  }
+
+  flushCompInViewPort() {
+    Object.values(this.compsInViewport).forEach((compData) => {
+      if (compData.timer) {
+        const duration = (Date.now() - compData.timer) / 1000;
+        compData.timer = null;
+        compData.terminatedByFlush = true;
+
+        if (duration > this.options.compInViewportDurationThreshold) {
+          this.sink.event('comp_in_viewport', {
+            comp_tag: findParentMyUWComponentTag(compData.instance),
+            duration: duration,
+          });
+        }
+      }
+    });
+  }
+
+  restartCompInViewPort() {
+    Object.values(this.compsInViewport)
+      .filter((compData) => compData.terminatedByFlush)
+      .forEach((compData) => {
+        compData.timer = Date.now();
+        compData.terminatedByFlush = false;
       });
-    }
   }
 }
 
@@ -170,5 +227,5 @@ export default function (Vue, options) {
     throw '`gtag` or `console` config needed';
   }
 
-  Vue.$logger = Vue.prototype.$logger = new Logger(sink);
+  Vue.$logger = Vue.prototype.$logger = new Logger(sink, options.logger);
 };

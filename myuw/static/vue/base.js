@@ -69,11 +69,6 @@ import {
   TooltipPlugin,
 } from 'bootstrap-vue';
 
-// Mixins
-// import outlink from './mixins/outlink';
-import utils from './mixins/utils';
-import courses from './mixins/courses';
-
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
 import '../css/myuw/global.scss';
@@ -208,9 +203,13 @@ Vue.use(TrackLink);
 
 Vue.config.devtools = true;
 
-// Vue.mixin(outlink);
-Vue.mixin(utils);
+// Mixins
+import courses from './mixins/courses';
+import uid from './mixins/uid';
+import utils from './mixins/utils';
 Vue.mixin(courses);
+Vue.mixin(uid);
+Vue.mixin(utils);
 
 const vueConf = {
   el: '#vue_root',
