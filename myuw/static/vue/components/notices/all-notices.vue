@@ -99,13 +99,13 @@ export default {
       this.allNotices
         .filter((n) => n.location_tags.includes('notices_date_sort'))
         .forEach((n) => {
-          if (n.date && n.date.isToday()) {
+          if (!n.date || n.date.isToday()) {
             notices.today.push(n);
-          } else if (n.date && n.date.week() === today.week()) {
+          } else if (n.date.week() === today.week()) {
             notices.thisWeek.push(n);
-          } else if (n.date && n.date.week() === today.week() + 1) {
+          } else if (n.date.week() === today.week() + 1) {
             notices.nextWeek.push(n);
-          } else if (n.date === null || n.date > today) {
+          } else if (n.date > today) {
             notices.future.push(n);
           }
         });
