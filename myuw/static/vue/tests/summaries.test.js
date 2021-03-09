@@ -7,7 +7,7 @@ import hfs from '../vuex/store/hfs';
 import library from '../vuex/store/library';
 import Summaries from '../components/home/summaries.vue';
 
-import mockNotices from './mock_data/notices.json';
+import mockNotices from './mock_data/notice/javerage.json';
 
 const localVue = createLocalVue(Vuex);
 

@@ -10,7 +10,7 @@ import BothellComp from '../components/home/international/bothell.vue';
 import TacomaComp from '../components/home/international/tacoma.vue';
 import UwCard from '../components/_templates/card.vue';
 
-import mockNotices from './mock_data/inter_notices.json';
+import mockNotices from './mock_data/notice/jinter.json';
 
 const localVue = createLocalVue(Vuex);
 
@@ -201,11 +201,5 @@ describe('New International Student Card', () => {
     ).toBeFalsy();
 
     expect(wrapper.vm.notices).toHaveLength(1);
-    expect(wrapper.findAll('div')).toHaveLength(1);
-    // The html retuned from uw is a improper, it does not have the
-    // closing span tag.
-    expect(
-      wrapper.findAll('div').at(0).html()
-    ).toBe('<div class="myuw-text-md">' + mockNotices[23].notice_body + '</span></div>');
   });
 });

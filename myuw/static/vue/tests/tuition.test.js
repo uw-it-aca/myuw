@@ -57,7 +57,6 @@ describe('Tuition store', () => {
     expect(wrapper.vm.notices.length).toBe(14);
     expect(wrapper.vm.finAidNotices.length).toBe(1);
     expect(wrapper.vm.pceTuitionDup.length).toBe(0);
-    expect(wrapper.vm.tuitionDate.date).toBe("2014-08-20");
     expect(wrapper.vm.tuitionDate.formatted ).toBe('Wed, Aug 20');
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(0);
@@ -74,8 +73,7 @@ describe('Tuition store', () => {
     });
     const wrapper = shallowMount(TuitionFees, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.vm.tuitionDate.date).toBe("2021-02-09");
-    expect(wrapper.vm.tuitionDate.formatted ).toBe('Tue, Feb 9');
+    expect(wrapper.vm.tuitionDate.formatted ).toBe("Mon, Feb 22");
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(1000.00);
     expect(wrapper.vm.tuition.tuition_accbalance).toBe(12345.00);
