@@ -56,10 +56,11 @@ export default {
     ...mapState('notices', {
       // Note: This needs checking on prod data to evalute sort order
       allNotices: (state) => state.value.sort((n1, n2) => {
-        // sort in ascending order, put notice with sortDate null at the end
-        if (n1.sortDate === null && n2.sortDate === null) { return 0;}
-        if (n1.sortDate !== null && n2.sortDate === null) { return -1;}
-        if (n1.sortDate === null && n2.sortDate !== null) { return 1;}
+        if (n1.sortDate === null !== n2.sortDate === null) {
+          return n1.sortDate === null - n2.sortDate === null;
+          // put notices without date before those with dates
+        }
+        // sort in ascending order
         return n1.sortDate - n2.sortDate;
       }),
     }),

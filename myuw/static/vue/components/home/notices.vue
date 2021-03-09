@@ -95,8 +95,14 @@ export default {
         ).sort((n1, n2) => {
           if (n1.is_critical !== n2.is_critical) {
             return n2.is_critical - n1.is_critical;
+            // put critical notices before non-critical
           }
-          return n1.date - n2.date;
+          if (n1.sortDate === null !== n2.sortDate === null) {
+            return n1.sortDate === null - n2.sortDate === null;
+            // put notices without date before those with dates
+          }
+          // sort in ascending order
+          return n1.sortDate - n2.sortDate;
         });
       },
       hasAnyNotices: (state) => {
