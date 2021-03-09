@@ -96,7 +96,7 @@ export default {
           if (n1.is_critical !== n2.is_critical) {
             return n2.is_critical - n1.is_critical;
           }
-          return n2.date - n1.date;
+          return n1.date - n2.date;
         });
       },
       hasAnyNotices: (state) => {
