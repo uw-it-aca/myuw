@@ -134,6 +134,11 @@ var Notices = {
 
     sort_notices_by_start_date: function(notices){
         return notices.sort(function(n1, n2){
+            if (n1.is_critical !== n2.is_critical) {
+                return n2.is_critical - n1.is_critical;
+                // put critical notices before non-critical
+            }
+
             var n1_date = Notices._get_critical_notice_sort_date(n1);
             var n2_date = Notices._get_critical_notice_sort_date(n2);
             if (n1_date === null !== n2_date === null) {
