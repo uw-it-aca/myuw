@@ -1,4 +1,3 @@
-import dayjs from 'dayjs';
 import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
 import {
   tryConvertDayJS,
@@ -6,6 +5,7 @@ import {
   convertTermTimeAndDateToDateJSObj,
   generateMeetingLocationData,
 } from './common';
+import {dayjs} from '../common';
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
