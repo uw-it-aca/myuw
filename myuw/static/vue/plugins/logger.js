@@ -95,7 +95,7 @@ class Logger {
     });
   }
 
-  compInViewport(component, entry) {
+  visibilityChanged(component, entry) {
     let onScreen = false;
 
     let screenCoveredRatio = 0;

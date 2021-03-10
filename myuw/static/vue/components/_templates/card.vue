@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     visibilityChanged(entry) {
-      this.$logger.compInViewport(this, entry);
+      this.$logger.visibilityChanged(this, entry);
     }
   }
 };
