@@ -1,7 +1,4 @@
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-dayjs.extend(customParseFormat)
-dayjs.extend(require('dayjs/plugin/timezone'))
+import {dayjs} from '../common';
 
 export const tryConvertDayJS = (obj, format=undefined) => {
   if (obj) {

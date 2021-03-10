@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
-import dayjs from 'dayjs';
-dayjs.extend(require('dayjs/plugin/timezone'))
+import {dayjs} from './common';
 
 const postProcess = (response, _, rootState) => {
   const notices = response.data;
