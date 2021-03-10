@@ -1,5 +1,4 @@
 import axios from 'axios';
-import dayjs from 'dayjs';
 import {
   fetchBuilder,
   tryForceFetchBuilder,
@@ -10,14 +9,10 @@ import {
   convertSectionsTimeAndDateToDateJSObj,
 } from './common';
 import {
+  dayjs,
   getNow,
   strToDate,
 } from '../common';
-
-dayjs.extend(require('dayjs/plugin/advancedFormat'))
-dayjs.extend(require('dayjs/plugin/calendar'))
-dayjs.extend(require('dayjs/plugin/relativeTime'))
-dayjs.extend(require('dayjs/plugin/timezone'))
 
 const fmt = 'MMM D [at] h:mm A z';
 
