@@ -7,6 +7,7 @@
     "Gender": null,
     "LastEnrolled": null,
     "LastName": "Student",
+    "Pronouns": "they/them/theirs",
     "LocalAddress": null,
     "LocalPhone": null,
     "Notices": {
