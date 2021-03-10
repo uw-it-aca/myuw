@@ -218,42 +218,28 @@ var Notices = {
 
     get_notices_by_date: function () {
         "use strict";
-        var i,
-            j,
-            notice,
-            date,
-            today,
-            notices = Notices.get_notices_for_tag('notices_date_sort'),
+        var notices = Notices.get_notices_for_tag('notices_date_sort'),
             notices_today = [],
             notices_week = [],
             notices_next_week = [],
             notices_future = [];
 
-        today = Notices._get_today();
-
-        for (i = 0; i < notices.length; i += 1) {
-            notice = notices[i];
-            var notice_has_date = false;
-            if (notice.attributes !== null && notice.attributes.length > 0) {
-                for (j = 0; j < notice.attributes.length; j += 1){
-                    if (notice.attributes[j].name === "Date"){
-                        notice_has_date = true;
-                        date = (notice.attributes[j].value ?
-                                moment.utc(notice.attributes[j].value) : null);
-                        notice.date = date;
-                        if (date && today.toDate() === date.toDate()) {
-                            notices_today.push(notice);
-                        } else if (date && date.week() === today.week()) {
-                            notices_week.push(notice);
-                        } else if (date && date.week() === today.week() + 1) {
-                            notices_next_week.push(notice);
-                        } else if (date === null || date > today) {
-                            notices_future.push(notice);
-                        }
-                    }
+        var today = Notices._get_today();
+        for (var i = 0; i < notices.length; i += 1) {
+            var notice = notices[i];
+            var date_string = Notices.get_attribute_by_name('Date', notice);
+            if (date_string !== undefined){
+                notice.date = moment.utc(date_string);
+                if (today.toDate() === notice.date.toDate()) {
+                    notices_today.push(notice);
+                } else if (notice.date.week() === today.week()) {
+                    notices_week.push(notice);
+                } else if (notice.date.week() === today.week() + 1) {
+                    notices_next_week.push(notice);
+                } else if (notice.date > today) {
+                    notices_future.push(notice);
                 }
-            }
-            if (!notice_has_date) {
+            } else {
                 notices_future.push(notice);
             }
         }
