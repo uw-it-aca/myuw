@@ -1,8 +1,8 @@
 <template>
   <div v-if="(mobileOnly && $mq === 'mobile') || !mobileOnly">
     <b-card v-if="loaded"
-            class="rounded-0 shadow-sm mb-3"
             v-visibility-change="loaded ? visibilityChanged : null"
+            class="rounded-0 shadow-sm mb-3"
             :body-class="bodyClasses"
             footer-class="border-0 px-3 py-2"
     >

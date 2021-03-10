@@ -3,10 +3,12 @@ import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 
 // Global Mixins
+import uid from '../mixins/uid';
 import utils from '../mixins/utils';
 
 // Custom Plugins
 import Logger from '../plugins/logger';
+import Tracklink from '../plugins/tracklink';
 
 // helper for testing action with expected mutations
 const expectAction = (
@@ -48,6 +50,13 @@ const createLocalVue = (vuexModule) => {
   localVue.use(Logger, {
     console: {},
   });
+  // Mock observer plugin
+  localVue.use((vue) => {
+    vue.directive('out', {});
+    vue.directive('out-all', {});
+  });
+  localVue.use(Tracklink);
+  localVue.mixin(uid);
   localVue.mixin(utils);
 
   return localVue;
