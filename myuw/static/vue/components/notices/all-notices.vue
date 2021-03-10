@@ -54,15 +54,7 @@ export default {
   },
   computed: {
     ...mapState('notices', {
-      // Note: This needs checking on prod data to evalute sort order
-      allNotices: (state) => state.value.sort((n1, n2) => {
-        if (n1.sortDate === null !== n2.sortDate === null) {
-          return n1.sortDate === null - n2.sortDate === null;
-          // put notices without date before those with dates
-        }
-        // sort in ascending order
-        return n1.sortDate - n2.sortDate;
-      }),
+      allNotices: (state) => state.value,
     }),
     ...mapGetters('notices', ['isReady']),
     criticalNotices() {
@@ -99,7 +91,9 @@ export default {
       this.allNotices
         .filter((n) => n.location_tags.includes('notices_date_sort'))
         .forEach((n) => {
-          if (!n.date || n.date.isToday()) {
+          if (!n.date) {
+            notices.future.push(n);
+          } else if (n.date.isToday()) {
             notices.today.push(n);
           } else if (n.date.week() === today.week()) {
             notices.thisWeek.push(n);
