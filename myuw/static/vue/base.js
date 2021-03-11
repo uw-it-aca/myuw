@@ -6,7 +6,6 @@ import {
   FontAwesomeLayers,
   FontAwesomeLayersText,
 } from '@fortawesome/vue-fontawesome';
-import VueMq from 'vue-mq';
 
 import {
   faUser,
@@ -165,6 +164,9 @@ const store = new Vuex.Store({
   },
 });
 
+import VueMq from 'vue-mq';
+import VueObserveVisibility from 'vue-observe-visibility';
+
 // vue-mq (media queries)
 Vue.use(VueMq, {
   breakpoints: {
@@ -174,6 +176,7 @@ Vue.use(VueMq, {
     desktop: Infinity,
   },
 });
+Vue.use(VueObserveVisibility);
 
 // import VueObserveVisibility from 'vue-observe-visibility'
 // Vue.use(VueObserveVisibility)

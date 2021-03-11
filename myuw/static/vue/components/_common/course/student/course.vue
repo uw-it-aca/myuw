@@ -33,7 +33,11 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <b-collapse :id="`course-details-${index}`" v-model="isOpen">
+          <b-collapse
+            :id="`course-details-${index}`"
+            v-model="isOpen"
+            @show="logDisclosureOpen"
+          >
             <!-- creates line spacer above meeting info -->
             <div class="d-flex">
               <div class="w-25">
@@ -47,7 +51,11 @@
           </b-collapse>
         </template>
         <template v-else>
-          <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
+          <b-collapse
+            :id="`instructors-collapse-${index}`"
+            v-model="isOpen"
+            @show="logDisclosureOpen"
+          >
             <!-- creates line spacer above instructor info -->
             <div class="d-flex">
               <div class="w-25">
@@ -188,6 +196,9 @@ export default {
         return this.evalData.sections[index].evaluation_data || [];
       }
       return [];
+    },
+    logDisclosureOpen() {
+      this.$logger.disclosureOpen(this);
     },
   },
 };

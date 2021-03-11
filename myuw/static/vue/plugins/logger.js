@@ -173,6 +173,32 @@ class Logger {
       action: action,
     });
   }
+
+  disclosureOpen(component) {
+    this.sink.event('disclosure_open', {
+      comp_tag: findParentMyUWComponentTag(component),
+    });
+  }
+
+  noticeOpen(component, notice) {
+    const htmlDoc = new DOMParser().parseFromString(
+      notice.notice_title, 'text/html',
+    );
+    this.sink.event('notice_open', {
+      comp_tag: findParentMyUWComponentTag(component),
+      notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
+    });
+  }
+
+  noticeRead(component, notice) {
+    const htmlDoc = new DOMParser().parseFromString(
+      notice.notice_title, 'text/html',
+    );
+    this.sink.event('notice_read', {
+      comp_tag: findParentMyUWComponentTag(component),
+      notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
+    });
+  }
 }
 
 class ConsoleSink {

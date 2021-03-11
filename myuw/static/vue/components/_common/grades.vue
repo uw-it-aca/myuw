@@ -48,7 +48,11 @@
       </ul>
     </template>
     <template #card-disclosure>
-      <b-collapse id="grade_card_collapse" v-model="isOpen">
+      <b-collapse
+        id="grade_card_collapse"
+        v-model="isOpen"
+        @show="logDisclosureOpen"
+      >
         <h4 class="h6 font-weight-bold">
           Resources
         </h4>
@@ -205,6 +209,9 @@ export default {
   },
   methods: {
     ...mapActions('stud_schedule', ['fetch']),
+    logDisclosureOpen() {
+      this.$logger.disclosureOpen(this);
+    },
   },
 };
 </script>

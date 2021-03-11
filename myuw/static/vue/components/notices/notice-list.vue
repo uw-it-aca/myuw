@@ -101,6 +101,7 @@ export default {
     },
     onNoticeVisible(notice) {
       if (!notice.is_read) {
+        this.$logger.noticeRead(this, notice);
         this.setReadNoUpdate(notice);
       }
     },
