@@ -1,10 +1,13 @@
-import dayjs from 'dayjs';
+import dayjsCommon from 'dayjs';
 
-dayjs.extend(require('dayjs/plugin/advancedFormat'))
-dayjs.extend(require('dayjs/plugin/calendar'))
-dayjs.extend(require('dayjs/plugin/relativeTime'))
-dayjs.extend(require('dayjs/plugin/timezone'))
-dayjs.extend(require('dayjs/plugin/utc'))
+dayjsCommon.extend(require('dayjs/plugin/advancedFormat'))
+dayjsCommon.extend(require('dayjs/plugin/calendar'))
+dayjsCommon.extend(require('dayjs/plugin/relativeTime'))
+dayjsCommon.extend(require('dayjs/plugin/timezone'))
+dayjsCommon.extend(require('dayjs/plugin/utc'))
+dayjsCommon.extend(require('dayjs/plugin/customParseFormat'))
+
+export const dayjs = dayjsCommon;
 
 export const getNow = (rootState = null) => {
   if (rootState && rootState.cardDisplayDates &&
@@ -19,4 +22,3 @@ export const getNow = (rootState = null) => {
 export const strToDate = (dateStr) => {
   return dayjs.tz(dateStr, "America/Los_Angeles");
 };
-
