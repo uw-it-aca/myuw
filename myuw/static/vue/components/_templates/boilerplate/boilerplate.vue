@@ -385,6 +385,7 @@ export default {
   },
   methods: {
     showTourModal: function () {
+      this.$logger.onBoarding(this);
       this.$refs['tourModal'].show();
       axios
         .get('/api/v1/turn_off_tour_popup', {

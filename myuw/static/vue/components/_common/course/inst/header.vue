@@ -8,7 +8,7 @@
             variant="dark" size="sm"
             :label="`Remove ${section.id} mini-card`"
             title="Click to remove this mini-card"
-            @click="toggleMini(section)">
+            @click="toggleMiniWrapper">
           <font-awesome-icon :icon="faTimes" />
         </b-button>
       </div>
@@ -64,6 +64,11 @@ export default {
     ...mapActions('inst_schedule', [
       'toggleMini',
     ]),
+    toggleMiniWrapper() {
+      this.$logger.cardUnPin(this, this.section.apiTag);
+      this.toggleMini(this.section);
+      window.history.replaceState({}, null, window.location.pathname);
+    }
   },
 };
 </script>

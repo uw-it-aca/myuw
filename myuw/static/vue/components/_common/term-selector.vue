@@ -1,5 +1,5 @@
 <template>
-  <b-tabs lazy :value="selectedTab">
+  <b-tabs lazy :value="selectedTab" @activate-tab="displayedTabChange">
     <!--
       Only mounts the tab when it is selected, so the data should be
       fetched on mount for the components in here
@@ -15,6 +15,7 @@
         <b-form-select
           v-model="selectedOption"
           :options="dropdownTabsSelectable"
+          @change="optionTabChange"
         />
       </template>
       <slot :tab="dropdownTabs[selectedOption]" />
@@ -90,5 +91,22 @@ export default {
       dropdownTabsSelectable,
     };
   },
+  created() {
+    this.displayedTabChange(0);
+  },
+  methods: {
+    displayedTabChange(index) {
+      if (index < 3) {
+        this.$logger.termSelected(this.displayedTabs[index].label);
+      } else {
+        this.$nextTick(() => {
+          this.$logger.termSelected(this.dropdownTabs[this.selectedOption].label);
+        });
+      }
+    },
+    optionTabChange(index) {
+      this.$logger.termSelected(this.dropdownTabs[index].label);
+    }
+  }
 };
 </script>

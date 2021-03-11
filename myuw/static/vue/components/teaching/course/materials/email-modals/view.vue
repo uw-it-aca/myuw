@@ -4,6 +4,7 @@
       :id="`emaillist_view_${sln}`"
       ref="view-modal"
       :title="`${emailList.course_abbr} ${emailList.course_number} Mailing Lists`"
+      @show="logClassEmailListOpen"
       @hidden="onHide()"
     >
       <template v-if="emailList.request_sent || requestSuccess">
@@ -205,6 +206,9 @@ export default {
     },
     onError() {
       this.addViewError = true;
+    },
+    logClassEmailListOpen() {
+      this.$logger.classEmailList(this, this.emailList.section_list.section_label);
     }
   }
 }
