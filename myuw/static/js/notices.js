@@ -141,9 +141,10 @@ var Notices = {
 
             var n1_date = Notices._get_critical_notice_sort_date(n1);
             var n2_date = Notices._get_critical_notice_sort_date(n2);
-            if (n1_date === null !== n2_date === null) {
-                return n1_date === null - n2_date === null;
-            }
+            // put notices with date before those without dates
+            if (n1_date === null && n2_date !== null) { return 1;}
+            if (n1_date !== null && n2_date === null) { return -1;}
+            // sort in ascending order
             return n1_date - n2_date;
         });
     },
