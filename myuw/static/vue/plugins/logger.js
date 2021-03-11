@@ -166,6 +166,13 @@ class Logger {
         compData.terminatedByFlush = false;
       });
   }
+
+  quicklink(action, url) {
+    this.sink.event(`quick_link`, {
+      link_url: url,
+      action: action,
+    });
+  }
 }
 
 class ConsoleSink {
