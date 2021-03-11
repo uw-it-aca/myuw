@@ -61,6 +61,11 @@ export default {
           sortable: true,
         },
         {
+          key: 'Pronouns',
+          label: 'Pronouns',
+          sortable: true,
+        },
+        {
           key: 'firstName',
           label: 'First Name',
           sortable: true,
@@ -132,6 +137,7 @@ export default {
           netid: reg.netid,
           surName: reg.surname,
           firstName: reg.first_name,
+          Pronouns: reg.pronouns,
         };
         if (this.showJointCourseStud) {
           dataItem.jointCourse = (
