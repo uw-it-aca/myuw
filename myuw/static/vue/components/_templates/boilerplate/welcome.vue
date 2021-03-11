@@ -17,7 +17,12 @@
         </div>
       </li>
       <li>
-        <b-link :href="learnMoreURL" class="text-body" target="_blank">
+        <b-link 
+          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
+          class="text-body"
+          target="_blank"
+          v-out="'MyUW Help Center'"
+        >
           Learn more about MyUW
         </b-link>
       </li>
@@ -29,12 +34,6 @@
 import {mapState} from 'vuex';
 
 export default {
-  data: function() {
-    return {
-      learnMoreURL:
-        '/out?u=https%3A%2F%2Fitconnect.uw.edu%2Flearn%2Ftools%2Fmyuw-help-center%2F%23annotated&amp;l=MyUW%20Help%20Center',
-    };
-  },
   computed: mapState({
     staticUrl: (state) => state.staticUrl,
   }),
