@@ -16,7 +16,8 @@
              class=""
              width="120px" height="150px"
         >
-        {{ reg.first_name }} {{ reg.surname }}
+        <div>{{ reg.first_name }} {{ reg.surname }}</div>
+        <div style="overflow-wrap: break-word;">{{ reg.pronouns }}</div>
       </li>
     </ol>
   </div>

@@ -59,10 +59,9 @@ export default {
           return n2.is_critical - n1.is_critical;
           // put critical notices before non-critical
         }
-        if (n1.sortDate === null !== n2.sortDate === null) {
-          return n1.sortDate === null - n2.sortDate === null;
-          // put notices without date before those with dates
-        }
+        // put notices with date before those without dates
+        if (n1.sortDate !== null && n2.sortDate === null) { return -1;}
+        if (n1.sortDate === null && n2.sortDate !== null) { return 1;}
         // sort in ascending order
         return n1.sortDate - n2.sortDate;
       });
