@@ -18,10 +18,10 @@
       </li>
       <li>
         <b-link 
+          v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
           class="text-body"
           target="_blank"
-          v-out="'MyUW Help Center'"
         >
           Learn more about MyUW
         </b-link>
