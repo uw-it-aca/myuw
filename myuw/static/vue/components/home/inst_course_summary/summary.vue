@@ -32,14 +32,14 @@
             ({{ toFromNowDate(instSchedule.term.first_day_quarter) }})
           </p>
           <span>
-            <a
+            <b-link
               :href="`/teaching/${term}`"
               :future-nav-target="`${term}`"
-              :data-linklabel="getTeachingLinkLabel()"
+              v-out="getTeachingLinkLabel()"
               title="Open teaching page"
             >
               View details
-            </a>
+            </b-link>
           </span>
         </div>
 
@@ -47,10 +47,10 @@
         <uw-section-list v-else :sections="instSchedule.sections" />
 
         <div>
-          <a :href="getAcadCalLink()">
+          <b-link :href="getAcadCalLink()">
             View {{ titleCaseWord(getQuarter()) }} {{ getYear() }}
             important dates and deadlines
-          </a>
+          </b-link>
         </div>
       </div>
     </template>
@@ -64,7 +64,8 @@
       right now. In the meantime, try the
       <a
         href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
-        data-linklabel="MyClass" target="_blank"
+        v-out="MyClass"
+        target="_blank"
       >
         My Class Instructor Resources
       </a> page.

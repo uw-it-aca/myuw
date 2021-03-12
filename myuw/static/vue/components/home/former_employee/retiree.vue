@@ -17,7 +17,11 @@
       </p>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li>
-          <a href="http://www.washington.edu/uwra/" target="_blank" data-linklabel="UW Retirement Association">Learn more about UWRA</a>
+          <a href="http://www.washington.edu/uwra/"
+            target="_blank"
+            v-out="UWRA">
+            Learn more about UWRA
+          </a>
         </li>
       </ul>
     </template>

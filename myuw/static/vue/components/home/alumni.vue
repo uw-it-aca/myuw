@@ -14,13 +14,13 @@
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
           <a href="https://www.washington.edu/alumni" target="_blank"
-             data-linklabel="Alumni Info"
+             v-out="UW Alumni"
           >Alumni News, Events and Services
           </a>
         </li>
         <li class="mb-1">
           <a href="https://magazine.washington.edu/" target="_blank"
-             data-linklabel="Columns Magazine"
+             v-out="Columns Magazine"
           >Columns Magazine
           </a>
         </li>
@@ -35,7 +35,8 @@
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li>
           <a href="https://www.washington.edu/cms/alumni/membership/"
-             target="_blank" data-linklabel="Alumni Association"
+             target="_blank"
+             v-out="UWAA"
           >
             Learn about the UWAA
           </a>
