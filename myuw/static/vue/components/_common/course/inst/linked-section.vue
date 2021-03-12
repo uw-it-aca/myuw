@@ -30,7 +30,7 @@
           <a
             :href="getTimeScheHref(section)"
             :title="`Time Schedule for SLN ${section.sln}`"
-            :data-linklabel="getTimeScheLinkLable(section)"
+            v-out="getTimeScheLinkLable(section)"
             target="_blank"
           >
             {{ section.sln }}
