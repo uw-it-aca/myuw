@@ -71,10 +71,6 @@ export default {
       type: Object,
       default: null,
     },
-    compTid: {
-      type: String,
-      default: null,
-    }
   },
   data: function() {
     return {};
