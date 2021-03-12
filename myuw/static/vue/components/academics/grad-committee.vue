@@ -38,15 +38,16 @@
         </ul>
       </div>
       <div class="text-right myuw-text-md">
-        <a href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/" data-linklabel="MyGrad" target="_blank">Go to MyGrad</a>
+        <a href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
+          v-out="'MyGrad'"
+          target="_blank">Go to MyGrad</a>
       </div>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your committees request information
       right now. In the meantime, try the
-      <a
-        href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-        data-linklabel="MyGrad"
+      <a href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
+        v-out="'MyGrad'"
         target="_blank"
       >MyGrad program page</a>.
     </template>

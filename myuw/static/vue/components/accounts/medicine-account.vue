@@ -19,9 +19,8 @@
         An error occurred and MyUW cannot load your information right now.
         In the meantime, try the
         <a href="https://services.uwmedicine.org/passwordportal/login.htm"
-           data-linklabel="UW Medicine account site"
            target="_blank"
-        >UW Medicine Account page</a>.
+        >UW Medicine Account</a> page.
       </template>
       <template #card-body>
         <p>
@@ -34,7 +33,7 @@
             <p>
               Password expired on {{ toFriendlyDate(expiresMed) }}.
               <a :href="passwordChange"
-                 data-linklabel="Change UW Medicine Password"
+                 v-out="'Change UW Medicine password'"
               >
                 <br>Change your password to regain access.
               </a>

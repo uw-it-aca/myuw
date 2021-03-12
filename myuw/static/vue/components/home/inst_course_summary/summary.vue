@@ -64,7 +64,6 @@
       right now. In the meantime, try the
       <a
         href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
-        v-out="MyClass"
         target="_blank"
       >
         My Class Instructor Resources

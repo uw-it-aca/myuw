@@ -6,7 +6,8 @@
     <template #card-error>
       An error occurred and MyUW cannot load your library account information right now. In the
       meantime, try the
-      <a href="http://www.lib.washington.edu/" data-linklabel="UW Libraries" target="_blank"
+      <a href="http://www.lib.washington.edu/"
+       v-out="'UW Libraries'" target="_blank"
         >UW Libraries page</a
       >.
     </template>
@@ -20,7 +21,7 @@
             <a
               href="https://search.lib.uw.edu/account"
               target="_blank"
-              data-linklabel="Library Account Requests"
+              v-out="'Library Account Requests'"
               >{{ itemsRequestedText }}</a
             >
           </div>
@@ -62,7 +63,7 @@
                 <a
                   href="https://p.lib.washington.edu/payfines/"
                   target="_blank"
-                  data-linklabel="Pay Library Fees"
+                  v-out="'Pay Library Fees'"
                 >
                   Pay fees
                 </a>

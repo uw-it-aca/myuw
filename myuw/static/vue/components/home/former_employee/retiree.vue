@@ -19,7 +19,7 @@
         <li>
           <a href="http://www.washington.edu/uwra/"
             target="_blank"
-            v-out="UWRA">
+            v-out="'UWRA'">
             Learn more about UWRA
           </a>
         </li>

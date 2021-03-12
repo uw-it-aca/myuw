@@ -7,7 +7,6 @@
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
       <a
         href="https://hfs.uw.edu/myhfs/account.aspx"
-        data-linklabel="Housing &amp; Food Services"
         target="_blank"
       >
         Housing &amp; Food Services </a
@@ -23,14 +22,14 @@
         <h4 class="h6 font-weight-bold text-dark-beige">Explore Campus Housing</h4>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a href="https://www.hfs.uw.edu" data-linklabel="Housing &amp; Food Services">
+            <a href="https://www.hfs.uw.edu">
               Housing &amp; Food Services
             </a>
           </li>
           <li>
             <a
               href="https://www.trumba.com/calendars/sea_hfs"
-              data-linklabel="HFS Dates and Deadlines"
+              v-out="'HFS: Dates and Deadlines'"
             >
               Dates and Deadlines
             </a>
@@ -38,13 +37,13 @@
           <li>
             <a
               href="https://ucharm.hfs.washington.edu/ucharm"
-              data-linklabel="Apply for Campus Housing"
+              v-out="'HFS: Apply for Campus Housing'"
             >
               Apply for Campus Housing
             </a>
           </li>
           <li>
-            <a href="mailto:hfsinfo@uw.edu" data-linklabel="Contact HFS"> Contact HFS </a>
+            <a href="mailto:hfsinfo@uw.edu"> Contact HFS </a>
           </li>
         </ul>
       </div>
@@ -54,26 +53,28 @@
           <li>
             <a
               href="https://www.hfs.uw.edu/myhfs/account.aspx"
-              data-linklabel="HFS: Make a Payment"
+              v-out="'HFS: Make a Payment'"
             >
               Make a Payment
             </a>
           </li>
           <li>
-            <a href="https://www.hfs.uw.edu/myhfs/ledger.aspx" data-linklabel="HFS: View Charges">
+            <a href="https://www.hfs.uw.edu/myhfs/ledger.aspx"
+              v-out="'HFS: View Charges'">
               View Charges
             </a>
           </li>
           <li>
             <a
               href="https://www.hfs.uw.edu/myhfs/dininglevel"
-              data-linklabel="HFS: Change Dining Level"
+              v-out="'HFS: Change Dining Level'"
             >
               Change Dining Level
             </a>
           </li>
           <li>
-            <a href="https://ucharm.hfs.washington.edu/ucharm" data-linklabel="Update HFS Account">
+            <a href="https://ucharm.hfs.washington.edu/ucharm"
+              v-out="'HFS: Update Account'">
               Update Account
             </a>
           </li>
@@ -83,14 +84,15 @@
         <h4 class="h6 font-weight-bold text-dark-beige">Resident Resources</h4>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a href="https://mc360.maytag.com/#/" data-linklabel="Check Laundry Status">
+            <a href="https://mc360.maytag.com/#/"
+              v-out="'HFS: Check Laundry Status'">
               Check Laundry Status
             </a>
           </li>
           <li>
             <a
               href="https://fms.admin.uw.edu/fs-works/uwnetid"
-              data-linklabel="HFS: Submit a Work Order"
+              v-out="'HFS: Submit a Work Order'"
             >
               Submit a Work Order
             </a>

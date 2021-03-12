@@ -73,7 +73,7 @@
                     <a
                       target="_blank"
                       href="https://webapps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
-                      data-linklabel="MyGrad Payment Portal"
+                      v-out="'MyGrad Payment Portal'"
                       class="font-weight-normal"
                     >Pay Your Fee To Confirm</a>
                   </span>
@@ -117,7 +117,7 @@
       <div class="text-right myuw-text-md">
         <a
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-          data-linklabel="MyGrad"
+          v-out="'MyGrad'"
           target="_blank"
         >Go to MyGrad</a>
       </div>
@@ -127,7 +127,7 @@
       right now. In the meantime, try the
       <a
         href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-        data-linklabel="MyGrad"
+        v-out="'MyGrad'"
         target="_blank"
       >MyGrad program page</a>.
     </template>

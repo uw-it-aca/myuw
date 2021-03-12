@@ -41,7 +41,7 @@
       you want to add funds, try the
       <a
         href="https://hfs.uw.edu/olco/Secure/AccountSummary.aspx"
-        data-linklabel="Husky card account"
+        v-out="'Husky Card account summary'"
         target="_blank"
       >
         UW HFS page </a

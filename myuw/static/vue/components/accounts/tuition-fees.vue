@@ -46,15 +46,16 @@
                   <a
                     href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                     target="_blank"
-                    data-linklabel="Tuition Statement"
-                    >Tuition Statement</a
-                  >
+                    >
+                    Tuition Statement
+                    </a>
                 </div>
               </div>
               <div class="text-right">
                 <uw-link-button
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
                   target="_blank"
+                  v-out="'Make tuition payment'"
                 >
                   Make payment
                 </uw-link-button>
@@ -79,7 +80,6 @@
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                 target="_blank"
-                data-linklabel="Tuition Statement"
                 class="myuw-text-md"
                 >Tuition Statement</a
               >
@@ -96,7 +96,9 @@
             <template #status-content>
               <div class="myuw-text-md">PCE-Continuum College</div>
               <div class="text-right">
-                <uw-link-button href="http://portal.continuum.uw.edu" target="_blank">
+                <uw-link-button href="http://portal.continuum.uw.edu"
+                  v-out="'Make Continuum College tuition payment'"
+                  target="_blank">
                   Make payment
                 </uw-link-button>
               </div>
@@ -113,7 +115,7 @@
               <a
                 href="http://portal.continuum.uw.edu"
                 target="_blank"
-                data-linklabel="Account Statement"
+                v-out="'Continuum College Account Statement'"
                 class="myuw-text-md"
                 >Account Statement</a
               >
@@ -138,7 +140,9 @@
 
       <div class="myuw-text-md">
         <p v-if="!isC2Grad">
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank"
+          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
+            target="_blank"
+            v-out="'Enable Tuition Account Access'"
             >Give access to your tuition account and financial aid information
           </a>
           to parents or other third parties.
@@ -155,7 +159,6 @@
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
                 target="_blank"
-                data-linklabel="Financial Aid Status"
                 class="myuw-text-md"
                 >Financial Aid Status</a
               >
@@ -171,14 +174,14 @@
       <a
         v-if="!isPCE"
         href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-        data-linklabel="Tuition Statement"
+        v-out="'Tuition Statement'"
         target="_blank"
         >Tuition Statement page</a
       >
       <a
         v-else
         href="https://portal.continuum.uw.edu"
-        data-linklabel="PCE Tuition portal"
+        v-out="'Continuum College Tuition portal'"
         target="_blank"
         >PCE Tuition portal</a
       >.
