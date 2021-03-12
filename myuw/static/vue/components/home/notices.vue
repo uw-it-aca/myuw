@@ -56,7 +56,6 @@
             @show="onShowNotice(notice)"
           >
             <div
-              v-out-all
               class="p-3 mt-2 mb-2 bg-light text-dark notice-body"
               v-html="notice.notice_body"
             />
@@ -110,7 +109,9 @@ export default {
   },
   methods: {
     onShowNotice(notice) {
+      this.$logger.noticeOpen(this, notice);
       if (!notice.is_read) {
+        this.$logger.noticeRead(this, notice);
         this.setRead(notice);
       }
     },

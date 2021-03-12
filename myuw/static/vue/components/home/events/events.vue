@@ -42,7 +42,11 @@
     </template>
     <!-- v-if condition is common with #card-footer -->
     <template v-if="hiddenEvents.length > 0" #card-disclosure>
-      <b-collapse id="hidden_events_collapse" v-model="isOpen">
+      <b-collapse
+        id="hidden_events_collapse"
+        v-model="isOpen"
+        @show="logDisclosureOpen"
+      >
         <uw-list-events :events="hiddenEvents" />
         <div v-if="calLinks.length > 1" class="mt-3">
           <p class="text-muted myuw-text-md">
@@ -66,21 +70,27 @@
       </b-collapse>
     </template>
     <template v-else-if="calLinks.length > 0" #card-disclosure>
-      <div v-if="calLinks.length > 1">
-        <p class="text-muted myuw-text-md">
-          See all events from:
-        </p>
-        <ul class="myuw-text-md">
-          <li v-for="(event, i) in calLinks" :key="i">
-            <a :href="event.url">{{ event.title }}</a>
-          </li>
-        </ul>
-      </div>
-      <div v-else>
-        See all events from <a :href="calLinks[0].url">
-          {{ calLinks[0].title }}
-        </a> calendar.
-      </div>
+      <b-collapse
+        id="hidden_events_collapse"
+        v-model="isOpen"
+        @show="logDisclosureOpen"
+      >
+        <div v-if="calLinks.length > 1">
+          <p class="text-muted myuw-text-md">
+            See all events from:
+          </p>
+          <ul class="myuw-text-md">
+            <li v-for="(event, i) in calLinks" :key="i">
+              <a :href="event.url">{{ event.title }}</a>
+            </li>
+          </ul>
+        </div>
+        <div v-else>
+          See all events from <a :href="calLinks[0].url">
+            {{ calLinks[0].title }}
+          </a> calendar.
+        </div>
+      </b-collapse>
     </template>
     <template v-if="hiddenEvents.length > 0" #card-footer>
       <b-button
@@ -144,6 +154,9 @@ export default {
   },
   methods: {
     ...mapActions('events', ['fetch']),
+    logDisclosureOpen() {
+      this.$logger.disclosureOpen(this);
+    },
   },
 };
 </script>

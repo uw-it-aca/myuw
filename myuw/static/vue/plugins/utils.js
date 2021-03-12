@@ -1,8 +1,8 @@
 export function findParentMyUWComponent(component) {
   let parentComponent = null;
   // Try to find the component tag
-  for (let comp=component.$parent; comp && comp.$parent; comp = comp.$parent) {
-    if (comp.$options._componentTag.startsWith("myuw")) {
+  for (let comp=component; comp && comp.$parent; comp = comp.$parent) {
+    if (comp.$options._componentTag && comp.$options._componentTag.startsWith("myuw")) {
       parentComponent = comp;
       break;
     }

@@ -48,26 +48,30 @@
       </ul>
     </template>
     <template #card-disclosure>
-      <b-collapse id="grade_card_collapse" v-model="isOpen">
+      <b-collapse
+        id="grade_card_collapse"
+        v-model="isOpen"
+        @show="logDisclosureOpen"
+      >
         <h4 class="h6 font-weight-bold">
           Resources
         </h4>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx"
-              target="_blank" label="">
+            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx" target="_blank">
               View credits and GPA
             </a>
           </li>
           <li>
-            <a href="https://myplan.uw.edu/dars"
-              target="_blank" label="MyPlan DARS">
+            <a v-out="'MyPlan DARS'"
+               href="https://myplan.uw.edu/dars"
+               target="_blank"
+            >
               Degree Audit Reporting System (DARS)
             </a>
           </li>
           <li>
-            <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp"
-              target="_blank" label="">
+            <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank">
               Unofficial Transcript
             </a>
           </li>
@@ -205,6 +209,9 @@ export default {
   },
   methods: {
     ...mapActions('stud_schedule', ['fetch']),
+    logDisclosureOpen() {
+      this.$logger.disclosureOpen(this);
+    },
   },
 };
 </script>

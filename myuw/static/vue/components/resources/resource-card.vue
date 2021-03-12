@@ -12,10 +12,10 @@
             <h4>
               {{subcatRes.subcat_name}}
             </h4>
-            <button v-if="!subcatRes.is_pinned" @click="pin(subcatRes)">
+            <button v-if="!subcatRes.is_pinned" @click="pinWrapper(subcatRes)">
               Pin to Home
             </button>
-            <button v-else @click="unpin(subcatRes)">
+            <button v-else @click="unpinWrapper(subcatRes)">
               Unpin
             </button>
           </div>
@@ -48,6 +48,14 @@ export default {
   },
   methods: {
     ...mapActions('resources', ['pin', 'unpin']),
+    pinWrapper(subcatRes) {
+      this.$logger.cardPin(this, subcatRes.subcat_id);
+      this.pin(subcatRes);
+    },
+    unpinWrapper(subcatRes) {
+      this.$logger.cardUnPin(this, subcatRes.subcat_id);
+      this.unpin(subcatRes);
+    },
   }
 }
 </script>

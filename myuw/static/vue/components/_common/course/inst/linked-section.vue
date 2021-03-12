@@ -30,7 +30,7 @@
           <a
             :href="getTimeScheHref(section)"
             :title="`Time Schedule for SLN ${section.sln}`"
-            :data-linklabel="getTimeScheLinkLable(section)"
+            v-out="getTimeScheLinkLable(section)"
             target="_blank"
           >
             {{ section.sln }}
@@ -104,9 +104,22 @@ export default {
       'toggleMini',
     ]),
     miniCard() {
+      if (!this.section.mini_card) {
+        this.$logger.cardPin(this, this.section.apiTag);
+      } else {
+        this.$logger.cardUnPin(this, this.section.apiTag);
+      }
       this.toggleMini(this.section);
       if (!this.section.mini_card) {
-        window.location.href = `/teaching/${this.section.href}`;
+        this.$nextTick(() => {
+          window.history.replaceState({}, null, `/teaching/${this.section.href}`);
+          setTimeout(() => {
+            document.getElementById(this.section.anchor)
+              .scrollIntoView({behavior: 'smooth'});
+          }, 100);
+        });
+      } else {
+        window.history.replaceState({}, null, window.location.pathname);
       }
     }
   }

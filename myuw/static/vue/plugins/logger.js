@@ -6,6 +6,8 @@ class Logger {
   constructor(sink, options) {
     this.sink = sink;
     this.compsInViewport = {};
+    this.currentTerm = null;
+
     this.options = options || {};
     if (!this.options.compInViewportRatioThreshold) {
       this.options.compInViewportRatioThreshold = 0.9;
@@ -165,6 +167,77 @@ class Logger {
         compData.timer = Date.now();
         compData.terminatedByFlush = false;
       });
+  }
+
+  quicklink(action, url) {
+    this.sink.event(`quick_link`, {
+      link_url: url,
+      action: action,
+    });
+  }
+
+  disclosureOpen(component) {
+    this.sink.event('disclosure_open', {
+      comp_tag: findParentMyUWComponentTag(component),
+    });
+  }
+
+  noticeOpen(component, notice) {
+    const htmlDoc = new DOMParser().parseFromString(
+      notice.notice_title, 'text/html',
+    );
+    this.sink.event('notice_open', {
+      comp_tag: findParentMyUWComponentTag(component),
+      notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
+    });
+  }
+
+  noticeRead(component, notice) {
+    const htmlDoc = new DOMParser().parseFromString(
+      notice.notice_title, 'text/html',
+    );
+    this.sink.event('notice_read', {
+      comp_tag: findParentMyUWComponentTag(component),
+      notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
+    });
+  }
+
+  classEmailList(component, cardTid) {
+    this.sink.event('class_email_list', {
+      comp_tag: findParentMyUWComponentTag(component),
+      card_tid: cardTid,
+    });
+  }
+
+  onBoarding(component) {
+    this.sink.event('on_boarding', {
+      comp_tag: findParentMyUWComponentTag(component),
+    });
+  }
+
+  cardPin(component, cardTid) {
+    this.sink.event('card_pin', {
+      comp_tag: findParentMyUWComponentTag(component),
+      card_tid: cardTid,
+    });
+  }
+
+  cardUnPin(component, cardTid) {
+    this.sink.event('card_unpin', {
+      comp_tag: findParentMyUWComponentTag(component),
+      card_tid: cardTid,
+    });
+  }
+
+  termSelected(term) {
+    // Sometimes the same term gets reported twice
+    // this deduplicates it
+    if (this.currentTerm !== term) {
+      this.sink.event('term_selected', {
+        term_tid: term,
+      });
+      this.currentTerm = term;
+    }
   }
 }
 

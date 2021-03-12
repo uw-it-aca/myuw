@@ -23,7 +23,7 @@
           class="p-0 m-0 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
-          @click="removeLink({ link, canActuallyRemove })"
+          @click="removeLink(link, canActuallyRemove)"
         >
           <font-awesome-icon :icon="['fas', 'times']" />
         </b-button>
@@ -143,11 +143,16 @@ export default {
   methods: {
     ...mapActions('quicklinks', {
       addLink: 'addLink',
-      removeLink: 'removeLink',
+      quicklinksRemoveLink: 'removeLink',
       quicklinksUpdateLink: 'updateLink',
     }),
+    removeLink(link, canActuallyRemove) {
+      this.$logger.quicklink('remove', link.url);
+      this.quicklinksRemoveLink({link, canActuallyRemove});
+    },
     updateLink: function(event) {
       event.preventDefault();
+      this.$logger.quicklink('edit', this.currentCustomLink.url);
       this.quicklinksUpdateLink(this.currentCustomLink);
       this.onReset({preventDefault: () => {}});
     },
@@ -158,6 +163,7 @@ export default {
     },
     saveLink(event) {
       event.preventDefault();
+      this.$logger.quicklink('add', this.link.url);
       this.addLink(this.link);
     },
   },

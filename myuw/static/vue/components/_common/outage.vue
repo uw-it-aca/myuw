@@ -24,56 +24,61 @@
 
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
-          <a href="https://canvas.uw.edu/"
-            label="" target="_blank">Canvas LMS</a>
+          <a href="https://canvas.uw.edu/" target="_blank">Canvas LMS</a>
         </li>
         <li class="mb-1">
-          <a href="https://catalyst.uw.edu/"
-            label="" target="_blank">Catalyst Web Tools</a>
+          <a href="https://catalyst.uw.edu/" target="_blank">Catalyst Web Tools</a>
         </li>
         <li class="mb-1">
           <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
-            label="" target="_blank">Student Registration</a>
+             target="_blank"
+          >Student Registration</a>
         </li>
         <li class="mb-1">
           <a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp"
-           label="" target="_blank">Student Class Schedule</a>
+             target="_blank"
+          >Student Class Schedule</a>
         </li>
         <li class="mb-1">
           <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-            label="" target="_blank">Student Tuition Statement</a>
+             target="_blank"
+          >Student Tuition Statement</a>
         </li>
         <li class="mb-1">
           <a href="https://www.washington.edu/students/timeschd/"
-            label="" target="_blank">Time Schedule</a>
+             target="_blank"
+          >Time Schedule</a>
         </li>
         <li class="mb-1">
           <a href="https://myplan.uw.edu"
-            label="" target="_blank">MyPlan</a>
+             target="_blank"
+          >MyPlan</a>
         </li>
         <li class="mb-1">
           <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
-            label="" target="_blank">My Class Instructor Resources</a>
+             target="_blank"
+          >My Class Instructor Resources</a>
         </li>
         <li class="mb-1">
-          <a href="https://gradepage.uw.edu/"
-            label="" target="_blank">GradePage</a>
+          <a href="https://gradepage.uw.edu/" target="_blank">GradePage</a>
         </li>
         <li class="mb-1">
-          <a href="https://uw.hosted.panopto.com/"
-            label="" target="_blank">Panopto Lecture Capture</a>
+          <a href="https://uw.hosted.panopto.com/" target="_blank">Panopto Lecture Capture</a>
         </li>
         <li class="mb-1">
           <a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp"
-            label="" target="_blank">UW Professional &amp; Continuing Education</a>
+             target="_blank"
+          >UW Professional &amp; Continuing Education</a>
         </li>
         <li class="mb-1">
           <a href="https://wd5.myworkday.com/uw/d/home.htmld"
-            label="" target="_blank">Workday</a>
+             target="_blank"
+          >Workday</a>
         </li>
         <li class="mb-1">
           <a href="http://ucs.admin.uw.edu/myfd/"
-            label="" target="_blank">MyFinancial.desktop</a>
+             target="_blank"
+          >MyFinancial.desktop</a>
         </li>
       </ul>
     </template>
