@@ -37,14 +37,16 @@ export default function(Vue, _) {
       let bindPoint = el.tagName === 'A' ? el : el.getElementsByTagName('a')[0];
       bindPoint.onclick = (evt) => linkClickHandler(evt, binding, vnode, true);
       bindPoint.onauxclick = (evt) => linkClickHandler(evt, binding, vnode, true);
+      bindPoint.classList.add('external-link');
     },
   });
 
   Vue.directive('out-all', {
-    update: (el, binding, vnode) => {
-      el.getElementsByTagName('a').forEach((el) => {
+    update: (elm, binding, vnode) => {
+      elm.querySelectorAll('a:not(.external-link):not(.internal-link)').forEach((el) => {
         el.onclick = (evt) => linkClickHandler(evt, binding, vnode, true);
         el.onauxclick = (evt) => linkClickHandler(evt, binding, vnode, true);
+        el.classList.add('external-link');
       });
     },
   });
@@ -52,10 +54,15 @@ export default function(Vue, _) {
   Vue.mixin({
     updated() {
       if (this.$el && this.$el.querySelectorAll) {
-        this.$el.querySelectorAll('a').forEach((el) => {
+        this.$el.querySelectorAll('a:not(.external-link):not(.internal-link)').forEach((el) => {
           if (location.hostname === el.hostname) {
             el.onclick = (evt) => linkClickHandler(evt, {}, {context: this}, false);
             el.onauxclick = (evt) => linkClickHandler(evt, {}, {context: this}, false);
+            el.classList.add('internal-link');
+          } else {
+            el.onclick = (evt) => linkClickHandler(evt, {}, {context: this}, true);
+            el.onauxclick = (evt) => linkClickHandler(evt, {}, {context: this}, true);
+            el.classList.add('external-link');
           }
         })
       }

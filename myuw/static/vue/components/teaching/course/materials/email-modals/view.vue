@@ -29,11 +29,11 @@
             <a :href="`mailto:${emailList.section_list.list_address}@uw.edu`">
               {{emailList.section_list.list_address}}@uw.edu
             </a>
-            <a :href="emailList.section_list.list_admin_url"
-              target="_blank"
-              :data-linklabel="`Manage Email List for ${
+            <a v-out="`Manage Email List for ${
                 emailList.course_abbr
                 } ${emailList.course_number} ${emailList.section_list.section_id}`"
+              :href="emailList.section_list.list_admin_url"
+              target="_blank"
             >Manage</a>
           </span>
         </div>
@@ -61,11 +61,11 @@
                 </a>
               </td>
               <td :headers="`emaillist_manage_${sln}`">
-                <a :href="emailList.section_list.list_admin_url"
-                  target="_blank"
-                  :data-linklabel="`Manage Email List for ${
+                <a v-out="`Manage Email List for ${
                       emailList.course_abbr
                     } ${emailList.course_number} ${emailList.section_list.section_id}`"
+                  :href="emailList.section_list.list_admin_url"
+                  target="_blank"
                 >Manage</a>
               </td>
             </tr>
@@ -83,11 +83,11 @@
                   </a>
                 </td>
                 <td :headers="`emaillist_manage_${sln}`">
-                  <a :href="email.list_admin_url"
-                    target="_blank"
-                    :data-linklabel="`Manage Email List for ${
+                  <a v-out="`Manage Email List for ${
                         emailList.course_abbr
                       } ${emailList.course_number} ${email.section_id}`"
+                    :href="email.list_admin_url"
+                    target="_blank"
                   >Manage</a>
                 </td>
               </tr>
@@ -97,8 +97,8 @@
 
         <p>
           Need help with mailing lists?
-          <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-            rel="help" target="_blank" data-linklabel="Mailman Help"
+          <a v-out="'Mailman Help'"
+             href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank"
           >Mailman help documentation</a>
         </p>
       </template>
@@ -115,8 +115,8 @@
 
 
       <template v-if="emailList.request_sent || requestSuccess" #modal-footer>
-        <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-          rel="help" target="_blank" data-linklabel="Mailman Help"
+        <a v-out="'Mailman Help'"
+           href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank"
         >Mailman help</a>
         <b-button variant="light" @click="$refs['view-modal'].hide()">
           Close
@@ -148,7 +148,9 @@
       </template>
 
       <template v-else #modal-footer>
-        <a href="http://watermelon.aca.uw.edu:8080/out?u=https%3A%2F%2Fitconnect.uw.edu%2Fconnect%2Femail%2Fresources%2Fmailman%2F&l=Mailman%20Help">
+        <a v-out="'Mailman Help'"
+           href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank"
+        >
           Mailman Help
         </a>
         <b-button variant="light" @click="$refs['view-modal'].hide()">Close</b-button>
