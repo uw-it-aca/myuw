@@ -6,20 +6,26 @@
       </h3>
       <ul class="list-unstyled myuw-text-md mb-4">
         <li v-if="isBothell" class="mb-1">
-          <a href="https://www.uwb.edu/facility/mail-services">Mailing Services</a>
+          <a href="https://www.uwb.edu/facility/mail-services"
+            v-out="'UWB Mailing Services'">Mailing Services</a>
         </li>
         <li v-else-if="!isTacoma" class="mb-1">
-          <a href="http://www.washington.edu/about/addressing-letters-to-the-uw/">Addressing Letters to the UW</a>
+          <a href="http://www.washington.edu/about/addressing-letters-to-the-uw/"
+          >Addressing Letters to the UW</a>
         </li>
         <li class="mb-1">
           <a :href="prefNameLink">Preferred Names</a>
         </li>
         <template v-if="student || studEmployee">
           <li v-if="isTacoma" class="mb-1">
-            <a href="http://www.tacoma.uw.edu/sites/default/files/sections/Registrar/Change-Student-Name.pdf">Change Your Legal Name</a>
+            <a href="http://www.tacoma.uw.edu/sites/default/files/sections/Registrar/Change-Student-Name.pdf"
+              v-out="'UWT Change Your Legal Name'"
+            >Change Your Legal Name</a>
           </li>
           <li v-else-if="isBothell" class="mb-1">
-            <a href="https://www.uwb.edu/registration/policies/name-change">Name Change Policy</a>
+            <a href="https://www.uwb.edu/registration/policies/name-change"
+              v-out="'UWB Change Your Legal Name'"
+            >Name Change Policy</a>
           </li>
           <template v-else>
             <li class="mb-1">

@@ -8,7 +8,7 @@
       you want to add funds, try the
       <a
         href="https://transportation.uw.edu/"
-        data-linklabel="UW Transportation Service"
+        v-out="'UW Transportation Service'"
         target="_blank"
         >UW Transportation page</a
       >.
@@ -33,13 +33,13 @@
             <a
               href="https://facilities.uw.edu/transportation/employee-u-pass#8"
               target="_blank"
-              data-linklabel="TEMP Pass"
+              v-out="'Temporary Employee U-PASS'"
             >
               temporary employee </a
             >.
           </p>
         </div>
-        <a :href="getUrl" data-linklabel="U-Pass" class="myuw-text-md">U-PASS not working? </a>
+        <a :href="getUrl" v-out="'U-Pass'" class="myuw-text-md">U-PASS not working? </a>
       </div>
       <div v-else id="upass-not-current">
         <div v-if="!employee" id="upass-notices-for-students">
@@ -55,7 +55,7 @@
                 class or are a
                 <a
                   href="https://facilities.uw.edu/transportation/employee-u-pass#8"
-                  data-linklabel="Temporary Employee U-PASS"
+                  v-out="'Temporary Employee U-PASS'"
                 >
                   temporary employee </a
                 >.
@@ -64,19 +64,19 @@
           </div>
           <div v-else id="upass-notices-for-non-sea-studs">
             <p v-if="bothell || tacoma">
-              If you <a :href="getPurchaseUrl" data-linklabel="Purchase U-PASS">purchase</a>
+              If you <a :href="getPurchaseUrl" v-out="'Purchase U-PASS'">purchase</a>
               a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
             </p>
           </div>
         </div>
         <ul>
           <li>
-            <a :href="getWhatIsUrl" data-linklabel="What is U-PASS"> What is the U-PASS? </a>
+            <a :href="getWhatIsUrl" v-out="'What is U-PASS'"> What is the U-PASS? </a>
           </li>
           <li v-if="pce">
             <a
               href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
-              data-linklabel="CC Student Purchase U-PASS"
+              v-out="'Continuum College Student Purchase U-PASS'"
             >
               Purchasing a U-PASS
             </a>

@@ -13,7 +13,7 @@
         <a
           href="https://identity.uw.edu/"
           title="Manage your preferred name"
-          data-linklabel="Manage preferred name - Identity.UW">
+          v-out="'Manage preferred name - Identity.UW'">
             <font-awesome-icon :icon="['fas', 'pencil-alt']" class="myuw-text-md" />
             <span class="sr-only">Manage your preferred name</span>
         </a>

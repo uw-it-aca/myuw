@@ -14,23 +14,28 @@
         UW Professional &amp; Continuing Education can help.
       </p>
       <p class="myuw-text-md">
-        <a href="https://www.pce.uw.edu" target="_blank" data-linklabel="PCE Info">About PCE</a>
+        <a href="https://www.pce.uw.edu" target="_blank">About PCE</a>
       </p>
       <h4 class="h6 text-dark-beige myuw-font-roboto">
         Available programs
       </h4>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
-          <a href="https://www.pce.uw.edu/career-accelerator-certificates" target="_blank" data-linklabel="PCE Career Accelerator Programs">Career Accelerator Certificate Programs</a>
+          <a href="https://www.pce.uw.edu/career-accelerator-certificates"
+            target="_blank" v-out="'PCE Career Accelerator Programs'">
+            Career Accelerator Certificate Programs</a>
         </li>
         <li class="mb-1">
-          <a href="https://www.pce.uw.edu/certificates" target="_blank" data-linklabel="PCE Certificate Programs">Certificate Programs</a>
+          <a href="https://www.pce.uw.edu/certificates" target="_blank"
+            v-out="'PCE Certificate Programs'">Certificate Programs</a>
         </li>
         <li class="mb-1">
-          <a href="https://www.pce.uw.edu/degrees" target="_blank" data-linklabel="PCE Degree Programs">Degree Programs</a>
+          <a href="https://www.pce.uw.edu/degrees" target="_blank"
+            v-out="'PCE Degree Programs'">Degree Programs</a>
         </li>
         <li>
-          <a href="https://www.pce.uw.edu/courses" target="_blank" data-linklabel="PCE Courses">Courses</a>
+          <a href="https://www.pce.uw.edu/courses" target="_blank"
+            v-out="'PCE Courses'">Courses</a>
         </li>
       </ul>
     </template>

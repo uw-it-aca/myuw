@@ -18,7 +18,9 @@
         primary-key="netid"
       >
         <template #cell(email)="data">
-          <a :href="data.value.href" :title="data.value.title">
+          <a v-out="'Classlist student email'"
+            :href="data.value.href"
+            :title="data.value.title">
             <i class="fa fa-envelope-o" />
             <span class="sr-only">{{ data.value.email }}</span>
           </a>

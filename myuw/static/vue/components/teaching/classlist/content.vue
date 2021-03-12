@@ -13,6 +13,7 @@
 
     <div class="">
       <b-link
+        v-out="'Download Classlist CSV'"
         id="csv_download_class_list"
         @click="downloadCL"
       >
@@ -20,7 +21,9 @@
         Download (CSV)
       </b-link>
 
-      <a href="javascript:window.print()" class="">
+      <a
+        v-out="'Print Classlist'"
+        href="javascript:window.print()" class="">
         <i class="fa fa-print" />Print
       </a>
     </div>
