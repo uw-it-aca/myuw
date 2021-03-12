@@ -2,7 +2,7 @@
   <li v-if="section.sln">
       <b-link
         :href="textbookUrl"
-        :label="`textbooks: ${section.curriculum_abbr} ${
+        :title="`textbooks: ${section.curriculum_abbr} ${
           section.course_number} ${section.section_id}`"
       >Textbooks</b-link>
   </li>

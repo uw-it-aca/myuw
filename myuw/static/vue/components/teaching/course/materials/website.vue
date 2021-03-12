@@ -5,14 +5,15 @@
       <a
         :href="section.class_website_url"
         target="_blank"
-        :label="`Course Website: ${section.curriculum_abbr} ${
+        :title="`Course Website: ${section.curriculum_abbr} ${
           section.course_number} ${section.section_id}`"
       >View class website</a>
       <span v-if="!pastTerm">
         <a
           target="_blank"
+          v-out="'Update Course Website'"
           :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
-          :label="`Update Course Website: ${section.curriculum_abbr} ${
+          :title="`Update Course Website: ${section.curriculum_abbr} ${
             section.course_number} ${section.section_id}`"
         >Update</a>
       </span>
@@ -25,9 +26,10 @@
   <li v-else-if="section.sln">
     <span>Website:&nbsp;&nbsp;</span>
     <a
+      v-out="'Add Course Website'"
       target="_blank"
       :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
-      :label="`Add Course Website: ${section.curriculum_abbr} ${
+      :title="`Add Course Website: ${section.curriculum_abbr} ${
         section.course_number} ${section.section_id}`"
     >Add</a>
     <div>

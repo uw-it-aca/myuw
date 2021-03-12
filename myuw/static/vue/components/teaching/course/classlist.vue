@@ -9,9 +9,8 @@
         <b-link
           class="myuw-muted"
           :href="legacyLink"
-          target="_blank"
-          :rel="`class_list_${section.section_label}`"
           :title="`View ${section.section_label} class list`"
+          target="_blank"
         >
           My Class Resources
         </b-link>
@@ -46,7 +45,7 @@
       <b-link
         target="_blank"
         :href="`/teaching/${section.apiTag}/students`"
-        :rel="section.section_label"
+        :title="`View ${section.section_label} class list`"
       >
         View student
       </b-link>
@@ -64,7 +63,7 @@
         <b-link v-if="section.current_enrollment"
           target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
-          :rel="section.section_label"
+          :title="`View ${section.section_label} class list`"
         >
           View class list
         </b-link>
@@ -73,6 +72,7 @@
       <span>
         <b-link v-if="displayDownloadLink"
           id="csv_download_class_list"
+          :title="`Download ${section.section_label} class list`"
           @click="downloadCL"
         >
           <font-awesome-icon :icon="faDownload" /> Download (CSV)

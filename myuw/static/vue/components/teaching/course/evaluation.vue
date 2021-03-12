@@ -21,7 +21,7 @@
                 </li>
                 <li v-if="section.evaluation.report_url">
                   <a :href="section.evaluation.report_url"
-                     :label="`${section.curriculum_abbr} ${
+                     :title="`${section.curriculum_abbr} ${
                         section.course_number
                       } ${section.section_id} Course Evaluation Report`"
                   >
@@ -47,7 +47,7 @@
                 </li>
                 <li>
                   <a :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                     :label="`${section.curriculum_abbr} ${
+                     :title="`${section.curriculum_abbr} ${
                         section.course_number
                       } ${section.section_id} Course Evaluation`"
                   >Manage evaluation</a>
@@ -59,7 +59,7 @@
                 </li>
                 <li>
                   <a :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                     :label="`${section.curriculum_abbr} ${
+                     :title="`${section.curriculum_abbr} ${
                         section.course_number
                       } ${section.section_id} Course Evaluation`"
                   >Manage evaluation</a>
@@ -73,7 +73,7 @@
               </li>
               <li v-if="section.evaluation.report_url">
                 <a :href="section.evaluation.report_url"
-                   :label="`${section.curriculum_abbr} ${
+                   :title="`${section.curriculum_abbr} ${
                       section.course_number
                     } ${section.section_id} Course Evaluation Report`"
                 >
@@ -93,7 +93,7 @@
             </li>
             <li>
               <a :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                 :label="`${section.curriculum_abbr} ${
+                 :title="`${section.curriculum_abbr} ${
                     section.course_number
                   } ${section.section_id} Course Evaluation`"
               >Manage evaluation</a>
@@ -106,7 +106,7 @@
             not have an evaluation set up for this course.
             <a href="https://www.washington.edu/assessment/course-evaluations/"
                target="_blank"
-               data-linklabel="Learn About Course Evaluations"
+               v-out="'Learn About Course Evaluations'"
             ><font-awesome-icon :icon="faQuestionCircle" /></a>
           </li>
           <li v-else>

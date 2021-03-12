@@ -6,7 +6,9 @@
       section.email_list.section_list.list_exists
     ">
       <span v-if="section.email_list.has_multiple_sections">
-        <b-link v-b-modal="`emaillist_view_${section.sln}`">
+        <b-link v-b-modal="`emaillist_view_${section.sln}`"
+          v-out="'Manage Email List (multi_sections)'"
+        >
           Manage mailing lists
         </b-link>
         <uw-email-view-model :email-list="section.email_list" :sln="section.sln" />
@@ -15,7 +17,8 @@
         <span>{{section.email_list.section_list.list_address}}@uw.edu</span>
         <a :href="section.email_list.section_list.list_admin_url"
            target="_blank"
-           :data-linklabel="`Manage Email List for ${
+           v-out="'Manage Email List'"
+           :title="`Manage Email List for ${
               section.email_list.course_abbr
             } ${section.email_list.course_number} ${
               section.email_list.section_list.section_id
@@ -31,7 +34,8 @@
       <span>{{section.email_list.joint_section_list.list_address}}@uw.edu</span>
       <a :href="section.email_list.joint_section_list.list_admin_url"
          target="_blank"
-         :data-linklabel="`Manage Email List for ${
+         v-out="'Manage Email List (joint section)'"
+         :title="`Manage Joint Section Email List for ${
            section.email_list.course_abbr
           } ${section.email_list.course_number} ${
             section.email_list.joint_section_list.section_id
@@ -41,7 +45,9 @@
     </span>
     <span v-else>
       <span v-if="section.email_list.has_secondary_lists">
-        <b-link v-b-modal="`emaillist_view_${section.sln}`">
+        <b-link
+          v-out="'Manage Email List (section with linked sections)'"
+          v-b-modal="`emaillist_view_${section.sln}`">
           Manage mailing lists
         </b-link>
         <uw-email-view-model :email-list="section.email_list" :sln="section.sln" />
