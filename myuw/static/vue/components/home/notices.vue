@@ -56,7 +56,6 @@
             @show="onShowNotice(notice)"
           >
             <div
-              v-out-all
               class="p-3 mt-2 mb-2 bg-light text-dark notice-body"
               v-html="notice.notice_body"
             />
