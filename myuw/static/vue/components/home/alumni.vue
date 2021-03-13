@@ -13,9 +13,9 @@
       </p>
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
-          <a href="https://www.washington.edu/alumni"
+          <a v-out="'UW Alumni'"
+            href="https://www.washington.edu/alumni"
             target="_blank"
-            v-out="'UW Alumni'"
           >Alumni News, Events and Services</a>
         </li>
         <li class="mb-1">
@@ -33,9 +33,9 @@
       </p>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li>
-          <a href="https://www.washington.edu/cms/alumni/membership/"
+          <a v-out="'UWAA'"
+            href="https://www.washington.edu/cms/alumni/membership/"
             target="_blank"
-            v-out="'UWAA'"
           >
             Learn about the UWAA
           </a>

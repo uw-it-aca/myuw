@@ -21,21 +21,21 @@
       </h4>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
-          <a href="https://www.pce.uw.edu/career-accelerator-certificates"
-            target="_blank" v-out="'PCE Career Accelerator Programs'">
+          <a v-out="'PCE Career Accelerator Programs'"
+            href="https://www.pce.uw.edu/career-accelerator-certificates" target="_blank">
             Career Accelerator Certificate Programs</a>
         </li>
         <li class="mb-1">
-          <a href="https://www.pce.uw.edu/certificates" target="_blank"
-            v-out="'PCE Certificate Programs'">Certificate Programs</a>
+          <a v-out="'PCE Certificate Programs'" href="https://www.pce.uw.edu/certificates"
+            target="_blank">Certificate Programs</a>
         </li>
         <li class="mb-1">
-          <a href="https://www.pce.uw.edu/degrees" target="_blank"
-            v-out="'PCE Degree Programs'">Degree Programs</a>
+          <a v-out="'PCE Degree Programs'" href="https://www.pce.uw.edu/degrees"
+            target="_blank">Degree Programs</a>
         </li>
         <li>
-          <a href="https://www.pce.uw.edu/courses" target="_blank"
-            v-out="'PCE Courses'">Courses</a>
+          <a v-out="'PCE Courses'" href="https://www.pce.uw.edu/courses"
+            target="_blank">Courses</a>
         </li>
       </ul>
     </template>

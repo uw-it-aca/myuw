@@ -82,7 +82,7 @@
       <li>
         <a href="https://www.washington.edu/circle/calendar/"
           target="_blank"
-          label="CIRCLE Event Calendar">
+        >
           CIRCLE Events Calendar
         </a>
       </li>
@@ -90,13 +90,12 @@
         <a
           href="https://www.washington.edu/circle/calendar/"
           target="_blank"
-          label="CIRCLE Event Calendar">CIRCLE Events Calendar</a>
+        >CIRCLE Events Calendar</a>
       </li>
       <li>
         <a
           href="http://www.fiuts.org/events"
           target="_blank"
-          label="FIUTS Event Calendar"
         >FIUTS Event Calendar</a>
       </li>
     </ul>

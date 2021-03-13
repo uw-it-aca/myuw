@@ -41,7 +41,9 @@
       <div v-if="!bookData.noBookAssigned"
            class="myuw-chevron"
       >
-        <a :href="`/textbooks/${bookData.year},${bookData.quarter}${
+        <a
+          v-out="'MyUW Textbook page'"
+          :href="`/textbooks/${bookData.year},${bookData.quarter}${
           bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
         >
           <font-awesome-icon

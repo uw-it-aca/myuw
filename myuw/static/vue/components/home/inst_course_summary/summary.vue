@@ -6,7 +6,7 @@
   >
     <template #card-heading>
       <h3 class="h4 text-dark-beige myuw-font-encode-sans">
-        {{ titleCaseWord(getQuarter()) }} {{ getYear() }} Teaching Schedule
+        {{ titleCaseWord(getQuarter) }} {{ getYear }} Teaching Schedule
       </h3>
     </template>
     <template #card-body>
@@ -33,22 +33,22 @@
           </p>
           <span>
             <b-link
+              v-out="'Open MyUW Teaching page'"
               :href="`/teaching/${term}`"
               :future-nav-target="`${term}`"
-              v-out="getTeachingLinkLabel()"
-              title="Open teaching page"
+              :title="getTeachingLinkLabel"
             >
               View details
             </b-link>
           </span>
         </div>
 
-        <uw-summer-section-list v-if="getQuarter() === 'summer'" :schedule="instSchedule" />
+        <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
         <uw-section-list v-else :sections="instSchedule.sections" />
 
         <div>
-          <b-link :href="getAcadCalLink()">
-            View {{ titleCaseWord(getQuarter()) }} {{ getYear() }}
+          <b-link v-out="'Open MyUW Calendar page'" :href="getAcadCalLink">
+            View {{ titleCaseWord(getQuarter) }} {{ getYear }}
             important dates and deadlines
           </b-link>
         </div>
@@ -118,6 +118,19 @@ export default {
       return this.isErrored || this.instSchedule &&
         (this.instSchedule.sections.length || !this.instSchedule.future_term);
     },
+    getYear() {
+      return this.term === 'current' ? this.year : this.nextYear;
+    },
+    getQuarter() {
+      return this.term === 'current' ? this.quarter : this.nextQuarter;
+    },
+    getTeachingLinkLabel() {
+      return this.titleCaseWord(this.getQuarter) + ' ' + this.getYear +
+        ' Teaching details';
+    },
+    getAcadCalLink() {
+      return '/academic_calendar/#' + this.getYear + ',' + this.getQuarter;
+    },
   },
   created() {
     if (this.instructor) {
@@ -128,20 +141,6 @@ export default {
     ...mapActions('inst_schedule', {
       fetchInstSche: 'fetch',
     }),
-    getYear() {
-      return this.term === 'current' ? this.year : this.nextYear;
-    },
-    getQuarter() {
-      return this.term === 'current' ? this.quarter : this.nextQuarter;
-    },
-    getTeachingLinkLabel() {
-      return (this.titleCaseWord(this.getQuarter()) + ' ' + this.getYear() +
-       ' Teaching Details');
-    },
-    getAcadCalLink() {
-      return ('/academic_calendar/#' + this.getYear() + ',' +
-        this.getQuarter());
-    },
   },
 };
 </script>

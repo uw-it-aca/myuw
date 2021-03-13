@@ -17,9 +17,9 @@
       </p>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li>
-          <a href="http://www.washington.edu/uwra/"
-            target="_blank"
-            v-out="'UWRA'">
+          <a v-out="'UWRA'"
+            href="http://www.washington.edu/uwra/"
+            target="_blank">
             Learn more about UWRA
           </a>
         </li>

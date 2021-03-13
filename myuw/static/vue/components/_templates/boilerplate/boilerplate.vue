@@ -294,17 +294,17 @@
       <p class="mt-3 mb-0 myuw-text-md">
         Watch a video tour of
         <a
+          v-out="'MyUW video for Instructors'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
           target="_blank"
           title="MyUW video tour for instructors"
-          v-out="'MyUW video for Instructors'"
           >MyUW for Instructors</a
         >,
         <a
+          v-out="'MyUW video for staff'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
           target="_blank"
           title="MyUW video tour for staff"
-          v-out="'MyUW video for staff'"
           >for staff</a
         >, or
         <a
@@ -314,10 +314,10 @@
           dv-out="'MyUW video for students'"
           >for students</a
         >. <br /><a
+          v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
           target="_blank"
           title="MyUW Help Center in IT Connect"
-          v-out="'MyUW Help Center'"
           >Visit the MyUW help guide for more information</a
         >.
       </p>

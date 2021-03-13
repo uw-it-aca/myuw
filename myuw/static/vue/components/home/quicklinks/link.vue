@@ -8,8 +8,9 @@
         <b-button
           v-if="activeButtons['edit']"
           v-b-toggle="`${customId}-collapse`"
+          v-out="'Edit quick link'"
           variant="link"
-          :label="`Edit ${link.label} link`"
+          :title="`Edit ${link.label} link`"
           class="p-0 mr-1 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
@@ -18,8 +19,9 @@
         </b-button>
         <b-button
           v-if="activeButtons['remove']"
+          v-out="'Remove quick link'"
           variant="link"
-          :label="`Remove ${link.label} link from Quick Links list`"
+          :title="`Remove ${link.label} link from Quick Links list`"
           class="p-0 m-0 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
@@ -30,7 +32,8 @@
         <span v-if="activeButtons['save']">
           <font-awesome-icon
             v-if="link.added"
-            :label="`${link.label} link saved to Quick Links`"
+            v-out="'Saved quick link'"
+            :title="`${link.label} link saved to Quick Links`"
             :icon="['fa', 'check']"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
@@ -38,8 +41,9 @@
           />
           <b-button
             v-else
+            v-out="'Save quick link'"
             variant="link"
-            :label="`Save ${link.label} link to your Quick Links list`"
+            :title="`Save ${link.label} link to your Quick Links list`"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"

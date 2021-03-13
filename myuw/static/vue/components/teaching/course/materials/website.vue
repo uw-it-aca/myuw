@@ -10,8 +10,8 @@
       >View class website</a>
       <span v-if="!pastTerm">
         <a
-          target="_blank"
           v-out="'Update Course Website'"
+          target="_blank"
           :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
           :title="`Update Course Website: ${section.curriculum_abbr} ${
             section.course_number} ${section.section_id}`"

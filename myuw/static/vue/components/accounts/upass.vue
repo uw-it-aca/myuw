@@ -7,8 +7,8 @@
       An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if
       you want to add funds, try the
       <a
-        href="https://transportation.uw.edu/"
         v-out="'UW Transportation Service'"
+        href="https://transportation.uw.edu/"
         target="_blank"
         >UW Transportation page</a
       >.
@@ -31,15 +31,15 @@
             Your U-PASS does not work during summer quarter unless you are registered for a class or
             are a
             <a
+              v-out="'Temporary Employee U-PASS'"
               href="https://facilities.uw.edu/transportation/employee-u-pass#8"
               target="_blank"
-              v-out="'Temporary Employee U-PASS'"
             >
               temporary employee </a
             >.
           </p>
         </div>
-        <a :href="getUrl" v-out="'U-Pass'" class="myuw-text-md">U-PASS not working? </a>
+        <a v-out="'U-Pass'" :href="getUrl" class="myuw-text-md">U-PASS not working? </a>
       </div>
       <div v-else id="upass-not-current">
         <div v-if="!employee" id="upass-notices-for-students">
@@ -54,8 +54,8 @@
                 Your U-PASS does not work during summer quarter unless you are registered for a
                 class or are a
                 <a
-                  href="https://facilities.uw.edu/transportation/employee-u-pass#8"
                   v-out="'Temporary Employee U-PASS'"
+                  href="https://facilities.uw.edu/transportation/employee-u-pass#8"
                 >
                   temporary employee </a
                 >.
@@ -64,19 +64,19 @@
           </div>
           <div v-else id="upass-notices-for-non-sea-studs">
             <p v-if="bothell || tacoma">
-              If you <a :href="getPurchaseUrl" v-out="'Purchase U-PASS'">purchase</a>
+              If you <a v-out="'Purchase U-PASS'" :href="getPurchaseUrl">purchase</a>
               a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
             </p>
           </div>
         </div>
         <ul>
           <li>
-            <a :href="getWhatIsUrl" v-out="'What is U-PASS'"> What is the U-PASS? </a>
+            <a v-out="'What is U-PASS'" :href="getWhatIsUrl"> What is the U-PASS? </a>
           </li>
           <li v-if="pce">
             <a
-              href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
               v-out="'Continuum College Student Purchase U-PASS'"
+              href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
             >
               Purchasing a U-PASS
             </a>

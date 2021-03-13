@@ -13,8 +13,8 @@
 
     <div class="">
       <b-link
-        v-out="'Download Classlist CSV'"
         id="csv_download_class_list"
+        v-out="'Download Classlist CSV'"
         @click="downloadCL"
       >
         <font-awesome-icon :icon="faDownload" />

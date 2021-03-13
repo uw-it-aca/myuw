@@ -104,9 +104,9 @@
           <li v-if="section.evaluation && section.evaluation.eval_not_exist">
             You {{section.pastTerm ? 'did' : 'do'}}
             not have an evaluation set up for this course.
-            <a href="https://www.washington.edu/assessment/course-evaluations/"
+            <a v-out="'Learn About Course Evaluations'"
+               href="https://www.washington.edu/assessment/course-evaluations/"
                target="_blank"
-               v-out="'Learn About Course Evaluations'"
             ><font-awesome-icon :icon="faQuestionCircle" /></a>
           </li>
           <li v-else>

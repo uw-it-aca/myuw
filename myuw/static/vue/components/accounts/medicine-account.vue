@@ -32,8 +32,8 @@
           <b-alert show variant="danger">
             <p>
               Password expired on {{ toFriendlyDate(expiresMed) }}.
-              <a :href="passwordChange"
-                 v-out="'Change UW Medicine password'"
+              <a v-out="'Change UW Medicine password'"
+                 :href="passwordChange"
               >
                 <br>Change your password to regain access.
               </a>

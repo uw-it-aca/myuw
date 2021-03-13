@@ -53,9 +53,9 @@
               </div>
               <div class="text-right">
                 <uw-link-button
+                  v-out="'Make tuition payment'"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
                   target="_blank"
-                  v-out="'Make tuition payment'"
                 >
                   Make payment
                 </uw-link-button>
@@ -96,8 +96,8 @@
             <template #status-content>
               <div class="myuw-text-md">PCE-Continuum College</div>
               <div class="text-right">
-                <uw-link-button href="http://portal.continuum.uw.edu"
-                  v-out="'Make Continuum College tuition payment'"
+                <uw-link-button v-out="'Make Continuum College tuition payment'"
+                  href="http://portal.continuum.uw.edu"
                   target="_blank">
                   Make payment
                 </uw-link-button>
@@ -113,9 +113,9 @@
             <template #status-content>
               <span class="myuw-text-md">PCE-Continuum College</span>
               <a
+                v-out="'Continuum College Account Statement'"
                 href="http://portal.continuum.uw.edu"
                 target="_blank"
-                v-out="'Continuum College Account Statement'"
                 class="myuw-text-md"
                 >Account Statement</a
               >
@@ -140,9 +140,9 @@
 
       <div class="myuw-text-md">
         <p v-if="!isC2Grad">
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
+          <a v-out="'Enable Tuition Account Access'"
+            href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
             target="_blank"
-            v-out="'Enable Tuition Account Access'"
             >Give access to your tuition account and financial aid information
           </a>
           to parents or other third parties.
@@ -173,15 +173,15 @@
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
       <a
         v-if="!isPCE"
-        href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
         v-out="'Tuition Statement'"
+        href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
         target="_blank"
         >Tuition Statement page</a
       >
       <a
         v-else
-        href="https://portal.continuum.uw.edu"
         v-out="'Continuum College Tuition portal'"
+        href="https://portal.continuum.uw.edu"
         target="_blank"
         >PCE Tuition portal</a
       >.
