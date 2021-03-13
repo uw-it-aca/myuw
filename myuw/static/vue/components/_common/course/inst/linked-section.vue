@@ -64,16 +64,14 @@
     <div>
       <b-button v-if="!section.mini_card"
               variant="light"
-              :label="`Pin ${section.id} mini-card to teaching page`"
-              title="Click to pin the mini-card onto Teaching page"
+              :title="`Pin ${section.id} mini-card to teaching page`"
               @click="miniCard"
       >
         Pin to Teaching
       </b-button>
       <b-button v-else
               variant="dark"
-              :label="`Remove ${section.id} mini-card from teaching page`"
-              title="Click to remove the mini-card from Teaching page"
+              :title="`Remove ${section.id} mini-card from teaching page`"
               @click="miniCard"
       >
         Unpin

@@ -6,8 +6,7 @@
       <div>
         <b-button v-if="section.mini_card"
             variant="dark" size="sm"
-            :label="`Remove ${section.id} mini-card`"
-            title="Click to remove this mini-card"
+            :title="`Remove ${section.id} mini-card`"
             @click="toggleMiniWrapper">
           <font-awesome-icon :icon="faTimes" />
         </b-button>

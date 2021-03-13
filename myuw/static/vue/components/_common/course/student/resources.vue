@@ -7,7 +7,7 @@
           <li v-if="section.class_website_url" class="mb-1">
             <a
               :href="section.class_website_url"
-              :label="`${
+              :title="`${
                 section.curriculum_abbr
               } ${section.course_number} Course Website`"
             >
@@ -17,7 +17,7 @@
           <li v-if="section.lib_subj_guide" class="mb-1">
             <a
               :href="section.lib_subj_guide"
-              :label="`${
+              :title="`${
                 section.curriculum_abbr
               } ${section.course_number} Library Research Guides`"
             >
@@ -27,7 +27,7 @@
           <li v-if="section.canvas_url" class="mb-1">
             <a
               :href="section.canvas_url"
-              :label="`${
+              :title="`${
                 section.curriculum_abbr
               } ${section.course_number} Course Canvas`"
             >
@@ -38,7 +38,7 @@
         <li v-if="section.sln" class="mb-1">
           <a
             :href="textbookHref"
-            :label="`${
+            :title="`${
               section.curriculum_abbr
             } ${section.course_number} Textbooks`"
           >

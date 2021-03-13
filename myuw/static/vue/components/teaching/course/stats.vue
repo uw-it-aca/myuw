@@ -12,7 +12,7 @@
           :href="`https://coda.uw.edu/#${section.year}-${
             section.quarter}-${section.curriculum_abbr}-${section.course_number
           }-${section.section_id}`"
-          :label="`Course Dashboard for ${section.curriculum_abbr} ${
+          :title="`Course Dashboard for ${section.curriculum_abbr} ${
             section.course_number} ${section.section_id}`"
         >
           View course stats
