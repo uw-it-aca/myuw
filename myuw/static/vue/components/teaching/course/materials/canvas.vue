@@ -2,7 +2,7 @@
   <li v-if="section.canvas_url">
     <span>
       <a v-if="section.canvas_url === 'error'"
-        v-out="Canvas LMS"
+        v-out="'Canvas LMS'"
         href="https://canvas.uw.edu/"
         target="_blank"
       >Canvas LMS Home page</a>
