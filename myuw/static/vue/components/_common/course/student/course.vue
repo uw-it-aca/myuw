@@ -3,7 +3,6 @@
     <uw-card
       loaded
       :ribbon="{ side: 'top', colorId: section.color_id }"
-      comp-tid="Spring 2013 Student Course"
     >
       <template #card-heading>
         <uw-course-header :section="section" />

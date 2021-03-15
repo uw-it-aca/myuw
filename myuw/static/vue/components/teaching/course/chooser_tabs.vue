@@ -2,10 +2,10 @@
   <!-- TODO: Add loading and error handling here -->
   <div v-if="isReady">
     <uw-term-selector
+      v-model="term"
       :current-quarter="quarter"
       :current-year="year"
       :all-tabs="instSchedule.related_terms"
-      :selected-term="term"
     >
       <template #default="slotData">
         <myuw-teaching-course-cards :term="slotData.tab.label" />
@@ -24,22 +24,24 @@ export default {
     'myuw-teaching-course-cards': CourseCards,
     'uw-term-selector': TermSelector,
   },
+  data() {
+    return {
+      term: window.location.pathname.replace("/teaching/", ""),
+      // Fetch term is required because instSchedule.related_terms
+      // is depended on the the first fetch and we need to keep track
+      // of that term to render the tabs while the actual term is 
+      // loading.
+      fetchTerm: null,
+    }
+  },
   computed: {
     ...mapState({
       year: (state) => parseInt(state.termData.year),
       quarter: (state) => state.termData.quarter,
-      term: (state) => {
-        let term = window.location.pathname.replace("/teaching/", "");
-
-        if (term !== "") {
-          return term;
-        }
-        return `${state.termData.year},${state.termData.quarter}`;
-      },
     }),
     ...mapState('inst_schedule', {
       instSchedule(state) {
-        return state.value[this.term];
+        return state.value[this.fetchTerm];
       },
     }),
     ...mapGetters('inst_schedule', {
@@ -47,14 +49,23 @@ export default {
       isErroredTagged: 'isErroredTagged',
     }),
     isReady() {
-      return this.isReadyTagged(this.term);
+      return this.isReadyTagged(this.fetchTerm);
     },
     isErrored() {
-      return this.isErroredTagged(this.term);
+      return this.isErroredTagged(this.fetchTerm);
     },
   },
+  watch: {
+    term(value) {
+      window.history.replaceState({}, null, `/teaching/${value}`);
+    }
+  },
   created() {
-    this.fetch(this.term);
+    if (this.term === "") {
+      this.term = `${this.year},${this.quarter}`;
+    }
+    this.fetchTerm = this.term;
+    this.fetch(this.fetchTerm);
   },
   methods: {
     ...mapActions('inst_schedule', {
