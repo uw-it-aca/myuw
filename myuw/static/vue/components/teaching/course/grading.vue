@@ -101,9 +101,9 @@
             </span>
           </span>
           <a
+            v-out="'GradePage Help'"
             href="https://itconnect.uw.edu/learn/tools/gradepage/"
-            target="_blank" 
-            label="GradePage Help"
+            target="_blank"
           >
             <font-awesome-icon :icon="faQuestionCircle" />
           </a>
@@ -113,7 +113,6 @@
           An error occurred with
           <a
             href="https://gradepage.uw.edu/"
-            label="Gradepage"
             target="_blank"
           >Gradepage</a>. Please try again later.
         </div>
@@ -163,8 +162,8 @@
             <span v-if="section.grading_status">
               <br />
               <a
+                v-out="'Change Submitted Grades'"
                 href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
-                label="Change Submitted Grades"
                 target="_blank"
               >What can I do now?</a>
             </span>

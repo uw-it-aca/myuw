@@ -6,9 +6,9 @@
     <ul class="mb-4 list-unstyled myuw-text-md">
       <li>
         <a
+          v-out="'ISS: Travel and Visas'"
           href="https://iss.washington.edu/travel-visas/"
           target="_blank"
-          label="Travel and Visas for Int'l Students"
         >Travel and Visas</a>
       </li>
       <li>
@@ -16,34 +16,31 @@
           v-if="visaJ1"
           href="https://iss.washington.edu/regulations/j1/"
           target="_blank"
-          label="Visa and Immigration Rules"
         >Visa and Immigration Rules for J-1 students</a>
         <a
           v-else
           href="https://iss.washington.edu/regulations/f1/"
           target="_blank"
-          label="Visa and Immigration Rules"
         >Visa and Immigration Rules for F-1 students</a>
       </li>
       <li>
         <a
+          v-out="'ISS: Frequently Asked Questions'"
           href="https://iss.washington.edu/new-students/faq/"
           target="_blank"
-          label="ISS: Frequently Asked Questions (FAQ)"
         >Frequently Asked Questions (FAQ)</a>
       </li>
       <li>
         <a
+          v-out="'ISS: Student Employment'"
           href="https://iss.washington.edu/employment/"
           target="_blank"
-          label="Int'l Student Employment"
         >Employment and Internships</a>
       </li>
       <li>
         <a
           href="https://www.trumba.com/calendars/sea_enroll-iss"
           target="_blank"
-          label="Deadlines and Workshops Calendar"
         >Deadlines and Workshops Calendar</a>
       </li>
     </ul>
@@ -56,21 +53,18 @@
         <a
           href="http://depts.washington.edu/aspuw/clue/home/"
           target="_blank"
-          label="Center for Learning and Undergraduate Enrichment (CLUE)"
         >Center for Learning and Undergraduate Enrichment (CLUE)</a>
       </li>
       <li>
         <a
           href="http://depts.washington.edu/owrc"
           target="_blank"
-          label="Odegaard Writing and Research Center"
         >Odegaard Writing and Research Center</a>
       </li>
       <li>
         <a
           href="http://aep.washington.edu/"
           target="_blank"
-          label="Academic English Program"
         >Academic English Program</a>
       </li>
     </ul>
