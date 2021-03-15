@@ -9,7 +9,7 @@
         <b-container fluid="xl" class="py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
           no actions will be saved.
-          <a href="/support/"> Back to MyUW Support tool </a>
+          <a v-out="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
         </b-container>
       </div>
 
@@ -22,6 +22,7 @@
           <b-row>
             <b-col xs="2">
               <b-link
+                v-out="'MyUW profile page'"
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
@@ -33,20 +34,20 @@
             <b-col xs="10" class="text-right">
               <b-link
                 v-if="emailError"
+                v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-                label="UW email services"
               >
                 <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email
                 error
               </b-link>
               <b-link
                 v-else
+                v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
                 title="Open your email in new tab"
-                label="Open your email in new tab"
               >
                 <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email
               </b-link>
@@ -59,6 +60,7 @@
                 <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
+                v-out="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
