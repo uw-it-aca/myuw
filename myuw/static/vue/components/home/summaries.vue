@@ -8,7 +8,7 @@
     <b-col md="2">
       <a
         v-if="termData"
-        v-out="'MyUW Calendar page'"
+        v-inner="'MyUW Calendar page'"
         class="d-block px-3 py-1 text-dark text-nowrap
         font-weight-light"
         :class="[
@@ -51,7 +51,7 @@
       <div class="row float-md-right" style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
-          v-out="'MyUW Accounts page - Student Husky card'"
+          v-inner="'MyUW Accounts page - Student Husky card'"
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
@@ -69,7 +69,7 @@
         </a>
         <a
           v-if="hfs.resident_dining"
-          v-out="'MyUW Accounts page - Resident Dining'"
+          v-inner="'MyUW Accounts page - Resident Dining'"
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
@@ -88,7 +88,7 @@
 
         <a
           v-if="hfs.employee_husky_card"
-          v-out="'MyUW Accounts page - Employee Husky card'"
+          v-inner="'MyUW Accounts page - Employee Husky card'"
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
@@ -106,7 +106,7 @@
         </a>
         <a
           v-if="library.next_due"
-          v-out="'MyUW Accounts page - Library Account'"
+          v-inner="'MyUW Accounts page - Library Account'"
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
@@ -124,7 +124,7 @@
         </a>
         <a
           v-else-if="library.holds_ready"
-          v-out="'MyUW Accounts page - Library Account'"
+          v-inner="'MyUW Accounts page - Library Account'"
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[

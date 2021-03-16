@@ -33,7 +33,7 @@
           </p>
           <span>
             <b-link
-              v-out="`MyUW Teaching page ${term}`"
+              v-inner="`View details: ${term}`"
               :href="`/teaching/${term}`"
               :future-nav-target="`${term}`"
               :title="getTeachingLinkLabel"
@@ -47,7 +47,9 @@
         <uw-section-list v-else :sections="instSchedule.sections" />
 
         <div>
-          <b-link v-out="`MyUW Calendar page ${term}`" :href="getAcadCalLink">
+          <b-link
+            v-inner="`important dates and deadlines: ${term}`"
+            :href="getAcadCalLink">
             View {{ titleCaseWord(getQuarter) }} {{ getYear }}
             important dates and deadlines
           </b-link>

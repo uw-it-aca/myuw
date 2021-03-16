@@ -42,9 +42,10 @@
            class="myuw-chevron"
       >
         <a
-          v-out="`MyUW Textbook page ${term}`"
+          v-inner="`Textbooks: ${bookData.year} ${bookData.quarter}`"
           :href="`/textbooks/${bookData.year},${bookData.quarter}${
           bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
+          :title="`View Textbooks of ${bookData.year} ${bookData.quarter}`"
         >
           <font-awesome-icon
             :icon="['fa', 'chevron-right']"
