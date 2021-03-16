@@ -8,9 +8,10 @@
       >Canvas LMS Home page</a>
 
       <a v-else
-        v-out="`Course Canvas: ${section.curriculum_abbr} ${
-          section.course_number} ${section.section_id}`"
+        v-out="'Course Materials: Canvas'"
         :href="section.canvas_url"
+        :title="`course: ${section.curriculum_abbr} ${
+          section.course_number} ${section.section_id}`"
         target="_blank"
       >Course Canvas</a>
     </span>

@@ -1,6 +1,7 @@
 <template>
   <li v-if="section.sln">
       <b-link
+        v-out="'Course Materials: Textbooks'"
         :href="textbookUrl"
         :title="`textbooks: ${section.curriculum_abbr} ${
           section.course_number} ${section.section_id}`"
