@@ -20,10 +20,10 @@
                   </span>
                 </li>
                 <li v-if="section.evaluation.report_url">
-                  <a :href="section.evaluation.report_url"
-                     :title="`${section.curriculum_abbr} ${
-                        section.course_number
-                      } ${section.section_id} Course Evaluation Report`"
+                  <a
+                    v-out="`View evaluation report ${section.section_label}`"
+                    :href="section.evaluation.report_url"
+                    :title="`${section.section_label} Course Evaluation Report`"
                   >
                     View evaluation results report
                   </a>
@@ -46,10 +46,10 @@
                   </span>
                 </li>
                 <li>
-                  <a :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                     :title="`${section.curriculum_abbr} ${
-                        section.course_number
-                      } ${section.section_id} Course Evaluation`"
+                  <a
+                    v-out="`Manage evaluation of ${section.section_label}`"
+                    :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
+                    :title="`${section.section_label} Course Evaluation`"
                   >Manage evaluation</a>
                 </li>
               </template>
@@ -58,10 +58,10 @@
                   Online evaluation will open {{section.evaluation.evalOpenDateDisplay}}
                 </li>
                 <li>
-                  <a :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                     :title="`${section.curriculum_abbr} ${
-                        section.course_number
-                      } ${section.section_id} Course Evaluation`"
+                  <a
+                    v-out="`Manage evaluation of ${section.section_label}`"
+                    :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
+                    :title="`${section.section_label} Course Evaluation`"
                   >Manage evaluation</a>
                 </li>
               </template>
@@ -72,10 +72,10 @@
                 {{section.evaluation.reportAvailableDateDisplay}}
               </li>
               <li v-if="section.evaluation.report_url">
-                <a :href="section.evaluation.report_url"
-                   :title="`${section.curriculum_abbr} ${
-                      section.course_number
-                    } ${section.section_id} Course Evaluation Report`"
+                <a
+                  v-out="`View evaluation report ${section.section_label}`"
+                  :href="section.evaluation.report_url"
+                  :title="`${section.section_label} Course Evaluation Report`"
                 >
                   View evaluation results report
                 </a>
@@ -92,10 +92,10 @@
               Paper-based evaluation
             </li>
             <li>
-              <a :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                 :title="`${section.curriculum_abbr} ${
-                    section.course_number
-                  } ${section.section_id} Course Evaluation`"
+              <a
+                v-out="`Manage evaluation of ${section.section_label}`"
+                :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
+                :title="`${section.section_label} Course Evaluation`"
               >Manage evaluation</a>
             </li>
           </template>
