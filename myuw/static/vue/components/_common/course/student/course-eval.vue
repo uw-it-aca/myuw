@@ -11,7 +11,10 @@
       >
         <template v-if="evalObj.is_multi_instr">
           <p>
-            <a :href="evalObj.url" target="_blank">
+            <a
+              v-out="`Course evaluation ${section.section_label}`"
+              :href="evalObj.url" target="_blank"
+            >
               {{ section.curriculum_abbr }}
               {{ section.course_number }}
               {{ section.section_id }}
@@ -46,7 +49,9 @@
                 :key="`${section.id}-eval-inst-${index}`"
                 class="mb-0"
             >
-              <a :href="evalObj.url" target="_blank">
+              <a
+                v-out="`Instructor evaluation ${section.section_label}`"
+                :href="evalObj.url" target="_blank">
                 {{ titleCaseName(instructor.instructor_name) }}
               </a>
               <div v-if="hasTitle(instructor)"

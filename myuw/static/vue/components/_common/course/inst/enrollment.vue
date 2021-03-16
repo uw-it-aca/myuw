@@ -14,6 +14,7 @@
 
   <span v-else>
     <b-link
+      v-out="`MyUW Classlist page ${section.section_label}`"
       target="_blank"
       :href="classListHref()"
       :rel="section.section_label"
