@@ -140,7 +140,7 @@
 
       <div class="myuw-text-md">
         <p v-if="!isC2Grad">
-          <a v-out="'Enable Tuition Account Access'"
+          <a v-out="'Give Tuition Account Access'"
             href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
             target="_blank"
             >Give access to your tuition account and financial aid information

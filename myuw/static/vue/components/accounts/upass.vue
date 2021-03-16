@@ -7,11 +7,9 @@
       An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if
       you want to add funds, try the
       <a
-        v-out="'UW Transportation Service'"
         href="https://transportation.uw.edu/"
         target="_blank"
-        >UW Transportation page</a
-      >.
+        >UW Transportation</a> page.
     </template>
     <template #card-body>
       <uw-card-status>
