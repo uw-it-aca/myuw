@@ -4,7 +4,7 @@
       <h4 class="">
         <div :class="`c${section.color_id} simplesquare`" />
         <a
-          v-out="`Teaching course card ${section.section_label}`"
+          v-inner="`View teaching course card ${section.id}`"
           :href="`/teaching/${section.href}`"
           :future-nav-target="section.navtarget"
           title="Click to view the card on Teaching page"
