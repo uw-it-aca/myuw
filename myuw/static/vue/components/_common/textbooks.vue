@@ -42,7 +42,7 @@
            class="myuw-chevron"
       >
         <a
-          v-out="'MyUW Textbook page'"
+          v-out="`MyUW Textbook page ${term}`"
           :href="`/textbooks/${bookData.year},${bookData.quarter}${
           bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
         >
