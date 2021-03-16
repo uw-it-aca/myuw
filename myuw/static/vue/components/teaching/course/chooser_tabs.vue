@@ -8,10 +8,7 @@
       :all-tabs="instSchedule.related_terms"
     >
       <template #default="slotData">
-        <uw-teaching-course-cards
-          v-comp-group="`teaching-course-cards`"
-          :term="slotData.tab.label"
-        />
+        <uw-teaching-course-cards :term="slotData.tab.label" />
       </template>
     </uw-term-selector>
   </div>

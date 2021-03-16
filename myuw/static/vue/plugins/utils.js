@@ -19,7 +19,7 @@ export class VisibilityTracker {
 
   update(comp, entry) {
     let screenCoveredRatio = 0;
-    if (entry.rootBounds) {
+    if (entry.rootBounds && entry.rootBounds.height !== 0) {
       const rootArea = entry.rootBounds.height * entry.rootBounds.width;
       const cardArea = entry.boundingClientRect.height * entry.boundingClientRect.width;
       screenCoveredRatio = 1 - (rootArea - (cardArea * entry.intersectionRatio)) / rootArea;

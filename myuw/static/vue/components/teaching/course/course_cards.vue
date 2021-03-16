@@ -1,5 +1,8 @@
 <template>
-  <div v-if="isReady && instSchedule.sections.length">
+  <div
+    v-if="isReady && instSchedule.sections.length" 
+    v-comp-group="`teaching-course-cards`"
+  >
     <div v-for="(section, i) in instSchedule.sections" :key="i">
       <uw-course-card
         v-if="section.is_primary_section || !section.isLinkedSecondary"
