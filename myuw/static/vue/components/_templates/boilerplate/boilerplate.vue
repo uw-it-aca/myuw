@@ -313,7 +313,7 @@
           href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
           target="_blank"
           title="MyUW video tour for students"
-          dv-out="'MyUW video for students'"
+          v-out="'MyUW video for students'"
           >for students</a
         >. <br /><a
           v-out="'MyUW Help Center'"
