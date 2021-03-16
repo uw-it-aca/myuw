@@ -208,10 +208,8 @@ Vue.config.devtools = true;
 
 // Mixins
 import courses from './mixins/courses';
-import uid from './mixins/uid';
 import utils from './mixins/utils';
 Vue.mixin(courses);
-Vue.mixin(uid);
 Vue.mixin(utils);
 
 const vueConf = {
