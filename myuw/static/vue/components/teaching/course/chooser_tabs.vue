@@ -8,7 +8,7 @@
       :all-tabs="instSchedule.related_terms"
     >
       <template #default="slotData">
-        <myuw-teaching-course-cards :term="slotData.tab.label" />
+        <uw-teaching-course-cards :term="slotData.tab.label" />
       </template>
     </uw-term-selector>
   </div>
@@ -21,7 +21,7 @@ import TermSelector from '../../_common/term-selector.vue';
 
 export default {
   components: {
-    'myuw-teaching-course-cards': CourseCards,
+    'uw-teaching-course-cards': CourseCards,
     'uw-term-selector': TermSelector,
   },
   data() {

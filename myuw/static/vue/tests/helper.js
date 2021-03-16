@@ -3,7 +3,6 @@ import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 
 // Global Mixins
-import uid from '../mixins/uid';
 import utils from '../mixins/utils';
 
 // Custom Plugins
@@ -56,7 +55,6 @@ const createLocalVue = (vuexModule) => {
     vue.directive('out-all', {});
   });
   localVue.use(Tracklink);
-  localVue.mixin(uid);
   localVue.mixin(utils);
 
   return localVue;

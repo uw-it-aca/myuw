@@ -1,36 +1,35 @@
 import VueGtag from 'vue-gtag';
 import utils from '../mixins/utils';
-import { findParentMyUWComponentTag } from './utils';
+import { VisibilityTracker } from './utils';
 
 class Logger {
   constructor(sink, options) {
     this.sink = sink;
-    this.compsInViewport = {};
     this.currentTerm = null;
-
-    this.options = options || {};
-    if (!this.options.compInViewportRatioThreshold) {
-      this.options.compInViewportRatioThreshold = 0.9;
-    }
-    if (!this.options.compInViewportDurationThreshold) {
-      this.options.compInViewportDurationThreshold = 2;
-    }
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'hidden') {
-        this.flushCompInViewPort();
-      } else if (document.visibilityState === 'visible') {
-        this.restartCompInViewPort();
-      }
-    });
+    this.cardGroupEvents = {};
+    this.visibilityTracker = new VisibilityTracker(
+      options,
+      this.onVisibilityReport.bind(this),
+    );
   }
 
   cardLoad(component) {
     component.$nextTick(() => {
+      let root = component.$myuw.compRoot;
+      if (
+        root.$myuw.groupRoot &&
+        this.cardGroupEvents[root.$myuw.uid] &&
+        this.cardGroupEvents[root.$myuw.uid].cardLoad
+      ) {
+        this.cardGroupEvents[root.$myuw.uid].cardLoad += 1;
+        return;
+      } else {
+        this.cardGroupEvents[root.$myuw.uid] = {
+          cardLoad: 1,
+        };
+      }
       this.sink.event('card_load', {
-        comp_tag: component.compTag ?
-          component.compTag :
-          findParentMyUWComponentTag(component),
+        comp_tag: component.compTag ? component.compTag : root.$myuw.tag,
       });
     });
   }
@@ -90,7 +89,7 @@ class Logger {
 
   linkClick(component, url, label, out) {
     this.sink.event('link_click', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
       link_url: url,
       link_label: label,
       link_to_external: out,
@@ -98,75 +97,16 @@ class Logger {
   }
 
   visibilityChanged(component, entry) {
-    let onScreen = false;
-
-    let screenCoveredRatio = 0;
-    if (entry.rootBounds) {
-      const rootArea = entry.rootBounds.height * entry.rootBounds.width;
-      const cardArea = entry.boundingClientRect.height * entry.boundingClientRect.width;
-      screenCoveredRatio = 1 - (rootArea - (cardArea * entry.intersectionRatio)) / rootArea;
-    }
-
-    // Update the array (dict in reality) of components on the page
-    this.compsInViewport[component.uid] = {
-      instance: component,
-      compOnScreenRatio: entry.intersectionRatio,
-      screenCoveredRatio: screenCoveredRatio,
-      timer: this.compsInViewport[component.uid] ?
-        this.compsInViewport[component.uid].timer : null,
-    };
-
-    // Report if the component it is mostly visible
-    if (entry.intersectionRatio > this.options.compInViewportRatioThreshold) {
-      onScreen = true;
-    }
-
-    // Covers the most screen space
-    onScreen = onScreen || (Object.values(this.compsInViewport).every(
-      (comp) => comp.screenCoveredRatio <= screenCoveredRatio,
-    ) && screenCoveredRatio > 0.1);
-
-    if (onScreen) {
-      if (!this.compsInViewport[component.uid].timer) {
-        this.compsInViewport[component.uid].timer = Date.now();
-      }
-    } else if (this.compsInViewport[component.uid].timer) {
-      const duration = (Date.now() - this.compsInViewport[component.uid].timer) / 1000;
-      this.compsInViewport[component.uid].timer = null;
-
-      if (duration > this.options.compInViewportDurationThreshold) {
-        this.sink.event('comp_in_viewport', {
-          comp_tag: findParentMyUWComponentTag(component),
-          duration: duration,
-        });
-      }
-    }
+    this.onVisibilityReport(this.visibilityTracker.update(component, entry));
   }
 
-  flushCompInViewPort() {
-    Object.values(this.compsInViewport).forEach((compData) => {
-      if (compData.timer) {
-        const duration = (Date.now() - compData.timer) / 1000;
-        compData.timer = null;
-        compData.terminatedByFlush = true;
-
-        if (duration > this.options.compInViewportDurationThreshold) {
-          this.sink.event('comp_in_viewport', {
-            comp_tag: findParentMyUWComponentTag(compData.instance),
-            duration: duration,
-          });
-        }
-      }
-    });
-  }
-
-  restartCompInViewPort() {
-    Object.values(this.compsInViewport)
-      .filter((compData) => compData.terminatedByFlush)
-      .forEach((compData) => {
-        compData.timer = Date.now();
-        compData.terminatedByFlush = false;
+  onVisibilityReport(compData) {
+    if (compData.report) {
+      this.sink.event('comp_in_viewport', {
+        comp_tag: compData.tag,
+        duration: compData.duration,
       });
+    }
   }
 
   quicklink(action, url) {
@@ -178,7 +118,7 @@ class Logger {
 
   disclosureOpen(component) {
     this.sink.event('disclosure_open', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
     });
   }
 
@@ -187,7 +127,7 @@ class Logger {
       notice.notice_title, 'text/html',
     );
     this.sink.event('notice_open', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
     });
   }
@@ -197,34 +137,34 @@ class Logger {
       notice.notice_title, 'text/html',
     );
     this.sink.event('notice_read', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
     });
   }
 
   classEmailList(component, cardTid) {
     this.sink.event('class_email_list', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
       card_tid: cardTid,
     });
   }
 
   onBoarding(component) {
     this.sink.event('on_boarding', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
     });
   }
 
   cardPin(component, cardTid) {
     this.sink.event('card_pin', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
       card_tid: cardTid,
     });
   }
 
   cardUnPin(component, cardTid) {
     this.sink.event('card_unpin', {
-      comp_tag: findParentMyUWComponentTag(component),
+      comp_tag: component.$myuw.compRoot.$myuw.tag,
       card_tid: cardTid,
     });
   }
@@ -299,6 +239,13 @@ export default function (Vue, options) {
   } else {
     throw '`gtag` or `console` config needed';
   }
+
+  Vue.directive('comp-group', {
+    bind(_, binding, vnode) {
+      vnode.context.$myuw.groupRoot = true;
+      vnode.context.$myuw.tag = binding.value;
+    },
+  });
 
   Vue.$logger = Vue.prototype.$logger = new Logger(sink, options.logger);
 };
