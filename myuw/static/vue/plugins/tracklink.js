@@ -51,6 +51,15 @@ export default function(Vue, _) {
     },
   });
 
+  Vue.directive('inner', {
+    bind: (el, binding, vnode) => {
+      let bindPoint = el.tagName === 'A' ? el : el.getElementsByTagName('a')[0];
+      bindPoint.onclick = (evt) => linkClickHandler(evt, binding, vnode, false);
+      bindPoint.onauxclick = (evt) => linkClickHandler(evt, binding, vnode, false);
+      bindPoint.classList.add('internal-link');
+    },
+  });
+
   Vue.mixin({
     updated() {
       if (this.$el && this.$el.querySelectorAll) {
