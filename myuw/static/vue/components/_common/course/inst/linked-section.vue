@@ -9,15 +9,14 @@
             v-out="`View mini-card ${section.section_label}`"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="Click to view the mini-card on Teaching page"
+            title="`View ${section.section_label} mini-card on Teaching page`"
           >
             {{ section.section_id }}
           </a>
           <a v-else
-            v-out="`Pin mini-card ${section.section_label}`"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="Click to pin the mini-card onto Teaching page"
+            title="`Pin ${section.section_label} mini-card onto Teaching page`"
             @click="miniCard"
           >
             {{ section.section_id }}
@@ -65,17 +64,15 @@
 
     <div>
       <b-button v-if="!section.mini_card"
-        v-out="`Pin mini-card ${section.section_label}`"
         variant="light"
-        :title="`Pin ${section.id} mini-card to teaching page`"
+        :title="`Pin ${section.section_label} mini-card to teaching page`"
         @click="miniCard"
       >
         Pin to Teaching
       </b-button>
       <b-button v-else
-        v-out="`Unpin mini-card ${section.section_label}`"
         variant="dark"
-        :title="`Remove ${section.id} mini-card from teaching page`"
+        :title="`Remove ${section.section_label} mini-card from teaching page`"
         @click="miniCard"
       >
         Unpin
