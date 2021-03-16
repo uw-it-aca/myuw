@@ -48,8 +48,7 @@
     </div>
     <a
       v-if="displayConfirmFinalLink"
-      v-out="`Confirm Final: ${section.curriculum_abbr} ${
-        section.course_number} ${section.section_id}`"
+      v-out="`Confirm Final: ${section.section_label}`"
       :href="confirmFinalLink"
       target="_blank"
     >

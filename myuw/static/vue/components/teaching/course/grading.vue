@@ -26,8 +26,7 @@
       </span>
       <a
         v-out="(section.gradeSubmissionSectionDelegate ? 'Update' : 'Add')
-          + `Grading Delegate: ${section.curriculum_abbr} ${
-            section.course_number} ${section.section_id}`"
+          + `Grading Delegate: ${section.section_label}`"
         :href="gradeDelegateUrl"
       >
         <span v-if="section.gradeSubmissionSectionDelegate">
@@ -47,9 +46,7 @@
           <span v-if="section.grading_status">
             <span v-if="section.grading_status.allGradesSubmitted">
               <a
-                v-out="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"
+                v-out="`GradePage ${section.section_label}`"
                 :href="section.grading_status.section_url"
                 target="_blank"
               >
@@ -62,9 +59,7 @@
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
               <a
-                v-out="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"
+                v-out="`GradePage ${section.section_label}`"
                 :href="section.grading_status.section_url"
                 target="_blank"
               >
@@ -77,9 +72,7 @@
              section.allows_secondary_grading">
               <a
                 v-if="section.grading_status.no_grades_submitted"
-                v-out="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"
+                v-out="`Submit grades ${section.section_label}`"
                 :href="section.grading_status.section_url"
                 target="_blank"
               >
@@ -92,9 +85,7 @@
             <span v-else>
               Grading for secondary section is disabled.
               <a
-                v-out="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"
+                v-out="`Grade primary section ${section.section_label}`"
                 :href="section.grading_status.section_url"  target="_blank">
                 Grade primary section
               </a>.
@@ -130,9 +121,7 @@
         <div v-if="section.grading_status">
           <span v-if="section.grading_status.allGradesSubmitted">
             <a
-              v-out="`GradePage ${section.curriculum_abbr} ${
-                section.course_number
-              } ${section.section_id}`"
+              v-out="`GradePage ${section.section_label}`"
               :href="section.grading_status.section_url"
               target="_blank"
             >
