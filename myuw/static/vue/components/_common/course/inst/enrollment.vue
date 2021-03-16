@@ -14,7 +14,7 @@
 
   <span v-else>
     <b-link
-      v-out="`MyUW Classlist page ${section.section_label}`"
+      v-out="`View Classlist: ${section.id}`"
       target="_blank"
       :href="classListHref()"
       :rel="section.section_label"
@@ -42,7 +42,7 @@ export default {
       return ('/teaching/' + this.section.apiTag + '/students');
     },
     getTitle() {
-      return ('View class list of ' +
+      return ('View Classlist of ' +
                this.section.curriculum_abbr + ' ' +
                this.section.course_number + ' ' +
                this.section.section_id);

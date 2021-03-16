@@ -9,14 +9,14 @@
             v-out="`View mini-card ${section.id}`"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="`View mini-card on Teaching page`"
+            title="View mini-card on Teaching page"
           >
             {{ section.section_id }}
           </a>
           <a v-else
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="`Pin mini-card onto Teaching page`"
+            :title="`Pin ${section.id} mini-card to teaching page`"
             @click="miniCard"
           >
             {{ section.section_id }}
