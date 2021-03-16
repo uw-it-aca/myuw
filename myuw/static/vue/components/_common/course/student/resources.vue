@@ -8,16 +8,16 @@
             <a
               v-out="`Course Website ${section.id}`"
               :href="section.class_website_url"
-              :title="`${section.id} Course Website`"
+              :title="`Course Website ${section.id}`"
             >
               Course Website
             </a>
           </li>
           <li v-if="section.lib_subj_guide" class="mb-1">
             <a
-              v-out="`Library Research Guides ${section.id}`"
+              v-out="`Library Research Guides: ${section.id}`"
               :href="section.lib_subj_guide"
-              :title="`${section.id} Library Research Guides`"
+              :title="`Library Research Guides ${section.id}`"
             >
               Library Research Guides
             </a>
@@ -26,7 +26,7 @@
             <a
               v-out="`Course Canvas ${section.id}`"
               :href="section.canvas_url"
-              :title="`${section.id} Course Canvas`"
+              :title="`Course Canvas ${section.id}`"
             >
               Course Canvas
             </a>
@@ -36,7 +36,7 @@
           <a
             v-out="`Textbooks ${section.id}`"
             :href="textbookHref"
-            :title="`${section.id} Textbooks`"
+            :title="`Textbooks ${section.id}`"
           >
             Textbooks
           </a>

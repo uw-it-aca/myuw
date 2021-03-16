@@ -21,9 +21,9 @@
                 </li>
                 <li v-if="section.evaluation.report_url">
                   <a
-                    v-out="`View evaluation report ${section.section_label}`"
+                    v-out="`View evaluation report: ${section.id}`"
                     :href="section.evaluation.report_url"
-                    :title="`${section.section_label} Course Evaluation Report`"
+                    :title="`evaluation report ${section.id}`"
                   >
                     View evaluation results report
                   </a>
@@ -47,9 +47,9 @@
                 </li>
                 <li>
                   <a
-                    v-out="`Manage evaluation of ${section.section_label}`"
+                    v-out="`Manage evaluation: ${section.id}`"
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                    :title="`${section.section_label} Course Evaluation`"
+                    :title="`Manage evaluation ${section.id}`"
                   >Manage evaluation</a>
                 </li>
               </template>
@@ -59,9 +59,9 @@
                 </li>
                 <li>
                   <a
-                    v-out="`Manage evaluation of ${section.section_label}`"
+                    v-out="`Manage evaluation: ${section.id}`"
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                    :title="`${section.section_label} Course Evaluation`"
+                    :title="`Manage evaluation ${section.id}`"
                   >Manage evaluation</a>
                 </li>
               </template>
@@ -73,9 +73,9 @@
               </li>
               <li v-if="section.evaluation.report_url">
                 <a
-                  v-out="`View evaluation report ${section.section_label}`"
+                  v-out="`View evaluation report: ${section.id}`"
                   :href="section.evaluation.report_url"
-                  :title="`${section.section_label} Course Evaluation Report`"
+                  :title="`evaluation report ${section.id}`"
                 >
                   View evaluation results report
                 </a>
@@ -93,9 +93,9 @@
             </li>
             <li>
               <a
-                v-out="`Manage evaluation of ${section.section_label}`"
+                v-out="`Manage evaluation: ${section.id}`"
                 :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                :title="`${section.section_label} Course Evaluation`"
+                :title="`Manage evaluation ${section.id}`"
               >Manage evaluation</a>
             </li>
           </template>
@@ -107,6 +107,7 @@
             <a v-out="'Learn About Course Evaluations'"
                href="https://www.washington.edu/assessment/course-evaluations/"
                target="_blank"
+               title="Learn About Course Evaluations"
             ><font-awesome-icon :icon="faQuestionCircle" /></a>
           </li>
           <li v-else>
