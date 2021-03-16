@@ -8,9 +8,7 @@
             <a
               v-out="`Course Website ${section.section_label}`"
               :href="section.class_website_url"
-              :title="`${
-                section.curriculum_abbr
-              } ${section.course_number} Course Website`"
+              :title="`${section.section_labe} Course Website`"
             >
               Course Website
             </a>
@@ -19,9 +17,7 @@
             <a
               v-out="`Library Research Guides ${section.section_label}`"
               :href="section.lib_subj_guide"
-              :title="`${
-                section.curriculum_abbr
-              } ${section.course_number} Library Research Guides`"
+              :title="`${section.section_labe} Library Research Guides`"
             >
               Library Research Guides
             </a>
@@ -30,9 +26,7 @@
             <a
               v-out="`Course Canvas ${section.section_label}`"
               :href="section.canvas_url"
-              :title="`${
-                section.curriculum_abbr
-              } ${section.course_number} Course Canvas`"
+              :title="`${section.section_labe} Course Canvas`"
             >
               Course Canvas
             </a>
@@ -42,9 +36,7 @@
           <a
             v-out="`Textbooks ${section.section_label}`"
             :href="textbookHref"
-            :title="`${
-              section.curriculum_abbr
-            } ${section.course_number} Textbooks`"
+            :title="`${section.section_label} Textbooks`"
           >
             Textbooks
           </a>
