@@ -9,8 +9,8 @@
     >
       <template #default="slotData">
         <uw-teaching-course-cards
-          :term="slotData.tab.label"
           v-comp-group="`teaching-course-cards`"
+          :term="slotData.tab.label"
         />
       </template>
     </uw-term-selector>

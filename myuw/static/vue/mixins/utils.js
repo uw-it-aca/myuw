@@ -24,7 +24,7 @@ export default {
             break;
           }
         }
-        return this._compRoot || {};
+        return this._compRoot || {$myuw: {tag: 'no-root-component'}};
       },
       _tag: null,
       get tag() {
