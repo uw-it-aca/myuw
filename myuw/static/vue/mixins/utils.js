@@ -6,7 +6,42 @@ dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/timezone'))
 dayjs.extend(require('dayjs/plugin/utc'))
 
+let uid = 0;
+
 export default {
+  beforeCreate() {
+    const comp = this;
+    this.$myuw = {
+      // A getter to get the nearest component that can act as a root
+      // A root component either needs to start with `myuw` or it should
+      // have a $myuw tag value defined
+      _compRoot: null,
+      get compRoot() {
+        if (this._compRoot) return this._compRoot;
+        for (let c=comp; c && c.$parent; c = c.$parent) {
+          if (c.$myuw.tag) {
+            this._compRoot = c;
+            break;
+          }
+        }
+        return this._compRoot || {$myuw: {tag: 'no-root-component'}};
+      },
+      _tag: null,
+      get tag() {
+        if (this._tag) return this._tag;
+        if (
+          comp.$options._componentTag &&
+          comp.$options._componentTag.startsWith("myuw")
+        ) return comp.$options._componentTag.substr(5);
+        return null;
+      },
+      set tag(val) {
+        this._tag = val;
+      },
+      uid,
+    };
+    uid += 1;
+  },
   computed: {
     ...mapState({
       cardDisplayDates: (state) => state.cardDisplayDates,
