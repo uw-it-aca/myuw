@@ -6,7 +6,6 @@
       side: 'top',
       colorId: section.color_id,
     }"
-    comp-tid="Spring 2013 Instructor Course"
   >
     <template #card-heading>
       <uw-course-header :section="section" />
@@ -23,7 +22,11 @@
       <uw-evaluation show-row-heading :section="section"/>
     </template>
     <template v-if="linkedSections.length > 0" #card-disclosure>
-      <b-collapse :id="`secondary-${section.section_label}`" v-model="isOpen">
+      <b-collapse
+        :id="`secondary-${section.section_label}`"
+        v-model="isOpen"
+        @show="logDisclosureOpen"
+      >
         <uw-linked-section
           v-for="(linkedSection, i) in linkedSections"
           :key="`secondary-${section.section_label}-${i}`"
@@ -110,5 +113,10 @@ export default {
       this.selfAnchoredOnce(this.section);
     }
   },
+  methods: {
+    logDisclosureOpen() {
+      this.$logger.disclosureOpen(this);
+    },
+  }
 };
 </script>

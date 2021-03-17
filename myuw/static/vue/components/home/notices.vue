@@ -20,7 +20,7 @@
         class="list-unstyled mb-0 myuw-text-md"
       >
         <li
-          v-for="notice in notices"
+          v-for="notice in sortNotices(notices)"
           :key="notice.id_hash"
           class="mb-1"
         >
@@ -85,30 +85,20 @@ export default {
     'uw-card': Card,
   },
   computed: {
-    ...mapState({
-      notices: (state) => {
-        return state.notices.value.filter(
-            (notice) => notice.is_critical ||
-              notice.category.includes('Legal') ||
-              notice.location_tags.includes('notices_date_sort') ||
-              notice.location_tags.includes('notice_banner'),
-        ).sort((n1, n2) => {
-          if (n1.is_critical !== n2.is_critical) {
-            return n2.is_critical - n1.is_critical;
-            // put critical notices before non-critical
-          }
-          if (n1.sortDate === null !== n2.sortDate === null) {
-            return n1.sortDate === null - n2.sortDate === null;
-            // put notices without date before those with dates
-          }
-          // sort in ascending order
-          return n1.sortDate - n2.sortDate;
-        });
-      },
-      hasAnyNotices: (state) => {
-        return state.notices.value.length > 0;
-      },
+    ...mapState('notices', {
+      allNotices: (state) => state.value,
     }),
+    hasAnyNotices() {
+      return this.allNotices.length > 0;
+    },
+    notices() {
+      return this.allNotices.filter(
+        (notice) => notice.is_critical ||
+          notice.category.includes('Legal') ||
+          notice.location_tags.includes('notices_date_sort') ||
+          notice.location_tags.includes('notice_banner'),
+      );
+    },
     ...mapGetters('notices', {
       isReady: 'isReady',
       isErrored: 'isErrored',
@@ -119,7 +109,9 @@ export default {
   },
   methods: {
     onShowNotice(notice) {
+      this.$logger.noticeOpen(this, notice);
       if (!notice.is_read) {
+        this.$logger.noticeRead(this, notice);
         this.setRead(notice);
       }
     },

@@ -20,7 +20,8 @@
         Download (CSV)
       </b-link>
 
-      <a href="javascript:window.print()" class="">
+      <a
+        href="javascript:window.print()" class="">
         <i class="fa fa-print" />Print
       </a>
     </div>

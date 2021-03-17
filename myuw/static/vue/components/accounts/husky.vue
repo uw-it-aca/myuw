@@ -40,8 +40,8 @@
       An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if
       you want to add funds, try the
       <a
+        v-out="'Husky Card account summary'"
         href="https://hfs.uw.edu/olco/Secure/AccountSummary.aspx"
-        data-linklabel="Husky card account"
         target="_blank"
       >
         UW HFS page </a

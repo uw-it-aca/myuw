@@ -4,6 +4,7 @@
       <h4 class="">
         <div :class="`c${section.color_id} simplesquare`" />
         <a
+          v-inner="`View teaching course card ${section.id}`"
           :href="`/teaching/${section.href}`"
           :future-nav-target="section.navtarget"
           title="Click to view the card on Teaching page"
@@ -30,9 +31,9 @@
           </h5>
           <span>
             <a
+              v-out="getTimeScheLinkLable(section)"
               :href="getTimeScheHref(section)"
               :title="`Time Schedule for SLN ${section.sln}`"
-              :data-linklabel="getTimeScheLinkLable(section)"
               target="_blank"
             >
               {{ section.sln }}

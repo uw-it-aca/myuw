@@ -11,9 +11,9 @@
         </span>
         <span v-else>{{ titleCaseName(fullName) }}</span>
         <a
+          v-out="'Manage preferred name - Identity.UW'"
           href="https://identity.uw.edu/"
-          title="Manage your preferred name"
-          data-linklabel="Manage preferred name - Identity.UW">
+          title="Manage your preferred name">
             <font-awesome-icon :icon="['fas', 'pencil-alt']" class="myuw-text-md" />
             <span class="sr-only">Manage your preferred name</span>
         </a>

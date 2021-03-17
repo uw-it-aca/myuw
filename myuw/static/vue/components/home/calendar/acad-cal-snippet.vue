@@ -27,9 +27,8 @@
       An error has occurred and MyUW cannot display calendar data right now.
       In the meantime, try the
       <a href="http://www.washington.edu/students/reg/calendar.html"
-         data-linklabel="UW Academic Calendars"
          target="_blank"
-      >UW Academic calendars page</a>.
+      >UW Academic Calendars</a> page.
     </template>
   </uw-card>
 </template>

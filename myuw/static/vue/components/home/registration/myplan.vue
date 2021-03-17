@@ -13,7 +13,7 @@
           <li class="myuw-text-md">
             <span v-if="unreadyCount">{{ unreadyCount }} not ready</span>
             <b-button
-              v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
+              v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$myuw.uid}`"
               :title="buttonTitle"
               size="sm"
               variant="link"
@@ -26,7 +26,7 @@
       </div>
     </div>
     <b-collapse
-      :id="`${summerCardLabel}inMyPlanUnready-collapse-${_uid}`"
+      :id="`${summerCardLabel}inMyPlanUnready-collapse-${$myuw.uid}`"
       v-model="collapseOpen"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">
@@ -49,8 +49,10 @@
           No courses in your plan
         </div>
         <div>
-          <a class="myuw-text-md" target="_blank"
-             :href="myplanCourseSearchHref"
+          <a
+            v-out="'MyPlan Course Search'"
+            class="myuw-text-md" target="_blank"
+            :href="myplanCourseSearchHref"
           >Add courses</a>
         </div>
       </div>

@@ -7,6 +7,7 @@ import utils from '../mixins/utils';
 
 // Custom Plugins
 import Logger from '../plugins/logger';
+import Tracklink from '../plugins/tracklink';
 
 // helper for testing action with expected mutations
 const expectAction = (
@@ -48,6 +49,12 @@ const createLocalVue = (vuexModule) => {
   localVue.use(Logger, {
     console: {},
   });
+  // Mock observer plugin
+  localVue.use((vue) => {
+    vue.directive('out', {});
+    vue.directive('out-all', {});
+  });
+  localVue.use(Tracklink);
   localVue.mixin(utils);
 
   return localVue;

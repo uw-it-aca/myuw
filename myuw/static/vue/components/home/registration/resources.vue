@@ -3,7 +3,6 @@
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
         target="_blank"
-        title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
         class="mb-2"
       >
@@ -12,7 +11,6 @@
       <div v-if="myplanRegistrationHref" class="d-inline-block">
         <uw-link-button
           target="_blank"
-          title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
           class="mb-2"
         >
@@ -22,7 +20,6 @@
       <div v-else class="d-inline-block">
         <uw-link-button
           target="_blank"
-          title="Use MyPlan to Register"
           :href="`https://myplan.uw.edu/plan/#/${nextTermYear}${nextTermQuarterCode}`"
           class="mb-2"
         >
@@ -30,7 +27,8 @@
         </uw-link-button>
       </div>
       <div v-if="isC2" class="text-center myuw-text-md">
-        <a target="_blank" label="" href="https://www.degreereg.uw.edu/user-guide">
+        <a target="_blank"
+          href="https://www.degreereg.uw.edu/user-guide">
           How to register for PCE courses
         </a>
       </div>
@@ -38,7 +36,6 @@
     <div v-else-if="preRegNotices && preRegNotices.length" class="mb-4 text-center">
       <uw-link-button
         target="_blank"
-        label=""
         href="https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp"
         class="mb-2"
       >
@@ -49,47 +46,45 @@
       <h4 class="sr-only">Registration resources</h4>
       <ul class="m-0 list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
-          <a target="_blank" label="" href="https://myplan.uw.edu"> MyPlan </a>
+          <a target="_blank" href="https://myplan.uw.edu"> MyPlan </a>
         </li>
         <li v-if="bothell">
-          <a target="_blank" label="" href="http://www.uwb.edu/registration/time">
+          <a target="_blank" href="http://www.uwb.edu/registration/time">
             Bothell Time Schedule
           </a>
         </li>
         <li v-if="seattle">
-          <a target="_blank" label="" href="http://www.washington.edu/students/timeschd/">
+          <a target="_blank" href="http://www.washington.edu/students/timeschd/">
             Seattle Time Schedule
           </a>
         </li>
         <li v-if="tacoma">
-          <a target="_blank" label="" href="http://www.washington.edu/students/timeschd/T/">
+          <a target="_blank" href="http://www.washington.edu/students/timeschd/T/">
             Tacoma Time Schedule Browse
           </a>
         </li>
         <li v-if="tacoma">
-          <a target="_blank" label="" href="http://www.tacoma.uw.edu/ts-quicksearch/">
+          <a target="_blank" href="http://www.tacoma.uw.edu/ts-quicksearch/">
             Tacoma Time Schedule Quick Search
           </a>
         </li>
         <li v-if="isC2">
-          <a
-            target="_blank"
-            label=""
+          <a target="_blank"
             href="https://www.washington.edu/students/timeschd/95index.html"
           >
             PCE Time Schedule
           </a>
         </li>
         <li v-if="isC2 && !registrationIsOpen">
-          <a target="_blank" label="" href="https://www.degreereg.uw.edu/user-guide">
+          <a target="_blank" href="https://www.degreereg.uw.edu/user-guide">
             How to register for PCE courses
           </a>
         </li>
         <li>
-          <a target="_blank" label="" :href="degreeAuditHref"> Audit your degree (DARS) </a>
+          <a target="_blank" :href="degreeAuditHref"> Audit your degree (DARS) </a>
         </li>
         <li>
-          <a target="_blank" label="" href="https://prereqmap.uw.edu/">Prereq Map</a>
+          <a target="_blank" href="https://prereqmap.uw.edu/">Prereq Map</a>
         </li>
       </ul>
     </div>

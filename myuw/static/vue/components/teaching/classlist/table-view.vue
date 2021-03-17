@@ -18,7 +18,10 @@
         primary-key="netid"
       >
         <template #cell(email)="data">
-          <a :href="data.value.href" :title="data.value.title">
+          <a
+            v-out="'Email student'"
+            :href="data.value.href"
+            :title="data.value.title">
             <i class="fa fa-envelope-o" />
             <span class="sr-only">{{ data.value.email }}</span>
           </a>
@@ -58,6 +61,11 @@ export default {
         {
           key: 'surName',
           label: 'Last Name',
+          sortable: true,
+        },
+        {
+          key: 'Pronouns',
+          label: 'Pronouns',
           sortable: true,
         },
         {
@@ -132,6 +140,7 @@ export default {
           netid: reg.netid,
           surName: reg.surname,
           firstName: reg.first_name,
+          Pronouns: reg.pronouns,
         };
         if (this.showJointCourseStud) {
           dataItem.jointCourse = (

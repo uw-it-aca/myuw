@@ -46,7 +46,6 @@
       the meantime, if you want to change your password, try the
       <a
         href="https://uwnetid.washington.edu/manage/?password"
-        data-linklabel="UW NetID page"
         target="_blank"
         >UW NetID page</a
       >.

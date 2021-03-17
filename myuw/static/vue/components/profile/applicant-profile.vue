@@ -29,8 +29,9 @@
             </div>
           </uw-card-property>
           <uw-card-property title="">
-            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-                title="Change address on Student Personal Services website"
+            <a v-out="'Change Student Address'"
+              href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+              title="Change address on Student Personal Services website"
             >Change Address</a>
           </uw-card-property>
           <hr>

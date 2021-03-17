@@ -13,7 +13,7 @@
             <h4>
               {{subcategories.subcat_name}}
             </h4>
-            <button @click="unpin(subcategories)">
+            <button @click="unpinWrapper(subcategories)">
               Unpin
             </button>
           </div>
@@ -63,6 +63,10 @@ export default {
     ...mapActions('resources', ['fetch', 'unpin']),
     pinnedSubcategories(subcategories) {
       return Object.values(subcategories).filter((s) => s.is_pinned);
+    },
+    unpinWrapper(subcategories) {
+      this.$logger.cardUnPin(this, subcategories.subcat_id);
+      this.unpin(subcategories);
     }
   }
 }

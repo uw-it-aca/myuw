@@ -2,12 +2,17 @@
   <div v-if="isReady">
     <div class="d-flex border-bottom pb-3">
       <div class="ml-auto myuw-text-md">
-        <b-link v-if="!everyNoticeListExpanded" title="Show all notice information"
+        <b-link
+          v-if="!everyNoticeListExpanded"
+          title="Show all notice information"
           @click="expandAll()"
         >
           Expand All
         </b-link>
-        <b-link v-else title="Hide all notice information" @click="collapseAll()">
+        <b-link v-else
+          title="Hide all notice information"
+          @click="collapseAll()"
+        >
           Collapse All
         </b-link>
       </div>
@@ -54,15 +59,7 @@ export default {
   },
   computed: {
     ...mapState('notices', {
-      // Note: This needs checking on prod data to evalute sort order
-      allNotices: (state) => state.value.sort((n1, n2) => {
-        if (n1.sortDate === null !== n2.sortDate === null) {
-          return n1.sortDate === null - n2.sortDate === null;
-          // put notices without date before those with dates
-        }
-        // sort in ascending order
-        return n1.sortDate - n2.sortDate;
-      }),
+      allNotices: (state) => state.value,
     }),
     ...mapGetters('notices', ['isReady']),
     criticalNotices() {
@@ -99,13 +96,15 @@ export default {
       this.allNotices
         .filter((n) => n.location_tags.includes('notices_date_sort'))
         .forEach((n) => {
-          if (n.date && n.date.isToday()) {
+          if (!n.date) {
+            notices.future.push(n);
+          } else if (n.date.isToday()) {
             notices.today.push(n);
-          } else if (n.date && n.date.week() === today.week()) {
+          } else if (n.date.week() === today.week()) {
             notices.thisWeek.push(n);
-          } else if (n.date && n.date.week() === today.week() + 1) {
+          } else if (n.date.week() === today.week() + 1) {
             notices.nextWeek.push(n);
-          } else if (n.date === null || n.date > today) {
+          } else if (n.date > today) {
             notices.future.push(n);
           }
         });

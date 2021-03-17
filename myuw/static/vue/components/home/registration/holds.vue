@@ -11,7 +11,7 @@
           aria-hidden="true"
         />
         <b-button
-          v-b-toggle="`${summerCardLabel}holds-collapse-${_uid}`"
+          v-b-toggle="`${summerCardLabel}holds-collapse-${$myuw.uid}`"
           :title="buttonTitle"
           variant="link"
           class="p-0 border-0 text-danger font-weight-bold"
@@ -24,7 +24,7 @@
       </div>
     </div>
     <b-collapse
-      :id="`${summerCardLabel}holds-collapse-${_uid}`"
+      :id="`${summerCardLabel}holds-collapse-${$myuw.uid}`"
       v-model="collapseOpen"
       class="myuw-reg-holds"
     >

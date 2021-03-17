@@ -9,7 +9,7 @@
           v-if="activeButtons['edit']"
           v-b-toggle="`${customId}-collapse`"
           variant="link"
-          :label="`Edit ${link.label} link`"
+          :title="`Edit ${link.label} link`"
           class="p-0 mr-1 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
@@ -19,18 +19,18 @@
         <b-button
           v-if="activeButtons['remove']"
           variant="link"
-          :label="`Remove ${link.label} link from Quick Links list`"
+          :title="`Remove ${link.label} link from Quick Links list`"
           class="p-0 m-0 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
-          @click="removeLink({ link, canActuallyRemove })"
+          @click="removeLink(link, canActuallyRemove)"
         >
           <font-awesome-icon :icon="['fas', 'times']" />
         </b-button>
         <span v-if="activeButtons['save']">
           <font-awesome-icon
             v-if="link.added"
-            :label="`${link.label} link saved to Quick Links`"
+            :title="`${link.label} link saved to Quick Links`"
             :icon="['fa', 'check']"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
@@ -39,7 +39,7 @@
           <b-button
             v-else
             variant="link"
-            :label="`Save ${link.label} link to your Quick Links list`"
+            :title="`Save ${link.label} link to your Quick Links list`"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"
@@ -143,11 +143,16 @@ export default {
   methods: {
     ...mapActions('quicklinks', {
       addLink: 'addLink',
-      removeLink: 'removeLink',
+      quicklinksRemoveLink: 'removeLink',
       quicklinksUpdateLink: 'updateLink',
     }),
+    removeLink(link, canActuallyRemove) {
+      this.$logger.quicklink('remove', link.url);
+      this.quicklinksRemoveLink({link, canActuallyRemove});
+    },
     updateLink: function(event) {
       event.preventDefault();
+      this.$logger.quicklink('edit', this.currentCustomLink.url);
       this.quicklinksUpdateLink(this.currentCustomLink);
       this.onReset({preventDefault: () => {}});
     },
@@ -158,6 +163,7 @@ export default {
     },
     saveLink(event) {
       event.preventDefault();
+      this.$logger.quicklink('add', this.link.url);
       this.addLink(this.link);
     },
   },
