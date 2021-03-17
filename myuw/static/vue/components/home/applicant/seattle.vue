@@ -65,8 +65,8 @@
           </a>
         </li>
         <li>
-          <a v-out="'UW Academic calendars'"
-             href="http://www.washington.edu/students/reg/calendar.html" target="_blank"
+          <a
+            href="http://www.washington.edu/students/reg/calendar.html" target="_blank"
           >
             View the UW Academic calendars
           </a>
@@ -74,9 +74,9 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a v-out="'Your application status details'"
-         class="btn btn-outline-secondary text-dark my-4"
-         href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
+      <a
+        class="btn btn-outline-secondary text-dark my-4"
+        href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
       >
         View your {{ applicantData.type }} application status
       </a>
@@ -89,24 +89,23 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li v-if="applicantData.is_freshman">
-          <a v-out="'Key dates deadlines for freshmen'"
-             href="https://admit.washington.edu/apply/dates-deadlines/" target="_blank"
+          <a
+            href="https://admit.washington.edu/apply/dates-deadlines/" target="_blank"
           >
             Key dates &amp; deadlines for freshmen
           </a>
         </li>
         <li v-if="applicantData.is_transfer">
           <a
-            v-out="'Key dates deadlines for Transfer'"
             href="https://admit.washington.edu/apply/dates-deadlines/#transfer" target="_blank"
           >
             Key dates &amp; deadlines for Transfer
           </a>
         </li>
         <li v-if="applicantData.if_post_bac">
-          <a v-out="'Key dates deadlines for Postbaccalaureate'"
-             href="https://admit.washington.edu/apply/dates-deadlines/#postbac"
-             target="_blank"
+          <a
+            href="https://admit.washington.edu/apply/dates-deadlines/#postbac"
+            target="_blank"
           >
             Key dates &amp; deadlines for Postbaccalaureate
           </a>
@@ -118,15 +117,15 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a v-out="'Student Financial Aid'"
-             href="https://www.washington.edu/financialaid/" target="_blank"
+          <a
+            href="https://www.washington.edu/financialaid/" target="_blank"
           >
             Learn all about student financial aid and scholarships
           </a>
         </li>
         <li>
-          <a v-out="'Cost of Attendance'"
-             href="https://admit.washington.edu/costs/coa/" target="_blank"
+          <a
+            href="https://admit.washington.edu/costs/coa/" target="_blank"
           >
             Refer to total cost of attendance for financial planning
           </a>
@@ -138,23 +137,19 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a v-out="'Seattle Campus Tours'"
-             href="http://admit.washington.edu/Visit" target="_blank"
-          >
+          <a href="http://admit.washington.edu/Visit" target="_blank">
             Plan your visit: Seattle campus tours
           </a>
         </li>
         <li>
-          <a v-out="'Seattle Campus Housing'"
-             href="https://hfs.uw.edu/Live" target="_blank"
-          >
+          <a href="https://hfs.uw.edu/Live" target="_blank">
             Learn about campus-living
           </a>
         </li>
         <li>
-          <a v-out="'Student Services: Disability Resources'"
-             href="http://hr.uw.edu/dso/services/matriculated-students/"
-             target="_blank"
+          <a
+            href="http://hr.uw.edu/dso/services/matriculated-students/"
+            target="_blank"
           >
             Check out student services: Disability Resources
           </a>
@@ -165,8 +160,8 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a v-out="'Next steps for Admitted students'"
-             href="http://www.washington.edu/newhuskies/must-do/" target="_blank"
+          <a
+            href="http://www.washington.edu/newhuskies/must-do/" target="_blank"
           >
             Next steps for Admitted students
           </a>
@@ -189,7 +184,6 @@
         </li>
         <li>
           <a
-            v-out="'Register for an Advising &amp; Orientation session'"
             href="http://fyp.washington.edu/getting-started-at-the-university-of-washington/"
             target="_blank"
           >
@@ -198,23 +192,18 @@
         </li>
         <li>
           <a
-            v-out="'Undergraduate Majors'"
             href="http://www.washington.edu/uaa/advising/academic-planning/majors-and-minors/list-of-undergraduate-majors/" target="_blank"
           >
             View undergraduate Majors
           </a>
         </li>
         <li>
-          <a v-out="'First Year Programs'"
-             href="http://fyp.washington.edu/" target="_blank"
-          >
+          <a href="http://fyp.washington.edu/" target="_blank">
             Learn about the First Year Programs
           </a>
         </li>
         <li>
-          <a v-out="'Student Guide'"
-             href="http://www.washington.edu/students/" target="_blank"
-          >
+          <a href="http://www.washington.edu/students/" target="_blank">
             Check out the Student guide
           </a>
         </li>
