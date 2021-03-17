@@ -43,7 +43,7 @@
             </a>
           </li>
           <li>
-            <a href="mailto:hfsinfo@uw.edu"> Contact HFS </a>
+            <a href="mailto:hfsinfo@uw.edu">Contact HFS </a>
           </li>
         </ul>
       </div>

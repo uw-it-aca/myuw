@@ -10,7 +10,6 @@
       <a v-else
         v-out="`Course Canvas ${section.id}`"
         :href="section.canvas_url"
-        :title="`Canvas course: ${section.id}`"
         target="_blank"
       >Course Canvas</a>
     </span>

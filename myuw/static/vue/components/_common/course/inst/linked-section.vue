@@ -6,7 +6,7 @@
         <div :class="`c${section.color_id}`" />
         <h4 class="h5 myuw-font-encode-sans">
           <a v-if="section.mini_card"
-            v-out="`View mini-card ${section.id}`"
+            v-inner="`View mini-card ${section.id}`"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
             title="View mini-card on Teaching page"

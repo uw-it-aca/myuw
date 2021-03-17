@@ -8,7 +8,6 @@
         <b-button
           v-if="activeButtons['edit']"
           v-b-toggle="`${customId}-collapse`"
-          v-out="'Edit quick link'"
           variant="link"
           :title="`Edit ${link.label} link`"
           class="p-0 mr-1 border-0 align-bottom"
@@ -19,7 +18,6 @@
         </b-button>
         <b-button
           v-if="activeButtons['remove']"
-          v-out="'Remove quick link'"
           variant="link"
           :title="`Remove ${link.label} link from Quick Links list`"
           class="p-0 m-0 border-0 align-bottom"
@@ -32,7 +30,6 @@
         <span v-if="activeButtons['save']">
           <font-awesome-icon
             v-if="link.added"
-            v-out="'Saved quick link'"
             :title="`${link.label} link saved to Quick Links`"
             :icon="['fa', 'check']"
             class="p-0 m-0 border-0 align-bottom"
@@ -41,7 +38,6 @@
           />
           <b-button
             v-else
-            v-out="'Save quick link'"
             variant="link"
             :title="`Save ${link.label} link to your Quick Links list`"
             class="p-0 m-0 border-0 align-bottom"

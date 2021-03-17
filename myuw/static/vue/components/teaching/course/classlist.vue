@@ -47,7 +47,6 @@
         v-inner="`View class list ${section.id}`"
         target="_blank"
         :href="`/teaching/${section.apiTag}/students`"
-        :title="`View ${section.id} class list`"
       >
         View student
       </b-link>
@@ -66,7 +65,6 @@
           v-inner="`View class list ${section.id}`"
           target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
-          :title="`View ${section.id} class list`"
         >
           View class list
         </b-link>

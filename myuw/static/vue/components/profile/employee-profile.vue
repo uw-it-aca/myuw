@@ -54,7 +54,6 @@
           <uw-card-property title="">
             <p>
               <uw-link-button
-                v-out="'Workday'"
                 class="myuw-workday"
                 href="https://wd5.myworkday.com/uw/login.htmld"
                 target="_blank"

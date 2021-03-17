@@ -14,7 +14,7 @@
 
   <span v-else>
     <b-link
-      v-out="`View Classlist: ${section.id}`"
+      v-inner="`View Classlist: ${section.id}`"
       target="_blank"
       :href="classListHref()"
       :title="getTitle()"

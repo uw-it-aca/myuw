@@ -32,8 +32,9 @@
                 </div>
                 <div class="myuw-chevron">
                   <a
-                    v-out="'View future quarter courses'"
-                    :href="`../future_quarters${term.url}`">
+                    v-inner="'View future quarter courses'"
+                    :href="`../future_quarters${term.url}`"
+                  >
                     <span class="sr-only">
                       View {{ term.quarter }} {{ term.year }}
                       <span v-if="term.summer_term" class="text-capitalize">

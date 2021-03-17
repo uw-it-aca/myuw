@@ -1,10 +1,8 @@
 <template>
   <li v-if="section.sln">
       <b-link
-        v-out="`Textbooks ${section.section_label}`"
+        v-inner="`Textbooks: ${section.id}`"
         :href="textbookUrl"
-        :title="`textbooks: ${section.curriculum_abbr} ${
-          section.course_number} ${section.section_id}`"
       >Textbooks</b-link>
   </li>
 </template>

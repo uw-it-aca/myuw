@@ -14,7 +14,6 @@
     <div class="">
       <b-link
         id="csv_download_class_list"
-        v-out="'Download Classlist CSV'"
         @click="downloadCL"
       >
         <font-awesome-icon :icon="faDownload" />
@@ -22,7 +21,6 @@
       </b-link>
 
       <a
-        v-out="'Print Classlist'"
         href="javascript:window.print()" class="">
         <i class="fa fa-print" />Print
       </a>

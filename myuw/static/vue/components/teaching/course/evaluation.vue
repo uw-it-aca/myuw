@@ -23,7 +23,6 @@
                   <a
                     v-out="`View evaluation report: ${section.id}`"
                     :href="section.evaluation.report_url"
-                    :title="`evaluation report ${section.id}`"
                   >
                     View evaluation results report
                   </a>
@@ -49,7 +48,6 @@
                   <a
                     v-out="`Manage evaluation: ${section.id}`"
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                    :title="`Manage evaluation ${section.id}`"
                   >Manage evaluation</a>
                 </li>
               </template>
@@ -61,7 +59,6 @@
                   <a
                     v-out="`Manage evaluation: ${section.id}`"
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                    :title="`Manage evaluation ${section.id}`"
                   >Manage evaluation</a>
                 </li>
               </template>
@@ -75,7 +72,6 @@
                 <a
                   v-out="`View evaluation report: ${section.id}`"
                   :href="section.evaluation.report_url"
-                  :title="`evaluation report ${section.id}`"
                 >
                   View evaluation results report
                 </a>
@@ -95,7 +91,6 @@
               <a
                 v-out="`Manage evaluation: ${section.id}`"
                 :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
-                :title="`Manage evaluation ${section.id}`"
               >Manage evaluation</a>
             </li>
           </template>
