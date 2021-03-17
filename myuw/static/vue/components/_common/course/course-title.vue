@@ -14,10 +14,10 @@
       <span v-if="showSln && section.sln" class="mr-2">
         SLN
         <a
-        v-out="getTimeScheLinkLable(section)"
-        :href="getTimeScheHref(section)"
-        :title="`Time Schedule for SLN ${section.sln}`"
-        target="_blank"
+          v-out="getTimeScheLinkLable(section)"
+          :href="getTimeScheHref(section)"
+          :title="`Time Schedule for SLN ${section.sln}`"
+          target="_blank"
         >
           {{ section.sln }}
         </a>

@@ -71,9 +71,9 @@
                   <span v-if="leave.status === 'Approved'">
                     Approved<br>
                     <a
+                      v-out="'MyGrad Payment Portal'"
                       target="_blank"
                       href="https://webapps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
-                      data-linklabel="MyGrad Payment Portal"
                       class="font-weight-normal"
                     >Pay Your Fee To Confirm</a>
                   </span>
@@ -116,8 +116,8 @@
 
       <div class="text-right myuw-text-md">
         <a
+          v-out="'MyGrad'"
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-          data-linklabel="MyGrad"
           target="_blank"
         >Go to MyGrad</a>
       </div>
@@ -126,8 +126,8 @@
       An error occurred and MyUW cannot load your graduate request information
       right now. In the meantime, try the
       <a
+        v-out="'MyGrad'"
         href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-        data-linklabel="MyGrad"
         target="_blank"
       >MyGrad program page</a>.
     </template>

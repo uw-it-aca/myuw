@@ -49,8 +49,10 @@
           No courses in your plan
         </div>
         <div>
-          <a class="myuw-text-md" target="_blank"
-             :href="myplanCourseSearchHref"
+          <a
+            v-out="'MyPlan Course Search'"
+            class="myuw-text-md" target="_blank"
+            :href="myplanCourseSearchHref"
           >Add courses</a>
         </div>
       </div>

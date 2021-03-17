@@ -6,16 +6,17 @@
         <div :class="`c${section.color_id}`" />
         <h4 class="h5 myuw-font-encode-sans">
           <a v-if="section.mini_card"
+            v-inner="`View mini-card ${section.id}`"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="Click to view the mini-card on Teaching page"
+            title="View mini-card on Teaching page"
           >
             {{ section.section_id }}
           </a>
           <a v-else
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="Click to pin the mini-card onto Teaching page"
+            :title="`Pin ${section.id} mini-card to teaching page`"
             @click="miniCard"
           >
             {{ section.section_id }}
@@ -63,18 +64,16 @@
 
     <div>
       <b-button v-if="!section.mini_card"
-              variant="light"
-              :label="`Pin ${section.id} mini-card to teaching page`"
-              title="Click to pin the mini-card onto Teaching page"
-              @click="miniCard"
+        variant="light"
+        :title="`Pin ${section.id} mini-card to teaching page`"
+        @click="miniCard"
       >
         Pin to Teaching
       </b-button>
       <b-button v-else
-              variant="dark"
-              :label="`Remove ${section.id} mini-card from teaching page`"
-              title="Click to remove the mini-card from Teaching page"
-              @click="miniCard"
+        variant="dark"
+        :title="`Remove ${section.id} mini-card from teaching page`"
+        @click="miniCard"
       >
         Unpin
       </b-button>

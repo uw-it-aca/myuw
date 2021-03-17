@@ -85,8 +85,7 @@ export default {
               section.year + '&SLN=' + section.sln);
     },
     getTimeScheLinkLable(section) {
-      return ('SLN ' + section.sln + ': ' + section.curriculum_abbr + ' ' +
-             section.course_number + ' ' + section.section_id);
+      return 'Time Schedule for SLN ' + section.sln;
     },
     idForSection(section) {
       return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;

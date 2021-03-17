@@ -5,9 +5,10 @@
         {{ acalDateFormat(event.start_date, event.end_date) }}
       </strong>
       <a
+        v-out="'View event details'"
         :href="event.event_url"
         class="d-block"
-        :label="generateLabel(event)"
+        :title="generateLabel(event)"
       >
         <span v-if="event.is_all_day" class="text-dark font-weight-light
         d-inline-block mr-1"
