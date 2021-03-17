@@ -7,9 +7,10 @@
       <span>
         View class list in
         <b-link
+          v-out="'Legacy myuw class list'"
           class="myuw-muted"
           :href="legacyLink"
-          :title="`View ${section.section_label} class list`"
+          :title="`View ${section.id} class list`"
           target="_blank"
         >
           My Class Resources
@@ -43,9 +44,10 @@
     <div v-else-if="section.enrollment_student_name">
       <span>{{ section.enrollment_student_name }}</span>
       <b-link
+        v-inner="`View class list ${section.id}`"
         target="_blank"
         :href="`/teaching/${section.apiTag}/students`"
-        :title="`View ${section.section_label} class list`"
+        :title="`View ${section.id} class list`"
       >
         View student
       </b-link>
@@ -61,9 +63,10 @@
 
       <span>
         <b-link v-if="section.current_enrollment"
+          v-inner="`View class list ${section.id}`"
           target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
-          :title="`View ${section.section_label} class list`"
+          :title="`View ${section.id} class list`"
         >
           View class list
         </b-link>
@@ -72,7 +75,7 @@
       <span>
         <b-link v-if="displayDownloadLink"
           id="csv_download_class_list"
-          :title="`Download ${section.section_label} class list`"
+          :title="`Download ${section.id} class list`"
           @click="downloadCL"
         >
           <font-awesome-icon :icon="faDownload" /> Download (CSV)

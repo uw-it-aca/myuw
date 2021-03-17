@@ -17,7 +17,6 @@
       v-out="`View Classlist: ${section.id}`"
       target="_blank"
       :href="classListHref()"
-      :rel="section.section_label"
       :title="getTitle()"
     >
       {{ section.current_enrollment }}

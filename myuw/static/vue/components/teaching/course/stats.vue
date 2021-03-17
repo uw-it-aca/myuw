@@ -9,11 +9,11 @@
       </li>
       <li>
         <a
-          v-out="`Course Dashboard ${section.section_label}`"
+          v-out="`Course Dashboard ${section.id}`"
           :href="`https://coda.uw.edu/#${section.year}-${
             section.quarter}-${section.curriculum_abbr}-${section.course_number
           }-${section.section_id}`"
-          :title="`Course Dashboard for ${section.section_label}`"
+          :title="`Course Dashboard for ${section.id}`"
         >
           View course stats
         </a>
