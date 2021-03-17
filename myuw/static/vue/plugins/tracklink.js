@@ -1,13 +1,7 @@
 function linkClickHandler(event, binding, vnode, out) {
   if (event.button > 1) return;
 
-<<<<<<< HEAD
-  let label = binding.value ? binding.value :
-              // event.target.title ? event.target.title :
-              event.target.innerText ? event.target.innerText : null;
-=======
   let label = binding.value ? binding.value : event.target.innerText;
->>>>>>> 9092ee8360fb7b757cc0dd610dffbc7cc1b9b004
 
   const instance = vnode.componentInstance ? vnode.componentInstance : vnode.context;
   instance.$logger.linkClick(
