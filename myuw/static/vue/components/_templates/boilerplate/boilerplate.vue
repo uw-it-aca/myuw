@@ -9,7 +9,7 @@
         <b-container fluid="xl" class="py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
           no actions will be saved.
-          <a v-out="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
+          <a v-inner="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
         </b-container>
       </div>
 
@@ -22,7 +22,7 @@
           <b-row>
             <b-col xs="2">
               <b-link
-                v-out="'MyUW profile page'"
+                v-inner="'MyUW profile page'"
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
@@ -60,7 +60,7 @@
                 <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
-                v-out="'Sign Out'"
+                v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
