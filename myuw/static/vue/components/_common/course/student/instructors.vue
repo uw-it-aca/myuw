@@ -18,7 +18,9 @@
           <div v-else>
             <a
               v-for="(email, j) in instructor.email_addresses"
-              :key="`email-${j}`" :href="`mailto:${email}`"
+              :key="`email-${j}`"
+              v-out="'Email instructor'"
+              :href="`mailto:${email}`"
               class="d-block"
             >
               {{ email }}
@@ -26,6 +28,7 @@
             <a
               v-for="(phone, j) in instructor.phones"
               :key="`phone-${j}`"
+              v-out="'Tel instructor'"
               :href="`tel:${formatPhoneNumberLink(phone)}`"
               class="d-block"
             >
