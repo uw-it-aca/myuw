@@ -14,21 +14,21 @@
       <div v-if="formatted_date">
         <p class="myuw-text-md">
           Register on <strong>{{ formatted_date }}</strong> through
-          <a target="_blank" label=""
+          <a target="_blank"
             href="https://myplan.uw.edu/"
           >MyPlan</a> or
-          <a target="_blank" label=""
+          <a target="_blank"
             href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
           >the registration screen</a>.
         </p>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a target="_blank" label=""
+            <a target="_blank"
               href="https://depts.washington.edu/sislearn/registration-resources/"
             >How to register</a>
           </li>
           <li>
-            <a target="_blank" label=""
+            <a target="_blank"
               href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/"
             >How to choose courses</a>
           </li>

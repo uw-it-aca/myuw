@@ -28,6 +28,7 @@ it('buildClasslistCsv', () => {
 			"email": "w1@uw.edu",
 			"first_name": "Ma El",
 			"surname": "We",
+			"pronouns": null,
 			"majors": [
 				{
 					"name": "SOCIOLOGY",
@@ -45,6 +46,7 @@ it('buildClasslistCsv', () => {
 			"email": "f1@uw.edu",
 			"first_name": "Fa",
 			"surname": "Or",
+			"pronouns": null,
 			"majors": [
 				{
 					"name": "BIOENGINEERING",
@@ -64,6 +66,7 @@ it('buildClasslistCsv', () => {
 			"email": "a1@uw.edu",
 			"first_name": "Al",
 			"surname": "Di",
+			"pronouns": "her",
 			"majors": [
 				{
 					"full_name": "Sociology",
@@ -80,6 +83,7 @@ it('buildClasslistCsv', () => {
 			"email": "h1@uw.edu",
 			"first_name": "Ha Pe",
 			"surname": "Ru",
+			"pronouns": "his",
 			"majors": [
         {
           "name": "POLITICAL SCIENCE",
@@ -94,11 +98,11 @@ it('buildClasslistCsv', () => {
   ];
   const csvD = courses.methods.buildClasslistCsv(registrations, true);
   expect(csvD).toEqual(
-    "StudentNo,UWNetID,LastName,FirstName,LinkedSection,Credits,Class,Major,Email\n" +
-    "\"\t0000001\",\"w1\",\"We\",\"Ma El\",\"AA\",\"5.0\",\"SENIOR\",\"Sociology\",\"w1@uw.edu\"\n" +
-    "\"\t0000002\",\"f1\",\"Or\",\"Fa\",\"AB\",\"5.0\",\"SENIOR\",\"Bioengineering, Sociology\",\"f1@uw.edu\"\n" +
-    "\"\t0000003\",\"a1\",\"Di\",\"Al\",\"AA\",\"5.0\",\"SENIOR\",\"Sociology\",\"a1@uw.edu\"\n" +
-    "\"\t0000004\",\"h1\",\"Ru\",\"Ha Pe\",\"AC\",\"5.0\",\"SENIOR\",\"Political Science, Sociology\",\"h1@uw.edu\""
+    "StudentNo,UWNetID,LastName,FirstName,Pronouns,LinkedSection,Credits,Class,Major,Email\n" +
+    "\"\t0000001\",\"w1\",\"We\",\"Ma El\",\"\",\"AA\",\"5.0\",\"SENIOR\",\"Sociology\",\"w1@uw.edu\"\n" +
+    "\"\t0000002\",\"f1\",\"Or\",\"Fa\",\"\",\"AB\",\"5.0\",\"SENIOR\",\"Bioengineering, Sociology\",\"f1@uw.edu\"\n" +
+    "\"\t0000003\",\"a1\",\"Di\",\"Al\",\"her\",\"AA\",\"5.0\",\"SENIOR\",\"Sociology\",\"a1@uw.edu\"\n" +
+    "\"\t0000004\",\"h1\",\"Ru\",\"Ha Pe\",\"his\",\"AC\",\"5.0\",\"SENIOR\",\"Political Science, Sociology\",\"h1@uw.edu\""
     );
 }
 });

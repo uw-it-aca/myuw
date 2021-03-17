@@ -8,8 +8,10 @@
     <template #card-body>
       <ul class="list-unstyled myuw-text-md">
         <uw-link
-          v-for="(link, index) in defaultLinks" :key="`default-${index}`"
-          :link="link" :buttons="['remove']" :custom-id="`default-${index}`"
+          v-for="(link, index) in defaultLinks"
+          :key="`default-${index}`"
+          :link="link" :buttons="['remove']"
+          :custom-id="`default-${index}`"
         />
         <uw-link
           v-for="(link, index) in customLinks" :key="`custom-${index}`"
@@ -114,7 +116,9 @@
             >
               Cancel
             </b-button>
-            <b-button variant="primary" type="submit" size="sm">
+            <b-button  v-b-toggle.custom_qlinks
+                       variant="primary" type="submit" size="sm"
+            >
               Add
             </b-button>
           </div>
@@ -176,6 +180,7 @@ export default {
     }),
     addLink: function(event) {
       event.preventDefault();
+      this.$logger.quicklink('add', this.customLink.url);
       this.quicklinksAddLink(this.customLink);
     },
     onReset: function(event) {

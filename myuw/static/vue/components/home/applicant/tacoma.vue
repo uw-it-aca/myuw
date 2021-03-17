@@ -46,22 +46,22 @@
       </h4>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="http://www.tacoma.uw.edu/node/36610"
-             target="_blank" label="Financial Aid"
+          <a v-out="'UW Tacoma Financial Aid'"
+             href="http://www.tacoma.uw.edu/node/36610" target="_blank"
           >
             Learn all about student financial aid
           </a>
         </li>
         <li>
-          <a href="http://www.tacoma.uw.edu/node/41373" target="_blank"
-             label="Financial aid key dates and deadlines"
+          <a v-out="'UW Tacoma Financial aid key dates and deadlines'" href="http://www.tacoma.uw.edu/node/41373"
+             target="_blank"
           >
             Financial aid key dates and deadlines
           </a>
         </li>
         <li>
-          <a href="http://www.tacoma.uw.edu/node/41353"
-             target="_blank" label="UW Tacoma Academic calendars"
+          <a v-out="'UW Tacoma Academic calendars'"
+             href="http://www.tacoma.uw.edu/node/41353" target="_blank"
           >
             View the UW Tacoma Academic calendars
           </a>
@@ -69,8 +69,9 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a class="btn btn-outline-secondary text-dark my-4" href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
-         label="Your application status details"
+      <a v-out="'Your application status details'"
+        class="btn btn-outline-secondary text-dark my-4"
+        href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
       >
         View your {{ applicantData.type }} application status
       </a>
@@ -83,9 +84,9 @@
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a
+            v-out="'UW Tacoma Admission: Important dates &amp; deadlines'"
             href="http://www.tacoma.uw.edu/admissions/important-dates-deadlines-all-applicants"
             target="_blank"
-            label="UW Tacoma Admission: Important dates &amp; deadlines"
           >
             Important dates &amp; deadlines
           </a>
@@ -96,16 +97,16 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="http://www.tacoma.uw.edu/node/20240"
-             target="_blank" label="Applying for a financial Aid"
+          <a v-out="'Applying for financial Aid'"
+             href="http://www.tacoma.uw.edu/node/20240" target="_blank"
           >
             Applying for a financial Aid
           </a>
         </li>
         <li>
-          <a href="http://www.tacoma.uw.edu/node/41373"
+          <a v-out="'Financial aid key dates and deadlines'"
+             href="http://www.tacoma.uw.edu/node/41373"
              target="_blank"
-             label="Financial aid key dates and deadlines"
           >
             Financial aid key dates and deadlines
           </a>
@@ -116,15 +117,15 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="http://www.tacoma.uw.edu/admissions/visit"
-             target="_blank" label="Tacoma Campus Tours"
+          <a v-out="'UW Tacoma Campus Tours'"
+             href="http://www.tacoma.uw.edu/admissions/visit" target="_blank"
           >
             Plan your visit: Tacoma campus tours
           </a>
         </li>
         <li>
-          <a href="http://www.tacoma.uw.edu/node/38753"
-             target="_blank" label="Student Housing"
+          <a v-out="'UW Tacoma Student Housing'"
+             href="http://www.tacoma.uw.edu/node/38753" target="_blank"
           >
             Learn about student Housing
           </a>
@@ -132,15 +133,15 @@
         <li>
           Check out
           <a
-            href="http://www.tacoma.uw.edu/new-student-family-programs/new-student-family-programs"
-            target="_blank" label="New Student programs"
+            v-out="'UW Tacoma New Student programs'"
+            href="http://www.tacoma.uw.edu/new-student-family-programs/new-student-family-programs" target="_blank"
           >
             New Student programs
           </a>
           and
-          <a href="http://www.tacoma.uw.edu/drsuwt"
+          <a v-out="'UW Tacoma Disability Resources for Students (DRS)'"
+             href="http://www.tacoma.uw.edu/drsuwt"
              target="_blank"
-             label="Disability Resources for Students (DRS)"
           >
             Disability Resources for Students (DRS)
           </a>
@@ -151,22 +152,22 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="http://www.tacoma.uw.edu/admissions/i-was-admitted-now-what"
-             target="_blank" label="Next Steps for Admitted Students"
+          <a v-out="'Next Steps for Admitted UW Tacoma Students'"
+             href="http://www.tacoma.uw.edu/admissions/i-was-admitted-now-what" target="_blank"
           >
             Next steps for Admitted students
           </a>
         </li>
         <li>
-          <a href="http://www.tacoma.uw.edu/node/41496"
-             target="_blank" label="New Student Orientation"
+          <a v-out="'New UW Tacoma Student Orientation'"
+             href="http://www.tacoma.uw.edu/node/41496" target="_blank"
           >
             Sign up for a New student orientation
           </a>
         </li>
         <li v-if="applicantData.is_international">
-          <a href="http://www.tacoma.uw.edu/iss/to-do-list"
-             target="_blank" label="Int’l student to-do list"
+          <a v-out="'UW Tacoma Intl student to-do list'"
+             href="http://www.tacoma.uw.edu/iss/to-do-list" target="_blank"
           >
             View the Int’l student to-do list from International Student
             and Scholar Services (ISSS)

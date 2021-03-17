@@ -3,17 +3,16 @@
     <span>Website:&nbsp;&nbsp;</span>
     <span>
       <a
+        v-out="`View Course Website ${section.id}`"
         :href="section.class_website_url"
         target="_blank"
-        :label="`Course Website: ${section.curriculum_abbr} ${
-          section.course_number} ${section.section_id}`"
       >View class website</a>
       <span v-if="!pastTerm">
         <a
+          v-out="`Update Course Website ${section.id}`"
           target="_blank"
           :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
-          :label="`Update Course Website: ${section.curriculum_abbr} ${
-            section.course_number} ${section.section_id}`"
+          title="Update Course Website"
         >Update</a>
       </span>
     </span>
@@ -25,10 +24,10 @@
   <li v-else-if="section.sln">
     <span>Website:&nbsp;&nbsp;</span>
     <a
+      v-out="`Add Course Website ${section.id}`"
       target="_blank"
       :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
-      :label="`Add Course Website: ${section.curriculum_abbr} ${
-        section.course_number} ${section.section_id}`"
+      title="Add Course Website"
     >Add</a>
     <div>
       A link to the course Canvas is automatically shown to students.

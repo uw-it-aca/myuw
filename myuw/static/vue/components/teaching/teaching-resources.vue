@@ -7,31 +7,31 @@
         </h3>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
-            <a href="https://teachingremotely.washington.edu/" label="">Teaching Remotely</a>
+            <a href="https://teachingremotely.washington.edu/">Teaching Remotely</a>
           </li>
           <li v-if="bothell_emp" class="mb-1">
-            <a href="https://www.uwb.edu/it/teaching" label="">UWB Teach Anywhere</a>
+            <a href="https://www.uwb.edu/it/teaching">UWB Teach Anywhere</a>
           </li>
           <li v-if="tacoma_emp" class="mb-1">
             <a href="https://www.tacoma.uw.edu/digital-learning/instructional-continuity"
-              label="">UWT Instructional Continuity</a>
+             >UWT Instructional Continuity</a>
           </li>
           <li class="mb-1">
             <a href="https://canvas.uw.edu/courses/1392969"
-              label="">Teaching with UW Technologies</a>
+             >Teaching with UW Technologies</a>
           </li>
           <li class="mb-1">
             <a href="https://teachingremotely.washington.edu/#getHelp"
-              label="">Workshops and Office Hours</a>
+             >Workshops and Office Hours</a>
           </li>
           <li class="mb-1">
-            <a href="https://washington.zoom.us/" label="">Zoom</a>
+            <a href="https://washington.zoom.us/">Zoom</a>
           </li>
           <li class="mb-1">
-            <a href="https://panopto.uw.edu/" label="">Panopto</a>
+            <a href="https://panopto.uw.edu/">Panopto</a>
           </li>
           <li>
-            <a href="http://polleverywhere.com/" label="">Poll Everywhere</a>
+            <a href="http://polleverywhere.com/">Poll Everywhere</a>
           </li>
         </ul>
 
@@ -41,13 +41,13 @@
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a :href="'http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=' + linkData.textbook"
-              label="">Order Textbooks</a>
+             >Order Textbooks</a>
             </li>
           <li class="mb-1">
-            <a href="http://www.lib.washington.edu/types/course" label="">Course Reserves</a>
+            <a href="http://www.lib.washington.edu/types/course">Course Reserves</a>
           </li>
           <li>
-            <a href="http://f2.washington.edu/fm/c2/printing-copying/course-packs" label="">Request Course Packs</a>
+            <a href="http://f2.washington.edu/fm/c2/printing-copying/course-packs">Request Course Packs</a>
           </li>
         </ul>
         <h3 class="h5">
@@ -55,24 +55,24 @@
         </h3>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
-            <a href="http://canvas.uw.edu" label="">Canvas</a>
+            <a href="http://canvas.uw.edu">Canvas</a>
           </li>
           <li class="mb-1">
-            <a href="https://panopto.uw.edu" label="">Panopto Lecture Capture</a>
+            <a href="https://panopto.uw.edu">Panopto Lecture Capture</a>
           </li>
           <li class="mb-1">
-            <a href="http://www.polleverywhere.com/auth/washington" label="">Poll Everywhere</a></li>
+            <a href="http://www.polleverywhere.com/auth/washington">Poll Everywhere</a></li>
           <li class="mb-1">
-            <a href="https://gradepage.uw.edu" label="">GradePage</a>
+            <a href="https://gradepage.uw.edu">GradePage</a>
           </li>
           <li class="mb-1">
-            <a href="https://apps.registrar.washington.edu/grade-change/pages/change.php" label="">Change Submitted Grades</a>
+            <a href="https://apps.registrar.washington.edu/grade-change/pages/change.php">Change Submitted Grades</a>
           </li>
           <li class="mb-1">
-            <a :href="linkData.courseEval" label="">Course Evaluations</a>
+            <a :href="linkData.courseEval">Course Evaluations</a>
           </li>
           <li>
-            <a href="https://coda.uw.edu" label="">Course Stats</a>
+            <a href="https://coda.uw.edu">Course Stats</a>
           </li>
         </ul>
         <h3 class="h5">
@@ -80,19 +80,19 @@
         </h3>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
-            <a href="https://itconnect.uw.edu/learn/tools/" label="">Teaching &amp; Learning Tools</a>
+            <a href="https://itconnect.uw.edu/learn/tools/">Teaching &amp; Learning Tools</a>
             </li>
           <li class="mb-1">
-            <a href="http://www.washington.edu/teaching/" label="">Center for Teaching &amp; Learning</a>
+            <a href="http://www.washington.edu/teaching/">Center for Teaching &amp; Learning</a>
             </li>
           <li class="mb-1">
-            <a href="http://depts.washington.edu/grading/" label="">Faculty Resources on Grading</a>
+            <a href="http://depts.washington.edu/grading/">Faculty Resources on Grading</a>
             </li>
           <li class="mb-1">
             <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/"
-              label="">Online Grade Submission</a></li>
+             >Online Grade Submission</a></li>
           <li>
-            <a href="http://teaching.pce.uw.edu/" label="">UW PCE Instructor Resources</a>
+            <a href="http://teaching.pce.uw.edu/">UW PCE Instructor Resources</a>
           </li>
         </ul>
       </div>

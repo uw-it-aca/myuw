@@ -9,7 +9,7 @@
         <b-container fluid="xl" class="py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
           no actions will be saved.
-          <a href="/support/"> Back to MyUW Support tool </a>
+          <a v-inner="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
         </b-container>
       </div>
 
@@ -22,6 +22,7 @@
           <b-row>
             <b-col xs="2">
               <b-link
+                v-inner="'MyUW profile page'"
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
@@ -33,20 +34,20 @@
             <b-col xs="10" class="text-right">
               <b-link
                 v-if="emailError"
+                v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-                label="UW email services"
               >
                 <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email
                 error
               </b-link>
               <b-link
                 v-else
+                v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
                 title="Open your email in new tab"
-                label="Open your email in new tab"
               >
                 <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email
               </b-link>
@@ -59,6 +60,7 @@
                 <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
+                v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
@@ -294,30 +296,30 @@
       <p class="mt-3 mb-0 myuw-text-md">
         Watch a video tour of
         <a
+          v-out="'MyUW video for Instructors'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
           target="_blank"
           title="MyUW video tour for instructors"
-          data-linklabel="MyUW video for Instructors"
           >MyUW for Instructors</a
         >,
         <a
+          v-out="'MyUW video for staff'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
           target="_blank"
           title="MyUW video tour for staff"
-          data-linklabel="MyUW video for staff"
           >for staff</a
         >, or
         <a
+          v-out="'MyUW video for students'"
           href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
           target="_blank"
           title="MyUW video tour for students"
-          data-linklabel="MyUW video for students"
           >for students</a
         >. <br /><a
+          v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
           target="_blank"
           title="MyUW Help Center in IT Connect"
-          data-linklabel="MyUW Help Center"
           >Visit the MyUW help guide for more information</a
         >.
       </p>
@@ -385,6 +387,7 @@ export default {
   },
   methods: {
     showTourModal: function () {
+      this.$logger.onBoarding(this);
       this.$refs['tourModal'].show();
       axios
         .get('/api/v1/turn_off_tour_popup', {

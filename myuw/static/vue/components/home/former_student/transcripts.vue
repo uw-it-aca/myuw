@@ -14,11 +14,13 @@
       </p>
       <ul class="list-unstyled myuw-text-md mb-4">
         <li class="mb-1">
-          <a href="https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php"
-            target="_blank" data-linklabel="Official Transcript">Order Official Transcripts</a>
+          <a
+            v-out="'Official Transcript'"
+            href="https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php" target="_blank">Order Official Transcripts</a>
         </li>
         <li class="mb-1">
-          <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank" data-linklabel="Unofficial Transcript">View Unofficial Transcript</a>
+          <a v-out="'Unofficial Transcript'"
+            href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank">View Unofficial Transcript</a>
         </li>
       </ul>
       <h4 class="h6 text-dark-beige myuw-font-roboto">
@@ -32,13 +34,16 @@
       </p>
       <ul class="list-unstyled myuw-text-md mb-0">
         <li class="mb-1">
-          <a href="https://registrar.washington.edu" target="_blank" data-linklabel="UW Registrar">Contact the UW Registrar</a>
+          <a v-out="'UW Registrar'" href="https://registrar.washington.edu"
+            target="_blank">Contact the UW Registrar</a>
         </li>
         <li class="mb-1">
-          <a href="https://www.uwb.edu/registration" target="_blank" data-linklabel="UW Bothell Registrar">Contact the UW Bothell Registrar</a>
+          <a v-out="'UW Bothell Registrar'" href="https://www.uwb.edu/registration"
+            target="_blank">Contact th UW Bothell Registrar</a>
         </li>
         <li class="mb-1">
-          <a href="https://www.tacoma.uw.edu/office-registrar/office-registrar" target="_blank" data-linklabel="UW Tacoma Registrar">Contact the UW Tacoma Registrar</a>
+          <a v-out="'UW Tacoma Registrar'"
+            href="https://www.tacoma.uw.edu/office-registrar/office-registrar" target="_blank">Contact the UW Tacoma Registrar</a>
         </li>
       </ul>
     </template>

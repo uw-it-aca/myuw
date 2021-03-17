@@ -11,10 +11,7 @@
         <b-badge v-if="meetingData.section.is_teaching" variant="light">
           <abbr title="Teaching Course">T</abbr>
         </b-badge>
-        <a :href="sectionUrl"
-           class="text-white"
-           :label="`Course section: ${sectionTitle}`"
-        >
+        <a :href="sectionUrl" class="text-white">
           {{ sectionTitle }}
         </a>
       </div>
@@ -25,8 +22,8 @@
                !meetingData.section.is_remote &&
                meetingLocationUrl
              )"
+             v-out="ariaMeetingLocation"
              :href="meetingLocationUrl"
-             :label="ariaMeetingLocation"
           >
             {{ meetingLocation }}
           </a>
@@ -34,6 +31,7 @@
             {{ meetingLocation }}
           </span>
           <a v-if="showConfirmLink"
+            v-out="'Confirm Meeting'"
              :href="confirmationLink"
              target="_blank"
              class="d-block"

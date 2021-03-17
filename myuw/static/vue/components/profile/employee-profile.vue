@@ -57,7 +57,6 @@
                 class="myuw-workday"
                 href="https://wd5.myworkday.com/uw/login.htmld"
                 target="_blank"
-                data-linklabel="Workday"
                 :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
                 >Manage profile in Workday
               </uw-link-button>

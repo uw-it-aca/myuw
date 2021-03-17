@@ -30,7 +30,7 @@ export default {
     },
     buildClasslistCsv(registrations, hasLinkedSections) {
         const lines = [];
-        const header = ["StudentNo","UWNetID","LastName","FirstName"];
+        const header = ["StudentNo","UWNetID","LastName","FirstName","Pronouns"];
         if (hasLinkedSections) {
             header.push("LinkedSection");
             }
@@ -46,7 +46,8 @@ export default {
               "\t" + reg.student_number,  // MUWM-3978
               reg.netid,
               reg.surname,
-              reg.first_name];
+              reg.first_name,
+              reg.pronouns];
 
             if (hasLinkedSections) {
               fields.push(reg.linked_sections);
@@ -84,8 +85,7 @@ export default {
               section.year + '&SLN=' + section.sln);
     },
     getTimeScheLinkLable(section) {
-      return ('SLN ' + section.sln + ': ' + section.curriculum_abbr + ' ' +
-             section.course_number + ' ' + section.section_id);
+      return 'Time Schedule for SLN ' + section.sln;
     },
     idForSection(section) {
       return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;

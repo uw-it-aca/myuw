@@ -7,7 +7,12 @@
       {{ majors[0].percent_students }}% of your students
       are {{ titleCaseWord(majors[0].major) }} majors.
     </p>
-    <a :href="getUrl" target="_blank" :data-linklabel="getLabel">
+    <a
+      v-out="'Course Dashboard'"
+      :href="getUrl"
+      target="_blank"
+      :title="getLabel"
+    >
       View more statistics for
       {{ currAbbr }} {{ courseNum }} {{ sectionId }}
     </a>

@@ -6,30 +6,27 @@
         <template v-if="hasResources">
           <li v-if="section.class_website_url" class="mb-1">
             <a
+              v-out="`Course Website ${section.id}`"
               :href="section.class_website_url"
-              :label="`${
-                section.curriculum_abbr
-              } ${section.course_number} Course Website`"
+              :title="`Course Website ${section.id}`"
             >
               Course Website
             </a>
           </li>
           <li v-if="section.lib_subj_guide" class="mb-1">
             <a
+              v-out="`Library Research Guides: ${section.id}`"
               :href="section.lib_subj_guide"
-              :label="`${
-                section.curriculum_abbr
-              } ${section.course_number} Library Research Guides`"
+              :title="`Library Research Guides ${section.id}`"
             >
               Library Research Guides
             </a>
           </li>
           <li v-if="section.canvas_url" class="mb-1">
             <a
+              v-out="`Course Canvas ${section.id}`"
               :href="section.canvas_url"
-              :label="`${
-                section.curriculum_abbr
-              } ${section.course_number} Course Canvas`"
+              :title="`Course Canvas ${section.id}`"
             >
               Course Canvas
             </a>
@@ -37,10 +34,9 @@
         </template>
         <li v-if="section.sln" class="mb-1">
           <a
+            v-inner="`Textbooks ${section.id}`"
             :href="textbookHref"
-            :label="`${
-              section.curriculum_abbr
-            } ${section.course_number} Textbooks`"
+            :title="`Textbooks ${section.id}`"
           >
             Textbooks
           </a>
