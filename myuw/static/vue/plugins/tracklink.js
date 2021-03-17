@@ -2,8 +2,7 @@ function linkClickHandler(event, binding, vnode, out) {
   if (event.button > 1) return;
 
   let label = binding.value ? binding.value :
-              event.target.title ? event.target.title :
-              event.target.label ? event.target.label :
+              // event.target.title ? event.target.title :
               event.target.innerText ? event.target.innerText : null;
 
   const instance = vnode.componentInstance ? vnode.componentInstance : vnode.context;
