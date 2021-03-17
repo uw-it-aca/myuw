@@ -34,7 +34,7 @@
         </template>
         <li v-if="section.sln" class="mb-1">
           <a
-            v-out="`Textbooks ${section.id}`"
+            v-inner="`Textbooks ${section.id}`"
             :href="textbookHref"
             :title="`Textbooks ${section.id}`"
           >
