@@ -1,9 +1,13 @@
 function linkClickHandler(event, binding, vnode, out) {
   if (event.button > 1) return;
 
+<<<<<<< HEAD
   let label = binding.value ? binding.value :
               // event.target.title ? event.target.title :
               event.target.innerText ? event.target.innerText : null;
+=======
+  let label = binding.value ? binding.value : event.target.innerText;
+>>>>>>> 9092ee8360fb7b757cc0dd610dffbc7cc1b9b004
 
   const instance = vnode.componentInstance ? vnode.componentInstance : vnode.context;
   instance.$logger.linkClick(
@@ -37,16 +41,6 @@ export default function(Vue, _) {
       bindPoint.onclick = (evt) => linkClickHandler(evt, binding, vnode, true);
       bindPoint.onauxclick = (evt) => linkClickHandler(evt, binding, vnode, true);
       bindPoint.classList.add('external-link');
-    },
-  });
-
-  Vue.directive('out-all', {
-    update: (elm, binding, vnode) => {
-      elm.querySelectorAll('a:not(.external-link):not(.internal-link)').forEach((el) => {
-        el.onclick = (evt) => linkClickHandler(evt, binding, vnode, true);
-        el.onauxclick = (evt) => linkClickHandler(evt, binding, vnode, true);
-        el.classList.add('external-link');
-      });
     },
   });
 
