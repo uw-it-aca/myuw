@@ -113,9 +113,9 @@
     </template>
 
     <template v-else-if="!addError" #modal-footer>
-      <a v-out="'Mailman Help'"
-         href="https://itconnect.uw.edu/connect/email/resources/mailman/" rel="help"
-          target="_blank"
+      <a
+        href="https://itconnect.uw.edu/connect/email/resources/mailman/"
+        target="_blank"
       >Mailman help</a>
       <b-button variant="outline-secondary" @click="listView = false">
         <font-awesome-icon :icon="faArrowLeft" />
