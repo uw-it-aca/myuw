@@ -110,13 +110,17 @@ export default {
       }
       this.toggleMini(this.section);
       if (!this.section.mini_card) {
-        this.$nextTick(() => {
-          window.history.replaceState({}, null, `/teaching/${this.section.href}`);
-          setTimeout(() => {
-            document.getElementById(this.section.anchor)
-              .scrollIntoView({behavior: 'smooth'});
-          }, 100);
-        });
+        if (window.location.pathname.startsWith('/teaching/')) {
+          this.$nextTick(() => {
+            window.history.replaceState({}, null, `/teaching/${this.section.href}`);
+            setTimeout(() => {
+              document.getElementById(this.section.anchor)
+                .scrollIntoView({behavior: 'smooth'});
+            }, 100);
+          });
+        } else {
+          window.location.pathname = `/teaching/${this.section.href}`;
+        }
       } else {
         window.history.replaceState({}, null, window.location.pathname);
       }
