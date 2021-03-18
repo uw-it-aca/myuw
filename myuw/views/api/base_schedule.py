@@ -77,7 +77,8 @@ def load_schedule(request, schedule):
         section_data = json_data["sections"][section_index]
         section_index += 1
         section_data["color_id"] = section.color_id
-
+        section_data['course_abbr_slug'] = ection.curriculum_abbr.replace(
+            " ", "-")
         if not section_data["section_type"]:
             if len(section.meetings) > 0:
                 section_data["section_type"] = section.meetings[0].meeting_type

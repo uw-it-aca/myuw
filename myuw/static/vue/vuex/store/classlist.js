@@ -30,6 +30,8 @@ function postProcess(response, sectionLabel) {
   sectionData.currAbbr = section.curriculum_abbr;
   sectionData.courseNum = section.course_number;
   sectionData.sectionId = section.section_id;
+  section.anchor = (section.course_abbr_slug + "-" +
+    section.course_number + "-" + section.section_id);
   sectionData.sln = section.sln;
 
   if("joint_sections" in section) {
