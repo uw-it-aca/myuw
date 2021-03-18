@@ -26,23 +26,23 @@ export class VisibilityTracker {
     }
 
     // Update or add the component
-    if (!this.components[comp.$myuw.uid]) {
-      this.components[comp.$myuw.uid] = {}
+    if (!this.components[comp.$meta.uid]) {
+      this.components[comp.$meta.uid] = {}
     }
-    const compData = this.components[comp.$myuw.uid];
+    const compData = this.components[comp.$meta.uid];
     compData.component = comp;
     compData.intersectionRatio = entry.intersectionRatio;
     compData.screenCoveredRatio = screenCoveredRatio;
     compData.isVisible = this.isCompVisible(comp);
     
-    const compRoot = comp.$myuw.compRoot;
-    if (!compRoot) return;
+    const group = comp.$meta.group;
+    if (!group) return;
 
     // Group the component
-    if (!this.groups[compRoot.$myuw.uid]) {
+    if (!this.groups[group.$meta.uid]) {
       const components = this.components;
-      this.groups[compRoot.$myuw.uid] = {
-        tag: compRoot.$myuw.tag,
+      this.groups[group.$meta.uid] = {
+        tag: group.$meta.tag,
         components: [],
         get isVisible() {
           return this.components.some((uid) => components[uid].isVisible);
@@ -50,28 +50,28 @@ export class VisibilityTracker {
       };
     }
     if (
-      this.groups[compRoot.$myuw.uid].components.indexOf(comp.$myuw.uid) === -1
+      this.groups[group.$meta.uid].components.indexOf(comp.$meta.uid) === -1
     ) {
-      this.groups[compRoot.$myuw.uid].components.push(comp.$myuw.uid);
+      this.groups[group.$meta.uid].components.push(comp.$meta.uid);
     }
 
-    const timer = this.updateGroupTimer(compRoot);
+    const timer = this.updateGroupTimer(group);
     const duration = (Date.now() - timer) / 1000;
     
     return {
       report: (
-        !this.groups[compRoot.$myuw.uid].isVisible &&
+        !this.groups[group.$meta.uid].isVisible &&
         timer &&
         duration >= this.durationThreshold
       ),
-      tag: compRoot.$myuw.tag,
+      tag: group.$meta.tag,
       duration: duration,
     };
   }
 
   isCompVisible(comp) {
     let onScreen = false;
-    const componentData = this.components[comp.$myuw.uid];
+    const componentData = this.components[comp.$meta.uid];
 
     // Report if the component it is mostly visible
     if (componentData.intersectionRatio > this.ratioThreshold) {
@@ -87,7 +87,7 @@ export class VisibilityTracker {
   }
 
   updateGroupTimer(group) {
-    const groupData = this.groups[group.$myuw.uid];
+    const groupData = this.groups[group.$meta.uid];
 
     let timer = null;
     if (groupData.isVisible) {

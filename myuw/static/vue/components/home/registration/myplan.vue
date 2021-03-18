@@ -13,7 +13,7 @@
           <li class="myuw-text-md">
             <span v-if="unreadyCount">{{ unreadyCount }} not ready</span>
             <b-button
-              v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$myuw.uid}`"
+              v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
               :title="buttonTitle"
               size="sm"
               variant="link"
@@ -26,7 +26,7 @@
       </div>
     </div>
     <b-collapse
-      :id="`${summerCardLabel}inMyPlanUnready-collapse-${$myuw.uid}`"
+      :id="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
       v-model="collapseOpen"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">

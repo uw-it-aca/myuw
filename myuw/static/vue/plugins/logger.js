@@ -15,21 +15,21 @@ class Logger {
 
   cardLoad(component) {
     component.$nextTick(() => {
-      let root = component.$myuw.compRoot;
+      let root = component.$meta.group;
       if (
-        root.$myuw.groupRoot &&
-        this.cardGroupEvents[root.$myuw.uid] &&
-        this.cardGroupEvents[root.$myuw.uid].cardLoad
+        root.$meta.group &&
+        this.cardGroupEvents[root.$meta.uid] &&
+        this.cardGroupEvents[root.$meta.uid].cardLoad
       ) {
-        this.cardGroupEvents[root.$myuw.uid].cardLoad += 1;
+        this.cardGroupEvents[root.$meta.uid].cardLoad += 1;
         return;
       } else {
-        this.cardGroupEvents[root.$myuw.uid] = {
+        this.cardGroupEvents[root.$meta.uid] = {
           cardLoad: 1,
         };
       }
       this.sink.event('card_load', {
-        comp_tag: component.compTag ? component.compTag : root.$myuw.tag,
+        comp_tag: component.compTag ? component.compTag : root.$meta.tag,
       });
     });
   }
@@ -89,7 +89,7 @@ class Logger {
 
   linkClick(component, url, label, out) {
     this.sink.event('link_click', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       link_url: url,
       link_label: label,
       link_to_external: out,
@@ -118,7 +118,7 @@ class Logger {
 
   disclosureOpen(component) {
     this.sink.event('disclosure_open', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
     });
   }
 
@@ -127,7 +127,7 @@ class Logger {
       notice.notice_title, 'text/html',
     );
     this.sink.event('notice_open', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
     });
   }
@@ -137,34 +137,34 @@ class Logger {
       notice.notice_title, 'text/html',
     );
     this.sink.event('notice_read', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
     });
   }
 
   classEmailList(component, cardTid) {
     this.sink.event('class_email_list', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
     });
   }
 
   onBoarding(component) {
     this.sink.event('on_boarding', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
     });
   }
 
   cardPin(component, cardTid) {
     this.sink.event('card_pin', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
     });
   }
 
   cardUnPin(component, cardTid) {
     this.sink.event('card_unpin', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
     });
   }
@@ -178,6 +178,12 @@ class Logger {
       });
       this.currentTerm = term;
     }
+  }
+
+  buttonClick(component) {
+    this.sink.event('button_click', {
+      comp_tag: component.$meta.group.$meta.tag,
+    });
   }
 }
 
@@ -240,10 +246,28 @@ export default function (Vue, options) {
     throw '`gtag` or `console` config needed';
   }
 
-  Vue.directive('comp-group', {
-    bind(_, binding, vnode) {
-      vnode.context.$myuw.groupRoot = true;
-      vnode.context.$myuw.tag = binding.value;
+  /**
+   * Sets the meta attributes for a component
+   * Attributes used by the logger
+   * - tag (String) The component tag
+   * - groupRoot (Boolean) If the component should be treated as the root
+   *                       for a group of all its children
+   *                       (TODO: Deprecate this in favor of `tag`
+   *                        automatically indicating group root)
+   * - term (String) If the data in a component depends on a term
+   * - eid (String) Certain components have an extra id eg.
+   *                teaching-course-card has apiTag that uniquely idenfies it
+   */
+  Vue.directive('meta', {
+    bind: (_, binding, vnode) => {
+      console.log(binding.value);
+      console.log(vnode.context);
+      if (binding.value) {
+        Object.entries(binding.value).forEach(([key, value]) => {
+          vnode.context.$meta[key] = value;
+        });
+      }
+      console.log(vnode.context.$meta);
     },
   });
 
