@@ -1,6 +1,7 @@
 <template>
   <uw-card
     :id="idForSection(section)"
+    v-meta="`{term: ${term}, course: ${section.anchor}}`"
     loaded
     :ribbon="{
       side: 'top',
@@ -105,7 +106,10 @@ export default {
       return this.schedule.sections.filter(
         (section) => section.primary_section_label === this.section.section_label
       );
-    }
+    },
+    term() {
+      return this.section.year + "," + this.section.quarter;
+    },
   },
   mounted() {
     const currentUrl = window.location.href;
