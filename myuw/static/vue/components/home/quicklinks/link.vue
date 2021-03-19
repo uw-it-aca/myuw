@@ -58,9 +58,9 @@
       class="bg-light mx-n3 p-3 my-1"
     >
       <b-form @submit="updateLink" @reset="onReset">
-        <h4 class="h6 font-weight-bold">
+        <h3 class="h6 font-weight-bold">
           Edit Quick Link
-        </h4>
+        </h3>
         <b-form-group label="URL" :label-for="`${customId}-edit-url`">
           <b-form-input
             :id="`${customId}-edit-url`"
