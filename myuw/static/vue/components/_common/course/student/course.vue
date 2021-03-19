@@ -1,6 +1,7 @@
 <template>
   <div>
     <uw-card
+      v-meta="`{tag: student-course-cards, term: ${term}, course: ${course}}`"
       loaded
       :ribbon="{ side: 'top', colorId: section.color_id }"
     >
@@ -184,6 +185,12 @@ export default {
       isErroredEval: 'isErrored',
       statusCodeEvals: 'statusCode',
     }),
+    term() {
+      return this.section.year + "," + this.section.quarter;
+    },
+    course() {
+      return this.section.anchor;
+    }
   },
   methods: {
     getSectionEval(index) {
