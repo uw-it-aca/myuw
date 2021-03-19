@@ -64,6 +64,7 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
+        'django-webpack-bridge==0.1.0',
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),

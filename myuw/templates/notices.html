@@ -25,6 +25,6 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load webpack_manifest %}
+{% load webpack_bridge %}
 {% render_webpack_entry 'notices' js='defer' %}
 {% endblock vue_script %}
