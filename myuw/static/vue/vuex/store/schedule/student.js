@@ -15,7 +15,7 @@ function postProcess(response, urlExtra) {
     section.futureTerm = courseData.future_term;
     section.pastTerm = courseData.past_term;
     section.requestSummerTerm = courseData.summer_term;
-    section.anchor = (section.curriculum_abbr.replace(/ /g, '-') + "-" +
+    section.anchor = (section.course_abbr_slug + "-" +
                   section.course_number + "-" + section.section_id);
     section.id = (courseData.year + "-" + courseData.quarter + "-" +
                   section.anchor);
