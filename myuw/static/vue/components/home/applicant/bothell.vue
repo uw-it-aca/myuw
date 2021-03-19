@@ -34,23 +34,26 @@
       </h4>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="http://www.uwb.edu/financialaid"
-             target="_blank" aria-label="Student Financial Aid"
+          <a v-out="'UW Bothell Student Financial Aid'"
+            href="http://www.uwb.edu/financialaid"
+            target="_blank"
           >
             Learn all about student financial aid and scholarships
           </a>
         </li>
         <li>
-          <a href="http://www.uwb.edu/studentaffairs"
-             target="_blank" aria-label="Student Resources"
+          <a v-out="'UW Bothell Student Resources'"
+            href="http://www.uwb.edu/studentaffairs"
+            target="_blank"
           >
             Check out the student resources for student life,
             career services, and more
           </a>
         </li>
         <li>
-          <a href="http://www.uwb.edu/calendars"
-             target="_blank" aria-label="UW Bothell Academic calendars"
+          <a v-out="'UW Bothell Academic calendars'"
+            href="http://www.uwb.edu/calendars"
+            target="_blank"
           >
             View the UW Bothell Academic calendars
           </a>
@@ -58,15 +61,16 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a class="btn btn-outline-secondary text-dark my-4" href="https://admissions.uwb.edu/apply/status"
-         aria-label="Your application status details"
+      <a v-out="'Your application status details'"
+        class="btn btn-outline-secondary text-dark my-4"
+        href="https://admissions.uwb.edu/apply/status"
       >
         View your {{ applicantData.type }} application status and checklist
       </a>
       <p>
         If you have questions regarding your application,
         please contact UW Bothell Office of Admissions at
-        <a href="mailto:uwbinfo@uw.edu">uwbinfo@uw.edu</a>
+        <a v-out="'Contact UWB'" href="mailto:uwbinfo@uw.edu">uwbinfo@uw.edu</a>
       </p>
     </template>
   </uw-card>

@@ -1,5 +1,5 @@
 <template>
-  <b-tabs lazy :value="selectedTab">
+  <b-tabs lazy :value="selectedTab" @activate-tab="displayedTabChange">
     <!--
       Only mounts the tab when it is selected, so the data should be
       fetched on mount for the components in here
@@ -15,6 +15,7 @@
         <b-form-select
           v-model="selectedOption"
           :options="dropdownTabsSelectable"
+          @change="optionTabChange"
         />
       </template>
       <slot :tab="dropdownTabs[selectedOption]" />
@@ -24,11 +25,17 @@
 
 <script>
 export default {
+  model: {
+    prop: 'selectedTerm',
+    event: 'selected'
+  },
   props: {
+    // Current here means the year right now not the selected year
     currentYear: {
       type: Number,
       required: true,
     },
+    // Current here means the quarter right now not the selected quarter
     currentQuarter: {
       type: String,
       required: true,
@@ -82,13 +89,48 @@ export default {
       }
     }
 
+    let selectedTermInner = this.selectedTerm;
+    if (!selectedTermInner) {
+      if (selectedTab < 3) {
+        selectedTermInner = displayedTabs[selectedTab].label;
+      } else {
+        selectedTermInner = dropdownTabs[selectedOption].label;
+      }
+    }
+
     return {
       selectedTab,
       selectedOption,
+      selectedTermInner,
       displayedTabs,
       dropdownTabs,
       dropdownTabsSelectable,
     };
   },
+  watch: {
+    selectedTermInner(newValue, oldValue) {
+      if (newValue !== oldValue) {
+        this.$emit('selected', newValue);
+        this.$logger.termSelected(newValue);
+      }
+    }
+  },
+  created() {
+    this.$logger.termSelected(this.selectedTermInner);
+  },
+  methods: {
+    displayedTabChange(index) {
+      if (index < 3) {
+        this.selectedTermInner = this.displayedTabs[index].label;
+      } else {
+        this.$nextTick(() => {
+          this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
+        });
+      }
+    },
+    optionTabChange(index) {
+      this.selectedTermInner = this.dropdownTabs[index].label;
+    }
+  }
 };
 </script>

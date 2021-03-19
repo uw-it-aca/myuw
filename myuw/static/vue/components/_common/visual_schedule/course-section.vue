@@ -4,7 +4,6 @@
       role="group"
       tabindex="0"
       class="course-section-inner"
-      :aria-label="ariaLabel"
     >
       <div :class="`bg-c${meetingData.section.color_id}`"
            class="p-1 text-center myuw-text-xxs"
@@ -12,10 +11,7 @@
         <b-badge v-if="meetingData.section.is_teaching" variant="light">
           <abbr title="Teaching Course">T</abbr>
         </b-badge>
-        <a :href="sectionUrl"
-           class="text-white"
-           :aria-label="`Course section: ${sectionTitle}`"
-        >
+        <a :href="sectionUrl" class="text-white">
           {{ sectionTitle }}
         </a>
       </div>
@@ -26,15 +22,16 @@
                !meetingData.section.is_remote &&
                meetingLocationUrl
              )"
+             v-out="ariaMeetingLocation"
              :href="meetingLocationUrl"
-             :aria-label="ariaMeetingLocation"
           >
             {{ meetingLocation }}
           </a>
-          <span v-else :aria-label="ariaMeetingLocation">
+          <span v-else>
             {{ meetingLocation }}
           </span>
           <a v-if="showConfirmLink"
+            v-out="'Confirm Meeting'"
              :href="confirmationLink"
              target="_blank"
              class="d-block"

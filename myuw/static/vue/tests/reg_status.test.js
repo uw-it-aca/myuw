@@ -8,7 +8,7 @@ import oquarter from '../vuex/store/oquarter';
 import profile from '../vuex/store/profile';
 import myplan from '../vuex/store/myplan';
 
-import mockNotices from './mock_data/notices.json';
+import mockNotices from './mock_data/notice/javerage.json';
 import myPlanSpring from './mock_data/myplan/spring.json';
 import myPlanSummer from './mock_data/myplan/summer.json';
 import oQuarterSpring from './mock_data/oquarter/spring.json';

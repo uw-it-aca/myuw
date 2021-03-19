@@ -1,13 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import VueGtag from 'vue-gtag';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
   FontAwesomeIcon,
   FontAwesomeLayers,
   FontAwesomeLayersText,
 } from '@fortawesome/vue-fontawesome';
-import VueMq from 'vue-mq';
 
 import {
   faUser,
@@ -69,11 +67,6 @@ import {
   VBTogglePlugin,
   TooltipPlugin,
 } from 'bootstrap-vue';
-
-// Mixins
-import outlink from './mixins/outlink';
-import utils from './mixins/utils';
-import courses from './mixins/courses';
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
@@ -146,31 +139,6 @@ Vue.use(TooltipPlugin);
 // vuex
 Vue.use(Vuex);
 
-// vue-gtag
-Vue.use(VueGtag, {
-  config: {
-    id: gaCode,
-    params: {
-      anonymize_ip: true,
-      user_id: hashId,
-    },
-  },
-  enabled: trackingEnabled == 'true',
-});
-
-// vue-mq (media queries)
-Vue.use(VueMq, {
-  breakpoints: {
-    // breakpoints == min-widths of next size
-    mobile: 768, // tablet begins 768px
-    tablet: 992, // desktop begins 992px
-    desktop: Infinity,
-  },
-});
-
-import VueObserveVisibility from 'vue-observe-visibility'
-Vue.use(VueObserveVisibility)
-
 const store = new Vuex.Store({
   state: {
     user: JSON.parse(document.getElementById('user').innerHTML),
@@ -196,11 +164,53 @@ const store = new Vuex.Store({
   },
 });
 
+import VueMq from 'vue-mq';
+import VueObserveVisibility from 'vue-observe-visibility';
+
+// vue-mq (media queries)
+Vue.use(VueMq, {
+  breakpoints: {
+    // breakpoints == min-widths of next size
+    mobile: 768, // tablet begins 768px
+    tablet: 992, // desktop begins 992px
+    desktop: Infinity,
+  },
+});
+Vue.use(VueObserveVisibility);
+
+// import VueObserveVisibility from 'vue-observe-visibility'
+// Vue.use(VueObserveVisibility)
+
+import Logger from './plugins/logger';
+import Observer from './plugins/observer';
+import TrackLink from './plugins/tracklink';
+
+Vue.use(Logger, {
+  gtag: {
+    config: {
+      id: gaCode,
+      params: {
+        anonymize_ip: true,
+        user_id: hashId,
+      },
+    },
+    enabled: trackingEnabled == 'true',
+  },
+  // console: {
+  //   print: true,
+  // },
+});
+Vue.use(Observer);
+Vue.use(TrackLink);
+
+
 Vue.config.devtools = true;
 
-Vue.mixin(outlink);
-Vue.mixin(utils);
+// Mixins
+import courses from './mixins/courses';
+import utils from './mixins/utils';
 Vue.mixin(courses);
+Vue.mixin(utils);
 
 const vueConf = {
   el: '#vue_root',

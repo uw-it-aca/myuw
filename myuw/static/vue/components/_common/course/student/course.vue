@@ -1,6 +1,9 @@
 <template>
   <div>
-    <uw-card loaded :ribbon="{ side: 'top', colorId: section.color_id }">
+    <uw-card
+      loaded
+      :ribbon="{ side: 'top', colorId: section.color_id }"
+    >
       <template #card-heading>
         <uw-course-header :section="section" />
       </template>
@@ -29,7 +32,11 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <b-collapse :id="`course-details-${index}`" v-model="isOpen">
+          <b-collapse
+            :id="`course-details-${index}`"
+            v-model="isOpen"
+            @show="logDisclosureOpen"
+          >
             <!-- creates line spacer above meeting info -->
             <div class="d-flex">
               <div class="w-25">
@@ -43,7 +50,11 @@
           </b-collapse>
         </template>
         <template v-else>
-          <b-collapse :id="`instructors-collapse-${index}`" v-model="isOpen">
+          <b-collapse
+            :id="`instructors-collapse-${index}`"
+            v-model="isOpen"
+            @show="logDisclosureOpen"
+          >
             <!-- creates line spacer above instructor info -->
             <div class="d-flex">
               <div class="w-25">
@@ -71,10 +82,10 @@
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
-            aria-label="SHOW COURSE DETAILS"
             title="Expand to show course details"
           >
-            SHOW COURSE DETAILS
+            COURSE DETAILS
+            <font-awesome-icon :icon="faChevronDown" />
           </b-button>
           <b-button
             v-else
@@ -82,10 +93,10 @@
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
-            aria-label="HIDE COURSE DETAILS"
             title="Collapse to hide course details"
           >
-            HIDE COURSE DETAILS
+            COURSE DETAILS
+            <font-awesome-icon :icon="faChevronUp" />
           </b-button>
         </template>
 
@@ -97,10 +108,10 @@
               variant="link"
               size="sm"
               class="w-100 p-0 border-0 text-dark"
-              aria-label="SHOW INSTRUCTORS"
               title="Expand to show instructors"
             >
-              SHOW INSTRUCTORS
+              INSTRUCTORS
+              <font-awesome-icon :icon="faChevronDown" />
             </b-button>
             <b-button
               v-else
@@ -108,10 +119,10 @@
               variant="link"
               size="sm"
               class="w-100 p-0 border-0 text-dark"
-              aria-label="HIDE INSTRUCTORS"
               title="Collapse to hide instructors"
             >
-              HIDE INSTRUCTORS
+              INSTRUCTORS
+              <font-awesome-icon :icon="faChevronUp" />
             </b-button>
           </template>
           <div v-else class="text-center text-muted font-italic myuw-text-md"
@@ -126,6 +137,10 @@
 </template>
 
 <script>
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../../_templates/card.vue';
 import EvalInfo from './course-eval.vue';
@@ -154,6 +169,8 @@ export default {
   data() {
     return {
       isOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {
@@ -178,6 +195,9 @@ export default {
         return this.evalData.sections[index].evaluation_data || [];
       }
       return [];
+    },
+    logDisclosureOpen() {
+      this.$logger.disclosureOpen(this);
     },
   },
 };

@@ -46,13 +46,14 @@
                   <a
                     href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                     target="_blank"
-                    data-linklabel="Tuition Statement"
-                    >Tuition Statement</a
-                  >
+                    >
+                    Tuition Statement
+                    </a>
                 </div>
               </div>
               <div class="text-right">
                 <uw-link-button
+                  v-out="'Make tuition payment'"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
                   target="_blank"
                 >
@@ -79,7 +80,6 @@
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
                 target="_blank"
-                data-linklabel="Tuition Statement"
                 class="myuw-text-md"
                 >Tuition Statement</a
               >
@@ -96,7 +96,9 @@
             <template #status-content>
               <div class="myuw-text-md">PCE-Continuum College</div>
               <div class="text-right">
-                <uw-link-button href="http://portal.continuum.uw.edu" target="_blank">
+                <uw-link-button v-out="'Make Continuum College tuition payment'"
+                  href="http://portal.continuum.uw.edu"
+                  target="_blank">
                   Make payment
                 </uw-link-button>
               </div>
@@ -111,9 +113,9 @@
             <template #status-content>
               <span class="myuw-text-md">PCE-Continuum College</span>
               <a
+                v-out="'Continuum College Account Statement'"
                 href="http://portal.continuum.uw.edu"
                 target="_blank"
-                data-linklabel="Account Statement"
                 class="myuw-text-md"
                 >Account Statement</a
               >
@@ -138,7 +140,9 @@
 
       <div class="myuw-text-md">
         <p v-if="!isC2Grad">
-          <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx" target="_blank"
+          <a v-out="'Give Tuition Account Access'"
+            href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
+            target="_blank"
             >Give access to your tuition account and financial aid information
           </a>
           to parents or other third parties.
@@ -155,7 +159,6 @@
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
                 target="_blank"
-                data-linklabel="Financial Aid Status"
                 class="myuw-text-md"
                 >Financial Aid Status</a
               >
@@ -170,15 +173,15 @@
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
       <a
         v-if="!isPCE"
+        v-out="'Tuition Statement'"
         href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-        data-linklabel="Tuition Statement"
         target="_blank"
         >Tuition Statement page</a
       >
       <a
         v-else
+        v-out="'Continuum College Tuition portal'"
         href="https://portal.continuum.uw.edu"
-        data-linklabel="PCE Tuition portal"
         target="_blank"
         >PCE Tuition portal</a
       >.
@@ -275,16 +278,9 @@ export default {
       // from notice
       const now = this.nowDatetime();
       const result = {};
-      if (this.tuitionDueNotice !== undefined) {
-        this.tuitionDueNotice.attributes.forEach((attr) => {
-          if (attr.name === 'Date') {
-            result.date = attr.value;
-            result.formatted = attr.formatted_value;
-            const tuitionDue = this.strToDayjs(result.date);
-            const diff = Math.ceil(tuitionDue.diff(now, 'day', true));
-            result.diff = diff;
-          }
-        });
+      if (this.tuitionDueNotice && this.tuitionDueNotice.date) {
+        result.diff = Math.ceil(this.tuitionDueNotice.date.diff(now, 'day', true));
+        result.formatted = this.tuitionDueNotice.formattedDate;
       }
       return result;
     },

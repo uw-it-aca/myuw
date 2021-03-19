@@ -25,10 +25,9 @@
         None assigned
       </span>
       <a
+        v-out="(section.gradeSubmissionSectionDelegate ? 'Update' : 'Add')
+          + `Grading Delegate: ${section.id}`"
         :href="gradeDelegateUrl"
-        :label="(section.gradeSubmissionSectionDelegate ? 'Update' : 'Add')
-          + `Grading Delegate: ${section.curriculum_abbr} ${
-            section.course_number} ${section.section_id}`"
       >
         <span v-if="section.gradeSubmissionSectionDelegate">
           Update grade submission delegate
@@ -47,10 +46,8 @@
           <span v-if="section.grading_status">
             <span v-if="section.grading_status.allGradesSubmitted">
               <a
+                v-out="`GradePage ${section.id}`"
                 :href="section.grading_status.section_url"
-                :label="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"
                 target="_blank"
               >
                 {{section.grading_status.submitted_count}}
@@ -62,10 +59,8 @@
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
               <a
+                v-out="`GradePage ${section.id}`"
                 :href="section.grading_status.section_url"
-                :label="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"
                 target="_blank"
               >
                 {{section.grading_status.unsubmitted_count}}
@@ -77,10 +72,8 @@
              section.allows_secondary_grading">
               <a
                 v-if="section.grading_status.no_grades_submitted"
+                v-out="`Submit grades ${section.id}`"
                 :href="section.grading_status.section_url"
-                :label="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"
                 target="_blank"
               >
                 Submit grades in Gradepage
@@ -92,18 +85,16 @@
             <span v-else>
               Grading for secondary section is disabled.
               <a
-                :href="section.grading_status.section_url"
-                :label="`GradePage ${section.curriculum_abbr} ${
-                  section.course_number
-                } ${section.section_id}`"  target="_blank">
+                v-out="`Grade primary section ${section.id}`"
+                :href="section.grading_status.section_url"  target="_blank">
                 Grade primary section
               </a>.
             </span>
           </span>
           <a
+            v-out="'GradePage Help'"
             href="https://itconnect.uw.edu/learn/tools/gradepage/"
-            target="_blank" 
-            label="GradePage Help"
+            target="_blank"
           >
             <font-awesome-icon :icon="faQuestionCircle" />
           </a>
@@ -113,7 +104,6 @@
           An error occurred with
           <a
             href="https://gradepage.uw.edu/"
-            label="Gradepage"
             target="_blank"
           >Gradepage</a>. Please try again later.
         </div>
@@ -131,10 +121,8 @@
         <div v-if="section.grading_status">
           <span v-if="section.grading_status.allGradesSubmitted">
             <a
+              v-out="`GradePage ${section.id}`"
               :href="section.grading_status.section_url"
-              :label="`GradePage ${section.curriculum_abbr} ${
-                section.course_number
-              } ${section.section_id}`"
               target="_blank"
             >
               {{section.grading_status.submitted_count}}
@@ -163,8 +151,8 @@
             <span v-if="section.grading_status">
               <br />
               <a
+                v-out="'Change Submitted Grades'"
                 href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
-                label="Change Submitted Grades"
                 target="_blank"
               >What can I do now?</a>
             </span>

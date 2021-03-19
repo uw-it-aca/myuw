@@ -5,10 +5,10 @@
 
       <div>
         <b-button v-if="section.mini_card"
-            variant="dark" size="sm"
-            :aria-label="`Remove ${section.id} mini-card`"
-            title="Click to remove this mini-card"
-            @click="toggleMini(section)">
+          variant="dark" size="sm"
+          :title="`Remove ${section.id} mini-card`"
+          @click="toggleMiniWrapper"
+        >
           <font-awesome-icon :icon="faTimes" />
         </b-button>
       </div>
@@ -64,6 +64,11 @@ export default {
     ...mapActions('inst_schedule', [
       'toggleMini',
     ]),
+    toggleMiniWrapper() {
+      this.$logger.cardUnPin(this, this.section.apiTag);
+      this.toggleMini(this.section);
+      window.history.replaceState({}, null, window.location.pathname);
+    }
   },
 };
 </script>

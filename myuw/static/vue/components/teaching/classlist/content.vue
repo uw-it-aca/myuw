@@ -20,13 +20,14 @@
         Download (CSV)
       </b-link>
 
-      <a href="javascript:window.print()" class="">
+      <a
+        href="javascript:window.print()" class="">
         <i class="fa fa-print" />Print
       </a>
     </div>
 
     <div id="classlist_controls">
-      <b-tabs role="tablist" aria-label="Views">
+      <b-tabs role="tablist" title="Views">
         <b-tab title="Table" active>
           <uw-table-view
             :section="section"

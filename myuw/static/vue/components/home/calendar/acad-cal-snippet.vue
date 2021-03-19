@@ -10,10 +10,11 @@
       </h3>
     </template>
     <template #card-body>
-      <ul>
-        <li v-for="(ev, index) in events" :key="index">
+      <ul class="list-unstyled mb-0 myuw-text-md">
+        <li v-for="(ev, index) in events" :key="index"
+          class="mb-2">
           {{ formatBannerDate(ev) }} <br>
-          <a :href="ev.event_url">{{ ev.summary }}</a>
+          <a :href="ev.event_url" class="d-block">{{ ev.summary }}</a>
         </li>
       </ul>
       <div>
@@ -26,9 +27,8 @@
       An error has occurred and MyUW cannot display calendar data right now.
       In the meantime, try the
       <a href="http://www.washington.edu/students/reg/calendar.html"
-         data-linklabel="UW Academic Calendars"
          target="_blank"
-      >UW Academic calendars page</a>.
+      >UW Academic Calendars</a> page.
     </template>
   </uw-card>
 </template>

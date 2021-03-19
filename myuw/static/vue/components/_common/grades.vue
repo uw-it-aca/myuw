@@ -48,26 +48,30 @@
       </ul>
     </template>
     <template #card-disclosure>
-      <b-collapse id="grade_card_collapse" v-model="isOpen">
+      <b-collapse
+        id="grade_card_collapse"
+        v-model="isOpen"
+        @show="logDisclosureOpen"
+      >
         <h4 class="h6 font-weight-bold">
           Resources
         </h4>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">
+            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx" target="_blank">
               View credits and GPA
             </a>
           </li>
           <li>
-            <a
-              href="https://myplan.uw.edu/audit/login/netid?rd=/student/myplan/dars"
-              data-linklabel="MyPlan - Degree Audit"
+            <a v-out="'MyPlan DARS'"
+               href="https://myplan.uw.edu/dars"
+               target="_blank"
             >
               Degree Audit Reporting System (DARS)
             </a>
           </li>
           <li>
-            <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">
+            <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank">
               Unofficial Transcript
             </a>
           </li>
@@ -76,26 +80,15 @@
     </template>
     <template #card-footer>
       <b-button
-        v-if="!isOpen"
         v-b-toggle.grade_card_collapse
-        aria-label="SHOW MORE"
-        title="Expand to show additional grade resources"
         variant="link"
         size="sm"
         class="w-100 p-0 text-dark"
+        :title="buttonTitle"
       >
-        SHOW MORE
-      </b-button>
-      <b-button
-        v-else
-        v-b-toggle.grade_card_collapse
-        aria-label="SHOW LESS"
-        title="Collapse to hide additional grade resources"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 text-dark"
-      >
-        SHOW LESS
+        Resources
+        <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
+        <font-awesome-icon v-else :icon="faChevronDown" />
       </b-button>
     </template>
   </uw-card>
@@ -103,6 +96,10 @@
 
 <script>
 import dayjs from 'dayjs';
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -115,6 +112,8 @@ export default {
       term: null,
       showOnlyATerm: false,
       isOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {
@@ -144,6 +143,12 @@ export default {
     },
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
+    },
+    buttonTitle() {
+      return (this.isOpen
+          ? 'Collapse to hide additional grade resources'
+          : 'Expand to show additional grade resources'
+      );
     },
     gradeSubmissionDeadline: function() {
       if (this.term in this.courses) {
@@ -204,6 +209,9 @@ export default {
   },
   methods: {
     ...mapActions('stud_schedule', ['fetch']),
+    logDisclosureOpen() {
+      this.$logger.disclosureOpen(this);
+    },
   },
 };
 </script>

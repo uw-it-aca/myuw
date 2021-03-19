@@ -5,7 +5,7 @@ import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import CriticalInfoCard from '../components/home/new_student/critical-info.vue';
 
-import mockNotices from './mock_data/notices.json';
+import mockNotices from './mock_data/notice/javg004.json';
 
 const localVue = createLocalVue(Vuex);
 

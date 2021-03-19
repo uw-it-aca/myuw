@@ -9,7 +9,7 @@
         <b-container fluid="xl" class="py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
           no actions will be saved.
-          <a href="/support/"> Back to MyUW Support tool </a>
+          <a v-inner="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
         </b-container>
       </div>
 
@@ -22,9 +22,10 @@
           <b-row>
             <b-col xs="2">
               <b-link
+                v-inner="'MyUW profile page'"
                 href="/profile/"
                 class="text-white font-weight-light"
-                aria-label="View your profile"
+                title="View your profile"
               >
                 <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
                 {{ netid }}
@@ -33,18 +34,20 @@
             <b-col xs="10" class="text-right">
               <b-link
                 v-if="emailError"
+                v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
-                aria-label="UW email services"
+                title="UW email services"
               >
                 <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email
                 error
               </b-link>
               <b-link
                 v-else
+                v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
-                aria-label="Open your email in new tab"
+                title="Open your email in new tab"
               >
                 <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email
               </b-link>
@@ -52,14 +55,15 @@
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
-                aria-label="Open search area"
+                title="Open search area"
               >
                 <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
+                v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
-                aria-label="Sign out of MyUW"
+                title="Sign out of MyUW"
               >
                 <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-1" />Sign Out
               </b-link>
@@ -79,7 +83,7 @@
             variant="link"
             size="sm"
             class="d-lg-none p-0 border-0 text-white"
-            aria-label="Toggle Navigation Menu"
+            title="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="['far', 'square']" transform="right-1" class="m-0" />
@@ -292,30 +296,30 @@
       <p class="mt-3 mb-0 myuw-text-md">
         Watch a video tour of
         <a
+          v-out="'MyUW video for Instructors'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
           target="_blank"
           title="MyUW video tour for instructors"
-          data-linklabel="MyUW video for Instructors"
           >MyUW for Instructors</a
         >,
         <a
+          v-out="'MyUW video for staff'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
           target="_blank"
           title="MyUW video tour for staff"
-          data-linklabel="MyUW video for staff"
           >for staff</a
         >, or
         <a
+          v-out="'MyUW video for students'"
           href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
           target="_blank"
           title="MyUW video tour for students"
-          data-linklabel="MyUW video for students"
           >for students</a
         >. <br /><a
+          v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
           target="_blank"
           title="MyUW Help Center in IT Connect"
-          data-linklabel="MyUW Help Center"
           >Visit the MyUW help guide for more information</a
         >.
       </p>
@@ -370,10 +374,8 @@ export default {
     displayPopUp: (state) => state.displayPopUp,
   }),
   mounted() {
-    this.$gtag.set('user_properties', this.generateUserProperties());
-
-    // MARK: google analytics gtag
-    this.$gtag.pageview({
+    this.$logger.setUserProperties(this.affiliations);
+    this.$logger.pageview({
       page_location: window.location.href,
       page_path: window.location.pathname,
       page_title: this.pageTitle,
@@ -385,6 +387,7 @@ export default {
   },
   methods: {
     showTourModal: function () {
+      this.$logger.onBoarding(this);
       this.$refs['tourModal'].show();
       axios
         .get('/api/v1/turn_off_tour_popup', {
@@ -398,49 +401,6 @@ export default {
         });
     },
     ...mapMutations(['addVarToState']),
-    generateUserProperties() {
-      const properties = {};
-      properties['affiliation'] = (
-        this.affiliations['applicant'] ? 'Applicant' :
-        this.affiliations['faculty'] ? 'Faculty' :
-        this.affiliations['staff_employee'] ? 'Staff' :
-        this.affiliations['student'] ? 'Student' :
-        this.affiliations['alumni'] ? 'Alumni' : null
-      );
-
-      properties['class_level'] = this.titleCaseWord(this.affiliations['class_level']);
-
-      properties['continuum_college'] = (
-        this.affiliations['grad_c2'] ? 'GradC2' :
-        this.affiliations['undergrad_c2'] ? 'UndergradC2' :
-        this.affiliations['pce'] ? 'PCE' : null
-      );
-
-      properties['emp_position'] = (
-        this.affiliations['instructor'] ? 'Instructor' :
-        this.affiliations['stud_employee'] ? 'Stud employee' :
-        this.affiliations['clinician'] ? 'Clinician' :
-        this.affiliations['retiree'] ? 'Retiree' : null
-      );
-
-      properties['student_prop'] = (
-        this.affiliations['intl_stud'] ? 'International' :
-        this.affiliations['past_stud'] ? 'Former' : null
-      );
-
-      properties['student_campus'] = (
-        this.affiliations['seattle'] ? 'Seattle' :
-        this.affiliations['bothell'] ? 'Bothell' :
-        this.affiliations['tacoma'] ? 'Tacoma' : null
-      );
-
-      properties['employment_campus'] = (
-        this.affiliations['official_seattle'] ? 'Seattle' :
-        this.affiliations['official_bothell'] ? 'Bothell' :
-        this.affiliations['official_tacoma'] ? 'Tacoma' : null
-      );
-      return properties;
-    },
   },
 };
 </script>

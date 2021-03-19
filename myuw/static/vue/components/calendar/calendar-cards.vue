@@ -16,7 +16,7 @@
                 :icon="faCircle"
                 class="align-baseline text-dark-beige myuw-text-tiny"
               />
-              <a :href="event.event_url" :label="event.label">
+              <a v-out="event.label" :href="event.event_url">
                 {{ event.summary }}
               </a>
             </li>
@@ -25,7 +25,7 @@
       </uw-card>
       <div v-else :key="i" class="mb-3 text-center myuw-text-md">
         <font-awesome-icon :icon="faCircle" class="align-baseline text-dark-beige myuw-text-tiny" />
-        <a :href="eventTerm.events[0].event_url" :label="eventTerm.events[0].label">
+        <a v-out="eventTerm.events[0].label" :href="eventTerm.events[0].event_url">
           {{ eventTerm.events[0].summary }}
         </a>
         <div class="font-weight-bold">

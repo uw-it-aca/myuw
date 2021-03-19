@@ -49,6 +49,9 @@ class TestInstSectDetails(MyuwApiTest):
         self.assertEqual(
             data['sections'][0]['registrations'][0]['surname'], "Student2")
         self.assertEqual(
+            data['sections'][0]['registrations'][0]['pronouns'],
+            'he/him/his; they/them/theirs')
+        self.assertEqual(
             data['sections'][0]['registrations'][0]['credits'], "3")
         self.assertEqual(
             data['sections'][0]['registrations'][0]['class_level'], "SENIOR")
@@ -87,7 +90,11 @@ class TestInstSectDetails(MyuwApiTest):
             len(data['sections'][0]['grade_submission_delegates']), 1)
 
         self.assertEqual(len(data['sections'][0]['registrations']), 2)
-
+        self.assertEqual(
+            data['sections'][0]['registrations'][0]["pronouns"], "he/him/his")
+        self.assertEqual(
+            data['sections'][0]['registrations'][1]["pronouns"],
+            "she, her, hers or they/them/theirs")
         netid_counts = {}
 
         for registration in data['sections'][0]['registrations']:
@@ -98,7 +105,6 @@ class TestInstSectDetails(MyuwApiTest):
                 netid_counts[registration["netid"]] = 1
 
         self.assertEqual(netid_counts["javg001"], 1)
-
         self.assertGreater(len(data['related_terms']), 3)
         self.assertEqual(data['related_terms'][
             len(data['related_terms']) - 3]['quarter'], 'Spring')

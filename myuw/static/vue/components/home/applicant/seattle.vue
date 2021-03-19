@@ -18,7 +18,8 @@
       <b-container>
         <b-row>
           <b-col>Email</b-col>
-          <b-col><a href="mailto:regoff@uw.edu">regoff@uw.edu</a></b-col>
+          <b-col><a v-out="'Contact Registrar Office'"
+                   href="mailto:regoff@uw.edu">regoff@uw.edu</a></b-col>
         </b-row>
         <b-row>
           <b-col>Phone</b-col>
@@ -40,7 +41,7 @@
         You may register during the Registration Period II of your
         quarter of readmittance. Check dates in the
         <a href="http://www.washington.edu/students/reg/calendar.html"
-           target="_blank" aria-label="UW Academic calendars"
+           target="_blank"
         >Academic calendar</a>.
       </p>
 
@@ -50,22 +51,22 @@
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a
-            href="https://www.washington.edu/financialaid/"
-            target="_blank" aria-label="Student Financial Aid"
+            v-out="'Student Financial Aid'"
+            href="https://www.washington.edu/financialaid/" target="_blank"
           >
             Learn all about student financial aid and scholarships
           </a>
         </li>
         <li>
-          <a href="http://www.washington.edu/students/"
-             target="_blank" aria-label="Student Guide"
+          <a v-out="'Student Guide'"
+             href="http://www.washington.edu/students/" target="_blank"
           >
             Check out the Student guide for academics, student life, and more
           </a>
         </li>
         <li>
-          <a href="http://www.washington.edu/students/reg/calendar.html"
-             target="_blank" aria-label="UW Academic calendars"
+          <a
+            href="http://www.washington.edu/students/reg/calendar.html" target="_blank"
           >
             View the UW Academic calendars
           </a>
@@ -73,8 +74,9 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a class="btn btn-outline-secondary text-dark my-4" href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
-         aria-label="Your application status details"
+      <a
+        class="btn btn-outline-secondary text-dark my-4"
+        href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
       >
         View your {{ applicantData.type }} application status
       </a>
@@ -87,24 +89,23 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li v-if="applicantData.is_freshman">
-          <a href="https://admit.washington.edu/apply/dates-deadlines/"
-             target="_blank" aria-label="Key dates &amp; deadlines for freshmen"
+          <a
+            href="https://admit.washington.edu/apply/dates-deadlines/" target="_blank"
           >
             Key dates &amp; deadlines for freshmen
           </a>
         </li>
         <li v-if="applicantData.is_transfer">
           <a
-            href="https://admit.washington.edu/apply/dates-deadlines/#transfer"
-            target="_blank" aria-label="Key dates &amp; deadlines for Transfer"
+            href="https://admit.washington.edu/apply/dates-deadlines/#transfer" target="_blank"
           >
             Key dates &amp; deadlines for Transfer
           </a>
         </li>
         <li v-if="applicantData.if_post_bac">
-          <a href="https://admit.washington.edu/apply/dates-deadlines/#postbac"
-             target="_blank"
-             aria-label="Key dates &amp; deadlines for Postbaccalaureate"
+          <a
+            href="https://admit.washington.edu/apply/dates-deadlines/#postbac"
+            target="_blank"
           >
             Key dates &amp; deadlines for Postbaccalaureate
           </a>
@@ -116,15 +117,15 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="https://www.washington.edu/financialaid/"
-             target="_blank" aria-label="Student Financial Aid"
+          <a
+            href="https://www.washington.edu/financialaid/" target="_blank"
           >
             Learn all about student financial aid and scholarships
           </a>
         </li>
         <li>
-          <a href="https://admit.washington.edu/costs/coa/"
-             target="_blank" aria-label="Cost of Attendance"
+          <a
+            href="https://admit.washington.edu/costs/coa/" target="_blank"
           >
             Refer to total cost of attendance for financial planning
           </a>
@@ -136,23 +137,19 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="http://admit.washington.edu/Visit"
-             target="_blank" aria-label="Seattle Campus Tours"
-          >
+          <a href="http://admit.washington.edu/Visit" target="_blank">
             Plan your visit: Seattle campus tours
           </a>
         </li>
         <li>
-          <a href="https://hfs.uw.edu/Live"
-             target="_blank" aria-label="Seattle Campus Housing"
-          >
+          <a href="https://hfs.uw.edu/Live" target="_blank">
             Learn about campus-living
           </a>
         </li>
         <li>
-          <a href="http://hr.uw.edu/dso/services/matriculated-students/"
-             target="_blank"
-             aria-label="Student Services: Disability Resources"
+          <a
+            href="http://hr.uw.edu/dso/services/matriculated-students/"
+            target="_blank"
           >
             Check out student services: Disability Resources
           </a>
@@ -163,23 +160,23 @@
       </h5>
       <ul class="list-unstyled myuw-text-md">
         <li>
-          <a href="http://www.washington.edu/newhuskies/must-do/"
-             target="_blank" aria-label="Next steps for Admitted students"
+          <a
+            href="http://www.washington.edu/newhuskies/must-do/" target="_blank"
           >
             Next steps for Admitted students
           </a>
         </li>
         <li>
-          <a href="http://www.washington.edu/newhuskies/must-do/#accept/"
-             target="_blank" aria-label="Accept the admission offer"
+          <a v-out="'Accept admission offer'"
+             href="http://www.washington.edu/newhuskies/must-do/#accept/" target="_blank"
           >
             Accept the admission offer and pay the New Student Enrollment
             &amp; Orientation Fee
           </a>
         </li>
         <li v-if="applicantData.is_international">
-          <a href="https://iss.washington.edu/new-students/"
-             target="_blank" aria-label="Int’l student checklist"
+          <a v-out="'Intl student checklist'"
+             href="https://iss.washington.edu/new-students/" target="_blank"
           >
             View the Int’l student checklist from International Student
             Services (ISS)
@@ -189,30 +186,24 @@
           <a
             href="http://fyp.washington.edu/getting-started-at-the-university-of-washington/"
             target="_blank"
-            aria-label="Register for an Advising &amp; Orientation session"
           >
             Register for an Advising &amp; Orientation session
           </a>
         </li>
         <li>
           <a
-            href="http://www.washington.edu/uaa/advising/academic-planning/majors-and-minors/list-of-undergraduate-majors/"
-            target="_blank" aria-label="Undergraduate Majors"
+            href="http://www.washington.edu/uaa/advising/academic-planning/majors-and-minors/list-of-undergraduate-majors/" target="_blank"
           >
             View undergraduate Majors
           </a>
         </li>
         <li>
-          <a href="http://fyp.washington.edu/"
-             target="_blank" aria-label="First Year Programs"
-          >
+          <a href="http://fyp.washington.edu/" target="_blank">
             Learn about the First Year Programs
           </a>
         </li>
         <li>
-          <a href="http://www.washington.edu/students/"
-             target="_blank" aria-label="Student Guide"
-          >
+          <a href="http://www.washington.edu/students/" target="_blank">
             Check out the Student guide
           </a>
         </li>

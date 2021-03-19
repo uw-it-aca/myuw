@@ -1,50 +1,54 @@
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
-import {strToDate} from './common';  // when uw_sws  is 2.3.8
-import dayjs from 'dayjs';
-dayjs.extend(require('dayjs/plugin/timezone'))
+import {dayjs} from './common';
 
-const postProcess = (response) => {
+const postProcess = (response, _, rootState) => {
   const notices = response.data;
 
   const parser = new DOMParser();
   return notices.map((notice) => {
-    // Split the notice_content into notice_body and notice_title
-    if (notice.notice_content.includes('&nbsp')) {
-      const parts = notice.notice_content.split('&nbsp');
-      notice.notice_title = parts[0];
-      notice.notice_body = parts[1];
-      if (notice.notice_body[0] === ';') {
-        notice.notice_body = notice.notice_body.slice(1);
-      }
-    } else {
-      const htmlDoc = parser.parseFromString(
-          notice.notice_content, 'text/html',
-      );
-      if (htmlDoc.getElementsByClassName('notice-title')[0] !== undefined) {
-        notice.notice_title = htmlDoc.getElementsByClassName(
-            'notice-title',
-        )[0].outerHTML;
-      }
-      if (htmlDoc.getElementsByClassName(
-          'notice-body-with-title')[0] !== undefined) {
-        notice.notice_body = htmlDoc.getElementsByClassName(
-            'notice-body-with-title',
-        )[0].outerHTML;
+    if (notice.notice_content.includes('notice-title')) {
+      const noticeContent = notice.notice_content;
+
+      // Split the notice_content into notice_body and notice_title
+      if (noticeContent.includes('&nbsp')) {
+        const parts = noticeContent.split('&nbsp');
+        notice.notice_title = parts[0];
+        notice.notice_body = parts[1];
+        if (notice.notice_body[0] === ';') {
+          notice.notice_body = notice.notice_body.slice(1);
+        }
+      } else {
+        const htmlDoc = parser.parseFromString(
+            noticeContent, 'text/html',
+        );
+
+        notice.notice_title = htmlDoc.getElementsByClassName('notice-title')[0].outerHTML;
+        htmlDoc.body.removeChild(htmlDoc.getElementsByClassName('notice-title')[0]);
+        notice.notice_body = htmlDoc.body.innerHTML;
       }
     }
 
     // Build dates for the notices
-    const dateFiled = notice.attributes.find(
-        (attr) => (attr.name == 'StartDate' || attr.name == 'Date'),
+    const dateAttr = notice.attributes.find(
+        (attr) => (attr.name == 'Date'),
     );
-    if (dateFiled !== undefined) {
-      notice.date = strToDate(dateFiled.value);  // when uw_sws  is 2.3.8
-      // notice.date = dayjs(dateFiled.value);  // datetime in UTC
-    } else {
-      notice.date = null;
+    const startDateAttr = notice.attributes.find(
+        (attr) => (attr.name == 'DisplayBegin'),
+    );
+    // datetime will reflect BOF
+    if (startDateAttr !== undefined && startDateAttr.value !== undefined) {
+      notice.startDate = dayjs.utc(startDateAttr.value);
     }
-
+    if (dateAttr !== undefined && dateAttr.value !== undefined) {
+      notice.date = dayjs.utc(dateAttr.value);
+      notice.formattedDate = dateAttr.formatted_value;
+    }
+    // Notices will be sorted by notice.sortDate
+    // some notice only has DisplayBegin date
+    notice.sortDate = notice.startDate ? notice.startDate : (
+      notice.date ? notice.date : null
+    );
     return notice;
   });
 };

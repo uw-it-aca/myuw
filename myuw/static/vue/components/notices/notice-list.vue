@@ -21,7 +21,7 @@
     </div>
     <b-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen" class="mt-3">
       <div
-        v-for="(notice, i) in notices"
+        v-for="(notice, i) in sortNotices(notices)"
         :key="i"
         v-observe-visibility="observerConfig(notice)"
         :class="[$mq === 'desktop' ? 'w-75 mx-auto' : '']"
@@ -101,6 +101,7 @@ export default {
     },
     onNoticeVisible(notice) {
       if (!notice.is_read) {
+        this.$logger.noticeRead(this, notice);
         this.setReadNoUpdate(notice);
       }
     },

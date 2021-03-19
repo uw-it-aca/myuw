@@ -14,9 +14,9 @@
 
   <span v-else>
     <b-link
+      v-inner="`View Classlist: ${section.id}`"
       target="_blank"
       :href="classListHref()"
-      :rel="section.section_label"
       :title="getTitle()"
     >
       {{ section.current_enrollment }}
@@ -41,7 +41,7 @@ export default {
       return ('/teaching/' + this.section.apiTag + '/students');
     },
     getTitle() {
-      return ('View class list of ' +
+      return ('View Classlist of ' +
                this.section.curriculum_abbr + ' ' +
                this.section.course_number + ' ' +
                this.section.section_id);

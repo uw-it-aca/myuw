@@ -3,7 +3,6 @@
     <div v-if="registrationIsOpen" class="my-4 text-center">
       <uw-link-button
         target="_blank"
-        title="Register using SLN codes"
         href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
         class="mb-2"
       >
@@ -12,7 +11,6 @@
       <div v-if="myplanRegistrationHref" class="d-inline-block">
         <uw-link-button
           target="_blank"
-          title="Use MyPlan to Register"
           :href="myplanRegistrationHref"
           class="mb-2"
         >
@@ -22,15 +20,15 @@
       <div v-else class="d-inline-block">
         <uw-link-button
           target="_blank"
-          title="Use MyPlan to Register"
-          :href="`https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/${nextTermYear}${nextTermQuarterCode}`"
+          :href="`https://myplan.uw.edu/plan/#/${nextTermYear}${nextTermQuarterCode}`"
           class="mb-2"
         >
           Use MyPlan to Register
         </uw-link-button>
       </div>
       <div v-if="isC2" class="text-center myuw-text-md">
-        <a target="_blank" href="https://www.degreereg.uw.edu/user-guide">
+        <a target="_blank"
+          href="https://www.degreereg.uw.edu/user-guide">
           How to register for PCE courses
         </a>
       </div>
@@ -48,15 +46,12 @@
       <h4 class="sr-only">Registration resources</h4>
       <ul class="m-0 list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
-          <a
-            target="_blank"
-            href="https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/"
-          >
-            MyPlan
-          </a>
+          <a target="_blank" href="https://myplan.uw.edu"> MyPlan </a>
         </li>
         <li v-if="bothell">
-          <a target="_blank" href="http://www.uwb.edu/registration/time"> Bothell Time Schedule </a>
+          <a target="_blank" href="http://www.uwb.edu/registration/time">
+            Bothell Time Schedule
+          </a>
         </li>
         <li v-if="seattle">
           <a target="_blank" href="http://www.washington.edu/students/timeschd/">
@@ -74,7 +69,9 @@
           </a>
         </li>
         <li v-if="isC2">
-          <a target="_blank" href="https://www.washington.edu/students/timeschd/95index.html">
+          <a target="_blank"
+            href="https://www.washington.edu/students/timeschd/95index.html"
+          >
             PCE Time Schedule
           </a>
         </li>
@@ -96,7 +93,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import LinkButton from '../../_templates/link-button.vue'
+import LinkButton from '../../_templates/link-button.vue';
 
 export default {
   components: {
@@ -146,7 +143,7 @@ export default {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
         return this.currentPlanData.degree_audit_href;
       }
-      return 'https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree';
+      return 'https://myplan.uw.edu/dars';
     },
     nextTermQuarterCode() {
       if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
@@ -154,13 +151,13 @@ export default {
       }
       const q = this.nextTermQuarter.toLowerCase();
       if (q === 'winter') {
-        return 1;
+        return 'Wi';
       } else if (q === 'spring') {
-        return 2;
+        return 'Sp';
       } else if (q === 'summer') {
-        return 3;
+        return 'Su';
       } else if (q === 'autumn') {
-        return 4;
+        return 'Au';
       }
 
       return '';

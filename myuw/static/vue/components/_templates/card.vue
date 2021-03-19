@@ -1,6 +1,7 @@
 <template>
   <div v-if="(mobileOnly && $mq === 'mobile') || !mobileOnly">
     <b-card v-if="loaded"
+            v-visibility-change="loaded ? visibilityChanged : null"
             class="rounded-0 shadow-sm mb-3"
             :body-class="bodyClasses"
             footer-class="border-0 px-3 py-2"
@@ -8,7 +9,7 @@
       <slot name="card-heading" />
       <slot name="card-body" />
       <slot name="card-disclosure" />
-      <template v-if="!!this.$slots['card-footer']"
+      <template v-if="!!$slots['card-footer']"
                 #footer
                 footer-tag="footer"
       >
@@ -89,5 +90,29 @@ export default {
       return classes;
     },
   },
+  watch: {
+    loaded(val) {
+      if (val) this.$logger.cardLoad(this);
+    },
+  },
+  created() {
+    if (this.loaded) this.$logger.cardLoad(this);
+  },
+  methods: {
+    visibilityChanged(entry) {
+      this.$logger.visibilityChanged(this, entry);
+    }
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+.card-overlay {
+  position: absolute;
+  height: 100px;
+  width: calc(100% - 20px);
+  background-color: rgba(1, 1, 1, 0.5);
+  z-index: 9999;
+  color: white;
+}
+</style>
