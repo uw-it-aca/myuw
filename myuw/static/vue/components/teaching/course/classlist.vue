@@ -44,7 +44,6 @@
     <div v-else-if="section.enrollment_student_name">
       <span>{{ section.enrollment_student_name }}</span>
       <b-link
-        v-inner="`View class list ${section.id}`"
         target="_blank"
         :href="`/teaching/${section.apiTag}/students`"
       >
@@ -62,7 +61,6 @@
 
       <span>
         <b-link v-if="section.current_enrollment"
-          v-inner="`View class list ${section.id}`"
           target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
         >

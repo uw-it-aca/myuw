@@ -1,7 +1,6 @@
 <template>
   <li v-if="section.sln">
       <b-link
-        v-inner="`Textbooks: ${section.id}`"
         :href="textbookUrl"
       >Textbooks</b-link>
   </li>
