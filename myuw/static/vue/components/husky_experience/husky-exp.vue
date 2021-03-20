@@ -1,77 +1,94 @@
 <template>
-  <div v-if="!renderedFromParam">
-    <b-row no-gutters>
-      <b-col md="8">
-        This toolkit is designed to help you make the most of your time at UW.
-        The articles here address four interconnected dimensions of the Husky
-        Experience: Know Yourself, Know the World, Make Your Way, and Weave it
-        Together. Wherever you are in your university career, use this toolkit
-        to challenge yourself, explore your options, and integrate all you are
-        learning - your Husky Experience is more than a major!
-      </b-col>
-      <b-col md="4">
-        <img :src="`${staticUrl}/images/HX_dimensions-1.0x.png`"
-              :srcset="`${staticUrl}/images/HX_dimensions-1.0x.png 1x, ${
-                staticUrl
-              }/images/HX_dimensions-1.5x.png 1.5x, ${
-                staticUrl
-              }/images/HX_dimensions-2.0x.png 2x`"
-              alt="Husky Experience dimensions diagram"
-        />
-      </b-col>
-    </b-row>
+  <uw-panel :loaded="true">
+    <template #panel-body>
+      <div v-if="!renderedFromParam">
+        <b-row :no-gutters="$mq !== 'desktop'">
+          <b-col md="8">
+            <p class="myuw-text-lg">
+              This toolkit is designed to help you make the most of your time at UW.
+              The articles here address four interconnected dimensions of the Husky
+              Experience: Know Yourself, Know the World, Make Your Way, and Weave it
+              Together. Wherever you are in your university career, use this toolkit
+              to challenge yourself, explore your options, and integrate all you are
+              learning - your Husky Experience is more than a major!
+            </p>
+          </b-col>
+          <b-col md="4" class="p-4 text-center">
+            <img :src="`${staticUrl}/images/HX_dimensions-1.0x.png`"
+                  :srcset="`${staticUrl}/images/HX_dimensions-1.0x.png 1x, ${
+                    staticUrl
+                  }/images/HX_dimensions-1.5x.png 1.5x, ${
+                    staticUrl
+                  }/images/HX_dimensions-2.0x.png 2x`"
+                  alt="Husky Experience dimensions diagram"
+                  class="img-fluid mx-auto"
+            />
+          </b-col>
+        </b-row>
 
-    <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
-      <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
-        <template #card-heading>
-          <h3>
-            {{cd.title}}
-          </h3>
-        </template>
-        <template #card-body>
-          {{cd.intro}}
+        <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
+          <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
+            <template #card-heading>
+              <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+                {{cd.title}}
+              </h3>
+            </template>
+            <template #card-body>
+              <div class="myuw-text-md">
+                <p>
+                  {{cd.intro}}
+                </p>
 
-          <div v-html="data[cd.id]" />
-        </template>
-      </uw-card>
-    </div>
+                <div v-html="data[cd.id]" />
+              </div>
+            </template>
+          </uw-card>
+        </div>
 
-    <h3>Why We Made This Toolkit</h3>
-    <p>
-      We are a team of UW staff members who care about your success.
-      We want to help you create the kind of Husky Experience that will
-      serve you best. To do this, we gathered and curated advice from
-      students, faculty, and staff from across UW on how to make the
-      most of your time here.
-    </p>
-    <p>
-      The toolkit was curated by Michaelann Jundt of Undergraduate
-      Academic Affairs, Janice Fournier and William Washington of UW
-      Information Technology and Katy DeRosier from the Office of the
-      Provost.
-    </p>
+        <h3 class="h5">Why We Made This Toolkit</h3>
+        <div class="myuw-text-md">
+          <p>
+            We are a team of UW staff members who care about your success.
+            We want to help you create the kind of Husky Experience that will
+            serve you best. To do this, we gathered and curated advice from
+            students, faculty, and staff from across UW on how to make the
+            most of your time here.
+          </p>
+          <p>
+            The toolkit was curated by Michaelann Jundt of Undergraduate
+            Academic Affairs, Janice Fournier and William Washington of UW
+            Information Technology and Katy DeRosier from the Office of the
+            Provost.
+          </p>
+        </div>
 
-    <h3>How it works</h3>
-    <p>
-      These articles are delivered here via MyUW so that all students
-      have access to these ideas and resources. New articles are highlighted
-      each week on the home page to provide timely advice, but read and
-      explore them anytime.
-    </p>
-    <p>We plan to add new articles and resources each academic year.</p>
-  </div>
-  <div v-else>
-    <div v-if="isReady" v-html="data"/>
-  </div>
+        <h3 class="h5">How it works</h3>
+        <div class="myuw-text-md">
+          <p>
+            These articles are delivered here via MyUW so that all students
+            have access to these ideas and resources. New articles are highlighted
+            each week on the home page to provide timely advice, but read and
+            explore them anytime.
+          </p>
+          <p>We plan to add new articles and resources each academic year.</p>
+        </div>
+      </div>
+      <div v-else>
+        <div v-if="isReady" v-html="data" class="myuw-text-md"/>
+      </div>
+    </template>
+  </uw-panel>
 </template>
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import Panel from '../_templates/panel.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-panel': Panel,
   },
   data: function() {
     const param = new URL(window.location.href).searchParams.get('article');
@@ -133,11 +150,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "sass:map";
-@use "../../../css/myuw/variables.scss" as b-vars;
-img {
-  width: 100%;
-  height: auto;
+@use 'sass:map';
+@use '../../../css/myuw/variables.scss' as b-vars;
+
+::v-deep .myuw-article-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 1rem;
+  margin-top: 2rem;
+}
+
+::v-deep .myuw-article-footer-title {
+  font-family: 'Open Sans', sans-serif !important;
+  font-weight: bold;
+}
+
+::v-deep h3 {
+  font-size: 1.25rem;
 }
 
 div.d-flex.card-cols > div {
