@@ -125,7 +125,7 @@
             <b-collapse
               v-if="!isHybrid"
               id="nav-collapse"
-              class="pt-3 text-nowrap myuw-navigation"
+              class="pt-4 text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
             >
@@ -225,9 +225,10 @@
               <uw-messages />
             </div>
           </b-col>
-          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-3">
+          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-4">
             <h1
               id="mainHeader"
+              class="mb-3 h3 myuw-font-encode-sans"
               :class="[pageTitle == 'Home' || pageTitle == 'Profile' ? 'sr-only' : '']"
             >
               {{ pageTitle }}
