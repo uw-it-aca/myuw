@@ -1,20 +1,20 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="applicantData.is_returning" #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h3 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Returning Student Application
-      </h3>
+      </h2>
     </template>
     <template v-else #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h3 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Tacoma Application for
         {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
-      </h3>
+      </h2>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h4 class="h5 mb-3 text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige">
         For application status, contact the UW Tacoma Office of Registrar
-      </h4>
+      </h3>
       <b-container>
         <b-row>
           <b-col>Email</b-col>
@@ -41,9 +41,9 @@
           </b-col>
         </b-row>
       </b-container>
-      <h4 class="h5 mb-3 text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige">
         Resources for Tacoma Applicants
-      </h4>
+      </h3>
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a v-out="'UW Tacoma Financial Aid'"
@@ -75,12 +75,12 @@
       >
         View your {{ applicantData.type }} application status
       </a>
-      <h4 class="h5 mb-3 text-dark-beige">
+      <h3 class="h4 mb-3 text-dark-beige">
         Resources for Tacoma Applicants
-      </h4>
-      <h5 class="h6">
+      </h3>
+      <h4 class="h5">
         ADMISSIONS
-      </h5>
+      </h4>
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a
@@ -92,9 +92,9 @@
           </a>
         </li>
       </ul>
-      <h5 class="h6">
+      <h4 class="h5">
         FINANCES
-      </h5>
+      </h4>
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a v-out="'Applying for financial Aid'"
@@ -112,9 +112,9 @@
           </a>
         </li>
       </ul>
-      <h5 class="h6">
+      <h4 class="h5">
         STUDENT LIFE
-      </h5>
+      </h4>
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a v-out="'UW Tacoma Campus Tours'"
@@ -147,9 +147,9 @@
           </a>
         </li>
       </ul>
-      <h5 class="h6">
+      <h4 class="h5">
         IF ADMITTED
-      </h5>
+      </h4>
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a v-out="'Next Steps for Admitted UW Tacoma Students'"
