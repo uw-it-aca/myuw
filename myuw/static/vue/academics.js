@@ -52,7 +52,7 @@ Vue.component('myuw-visual-schedule', VisualSchedule);
 Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-grad-status', GradStatus);
 Vue.component('myuw-grad-committee', GradCommittee);
-Vue.component('myuw-sidebar-links', SidebarLinks);
+Vue.component('myuw-academics-sidelinks', SidebarLinks);
 
 new Vue({
   ...vueConf,
