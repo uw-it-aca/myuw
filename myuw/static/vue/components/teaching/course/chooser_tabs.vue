@@ -12,15 +12,19 @@
       </template>
     </uw-term-selector>
   </div>
+  <uw-card v-else>
+  </uw-card>
 </template>
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
+import Card from '../../_templates/card.vue';
 import CourseCards from './course_cards.vue';
 import TermSelector from '../../_common/term-selector.vue';
 
 export default {
   components: {
+    'uw-card': Card,
     'uw-teaching-course-cards': CourseCards,
     'uw-term-selector': TermSelector,
   },

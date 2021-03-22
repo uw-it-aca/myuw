@@ -1,5 +1,7 @@
 <template>
-  <div v-if="student" v-comp-group="`student-course-cards`">
+  <div v-if="student"
+       v-meta="{tag: `student-course-cards`, groupRoot: true}"
+  >
     <template v-if="isReady">
       <h3 class="sr-only">
         Your {{ titleCaseWord(course.quarter) }} {{ course.year }} Courses

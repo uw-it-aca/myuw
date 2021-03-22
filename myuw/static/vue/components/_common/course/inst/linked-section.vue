@@ -6,7 +6,7 @@
         <div :class="`c${section.color_id}`" />
         <h4 class="h5 myuw-font-encode-sans">
           <a v-if="section.mini_card"
-            v-inner="`View mini-card ${section.id}`"
+            v-inner="'View Mini-card'"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
             title="View mini-card on Teaching page"
@@ -29,7 +29,7 @@
         </h5>
         <span>
           <a
-            v-out="getTimeScheLinkLable(section)"
+            v-out="'Time Schedule for SLN'"
             :href="getTimeScheHref(section)"
             :title="`Time Schedule for SLN ${section.sln}`"
             target="_blank"
@@ -110,13 +110,17 @@ export default {
       }
       this.toggleMini(this.section);
       if (!this.section.mini_card) {
-        this.$nextTick(() => {
-          window.history.replaceState({}, null, `/teaching/${this.section.href}`);
-          setTimeout(() => {
-            document.getElementById(this.section.anchor)
-              .scrollIntoView({behavior: 'smooth'});
-          }, 100);
-        });
+        if (window.location.pathname.startsWith('/teaching/')) {
+          this.$nextTick(() => {
+            window.history.replaceState({}, null, `/teaching/${this.section.href}`);
+            setTimeout(() => {
+              document.getElementById(this.section.anchor)
+                .scrollIntoView({behavior: 'smooth'});
+            }, 100);
+          });
+        } else {
+          window.location.pathname = `/teaching/${this.section.href}`;
+        }
       } else {
         window.history.replaceState({}, null, window.location.pathname);
       }

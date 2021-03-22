@@ -82,7 +82,7 @@ Vue.component('myuw-notice-card', Notices);
 Vue.component('myuw-acad-cal-snippet', AcadCalSnippet);
 Vue.component('myuw-ns-critical-info', CriticalInfo);
 Vue.component('myuw-ns-international-student', NewInterStudent);
-Vue.component('myuw-applicant', Applicant);
+Vue.component('myuw-applicant-cards', Applicant);
 Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-retiree', Retiree);
 Vue.component('myuw-events', Events);
