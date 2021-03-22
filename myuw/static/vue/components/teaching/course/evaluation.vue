@@ -20,10 +20,7 @@
                   </span>
                 </li>
                 <li v-if="section.evaluation.report_url">
-                  <a
-                    v-out="`View evaluation report: ${section.id}`"
-                    :href="section.evaluation.report_url"
-                  >
+                  <a :href="section.evaluation.report_url">
                     View evaluation results report
                   </a>
                 </li>
@@ -46,7 +43,6 @@
                 </li>
                 <li>
                   <a
-                    v-out="`Manage evaluation: ${section.id}`"
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
                   >Manage evaluation</a>
                 </li>
@@ -57,7 +53,6 @@
                 </li>
                 <li>
                   <a
-                    v-out="`Manage evaluation: ${section.id}`"
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
                   >Manage evaluation</a>
                 </li>
@@ -69,10 +64,7 @@
                 {{section.evaluation.reportAvailableDateDisplay}}
               </li>
               <li v-if="section.evaluation.report_url">
-                <a
-                  v-out="`View evaluation report: ${section.id}`"
-                  :href="section.evaluation.report_url"
-                >
+                <a :href="section.evaluation.report_url">
                   View evaluation results report
                 </a>
               </li>
@@ -89,7 +81,6 @@
             </li>
             <li>
               <a
-                v-out="`Manage evaluation: ${section.id}`"
                 :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
               >Manage evaluation</a>
             </li>

@@ -3,13 +3,12 @@
     <span>Website:&nbsp;&nbsp;</span>
     <span>
       <a
-        v-out="`View Course Website ${section.id}`"
         :href="section.class_website_url"
         target="_blank"
       >View class website</a>
       <span v-if="!pastTerm">
         <a
-          v-out="`Update Course Website ${section.id}`"
+          v-out="'Update Course Website'"
           target="_blank"
           :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
           title="Update Course Website"
@@ -24,7 +23,7 @@
   <li v-else-if="section.sln">
     <span>Website:&nbsp;&nbsp;</span>
     <a
-      v-out="`Add Course Website ${section.id}`"
+      v-out="'Add Course Website'"
       target="_blank"
       :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
       title="Add Course Website"

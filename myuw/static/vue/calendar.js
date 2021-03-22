@@ -21,7 +21,7 @@ vueConf.store.commit('addVarToState', {
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-calendar-tabs', CalendarTabs);
-Vue.component('myuw-sidebar-links', SidebarLinks);
+Vue.component('myuw-calendar-sidelinks', SidebarLinks);
 
 new Vue({
   ...vueConf,
