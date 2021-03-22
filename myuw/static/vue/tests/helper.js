@@ -7,6 +7,7 @@ import utils from '../mixins/utils';
 
 // Custom Plugins
 import Logger from '../plugins/logger';
+import Metadata from '../plugins/metadata';
 import Tracklink from '../plugins/tracklink';
 
 // helper for testing action with expected mutations
@@ -46,6 +47,7 @@ const createLocalVue = (vuexModule) => {
   const localVue = createLocalVueOriginal();
   localVue.use(BootstrapVue);
   localVue.use(vuexModule);
+  localVue.use(Metadata);
   localVue.use(Logger, {
     console: {},
   });

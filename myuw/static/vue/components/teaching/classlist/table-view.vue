@@ -35,11 +35,6 @@ import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
 export default {
-  data: function() {
-    return {
-      faEnvelope,
-    };
-  },
   props: {
     mobileOnly: {
       type: Boolean,
@@ -53,6 +48,11 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  data: function() {
+    return {
+      faEnvelope,
+    };
   },
   computed: {
     fields() {
