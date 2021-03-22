@@ -149,6 +149,7 @@ class Logger {
     this.sink.event('notice_read', {
       comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
+      is_critical: notice.is_critical,
     });
   }
 

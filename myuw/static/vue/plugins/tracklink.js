@@ -4,6 +4,14 @@ function linkClickHandler(event, binding, vnode, out) {
   let label = binding.value ? binding.value : event.target.innerText;
 
   const instance = vnode.componentInstance ? vnode.componentInstance : vnode.context;
+
+  if (instance.$meta.term) {
+    label += `|${instance.$meta.term}`;
+  }
+  if (instance.$meta.course) {
+    label += `|${instance.$meta.course}`;
+  }
+
   // Resolves the `a` tag from the path
   const aTarget = event.path.find((el) => el.tagName === 'A');
 
