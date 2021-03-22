@@ -1,6 +1,6 @@
 <template>
   <uw-card v-if="showGradeCard"
-           v-meta="`{term: ${term}}`"
+           v-meta="{term: term}"
            :loaded="isReady"
            :errored="isErrored"
            :errored-show="showError"

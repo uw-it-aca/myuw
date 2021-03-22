@@ -28,9 +28,13 @@ class Logger {
           cardLoad: 1,
         };
       }
-      this.sink.event('card_load', {
+      const data = {
         comp_tag: component.compTag ? component.compTag : root.$meta.tag,
-      });
+      };
+      if (component.$meta.term) {
+        data.term_tag = component.$meta.term;
+      }
+      this.sink.event('card_load', data);
     });
   }
 
