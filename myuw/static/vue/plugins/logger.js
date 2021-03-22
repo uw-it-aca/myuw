@@ -87,13 +87,19 @@ class Logger {
     this.sink.event('search', {search_term: searchTerm});
   }
 
-  linkClick(component, url, label, out) {
-    this.sink.event('link_click', {
+  linkClick(component, label, out) {
+    const data = {
       comp_tag: component.$meta.group.$meta.tag,
-      link_url: url,
       link_label: label,
       link_to_external: out,
-    });
+    };
+    if (component.$meta.term) {
+      data.term_tag = component.$meta.term;
+    }
+    if (component.$meta.course) {
+      data.course_tag = component.$meta.course;
+    }
+    this.sink.event('link_click', data);
   }
 
   visibilityChanged(component, entry) {
@@ -245,31 +251,6 @@ export default function (Vue, options) {
   } else {
     throw '`gtag` or `console` config needed';
   }
-
-  /**
-   * Sets the meta attributes for a component
-   * Attributes used by the logger
-   * - tag (String) The component tag
-   * - groupRoot (Boolean) If the component should be treated as the root
-   *                       for a group of all its children
-   *                       (TODO: Deprecate this in favor of `tag`
-   *                        automatically indicating group root)
-   * - term (String) If the data in a component depends on a term
-   * - eid (String) Certain components have an extra id eg.
-   *                teaching-course-card has apiTag that uniquely idenfies it
-   */
-  Vue.directive('meta', {
-    bind: (_, binding, vnode) => {
-      console.log(binding.value);
-      console.log(vnode.context);
-      if (binding.value) {
-        Object.entries(binding.value).forEach(([key, value]) => {
-          vnode.context.$meta[key] = value;
-        });
-      }
-      console.log(vnode.context.$meta);
-    },
-  });
 
   Vue.$logger = Vue.prototype.$logger = new Logger(sink, options.logger);
 };

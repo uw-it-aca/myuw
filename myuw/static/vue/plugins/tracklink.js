@@ -9,7 +9,6 @@ function linkClickHandler(event, binding, vnode, out) {
 
   instance.$logger.linkClick(
     instance,
-    aTarget.href,
     label,
     out,
   );
@@ -55,13 +54,22 @@ export default function(Vue, _) {
       if (this.$el && this.$el.querySelectorAll) {
         this.$el.querySelectorAll('a:not(.external-link):not(.internal-link)')
           .forEach((el) => {
+            // Find nearest vue component parent
+            let context = null;
+            for (let comp = el; comp; comp = comp.parentElement) {
+              if (comp.__vue__) {
+                context = comp.__vue__;
+                break;
+              }
+            }
+
             if (location.hostname === el.hostname || el.hostname.length === 0) {
-              el.onclick = (evt) => linkClickHandler(evt, {}, {context: this}, false);
-              el.onauxclick = (evt) => linkClickHandler(evt, {}, {context: this}, false);
+              el.onclick = (evt) => linkClickHandler(evt, {}, {context}, false);
+              el.onauxclick = (evt) => linkClickHandler(evt, {}, {context}, false);
               el.classList.add('internal-link');
             } else {
-              el.onclick = (evt) => linkClickHandler(evt, {}, {context: this}, true);
-              el.onauxclick = (evt) => linkClickHandler(evt, {}, {context: this}, true);
+              el.onclick = (evt) => linkClickHandler(evt, {}, {context}, true);
+              el.onauxclick = (evt) => linkClickHandler(evt, {}, {context}, true);
               el.classList.add('external-link');
             }
           });

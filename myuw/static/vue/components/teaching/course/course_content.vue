@@ -1,7 +1,7 @@
 <template>
   <uw-card
     :id="idForSection(section)"
-    v-meta="`{term: ${term}, course: ${section.anchor}}`"
+    v-meta="{term: term, course: section.anchor}"
     loaded
     :ribbon="{
       side: 'top',
