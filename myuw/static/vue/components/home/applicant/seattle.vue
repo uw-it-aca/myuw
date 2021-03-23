@@ -132,7 +132,7 @@
         </li>
       </ul>
 
-      <h4 class="h5">
+      <h4 class="h6">
         STUDENT LIFE
       </h4>
       <ul class="list-unstyled myuw-text-md">
@@ -155,7 +155,7 @@
           </a>
         </li>
       </ul>
-      <h4 class="h5">
+      <h4 class="h6">
         IF ADMITTED
       </h4>
       <ul class="list-unstyled myuw-text-md">
