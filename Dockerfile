@@ -18,6 +18,8 @@ WORKDIR /app/
 RUN npm install .
 
 ADD . /app/
+ARG VUE_DEVTOOLS
+ENV VUE_DEVTOOLS=$VUE_DEVTOOLS
 RUN npx webpack
 
 FROM pre-container as app-container

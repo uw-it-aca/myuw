@@ -1,11 +1,16 @@
 'use strict'
 const path = require('path');
+const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DjangoBridgePlugin = require('django-webpack-bridge');
+
+if (!('VUE_DEVTOOLS' in process.env) || process.env.VUE_DEVTOOLS.length === 0) {
+  process.env.VUE_DEVTOOLS = process.env.ENV === 'localdev';
+}
 
 module.exports = {
   mode: (process.env.ENV === 'localdev' ? 'development' : 'production'),
@@ -103,6 +108,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.EnvironmentPlugin(['VUE_DEVTOOLS']),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({

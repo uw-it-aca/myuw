@@ -141,8 +141,7 @@ Vue.use(TrackLink);
 Vue.use(TrackCollapse);
 Vue.use(Metadata);
 
-
-Vue.config.devtools = true;
+Vue.config.devtools = process.env.VUE_DEVTOOLS === "True";
 
 // Mixins
 import courses from './mixins/courses';

@@ -26,6 +26,7 @@ services:
     environment:
       NODE_ENV: development
       ENV: localdev
+      # VUE_DEVTOOLS: "False"
       # BUNDLE_ANALYZER: "True"
     volumes:
       - ./myuw:/app/myuw
