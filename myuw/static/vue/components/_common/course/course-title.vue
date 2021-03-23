@@ -2,10 +2,8 @@
   <div class="d-flex justify-content-between mb-3">
     <div>
       <h2
+        :aria-label="`${section.id}`"
         class="h5 mb-0 text-dark-beige myuw-font-encode-sans">
-        <span class="sr-only">
-          {{ titleCaseName(term.replace(',', ' ')) }} Course:
-        </span>
         {{ section.curriculum_abbr }}
         {{ section.course_number }}
         {{ section.section_id }}
@@ -47,10 +45,6 @@
 <script>
 export default {
   props: {
-    term: {
-      type: String,
-      required: true,
-    },
     section: {
       type: Object,
       required: true,

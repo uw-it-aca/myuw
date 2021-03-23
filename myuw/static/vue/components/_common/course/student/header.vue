@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <uw-course-title show-credits :term=term :section="section" />
+      <uw-course-title show-credits :section="section" />
     </div>
 
     <div v-if="section.summer_term">
@@ -46,10 +46,6 @@ export default {
     'uw-course-title': CourseTitle,
   },
   props: {
-    term: {
-      type: String,
-      required: true,
-    },
     section: {
       type: Object,
       required: true,

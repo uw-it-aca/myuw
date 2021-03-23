@@ -9,7 +9,7 @@
     }"
   >
     <template #card-heading>
-      <uw-course-header :term=term :section="section" />
+      <uw-course-header :section="section" />
       <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
 

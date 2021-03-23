@@ -5,7 +5,7 @@
       :ribbon="{ side: 'top', colorId: section.color_id }"
     >
       <template #card-heading>
-        <uw-course-header :term=term :section="section" />
+        <uw-course-header :section="section" />
       </template>
 
       <template #card-body>

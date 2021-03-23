@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <uw-course-title show-sln :term=term :section="section" />
+      <uw-course-title show-sln :section="section" />
 
       <div>
         <b-button v-if="section.mini_card"
@@ -50,10 +50,6 @@ export default {
     'uw-course-title': CourseTitle,
   },
   props: {
-    term: {
-      type: String,
-      required: true,
-    },
     section: {
       type: Object,
       required: true,
