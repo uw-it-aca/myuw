@@ -12,7 +12,7 @@
         <template v-if="evalObj.is_multi_instr">
           <p>
             <a
-              v-out="`Course evaluation ${section.id}`"
+              v-out="'Evaluate course'"
               :href="evalObj.url" target="_blank"
             >
               {{ section.curriculum_abbr }}
@@ -50,7 +50,7 @@
                 class="mb-0"
             >
               <a
-                v-out="`Instructor evaluation ${section.id}`"
+                v-out="'Evaluate instructor'"
                 :href="evalObj.url" target="_blank">
                 {{ titleCaseName(instructor.instructor_name) }}
               </a>

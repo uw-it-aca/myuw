@@ -24,11 +24,7 @@
       <span v-else>
         None assigned
       </span>
-      <a
-        v-out="(section.gradeSubmissionSectionDelegate ? 'Update' : 'Add')
-          + `Grading Delegate: ${section.id}`"
-        :href="gradeDelegateUrl"
-      >
+      <a :href="gradeDelegateUrl">
         <span v-if="section.gradeSubmissionSectionDelegate">
           Update grade submission delegate
         </span>
@@ -46,7 +42,7 @@
           <span v-if="section.grading_status">
             <span v-if="section.grading_status.allGradesSubmitted">
               <a
-                v-out="`GradePage ${section.id}`"
+                v-out="'Grade submitted'"
                 :href="section.grading_status.section_url"
                 target="_blank"
               >
@@ -59,7 +55,7 @@
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
               <a
-                v-out="`GradePage ${section.id}`"
+                v-out="'Grade to submit'"
                 :href="section.grading_status.section_url"
                 target="_blank"
               >
@@ -72,7 +68,6 @@
              section.allows_secondary_grading">
               <a
                 v-if="section.grading_status.no_grades_submitted"
-                v-out="`Submit grades ${section.id}`"
                 :href="section.grading_status.section_url"
                 target="_blank"
               >
@@ -85,7 +80,6 @@
             <span v-else>
               Grading for secondary section is disabled.
               <a
-                v-out="`Grade primary section ${section.id}`"
                 :href="section.grading_status.section_url"  target="_blank">
                 Grade primary section
               </a>.
@@ -121,7 +115,7 @@
         <div v-if="section.grading_status">
           <span v-if="section.grading_status.allGradesSubmitted">
             <a
-              v-out="`GradePage ${section.id}`"
+              v-out="'Grade submitted by'"
               :href="section.grading_status.section_url"
               target="_blank"
             >
@@ -151,7 +145,6 @@
             <span v-if="section.grading_status">
               <br />
               <a
-                v-out="'Change Submitted Grades'"
                 href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
                 target="_blank"
               >What can I do now?</a>

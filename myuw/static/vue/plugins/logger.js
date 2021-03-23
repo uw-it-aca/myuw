@@ -15,22 +15,26 @@ class Logger {
 
   cardLoad(component) {
     component.$nextTick(() => {
-      let root = component.$myuw.compRoot;
+      let root = component.$meta.group;
       if (
-        root.$myuw.groupRoot &&
-        this.cardGroupEvents[root.$myuw.uid] &&
-        this.cardGroupEvents[root.$myuw.uid].cardLoad
+        root.$meta.group &&
+        this.cardGroupEvents[root.$meta.uid] &&
+        this.cardGroupEvents[root.$meta.uid].cardLoad
       ) {
-        this.cardGroupEvents[root.$myuw.uid].cardLoad += 1;
+        this.cardGroupEvents[root.$meta.uid].cardLoad += 1;
         return;
       } else {
-        this.cardGroupEvents[root.$myuw.uid] = {
+        this.cardGroupEvents[root.$meta.uid] = {
           cardLoad: 1,
         };
       }
-      this.sink.event('card_load', {
-        comp_tag: component.compTag ? component.compTag : root.$myuw.tag,
-      });
+      const data = {
+        comp_tag: component.compTag ? component.compTag : root.$meta.tag,
+      };
+      if (component.$meta.term) {
+        data.term_tag = component.$meta.term;
+      }
+      this.sink.event('card_load', data);
     });
   }
 
@@ -87,13 +91,19 @@ class Logger {
     this.sink.event('search', {search_term: searchTerm});
   }
 
-  linkClick(component, url, label, out) {
-    this.sink.event('link_click', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
-      link_url: url,
+  linkClick(component, label, out) {
+    const data = {
+      comp_tag: component.$meta.group.$meta.tag,
       link_label: label,
       link_to_external: out,
-    });
+    };
+    if (component.$meta.term) {
+      data.term_tag = component.$meta.term;
+    }
+    if (component.$meta.course) {
+      data.course_tag = component.$meta.course;
+    }
+    this.sink.event('link_click', data);
   }
 
   visibilityChanged(component, entry) {
@@ -118,7 +128,7 @@ class Logger {
 
   disclosureOpen(component) {
     this.sink.event('disclosure_open', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
     });
   }
 
@@ -127,8 +137,9 @@ class Logger {
       notice.notice_title, 'text/html',
     );
     this.sink.event('notice_open', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
+      is_critical: notice.is_critical,
     });
   }
 
@@ -137,34 +148,35 @@ class Logger {
       notice.notice_title, 'text/html',
     );
     this.sink.event('notice_read', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
+      is_critical: notice.is_critical,
     });
   }
 
   classEmailList(component, cardTid) {
     this.sink.event('class_email_list', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
     });
   }
 
   onBoarding(component) {
     this.sink.event('on_boarding', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
     });
   }
 
   cardPin(component, cardTid) {
     this.sink.event('card_pin', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
     });
   }
 
   cardUnPin(component, cardTid) {
     this.sink.event('card_unpin', {
-      comp_tag: component.$myuw.compRoot.$myuw.tag,
+      comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
     });
   }
@@ -178,6 +190,12 @@ class Logger {
       });
       this.currentTerm = term;
     }
+  }
+
+  buttonClick(component) {
+    this.sink.event('button_click', {
+      comp_tag: component.$meta.group.$meta.tag,
+    });
   }
 }
 
@@ -239,13 +257,6 @@ export default function (Vue, options) {
   } else {
     throw '`gtag` or `console` config needed';
   }
-
-  Vue.directive('comp-group', {
-    bind(_, binding, vnode) {
-      vnode.context.$myuw.groupRoot = true;
-      vnode.context.$myuw.tag = binding.value;
-    },
-  });
 
   Vue.$logger = Vue.prototype.$logger = new Logger(sink, options.logger);
 };

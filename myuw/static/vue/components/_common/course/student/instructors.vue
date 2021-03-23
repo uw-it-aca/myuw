@@ -19,7 +19,7 @@
             <a
               v-for="(email, j) in instructor.email_addresses"
               :key="`email-${j}`"
-              v-out="'Email instructor'"
+              v-inner="'Email instructor'"
               :href="`mailto:${email}`"
               class="d-block"
             >
@@ -28,7 +28,7 @@
             <a
               v-for="(phone, j) in instructor.phones"
               :key="`phone-${j}`"
-              v-out="'Tel instructor'"
+              v-inner="'Tel instructor'"
               :href="`tel:${formatPhoneNumberLink(phone)}`"
               class="d-block"
             >
