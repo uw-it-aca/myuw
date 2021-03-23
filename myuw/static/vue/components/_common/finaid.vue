@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
   props: {
     finAidNotices: {
@@ -52,7 +53,11 @@ export default {
   methods: {
     onShowNotice(notice) {
       this.$logger.noticeOpen(this, notice);
+      if (!notice.is_read) {
+        this.setRead(notice);
+      }
     },
+    ...mapActions('notices', ['setRead']),
   },
 };
 </script>
