@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h5 class="sr-only">Course Resources</h5>
+    <h3 class="sr-only">Course Resources</h3>
     <div>
       <ul class="list-unstyled myuw-text-md mb-0">
         <template v-if="hasResources">

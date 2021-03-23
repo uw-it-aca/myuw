@@ -4,7 +4,10 @@
       <!-- A linked secondary section -->
       <div>
         <div :class="`c${section.color_id}`" />
-        <h4 class="h5 myuw-font-encode-sans">
+        <h3
+          class="h5 myuw-font-encode-sans"
+          :aria-label="section.id.replace(/-/g,' ')"
+        >
           <a v-if="section.mini_card"
             v-inner="'View Mini-card'"
             :href="`/teaching/${section.href}`"
@@ -21,12 +24,12 @@
           >
             {{ section.section_id }}
           </a>
-        </h4>
+        </h3>
       </div>
       <div v-if="section.sln">
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section SLN:
-        </h5>
+        </h4>
         <span>
           <a
             v-out="'Time Schedule for SLN'"
@@ -39,25 +42,25 @@
         </span>
       </div>
       <div>
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Type:
-        </h5>
+        </h4>
         <span class="text-capitalize">
           {{ section.section_type }}
         </span>
       </div>
 
       <div class="flex-fill">
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Meetings:
-        </h5>
-        <uw-meeting-info :section="section" />
+        </h4>
+        <uw-meeting-info :section="section" noHeading />
       </div>
 
       <div>
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Enrollments:
-        </h5>
+        </h4>
         <uw-enrollment :section="section" />
       </div>
     </div>

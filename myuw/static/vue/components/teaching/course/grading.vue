@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Grading System
-    </h5>
+    </h3>
     <div>
       <span v-if="section.grading_system">
         {{titleCaseWord(section.grading_system)}}
@@ -11,9 +11,9 @@
         Unspecified
       </span>
     </div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Delegate{{gradeSubmissionDelegatesCount > 1 ? 's' :  ''}}
-    </h5>
+    </h3>
     <div>
       <ul v-if="section.grade_submission_delegates">
         <li v-for="(delegate, i) in section.grade_submission_delegates" :key="i">
@@ -33,9 +33,9 @@
         </span>
       </a>
     </div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Grade Submission
-    </h5>
+    </h3>
     <div>
       <div v-if="section.gradingPeriod.isOpen">
         <div v-if="section.grading_status !== 'error'">

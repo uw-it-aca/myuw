@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Course Stats
-    </h5>
+    </h3>
     <ul>
       <li v-if="section.failure_rate">
         {{ (section.failure_rate * 100).toFixed(0) }}% historic course fail rate
