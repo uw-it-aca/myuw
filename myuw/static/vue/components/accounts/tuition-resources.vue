@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h4 class="h6 font-weight-bold text-dark-beige">
+    <h3 class="h6 font-weight-bold text-dark-beige">
       Related
-    </h4>
+    </h3>
     <ul class="list-unstyled myuw-text-md">
       <li v-if="is_C2">
         <a href="https://degreereg.uw.edu/payment-procedures" target="_blank">
