@@ -14,7 +14,7 @@
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
           size="sm"
         >
-          <font-awesome-icon :icon="['fas', 'pencil-alt']" />
+          <font-awesome-icon :icon="faPencilAlt" />
         </b-button>
         <b-button
           v-if="activeButtons['remove']"
@@ -25,13 +25,13 @@
           size="sm"
           @click="removeLink(link, canActuallyRemove)"
         >
-          <font-awesome-icon :icon="['fas', 'times']" />
+          <font-awesome-icon :icon="faTimes" />
         </b-button>
         <span v-if="activeButtons['save']">
           <font-awesome-icon
             v-if="link.added"
             :title="`${link.label} link saved to Quick Links`"
-            :icon="['fa', 'check']"
+            :icon="faCheck"
             class="p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"
@@ -45,7 +45,7 @@
             size="sm"
             @click="saveLink"
           >
-            <font-awesome-icon :icon="['fas', 'plus']" />
+            <font-awesome-icon :icon="faPlus" />
           </b-button>
         </span>
       </span>
@@ -100,6 +100,12 @@
 </template>
 
 <script>
+import {
+  faTimes,
+  faPencilAlt,
+  faCheck,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
 
 export default {
@@ -130,6 +136,10 @@ export default {
       },
       currentCustomLink: {},
       isEditOpen: false,
+      faTimes,
+      faPencilAlt,
+      faCheck,
+      faPlus,
     };
   },
   created() {

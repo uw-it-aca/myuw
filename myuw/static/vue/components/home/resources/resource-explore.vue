@@ -13,13 +13,13 @@
           <b-row>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#academics">Academic Resources</a>
               </li>
             </b-col>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#studentfinances">Student Finances</a>
               </li>
             </b-col>
@@ -27,7 +27,7 @@
           <b-row>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1"
                    href="/resources/#accountsidentityandemail"
                 >Accounts, Identity, and Email</a>
@@ -35,7 +35,7 @@
             </b-col>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#employment">Employment</a>
               </li>
             </b-col>
@@ -70,11 +70,19 @@
 </template>
 
 <script>
+import {
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
+  },
+  data() {
+    return {
+      faChevronRight,
+    };
   },
 };
 </script>

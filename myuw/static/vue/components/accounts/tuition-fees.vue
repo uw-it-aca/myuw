@@ -16,7 +16,7 @@
           variant="danger"
           class="text-danger"
         >
-          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" /> Tuition and fees are due
+          <font-awesome-icon :icon="faExclamationTriangle" /> Tuition and fees are due
           today.
         </b-alert>
         <b-alert
@@ -25,7 +25,7 @@
           variant="danger"
           class="text-danger"
         >
-          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+          <font-awesome-icon :icon="faExclamationTriangle" />
           You have a balance that may be past due. See your statement for details.
         </b-alert>
       </div>
@@ -193,6 +193,9 @@
 </template>
 
 <script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapActions, mapState } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardStatus from '../_templates/card-status.vue';
@@ -226,6 +229,7 @@ export default {
         'tuition_summeraid_date_title',
         'tuition_summeraid_avail_title',
       ],
+      faExclamationTriangle,
     };
   },
   computed: {

@@ -19,7 +19,7 @@
         href="/academic_calendar/"
       >
         <span class="d-inline-block bg-light myuw-text-sm">
-          <font-awesome-icon :icon="['far', 'calendar-alt']" />
+          <font-awesome-icon :icon="faCalendarAlt" />
           <span v-if="termData.isBreak">
             <span v-if="termData.breakYear !== termData.year">
               {{ termData.year }} / {{ termData.breakYear }}
@@ -149,12 +149,20 @@
 </template>
 
 <script>
+import {
+  faCalendarAlt,
+} from '@fortawesome/free-regular-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import dayjs from 'dayjs';
 const relativeTime = require('dayjs/plugin/relativeTime');
 dayjs.extend(relativeTime);
 
 export default {
+  data() {
+    return {
+      faCalendarAlt,
+    };
+  },
   computed: {
     ...mapState({
       termData: (state) => state.termData,

@@ -27,7 +27,7 @@
           <div class="d-flex align-content-center">
             <div class="w-50">
               <font-awesome-icon
-                :icon="['fas', 'square-full']"
+                :icon="faSquareFull"
                 :class="`text-c${section.color_id}`"
                 class="mr-1"
               />
@@ -96,10 +96,10 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import {
   faChevronUp,
   faChevronDown,
+  faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
@@ -115,6 +115,7 @@ export default {
       isOpen: false,
       faChevronUp,
       faChevronDown,
+      faSquareFull,
     };
   },
   computed: {

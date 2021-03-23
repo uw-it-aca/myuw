@@ -16,10 +16,7 @@
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
-            <font-awesome-icon
-              :icon="['fas', 'exclamation-triangle']"
-              class="mr-1"
-            />
+            <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
             An error has occurred and MyUW cannot display the course evaluation
             information right now. Please try again later.
           </p>
@@ -140,6 +137,7 @@
 import {
   faChevronUp,
   faChevronDown,
+  faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../../_templates/card.vue';
@@ -171,6 +169,7 @@ export default {
       isOpen: false,
       faChevronUp,
       faChevronDown,
+      faExclamationTriangle,
     };
   },
   computed: {

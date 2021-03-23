@@ -14,7 +14,7 @@
           v-out="'Manage preferred name - Identity.UW'"
           href="https://identity.uw.edu/"
           title="Manage your preferred name">
-            <font-awesome-icon :icon="['fas', 'pencil-alt']" class="myuw-text-md" />
+            <font-awesome-icon :icon="faPencilAlt" class="myuw-text-md" />
             <span class="sr-only">Manage your preferred name</span>
         </a>
       </h3>
@@ -23,6 +23,9 @@
 </template>
 
 <script>
+import {
+  faPencilAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/panel.vue';
 
@@ -30,7 +33,11 @@ export default {
   components: {
     'uw-panel': Card,
   },
-
+  data() {
+    return {
+      faPencilAlt,
+    };
+  },
   computed: {
     ...mapState({
       displayName: (state) => state.directory.value.display_name,

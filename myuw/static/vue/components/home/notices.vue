@@ -68,7 +68,7 @@
       #card-body
     >
       <p class="text-danger myuw-text-md">
-        <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+        <font-awesome-icon :icon="faExclamationTriangle" />
         An error occurred and MyUW cannot load your notices right now. Please
         try again later.
       </p>
@@ -77,12 +77,20 @@
 </template>
 
 <script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
+  },
+  data() {
+    return {
+      faExclamationTriangle,
+    };
   },
   computed: {
     ...mapState('notices', {

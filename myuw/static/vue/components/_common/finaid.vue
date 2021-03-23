@@ -12,11 +12,8 @@
           class="p-0 border-0 mb-2 bg-transparent myuw-text-md"
           size="md"
         >
-          <font-awesome-icon
-            v-if="collapseOpen[i]"
-            :icon="['fas', 'caret-down']"
-          />
-          <font-awesome-icon v-else :icon="['fas', 'caret-right']" />
+          <font-awesome-icon v-if="collapseOpen[i]" :icon="faCaretDown" />
+          <font-awesome-icon v-else :icon="faCaretRight" />
           <span v-html="notice.short_content" />
         </b-button>
         <b-collapse
@@ -35,6 +32,11 @@
 </template>
 
 <script>
+import {
+  faCaretDown,
+  faCaretRight,
+} from '@fortawesome/free-solid-svg-icons';
+
 export default {
   props: {
     finAidNotices: {
@@ -45,6 +47,8 @@ export default {
   data: function() {
     return {
       collapseOpen: Array(this.finAidNotices.length).fill(false),
+      faCaretDown,
+      faCaretRight,
     };
   },
 };

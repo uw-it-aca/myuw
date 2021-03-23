@@ -27,7 +27,7 @@
                 class="text-white font-weight-light"
                 title="View your profile"
               >
-                <font-awesome-icon :icon="['fas', 'user']" class="mr-1" />
+                <font-awesome-icon :icon="faUser" class="mr-1" />
                 {{ netid }}
               </b-link>
             </b-col>
@@ -39,7 +39,7 @@
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
               >
-                <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-1" />Email
+                <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email
                 error
               </b-link>
               <b-link
@@ -49,7 +49,7 @@
                 class="ml-2 text-white font-weight-light"
                 title="Open your email in new tab"
               >
-                <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Email
+                <font-awesome-icon :icon="faEnvelope" class="mr-1" />Email
               </b-link>
               <b-link
                 v-b-toggle.app_search
@@ -57,7 +57,7 @@
                 class="ml-2 text-white font-weight-light"
                 title="Open search area"
               >
-                <font-awesome-icon :icon="['fas', 'search']" flip="horizontal" class="mr-1" />Search
+                <font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search
               </b-link>
               <b-link
                 v-inner="'Sign Out'"
@@ -65,7 +65,7 @@
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
               >
-                <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="mr-1" />Sign Out
+                <font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out
               </b-link>
             </b-col>
           </b-row>
@@ -86,9 +86,9 @@
             title="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
-              <font-awesome-icon :icon="['far', 'square']" transform="right-1" class="m-0" />
+              <font-awesome-icon :icon="faSquare" transform="right-1" class="m-0" />
               <font-awesome-icon
-                :icon="['fas', 'bars']"
+                :icon="faBars"
                 transform="shrink-8 right-1 "
                 class="m-0"
               />
@@ -136,7 +136,7 @@
                   :active="pageTitle == 'Home'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['fas', 'home']" class="mr-2" />Home
+                  <font-awesome-icon :icon="faHome" class="mr-2" />Home
                 </b-nav-item>
                 <b-nav-item
                   v-if="(undergrad && seattle) || hxtViewer"
@@ -145,7 +145,7 @@
                   :active="pageTitle == 'Husky Experience'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['fas', 'paw']" class="mr-2" />Husky Experience
+                  <font-awesome-icon :icon="faPaw" class="mr-2" />Husky Experience
                 </b-nav-item>
                 <b-nav-item
                   v-if="student || applicant"
@@ -154,7 +154,7 @@
                   :active="pageTitle == 'Academics'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['fas', 'graduation-cap']" class="mr-2" />Academics
+                  <font-awesome-icon :icon="faGraduationCap" class="mr-2" />Academics
                 </b-nav-item>
                 <b-nav-item
                   v-if="instructor"
@@ -163,7 +163,7 @@
                   :active="pageTitle == 'Teaching'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['far', 'edit']" class="mr-2" />Teaching
+                  <font-awesome-icon :icon="faEdit" class="mr-2" />Teaching
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -171,7 +171,7 @@
                   :active="pageTitle == 'Accounts'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['far', 'credit-card']" class="mr-2" />Accounts
+                  <font-awesome-icon :icon="faCreditCard" class="mr-2" />Accounts
                 </b-nav-item>
                 <b-nav-item
                   v-if="student"
@@ -180,7 +180,7 @@
                   :active="pageTitle == 'Notices'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['fas', 'exclamation-triangle']" class="mr-2" />Notices
+                  <font-awesome-icon :icon="faExclamationTriangle" class="mr-2" />Notices
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -188,7 +188,7 @@
                   :active="pageTitle == 'Profile'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['fas', 'user']" class="mr-2" />Profile
+                  <font-awesome-icon :icon="faUser" class="mr-2" />Profile
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -205,7 +205,7 @@
                   :active="pageTitle == 'Academic Calendar'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['far', 'calendar-check']" class="mr-2" />Calendar
+                  <font-awesome-icon :icon="faCalendarCheck" class="mr-2" />Calendar
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -213,7 +213,7 @@
                   :active="pageTitle == 'UW Resources'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="['fas', 'bookmark']" class="mr-2" />UW Resources
+                  <font-awesome-icon :icon="faBookmark" class="mr-2" />UW Resources
                 </b-nav-item>
               </b-nav>
               <uw-welcome v-if="$mq === 'desktop'" />
@@ -246,7 +246,7 @@
         <ul class="list-inline m-0">
           <li class="list-inline-item mr-0">
             <b-link :href="mailToUrl + netid" class="text-white">
-              <font-awesome-icon :icon="['fas', 'envelope']" class="mr-1" />Contact
+              <font-awesome-icon :icon="faEnvelope" class="mr-1" />Contact
             </b-link>
           </li>
           <li class="list-inline-item mr-0">
@@ -331,6 +331,24 @@
 </template>
 
 <script>
+import {
+  faEdit,
+  faCreditCard,
+  faSquare,
+  faCalendarCheck,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faExclamationTriangle,
+  faUser,
+  faEnvelope,
+  faSearch,
+  faSignOutAlt,
+  faHome,
+  faGraduationCap,
+  faPaw,
+  faBars,
+  faBookmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { mapState, mapMutations } from 'vuex';
 import axios from 'axios';
 import Search from './search.vue';
@@ -355,6 +373,20 @@ export default {
       selectedMenu: '',
       mailToUrl:
         'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20',
+      faExclamationTriangle,
+      faUser,
+      faEnvelope,
+      faSearch,
+      faSignOutAlt,
+      faHome,
+      faEdit,
+      faCreditCard,
+      faGraduationCap,
+      faPaw,
+      faSquare,
+      faBars,
+      faCalendarCheck,
+      faBookmark,
     };
   },
   computed: mapState({
