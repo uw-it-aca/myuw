@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex">
-    <h3
+    <h3 v-if="!noHeading"
       :class="[!showRowHeading ? 'sr-only' : '']"
       class="w-25 font-weight-bold myuw-text-md"
     >
@@ -111,6 +111,10 @@ export default {
       required: true,
     },
     showRowHeading: {
+      type: Boolean,
+      default: false,
+    },
+    noHeading: {
       type: Boolean,
       default: false,
     },

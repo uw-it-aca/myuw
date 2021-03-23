@@ -4,7 +4,7 @@
       <!-- A linked secondary section -->
       <div>
         <div :class="`c${section.color_id}`" />
-        <h3 class="h5 myuw-font-encode-sans">
+        <h3 class="h5 myuw-font-encode-sans" :aria-label="`${section.id}`">
           <a v-if="section.mini_card"
             v-inner="'View Mini-card'"
             :href="`/teaching/${section.href}`"
@@ -51,7 +51,7 @@
         <h4 class="sr-only">
           Section Meetings:
         </h4>
-        <uw-meeting-info :section="section" />
+        <uw-meeting-info :section="section" noHeading />
       </div>
 
       <div>
