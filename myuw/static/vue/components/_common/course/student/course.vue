@@ -35,7 +35,6 @@
           <b-collapse
             :id="`course-details-${index}`"
             v-model="isOpen"
-            @show="logDisclosureOpen"
           >
             <!-- creates line spacer above meeting info -->
             <div class="d-flex">
@@ -53,7 +52,6 @@
           <b-collapse
             :id="`instructors-collapse-${index}`"
             v-model="isOpen"
-            @show="logDisclosureOpen"
           >
             <!-- creates line spacer above instructor info -->
             <div class="d-flex">
@@ -198,9 +196,6 @@ export default {
         return this.evalData.sections[index].evaluation_data || [];
       }
       return [];
-    },
-    logDisclosureOpen() {
-      this.$logger.disclosureOpen(this);
     },
   },
 };

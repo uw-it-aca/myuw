@@ -8,6 +8,7 @@
       <li v-for="(notice, i) in finAidNotices" :key="i">
         <b-button
           v-b-toggle="`finAid-${notice.id_hash}-collapse-${$meta.uid}`"
+          v-no-track-collapse
           variant="link"
           class="p-0 border-0 mb-2 bg-transparent myuw-text-md"
           size="md"
@@ -23,6 +24,7 @@
           :id="`finAid-${notice.id_hash}-collapse-${$meta.uid}`"
           v-model="collapseOpen[i]"
           class="myuw-fin-aid"
+          @show="onShowNotice(notice)"
         >
           <div
             class="bg-warning m-0 p-3 border-0 rounded-0 myuw-text-sm"
@@ -35,6 +37,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
 export default {
   props: {
     finAidNotices: {
@@ -46,6 +49,15 @@ export default {
     return {
       collapseOpen: Array(this.finAidNotices.length).fill(false),
     };
+  },
+  methods: {
+    onShowNotice(notice) {
+      this.$logger.noticeOpen(this, notice);
+      if (!notice.is_read) {
+        this.setRead(notice);
+      }
+    },
+    ...mapActions('notices', ['setRead']),
   },
 };
 </script>
