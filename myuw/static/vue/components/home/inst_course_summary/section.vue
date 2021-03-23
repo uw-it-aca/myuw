@@ -62,7 +62,6 @@
         v-b-toggle="`linked-sections-${section.id}`"
         variant="light" block
         class="p-0 text-dark"
-        title="Show/Hide linked secondary sections"
       >
         Linked Sections of {{ section.curriculum_abbr }}
         {{ section.course_number }} {{ section.section_id }}
