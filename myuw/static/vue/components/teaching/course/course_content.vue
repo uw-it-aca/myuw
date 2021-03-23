@@ -26,7 +26,6 @@
       <b-collapse
         :id="`secondary-${section.section_label}`"
         v-model="isOpen"
-        @show="logDisclosureOpen"
       >
         <uw-linked-section
           v-for="(linkedSection, i) in linkedSections"
@@ -117,10 +116,5 @@ export default {
       this.selfAnchoredOnce(this.section);
     }
   },
-  methods: {
-    logDisclosureOpen() {
-      this.$logger.disclosureOpen(this);
-    },
-  }
 };
 </script>

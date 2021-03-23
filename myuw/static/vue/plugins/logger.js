@@ -126,9 +126,10 @@ class Logger {
     });
   }
 
-  disclosureOpen(component) {
+  disclosureOpen(component, label) {
     this.sink.event('disclosure_open', {
       comp_tag: component.$meta.group.$meta.tag,
+      disclosure_label: label,
     });
   }
 
