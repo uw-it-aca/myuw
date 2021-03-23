@@ -41,9 +41,9 @@
         size="sm"
         class="w-100 p-0 border-0 text-dark"
       >
-        <font-awesome-icon v-if="!isOpen" :icon="faCaretRight" />
-        <font-awesome-icon v-else :icon="faCaretUp" />
         Secondary Sections ({{linkedSections.length}})
+        <font-awesome-icon v-if="!isOpen"  :icon="faChevronDown" />
+        <font-awesome-icon v-else :icon="faChevronUp" />
       </b-button>
     </template>
   </uw-card>
@@ -52,8 +52,8 @@
 <script>
 import {
   faThumbtack,
-  faCaretRight,
-  faCaretUp,
+  faChevronUp,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Card from '../../_templates/card.vue';
@@ -96,8 +96,8 @@ export default {
     return {
       isOpen: false,
       faThumbtack,
-      faCaretRight,
-      faCaretUp,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {
