@@ -3,12 +3,9 @@
        v-meta="{tag: `student-course-cards`, groupRoot: true}"
   >
     <template v-if="isReady">
-      <h3 class="sr-only">
-        Your {{ titleCaseWord(course.quarter) }} {{ course.year }} Courses
-      </h3>
       <uw-course-card
         v-for="(section, i) in course.sections" :key="i"
-        :course="course" :section="section" :index="i"
+        :term=term :course="course" :section="section" :index="i"
       />
     </template>
     <uw-no-course-card
@@ -17,9 +14,9 @@
     />
     <uw-card v-else :errored="isErrored">
       <template #card-heading>
-        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-          Schedule &amp; Course Info
-        </h3>
+        <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+          Your Courses of {{ titleCaseName(term.replace(',', ' ')) }} Quarter
+        </h2>
       </template>
     </uw-card>
   </div>

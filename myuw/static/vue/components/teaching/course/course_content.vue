@@ -9,7 +9,7 @@
     }"
   >
     <template #card-heading>
-      <uw-course-header :section="section" />
+      <uw-course-header :term=term :section="section" />
       <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
 
@@ -84,6 +84,10 @@ export default {
     'uw-linked-section': LinkedSection,
   },
   props: {
+    term: {
+      type: String,
+      required: true,
+    },
     schedule: {
       type: Object,
       required: true,

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Enrollment
-    </h5>
+    </h3>
     <div v-if="useLegacyViewClasslist">
       <span>
         View class list in

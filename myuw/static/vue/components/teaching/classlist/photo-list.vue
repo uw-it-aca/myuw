@@ -3,9 +3,9 @@
        class=""
        aria-labelledby="photo-grid"
   >
-    <h4 class="sr-only">
+    <h3 class="sr-only">
       Grid of Student Photos
-    </h4>
+    </h3>
     <ol class="">
       <li v-for="(reg, i) in registrations"
           :id="`student-photo-${reg.regid}`"

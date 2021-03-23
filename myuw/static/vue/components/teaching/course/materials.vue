@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Course Materials
-    </h5>
+    </h3>
     <ul>
       <uw-teac-website :section="section" />
       <uw-teac-email-list :section="section" />

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <uw-course-title show-sln :section="section" />
+      <uw-course-title show-sln :term=term :section="section" />
 
       <div>
         <b-button v-if="section.mini_card"
@@ -15,22 +15,22 @@
     </div>
 
     <div v-if="section.summer_term" class="d-flex">
-      <h5
+      <h3
         class="w-25 font-weight-bold myuw-text-md"
       >
         Term
-      </h5>
+      </h3>
       <div class="flex-fill myuw-text-md">
         Summer {{ capitalizeString(section.summer_term) }}
       </div>
     </div>
 
     <div v-if="section.cc_display_dates" class="d-flex">
-      <h5
+      <h3
         class="w-25 font-weight-bold myuw-text-md"
       >
         Dates
-      </h5>
+      </h3>
       <div class="flex-fill myuw-text-md">
         {{ sectionFormattedDates(section) }}
       </div>
@@ -50,6 +50,10 @@ export default {
     'uw-course-title': CourseTitle,
   },
   props: {
+    term: {
+      type: String,
+      required: true,
+    },
     section: {
       type: Object,
       required: true,

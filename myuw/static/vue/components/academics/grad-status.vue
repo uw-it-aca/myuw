@@ -6,16 +6,16 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Graduate Request Status
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <div v-if="petitions">
         <div id="petition-reqs">
-          <h4 class="h5 text-dark-beige">
+          <h3 class="h5 text-dark-beige">
             Petition Requests
-          </h4>
+          </h3>
           <ul v-for="(petition, index) in petitions" :key="index"
               class="list-unstyled myuw-text-md"
           >
@@ -50,9 +50,9 @@
 
       <div v-if="leaves">
         <div id="leave-reqs">
-          <h4 class="h5 text-dark-beige">
+          <h3 class="h5 text-dark-beige">
             Leave Requests
-          </h4>
+          </h3>
           <ul v-for="(leave, index) in leaves" :key="index"
               class="list-unstyled myuw-text-md"
           >
@@ -88,9 +88,9 @@
       </div>
 
       <div v-if="degrees">
-        <h4 class="h5 text-dark-beige">
+        <h3 class="h5 text-dark-beige">
           Degree and Exam Requests
-        </h4>
+        </h3>
         <ul v-for="(degree, index) in degrees" :key="index"
             class="list-unstyled myuw-text-md"
         >

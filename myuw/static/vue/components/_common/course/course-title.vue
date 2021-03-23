@@ -1,12 +1,15 @@
 <template>
   <div class="d-flex justify-content-between mb-3">
     <div>
-      <h4
+      <h2
         class="h5 mb-0 text-dark-beige myuw-font-encode-sans">
+        <span class="sr-only">
+          {{ titleCaseName(term.replace(',', ' ')) }} Course:
+        </span>
         {{ section.curriculum_abbr }}
         {{ section.course_number }}
         {{ section.section_id }}
-      </h4>
+      </h2>
       <div>{{ section.course_title }}</div>
     </div>
 
@@ -44,6 +47,10 @@
 <script>
 export default {
   props: {
+    term: {
+      type: String,
+      required: true,
+    },
     section: {
       type: Object,
       required: true,

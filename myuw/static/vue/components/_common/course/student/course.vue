@@ -5,7 +5,7 @@
       :ribbon="{ side: 'top', colorId: section.color_id }"
     >
       <template #card-heading>
-        <uw-course-header :section="section" />
+        <uw-course-header :term=term :section="section" />
       </template>
 
       <template #card-body>
@@ -157,6 +157,10 @@ export default {
     'uw-course-header': CourseHeader,
   },
   props: {
+    term: {
+      type: String,
+      required: true,
+    },
     section: {
       type: Object,
       required: true,
