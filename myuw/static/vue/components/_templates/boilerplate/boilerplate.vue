@@ -230,6 +230,8 @@
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
               :class="[pageTitle == 'Home' || pageTitle == 'Profile' ? 'sr-only' : '']"
+              :aria-label="[pageTitle == 'Academics' ?
+                'Your Academics page for current term' : '']"
             >
               {{ pageTitle }}
             </h1>
