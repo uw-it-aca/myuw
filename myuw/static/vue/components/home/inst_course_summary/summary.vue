@@ -1,5 +1,6 @@
 <template>
   <uw-card v-if="instructor && showContent"
+           v-meta="{term: term}"
            :loaded="isReady"
            :errored="isErrored"
            :errored-show="statusCodeTagged(term) !== 404"

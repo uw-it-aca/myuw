@@ -376,11 +376,6 @@ export default {
   }),
   mounted() {
     this.$logger.setUserProperties(this.affiliations);
-    this.$logger.pageview({
-      page_location: window.location.href,
-      page_path: window.location.pathname,
-      page_title: this.pageTitle,
-    });
 
     if (this.displayPopUp) {
       window.addEventListener('load', this.showTourModal);

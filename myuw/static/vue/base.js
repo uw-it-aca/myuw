@@ -184,6 +184,7 @@ Vue.use(VueObserveVisibility);
 import Logger from './plugins/logger';
 import Observer from './plugins/observer';
 import TrackLink from './plugins/tracklink';
+import TrackCollapse from './plugins/trackcollapse';
 import Metadata from './plugins/metadata';
 
 Vue.use(Logger, {
@@ -192,6 +193,7 @@ Vue.use(Logger, {
       id: gaCode,
       params: {
         anonymize_ip: true,
+        send_page_view: true,
         user_id: hashId,
       },
     },
@@ -203,6 +205,7 @@ Vue.use(Logger, {
 });
 Vue.use(Observer);
 Vue.use(TrackLink);
+Vue.use(TrackCollapse);
 Vue.use(Metadata);
 
 

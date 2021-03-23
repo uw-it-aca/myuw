@@ -9,6 +9,7 @@ import utils from '../mixins/utils';
 import Logger from '../plugins/logger';
 import Metadata from '../plugins/metadata';
 import Tracklink from '../plugins/tracklink';
+import TrackCollapse from '../plugins/trackcollapse';
 
 // helper for testing action with expected mutations
 const expectAction = (
@@ -57,6 +58,7 @@ const createLocalVue = (vuexModule) => {
     vue.directive('out-all', {});
   });
   localVue.use(Tracklink);
+  localVue.use(TrackCollapse);
   localVue.mixin(utils);
 
   return localVue;
