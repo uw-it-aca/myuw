@@ -62,12 +62,11 @@
         v-b-toggle="`linked-sections-${section.id}`"
         variant="light" block
         class="p-0 text-dark"
-        title="Show/Hide linked secondary sections"
       >
-        <font-awesome-icon v-if="!isOpen" :icon="faCaretRight" />
-        <font-awesome-icon v-else :icon="faCaretDown" />
         Linked Sections of {{ section.curriculum_abbr }}
         {{ section.course_number }} {{ section.section_id }}
+        <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
+        <font-awesome-icon v-else :icon="faChevronUp" />
       </b-button>
 
       <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
@@ -85,8 +84,8 @@
 <script>
 import {
   faThumbtack,
-  faCaretRight,
-  faCaretDown,
+  faChevronUp,
+  faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
@@ -108,8 +107,8 @@ export default {
     return {
       isOpen: false,
       faThumbtack,
-      faCaretRight,
-      faCaretDown,
+      faChevronUp,
+      faChevronDown,
     };
   },
   methods: {

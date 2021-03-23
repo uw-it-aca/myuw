@@ -14,12 +14,14 @@
             <span v-if="unreadyCount">{{ unreadyCount }} not ready</span>
             <b-button
               v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
-              :title="buttonTitle"
               size="sm"
               variant="link"
               class="ml-1 p-0 border-0 bg-transparent align-baseline"
+              :title="buttonTitle"
             >
-              {{ collapseOpen ? "Hide Details" : "See Details" }}
+              See PLan Details
+              <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
+              <font-awesome-icon v-else :icon="faChevronUp" />
             </b-button>
           </li>
         </ul>
@@ -61,6 +63,10 @@
 </template>
 
 <script>
+import {
+  faChevronUp,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import MyplanCoursesComponent from './myplan-courses.vue';
 
 export default {
@@ -88,6 +94,8 @@ export default {
   data: function() {
     return {
       collapseOpen: false,
+      faChevronUp,
+      faChevronDown,
     };
   },
   computed: {

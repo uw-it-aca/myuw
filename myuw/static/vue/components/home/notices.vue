@@ -29,6 +29,7 @@
               <span class="notice-title">
                 <button
                   v-b-toggle="notice.id_hash"
+                  v-no-track-collapse
                   class="btn btn-link p-0 border-0 align-top
                     notice-link text-left myuw-text-md"
                 >
@@ -111,7 +112,6 @@ export default {
     onShowNotice(notice) {
       this.$logger.noticeOpen(this, notice);
       if (!notice.is_read) {
-        this.$logger.noticeRead(this, notice);
         this.setRead(notice);
       }
     },

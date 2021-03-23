@@ -72,8 +72,8 @@ export default {
   },
   computed: {
     buttonTitle() {
-      if (this.collapseOpen) return 'Collapse and hide holds details';
-      return 'Expand and show holds details';
+      if (this.collapseOpen) return 'Collapse to hide holds details';
+      return 'Expand to show holds details';
     },
   },
 };

@@ -126,10 +126,18 @@ class Logger {
     });
   }
 
-  disclosureOpen(component) {
-    this.sink.event('disclosure_open', {
+  disclosureOpen(component, label) {
+    const data = {
       comp_tag: component.$meta.group.$meta.tag,
-    });
+      disclosure_label: label,
+    };
+    if (component.$meta.term) {
+      data.term_tag = component.$meta.term;
+    }
+    if (component.$meta.course) {
+      data.course_tag = component.$meta.course;
+    }
+    this.sink.event('disclosure_open', data);
   }
 
   noticeOpen(component, notice) {
@@ -140,17 +148,8 @@ class Logger {
       comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
       is_critical: notice.is_critical,
-    });
-  }
-
-  noticeRead(component, notice) {
-    const htmlDoc = new DOMParser().parseFromString(
-      notice.notice_title, 'text/html',
-    );
-    this.sink.event('notice_read', {
-      comp_tag: component.$meta.group.$meta.tag,
-      notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
-      is_critical: notice.is_critical,
+      is_new: !notice.is_read,
+      time_tag: Math.floor(Date.now() / 1000),
     });
   }
 
