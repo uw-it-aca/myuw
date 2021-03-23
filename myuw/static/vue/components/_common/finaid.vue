@@ -24,6 +24,7 @@
           :id="`finAid-${notice.id_hash}-collapse-${$meta.uid}`"
           v-model="collapseOpen[i]"
           class="myuw-fin-aid"
+          @show="onShowNotice(notice)"
         >
           <div
             class="bg-warning m-0 p-3 border-0 rounded-0 myuw-text-sm"
@@ -47,6 +48,11 @@ export default {
     return {
       collapseOpen: Array(this.finAidNotices.length).fill(false),
     };
+  },
+  methods: {
+    onShowNotice(notice) {
+      this.$logger.noticeOpen(this, notice);
+    },
   },
 };
 </script>
