@@ -4,7 +4,10 @@
       <!-- A linked secondary section -->
       <div>
         <div :class="`c${section.color_id}`" />
-        <h3 class="h5 myuw-font-encode-sans" :aria-label="`${section.id}`">
+        <h3
+          class="h5 myuw-font-encode-sans"
+          :aria-label="section.id.replace(/-/g,' ')"
+        >
           <a v-if="section.mini_card"
             v-inner="'View Mini-card'"
             :href="`/teaching/${section.href}`"

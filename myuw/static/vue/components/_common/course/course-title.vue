@@ -2,7 +2,7 @@
   <div class="d-flex justify-content-between mb-3">
     <div>
       <h2
-        :aria-label="`${section.id}`"
+        :aria-label="section.id.replace(/-/g,' ')"
         class="h5 mb-0 text-dark-beige myuw-font-encode-sans">
         {{ section.curriculum_abbr }}
         {{ section.course_number }}
