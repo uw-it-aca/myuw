@@ -184,6 +184,7 @@ Vue.use(VueObserveVisibility);
 import Logger from './plugins/logger';
 import Observer from './plugins/observer';
 import TrackLink from './plugins/tracklink';
+import Metadata from './plugins/metadata';
 
 Vue.use(Logger, {
   gtag: {
@@ -202,6 +203,7 @@ Vue.use(Logger, {
 });
 Vue.use(Observer);
 Vue.use(TrackLink);
+Vue.use(Metadata);
 
 
 Vue.config.devtools = true;

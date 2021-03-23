@@ -74,7 +74,7 @@
         </div>
       </div>
       <div v-else>
-        <div v-if="isReady" v-html="data" class="myuw-text-md"/>
+        <div v-if="isReady" class="myuw-text-md" v-html="data"/>
       </div>
     </template>
   </uw-panel>

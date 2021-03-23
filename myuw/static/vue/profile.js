@@ -27,7 +27,7 @@ Vue.component('myuw-uname', Uname);
 Vue.component('myuw-student-profile', StudentProfile);
 Vue.component('myuw-employee-profile', EmployeeProfile);
 Vue.component('myuw-applicant-profile', ApplicantProfile);
-Vue.component('myuw-profile-help-links', ProfileHelpLinks);
+Vue.component('myuw-profile-sidelinks', ProfileHelpLinks);
 
 new Vue({
   ...vueConf,

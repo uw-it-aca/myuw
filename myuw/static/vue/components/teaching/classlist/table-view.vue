@@ -19,10 +19,10 @@
       >
         <template #cell(email)="data">
           <a
-            v-out="'Email student'"
+            v-inner="'Email student'"
             :href="data.value.href"
             :title="data.value.title">
-            <i class="fa fa-envelope-o" />
+            <font-awesome-icon :icon="faEnvelope"/>
             <span class="sr-only">{{ data.value.email }}</span>
           </a>
         </template>
@@ -31,6 +31,9 @@
   </div>
 </template>
 <script>
+import {
+  faEnvelope,
+} from '@fortawesome/free-solid-svg-icons';
 export default {
   props: {
     mobileOnly: {
@@ -45,6 +48,11 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  data: function() {
+    return {
+      faEnvelope,
+    };
   },
   computed: {
     fields() {

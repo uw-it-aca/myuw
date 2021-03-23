@@ -9,7 +9,6 @@
       </li>
       <li>
         <a
-          v-out="`Course Dashboard ${section.id}`"
           :href="`https://coda.uw.edu/#${section.year}-${
             section.quarter}-${section.curriculum_abbr}-${section.course_number
           }-${section.section_id}`"
