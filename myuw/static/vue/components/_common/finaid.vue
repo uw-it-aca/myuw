@@ -8,6 +8,7 @@
       <li v-for="(notice, i) in finAidNotices" :key="i">
         <b-button
           v-b-toggle="`finAid-${notice.id_hash}-collapse-${$meta.uid}`"
+          v-no-track-collapse
           variant="link"
           class="p-0 border-0 mb-2 bg-transparent myuw-text-md"
           size="md"
