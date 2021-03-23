@@ -1,18 +1,18 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="applicantData.is_returning" #card-heading>
-      <h2 class="h3 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Returning Student Application
       </h2>
     </template>
     <template v-else #card-heading>
-      <h2 class="h3 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Bothell Application for
         {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
       </h2>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h3 class="h4 mb-3 text-dark-beige">
+      <h3 class="h5 mb-3 text-dark-beige">
         For application status, contact the UW Bothell Office of Admissions
       </h3>
       <b-container>
@@ -29,7 +29,7 @@
           <b-col>10909 NE 185th St <br>Bothell, WA 98011<br>Box 358500</b-col>
         </b-row>
       </b-container>
-      <h3 class="h4 mb-3 text-dark-beige">
+      <h3 class="h5 mb-3 text-dark-beige">
         Resources for Bothell Applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
