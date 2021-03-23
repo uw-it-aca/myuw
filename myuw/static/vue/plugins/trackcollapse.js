@@ -1,5 +1,5 @@
 function linkClickHandler(_event, el, vnode) {
-	const label = el.title || (el.innerText ? el.innerText.trim() : null);
+	const label = el.innerText ? el.innerText.trim() : null;
 	const instance = vnode.componentInstance ? vnode.componentInstance : vnode.context;
 	if (el.classList.contains('collapsed')) {
 		instance.$logger.disclosureOpen(instance, label);

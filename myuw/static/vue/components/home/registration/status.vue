@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="student && shouldDisplayAtAll && (!loaded || hasDataToDisplay)"
-    v-meta="{term: term}"
+    v-meta="{term: loaded ? term : null}"
     :loaded="loaded"
     :errored="errored"
     :errored-show="!isSummerReg || (isSummerReg && period === 'A')"
