@@ -1,6 +1,7 @@
 <template>
   <uw-card
     v-if="student && shouldDisplayAtAll && (!loaded || hasDataToDisplay)"
+    v-meta="{term: term}"
     :loaded="loaded"
     :errored="errored"
     :errored-show="!isSummerReg || (isSummerReg && period === 'A')"
@@ -171,6 +172,9 @@ export default {
       isMyPlanReadyTagged: 'isReadyTagged',
       isMyPlanErroredTagged: 'isErroredTagged',
     }),
+    term() {
+      return this.year + "," + this.quarter;
+    },
     needsSummerCard() {
       return (
         this.isAfterStartOfSummerRegDisplayPeriodA ||
