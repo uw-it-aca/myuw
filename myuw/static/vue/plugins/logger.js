@@ -127,10 +127,17 @@ class Logger {
   }
 
   disclosureOpen(component, label) {
-    this.sink.event('disclosure_open', {
+    const data = {
       comp_tag: component.$meta.group.$meta.tag,
       disclosure_label: label,
-    });
+    };
+    if (component.$meta.term) {
+      data.term_tag = component.$meta.term;
+    }
+    if (component.$meta.course) {
+      data.course_tag = component.$meta.course;
+    }
+    this.sink.event('disclosure_open', data);
   }
 
   noticeOpen(component, notice) {
