@@ -140,17 +140,8 @@ class Logger {
       comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
       is_critical: notice.is_critical,
-    });
-  }
-
-  noticeRead(component, notice) {
-    const htmlDoc = new DOMParser().parseFromString(
-      notice.notice_title, 'text/html',
-    );
-    this.sink.event('notice_read', {
-      comp_tag: component.$meta.group.$meta.tag,
-      notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
-      is_critical: notice.is_critical,
+      is_new: !notice.is_read,
+      time_tag: Math.floor(Date.now() / 1000),
     });
   }
 
