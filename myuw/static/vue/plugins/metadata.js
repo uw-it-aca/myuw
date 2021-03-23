@@ -18,6 +18,13 @@ export default function (Vue, options) {
         });
       }
     },
+    update: (_, binding, vnode) => {
+      if (binding.value) {
+        Object.entries(binding.value).forEach(([key, value]) => {
+          vnode.context.$meta[key] = value;
+        });
+      }
+    },
   });
 
   let uid = 0;
