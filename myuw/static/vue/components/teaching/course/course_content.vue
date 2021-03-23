@@ -84,10 +84,6 @@ export default {
     'uw-linked-section': LinkedSection,
   },
   props: {
-    term: {
-      type: String,
-      required: true,
-    },
     schedule: {
       type: Object,
       required: true,

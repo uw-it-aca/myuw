@@ -8,7 +8,6 @@
         v-if="section.is_primary_section || !section.isLinkedSecondary"
         :schedule="instSchedule"
         :section="section"
-        :term=term
       />
       <b-collapse
         v-else

@@ -157,10 +157,6 @@ export default {
     'uw-course-header': CourseHeader,
   },
   props: {
-    term: {
-      type: String,
-      required: true,
-    },
     section: {
       type: Object,
       required: true,
