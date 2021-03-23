@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">U-Pass Membership</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">U-Pass Membership</h2>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if
@@ -24,7 +24,7 @@
           Finalize activation by tapping your card on a reader.
         </p>
         <div v-if="!employee && inSummer && (pce || seattle)">
-          <h4>Summer U-PASS Use</h4>
+          <h3>Summer U-PASS Use</h3>
           <p class="myuw-text-md">
             Your U-PASS does not work during summer quarter unless you are registered for a class or
             are a
@@ -47,7 +47,7 @@
               starts.
             </p>
             <div v-if="inSummer">
-              <h4>Summer U-PASS Use</h4>
+              <h3>Summer U-PASS Use</h3>
               <p>
                 Your U-PASS does not work during summer quarter unless you are registered for a
                 class or are a
