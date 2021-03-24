@@ -8,7 +8,7 @@
         <h2>
           {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
           {{ sectionData.sectionId }},
-          {{ sectionData.quarter }} {{ sectionData.year }}
+          {{ titleCaseWord(sectionData.quarter) }} {{ sectionData.year }}
         </h2>
         <div v-if="sectionData.sln">
           <h3>SLN</h3>

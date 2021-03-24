@@ -6,20 +6,20 @@
         <div :class="`c${section.color_id}`" />
         <h3
           class="h5 myuw-font-encode-sans"
-          :aria-label="section.id.replace(/-/g,' ')"
+          :aria-label="section.lable"
         >
           <a v-if="section.mini_card"
             v-inner="'View Mini-card'"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="View mini-card on Teaching page"
+            :title="`View mini-card of ${section.label} on Teaching page`"
           >
             {{ section.section_id }}
           </a>
           <a v-else
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            :title="`Pin ${section.id} mini-card to teaching page`"
+            :title="`Pin mini-card of ${section.label} onto Teaching page`"
             @click="miniCard"
           >
             {{ section.section_id }}
@@ -68,14 +68,14 @@
     <div>
       <b-button v-if="!section.mini_card"
         variant="light"
-        :title="`Pin ${section.id} mini-card to teaching page`"
+        :title="`Pin mini-card of ${section.label} onto Teaching page`"
         @click="miniCard"
       >
         Pin to Teaching
       </b-button>
       <b-button v-else
         variant="dark"
-        :title="`Remove ${section.id} mini-card from teaching page`"
+        :title="`Remove mini-card of ${section.label} from Teaching page`"
         @click="miniCard"
       >
         Unpin
