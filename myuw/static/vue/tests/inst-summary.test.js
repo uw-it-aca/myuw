@@ -100,7 +100,7 @@ describe('Instructor Teaching Summary', () => {
     ).toBe(true);
 
     expect(
-      wrapper.find('h3').text()
+      wrapper.find('h2').text()
     ).toEqual('Spring 2013 Teaching Schedule');
 
   });

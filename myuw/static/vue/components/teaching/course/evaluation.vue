@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Evaluations
-    </h5>
+    </h3>
     <div>
       <ul>
         <template v-if="section.evaluation && section.evaluation.eval_status">

@@ -53,8 +53,8 @@ describe('HR Payroll Card - Home Page', () => {
         wrapper.findComponent(UwCard).exists()
       ).toBe(true);
 
-      let h3s = wrapper.findAll('h3');
-      let h4s = wrapper.findAll('h4');
+      let h3s = wrapper.findAll('h2');
+      let h4s = wrapper.findAll('h3');
 
       expect(
         h3s.at(0).text()

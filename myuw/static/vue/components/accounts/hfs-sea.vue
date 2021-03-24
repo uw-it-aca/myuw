@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Housing &amp; Food Services</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Housing &amp; Food Services</h2>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
@@ -19,7 +19,7 @@
       </uw-card-status>
 
       <div>
-        <h4 class="h6 font-weight-bold text-dark-beige">Explore Campus Housing</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Explore Campus Housing</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a href="https://www.hfs.uw.edu">
@@ -48,7 +48,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="h6 font-weight-bold text-dark-beige">Manage Account</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Manage Account</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a
@@ -81,7 +81,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="h6 font-weight-bold text-dark-beige">Resident Resources</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Resident Resources</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a v-out="'HFS: Check Laundry Status'"

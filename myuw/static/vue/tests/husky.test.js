@@ -52,13 +52,13 @@ describe('Husky Card', () => {
       wrapper.findComponent(UwCard).exists()
     ).toBe(true);
     expect(
-      wrapper.findAll('h3').at(0).text()
+      wrapper.findAll('h2').at(0).text()
     ).toBe('Husky Card');
     expect(
-      wrapper.findAll('h4').at(0).text()
+      wrapper.findAll('h3').at(0).text()
     ).toBe('Student Husky Account');
     expect(
-      wrapper.findAll('h4').at(1).text()
+      wrapper.findAll('h3').at(1).text()
     ).toBe('Employee Husky Account');
     expect(wrapper.findAll('span').at(0).text()
     ).toBe('$1.23');

@@ -94,7 +94,7 @@
               />
             </font-awesome-layers>
           </b-button>
-          <h1 class="d-inline align-middle text-white" :class="[$mq == 'desktop' ? 'h3' : 'h5']">
+          <div class="d-inline align-middle text-white" :class="[$mq == 'desktop' ? 'h3' : 'h5']">
             <template v-if="$mq != 'desktop'">
               <template v-if="pageTitle == 'Home'"> MyUW </template>
               <template v-else>
@@ -109,7 +109,7 @@
               </template>
             </template>
             <template v-else> MyUW </template>
-          </h1>
+          </div>
         </b-container>
       </div>
     </header>
@@ -125,7 +125,7 @@
             <b-collapse
               v-if="!isHybrid"
               id="nav-collapse"
-              class="pt-3 text-nowrap myuw-navigation"
+              class="pt-4 text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
             >
@@ -225,13 +225,14 @@
               <uw-messages />
             </div>
           </b-col>
-          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-3">
-            <h2
+          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-4">
+            <h1
               id="mainHeader"
+              class="mb-3 h3 myuw-font-encode-sans"
               :class="[pageTitle == 'Home' || pageTitle == 'Profile' ? 'sr-only' : '']"
             >
               {{ pageTitle }}
-            </h2>
+            </h1>
             <b-row>
               <slot v-if="$mq === 'mobile'" name="mobile" />
               <slot v-else name="desktop" />

@@ -1,11 +1,11 @@
 <template>
 <div class="d-flex">
-    <h5
+    <h3 v-if="!noHeading"
       :class="[!showRowHeading ? 'sr-only' : '']"
       class="w-25 font-weight-bold myuw-text-md"
     >
       Meeting Time
-    </h5>
+    </h3>
     <div class="flex-fill">
       <table class="mb-0 w-100 table table-sm table-borderless myuw-text-md">
         <thead class="sr-only">
@@ -111,6 +111,10 @@ export default {
       required: true,
     },
     showRowHeading: {
+      type: Boolean,
+      default: false,
+    },
+    noHeading: {
       type: Boolean,
       default: false,
     },

@@ -70,7 +70,7 @@ describe('Grad Status Card', () => {
     expect(wrapper.vm.petitions).toHaveLength(7);
     expect(wrapper.vm.leaves).toHaveLength(3);
     expect(wrapper.vm.degrees).toHaveLength(8);
-    expect(wrapper.findAll('h4')).toHaveLength(3);
+    expect(wrapper.findAll('h3')).toHaveLength(3);
   });
 
   it('Show custom error msg for 543', async () => {

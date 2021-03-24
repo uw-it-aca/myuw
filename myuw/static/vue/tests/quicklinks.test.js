@@ -52,7 +52,7 @@ describe('Quicklinks/Link', () => {
     const wrapper = mount(Quicklinks, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Quick Links');
+    expect(wrapper.find('h2').text()).toEqual('Quick Links');
     expect(wrapper.findAllComponents(Link)).toHaveLength(mockQuicklinks['default_links'].length);
   });
 
@@ -72,7 +72,7 @@ describe('Quicklinks/Link', () => {
     const wrapper = mount(Quicklinks, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Quick Links');
+    expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.vm.customLink = newCustomLink;
     wrapper.vm.addLink({preventDefault: jest.fn()})
@@ -94,7 +94,7 @@ describe('Quicklinks/Link', () => {
     const wrapper = mount(Quicklinks, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Quick Links');
+    expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.findAllComponents(Link).at(removeLinkIndex).findAll('button').at(0).trigger('click');
 
@@ -120,7 +120,7 @@ describe('Quicklinks/Link', () => {
     axios.post.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Quick Links');
+    expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.vm.customLink = newCustomLink;
     wrapper.vm.addLink({preventDefault: jest.fn()})
@@ -159,7 +159,7 @@ describe('Quicklinks/Link', () => {
     axios.post.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Quick Links');
+    expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.vm.customLink = newCustomLink;
     wrapper.vm.addLink({preventDefault: jest.fn()});
@@ -209,7 +209,7 @@ describe('Quicklinks/Link', () => {
     axios.get.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Quick Links');
+    expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     // It takes like 10 ms for the dom to update
     await new Promise((r) => setTimeout(r, 10));
@@ -230,7 +230,6 @@ describe('Quicklinks/Link', () => {
 
     const wrapper = mount(Quicklinks, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Quick Links');
     const newCustomLink = {
       url: "http://test.com",
       label: "test",

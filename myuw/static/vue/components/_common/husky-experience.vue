@@ -5,9 +5,9 @@
            :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Husky Experience Toolkit
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <div class="mx-n3 mb-n3 myuw-huskyexp">
@@ -22,11 +22,11 @@
               :href="expLink"
               class="d-block h-100 px-3 py-4"
             >
-              <h4 class="h5 d-inline bg-white px-2 py-1
+              <h3 class="h5 d-inline bg-white px-2 py-1
             text-body font-weight-bold"
               >
                 {{ articleTeaserTitle }}
-              </h4>
+              </h3>
               <div class="bg-white mt-3 px-2 py-1 text-body myuw-text-md">
                 {{ articleTeaserBody }}
                 <font-awesome-icon :icon="['fas', articleFaClass]"

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Enrollment
-    </h5>
+    </h3>
     <div v-if="useLegacyViewClasslist">
       <span>
         View class list in
@@ -10,7 +10,7 @@
           v-out="'Legacy myuw class list'"
           class="myuw-muted"
           :href="legacyLink"
-          :title="`View ${section.id} class list`"
+          :title="`View class list of ${section.label}`"
           target="_blank"
         >
           My Class Resources
@@ -46,6 +46,7 @@
       <b-link
         target="_blank"
         :href="`/teaching/${section.apiTag}/students`"
+        :title="`View class list of ${section.label}`"
       >
         View student
       </b-link>
@@ -63,6 +64,7 @@
         <b-link v-if="section.current_enrollment"
           target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
+          :title="`View class list of ${section.label}`"
         >
           View class list
         </b-link>
@@ -71,7 +73,7 @@
       <span>
         <b-link v-if="displayDownloadLink"
           id="csv_download_class_list"
-          :title="`Download ${section.id} class list`"
+          :title="`Download class list of ${section.label}`"
           @click="downloadCL"
         >
           <font-awesome-icon :icon="faDownload" /> Download (CSV)

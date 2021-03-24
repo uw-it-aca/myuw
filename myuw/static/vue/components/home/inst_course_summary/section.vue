@@ -1,7 +1,7 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
     <div  class="d-flex">
-      <h4 class="">
+      <h3 class="" :aria-label="section.id.replace(/-/g,' ')">
         <div :class="`c${section.color_id} simplesquare`" />
         <a
           v-inner="'View inst course card'"
@@ -15,20 +15,20 @@
             {{ section.section_id }}
           </span>
         </a>
-      </h4>
+      </h3>
       <div>
         <div>
-          <h5 class="sr-only">
+          <h4 class="sr-only">
             Section Type:
-          </h5>
+          </h4>
           <span class="text-capitalize">
             {{ section.section_type }}
           </span>
         </div>
         <div v-if="section.sln">
-          <h5 class="sr-only">
+          <h4 class="sr-only">
             Section SLN:
-          </h5>
+          </h4>
           <span>
             <a
               v-out="'Time Schedule for SLN'"
@@ -43,16 +43,16 @@
       </div>
 
       <div class="flex-fill">
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Meetings:
-        </h5>
+        </h4>
         <uw-meeting-info :section="section" />
       </div>
 
       <div>
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Enrollments:
-        </h5>
+        </h4>
         <uw-enrollment :section="section" />
       </div>
     </div>

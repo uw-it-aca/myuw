@@ -1,8 +1,8 @@
 <template>
   <div v-if="evalData.length > 0">
-    <h5 class="font-weight-bold myuw-text-md">
+    <h3 class="font-weight-bold myuw-text-md">
       Course Evaluations
-    </h5>
+    </h3>
     <div class="myuw-text-md">
       <div
         v-for="(evalObj, idx) in evalData"
