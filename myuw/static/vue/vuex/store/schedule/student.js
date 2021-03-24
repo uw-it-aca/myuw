@@ -19,6 +19,7 @@ function postProcess(response, urlExtra) {
                   section.course_number + "-" + section.section_id);
     section.id = (courseData.year + "-" + courseData.quarter + "-" +
                   section.anchor);
+    section.label = section.id.replace(/-/g, ' ');
 
     // MUWM-549 and MUWM-552
     let canvasUrl = section.canvas_url;

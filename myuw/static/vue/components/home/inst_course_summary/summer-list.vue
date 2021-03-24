@@ -1,27 +1,27 @@
 <template>
   <div>
     <div v-if="getFulltermSections().length">
-      <h4>
+      <h3>
         Full-Term
-      </h4>
+      </h3>
       <uw-section-list
         :sections="getFulltermSections()"
       />
     </div>
 
     <div v-if="getAtermSections().length">
-      <h4>
+      <h3>
         A-Term
-      </h4>
+      </h3>
       <uw-section-list
         :sections="getAtermSections()"
       />
     </div>
 
     <div v-if="getBtermSections().length">
-      <h4>
+      <h3>
         B-Term
-      </h4>
+      </h3>
       <uw-section-list
         :sections="getBtermSections()"
       />

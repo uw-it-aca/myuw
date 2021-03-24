@@ -5,13 +5,13 @@
   >
     <template #card-heading>
       <div v-if="sectionData">
-        <h3>
+        <h2>
           {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
           {{ sectionData.sectionId }},
-          {{ sectionData.quarter }} {{ sectionData.year }}
-        </h3>
+          {{ titleCaseWord(sectionData.quarter) }} {{ sectionData.year }}
+        </h2>
         <div v-if="sectionData.sln">
-          <h4>SLN</h4>
+          <h3>SLN</h3>
           <span>{{ sectionData.sln }}</span>
         </div>
       </div>

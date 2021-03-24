@@ -1,9 +1,9 @@
 <template>
   <uw-card :loaded="isReady" :errored="isErrored" :mobile-only="mobileOnly">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Quick Links
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <ul class="list-unstyled myuw-text-md">
@@ -23,9 +23,9 @@
       <uw-covid-links :links="allLinks" />
 
       <div v-if="recentLinks.length">
-        <h4 class="h6">
+        <h3 class="h6">
           Recently Visited
-        </h4>
+        </h3>
         <ul class="list-unstyled myuw-text-md">
           <uw-link
             v-for="(link, index) in recentLinks" :key="`recent-${index}`"
@@ -60,9 +60,9 @@
       </p>
 
       <b-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
-        <h4 class="h6">
+        <h3 class="h6">
           Popular Links
-        </h4>
+        </h3>
         <ul class="list-unstyled myuw-text-md mb-0">
           <uw-link
             v-for="(link, index) in popularLinks" :key="`popular-${index}`"
@@ -77,9 +77,9 @@
         class="bg-light mx-n3 p-3 mt-3"
       >
         <b-form class="myuw-text-md" @submit="addLink" @reset="onReset">
-          <h4 class="h6">
+          <h3 class="h6">
             Add your link to Quick Links
-          </h4>
+          </h3>
           <b-form-group label="URL" label-for="myuw-custom-qlink">
             <b-form-input
               id="myuw-custom-qlink"

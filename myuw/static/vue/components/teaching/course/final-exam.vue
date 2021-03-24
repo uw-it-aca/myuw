@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5 :class="{'sr-only': showRowHeader}">
+    <h3 :class="{'sr-only': showRowHeader}">
       Final Exam
-    </h5>
+    </h3>
     <div v-if="section.final_exam">
       <div v-if="section.final_exam.no_exam_or_nontraditional">
         No Exam or Non-Traditional
