@@ -54,7 +54,7 @@
         <h4 class="sr-only">
           Section Meetings:
         </h4>
-        <uw-meeting-info :section="section" noHeading />
+        <uw-meeting-info :section="section" no-heading />
       </div>
 
       <div>
