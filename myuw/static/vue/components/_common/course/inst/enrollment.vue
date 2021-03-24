@@ -17,7 +17,7 @@
       v-inner="'View Class list'"
       target="_blank"
       :href="classListHref()"
-      :title="getTitle()"
+      :title="`View Classlist of ${section.label}`"
     >
       {{ section.current_enrollment }}
       <span v-if="!section.is_independent_study">
@@ -39,12 +39,6 @@ export default {
   methods: {
     classListHref() {
       return ('/teaching/' + this.section.apiTag + '/students');
-    },
-    getTitle() {
-      return ('View Classlist of ' +
-               this.section.curriculum_abbr + ' ' +
-               this.section.course_number + ' ' +
-               this.section.section_id);
     },
   },
 };

@@ -6,9 +6,9 @@
              :errored-show="showError"
     >
       <template #card-heading>
-        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
           UW Medicine Account
-        </h3>
+        </h2>
         <img :src="staticUrl+'images/UWMedicine_Logo_RGB@2x.png'"
              width="100px"
              alt=""
@@ -41,9 +41,9 @@
           </b-alert>
         </div>
         <div v-else>
-          <h4>
+          <h3>
             Password expiration
-          </h4>
+          </h3>
           <div :class="expires30Days ? 'text-danger' : ''">
             <span>{{ toFriendlyDate(expiresMed) }}</span>
             <span>in {{ daysBeforeExpires }} days*</span>

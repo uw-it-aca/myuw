@@ -1,9 +1,9 @@
 <template>
   <uw-card loaded>
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         No {{ titleCaseWord(quarter) }} {{ capitalizeString(summerTerm) }} Registration Found
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p class="myuw-text-md">

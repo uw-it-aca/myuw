@@ -1,7 +1,7 @@
 <template>
   <uw-card :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Library Account</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Library Account</h2>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your library account information right now. In the

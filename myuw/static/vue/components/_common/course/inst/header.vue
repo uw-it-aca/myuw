@@ -6,7 +6,7 @@
       <div>
         <b-button v-if="section.mini_card"
           variant="dark" size="sm"
-          :title="`Remove ${section.id} mini-card`"
+          :title="`Remove mini-card of ${section.label}`"
           @click="toggleMiniWrapper"
         >
           <font-awesome-icon :icon="faTimes" />
@@ -15,22 +15,22 @@
     </div>
 
     <div v-if="section.summer_term" class="d-flex">
-      <h5
+      <h3
         class="w-25 font-weight-bold myuw-text-md"
       >
         Term
-      </h5>
+      </h3>
       <div class="flex-fill myuw-text-md">
         Summer {{ capitalizeString(section.summer_term) }}
       </div>
     </div>
 
     <div v-if="section.cc_display_dates" class="d-flex">
-      <h5
+      <h3
         class="w-25 font-weight-bold myuw-text-md"
       >
         Dates
-      </h5>
+      </h3>
       <div class="flex-fill myuw-text-md">
         {{ sectionFormattedDates(section) }}
       </div>

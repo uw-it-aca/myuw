@@ -40,6 +40,7 @@ function postProcess(response, urlExtra, rootState) {
     section.anchor = (section.course_abbr_slug + "-" +
                   section.course_number + "-" + section.section_id);
     section.id = section.year + "-" + section.quarter + "-" + section.anchor;
+    section.label = section.id.replace(/-/g, ' ');
 
     section.apiTag = `${section.year},${section.quarter.toLowerCase()},${
       section.curriculum_abbr

@@ -1,13 +1,14 @@
 <template>
   <uw-card v-if="instructor && showContent"
+           v-meta="{term: term}"
            :loaded="isReady"
            :errored="isErrored"
            :errored-show="statusCodeTagged(term) !== 404"
   >
     <template #card-heading>
-      <h3 class="h4 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 text-dark-beige myuw-font-encode-sans">
         {{ titleCaseWord(getQuarter) }} {{ getYear }} Teaching Schedule
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <div v-if="!instSchedule.sections.length">

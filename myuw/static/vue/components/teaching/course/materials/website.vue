@@ -5,13 +5,14 @@
       <a
         :href="section.class_website_url"
         target="_blank"
+        :title="`Class Website of ${section.label}`"
       >View class website</a>
       <span v-if="!pastTerm">
         <a
           v-out="'Update Course Website'"
           target="_blank"
           :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
-          title="Update Course Website"
+          :title="`Update Class Website of ${section.label}`"
         >Update</a>
       </span>
     </span>
@@ -26,7 +27,7 @@
       v-out="'Add Course Website'"
       target="_blank"
       :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
-      title="Add Course Website"
+      :title="`Add Class Website for ${section.label}`"
     >Add</a>
     <div>
       A link to the course Canvas is automatically shown to students.

@@ -2,9 +2,9 @@
   <b-row class="mb-3"
          role="group" aria-labelledby="summaryHeader"
   >
-    <h3 id="summaryHeader" class="sr-only">
+    <h2 id="summaryHeader" class="sr-only">
       Account Summaries
-    </h3>
+    </h2>
     <b-col md="2">
       <a
         v-if="termData"

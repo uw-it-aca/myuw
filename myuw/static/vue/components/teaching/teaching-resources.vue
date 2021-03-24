@@ -2,9 +2,9 @@
   <uw-panel :loaded="true">
     <template #panel-body>
       <div>
-        <h3 class="h5">
+        <h2 class="h5">
           Remote Teaching
-        </h3>
+        </h2>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a href="https://teachingremotely.washington.edu/">Teaching Remotely</a>
@@ -35,9 +35,9 @@
           </li>
         </ul>
 
-        <h3 class="h5">
+        <h2 class="h5">
           Course Materials
-        </h3>
+        </h2>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a :href="'http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=' + linkData.textbook"
@@ -50,9 +50,9 @@
             <a href="http://f2.washington.edu/fm/c2/printing-copying/course-packs">Request Course Packs</a>
           </li>
         </ul>
-        <h3 class="h5">
+        <h2 class="h5">
           Web Tools &amp; Services
-        </h3>
+        </h2>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a href="http://canvas.uw.edu">Canvas</a>
@@ -75,9 +75,9 @@
             <a href="https://coda.uw.edu">Course Stats</a>
           </li>
         </ul>
-        <h3 class="h5">
+        <h2 class="h5">
           Help Guides
-        </h3>
+        </h2>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a href="https://itconnect.uw.edu/learn/tools/">Teaching &amp; Learning Tools</a>

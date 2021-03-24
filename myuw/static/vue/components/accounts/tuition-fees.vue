@@ -6,7 +6,7 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Tuition &amp; Fees</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Tuition &amp; Fees</h2>
     </template>
     <template #card-body>
       <div style="text-align: center">
@@ -67,10 +67,10 @@
         <li v-else-if="tuition.tuition_accbalance < 0">
           <div class="d-flex">
             <div>
-              <h4 class="h6 text-dark font-weight-bold">
+              <h3 class="h6 text-dark font-weight-bold">
                 Account Credit<br />
                 <span class="myuw-text-md">Student Fiscal Services</span>
-              </h4>
+              </h3>
             </div>
             <div>
               <span class="h6 text-dark font-weight-bold"

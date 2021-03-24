@@ -45,7 +45,6 @@
       <b-collapse
         id="hidden_events_collapse"
         v-model="isOpen"
-        @show="logDisclosureOpen"
       >
         <uw-list-events :events="hiddenEvents" />
         <div v-if="calLinks.length > 1" class="mt-3">
@@ -73,7 +72,6 @@
       <b-collapse
         id="hidden_events_collapse"
         v-model="isOpen"
-        @show="logDisclosureOpen"
       >
         <div v-if="calLinks.length > 1">
           <p class="text-muted myuw-text-md">
@@ -154,9 +152,6 @@ export default {
   },
   methods: {
     ...mapActions('events', ['fetch']),
-    logDisclosureOpen() {
-      this.$logger.disclosureOpen(this);
-    },
   },
 };
 </script>
