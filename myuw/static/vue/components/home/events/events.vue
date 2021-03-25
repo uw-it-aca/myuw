@@ -96,9 +96,8 @@
         variant="link"
         size="sm"
         class="w-100 p-0 border-0 text-dark"
-        :title="isOpen ? 'Show less' : 'Show more'"
       >
-        SHOW {{ hiddenEvents.length }} MORE
+        Future Events
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
         <font-awesome-icon v-else :icon="faChevronDown" />
       </b-button>
