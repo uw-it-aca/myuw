@@ -216,7 +216,6 @@
                   <font-awesome-icon :icon="faBookmark" class="mr-2" />UW Resources
                 </b-nav-item>
               </b-nav>
-              <!-- <uw-welcome v-if="$mq === 'desktop'" /> -->
             </b-collapse>
           </b-col>
           <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
@@ -353,13 +352,11 @@ import {
 import { mapState, mapMutations } from 'vuex';
 import axios from 'axios';
 import Search from './search.vue';
-import Welcome from './welcome.vue';
 import Messages from './messages.vue';
 
 export default {
   components: {
     'uw-search': Search,
-    'uw-welcome': Welcome,
     'uw-messages': Messages,
   },
   props: {

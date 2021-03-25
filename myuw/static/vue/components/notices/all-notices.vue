@@ -4,13 +4,11 @@
       <div class="ml-auto myuw-text-md">
         <b-link
           v-if="!everyNoticeListExpanded"
-          title="Show all notice information"
           @click="expandAll()"
         >
           Expand All
         </b-link>
         <b-link v-else
-          title="Hide all notice information"
           @click="collapseAll()"
         >
           Collapse All
