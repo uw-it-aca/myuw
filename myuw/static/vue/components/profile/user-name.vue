@@ -5,7 +5,7 @@
       :errored="isErrored"
   >
     <template #panel-body>
-      <h3>
+      <h2 class="h4 mb-3">
         <span v-if="hasPreferred">{{ titleCaseName(displayName) }}
           <span class="myuw-text-md text-uppercase">({{ titleCaseName(fullName) }})</span>
         </span>
@@ -17,7 +17,7 @@
             <font-awesome-icon :icon="faPencilAlt" class="myuw-text-md" />
             <span class="sr-only">Manage your preferred name</span>
         </a>
-      </h3>
+      </h2>
     </template>
   </uw-panel>
 </template>

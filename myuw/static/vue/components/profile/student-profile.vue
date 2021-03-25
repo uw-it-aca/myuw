@@ -5,9 +5,9 @@
            :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Student Profile
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <div vocab="http://schema.org/" typeof="Person">
