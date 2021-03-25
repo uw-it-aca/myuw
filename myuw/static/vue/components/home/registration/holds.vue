@@ -12,7 +12,6 @@
         />
         <b-button
           v-b-toggle="`${summerCardLabel}holds-collapse-${$meta.uid}`"
-          :title="buttonTitle"
           variant="link"
           class="p-0 border-0 text-danger font-weight-bold"
         >
@@ -73,10 +72,6 @@ export default {
     };
   },
   computed: {
-    buttonTitle() {
-      if (this.collapseOpen) return 'Collapse to hide holds details';
-      return 'Expand to show holds details';
-    },
   },
 };
 </script>

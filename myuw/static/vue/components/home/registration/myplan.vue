@@ -17,9 +17,8 @@
               size="sm"
               variant="link"
               class="ml-1 p-0 border-0 bg-transparent align-baseline"
-              :title="buttonTitle"
             >
-              See PLan Details
+              Plan Details
               <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
               <font-awesome-icon v-else :icon="faChevronUp" />
             </b-button>
@@ -124,10 +123,6 @@ export default {
     },
     coursesUnavailable() {
       return this.courses.filter((c) => !c.registrations_available);
-    },
-    buttonTitle() {
-      if (this.collapseOpen) return 'Collapse to hide courses not ready';
-      return 'Expand to show courses not read';
     },
   },
 };
