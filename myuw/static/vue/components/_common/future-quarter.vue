@@ -42,9 +42,7 @@
                       </span>
                       information
                     </span>
-                    <font-awesome-icon
-                      :icon="['fa', 'chevron-right']"
-                    />
+                    <font-awesome-icon :icon="faChevronRight" />
                   </a>
                 </div>
               </div>
@@ -73,6 +71,9 @@
 </template>
 
 <script>
+import {
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -85,6 +86,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      faChevronRight,
+    };
   },
   computed: {
     ...mapState({

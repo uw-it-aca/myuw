@@ -3,7 +3,7 @@
     <div v-b-toggle="`books-${section.sln}`" :disabled="!collapsable">
       <h3 class="h4">
         <font-awesome-icon
-          :icon="['fas', 'square-full']"
+          :icon="faSquareFull"
           :class="`text-c${section.colorId}`"
           class="mr-1"
         />
@@ -45,6 +45,9 @@
 </template>
 
 <script>
+import {
+  faSquareFull,
+} from '@fortawesome/free-solid-svg-icons';
 import Book from './book.vue';
 
 export default {
@@ -64,6 +67,7 @@ export default {
   data() {
     return {
       isOpen: !this.collapsable,
+      faSquareFull,
     };
   },
   computed: {

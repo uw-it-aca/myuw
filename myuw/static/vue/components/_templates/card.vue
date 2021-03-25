@@ -26,7 +26,7 @@
         <b-alert show variant="light" class="p-0 m-0 border-0 bg-transparent">
           <div class="d-flex text-danger mb-3 myuw-text-md">
             <div class="pr-2 flex-shrink-1">
-              <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+              <font-awesome-icon :icon="faExclamationTriangle" />
             </div>
             <div class="w-100">
               <slot name="card-error">
@@ -49,6 +49,10 @@
 </template>
 
 <script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
+
 export default {
   props: {
     loaded: {
@@ -73,7 +77,9 @@ export default {
     },
   },
   data: function() {
-    return {};
+    return {
+      faExclamationTriangle,
+    };
   },
   computed: {
     bodyClasses() {

@@ -29,7 +29,7 @@
               </h3>
               <div class="bg-white mt-3 px-2 py-1 text-body myuw-text-md">
                 {{ articleTeaserBody }}
-                <font-awesome-icon :icon="['fas', articleFaClass]"
+                <font-awesome-icon :icon="articleFaClass"
                                    aria-hidden="true" class="align-text-bottom"
                 />
               </div>
@@ -42,6 +42,9 @@
 </template>
 
 <script>
+import {
+  faCaretRight,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -75,7 +78,10 @@ export default {
         return state.hx_toolkit.value[this.urlExtra].articleTeaserBody;
       },
       articleFaClass: function(state) {
-        return state.hx_toolkit.value[this.urlExtra].articleFaClass;
+        if (state.hx_toolkit.value[this.urlExtra].articleFaClass === 'caret-right') {
+          return faCaretRight;
+        }
+        return null;
       },
       hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),

@@ -16,19 +16,27 @@
     </div>
     <button type="button" class="myuw-back-to-top"
       title="Back to Top" @click="scrollToTop">
-        <font-awesome-icon :icon="['fa', 'chevron-up']" />
+        <font-awesome-icon :icon="faChevronUp" />
         <span><span class="sr-only">Back to</span> Top</span>
     </button>
   </div>
 </template>
 
 <script>
+import {
+  faChevronUp,
+} from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import ResourceCard from './resource-card.vue';
 
 export default {
   components: {
     'uw-resource-card': ResourceCard,
+  },
+  data() {
+    return {
+      faChevronUp,
+    };
   },
   computed: {
     ...mapState('resources', {
