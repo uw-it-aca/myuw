@@ -94,7 +94,7 @@ export default {
       return this.isErroredTagged(this.urlExtra);
     },
     showError: function() {
-      return this.statusCode !== 404;
+      return this.statusCodeTagged(this.urlExtra) !== 404;
     },
   },
   created() {
