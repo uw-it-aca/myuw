@@ -216,7 +216,7 @@
                   <font-awesome-icon :icon="faBookmark" class="mr-2" />UW Resources
                 </b-nav-item>
               </b-nav>
-              <uw-welcome v-if="$mq === 'desktop'" />
+              <!-- <uw-welcome v-if="$mq === 'desktop'" /> -->
             </b-collapse>
           </b-col>
           <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
