@@ -41,7 +41,8 @@
         size="sm"
         class="w-100 p-0 border-0 text-dark"
       >
-        Secondary Sections ({{linkedSections.length}})
+        Linked Sections of {{ section.curriculum_abbr }}
+        {{ section.course_number }} {{ section.section_id }}
         <font-awesome-icon v-if="!isOpen"  :icon="faChevronDown" />
         <font-awesome-icon v-else :icon="faChevronUp" />
       </b-button>
