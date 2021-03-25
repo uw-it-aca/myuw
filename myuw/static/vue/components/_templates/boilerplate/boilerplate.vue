@@ -142,7 +142,7 @@
                   v-if="(undergrad && seattle) || hxtViewer"
                   class="mb-2"
                   href="/husky_experience/"
-                  :active="pageTitle == 'Husky Experience'"
+                  :active="pageTitle == 'Husky Experience Toolkit'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
                   <font-awesome-icon :icon="faPaw" class="mr-2" />Husky Experience
