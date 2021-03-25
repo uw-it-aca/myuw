@@ -41,7 +41,7 @@
         class="d-flex mb-4"
       >
         <font-awesome-icon
-          :icon="['far', 'circle']"
+          :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
@@ -56,7 +56,7 @@
         class="d-flex mb-4"
       >
         <font-awesome-icon
-          :icon="['far', 'circle']"
+          :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
@@ -71,7 +71,7 @@
         class="d-flex mb-4"
       >
         <font-awesome-icon
-          :icon="['fas', 'check-circle']"
+          :icon="faCheckCircle"
           class="mr-3 mt-1 text-success myuw-text-lg"
         />
         <div class="myuw-text-md" v-html="notice.notice_content" />
@@ -83,7 +83,7 @@
         class="d-flex mb-4"
       >
         <font-awesome-icon
-          :icon="['far', 'circle']"
+          :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
@@ -98,7 +98,7 @@
         class="d-flex mb-4"
       >
         <font-awesome-icon
-          :icon="['fas', 'check-circle']"
+          :icon="faCheckCircle"
           class="mr-3 mt-1 text-success myuw-text-lg"
         />
         <div class="myuw-text-md" v-html="notice.notice_content" />
@@ -110,7 +110,7 @@
         class="d-flex mb-4"
       >
         <font-awesome-icon
-          :icon="['far', 'circle']"
+          :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
@@ -121,7 +121,7 @@
 
       <div v-if="orient_after.length > 0" class="d-flex mb-4">
         <font-awesome-icon
-          :icon="['fas', 'check-circle']"
+          :icon="faCheckCircle"
           class="mr-3 mt-1 text-success myuw-text-lg"
         />
         <div class="myuw-text-md">
@@ -133,12 +133,24 @@
 </template>
 
 <script>
+import {
+  faCheckCircle,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faCircle,
+} from '@fortawesome/free-regular-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
+  },
+  data() {
+    return {
+      faCheckCircle,
+      faCircle,
+    };
   },
   computed: {
     formatted_date: function() {

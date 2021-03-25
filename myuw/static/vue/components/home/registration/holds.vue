@@ -6,7 +6,7 @@
       </h4>
       <div :class="[!isMyPlanPeakLoad ? 'text-right' : '']" class="flex-fill">
         <font-awesome-icon
-          :icon="['fas', 'exclamation-triangle']"
+          :icon="faExclamationTriangle"
           class="mr-1 align-middle text-danger"
           aria-hidden="true"
         />
@@ -47,6 +47,7 @@
 import {
   faChevronUp,
   faChevronDown,
+  faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 export default {
   props: {
@@ -68,6 +69,7 @@ export default {
       collapseOpen: false,
       faChevronUp,
       faChevronDown,
+      faExclamationTriangle,
     };
   },
   computed: {
