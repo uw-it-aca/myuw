@@ -72,52 +72,28 @@
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <b-button
-            v-if="!isOpen"
             v-b-toggle="`course-details-${index}`"
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
-            title="Expand to show course details"
           >
             COURSE DETAILS
-            <font-awesome-icon :icon="faChevronDown" />
-          </b-button>
-          <b-button
-            v-else
-            v-b-toggle="`course-details-${index}`"
-            variant="link"
-            size="sm"
-            class="w-100 p-0 border-0 text-dark"
-            title="Collapse to hide course details"
-          >
-            COURSE DETAILS
-            <font-awesome-icon :icon="faChevronUp" />
+            <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
+            <font-awesome-icon v-else :icon="faChevronUp" />
           </b-button>
         </template>
 
         <template v-else>
           <template v-if="section.instructors.length > 0">
             <b-button
-              v-if="!isOpen"
               v-b-toggle="`instructors-collapse-${index}`"
               variant="link"
               size="sm"
               class="w-100 p-0 border-0 text-dark"
-              title="Expand to show instructors"
             >
               INSTRUCTORS
-              <font-awesome-icon :icon="faChevronDown" />
-            </b-button>
-            <b-button
-              v-else
-              v-b-toggle="`instructors-collapse-${index}`"
-              variant="link"
-              size="sm"
-              class="w-100 p-0 border-0 text-dark"
-              title="Collapse to hide instructors"
-            >
-              INSTRUCTORS
-              <font-awesome-icon :icon="faChevronUp" />
+              <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
+              <font-awesome-icon v-else :icon="faChevronUp" />
             </b-button>
           </template>
           <div v-else class="text-center text-muted font-italic myuw-text-md"
