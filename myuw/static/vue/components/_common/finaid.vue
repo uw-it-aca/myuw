@@ -1,8 +1,8 @@
 <template>
   <div class="mt-4">
-    <h4 class="h6 font-weight-bold text-dark-beige">
+    <h3 class="h6 font-weight-bold text-dark-beige">
       Financial Aid
-    </h4>
+    </h3>
     <slot name="status" />
     <ul class="list-unstyled">
       <li v-for="(notice, i) in finAidNotices" :key="i">

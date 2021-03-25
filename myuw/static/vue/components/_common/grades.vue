@@ -6,9 +6,9 @@
            :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Final Grades
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p
@@ -53,9 +53,9 @@
         id="grade_card_collapse"
         v-model="isOpen"
       >
-        <h4 class="h6 font-weight-bold">
+        <h3 class="h6 font-weight-bold">
           Resources
-        </h4>
+        </h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx" target="_blank">

@@ -10,9 +10,9 @@
         <template #card-heading>
           <div>
             {{resource.category_name}}
-            <h4>
+            <h3>
               {{subcategories.subcat_name}}
-            </h4>
+            </h3>
             <button @click="unpinWrapper(subcategories)">
               Unpin
             </button>
