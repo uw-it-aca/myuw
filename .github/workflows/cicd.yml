@@ -39,11 +39,11 @@ jobs:
 
       - name: Disable Vue Devtools
         if: ${{ endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') }}
-        run: echo "VUE_DEVTOOLS=\"False\"" >> $GITHUB_ENV
+        run: echo "VUE_DEVTOOLS=False" >> $GITHUB_ENV
       
       - name: Enable Vue Devtools
         if: ${{ !(endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')) }}
-        run: echo "VUE_DEVTOOLS=\"True\"" >> $GITHUB_ENV
+        run: echo "VUE_DEVTOOLS=True" >> $GITHUB_ENV
 
       - name: Build App Image
         uses: docker/build-push-action@v2
