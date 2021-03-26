@@ -52,8 +52,7 @@ jobs:
           tags: ${{ steps.cicd.outputs.image_tag }}
           push: false
           load: true
-          build-args:
-            - VUE_DEVTOOLS=${{ env.VUE_DEVTOOLS }}
+          build-args: VUE_DEVTOOLS=${{ env.VUE_DEVTOOLS }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 

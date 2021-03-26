@@ -69,7 +69,6 @@ export default {
   computed: {
     ...mapState({
       allSchedules: (state) => state.visual_schedule.value,
-      today(state) { return this.dayjs(state.termData.todayDate); },
     }),
     ...mapGetters('visual_schedule', [
       'isReadyTagged',
@@ -99,7 +98,7 @@ export default {
       for (const i in Object.keys(this.periods)) {
         if (
           !this.periods[i].end_date ||
-          this.periods[i].end_date >= this.today.clone().hour(0).minute(0)
+          this.periods[i].end_date >= this.nowDatetime().clone().hour(0).minute(0)
         ) {
           return this.periods[i];
         }

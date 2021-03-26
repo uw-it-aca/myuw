@@ -151,7 +151,6 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
 import CourseSection from './course-section.vue';
 
 export default {
@@ -192,9 +191,6 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      today(state) { return this.dayjs(state.termData.todayDate); },
-    }),
     quarterLastDate() {
       return this.term.last_day_instruction;
     },
@@ -228,9 +224,9 @@ export default {
           }
         }
       } else {
-        this.period.earliestMeetingTime = this.today
+        this.period.earliestMeetingTime = this.nowDatetime()
             .clone().day(1).hour(8).minute(30);
-        this.period.latestMeetingTime = this.today
+        this.period.latestMeetingTime = this.nowDatetime()
             .clone().day(5).hour(11).minute(50);
       }
     }
@@ -437,7 +433,7 @@ export default {
       if (this.isFinalsTab) {
         this.mobile['current'] = Object.keys(this.period.daySlots)[0];
       } else {
-        const dayToday = this.today.format('dddd').toLowerCase();
+        const dayToday = this.nowDatetime().format('dddd').toLowerCase();
         if (dayToday in this.period.daySlots) {
           this.mobile['current'] = dayToday;
         } else {

@@ -201,7 +201,7 @@ export default {
         return parseInt(days / 7) + 1;
       }
     },
-    toFromNowDate(s) { return this.dayjs(s).fromNow(); },
+    toFromNowDate(s) { return this.dayjs(s).from(this.nowDatetime()); },
   },
 };
 </script>
