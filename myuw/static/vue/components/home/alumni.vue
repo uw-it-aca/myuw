@@ -1,9 +1,9 @@
 <template>
   <uw-card v-if="alum" :loaded="true">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Alumni and Alumni Association
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p class="myuw-text-md">
@@ -24,9 +24,9 @@
           >Columns Magazine</a>
         </li>
       </ul>
-      <h4 class="h6 text-dark-beige myuw-font-roboto">
+      <h3 class="h6 text-dark-beige myuw-font-roboto">
         University of Washington Alumni Association (UWAA)
-      </h4>
+      </h3>
       <p class="myuw-text-md">
         With 56,000 members, UWAA helps Huskies of all ages stay in touch
         and in the know.

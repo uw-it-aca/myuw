@@ -1,9 +1,9 @@
 <template>
   <div class="mb-4">
     <div class="d-flex align-items-center mb-2">
-      <h4 class="h6 m-0 text-dark font-weight-bold flex-fill">
+      <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
         Holds
-      </h4>
+      </h3>
       <div :class="[!isMyPlanPeakLoad ? 'text-right' : '']" class="flex-fill">
         <font-awesome-icon
           :icon="faExclamationTriangle"
@@ -28,9 +28,9 @@
       class="myuw-reg-holds"
     >
       <div class="bg-danger m-0 p-3 border-0 rounded-0">
-        <h5 class="h6 font-weight-bold">
+        <h4 class="h6 font-weight-bold">
           Registration and/or Transcript Holds
-        </h5>
+        </h4>
         <ul class="list-unstyled p-0 m-0 myuw-text-sm myuw-reg-holds-list">
           <li
             v-for="(notice, i) in regHoldsNotices"

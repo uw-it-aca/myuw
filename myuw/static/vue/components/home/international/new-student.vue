@@ -4,9 +4,9 @@
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         International Student Resources
-      </h3>
+      </h2>
     </template>
     <template v-if="!isErrored" #card-body>
       <div

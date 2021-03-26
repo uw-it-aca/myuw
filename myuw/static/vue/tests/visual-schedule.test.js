@@ -207,8 +207,8 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h2').exists()).toBeTruthy();
+    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
 
     expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
@@ -220,8 +220,8 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Summer 2013 A-Term Schedule");
+    expect(wrapper.find('h2').exists()).toBeTruthy();
+    expect(wrapper.find('h2').text()).toMatch("Summer 2013 A-Term Schedule");
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
 
     expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Jun 24 - Jul 19");
@@ -233,8 +233,8 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h2').exists()).toBeTruthy();
+    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
 
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(5);
     expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Apr 05");
@@ -255,8 +255,8 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h2').exists()).toBeTruthy();
+    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
 
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
     expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
@@ -278,8 +278,8 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').exists()).toBeTruthy();
-    expect(wrapper.find('h3').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.find('h2').exists()).toBeTruthy();
+    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
 
     expect(wrapper.vm.activePeriod.id).toEqual(0);
     

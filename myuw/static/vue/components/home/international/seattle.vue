@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h4 class="h6 font-weight-bold">
+    <h3 class="h6 font-weight-bold">
       Visa and Immigration Rules
-    </h4>
+    </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">
       <li>
         <a
@@ -45,9 +45,9 @@
       </li>
     </ul>
 
-    <h4 class="h6 font-weight-bold">
+    <h3 class="h6 font-weight-bold">
       Academic Support
-    </h4>
+    </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">
       <li>
         <a
