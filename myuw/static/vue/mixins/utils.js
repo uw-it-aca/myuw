@@ -50,12 +50,6 @@ export default {
       }
       return "";
     },
-    ucfirst(s) {
-      if (s && s.length) {
-        return s.replace(/^([a-z])/, (c) => c.toUpperCase());
-      }
-      return "";
-    },
     sortNotices(notices) {
       return notices.sort((n1, n2) => {
         if (n1.is_critical !== n2.is_critical) {
