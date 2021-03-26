@@ -84,7 +84,7 @@
         variant="link"
         size="sm"
         class="w-100 p-0 text-dark"
-        :title="buttonTitle"
+        title='Additional grade resources'
       >
         Resources
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
@@ -144,12 +144,6 @@ export default {
     },
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
-    },
-    buttonTitle() {
-      return (this.isOpen
-          ? 'Collapse to hide additional grade resources'
-          : 'Expand to show additional grade resources'
-      );
     },
     gradeSubmissionDeadline: function() {
       if (this.term in this.courses) {
