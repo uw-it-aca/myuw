@@ -21,10 +21,6 @@
 <script>
 export default {
   props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
     currAbbr: {
       type: String,
       required: true,
