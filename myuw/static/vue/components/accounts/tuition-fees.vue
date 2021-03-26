@@ -278,7 +278,7 @@ export default {
     },
     tuitionDate() {
       // from notice
-      const now = this.nowDatetime(false);
+      const now = this.nowDatetime();
       const result = {};
       if (this.tuitionDueNotice && this.tuitionDueNotice.date) {
         result.diff = Math.ceil(this.tuitionDueNotice.date.diff(now, 'day', true));
