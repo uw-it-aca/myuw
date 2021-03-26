@@ -43,7 +43,7 @@
       </uw-link-button>
     </div>
     <div>
-      <h4 class="sr-only">Registration resources</h4>
+      <h3 class="sr-only">Registration resources</h3>
       <ul class="m-0 list-unstyled myuw-text-md">
         <li v-if="!registrationIsOpen">
           <a target="_blank" href="https://myplan.uw.edu"> MyPlan </a>

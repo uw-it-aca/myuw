@@ -1,9 +1,9 @@
 <template>
   <uw-card :loaded="true">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         UW Resources
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p class="myuw-text-md">Explore tools, services, and resources by popular topics.</p>
@@ -44,9 +44,9 @@
       </ul>
       <hr>
       <div>
-        <h4 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
           More topics
-        </h4>
+        </h3>
         <ul class="list-inline myuw-text-md">
           <li class="list-inline-item">
             <a href="/resources/#teaching">Teaching</a>

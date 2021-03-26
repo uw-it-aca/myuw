@@ -77,7 +77,7 @@
             size="sm"
             class="w-100 p-0 border-0 text-dark"
           >
-            COURSE DETAILS
+            Course Details
             <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
             <font-awesome-icon v-else :icon="faChevronUp" />
           </b-button>
@@ -91,7 +91,7 @@
               size="sm"
               class="w-100 p-0 border-0 text-dark"
             >
-              INSTRUCTORS
+              Instructors
               <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
               <font-awesome-icon v-else :icon="faChevronUp" />
             </b-button>

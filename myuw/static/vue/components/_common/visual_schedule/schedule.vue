@@ -4,12 +4,12 @@
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         {{ termName }} Schedule
         <span class="sr-only">
           Final exam schedule and Visual Schedule
         </span>
-      </h3>
+      </h2>
     </template>
 
     <template #card-body>

@@ -1,9 +1,9 @@
 <template>
   <uw-card v-if="showOutageCard" :loaded="true" class="myuw-outage">
     <template #card-heading>
-      <h3 class="text-danger">
+      <h2 class="text-danger">
         Limited data due to technical difficulties
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <!-- custom error message for outages -->
@@ -18,9 +18,9 @@
         </div>
       </b-alert>
 
-      <h4 class="h6 font-weight-bold">
+      <h3 class="h6 font-weight-bold">
         Things you might be looking for:
-      </h4>
+      </h3>
 
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">

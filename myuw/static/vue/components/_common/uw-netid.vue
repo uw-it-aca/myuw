@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">UW NetID</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">UW NetID</h2>
     </template>
     <template #card-body>
       <p>

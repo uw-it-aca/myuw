@@ -3,9 +3,9 @@
            :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Events
-      </h3>
+      </h2>
     </template>
     <template v-if="shownEvents.length > 0" #card-body>
       <p class="text-muted myuw-text-md">

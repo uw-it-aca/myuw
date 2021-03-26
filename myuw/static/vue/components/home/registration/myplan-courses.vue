@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h5 class="text-dark-beige">
+    <h4 class="text-dark-beige">
       Your {{ nextTermQuarter }} {{ nextTermYear }} plan
-    </h5>
+    </h4>
     <div v-if="hadReadyCourses">
-      <h6 class="font-weight-bold">
+      <h5 class="font-weight-bold">
         Ready for registration
-      </h6>
+      </h5>
       <ul class="list-unstyled m-0 myuw-text-sm">
         <li v-for="(course, i) in coursesRegistrable" :key="`course-${i}`">
           <div class="myuw-text-md m-0">
@@ -54,9 +54,9 @@
       </ul>
     </div>
     <div v-if="hadUnReadyCourses">
-      <h6 class="font-weight-bold">
+      <h5 class="font-weight-bold">
         Issues
-      </h6>
+      </h5>
       <p class="myuw-text-md">
         The following plan items have issues you must resolve before they
         can be sent to Registration.

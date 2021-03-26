@@ -4,9 +4,9 @@
     :loaded="true"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         UW Retirement Association (UWRA)
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p class="myuw-text-md">
