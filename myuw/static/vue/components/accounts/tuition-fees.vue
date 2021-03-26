@@ -202,8 +202,6 @@ import CardStatus from '../_templates/card-status.vue';
 import LinkButton from '../_templates/link-button.vue';
 import FinAidComponent from '../_common/finaid.vue';
 import TuitionResources from './tuition-resources.vue';
-import dayjs from 'dayjs';
-dayjs.extend(require('dayjs/plugin/timezone'));
 
 export default {
   components: {
@@ -280,7 +278,7 @@ export default {
     },
     tuitionDate() {
       // from notice
-      const now = this.nowDatetime();
+      const now = this.nowDatetime(false);
       const result = {};
       if (this.tuitionDueNotice && this.tuitionDueNotice.date) {
         result.diff = Math.ceil(this.tuitionDueNotice.date.diff(now, 'day', true));

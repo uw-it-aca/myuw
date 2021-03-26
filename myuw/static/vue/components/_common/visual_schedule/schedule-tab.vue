@@ -151,7 +151,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import {mapState} from 'vuex';
 import CourseSection from './course-section.vue';
 
@@ -194,7 +193,7 @@ export default {
   },
   computed: {
     ...mapState({
-      today: (state) => dayjs(state.termData.todayDate),
+      today(state) { return this.dayjs(state.termData.todayDate); },
     }),
     quarterLastDate() {
       return this.term.last_day_instruction;

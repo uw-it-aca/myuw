@@ -153,9 +153,6 @@ import {
   faCalendarAlt,
 } from '@fortawesome/free-regular-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
-import dayjs from 'dayjs';
-const relativeTime = require('dayjs/plugin/relativeTime');
-dayjs.extend(relativeTime);
 
 export default {
   data() {
@@ -194,8 +191,8 @@ export default {
       fetchLibrary: 'fetch',
     }),
     getWeeksApart(qsDate, testDate) {
-      const days = dayjs(testDate).diff(
-          dayjs(qsDate).startOf('week'),
+      const days = this.dayjs(testDate).diff(
+          this.dayjs(qsDate).startOf('week'),
           'days',
       );
       if (days < 0) {
@@ -204,7 +201,7 @@ export default {
         return parseInt(days / 7) + 1;
       }
     },
-    toFromNowDate: (s) => dayjs(s).fromNow(),
+    toFromNowDate(s) { return this.dayjs(s).fromNow(); },
   },
 };
 </script>

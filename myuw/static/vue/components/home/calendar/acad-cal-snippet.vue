@@ -36,7 +36,6 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
-import dayjs from 'dayjs';
 
 export default {
   components: {

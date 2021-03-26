@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import ScheduleTab from './schedule-tab.vue';
@@ -70,7 +69,7 @@ export default {
   computed: {
     ...mapState({
       allSchedules: (state) => state.visual_schedule.value,
-      today: (state) => dayjs(state.termData.todayDate),
+      today(state) { return this.dayjs(state.termData.todayDate); },
     }),
     ...mapGetters('visual_schedule', [
       'isReadyTagged',
@@ -113,8 +112,8 @@ export default {
   },
   methods: {
     ...mapActions('visual_schedule', ['fetch']),
-    formatDate: (t) => {
-      return dayjs(t).format('ddd, MMM D');
+    formatDate(t) {
+      return this.dayjs(t).format('ddd, MMM D');
     },
   },
 };
