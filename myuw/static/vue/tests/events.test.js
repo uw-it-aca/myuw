@@ -83,7 +83,7 @@ describe('Events Card', () => {
     axios.get.mockResolvedValue({data: mockEvents, status: 200});
     const wrapper = shallowMount(EventsCard, {store, localVue});
 
-    expect(wrapper.find('h3').text()).toEqual('Events');
+    expect(wrapper.find('h2').text()).toEqual('Events');
   });
 
   it('acalDateFormat', () => {
@@ -111,6 +111,6 @@ describe('Events Card', () => {
     });
     const wrapper = shallowMount(EventsCard, {store, localVue});
 
-    expect(wrapper.find('h3').text()).toEqual('Events');
+    expect(wrapper.find('h2').text()).toEqual('Events');
   });
 });

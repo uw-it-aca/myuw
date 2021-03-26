@@ -32,11 +32,11 @@ describe('User has no 1st class affiliation', () => {
     ).toBe(true);
 
     expect(
-      wrapper.findAll('h3').at(0).text()
+      wrapper.findAll('h2').at(0).text()
     ).toBe('Professional and Continuing Education (PCE)');
 
     expect(
-      wrapper.findAll('h4').at(0).text()
+      wrapper.findAll('h3').at(0).text()
     ).toBe('Available programs');
 
     let links = wrapper.findAll('a');

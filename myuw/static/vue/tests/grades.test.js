@@ -109,7 +109,7 @@ describe('Events Card', () => {
     const wrapper = mount(GradesCard, {store, localVue});
   
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Final Grades');
+    expect(wrapper.find('h2').text()).toEqual('Final Grades');
   });
 
   it('Basic Render - 2', async () => {
@@ -141,14 +141,14 @@ describe('Events Card', () => {
     const wrapper = mount(GradesCard, {store, localVue});
 
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Final Grades');
+    expect(wrapper.find('h2').text()).toEqual('Final Grades');
   });
 
   it('Basic Render - 3', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(GradesCard, {store, localVue});
 
-    expect(wrapper.find('h3').exists()).toBe(false);
+    expect(wrapper.find('h2').exists()).toBe(false);
   });
 
   it('toFriendlyDate', () => {
