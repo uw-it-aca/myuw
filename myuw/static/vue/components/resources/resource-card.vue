@@ -9,19 +9,19 @@
       >
         <template #card-heading>
           <div>
-            <h4>
+            <h4 class="d-inline-block">
               {{subcatRes.subcat_name}}
             </h4>
-            <button v-if="!subcatRes.is_pinned" @click="pinWrapper(subcatRes)">
+            <b-button variant="link" class="myuw-text-sm text-muted" v-if="!subcatRes.is_pinned" @click="pinWrapper(subcatRes)">
               Pin to Home
-            </button>
-            <button v-else @click="unpinWrapper(subcatRes)">
+            </b-button>
+            <b-button variant="link" class="myuw-text-sm text-muted" v-else @click="unpinWrapper(subcatRes)">
               Unpin
-            </button>
+            </b-button>
           </div>
         </template>
         <template #card-body>
-          <ul>
+          <ul class="list-unstyled myuw-text-md">
             <li v-for="(link, j) in subcatRes.links" :key="j">
               <a :href="link.url">{{link.title}}</a>
             </li>
