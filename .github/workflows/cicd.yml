@@ -37,6 +37,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
+      - name: Disable Vue Devtools
+        if: ${{ endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') }}
+        run: echo "VUE_DEVTOOLS=False" >> $GITHUB_ENV
+      
+      - name: Enable Vue Devtools
+        if: ${{ !(endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')) }}
+        run: echo "VUE_DEVTOOLS=True" >> $GITHUB_ENV
+
       - name: Build App Image
         uses: docker/build-push-action@v2
         with:
@@ -44,6 +52,7 @@ jobs:
           tags: ${{ steps.cicd.outputs.image_tag }}
           push: false
           load: true
+          build-args: VUE_DEVTOOLS=${{ env.VUE_DEVTOOLS }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 

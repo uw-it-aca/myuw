@@ -1,11 +1,6 @@
 import utils from '../mixins/utils'
 import courses from '../mixins/courses';
 
-it('ucfirst', () => {
-  expect(utils.methods.ucfirst('test')).toEqual('Test');
-  expect(utils.methods.ucfirst('test string')).toEqual('Test string');
-});
-
 it('titleCaseWord', () => {
   expect(utils.methods.titleCaseWord('TEST')).toEqual('Test');
   expect(utils.methods.titleCaseWord('string STRING')).toEqual('String string');

@@ -1,6 +1,6 @@
 <template>
   <uw-card v-if="!isReady || (shownEvents.length > 0 || futureCalCount > 0)"
-           :loaded="isReady" :errored="isErrored" :mobile-only="mobileOnly"
+           :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -119,12 +119,6 @@ export default {
   components: {
     'uw-card': Card,
     'uw-list-events': ListEvents,
-  },
-  props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
   },
   data: function() {
     return {

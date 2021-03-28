@@ -153,11 +153,17 @@ class Logger {
     });
   }
 
-  classEmailList(component, cardTid) {
-    this.sink.event('class_email_list', {
+  classEmailList(component) {
+    const data = {
       comp_tag: component.$meta.group.$meta.tag,
-      card_tid: cardTid,
-    });
+    };
+    if (component.$meta.term) {
+      data.term_tag = component.$meta.term;
+    }
+    if (component.$meta.course) {
+      data.course_tag = component.$meta.course;
+    }
+    this.sink.event('class_email_list', data);
   }
 
   onBoarding(component) {
@@ -167,17 +173,31 @@ class Logger {
   }
 
   cardPin(component, cardTid) {
-    this.sink.event('card_pin', {
+    const data = {
       comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
-    });
+    };
+    if (component.$meta.term) {
+      data.term_tag = component.$meta.term;
+    }
+    if (component.$meta.course) {
+      data.course_tag = component.$meta.course;
+    }
+    this.sink.event('card_pin', data);
   }
 
   cardUnPin(component, cardTid) {
-    this.sink.event('card_unpin', {
+    const data = {
       comp_tag: component.$meta.group.$meta.tag,
       card_tid: cardTid,
-    });
+    };
+    if (component.$meta.term) {
+      data.term_tag = component.$meta.term;
+    }
+    if (component.$meta.course) {
+      data.course_tag = component.$meta.course;
+    }
+    this.sink.event('card_unpin', data);
   }
 
   termSelected(term) {

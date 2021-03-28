@@ -37,13 +37,10 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../_templates/card.vue';
 import NoticeList from './notice-list.vue';
-dayjs.extend(require('dayjs/plugin/isToday'));
-dayjs.extend(require('dayjs/plugin/weekOfYear'));
 
 export default {
   components: {

@@ -202,8 +202,6 @@ import CardStatus from '../_templates/card-status.vue';
 import LinkButton from '../_templates/link-button.vue';
 import FinAidComponent from '../_common/finaid.vue';
 import TuitionResources from './tuition-resources.vue';
-import dayjs from 'dayjs';
-dayjs.extend(require('dayjs/plugin/timezone'));
 
 export default {
   components: {
