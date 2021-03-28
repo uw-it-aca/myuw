@@ -1,5 +1,6 @@
 <template>
   <uw-card
+    v-meta="{term: term, course: section.anchor}"
     :id="idForSection(section)"
     loaded
     :ribbon="{
@@ -45,6 +46,11 @@ export default {
     section: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    term() {
+      return this.schedule.year + ',' + this.schedule.quarter;
     },
   },
   mounted() {
