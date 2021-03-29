@@ -26,7 +26,7 @@ describe('Hxt Card', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       modules: {
-        hxt,
+        'hx_toolkit': hxt,
       },
       state: {
         user: {
@@ -45,7 +45,7 @@ describe('Hxt Card', () => {
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.statusCode).toBe(200);
-    expect(wrapper.vm.hxtViewe).toBe(true);
+    expect(wrapper.vm.hxtViewer).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
   });
 
@@ -54,7 +54,7 @@ describe('Hxt Card', () => {
     const wrapper = mount(HxtCard, { store, localVue });
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isErrored).toBe(false);
-    expect(wrapper.vm.hxtViewe).toBe(false);
+    expect(wrapper.vm.hxtViewer).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 
@@ -63,7 +63,7 @@ describe('Hxt Card', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(HxtCard, { store, localVue });
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.vm.hxtViewe).toBe(true);
+    expect(wrapper.vm.hxtViewer).toBe(true);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.statusCode).toBe(404);
     expect(wrapper.vm.showError).toBe(false);
@@ -74,7 +74,7 @@ describe('Hxt Card', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = mount(HxtCard, {store, localVue});
     await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.vm.hxtViewe).toBe(true);
+    expect(wrapper.vm.hxtViewer).toBe(true);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.statusCode).toBe(543);
     expect(wrapper.vm.showError).toBe(true);
