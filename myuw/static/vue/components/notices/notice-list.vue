@@ -2,7 +2,7 @@
   <div v-if="notices.length !== 0" class="border-bottom py-3">
     <div v-b-toggle="collapseId">
       <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
-        <h3 class="h4 m-0">{{ title }}</h3>
+        <h2 class="h4 m-0">{{ title }}</h2>
         <div class="ml-auto">
           <span
             v-if="unreadCount"
@@ -40,7 +40,7 @@
             />
           </div>
         </div>
-        <h4 class="h5 font-weight-bold" v-html="notice.notice_title" />
+        <h3 class="h5 font-weight-bold" v-html="notice.notice_title" />
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
     </b-collapse>

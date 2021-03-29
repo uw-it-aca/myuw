@@ -66,10 +66,6 @@ export default {
       type: String,
       required: true,
     },
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     ...mapState({

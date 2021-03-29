@@ -35,10 +35,6 @@ export default {
     'uw-no-course-card': NoCourseCard,
   },
   props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
     term: {
       type: String,
       default: 'current',

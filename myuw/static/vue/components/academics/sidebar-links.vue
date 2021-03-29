@@ -1,7 +1,5 @@
 <template>
-  <uw-panel
-    :loaded="isReady" :mobile-only="mobileOnly"
-  >
+  <uw-panel :loaded="isReady">
     <template #panel-body>
       <div v-for="linkCategory in linkData" :key="linkCategory.subcat_slug">
         <h2 :id="linkCategory.subcat_slug" class="h5">
@@ -29,12 +27,6 @@ import Panel from '../_templates/panel.vue';
 export default {
   components: {
     'uw-panel': Panel,
-  },
-  props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
   },
   data: function() {
     return {
