@@ -109,7 +109,7 @@ export default {
       student: (state) => state.user.affiliations.student,
       studEmployee: (state) => state.user.affiliations.stud_employee,
       instructor: (state) => state.user.affiliations.instructor,
-      retire: (state) => state.user.affiliations.retire,
+      retiree: (state) => state.user.affiliations.retiree,
       pastEmployee: (state) => state.user.affiliations.past_employee,
       staticUrl: (state) => state.staticUrl,
     }),
