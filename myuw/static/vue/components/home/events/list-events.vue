@@ -26,9 +26,6 @@
         <font-awesome-icon :icon="faLocationArrow" size="sm" />
         {{ getLocation(event) }}
       </em>
-      <em v-else class="text-muted font-weight-light myuw-text-xs">
-        Location not available
-      </em>
     </li>
   </ul>
 </template>
