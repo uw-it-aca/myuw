@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card-group columns class="myuw-card-columns-2">
+    <b-card-group columns :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']">
       <uw-card
         v-for="(subcatRes, i) in Object.values(resource.subcategories)"
         :id="subcatRes.subcat_id"
@@ -9,7 +9,7 @@
       >
         <template #card-heading>
           <div>
-            <h4 class="d-inline-block">
+            <h4 class="h6 d-inline-block">
               {{subcatRes.subcat_name}}
             </h4>
             <b-button variant="link" class="myuw-text-sm text-muted" v-if="!subcatRes.is_pinned" @click="pinWrapper(subcatRes)">
