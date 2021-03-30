@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {fetchBuilder, buildWith} from './model_builder';
-import {dayjs} from './common';
+import {dayjs, strToDate} from './common';
 
 const postProcess = (response, _, rootState) => {
   const notices = response.data;
@@ -39,7 +39,11 @@ const postProcess = (response, _, rootState) => {
     // datetime will reflect BOF
     if (startDateAttr !== undefined && startDateAttr.value !== undefined) {
       notice.startDate = dayjs.utc(startDateAttr.value);
+    } else if (notice.display_begin !== undefined) {
+      // MyUW Banner Notice
+      notice.startDate = strToDate(notice.display_begin);
     }
+
     if (dateAttr !== undefined && dateAttr.value !== undefined) {
       notice.date = dayjs.utc(dateAttr.value);
       notice.formattedDate = dateAttr.formatted_value;
