@@ -107,7 +107,9 @@ export default {
     },
     sectionUrl: function() {
       let page = this.meetingData.section.is_teaching ? 'teaching' : 'academics';
-      return `/${page}/#${
+      let term = this.meetingData.section.is_teaching
+        ? this.year + ',' + this.quarter.toLowerCase() : '';
+      return `/${page}/${term}#${
         this.meetingData.section.curriculum_abbr
       }-${
         this.meetingData.section.course_number
