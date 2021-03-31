@@ -1,6 +1,8 @@
 <template>
   <uw-card v-if="!isReady || (shownEvents.length > 0 || futureCalCount > 0)"
-           :loaded="isReady" :errored="isErrored"
+    :loaded="isReady"
+    :errored="isErrored"
+    :errored-show="showError"
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -138,7 +140,11 @@ export default {
     ...mapGetters('events', {
       isReady: 'isReady',
       isErrored: 'isErrored',
+      statusCode: 'statusCode',
     }),
+    showError: function() {
+      return this.isErrored && this.statusCode !== 404;
+    },
   },
   created() {
     this.fetch();
