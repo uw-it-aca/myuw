@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-library.add(faExclamationTriangle);
-
 import { mount } from '@vue/test-utils';
 import { createLocalVue } from './helper';
 
@@ -16,7 +11,6 @@ import HuskyCard from '../components/accounts/husky.vue';
 import mockJaverageHfs from './mock_data/hfs.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 jest.mock('axios');

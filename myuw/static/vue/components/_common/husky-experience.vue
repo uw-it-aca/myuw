@@ -29,7 +29,9 @@
               </h3>
               <div class="bg-white mt-3 px-2 py-1 text-body myuw-text-md">
                 {{ articleTeaserBody }}
-                <font-awesome-icon :icon="articleFaClass"
+                <font-awesome-icon
+                  v-if="articleFaClass"
+                  :icon="articleFaClass"
                   aria-hidden="true" class="align-text-bottom"
                 />
               </div>
