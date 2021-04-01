@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-library.add(faExclamationTriangle);
-
 import { createLocalVue } from './helper';
 import { mount } from '@vue/test-utils';
 import hxt from '../vuex/store/hx_toolkit';
@@ -15,7 +10,6 @@ import HxtCard from '../components/_common/husky-experience.vue';
 import mockHxt from './mock_data/husky-experience.html';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
@@ -42,7 +36,7 @@ describe('Hxt Card', () => {
     store.state.user.affiliations.hxt_viewer = true;
     axios.get.mockResolvedValue({data: mockHxt, status: 200});
     const wrapper = mount(HxtCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.statusCode).toBe(200);
     expect(wrapper.vm.hxtViewer).toBe(true);
@@ -52,7 +46,7 @@ describe('Hxt Card', () => {
   it('Hide card if not hxt_viewer', async () => {
     axios.get.mockResolvedValue({data: mockHxt, status: 200});
     const wrapper = mount(HxtCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.vm.hxtViewer).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
@@ -62,7 +56,7 @@ describe('Hxt Card', () => {
     store.state.user.affiliations.hxt_viewer = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(HxtCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.hxtViewer).toBe(true);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.statusCode).toBe(404);
@@ -73,7 +67,7 @@ describe('Hxt Card', () => {
     store.state.user.affiliations.hxt_viewer = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = mount(HxtCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.hxtViewer).toBe(true);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.statusCode).toBe(543);

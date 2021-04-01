@@ -1,9 +1,8 @@
 import axios from 'axios';
 import Vuex from 'vuex';
-import {createLocalVue} from '@vue/test-utils';
 import {statusOptions} from '../vuex/store/model_builder';
 import inst_schedule from '../vuex/store/schedule/instructor';
-import {expectAction} from './helper';
+import {expectAction, createLocalVue} from './helper';
 
 import mockBill2013Summer from
   './mock_data/inst_schedule/bill2013summer.json';
@@ -14,8 +13,7 @@ import mockBillsea2013Spring from
 import mockNoCourse2013Summer from
   './mock_data/inst_schedule/2013summer.json';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+createLocalVue(Vuex);
 jest.mock('axios');
 
 describe('Instructor Schedule Data', () => {

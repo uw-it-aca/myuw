@@ -36,7 +36,7 @@ describe('Applicant Card - applicant.vue', () => {
   it('Render Logic applicant = true', async () => {
     axios.get.mockResolvedValue({data: mockApplicant});
     const wrapper = mount(ApplicantCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('div').exists()).toBe(true);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(true);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(false);
@@ -50,7 +50,7 @@ describe('Applicant Card - applicant.vue', () => {
     store.state.user.affiliations.applicant = false;
     axios.get.mockResolvedValue({data: mockApplicant});
     const wrapper = mount(ApplicantCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('div').exists()).toBe(false);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(false);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(false);
@@ -61,7 +61,7 @@ describe('Applicant Card - applicant.vue', () => {
     axios.get.mockResolvedValue({data: []});
     const wrapper = mount(ApplicantCard, { store, localVue });
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('div').exists()).toBe(true);
     expect(
       wrapper.findComponent(SeattleComp).findComponent(UwCard).exists()

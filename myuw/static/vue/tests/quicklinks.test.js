@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import quicklinks from '../vuex/store/quicklinks';
@@ -8,27 +8,12 @@ import Quicklinks from '../components/home/quicklinks/quicklinks.vue';
 
 import mockQuicklinks from './mock_data/quicklinks.json';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {
-  FontAwesomeIcon,
   FontAwesomeLayers,
 } from '@fortawesome/vue-fontawesome';
 
-import {
-  faExclamationTriangle,
-  faPencilAlt,
-  faTimes,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
-
 const localVue = createLocalVue(Vuex);
 
-library.add(faExclamationTriangle);
-library.add(faPencilAlt);
-library.add(faTimes);
-library.add(faPlus);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
