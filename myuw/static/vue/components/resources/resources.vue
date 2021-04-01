@@ -5,7 +5,10 @@
         On this page
       </h2>
       <div class="mt-3">
-        <ul class="list-unstyled myuw-text-lg" :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']">
+        <ul
+          class="list-unstyled myuw-text-lg"
+          :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']"
+        >
           <li class="mb-1" v-for="(resource, i) in resources" :key="i">
             <a :href="`#${resource.category_id}`">{{resource.category_name}}</a>
           </li>
