@@ -21,9 +21,14 @@
       </h2>
       <uw-resource-card :resource="resource"/>
     </div>
-    <b-button variant="light" size="sm" class="myuw-back-to-top mb-3 mr-3 float-right"
-      title="Back to Top" @click="scrollToTop">
-        <font-awesome-icon :icon="['fas', 'chevron-up']" size="lg"/>
+    <b-button
+      variant="secondary"
+      size="sm"
+      class="position-sticky mb-3 mr-3 float-right text-center myuw-back-to-top"
+      title="Back to Top"
+      @click="scrollToTop"
+    >
+        <font-awesome-icon :icon="faChevronUp" size="lg"/>
         <span class="d-block myuw-text-xs"><span class="sr-only">Back to</span> TOP</span>
     </b-button>
   </div>
@@ -65,10 +70,6 @@ export default {
 <style lang="scss" scoped>
 @import '../../../css/myuw/variables.scss';
 .myuw-back-to-top {
-  background: $gray-300;
-  color: $gray-700;
-  text-align: center;
-  position: sticky;
   bottom: 1rem;
 }
 </style>
