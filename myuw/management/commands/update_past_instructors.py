@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.core.management.base import BaseCommand
 from uw_sws.section import get_changed_sections_by_term, get_section_by_url
 from uw_sws.term import get_current_term

@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 import json
 from myuw.test.api import MyuwApiTest, require_url, fdao_bookstore_override
 from myuw.test import get_request_with_user, get_request_with_date

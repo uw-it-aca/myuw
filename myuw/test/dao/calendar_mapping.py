@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TestCase
 from myuw.dao.calendar_mapping import \
     get_calendars_for_minors, get_calendars_for_majors, \

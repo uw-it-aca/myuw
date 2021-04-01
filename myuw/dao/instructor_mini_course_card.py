@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.models import UserCourseDisplay
 from myuw.dao.instructor_schedule import check_section_instructor,\
     get_section_by_label
