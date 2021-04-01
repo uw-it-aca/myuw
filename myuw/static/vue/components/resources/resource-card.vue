@@ -9,9 +9,9 @@
       >
         <template #card-heading>
           <div>
-            <h4 class="h6 d-inline-block">
+            <h3 class="h6 d-inline-block">
               {{subcatRes.subcat_name}}
-            </h4>
+            </h3>
             <b-button variant="link" class="myuw-text-sm text-muted" v-if="!subcatRes.is_pinned" @click="pinWrapper(subcatRes)">
               Pin to Home
             </b-button>

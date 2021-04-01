@@ -1,38 +1,38 @@
 <template>
   <div v-if="isReady">
-    <h2 class="h4">
-      On this page
-    </h2>
-    <div class="mt-3">
-      <ul class="list-unstyled myuw-text-lg" :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']">
-        <li class="mb-1" v-for="(resource, i) in resources" :key="i">
-          <a :href="`#${resource.category_id}`">{{resource.category_name}}</a>
-        </li>
-      </ul>
+    <div :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+      <h2 class="h4">
+        On this page
+      </h2>
+      <div class="mt-3">
+        <ul class="list-unstyled myuw-text-lg" :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']">
+          <li class="mb-1" v-for="(resource, i) in resources" :key="i">
+            <a :href="`#${resource.category_id}`">{{resource.category_name}}</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <div v-for="(resource, i) in resources" :key="i">
-      <h2 class="h4" :id="resource.category_id">
+      <h2 class="h4" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']" :id="resource.category_id">
         {{resource.category_name}}
       </h2>
       <uw-resource-card :resource="resource"/>
     </div>
-    <button type="button" class="myuw-back-to-top"
+    <b-button variant="light" size="sm" class="myuw-back-to-top mb-3 mr-3 float-right"
       title="Back to Top" @click="scrollToTop">
-        <font-awesome-icon :icon="['fa', 'chevron-up']" />
-        <span><span class="sr-only">Back to</span> Top</span>
-    </button>
+        <font-awesome-icon :icon="['fas', 'chevron-up']" size="lg"/>
+        <span class="d-block myuw-text-xs"><span class="sr-only">Back to</span> TOP</span>
+    </b-button>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import ResourceCard from './resource-card.vue';
-import Panel from '../_templates/panel.vue';
 
 export default {
   components: {
     'uw-resource-card': ResourceCard,
-    'uw-panel': Panel,
   },
   computed: {
     ...mapState('resources', {
@@ -51,3 +51,13 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import '../../../css/myuw/variables.scss';
+.myuw-back-to-top {
+  background: $gray-300;
+  color: $gray-700;
+  text-align: center;
+  position: sticky;
+  bottom: 1rem;
+}
+</style>
