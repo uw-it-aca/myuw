@@ -8,25 +8,14 @@ import events from '../vuex/store/events';
 import EventsCard from '../components/home/events/events.vue';
 import ListEvents from '../components/home/events/list-events.vue';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {
-  FontAwesomeIcon,
   FontAwesomeLayers,
 } from '@fortawesome/vue-fontawesome';
-
-import {
-  faExclamationTriangle,
-  faLocationArrow
-} from '@fortawesome/free-solid-svg-icons';
 
 import mockEvents from './mock_data/events.json';
 
 const localVue = createLocalVue(Vuex);
 
-library.add(faExclamationTriangle);
-library.add(faLocationArrow);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');

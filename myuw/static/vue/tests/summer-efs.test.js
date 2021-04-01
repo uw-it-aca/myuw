@@ -1,14 +1,12 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {mount} from '@vue/test-utils';
+import {createLocalVue} from './helper';
 import Vuex from 'vuex';
 import notices from '../vuex/store/notices';
 import SummerEFSCard from '../components/home/new_student/summer-efs.vue';
 import mockNotices from './mock_data/notice/javg004.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 jest.mock('axios');
 

@@ -7,16 +7,12 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import NoticeCard from '../components/home/notices';
-import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
 import jbotNotices from './mock_data/notice/jbothell.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 jest.mock('axios');
 
