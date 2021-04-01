@@ -7,12 +7,12 @@
     :errored-show="!isSummerReg || (isSummerReg && period === 'A')"
   >
     <template #card-heading>
-      <h3 v-if="!errored" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 v-if="!errored" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Registration: {{ quarter }} {{ year }}
-      </h3>
-      <h3 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      </h2>
+      <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         {{ forQuarter }} Registration
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <uw-est-reg-date :est-reg-data="estRegData" />
@@ -24,11 +24,11 @@
 
       <div v-if="pendingMajors.length" class="mb-4">
         <div class="d-flex align-items-center">
-          <h4 class="h6 m-0 text-dark font-weight-bold flex-fill">
+          <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
             {{ pendingMajors.length > 1 ? 'Majors' : 'Major' }}
             Beginning <br>
             {{ quarter }}
-          </h4>
+          </h3>
           <div class="flex-fill text-right">
             <span
               v-for="(major, i) in pendingMajors"
@@ -43,11 +43,11 @@
 
       <div v-if="pendingMinors.length" class="mb-4">
         <div class="d-flex align-items-center">
-          <h4 class="h6 m-0 text-dark font-weight-bold flex-fill">
+          <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
             {{ pendingMinors.length > 1 ? 'Minors' : 'Minor' }}
             Beginning <br>
             {{ quarter }}
-          </h4>
+          </h3>
           <div class="flex-fill text-right">
             <span
               v-for="(minor, i) in pendingMinors"

@@ -1,20 +1,18 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
+dayjs.extend(require('dayjs/plugin/timezone'))
 import {mount, shallowMount} from '@vue/test-utils';
 import { BCollapse } from 'bootstrap-vue'
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import NoticeCard from '../components/home/notices';
-import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
 import jbotNotices from './mock_data/notice/jbothell.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 jest.mock('axios');
 
@@ -31,7 +29,7 @@ describe('Notice Card', () => {
 
   it('Check status changes on fetch', async () => {
     axios.get.mockResolvedValue({data: javgNotices, status: 200});
-    const wrapper = shallowMount(NoticeCard, {store, localVue});
+    const wrapper = mount(NoticeCard, {store, localVue});
     expect(
         notices.getters.isFetching(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
@@ -43,6 +41,9 @@ describe('Notice Card', () => {
     expect(
         notices.getters.isErrored(wrapper.vm.$store.state.notices),
     ).toBeFalsy();
+    expect(wrapper.vm.notices.length).toBe(9);
+    expect(wrapper.vm.notices[1].category).toBe("MyUW Banner Notice");
+    expect(wrapper.vm.notices[1].startDate).toBeInstanceOf(dayjs);
   });
 
   it('Check second fetch', async () => {
@@ -113,10 +114,10 @@ describe('Notice Card', () => {
     await new Promise((r) => setTimeout(r, 10));
     expect(wrapper.vm.isReady).toBeTruthy();
 
-    expect(wrapper.findAll('button')).toHaveLength(8);
-    expect(wrapper.findAllComponents(BCollapse)).toHaveLength(8);
+    expect(wrapper.findAll('button')).toHaveLength(9);
+    expect(wrapper.findAllComponents(BCollapse)).toHaveLength(9);
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 9; i++) {
       expect(wrapper.findAllComponents(BCollapse).at(i).vm.show).toBeFalsy();
       await wrapper.findAll('button').at(i).trigger('click');
       expect(wrapper.findAllComponents(BCollapse).at(i).vm.show).toBeTruthy();
@@ -136,13 +137,13 @@ describe('Notice Card', () => {
     wrapper.vm.notices.forEach((notice) => {
       wrapper.vm.onShowNotice(notice);
     });
-    expect(axios.put).toHaveBeenCalledTimes(8);
+    expect(axios.put).toHaveBeenCalledTimes(9);
 
     // Test that it is not called twice
     wrapper.vm.notices.forEach((notice) => {
       notice.is_read = true;
       wrapper.vm.onShowNotice(notice);
     });
-    expect(axios.put).toHaveBeenCalledTimes(8);
+    expect(axios.put).toHaveBeenCalledTimes(9);
   });
 });

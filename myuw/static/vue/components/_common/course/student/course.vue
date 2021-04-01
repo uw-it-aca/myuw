@@ -16,10 +16,7 @@
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
-            <font-awesome-icon
-              :icon="['fas', 'exclamation-triangle']"
-              class="mr-1"
-            />
+            <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
             An error has occurred and MyUW cannot display the course evaluation
             information right now. Please try again later.
           </p>
@@ -75,52 +72,28 @@
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <b-button
-            v-if="!isOpen"
             v-b-toggle="`course-details-${index}`"
             variant="link"
             size="sm"
             class="w-100 p-0 border-0 text-dark"
-            title="Expand to show course details"
           >
-            COURSE DETAILS
-            <font-awesome-icon :icon="faChevronDown" />
-          </b-button>
-          <b-button
-            v-else
-            v-b-toggle="`course-details-${index}`"
-            variant="link"
-            size="sm"
-            class="w-100 p-0 border-0 text-dark"
-            title="Collapse to hide course details"
-          >
-            COURSE DETAILS
-            <font-awesome-icon :icon="faChevronUp" />
+            Course Details
+            <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
+            <font-awesome-icon v-else :icon="faChevronUp" />
           </b-button>
         </template>
 
         <template v-else>
           <template v-if="section.instructors.length > 0">
             <b-button
-              v-if="!isOpen"
               v-b-toggle="`instructors-collapse-${index}`"
               variant="link"
               size="sm"
               class="w-100 p-0 border-0 text-dark"
-              title="Expand to show instructors"
             >
-              INSTRUCTORS
-              <font-awesome-icon :icon="faChevronDown" />
-            </b-button>
-            <b-button
-              v-else
-              v-b-toggle="`instructors-collapse-${index}`"
-              variant="link"
-              size="sm"
-              class="w-100 p-0 border-0 text-dark"
-              title="Collapse to hide instructors"
-            >
-              INSTRUCTORS
-              <font-awesome-icon :icon="faChevronUp" />
+              Instructors
+              <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
+              <font-awesome-icon v-else :icon="faChevronUp" />
             </b-button>
           </template>
           <div v-else class="text-center text-muted font-italic myuw-text-md"
@@ -138,6 +111,7 @@
 import {
   faChevronUp,
   faChevronDown,
+  faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../../_templates/card.vue';
@@ -169,6 +143,7 @@ export default {
       isOpen: false,
       faChevronUp,
       faChevronDown,
+      faExclamationTriangle,
     };
   },
   computed: {

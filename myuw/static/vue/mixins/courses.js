@@ -1,5 +1,4 @@
 import utils from './utils';
-import dayjs from 'dayjs';
 
 let firstSelfAnchored = true;
 
@@ -13,6 +12,7 @@ export default {
         return '""';
     },
     sectionFormattedDates(section) {
+      const dayjs = utils.methods.dayjs;
       return `${dayjs(section.start_date).format('MMM D')} - ${dayjs(
           section.end_date).format('MMM D')}`;
     },

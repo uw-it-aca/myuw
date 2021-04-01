@@ -27,12 +27,20 @@
 </template>
 
 <script>
+import {
+  faChevronUp,
+} from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import ResourceCard from './resource-card.vue';
 
 export default {
   components: {
     'uw-resource-card': ResourceCard,
+  },
+  data() {
+    return {
+      faChevronUp,
+    };
   },
   computed: {
     ...mapState('resources', {

@@ -5,9 +5,9 @@
            :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Academic Calendar
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <ul class="list-unstyled mb-0 myuw-text-md">
@@ -36,7 +36,6 @@
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
-import dayjs from 'dayjs';
 
 export default {
   components: {

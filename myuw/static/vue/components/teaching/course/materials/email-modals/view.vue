@@ -210,7 +210,7 @@ export default {
       this.addViewError = true;
     },
     logClassEmailListOpen() {
-      this.$logger.classEmailList(this, this.emailList.section_list.section_label);
+      this.$logger.classEmailList(this);
     }
   }
 }

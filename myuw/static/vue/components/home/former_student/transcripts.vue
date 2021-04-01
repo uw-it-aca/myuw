@@ -4,9 +4,9 @@
     :loaded="true"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Order Transcripts
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p class="myuw-text-md">
@@ -23,9 +23,9 @@
             href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank">View Unofficial Transcript</a>
         </li>
       </ul>
-      <h4 class="h6 text-dark-beige myuw-font-roboto">
+      <h3 class="h6 text-dark-beige myuw-font-roboto">
         Contact the Registrar
-      </h4>
+      </h3>
       <p class="myuw-text-md">
         For transcripts from 1982 and before, contact
         the Office of the University Registrar.

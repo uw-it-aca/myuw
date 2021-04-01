@@ -23,23 +23,29 @@
       <em v-if="event.event_location" class="text-muted
       font-weight-light myuw-text-xs"
       >
-        <font-awesome-icon :icon="['fas', 'location-arrow']" size="sm" />
+        <font-awesome-icon :icon="faLocationArrow" size="sm" />
         {{ getLocation(event) }}
-      </em>
-      <em v-else class="text-muted font-weight-light myuw-text-xs">
-        Location not available
       </em>
     </li>
   </ul>
 </template>
 
 <script>
+import {
+  faLocationArrow,
+} from '@fortawesome/free-solid-svg-icons';
+
 export default {
   props: {
     events: {
       type: Array,
       required: true,
     },
+  },
+  data() {
+    return {
+      faLocationArrow,
+    };
   },
   methods: {
     acalDateFormat(d1, d2) {

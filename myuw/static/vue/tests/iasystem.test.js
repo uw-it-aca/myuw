@@ -1,5 +1,4 @@
 import axios from 'axios';
-import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 
 import {createLocalVue} from './helper';
@@ -10,8 +9,7 @@ import {expectAction} from './helper';
 import mockJaverage2013Spring from
   './mock_data/iasystem/javerage2013Spring.json';
 
-const localVue = createLocalVue(Vuex);
-
+createLocalVue(Vuex);
 jest.mock('axios');
 
 describe('Instructor Evaluation model', () => {

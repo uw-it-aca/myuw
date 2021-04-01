@@ -15,10 +15,10 @@ function linkClickHandler(event, binding, vnode, out) {
 
   if (out) {
     if (instance.$meta.term) {
-      label += `|${instance.$meta.term}`;
+      label += ` ${instance.$meta.term}`;
     }
     if (instance.$meta.course) {
-      label += `|${instance.$meta.course}`;
+      label += ` ${instance.$meta.course}`;
     }
     event.preventDefault();
     // Creates a clone of the original <a> so that

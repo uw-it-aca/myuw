@@ -10,9 +10,9 @@
         <template #card-heading>
           <div>
             {{resource.category_name}}
-            <h4>
+            <h3>
               {{subcategories.subcat_name}}
-            </h4>
+            </h3>
             <button @click="unpinWrapper(subcategories)">
               Unpin
             </button>
@@ -33,7 +33,7 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
-import Card from '../_templates/card.vue';
+import Card from '../../_templates/card.vue';
 
 export default {
   components: {

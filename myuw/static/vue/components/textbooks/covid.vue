@@ -3,7 +3,7 @@
     <b-alert show variant="dark-beige" class="myuw-textbook-covid">
       <div class="d-flex text-dark-beige m-0 myuw-text-md">
         <div class="pr-2 flex-shrink-1">
-          <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+          <font-awesome-icon :icon="faExclamationTriangle" />
         </div>
         <div class="w-100 font-weight-bold">
           University Book Store Autumn 2020 Update
@@ -18,6 +18,20 @@
     </b-alert>
   </div>
 </template>
+
+<script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
+
+export default {
+  data() {
+    return {
+      faExclamationTriangle,
+    };
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 @use "sass:map";

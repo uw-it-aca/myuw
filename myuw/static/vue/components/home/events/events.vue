@@ -1,11 +1,11 @@
 <template>
   <uw-card v-if="!isReady || (shownEvents.length > 0 || futureCalCount > 0)"
-           :loaded="isReady" :errored="isErrored" :mobile-only="mobileOnly"
+           :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Events
-      </h3>
+      </h2>
     </template>
     <template v-if="shownEvents.length > 0" #card-body>
       <p class="text-muted myuw-text-md">
@@ -96,9 +96,8 @@
         variant="link"
         size="sm"
         class="w-100 p-0 border-0 text-dark"
-        :title="isOpen ? 'Show less' : 'Show more'"
       >
-        SHOW {{ hiddenEvents.length }} MORE
+        Future Events
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
         <font-awesome-icon v-else :icon="faChevronDown" />
       </b-button>
@@ -120,12 +119,6 @@ export default {
   components: {
     'uw-card': Card,
     'uw-list-events': ListEvents,
-  },
-  props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
   },
   data: function() {
     return {

@@ -1,15 +1,13 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import ThankYouCard from '../components/home/new_student/thank-you.vue';
 
 import mockNotices from './mock_data/notice/javg004.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
 
 jest.mock('axios');
 

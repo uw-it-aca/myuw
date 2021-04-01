@@ -25,10 +25,6 @@
 <script>
 export default {
   props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
     registrations: {
       type: Array,
       required: true,

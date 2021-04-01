@@ -1,17 +1,16 @@
 import axios from 'axios';
 import Vuex from 'vuex';
-import {createLocalVue} from '@vue/test-utils';
 import {statusOptions} from '../vuex/store/model_builder';
 import classlist from '../vuex/store/classlist';
-import {expectAction} from './helper';
+import {expectAction, createLocalVue} from './helper';
 
 import mockJointPols306A from
   './mock_data/classlist/2013-autumn-POLS-306-A.json';
 import mockBillEss102A from
   './mock_data/classlist/2013-spring-ESS-102-A.json';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+// This is required to initilize global Vuex
+createLocalVue(Vuex);
 jest.mock('axios');
 
 describe('Classlist Data', () => {
@@ -70,7 +69,7 @@ describe('Classlist Data', () => {
         {data: mockJointPols306A, status: 200}
     );
     store.dispatch('classlist/fetch', '2013,autumn,POL S,306/A');
-    await new Promise((r) => setTimeout(r, 30));
+    await new Promise(setImmediate);
     expect(
       store.getters['classlist/isReadyTagged']('2013,autumn,POL S,306/A')
       ).toBeTruthy();

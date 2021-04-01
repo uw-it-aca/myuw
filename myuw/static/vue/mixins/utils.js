@@ -5,6 +5,8 @@ dayjs.extend(require('dayjs/plugin/calendar'))
 dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/timezone'))
 dayjs.extend(require('dayjs/plugin/utc'))
+dayjs.extend(require('dayjs/plugin/isToday'));
+dayjs.extend(require('dayjs/plugin/weekOfYear'));
 
 export default {
   computed: {
@@ -13,6 +15,7 @@ export default {
     }),
   },
   methods: {
+    dayjs: dayjs,
     encodeForMaps(s) {
       if (s) {
         s = s.replace(/ \(/g, " - ");
@@ -44,12 +47,6 @@ export default {
       if (parsed) {
         if (parsed.country == undefined) parsed.country = "1";
         return `+${parsed.country}-${parsed.area}-${parsed.exchange}-${parsed.line}`;
-      }
-      return "";
-    },
-    ucfirst(s) {
-      if (s && s.length) {
-        return s.replace(/^([a-z])/, (c) => c.toUpperCase());
       }
       return "";
     },

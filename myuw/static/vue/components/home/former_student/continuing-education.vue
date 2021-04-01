@@ -4,9 +4,9 @@
     :loaded="true"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Professional and Continuing Education (PCE)
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p class="myuw-text-md">
@@ -16,9 +16,9 @@
       <p class="myuw-text-md">
         <a href="https://www.pce.uw.edu" target="_blank">About PCE</a>
       </p>
-      <h4 class="h6 text-dark-beige myuw-font-roboto">
+      <h3 class="h6 text-dark-beige myuw-font-roboto">
         Available programs
-      </h4>
+      </h3>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a v-out="'PCE Career Accelerator Programs'"

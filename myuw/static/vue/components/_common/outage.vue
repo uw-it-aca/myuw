@@ -1,16 +1,16 @@
 <template>
   <uw-card v-if="showOutageCard" :loaded="true" class="myuw-outage">
     <template #card-heading>
-      <h3 class="text-danger">
+      <h2 class="text-danger">
         Limited data due to technical difficulties
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <!-- custom error message for outages -->
       <b-alert show variant="light" class="p-0 border-0 bg-transparent">
         <div class="d-flex text-danger m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
-            <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+            <font-awesome-icon :icon="faExclamationTriangle" />
           </div>
           <div class="w-100">
             We are aware of the issue and working on it. Please try again later.
@@ -18,9 +18,9 @@
         </div>
       </b-alert>
 
-      <h4 class="h6 font-weight-bold">
+      <h3 class="h6 font-weight-bold">
         Things you might be looking for:
-      </h4>
+      </h3>
 
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
@@ -86,6 +86,9 @@
 </template>
 
 <script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapActions, mapState} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -98,6 +101,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      faExclamationTriangle,
+    };
   },
   computed: {
     ...mapState({

@@ -501,6 +501,19 @@
         ]
     },
     {
+        "notice_content": "<span class=\"notice-title\">MyUW Notices</span><span class=\"notice-body-with-title\">ladida ladida</span>",
+        "attributes": [],
+        "category": "MyUW Banner Notice",
+        "sws_category": "MyUWNotice",
+        "is_critical": true,
+        "id_hash": "fd50d6efbed47e5baaad48afd028528f",
+        "is_read": false,
+        "location_tags": [
+            "notice_banner"
+        ],
+        "display_begin": "2013-04-01 07:00:00+00:00"
+    },
+    {
         "notice_content": "<span class=\"notice-title\">Expected Status</span>&nbsp;<span class=\"notice-body-with-title\">Your expected status at the University:</span>&nbsp;<ul class=\"notice-list\"> <li>Campus: SEATTLE</li><li>Class Standing: FRESHMAN</li><li>School/College: Arts & Sciences</li><li>Department: PRE MAJOR (A&S)</li><li>Student Number: 1522136</li><li>Residency Status: RES-IMMIGR</li></ul> <span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/whatsthis.html\">Have questions? Read the Notes and Definitions</a></span>",
         "attributes": [
             {

@@ -25,7 +25,7 @@
                 type="submit"
               >
                 <font-awesome-icon
-                  :icon="['fas', 'search']"
+                  :icon="faSearch"
                   flip="horizontal"
                   class="mr-1"
                 />
@@ -40,10 +40,15 @@
 </template>
 
 <script>
+import {
+  faSearch,
+} from '@fortawesome/free-solid-svg-icons';
+
 export default {
   data: function() {
     return {
       searchText: '',
+      faSearch,
     };
   },
   methods: {

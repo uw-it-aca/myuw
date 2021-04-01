@@ -27,10 +27,10 @@ describe('Alumni Card', () => {
       wrapper.findComponent(UwCard).exists()
     ).toBe(true);
     expect(
-      wrapper.findAll('h3').at(0).text()
+      wrapper.findAll('h2').at(0).text()
     ).toBe('Alumni and Alumni Association');
     expect(
-      wrapper.findAll('h4').at(0).text()
+      wrapper.findAll('h3').at(0).text()
     ).toBe('University of Washington Alumni Association (UWAA)');
 
     let link1 = wrapper.findAll('a').at(0);
