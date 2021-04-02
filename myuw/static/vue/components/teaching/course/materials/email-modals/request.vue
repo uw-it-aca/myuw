@@ -3,6 +3,7 @@
     :id="`emaillist_request_${sln}`"
     ref="request-modal"
     title="Create Mailing List"
+    @show="logClassEmailListRequest"
     @hidden="onHide()"
   >
     <template v-if="emailList.request_sent || requestSuccess">
@@ -206,6 +207,9 @@ export default {
       this.requestSuccess = false;
       this.selected = [];
     },
+    logClassEmailListRequest() {
+      this.$logger.classEmailList(this, "Request");
+    }
   },
 }
 </script>
