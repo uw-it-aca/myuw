@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.models import UserCourseDisplay
 from myuw.test.api import MyuwApiTest, fdao_sws_override, fdao_pws_override
 from myuw.views.api.instructor_section_display import \

@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from datetime import timedelta
 from unittest import skipIf
 from django.test import TestCase

@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.test.api import require_url, MyuwApiTest
 import json
 

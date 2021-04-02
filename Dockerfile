@@ -1,4 +1,4 @@
-FROM acait/django-container:1.2.5 as app-container
+FROM gcr.io/uwit-mci-axdd/django-container:1.3.1 as app-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -23,7 +23,7 @@ RUN . /app/bin/activate &&\
 RUN . /app/bin/activate && python manage.py collectstatic --noinput &&\
     python manage.py compress -f
 
-FROM acait/django-test-container:1.2.5 as app-test-container
+FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.1 as app-test-container
 
 COPY --from=app-container /app/ /app/
 COPY --from=app-container /static/ /static/

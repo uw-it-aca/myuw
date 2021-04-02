@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from datetime import datetime
 from django.test import TestCase
 from myuw.dao.affiliation import get_is_hxt_viewer
