@@ -1,51 +1,51 @@
 <template>
-  <uw-panel :loaded="true">
-    <template #panel-body>
-      <div v-if="!renderedFromParam">
-        <b-row :no-gutters="$mq !== 'desktop'">
-          <b-col md="8">
-            <p class="myuw-text-lg">
-              This toolkit is designed to help you make the most of your time at UW.
-              The articles here address four interconnected dimensions of the Husky
-              Experience: Know Yourself, Know the World, Make Your Way, and Weave it
-              Together. Wherever you are in your university career, use this toolkit
-              to challenge yourself, explore your options, and integrate all you are
-              learning - your Husky Experience is more than a major!
-            </p>
-          </b-col>
-          <b-col md="4" class="p-4 text-center">
-            <img :src="`${staticUrl}/images/HX_dimensions-1.0x.png`"
-                  :srcset="`${staticUrl}/images/HX_dimensions-1.0x.png 1x, ${
-                    staticUrl
-                  }/images/HX_dimensions-1.5x.png 1.5x, ${
-                    staticUrl
-                  }/images/HX_dimensions-2.0x.png 2x`"
-                  alt="Husky Experience dimensions diagram"
-                  class="img-fluid mx-auto"
-            />
-          </b-col>
-        </b-row>
+  <div>
+    <div v-if="!renderedFromParam">
+      <b-row :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+        <b-col md="8">
+          <p class="myuw-text-lg">
+            This toolkit is designed to help you make the most of your time at UW.
+            The articles here address four interconnected dimensions of the Husky
+            Experience: Know Yourself, Know the World, Make Your Way, and Weave it
+            Together. Wherever you are in your university career, use this toolkit
+            to challenge yourself, explore your options, and integrate all you are
+            learning - your Husky Experience is more than a major!
+          </p>
+        </b-col>
+        <b-col md="4" class="p-4 text-center">
+          <img :src="`${staticUrl}/images/HX_dimensions-1.0x.png`"
+                :srcset="`${staticUrl}/images/HX_dimensions-1.0x.png 1x, ${
+                  staticUrl
+                }/images/HX_dimensions-1.5x.png 1.5x, ${
+                  staticUrl
+                }/images/HX_dimensions-2.0x.png 2x`"
+                alt="Husky Experience dimensions diagram"
+                class="img-fluid mx-auto"
+          />
+        </b-col>
+      </b-row>
 
-        <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
-          <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
-            <template #card-heading>
-              <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-                {{cd.title}}
-              </h3>
-            </template>
-            <template #card-body>
-              <div class="myuw-text-md">
-                <p>
-                  {{cd.intro}}
-                </p>
+      <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
+        <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
+          <template #card-heading>
+            <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+              {{cd.title}}
+            </h2>
+          </template>
+          <template #card-body>
+            <div class="myuw-text-md">
+              <p>
+                {{cd.intro}}
+              </p>
 
-                <div v-html="data[cd.id]" />
-              </div>
-            </template>
-          </uw-card>
-        </div>
+              <div v-html="data[cd.id]" />
+            </div>
+          </template>
+        </uw-card>
+      </div>
 
-        <h3 class="h5">Why We Made This Toolkit</h3>
+      <div class="my-3" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+        <h2 class="h5">Why We Made This Toolkit</h2>
         <div class="myuw-text-md">
           <p>
             We are a team of UW staff members who care about your success.
@@ -62,7 +62,7 @@
           </p>
         </div>
 
-        <h3 class="h5">How it works</h3>
+        <h2 class="h5">How it works</h2>
         <div class="myuw-text-md">
           <p>
             These articles are delivered here via MyUW so that all students
@@ -73,22 +73,20 @@
           <p>We plan to add new articles and resources each academic year.</p>
         </div>
       </div>
-      <div v-else>
-        <div v-if="isReady" class="myuw-text-md" v-html="data"/>
-      </div>
-    </template>
-  </uw-panel>
+    </div>
+    <div v-else>
+      <div v-if="isReady" class="myuw-text-md" v-html="data"/>
+    </div>
+  </div>
 </template>
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
-import Panel from '../_templates/panel.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-panel': Panel,
   },
   data: function() {
     const param = new URL(window.location.href).searchParams.get('article');
