@@ -153,7 +153,7 @@ class Logger {
     if (notice.startDate && !notice.is_read) {
       data.time_before_read = Math.floor((Date.now() - notice.startDate) / (1000 * 60 * 60));
     }
-    this.sink.event('notice_open', );
+    this.sink.event('notice_open', data);
   }
 
   classEmailList(component, action) {
