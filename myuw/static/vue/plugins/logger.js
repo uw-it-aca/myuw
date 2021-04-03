@@ -13,19 +13,19 @@ class Logger {
     );
   }
 
-  cardLoad(component) {
+  compLoad(component) {
     component.$nextTick(() => {
       let root = component.$meta.group;
       if (
         root.$meta.group &&
         this.cardGroupEvents[root.$meta.uid] &&
-        this.cardGroupEvents[root.$meta.uid].cardLoad
+        this.cardGroupEvents[root.$meta.uid].compLoad
       ) {
-        this.cardGroupEvents[root.$meta.uid].cardLoad += 1;
+        this.cardGroupEvents[root.$meta.uid].compLoad += 1;
         return;
       } else {
         this.cardGroupEvents[root.$meta.uid] = {
-          cardLoad: 1,
+          compLoad: 1,
         };
       }
       const data = {
@@ -34,7 +34,7 @@ class Logger {
       if (component.$meta.term) {
         data.term_tag = component.$meta.term;
       }
-      this.sink.event('card_load', data);
+      this.sink.event('comp_load', data);
     });
   }
 
@@ -122,7 +122,7 @@ class Logger {
   quicklink(action, url) {
     this.sink.event(`quick_link`, {
       link_url: url,
-      action: action,
+      action_label: action,
     });
   }
 
@@ -144,18 +144,22 @@ class Logger {
     const htmlDoc = new DOMParser().parseFromString(
       notice.notice_title, 'text/html',
     );
-    this.sink.event('notice_open', {
+    const data = {
       comp_tag: component.$meta.group.$meta.tag,
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
       is_critical: notice.is_critical,
       is_new: !notice.is_read,
-      time_tag: Math.floor(Date.now() / 1000),
-    });
+    };
+    if (notice.startDate && !notice.is_read) {
+      data.time_before_read = Math.floor((Date.now() - notice.startDate) / (1000 * 60 * 60));
+    }
+    this.sink.event('notice_open', data);
   }
 
-  classEmailList(component) {
+  classEmailList(component, action) {
     const data = {
       comp_tag: component.$meta.group.$meta.tag,
+      action_label: action,
     };
     if (component.$meta.term) {
       data.term_tag = component.$meta.term;
@@ -172,10 +176,10 @@ class Logger {
     });
   }
 
-  cardPin(component, cardTid) {
+  cardPin(component, cardLabel) {
     const data = {
       comp_tag: component.$meta.group.$meta.tag,
-      card_tid: cardTid,
+      card_label: cardLabel,
     };
     if (component.$meta.term) {
       data.term_tag = component.$meta.term;
@@ -186,10 +190,10 @@ class Logger {
     this.sink.event('card_pin', data);
   }
 
-  cardUnPin(component, cardTid) {
+  cardUnPin(component, cardLabel) {
     const data = {
       comp_tag: component.$meta.group.$meta.tag,
-      card_tid: cardTid,
+      card_label: cardLabel,
     };
     if (component.$meta.term) {
       data.term_tag = component.$meta.term;
@@ -205,7 +209,7 @@ class Logger {
     // this deduplicates it
     if (this.currentTerm !== term) {
       this.sink.event('term_selected', {
-        term_tid: term,
+        term_tag: term,
       });
       this.currentTerm = term;
     }

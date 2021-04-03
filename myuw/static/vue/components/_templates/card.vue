@@ -92,11 +92,11 @@ export default {
   },
   watch: {
     loaded(val) {
-      if (val) this.$logger.cardLoad(this);
+      if (val) this.$logger.compLoad(this);
     },
   },
   created() {
-    if (this.loaded) this.$logger.cardLoad(this);
+    if (this.loaded) this.$logger.compLoad(this);
   },
   methods: {
     visibilityChanged(entry) {
