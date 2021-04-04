@@ -44,16 +44,14 @@ describe('Event Store', () => {
     ]);
   });
 
-  it('Check status changes on fetch - failure', () => {
+  it('Hide card when no data', async () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
-    const getters = {
-      isReadyTagged: () => false,
-      isFetchingTagged: () => false,
-    };
-    return expectAction(events.actions.fetch, null, events.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setStatus', payload: statusOptions[2]},
-    ]);
+    const wrapper = shallowMount(EventsCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isErrored).toBe(true);
+    expect(wrapper.vm.statusCode).toBe(404);
+    expect(wrapper.vm.isReady).toBe(false);
+    expect(wrapper.vm.showError).toBe(false);
   });
 });
 
