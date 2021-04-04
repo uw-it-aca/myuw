@@ -67,7 +67,7 @@ describe('Quicklinks/Link', () => {
     });
 
     const wrapper = mount(RegStatus, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.vm.loaded).toBeTruthy();
     expect(wrapper.vm.year).toEqual(2013);

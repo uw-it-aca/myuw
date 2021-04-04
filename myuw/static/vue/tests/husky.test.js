@@ -40,7 +40,7 @@ describe('Husky Card', () => {
     axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
     store.state.user.affiliations.student = true;
     const wrapper = mount(HuskyCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(
       wrapper.findComponent(UwCard).exists()
@@ -63,7 +63,7 @@ describe('Husky Card', () => {
 
   it('Hide card if not the right user type', async () => {
     const wrapper = mount(HuskyCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
@@ -72,7 +72,7 @@ describe('Husky Card', () => {
     store.state.user.affiliations.past_stud = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(HuskyCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
   });
@@ -81,7 +81,7 @@ describe('Husky Card', () => {
     store.state.user.affiliations.employee = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = mount(HuskyCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);

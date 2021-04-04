@@ -106,7 +106,7 @@ describe('Instructor Schedule Data', () => {
         {data: mockBillpce2013Summer, status: 200}
     );
     store.dispatch('inst_schedule/fetch', 'testCurrent');
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
       store.getters['inst_schedule/isReadyTagged']('testCurrent')
       ).toBeTruthy();
