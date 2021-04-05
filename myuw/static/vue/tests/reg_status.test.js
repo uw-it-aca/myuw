@@ -26,7 +26,7 @@ localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
 
-describe('Quicklinks/Link', () => {
+describe('Registration Status Card', () => {
   let store;
 
   beforeEach(() => {
