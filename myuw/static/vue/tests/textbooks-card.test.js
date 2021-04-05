@@ -60,6 +60,7 @@ describe('Textbook card', () => {
     expect(bookData.quarter).toBe('spring');
     expect(bookData.noBookAssigned).toBe(false);
     expect(bookData.sections.length).toBe(5);
+    expect(bookData.sections[1].requiredBooks).toBe(1);
   });
 
   it('Show card for future quarter', async () => {
@@ -94,7 +95,7 @@ describe('Textbook card', () => {
 
   it('Show error', async () => {
     axios.get.mockImplementation((url) => {
-      return Promise.reject({status: 543});
+      return Promise.reject({response: {status: 543}});
     });
     const wrapper = mount(Textbooks, {store, localVue,
       propsData: {'term': 'current'}});
@@ -105,7 +106,7 @@ describe('Textbook card', () => {
 
   it('Hide error', async () => {
     axios.get.mockImplementation((url) => {
-      return Promise.reject({'status': 404});
+      return Promise.reject({response: {status: 404}});
     });
     const wrapper = mount(Textbooks, {store, localVue,
       propsData: {'term': 'current'}});
