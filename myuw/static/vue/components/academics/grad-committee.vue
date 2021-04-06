@@ -40,7 +40,7 @@
       <div class="text-right myuw-text-md">
         <a v-out="'MyGrad'"
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-          target="_blank">Go to MyGrad</a>
+        >Go to MyGrad</a>
       </div>
     </template>
     <template #card-error>
@@ -48,7 +48,6 @@
       right now. In the meantime, try the
       <a v-out="'MyGrad'"
         href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-        target="_blank"
       >MyGrad program page</a>.
     </template>
   </uw-card>
