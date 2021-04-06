@@ -15,7 +15,7 @@
         </ul>
       </div>
     </div>
-    <div v-for="(resource, i) in resources" :key="i">
+    <div class="mt-5" v-for="(resource, i) in resources" :key="i">
       <h2 class="h4" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']" :id="resource.category_id">
         {{resource.category_name}}
       </h2>

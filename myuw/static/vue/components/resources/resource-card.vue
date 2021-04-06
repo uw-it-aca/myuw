@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card-group columns :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']">
+    <b-card-group columns class="mt-3" :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']">
       <uw-card
         v-for="(subcatRes, i) in Object.values(resource.subcategories)"
         :id="subcatRes.subcat_id"
