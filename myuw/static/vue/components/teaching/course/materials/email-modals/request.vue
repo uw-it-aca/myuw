@@ -94,7 +94,6 @@
 
     <template v-if="emailList.request_sent || requestSuccess" #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-         target="_blank"
       >Mailman help</a>
       <b-button variant="light" @click="$refs['request-modal'].hide()">
         Close
@@ -103,7 +102,6 @@
 
     <template v-else-if="!listView && !addError" #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-         target="_blank"
       >Mailman help</a>
       <b-button variant="light" @click="$refs['request-modal'].hide()">
         Close
@@ -116,7 +114,6 @@
     <template v-else-if="!addError" #modal-footer>
       <a
         href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-        target="_blank"
       >Mailman help</a>
       <b-button variant="outline-secondary" @click="listView = false">
         <font-awesome-icon :icon="faArrowLeft" />
@@ -136,7 +133,6 @@
 
     <template v-else #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
-        target="_blank"
       >Mailman help</a>
       <b-button variant="light" @click="$refs['request-modal'].hide()">
         Close
