@@ -44,7 +44,6 @@
               <a
                 v-out="'Grade submitted'"
                 :href="section.grading_status.section_url"
-                target="_blank"
               >
                 {{section.grading_status.submitted_count}}
                 grade{{section.grading_status.submitted_count ? 's' : ''}}
@@ -57,7 +56,6 @@
               <a
                 v-out="'Grade to submit'"
                 :href="section.grading_status.section_url"
-                target="_blank"
               >
                 {{section.grading_status.unsubmitted_count}}
                 grade{{section.grading_status.unsubmitted_count ? 's' : ''}}
@@ -69,7 +67,6 @@
               <a
                 v-if="section.grading_status.no_grades_submitted"
                 :href="section.grading_status.section_url"
-                target="_blank"
               >
                 Submit grades in Gradepage
               </a>
@@ -79,8 +76,7 @@
             </span>
             <span v-else>
               Grading for secondary section is disabled.
-              <a
-                :href="section.grading_status.section_url"  target="_blank">
+              <a :href="section.grading_status.section_url">
                 Grade primary section
               </a>.
             </span>
@@ -88,7 +84,6 @@
           <a
             v-out="'GradePage Help'"
             href="https://itconnect.uw.edu/learn/tools/gradepage/"
-            target="_blank"
           >
             <font-awesome-icon :icon="faQuestionCircle" />
           </a>
@@ -98,7 +93,6 @@
           An error occurred with
           <a
             href="https://gradepage.uw.edu/"
-            target="_blank"
           >Gradepage</a>. Please try again later.
         </div>
         <div>
@@ -117,7 +111,6 @@
             <a
               v-out="'Grade submitted by'"
               :href="section.grading_status.section_url"
-              target="_blank"
             >
               {{section.grading_status.submitted_count}}
               grade{{section.grading_status.submitted_count ? 's' : ''}}
@@ -146,7 +139,6 @@
               <br />
               <a
                 href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
-                target="_blank"
               >What can I do now?</a>
             </span>
           </div>
