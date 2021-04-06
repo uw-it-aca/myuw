@@ -29,7 +29,7 @@
       </uw-section>
 
       <div class="my-4 text-center">
-        <uw-link-button target="_blank" :href="orderUrl">
+        <uw-link-button :href="orderUrl">
           Start textbook shopping
         </uw-link-button>
       </div>
