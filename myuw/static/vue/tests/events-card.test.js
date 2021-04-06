@@ -20,7 +20,7 @@ localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
 
-describe('Event Store', () => {
+describe('Event Store and Card', () => {
   let store;
 
   beforeEach(() => {
@@ -53,23 +53,25 @@ describe('Event Store', () => {
     expect(wrapper.vm.isReady).toBe(false);
     expect(wrapper.vm.showError).toBe(false);
   });
-});
 
-describe('Events Card', () => {
-  let store;
-
-  beforeEach(() => {
-    store = new Vuex.Store({
-      modules: {
-        'events': events,
-      },
-    });
+  it('Show error', async () => {
+    axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
+    const wrapper = shallowMount(EventsCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isErrored).toBe(true);
+    expect(wrapper.vm.statusCode).toBe(543);
+    expect(wrapper.vm.isReady).toBe(false);
+    expect(wrapper.vm.showError).toBe(true);
   });
 
-  it('Basic Render', () => {
+  it('Basic Render', async () => {
     axios.get.mockResolvedValue({data: mockEvents, status: 200});
-    const wrapper = shallowMount(EventsCard, {store, localVue});
-
+    const wrapper = mount(EventsCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.shownEvents.length).toBe(6);
+    expect(wrapper.vm.futureCalCount).toBe(3);
+    expect(wrapper.vm.futureCalLinks.length).toBe(1);
+    expect(wrapper.vm.hiddenEvents.length).toBe(1);
     expect(wrapper.find('h2').text()).toEqual('Events');
   });
 
