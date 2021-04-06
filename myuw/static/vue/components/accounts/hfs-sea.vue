@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Housing &amp; Food Services</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Housing &amp; Food Services</h2>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
@@ -19,40 +19,40 @@
       </uw-card-status>
 
       <div>
-        <h4 class="h6 font-weight-bold text-dark-beige">Explore Campus Housing</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Explore Campus Housing</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a href="https://www.hfs.uw.edu">
+            <a target="_blank" href="https://www.hfs.uw.edu">
               Housing &amp; Food Services
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Dates and Deadlines'"
+            <a v-out="'HFS: Dates and Deadlines'"
+              target="_blank"
               href="https://www.trumba.com/calendars/sea_hfs"
             >
               Dates and Deadlines
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Apply for Campus Housing'"
+            <a v-out="'HFS: Apply for Campus Housing'"
+              target="_blank"
               href="https://ucharm.hfs.washington.edu/ucharm"
             >
               Apply for Campus Housing
             </a>
           </li>
           <li>
-            <a href="mailto:hfsinfo@uw.edu">Contact HFS </a>
+            <a target="_blank" href="mailto:hfsinfo@uw.edu">Contact HFS </a>
           </li>
         </ul>
       </div>
       <div>
-        <h4 class="h6 font-weight-bold text-dark-beige">Manage Account</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Manage Account</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a
-              v-out="'HFS: Make a Payment'"
+            <a v-out="'HFS: Make a Payment'"
+              target="_blank"
               href="https://www.hfs.uw.edu/myhfs/account.aspx"
             >
               Make a Payment
@@ -60,13 +60,14 @@
           </li>
           <li>
             <a v-out="'HFS: View Charges'"
+              target="_blank"
               href="https://www.hfs.uw.edu/myhfs/ledger.aspx">
               View Charges
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Change Dining Level'"
+            <a v-out="'HFS: Change Dining Level'"
+              target="_blank"
               href="https://www.hfs.uw.edu/myhfs/dininglevel"
             >
               Change Dining Level
@@ -74,6 +75,7 @@
           </li>
           <li>
             <a v-out="'HFS: Update Account'"
+              target="_blank"
               href="https://ucharm.hfs.washington.edu/ucharm">
               Update Account
             </a>
@@ -81,17 +83,18 @@
         </ul>
       </div>
       <div>
-        <h4 class="h6 font-weight-bold text-dark-beige">Resident Resources</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Resident Resources</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a v-out="'HFS: Check Laundry Status'"
+              target="_blank"
               href="https://mc360.maytag.com/#/">
               Check Laundry Status
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Submit a Work Order'"
+            <a v-out="'HFS: Submit a Work Order'"
+              target="_blank"
               href="https://fms.admin.uw.edu/fs-works/uwnetid"
             >
               Submit a Work Order

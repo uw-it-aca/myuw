@@ -31,7 +31,7 @@ describe('User is a retireee', () => {
     ).toBe(true);
 
     expect(
-      wrapper.findAll('h3').at(0).text()
+      wrapper.findAll('h2').at(0).text()
     ).toBe('UW Retirement Association (UWRA)');
 
     let links = wrapper.findAll('a');

@@ -6,16 +6,16 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Textbooks
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li v-for="(section, i) in bookData.sections" :key="i" class="d-flex">
           <div class="w-50">
             <font-awesome-icon
-              :icon="['fas', 'square-full']"
+              :icon="faSquareFull"
               :class="`text-c${section.colorId}`"
               class="mr-1"
             />
@@ -47,9 +47,7 @@
           bookData.summerTerm ? ',' + bookData.summerTerm : ''}`"
           :title="`View Textbooks of ${bookData.year} ${bookData.quarter}`"
         >
-          <font-awesome-icon
-            :icon="['fa', 'chevron-right']"
-          />
+          <font-awesome-icon :icon="faChevronRight" />
         </a>
       </div>
     </template>
@@ -57,6 +55,10 @@
 </template>
 
 <script>
+import {
+  faSquareFull,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -69,6 +71,12 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      faSquareFull,
+      faChevronRight,
+    };
   },
   computed: {
     ...mapState({

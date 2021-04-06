@@ -1,9 +1,9 @@
 <template>
   <uw-card :loaded="true">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         UW Resources
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p class="myuw-text-md">Explore tools, services, and resources by popular topics.</p>
@@ -13,13 +13,13 @@
           <b-row>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#academics">Academic Resources</a>
               </li>
             </b-col>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#studentfinances">Student Finances</a>
               </li>
             </b-col>
@@ -27,7 +27,7 @@
           <b-row>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1"
                    href="/resources/#accountsidentityandemail"
                 >Accounts, Identity, and Email</a>
@@ -35,7 +35,7 @@
             </b-col>
             <b-col md="6">
               <li class="mb-2">
-                <font-awesome-icon :icon="['fa', 'chevron-right']" aria-hidden="true"/>
+                <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#employment">Employment</a>
               </li>
             </b-col>
@@ -44,9 +44,9 @@
       </ul>
       <hr>
       <div>
-        <h4 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
           More topics
-        </h4>
+        </h3>
         <ul class="list-inline myuw-text-md">
           <li class="list-inline-item">
             <a href="/resources/#teaching">Teaching</a>
@@ -70,11 +70,19 @@
 </template>
 
 <script>
+import {
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
+  },
+  data() {
+    return {
+      faChevronRight,
+    };
   },
 };
 </script>

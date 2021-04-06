@@ -2,9 +2,9 @@
   <div id="classlist_table_view"
        aria-labelledby="table-view"
   >
-    <h4 class="sr-only">
+    <h3 class="sr-only">
       Table of Student Information
-    </h4>
+    </h3>
     <div class="">
       <b-table
         id="student-list"
@@ -36,10 +36,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 export default {
   props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
     section: {
       type: Object,
       required: true,

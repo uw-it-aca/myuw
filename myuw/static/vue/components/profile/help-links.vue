@@ -1,9 +1,9 @@
 <template>
   <uw-panel :loaded="true">
     <template #panel-body>
-      <h3 class="h5">
+      <h2 class="h5">
         Related Help
-      </h3>
+      </h2>
       <ul class="list-unstyled myuw-text-md mb-4">
         <li v-if="isBothell" class="mb-1">
           <a v-out="'UWB Mailing Services'"

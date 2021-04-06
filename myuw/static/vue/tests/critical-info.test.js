@@ -32,8 +32,8 @@ describe('Critical Info Card', () => {
   it('Check the filter function - default', async () => {
     axios.get.mockResolvedValue({data: mockNotices});
     const wrapper = mount(CriticalInfoCard, {store, localVue});
-    // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    // Flush all pending promises
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.vm.notices).toHaveLength(1);
@@ -45,8 +45,8 @@ describe('Critical Info Card', () => {
     mockNotices[20].attributes[0].value = 3;
     axios.get.mockResolvedValue({data: mockNotices});
     const wrapper = mount(CriticalInfoCard, {store, localVue});
-    // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    // Flush all pending promises
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.vm.notices).toHaveLength(1);

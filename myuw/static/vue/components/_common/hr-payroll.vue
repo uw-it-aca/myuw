@@ -1,11 +1,11 @@
 <template>
   <uw-card v-if="showCard" :loaded="true">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">HR and Payroll</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">HR and Payroll</h2>
     </template>
     <template #card-body>
       <div style="position: relative">
-        <h4 class="sr-only">Workday</h4>
+        <h3 class="sr-only">Workday</h3>
         <p>
           <uw-link-button
             id="og_workday"
@@ -26,7 +26,7 @@
         </p>
       </div>
       <div v-if="!studEmployee">
-        <h4 class="h6 font-weight-bold text-dark-beige">Get Help</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Get Help</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a v-if="faculty" href="https://ap.washington.edu/ahr/" target="_blank">Academic HR</a>
@@ -53,7 +53,7 @@
         </ul>
       </div>
       <div v-else>
-        <h4 class="h6 font-weight-bold text-dark-beige">Related</h4>
+        <h3 class="h6 font-weight-bold text-dark-beige">Related</h3>
         <ul class="list-unstyled myuw-text-md">
           <li><a href="https://hr.uw.edu/" target="_blank">UW Human Resources</a></li>
           <li>
@@ -109,7 +109,7 @@ export default {
       student: (state) => state.user.affiliations.student,
       studEmployee: (state) => state.user.affiliations.stud_employee,
       instructor: (state) => state.user.affiliations.instructor,
-      retire: (state) => state.user.affiliations.retire,
+      retiree: (state) => state.user.affiliations.retiree,
       pastEmployee: (state) => state.user.affiliations.past_employee,
       staticUrl: (state) => state.staticUrl,
     }),

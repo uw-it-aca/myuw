@@ -31,12 +31,12 @@ describe('Summaries', () => {
     axios.get.mockResolvedValue({data: mockNotices});
     dayjs.mockImplementation((s) => {
       return {
-        fromNow: jest.fn().mockReturnValueOnce(s),
+        from: jest.fn().mockReturnValueOnce(s),
       };
     });
     const wrapper = shallowMount(Summaries, {store, localVue});
     expect(wrapper.vm.toFromNowDate('test')).toEqual('test');
-    expect(dayjs).toHaveBeenCalledTimes(1);
+    expect(dayjs).toHaveBeenCalledTimes(2);
   });
 
   it('getWeeksApart', async () => {

@@ -8,25 +8,14 @@ import events from '../vuex/store/events';
 import EventsCard from '../components/home/events/events.vue';
 import ListEvents from '../components/home/events/list-events.vue';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {
-  FontAwesomeIcon,
   FontAwesomeLayers,
 } from '@fortawesome/vue-fontawesome';
-
-import {
-  faExclamationTriangle,
-  faLocationArrow
-} from '@fortawesome/free-solid-svg-icons';
 
 import mockEvents from './mock_data/events.json';
 
 const localVue = createLocalVue(Vuex);
 
-library.add(faExclamationTriangle);
-library.add(faLocationArrow);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
@@ -83,7 +72,7 @@ describe('Events Card', () => {
     axios.get.mockResolvedValue({data: mockEvents, status: 200});
     const wrapper = shallowMount(EventsCard, {store, localVue});
 
-    expect(wrapper.find('h3').text()).toEqual('Events');
+    expect(wrapper.find('h2').text()).toEqual('Events');
   });
 
   it('acalDateFormat', () => {
@@ -111,6 +100,6 @@ describe('Events Card', () => {
     });
     const wrapper = shallowMount(EventsCard, {store, localVue});
 
-    expect(wrapper.find('h3').text()).toEqual('Events');
+    expect(wrapper.find('h2').text()).toEqual('Events');
   });
 });

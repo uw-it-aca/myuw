@@ -1,19 +1,12 @@
 import axios from 'axios';
-import dayjs from 'dayjs';
-import utils from '../mixins/utils';
 import courses from '../mixins/courses';
 
-import {shallowMount, createLocalVue} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 
 import Vuex from 'vuex';
 
-import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
-
-import {statusOptions} from '../vuex/store/model_builder';
 import inst_schedule from '../vuex/store/schedule/instructor';
-import {expectAction} from './helper';
+import {createLocalVue} from './helper';
 
 import UwCard from '../components/_templates/card.vue';
 import InstructorCourseSummery from
@@ -28,11 +21,8 @@ import mockBillsea2013Spring from
 import mockNoCourse2013Summer from
   './mock_data/inst_schedule/2013summer.json';
 
-const localVue = createLocalVue();
-localVue.use(Vuex);
+const localVue = createLocalVue(Vuex);
 localVue.mixin(courses);
-localVue.mixin(utils);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 jest.mock('axios');
 
@@ -74,7 +64,7 @@ describe('Instructor Teaching Summary', () => {
       return Promise.resolve({data: urlData[url], status: 200});
     });
 
-    const wrapper = shallowMount(InstructorCourseSummery, {store, localVue});
+    const wrapper = mount(InstructorCourseSummery, {store, localVue});
     await new Promise((r) => setTimeout(r, 30));
 
     expect(
@@ -100,7 +90,7 @@ describe('Instructor Teaching Summary', () => {
     ).toBe(true);
 
     expect(
-      wrapper.find('h3').text()
+      wrapper.find('h2').text()
     ).toEqual('Spring 2013 Teaching Schedule');
 
   });
@@ -113,7 +103,7 @@ describe('Instructor Teaching Summary', () => {
         return Promise.resolve({data: urlData[url], status: 200});
       });
 
-    const wrapper = shallowMount(
+    const wrapper = mount(
       InstructorCourseSummery, {
         store,
         localVue,

@@ -4,29 +4,32 @@
       <!-- A linked secondary section -->
       <div>
         <div :class="`c${section.color_id}`" />
-        <h4 class="h5 myuw-font-encode-sans">
+        <h3
+          class="h5 myuw-font-encode-sans"
+          :aria-label="section.lable"
+        >
           <a v-if="section.mini_card"
             v-inner="'View Mini-card'"
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            title="View mini-card on Teaching page"
+            :title="`View mini-card of ${section.label} on Teaching page`"
           >
             {{ section.section_id }}
           </a>
           <a v-else
             :href="`/teaching/${section.href}`"
             :future-nav-target="section.navtarget"
-            :title="`Pin ${section.id} mini-card to teaching page`"
+            :title="`Pin mini-card of ${section.label} onto Teaching page`"
             @click="miniCard"
           >
             {{ section.section_id }}
           </a>
-        </h4>
+        </h3>
       </div>
       <div v-if="section.sln">
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section SLN:
-        </h5>
+        </h4>
         <span>
           <a
             v-out="'Time Schedule for SLN'"
@@ -39,25 +42,25 @@
         </span>
       </div>
       <div>
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Type:
-        </h5>
+        </h4>
         <span class="text-capitalize">
           {{ section.section_type }}
         </span>
       </div>
 
       <div class="flex-fill">
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Meetings:
-        </h5>
-        <uw-meeting-info :section="section" />
+        </h4>
+        <uw-meeting-info :section="section" no-heading />
       </div>
 
       <div>
-        <h5 class="sr-only">
+        <h4 class="sr-only">
           Section Enrollments:
-        </h5>
+        </h4>
         <uw-enrollment :section="section" />
       </div>
     </div>
@@ -65,14 +68,14 @@
     <div>
       <b-button v-if="!section.mini_card"
         variant="light"
-        :title="`Pin ${section.id} mini-card to teaching page`"
+        :title="`Pin mini-card of ${section.label} onto Teaching page`"
         @click="miniCard"
       >
         Pin to Teaching
       </b-button>
       <b-button v-else
         variant="dark"
-        :title="`Remove ${section.id} mini-card from teaching page`"
+        :title="`Remove mini-card of ${section.label} from Teaching page`"
         @click="miniCard"
       >
         Unpin

@@ -14,10 +14,7 @@
           {{ jointSec.course_abbr }}
           {{ jointSec.course_number }}
           {{ jointSec.section_id }}
-          <font-awesome-icon
-            :icon="['fas', 'exclamation-triangle']"
-            class="mr-1"
-          />
+          <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
         </span>
         <b-tooltip :target="`${parentId}-${idForSection(jointSec)}`">
           You are not an instructor of record for
@@ -34,6 +31,10 @@
 </template>
 
 <script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
+
 export default {
   props: {
     section: {
@@ -44,6 +45,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      faExclamationTriangle,
+    };
   },
 };
 </script>

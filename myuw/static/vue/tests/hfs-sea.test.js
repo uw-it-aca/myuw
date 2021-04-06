@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-library.add(faExclamationTriangle);
-
 import { createLocalVue } from './helper';
 import { mount } from '@vue/test-utils';
 
@@ -16,7 +11,6 @@ import HfsSeaCard from '../components/accounts/hfs-sea.vue';
 import mockJaverageHfs from './mock_data/hfs.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
@@ -46,27 +40,26 @@ describe('HFS Sea Card', () => {
     store.state.user.affiliations.seattle = true;
     axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
     const wrapper = mount(HfsSeaCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(
       wrapper.findComponent(UwCard).exists()
     ).toBe(true);
     expect(
-      wrapper.findAll('h3').at(0).text()
+      wrapper.findAll('h2').at(0).text()
     ).toBe('Housing & Food Services');
     expect(
-      wrapper.findAll('h4').at(0).text()
+      wrapper.findAll('h3').at(0).text()
     ).toBe('Dining Balance');
     expect(
-      wrapper.findAll('h4').at(1).text()
+      wrapper.findAll('h3').at(1).text()
     ).toBe('Explore Campus Housing');
     expect(
-      wrapper.findAll('h4').at(2).text()
+      wrapper.findAll('h3').at(2).text()
     ).toBe('Manage Account');
     expect(
-      wrapper.findAll('h4').at(3).text()
+      wrapper.findAll('h3').at(3).text()
     ).toBe('Resident Resources');
-
     expect(wrapper.findAll('span').at(0).text()
     ).toBe('$5.10');
     expect(wrapper.findAll('a').length).toBe(10);
@@ -75,7 +68,7 @@ describe('HFS Sea Card', () => {
   it('Hide card if not a seattle student', async () => {
     axios.get.mockResolvedValue({data: mockJaverageHfs, status: 200});
     const wrapper = mount(HfsSeaCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(false)
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
@@ -86,7 +79,7 @@ describe('HFS Sea Card', () => {
     store.state.user.affiliations.seattle = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(HfsSeaCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
   });

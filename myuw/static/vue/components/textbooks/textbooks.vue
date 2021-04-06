@@ -52,7 +52,7 @@
       <b-alert show variant="light" class="p-0 border-0 bg-transparent">
         <div class="d-flex text-danger m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
-            <font-awesome-icon :icon="['fas', 'exclamation-triangle']" />
+            <font-awesome-icon :icon="faExclamationTriangle" />
           </div>
           <div class="w-100">
             An error has occurred and we can't load this content right now.
@@ -65,6 +65,9 @@
 </template>
 
 <script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Panel from '../_templates/panel.vue';
 import LinkButton from '../_templates/link-button.vue';
@@ -83,6 +86,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data() {
+    return {
+      faExclamationTriangle,
+    };
   },
   computed: {
     ...mapState('stud_schedule', {

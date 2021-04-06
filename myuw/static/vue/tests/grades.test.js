@@ -6,27 +6,13 @@ import Vuex from 'vuex';
 import Courses from '../vuex/store/schedule/student';
 import GradesCard from '../components/_common/grades.vue';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {
-  FontAwesomeIcon,
   FontAwesomeLayers,
 } from '@fortawesome/vue-fontawesome';
-
-import {
-  faExclamationTriangle,
-  faLocationArrow,
-  faSquareFull,
-} from '@fortawesome/free-solid-svg-icons';
 
 import mockCourses from './mock_data/courses.json';
 
 const localVue = createLocalVue(Vuex);
-
-library.add(faExclamationTriangle);
-library.add(faLocationArrow);
-library.add(faSquareFull);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
@@ -108,8 +94,8 @@ describe('Events Card', () => {
     axios.get.mockResolvedValue({data: mockCourses, status: 200});
     const wrapper = mount(GradesCard, {store, localVue});
   
-    await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Final Grades');
+    await new Promise(setImmediate);
+    expect(wrapper.find('h2').text()).toEqual('Final Grades');
   });
 
   it('Basic Render - 2', async () => {
@@ -140,15 +126,15 @@ describe('Events Card', () => {
     }
     const wrapper = mount(GradesCard, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
-    expect(wrapper.find('h3').text()).toEqual('Final Grades');
+    await new Promise(setImmediate);
+    expect(wrapper.find('h2').text()).toEqual('Final Grades');
   });
 
   it('Basic Render - 3', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = mount(GradesCard, {store, localVue});
 
-    expect(wrapper.find('h3').exists()).toBe(false);
+    expect(wrapper.find('h2').exists()).toBe(false);
   });
 
   it('toFriendlyDate', () => {

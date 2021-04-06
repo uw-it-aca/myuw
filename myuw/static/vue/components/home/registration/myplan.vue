@@ -2,9 +2,9 @@
   <!-- Having myplan courses -->
   <div v-if="hasSections" class="mb-4">
     <div class="d-flex align-items-center mb-2">
-      <h4 class="h6 text-dark font-weight-bold flex-fill">
+      <h3 class="h6 text-dark font-weight-bold flex-fill">
         In MyPlan
-      </h4>
+      </h3>
       <div class="flex-fill text-right">
         <ul class="list-unstyled m-0">
           <li class="font-weight-bold">
@@ -17,9 +17,8 @@
               size="sm"
               variant="link"
               class="ml-1 p-0 border-0 bg-transparent align-baseline"
-              :title="buttonTitle"
             >
-              See PLan Details
+              Plan Details
               <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
               <font-awesome-icon v-else :icon="faChevronUp" />
             </b-button>
@@ -43,9 +42,9 @@
   <!-- no myplan courses -->
   <div v-else class="mb-4">
     <div class="d-flex align-items-center mb-2">
-      <h4 class="h6 text-dark font-weight-bold flex-fill">
+      <h3 class="h6 text-dark font-weight-bold flex-fill">
         In MyPlan
-      </h4>
+      </h3>
       <div class="flex-fill text-right">
         <div class="font-weight-bold">
           No courses in your plan
@@ -124,10 +123,6 @@ export default {
     },
     coursesUnavailable() {
       return this.courses.filter((c) => !c.registrations_available);
-    },
-    buttonTitle() {
-      if (this.collapseOpen) return 'Collapse to hide courses not ready';
-      return 'Expand to show courses not read';
     },
   },
 };

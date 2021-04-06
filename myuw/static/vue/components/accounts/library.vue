@@ -1,7 +1,7 @@
 <template>
   <uw-card :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Library Account</h3>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Library Account</h2>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your library account information right now. In the
@@ -13,7 +13,7 @@
       <b-alert v-if="holdsReady" show variant="info">
         <div class="d-flex text-default m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
-            <font-awesome-icon :icon="['fas', 'info-circle']" />
+            <font-awesome-icon :icon="faInfoCircle" />
           </div>
           <div class="w-100">
             <a
@@ -82,7 +82,7 @@
 
 <script>
 import {
-  faQuestionCircle,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
@@ -97,7 +97,7 @@ export default {
   },
   data() {
     return {
-      faQuestionCircle,
+      faInfoCircle,
     }
   },
   computed: {

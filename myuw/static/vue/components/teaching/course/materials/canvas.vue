@@ -8,6 +8,7 @@
 
       <a v-else
         :href="section.canvas_url"
+        :title="`Course Canvas of ${section.label}`"
         target="_blank"
       >Course Canvas</a>
     </span>

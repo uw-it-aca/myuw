@@ -1,9 +1,9 @@
 <template>
   <uw-card v-if="internationalStudent" :loaded="true">
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         International Student
-      </h3>
+      </h2>
     </template>
     <template v-if="seattle || bothell || tacoma" #card-body>
       <uw-seattle v-if="seattle" />

@@ -2,18 +2,18 @@
   <div v-if="student">
     <div v-if="isReady">
       <div v-if="terms.length && shouldRender">
-        <h3 class="sr-only">
+        <h2 class="sr-only">
           Upcoming quarters you are registered for
-        </h3>
+        </h2>
         <div v-for="(term, i) in terms" :key="i">
           <uw-card v-if="term.has_registration" loaded>
             <template #card-heading>
-              <h4 class="mb-3 text-dark-beige myuw-font-encode-sans">
+              <h3 class="mb-3 text-dark-beige myuw-font-encode-sans">
                 {{ term.quarter }} {{ term.year }}
                 <span v-if="term.summer_term" class="text-capitalize">
                   {{ term.summer_term }}
                 </span>
-              </h4>
+              </h3>
             </template>
             <template #card-body>
               <div>
@@ -42,9 +42,7 @@
                       </span>
                       information
                     </span>
-                    <font-awesome-icon
-                      :icon="['fa', 'chevron-right']"
-                    />
+                    <font-awesome-icon :icon="faChevronRight" />
                   </a>
                 </div>
               </div>
@@ -60,9 +58,9 @@
       :errored-show="showError"
     >
       <template #card-heading>
-        <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
           Future Quarter
-        </h3>
+        </h2>
       </template>
       <template #card-error>
         An error occurred and MyUW cannot load your registration information
@@ -73,6 +71,9 @@
 </template>
 
 <script>
+import {
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -85,6 +86,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data() {
+    return {
+      faChevronRight,
+    };
   },
   computed: {
     ...mapState({

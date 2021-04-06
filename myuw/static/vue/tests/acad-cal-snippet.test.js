@@ -43,7 +43,7 @@ describe('Academic Calendar Snippet', () => {
   it('Computed Properties', async () => {
     axios.get.mockResolvedValue({data: facultyAcadEvents, status: 200});
     const wrapper = shallowMount(AcadCalSnippet, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.vm.events.length).toBe(4);
     expect(wrapper.vm.instructor).toBeTruthy();
@@ -53,7 +53,7 @@ describe('Academic Calendar Snippet', () => {
   it('formatBannerDate()', async () => {
     axios.get.mockResolvedValue({data: facultyAcadEvents, status: 200});
     const wrapper = shallowMount(AcadCalSnippet, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     let multiDayEvent = wrapper.vm.events[0];
     let oneDayEvent = wrapper.vm.events[1];

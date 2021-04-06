@@ -1,12 +1,10 @@
 <template>
-  <uw-panel
-    :loaded="isReady" :mobile-only="mobileOnly"
-  >
+  <uw-panel :loaded="isReady">
     <template #panel-body>
       <div v-for="linkCategory in linkData" :key="linkCategory.subcat_slug">
-        <h3 :id="linkCategory.subcat_slug" class="h5">
+        <h2 :id="linkCategory.subcat_slug" class="h5">
           {{ linkCategory.subcategory }}
-        </h3>
+        </h2>
         <ul class="list-unstyled myuw-text-md mb-4">
           <li v-for="link in linkCategory.links" :key="link.url" class="mb-1">
             <a v-if="link.new_tab" :href="link.url" target="_blank">
@@ -29,12 +27,6 @@ import Panel from '../_templates/panel.vue';
 export default {
   components: {
     'uw-panel': Panel,
-  },
-  props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
   },
   data: function() {
     return {

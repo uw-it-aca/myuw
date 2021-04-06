@@ -1,5 +1,5 @@
 <template>
-  <uw-card :loaded="isReady" :errored="isErrored" :mobile-only="mobileOnly">
+  <uw-card :loaded="isReady" :errored="isErrored">
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Quick Links
@@ -140,12 +140,6 @@ export default {
     'uw-card': Card,
     'uw-link': Link,
     'uw-covid-links': CovidLinks,
-  },
-  props: {
-    mobileOnly: {
-      type: Boolean,
-      default: false,
-    },
   },
   data: function() {
     return {

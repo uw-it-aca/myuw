@@ -1,8 +1,8 @@
 <template>
   <div class="myuw-text-md">
-    <h5 class="w-25 font-weight-bold text-dark-beige">
+    <h3 class="w-25 font-weight-bold text-dark-beige">
       Instructors
-    </h5>
+    </h3>
     <div>
       <ol class="list-unstyled myuw-text-md mb-0">
         <li v-for="(instructor, i) in instructors" :key="i" class="mb-2">

@@ -6,9 +6,9 @@
            :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Final Grades
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <p
@@ -27,7 +27,7 @@
           <div class="d-flex align-content-center">
             <div class="w-50">
               <font-awesome-icon
-                :icon="['fas', 'square-full']"
+                :icon="faSquareFull"
                 :class="`text-c${section.color_id}`"
                 class="mr-1"
               />
@@ -53,9 +53,9 @@
         id="grade_card_collapse"
         v-model="isOpen"
       >
-        <h4 class="h6 font-weight-bold">
+        <h3 class="h6 font-weight-bold">
           Resources
-        </h4>
+        </h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx" target="_blank">
@@ -84,7 +84,7 @@
         variant="link"
         size="sm"
         class="w-100 p-0 text-dark"
-        :title="buttonTitle"
+        title='Additional grade resources'
       >
         Resources
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
@@ -95,10 +95,10 @@
 </template>
 
 <script>
-import dayjs from 'dayjs';
 import {
   faChevronUp,
   faChevronDown,
+  faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
@@ -114,6 +114,7 @@ export default {
       isOpen: false,
       faChevronUp,
       faChevronDown,
+      faSquareFull,
     };
   },
   computed: {
@@ -143,12 +144,6 @@ export default {
     },
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
-    },
-    buttonTitle() {
-      return (this.isOpen
-          ? 'Collapse to hide additional grade resources'
-          : 'Expand to show additional grade resources'
-      );
     },
     gradeSubmissionDeadline: function() {
       if (this.term in this.courses) {
