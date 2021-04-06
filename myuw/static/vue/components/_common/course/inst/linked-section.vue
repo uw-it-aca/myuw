@@ -35,7 +35,6 @@
             v-out="'Time Schedule for SLN'"
             :href="getTimeScheHref(section)"
             :title="`Time Schedule for SLN ${section.sln}`"
-            target="_blank"
           >
             {{ section.sln }}
           </a>

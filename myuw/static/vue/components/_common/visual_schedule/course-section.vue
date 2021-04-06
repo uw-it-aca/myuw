@@ -32,9 +32,8 @@
           </span>
           <a v-if="showConfirmLink"
             v-out="'Confirm Meeting'"
-             :href="confirmationLink"
-             target="_blank"
-             class="d-block"
+            :href="confirmationLink"
+            class="d-block"
           >
             (Confirm)
           </a>

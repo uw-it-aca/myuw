@@ -5,10 +5,7 @@
     </template>
     <template #card-body>
       <p>
-        <uw-link-button 
-          href="https://uwnetid.washington.edu/manage/"
-          target="_blank"  
-        >
+        <uw-link-button href="https://uwnetid.washington.edu/manage/">
           Manage UW NetID account
         </uw-link-button>
       </p>
@@ -17,26 +14,20 @@
           <li class="mb-1">
             <a
               href="https://uwnetid.washington.edu/manage/?password"
-              target="_blank"
               title="Change UW NetID password"
-              >Change UW NetID password</a
-            >
+            >Change UW NetID password</a>
           </li>
           <li>
             <a
               href="https://identity.uw.edu/account/recovery/"
-              target="_blank"
               title="NetID account recovery options"
-              >Set account recovery options</a
-            >
+            >Set account recovery options</a>
           </li>
           <li v-if="two_factor" class="mt-1">
             <a
               href="https://identity.uw.edu/2fa/"
-              target="_blank"
               title="Manage two-factor authentication"
-              >Manage two-factor authentication (2FA)</a
-            >
+            >Manage two-factor authentication (2FA)</a>
           </li>
         </ul>
       </div>
@@ -44,11 +35,7 @@
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. Please try again later. In
       the meantime, if you want to change your password, try the
-      <a
-        href="https://uwnetid.washington.edu/manage/?password"
-        target="_blank"
-        >UW NetID page</a
-      >.
+      <a href="https://uwnetid.washington.edu/manage/?password">UW NetID page</a>.
     </template>
   </uw-card>
 </template>
