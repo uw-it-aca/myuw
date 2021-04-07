@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h4 class="h5">
+    <h3 class="h5">
       {{ book.title }}
-    </h4>
+    </h3>
 
     <div class="d-flex">
       <div class="mr-3"
