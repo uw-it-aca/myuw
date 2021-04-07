@@ -121,7 +121,7 @@ describe('Schedule Model', () => {
     store.dispatch('visual_schedule/fetch', 'testCurrent');
 
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(store.getters['visual_schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
     expect(store.state.visual_schedule.value).toBeDefined();
@@ -162,7 +162,7 @@ describe('Schedule Model', () => {
     store.dispatch('visual_schedule/fetch', 'testCurrent');
 
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(store.getters['visual_schedule/isReadyTagged']('testCurrent')).toBeTruthy();
 
     expect(store.state.visual_schedule.value).toBeDefined();
@@ -208,7 +208,7 @@ describe('Vue SFC Tests', () => {
     axios.get.mockResolvedValue({data: mockScheduleJaverage, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').exists()).toBeTruthy();
     expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
@@ -221,7 +221,7 @@ describe('Vue SFC Tests', () => {
     axios.get.mockResolvedValue({data: mockScheduleJaverageSummer, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').exists()).toBeTruthy();
     expect(wrapper.find('h2').text()).toMatch("Summer 2013 A-Term Schedule");
     expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
@@ -234,7 +234,7 @@ describe('Vue SFC Tests', () => {
     axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').exists()).toBeTruthy();
     expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
 
@@ -256,7 +256,7 @@ describe('Vue SFC Tests', () => {
     axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').exists()).toBeTruthy();
     expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
 
@@ -279,7 +279,7 @@ describe('Vue SFC Tests', () => {
     axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').exists()).toBeTruthy();
     expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
 

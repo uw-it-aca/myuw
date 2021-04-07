@@ -46,7 +46,7 @@ describe('Upass Card', () => {
     axios.get.mockResolvedValue({data: mockUpass});
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isCurrent).toBeFalsy();
     expect(wrapper.vm.employee).toBeFalsy();
@@ -65,7 +65,7 @@ describe('Upass Card', () => {
     axios.get.mockResolvedValue({data: mockUpass});
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.getUrl).toBe(
        "https://www.uwb.edu/facility/commuter-services/upass");
     expect(wrapper.vm.getPurchaseUrl).toBe(
@@ -79,7 +79,7 @@ describe('Upass Card', () => {
     axios.get.mockResolvedValue({data: mockUpass});
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.getUrl).toBe(
        "https://www.tacoma.uw.edu/getting-campus/u-pass-orca");
     expect(wrapper.vm.getPurchaseUrl).toBe(
@@ -92,7 +92,7 @@ describe('Upass Card', () => {
     axios.get.mockResolvedValue({data: mockUpass});
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.getUrl).toBe(
        "https://facilities.uw.edu/transportation/student-u-pass#3");
     expect(wrapper.vm.getWhatIsUrl).toBe(
@@ -103,7 +103,7 @@ describe('Upass Card', () => {
     axios.get.mockResolvedValue({data: mockUpass});
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.getUrl).toBe(
        "https://facilities.uw.edu/transportation/employee-u-pass#10");
     expect(wrapper.vm.getWhatIsUrl).toBe(

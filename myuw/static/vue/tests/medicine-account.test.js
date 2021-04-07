@@ -32,7 +32,7 @@ describe('Husky Card', () => {
   it('Hide card if no active med password', async () => {
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
@@ -44,7 +44,7 @@ describe('Husky Card', () => {
     mockJinterProfile.password.days_before_med_pw_expires = undefined;
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
@@ -64,7 +64,7 @@ describe('Husky Card', () => {
     mockJinterProfile.password.days_before_med_pw_expires = 49;
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);

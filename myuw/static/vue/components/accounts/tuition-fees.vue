@@ -43,10 +43,7 @@
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">Student Fiscal Services</div>
                 <div class="flex-fill w-50 text-right">
-                  <a
-                    href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                    target="_blank"
-                    >
+                  <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
                     Tuition Statement
                     </a>
                 </div>
@@ -55,7 +52,6 @@
                 <uw-link-button
                   v-out="'Make tuition payment'"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
-                  target="_blank"
                 >
                   Make payment
                 </uw-link-button>
@@ -79,10 +75,8 @@
               <span>No payment needed</span><br />
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                target="_blank"
                 class="myuw-text-md"
-                >Tuition Statement</a
-              >
+              >Tuition Statement</a>
             </div>
           </div>
         </li>
@@ -96,9 +90,10 @@
             <template #status-content>
               <div class="myuw-text-md">PCE-Continuum College</div>
               <div class="text-right">
-                <uw-link-button v-out="'Make Continuum College tuition payment'"
+                <uw-link-button
+                  v-out="'Make Continuum College tuition payment'"
                   href="http://portal.continuum.uw.edu"
-                  target="_blank">
+                 >
                   Make payment
                 </uw-link-button>
               </div>
@@ -112,13 +107,10 @@
             <template #status-value>$ 0</template>
             <template #status-content>
               <span class="myuw-text-md">PCE-Continuum College</span>
-              <a
-                v-out="'Continuum College Account Statement'"
+              <a v-out="'Continuum College Account Statement'"
                 href="http://portal.continuum.uw.edu"
-                target="_blank"
                 class="myuw-text-md"
-                >Account Statement</a
-              >
+              >Account Statement</a>
             </template>
           </uw-card-status>
         </li>
@@ -142,8 +134,7 @@
         <p v-if="!isC2Grad">
           <a v-out="'Give Tuition Account Access'"
             href="https://sdb.admin.uw.edu/sisStudents/uwnetid/release.aspx"
-            target="_blank"
-            >Give access to your tuition account and financial aid information
+          >Give access to your tuition account and financial aid information
           </a>
           to parents or other third parties.
         </p>
@@ -158,10 +149,8 @@
             <li>
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
-                target="_blank"
                 class="myuw-text-md"
-                >Financial Aid Status</a
-              >
+              >Financial Aid Status</a>
             </li>
           </ul>
         </template>
@@ -171,20 +160,14 @@
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
-      <a
-        v-if="!isPCE"
+      <a v-if="!isPCE"
         v-out="'Tuition Statement'"
         href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-        target="_blank"
-        >Tuition Statement page</a
-      >
-      <a
-        v-else
+      >Tuition Statement page</a>
+      <a v-else
         v-out="'Continuum College Tuition portal'"
         href="https://portal.continuum.uw.edu"
-        target="_blank"
-        >PCE Tuition portal</a
-      >.
+      >PCE Tuition portal</a>.
     </template>
     <template #card-error-extra>
       <uw-tuition-resources />

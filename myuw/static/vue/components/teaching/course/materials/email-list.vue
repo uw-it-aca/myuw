@@ -16,7 +16,6 @@
         <a
           v-out="'Manage Email List'"
           :href="section.email_list.section_list.list_admin_url"
-          target="_blank"
           :title="`Manage Email List for ${
             section.email_list.course_abbr
           } ${section.email_list.course_number} ${
@@ -35,7 +34,6 @@
       <a
         v-out="'Manage Email List (joint section)'"
         :href="section.email_list.joint_section_list.list_admin_url"
-        target="_blank"
         :title="`Manage Joint Section Email List for ${
           section.email_list.course_abbr
         } ${section.email_list.course_number} ${

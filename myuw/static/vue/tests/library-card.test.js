@@ -35,7 +35,7 @@ describe('Library Card', () => {
   it('Testing mapped state', async () => {
     axios.get.mockResolvedValue({data: mockRes, status: 200});
     const wrapper = mount(LibraryCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.holdsReady).toBe(1);

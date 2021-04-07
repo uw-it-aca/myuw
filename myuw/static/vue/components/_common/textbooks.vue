@@ -108,7 +108,9 @@ export default {
     },
     showError() {
       return (
-        this.statusCodeSchedule(this.term) != 404 &&
+        this.isErroredSchedule(this.term) &&
+        this.statusCodeSchedule(this.term) != 404 ||
+        this.isErroredTextbook(this.term) &&
         this.statusCodeTextbooks(this.term) != 404
       );
     },

@@ -10,7 +10,6 @@
     <a
       v-out="'Course Dashboard'"
       :href="getUrl"
-      target="_blank"
       :title="getLabel"
     >
       View more statistics for
