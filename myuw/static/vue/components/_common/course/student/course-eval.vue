@@ -13,7 +13,7 @@
           <p>
             <a
               v-out="'Evaluate course'"
-              :href="evalObj.url" target="_blank"
+              :href="evalObj.url"
             >
               {{ section.curriculum_abbr }}
               {{ section.course_number }}
@@ -51,7 +51,7 @@
             >
               <a
                 v-out="'Evaluate instructor'"
-                :href="evalObj.url" target="_blank">
+                :href="evalObj.url">
                 {{ titleCaseName(instructor.instructor_name) }}
               </a>
               <div v-if="hasTitle(instructor)"

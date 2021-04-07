@@ -52,7 +52,7 @@
         <div>
           <a
             v-out="'MyPlan Course Search'"
-            class="myuw-text-md" target="_blank"
+            class="myuw-text-md"
             :href="myplanCourseSearchHref"
           >Add courses</a>
         </div>

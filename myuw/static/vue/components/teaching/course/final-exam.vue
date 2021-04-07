@@ -49,7 +49,6 @@
     <a
       v-if="displayConfirmFinalLink"
       :href="confirmFinalLink"
-      target="_blank"
     >
       Confirm final exam
     </a>

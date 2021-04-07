@@ -36,7 +36,6 @@
         <li>
           <a v-out="'UW Bothell Student Financial Aid'"
             href="http://www.uwb.edu/financialaid"
-            target="_blank"
           >
             Learn all about student financial aid and scholarships
           </a>
@@ -44,7 +43,6 @@
         <li>
           <a v-out="'UW Bothell Student Resources'"
             href="http://www.uwb.edu/studentaffairs"
-            target="_blank"
           >
             Check out the student resources for student life,
             career services, and more
@@ -53,7 +51,6 @@
         <li>
           <a v-out="'UW Bothell Academic calendars'"
             href="http://www.uwb.edu/calendars"
-            target="_blank"
           >
             View the UW Bothell Academic calendars
           </a>

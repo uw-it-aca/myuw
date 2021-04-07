@@ -33,7 +33,6 @@
                 emailList.course_abbr
                 } ${emailList.course_number} ${emailList.section_list.section_id}`"
               :href="emailList.section_list.list_admin_url"
-              target="_blank"
             >Manage</a>
           </span>
         </div>
@@ -65,7 +64,6 @@
                       emailList.course_abbr
                     } ${emailList.course_number} ${emailList.section_list.section_id}`"
                   :href="emailList.section_list.list_admin_url"
-                  target="_blank"
                 >Manage</a>
               </td>
             </tr>
@@ -87,7 +85,6 @@
                         emailList.course_abbr
                       } ${emailList.course_number} ${email.section_id}`"
                     :href="email.list_admin_url"
-                    target="_blank"
                   >Manage</a>
                 </td>
               </tr>
@@ -98,7 +95,7 @@
         <p>
           Need help with mailing lists?
           <a v-out="'Mailman Help'"
-             href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank"
+             href="https://itconnect.uw.edu/connect/email/resources/mailman/"
           >Mailman help documentation</a>
         </p>
       </template>
@@ -116,7 +113,7 @@
 
       <template v-if="emailList.request_sent || requestSuccess" #modal-footer>
         <a v-out="'Mailman Help'"
-           href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank"
+           href="https://itconnect.uw.edu/connect/email/resources/mailman/"
         >Mailman help</a>
         <b-button variant="light" @click="$refs['view-modal'].hide()">
           Close
@@ -149,7 +146,7 @@
 
       <template v-else #modal-footer>
         <a v-out="'Mailman Help'"
-           href="https://itconnect.uw.edu/connect/email/resources/mailman/" target="_blank"
+           href="https://itconnect.uw.edu/connect/email/resources/mailman/"
         >
           Mailman Help
         </a>
