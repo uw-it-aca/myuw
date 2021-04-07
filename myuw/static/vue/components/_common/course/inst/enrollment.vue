@@ -15,7 +15,6 @@
   <span v-else>
     <b-link
       v-inner="'View Class list'"
-      target="_blank"
       :href="classListHref()"
       :title="`View Classlist of ${section.label}`"
     >

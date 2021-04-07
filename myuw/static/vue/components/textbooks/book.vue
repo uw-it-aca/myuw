@@ -42,7 +42,7 @@
             </div>
             <div>
               Visit
-              <a target="_blank" :href="orderUrl">
+              <a :href="orderUrl">
                 ubookstore.com
               </a>
               for pricing on all available formats.

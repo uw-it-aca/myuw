@@ -92,7 +92,6 @@
             not have an evaluation set up for this course.
             <a v-out="'Learn About Course Evaluations'"
                href="https://www.washington.edu/assessment/course-evaluations/"
-               target="_blank"
                title="Learn About Course Evaluations"
             ><font-awesome-icon :icon="faQuestionCircle" /></a>
           </li>

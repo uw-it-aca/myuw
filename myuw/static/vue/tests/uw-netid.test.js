@@ -51,7 +51,7 @@ describe('UWNetID Card', () => {
         profile.getters.isFetching(wrapper.vm.$store.state.profile),
     ).toBeTruthy();
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
         profile.getters.isReady(wrapper.vm.$store.state.profile),
     ).toBeTruthy();
@@ -64,7 +64,7 @@ describe('UWNetID Card', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = shallowMount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
         profile.getters.isErrored(wrapper.vm.$store.state.profile),
     ).toBeTruthy();
@@ -78,7 +78,7 @@ describe('UWNetID Card', () => {
     axios.get.mockResolvedValue({data: mockProfileData, status: 200});
     const wrapper = mount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
   });
@@ -88,7 +88,7 @@ describe('UWNetID Card', () => {
     axios.get.mockResolvedValue({data: mockProfileData, status: 200});
     const wrapper = mount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
   });
@@ -98,7 +98,7 @@ describe('UWNetID Card', () => {
     axios.get.mockResolvedValue({data: mockProfileData, status: 200});
     const wrapper = mount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
   });
@@ -110,7 +110,7 @@ describe('UWNetID Card', () => {
         isHomePage: true,
       }});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
   });
@@ -119,7 +119,7 @@ describe('UWNetID Card', () => {
     axios.get.mockResolvedValue({data: mockProfileData, status: 200});
     const wrapper = mount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.vm.showCard).toBeTruthy();
@@ -132,7 +132,7 @@ describe('UWNetID Card', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = shallowMount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.showError).toBeTruthy();
   });
 });

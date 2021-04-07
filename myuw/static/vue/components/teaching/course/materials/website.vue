@@ -4,13 +4,11 @@
     <span>
       <a
         :href="section.class_website_url"
-        target="_blank"
         :title="`Class Website of ${section.label}`"
       >View class website</a>
       <span v-if="!pastTerm">
         <a
           v-out="'Update Course Website'"
-          target="_blank"
           :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
           :title="`Update Class Website of ${section.label}`"
         >Update</a>
@@ -25,7 +23,6 @@
     <span>Website:&nbsp;&nbsp;</span>
     <a
       v-out="'Add Course Website'"
-      target="_blank"
       :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
       :title="`Add Class Website for ${section.label}`"
     >Add</a>

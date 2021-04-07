@@ -15,12 +15,10 @@
         <li class="mb-1">
           <a v-out="'UW Alumni'"
             href="https://www.washington.edu/alumni"
-            target="_blank"
           >Alumni News, Events and Services</a>
         </li>
         <li class="mb-1">
           <a href="https://magazine.washington.edu/"
-            target="_blank"
           >Columns Magazine</a>
         </li>
       </ul>
@@ -35,7 +33,6 @@
         <li>
           <a v-out="'UWAA'"
             href="https://www.washington.edu/cms/alumni/membership/"
-            target="_blank"
           >
             Learn about the UWAA
           </a>
