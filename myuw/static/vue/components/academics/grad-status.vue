@@ -72,7 +72,6 @@
                     Approved<br>
                     <a
                       v-out="'MyGrad Payment Portal'"
-                      target="_blank"
                       href="https://webapps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
                       class="font-weight-normal"
                     >Pay Your Fee To Confirm</a>
@@ -118,7 +117,6 @@
         <a
           v-out="'MyGrad'"
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-          target="_blank"
         >Go to MyGrad</a>
       </div>
     </template>
@@ -128,7 +126,6 @@
       <a
         v-out="'MyGrad'"
         href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-        target="_blank"
       >MyGrad program page</a>.
     </template>
   </uw-card>

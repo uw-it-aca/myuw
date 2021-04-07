@@ -191,7 +191,7 @@ describe('New International Student Card', () => {
     axios.get.mockResolvedValue({data: mockNotices, status: 200});
     const wrapper = shallowMount(NewStudentCard, { store, localVue });
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(
       Notices.getters.isReady(wrapper.vm.$store.state.notices),

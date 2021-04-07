@@ -11,7 +11,6 @@
           class="myuw-muted"
           :href="legacyLink"
           :title="`View class list of ${section.label}`"
-          target="_blank"
         >
           My Class Resources
         </b-link>
@@ -44,7 +43,6 @@
     <div v-else-if="section.enrollment_student_name">
       <span>{{ section.enrollment_student_name }}</span>
       <b-link
-        target="_blank"
         :href="`/teaching/${section.apiTag}/students`"
         :title="`View class list of ${section.label}`"
       >
@@ -62,7 +60,6 @@
 
       <span>
         <b-link v-if="section.current_enrollment"
-          target="_blank"
           :href="`/teaching/${section.apiTag}/students`"
           :title="`View class list of ${section.label}`"
         >

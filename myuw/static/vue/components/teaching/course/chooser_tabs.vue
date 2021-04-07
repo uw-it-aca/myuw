@@ -12,7 +12,13 @@
       </template>
     </uw-term-selector>
   </div>
-  <uw-card v-else>
+  <uw-card v-else-if="isErrored && statusCodeTagged(term) !== 404"
+    :errored="isErrored">
+    <template #card-heading>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+        Teaching Schedule
+      </h2>
+    </template>
   </uw-card>
 </template>
 
@@ -51,6 +57,7 @@ export default {
     ...mapGetters('inst_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
+      statusCodeTagged: 'statusCodeTagged',
     }),
     isReady() {
       return this.isReadyTagged(this.fetchTerm);
