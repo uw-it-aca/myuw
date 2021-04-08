@@ -31,7 +31,7 @@
       </ul>
 
       <div class="text-right">
-        <uw-link-button v-if="hasActionUrl" :href="getActionUrl" target="_blank">
+        <uw-link-button v-if="hasActionUrl" :href="getActionUrl">
           Manage Husky account
         </uw-link-button>
       </div>
@@ -42,7 +42,6 @@
       <a
         v-out="'Husky Card account summary'"
         href="https://hfs.uw.edu/olco/Secure/AccountSummary.aspx"
-        target="_blank"
       >
         UW HFS page </a
       >.

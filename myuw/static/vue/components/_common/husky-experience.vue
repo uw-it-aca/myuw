@@ -29,8 +29,10 @@
               </h3>
               <div class="bg-white mt-3 px-2 py-1 text-body myuw-text-md">
                 {{ articleTeaserBody }}
-                <font-awesome-icon :icon="articleFaClass"
-                                   aria-hidden="true" class="align-text-bottom"
+                <font-awesome-icon
+                  v-if="articleFaClass"
+                  :icon="articleFaClass"
+                  aria-hidden="true" class="align-text-bottom"
                 />
               </div>
             </a>
@@ -97,10 +99,10 @@ export default {
       return this.isErroredTagged(this.urlExtra);
     },
     statusCode() {
-      return this.isErroredTagged(this.urlExtra);
+      return this.statusCodeTagged(this.urlExtra);
     },
     showError: function() {
-      return this.statusCodeTagged(this.urlExtra) !== 404;
+      return this.isErrored && this.statusCode !== 404;
     },
   },
   created() {

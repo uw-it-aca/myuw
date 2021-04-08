@@ -298,27 +298,23 @@
         <a
           v-out="'MyUW video for Instructors'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
-          target="_blank"
           title="MyUW video tour for instructors"
           >MyUW for Instructors</a
         >,
         <a
           v-out="'MyUW video for staff'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
-          target="_blank"
           title="MyUW video tour for staff"
           >for staff</a
         >, or
         <a
           v-out="'MyUW video for students'"
           href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
-          target="_blank"
           title="MyUW video tour for students"
           >for students</a
         >. <br /><a
           v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
-          target="_blank"
           title="MyUW Help Center in IT Connect"
           >Visit the MyUW help guide for more information</a
         >.

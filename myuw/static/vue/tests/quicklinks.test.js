@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {mount, shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import quicklinks from '../vuex/store/quicklinks';
@@ -8,27 +8,12 @@ import Quicklinks from '../components/home/quicklinks/quicklinks.vue';
 
 import mockQuicklinks from './mock_data/quicklinks.json';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {
-  FontAwesomeIcon,
   FontAwesomeLayers,
 } from '@fortawesome/vue-fontawesome';
 
-import {
-  faExclamationTriangle,
-  faPencilAlt,
-  faTimes,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
-
 const localVue = createLocalVue(Vuex);
 
-library.add(faExclamationTriangle);
-library.add(faPencilAlt);
-library.add(faTimes);
-library.add(faPlus);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
@@ -51,7 +36,7 @@ describe('Quicklinks/Link', () => {
     axios.get.mockResolvedValueOnce({data: mockQuicklinks, status: 200});
     const wrapper = mount(Quicklinks, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
     expect(wrapper.findAllComponents(Link)).toHaveLength(mockQuicklinks['default_links'].length);
   });
@@ -71,14 +56,14 @@ describe('Quicklinks/Link', () => {
     axios.post.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.vm.customLink = newCustomLink;
     wrapper.vm.addLink({preventDefault: jest.fn()})
 
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.findAllComponents(Link)).toHaveLength(
       mockQuicklinksCopy['default_links'].length + mockQuicklinksCopy['custom_links'].length
     );
@@ -93,13 +78,13 @@ describe('Quicklinks/Link', () => {
     axios.post.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
 
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.findAllComponents(Link).at(removeLinkIndex).findAll('button').at(0).trigger('click');
 
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.findAllComponents(Link)).toHaveLength(
       mockQuicklinksCopy['default_links'].length
     );
@@ -119,14 +104,14 @@ describe('Quicklinks/Link', () => {
     }) - 1;
     axios.post.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.vm.customLink = newCustomLink;
     wrapper.vm.addLink({preventDefault: jest.fn()})
 
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.findAllComponents(Link)).toHaveLength(
       mockQuicklinksCopy['default_links'].length + mockQuicklinksCopy['custom_links'].length
     );
@@ -138,7 +123,7 @@ describe('Quicklinks/Link', () => {
     ).findAll('button').at(1).trigger('click');
 
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.findAllComponents(Link)).toHaveLength(
       mockQuicklinksCopy['default_links'].length + mockQuicklinksCopy['custom_links'].length
     );
@@ -158,14 +143,14 @@ describe('Quicklinks/Link', () => {
     }) - 1;
     axios.post.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     wrapper.vm.customLink = newCustomLink;
     wrapper.vm.addLink({preventDefault: jest.fn()});
 
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.findAllComponents(Link)).toHaveLength(
       mockQuicklinksCopy['default_links'].length + mockQuicklinksCopy['custom_links'].length
     );
@@ -185,7 +170,7 @@ describe('Quicklinks/Link', () => {
     ).vm.updateLink({preventDefault: jest.fn()});
 
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.findAllComponents(Link)).toHaveLength(
       mockQuicklinksCopy['default_links'].length + mockQuicklinksCopy['custom_links'].length
     );
@@ -208,11 +193,11 @@ describe('Quicklinks/Link', () => {
     }) - 1;
     axios.get.mockResolvedValue({data: mockQuicklinksCopy});
     const wrapper = mount(Quicklinks, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
 
     // It takes like 10 ms for the dom to update
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.findAllComponents(Link)).toHaveLength(
       mockQuicklinksCopy['default_links'].length + mockQuicklinksCopy['recent_links'].length
     );
@@ -229,7 +214,7 @@ describe('Quicklinks/Link', () => {
     axios.get.mockResolvedValueOnce({data: mockQuicklinks, status: 200});
 
     const wrapper = mount(Quicklinks, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     const newCustomLink = {
       url: "http://test.com",
       label: "test",

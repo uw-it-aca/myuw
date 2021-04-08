@@ -14,7 +14,7 @@
         UW Professional &amp; Continuing Education can help.
       </p>
       <p class="myuw-text-md">
-        <a href="https://www.pce.uw.edu" target="_blank">About PCE</a>
+        <a href="https://www.pce.uw.edu">About PCE</a>
       </p>
       <h3 class="h6 text-dark-beige myuw-font-roboto">
         Available programs
@@ -22,20 +22,20 @@
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a v-out="'PCE Career Accelerator Programs'"
-            href="https://www.pce.uw.edu/career-accelerator-certificates" target="_blank">
+            href="https://www.pce.uw.edu/career-accelerator-certificates">
             Career Accelerator Certificate Programs</a>
         </li>
         <li class="mb-1">
           <a v-out="'PCE Certificate Programs'" href="https://www.pce.uw.edu/certificates"
-            target="_blank">Certificate Programs</a>
+           >Certificate Programs</a>
         </li>
         <li class="mb-1">
           <a v-out="'PCE Degree Programs'" href="https://www.pce.uw.edu/degrees"
-            target="_blank">Degree Programs</a>
+           >Degree Programs</a>
         </li>
         <li>
           <a v-out="'PCE Courses'" href="https://www.pce.uw.edu/courses"
-            target="_blank">Courses</a>
+           >Courses</a>
         </li>
       </ul>
     </template>

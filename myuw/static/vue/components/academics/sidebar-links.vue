@@ -7,7 +7,7 @@
         </h2>
         <ul class="list-unstyled myuw-text-md mb-4">
           <li v-for="link in linkCategory.links" :key="link.url" class="mb-1">
-            <a v-if="link.new_tab" :href="link.url" target="_blank">
+            <a v-if="link.new_tab" :href="link.url">
               {{ link.title }}
             </a>
             <a v-else :href="link.url">

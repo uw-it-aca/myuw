@@ -159,6 +159,7 @@ def get_json_for_notices(request, notices):
                     est_reg["is_my_1st_reg_day"]
                 data["my_reg_has_opened"] =\
                     est_reg["my_reg_has_opened"]
-
+            if notice.custom_category == "MyUW Banner Notice":
+                data["display_begin"] = notice.start
         notice_json.append(data)
     return notice_json

@@ -58,20 +58,19 @@
         </h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx" target="_blank">
+            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">
               View credits and GPA
             </a>
           </li>
           <li>
             <a v-out="'MyPlan DARS'"
                href="https://myplan.uw.edu/dars"
-               target="_blank"
             >
               Degree Audit Reporting System (DARS)
             </a>
           </li>
           <li>
-            <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank">
+            <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">
               Unofficial Transcript
             </a>
           </li>

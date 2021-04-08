@@ -1,7 +1,7 @@
 import axios from 'axios';
-import {mount, shallowMount, createLocalVue} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import ToRegisterCard from '../components/home/new_student/to-register.vue';
 
@@ -9,28 +9,7 @@ import mockNotices from './mock_data/notice/javg004.json';
 import interNotices from './mock_data/notice/jinter.json';
 import bothellNotices from './mock_data/notice/jbothell.json';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
-
-import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
-
-import {
-  faCheckCircle,
-} from '@fortawesome/free-solid-svg-icons';
-
-import {
-  faCircle,
-} from '@fortawesome/free-regular-svg-icons';
-
-const localVue = createLocalVue();
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
-
-library.add(faCircle);
-library.add(faCheckCircle);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
+const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
 
@@ -56,7 +35,7 @@ describe('To Register Card', () => {
     axios.get.mockResolvedValue({data: mockNotices});
     const wrapper = mount(ToRegisterCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
@@ -76,7 +55,7 @@ describe('To Register Card', () => {
     axios.get.mockResolvedValue({data: interNotices});
     const wrapper = mount(ToRegisterCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
@@ -96,7 +75,7 @@ describe('To Register Card', () => {
     axios.get.mockResolvedValue({data: bothellNotices});
     const wrapper = mount(ToRegisterCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();

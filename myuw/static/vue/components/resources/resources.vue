@@ -1,24 +1,36 @@
 <template>
   <div v-if="isReady">
-    <h3>
-      On this page
-    </h3>
-    <ul>
-      <li v-for="(resource, i) in resources" :key="i">
-        <a :href="`#${resource.category_id}`">{{resource.category_name}}</a>
-      </li>
-    </ul>
-    <div v-for="(resource, i) in resources" :key="i">
-      <h3 :id="resource.category_id">
+    <div :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+      <h2 class="h4">
+        On this page
+      </h2>
+      <div class="mt-3">
+        <ul
+          class="list-unstyled myuw-text-lg"
+          :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']"
+        >
+          <li class="mb-1" v-for="(resource, i) in resources" :key="i">
+            <a :href="`#${resource.category_id}`">{{resource.category_name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-5" v-for="(resource, i) in resources" :key="i">
+      <h2 class="h4" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']" :id="resource.category_id">
         {{resource.category_name}}
-      </h3>
+      </h2>
       <uw-resource-card :resource="resource"/>
     </div>
-    <button type="button" class="myuw-back-to-top"
-      title="Back to Top" @click="scrollToTop">
-        <font-awesome-icon :icon="faChevronUp" />
-        <span><span class="sr-only">Back to</span> Top</span>
-    </button>
+    <b-button
+      variant="secondary"
+      size="sm"
+      class="position-sticky mb-3 mr-3 float-right text-center myuw-back-to-top"
+      title="Back to Top"
+      @click="scrollToTop"
+    >
+        <font-awesome-icon :icon="faChevronUp" size="lg"/>
+        <span class="d-block myuw-text-xs"><span class="sr-only">Back to</span> TOP</span>
+    </b-button>
   </div>
 </template>
 
@@ -55,3 +67,9 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import '../../../css/myuw/variables.scss';
+.myuw-back-to-top {
+  bottom: 1rem;
+}
+</style>

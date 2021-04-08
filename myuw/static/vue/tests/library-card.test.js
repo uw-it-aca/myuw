@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-library.add(faExclamationTriangle);
-
 import { mount } from '@vue/test-utils';
 import { createLocalVue } from './helper';
 
@@ -22,7 +17,6 @@ let mockRes = {
 };
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
@@ -41,7 +35,7 @@ describe('Library Card', () => {
   it('Testing mapped state', async () => {
     axios.get.mockResolvedValue({data: mockRes, status: 200});
     const wrapper = mount(LibraryCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.holdsReady).toBe(1);

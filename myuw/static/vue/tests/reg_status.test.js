@@ -1,7 +1,8 @@
 import axios from 'axios';
-import {mount, createLocalVue} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
+import {createLocalVue} from './helper';
 import RegStatus from '../components/home/registration/status.vue';
 import notices from '../vuex/store/notices';
 import oquarter from '../vuex/store/oquarter';
@@ -16,28 +17,16 @@ import oQuarterAutumn from './mock_data/oquarter/autumn.json';
 import profileJavg001 from './mock_data/profile/javg001.json';
 import profileJinter from './mock_data/profile/jinter.json';
 
-import {library} from '@fortawesome/fontawesome-svg-core';
 import {
-  FontAwesomeIcon,
   FontAwesomeLayers,
 } from '@fortawesome/vue-fontawesome';
 
-import {
-  faExclamationTriangle,
-} from '@fortawesome/free-solid-svg-icons';
-
 const localVue = createLocalVue(Vuex);
-localVue.use(BootstrapVue);
-localVue.use(Vuex);
-
-library.add(faExclamationTriangle);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
 
-describe('Quicklinks/Link', () => {
+describe('Registration Status Card', () => {
   let store;
 
   beforeEach(() => {
@@ -78,7 +67,7 @@ describe('Quicklinks/Link', () => {
     });
 
     const wrapper = mount(RegStatus, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.vm.loaded).toBeTruthy();
     expect(wrapper.vm.year).toEqual(2013);

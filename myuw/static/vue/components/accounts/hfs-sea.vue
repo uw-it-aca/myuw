@@ -7,7 +7,6 @@
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
       <a
         href="https://hfs.uw.edu/myhfs/account.aspx"
-        target="_blank"
       >
         Housing &amp; Food Services </a
       >.
@@ -27,16 +26,14 @@
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Dates and Deadlines'"
+            <a v-out="'HFS: Dates and Deadlines'"
               href="https://www.trumba.com/calendars/sea_hfs"
             >
               Dates and Deadlines
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Apply for Campus Housing'"
+            <a v-out="'HFS: Apply for Campus Housing'"
               href="https://ucharm.hfs.washington.edu/ucharm"
             >
               Apply for Campus Housing
@@ -51,8 +48,7 @@
         <h3 class="h6 font-weight-bold text-dark-beige">Manage Account</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a
-              v-out="'HFS: Make a Payment'"
+            <a v-out="'HFS: Make a Payment'"
               href="https://www.hfs.uw.edu/myhfs/account.aspx"
             >
               Make a Payment
@@ -65,8 +61,7 @@
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Change Dining Level'"
+            <a v-out="'HFS: Change Dining Level'"
               href="https://www.hfs.uw.edu/myhfs/dininglevel"
             >
               Change Dining Level
@@ -90,8 +85,7 @@
             </a>
           </li>
           <li>
-            <a
-              v-out="'HFS: Submit a Work Order'"
+            <a v-out="'HFS: Submit a Work Order'"
               href="https://fms.admin.uw.edu/fs-works/uwnetid"
             >
               Submit a Work Order

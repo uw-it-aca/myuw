@@ -1,8 +1,3 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-library.add(faExclamationTriangle);
-
 import { mount } from '@vue/test-utils';
 import { createLocalVue } from './helper';
 
@@ -12,7 +7,6 @@ import HRPayrollCard from '../components/_common/hr-payroll.vue';
 import UwCard from '../components/_templates/card.vue';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 describe('HR Payroll Card - Home Page', () => {
@@ -21,8 +15,6 @@ describe('HR Payroll Card - Home Page', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       state: {
-        isHomePage: true,
-        truncateView: false,
         user: {
           affiliations: {
             employee: false,
@@ -152,42 +144,61 @@ describe('HR Payroll Card - Home Page', () => {
   it('Show HR-Payroll card for employee', () => {
     store.state.user.affiliations.employee = true;
     store.state.user.affiliations.faculty = true;
-    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    const wrapper = mount(HRPayrollCard, { store, localVue,
+      propsData: {'isHomePage': true}});
+    expect(wrapper.vm.isHomePage).toBe(true);
+    expect(wrapper.vm.employee).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.truncateView).toBe(false);
+    return testCardVisible(wrapper, store);
   });
 
   it('Show HR-Payroll card for retiree', () => {
     store.state.user.affiliations.retiree = true;
-    store.state.truncateView = true;
-    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    const wrapper = mount(HRPayrollCard, { store, localVue,
+      propsData: {'isHomePage': true}});
+    expect(wrapper.vm.retiree).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.truncateView).toBe(true);
+    return testCardVisible(wrapper, store);
   });
 
   it('Show HR-Payroll card for past-employee', () => {
     store.state.user.affiliations.past_employee = true;
-    store.state.truncateView = true;
-    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    const wrapper = mount(HRPayrollCard, { store, localVue,
+      propsData: {'isHomePage': true}});
+    expect(wrapper.vm.pastEmployee).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.truncateView).toBe(true);
+    return testCardVisible(wrapper, store);
   });
 
   it('Show HR-Payroll card on Accounts page for instructor', () => {
-    store.state.isHomePage = false;
     store.state.user.affiliations.instructor = true;
-    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    const wrapper = mount(HRPayrollCard, { store, localVue,
+      propsData: {'isHomePage': false}});
+    expect(wrapper.vm.instructor).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.truncateView).toBe(false);
+    return testCardVisible(wrapper, store);
   });
 
   it('Show HR-Payroll card on Accounts page for stud_employee', () => {
-    store.state.isHomePage = false;
     store.state.user.affiliations.stud_employee = true;
-    return testCardVisible(mount(HRPayrollCard, { store, localVue }), store);
+    const wrapper = mount(HRPayrollCard, { store, localVue });
+    expect(wrapper.vm.studEmployee).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.truncateView).toBe(false);
+    return testCardVisible(wrapper, store);
   });
 
   /* Hide card test cases */
 
   it('Hide HR-Payroll card from Account page', () => {
-    store.state.isHomePage = false;
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
   it('Hide HR-Payroll card for employee', () => {
-    store.state.isHomePage = false;
     store.state.user.affiliations.employee = true;
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });

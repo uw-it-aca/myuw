@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-library.add(faExclamationTriangle);
-
 import { shallowMount } from '@vue/test-utils';
 import { createLocalVue } from './helper';
 
@@ -16,7 +11,6 @@ import StudentProfileCard from '../components/profile/student-profile.vue';
 import javg001Profile from './mock_data/profile/javg001.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
@@ -43,7 +37,7 @@ describe('Student Profile Card', () => {
   it('Verify computed properties', async () => {
     axios.get.mockResolvedValue({data: javg001Profile, status: 200});
     const wrapper = shallowMount(StudentProfileCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.profile).toBeTruthy();
@@ -52,7 +46,7 @@ describe('Student Profile Card', () => {
   it('addressLocationString()', async () => {
     axios.get.mockResolvedValue({data: javg001Profile, status: 200});
     const wrapper = shallowMount(StudentProfileCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(
       wrapper.vm.addressLocationString(wrapper.vm.permanentAddress)

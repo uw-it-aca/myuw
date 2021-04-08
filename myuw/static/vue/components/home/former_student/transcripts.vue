@@ -16,11 +16,11 @@
         <li class="mb-1">
           <a
             v-out="'Official Transcript'"
-            href="https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php" target="_blank">Order Official Transcripts</a>
+            href="https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php">Order Official Transcripts</a>
         </li>
         <li class="mb-1">
           <a v-out="'Unofficial Transcript'"
-            href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp" target="_blank">View Unofficial Transcript</a>
+            href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">View Unofficial Transcript</a>
         </li>
       </ul>
       <h3 class="h6 text-dark-beige myuw-font-roboto">
@@ -35,15 +35,15 @@
       <ul class="list-unstyled myuw-text-md mb-0">
         <li class="mb-1">
           <a v-out="'UW Registrar'" href="https://registrar.washington.edu"
-            target="_blank">Contact the UW Registrar</a>
+           >Contact the UW Registrar</a>
         </li>
         <li class="mb-1">
           <a v-out="'UW Bothell Registrar'" href="https://www.uwb.edu/registration"
-            target="_blank">Contact th UW Bothell Registrar</a>
+           >Contact th UW Bothell Registrar</a>
         </li>
         <li class="mb-1">
           <a v-out="'UW Tacoma Registrar'"
-            href="https://www.tacoma.uw.edu/office-registrar/office-registrar" target="_blank">Contact the UW Tacoma Registrar</a>
+            href="https://www.tacoma.uw.edu/office-registrar/office-registrar">Contact the UW Tacoma Registrar</a>
         </li>
       </ul>
     </template>

@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-library.add(faExclamationTriangle);
-
 import { mount } from '@vue/test-utils';
 import { createLocalVue } from './helper';
 
@@ -16,7 +11,6 @@ import MedicineAccountCard from '../components/accounts/medicine-account.vue';
 import mockJinterProfile from './mock_data/profile/jinter.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
@@ -38,7 +32,7 @@ describe('Husky Card', () => {
   it('Hide card if no active med password', async () => {
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
@@ -50,7 +44,7 @@ describe('Husky Card', () => {
     mockJinterProfile.password.days_before_med_pw_expires = undefined;
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
@@ -70,7 +64,7 @@ describe('Husky Card', () => {
     mockJinterProfile.password.days_before_med_pw_expires = 49;
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
