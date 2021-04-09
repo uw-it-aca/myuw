@@ -12,6 +12,7 @@
             <b-button
               variant="link"
               class="myuw-text-sm text-muted float-right"
+              :title="`Remove ${subcategories.subcat_name} resources from home page`"
               @click="unpinWrapper(subcategories)"
             >
               Unpin

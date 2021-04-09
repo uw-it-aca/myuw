@@ -16,6 +16,7 @@
               variant="link"
               class="myuw-text-sm text-muted"
               v-if="!subcatRes.is_pinned"
+              :title="`Add ${subcatRes.subcat_name} resources to home page`"
               @click="pinWrapper(subcatRes)"
             >
               Pin to Home
@@ -24,6 +25,7 @@
               variant="link"
               class="myuw-text-sm text-muted"
               v-else
+              :title="`Remove ${subcatRes.subcat_name} resources from home page`"
               @click="unpinWrapper(subcatRes)"
             >
               Unpin
