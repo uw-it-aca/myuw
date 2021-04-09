@@ -63,13 +63,13 @@
         <li v-else-if="tuition.tuition_accbalance < 0">
           <div class="d-flex">
             <div>
-              <h3 class="h6 text-dark font-weight-bold">
+              <h3 class="h6 text-dark myuw-font-encode-sans">
                 Account Credit<br />
                 <span class="myuw-text-md">Student Fiscal Services</span>
               </h3>
             </div>
             <div>
-              <span class="h6 text-dark font-weight-bold"
+              <span class="h6 text-dark myuw-font-encode-sans"
                 >+${{ Math.abs(tuition.tuition_accbalance).toFixed(2) }} CR</span
               >
               <span>No payment needed</span><br />

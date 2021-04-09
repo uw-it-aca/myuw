@@ -45,7 +45,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -60,7 +60,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -87,7 +87,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -114,7 +114,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>

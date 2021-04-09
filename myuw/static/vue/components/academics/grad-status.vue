@@ -24,7 +24,7 @@
                 {{ petition.description }}
               </h5>
               <div v-if="petition.dept_recommend"
-                   class="d-flex font-weight-bold"
+                   class="d-flex myuw-font-encode-sans"
               >
                 <div class="flex-fill w-50">
                   Department Recommendation
@@ -34,7 +34,7 @@
                 </div>
               </div>
               <div v-if="petition.gradschool_decision"
-                   class="d-flex font-weight-bold"
+                   class="d-flex myuw-font-encode-sans"
               >
                 <div class="flex-fill w-50">
                   Graduate School Decision
@@ -63,7 +63,7 @@
                   {{ term.quarter + " " + term.year }}
                 </template> Leave
               </h5>
-              <div class="d-flex font-weight-bold">
+              <div class="d-flex myuw-font-encode-sans">
                 <div class="flex-fill w-50">
                   Status
                 </div>
@@ -101,7 +101,7 @@
             <div>
               {{ degree.degree_title }}
             </div>
-            <div class="d-flex font-weight-bold">
+            <div class="d-flex myuw-font-encode-sans">
               <div class="flex-fill w-50">
                 Status
               </div>
