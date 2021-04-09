@@ -104,7 +104,7 @@ import VueObserveVisibility from 'vue-observe-visibility';
 Vue.use(VueMq, {
   breakpoints: {
     // breakpoints == min-widths of next size
-    mobile: 768, // tablet begins 768px
+    mobile: 576, // tablet begins 577px
     tablet: 992, // desktop begins 992px
     desktop: Infinity,
   },
