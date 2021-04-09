@@ -40,7 +40,7 @@
           </b-alert>
         </div>
         <div v-else>
-          <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
             Password expiration
           </h3>
           <div :class="expires30Days ? 'text-danger' : ''">

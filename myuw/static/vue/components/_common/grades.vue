@@ -53,7 +53,7 @@
         id="grade_card_collapse"
         v-model="isOpen"
       >
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           Resources
         </h3>
         <ul class="list-unstyled myuw-text-md">

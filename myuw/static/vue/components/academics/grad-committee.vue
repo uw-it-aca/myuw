@@ -16,7 +16,7 @@
           <li v-for="(committee, index) in committees" :key="index"
               class="mb-4"
           >
-            <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+            <h3 class="h6 text-dark-beige myuw-font-encode-sans">
               {{ committee.committee_type }}
             </h3>
             <ol class="list-unstyled">

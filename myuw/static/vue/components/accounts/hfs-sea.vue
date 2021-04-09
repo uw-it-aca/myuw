@@ -20,7 +20,7 @@
       </uw-card-status>
 
       <div>
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           Explore Campus Housing
         </h3>
         <ul class="list-unstyled myuw-text-md">
@@ -49,7 +49,7 @@
         </ul>
       </div>
       <div>
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           Manage Account
         </h3>
         <ul class="list-unstyled myuw-text-md">
@@ -82,7 +82,7 @@
         </ul>
       </div>
       <div>
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-san">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           Resident Resources
         </h3>
         <ul class="list-unstyled myuw-text-md">

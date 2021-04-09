@@ -11,13 +11,13 @@
     <template v-if="!isErrored" #card-body>
       <!-- notice template where data is inserted -->
       <div v-for="notice in notices" :key="notice.id_hash">
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans"
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans"
           v-html="notice.notice_title" />
         <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
       </div>
       <!-- static notice content, goes after dynamic notices -->
       <div class="notice-content">
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           <span class="notice-title">Update Student Directory</span>
         </h3>
         <div class="mb-4 myuw-text-md">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div v-if="!isResident" class="notice-content">
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           <span class="notice-title">Non-Resident Classification</span>
         </h3>
         <div class="mb-4 myuw-text-md">
