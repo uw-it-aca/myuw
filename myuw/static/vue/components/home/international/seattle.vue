@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="h5 mb-3 text-dark-beige">
+    <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
       Visa and Immigration Rules
     </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">
@@ -39,7 +39,7 @@
       </li>
     </ul>
 
-    <h3 class="h5 mb-3 text-dark-beige">
+    <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
       Academic Support
     </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">
@@ -60,7 +60,7 @@
       </li>
     </ul>
 
-    <h3 class="h5 mb-3 text-dark-beige">
+    <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
       Social Events
     </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">

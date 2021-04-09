@@ -4,21 +4,22 @@
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Update Critical Information
-      </h3>
+      </h2>
     </template>
     <template v-if="!isErrored" #card-body>
       <!-- notice template where data is inserted -->
       <div v-for="notice in notices" :key="notice.id_hash">
-        <h4 class="h6 font-weight-bold" v-html="notice.notice_title" />
+        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans"
+          v-html="notice.notice_title" />
         <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
       </div>
       <!-- static notice content, goes after dynamic notices -->
       <div class="notice-content">
-        <h4 class="h6 font-weight-bold">
+        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
           <span class="notice-title">Update Student Directory</span>
-        </h4>
+        </h3>
         <div class="mb-4 myuw-text-md">
           <span class="non-notice-body-with-title">
             Critical information (e.g. financial aid information) goes to your
@@ -30,9 +31,9 @@
         </div>
       </div>
       <div v-if="!isResident" class="notice-content">
-        <h4 class="h6 font-weight-bold">
+        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
           <span class="notice-title">Non-Resident Classification</span>
-        </h4>
+        </h3>
         <div class="mb-4 myuw-text-md">
           <span class="non-notice-body-with-title">
             You are currently classified as a "Non-Resident.”
