@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="h6 font-weight-bold text-dark-beige">
+    <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
       Related
     </h3>
     <ul class="list-unstyled myuw-text-md">

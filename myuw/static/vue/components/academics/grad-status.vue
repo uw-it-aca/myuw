@@ -13,7 +13,7 @@
     <template #card-body>
       <div v-if="petitions">
         <div id="petition-reqs">
-          <h3 class="h5 text-dark-beige">
+          <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
             Petition Requests
           </h3>
           <ul v-for="(petition, index) in petitions" :key="index"
@@ -50,7 +50,7 @@
 
       <div v-if="leaves">
         <div id="leave-reqs">
-          <h3 class="h5 text-dark-beige">
+          <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
             Leave Requests
           </h3>
           <ul v-for="(leave, index) in leaves" :key="index"
@@ -87,7 +87,7 @@
       </div>
 
       <div v-if="degrees">
-        <h3 class="h5 text-dark-beige">
+        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
           Degree and Exam Requests
         </h3>
         <ul v-for="(degree, index) in degrees" :key="index"

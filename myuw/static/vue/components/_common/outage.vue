@@ -18,7 +18,7 @@
         </div>
       </b-alert>
 
-      <h3 class="h6 font-weight-bold">
+      <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
         Things you might be looking for:
       </h3>
 

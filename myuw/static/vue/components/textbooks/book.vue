@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="h5">
+    <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
       {{ book.title }}
     </h3>
 

@@ -21,7 +21,9 @@
           Finalize activation by tapping your card on a reader.
         </p>
         <div v-if="!employee && inSummer && (pce || seattle)">
-          <h3>Summer U-PASS Use</h3>
+          <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+            Summer U-PASS Use
+          </h3>
           <p class="myuw-text-md">
             Your U-PASS does not work during summer quarter unless you are
             registered for a class or are a
@@ -45,7 +47,9 @@
               before the quarter starts.
             </p>
             <div v-if="inSummer">
-              <h3>Summer U-PASS Use</h3>
+              <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+                Summer U-PASS Use
+              </h3>
               <p>
                 Your U-PASS does not work during summer quarter unless you are registered
                 for a class or are a
