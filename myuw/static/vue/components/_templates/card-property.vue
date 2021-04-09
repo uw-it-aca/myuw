@@ -1,7 +1,8 @@
 <template>
   <div class="d-md-flex mb-3 myuw-text-md">
     <slot name="title">
-      <div class="text-dark-beige flex-md-fill mr-3 bd-highlight myuw-font-encode-sans property-label">
+      <div class="text-dark-beige flex-md-fill mr-3 bd-highlight
+        myuw-font-encode-sans property-label">
         {{ title }}
       </div>
     </slot>
