@@ -2,7 +2,7 @@
   <div v-if="notices.length !== 0" class="border-bottom py-3">
     <div v-b-toggle="collapseId">
       <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
-        <h2 class="h4 mb-3">
+        <h2 class="h4 mb-0">
           {{ title }}
         </h2>
         <div class="ml-auto">
@@ -41,8 +41,7 @@
             />
           </div>
         </div>
-        <h3 class="h5 mb-3"
-          v-html="notice.notice_title" />
+        <h3 class="h6 myuw-font-encode-sans" v-html="notice.notice_title" />
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
     </b-collapse>
