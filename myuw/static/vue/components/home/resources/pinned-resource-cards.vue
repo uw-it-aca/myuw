@@ -9,17 +9,21 @@
       >
         <template #card-heading>
           <div>
-            {{resource.category_name}}
-            <h3>
+            UW Resources
+            <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
               {{subcategories.subcat_name}}
-            </h3>
-            <button @click="unpinWrapper(subcategories)">
+            </h2>
+            <b-button
+              variant="link"
+              class="myuw-text-sm text-muted"
+              @click="unpinWrapper(subcategories)"
+            >
               Unpin
-            </button>
+            </b-button>
           </div>
         </template>
         <template #card-body>
-          <ul>
+          <ul class="list-unstyled myuw-text-md">
             <li v-for="(link, k) in subcategories.links" :key="k">
               <a :href="link.url">{{link.title}}</a>
             </li>
