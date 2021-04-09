@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="h6 font-weight-bold">
+    <h3 class="h5 mb-3 text-dark-beige">
       Visa and Immigration Rules
     </h3>
 
@@ -32,7 +32,7 @@
       </li>
     </ul>
 
-    <h3 class="h6 font-weight-bold">
+    <h3 class="h5 mb-3 text-dark-beige">
       Academic Support
     </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">

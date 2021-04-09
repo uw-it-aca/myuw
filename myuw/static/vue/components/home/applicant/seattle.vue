@@ -12,7 +12,7 @@
       </h2>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h3 class="h5 mb-3 text-dark-beige">
+      <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
         For application status, contact the Office of the University Registrar
       </h3>
       <b-container>
@@ -31,7 +31,7 @@
         </b-row>
       </b-container>
 
-      <h3 class="h5 mb-3 text-dark-beige">
+      <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
         Registration for Returning Student
       </h3>
       <p>
@@ -44,7 +44,7 @@
         >Academic calendar</a>.
       </p>
 
-      <h3 class="h5 mb-3 text-dark-beige">
+      <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
         Resources for Seattle Applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
@@ -73,14 +73,13 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a
-        class="btn btn-outline-secondary text-dark my-4"
+      <uw-link-button class="my-4"
         href="https://sdb.admin.uw.edu/admissions/uwnetid/appstatus.asp"
       >
         View your {{ applicantData.type }} application status
-      </a>
+      </uw-link-button>
 
-      <h3 class="h5 mb-3 text-dark-beige">
+      <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
         Resources for Seattle Applicants
       </h3>
       <h4 class="h6">
@@ -210,10 +209,12 @@
 
 <script>
 import Card from '../../_templates/card.vue';
+import LinkButton from '../../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-link-button': LinkButton,
   },
   props: {
     applicantData: {
