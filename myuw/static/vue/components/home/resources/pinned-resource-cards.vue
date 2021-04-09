@@ -9,17 +9,18 @@
       >
         <template #card-heading>
           <div>
-            UW Resources
-            <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-              {{subcategories.subcat_name}}
-            </h2>
             <b-button
               variant="link"
-              class="myuw-text-sm text-muted"
+              class="myuw-text-sm text-muted float-right"
               @click="unpinWrapper(subcategories)"
             >
               Unpin
             </b-button>
+            UW Resources
+            <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+              {{subcategories.subcat_name}}
+            </h2>
+            
           </div>
         </template>
         <template #card-body>
