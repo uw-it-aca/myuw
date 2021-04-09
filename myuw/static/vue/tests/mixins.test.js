@@ -11,6 +11,21 @@ it('titleCaseName', () => {
   expect(utils.methods.titleCaseName('string string')).toEqual('String String');
 });
 
+it('formatDateRange', () => {
+  expect(utils.methods.formatDateRange(
+		utils.methods.strToDayjs("2021-04-12"),
+		utils.methods.strToDayjs("2021-04-12"))
+	).toEqual('Apr 12');
+	expect(utils.methods.formatDateRange(
+		utils.methods.strToDayjs("2021-04-12"),
+		utils.methods.strToDayjs("2021-04-14"))
+	).toEqual('Apr 12 - 14');
+	expect(utils.methods.formatDateRange(
+		utils.methods.strToDayjs("2021-04-12"),
+		utils.methods.strToDayjs("2021-05-14"))
+	).toEqual('Apr 12 - May 14');
+});
+
 it('buildClasslistCsv', () => {
   {
 	const registrations = [
