@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3 :class="{'sr-only': showRowHeader}">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Final Exam
     </h3>
     <div v-if="section.final_exam">

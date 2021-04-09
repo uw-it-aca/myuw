@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3 :class="{'sr-only': showRowHeader}">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Grading System
     </h3>
     <div>
@@ -11,7 +12,8 @@
         Unspecified
       </span>
     </div>
-    <h3 :class="{'sr-only': showRowHeader}">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Delegate{{gradeSubmissionDelegatesCount > 1 ? 's' :  ''}}
     </h3>
     <div>
@@ -33,7 +35,8 @@
         </span>
       </a>
     </div>
-    <h3 :class="{'sr-only': showRowHeader}">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Grade Submission
     </h3>
     <div>

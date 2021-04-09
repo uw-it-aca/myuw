@@ -15,7 +15,7 @@
 
     <div v-if="section.cc_display_dates" class="d-flex">
       <h3
-        class="w-25 myuw-text-md"
+        class="h6 text-dark-beige myuw-font-encode-sans"
       >
         Dates:
       </h3>
@@ -26,7 +26,7 @@
 
     <div v-if="section.on_standby" class="d-flex">
       <h3
-        class="w-25 myuw-text-md"
+        class="h6 text-dark-beige myuw-font-encode-sans"
       >
         Your Status:
       </h3>

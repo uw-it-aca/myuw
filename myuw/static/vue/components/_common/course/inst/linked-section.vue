@@ -5,7 +5,7 @@
       <div>
         <div :class="`c${section.color_id}`" />
         <h3
-          class="h5 myuw-font-encode-sans"
+          class="h6 text-dark-beige myuw-font-encode-sans"
           :aria-label="section.lable"
         >
           <a v-if="section.mini_card"

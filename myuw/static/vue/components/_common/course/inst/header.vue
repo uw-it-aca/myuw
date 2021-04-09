@@ -15,9 +15,7 @@
     </div>
 
     <div v-if="section.summer_term" class="d-flex">
-      <h3
-        class="w-25 font-weight-bold myuw-text-md"
-      >
+      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         Term
       </h3>
       <div class="flex-fill myuw-text-md">
@@ -26,9 +24,7 @@
     </div>
 
     <div v-if="section.cc_display_dates" class="d-flex">
-      <h3
-        class="w-25 font-weight-bold myuw-text-md"
-      >
+      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         Dates
       </h3>
       <div class="flex-fill myuw-text-md">
