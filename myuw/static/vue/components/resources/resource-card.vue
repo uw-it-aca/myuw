@@ -9,7 +9,7 @@
       >
         <template #card-heading>
           <div>
-            <h3 class="h6 d-inline-block">
+            <h3 class="h6 text-dark-beige myuw-font-encode-sans d-inline-block">
               {{subcatRes.subcat_name}}
             </h3>
             <b-button
