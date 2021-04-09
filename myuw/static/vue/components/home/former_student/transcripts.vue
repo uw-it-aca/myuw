@@ -23,7 +23,7 @@
             href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">View Unofficial Transcript</a>
         </li>
       </ul>
-      <h3 class="h6 text-dark-beige myuw-font-roboto">
+      <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
         Contact the Registrar
       </h3>
       <p class="myuw-text-md">
