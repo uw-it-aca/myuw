@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card-group columns class="mt-3" :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']">
+    <b-card-group columns class="mt-3" :class="[$mq != 'mobile' ? 'myuw-column-count-2' : '']">
       <uw-card
         v-for="(subcatRes, i) in Object.values(resource.subcategories)"
         :id="subcatRes.subcat_id"
@@ -13,18 +13,18 @@
               {{subcatRes.subcat_name}}
             </h3>
             <b-button
+              v-if="!subcatRes.is_pinned"
               variant="link"
               class="myuw-text-sm text-muted"
-              v-if="!subcatRes.is_pinned"
               :title="`Add ${subcatRes.subcat_name} resources to home page`"
               @click="pinWrapper(subcatRes)"
             >
               Pin to Home
             </b-button>
             <b-button
+              v-else
               variant="link"
               class="myuw-text-sm text-muted"
-              v-else
               :title="`Remove ${subcatRes.subcat_name} resources from home page`"
               @click="unpinWrapper(subcatRes)"
             >
