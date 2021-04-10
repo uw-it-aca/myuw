@@ -6,9 +6,9 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         To Register For Classes
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <div v-if="formatted_date">
@@ -45,7 +45,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -60,7 +60,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -87,7 +87,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -114,7 +114,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>

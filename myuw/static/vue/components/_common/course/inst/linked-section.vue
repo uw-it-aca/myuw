@@ -1,44 +1,37 @@
 <template>
-  <div>
-    <div class="d-flex">
-      <!-- A linked secondary section -->
-      <div>
-        <div :class="`c${section.color_id}`" />
-        <h3
-          class="h5 myuw-font-encode-sans"
-          :aria-label="section.lable"
+  <div class="d-flex">
+    <!-- A linked secondary section -->
+    <div class="w-15 flex-fill">
+      <div :class="`c${section.color_id}`" />
+      <h3 class="h6 myuw-font-encode-sans" :aria-label="section.lable">
+        <a v-if="section.mini_card"
+          v-inner="'View Mini-card'"
+          :href="`/teaching/${section.href}`"
+          :future-nav-target="section.navtarget"
+          :title="`View mini-card of ${section.label} on Teaching page`"
         >
-          <a v-if="section.mini_card"
-            v-inner="'View Mini-card'"
-            :href="`/teaching/${section.href}`"
-            :future-nav-target="section.navtarget"
-            :title="`View mini-card of ${section.label} on Teaching page`"
-          >
-            {{ section.section_id }}
-          </a>
-          <a v-else
-            :href="`/teaching/${section.href}`"
-            :future-nav-target="section.navtarget"
-            :title="`Pin mini-card of ${section.label} onto Teaching page`"
-            @click="miniCard"
-          >
-            {{ section.section_id }}
-          </a>
-        </h3>
-      </div>
+          {{ section.section_id }}
+        </a>
+        <a v-else
+          :href="`/teaching/${section.href}`"
+          :future-nav-target="section.navtarget"
+          :title="`Pin mini-card of ${section.label} onto Teaching page`"
+          @click="miniCard"
+        >
+          {{ section.section_id }}
+        </a>
+      </h3>
       <div v-if="section.sln">
         <h4 class="sr-only">
           Section SLN:
         </h4>
-        <span>
-          <a
-            v-out="'Time Schedule for SLN'"
-            :href="getTimeScheHref(section)"
-            :title="`Time Schedule for SLN ${section.sln}`"
-          >
-            {{ section.sln }}
-          </a>
-        </span>
+        <a
+          v-out="'Time Schedule for SLN'"
+          :href="getTimeScheHref(section)"
+          :title="`Time Schedule for SLN ${section.sln}`"
+        >
+          {{ section.sln }}
+        </a>
       </div>
       <div>
         <h4 class="sr-only">
@@ -48,29 +41,29 @@
           {{ section.section_type }}
         </span>
       </div>
-
-      <div class="flex-fill">
-        <h4 class="sr-only">
-          Section Meetings:
-        </h4>
-        <uw-meeting-info :section="section" no-heading />
-      </div>
-
-      <div>
-        <h4 class="sr-only">
-          Section Enrollments:
-        </h4>
-        <uw-enrollment :section="section" />
-      </div>
     </div>
 
-    <div>
+    <div class="w-60 flex-fill">
+      <h4 class="sr-only">
+        Section Meetings:
+      </h4>
+      <uw-meeting-info :section="section" no-heading />
+    </div>
+
+    <div class="w-15 ml-3 flex-fill">
+      <h4 class="sr-only">
+        Section Enrollments:
+      </h4>
+      <uw-enrollment :section="section" />
+    </div>
+
+    <div class="w-10">
       <b-button v-if="!section.mini_card"
         variant="light"
         :title="`Pin mini-card of ${section.label} onto Teaching page`"
         @click="miniCard"
       >
-        Pin to Teaching
+        Pin
       </b-button>
       <b-button v-else
         variant="dark"

@@ -25,7 +25,7 @@
         </p>
       </div>
       <div v-if="!studEmployee">
-        <h3 class="h6 font-weight-bold text-dark-beige">Get Help</h3>
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">Get Help</h3>
         <ul class="list-unstyled myuw-text-md">
           <li>
             <a v-if="faculty" href="https://ap.washington.edu/ahr/">Academic HR</a>
@@ -49,7 +49,7 @@
         </ul>
       </div>
       <div v-else>
-        <h3 class="h6 font-weight-bold text-dark-beige">Related</h3>
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">Related</h3>
         <ul class="list-unstyled myuw-text-md">
           <li><a href="https://hr.uw.edu/">UW Human Resources</a></li>
           <li>

@@ -1,11 +1,11 @@
 <template>
   <div class="mb-3">
     <div class="d-flex align-items-center">
-      <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
+      <h3 class="h6 m-0 myuw-font-encode-sans flex-fill">
         <slot name="status-label" />
       </h3>
       <div class="flex-fill text-right">
-        <span class="h4 font-weight-bold">
+        <span class="h6 myuw-font-encode-sans">
           <slot name="status-value" />
         </span>
       </div>

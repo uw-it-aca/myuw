@@ -46,7 +46,7 @@
         In MyPlan
       </h3>
       <div class="flex-fill text-right">
-        <div class="font-weight-bold">
+        <div>
           No courses in your plan
         </div>
         <div>

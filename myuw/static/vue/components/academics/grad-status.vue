@@ -13,7 +13,7 @@
     <template #card-body>
       <div v-if="petitions">
         <div id="petition-reqs">
-          <h3 class="h5 text-dark-beige">
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
             Petition Requests
           </h3>
           <ul v-for="(petition, index) in petitions" :key="index"
@@ -24,7 +24,7 @@
                 {{ petition.description }}
               </h5>
               <div v-if="petition.dept_recommend"
-                   class="d-flex font-weight-bold"
+                   class="d-flex myuw-font-encode-sans"
               >
                 <div class="flex-fill w-50">
                   Department Recommendation
@@ -34,7 +34,7 @@
                 </div>
               </div>
               <div v-if="petition.gradschool_decision"
-                   class="d-flex font-weight-bold"
+                   class="d-flex myuw-font-encode-sans"
               >
                 <div class="flex-fill w-50">
                   Graduate School Decision
@@ -50,7 +50,7 @@
 
       <div v-if="leaves">
         <div id="leave-reqs">
-          <h3 class="h5 text-dark-beige">
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
             Leave Requests
           </h3>
           <ul v-for="(leave, index) in leaves" :key="index"
@@ -63,7 +63,7 @@
                   {{ term.quarter + " " + term.year }}
                 </template> Leave
               </h5>
-              <div class="d-flex font-weight-bold">
+              <div class="d-flex myuw-font-encode-sans">
                 <div class="flex-fill w-50">
                   Status
                 </div>
@@ -87,7 +87,7 @@
       </div>
 
       <div v-if="degrees">
-        <h3 class="h5 text-dark-beige">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           Degree and Exam Requests
         </h3>
         <ul v-for="(degree, index) in degrees" :key="index"
@@ -101,7 +101,7 @@
             <div>
               {{ degree.degree_title }}
             </div>
-            <div class="d-flex font-weight-bold">
+            <div class="d-flex myuw-font-encode-sans">
               <div class="flex-fill w-50">
                 Status
               </div>

@@ -9,13 +9,14 @@
       >
         <template #card-heading>
           <div>
-            <h3 class="h6 d-inline-block">
+            <h3 class="h6 text-dark-beige myuw-font-encode-sans d-inline-block">
               {{subcatRes.subcat_name}}
             </h3>
             <b-button
               v-if="!subcatRes.is_pinned"
               variant="link"
               class="myuw-text-sm text-muted"
+              :title="`Add ${subcatRes.subcat_name} resources to home page`"
               @click="pinWrapper(subcatRes)"
             >
               Pin to Home
@@ -24,6 +25,7 @@
               v-else
               variant="link"
               class="myuw-text-sm text-muted"
+              :title="`Remove ${subcatRes.subcat_name} resources from home page`"
               @click="unpinWrapper(subcatRes)"
             >
               Unpin

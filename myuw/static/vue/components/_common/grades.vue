@@ -31,7 +31,7 @@
                 :class="`text-c${section.color_id}`"
                 class="mr-1"
               />
-              <span class="h5 m-0">
+              <span class="h6 text-dark-beige myuw-font-encode-sans m-0">
                 {{ section.curriculum_abbr }} {{ section.course_number }}
               </span>
             </div>
@@ -42,7 +42,9 @@
               >
                 No grade yet
               </span>
-              <span class="h5 m-0 font-weight-bold">{{ section.grade }}</span>
+              <span class="h6 myuw-font-encode-sans m-0">
+                {{ section.grade }}
+              </span>
             </div>
           </div>
         </li>
@@ -53,7 +55,7 @@
         id="grade_card_collapse"
         v-model="isOpen"
       >
-        <h3 class="h6 font-weight-bold">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           Resources
         </h3>
         <ul class="list-unstyled myuw-text-md">

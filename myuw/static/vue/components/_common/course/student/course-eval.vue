@@ -1,6 +1,6 @@
 <template>
   <div v-if="evalData.length > 0">
-    <h3 class="font-weight-bold myuw-text-md">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Course Evaluations
     </h3>
     <div class="myuw-text-md">

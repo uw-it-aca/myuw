@@ -9,17 +9,23 @@
       >
         <template #card-heading>
           <div>
-            {{resource.category_name}}
-            <h3>
-              {{subcategories.subcat_name}}
-            </h3>
-            <button @click="unpinWrapper(subcategories)">
+            <b-button
+              variant="link"
+              class="myuw-text-sm text-muted float-right"
+              :title="`Remove ${subcategories.subcat_name} resources from home page`"
+              @click="unpinWrapper(subcategories)"
+            >
               Unpin
-            </button>
+            </b-button>
+            UW Resources
+            <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+              {{subcategories.subcat_name}}
+            </h2>
+            
           </div>
         </template>
         <template #card-body>
-          <ul>
+          <ul class="list-unstyled myuw-text-md">
             <li v-for="(link, k) in subcategories.links" :key="k">
               <a :href="link.url">{{link.title}}</a>
             </li>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-b-toggle="`books-${section.sln}`" :disabled="!collapsable">
-      <h2 class="h4">
+      <h2 class="h5 mb-3 text-dark-beige myuw-font-encode-sans">
         <font-awesome-icon
           :icon="faSquareFull"
           :class="`text-c${section.colorId}`"

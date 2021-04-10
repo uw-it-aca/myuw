@@ -26,7 +26,8 @@
           <uw-card-property title="">
             <template #title>
               <span class="sr-only" property="name">UW Office</span>
-              <div class="flex-md-fill mr-3 bd-highlight font-weight-bold property-label">
+              <div class="text-dark-beige flex-md-fill mr-3 bd-highlight
+                myuw-font-encode-sans property-label">
                 Phone Number
               </div>
             </template>

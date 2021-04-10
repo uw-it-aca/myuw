@@ -22,8 +22,8 @@
               :href="expLink"
               class="d-block h-100 px-3 py-4"
             >
-              <h3 class="h5 d-inline bg-white px-2 py-1
-            text-body font-weight-bold"
+              <h3 class="h6 d-inline bg-white px-2 py-1
+            text-body myuw-font-encode-sans"
               >
                 {{ articleTeaserTitle }}
               </h3>

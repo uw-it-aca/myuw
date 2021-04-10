@@ -1,7 +1,7 @@
 <template>
   <div v-if="isReady">
     <div :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
-      <h2 class="h4">On this page</h2>
+      <h2 class="h4 text-dark-beige myuw-font-encode-sans">On this page</h2>
       <div class="mt-3">
         <ul
           class="list-unstyled myuw-text-lg"
@@ -14,7 +14,8 @@
       </div>
     </div>
     <div v-for="(resource, i) in resources" :key="i" class="mt-5">
-      <h2 :id="resource.category_id" class="h4" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+      <h2 :id="resource.category_id" class="h4 text-dark-beige myuw-font-encode-sans"
+        :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
         {{ resource.category_name }}
       </h2>
       <uw-resource-card :resource="resource" />
