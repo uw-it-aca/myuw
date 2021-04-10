@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+    <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="{'sr-only': showRowHeader}">
       Grading System
     </h3>
-    <div>
+    <div class="w-75">
       <span v-if="section.grading_system">
         {{titleCaseWord(section.grading_system)}}
       </span>
@@ -12,11 +13,13 @@
         Unspecified
       </span>
     </div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+    </div>
+    <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="{'sr-only': showRowHeader}">
       Delegate{{gradeSubmissionDelegatesCount > 1 ? 's' :  ''}}
     </h3>
-    <div>
+    <div class="w-75">
       <ul v-if="section.grade_submission_delegates">
         <li v-for="(delegate, i) in section.grade_submission_delegates" :key="i">
           {{titleCaseName(delegate.person.display_name)}}
@@ -35,11 +38,13 @@
         </span>
       </a>
     </div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+    </div>
+    <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="{'sr-only': showRowHeader}">
       Grade Submission
     </h3>
-    <div>
+    <div class="w-75">
       <div v-if="section.gradingPeriod.isOpen">
         <div v-if="section.grading_status !== 'error'">
           <span v-if="section.grading_status">
@@ -159,6 +164,7 @@
           {{section.gradingPeriod.deadlineFmt}}
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>

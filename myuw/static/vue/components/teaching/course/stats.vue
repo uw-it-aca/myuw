@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+  <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="{'sr-only': showRowHeader}">
       Course Stats
     </h3>
-    <ul>
+    <ul class="w-75">
       <li v-if="section.failure_rate">
         {{ (section.failure_rate * 100).toFixed(0) }}% historic course fail rate
       </li>

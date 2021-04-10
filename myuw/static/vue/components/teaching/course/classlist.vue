@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+  <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="{'sr-only': showRowHeader}">
       Enrollment
     </h3>
-    <div v-if="useLegacyViewClasslist">
+    <div v-if="useLegacyViewClasslist" class="w-75">
       <span>
         View class list in
         <b-link
@@ -29,7 +29,7 @@
        </span>
     </div>
 
-    <div v-else-if="section.isPrevTermEnrollment">
+    <div v-else-if="section.isPrevTermEnrollment" class="w-75">
       <p>Registration opens
         {{  toFriendlyDate(section.registrationStart) }}
          at 6:00 AM PST.
@@ -41,7 +41,7 @@
       </p>
     </div>
 
-    <div v-else-if="section.enrollment_student_name">
+    <div v-else-if="section.enrollment_student_name" class="w-75">
       <span>{{ section.enrollment_student_name }}</span>
       <b-link
         :href="`/teaching/${section.apiTag}/students`"
@@ -51,7 +51,7 @@
       </b-link>
     </div>
 
-    <div v-else>
+    <div v-else class="w-75">
       <span>
         {{ section.current_enrollment }}
         <span v-if="!section.is_independent_study">

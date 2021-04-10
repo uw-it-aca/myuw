@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+  <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="{'sr-only': showRowHeader}">
       Evaluations
     </h3>
-    <div>
+    <div class="w-75">
       <ul>
         <template v-if="section.evaluation && section.evaluation.eval_status">
           <template v-if="section.evaluation.is_online">

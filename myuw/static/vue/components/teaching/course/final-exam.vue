@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans"
+  <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="{'sr-only': showRowHeader}">
       Final Exam
     </h3>
-    <div v-if="section.final_exam">
+    <div v-if="section.final_exam" class="w-75">
       <div v-if="section.final_exam.no_exam_or_nontraditional">
         No Exam or Non-Traditional
       </div>
@@ -44,7 +44,7 @@
         Day and time to be arranged.
       </div>
     </div>
-    <div v-else>
+    <div v-else class="w-75">
       No Final Exam Scheduled.
     </div>
     <a

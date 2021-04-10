@@ -1,7 +1,7 @@
 <template>
 <div class="d-flex">
     <h3 v-if="!noHeading"
-      class="h6 text-dark-beige myuw-font-encode-sans"
+      class="w-25 myuw-text-md myuw-font-encode-sans"
       :class="[!showRowHeading ? 'sr-only' : '']"
     >
       Meeting Time
