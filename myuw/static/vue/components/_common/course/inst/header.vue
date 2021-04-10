@@ -15,19 +15,19 @@
     </div>
 
     <div v-if="section.summer_term" class="d-flex">
-      <h3 class="w-25 myuw-text-md myuw-font-encode-sans">
+      <h3 class="w-25 myuw-font-encode-sans myuw-text-md">
         Summer Term
       </h3>
-      <div class="w-75 flex-fill myuw-text-md">
+      <div class="flex-fill myuw-text-md">
         {{ capitalizeString(section.summer_term) }}
       </div>
     </div>
 
     <div v-if="section.cc_display_dates" class="d-flex">
-      <h3 class="w-25 myuw-text-md myuw-font-encode-sans">
+      <h3 class="w-25 myuw-font-encode-sans myuw-text-md">
         Dates
       </h3>
-      <div class="w-75 flex-fill myuw-text-md">
+      <div class="flex-fill myuw-text-md">
         {{ sectionFormattedDates(section) }}
       </div>
     </div>
