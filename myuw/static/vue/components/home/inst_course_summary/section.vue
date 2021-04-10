@@ -1,22 +1,21 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <div  class="d-flex">
-      <h3 class="" :aria-label="section.id.replace(/-/g,' ')">
+    <div class="d-flex">
+      <div class="w-25 flex-fill">
         <div :class="`c${section.color_id} simplesquare`" />
-        <a
-          v-inner="'View inst course card'"
-          :href="`/teaching/${section.href}`"
-          :future-nav-target="section.navtarget"
-          title="Click to view the card on Teaching page"
-        >
-          {{ section.curriculum_abbr }}
-          <span class="text-nowrap">
-            {{ section.course_number }}
-            {{ section.section_id }}
-          </span>
-        </a>
-      </h3>
-      <div>
+        <h3 class="h6 myuw-font-encode-sans text-nowrap"
+          :aria-label="section.id.replace(/-/g,' ')">
+          <a
+            v-inner="'View inst course card'"
+            :href="`/teaching/${section.href}`"
+            :future-nav-target="section.navtarget"
+            title="Click to view the card on Teaching page"
+          >
+              {{ section.curriculum_abbr }}
+              {{ section.course_number }}
+              {{ section.section_id }}
+          </a>
+        </h3>
         <div>
           <h4 class="sr-only">
             Section Type:
@@ -29,30 +28,28 @@
           <h4 class="sr-only">
             Section SLN:
           </h4>
-          <span>
-            <a
-              v-out="'Time Schedule for SLN'"
-              :href="getTimeScheHref(section)"
-              :title="`Time Schedule for SLN ${section.sln}`"
-            >
-              {{ section.sln }}
-            </a>
-          </span>
+          <a
+            v-out="'Time Schedule for SLN'"
+            :href="getTimeScheHref(section)"
+            :title="`Time Schedule for SLN ${section.sln}`"
+          >
+            {{ section.sln }}
+          </a>
         </div>
       </div>
 
-      <div class="flex-fill">
+      <div class="w-60 flex-fill">
         <h4 class="sr-only">
           Section Meetings:
         </h4>
         <uw-meeting-info :section="section" />
       </div>
 
-      <div>
-        <h4 class="sr-only">
-          Section Enrollments:
-        </h4>
-        <uw-enrollment :section="section" />
+      <div class="w-15 ml-3 flex-fill">
+          <h4 class="sr-only">
+            Section Enrollments:
+          </h4>
+          <uw-enrollment :section="section" />
       </div>
     </div>
 
