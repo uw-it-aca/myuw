@@ -22,8 +22,6 @@ ARG VUE_DEVTOOLS
 ENV VUE_DEVTOOLS=$VUE_DEVTOOLS
 RUN npx webpack
 
-FROM pre-container as app-container
-
 COPY --chown=acait:acait --from=node-bundler /static /static
 
 ADD --chown=acait:acait . /app/
