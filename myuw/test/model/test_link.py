@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.utils import timezone
 from datetime import datetime, timedelta
 from myuw.dao.user import get_user_model

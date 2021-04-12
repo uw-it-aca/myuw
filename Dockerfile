@@ -1,4 +1,4 @@
-FROM acait/django-container:1.2.5 as pre-container
+FROM gcr.io/uwit-mci-axdd/django-container:1.3.1 as app-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -31,7 +31,7 @@ ADD --chown=acait:acait docker/ project/
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 
-FROM acait/django-test-container:1.2.5 as app-test-container
+FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.1 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/

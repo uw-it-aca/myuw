@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TestCase
 from django.test.utils import override_settings
 from myuw.authorization import validate_netid, INVALID_STRING, NO_USER,\

@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TransactionTestCase
 from django.conf import settings
 from myuw.dao.user_pref import set_no_onboard_message, turn_off_pop_up,\

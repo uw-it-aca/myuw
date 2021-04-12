@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TestCase
 from myuw.dao.student_profile import _get_degrees_for_terms,\
     get_cur_future_enrollments, get_student_profile

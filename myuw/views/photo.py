@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.dao.pws import get_regid_for_url_key
 from myuw.dao.pws import get_idcard_photo
 from myuw.views.error import data_error, data_not_found

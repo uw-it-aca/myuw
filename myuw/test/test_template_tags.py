@@ -1,9 +1,7 @@
-import json
-from unittest.mock import patch, mock_open
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
 
-from django.core.cache import cache
-from django.test import TestCase, override_settings
-
+from django.test import TestCase
 from myuw.templatetags.hashing_tag import hash_netid
 from myuw.templatetags.myuw_large_number_display import large_number
 
