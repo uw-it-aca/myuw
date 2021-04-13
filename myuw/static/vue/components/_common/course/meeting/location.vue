@@ -2,8 +2,9 @@
   <span v-if="meeting.is_remote">
     Remote
   </span>
-  <span v-else-if="meeting.building_tbd">
-    Room to be arranged
+  <span v-else-if="meeting.building_tbd"
+    title="Room to be arranged">
+    Room TBD
   </span>
   <span v-else>
     <span v-if="meeting.building">
