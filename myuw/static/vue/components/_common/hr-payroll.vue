@@ -17,23 +17,23 @@
           </uw-link-button
           >
         </p>
-        <p class="myuw-text-sm">
+        <p class="myuw-text-md">
           Workday is the University’s cloud-based HR/payroll operations system.
         </p>
-        <p class="myuw-text-sm">
+        <p class="myuw-text-md">
           *Please note: The Medical Centers continue to use Kronos for time-tracking and payroll.
         </p>
       </div>
       <div v-if="!studEmployee">
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">Get Help</h3>
         <ul class="list-unstyled myuw-text-md">
-          <li>
+          <li class="mb-1">
             <a v-if="faculty" href="https://ap.washington.edu/ahr/">Academic HR</a>
             <a v-else href="https://hr.uw.edu/">UW Human Resources</a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
-            <div v-if="!truncateView" class="myuw-text-sm text-muted">
+            <div v-if="!truncateView" class="myuw-text-md text-muted">
               Learn how to
               <a v-out="'ISC Time Off'"
                  href="https://isc.uw.edu/your-time-absence/time-off/"
@@ -51,18 +51,18 @@
       <div v-else>
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">Related</h3>
         <ul class="list-unstyled myuw-text-md">
-          <li><a href="https://hr.uw.edu/">UW Human Resources</a></li>
-          <li>
+          <li class="mb-1"><a href="https://hr.uw.edu/">UW Human Resources</a></li>
+          <li class="mb-1">
             <a href="https://hr.uw.edu/benefits/insurance/health/graduate-appointees/"
             >Graduate Appointee Insurance Program (GAIP)</a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="https://grad.uw.edu/graduate-student-funding/funding-information-for-departments/administering-assistantships/ta-ra-salaries/"
             >Teaching or research assistant salary schedules</a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
-            <div class="myuw-text-sm text-muted">
+            <div class="myuw-text-md text-muted">
               Learn how to
               <a v-out="'ISC Enter Time'"
                  href="https://isc.uw.edu/your-time-absence/time-reporting/"

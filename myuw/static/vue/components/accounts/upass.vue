@@ -72,13 +72,13 @@
             </p>
           </div>
         </div>
-        <ul>
-          <li>
+        <ul class="list-unstyled myuw-text-md">
+          <li class="mb-1">
             <a v-out="'What is U-PASS'" :href="getWhatIsUrl">
               What is the U-PASS?
             </a>
           </li>
-          <li v-if="pce">
+          <li v-if="pce" class="mb-1">
             <a
               v-out="'Continuum College Student Purchase U-PASS'"
               href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
