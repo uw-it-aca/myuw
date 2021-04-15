@@ -6,10 +6,15 @@
   >
     <template #panel-body>
       <h2 class="h4 mb-3">
-        <span v-if="hasPreferred">{{ titleCaseName(displayName) }}
-          <span class="myuw-text-md text-uppercase">({{ titleCaseName(fullName) }})</span>
+        <span v-if="hasPreferred">
+          {{ titleCaseName(displayName) }}
+          <span class="myuw-text-md text-uppercase" title="Full name">
+            ({{ titleCaseName(fullName) }})
+          </span>
         </span>
-        <span v-else>{{ titleCaseName(fullName) }}</span>
+        <span v-else-if="fullName" title="Full name">
+          {{ titleCaseName(fullName) }}
+        </span>
         <a
           v-out="'Manage preferred name - Identity.UW'"
           href="https://identity.uw.edu/"
@@ -52,6 +57,7 @@ export default {
     },
     hasPreferred() {
       return this.displayName !== undefined &&
+        this.fullName  !== undefined &&
         this.displayName !== this.fullName;
     },
   },
