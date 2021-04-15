@@ -8,7 +8,10 @@
       <h2 class="h4 mb-3">
         <span v-if="hasPreferred">
           {{ titleCaseName(displayName) }}
-          <span class="myuw-text-md text-uppercase" title="Full name">
+          <span v-if="fullName"
+            class="myuw-text-md text-uppercase"
+            title="Full name"
+          >
             ({{ titleCaseName(fullName) }})
           </span>
         </span>
@@ -56,8 +59,7 @@ export default {
       return Boolean(this.displayName) || Boolean(this.fullName);
     },
     hasPreferred() {
-      return Boolean(this.displayName) && Boolean(this.fullName) &&
-        this.displayName !== this.fullName;
+      return Boolean(this.displayName) && this.displayName !== this.fullName;
     },
   },
   mounted() {
