@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-light d-flex align-items-end flex-column" style="min-height:100vh">
+  <div class="bg-light d-flex align-items-end flex-column" style="min-height: 100vh">
     <header v-if="!isHybrid" class="w-100">
       <div
         v-if="disableActions"
@@ -39,11 +39,10 @@
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
               >
-                <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email
-                error
+                <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error
               </b-link>
               <b-link
-                v-else
+                v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
@@ -87,11 +86,7 @@
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="faSquare" transform="right-1" class="m-0" />
-              <font-awesome-icon
-                :icon="faBars"
-                transform="shrink-8 right-1 "
-                class="m-0"
-              />
+              <font-awesome-icon :icon="faBars" transform="shrink-8 right-1 " class="m-0" />
             </font-awesome-layers>
           </b-button>
           <div class="d-inline align-middle text-white" :class="[$mq == 'desktop' ? 'h3' : 'h5']">
@@ -228,7 +223,9 @@
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="[pageTitle == 'Home' || pageTitle == 'Profile' ? 'sr-only' : '']"
+              :class="[
+                pageTitle == 'Home' || pageTitle == 'Profile' || $mq != 'desktop' ? 'sr-only' : '',
+              ]"
             >
               {{ pageTitle }}
             </h1>
@@ -298,27 +295,23 @@
         <a
           v-out="'MyUW video for Instructors'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
-          target="_blank"
           title="MyUW video tour for instructors"
           >MyUW for Instructors</a
         >,
         <a
           v-out="'MyUW video for staff'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
-          target="_blank"
           title="MyUW video tour for staff"
           >for staff</a
         >, or
         <a
           v-out="'MyUW video for students'"
           href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
-          target="_blank"
           title="MyUW video tour for students"
           >for students</a
         >. <br /><a
           v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
-          target="_blank"
           title="MyUW Help Center in IT Connect"
           >Visit the MyUW help guide for more information</a
         >.

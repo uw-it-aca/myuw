@@ -35,7 +35,7 @@ describe('To Register Card', () => {
     axios.get.mockResolvedValue({data: mockNotices});
     const wrapper = mount(ToRegisterCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
@@ -55,7 +55,7 @@ describe('To Register Card', () => {
     axios.get.mockResolvedValue({data: interNotices});
     const wrapper = mount(ToRegisterCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
@@ -75,7 +75,7 @@ describe('To Register Card', () => {
     axios.get.mockResolvedValue({data: bothellNotices});
     const wrapper = mount(ToRegisterCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();

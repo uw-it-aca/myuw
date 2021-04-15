@@ -6,29 +6,29 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         To Register For Classes
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <div v-if="formatted_date">
         <p class="myuw-text-md">
           Register on <strong>{{ formatted_date }}</strong> through
-          <a target="_blank"
+          <a
             href="https://myplan.uw.edu/"
           >MyPlan</a> or
-          <a target="_blank"
+          <a
             href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
           >the registration screen</a>.
         </p>
         <ul class="list-unstyled myuw-text-md">
           <li>
-            <a target="_blank"
+            <a
               href="https://depts.washington.edu/sislearn/registration-resources/"
             >How to register</a>
           </li>
           <li>
-            <a target="_blank"
+            <a
               href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/"
             >How to choose courses</a>
           </li>
@@ -45,7 +45,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -60,7 +60,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -87,7 +87,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -114,7 +114,7 @@
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 font-weight-bold" v-html="notice.notice_title" />
+          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>

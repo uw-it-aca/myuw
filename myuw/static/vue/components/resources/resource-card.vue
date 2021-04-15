@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-card-group columns class="myuw-card-columns-2">
+    <b-card-group columns class="mt-3" :class="[$mq != 'mobile' ? 'myuw-column-count-2' : '']">
       <uw-card
         v-for="(subcatRes, i) in Object.values(resource.subcategories)"
         :id="subcatRes.subcat_id"
@@ -9,19 +9,31 @@
       >
         <template #card-heading>
           <div>
-            <h4>
+            <h3 class="h6 text-dark-beige myuw-font-encode-sans d-inline-block">
               {{subcatRes.subcat_name}}
-            </h4>
-            <button v-if="!subcatRes.is_pinned" @click="pinWrapper(subcatRes)">
+            </h3>
+            <b-button
+              v-if="!subcatRes.is_pinned"
+              variant="link"
+              class="myuw-text-sm text-muted"
+              :title="`Add ${subcatRes.subcat_name} resources to home page`"
+              @click="pinWrapper(subcatRes)"
+            >
               Pin to Home
-            </button>
-            <button v-else @click="unpinWrapper(subcatRes)">
+            </b-button>
+            <b-button
+              v-else
+              variant="link"
+              class="myuw-text-sm text-muted"
+              :title="`Remove ${subcatRes.subcat_name} resources from home page`"
+              @click="unpinWrapper(subcatRes)"
+            >
               Unpin
-            </button>
+            </b-button>
           </div>
         </template>
         <template #card-body>
-          <ul>
+          <ul class="list-unstyled myuw-text-md">
             <li v-for="(link, j) in subcatRes.links" :key="j">
               <a :href="link.url">{{link.title}}</a>
             </li>

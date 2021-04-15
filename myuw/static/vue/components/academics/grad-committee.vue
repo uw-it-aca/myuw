@@ -16,7 +16,7 @@
           <li v-for="(committee, index) in committees" :key="index"
               class="mb-4"
           >
-            <h3 class="h5 text-dark-beige">
+            <h3 class="h6 text-dark-beige myuw-font-encode-sans">
               {{ committee.committee_type }}
             </h3>
             <ol class="list-unstyled">
@@ -40,7 +40,7 @@
       <div class="text-right myuw-text-md">
         <a v-out="'MyGrad'"
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-          target="_blank">Go to MyGrad</a>
+        >Go to MyGrad</a>
       </div>
     </template>
     <template #card-error>
@@ -48,7 +48,6 @@
       right now. In the meantime, try the
       <a v-out="'MyGrad'"
         href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-        target="_blank"
       >MyGrad program page</a>.
     </template>
   </uw-card>

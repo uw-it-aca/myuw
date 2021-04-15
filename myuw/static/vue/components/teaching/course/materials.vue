@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <h3 :class="{'sr-only': showRowHeader}">
+  <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Course Materials
     </h3>
-    <ul>
+    <ul class="w-75">
       <uw-teac-website :section="section" />
       <uw-teac-email-list :section="section" />
       <uw-teac-canvas :section="section" />

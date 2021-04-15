@@ -150,9 +150,11 @@ export default {
             }, 100);
           });
         } else {
-          window.location.pathname = `/teaching/${this.section.href}`;
+          // from home page, go to the card on teaching page
+          window.location.href = `/teaching/${this.section.href}`;
         }
       } else {
+        // on Teaching page, go to the card
         window.history.replaceState({}, null, window.location.pathname);
       }
     }

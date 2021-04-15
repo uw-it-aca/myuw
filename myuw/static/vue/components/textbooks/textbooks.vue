@@ -2,7 +2,7 @@
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
       <div v-if="bookData.teachingSections.length > 0">
-        <h3>Teaching</h3>
+        <h2>Teaching</h2>
         <hr>
         <uw-section
           v-for="(section, i) in bookData.teachingSections"
@@ -11,9 +11,9 @@
           :collapsable="bookData.collapseSections"
         />
         <hr v-if="bookData.collapseSections">
-        <h3 v-if="bookData.enrolledSections">
+        <h2 v-if="bookData.enrolledSections">
           Enrolled
-        </h3>
+        </h2>
         <hr>
       </div>
       <uw-section
@@ -29,7 +29,7 @@
       </uw-section>
 
       <div class="my-4 text-center">
-        <uw-link-button target="_blank" :href="orderUrl">
+        <uw-link-button :href="orderUrl">
           Start textbook shopping
         </uw-link-button>
       </div>

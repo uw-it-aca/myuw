@@ -12,7 +12,7 @@
       </h2>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h3 class="h5 mb-3 text-dark-beige">
+      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         For application status, contact the UW Bothell Office of Admissions
       </h3>
       <b-container>
@@ -29,14 +29,13 @@
           <b-col>10909 NE 185th St <br>Bothell, WA 98011<br>Box 358500</b-col>
         </b-row>
       </b-container>
-      <h3 class="h5 mb-3 text-dark-beige">
+      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         Resources for Bothell Applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
         <li>
           <a v-out="'UW Bothell Student Financial Aid'"
             href="http://www.uwb.edu/financialaid"
-            target="_blank"
           >
             Learn all about student financial aid and scholarships
           </a>
@@ -44,7 +43,6 @@
         <li>
           <a v-out="'UW Bothell Student Resources'"
             href="http://www.uwb.edu/studentaffairs"
-            target="_blank"
           >
             Check out the student resources for student life,
             career services, and more
@@ -53,7 +51,6 @@
         <li>
           <a v-out="'UW Bothell Academic calendars'"
             href="http://www.uwb.edu/calendars"
-            target="_blank"
           >
             View the UW Bothell Academic calendars
           </a>
@@ -61,12 +58,11 @@
       </ul>
     </template>
     <template v-else #card-body>
-      <a v-out="'Your application status details'"
-        class="btn btn-outline-secondary text-dark my-4"
+      <uw-link-button class="my-4"
         href="https://admissions.uwb.edu/apply/status"
       >
         View your {{ applicantData.type }} application status and checklist
-      </a>
+      </uw-link-button>
       <p>
         If you have questions regarding your application,
         please contact UW Bothell Office of Admissions at
@@ -78,10 +74,12 @@
 
 <script>
 import Card from '../../_templates/card.vue';
+import LinkButton from '../../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-link-button': LinkButton,
   },
   props: {
     applicantData: {

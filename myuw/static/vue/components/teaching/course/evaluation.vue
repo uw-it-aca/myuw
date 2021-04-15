@@ -1,9 +1,10 @@
 <template>
-  <div>
-    <h3 :class="{'sr-only': showRowHeader}">
+  <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Evaluations
     </h3>
-    <div>
+    <div class="w-75">
       <ul>
         <template v-if="section.evaluation && section.evaluation.eval_status">
           <template v-if="section.evaluation.is_online">
@@ -92,7 +93,6 @@
             not have an evaluation set up for this course.
             <a v-out="'Learn About Course Evaluations'"
                href="https://www.washington.edu/assessment/course-evaluations/"
-               target="_blank"
                title="Learn About Course Evaluations"
             ><font-awesome-icon :icon="faQuestionCircle" /></a>
           </li>

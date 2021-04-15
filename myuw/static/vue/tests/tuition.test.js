@@ -48,7 +48,7 @@ describe('Tuition store', () => {
       return Promise.resolve({data: urlData[url]});
     });
     const wrapper = shallowMount(TuitionFees, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.vm.isStudent).toBe(true);
     expect(wrapper.vm.isC2Grad).toBe(false);
@@ -72,7 +72,7 @@ describe('Tuition store', () => {
       return Promise.resolve({data: urlData[url]});
     });
     const wrapper = shallowMount(TuitionFees, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.tuitionDate.formatted ).toBe("Mon, Feb 22");
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(1000.00);

@@ -2,7 +2,9 @@
   <div v-if="notices.length !== 0" class="border-bottom py-3">
     <div v-b-toggle="collapseId">
       <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
-        <h2 class="h4 m-0">{{ title }}</h2>
+        <h2 class="h4 mb-0">
+          {{ title }}
+        </h2>
         <div class="ml-auto">
           <span
             v-if="unreadCount"
@@ -31,8 +33,7 @@
           <div class="text-muted mb-2 myuw-text-md">{{ notice.category }}</div>
           <div class="ml-auto myuw-text-md">
             <span v-if="!notice.is_read" class="badge badge-warning font-weight-normal"
-              >New</span
-            >
+            >New</span>
             <font-awesome-icon
               v-if="notice.is_critical"
               :icon="faExclamationTriangle"
@@ -40,7 +41,7 @@
             />
           </div>
         </div>
-        <h3 class="h5 font-weight-bold" v-html="notice.notice_title" />
+        <h3 class="h6 myuw-font-encode-sans" v-html="notice.notice_title" />
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
     </b-collapse>

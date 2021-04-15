@@ -6,10 +6,7 @@
     <template #card-error>
       An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if
       you want to add funds, try the
-      <a
-        href="https://transportation.uw.edu/"
-        target="_blank"
-        >UW Transportation</a> page.
+      <a href="https://transportation.uw.edu/">UW Transportation</a> page.
     </template>
     <template #card-body>
       <uw-card-status>
@@ -24,20 +21,21 @@
           Finalize activation by tapping your card on a reader.
         </p>
         <div v-if="!employee && inSummer && (pce || seattle)">
-          <h3>Summer U-PASS Use</h3>
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+            Summer U-PASS Use
+          </h3>
           <p class="myuw-text-md">
             Your U-PASS does not work during summer quarter unless you are
             registered for a class or are a
             <a
               v-out="'Temporary Employee U-PASS'"
               href="https://facilities.uw.edu/transportation/employee-u-pass#8"
-              target="_blank"
             >
               temporary employee
             </a>.
           </p>
         </div>
-        <a v-out="'U-Pass'" target="_blank" :href="getUrl" class="myuw-text-md">
+        <a v-out="'U-Pass'" :href="getUrl" class="myuw-text-md">
             U-PASS not working?
         </a>
       </div>
@@ -49,14 +47,15 @@
               before the quarter starts.
             </p>
             <div v-if="inSummer">
-              <h3>Summer U-PASS Use</h3>
+              <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+                Summer U-PASS Use
+              </h3>
               <p>
                 Your U-PASS does not work during summer quarter unless you are registered
                 for a class or are a
                 <a
                   v-out="'Temporary Employee U-PASS'"
                   href="https://facilities.uw.edu/transportation/employee-u-pass#8"
-                  target="_blank"
                 >
                   temporary employee
                 </a>.
@@ -66,24 +65,23 @@
           <div v-else id="upass-notices-for-non-sea-studs">
             <p v-if="bothell || tacoma">
               If you
-              <a v-out="'Purchase U-PASS'" :href="getPurchaseUrl" target="_blank">
+              <a v-out="'Purchase U-PASS'" :href="getPurchaseUrl">
                 purchase
               </a>
               a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
             </p>
           </div>
         </div>
-        <ul>
-          <li>
-            <a v-out="'What is U-PASS'" :href="getWhatIsUrl" target="_blank">
+        <ul class="list-unstyled myuw-text-md">
+          <li class="mb-1">
+            <a v-out="'What is U-PASS'" :href="getWhatIsUrl">
               What is the U-PASS?
             </a>
           </li>
-          <li v-if="pce">
+          <li v-if="pce" class="mb-1">
             <a
               v-out="'Continuum College Student Purchase U-PASS'"
               href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
-              target="_blank"
             >
               Purchasing a U-PASS
             </a>

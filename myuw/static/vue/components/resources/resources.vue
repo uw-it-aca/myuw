@@ -1,31 +1,40 @@
 <template>
   <div v-if="isReady">
-    <h3>
-      On this page
-    </h3>
-    <ul>
-      <li v-for="(resource, i) in resources" :key="i">
-        <a :href="`#${resource.category_id}`">{{resource.category_name}}</a>
-      </li>
-    </ul>
-    <div v-for="(resource, i) in resources" :key="i">
-      <h3 :id="resource.category_id">
-        {{resource.category_name}}
-      </h3>
-      <uw-resource-card :resource="resource"/>
+    <div :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+      <h2 class="h4 text-dark-beige myuw-font-encode-sans">On this page</h2>
+      <div class="mt-3">
+        <ul
+          class="list-unstyled myuw-text-lg"
+          :class="[$mq == 'desktop' ? 'myuw-column-count-2' : '']"
+        >
+          <li v-for="(resource, i) in resources" :key="i" class="mb-1">
+            <a :href="`#${resource.category_id}`">{{ resource.category_name }}</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <button type="button" class="myuw-back-to-top"
-      title="Back to Top" @click="scrollToTop">
-        <font-awesome-icon :icon="faChevronUp" />
-        <span><span class="sr-only">Back to</span> Top</span>
-    </button>
+    <div v-for="(resource, i) in resources" :key="i" class="mt-5">
+      <h2 :id="resource.category_id" class="h4 text-dark-beige myuw-font-encode-sans"
+        :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+        {{ resource.category_name }}
+      </h2>
+      <uw-resource-card :resource="resource" />
+    </div>
+    <b-button
+      variant="secondary"
+      size="sm"
+      class="position-sticky mb-3 mr-3 float-right text-center myuw-back-to-top"
+      title="Back to Top"
+      @click="scrollToTop"
+    >
+      <font-awesome-icon :icon="faChevronUp" size="lg" />
+      <span class="d-block myuw-text-xs"><span class="sr-only">Back to</span> TOP</span>
+    </b-button>
   </div>
 </template>
 
 <script>
-import {
-  faChevronUp,
-} from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import ResourceCard from './resource-card.vue';
 
@@ -40,9 +49,9 @@ export default {
   },
   computed: {
     ...mapState('resources', {
-      resources: (state) => state.value[''], 
+      resources: (state) => state.value[''],
     }),
-    ...mapGetters('resources', ['isReady'])
+    ...mapGetters('resources', ['isReady']),
   },
   mounted() {
     this.fetch();
@@ -50,8 +59,14 @@ export default {
   methods: {
     ...mapActions('resources', ['fetch']),
     scrollToTop() {
-      window.scrollTo({top: 0, behavior: 'smooth'});
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
-  }
-}
+  },
+};
 </script>
+<style lang="scss" scoped>
+@import '../../../css/myuw/variables.scss';
+.myuw-back-to-top {
+  bottom: 1rem;
+}
+</style>

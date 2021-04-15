@@ -21,7 +21,6 @@
           v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
           class="text-body"
-          target="_blank"
         >
           Learn more about MyUW
         </b-link>

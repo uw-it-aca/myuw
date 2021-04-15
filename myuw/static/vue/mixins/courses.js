@@ -60,8 +60,8 @@ export default {
         }
         return lines.join("\n");
     },
-    classlistFileName() {
-      const fn = this.section.section_label + '_students.csv';
+    classlistFileName(section) {
+      const fn = section.section_label + '_students.csv';
       return fn.replace(/[^a-z0-9._]/ig, '_');
     },
     downloadClassList(classlist) {
@@ -71,7 +71,7 @@ export default {
 
       hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
       hiddenElement.target = '_blank';
-      hiddenElement.download = this.classlistFileName();
+      hiddenElement.download = this.classlistFileName(classlist);
       hiddenElement.click();
     },
     getQuarterAbbr(quarter_str) {
@@ -98,6 +98,6 @@ export default {
         }
         firstSelfAnchored = false;
       }
-    }
+    },
   },
 }

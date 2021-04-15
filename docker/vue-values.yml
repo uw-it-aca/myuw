@@ -32,7 +32,7 @@ lifecycle:
   preStop:
     enabled: true
 securityPolicy:
-  enabled: true
+  enabled: false
 affinity:
    podsSpanNodes: true
 readiness:
@@ -81,9 +81,6 @@ environmentVariables:
 
   - name: ENV
     value: dev
-
-  - name: WEBSERVER
-    value: nginx
 
   - name: BOOKSTORE_ENV
     value: PROD

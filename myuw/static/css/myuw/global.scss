@@ -51,9 +51,6 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
 .myuw-font-encode-sans {
   font-family: 'Encode Sans', sans-serif !important;
 }
-.myuw-font-roboto {
-  font-family: 'Roboto', sans-serif !important;
-}
 
 // myuw chevron card link
 .myuw-chevron {
@@ -108,6 +105,6 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
 }
 
 // adds card group (2 columns) support
-.myuw-card-columns-2 {
+.myuw-column-count-2 {
   column-count: 2 !important;
 }

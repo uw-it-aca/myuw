@@ -89,7 +89,7 @@ describe('HFS Sea Card', () => {
     store.state.user.affiliations.seattle = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = mount(HfsSeaCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isErrored).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
     expect(wrapper.findAll('a').length).toBe(1);

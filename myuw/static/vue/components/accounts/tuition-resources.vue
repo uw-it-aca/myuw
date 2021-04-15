@@ -1,29 +1,29 @@
 <template>
   <div>
-    <h3 class="h6 font-weight-bold text-dark-beige">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Related
     </h3>
     <ul class="list-unstyled myuw-text-md">
       <li v-if="is_C2">
-        <a href="https://degreereg.uw.edu/payment-procedures" target="_blank">
+        <a href="https://degreereg.uw.edu/payment-procedures">
           Paying PCE-Continuum College
         </a>
       </li>
       <li>
-        <a :href="finAidScholarshipsLink" target="_blank">
+        <a :href="finAidScholarshipsLink">
           Financial Aid and Scholarships
         </a>
       </li>
       <li v-if="is_grad">
-        <a href="http://www.lib.washington.edu/commons/services/gfis" target="_blank">
+        <a href="http://www.lib.washington.edu/commons/services/gfis">
           Graduate Funding Information Service (GFIS)
         </a>
       </li>
       <li v-if="!is_C2">
-        <a href="http://f2.washington.edu/fm/sfs/tuition" target="_blank">About Tuition</a>
+        <a href="http://f2.washington.edu/fm/sfs/tuition">About Tuition</a>
       </li>
       <li>
-        <a href="http://f2.washington.edu/fm/sfs/tax" target="_blank">Student Tax Information</a>
+        <a href="http://f2.washington.edu/fm/sfs/tax">Student Tax Information</a>
       </li>
     </ul>
   </div>
