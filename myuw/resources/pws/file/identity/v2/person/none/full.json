@@ -1,1 +1,17 @@
-{"DisplayName":"None User 1","EduPersonAffiliations":["member"],"IsTestEntity":true,"PriorUWNetIDs":[],"PriorUWRegIDs":[],"RegisteredFirstMiddleName":"None User","RegisteredName":"None User","RegisteredSurname":"1","UIDNumber":"97802","UWNetID":"none1","UWRegID":"00000000000000000000000000000001","WhitepagesPublish":false,"PersonAffiliations":{}}
+{
+    "DisplayName": null,
+    "EduPersonAffiliations": [
+        "member"
+    ],
+    "IsTestEntity": true,
+    "PriorUWNetIDs": [],
+    "PriorUWRegIDs": [],
+    "RegisteredFirstMiddleName": "None",
+    "RegisteredName": "None",
+    "RegisteredSurname": "User",
+    "UIDNumber": "97802",
+    "UWNetID": "none1",
+    "UWRegID": "00000000000000000000000000000001",
+    "WhitepagesPublish": false,
+    "PersonAffiliations": {}
+}
