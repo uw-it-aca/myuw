@@ -52,7 +52,7 @@
             <template #status-label>You owe</template>
             <template #status-value>
               <span class="text-danger">
-                {{ formatPrice(fines) }}
+                ${{ formatPrice(fines) }}
               </span>
             </template>
             <template #status-content>

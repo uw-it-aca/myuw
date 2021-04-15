@@ -23,14 +23,7 @@
           <uw-card-property v-if="email" title="Email:">
             {{ email }}
           </uw-card-property>
-          <uw-card-property title="">
-            <template #title>
-              <span class="sr-only" property="name">UW Office</span>
-              <div class="text-dark-beige flex-md-fill mr-3 bd-highlight
-                myuw-font-encode-sans property-label">
-                Phone Number
-              </div>
-            </template>
+          <uw-card-property title="Phone Number">
             <p v-if="noFormsOfContact">No phone numbers listed</p>
             <p v-if="phone">
               Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}

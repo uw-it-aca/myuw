@@ -82,9 +82,6 @@ environmentVariables:
   - name: ENV
     value: dev
 
-  - name: WEBSERVER
-    value: nginx
-
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_TIMEOUT
