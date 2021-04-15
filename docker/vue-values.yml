@@ -20,7 +20,7 @@ lifecycle:
   preStop:
     enabled: true
 securityPolicy:
-  enabled: true
+  enabled: false
 affinity:
    podsSpanNodes: true
 readiness:
