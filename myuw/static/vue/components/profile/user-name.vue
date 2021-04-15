@@ -53,11 +53,10 @@ export default {
       isErrored: 'isErrored',
     }),
     hasName() {
-      return this.displayName !== undefined || this.fullName !== undefined;
+      return Boolean(this.displayName) || Boolean(this.fullName);
     },
     hasPreferred() {
-      return this.displayName !== undefined &&
-        this.fullName  !== undefined &&
+      return Boolean(this.displayName) && Boolean(this.fullName) &&
         this.displayName !== this.fullName;
     },
   },
