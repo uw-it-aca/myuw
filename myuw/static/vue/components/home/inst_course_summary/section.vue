@@ -1,67 +1,85 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <div  class="d-flex">
-      <h3 class="" :aria-label="section.id.replace(/-/g,' ')">
-        <div :class="`c${section.color_id} simplesquare`" />
-        <a
-          v-inner="'View inst course card'"
-          :href="`/teaching/${section.href}`"
-          :future-nav-target="section.navtarget"
-          title="Click to view the card on Teaching page"
-        >
-          {{ section.curriculum_abbr }}
-          <span class="text-nowrap">
-            {{ section.course_number }}
-            {{ section.section_id }}
-          </span>
-        </a>
-      </h3>
-      <div>
-        <div>
-          <h4 class="sr-only">
-            Section Type:
-          </h4>
-          <span class="text-capitalize">
-            {{ section.section_type }}
-          </span>
-        </div>
-        <div v-if="section.sln">
-          <h4 class="sr-only">
-            Section SLN:
-          </h4>
-          <span>
-            <a
-              v-out="'Time Schedule for SLN'"
-              :href="getTimeScheHref(section)"
-              :title="`Time Schedule for SLN ${section.sln}`"
-              target="_blank"
-            >
-              {{ section.sln }}
-            </a>
-          </span>
-        </div>
-      </div>
-
-      <div class="flex-fill">
-        <h4 class="sr-only">
-          Section Meetings:
-        </h4>
-        <uw-meeting-info :section="section" />
-      </div>
-
-      <div>
-        <h4 class="sr-only">
-          Section Enrollments:
-        </h4>
-        <uw-enrollment :section="section" />
-      </div>
-    </div>
+    <b-container>
+      <b-row>
+        <b-col md="4" class="px-0">
+          <div class="d-flex">
+            <font-awesome-icon
+              :icon="faSquareFull"
+              :class="`text-c${section.color_id}`"
+              class="mr-1 mt-1"
+            />
+            <div class="flex-fill">
+              <h3
+                class="myuw-text-md font-weight-bold d-inline"
+                :aria-label="section.id.replace(/-/g,' ')"
+              >
+                <a
+                  v-inner="'View inst course card'"
+                  :href="`/teaching/${section.href}`"
+                  :future-nav-target="section.navtarget"
+                  title="Click to view the card on Teaching page"
+                >
+                  {{ section.curriculum_abbr }}
+                  <span class="text-nowrap">
+                    {{ section.course_number }}
+                    {{ section.section_id }}
+                  </span>
+                </a>
+              </h3>
+              <div :class="[$mq === 'mobile' ? 'float-right' : '']">
+                <div class="d-inline">
+                  <h4 class="sr-only">
+                    Section Type:
+                  </h4>
+                  <span class="text-uppercase myuw-text-sm">
+                    {{ section.section_type }}
+                  </span>
+                </div>
+                <div v-if="section.sln" class="ml-3 d-inline">
+                  <h4 class="sr-only">
+                    Section SLN:
+                  </h4>
+                  <span>
+                    <a
+                      v-out="'Time Schedule for SLN'"
+                      :href="getTimeScheHref(section)"
+                      :title="`Time Schedule for SLN ${section.sln}`"
+                      target="_blank"
+                      class="text-muted myuw-text-sm"
+                    >
+                      {{ section.sln }}
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </b-col>
+        <b-col md="8" class="px-0">
+          <div class="d-flex">
+            <div class="flex-fill">
+              <h4 class="sr-only">
+                Section Meetings:
+              </h4>
+              <uw-meeting-info :section="section" class="myuw-text-md"/>
+            </div>
+            <div class="">
+              <h4 class="sr-only">
+                Section Enrollments:
+              </h4>
+              <uw-enrollment :section="section" class="myuw-text-md ml-5"/>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
 
     <template v-if="getLinkedSections(section).length > 0">
       <b-button
         v-b-toggle="`linked-sections-${section.id}`"
         variant="light" block
-        class="p-0 text-dark"
+        class="p-0 text-dark myuw-text-md my-2"
       >
         Linked Sections of {{ section.curriculum_abbr }}
         {{ section.course_number }} {{ section.section_id }}
@@ -86,6 +104,7 @@ import {
   faThumbtack,
   faChevronUp,
   faChevronDown,
+  faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
@@ -109,6 +128,7 @@ export default {
       faThumbtack,
       faChevronUp,
       faChevronDown,
+      faSquareFull,
     };
   },
   methods: {

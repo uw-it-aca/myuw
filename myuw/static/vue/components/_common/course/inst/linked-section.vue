@@ -1,90 +1,113 @@
 <template>
-  <div>
-    <div class="d-flex">
-      <!-- A linked secondary section -->
-      <div>
-        <div :class="`c${section.color_id}`" />
-        <h3
-          class="h5 myuw-font-encode-sans"
-          :aria-label="section.lable"
-        >
-          <a v-if="section.mini_card"
-            v-inner="'View Mini-card'"
-            :href="`/teaching/${section.href}`"
-            :future-nav-target="section.navtarget"
-            :title="`View mini-card of ${section.label} on Teaching page`"
-          >
-            {{ section.section_id }}
-          </a>
-          <a v-else
-            :href="`/teaching/${section.href}`"
-            :future-nav-target="section.navtarget"
-            :title="`Pin mini-card of ${section.label} onto Teaching page`"
-            @click="miniCard"
-          >
-            {{ section.section_id }}
-          </a>
-        </h3>
-      </div>
-      <div v-if="section.sln">
-        <h4 class="sr-only">
-          Section SLN:
-        </h4>
-        <span>
-          <a
-            v-out="'Time Schedule for SLN'"
-            :href="getTimeScheHref(section)"
-            :title="`Time Schedule for SLN ${section.sln}`"
-            target="_blank"
-          >
-            {{ section.sln }}
-          </a>
-        </span>
-      </div>
-      <div>
-        <h4 class="sr-only">
-          Section Type:
-        </h4>
-        <span class="text-capitalize">
-          {{ section.section_type }}
-        </span>
-      </div>
+  <div class="mb-3">
+    <b-container>
+      <b-row>
+        <b-col md="4" class="px-0">
+          <div class="d-flex">
+            <!-- A linked secondary section -->
+            <font-awesome-icon
+              :icon="faSquareFull"
+              :class="`text-c${section.color_id}`"
+              class="my-auto mr-1"
+              style="width: 8px; height: 16px;"
+            />
+            <div>
+            <h3
+              class="myuw-text-md font-weight-bold d-inline"
+              :aria-label="section.lable"
+            >
+              <a v-if="section.mini_card"
+                v-inner="'View Mini-card'"
+                :href="`/teaching/${section.href}`"
+                :future-nav-target="section.navtarget"
+                :title="`View mini-card of ${section.label} on Teaching page`"
+              >
+                {{ section.section_id }}
+              </a>
+              <a v-else
+                :href="`/teaching/${section.href}`"
+                :future-nav-target="section.navtarget"
+                :title="`Pin mini-card of ${section.label} onto Teaching page`"
+                @click="miniCard"
+              >
+                {{ section.section_id }}
+              </a>
+            </h3>
+            </div>
+            <div v-if="section.sln" class="ml-2">
+              <h4 class="sr-only">
+                Section SLN:
+              </h4>
+              <span>
+                <a
+                  v-out="'Time Schedule for SLN'"
+                  :href="getTimeScheHref(section)"
+                  :title="`Time Schedule for SLN ${section.sln}`"
+                  target="_blank"
+                  class="text-muted myuw-text-sm"
+                >
+                  {{ section.sln }}
+                </a>
+              </span>
+            </div>
+            <div
+              class="flex-fill"
+              :class="[$mq === 'mobile' ? 'ml-2' : 'text-center']"
+            >
+              <h4 class="sr-only">
+                Section Type:
+              </h4>
+              <span class="text-capitalize myuw-text-md">
+                {{ section.section_type }}
+              </span>
+            </div>
+          </div>
+        </b-col>
+        <b-col md="8" class="px-0">
+          <div class="d-flex">
+            <div class="flex-fill">
+              <h4 class="sr-only">
+                Section Meetings:
+              </h4>
+              <uw-meeting-info :section="section" no-heading />
+            </div>
 
-      <div class="flex-fill">
-        <h4 class="sr-only">
-          Section Meetings:
-        </h4>
-        <uw-meeting-info :section="section" no-heading />
-      </div>
+            <div>
+              <h4 class="sr-only">
+                Section Enrollments:
+              </h4>
+              <uw-enrollment :section="section" class="myuw-text-md ml-5"/>
+            </div>
+          </div>
 
-      <div>
-        <h4 class="sr-only">
-          Section Enrollments:
-        </h4>
-        <uw-enrollment :section="section" />
-      </div>
-    </div>
-
-    <div>
-      <b-button v-if="!section.mini_card"
-        variant="light"
-        :title="`Pin mini-card of ${section.label} onto Teaching page`"
-        @click="miniCard"
-      >
-        Pin to Teaching
-      </b-button>
-      <b-button v-else
-        variant="dark"
-        :title="`Remove mini-card of ${section.label} from Teaching page`"
-        @click="miniCard"
-      >
-        Unpin
-      </b-button>
-    </div>
+          <div class="d-inline-block float-right">
+            <b-button v-if="!section.mini_card"
+              variant="link"
+              :title="`Pin mini-card of ${section.label} onto Teaching page`"
+              @click="miniCard"
+              class="myuw-text-md text-muted p-0"
+            >
+              Pin to Teaching
+            </b-button>
+            <b-button v-else
+              variant="link"
+              :title="`Remove mini-card of ${section.label} from Teaching page`"
+              @click="miniCard"
+              class="myuw-text-md text-muted p-0"
+            >
+              Unpin
+            </b-button>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
+import {
+  faSquareFull,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
 
 import MeetingInfo from '../meeting/schedule.vue';
@@ -100,6 +123,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      faSquareFull,
+    };
   },
   methods: {
     ...mapActions('inst_schedule', [

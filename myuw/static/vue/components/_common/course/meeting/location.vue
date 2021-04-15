@@ -3,7 +3,7 @@
     Remote
   </span>
   <span v-else-if="meeting.building_tbd">
-    Room to be arranged
+    Room TBD
   </span>
   <span v-else>
     <span v-if="meeting.building">

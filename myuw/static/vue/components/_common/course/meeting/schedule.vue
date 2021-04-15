@@ -28,7 +28,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="meeting in section.meetings" :key="meeting.id">
+          <tr v-for="meeting in section.meetings" :key="meeting.id" style="line-height: 24px;">
             <td v-if="section.hasEosDates"
               :headers="`dates-${meeting.id}`"
               class="p-0"
