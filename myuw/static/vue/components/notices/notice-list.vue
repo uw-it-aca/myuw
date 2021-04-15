@@ -110,3 +110,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+::v-deep .date {
+  font-weight: bold;
+}
+</style>
