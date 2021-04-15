@@ -250,7 +250,7 @@ jobs:
         if: >-
           contains(fromJSON('["main", "master", "qa"]'),
             steps.cicd.outputs.git_repo_branch)
-        uses: uw-it-aca/actions/cicd-deploy@v1.4
+        uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
@@ -259,7 +259,7 @@ jobs:
 
       - name: Deploy Develop Branch
         if: steps.cicd.outputs.git_repo_branch == 'develop'
-        uses: uw-it-aca/actions/cicd-deploy@v1.4
+        uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
@@ -269,7 +269,7 @@ jobs:
 
       - name: Deploy Vue Branch
         if: steps.cicd.outputs.git_repo_branch == 'feature/vue'
-        uses: uw-it-aca/actions/cicd-deploy@v1.4
+        uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
