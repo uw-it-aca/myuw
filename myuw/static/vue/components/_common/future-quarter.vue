@@ -5,7 +5,7 @@
         <div v-for="(term, i) in terms" :key="i">
           <uw-card v-if="term.has_registration" loaded>
             <template #card-heading>
-              <h2 class="mb-3 text-dark-beige myuw-font-encode-sans">
+              <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
                 {{ term.quarter }} {{ term.year }}
                 <span v-if="term.summer_term" class="text-capitalize">
                   {{ term.summer_term }}
