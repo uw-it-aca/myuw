@@ -19,7 +19,7 @@
               :class="`text-c${section.colorId}`"
               class="mr-1"
             />
-            <span class="h6 text-dark-beige myuw-font-encode-sans">
+            <span class="h6 myuw-font-encode-sans">
               {{ section.courseId }}:
             </span>
           </div>

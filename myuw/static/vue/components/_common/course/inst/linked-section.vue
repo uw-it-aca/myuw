@@ -59,14 +59,14 @@
 
     <div class="w-10">
       <b-button v-if="!section.mini_card"
-        variant="light"
+        variant="link"
         :title="`Pin mini-card of ${section.label} onto Teaching page`"
         @click="miniCard"
       >
         Pin
       </b-button>
       <b-button v-else
-        variant="dark"
+        variant="link"
         :title="`Remove mini-card of ${section.label} from Teaching page`"
         @click="miniCard"
       >

@@ -31,7 +31,7 @@
                 :class="`text-c${section.color_id}`"
                 class="mr-1"
               />
-              <span class="h6 text-dark-beige myuw-font-encode-sans m-0">
+              <span class="h6 myuw-font-encode-sans m-0">
                 {{ section.curriculum_abbr }} {{ section.course_number }}
               </span>
             </div>
