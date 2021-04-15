@@ -42,7 +42,7 @@
                 <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error
               </b-link>
               <b-link
-                v-else
+                v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
