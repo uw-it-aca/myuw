@@ -22,7 +22,7 @@ jobs:
 
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.4
+        uses: uw-it-aca/actions/cicd-context@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
@@ -82,7 +82,7 @@ jobs:
 
       - name: Push Image to GCR
         if: github.event_name == 'push'
-        uses: uw-it-aca/actions/gcr-push@v1.4
+        uses: uw-it-aca/actions/gcr-push@main
         with:
           image_tag: ${{ steps.cicd.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
@@ -242,7 +242,7 @@ jobs:
 
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.4
+        uses: uw-it-aca/actions/cicd-context@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
