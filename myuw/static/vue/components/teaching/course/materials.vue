@@ -1,16 +1,17 @@
 <template>
-  <div class="d-flex">
-    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
-      :class="{'sr-only': showRowHeader}">
-      Course Materials
-    </h3>
-    <ul class="w-75">
-      <uw-teac-website :section="section" />
-      <uw-teac-email-list :section="section" />
-      <uw-teac-canvas :section="section" />
-      <uw-teac-textbook v-if="!section.mini_card" :section="section" />
-    </ul>
-  </div>
+  <uw-card-property-group>
+    <uw-card-property title="Course Materials">
+      <a v-if="section.myuwclass_url" :href="section.myuwclass_url">
+        <img src="/static/images/myuwclasslink.gif" width="67px" height="24px" />
+      </a>
+      <ul class="mb-0 list-unstyled">
+        <li class="mb-1"><uw-teach-website :section="section" /></li>
+        <li class="mb-1"><uw-teach-email-list :section="section" /></li>
+        <li class="mb-1"><uw-teach-canvas :section="section" /></li>
+        <li><uw-teach-textbook v-if="!section.mini_card" :section="section" /></li>
+      </ul>
+    </uw-card-property>
+  </uw-card-property-group>
 </template>
 
 <script>
@@ -18,22 +19,22 @@ import Canvas from './materials/canvas.vue';
 import Website from './materials/website.vue';
 import EmailList from './materials/email-list.vue';
 import Textbook from './materials/textbook.vue';
+import CardPropertyGroup from '../../_templates/card-property-group.vue';
+import CardProperty from '../../_templates/card-property.vue';
 
 export default {
   components: {
-    'uw-teac-canvas': Canvas,
-    'uw-teac-website': Website,
-    'uw-teac-email-list': EmailList,
-    'uw-teac-textbook': Textbook,
+    'uw-card-property-group': CardPropertyGroup,
+    'uw-card-property': CardProperty,
+    'uw-teach-canvas': Canvas,
+    'uw-teach-website': Website,
+    'uw-teach-email-list': EmailList,
+    'uw-teach-textbook': Textbook,
   },
   props: {
     section: {
       type: Object,
       required: true,
-    },
-    showRowHeader: {
-      type: Boolean,
-      default: false,
     },
   },
 };

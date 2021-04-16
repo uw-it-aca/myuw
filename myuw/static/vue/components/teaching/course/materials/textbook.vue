@@ -1,10 +1,11 @@
 <template>
-  <li v-if="section.sln">
-      <b-link
-        :href="textbookUrl"
-        :title="`Textbooks of ${section.label}`"
-      >Textbooks</b-link>
-  </li>
+  <b-link
+    v-if="section.sln"
+    :href="textbookUrl"
+    :title="`Textbooks of ${section.label}`"
+  >
+    Textbooks
+  </b-link>
 </template>
 
 <script>

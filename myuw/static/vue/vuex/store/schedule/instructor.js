@@ -156,6 +156,8 @@ function addCourseGradeData(courseData) {
           section.grading_status.submittedFmt = submitted.calendar(now);
         }
       }
+    } else {
+      section.grading_status = {};
     }
 
     section.gradeSubmissionSectionDelegate =

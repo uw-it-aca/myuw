@@ -11,7 +11,7 @@
     </template>
     <template #card-body>
       <div vocab="http://schema.org/" typeof="Person">
-        <b-container class="bv-example-row">
+        <b-container>
           <template v-if="position">
             <uw-card-property title="Department">
               {{ position.department }}

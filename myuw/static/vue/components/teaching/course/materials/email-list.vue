@@ -1,5 +1,5 @@
 <template>
-  <li v-if="section.email_list">
+  <span v-if="section.email_list">
     <span>Email List:&nbsp;&nbsp;</span>
     <span v-if="
       section.email_list.section_list &&
@@ -58,10 +58,20 @@
         <uw-email-request-model :email-list="section.email_list" :sln="section.sln" />
       </span>
     </span>
-  </li>
+  </span>
+  <span v-else class="text-danger myuw-text-md">
+    <font-awesome-icon :icon="faExclamationTriangle" />
+    An error occurred with the
+    <a href="https://mailman.u.washington.edu/" v-out="`UW Mailman`" target="_blank">
+      email list</a>.
+    Please try again later.
+  </span>
 </template>
 
 <script>
+import {
+  faExclamationTriangle,
+} from '@fortawesome/free-solid-svg-icons';
 import EmailRequestModel from './email-modals/request.vue';
 import EmailViewModel from './email-modals/view.vue';
 
@@ -79,6 +89,7 @@ export default {
   data() {
     return {
       show: false,
+      faExclamationTriangle,
     };
   },
   computed: {

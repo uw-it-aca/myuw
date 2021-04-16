@@ -14,13 +14,15 @@
     </template>
 
     <template #card-body>
-      <uw-meeting-info show-row-heading :section="section" />
-      <uw-final-exam show-row-heading :section="section" />
-      <uw-class-list show-row-heading :section="section" />
-      <uw-stats show-row-heading :section="section" />
-      <uw-materials show-row-heading :section="section"/>
-      <uw-grading v-if="section.for_credit" show-row-heading :section="section"/>
-      <uw-evaluation show-row-heading :section="section"/>
+      <uw-card-property-group>
+        <uw-meeting-info show-row-heading :section="section" />
+        <uw-final-exam :section="section" />
+      </uw-card-property-group>
+      <uw-class-list :section="section" />
+      <uw-stats :section="section" />
+      <uw-materials :section="section"/>
+      <uw-grading v-if="section.for_credit" :section="section"/>
+      <uw-evaluation :section="section" />
     </template>
     <template v-if="linkedSections.length > 0" #card-disclosure>
       <b-collapse
@@ -58,6 +60,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import Card from '../../_templates/card.vue';
+import CardPropertyGroup from '../../_templates/card-property-group.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 import JointSection from './joint-section.vue';
@@ -72,6 +75,7 @@ import LinkedSection from '../../_common/course/inst/linked-section.vue';
 export default {
   components: {
     'uw-card': Card,
+    'uw-card-property-group': CardPropertyGroup,
     'uw-course-header': CourseHeader,
     'uw-joint-section': JointSection,
     'uw-meeting-info': MeetingInfo,
