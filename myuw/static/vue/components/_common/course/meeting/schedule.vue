@@ -24,7 +24,7 @@
         <tr v-for="meeting in section.meetings" :key="meeting.id">
           <td v-if="section.hasEosDates"
             :headers="`dates-${meeting.id}`"
-            class="p-0"
+            class="text-left p-0"
           >
             <span v-if="meeting.eos_start_date && meeting.eos_end_date">
               {{ formatEos(meeting) }}
@@ -54,18 +54,18 @@
 
           <template v-else-if="meeting.start_time && meeting.end_time">
             <td :headers="`days-${meeting.id}`"
-              class="p-0 text-nowrap"
+              class="p-0 text-left text-nowrap"
             >
               <uw-meeting-days :meeting="meeting" />
             </td>
             <td :headers="`time-${meeting.id}`"
-              class="p-0 text-center text-nowrap"
+              class="p-0 text-left text-nowrap"
             >
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
             <td :headers="`location-${meeting.id}`"
-              class="p-0 text-right text-nowrap"
+              class="p-0 text-left text-nowrap"
             >
               <uw-meeting-location :meeting="meeting" />
             </td>
@@ -73,7 +73,7 @@
 
           <td v-if="section.showMtgType"
             :headers="`type-${meeting.id}`"
-            class="p-0 text-right"
+            class="p-0 text-left"
           >
             <span v-if="meeting.displayType" :title="`${meeting.type}`"
                   :class="`px-1 border myuw-text-sm
