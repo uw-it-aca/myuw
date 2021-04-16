@@ -1,5 +1,5 @@
 {
-"DisplayName":"JAMES NEW STUDENT",
+"DisplayName": null,
 "EduPersonAffiliations":["member",
                          "student",
                          "alum",
@@ -9,7 +9,7 @@
 "PriorUWNetIDs":[],
 "PriorUWRegIDs":[],
 "RegisteredFirstMiddleName":"JAMES ERROR",
-"RegisteredName":"JAMES ERROR STUDENT",
+"RegisteredName": null,
 "RegisteredSurname":"STUDENT",
 "UIDNumber":"35443",
 "UWNetID":"jerror",
