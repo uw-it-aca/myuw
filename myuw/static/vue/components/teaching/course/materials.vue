@@ -2,7 +2,7 @@
   <uw-card-property-group>
     <uw-card-property title="Course Materials">
       <a v-if="section.myuwclass_url" :href="section.myuwclass_url">
-        <img src="/static/images/myuwclasslink.gif" width="67px" height="24px" />
+        <img :src="`${staticUrl}images/myuwclasslink.gif`" width="67px" height="24px" />
       </a>
       <ul class="mb-0 list-unstyled">
         <li class="mb-1"><uw-teach-website :section="section" /></li>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import Canvas from './materials/canvas.vue';
 import Website from './materials/website.vue';
 import EmailList from './materials/email-list.vue';
@@ -36,6 +37,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    ...mapState({
+      staticUrl: (state) => state.staticUrl,
+    }),
   },
 };
 </script>

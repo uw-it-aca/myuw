@@ -1,22 +1,42 @@
 <template>
-  <b-tabs lazy :value="selectedTab" @activate-tab="displayedTabChange">
+  <b-tabs
+    lazy
+    pills
+    nav-wrapper-class="mb-3 p-0"
+    active-nav-item-class="bg-transparent rounded-0 myuw-border-bottom
+      border-dark text-body font-weight-bold"
+    :value="selectedTab"
+    @activate-tab="displayedTabChange"
+  >
     <!--
       Only mounts the tab when it is selected, so the data should be
       fetched on mount for the components in here
      -->
-    <b-tab v-for="(tab, i) in displayedTabs" :key="i">
+    <b-tab
+      v-for="(tab, i) in displayedTabs"
+      :key="i"
+      title-item-class="text-nowrap text-uppercase myuw-text-xs mr-2 mb-1"
+      title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
+    >
       <template #title>
         {{ tab.quarter }} '{{ tab.year % 100 }}
       </template>
       <slot :tab="tab" />
     </b-tab>
-    <b-tab title-link-class="p-0">
+    <b-tab
+      title-item-class="text-nowrap text-uppercase myuw-text-xs mr-2 mb-1"
+      title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
+    >
       <template #title>
-        <b-form-select
-          v-model="selectedOption"
-          :options="dropdownTabsSelectable"
-          @change="optionTabChange"
-        />
+        <div class="form-select-parent">
+          <b-form-select
+            plain
+            v-model="selectedOption"
+            :options="dropdownTabsSelectable"
+            @change="optionTabChange"
+          />
+          <font-awesome-icon :icon="faChevronDown" class="down-arrow"/>
+        </div>
       </template>
       <slot :tab="dropdownTabs[selectedOption]" />
     </b-tab>
@@ -24,6 +44,10 @@
 </template>
 
 <script>
+import {
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
+
 export default {
   model: {
     prop: 'selectedTerm',
@@ -105,6 +129,7 @@ export default {
       displayedTabs,
       dropdownTabs,
       dropdownTabsSelectable,
+      faChevronDown,
     };
   },
   watch: {
@@ -134,3 +159,38 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+select {
+  &::-ms-expand {
+    display: none;
+  }
+
+  &.form-control {
+    appearance: none;
+    background: initial;
+    border: initial;
+    border-radius: inherit;
+    padding: 0;
+    font-size: inherit;
+    text-transform: inherit;
+    color: inherit;
+    cursor: pointer;
+
+    padding-left: 0.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+.form-select-parent {
+  position: relative;
+
+  .down-arrow {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.2rem;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+</style>
