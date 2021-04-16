@@ -101,6 +101,9 @@ export default {
     div { margin-bottom: 1rem;
       &:last-child { margin-bottom: 0;}
     }
+    ::v-deep .date {
+      font-weight: bold;
+    }
   }
 }
 </style>
