@@ -112,4 +112,7 @@ export default {
 .notice-title, .notice-body-with-title, .non-notice-body-with-title {
   display: block;
 }
+::v-deep .date {
+  font-weight: bold;
+}
 </style>

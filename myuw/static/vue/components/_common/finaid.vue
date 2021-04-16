@@ -81,6 +81,10 @@ export default {
     font-weight: bold;
     display: block;
   }
+
+  ::v-deep .date {
+    font-weight: bold;
+  }
 }
 
 span {
