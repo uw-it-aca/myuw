@@ -141,7 +141,7 @@ export default {
     },
     formatDateRange(d1, d2) {
       if (d1 && d2) {
-        if (d1.isSame(d2)) {
+        if (d1.isSame(d2, 'day')) {
           return `${d1.format("MMM D")}`;
         } else if (d1.isSame(d2, 'month')) {
           return `${d1.format("MMM D")} - ${d2.format("D")}`;
