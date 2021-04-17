@@ -30,8 +30,8 @@
       <template #title>
         <div class="form-select-parent">
           <b-form-select
-            plain
             v-model="selectedOption"
+            plain
             :options="dropdownTabsSelectable"
             @change="optionTabChange"
           />

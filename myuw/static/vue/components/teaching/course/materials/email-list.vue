@@ -62,7 +62,7 @@
   <span v-else class="text-danger myuw-text-md">
     <font-awesome-icon :icon="faExclamationTriangle" />
     An error occurred with the
-    <a href="https://mailman.u.washington.edu/" v-out="`UW Mailman`" target="_blank">
+    <a v-out="`UW Mailman`" href="https://mailman.u.washington.edu/" target="_blank">
       email list</a>.
     Please try again later.
   </span>
