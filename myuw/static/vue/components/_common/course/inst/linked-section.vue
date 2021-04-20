@@ -13,7 +13,7 @@
             />
             <div>
             <h3
-              class="myuw-text-md font-weight-bold d-inline"
+              class="myuw-text-md myuw-font-encode-sans d-inline"
               :aria-label="section.lable"
             >
               <a v-if="section.mini_card"

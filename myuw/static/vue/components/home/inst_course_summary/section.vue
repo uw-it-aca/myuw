@@ -11,7 +11,7 @@
             />
             <div class="flex-fill">
               <h3
-                class="myuw-text-md font-weight-bold d-inline"
+                class="myuw-text-md myuw-font-encode-sans d-inline text-nowrap"
                 :aria-label="section.id.replace(/-/g,' ')"
               >
                 <a
@@ -21,10 +21,8 @@
                   title="Click to view the card on Teaching page"
                 >
                   {{ section.curriculum_abbr }}
-                  <span class="text-nowrap">
-                    {{ section.course_number }}
-                    {{ section.section_id }}
-                  </span>
+                  {{ section.course_number }}
+                  {{ section.section_id }}
                 </a>
               </h3>
               <div :class="[$mq === 'mobile' ? 'float-right' : '']">
