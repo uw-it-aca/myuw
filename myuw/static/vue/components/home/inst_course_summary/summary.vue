@@ -1,7 +1,7 @@
 <template>
-  <uw-card v-if="instructor"
+  <uw-card v-if="instructor && (isErrored || hasContent)"
            v-meta="{term: term}"
-           :loaded="showContent"
+           :loaded="isReady"
            :errored="isErrored"
            :errored-show="statusCodeTagged(term) !== 404"
   >
@@ -116,8 +116,8 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
-    showContent() {
-      return this.isReady && this.instSchedule &&
+    hasContent() {
+      return this.instSchedule &&
         (this.instSchedule.sections.length || !this.instSchedule.future_term);
     },
     getYear() {
