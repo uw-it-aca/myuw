@@ -81,6 +81,8 @@ class TestRegisteredTerm(TransactionTestCase):
         self.assertEqual(terms[2]['quarter'], "Autumn")
         self.assertIsNone(terms[2]['summer_term'])
         self.assertEquals(data['next_term_data']['label'], '2013,autumn')
+        self.assertEqual(terms[2]['credits'], '10.0')
+
 
         # Summer has started - exclude a-term
         req = get_request_with_user(
