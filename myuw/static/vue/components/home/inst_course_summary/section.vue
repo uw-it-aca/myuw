@@ -66,7 +66,7 @@
               <h4 class="sr-only">
                 Section Enrollments:
               </h4>
-              <uw-enrollment :section="section" class="myuw-text-md ml-5"/>
+              <uw-enrollment :section="section" class="myuw-text-md ml-4 text-nowrap"/>
             </div>
           </div>
         </b-col>
