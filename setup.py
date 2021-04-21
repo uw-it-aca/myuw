@@ -31,7 +31,7 @@ setup(
         'uw-memcached-clients>=1.0.7,<2.0',
         'UW-Django-SAML2<2.0',
         'django-aws-message<2.0',
-        'UW-RestClients-Core>=1.3.3,<2.0',
+        'UW-RestClients-Core==1.3.3',
         'UW-RestClients-Bookstore<2.0',
         'UW-RestClients-Canvas>=1.1.9,<2.0',
         'UW-RestClients-CoDa<2.0',
