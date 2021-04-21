@@ -6,6 +6,7 @@
           <div class="d-flex">
             <font-awesome-icon
               :icon="faSquareFull"
+              size="sm"
               :class="`text-c${section.color_id}`"
               class="mr-1 mt-1"
             />
@@ -27,7 +28,7 @@
                   </span>
                 </a>
               </h3>
-              <div :class="[$mq === 'mobile' ? 'float-right' : '']">
+              <div :class="$mq === 'desktop' ? '' : 'float-right'">
                 <div class="d-inline">
                   <h4 class="sr-only">
                     Section Type:
@@ -68,7 +69,11 @@
               <h4 class="sr-only">
                 Section Enrollments:
               </h4>
-              <uw-enrollment :section="section" class="myuw-text-md ml-5"/>
+              <uw-enrollment
+                :section="section"
+                class="myuw-text-md text-nowrap"
+                :class="$mq === 'desktop' ? 'ml-5' : 'ml-3'"
+              />
             </div>
           </div>
         </b-col>
@@ -76,24 +81,26 @@
     </b-container>
 
     <template v-if="getLinkedSections(section).length > 0">
-      <b-button
-        v-b-toggle="`linked-sections-${section.id}`"
-        variant="light" block
-        class="p-0 text-dark myuw-text-md my-2"
-      >
-        Linked Sections of {{ section.curriculum_abbr }}
-        {{ section.course_number }} {{ section.section_id }}
-        <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
-        <font-awesome-icon v-else :icon="faChevronUp" />
-      </b-button>
+      <div :class="$mq === 'desktop' ? 'ml-3' : ''">
+        <b-button
+          v-b-toggle="`linked-sections-${section.id}`"
+          variant="link"
+          class="p-0 text-dark myuw-text-md my-2"
+        >
+          Linked Sections of {{ section.curriculum_abbr }}
+          {{ section.course_number }} {{ section.section_id }}
+          <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
+          <font-awesome-icon v-else :icon="faChevronUp" />
+        </b-button>
 
-      <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
-        <uw-linked-section
-          v-for="(sec, j) in getLinkedSections(section)"
-          :key="`secondary-${section.id}-${j}`"
-          :section="sec"
-        />
-      </b-collapse>
+        <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
+          <uw-linked-section
+            v-for="(sec, j) in getLinkedSections(section)"
+            :key="`secondary-${section.id}-${j}`"
+            :section="sec"
+          />
+        </b-collapse>
+      </div>
     </template>
     <hr>
   </div>

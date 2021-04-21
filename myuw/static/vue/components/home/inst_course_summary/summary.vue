@@ -1,5 +1,5 @@
 <template>
-  <uw-card v-if="instructor && showContent"
+  <uw-card v-if="instructor && (showContent || !isReady)"
            v-meta="{term: term}"
            :loaded="isReady"
            :errored="isErrored"

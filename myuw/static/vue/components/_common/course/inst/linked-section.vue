@@ -9,7 +9,7 @@
               :icon="faSquareFull"
               :class="`text-c${section.color_id}`"
               class="my-auto mr-1"
-              style="width: 8px; height: 16px;"
+              size="xs"
             />
             <div>
             <h3
@@ -87,7 +87,7 @@
               @click="miniCard"
               class="myuw-text-md text-muted p-0"
             >
-              Pin to Teaching
+              Pin
             </b-button>
             <b-button v-else
               variant="link"

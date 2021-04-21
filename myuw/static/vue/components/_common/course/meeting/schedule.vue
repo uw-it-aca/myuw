@@ -31,7 +31,7 @@
           <tr v-for="meeting in section.meetings" :key="meeting.id" style="line-height: 24px;">
             <td v-if="section.hasEosDates"
               :headers="`dates-${meeting.id}`"
-              class="p-0"
+              class="p-0 text-nowrap"
             >
               <span v-if="meeting.eos_start_date && meeting.eos_end_date">
                 {{ formatEos(meeting) }}

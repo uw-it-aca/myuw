@@ -78,8 +78,8 @@
             class="w-100 p-0 border-0 text-dark"
           >
             Course Details
-            <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
-            <font-awesome-icon v-else :icon="faChevronUp" />
+            <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
+            <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
           </b-button>
         </template>
 
@@ -92,8 +92,8 @@
               class="w-100 p-0 border-0 text-dark"
             >
               Instructors
-              <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
-              <font-awesome-icon v-else :icon="faChevronUp" />
+              <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
+              <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
             </b-button>
           </template>
           <div v-else class="text-center text-muted font-italic myuw-text-md"
