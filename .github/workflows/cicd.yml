@@ -240,7 +240,7 @@ jobs:
           name: jest-coverage
 
       # TODO: Download the cypress coverage artifact
-      
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
