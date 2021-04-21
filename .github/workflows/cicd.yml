@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, feature/vue, feature/eval-me]
+    branches: [main, master, qa, develop, feature/vue]
   pull_request:
-    branches: [main, master, qa, develop, feature/vue, feature/eval-me]
+    branches: [main, master, qa, develop, feature/vue]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -52,17 +52,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
-
-      - name: Run Python Linters
-        uses: uw-it-aca/actions/python-linters@main
-        with:
-          app_name: ${DJANGO_APP}
-          exclude_paths: 'migrations'
 
       - name: Set up Context
         id: cicd
@@ -251,6 +240,17 @@ jobs:
           name: jest-coverage
 
       # TODO: Download the cypress coverage artifact
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      - name: Run Python Linters
+        uses: uw-it-aca/actions/python-linters@main
+        with:
+          app_name: ${DJANGO_APP}
+          exclude_paths: 'migrations'
 
       - name: Set up Ruby 2.6
         uses: actions/setup-ruby@v1
