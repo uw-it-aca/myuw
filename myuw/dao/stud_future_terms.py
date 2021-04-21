@@ -165,12 +165,12 @@ def _get_summer_term_data(schedule):
         if is_full_summer_term(section.summer_term):
             data[FULL_TERM] = True
             data[FULL_TERM_SECTIONS] += 1
-            data[FULL_TERM_CREDITS] = float(section.registration.credits)
+            data[FULL_TERM_CREDITS] += float(section.registration.credits)
             continue
         if is_a_term(section.summer_term):
             data[A_TERM] = True
             data[A_TERM_SECTIONS] += 1
-            data[A_TERM_CREDITS] = float(section.registration.credits)
+            data[A_TERM_CREDITS] += float(section.registration.credits)
             continue
         if is_b_term(section.summer_term):
             data[B_TERM] = True
