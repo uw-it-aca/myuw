@@ -53,6 +53,17 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      - name: Run Python Linters
+        uses: uw-it-aca/actions/python-linters@main
+        with:
+          app_name: ${DJANGO_APP}
+          exclude_paths: 'migrations'
+
       - name: Set up Context
         id: cicd
         uses: uw-it-aca/actions/cicd-context@main
@@ -112,13 +123,6 @@ jobs:
         with:
           name: python-coverage
           path: .coverage.*
-
-      - name: Push Image to GCR
-        if: github.event_name == 'push'
-        uses: uw-it-aca/actions/gcr-push@main
-        with:
-          image_tag: ${{ steps.cicd.outputs.image_tag }}
-          gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
     outputs:
       image_tag: ${{ steps.cicd.outputs.image_tag }}
@@ -240,17 +244,6 @@ jobs:
           name: jest-coverage
 
       # TODO: Download the cypress coverage artifact
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
-
-      - name: Run Python Linters
-        uses: uw-it-aca/actions/python-linters@main
-        with:
-          app_name: ${DJANGO_APP}
-          exclude_paths: 'migrations'
 
       - name: Set up Ruby 2.6
         uses: actions/setup-ruby@v1
