@@ -63,6 +63,7 @@ def page(request,
     netid = user.uwnetid
     context["user"] = {
         "netid": netid,
+        "isHybrid": is_native(request),
     }
 
     if prefetch:
