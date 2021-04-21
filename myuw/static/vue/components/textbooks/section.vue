@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-b-toggle="`books-${section.sln}`" :disabled="!collapsable">
-      <h3 class="h4">
+      <h2 class="h5 mb-3 text-dark-beige myuw-font-encode-sans">
         <font-awesome-icon
           :icon="faSquareFull"
           :class="`text-c${section.colorId}`"
@@ -9,7 +9,7 @@
         />
         {{ section.curriculum }}
         {{ section.courseNumber }}{{ section.sectionId }}
-      </h3>
+      </h2>
       <div v-if="collapsable && !isOpen">
         {{ section.books.length }}
         {{ section.books.length > 1 ? "textbooks" : "textbook" }}

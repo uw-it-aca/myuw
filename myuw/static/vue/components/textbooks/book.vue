@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h4 class="h5">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       {{ book.title }}
-    </h4>
+    </h3>
 
     <div class="d-flex">
       <div class="mr-3"
@@ -42,7 +42,7 @@
             </div>
             <div>
               Visit
-              <a target="_blank" :href="orderUrl">
+              <a :href="orderUrl">
                 ubookstore.com
               </a>
               for pricing on all available formats.

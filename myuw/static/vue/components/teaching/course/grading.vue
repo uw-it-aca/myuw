@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h3 :class="{'sr-only': showRowHeader}">
+    <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Grading System
     </h3>
-    <div>
+    <div class="w-75">
       <span v-if="section.grading_system">
         {{titleCaseWord(section.grading_system)}}
       </span>
@@ -11,10 +13,13 @@
         Unspecified
       </span>
     </div>
-    <h3 :class="{'sr-only': showRowHeader}">
+    </div>
+    <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Delegate{{gradeSubmissionDelegatesCount > 1 ? 's' :  ''}}
     </h3>
-    <div>
+    <div class="w-75">
       <ul v-if="section.grade_submission_delegates">
         <li v-for="(delegate, i) in section.grade_submission_delegates" :key="i">
           {{titleCaseName(delegate.person.display_name)}}
@@ -33,10 +38,13 @@
         </span>
       </a>
     </div>
-    <h3 :class="{'sr-only': showRowHeader}">
+    </div>
+    <div class="d-flex">
+    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
+      :class="{'sr-only': showRowHeader}">
       Grade Submission
     </h3>
-    <div>
+    <div class="w-75">
       <div v-if="section.gradingPeriod.isOpen">
         <div v-if="section.grading_status !== 'error'">
           <span v-if="section.grading_status">
@@ -44,7 +52,6 @@
               <a
                 v-out="'Grade submitted'"
                 :href="section.grading_status.section_url"
-                target="_blank"
               >
                 {{section.grading_status.submitted_count}}
                 grade{{section.grading_status.submitted_count ? 's' : ''}}
@@ -57,7 +64,6 @@
               <a
                 v-out="'Grade to submit'"
                 :href="section.grading_status.section_url"
-                target="_blank"
               >
                 {{section.grading_status.unsubmitted_count}}
                 grade{{section.grading_status.unsubmitted_count ? 's' : ''}}
@@ -69,7 +75,6 @@
               <a
                 v-if="section.grading_status.no_grades_submitted"
                 :href="section.grading_status.section_url"
-                target="_blank"
               >
                 Submit grades in Gradepage
               </a>
@@ -79,8 +84,7 @@
             </span>
             <span v-else>
               Grading for secondary section is disabled.
-              <a
-                :href="section.grading_status.section_url"  target="_blank">
+              <a :href="section.grading_status.section_url">
                 Grade primary section
               </a>.
             </span>
@@ -88,7 +92,6 @@
           <a
             v-out="'GradePage Help'"
             href="https://itconnect.uw.edu/learn/tools/gradepage/"
-            target="_blank"
           >
             <font-awesome-icon :icon="faQuestionCircle" />
           </a>
@@ -98,7 +101,6 @@
           An error occurred with
           <a
             href="https://gradepage.uw.edu/"
-            target="_blank"
           >Gradepage</a>. Please try again later.
         </div>
         <div>
@@ -117,7 +119,6 @@
             <a
               v-out="'Grade submitted by'"
               :href="section.grading_status.section_url"
-              target="_blank"
             >
               {{section.grading_status.submitted_count}}
               grade{{section.grading_status.submitted_count ? 's' : ''}}
@@ -146,7 +147,6 @@
               <br />
               <a
                 href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
-                target="_blank"
               >What can I do now?</a>
             </span>
           </div>
@@ -164,6 +164,7 @@
           {{section.gradingPeriod.deadlineFmt}}
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>

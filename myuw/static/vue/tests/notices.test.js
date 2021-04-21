@@ -34,7 +34,7 @@ describe('Notice Card', () => {
         notices.getters.isFetching(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
         notices.getters.isReady(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
@@ -53,7 +53,7 @@ describe('Notice Card', () => {
         notices.getters.isFetching(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
         notices.getters.isReady(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
@@ -67,7 +67,7 @@ describe('Notice Card', () => {
     axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
     const wrapper = shallowMount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
         notices.getters.isErrored(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
@@ -80,7 +80,7 @@ describe('Notice Card', () => {
     axios.get.mockResolvedValue({data: jnewNotices, status: 200});
     const wrapper = shallowMount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
         notices.getters.isReady(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
@@ -111,7 +111,7 @@ describe('Notice Card', () => {
     axios.get.mockResolvedValue({data: javgNotices, status: 200});
     const wrapper = mount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.findAll('button')).toHaveLength(9);
@@ -129,7 +129,7 @@ describe('Notice Card', () => {
     axios.put = jest.fn(() => Promise.resolve());
     const wrapper = mount(NoticeCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
     expect(
         notices.getters.isReady(wrapper.vm.$store.state.notices),
     ).toBeTruthy();

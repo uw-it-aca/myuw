@@ -19,7 +19,6 @@
         An error occurred and MyUW cannot load your information right now.
         In the meantime, try the
         <a href="https://services.uwmedicine.org/passwordportal/login.htm"
-           target="_blank"
         >UW Medicine Account</a> page.
       </template>
       <template #card-body>
@@ -41,7 +40,7 @@
           </b-alert>
         </div>
         <div v-else>
-          <h3>
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
             Password expiration
           </h3>
           <div :class="expires30Days ? 'text-danger' : ''">
@@ -49,9 +48,7 @@
             <span>in {{ daysBeforeExpires }} days*</span>
           </div>
           <p>*Expiration date gets updated nightly.</p>
-          <a :href="passwordChange"
-             target="_blank"
-          >
+          <a :href="passwordChange">
             Change UW Medicine password
           </a>
         </div>

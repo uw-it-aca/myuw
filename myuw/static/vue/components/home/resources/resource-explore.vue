@@ -44,7 +44,7 @@
       </ul>
       <hr>
       <div>
-        <h3 class="h6 mb-3 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           More topics
         </h3>
         <ul class="list-inline myuw-text-md">

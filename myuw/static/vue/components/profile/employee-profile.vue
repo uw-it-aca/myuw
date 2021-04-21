@@ -23,13 +23,7 @@
           <uw-card-property v-if="email" title="Email:">
             {{ email }}
           </uw-card-property>
-          <uw-card-property title="">
-            <template #title>
-              <span class="sr-only" property="name">UW Office</span>
-              <div class="flex-md-fill mr-3 bd-highlight font-weight-bold property-label">
-                Phone Number
-              </div>
-            </template>
+          <uw-card-property title="Phone Number">
             <p v-if="noFormsOfContact">No phone numbers listed</p>
             <p v-if="phone">
               Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
@@ -56,7 +50,6 @@
               <uw-link-button
                 class="myuw-workday"
                 href="https://wd5.myworkday.com/uw/login.htmld"
-                target="_blank"
                 :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
                 >Manage profile in Workday
               </uw-link-button>

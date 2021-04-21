@@ -37,7 +37,7 @@ describe('Student Profile Card', () => {
   it('Verify computed properties', async () => {
     axios.get.mockResolvedValue({data: javg001Profile, status: 200});
     const wrapper = shallowMount(StudentProfileCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.profile).toBeTruthy();
@@ -46,7 +46,7 @@ describe('Student Profile Card', () => {
   it('addressLocationString()', async () => {
     axios.get.mockResolvedValue({data: javg001Profile, status: 200});
     const wrapper = shallowMount(StudentProfileCard, {store, localVue});
-    await new Promise((r) => setTimeout(r, 10));
+    await new Promise(setImmediate);
 
     expect(
       wrapper.vm.addressLocationString(wrapper.vm.permanentAddress)

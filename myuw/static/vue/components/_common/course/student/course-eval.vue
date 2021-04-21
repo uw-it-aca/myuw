@@ -1,6 +1,6 @@
 <template>
   <div v-if="evalData.length > 0">
-    <h3 class="font-weight-bold myuw-text-md">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Course Evaluations
     </h3>
     <div class="myuw-text-md">
@@ -13,7 +13,7 @@
           <p>
             <a
               v-out="'Evaluate course'"
-              :href="evalObj.url" target="_blank"
+              :href="evalObj.url"
             >
               {{ section.curriculum_abbr }}
               {{ section.course_number }}
@@ -51,7 +51,7 @@
             >
               <a
                 v-out="'Evaluate instructor'"
-                :href="evalObj.url" target="_blank">
+                :href="evalObj.url">
                 {{ titleCaseName(instructor.instructor_name) }}
               </a>
               <div v-if="hasTitle(instructor)"

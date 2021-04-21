@@ -68,7 +68,7 @@
       </ul>
       <div class="text-right myuw-text-sm">
         <a
-          title="Edit plan to fix issues" target="_blank"
+          title="Edit plan to fix issues"
           :href="currentPlanData.myplan_href"
         >
           Go to your {{ nextTermQuarter }} {{ nextTermYear }}

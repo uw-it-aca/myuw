@@ -1,6 +1,6 @@
 <template>
   <div class="myuw-text-md">
-    <h3 class="w-25 font-weight-bold text-dark-beige">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Instructors
     </h3>
     <div>

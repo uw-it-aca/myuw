@@ -7,9 +7,9 @@
     class="myuw-thank-you"
   >
     <template #card-heading>
-      <h3 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Payment Received, Thank You
-      </h3>
+      </h2>
     </template>
     <template #card-body>
       <div class="myuw-thank-you-notices myuw-text-md">
@@ -100,6 +100,9 @@ export default {
   .myuw-thank-you-notices {
     div { margin-bottom: 1rem;
       &:last-child { margin-bottom: 0;}
+    }
+    ::v-deep .date {
+      font-weight: bold;
     }
   }
 }

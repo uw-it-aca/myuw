@@ -13,7 +13,7 @@
             />
             <div>
             <h3
-              class="myuw-text-md font-weight-bold d-inline"
+              class="myuw-text-md myuw-font-encode-sans d-inline"
               :aria-label="section.lable"
             >
               <a v-if="section.mini_card"
@@ -76,7 +76,7 @@
               <h4 class="sr-only">
                 Section Enrollments:
               </h4>
-              <uw-enrollment :section="section" class="myuw-text-md ml-5"/>
+              <uw-enrollment :section="section" class="myuw-text-md ml-4 text-nowrap"/>
             </div>
           </div>
 
@@ -84,16 +84,16 @@
             <b-button v-if="!section.mini_card"
               variant="link"
               :title="`Pin mini-card of ${section.label} onto Teaching page`"
-              @click="miniCard"
               class="myuw-text-md text-muted p-0"
+              @click="miniCard"
             >
               Pin
             </b-button>
             <b-button v-else
               variant="link"
               :title="`Remove mini-card of ${section.label} from Teaching page`"
-              @click="miniCard"
               class="myuw-text-md text-muted p-0"
+              @click="miniCard"
             >
               Unpin
             </b-button>
@@ -150,9 +150,11 @@ export default {
             }, 100);
           });
         } else {
-          window.location.pathname = `/teaching/${this.section.href}`;
+          // from home page, go to the card on teaching page
+          window.location.href = `/teaching/${this.section.href}`;
         }
       } else {
+        // on Teaching page, go to the card
         window.history.replaceState({}, null, window.location.pathname);
       }
     }

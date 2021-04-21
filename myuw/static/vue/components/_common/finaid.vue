@@ -1,6 +1,6 @@
 <template>
   <div class="mt-4">
-    <h3 class="h6 font-weight-bold text-dark-beige">
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Financial Aid
     </h3>
     <slot name="status" />
@@ -80,6 +80,10 @@ export default {
   ::v-deep .notice-title {
     font-weight: bold;
     display: block;
+  }
+
+  ::v-deep .date {
+    font-weight: bold;
   }
 }
 

@@ -46,13 +46,13 @@
         In MyPlan
       </h3>
       <div class="flex-fill text-right">
-        <div class="font-weight-bold">
+        <div>
           No courses in your plan
         </div>
         <div>
           <a
             v-out="'MyPlan Course Search'"
-            class="myuw-text-md" target="_blank"
+            class="myuw-text-md"
             :href="myplanCourseSearchHref"
           >Add courses</a>
         </div>
