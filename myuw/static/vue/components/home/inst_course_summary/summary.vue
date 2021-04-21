@@ -116,9 +116,10 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
-    showContent() {
-      return this.isErrored || this.instSchedule &&
-        (this.instSchedule.sections.length || !this.instSchedule.future_term);
+    showCard() {
+      return this.instructor && (
+        !this.isReady || this.isErrored || this.instSchedule &&
+        (this.instSchedule.sections.length || !this.instSchedule.future_term));
     },
     getYear() {
       return this.term === 'current' ? this.year : this.nextYear;
