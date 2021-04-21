@@ -11,7 +11,7 @@
     <template #card-body>
       <div style="text-align: center">
         <b-alert
-          v-if="tuitionDate.diff === 0 && tuition.tuition_accbalance > 0"
+          v-if="tuitionDate.diff === 0 && tuiBalance > 0"
           show
           variant="danger"
           class="text-danger"
@@ -20,7 +20,7 @@
           today.
         </b-alert>
         <b-alert
-          v-if="tuitionDate.diff < 0 && tuition.tuition_accbalance > 0"
+          v-if="tuitionDate.diff < 0 && tuiBalance > 0"
           show
           variant="danger"
           class="text-danger"
@@ -32,11 +32,11 @@
 
       <ul class="list-unstyled">
         <!-- If there is some or no tuition due -->
-        <li v-if="tuition.tuition_accbalance >= 0">
+        <li v-if="tuiBalance >= 0">
           <uw-card-status>
             <template #status-label>Amount Due</template>
-            <template v-if="tuition.tuition_accbalance > 0" #status-value>
-              <span class="text-danger">${{ tuition.tuition_accbalance.toFixed(2) }}</span>
+            <template v-if="tuiBalance > 0" #status-value>
+              <span class="text-danger">${{ tuiBalance.toFixed(2) }}</span>
             </template>
             <template v-else #status-value>$ 0</template>
             <template #status-content>
@@ -48,7 +48,7 @@
                     </a>
                 </div>
               </div>
-              <div class="text-right">
+              <div v-if="tuiBalance != 0" class="text-right">
                 <uw-link-button
                   v-out="'Make tuition payment'"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
@@ -60,7 +60,7 @@
           </uw-card-status>
         </li>
         <!-- If there is credit on account -->
-        <li v-else-if="tuition.tuition_accbalance < 0">
+        <li v-else-if="tuiBalance < 0">
           <div class="d-flex">
             <div>
               <h3 class="h6 text-dark myuw-font-encode-sans">
@@ -70,7 +70,7 @@
             </div>
             <div>
               <span class="h6 text-dark myuw-font-encode-sans"
-                >+${{ Math.abs(tuition.tuition_accbalance).toFixed(2) }} CR</span
+                >+${{ Math.abs(tuiBalance).toFixed(2) }} CR</span
               >
               <span>No payment needed</span><br />
               <a
@@ -81,11 +81,11 @@
           </div>
         </li>
         <!-- If there is a PCE balance -->
-        <li v-if="tuition.pce_accbalance > 0">
+        <li v-if="pceBalance > 0">
           <uw-card-status>
             <template #status-label>Amount Due</template>
             <template #status-value>
-              <span class="text-danger">${{ tuition.pce_accbalance.toFixed(2) }}</span>
+              <span class="text-danger">${{ pceBalance.toFixed(2) }}</span>
             </template>
             <template #status-content>
               <div class="myuw-text-md">PCE-Continuum College</div>
@@ -268,6 +268,13 @@ export default {
         result.formatted = this.tuitionDueNotice.formattedDate;
       }
       return result;
+    },
+    tuiBalance() {
+      // regular tuition balance
+      return this.tuition.tuition_accbalance;
+    },
+    pceBalance() {
+      return this.tuition.pce_accbalance;
     },
   },
   created() {
