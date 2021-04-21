@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.util.cache import MyUWMemcachedCache
 from memcached_clients.restclient import CachedHTTPResponse
 from django.utils.timezone import localtime

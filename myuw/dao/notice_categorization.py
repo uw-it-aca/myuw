@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 NOTICE_CATEGORIES = {
     "studentalr_intlstucheckin": {
         "myuw_category": "Holds",

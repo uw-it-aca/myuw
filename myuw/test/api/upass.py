@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from datetime import datetime
 import json
 from myuw.test.api import MyuwApiTest, require_url, fdao_upass_override,\

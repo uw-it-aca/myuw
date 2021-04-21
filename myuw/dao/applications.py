@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 import logging
 from uw_sdbmyuw import get_app_status
 from myuw.dao import get_userids
