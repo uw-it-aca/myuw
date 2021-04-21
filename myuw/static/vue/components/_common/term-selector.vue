@@ -5,7 +5,7 @@
     nav-wrapper-class="mb-3 p-0"
     active-nav-item-class="bg-transparent rounded-0 myuw-border-bottom
       border-dark text-body font-weight-bold"
-    :value="selectedTab"
+    v-model="selectedTab"
     @activate-tab="displayedTabChange"
   >
     <!--
@@ -24,7 +24,7 @@
       <slot :tab="tab" />
     </b-tab>
     <b-tab
-      title-item-class="text-nowrap text-uppercase myuw-text-xs mr-2 mb-1"
+      title-item-class="ml-auto text-nowrap text-uppercase myuw-text-xs mr-2 mb-1"
       title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
     >
       <template #title>
@@ -88,9 +88,16 @@ export default {
 
     let dropdownTabsSelectable = dropdownTabs.map((tab, i) => {
       return {
-        value: i,
+        value: i + 1,
         text: `${tab.quarter} '${tab.year % 100}`,
       };
+    });
+
+    dropdownTabs.unshift('Prev. Terms');
+    dropdownTabsSelectable.unshift({
+      value: 0,
+      text: 'Prev. Terms',
+      disabled: true,
     });
 
     let selectedTab = 0;
@@ -144,17 +151,19 @@ export default {
     this.$logger.termSelected(this.selectedTermInner);
   },
   methods: {
-    displayedTabChange(index) {
-      if (index < 3) {
-        this.selectedTermInner = this.displayedTabs[index].label;
+    displayedTabChange(newIndex, _prevIndex, bvEvent) {
+      if (newIndex < 3) {
+        this.selectedTermInner = this.displayedTabs[newIndex].label;
+        this.selectedOption = 0;
       } else {
-        this.$nextTick(() => {
-          this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
-        });
+        if (this.selectedOption === 0) {
+          bvEvent.preventDefault();
+        }
       }
     },
     optionTabChange(index) {
       this.selectedTermInner = this.dropdownTabs[index].label;
+      this.selectedTab = 3;
     }
   }
 };
