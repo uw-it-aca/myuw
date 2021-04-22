@@ -235,6 +235,12 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: Set up Context
+        id: cicd
+        uses: uw-it-aca/actions/cicd-context@main
+        with:
+          release_name: ${{ env.RELEASE_NAME }}
+
       - uses: actions/download-artifact@v2
         with:
           name: python-coverage
