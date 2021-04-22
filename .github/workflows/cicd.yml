@@ -124,6 +124,13 @@ jobs:
           name: python-coverage
           path: .coverage.*
 
+      - name: Push Image to Repository
+        if: github.event_name == 'push'
+        uses: uw-it-aca/actions/gcr-push@main
+        with:
+          image_tag: ${{ steps.cicd.outputs.image_tag }}
+          gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
+
     outputs:
       image_tag: ${{ steps.cicd.outputs.image_tag }}
 
@@ -271,13 +278,6 @@ jobs:
           coverage combine
           coveralls-lcov -v -n lcov.info > js-coverage.json
           coveralls --merge=js-coverage.json
-
-      - name: Push Image to Repository
-        if: github.event_name == 'push'
-        uses: uw-it-aca/actions/gcr-push@main
-        with:
-          image_tag: ${{ steps.cicd.outputs.image_tag }}
-          gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
   deploy:
     if: github.event_name == 'push'
