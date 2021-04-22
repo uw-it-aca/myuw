@@ -20,7 +20,8 @@ export const getNow = (rootState = null) => {
 };
 
 export const strToDate = (dateStr) => {
-  if (dateStr.includes("T")) {
+  console.log(dateStr);
+  if (dateStr && dateStr.includes("T")) {
     // timezone aware UTC format
     return dayjs.utc(dateStr);
   }

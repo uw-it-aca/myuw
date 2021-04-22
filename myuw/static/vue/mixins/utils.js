@@ -114,7 +114,7 @@ export default {
       return dayjs();
     },
     strToDayjs(dateStr) {
-      if (dateStr.includes("T")) {
+      if (dateStr && dateStr.includes("T")) {
         // timezone aware UTC format
         return dayjs.utc(dateStr);
       }
