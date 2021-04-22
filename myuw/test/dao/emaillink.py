@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TestCase
 from myuw.dao.exceptions import EmailServiceUrlException
 from myuw.dao.emaillink import get_service_url_for_address

@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.views.error import (
     not_instructor_error, data_not_found, no_access, data_error,
     disabled_action_error, invalid_future_term, invalid_input_data,

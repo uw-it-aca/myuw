@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.urls import reverse
 from userservice.user import UserService
 from myuw.models import MigrationPreference, User
