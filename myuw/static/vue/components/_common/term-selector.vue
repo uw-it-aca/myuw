@@ -15,7 +15,7 @@
     <b-tab
       v-for="(tab, i) in displayedTabs"
       :key="i"
-      title-item-class="text-nowrap text-uppercase myuw-text-xs mr-2 mb-1"
+      title-item-class="text-nowrap myuw-text-lg mr-2 mb-1"
       title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
     >
       <template #title>
@@ -24,7 +24,7 @@
       <slot :tab="tab" />
     </b-tab>
     <b-tab
-      title-item-class="ml-auto text-nowrap text-uppercase myuw-text-xs mr-2 mb-1"
+      title-item-class="text-nowrap myuw-text-lg mr-2 mb-1"
       title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
     >
       <template #title>
