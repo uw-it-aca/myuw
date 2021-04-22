@@ -6,7 +6,7 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 library.add(faExclamationTriangle);
 
 import { shallowMount } from '@vue/test-utils';
-import { createLocalVue } from './helper';
+import { createLocalVue, deepClone } from './helper';
 
 import Vuex from 'vuex';
 import academic_events from '../vuex/store/academic_events';
@@ -41,7 +41,7 @@ describe('Academic Calendar Snippet', () => {
   });
 
   it('Computed Properties', async () => {
-    axios.get.mockResolvedValue({data: facultyAcadEvents, status: 200});
+    axios.get.mockResolvedValue({data: deepClone(facultyAcadEvents), status: 200});
     const wrapper = shallowMount(AcadCalSnippet, { store, localVue });
     await new Promise(setImmediate);
 
@@ -51,7 +51,7 @@ describe('Academic Calendar Snippet', () => {
   });
 
   it('formatBannerDate()', async () => {
-    axios.get.mockResolvedValue({data: facultyAcadEvents, status: 200});
+    axios.get.mockResolvedValue({data: deepClone(facultyAcadEvents), status: 200});
     const wrapper = shallowMount(AcadCalSnippet, {store, localVue});
     await new Promise(setImmediate);
 
