@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TransactionTestCase
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError

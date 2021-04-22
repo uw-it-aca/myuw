@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TestCase
 from uw_sws.models import Section, ClassSchedule, SectionMeeting
 from myuw.dao.term import get_term_from_quarter_string

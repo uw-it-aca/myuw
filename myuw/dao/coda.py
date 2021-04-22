@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 import logging
 import traceback
 from uw_coda import get_fail_rate, get_course_cgpa, get_majors

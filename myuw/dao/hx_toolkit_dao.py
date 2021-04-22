@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 import math
 import datetime
 from myuw.dao.term import get_current_quarter, get_comparison_date
