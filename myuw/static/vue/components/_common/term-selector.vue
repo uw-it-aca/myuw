@@ -1,11 +1,11 @@
 <template>
   <b-tabs
+    v-model="selectedTab"
     lazy
     pills
     nav-wrapper-class="mb-3 p-0"
     active-nav-item-class="bg-transparent rounded-0 myuw-border-bottom
       border-dark text-body font-weight-bold"
-    v-model="selectedTab"
     @activate-tab="displayedTabChange"
   >
     <!--

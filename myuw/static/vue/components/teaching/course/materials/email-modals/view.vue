@@ -3,7 +3,9 @@
     <b-modal
       :id="`emaillist_view_${sln}`"
       ref="view-modal"
+      size="lg"
       :title="`${emailList.course_abbr} ${emailList.course_number} Mailing Lists`"
+      title-class="h5 text-dark-beige myuw-font-encode-sans"
       @show="logClassEmailListOpen"
       @hidden="onHide()"
     >
@@ -37,7 +39,7 @@
           </span>
         </div>
 
-        <table v-if="emailList.is_primary">
+        <table v-if="emailList.is_primary" class="table table-sm">
           <thead>
             <tr>
               <th :id="`emaillist_section_${sln}`">Section</th>
@@ -212,3 +214,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+table.table {
+  td {
+    padding-bottom: 0;
+  }
+
+  th, td {
+    &:first-child {
+      padding-left: 0;
+    }
+    border-top: none;
+  }
+}
+</style>
