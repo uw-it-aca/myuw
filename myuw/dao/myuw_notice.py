@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.models.myuw_notice import MyuwNotice
 from myuw.dao.gws import is_effective_member

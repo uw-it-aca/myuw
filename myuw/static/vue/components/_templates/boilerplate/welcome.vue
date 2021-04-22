@@ -1,8 +1,5 @@
 <template>
   <div class="p-3 myuw-welcome">
-    <p class="mb-1 text-dark myuw-text-md">
-      Welcome!
-    </p>
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li>
         <div>

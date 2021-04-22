@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from myuw.test.models import TestUserNotices
 from myuw.test.academic_events import TestAcademicEvents
 from myuw.test.dao import TestDaoInit
