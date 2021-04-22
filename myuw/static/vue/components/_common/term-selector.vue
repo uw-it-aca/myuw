@@ -187,7 +187,7 @@ select {
     cursor: pointer;
 
     padding-left: 0.5rem;
-    padding-right: 1.5rem;
+    padding-right: 2.0rem;
   }
 }
 
@@ -197,7 +197,7 @@ select {
   .down-arrow {
     position: absolute;
     right: 0.5rem;
-    top: 0.2rem;
+    top: 0.36rem;
     z-index: 1;
     pointer-events: none;
   }
