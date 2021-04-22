@@ -18,13 +18,13 @@
         <span v-else class="text-dark font-weight-light d-inline-block mr-1">
           {{ event.start_time }}
         </span>
-        {{ event.summary }}
+        <span v-html="event.summary" />
       </a>
       <em v-if="event.event_location" class="text-muted
       font-weight-light myuw-text-xs"
       >
         <font-awesome-icon :icon="faLocationArrow" size="sm" />
-        {{ getLocation(event) }}
+        <span v-html="getLocation(event)" />
       </em>
     </li>
   </ul>
