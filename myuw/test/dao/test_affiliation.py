@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TransactionTestCase
 from myuw.dao.affiliation import get_all_affiliations, get_is_hxt_viewer
 from myuw.test import fdao_sws_override, fdao_pws_override,\

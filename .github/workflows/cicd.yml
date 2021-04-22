@@ -1,15 +1,48 @@
+#
+# Example GitHub Actions config that drives UW-IT AXD2 integration and deployment
+#
+# Preconditions:
+#
+#  1) Application docker build is based on django-container
+#
+#  2) Application test suite is kicked off in docker/test.sh
+#
+#  3) Application repo has access to the two secrets
+#     at https://github.com/organizations/uw-it-aca/settings/secrets:
+#
+#     GH_AUTH_TOKEN: Grants access to private flux deployment repo
+#     GCP_JSON_KEY: Grants access to Google Cloud Registry
+#
+# To adapt this config file to a specific django project:
+#
+#  1) Set RELEASE_NAME suitable for deployment to k8s. RELEASE_NAME must
+#     match the "repo" value in docker/*-values.yml.
+#
+#  2) Set DJANGO_APP to the name of the django project name/directory.
+#
+#  3) Verify that the lists of branches for push/pull_request is appropriate,
+#     and add other branch names if needed.  Additional branch names must
+#     also have steps defined in the deploy job
+#
+#  4) Confirm that the build steps are suitable.  Likely they are, but
+#     some projects have an intermediate build step that could benefit
+#     from caching, so it may be useful to augment the build steps.
+#
 ---
 name: Build, Test and Deploy
 
 env:
+  # Release name must match "repo" value in docker/*-values.yml
   RELEASE_NAME: myuw
   DJANGO_APP: myuw
 
+# Be sure that branches defined here have corresponding steps
+# defined in the "deploy" job
 on:
   push:
-    branches: [master, qa, develop]
+    branches: [main, master, qa, develop, feature/eval-me]
   pull_request:
-    branches: [master, qa, develop]
+    branches: [main, master, qa, develop, feature/eval-me]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -20,9 +53,20 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+
+      - name: Run Python Linters
+        uses: uw-it-aca/actions/python-linters@main
+        with:
+          app_name: ${DJANGO_APP}
+          exclude_paths: 'migrations'
+
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.4
+        uses: uw-it-aca/actions/cicd-context@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
@@ -66,11 +110,6 @@ jobs:
           app-test-container
           bash -c ". ./docker/test.sh"
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.6
-
       - name: Set up Ruby 2.6
         uses: actions/setup-ruby@v1
         with:
@@ -87,9 +126,9 @@ jobs:
           coveralls-lcov -v -n lcov.info > js-coverage.json
           coveralls --merge=js-coverage.json
 
-      - name: Push Image to GCR
+      - name: Push Image to Repository
         if: github.event_name == 'push'
-        uses: uw-it-aca/actions/gcr-push@v1.4
+        uses: uw-it-aca/actions/gcr-push@main
         with:
           image_tag: ${{ steps.cicd.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
@@ -107,7 +146,7 @@ jobs:
 
       - name: Set up Context
         id: cicd
-        uses: uw-it-aca/actions/cicd-context@v1.4
+        uses: uw-it-aca/actions/cicd-context@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
 
@@ -115,19 +154,19 @@ jobs:
         if: >-
           contains(fromJSON('["main", "master", "qa"]'),
             steps.cicd.outputs.git_repo_branch)
-        uses: uw-it-aca/actions/cicd-deploy@v1.4
+        uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
           git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
 
-      - name: Deploy Develop Branch
-        if: steps.cicd.outputs.git_repo_branch == 'develop'
-        uses: uw-it-aca/actions/cicd-deploy@v1.4
+      - name: Deploy Evaluation Branch
+        if: steps.cicd.outputs.git_repo_branch == 'feature/eval-me'
+        uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
           commit_hash: ${{ steps.cicd.outputs.commit_hash }}
           git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
-          app_instance: dev
+          app_instance: eval

@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TransactionTestCase
 from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
@@ -16,7 +19,7 @@ class TestCategoryLinks(TransactionTestCase):
 
     def test_get_all_links(self):
         all_links = Res_Links.get_all_links()
-        self.assertEquals(len(all_links), 64)
+        self.assertEquals(len(all_links), 62)
         val = URLValidator()
         for link in all_links:
             try:

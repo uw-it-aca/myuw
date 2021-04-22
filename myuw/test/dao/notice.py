@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.test import TestCase
 from myuw.dao.notice import _get_notices_by_regid
 from myuw.test import get_request_with_date, get_request,\
