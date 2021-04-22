@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 import re
 from uw_pws import PWS
 from myuw.dao.admin import can_override, is_admin

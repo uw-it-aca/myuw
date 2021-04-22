@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django import template
 from django.template import Library
 from myuw.dao.admin import is_admin, can_override

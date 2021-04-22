@@ -1,3 +1,6 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
 from django.shortcuts import render
 from myuw.authorization import can_override_user, is_myuw_admin
 from blti import BLTI, BLTIException
