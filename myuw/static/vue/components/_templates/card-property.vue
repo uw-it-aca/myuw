@@ -3,7 +3,7 @@
     <slot name="title">
       <h3
         v-if="title.length > 0"
-        class="h6 flex-md-fill mr-3 mb-0 bd-highlight myuw-font-encode-sans property-label"
+        class="myuw-text-md flex-md-fill mr-3 mb-2 bd-highlight myuw-font-encode-sans property-label"
         :class="{'sr-only': srOnlyTitle}"
       >
         {{ title }}
@@ -44,7 +44,6 @@ export default {
     min-width: 25%;
     max-width: 25%;
     color: #333;
-
   }
 }
 </style>
