@@ -2,7 +2,9 @@
   <b-modal
     :id="`emaillist_request_${sln}`"
     ref="request-modal"
+    size="lg"
     title="Create Mailing List"
+    title-class="h5 text-dark-beige myuw-font-encode-sans"
     @show="logClassEmailListRequest"
     @hidden="onHide()"
   >

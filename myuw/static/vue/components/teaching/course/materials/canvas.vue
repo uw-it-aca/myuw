@@ -1,16 +1,14 @@
 <template>
-  <li v-if="section.canvas_url">
-    <span>
-      <a v-if="section.canvas_url === 'error'"
-        href="https://canvas.uw.edu/"
-      >Canvas LMS Home page</a>
+  <span v-if="section.canvas_url">
+    <a v-if="section.canvas_url === 'error'"
+      href="https://canvas.uw.edu/"
+    >Canvas LMS Home page</a>
 
-      <a v-else
-        :href="section.canvas_url"
-        :title="`Course Canvas of ${section.label}`"
-      >Course Canvas</a>
-    </span>
-  </li>
+    <a v-else
+      :href="section.canvas_url"
+      :title="`Course Canvas of ${section.label}`"
+    >Course Canvas</a>
+  </span>
 </template>
 
 <script>

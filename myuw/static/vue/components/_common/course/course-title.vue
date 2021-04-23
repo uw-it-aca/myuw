@@ -12,7 +12,7 @@
     </div>
 
     <div class="d-flex">
-      <span v-if="showSln && section.sln" class="mr-2">
+      <span v-if="showSln && section.sln" class="mr-2 myuw-text-sm text-muted">
         SLN
         <a
           v-out="'Time Schedule for SLN'"

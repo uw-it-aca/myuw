@@ -115,10 +115,9 @@
     <div class="w-100 myuw-body">
       <b-container fluid="xl">
         <b-row :no-gutters="$mq !== 'desktop'">
-          <b-col lg="2">
+          <b-col v-if="!isHybrid" lg="2">
             <!-- main sidebar navigation -->
             <b-collapse
-              v-if="!isHybrid"
               id="nav-collapse"
               class="pt-4 text-nowrap myuw-navigation"
               role="navigation"
@@ -220,13 +219,19 @@
               <uw-messages />
             </div>
           </b-col>
-          <b-col lg="10" role="main" aria-labelledby="mainHeader" class="pt-4">
+          <b-col
+            lg="10"
+            role="main"
+            aria-labelledby="mainHeader"
+            :class="{'pt-4': true, 'mx-auto': isHybrid}"
+          >
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="[
-                pageTitle == 'Home' || pageTitle == 'Profile' || $mq != 'desktop' ? 'sr-only' : '',
-              ]"
+              :class="{
+                'sr-only': pageTitle == 'Home' || pageTitle == 'Profile' ||
+                  pageTitle.includes('Class of') || $mq != 'desktop',
+              }"
             >
               {{ pageTitle }}
             </h1>
@@ -360,10 +365,14 @@ export default {
       type: String,
       default: '/logout',
     },
+    forceHybrid: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
-      isHybrid: navigator.userAgent.includes('MyUW_Hybrid/1.0'),
+      isHybrid: navigator.userAgent.includes('MyUW_Hybrid/1.0') || this.forceHybrid,
       selectedMenu: '',
       mailToUrl:
         'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20',

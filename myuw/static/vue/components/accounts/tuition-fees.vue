@@ -61,24 +61,26 @@
         </li>
         <!-- If there is credit on account -->
         <li v-else-if="tuiBalance < 0">
-          <div class="d-flex">
-            <div>
-              <h3 class="h6 text-dark myuw-font-encode-sans">
-                Account Credit<br />
-                <span class="myuw-text-md">Student Fiscal Services</span>
-              </h3>
-            </div>
-            <div>
-              <span class="h6 text-dark myuw-font-encode-sans"
-                >+${{ Math.abs(tuiBalance).toFixed(2) }} CR</span
-              >
-              <span>No payment needed</span><br />
-              <a
-                href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                class="myuw-text-md"
-              >Tuition Statement</a>
-            </div>
-          </div>
+          <uw-card-status>
+            <template #status-label>
+              Account Credit<br>
+              <span class="myuw-text-md">
+                Student Fiscal Services
+              </span>
+            </template>
+            <template #status-value>
+              +${{ Math.abs(tuiBalance).toFixed(2) }} CR
+            </template>
+            <template #status-content>
+              <div class="myuw-text-md text-right">
+                No payment needed<br>
+                <a
+                  href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
+                  class="myuw-text-md"
+                >Tuition Statement</a>
+              </div>
+            </template>
+          </uw-card-status>
         </li>
         <!-- If there is a PCE balance -->
         <li v-if="pceBalance > 0">

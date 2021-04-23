@@ -14,23 +14,13 @@
       </div>
     </div>
 
-    <div v-if="section.summer_term" class="d-flex">
-      <h3 class="w-25 myuw-font-encode-sans myuw-text-md">
-        Summer Term
-      </h3>
-      <div class="flex-fill myuw-text-md">
-        {{ capitalizeString(section.summer_term) }}
-      </div>
-    </div>
+    <uw-card-property v-if="section.summer_term" title="Summer Term">
+      {{ capitalizeString(section.summer_term) }}
+    </uw-card-property>
 
-    <div v-if="section.cc_display_dates" class="d-flex">
-      <h3 class="w-25 myuw-font-encode-sans myuw-text-md">
-        Dates
-      </h3>
-      <div class="flex-fill myuw-text-md">
-        {{ sectionFormattedDates(section) }}
-      </div>
-    </div>
+    <uw-card-property v-if="section.cc_display_dates" title="Dates">
+      {{ sectionFormattedDates(section) }}
+    </uw-card-property>
   </div>
 </template>
 
@@ -40,10 +30,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
 import CourseTitle from '../course-title.vue';
+import CardProperty from '../../../_templates/card-property.vue';
 
 export default {
   components: {
     'uw-course-title': CourseTitle,
+    'uw-card-property': CardProperty,
   },
   props: {
     section: {

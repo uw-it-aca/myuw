@@ -1,27 +1,20 @@
 <template>
-  <div>
-    <div class="d-flex">
-    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
-      :class="{'sr-only': showRowHeader}">
-      Grading System
-    </h3>
-    <div class="w-75">
+  <uw-card-property-group>
+    <uw-card-property title="Grading System">
       <span v-if="section.grading_system">
         {{titleCaseWord(section.grading_system)}}
       </span>
       <span v-else>
         Unspecified
       </span>
-    </div>
-    </div>
-    <div class="d-flex">
-    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
-      :class="{'sr-only': showRowHeader}">
-      Delegate{{gradeSubmissionDelegatesCount > 1 ? 's' :  ''}}
-    </h3>
-    <div class="w-75">
-      <ul v-if="section.grade_submission_delegates">
-        <li v-for="(delegate, i) in section.grade_submission_delegates" :key="i">
+    </uw-card-property>
+    <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
+      <ul v-if="section.grade_submission_delegates" class="list-unstyled mb-1">
+        <li
+          v-for="(delegate, i) in section.grade_submission_delegates"
+          :key="i"
+          :class="{'mb-1': i === section.grade_submission_delegates.length + 1}"
+        >
           {{titleCaseName(delegate.person.display_name)}}
           ({{titleCaseWord(delegate.level)}})
         </li>
@@ -37,15 +30,9 @@
           Add grade submission Delegate
         </span>
       </a>
-    </div>
-    </div>
-    <div class="d-flex">
-    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
-      :class="{'sr-only': showRowHeader}">
-      Grade Submission
-    </h3>
-    <div class="w-75">
-      <div v-if="section.gradingPeriod.isOpen">
+    </uw-card-property>
+    <uw-card-property title="Grade Submission">
+      <template v-if="section.gradingPeriod.isOpen">
         <div v-if="section.grading_status !== 'error'">
           <span v-if="section.grading_status">
             <span v-if="section.grading_status.allGradesSubmitted">
@@ -57,7 +44,7 @@
                 grade{{section.grading_status.submitted_count ? 's' : ''}}
                 submitted
               </a>
-               by {{section.grading_status.submitted_by}} on
+              by {{section.grading_status.submitted_by}} on
               <span class="text-nowrap">{{section.grading_status.submittedFmt}}</span>
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
@@ -103,17 +90,17 @@
             href="https://gradepage.uw.edu/"
           >Gradepage</a>. Please try again later.
         </div>
-        <div>
+        <div class="myuw-text-sm font-italic">
           Grade submission closes
-          <strong>
+          <strong class="font-weight-bold">
             {{section.gradingPeriod.deadlineFmt}}
           </strong>
           <span v-if="!section.deadline_in_24_hours">
             ({{section.gradingPeriod.deadlineRelative}})
           </span>
         </div>
-      </div>
-      <div v-else-if="section.gradingPeriod.isClosed">
+      </template>
+      <template v-else-if="section.gradingPeriod.isClosed">
         <div v-if="section.grading_status">
           <span v-if="section.grading_status.allGradesSubmitted">
             <a
@@ -151,22 +138,21 @@
             </span>
           </div>
         </div>
-      </div>
-      <div v-else>
+      </template>
+      <template v-else>
         <div>
           Grade submission opens {{section.gradingPeriod.openFmt}}
           <span v-if="!section.gradingPeriod.opensIn24Hours">
             ({{section.gradingPeriod.openRelative}})
           </span>
         </div>
-        <div>
+        <div class="myuw-text-sm">
           Grade submission closes
           {{section.gradingPeriod.deadlineFmt}}
         </div>
-      </div>
-    </div>
-    </div>
-  </div>
+      </template>
+    </uw-card-property>
+  </uw-card-property-group>
 </template>
 
 <script>
@@ -174,16 +160,18 @@ import {
   faQuestionCircle,
   faExclamationTriangle
 } from '@fortawesome/free-solid-svg-icons';
+import CardPropertyGroup from '../../_templates/card-property-group.vue';
+import CardProperty from '../../_templates/card-property.vue';
 
 export default {
+  components: {
+    'uw-card-property-group': CardPropertyGroup,
+    'uw-card-property': CardProperty,
+  },
   props: {
     section: {
       type: Object,
       required: true,
-    },
-    showRowHeader: {
-      type: Boolean,
-      default: false,
     },
   },
   data() {
