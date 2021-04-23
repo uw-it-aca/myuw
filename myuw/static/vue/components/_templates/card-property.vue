@@ -3,7 +3,8 @@
     <slot name="title">
       <h3
         v-if="title.length > 0"
-        class="myuw-text-md flex-md-fill mr-3 mb-2 bd-highlight myuw-font-encode-sans property-label"
+        class="myuw-text-md flex-md-fill mr-3 mb-2 bd-highlight
+          myuw-font-encode-sans property-label"
         :class="{'sr-only': srOnlyTitle}"
       >
         {{ title }}

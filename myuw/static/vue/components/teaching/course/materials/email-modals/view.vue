@@ -39,12 +39,12 @@
           </span>
         </div>
 
-        <table v-if="emailList.is_primary" class="table table-sm">
+        <table v-if="emailList.is_primary" class="table table-sm table-hover">
           <thead>
             <tr>
-              <th :id="`emaillist_section_${sln}`">Section</th>
-              <th :id="`emaillist_maillist_${sln}`">Mailing List</th>
-              <th :id="`emaillist_manage_${sln}`">
+              <th :id="`emaillist_section_${sln}`" class="w-50 border-0">Section</th>
+              <th :id="`emaillist_maillist_${sln}`" class="border-0">Mailing List</th>
+              <th :id="`emaillist_manage_${sln}`" class="border-0">
                 <span class="sr-only">Manage list in Mailman</span>
               </th>
             </tr>
@@ -214,18 +214,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-table.table {
-  td {
-    padding-bottom: 0;
-  }
-
-  th, td {
-    &:first-child {
-      padding-left: 0;
-    }
-    border-top: none;
-  }
-}
-</style>

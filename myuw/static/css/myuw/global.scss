@@ -108,3 +108,34 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
 .myuw-column-count-2 {
   column-count: 2 !important;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .myuw-printable-card {
+    & * { 
+      &.myuw-print-hidden, &.myuw-print-hidden * {
+        display: none;
+      }
+
+      .myuw-print-sr-only {
+        display: inline !important;
+        width: unset;
+        height: unset;
+        position: unset;
+      }
+
+      visibility: visible;
+    }
+
+    // Overwrite default card stylings
+    padding: 0;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+}
