@@ -119,17 +119,17 @@ jobs:
           app-test-container
           bash -c ". ./docker/test_python.sh"
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: python-coverage
-          path: .coverage.*
-
       - name: Push Image to Repository
         if: github.event_name == 'push'
         uses: uw-it-aca/actions/gcr-push@main
         with:
           image_tag: ${{ steps.cicd.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: python-coverage
+          path: .coverage.*
 
     outputs:
       image_tag: ${{ steps.cicd.outputs.image_tag }}
@@ -241,12 +241,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-
-      - name: Set up Context
-        id: cicd
-        uses: uw-it-aca/actions/cicd-context@main
-        with:
-          release_name: ${{ env.RELEASE_NAME }}
 
       - uses: actions/download-artifact@v2
         with:
