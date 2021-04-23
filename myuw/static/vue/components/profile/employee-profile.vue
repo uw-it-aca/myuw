@@ -25,18 +25,20 @@
           </uw-card-property>
           <uw-card-property title="Phone Number">
             <p v-if="noFormsOfContact">No phone numbers listed</p>
-            <p v-if="phone">
-              Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
-            </p>
-            <p v-if="mobile">
-              Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
-            </p>
-            <p v-if="voiceMail">
-              Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
-            </p>
-            <p v-if="fax">
-              Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
-            </p>
+            <ul v-else class="list-unstyled myuw-text-md">
+              <li v-if="phone">
+                Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
+              </li>
+              <li v-if="mobile">
+                Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
+              </li>
+              <li v-if="voiceMail">
+                Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
+              </li>
+              <li v-if="fax">
+                Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
+              </li>
+            </ul>
           </uw-card-property>
           <uw-card-property title="Address">
             <p v-if="!mailstop && !address">No address available</p>
