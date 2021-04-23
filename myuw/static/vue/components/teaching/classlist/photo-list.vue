@@ -6,18 +6,21 @@
     <h3 class="sr-only">
       Grid of Student Photos
     </h3>
-    <ol class="">
+    <ol class="list-unstyled d-flex">
       <li v-for="(reg, i) in registrations"
           :id="`student-photo-${reg.regid}`"
           :key="i"
+          class="p-1"
           :class="reg.isJoint ? (showJointCourseStud ? 'd-inline' : 'd-none') : 'd-inline'"
       >
-        <img :src=" '/photo/' + reg.url_key"
-             class=""
-             width="120px" height="150px"
-        >
-        <div>{{ reg.first_name }} {{ reg.surname }}</div>
-        <div style="overflow-wrap: break-word;">{{ reg.pronouns }}</div>
+        <div style="width: 120px">
+          <img :src=" '/photo/' + reg.url_key"
+              class=""
+              width="120px" height="150px"
+          >
+          <strong>{{ reg.first_name }} {{ reg.surname }}</strong>
+          <div class="myuw-text-sm">{{ reg.pronouns }}</div>
+        </div>
       </li>
     </ol>
   </div>

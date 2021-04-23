@@ -1,52 +1,48 @@
 <template>
-  <uw-card v-if="showCard"
-           :loaded="isReady"
-           :errored="isErrored"
-  >
-    <template #card-heading>
-      <div v-if="sectionData">
-        <h2>
-          {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
-          {{ sectionData.sectionId }},
-          {{ titleCaseWord(sectionData.quarter) }} {{ sectionData.year }}
-        </h2>
-        <div v-if="sectionData.sln">
-          <h3>SLN</h3>
-          <span>{{ sectionData.sln }}</span>
+  <div>
+    <uw-card v-if="showCard"
+            :loaded="isReady"
+            :errored="isErrored"
+            no-bottom-margin
+            class="myuw-printable-card"
+    >
+      <template #card-heading>
+        <div v-if="sectionData" class="d-flex justify-content-between">
+          <h2 class="h3 text-dark-beige myuw-font-encode-sans">
+            {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
+            {{ sectionData.sectionId }},
+            {{ titleCaseWord(sectionData.quarter) }} {{ sectionData.year }}
+          </h2>
+          <span v-if="sectionData.sln">
+            SLN {{ sectionData.sln }}
+          </span>
         </div>
-      </div>
-    </template>
+      </template>
 
-    <template #card-body>
-      <div>
-        <uw-course-stats
-          v-if="sectionData.current"
-          :curr-abbr="sectionData.currAbbr"
-          :course-num="sectionData.courseNum"
-          :section-id="sectionData.sectionId"
-          :quarter="sectionData.quarter"
-          :year="sectionData.year"
-          :majors="sectionData.sections[0].current_student_majors"
-        />
-
+      <template #card-body>
         <uw-classlist-content :section="sectionData.sections[0]" />
-      </div>
-    </template>
+      </template>
 
-    <template v-if="noData" #card-error>
-      No class information was found.
-    </template>
-    <template v-else-if="noAccessPermission" #card-error>
-      You need to be the class instructor to view student information.
-    </template>
-    <template v-else-if="invalidCourse" #card-error>
-      The page you seek is for a past quarter and is no longer available.
-    </template>
-    <template v-else-if="dataError" #card-error>
-      An error occurred and MyUW cannot load the class student information
-      right now. Please try again later.
-    </template>
-  </uw-card>
+      <template v-if="noData" #card-error>
+        No class information was found.
+      </template>
+      <template v-else-if="noAccessPermission" #card-error>
+        You need to be the class instructor to view student information.
+      </template>
+      <template v-else-if="invalidCourse" #card-error>
+        The page you seek is for a past quarter and is no longer available.
+      </template>
+      <template v-else-if="dataError" #card-error>
+        An error occurred and MyUW cannot load the class student information
+        right now. Please try again later.
+      </template>
+    </uw-card>
+
+    <uw-course-stats
+      :loaded="isReady"
+      :section-data="sectionData ? sectionData : {}"
+    />
+  </div>
 </template>
 
 <script>

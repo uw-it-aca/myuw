@@ -5,7 +5,7 @@ function linkClickHandler(event, binding, vnode, out) {
 
   const instance = vnode.componentInstance ? vnode.componentInstance : vnode.context;
   // Resolves the `a` tag from the path
-  const aTarget = event.path.find((el) => el.tagName === 'A');
+  const aTarget = event.target ? event.target : event.path.find((el) => el.tagName === 'A');
 
   instance.$logger.linkClick(
     instance,
@@ -29,6 +29,7 @@ function linkClickHandler(event, binding, vnode, out) {
     }&l=${encodeURIComponent(label)}`;
 
     if (event.button === 1) {
+      // mouse middle button click, always open in a new window
       newLink.target = "_blank";
     }
 
