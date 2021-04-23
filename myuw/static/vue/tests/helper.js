@@ -73,7 +73,12 @@ const createLocalVue = (vuexModule) => {
   return localVue;
 };
 
+function deepClone(data) {
+  return JSON.parse(JSON.stringify(data));
+}
+
 export {
   expectAction,
   createLocalVue,
+  deepClone,
 };

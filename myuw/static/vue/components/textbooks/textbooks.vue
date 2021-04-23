@@ -2,7 +2,7 @@
   <uw-panel :loaded="isReady" :errored="isErrored">
     <template #panel-body>
       <div v-if="bookData.teachingSections.length > 0">
-        <h2>Teaching</h2>
+        <h2 class="h5">Teaching</h2>
         <hr>
         <uw-section
           v-for="(section, i) in bookData.teachingSections"
@@ -11,11 +11,14 @@
           :collapsable="bookData.collapseSections"
         />
         <hr v-if="bookData.collapseSections">
-        <h2 v-if="bookData.enrolledSections">
-          Enrolled
-        </h2>
-        <hr>
+        <div v-if="bookData.enrolledSections.length > 0">
+          <h2 class="h5">
+            Enrolled
+          </h2>
+          <hr>
+        </div>
       </div>
+
       <uw-section
         v-for="(section, i) in bookData.enrolledSections"
         :key="i"

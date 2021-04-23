@@ -29,6 +29,7 @@ function linkClickHandler(event, binding, vnode, out) {
     }&l=${encodeURIComponent(label)}`;
 
     if (event.button === 1) {
+      // mouse middle button click, always open in a new window
       newLink.target = "_blank";
     }
 
