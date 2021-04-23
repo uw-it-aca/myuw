@@ -1,11 +1,11 @@
 <template>
   <div class="mb-3">
     <div class="d-flex align-items-center">
-      <h3 class="h6 m-0 myuw-font-encode-sans flex-fill">
+      <h3 class="h6 m-0 myuw-font-encode-sans status-label flex-fill">
         <slot name="status-label" />
       </h3>
       <div class="flex-fill text-right">
-        <span class="h4 myuw-font-encode-sans">
+        <span class="h4 myuw-font-encode-sans status-label">
           <slot name="status-value" />
         </span>
       </div>
@@ -23,3 +23,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .status-label {
+    color: #333;
+  }
+</style>
