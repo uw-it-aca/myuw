@@ -43,6 +43,8 @@ export default {
   .property-label {
     min-width: 25%;
     max-width: 25%;
+    color: #333;
+
   }
 }
 </style>
