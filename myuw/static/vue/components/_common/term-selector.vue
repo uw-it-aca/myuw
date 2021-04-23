@@ -24,7 +24,7 @@
       <slot :tab="tab" />
     </b-tab>
     <b-tab
-      title-item-class="text-nowrap myuw-text-lg mr-2 mb-1"
+      title-item-class="ml-auto text-nowrap myuw-text-lg mr-2 mb-1"
       title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
     >
       <template #title>
