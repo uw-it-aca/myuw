@@ -11,6 +11,7 @@ class Logger {
       options,
       this.onVisibilityReport.bind(this),
     );
+    this.config = {};
   }
 
   compLoad(component) {
@@ -220,11 +221,17 @@ class Logger {
       comp_tag: component.$meta.group.$meta.tag,
     });
   }
+
+  configHybrid(value) {
+    this.config['is_hybrid'] = value;
+    this.sink.config(this.config);
+  }
 }
 
 class ConsoleSink {
   constructor(options) {
     this.properties = {};
+    this.config = {};
     this.logHistory = [];
     this.options = options;
     window.console_sink = this;
@@ -250,6 +257,10 @@ class ConsoleSink {
       console.log('pageview', pageData);
     }
   }
+
+  config(config) {
+    this.config = config;
+  }
 }
 
 class GtagSink {
@@ -267,6 +278,10 @@ class GtagSink {
 
   pageview(pageData) {
     this.gtag.pageview(pageData);
+  }
+
+  config(config) {
+    this.gtag.config(config);
   }
 }
 
