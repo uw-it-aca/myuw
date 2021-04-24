@@ -7,7 +7,7 @@
 {% endblock django_json_data %}
 
 {% block body_content %}
-<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}">
+<myuw-boilerplate logout-url="{% settings_value "LOGOUT_URL" %}" is-hybrid="{{ user.isHybrid }}">
   <!--MARK: #primary template (column 1, mobile only) -->
   <template #mobile>
     <b-col md="12">
