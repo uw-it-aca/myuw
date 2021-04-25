@@ -5,6 +5,7 @@ dayjsCommon.extend(require('dayjs/plugin/calendar'))
 dayjsCommon.extend(require('dayjs/plugin/relativeTime'))
 dayjsCommon.extend(require('dayjs/plugin/timezone'))
 dayjsCommon.extend(require('dayjs/plugin/utc'))
+dayjsCommon.extend(require('dayjs/plugin/localizedFormat'))
 dayjsCommon.extend(require('dayjs/plugin/customParseFormat'))
 
 export const dayjs = dayjsCommon;
@@ -21,8 +22,12 @@ export const getNow = (rootState = null) => {
 
 export const strToDate = (dateStr) => {
   if (dateStr && dateStr.includes("T")) {
-    // timezone aware UTC format
-    return dayjs.utc(dateStr);
+    // timezone aware format
+    return dayjs(dateStr);
   }
   return dayjs.tz(dateStr, "America/Los_Angeles");
+};
+
+export const getTime = (dateObj) => {
+  return dateObj.format('LT');
 };

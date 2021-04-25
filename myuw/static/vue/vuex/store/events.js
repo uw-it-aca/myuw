@@ -1,6 +1,7 @@
 import {fetchBuilder, buildWith} from './model_builder';
 import {
   strToDate,
+  getTime,
 } from './common';
 
 const postProcess = (response) => {
@@ -18,7 +19,7 @@ const postProcess = (response) => {
 
   eventData.events.forEach((event) => {
     event.start_date = strToDate(event.start);
-    event.start_time = event.start_date.format('h:mm A');
+    event.start_time = getTime(event.start_date);
     event.end_date = strToDate(event.end);
   });
 

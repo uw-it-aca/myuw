@@ -7,6 +7,9 @@ dayjs.extend(require('dayjs/plugin/timezone'))
 dayjs.extend(require('dayjs/plugin/utc'))
 dayjs.extend(require('dayjs/plugin/isToday'));
 dayjs.extend(require('dayjs/plugin/weekOfYear'));
+dayjs.extend(require('dayjs/plugin/advancedFormat'))
+dayjs.extend(require('dayjs/plugin/localizedFormat'))
+dayjs.extend(require('dayjs/plugin/customParseFormat'))
 
 export default {
   computed: {
@@ -115,8 +118,8 @@ export default {
     },
     strToDayjs(dateStr) {
       if (dateStr && dateStr.includes("T")) {
-        // timezone aware UTC format
-        return dayjs.utc(dateStr);
+        // timezone aware format
+        return dayjs(dateStr);
       }
       return dayjs.tz(dateStr, "America/Los_Angeles");
     },
