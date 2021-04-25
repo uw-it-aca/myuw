@@ -2,7 +2,7 @@
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
     <b-container>
       <b-row>
-        <b-col md="4" class="px-0">
+        <b-col sm="4" class="px-0">
           <div class="d-flex">
             <font-awesome-icon
               :icon="faSquareFull"
@@ -55,7 +55,7 @@
             </div>
           </div>
         </b-col>
-        <b-col md="8" class="px-0">
+        <b-col sm="6" class="px-0">
           <div class="d-flex">
             <div class="flex-fill">
               <h4 class="sr-only">
@@ -63,17 +63,17 @@
               </h4>
               <uw-meeting-info :section="section" class="myuw-text-md"/>
             </div>
-            <div class="">
-              <h4 class="sr-only">
-                Section Enrollments:
-              </h4>
-              <uw-enrollment
-                :section="section"
-                class="myuw-text-md text-nowrap"
-                :class="$mq === 'desktop' ? 'ml-5' : 'ml-3'"
-              />
-            </div>
           </div>
+        </b-col>
+        <b-col sm="2" class="px-0">
+          <h4 class="sr-only">
+            Section Enrollments:
+          </h4>
+          <uw-enrollment
+            :section="section"
+            class="myuw-text-md text-nowrap"
+            :class="$mq === 'desktop' ? 'ml-5' : 'ml-3'"
+          />
         </b-col>
       </b-row>
     </b-container>

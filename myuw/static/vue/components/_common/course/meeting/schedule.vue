@@ -24,7 +24,7 @@
         <tr v-for="meeting in section.meetings" :key="meeting.id">
           <td v-if="section.hasEosDates"
             :headers="`dates-${meeting.id}`"
-            class="text-left p-0 text-nowrap"
+            class="text-left p-0"
           >
             <span v-if="meeting.eos_start_date && meeting.eos_end_date">
               {{ formatEos(meeting) }}
@@ -59,7 +59,7 @@
               <uw-meeting-days :meeting="meeting" />
             </td>
             <td :headers="`time-${meeting.id}`"
-              class="p-0 text-left text-nowrap"
+              class="p-0 text-left"
             >
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}

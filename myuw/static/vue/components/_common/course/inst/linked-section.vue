@@ -74,13 +74,11 @@
           </div>
         </b-col>
         <b-col sm="2" class="px-0">
-          <div>
-            <h4 class="sr-only">
-              Section Enrollments:
-            </h4>
-            <uw-enrollment :section="section"
-              class="myuw-text-md ml-4 text-nowrap"/>
-          </div>
+          <h4 class="sr-only">
+            Section Enrollments:
+          </h4>
+          <uw-enrollment :section="section"
+            class="myuw-text-md ml-4 text-nowrap"/>
         </b-col>
         <b-col sm="1" class="px-0">
           <div class="d-inline-block float-right">
