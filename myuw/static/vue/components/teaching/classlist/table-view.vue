@@ -17,21 +17,24 @@
         primary-key="netid"
       >
         <template #cell(linkedSection)="data">
-          <span class="text-center">{{data.value}}</span>
+          <div class="text-center">{{data.value}}</div>
         </template>
         <template #cell(credits)="data">
-          <span class="text-center">{{data.value}}</span>
+          <div class="text-center">{{data.value}}</div>
         </template>
         <template #cell(email)="data">
-          <a
-            v-inner="'Email student'"
-            :href="data.value.href"
-            :title="data.value.title">
-            <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
-            <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
-              {{ data.value.email }}
-            </span>
-          </a>
+          <div class="text-center">
+            <a
+              v-inner="'Email student'"
+              :href="data.value.href"
+              :title="data.value.title"
+            >
+              <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
+              <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
+                {{ data.value.email }}
+              </span>
+            </a>
+          </div>
         </template>
       </b-table>
     </div>
