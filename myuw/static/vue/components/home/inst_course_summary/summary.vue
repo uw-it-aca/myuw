@@ -6,7 +6,7 @@
            :errored-show="statusCodeTagged(term) !== 404"
   >
     <template #card-heading>
-      <h2 class="h4 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         {{ titleCaseWord(getQuarter) }} {{ getYear }} Teaching Schedule
       </h2>
     </template>
@@ -47,7 +47,7 @@
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
         <uw-section-list v-else :sections="instSchedule.sections" />
 
-        <div>
+        <div class="myuw-text-md">
           <b-link
             v-inner="`important dates and deadlines: ${term}`"
             :href="getAcadCalLink">

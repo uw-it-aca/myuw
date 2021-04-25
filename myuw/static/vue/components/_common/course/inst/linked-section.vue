@@ -1,82 +1,114 @@
 <template>
-  <div class="d-flex">
-    <!-- A linked secondary section -->
-    <div class="w-15 flex-fill">
-      <div :class="`c${section.color_id}`" />
-      <h3 class="h6 myuw-font-encode-sans" :aria-label="section.lable">
-        <a v-if="section.mini_card"
-          v-inner="'View Mini-card'"
-          :href="`/teaching/${section.href}`"
-          :future-nav-target="section.navtarget"
-          :title="`View mini-card of ${section.label} on Teaching page`"
-        >
-          {{ section.section_id }}
-        </a>
-        <a v-else
-          :href="`/teaching/${section.href}`"
-          :future-nav-target="section.navtarget"
-          :title="`Pin mini-card of ${section.label} onto Teaching page`"
-          @click="miniCard"
-        >
-          {{ section.section_id }}
-        </a>
-      </h3>
-      <div v-if="section.sln">
-        <h4 class="sr-only">
-          Section SLN:
-        </h4>
-        <a
-          v-out="'Time Schedule for SLN'"
-          :href="getTimeScheHref(section)"
-          :title="`Time Schedule for SLN ${section.sln}`"
-        >
-          {{ section.sln }}
-        </a>
-      </div>
-      <div>
-        <h4 class="sr-only">
-          Section Type:
-        </h4>
-        <span class="text-capitalize">
-          {{ section.section_type }}
-        </span>
-      </div>
-    </div>
-
-    <div class="w-60 flex-fill">
-      <h4 class="sr-only">
-        Section Meetings:
-      </h4>
-      <uw-meeting-info :section="section" />
-    </div>
-
-    <div class="w-15 ml-3 flex-fill">
-      <h4 class="sr-only">
-        Section Enrollments:
-      </h4>
-      <uw-enrollment :section="section" />
-    </div>
-
-    <div class="w-10">
-      <b-button v-if="!section.mini_card"
-        variant="link"
-        :title="`Pin mini-card of ${section.label} onto Teaching page`"
-        @click="miniCard"
-      >
-        Pin
-      </b-button>
-      <b-button v-else
-        variant="link"
-        :title="`Remove mini-card of ${section.label} from Teaching page`"
-        @click="miniCard"
-      >
-        Unpin
-      </b-button>
-    </div>
+  <div class="mb-3">
+    <b-container>
+      <b-row>
+        <b-col sm="4" class="px-0">
+          <div class="d-flex">
+            <!-- A linked secondary section -->
+            <font-awesome-icon
+              :icon="faSquareFull"
+              :class="`text-c${section.color_id}`"
+              class="my-auto mr-1"
+              size="xs"
+            />
+            <div>
+            <h3
+              class="myuw-text-md myuw-font-encode-sans d-inline"
+              :aria-label="section.lable"
+            >
+              <a v-if="section.mini_card"
+                v-inner="'View Mini-card'"
+                :href="`/teaching/${section.href}`"
+                :future-nav-target="section.navtarget"
+                :title="`View mini-card of ${section.label} on Teaching page`"
+              >
+                {{ section.section_id }}
+              </a>
+              <a v-else
+                :href="`/teaching/${section.href}`"
+                :future-nav-target="section.navtarget"
+                :title="`Pin mini-card of ${section.label} onto Teaching page`"
+                @click="miniCard"
+              >
+                {{ section.section_id }}
+              </a>
+            </h3>
+            </div>
+            <div v-if="section.sln" class="ml-2">
+              <h4 class="sr-only">
+                Section SLN:
+              </h4>
+              <span>
+                <a
+                  v-out="'Time Schedule for SLN'"
+                  :href="getTimeScheHref(section)"
+                  :title="`Time Schedule for SLN ${section.sln}`"
+                  target="_blank"
+                  class="text-muted myuw-text-sm"
+                >
+                  {{ section.sln }}
+                </a>
+              </span>
+            </div>
+            <div
+              class="flex-fill"
+              :class="[$mq === 'mobile' ? 'ml-2' : 'text-center']"
+            >
+              <h4 class="sr-only">
+                Section Type:
+              </h4>
+              <span class="text-capitalize myuw-text-md">
+                {{ section.section_type }}
+              </span>
+            </div>
+          </div>
+        </b-col>
+        <b-col sm="5" class="px-0">
+          <div class="d-flex">
+            <div class="flex-fill">
+              <h4 class="sr-only">
+                Section Meetings:
+              </h4>
+              <uw-meeting-info :section="section" no-heading />
+            </div>
+          </div>
+        </b-col>
+        <b-col sm="2" class="px-0">
+          <h4 class="sr-only">
+            Section Enrollments:
+          </h4>
+          <uw-enrollment :section="section"
+            class="myuw-text-md ml-4 text-nowrap"/>
+        </b-col>
+        <b-col sm="1" class="px-0">
+          <div class="d-inline-block float-right">
+            <b-button v-if="!section.mini_card"
+              variant="link"
+              :title="`Pin mini-card of ${section.label} onto Teaching page`"
+              class="myuw-text-md text-muted p-0"
+              @click="miniCard"
+            >
+              Pin
+            </b-button>
+            <b-button v-else
+              variant="link"
+              :title="`Remove mini-card of ${section.label} from Teaching page`"
+              class="myuw-text-md text-muted p-0"
+              @click="miniCard"
+            >
+              Unpin
+            </b-button>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
+import {
+  faSquareFull,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
 
 import MeetingInfo from '../meeting/schedule.vue';
@@ -92,6 +124,11 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      faSquareFull,
+    };
   },
   methods: {
     ...mapActions('inst_schedule', [
