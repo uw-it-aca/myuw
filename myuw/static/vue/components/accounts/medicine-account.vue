@@ -40,14 +40,24 @@
           </b-alert>
         </div>
         <div v-else>
-          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-            Password expiration
-          </h3>
-          <div :class="expires30Days ? 'text-danger' : ''">
-            <span>{{ toFriendlyDate(expiresMed) }}</span>
-            <span>in {{ daysBeforeExpires }} days*</span>
-          </div>
-          <p>*Expiration date gets updated nightly.</p>
+          <uw-card-status>
+            <template #status-label>
+              Password expiration
+            </template>
+            <template #status-value>
+              <div :class="expires30Days ? 'text-danger' : ''">
+                {{ toFriendlyDate(expiresMed) }}
+              </div>
+            </template>
+            <template #status-content>
+              <div class="text-right">
+                in {{ daysBeforeExpires }} days*
+              </div>
+            </template>
+          </uw-card-status>
+          <p class="text-muted myuw-text-md">
+            *Expiration date gets updated nightly.
+          </p>
           <a :href="passwordChange">
             Change UW Medicine password
           </a>
@@ -59,11 +69,13 @@
 
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
+import CardStatus from '../_templates/card-status.vue';
 import Card from '../_templates/card.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-card-status': CardStatus,
   },
   data: function() {
     return {

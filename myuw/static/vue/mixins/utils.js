@@ -117,10 +117,7 @@ export default {
       return dayjs();
     },
     strToDayjs(dateStr) {
-      if (dateStr && dateStr.includes("T")) {
-        // timezone aware format
-        return dayjs(dateStr);
-      }
+      // timezone unaware date or datetime string
       return dayjs.tz(dateStr, "America/Los_Angeles");
     },
     toFriendlyDate(date_str) {
