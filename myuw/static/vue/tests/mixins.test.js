@@ -12,11 +12,10 @@ it('titleCaseName', () => {
 });
 
 it('strToDayjs', () => {
-	expect(utils.methods.strToDayjs("2021-04-22T15:30:00-07:00").toISOString()
-	).toEqual("2021-04-22T22:30:00.000Z");
 	expect(utils.methods.strToDayjs("2013-04-10").toISOString()
 	).toEqual("2013-04-10T07:00:00.000Z");
 });
+
 it('formatDateRange', () => {
   expect(utils.methods.formatDateRange(
 		utils.methods.strToDayjs("2021-04-12"),

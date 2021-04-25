@@ -21,7 +21,7 @@ export const getNow = (rootState = null) => {
 };
 
 export const strToDate = (dateStr) => {
-  // timezone unaware format
+  // timezone unaware date or datetime string
   return dayjs.tz(dateStr, "America/Los_Angeles");
 };
 
