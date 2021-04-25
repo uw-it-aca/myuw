@@ -1,5 +1,6 @@
 <template>
-  <div v-if="section.joint_sections && section.joint_sections.length">
+  <div v-if="section.joint_sections && section.joint_sections.length"
+    class="mt-0 mb-4 myuw-text-sm text-muted">
     Offered jointly with
     <span v-for="(jointSec, i) in section.joint_sections" :key="i">
       <span v-if="jointSec.is_ior">

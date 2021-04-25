@@ -3,6 +3,7 @@
     Remote
   </span>
   <span v-else-if="meeting.building_tbd"
+    class="text-muted"
     title="Room to be arranged">
     Room TBD
   </span>

@@ -1,12 +1,17 @@
 <template>
-  <div class="d-md-flex mb-3 myuw-text-md">
+  <div class="card-property d-md-flex myuw-text-md" :class="{'mb-2': !noMarginBottom}">
     <slot name="title">
-      <div class="flex-md-fill mr-3 bd-highlight
-        myuw-font-encode-sans property-label">
+      <h3
+        v-if="title.length > 0"
+        class="myuw-text-md flex-md-fill mr-3 mb-2 bd-highlight
+          myuw-font-encode-sans property-label"
+        :class="{'sr-only': srOnlyTitle}"
+      >
         {{ title }}
-      </div>
+      </h3>
+      <span v-else class="flex-md-fill mr-3 property-label"/>
     </slot>
-    <div class="flex-md-fill">
+    <div class="property-content flex-md-fill">
       <slot></slot>
     </div>
   </div>
@@ -18,6 +23,14 @@ export default {
     title: {
       type: String,
       required: true,
+    },
+    srOnlyTitle: {
+      type: Boolean,
+      default: false,
+    },
+    noMarginBottom: {
+      type: Boolean,
+      default: false,
     },
   },
   data: function () {
@@ -31,6 +44,7 @@ export default {
   .property-label {
     min-width: 25%;
     max-width: 25%;
+    color: #333;
   }
 }
 </style>

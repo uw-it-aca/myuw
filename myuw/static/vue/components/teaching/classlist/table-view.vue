@@ -1,29 +1,36 @@
 <template>
-  <div id="classlist_table_view"
-       aria-labelledby="table-view"
-  >
+  <div>
     <h3 class="sr-only">
       Table of Student Information
     </h3>
-    <div class="">
+    <div class="myuw-text-md">
       <b-table
         id="student-list"
         hover
         show-empty
         sort-icon-left
         responsive
+        small
         head-variant="light"
         :fields="fields"
         :items="items"
         primary-key="netid"
       >
+        <template #cell(linkedSection)="data">
+          <span class="text-center">{{data.value}}</span>
+        </template>
+        <template #cell(credits)="data">
+          <span class="text-center">{{data.value}}</span>
+        </template>
         <template #cell(email)="data">
           <a
             v-inner="'Email student'"
             :href="data.value.href"
             :title="data.value.title">
-            <font-awesome-icon :icon="faEnvelope"/>
-            <span class="sr-only">{{ data.value.email }}</span>
+            <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
+            <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
+              {{ data.value.email }}
+            </span>
           </a>
         </template>
       </b-table>
@@ -68,13 +75,13 @@ export default {
           sortable: true,
         },
         {
-          key: 'Pronouns',
-          label: 'Pronouns',
+          key: 'firstName',
+          label: 'First Name',
           sortable: true,
         },
         {
-          key: 'firstName',
-          label: 'First Name',
+          key: 'Pronouns',
+          label: 'Pronouns',
           sortable: true,
         },
       ];

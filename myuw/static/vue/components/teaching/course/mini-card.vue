@@ -15,8 +15,8 @@
 
     <template #card-body>
       <uw-meeting-info show-row-heading :section="section" />
-      <uw-class-list show-row-heading :section="section" />
-      <uw-materials show-row-heading :section="section" />
+      <uw-class-list :section="section" />
+      <uw-materials :section="section" />
     </template>
   </uw-card>
 </template>

@@ -1,15 +1,11 @@
 <template>
-  <div class="d-flex">
-    <h3 class="w-25 myuw-text-md myuw-font-encode-sans"
-      :class="{'sr-only': showRowHeader}">
-      Final Exam
-    </h3>
-    <div v-if="section.final_exam" class="w-75">
-      <div v-if="section.final_exam.no_exam_or_nontraditional">
+  <uw-card-property title="Final Exam">
+    <template v-if="section.final_exam">
+      <template v-if="section.final_exam.no_exam_or_nontraditional">
         No Exam or Non-Traditional
-      </div>
-      <div v-else-if="section.final_exam.start_date">
-        <p v-if="!section.is_primary_section">
+      </template>
+      <template v-else-if="section.final_exam.start_date">
+        <p v-if="!section.is_primary_section" class="mb-0">
           The final exam for the primary section is:
         </p>
         <table
@@ -27,49 +23,48 @@
               {{ section.final_exam.start_date.format('ddd, MMM D') }}
             </td>
             <td :headers="`final-time-${section.id}`"
-              class="p-0 text-center text-nowrap">
+              class="p-0 text-left text-nowrap">
               {{ section.final_exam.start_date.format('h:mm A') }} &ndash;
               {{ section.final_exam.end_date.format('h:mm A') }}
             </td>
-            <td :headers="`final-location-${section.id}`" class="p-0 text-right">
+            <td :headers="`final-location-${section.id}`" class="p-0 text-center">
               <uw-meeting-location :meeting="section.final_exam" />
             </td>
           </tbody>
         </table>
-      </div>
-      <div v-else-if="displayNoFinalPeriod">
+      </template>
+      <template v-else-if="displayNoFinalPeriod">
         No final exam period during summer quarter.
-      </div>
-      <div v-else>
+      </template>
+      <template v-else>
         Day and time to be arranged.
-      </div>
-    </div>
-    <div v-else class="w-75">
+      </template>
+    </template>
+    <template v-else>
       No Final Exam Scheduled.
-    </div>
+    </template>
     <a
       v-if="displayConfirmFinalLink"
       :href="confirmFinalLink"
     >
       Confirm final exam
     </a>
-  </div>
+  </uw-card-property>
 </template>
 
 <script>
 import Location from '../../_common/course/meeting/location.vue';
+import CardProperty from '../../_templates/card-property.vue';
+
 export default {
   components: {
+    'uw-card-property': CardProperty,
     'uw-meeting-location': Location,
   },
   props: {
     section: {
       type: Object,
       required: true,
-    },
-    showRowHeader: {
-      type: Boolean,
-      default: false,
     },
   },
   data() {
@@ -100,3 +95,12 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.table-sm {
+  td {
+    width: 33%;
+    padding: 0;
+  }
+}
+</style>

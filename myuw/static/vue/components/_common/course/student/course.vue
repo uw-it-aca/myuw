@@ -33,16 +33,7 @@
             :id="`course-details-${index}`"
             v-model="isOpen"
           >
-            <!-- creates line spacer above meeting info -->
-            <div class="d-flex">
-              <div class="w-25">
-                &nbsp;
-              </div>
-              <div class="w-75">
-                <hr>
-              </div>
-            </div>
-            <uw-course-details :section="section"/>
+            <uw-course-details :section="section" class="pt-3"/>
           </b-collapse>
         </template>
         <template v-else>
@@ -50,18 +41,10 @@
             :id="`instructors-collapse-${index}`"
             v-model="isOpen"
           >
-            <!-- creates line spacer above instructor info -->
-            <div class="d-flex">
-              <div class="w-25">
-                &nbsp;
-              </div>
-              <div class="w-75">
-                <hr>
-              </div>
-            </div>
             <uw-instructors
               v-if="section.instructors.length > 0"
               :instructors="section.instructors"
+              class="pt-3"
             />
           </b-collapse>
         </template>

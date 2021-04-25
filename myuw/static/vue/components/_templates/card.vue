@@ -1,12 +1,14 @@
 <template>
   <b-card v-if="loaded"
           v-visibility-change="loaded ? visibilityChanged : null"
-          class="rounded-0 shadow-sm mb-3"
+          :class="cardClasses"
           :body-class="bodyClasses"
           footer-class="border-0 px-3 py-2"
   >
     <slot name="card-heading" />
-    <slot name="card-body" />
+    <div class="myuw-card-body">
+      <slot name="card-body" />
+    </div>
     <slot name="card-disclosure" />
     <template v-if="!!$slots['card-footer']"
               #footer
@@ -69,6 +71,10 @@ export default {
       type: Object,
       default: null,
     },
+    noBottomMargin: {
+      type: Boolean,
+      default: false,
+    }
   },
   data: function() {
     return {
@@ -76,6 +82,14 @@ export default {
     };
   },
   computed: {
+    cardClasses() {
+      const classes = {
+        'rounded-0': true,
+        'shadow-sm': true,
+        'mb-3': !this.noBottomMargin,
+      };
+      return classes;
+    },
     bodyClasses() {
       const classes = {
         'p-3': true,
@@ -114,5 +128,11 @@ export default {
   background-color: rgba(1, 1, 1, 0.5);
   z-index: 9999;
   color: white;
+}
+
+.myuw-card-body .card-property-group::v-deep {
+  &:last-child .card-group-divider {
+    display: none !important;
+  }
 }
 </style>
