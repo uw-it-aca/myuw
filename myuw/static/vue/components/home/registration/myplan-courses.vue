@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h4 class="text-dark-beige">
+    <h4 class="h6 text-dark-beige font-weight-bold">
       Your {{ nextTermQuarter }} {{ nextTermYear }} plan
     </h4>
     <div v-if="hadReadyCourses">
-      <h5 class="font-weight-bold">
+      <h5 class="myuw-text-md font-weight-bold">
         Ready for registration
       </h5>
       <ul class="list-unstyled m-0 myuw-text-sm">
@@ -54,7 +54,7 @@
       </ul>
     </div>
     <div v-if="hadUnReadyCourses">
-      <h5 class="font-weight-bold">
+      <h5 class="myuw-text-md font-weight-bold">
         Issues
       </h5>
       <p class="myuw-text-md">
