@@ -6,7 +6,7 @@
     <h3 class="sr-only">
       Grid of Student Photos
     </h3>
-    <ol class="list-unstyled d-flex">
+    <ol class="list-unstyled d-flex flex-wrap">
       <li v-for="(reg, i) in registrations"
           :id="`student-photo-${reg.regid}`"
           :key="i"
