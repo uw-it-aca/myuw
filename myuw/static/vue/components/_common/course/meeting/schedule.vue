@@ -60,7 +60,7 @@
               <uw-meeting-days :meeting="meeting" />
             </td>
             <td :headers="`time-${meeting.id}`"
-              class="p-0 text-left"
+              class="p-0 text-left text-nowrap"
             >
               {{ meeting.start_time.format('h:mm A') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
