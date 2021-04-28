@@ -1,6 +1,6 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <b-container>
+    <b-container fluid>
       <b-row>
         <b-col sm="4" class="px-0">
           <div class="d-flex">
@@ -26,7 +26,7 @@
                   {{ section.section_id }}
                 </a>
               </h3>
-              <div :class="$mq === 'desktop' ? '' : 'float-right'">
+              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-right'">
                 <div class="d-inline">
                   <h4 class="sr-only">
                     Section Type:
@@ -79,7 +79,7 @@
     </b-container>
 
     <template v-if="getLinkedSections(section).length > 0">
-      <div :class="$mq === 'desktop' ? 'ml-3' : ''">
+      <div :class="$mq !== 'mobile' ? 'ml-3' : ''">
         <b-button
           v-b-toggle="`linked-sections-${section.id}`"
           variant="link"

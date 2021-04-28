@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-3">
+  <div>
     <b-container>
       <b-row>
         <b-col sm="4" class="px-0">
