@@ -5,7 +5,18 @@ function linkClickHandler(event, binding, vnode, out) {
 
   const instance = vnode.componentInstance ? vnode.componentInstance : vnode.context;
   // Resolves the `a` tag from the path
-  const aTarget = event.target.tagName === 'A' ? event.target : event.path.find((el) => el.tagName === 'A');
+  // const aTarget = event.target.tagName === 'A' ? event.target :
+  //   event.path ? event.path.find((el) => el.tagName === 'A') :
+  //   event.target.parentElement.find((el) => el.tagName === 'A');
+  let aTarget = null;
+  if (event.target.tagName === 'A') aTarget = event.target;
+  else if(event.path && event.path.length) aTarget = event.path.find((el) => el.tagName === 'A');
+  if (!aTarget) {
+    aTarget = event.target;
+    while (aTarget && aTarget.tagName !== 'A') {
+      aTarget = aTarget.parentElement;
+    }
+  }
 
   instance.$logger.linkClick(
     instance,
