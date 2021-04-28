@@ -62,22 +62,19 @@
         <!-- If there is credit on account -->
         <li v-else-if="tuiBalance < 0">
           <uw-card-status>
-            <template #status-label>
-              Account Credit<br>
-              <span class="myuw-text-md">
-                Student Fiscal Services
-              </span>
-            </template>
+            <template #status-label>Account Credit</template>
             <template #status-value>
               +${{ Math.abs(tuiBalance).toFixed(2) }} CR
             </template>
             <template #status-content>
-              <div class="myuw-text-md text-right">
-                No payment needed<br>
-                <a
-                  href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
-                  class="myuw-text-md"
-                >Tuition Statement</a>
+              <div class="d-flex mb-2 myuw-text-md">
+                <div class="flex-fill w-50">Student Fiscal Services</div>
+                <div class="flex-fill w-50 text-right">
+                  No payment needed<br>
+                  <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
+                    Tuition Statement
+                    </a>
+                </div>
               </div>
             </template>
           </uw-card-status>
