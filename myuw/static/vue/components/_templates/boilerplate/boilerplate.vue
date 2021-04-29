@@ -331,14 +331,15 @@
 
 <script>
 import {
-  faEdit,
   faCreditCard,
   faSquare,
   faCalendarCheck,
 } from '@fortawesome/free-regular-svg-icons';
+
 import {
   faExclamationTriangle,
   faUser,
+  faEdit,
   faEnvelope,
   faSearch,
   faSignOutAlt,

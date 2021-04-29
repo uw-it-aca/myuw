@@ -2,7 +2,7 @@
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
     <b-container fluid>
       <b-row>
-        <b-col sm="4" class="px-0">
+        <b-col cols="12" sm="3" class="px-0">
           <div class="d-flex">
             <font-awesome-icon
               :icon="faSquareFull"
@@ -26,7 +26,7 @@
                   {{ section.section_id }}
                 </a>
               </h3>
-              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-right'">
+              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-right'" class="text-nowrap">
                 <div class="d-inline">
                   <h4 class="sr-only">
                     Section Type:
@@ -35,7 +35,7 @@
                     {{ section.section_type }}
                   </span>
                 </div>
-                <div v-if="section.sln" class="ml-3 d-inline">
+                <div v-if="section.sln" class="ml-1 d-inline">
                   <h4 class="sr-only">
                     Section SLN:
                   </h4>
@@ -55,7 +55,7 @@
             </div>
           </div>
         </b-col>
-        <b-col sm="6" class="px-0">
+        <b-col cols="9" sm="7" class="px-0">
           <div class="d-flex">
             <div class="flex-fill">
               <h4 class="sr-only">
@@ -65,7 +65,7 @@
             </div>
           </div>
         </b-col>
-        <b-col sm="2" class="px-0">
+        <b-col cols="3" sm="2" class="px-0 text-right">
           <h4 class="sr-only">
             Section Enrollments:
           </h4>
