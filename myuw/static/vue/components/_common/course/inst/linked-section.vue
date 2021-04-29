@@ -1,8 +1,8 @@
 <template>
-  <div class="mb-3">
-    <b-container>
+  <div>
+    <b-container fluid>
       <b-row>
-        <b-col sm="4" class="px-0">
+        <b-col cols="12" sm="4" class="px-0">
           <div class="d-flex">
             <!-- A linked secondary section -->
             <font-awesome-icon
@@ -63,7 +63,7 @@
             </div>
           </div>
         </b-col>
-        <b-col sm="5" class="px-0">
+        <b-col cols="8" sm="5" class="px-0">
           <div class="d-flex">
             <div class="flex-fill">
               <h4 class="sr-only">
@@ -73,14 +73,14 @@
             </div>
           </div>
         </b-col>
-        <b-col sm="2" class="px-0">
+        <b-col cols="2" sm="2" class="px-0">
           <h4 class="sr-only">
             Section Enrollments:
           </h4>
           <uw-enrollment :section="section"
             class="myuw-text-md ml-4 text-nowrap"/>
         </b-col>
-        <b-col sm="1" class="px-0">
+        <b-col cols="2" sm="1" class="px-0">
           <div class="d-inline-block float-right">
             <b-button v-if="!section.mini_card"
               variant="link"
