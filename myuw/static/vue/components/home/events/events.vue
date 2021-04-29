@@ -14,6 +14,27 @@
         Showing events in the next 14 days.
       </p>
       <uw-list-events :events="shownEvents" />
+      <div v-if="hiddenEvents == 0">
+        <div v-if="calLinks.length > 1" class="mt-3">
+          <p class="text-muted myuw-text-md">
+            See all events from:
+          </p>
+          <ul class="list-unstyled mb-0 myuw-text-md">
+            <li v-for="(event, i) in calLinks" :key="i">
+              <a :href="event.url">{{ event.title }}</a>
+            </li>
+          </ul>
+        </div>
+        <div v-else class="mt-3">
+          <p class="text-muted myuw-text-md">
+            See all events from
+            <a :href="calLinks[0].url">
+              {{ calLinks[0].title }}
+            </a>
+            calendar.
+          </p>
+        </div>
+      </div>
     </template>
     <template v-else #card-body>
       <div v-if="futureCalLinks.length > 0">
