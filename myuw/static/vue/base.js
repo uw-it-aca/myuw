@@ -1,3 +1,7 @@
+import "core-js";
+import "regenerator-runtime/runtime";
+import "intersection-observer";
+
 import Vue from 'vue';
 import Vuex from 'vuex';
 
