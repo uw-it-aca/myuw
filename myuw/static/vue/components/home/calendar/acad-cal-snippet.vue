@@ -67,7 +67,7 @@ export default {
       return this.statusCodeTagged(this.urlExtra);
     },
     showCard: function () {
-      return !this.isReady || (this.instructor && this.events.length > 0);
+      return this.instructor && (!this.isReady || this.events.length > 0);
     },
     showError: function () {
       return this.statusCode !== 404;
