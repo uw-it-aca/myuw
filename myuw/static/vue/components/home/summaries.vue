@@ -1,5 +1,5 @@
 <template>
-  <b-row class="mb-3"
+  <b-row class="mb-3 justify-content-between"
          role="group" aria-labelledby="summaryHeader"
   >
     <h2 id="summaryHeader" class="sr-only">
@@ -12,7 +12,7 @@
         class="d-block px-3 py-1 text-dark text-nowrap
         font-weight-light"
         :class="[
-          $mq == 'tablet' || $mq == 'desktop'
+          $mq == 'desktop'
             ? 'border-left text-left'
             : 'border-bottom text-center',
         ]"
@@ -47,15 +47,15 @@
         </span>
       </a>
     </b-col>
-    <b-col v-if="isHfsReady && isLibraryReady" md="10">
-      <div class="row float-md-right" style="padding: 0 10px;">
+    <b-col v-if="isHfsReady && isLibraryReady" md="9" lg="8">
+      <div class="row" style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
           v-inner="'MyUW Accounts page - Student Husky card'"
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
-            $mq == 'tablet' || $mq == 'desktop'
+            $mq == 'desktop'
               ? 'border-left text-left'
               : 'border-none text-center',
           ]"
@@ -73,7 +73,7 @@
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
-            $mq == 'tablet' || $mq == 'desktop'
+            $mq == 'desktop'
               ? 'border-left text-left'
               : 'border-none text-center',
           ]"
@@ -92,7 +92,7 @@
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
-            $mq == 'tablet' || $mq == 'desktop'
+            $mq == 'desktop'
               ? 'border-left text-left'
               : 'border-none text-center',
           ]"
@@ -110,7 +110,7 @@
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
-            $mq == 'tablet' || $mq == 'desktop'
+            $mq == 'desktop'
               ? 'border-left text-left'
               : 'border-none text-center',
           ]"
@@ -128,7 +128,7 @@
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
-            $mq == 'tablet' || $mq == 'desktop'
+            $mq == 'desktop'
               ? 'border-left text-left'
               : 'border-none text-center',
           ]"
