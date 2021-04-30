@@ -56,10 +56,22 @@ export default {
   mounted() {
     this.fetch();
   },
+  watch: {
+    isReady: function () {
+      this.scrollToFragment();
+    }
+  },
   methods: {
     ...mapActions('resources', ['fetch']),
     scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    scrollToFragment() {
+      this.$nextTick(() => {
+        if (window.location.hash) {
+          document.getElementById(window.location.hash.substring(1)).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
     },
   },
 };
