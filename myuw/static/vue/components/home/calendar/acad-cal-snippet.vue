@@ -13,7 +13,9 @@
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li v-for="(ev, index) in events" :key="index"
           class="mb-2">
-          {{ formatBannerDate(ev) }} <br>
+          <strong>
+          {{ formatBannerDate(ev) }}
+          </strong>
           <a :href="ev.event_url" class="d-block">{{ ev.summary }}</a>
         </li>
       </ul>
