@@ -12,7 +12,7 @@
         class="d-block px-3 py-1 text-dark text-nowrap
         font-weight-light"
         :class="[
-          $mq == 'desktop'
+          $mq == 'desktop' || $mq == 'tablet'
             ? 'border-left text-left'
             : 'border-bottom text-center',
         ]"
@@ -55,7 +55,7 @@
           class="d-inline-block col px-3 py-1 ml-1
           font-weight-light text-dark text-nowrap"
           :class="[
-            $mq == 'desktop'
+            $mq == 'desktop' 
               ? 'border-left text-left'
               : 'border-none text-center',
           ]"

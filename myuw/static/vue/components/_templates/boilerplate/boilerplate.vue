@@ -213,12 +213,14 @@
               <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
           </b-col>
-          <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
+
+          <b-col v-if="$mq === 'mobile' || $mq === 'tablet'" cols="12">
             <!-- MARK: message banner display for mobile and tablet -->
             <div style="margin-left: -10px; margin-right: -10px">
               <uw-messages />
             </div>
           </b-col>
+
           <b-col
             lg="10"
             role="main"
