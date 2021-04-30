@@ -12,9 +12,9 @@
         class="d-block px-3 py-1 text-dark text-nowrap
         font-weight-light"
         :class="[
-          $mq == 'desktop' || $mq == 'tablet'
+          $mq == 'desktop'
             ? 'border-left text-left'
-            : 'border-bottom text-center',
+            : 'text-center',
         ]"
         href="/academic_calendar/"
       >
@@ -48,7 +48,8 @@
       </a>
     </b-col>
     <b-col v-if="isHfsReady && isLibraryReady" md="9" lg="8">
-      <div class="row" style="padding: 0 10px;">
+      <div class="row"
+        style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
           v-inner="'MyUW Accounts page - Student Husky card'"
