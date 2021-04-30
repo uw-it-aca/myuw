@@ -29,7 +29,7 @@
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1"
-                   href="/resources/#accountsidentityandemail"
+                   href="/resources/#emailandaccountsandidentity"
                 >Accounts, Identity, and Email</a>
               </li>
             </b-col>
