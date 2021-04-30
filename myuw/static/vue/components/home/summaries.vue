@@ -49,6 +49,11 @@
     </b-col>
     <b-col v-if="isHfsReady && isLibraryReady" md="9" lg="8">
       <div class="row"
+      :class="[
+            $mq == 'mobile' 
+              ? 'row-cols-2'
+              : '',
+          ]"
         style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
