@@ -5,7 +5,7 @@
     <h2 id="summaryHeader" class="sr-only">
       Account Summaries
     </h2>
-    <b-col md="3" lg="4">
+    <b-col>
       <a
         v-if="termData"
         v-inner="'MyUW Calendar page'"
@@ -47,7 +47,7 @@
         </span>
       </a>
     </b-col>
-    <b-col v-if="isHfsReady && isLibraryReady" md="9" lg="8">
+    <b-col v-if="isHfsReady && isLibraryReady" cols="auto">
       <div class="row"
       :class="[
             $mq == 'mobile' 
@@ -66,6 +66,7 @@
               : 'border-none text-center',
           ]"
           href="/accounts/"
+          style="min-width:130px;"
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Student Husky</span>
@@ -84,6 +85,7 @@
               : 'border-none text-center',
           ]"
           href="/accounts/"
+          style="min-width:130px;"
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Resident Dining</span>
@@ -103,6 +105,7 @@
               : 'border-none text-center',
           ]"
           href="/accounts/"
+          style="min-width:130px;"
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Employee Husky</span>
@@ -121,6 +124,7 @@
               : 'border-none text-center',
           ]"
           href="/accounts/"
+          style="min-width:130px;"
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Library Item Due</span>
@@ -139,6 +143,7 @@
               : 'border-none text-center',
           ]"
           href="/accounts/"
+          style="min-width:130px;"
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
