@@ -87,14 +87,16 @@
               <span class="text-danger">${{ pceBalance.toFixed(2) }}</span>
             </template>
             <template #status-content>
-              <div class="myuw-text-md">PCE-Continuum College</div>
-              <div class="text-right">
-                <uw-link-button
-                  v-out="'Make Continuum College tuition payment'"
-                  href="http://portal.continuum.uw.edu"
-                 >
-                  Make payment
-                </uw-link-button>
+              <div class="d-flex mb-2 myuw-text-md">
+                <div class="flex-fill w-50">PCE-Continuum College</div>
+                <div class="flex-fill w-50 text-right">
+                  <uw-link-button
+                    v-out="'Make Continuum College tuition payment'"
+                    href="http://portal.continuum.uw.edu"
+                  >
+                    Make payment
+                  </uw-link-button>
+                </div>
               </div>
             </template>
           </uw-card-status>
@@ -105,11 +107,15 @@
             <template #status-label>Amount Due</template>
             <template #status-value>$ 0</template>
             <template #status-content>
-              <span class="myuw-text-md">PCE-Continuum College</span>
-              <a v-out="'Continuum College Account Statement'"
-                href="http://portal.continuum.uw.edu"
-                class="myuw-text-md"
-              >Account Statement</a>
+              <div class="d-flex mb-2 myuw-text-md">
+                <div class="flex-fill w-50">PCE-Continuum College</div>
+                <div class="flex-fill w-50 text-right">
+                  <a v-out="'Continuum College Account Statement'"
+                    href="http://portal.continuum.uw.edu"
+                    class="myuw-text-md"
+                  >Account Statement</a>
+                </div>
+              </div>
             </template>
           </uw-card-status>
         </li>
