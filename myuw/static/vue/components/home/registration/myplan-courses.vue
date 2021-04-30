@@ -26,9 +26,10 @@
                   v-for="(meeting, k) in section.section_data.meetings"
                 >
                   <td :key="`meeting-0-${k}`" class="w-25 pl-0">
-                    <span v-if="k == 0">Section </span>
-                    <span v-else class="sr-only">Section </span>
-                    {{ section.section_id }}
+                    <div v-if="k == 0">
+                      <span class="sr-only">Section </span>
+                      {{ section.section_id }}
+                    </div>
                   </td>
                   <td
                     v-if="meeting.days_tdb"
@@ -44,7 +45,8 @@
                   <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`"
                       class="w-50 text-nowrap"
                   >
-                    {{ meeting.start_time }} &ndash; {{ meeting.end_time }}
+                    {{ formatMeetingTime(meeting.start_time) }} &ndash;
+                    {{ formatMeetingTime(meeting.end_time) }}
                   </td>
                 </template>
               </tr>
@@ -130,6 +132,9 @@ export default {
     courses() {
       return this.currentPlanData.courses;
     },
+  },
+  methods: {
+    
   },
 };
 </script>
