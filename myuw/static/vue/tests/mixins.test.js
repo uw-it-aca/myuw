@@ -11,23 +11,18 @@ it('titleCaseName', () => {
   expect(utils.methods.titleCaseName('string string')).toEqual('String String');
 });
 
-it('strToDayjs', () => {
-	expect(utils.methods.strToDayjs("2013-04-10").toISOString()
-	).toEqual("2013-04-10T07:00:00.000Z");
-});
-
 it('formatDateRange', () => {
   expect(utils.methods.formatDateRange(
-		utils.methods.strToDayjs("2021-04-12"),
-		utils.methods.strToDayjs("2021-04-12"))
+		utils.methods.dayjs("2021-04-12"),
+		utils.methods.dayjs("2021-04-12"))
 	).toEqual('Apr 12');
 	expect(utils.methods.formatDateRange(
-		utils.methods.strToDayjs("2021-04-12"),
-		utils.methods.strToDayjs("2021-04-14"))
+		utils.methods.dayjs("2021-04-12"),
+		utils.methods.dayjs("2021-04-14"))
 	).toEqual('Apr 12 - 14');
 	expect(utils.methods.formatDateRange(
-		utils.methods.strToDayjs("2021-04-12"),
-		utils.methods.strToDayjs("2021-05-14"))
+		utils.methods.dayjs("2021-04-12"),
+		utils.methods.dayjs("2021-05-14"))
 	).toEqual('Apr 12 - May 14');
 });
 

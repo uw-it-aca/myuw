@@ -11,6 +11,9 @@ dayjs.extend(require('dayjs/plugin/advancedFormat'))
 dayjs.extend(require('dayjs/plugin/localizedFormat'))
 dayjs.extend(require('dayjs/plugin/customParseFormat'))
 
+dayjs.tz.setDefault("America/Los_Angeles");
+// default tz of dates in SDB
+
 export default {
   computed: {
     ...mapState({
@@ -116,12 +119,7 @@ export default {
       // using client device's timezone
       return dayjs();
     },
-    strToDayjs(dateStr) {
-      // timezone unaware date or datetime string
-      return dayjs.tz(dateStr, "America/Los_Angeles");
-    },
     formatMeetingTime(timeStr) {
-      dayjs.tz.setDefault("America/Los_Angeles");
       const tObj = dayjs(timeStr, "hh:mm").second(0).millisecond(0);
       return tObj.format('h:mm A') ;
     },
