@@ -9,7 +9,8 @@
     </template>
     <template #card-body>
       <div>
-        hello kathy
+        <strong>Major</strong>
+        Premajor Arts & Sciences
       </div>
     </template>
   </uw-card>
