@@ -153,7 +153,7 @@ const vueConf = {
   el: '#vue_root',
   created: function() {
     // MARK: construct the page title
-    document.title = store.state['pageTitle'] + ' - MyUW';
+    document.title = store.state['page'].title + ' - MyUW';
     document.getElementById('vue_root').hidden = false;
   },
   store: store,

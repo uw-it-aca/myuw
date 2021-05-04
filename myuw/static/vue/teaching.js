@@ -17,8 +17,11 @@ vueConf.store.registerModule('emaillist', emaillist);
 vueConf.store.registerModule('inst_schedule', instSchedule);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Teaching',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'Teaching',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

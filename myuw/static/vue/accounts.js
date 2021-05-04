@@ -31,8 +31,11 @@ vueConf.store.registerModule('tuition', tuition);
 vueConf.store.registerModule('notices', notices);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Accounts',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'Accounts',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);
