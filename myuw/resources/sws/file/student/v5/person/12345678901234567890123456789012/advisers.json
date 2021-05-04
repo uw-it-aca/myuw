@@ -1,0 +1,24 @@
+{
+    "StudentPronouns": null,
+    "StudentRegID": "12345678901234567890123456789012",
+    "StudentUWNetID": "eight",
+    "StudentSystemKey": "000083857",
+    "StudentNumber": "1443336",
+    "StudentFullName": "Eight Student",
+    "AcademicAdvisers": [
+        {
+            "AdvisingFullName": "John Average2",
+            "AdvisingPronouns": null,
+            "AdvisingEmailAddress": "javg002@uw.edu",
+            "AdvisingPhoneNumber": null,
+            "AdvisingUWNetID": "javg002",
+            "AdvisingRegID": "9136CCB8F66711D5BE060004AC494001",
+            "AdvisingProgram": "OMAD Advising",
+            "BookingUrl": null,
+            "IsDepartmentAdviser": false,
+            "StudentAdvisingIsActive": true,
+            "Metadata": "AcademicAdviserSourceKey=UAA;",
+            "RepositoryTimeStamp": "12/7/2020 7:32:28 AM"
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+  "AcademicAdvisers": [
+    {
+      "RepositoryTimeStamp": "3/24/2020 1:07:14 PM",
+      "Metadata": "AcademicAdviserSourceKey=UAA;",
+      "StudentAdvisingIsActive": true,
+      "AdvisingFullName": "John Average1",
+      "AdvisingPronouns": "he/him/his",
+      "AdvisingEmailAddress": "javg001@uw.edu",
+      "AdvisingPhoneNumber": "+1 206 543-7444",
+      "AdvisingUWNetID": "javg001",
+      "AdvisingRegID": "9136CCB8F66711D5BE060004AC494001",
+      "AdvisingProgram": "UAA Advising",
+      "BookingUrl": "https://secure.scheduleonce.com/javg001",
+      "IsDepartmentAdviser": false
+    },
+    {
+      "RepositoryTimeStamp": "3/24/2020 1:07:14 PM",
+      "Metadata": "AcademicAdviserSourceKey=UAA;",
+      "StudentAdvisingIsActive": true,
+      "AdvisingFullName": "UNIVERSITY HONORS PROGRAM",
+      "AdvisingPronouns": "he/him/his",
+      "AdvisingEmailAddress": "uwhonors@uw.edu",
+      "AdvisingPhoneNumber": "+1 206 543-7444",
+      "AdvisingUWNetID": "uwhonors",
+      "AdvisingRegID": "24A20F50AE3511D68CBC0004AC494FFE",
+      "AdvisingProgram": "UW Honors",
+      "BookingUrl": "https://honors.uw.edu/advising/",
+      "IsDepartmentAdviser": false
+    }
+  ],
+  "StudentRegID": "9136CCB8F66711D5BE060004AC494FFE",
+  "StudentUWNetID": "javerage",
+  "StudentSystemKey": "000083856",
+  "StudentNumber": "1033334",
+  "StudentFullName": "John Joseph Average"
+}
