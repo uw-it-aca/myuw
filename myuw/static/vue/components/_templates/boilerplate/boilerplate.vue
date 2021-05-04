@@ -89,7 +89,10 @@
               <font-awesome-icon :icon="faBars" transform="shrink-8 right-1 " class="m-0" />
             </font-awesome-layers>
           </b-button>
-          <div class="myuw-title d-inline align-middle text-white" :class="[$mq == 'desktop' ? 'h3' : 'h5']">
+          <div
+            class="myuw-title d-inline align-middle text-white"
+            :class="[$mq == 'desktop' ? 'h3' : 'h5']"
+          >
             <template v-if="$mq != 'desktop'">
               <template v-if="page.title == 'Home'"> MyUW </template>
               <template v-else>
@@ -176,7 +179,11 @@
                   :active="page.title == 'Notices'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faExclamationTriangle" class="mr-2" fixed-width />Notices
+                  <font-awesome-icon
+                    :icon="faExclamationTriangle"
+                    class="mr-2"
+                    fixed-width
+                  />Notices
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
