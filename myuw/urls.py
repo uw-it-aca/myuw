@@ -25,6 +25,7 @@ from myuw.views.profile import profile
 from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
 from myuw.views.resources import resources
+from myuw.views.api.adviser import Advisers
 from myuw.views.api.affiliation import Affiliation
 from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
@@ -103,6 +104,9 @@ urlpatterns += [
     re_path(r'^api/v1/academic_events/current/$',
             AcademicEvents.as_view(), {'current': True},
             name="myuw_academic_calendar_current"),
+    re_path(r'^api/v1/advisers/?$',
+            Advisers.as_view(),
+            name="myuw_advisers_api"),
     re_path(r'^api/v1/affiliation/?$',
             Affiliation.as_view(),
             name="myuw_affiliation"),
