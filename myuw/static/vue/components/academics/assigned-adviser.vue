@@ -10,7 +10,7 @@
     <template #card-body>
       <div>
         <strong>Major</strong>
-        Premajor Arts & Sciences
+        Premajor
       </div>
     </template>
   </uw-card>
