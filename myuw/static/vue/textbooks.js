@@ -15,8 +15,11 @@ vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('textbooks', textbooks);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: `${utils.methods.pageTitleFromTerm(window.textbookTerm)} Textbooks`,
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: `${utils.methods.pageTitleFromTerm(window.textbookTerm)} Textbooks`,
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

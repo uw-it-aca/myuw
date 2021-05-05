@@ -9,9 +9,7 @@
       An error occurred and MyUW cannot load your information right now. In the meantime, try the
       <a
         href="https://hfs.uw.edu/myhfs/account.aspx"
-      >
-        Housing &amp; Food Services </a
-      >.
+      > Housing &amp; Food Services</a> page.
     </template>
     <template #card-body>
       <uw-card-status v-if="hfs.resident_dining">

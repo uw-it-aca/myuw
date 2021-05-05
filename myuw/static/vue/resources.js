@@ -11,8 +11,11 @@ import resources from './vuex/store/resources';
 vueConf.store.registerModule('resources', resources);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'UW Resources',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'UW Resources',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

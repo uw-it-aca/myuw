@@ -18,8 +18,11 @@ vueConf.store.registerModule('directory', directory);
 vueConf.store.registerModule('profile', profile);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Profile',
+  name: 'page',
+  value: {
+    hideTitle: true,
+    title: 'Profile',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

@@ -23,8 +23,11 @@ vueConf.store.commit('addVarToState', {
 });
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: `Preview ${utils.methods.pageTitleFromTerm(window.futureTerm)}`,
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: `Preview ${utils.methods.pageTitleFromTerm(window.futureTerm)}`,
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

@@ -39,8 +39,11 @@ vueConf.store.registerModule('visual_schedule', visualSchedule);
 vueConf.store.registerModule('category_links', categoryLinks);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Academics',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'Academics',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);
