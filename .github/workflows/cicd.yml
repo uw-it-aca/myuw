@@ -46,8 +46,25 @@ on:
     types: [opened, reopened, synchronize]
 
 jobs:
+  context:
+    runs-on: ubuntu-18.04
+
+    outputs:
+      commit_hash: ${{ steps.context.outputs.commit_hash }}
+      git_repo_branch: ${{ steps.context.outputs.git_repo_branch }}
+      image_tag: ${{ steps.context.outputs.image_tag }}
+
+    steps:
+      - name: Set up Context
+        id: context
+        uses: uw-it-aca/actions/cicd-context@main
+        with:
+          release_name: ${{ env.RELEASE_NAME }}
+
   build:
     runs-on: ubuntu-18.04
+
+    needs: context
 
     steps:
       - name: Checkout Repo
@@ -63,12 +80,6 @@ jobs:
         with:
           app_name: ${DJANGO_APP}
           exclude_paths: 'migrations'
-
-      - name: Set up Context
-        id: cicd
-        uses: uw-it-aca/actions/cicd-context@main
-        with:
-          release_name: ${{ env.RELEASE_NAME }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -93,7 +104,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           target: app-container
-          tags: ${{ steps.cicd.outputs.image_tag }}
+          tags: ${{ needs.context.outputs.image_tag }}
           push: false
           load: true
           build-args: VUE_DEVTOOLS=${{ env.VUE_DEVTOOLS }}
@@ -123,7 +134,7 @@ jobs:
         if: github.event_name == 'push'
         uses: uw-it-aca/actions/gcr-push@main
         with:
-          image_tag: ${{ steps.cicd.outputs.image_tag }}
+          image_tag: ${{ needs.context.outputs.image_tag }}
           gcp_json_key: ${{ secrets.GCP_JSON_KEY }}
 
       - uses: actions/upload-artifact@v2
@@ -228,7 +239,7 @@ jobs:
 
   #   services:
   #     myuw:
-  #       image: gcr.io/uwit-mci-axdd/${{needs.build.outputs.image_tag}}
+  #       image: gcr.io/uwit-mci-axdd/${{ needs.context.outputs.image_tag }}
   #       env:
   #         AUTH: SAML_MOCK
   #       ports:
@@ -276,7 +287,10 @@ jobs:
   deploy:
     if: github.event_name == 'push'
 
-    needs: [build, eslint, jest]
+    needs: [context, build, eslint, jest]
+
+    outputs:
+      context: ${{ steps.context.outputs.context }}
 
     runs-on: ubuntu-18.04
 
@@ -284,39 +298,54 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Set up Context
-        id: cicd
-        uses: uw-it-aca/actions/cicd-context@main
-        with:
-          release_name: ${{ env.RELEASE_NAME }}
-
       - name: Deployment Pipeline
         if: >-
           contains(fromJSON('["main", "master", "qa"]'),
-            steps.cicd.outputs.git_repo_branch)
+            needs.context.outputs.git_repo_branch)
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
-          commit_hash: ${{ steps.cicd.outputs.commit_hash }}
-          git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
+          commit_hash: ${{ needs.context.outputs.commit_hash }}
+          git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
 
       - name: Deploy Develop Branch
-        if: steps.cicd.outputs.git_repo_branch == 'develop'
+        if: needs.context.outputs.git_repo_branch == 'develop'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
-          commit_hash: ${{ steps.cicd.outputs.commit_hash }}
-          git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
+          commit_hash: ${{ needs.context.outputs.commit_hash }}
+          git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           app_instance: dev
 
       - name: Deploy Vue Branch
-        if: steps.cicd.outputs.git_repo_branch == 'feature/vue'
+        if: needs.context.outputs.git_repo_branch == 'feature/vue'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
-          commit_hash: ${{ steps.cicd.outputs.commit_hash }}
-          git_repo_branch: ${{ steps.cicd.outputs.git_repo_branch }}
+          commit_hash: ${{ needs.context.outputs.commit_hash }}
+          git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           app_instance: vue
+
+      - name: 'Surface context from executed build step'
+        id: context
+        shell: bash
+        run: echo "::set-output name=context::$(< ${CONTEXT_FILENAME})"
+
+  housekeeping:
+    if: github.event_name == 'push'
+
+    needs: [context, build, deploy]
+
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: House Keeping
+        uses: uw-it-aca/actions/cicd-housekeeping@main
+        with:
+          release_name: ${{ env.RELEASE_NAME }}
+          gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
+          registry_password: ${{ secrets.GCP_JSON_KEY }}
+          context: ${{ needs.deploy.outputs.context }}
