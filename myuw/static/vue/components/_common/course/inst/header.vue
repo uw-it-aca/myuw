@@ -1,17 +1,16 @@
 <template>
   <div>
-    <div>
-      <uw-course-title show-sln :section="section" />
+    <div class="d-flex">
+      <uw-course-title show-sln :section="section" class="flex-fill" />
 
-      <div>
-        <b-button v-if="section.mini_card"
-          variant="dark" size="sm"
-          :title="`Remove mini-card of ${section.label}`"
-          @click="toggleMiniWrapper"
-        >
-          <font-awesome-icon :icon="faTimes" />
-        </b-button>
-      </div>
+      <b-button v-if="section.mini_card"
+        variant="dark" size="sm"
+        :title="`Remove mini-card of ${section.label}`"
+        @click="toggleMiniWrapper"
+        class="ml-3 align-self-start"
+      >
+        <font-awesome-icon :icon="faTimes" />
+      </b-button>
     </div>
 
     <uw-card-property v-if="section.summer_term" title="Summer Term">
