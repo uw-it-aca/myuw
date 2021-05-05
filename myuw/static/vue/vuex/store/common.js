@@ -8,6 +8,9 @@ dayjsCommon.extend(require('dayjs/plugin/utc'))
 dayjsCommon.extend(require('dayjs/plugin/localizedFormat'))
 dayjsCommon.extend(require('dayjs/plugin/customParseFormat'))
 
+dayjsCommon.tz.setDefault("America/Los_Angeles");
+// default tz of dates in SDB
+
 export const dayjs = dayjsCommon;
 
 export const getNow = (rootState = null) => {
