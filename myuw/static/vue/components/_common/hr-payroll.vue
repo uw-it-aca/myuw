@@ -107,9 +107,8 @@ export default {
     }),
     showCard: function () {
       if (this.isHomePage) {
-        return (
-          !this.student && !this.instructor && (this.employee || this.retiree || this.pastEmployee)
-        );
+        return this.retiree || this.pastEmployee ||
+          this.employee && !this.student && !this.instructor;
       }
       return this.studEmployee || this.instructor;
     },
