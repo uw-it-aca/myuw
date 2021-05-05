@@ -11,8 +11,8 @@ dayjs.extend(require('dayjs/plugin/advancedFormat'))
 dayjs.extend(require('dayjs/plugin/localizedFormat'))
 dayjs.extend(require('dayjs/plugin/customParseFormat'))
 
-dayjs.tz.setDefault("America/Los_Angeles");
 // default tz of dates in SDB
+dayjs.tz.setDefault("America/Los_Angeles");
 
 export default {
   computed: {
