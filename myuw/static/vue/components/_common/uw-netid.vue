@@ -35,7 +35,7 @@
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. Please try again later. In
       the meantime, if you want to change your password, try the
-      <a href="https://uwnetid.washington.edu/manage/?password">UW NetID page</a>.
+      <a href="https://uwnetid.washington.edu/manage/?password">UW NetID</a> page.
     </template>
   </uw-card>
 </template>

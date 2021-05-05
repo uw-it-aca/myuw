@@ -22,6 +22,7 @@ export default {
   },
   methods: {
     dayjs: dayjs,
+    today: () => dayjs().hour(0).minute(0).second(0).millisecond(0),
     encodeForMaps(s) {
       if (s) {
         s = s.replace(/ \(/g, " - ");
@@ -130,7 +131,7 @@ export default {
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D, h:mmA");
     },
     toFromNowDate(date_str) {
-      return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).fromNow());
+      return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).from(this.today()));
     },
     toCalendar(date_str) {
       return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).calendar());

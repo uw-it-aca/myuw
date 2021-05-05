@@ -67,9 +67,7 @@
       right now. In the meantime, try the
       <a
         href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
-      >
-        My Class Instructor Resources
-      </a> page.
+      >My Class Instructor Resources</a> page.
     </template>
   </uw-card>
 </template>
