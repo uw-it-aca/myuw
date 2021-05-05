@@ -26,10 +26,8 @@
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-              >
-                <font-awesome-icon :icon="faUser" class="mr-1" />
-                {{ netid }}
-              </b-link>
+              ><font-awesome-icon :icon="faUser"
+                 class="mr-1" />{{ netid }}</b-link>
             </b-col>
             <b-col xs="10" class="text-right">
               <b-link
@@ -38,34 +36,28 @@
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-              >
-                <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error
-              </b-link>
+              ><font-awesome-icon :icon="faExclamationTriangle"
+                 class="mr-1" />Email error</b-link>
               <b-link
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
-                title="Open your email in new tab"
-              >
-                <font-awesome-icon :icon="faEnvelope" class="mr-1" />Email
-              </b-link>
+                title="Open your email"
+              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</b-link>
               <b-link
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
-                title="Open search area"
-              >
-                <font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search
-              </b-link>
+                title="Open search panel"
+              ><font-awesome-icon :icon="faSearch" flip="horizontal"
+                 class="mr-1" />Search</b-link>
               <b-link
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-              >
-                <font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out
-              </b-link>
+              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</b-link>
             </b-col>
           </b-row>
         </b-container>
