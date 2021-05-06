@@ -28,6 +28,7 @@ import studSchedule from './vuex/store/schedule/student';
 import profile from './vuex/store/profile';
 import visualSchedule from './vuex/store/schedule/visual';
 import categoryLinks from './vuex/store/category_links';
+import advisers from './vuex/store/advisers';
 
 vueConf.store.registerModule('grad', grad);
 vueConf.store.registerModule('iasystem', iasystem);
@@ -38,6 +39,7 @@ vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('visual_schedule', visualSchedule);
 vueConf.store.registerModule('category_links', categoryLinks);
+vueConf.store.registerModule('advisers', advisers);
 
 vueConf.store.commit('addVarToState', {
   name: 'pageTitle',
