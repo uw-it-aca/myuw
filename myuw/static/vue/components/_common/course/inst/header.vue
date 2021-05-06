@@ -4,10 +4,10 @@
       <uw-course-title show-sln :section="section" class="flex-fill" />
 
       <b-button v-if="section.mini_card"
-        variant="dark" size="sm"
+        variant="link" size="sm"
         :title="`Remove mini-card of ${section.label}`"
         @click="toggleMiniWrapper"
-        class="ml-3 align-self-start"
+        class="ml-3 align-self-start p-0"
       >
         <font-awesome-icon :icon="faTimes" />
       </b-button>
