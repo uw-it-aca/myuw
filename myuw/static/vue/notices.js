@@ -10,8 +10,11 @@ import notices from './vuex/store/notices';
 vueConf.store.registerModule('notices', notices);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Notices',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'Notices',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

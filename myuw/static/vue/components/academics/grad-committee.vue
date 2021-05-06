@@ -48,7 +48,7 @@
       right now. In the meantime, try the
       <a v-out="'MyGrad'"
         href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-      >MyGrad program page</a>.
+      >MyGrad Program</a> page.
     </template>
   </uw-card>
 </template>

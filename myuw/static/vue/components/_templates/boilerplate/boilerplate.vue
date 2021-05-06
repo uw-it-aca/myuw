@@ -26,10 +26,8 @@
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-              >
-                <font-awesome-icon :icon="faUser" class="mr-1" />
-                {{ netid }}
-              </b-link>
+              ><font-awesome-icon :icon="faUser"
+                 class="mr-1" />{{ netid }}</b-link>
             </b-col>
             <b-col xs="10" class="text-right">
               <b-link
@@ -38,34 +36,28 @@
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-              >
-                <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error
-              </b-link>
+              ><font-awesome-icon :icon="faExclamationTriangle"
+                 class="mr-1" />Email error</b-link>
               <b-link
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
-                title="Open your email in new tab"
-              >
-                <font-awesome-icon :icon="faEnvelope" class="mr-1" />Email
-              </b-link>
+                title="Open your email"
+              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</b-link>
               <b-link
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
-                title="Open search area"
-              >
-                <font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search
-              </b-link>
+                title="Open search panel"
+              ><font-awesome-icon :icon="faSearch" flip="horizontal"
+                 class="mr-1" />Search</b-link>
               <b-link
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-              >
-                <font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out
-              </b-link>
+              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</b-link>
             </b-col>
           </b-row>
         </b-container>
@@ -89,21 +81,26 @@
               <font-awesome-icon :icon="faBars" transform="shrink-8 right-1 " class="m-0" />
             </font-awesome-layers>
           </b-button>
-          <div class="d-inline align-middle text-white" :class="[$mq == 'desktop' ? 'h3' : 'h5']">
+          <div
+            class="myuw-title d-inline align-middle text-white"
+            :class="[$mq == 'desktop' ? 'h3' : 'h5']"
+          >
             <template v-if="$mq != 'desktop'">
-              <template v-if="pageTitle == 'Home'"> MyUW </template>
+              <template v-if="page.title == 'Home'"> MyUW </template>
               <template v-else>
                 <span class="sr-only">MyUW</span>
                 <span aria-hidden="true">
-                  <template v-if="pageTitle.includes('Preview')"> Preview Quarter </template>
-                  <template v-else-if="pageTitle.includes('Textbooks')"> Textbooks </template>
+                  <template v-if="page.title.includes('Preview')"> Preview Quarter </template>
+                  <template v-else-if="page.title.includes('Textbooks')"> Textbooks </template>
                   <template v-else>
-                    {{ pageTitle }}
+                    {{ page.title }}
                   </template>
                 </span>
               </template>
             </template>
-            <template v-else> MyUW </template>
+            <template v-else>
+              <a href="/">MyUW</a>
+            </template>
           </div>
         </b-container>
       </div>
@@ -127,62 +124,66 @@
                 <b-nav-item
                   class="mb-2"
                   href="/"
-                  :active="pageTitle == 'Home'"
+                  :active="page.title == 'Home'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faHome" class="mr-2" />Home
+                  <font-awesome-icon :icon="faHome" class="mr-2" fixed-width />Home
                 </b-nav-item>
                 <b-nav-item
                   v-if="(undergrad && seattle) || hxtViewer"
                   class="mb-2"
                   href="/husky_experience/"
-                  :active="pageTitle == 'Husky Experience Toolkit'"
+                  :active="page.title == 'Husky Experience Toolkit'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faPaw" class="mr-2" />Husky Experience
+                  <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience
                 </b-nav-item>
                 <b-nav-item
                   v-if="student || applicant"
                   class="mb-2"
                   href="/academics/"
-                  :active="pageTitle == 'Academics'"
+                  :active="page.title == 'Academics'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faGraduationCap" class="mr-2" />Academics
+                  <font-awesome-icon :icon="faGraduationCap" class="mr-2" fixed-width />Academics
                 </b-nav-item>
                 <b-nav-item
                   v-if="instructor"
                   class="mb-2"
                   href="/teaching/"
-                  :active="pageTitle == 'Teaching'"
+                  :active="page.title == 'Teaching'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faEdit" class="mr-2" />Teaching
+                  <font-awesome-icon :icon="faEdit" class="mr-2" fixed-width />Teaching
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
                   href="/accounts/"
-                  :active="pageTitle == 'Accounts'"
+                  :active="page.title == 'Accounts'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faCreditCard" class="mr-2" />Accounts
+                  <font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts
                 </b-nav-item>
                 <b-nav-item
                   v-if="student"
                   class="mb-2"
                   href="/notices/"
-                  :active="pageTitle == 'Notices'"
+                  :active="page.title == 'Notices'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faExclamationTriangle" class="mr-2" />Notices
+                  <font-awesome-icon
+                    :icon="faExclamationTriangle"
+                    class="mr-2"
+                    fixed-width
+                  />Notices
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
                   href="/profile/"
-                  :active="pageTitle == 'Profile'"
+                  :active="page.title == 'Profile'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faUser" class="mr-2" />Profile
+                  <font-awesome-icon :icon="faUser" class="mr-2" fixed-width />Profile
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
@@ -196,18 +197,18 @@
                 <b-nav-item
                   class="mb-2"
                   href="/academic_calendar/"
-                  :active="pageTitle == 'Academic Calendar'"
+                  :active="page.title == 'Academic Calendar'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faCalendarCheck" class="mr-2" />Calendar
+                  <font-awesome-icon :icon="faCalendarCheck" class="mr-2" fixed-width />Calendar
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
                   href="/resources/"
-                  :active="pageTitle == 'UW Resources'"
+                  :active="page.title == 'UW Resources'"
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
-                  <font-awesome-icon :icon="faBookmark" class="mr-2" />UW Resources
+                  <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources
                 </b-nav-item>
               </b-nav>
               <uw-welcome v-if="$mq === 'desktop'" />
@@ -228,12 +229,9 @@
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="{
-                'sr-only': pageTitle == 'Home' || pageTitle == 'Profile' ||
-                  pageTitle.includes('Class of') || $mq != 'desktop',
-              }"
+              :class="{'sr-only': page.hideTitle || $mq != 'desktop'}"
             >
-              {{ pageTitle }}
+              {{ page.title }}
             </h1>
             <b-row>
               <slot v-if="$mq === 'mobile'" name="mobile" />
@@ -409,7 +407,7 @@ export default {
     applicant: (state) => state.user.affiliations.applicant,
     instructor: (state) => state.user.affiliations.instructor,
     staticUrl: (state) => state.staticUrl,
-    pageTitle: (state) => state.pageTitle,
+    page: (state) => state.page,
     disableActions: (state) => state.disableActions,
     displayPopUp: (state) => state.displayPopUp,
   }),
@@ -504,6 +502,10 @@ export default {
       }
     }
   }
+}
+
+.myuw-title {
+  a, a:hover, a:focus, a:visited {color: #fff;}
 }
 
 ::v-deep .myuw-modal {
