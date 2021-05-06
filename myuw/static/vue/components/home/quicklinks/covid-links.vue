@@ -149,7 +149,7 @@
           </div>
         </li>
         <li class="mb-2">
-          <a href="https://panopto.uw.edu/">Panopto</a>
+          <a href="https://uw.hosted.panopto.com/">Panopto</a>
           <div class="font-weight-light myuw-text-sm">
             Lecture capture – record, schedule, and review lectures
           </div>
