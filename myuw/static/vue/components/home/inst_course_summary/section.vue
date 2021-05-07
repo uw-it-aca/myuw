@@ -72,7 +72,7 @@
           <uw-enrollment
             :section="section"
             class="myuw-text-md text-nowrap"
-            :class="$mq === 'desktop' ? 'ml-3' : 'ml-2'"
+            :class="$mq === 'desktop' ? 'ml-3' : ''"
           />
         </b-col>
       </b-row>

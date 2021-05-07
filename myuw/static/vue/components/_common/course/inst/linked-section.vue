@@ -78,14 +78,16 @@
             Section Enrollments:
           </h4>
           <uw-enrollment :section="section"
-            class="myuw-text-md ml-4 text-nowrap"/>
+            class="myuw-text-md text-nowrap"
+            :class="$mq === 'desktop' ? 'ml-2' : 'ml-1'"
+          />
         </b-col>
         <b-col cols="2" sm="1" class="px-0">
           <div class="d-inline-block float-right">
             <b-button v-if="!section.mini_card"
               variant="link"
               :title="`Pin mini-card of ${section.label} onto Teaching page`"
-              class="myuw-text-md text-muted p-0"
+              class="myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Pin
@@ -93,7 +95,7 @@
             <b-button v-else
               variant="link"
               :title="`Remove mini-card of ${section.label} from Teaching page`"
-              class="myuw-text-md text-muted p-0"
+              class="myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Unpin
