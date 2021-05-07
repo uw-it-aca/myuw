@@ -121,6 +121,9 @@ export default {
       }
     },
     shortenMtgType(typeStr) {
+      if (typeStr === "unknown type") {
+        return "";
+      }
       if (typeStr.length > 4) {
         return typeStr.substring(0, 3).toUpperCase();
       }
