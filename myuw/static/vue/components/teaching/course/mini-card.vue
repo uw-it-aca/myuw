@@ -18,7 +18,8 @@
       <uw-class-list :section="section" />
       <uw-materials :section="section" />
       <uw-grading v-if="section.allows_secondary_grading" :section="section"/>
-      <uw-evaluation v-if="!section.evaluation.eval_not_exist" :section="section" />
+      <uw-evaluation v-if="section.evaluation && !section.evaluation.eval_not_exist"
+        :section="section" />
     </template>
   </uw-card>
 </template>
