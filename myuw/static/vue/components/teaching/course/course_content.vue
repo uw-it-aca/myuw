@@ -29,6 +29,9 @@
         :id="`secondary-${section.section_label}`"
         v-model="isOpen"
       >
+        <h3 class="h6 myuw-font-encode-sans pt-3">
+            Linked Sections
+        </h3>
         <uw-linked-section
           v-for="(linkedSection, i) in linkedSections"
           :key="`secondary-${section.section_label}-${i}`"

@@ -12,7 +12,7 @@
               size="xs"
             />
             <div>
-            <h3
+            <h4
               class="myuw-text-md myuw-font-encode-sans d-inline"
               :aria-label="section.lable"
             >
@@ -32,12 +32,12 @@
               >
                 {{ section.section_id }}
               </a>
-            </h3>
+            </h4>
             </div>
             <div v-if="section.sln" class="ml-2">
-              <h4 class="sr-only">
+              <h5 class="sr-only">
                 Section SLN:
-              </h4>
+              </h5>
               <span>
                 <a
                   v-out="'Time Schedule for SLN'"
@@ -54,9 +54,9 @@
               class="flex-fill"
               :class="[$mq === 'mobile' ? 'ml-2' : 'text-center']"
             >
-              <h4 class="sr-only">
+              <h5 class="sr-only">
                 Section Type:
-              </h4>
+              </h5>
               <span class="text-capitalize myuw-text-md">
                 {{ section.section_type }}
               </span>
@@ -66,17 +66,17 @@
         <b-col cols="8" sm="5" class="px-0">
           <div class="d-flex">
             <div class="flex-fill">
-              <h4 class="sr-only">
+              <h5 class="sr-only">
                 Section Meetings:
-              </h4>
+              </h5>
               <uw-meeting-info :section="section" no-heading />
             </div>
           </div>
         </b-col>
         <b-col cols="2" sm="2" class="px-0">
-          <h4 class="sr-only">
+          <h5 class="sr-only">
             Section Enrollments:
-          </h4>
+          </h5>
           <uw-enrollment :section="section"
             class="myuw-text-md text-nowrap"
             :class="$mq === 'desktop' ? 'ml-2' : 'ml-1'"
