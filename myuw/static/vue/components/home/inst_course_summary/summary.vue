@@ -20,7 +20,16 @@
       <div v-else>
         <!-- teach some courses -->
         <div v-if="instSchedule.future_term">
-          <!-- diplay only for a future term -->
+          <span class="float-right">
+            <b-link
+              v-inner="`View details: ${term}`"
+              :href="`/teaching/${term}`"
+              :future-nav-target="`${term}`"
+              :title="getTeachingLinkLabel"
+            >
+              View details
+            </b-link>
+          </span>
           <p>
             You are teaching
             <strong>
@@ -32,16 +41,6 @@
             {{ toFriendlyDate(instSchedule.term.first_day_quarter) }}
             ({{ toFromNowDate(instSchedule.term.first_day_quarter) }})
           </p>
-          <span>
-            <b-link
-              v-inner="`View details: ${term}`"
-              :href="`/teaching/${term}`"
-              :future-nav-target="`${term}`"
-              :title="getTeachingLinkLabel"
-            >
-              View details
-            </b-link>
-          </span>
         </div>
 
         <uw-summer-section-list v-if="getQuarter === 'summer'" :schedule="instSchedule" />
