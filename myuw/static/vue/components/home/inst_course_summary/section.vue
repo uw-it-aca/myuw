@@ -92,7 +92,7 @@
         </b-button>
 
         <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
-          <h3 class="h6 myuw-font-encode-sans pt-3">
+          <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
             Linked Sections
           </h3>
           <uw-linked-section
