@@ -21,7 +21,7 @@
       <uw-stats :section="section" />
       <uw-materials :section="section"/>
       <uw-grading v-if="section.for_credit" :section="section"/>
-      <uw-evaluation :section="section" />
+      <uw-evaluation v-if="section.evaluation" :section="section" />
     </template>
     <template v-if="linkedSections.length > 0" #card-disclosure>
       <b-collapse
