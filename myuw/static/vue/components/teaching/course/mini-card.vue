@@ -10,7 +10,6 @@
   >
     <template #card-heading>
       <uw-course-header :section="section" />
-      <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
 
     <template #card-body>
@@ -28,7 +27,6 @@
 import Card from '../../_templates/card.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
-import JointSection from './joint-section.vue';
 import ClassList from './classlist.vue';
 import Materials from './materials.vue';
 import Grading from './grading.vue';
@@ -38,7 +36,6 @@ export default {
   components: {
     'uw-card': Card,
     'uw-course-header': CourseHeader,
-    'uw-joint-section': JointSection,
     'uw-meeting-info': MeetingInfo,
     'uw-class-list': ClassList,
     'uw-materials': Materials,

@@ -13,6 +13,8 @@
       </b-button>
     </div>
 
+    <uw-joint-section :section="section" :parent-id="idForSection(section)" />
+
     <uw-card-property v-if="section.summer_term" title="Summer Term">
       {{ capitalizeString(section.summer_term) }}
     </uw-card-property>
@@ -28,6 +30,7 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
+import JointSection from './joint-section.vue';
 import CourseTitle from '../course-title.vue';
 import CardProperty from '../../../_templates/card-property.vue';
 
@@ -35,6 +38,7 @@ export default {
   components: {
     'uw-course-title': CourseTitle,
     'uw-card-property': CardProperty,
+    'uw-joint-section': JointSection,
   },
   props: {
     section: {

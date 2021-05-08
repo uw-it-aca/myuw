@@ -10,7 +10,6 @@
   >
     <template #card-heading>
       <uw-course-header :section="section" />
-      <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
 
     <template #card-body>
@@ -66,7 +65,6 @@ import Card from '../../_templates/card.vue';
 import CardPropertyGroup from '../../_templates/card-property-group.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
-import JointSection from './joint-section.vue';
 import FinalExam from './final-exam.vue';
 import ClassList from './classlist.vue';
 import Stats from './stats.vue';
@@ -80,7 +78,6 @@ export default {
     'uw-card': Card,
     'uw-card-property-group': CardPropertyGroup,
     'uw-course-header': CourseHeader,
-    'uw-joint-section': JointSection,
     'uw-meeting-info': MeetingInfo,
     'uw-final-exam': FinalExam,
     'uw-class-list': ClassList,
