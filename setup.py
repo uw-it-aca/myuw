@@ -35,7 +35,7 @@ setup(
         'UW-RestClients-Bookstore~=1.1',
         'UW-RestClients-Canvas~=1.1.14',
         'UW-RestClients-CoDa~=1.0',
-        'UW-RestClients-Grad~=1.0',
+        'UW-RestClients-Grad~=1.1',
         'UW-RestClients-GradePage~=1.2',
         'UW-RestClients-GWS~=2.3.2',
         'UW-RestClients-HFS~=1.0.2',
