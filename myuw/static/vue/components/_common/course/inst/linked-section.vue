@@ -58,7 +58,7 @@
                 Section Type:
               </h5>
               <span class="text-capitalize myuw-text-md">
-                {{ section.section_type }}
+                {{ section.section_type.substring(0, 3) }}
               </span>
             </div>
           </div>
