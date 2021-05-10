@@ -46,7 +46,7 @@ setup(
         'UW-RestClients-PWS~=2.1.4',
         'UW-RestClients-SWS~=2.3.13',
         'UW-RestClients-Sdbmyuw~=1.0',
-        'UW-RestClients-Trumba~=1.3.5',
+        'UW-RestClients-Trumba~=1.3.6',
         'UW-RestClients-UPass~=1.0',
         'UW-RestClients-UWNetID~=1.0.7',
         'django-userservice~=3.1.3',
