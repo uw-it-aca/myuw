@@ -58,7 +58,7 @@
                 Section Type:
               </h5>
               <span class="text-capitalize myuw-text-md">
-                {{ section.section_type.substring(0, 3) }}
+                {{ shortenType(section.section_type) }}
               </span>
             </div>
           </div>
@@ -136,6 +136,9 @@ export default {
     ...mapActions('inst_schedule', [
       'toggleMini',
     ]),
+    shortenType(str) {
+      return str.length > 4 ? str.substring(0, 3) : str;
+    },
     miniCard() {
       if (!this.section.mini_card) {
         this.$logger.cardPin(this, this.section.apiTag);
