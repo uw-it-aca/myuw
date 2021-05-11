@@ -1,0 +1,25 @@
+{
+    "StudentFullName": "Average,Jake Joseph",
+    "StudentPronouns": null,
+    "StudentNumber": "1033001",
+    "StudentSystemKey": "000083856",
+    "StudentUWNetID": "javg001",
+    "StudentRegID": "9136CCB8F66711D5BE060004AC494001",
+    "RegID":"",
+    "AcademicAdvisers": [
+        {
+            "AdvisingFullName": "Seattle Faculty",
+            "AdvisingPronouns": null,
+            "AdvisingEmailAddress": "billsea@uw.edu",
+            "AdvisingPhoneNumber": "+1 206 111-1111",
+            "AdvisingUWNetID": "billsea",
+            "AdvisingRegID": "10000000000000000000000000000006",
+            "AdvisingProgram": "UAA Advising",
+            "BookingUrl": "https://secure.scheduleonce.com/billsea",
+            "IsDepartmentAdviser": false,
+            "StudentAdvisingIsActive": true,
+            "Metadata": "AcademicAdviserSourceKey=UAA;",
+            "RepositoryTimeStamp": "12/7/2020 7:32:19 AM"
+        }
+    ]
+}
