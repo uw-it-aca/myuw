@@ -30,7 +30,7 @@
                   <span v-if="termMajor.majors.length > 0">
                     {{ degreeListString(termMajor.majors) }}
                   </span>
-                  <span v-else>
+                  <span v-else class="myuw-muted">
                     None
                   </span>
                 </li>
@@ -49,7 +49,7 @@
                   <span v-if="termMinor.minors.length > 0">
                     {{ degreeListString(termMinor.minors) }}
                   </span>
-                  <span v-else>
+                  <span v-else class="myuw-muted">
                     None
                   </span>
                 </li>
@@ -93,7 +93,7 @@
                 Phone: {{ formatPhoneNumberDisaply(permanentPhone) }}
               </div>
             </div>
-            <div v-else>
+            <div v-else class="myuw-muted">
               No address available
             </div>
           </uw-card-property>

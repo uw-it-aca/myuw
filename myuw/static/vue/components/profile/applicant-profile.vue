@@ -24,7 +24,7 @@
                 {{ permanentAddress.country }}
               </span>
             </div>
-            <div v-else>
+            <div v-else class="myuw-muted">
               No address available
             </div>
           </uw-card-property>
@@ -37,7 +37,7 @@
           <hr>
           <uw-card-property title="Email Address">
             <span v-if="email">{{ email }}</span>
-            <span v-else>No email address availabe</span>
+            <span v-else class="myuw-muted">No email address availabe</span>
           </uw-card-property>
         </b-container>
       </div>
