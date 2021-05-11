@@ -24,7 +24,7 @@
             </td>
             <td :headers="`final-time-${section.id}`"
               class="p-0 text-left text-nowrap">
-              {{ section.final_exam.start_date.format('h:mm A') }} &ndash;
+              {{ section.final_exam.start_date.format('h:mm') }} &ndash;
               {{ section.final_exam.end_date.format('h:mm A') }}
             </td>
             <td :headers="`final-location-${section.id}`" class="p-0 text-center">
