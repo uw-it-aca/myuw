@@ -1,7 +1,7 @@
 {
   "AcademicAdvisers": [
     {
-      "RepositoryTimeStamp": "3/24/2020 1:07:14 PM",
+      "RepositoryTimeStamp": "04/01/2013 1:07:14 PM",
       "Metadata": "AcademicAdviserSourceKey=UAA;",
       "StudentAdvisingIsActive": true,
       "AdvisingFullName": "John Average1",
@@ -15,7 +15,21 @@
       "IsDepartmentAdviser": false
     },
     {
-      "RepositoryTimeStamp": "3/24/2020 1:07:14 PM",
+      "AdvisingFullName": "John Average2",
+      "AdvisingPronouns": null,
+      "AdvisingEmailAddress": "javg002@uw.edu",
+      "AdvisingPhoneNumber": null,
+      "AdvisingUWNetID": "javg002",
+      "AdvisingRegID": "9136CCB8F66711D5BE060004AC494001",
+      "AdvisingProgram": "OMAD Advising",
+      "BookingUrl": null,
+      "IsDepartmentAdviser": false,
+      "StudentAdvisingIsActive": true,
+      "Metadata": "AcademicAdviserSourceKey=UAA;",
+      "RepositoryTimeStamp": "04/01/2013 7:32:28 AM"
+    },
+    {
+      "RepositoryTimeStamp": "04/01/2013  4:15:58 PM",
       "Metadata": "AcademicAdviserSourceKey=UAA;",
       "StudentAdvisingIsActive": true,
       "AdvisingFullName": "UNIVERSITY HONORS PROGRAM",
