@@ -30,9 +30,17 @@
           </ul>
       </uw-card-property>
       <hr class="my-2">
-      <div class="d-flex">
+      <div>
         <div v-for="(adviser, index) in advisers" :key="index">
-          <p>{{ adviser.full_name }}</p>
+          <ul class="list-unstyled myuw-text-md">
+            <li class="font-weight-bold">{{ adviser.program }}</li>
+            <li>{{ adviser.full_name }} ({{adviser.pronouns}})</li>
+            <li>{{ adviser.email_address }}</li>
+            <li>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</li>
+            <li v-if="adviser.booking_url">
+              <a :href="adviser.booking_url">Make an appointment online</a>
+            </li>
+          </ul>
         </div>
       </div>
     </template>
