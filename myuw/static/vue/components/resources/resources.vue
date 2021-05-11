@@ -53,13 +53,13 @@ export default {
     }),
     ...mapGetters('resources', ['isReady']),
   },
-  mounted() {
-    this.fetch();
-  },
   watch: {
     isReady: function () {
       this.scrollToFragment();
     }
+  },
+  mounted() {
+    this.fetch();
   },
   methods: {
     ...mapActions('resources', ['fetch']),
