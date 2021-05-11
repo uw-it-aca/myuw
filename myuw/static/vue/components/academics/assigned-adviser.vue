@@ -1,7 +1,7 @@
 <template>
   <uw-card
-    :loaded="isReady"
-    :errored="isErrored"
+    :loaded="isReadyAdvisers && isReadyProfile"
+    :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
   >
     <template #card-heading>
@@ -10,17 +10,31 @@
       </h2>
     </template>
     <template #card-body>
-      <div>
-        <strong>Major</strong>
-        Premajor
+      <uw-card-property title="Major">
+          <ul class="list-unstyled mb-0">
+            <template v-for="(termMajor, index) in termMajors">
+              <li v-if="index == 0" :key="index" class="mb-1">
+                {{ degreeListString(termMajor.majors) }}
+              </li>
+              <li v-else-if="termMajor.degrees_modified" :key="index" class="mb-1">
+                Beginning {{ titilizeTerm(termMajor.quarter) }} {{ termMajor.year }}:
+                &nbsp;&nbsp;
+                <span v-if="termMajor.majors.length > 0">
+                  {{ degreeListString(termMajor.majors) }}
+                </span>
+                <span v-else>
+                  None
+                </span>
+              </li>
+            </template>
+          </ul>
+      </uw-card-property>
+      <hr class="my-2">
+      <div class="d-flex">
+        <div v-for="(adviser, index) in advisers" :key="index">
+          <p>{{ adviser.full_name }}</p>
+        </div>
       </div>
-    </template>
-    <template #card-error>
-      An error occurred and MyUW cannot load your adviser information
-      right now. In the meantime, try the
-      <a v-out="'Advisers'"
-        href=""
-      >[ADVISER LINK PLACEHOLDER]</a>.
     </template>
   </uw-card>
 </template>
@@ -28,28 +42,58 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import CardProperty from '../_templates/card-property.vue';
+//import CardPropertyGroup from '../_templates/card-property-group.vue';
 export default {
   components: {
     'uw-card': Card,
+    'uw-card-property': CardProperty,
+    //'uw-card-property-group': CardPropertyGroup,
   },
   computed: {
     ...mapState({
+      isStudent: (state) => state.user.affiliations.student,
       advisers: (state) => state.advisers.value,
+      profile: (state) => state.profile.value,
+      termMajors: (state) => state.profile.value.term_majors,
     }),
-    ...mapGetters('advisers', [
-      'isReady',
-      'isErrored',
-      'statusCode',
-    ]),
+    ...mapGetters('advisers', {
+      isReadyAdvisers: 'isReady',
+      isErroredAdvisers: 'isErrored',
+      statusCodeAdvisers: 'statusCode',
+    }),
+    ...mapGetters('profile', {
+      isReadyProfile: 'isReady',
+      isErroredProfile: 'isErrored',
+      statusCodeProfile: 'statusCode',
+    }),
     showError: function() {
-      return this.statusCode !== 404;
+      return this.statusCodeProfile !== 404 || this.statusCodeAdvisers !== 404;
     },
   },
   created() {
-    this.fetch();
+    if (this.isStudent) {
+      this.fetchAdvisers();
+      this.fetchProfile();
+    }
   },
   methods: {
-    ...mapActions('advisers', ['fetch']),
+    ...mapActions('advisers', {
+      fetchAdvisers: 'fetch',
+    }),
+    ...mapActions('profile', {
+      fetchProfile: 'fetch',
+    }),
+    degreeListString(degrees) {
+      let list = '';
+      for (let i = 0; i < degrees.length; i++) {
+        list += degrees[i].full_name;
+        if (i < degrees.length - 1) {
+          list += ', ';
+        }
+      }
+      return list;
+    },
   },
 };
 </script>
