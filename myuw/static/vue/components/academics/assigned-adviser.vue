@@ -1,5 +1,6 @@
 <template>
   <uw-card
+    v-if="showCard"
     :loaded="isReadyAdvisers && isReadyProfile"
     :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
@@ -30,19 +31,19 @@
           </ul>
       </uw-card-property>
       <hr class="my-2">
-      <div>
-        <div v-for="(adviser, index) in advisers" :key="index">
-          <ul class="list-unstyled myuw-text-md">
-            <li class="font-weight-bold">{{ adviser.program }}</li>
-            <li>{{ adviser.full_name }} ({{adviser.pronouns}})</li>
-            <li>{{ adviser.email_address }}</li>
-            <li>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</li>
-            <li v-if="adviser.booking_url">
+      <ul class="d-flex flex-wrap list-unstyled">
+        <li v-for="(adviser, index) in advisers" :key="index" class="w-50 mt-3">
+          <div class="myuw-text-md">
+            <div class="font-weight-bold">{{ adviser.program }}</div>
+            <div>{{ adviser.full_name }} <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span></div>
+            <div>{{ adviser.email_address }}</div>
+            <div>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</div>
+            <div v-if="adviser.booking_url">
               <a :href="adviser.booking_url">Make an appointment online</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+            </div>
+          </div>
+        </li>
+      </ul>
     </template>
   </uw-card>
 </template>
@@ -51,16 +52,14 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
 import CardProperty from '../_templates/card-property.vue';
-//import CardPropertyGroup from '../_templates/card-property-group.vue';
 export default {
   components: {
     'uw-card': Card,
     'uw-card-property': CardProperty,
-    //'uw-card-property-group': CardPropertyGroup,
   },
   computed: {
     ...mapState({
-      isStudent: (state) => state.user.affiliations.student,
+      isUndergrad: (state) => state.user.affiliations.undergrad,
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
       termMajors: (state) => state.profile.value.term_majors,
@@ -78,9 +77,12 @@ export default {
     showError: function() {
       return this.statusCodeProfile !== 404 || this.statusCodeAdvisers !== 404;
     },
+    showCard: function() {
+      return this.isUndergrad;
+    }
   },
   created() {
-    if (this.isStudent) {
+    if (this.isUndergrad) {
       this.fetchAdvisers();
       this.fetchProfile();
     }
