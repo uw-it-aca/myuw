@@ -12,46 +12,16 @@
           <div class="myuw-text-md m-0">
             {{ course.curriculum_abbr }} {{ course.course_number }}
           </div>
-          <table class="table table-borderless table-sm myuw-text-sm">
-            <thead class="sr-only">
-              <tr>
-                <td>Section</td>
-                <td>Day</td>
-                <td>Time</td>
-              </tr>
-            </thead>
-            <tbody class="text-dark">
-              <tr v-for="(section, j) in course.sections" :key="`section-${j}`">
-                <template
-                  v-for="(meeting, k) in section.section_data.meetings"
-                >
-                  <td :key="`meeting-0-${k}`" class="w-25 pl-0">
-                    <div v-if="k == 0">
-                      <span class="sr-only">Section </span>
-                      {{ section.section_id }}
-                    </div>
-                  </td>
-                  <td
-                    v-if="meeting.days_tdb"
-                    :key="`meeting-1-${k}`"
-                    colspan="2"
-                    class="w-25"
-                  >
-                    Days and times to be arranged
-                  </td>
-                  <td v-else :key="`meeting-2-${k}`" class="w-25">
-                    <uw-meeting-days :meeting="meeting" />
-                  </td>
-                  <td v-if="!meeting.days_tdb" :key="`meeting-3-${k}`"
-                      class="w-50 text-nowrap"
-                  >
-                    {{ formatMeetingTime(meeting.start_time) }} &ndash;
-                    {{ formatMeetingTime(meeting.end_time) }}
-                  </td>
-                </template>
-              </tr>
-            </tbody>
-          </table>
+          <b-container>
+            <b-row v-for="(section, i) in course.sections" :key="i">
+              <b-col class="myuw-text-md" cols="2">
+                {{section.section_id}} 
+              </b-col>
+              <b-col>
+                <uw-meeting-schedule :section="section" />
+              </b-col>
+            </b-row>
+          </b-container>
         </li>
       </ul>
     </div>
@@ -82,10 +52,10 @@
 </template>
 
 <script>
-import Days from '../../_common/course/meeting/days.vue';
+import Schedule from '../../_common/course/meeting/schedule.vue';
 export default {
   components: {
-    'uw-meeting-days': Days,
+    'uw-meeting-schedule': Schedule,
   },
   props: {
     nextTermYear: {
