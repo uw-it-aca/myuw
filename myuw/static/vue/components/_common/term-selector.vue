@@ -25,7 +25,7 @@
     </b-tab>
     <b-tab
       :title-item-class="{
-        'ml-auto': !$mq === 'mobile',
+        'ml-auto': $mq !== 'mobile',
         'text-nowrap': true,
         'myuw-text-lg': true,
         'mb-1': true,
