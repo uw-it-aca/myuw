@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-    <div v-else>
+    <div v-else :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
       <div v-if="isReady" class="myuw-text-md" v-html="data"/>
     </div>
   </div>
@@ -160,6 +160,10 @@ export default {
 ::v-deep .myuw-article-footer-title {
   font-family: 'Open Sans', sans-serif !important;
   font-weight: bold;
+}
+
+::v-deep .myuw-card-image-full {
+  width: 100%;
 }
 
 ::v-deep h3 {
