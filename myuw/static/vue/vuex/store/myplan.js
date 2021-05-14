@@ -1,5 +1,8 @@
 import { fetchBuilder, extractData, buildWith } from './model_builder';
-import {convertSectionsTimeAndDateToDateJSObj} from './schedule/common';
+import {
+  processSectionDates,
+  processSectionMeetings,
+} from './schedule/common';
 
 function postProcess(response, urlExtra) {
   let data = extractData(response);
@@ -13,12 +16,14 @@ function postProcess(response, urlExtra) {
     term.courses?.forEach((course) => {
       for (let i = 0; i < course.sections.length; i++) {
         course.sections[i] = course.sections[i].section_data;
-  
-        course.sections[i].anchor = `${course.sections[i].curriculum_abbr}-` +
-          `${course.sections[i].course_number}-${course.sections[i].section_id}`;
-        course.sections[i].id = `${term.year}-${term.quarter}-${course.sections[i].anchor}`;
+        const section = course.sections[i]
+        section.anchor = (section.curriculum_abbr.replace(/ /g, '-') +
+          '-' + section.course_number +
+          '-' + section.section_id);
+        section.id = `${term.year}-${term.quarter}-${section.anchor}`;
+        processSectionDates(section);
+        processSectionMeetings(section);
       }
-      convertSectionsTimeAndDateToDateJSObj(course.sections);
     });
   });
 
