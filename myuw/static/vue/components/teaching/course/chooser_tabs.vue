@@ -1,7 +1,8 @@
 <template>
   <!-- TODO: Add loading and error handling here -->
-  <div v-if="isReady">
+  <div v-if="instructor">
     <uw-term-selector
+      v-if="isReady"
       v-model="term"
       :current-quarter="quarter"
       :current-year="year"
@@ -11,12 +12,20 @@
         <uw-teaching-course-cards :term="slotData.tab.label" />
       </template>
     </uw-term-selector>
+    <uw-card v-else-if="isErrored"
+      :errored="isErrored"
+      :errored-show="showError"
+    >
+      <template #card-error>
+        <i class="fa fa-exclamation-triangle" />
+        An error occurred and MyUW cannot load your teaching schedule
+        right now. In the meantime, try the
+        <a
+          href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
+        >My Class Instructor Resources</a> page.
+      </template>
+    </uw-card>
   </div>
-  <uw-card v-else :loaded="isErrored">
-    <template #card-body>
-      No courses associated with this term.
-    </template>
-  </uw-card>
 </template>
 
 <script>
@@ -45,6 +54,7 @@ export default {
     ...mapState({
       year: (state) => parseInt(state.termData.year),
       quarter: (state) => state.termData.quarter,
+      instructor: (state) => state.user.affiliations.instructor,
     }),
     ...mapState('inst_schedule', {
       instSchedule(state) {
@@ -61,6 +71,9 @@ export default {
     },
     isErrored() {
       return this.isErroredTagged(this.fetchTerm);
+    },
+    showError() {
+      return this.statusCodeTagged(this.fetchTerm) !== 404;
     },
   },
   watch: {
