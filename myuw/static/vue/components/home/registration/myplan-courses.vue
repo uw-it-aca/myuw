@@ -13,7 +13,7 @@
             {{ course.curriculum_abbr }} {{ course.course_number }}
           </div>
           <b-container>
-            <b-row v-for="(section, i) in course.sections" :key="i">
+            <b-row v-for="section in course.sections" :key="section.id">
               <b-col class="myuw-text-md" cols="2">
                 {{section.section_id}} 
               </b-col>
