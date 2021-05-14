@@ -1,6 +1,6 @@
 <template>
   <!-- Having myplan courses -->
-  <div v-if="hasSections" class="mb-4">
+  <div v-if="hasSections || hasUnreadyCourses" class="mb-4">
     <div class="d-flex align-items-center mb-2">
       <h3 class="h6 text-dark font-weight-bold flex-fill">
         In MyPlan
@@ -11,7 +11,7 @@
             {{ readyCount }} {{ readyCount == 1 ? "course" : "courses" }} ready
           </li>
           <li class="myuw-text-md">
-            <span v-if="unreadyCount">{{ unreadyCount }} not ready</span>
+            <span v-if="hasUnreadyCourses">{{ unreadyCount }} not ready</span>
             <b-button
               v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
               size="sm"
@@ -108,6 +108,9 @@ export default {
     },
     readyCount() {
       return this.currentPlanData.ready_count;
+    },
+    hasUnreadyCourses() {
+      return this.currentPlanData.has_unready_courses;
     },
     unreadyCount() {
       return this.currentPlanData.unready_count;

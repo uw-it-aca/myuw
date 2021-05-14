@@ -3,7 +3,7 @@
     v-model="selectedTab"
     lazy
     pills
-    nav-wrapper-class="mb-3 p-0"
+    :nav-wrapper-class="['mb-3', $mq === 'mobile' ? 'px-2' : 'p-0']"
     active-nav-item-class="bg-transparent rounded-0 myuw-border-bottom
       border-dark text-body font-weight-bold"
     @activate-tab="displayedTabChange"
@@ -24,7 +24,12 @@
       <slot :tab="tab" />
     </b-tab>
     <b-tab
-      title-item-class="ml-auto text-nowrap myuw-text-lg mr-2 mb-1"
+      :title-item-class="{
+        'ml-auto': $mq !== 'mobile',
+        'text-nowrap': true,
+        'myuw-text-lg': true,
+        'mb-1': true,
+      }"
       title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
     >
       <template #title>
