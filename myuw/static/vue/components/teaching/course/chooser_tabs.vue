@@ -12,11 +12,9 @@
       </template>
     </uw-term-selector>
   </div>
-  <uw-card v-else :errored="isErrored && statusCodeTagged(term) !== 404">
-    <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Teaching Schedule
-      </h2>
+  <uw-card v-else :loaded="isErrored">
+    <template #card-body>
+      No courses associated with this term.
     </template>
   </uw-card>
 </template>
