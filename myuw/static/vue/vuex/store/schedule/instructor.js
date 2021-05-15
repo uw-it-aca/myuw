@@ -26,10 +26,7 @@ function postProcess(response, urlExtra, rootState) {
   courseData.now = getNow(rootState);
 
   let linkedPrimaryLabel = undefined;
-  convertSectionsTimeAndDateToDateJSObj(courseData.sections);
-  for (let i = 0; i < courseData.sections.length; i++) {
-    let section = courseData.sections[i];
-
+  courseData.sections.forEach((section) => {
     section.year = courseData.year;
     section.quarter = courseData.quarter;
     section.futureTerm = courseData.future_term;
@@ -88,7 +85,7 @@ function postProcess(response, urlExtra, rootState) {
       if (ia.surname > ib.surname) { return 1; }
       return 0;
     });
-  }
+  });
 
   addCourseGradeData(courseData);
   addCourseEvalData(courseData);
