@@ -17,7 +17,7 @@
       </div>
       <!-- static notice content, goes after dynamic notices -->
       <div class="notice-content">
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 myuw-font-encode-sans">
           <span class="notice-title">Update Student Directory</span>
         </h3>
         <div class="mb-4 myuw-text-md">
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div v-if="!isResident" class="notice-content">
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 myuw-font-encode-sans">
           <span class="notice-title">Non-Resident Classification</span>
         </h3>
         <div class="mb-4 myuw-text-md">
