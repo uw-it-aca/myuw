@@ -40,6 +40,7 @@ export default function (Vue, options) {
             comp.$options._componentTag.startsWith("myuw")
           ) {
             this._tag = comp.$options._componentTag.substr(5);
+            comp.$el.id = comp.$options._componentTag;
           }
 
           if (!this._group && (this.groupRoot || this._tag)) {
