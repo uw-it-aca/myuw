@@ -21,7 +21,6 @@ function postProcess(response, urlExtra) {
           '-' + section.course_number +
           '-' + section.section_id);
         section.id = `${term.year}-${term.quarter}-${section.anchor}`;
-        processSectionDates(section);
         processSectionMeetings(section);
       }
     });
