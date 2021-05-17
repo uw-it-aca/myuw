@@ -159,6 +159,12 @@ const postProcess = (response, urlExtra) => {
     period.latestMeetingTime = latestTime ? latestTime.clone() : null;
   });
 
+  let firstPeriod = schedule?.[urlExtra]?.periods?.[0];
+  if (firstPeriod && firstPeriod.id === 'finals') {
+    schedule[urlExtra].noPeriodsNoMeetings = firstPeriod.earliestMeetingTime === null &&
+      firstPeriod.latestMeetingTime === null;
+  }
+
   return schedule;
 }
 
