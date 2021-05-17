@@ -1,6 +1,5 @@
 import { fetchBuilder, extractData, buildWith } from './model_builder';
 import {
-  processSectionDates,
   processSectionMeetings,
 } from './schedule/common';
 
