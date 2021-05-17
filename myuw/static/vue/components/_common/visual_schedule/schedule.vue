@@ -14,7 +14,8 @@
 
     <template #card-body>
       <!-- schedule tabs -->
-      <b-tabs v-model="tabIndex" pills
+      <b-tabs v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
+              v-model="tabIndex" pills
               nav-wrapper-class="mb-3 p-0"
               active-nav-item-class="bg-transparent rounded-0
               myuw-border-bottom border-dark text-body font-weight-bold"
@@ -33,6 +34,22 @@
           />
         </b-tab>
       </b-tabs>
+
+      <div v-else>
+        <p class="text-muted myuw-text-md mb-1">
+          No meeting time specified:
+        </p>
+        <div v-for="(meeting, i) in allMeetings" :key="i"
+            class="d-inline-block w-auto mr-2"
+            style="min-width:110px;"
+        >
+          <uw-course-section
+            :meeting-data="meeting"
+            :term="allSchedules[termLabel].term"
+          />
+        </div>
+      </div>
+
       <!-- TODO: charlon style this, use billpce on 2019-06-26 to test it -->
       <p v-if="offTerm.length > 0" class="m-0 text-muted myuw-text-md">
         Note:
@@ -49,11 +66,13 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import ScheduleTab from './schedule-tab.vue';
+import CourseSection from './course-section.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-schedule-tab': ScheduleTab,
+    'uw-course-section': CourseSection,
   },
   props: {
     termLabel: {
@@ -105,6 +124,14 @@ export default {
       }
       return this.periods[Object.keys(this.periods)[this.periods.length - 1]];
     },
+    allMeetings() {
+      return this.allSchedules[this.termLabel]
+        .periods
+        .flatMap((period) => period.sections)
+        .flatMap((section) => section.meetings.map((meeting) => {
+          return { section, meeting };
+        }));
+    }
   },
   mounted() {
     if (this.termLabel) this.fetch(this.termLabel);

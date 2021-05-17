@@ -6,7 +6,8 @@ import {
   buildWith
 } from '../model_builder';
 import {
-  convertSectionsTimeAndDateToDateJSObj,
+  processSectionDates,
+  processSectionMeetings,
 } from './common';
 import {
   dayjs,
@@ -25,10 +26,7 @@ function postProcess(response, urlExtra, rootState) {
   courseData.now = getNow(rootState);
 
   let linkedPrimaryLabel = undefined;
-  convertSectionsTimeAndDateToDateJSObj(courseData.sections);
-  for (let i = 0; i < courseData.sections.length; i++) {
-    let section = courseData.sections[i];
-
+  courseData.sections.forEach((section) => {
     section.year = courseData.year;
     section.quarter = courseData.quarter;
     section.futureTerm = courseData.future_term;
@@ -36,11 +34,11 @@ function postProcess(response, urlExtra, rootState) {
     section.requestSummerTerm = courseData.summer_term;
     section.registrationStart = courseData.term.registration_periods[0].start;
     section.timeSchedulePublished = courseData.term.time_schedule_published;
-
     section.anchor = (section.course_abbr_slug + "-" +
                   section.course_number + "-" + section.section_id);
     section.id = section.year + "-" + section.quarter + "-" + section.anchor;
     section.label = section.id.replace(/-/g, ' ');
+    processSectionDates(section);
 
     section.apiTag = `${section.year},${section.quarter.toLowerCase()},${
       section.curriculum_abbr
@@ -71,14 +69,10 @@ function postProcess(response, urlExtra, rootState) {
       }
     }
 
+    processSectionMeetings(section);
+
     section.instructors = [];
-    section.meetings.forEach((meeting, j) => {
-      meeting.id = section.id + "-meeting-" + (j + 1);
-
-      meeting.curriculumAbbr = section.curriculum_abbr;
-      meeting.courseNumber = section.course_number;
-      meeting.sectionId = section.section_id;
-
+    section.meetings.forEach((meeting) => {
       meeting.instructors.forEach((instructor) => {
         if (section.instructors.findIndex(
           (inst) => inst.uwregid === instructor.uwregid) === -1) {
@@ -91,7 +85,7 @@ function postProcess(response, urlExtra, rootState) {
       if (ia.surname > ib.surname) { return 1; }
       return 0;
     });
-  }
+  });
 
   addCourseGradeData(courseData);
   addCourseEvalData(courseData);
