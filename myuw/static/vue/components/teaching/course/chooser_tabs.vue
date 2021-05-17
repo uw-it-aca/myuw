@@ -12,11 +12,11 @@
         <uw-teaching-course-cards :term="slotData.tab.label" />
       </template>
     </uw-term-selector>
-    <uw-card v-else-if="isErrored"
-      :errored="isErrored"
-      :errored-show="showError"
-    >
-      <template #card-error>
+    <uw-card v-else :errored="isErrored">
+      <template #card-error v-if="statusCodeTagged(fetchTerm) === 404">
+        No courses associated with this term.
+      </template>
+      <template #card-error v-else>
         <i class="fa fa-exclamation-triangle" />
         An error occurred and MyUW cannot load your teaching schedule
         right now. In the meantime, try the
