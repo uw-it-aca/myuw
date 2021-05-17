@@ -1,15 +1,15 @@
 import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
 import {
-  convertSectionsTimeAndDateToDateJSObj,
+  processSectionDates,
+  processSectionMeetings,
 } from './common';
 
 function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   let courseData = data[urlExtra];
-  convertSectionsTimeAndDateToDateJSObj(courseData.sections);
-  for (let i = 0; i < courseData.sections.length; i++) {
-    let section = courseData.sections[i];
+
+  courseData.sections.forEach((section) => {
     section.year = courseData.year;
     section.quarter = courseData.quarter;
     section.futureTerm = courseData.future_term;
@@ -17,9 +17,9 @@ function postProcess(response, urlExtra) {
     section.requestSummerTerm = courseData.summer_term;
     section.anchor = (section.course_abbr_slug + "-" +
                   section.course_number + "-" + section.section_id);
-    section.id = (courseData.year + "-" + courseData.quarter + "-" +
-                  section.anchor);
+    section.id = section.year + "-" + section.quarter + "-" + section.anchor;
     section.label = section.id.replace(/-/g, ' ');
+    processSectionDates(section);
 
     // MUWM-549 and MUWM-552
     let canvasUrl = section.canvas_url;
@@ -36,28 +36,26 @@ function postProcess(response, urlExtra) {
       }
     }
 
+    processSectionMeetings(section);
+
     let seenInstRegids = new Set();
     section.instructors = [];
     // Convert dates and times to datejs objects
-    for (let idx = 0; idx < section.meetings.length; idx++) {
-      let meeting = section.meetings[idx];
-      meeting.id = section.id + "-meeting-" + (idx + 1);
-
-      for (let ii = 0; ii < meeting.instructors.length; ii++) {
-        let inst = meeting.instructors[ii];
-        if (!seenInstRegids.has(inst.uwregid)) {
-          seenInstRegids.add(inst.uwregid);
-          section.instructors.push(inst);
+    section.meetings.forEach((meeting) => {
+      meeting.instructors.forEach((instructor) => {
+        if (!seenInstRegids.has(instructor.uwregid)) {
+          seenInstRegids.add(instructor.uwregid);
+          section.instructors.push(instructor);
         }
-      }
-    }
+      });
+    });
 
     section.instructors = section.instructors.sort((i1, i2) => {
-        if (i1.surname < i2.surname) return -1;
-        if (i1.surname > i2.surname) return 1;
-        return 0;
-      });
-  }
+      if (i1.surname < i2.surname) return -1;
+      if (i1.surname > i2.surname) return 1;
+      return 0;
+    });
+  });
   return data;
 }
 

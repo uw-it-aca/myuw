@@ -1,7 +1,8 @@
 import {fetchBuilder, setTermAndExtractData, buildWith} from '../model_builder';
 import {
   tryConvertDayJS,
-  convertSectionsTimeAndDateToDateJSObj,
+  processSectionDates,
+  processSectionMeetings,
   convertTermTimeAndDateToDateJSObj,
   generateMeetingLocationData,
 } from './common';
@@ -12,12 +13,15 @@ dayjs.extend(customParseFormat)
 
 // Helper functions
 const isFinalPeriod = (period) => period.id === 'finals';
+
 const convertPeriodTimeAndDateToDateJSObj = (period) => {
   period.start_date = tryConvertDayJS(period.start_date);
   period.end_date = tryConvertDayJS(period.end_date);
-
-  // Convert inside every section
-  convertSectionsTimeAndDateToDateJSObj(period.sections);
+  period.sections.forEach((section) => {
+    // Convert inside every section
+    processSectionDates(section);
+    processSectionMeetings(section);
+  });
 };
 
 const postProcess = (response, urlExtra) => {
