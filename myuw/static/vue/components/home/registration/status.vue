@@ -19,7 +19,6 @@
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
         :reg-holds-notices="regHoldsNotices"
-        :is-my-plan-peak-load="myPlanPeakLoad"
       />
 
       <div v-if="pendingMajors.length" class="mb-4">
