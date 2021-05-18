@@ -289,6 +289,7 @@ export default {
       let myPlanReady = true;
       if (
         this.isQuarterReady &&
+        !this.nextTermHasReg &&
         (!this.isSummerReg || this.summerShouldDisplay)
       ) {
         myPlanReady =

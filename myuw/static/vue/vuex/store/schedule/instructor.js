@@ -213,12 +213,12 @@ const customActions = {
   ),
   toggleMini: ({commit}, section) => {
     if (section.mini_card) {
-      axios.get(`api/v1/inst_section_display/${section.apiTag}/close_mini`)
+      axios.get(`/api/v1/inst_section_display/${section.apiTag}/close_mini`)
         .then((resp) => {
           commit('updateMiniPinned', {section, pin: false});
         });
     } else {
-      axios.get(`api/v1/inst_section_display/${section.apiTag}/pin_mini`)
+      axios.get(`/api/v1/inst_section_display/${section.apiTag}/pin_mini`)
         .then((resp) => {
           commit('updateMiniPinned', {section, pin: true});
         });
