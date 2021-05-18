@@ -11,11 +11,14 @@
         <uw-teaching-course-cards :term="slotData.tab.label" />
       </template>
     </uw-term-selector>
-    <uw-card v-else :errored="isErrored">
-      <template #card-error v-if="statusCodeTagged(fetchTerm) === 404">
+    <uw-card v-else
+      :loaded="isErrored && is404"
+      :errored="isErrored && !is404"
+    >
+      <template #card-body>
         No courses associated with this term.
       </template>
-      <template #card-error v-else>
+      <template #card-error>
         An error occurred and MyUW cannot load your teaching schedule
         right now. In the meantime, try the
         <a
@@ -70,8 +73,8 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.fetchTerm);
     },
-    showError() {
-      return this.statusCodeTagged(this.fetchTerm) !== 404;
+    is404() {
+      return this.statusCodeTagged(this.fetchTerm) === 404;
     },
   },
   watch: {
