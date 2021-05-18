@@ -11,6 +11,25 @@
       </h2>
     </template>
     <template #card-body>
+      <ul class="d-flex flex-wrap list-unstyled">
+        <li
+          v-for="(adviser, index) in advisers"
+          :key="index"
+          class="mt-3"
+          :class="[$mq === 'mobile' ? 'w-100' : 'w-50']"
+        >
+          <div class="myuw-text-md">
+            <div class="font-weight-bold">{{ adviser.program }}</div>
+            <div>{{ adviser.full_name }} <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span></div>
+            <div>{{ adviser.email_address }}</div>
+            <div>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</div>
+            <div v-if="adviser.booking_url">
+              <a :href="adviser.booking_url">Make an appointment online</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <hr class="my-2">
       <uw-card-property title="Major">
           <ul class="list-unstyled">
             <template v-for="(termMajor, index) in termMajors">
@@ -30,25 +49,11 @@
             </template>
           </ul>
       </uw-card-property>
-      <hr class="my-2">
-      <ul class="d-flex flex-wrap list-unstyled">
-        <li
-          v-for="(adviser, index) in advisers"
-          :key="index"
-          class="mt-3"
-          :class="[$mq === 'mobile' ? 'w-100' : 'w-50']"
-        >
-          <div class="myuw-text-md">
-            <div class="font-weight-bold">{{ adviser.program }}</div>
-            <div>{{ adviser.full_name }} <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span></div>
-            <div>{{ adviser.email_address }}</div>
-            <div>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</div>
-            <div v-if="adviser.booking_url">
-              <a :href="adviser.booking_url">Make an appointment online</a>
-            </div>
-          </div>
-        </li>
-      </ul>
+      <template #card-error>
+      An error occurred and MyUW cannot load your adviser information right now. In the meantime, to contact a general adviser, try the
+      <a href="https://www.washington.edu/uaa/advising/">Undergraduate Advising page</a> and to contact a departmental or major adviser, try the 
+      <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">Departmental and Major Advising Offices page</a>.
+    </template>
     </template>
   </uw-card>
 </template>
