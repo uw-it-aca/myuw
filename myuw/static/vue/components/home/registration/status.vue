@@ -172,10 +172,49 @@ export default {
       isMyPlanReadyTagged: 'isReadyTagged',
       isMyPlanErroredTagged: 'isErroredTagged',
     }),
-    needsSummerCard() {
+    isSummerReg: function() {
+      return this.forQuarter === 'Summer';
+    },
+    summerShouldDisplay() {
       return (
-        this.isAfterStartOfSummerRegDisplayPeriodA ||
-        this.isAfterStartOfSummerRegDisplayPeriod1
+        this.isSummerReg &&
+        ((this.period === 'A' && this.isAfterStartOfSummerRegDisplayPeriodA) ||
+          (this.period === '1' && this.isAfterStartOfSummerRegDisplayPeriod1))
+      );
+    },
+    shouldDisplayAtAll: function() {
+      let shouldDisplay = false;
+
+      if (this.isSummerReg) {
+        return this.summerShouldDisplay;
+      }
+      return (
+        this.isAfterStartOfRegistrationDisplayPeriod &&
+        this.isBeforeEndOfRegistrationDisplayPeriod);
+    },
+    hasRegistration() {
+      if (this.isQuarterReady) {
+        if (this.isSummerReg) {
+          this.terms.forEach((term) => {
+            // if any summer term has registration
+            if (term.quarter === this.quarter && term.has_registration) {
+              return true;
+            }
+          });
+        } else {
+          return this.nextTermHasReg;
+        }
+      }
+      return false;
+    },
+    hasDataToDisplay() {
+      return (
+        !this.hasRegistration &&
+        // Can do any one of these
+        ((this.finAidNotices && this.finAidNotices.length) ||
+          this.estRegData.estRegDate ||
+          (this.regHoldsNotices && this.regHoldsNotices.length) ||
+          this.myPlanData)
       );
     },
     estRegDateNotices() {
@@ -205,32 +244,6 @@ export default {
     termMajors() {
       return this.profile.term_majors;
     },
-    shouldDisplayAtAll: function() {
-      let shouldDisplay = false;
-
-      if (this.isSummerReg) {
-        if (this.summerShouldDisplay) {
-          shouldDisplay = true;
-        }
-      } else if (
-        this.isAfterStartOfRegistrationDisplayPeriod &&
-        this.isBeforeEndOfRegistrationDisplayPeriod
-      ) {
-        shouldDisplay = true;
-      }
-
-      return shouldDisplay;
-    },
-    hasDataToDisplay() {
-      return (
-        !this.hasRegistration &&
-        // Can do any one of these
-        ((this.finAidNotices && this.finAidNotices.length) ||
-          this.estRegData.estRegDate ||
-          (this.regHoldsNotices && this.regHoldsNotices.length) ||
-          this.myPlanData)
-      );
-    },
     estRegData: function() {
       const estRegData = {};
 
@@ -259,37 +272,11 @@ export default {
     pendingMinors: function() {
       return this.retrieveQuarterDegrees(this.termMinors, 'minors');
     },
-    isSummerReg: function() {
-      return this.forQuarter === 'Summer';
-    },
-    summerShouldDisplay() {
-      return (
-        this.isSummerReg &&
-        ((this.period === 'A' && this.isAfterStartOfSummerRegDisplayPeriodA) ||
-          (this.period === '1' && this.isAfterStartOfSummerRegDisplayPeriod1))
-      );
-    },
-    hasRegistration() {
-      if (this.isQuarterReady) {
-        if (this.isSummerReg) {
-          let hasReg = false;
-          this.terms.forEach((term) => {
-            if (term.quarter === this.quarter && term.section_count) {
-              hasReg = true;
-            }
-          });
-          return hasReg;
-        } else {
-          return this.nextTermHasReg;
-        }
-      }
-      return false;
-    },
     loaded() {
       let myPlanReady = true;
       if (
         this.isQuarterReady &&
-        !this.nextTermHasReg &&
+        !this.hasRegistration &&
         (!this.isSummerReg || this.summerShouldDisplay)
       ) {
         myPlanReady =
@@ -320,7 +307,7 @@ export default {
       if (
         !oldValue &&
         newValue &&
-        !this.nextTermHasReg &&
+        !this.hasRegistration &&
         !this.myPlanPeakLoad &&
         (!this.isSummerReg || this.summerShouldDisplay)
       ) {
