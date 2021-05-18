@@ -12,7 +12,7 @@
     </template>
     <template #card-body>
       <uw-card-property title="Major">
-          <ul class="list-unstyled mb-0">
+          <ul class="list-unstyled">
             <template v-for="(termMajor, index) in termMajors">
               <li v-if="index == 0" :key="index" class="mb-1">
                 {{ degreeListString(termMajor.majors) }}
@@ -32,7 +32,12 @@
       </uw-card-property>
       <hr class="my-2">
       <ul class="d-flex flex-wrap list-unstyled">
-        <li v-for="(adviser, index) in advisers" :key="index" class="w-50 mt-3">
+        <li
+          v-for="(adviser, index) in advisers"
+          :key="index"
+          class="mt-3"
+          :class="[$mq === 'mobile' ? 'w-100' : 'w-50']"
+        >
           <div class="myuw-text-md">
             <div class="font-weight-bold">{{ adviser.program }}</div>
             <div>{{ adviser.full_name }} <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span></div>
