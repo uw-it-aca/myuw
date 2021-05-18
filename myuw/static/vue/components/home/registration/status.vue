@@ -315,12 +315,11 @@ export default {
     },
   },
   watch: {
-    isQuarterReady: function(n, o) {
-      // TODO: reg-status tries to load the myplandata
-      //       even when the oquarter[...].has_registration flag is true
+    isQuarterReady: function(newValue, oldValue) {
       if (
-        !o &&
-        n &&
+        !oldValue &&
+        newValue &&
+        !this.nextTermHasReg &&
         !this.myPlanPeakLoad &&
         (!this.isSummerReg || this.summerShouldDisplay)
       ) {
