@@ -24,6 +24,7 @@
       <slot :tab="tab" />
     </b-tab>
     <b-tab
+      v-if="dropdownTabs.length > 1"
       :title-item-class="{
         'ml-auto': $mq !== 'mobile',
         'text-nowrap': true,
@@ -83,12 +84,11 @@ export default {
       tab.quarter.toLowerCase() == this.currentQuarter &&
       tab.year == this.currentYear,
     );
-    let displayedTabs = [
-      this.allTabs[currentIndex],
-      this.allTabs[currentIndex + 1],
-      this.allTabs[currentIndex + 2],
-    ];
 
+    // TODO:
+    // selection bug on the dropdown. Click on prev. terms.
+    // Click somewhere else to close the dropdown. Click on the prev. terms again.
+    let displayedTabs = this.allTabs.slice(currentIndex, currentIndex + 3);
     let dropdownTabs = this.allTabs.slice(0, -3).reverse();
 
     let dropdownTabsSelectable = dropdownTabs.map((tab, i) => {
@@ -98,7 +98,7 @@ export default {
       };
     });
 
-    dropdownTabs.unshift('Prev. Terms');
+    dropdownTabs.unshift({label: 'Prev. Terms'});
     dropdownTabsSelectable.unshift({
       value: 0,
       text: 'Prev. Terms',
@@ -110,13 +110,13 @@ export default {
 
     if (this.selectedTerm) {
       let i = displayedTabs.findIndex((tabData) =>
-        `${tabData.year},${tabData.quarter.toLowerCase()}` === this.selectedTerm
+        `${tabData.year},${tabData.quarter?.toLowerCase()}` === this.selectedTerm
       );
       if (i > -1) {
         selectedTab = i;
       } else {
         i = dropdownTabs.findIndex((tabData) =>
-          `${tabData.year},${tabData.quarter.toLowerCase()}` === this.selectedTerm
+          `${tabData.year},${tabData.quarter?.toLowerCase()}` === this.selectedTerm
         );
         if (i > -1) {
           selectedOption = i;
@@ -169,7 +169,7 @@ export default {
     optionTabChange(index) {
       this.selectedTermInner = this.dropdownTabs[index].label;
       this.selectedTab = 3;
-    }
+    },
   }
 };
 </script>

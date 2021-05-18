@@ -316,6 +316,8 @@ export default {
   },
   watch: {
     isQuarterReady: function(n, o) {
+      // TODO: reg-status tries to load the myplandata
+      //       even when the oquarter[...].has_registration flag is true
       if (
         !o &&
         n &&

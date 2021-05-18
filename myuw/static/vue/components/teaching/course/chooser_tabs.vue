@@ -1,5 +1,4 @@
 <template>
-  <!-- TODO: Add loading and error handling here -->
   <div v-if="instructor">
     <uw-term-selector
       v-if="isReady"
@@ -17,7 +16,6 @@
         No courses associated with this term.
       </template>
       <template #card-error v-else>
-        <i class="fa fa-exclamation-triangle" />
         An error occurred and MyUW cannot load your teaching schedule
         right now. In the meantime, try the
         <a
