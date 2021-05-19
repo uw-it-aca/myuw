@@ -47,6 +47,7 @@ class PinMinicard(ProtectedAPI):
                 raise DisabledAction("Pin Minicard w. Overriding")
 
             section_label = kwargs.get("section_label")
+            logger.error(section_label)
             result = set_pin_on_teaching_page(request, section_label,
                                               pin=True)
             log_api_call(timer, request,
