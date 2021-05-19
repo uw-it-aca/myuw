@@ -146,100 +146,23 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
-        'stdout_stream': {
-            '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno <= logging.WARNING
-        },
-        'stderr_stream': {
-            '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno >= logging.ERROR
-        }
     },
     'formatters': {
         'myuw': {
             'format': '%(name)s %(levelname)-4s %(asctime)s %(message)s',
-        },
-        'pref': {
-            'format': 'pref:%(name)s %(levelname)-4s %(asctime)s %(message)s',
-        },
-        'event': {
-            'format': 'event:%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
     },
     'handlers': {
         'stdout': {
             'class': 'logging.StreamHandler',
             'stream': sys.stdout,
-            'filters': ['stdout_stream'],
             'formatter': 'myuw',
-        },
-        'stderr': {
-            'class': 'logging.StreamHandler',
-            'stream': sys.stderr,
-            'filters': ['stderr_stream'],
-            'formatter': 'myuw',
-        },
-        'pref': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'pref',
-        },
-        'event': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'event',
-        },
-        'null': {
-            'class': 'logging.NullHandler',
         },
     },
     'loggers': {
-        'django.security.DisallowedHost': {
-            'handlers': ['null'],
-            'propagate': False,
-        },
-        'django.request': {
-            'handlers': ['stderr'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'myuw.views.api.banner_message': {
-            'handlers': ['pref'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.views.api.resources.pin': {
-            'handlers': ['pref'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.views.api.instructor_section_display': {
-            'handlers': ['pref'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'aws_message': {
-            'handlers': ['event'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.event': {
-            'handlers': ['event'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.management.commands.load_section_status_changes': {
-            'handlers': ['event'],
-            'level': 'INFO',
-            'propagate': False,
-        },
         '': {
-            'handlers': ['stdout', 'stderr'],
-            'level': 'DEBUG' if os.getenv('ENV', '') == 'dev' else 'INFO'
+            'handlers': ['stdout'],
+            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG'
         }
     }
 }
