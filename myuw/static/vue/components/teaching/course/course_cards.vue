@@ -23,11 +23,19 @@
   </div>
   <uw-card
     v-else
-    :loaded="isErrored || (isReady && !instSchedule.sections.length)"
+    :loaded="(isErrored && is404) || (isReady && !instSchedule.sections.length)"
+    :errored="isErrored && !is404"
   >
     <template #card-body>
       No courses associated with this term.
     </template>
+    <template #card-error>
+      An error occurred and MyUW cannot load your teaching schedule
+      right now. In the meantime, try the
+      <a
+        href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
+      >My Class Instructor Resources</a> page.
+      </template>
   </uw-card>
 </template>
 
@@ -58,6 +66,7 @@ export default {
     ...mapGetters('inst_schedule', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
+      statusCodeTagged: 'statusCodeTagged',
     }),
     isReady() {
       return this.isReadyTagged(this.term);
@@ -65,6 +74,9 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.term);
     },
+    is404() {
+      return this.statusCodeTagged(this.term) === 404;
+    }
   },
   watch: {
     // Used to handle cases when the term is changed without remouting
