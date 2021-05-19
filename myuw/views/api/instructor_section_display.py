@@ -52,5 +52,6 @@ class PinMinicard(ProtectedAPI):
             log_api_call(timer, request,
                          "Pin Minicard {}".format(section_label))
             return self.json_response({"done": result})
-        except Exception:
+        except Exception as ex:
+            logger.error(ex)
             return handle_exception(logger, timer, traceback)
