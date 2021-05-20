@@ -177,7 +177,7 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': ['stdout'],
+            'handlers': ['stdout', 'stderr'],
             'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG'
         }
     }
