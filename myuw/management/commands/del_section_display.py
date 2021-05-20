@@ -20,12 +20,25 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         netid = options['netid']
-        user = User.objects.get(uwnetid=netid)
         year = options['year']
         quarter = options['quarter']
-        if user:
-            objs = UserCourseDisplay.objects.filter(
-                user=user, year=year, quarter=quarter).delete()
+        try:
+            user = User.objects.get(uwnetid=netid)
+            if user:
+                records = UserCourseDisplay.objects.filter(
+                    user=user,
+                    year=year,
+                    quarter=quarter).order_by('section_label')
+                for r in records:
+                    logger.info(
+                        "For {} {} {}，Found {}".format(
+                            netid, year, quarter, r))
 
-            for record in objs:
-                logger.info("Deleted UserCourseDisplay {}" % record)
+                objs = UserCourseDisplay.objects.filter(
+                    user=user, year=year, quarter=quarter).delete()
+                for record in objs:
+                    logger.info(
+                        "For {} {} {}，Deleted {}".format(
+                            netid, year, quarter, record))
+        except Exception as ex:
+            raise CommandError(ex)
