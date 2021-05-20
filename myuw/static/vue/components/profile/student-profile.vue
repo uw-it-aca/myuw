@@ -55,7 +55,8 @@
             </template>
           </ul>
         </uw-card-property>
-        <hr>
+      </uw-card-property-group>
+      <uw-card-property-group>
         <uw-card-property title="Local Address">
           <div v-if="localAddress">
             <div v-if="localAddress.street_line1"
@@ -102,7 +103,8 @@
             title="Change address on Student Personal Services website"
           >Change Address</a>
         </uw-card-property>
-        <hr>
+      </uw-card-property-group>
+      <uw-card-property-group>
         <uw-card-property title="Student Directory Information">
           <p>
             Releasable: <span v-text="directoryRelease ? 'YES' : 'NO'"/>

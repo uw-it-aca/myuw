@@ -56,7 +56,8 @@
             </uw-link-button>
           </p>
         </uw-card-property>
-        <hr>
+      </uw-card-property-group>
+      <uw-card-property-group>
         <uw-card-property title="UW Directory">
           <p>
             <template v-if="publishEmpDir">

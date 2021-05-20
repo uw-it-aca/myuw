@@ -34,10 +34,12 @@
           >Change Address</a>
         </uw-card-property>
       </uw-card-property-group>
-      <uw-card-property title="Email Address">
-        <span v-if="email">{{ email }}</span>
-        <span v-else>No email address availabe</span>
-      </uw-card-property>
+      <uw-card-property-group>
+        <uw-card-property title="Email Address">
+          <span v-if="email">{{ email }}</span>
+          <span v-else>No email address availabe</span>
+        </uw-card-property>
+      </uw-card-property-group>
     </template>
   </uw-card>
 </template>
