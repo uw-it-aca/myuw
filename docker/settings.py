@@ -1,6 +1,7 @@
 from .base_settings import *
 import sys
 import os
+import logging
 
 ALLOWED_HOSTS += [
     'myuw.washington.edu',
@@ -146,6 +147,14 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
+        'stdout_stream': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno < logging.WARN
+        },
+        'stderr_stream': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': lambda record: record.levelno > logging.INFO
+        }
     },
     'formatters': {
         'myuw': {
@@ -156,6 +165,13 @@ LOGGING = {
         'stdout': {
             'class': 'logging.StreamHandler',
             'stream': sys.stdout,
+            'filters': ['stdout_stream'],
+            'formatter': 'myuw',
+        },
+        'stderr': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stderr,
+            'filters': ['stderr_stream'],
             'formatter': 'myuw',
         },
     },
