@@ -34,11 +34,9 @@ class Command(BaseCommand):
                         "For {} {} {}，Found {}".format(
                             netid, year, quarter, r))
 
-                objs = UserCourseDisplay.objects.filter(
+                result = UserCourseDisplay.objects.filter(
                     user=user, year=year, quarter=quarter).delete()
-                for record in objs:
-                    logger.info(
-                        "For {} {} {}，Deleted {}".format(
-                            netid, year, quarter, record))
+                logger.info("For {} {} {}，Deleted {}".format(
+                    netid, year, quarter, result))
         except Exception as ex:
             raise CommandError(ex)
