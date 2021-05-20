@@ -316,7 +316,8 @@ class UserCourseDisplay(models.Model):
         colors_taken = []  # a list of color_ids
         prev_colorid = 0
         for record in objs:
-            if record.pin_on_teaching_page is True:
+            if (record.pin_on_teaching_page is True and
+                    record.section_label not in pin_on_teaching):
                 pin_on_teaching.append(record.section_label)
 
             color_dict[record.section_label] = record.color_id
@@ -348,20 +349,22 @@ class UserCourseDisplay(models.Model):
     @classmethod
     @transaction.atomic
     def set_color(cls,  user, section_label, color_id):
-        obj = UserCourseDisplay.objects.select_for_update().get(
+        objs = UserCourseDisplay.objects.select_for_update().filter(
             user=user, section_label=section_label)
-        if obj.color_id != color_id:
-            obj.color_id = color_id
-            obj.save()
+        for obj in objs:
+            if obj.color_id != color_id:
+                obj.color_id = color_id
+                obj.save()
 
     @classmethod
     @transaction.atomic
     def set_pin(cls,  user, section_label, pin):
-        obj = UserCourseDisplay.objects.select_for_update().get(
+        objs = UserCourseDisplay.objects.select_for_update().filter(
             user=user, section_label=section_label)
-        if obj.pin_on_teaching_page != pin:
-            obj.pin_on_teaching_page = pin
-            obj.save()
+        for obj in objs:
+            if obj.pin_on_teaching_page != pin:
+                obj.pin_on_teaching_page = pin
+                obj.save()
 
     def json_data(self):
         return {
