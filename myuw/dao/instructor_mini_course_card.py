@@ -25,6 +25,5 @@ def set_pin_on_teaching_page(request,
     if section.is_primary_section:
         return False
 
-    UserCourseDisplay.set_pin(get_user_model(request),
-                              section_label, pin)
-    return True
+    return UserCourseDisplay.set_pin(
+        get_user_model(request), section_label, pin)
