@@ -23,7 +23,9 @@
           {{ email }}
         </uw-card-property>
         <uw-card-property title="Phone Number">
-          <p v-if="noFormsOfContact">No phone numbers listed</p>
+          <p v-if="noFormsOfContact" class="text-muted">
+            No phone numbers listed
+          </p>
           <ul v-else class="list-unstyled myuw-text-md">
             <li v-if="phone">
               Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
@@ -40,7 +42,9 @@
           </ul>
         </uw-card-property>
         <uw-card-property title="Address">
-          <p v-if="!mailstop && !address">No address available</p>
+          <p v-if="!mailstop && !address" class="text-muted">
+            No address available
+          </p>
           <div v-else>
             <p v-if="mailstop">Box {{ mailstop }}</p>
             <p v-if="address">{{ address }}</p>
@@ -63,7 +67,7 @@
             <template v-if="publishEmpDir">
               Name, position, work contact information are published.
             </template>
-            <template v-else>
+            <template v-else class="text-muted">
               Not published.
             </template>
             <br/>

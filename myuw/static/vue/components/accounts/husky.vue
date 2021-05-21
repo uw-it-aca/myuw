@@ -42,9 +42,7 @@
       <a
         v-out="'Husky Card account summary'"
         href="https://hfs.uw.edu/olco/Secure/AccountSummary.aspx"
-      >
-        UW HFS page </a
-      >.
+      >UW HFS</a> page.
     </template>
   </uw-card>
 </template>

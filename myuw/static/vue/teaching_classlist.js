@@ -15,8 +15,11 @@ vueConf.store.commit('addVarToState', {
 });
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: `Class of ${window.section.replace(/[,\/]/g, ' ')}`,
+  name: 'page',
+  value: {
+    hideTitle: true,
+    title: `Class of ${window.section.replace(/[,\/]/g, ' ')}`,
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

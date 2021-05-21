@@ -74,8 +74,11 @@ vueConf.store.registerModule('academic_events', academicEvents);
 vueConf.store.registerModule('resources', resources);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Home',
+  name: 'page',
+  value: {
+    hideTitle: true,
+    title: 'Home',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

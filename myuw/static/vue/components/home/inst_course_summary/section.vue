@@ -72,7 +72,7 @@
           <uw-enrollment
             :section="section"
             class="myuw-text-md text-nowrap"
-            :class="$mq === 'desktop' ? 'ml-3' : 'ml-2'"
+            :class="$mq === 'desktop' ? 'ml-3' : ''"
           />
         </b-col>
       </b-row>
@@ -92,6 +92,9 @@
         </b-button>
 
         <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
+          <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
+            Linked Sections
+          </h3>
           <uw-linked-section
             v-for="(sec, j) in getLinkedSections(section)"
             :key="`secondary-${section.id}-${j}`"

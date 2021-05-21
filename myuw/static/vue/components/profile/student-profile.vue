@@ -29,7 +29,7 @@
                 <span v-if="termMajor.majors.length > 0">
                   {{ degreeListString(termMajor.majors) }}
                 </span>
-                <span v-else>
+                <span v-else class="text-muted">
                   None
                 </span>
               </li>
@@ -48,7 +48,7 @@
                 <span v-if="termMinor.minors.length > 0">
                   {{ degreeListString(termMinor.minors) }}
                 </span>
-                <span v-else>
+                <span v-else class="text-muted">
                   None
                 </span>
               </li>
@@ -60,40 +60,40 @@
         <uw-card-property title="Local Address">
           <div v-if="localAddress">
             <div v-if="localAddress.street_line1"
-                  v-text="localAddress.street_line1">
+              v-text="localAddress.street_line1">
             </div>
             <div v-if="localAddress.street_line2"
-                  v-text="localAddress.street_line2">
+              v-text="localAddress.street_line2">
             </div>
             <span v-text="addressLocationString(localAddress)" />
             <div v-if="localAddress.country"
-                  v-text="localAddress.country">
+              v-text="localAddress.country">
             </div>
             <div v-if="localPhone">
               Phone: {{ formatPhoneNumberDisaply(localPhone) }}
             </div>
           </div>
-          <div v-else>
-            <span class="my-text-muted">No address available</span>
+          <div v-else class="text-muted">
+            No address available
           </div>
         </uw-card-property>
         <uw-card-property title="Permanent Address">
           <div v-if="permanentAddress">
             <div v-if="permanentAddress.street_line1"
-                  v-text="permanentAddress.street_line1">
+              v-text="permanentAddress.street_line1">
             </div>
             <div v-if="permanentAddress.street_line2"
-                  v-text="permanentAddress.street_line2">
+              v-text="permanentAddress.street_line2">
             </div>
             <span v-text="addressLocationString(permanentAddress)" />
             <div v-if="permanentAddress.country"
-                  v-text="permanentAddress.country">
+              v-text="permanentAddress.country">
             </div>
             <div v-if="permanentPhone">
               Phone: {{ formatPhoneNumberDisaply(permanentPhone) }}
             </div>
           </div>
-          <div v-else>
+          <div v-else class="text-muted">
             No address available
           </div>
         </uw-card-property>

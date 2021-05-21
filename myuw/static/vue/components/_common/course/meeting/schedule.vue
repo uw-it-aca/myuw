@@ -62,7 +62,7 @@
             <td :headers="`time-${meeting.id}`"
               class="p-0 text-left text-nowrap"
             >
-              {{ meeting.start_time.format('h:mm A') }} &ndash;
+              {{ meeting.start_time.format('h:mm') }} &ndash;
               {{ meeting.end_time.format('h:mm A') }}
             </td>
             <td :headers="`location-${meeting.id}`"
@@ -121,6 +121,9 @@ export default {
       }
     },
     shortenMtgType(typeStr) {
+      if (typeStr === "unknown type") {
+        return "";
+      }
       if (typeStr.length > 4) {
         return typeStr.substring(0, 3).toUpperCase();
       }

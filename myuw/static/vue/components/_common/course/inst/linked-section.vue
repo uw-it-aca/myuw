@@ -12,7 +12,7 @@
               size="xs"
             />
             <div>
-            <h3
+            <h4
               class="myuw-text-md myuw-font-encode-sans d-inline"
               :aria-label="section.lable"
             >
@@ -32,12 +32,12 @@
               >
                 {{ section.section_id }}
               </a>
-            </h3>
+            </h4>
             </div>
             <div v-if="section.sln" class="ml-2">
-              <h4 class="sr-only">
+              <h5 class="sr-only">
                 Section SLN:
-              </h4>
+              </h5>
               <span>
                 <a
                   v-out="'Time Schedule for SLN'"
@@ -54,11 +54,11 @@
               class="flex-fill"
               :class="[$mq === 'mobile' ? 'ml-2' : 'text-center']"
             >
-              <h4 class="sr-only">
+              <h5 class="sr-only">
                 Section Type:
-              </h4>
+              </h5>
               <span class="text-capitalize myuw-text-md">
-                {{ section.section_type }}
+                {{ shortenType(section.section_type) }}
               </span>
             </div>
           </div>
@@ -66,26 +66,28 @@
         <b-col cols="8" sm="5" class="px-0">
           <div class="d-flex">
             <div class="flex-fill">
-              <h4 class="sr-only">
+              <h5 class="sr-only">
                 Section Meetings:
-              </h4>
+              </h5>
               <uw-meeting-info :section="section" no-heading />
             </div>
           </div>
         </b-col>
         <b-col cols="2" sm="2" class="px-0">
-          <h4 class="sr-only">
+          <h5 class="sr-only">
             Section Enrollments:
-          </h4>
+          </h5>
           <uw-enrollment :section="section"
-            class="myuw-text-md ml-4 text-nowrap"/>
+            class="myuw-text-md text-nowrap"
+            :class="$mq === 'desktop' ? 'ml-2' : 'ml-1'"
+          />
         </b-col>
         <b-col cols="2" sm="1" class="px-0">
           <div class="d-inline-block float-right">
             <b-button v-if="!section.mini_card"
               variant="link"
               :title="`Pin mini-card of ${section.label} onto Teaching page`"
-              class="myuw-text-md text-muted p-0"
+              class="myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Pin
@@ -93,7 +95,7 @@
             <b-button v-else
               variant="link"
               :title="`Remove mini-card of ${section.label} from Teaching page`"
-              class="myuw-text-md text-muted p-0"
+              class="myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Unpin
@@ -134,6 +136,9 @@ export default {
     ...mapActions('inst_schedule', [
       'toggleMini',
     ]),
+    shortenType(str) {
+      return str.length > 4 ? str.substring(0, 3) : str;
+    },
     miniCard() {
       if (!this.section.mini_card) {
         this.$logger.cardPin(this, this.section.apiTag);

@@ -155,6 +155,7 @@ describe('HR Payroll Card - Home Page', () => {
 
   it('Show HR-Payroll card for retiree', () => {
     store.state.user.affiliations.retiree = true;
+    store.state.user.affiliations.instructor = true;
     const wrapper = mount(HRPayrollCard, { store, localVue,
       propsData: {'isHomePage': true}});
     expect(wrapper.vm.retiree).toBe(true);
@@ -165,6 +166,7 @@ describe('HR Payroll Card - Home Page', () => {
 
   it('Show HR-Payroll card for past-employee', () => {
     store.state.user.affiliations.past_employee = true;
+    store.state.user.affiliations.instructor = true;
     const wrapper = mount(HRPayrollCard, { store, localVue,
       propsData: {'isHomePage': true}});
     expect(wrapper.vm.pastEmployee).toBe(true);
@@ -192,9 +194,10 @@ describe('HR Payroll Card - Home Page', () => {
     return testCardVisible(wrapper, store);
   });
 
-  /* Hide card test cases */
+  /* Hide card from Account page test cases */
 
-  it('Hide HR-Payroll card from Account page', () => {
+  it('Hide HR-Payroll card if not stud_employee nor instructor', () => {
+    store.state.user.affiliations.retiree = true;
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
@@ -203,8 +206,8 @@ describe('HR Payroll Card - Home Page', () => {
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
-  it('Hide HR-Payroll card for student', () => {
-    store.state.user.affiliations.student = true
+  it('Hide HR-Payroll card for past_employee', () => {
+    store.state.user.affiliations.past_employee = true;
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 

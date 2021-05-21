@@ -4,7 +4,7 @@
       <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
         Holds
       </h3>
-      <div :class="[!isMyPlanPeakLoad ? 'text-right' : '']" class="flex-fill">
+      <div class="text-right flex-fill">
         <font-awesome-icon
           :icon="faExclamationTriangle"
           class="mr-1 align-middle text-danger"
@@ -56,10 +56,6 @@ export default {
     },
     regHoldsNotices: {
       type: Array,
-      required: true,
-    },
-    isMyPlanPeakLoad: {
-      type: Boolean,
       required: true,
     },
   },

@@ -10,7 +10,6 @@
   >
     <template #card-heading>
       <uw-course-header :section="section" />
-      <uw-joint-section :section="section" :parent-id="idForSection(section)" />
     </template>
 
     <template #card-body>
@@ -22,13 +21,16 @@
       <uw-stats :section="section" />
       <uw-materials :section="section"/>
       <uw-grading v-if="section.for_credit" :section="section"/>
-      <uw-evaluation :section="section" />
+      <uw-evaluation v-if="section.evaluation" :section="section" />
     </template>
     <template v-if="linkedSections.length > 0" #card-disclosure>
       <b-collapse
         :id="`secondary-${section.section_label}`"
         v-model="isOpen"
       >
+        <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
+            Linked Sections
+        </h3>
         <uw-linked-section
           v-for="(linkedSection, i) in linkedSections"
           :key="`secondary-${section.section_label}-${i}`"
@@ -63,7 +65,6 @@ import Card from '../../_templates/card.vue';
 import CardPropertyGroup from '../../_templates/card-property-group.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
-import JointSection from './joint-section.vue';
 import FinalExam from './final-exam.vue';
 import ClassList from './classlist.vue';
 import Stats from './stats.vue';
@@ -77,7 +78,6 @@ export default {
     'uw-card': Card,
     'uw-card-property-group': CardPropertyGroup,
     'uw-course-header': CourseHeader,
-    'uw-joint-section': JointSection,
     'uw-meeting-info': MeetingInfo,
     'uw-final-exam': FinalExam,
     'uw-class-list': ClassList,

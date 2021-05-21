@@ -146,7 +146,7 @@
             ({{section.gradingPeriod.openRelative}})
           </span>
         </div>
-        <div class="myuw-text-sm">
+        <div class="myuw-text-sm font-italic">
           Grade submission closes
           {{section.gradingPeriod.deadlineFmt}}
         </div>

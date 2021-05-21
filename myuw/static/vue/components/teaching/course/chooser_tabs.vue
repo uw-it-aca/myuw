@@ -1,7 +1,7 @@
 <template>
-  <!-- TODO: Add loading and error handling here -->
-  <div v-if="isReady">
+  <div v-if="instructor">
     <uw-term-selector
+      v-if="isReady"
       v-model="term"
       :current-quarter="quarter"
       :current-year="year"
@@ -11,14 +11,22 @@
         <uw-teaching-course-cards :term="slotData.tab.label" />
       </template>
     </uw-term-selector>
+    <uw-card v-else
+      :loaded="isErrored && is404"
+      :errored="isErrored && !is404"
+    >
+      <template #card-body>
+        No courses associated with this term.
+      </template>
+      <template #card-error>
+        An error occurred and MyUW cannot load your teaching schedule
+        right now. In the meantime, try the
+        <a
+          href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
+        >My Class Instructor Resources</a> page.
+      </template>
+    </uw-card>
   </div>
-  <uw-card v-else :errored="isErrored && statusCodeTagged(term) !== 404">
-    <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Teaching Schedule
-      </h2>
-    </template>
-  </uw-card>
 </template>
 
 <script>
@@ -47,6 +55,7 @@ export default {
     ...mapState({
       year: (state) => parseInt(state.termData.year),
       quarter: (state) => state.termData.quarter,
+      instructor: (state) => state.user.affiliations.instructor,
     }),
     ...mapState('inst_schedule', {
       instSchedule(state) {
@@ -63,6 +72,9 @@ export default {
     },
     isErrored() {
       return this.isErroredTagged(this.fetchTerm);
+    },
+    is404() {
+      return this.statusCodeTagged(this.fetchTerm) === 404;
     },
   },
   watch: {

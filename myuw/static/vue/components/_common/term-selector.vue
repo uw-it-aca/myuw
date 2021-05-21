@@ -3,7 +3,7 @@
     v-model="selectedTab"
     lazy
     pills
-    nav-wrapper-class="mb-3 p-0"
+    :nav-wrapper-class="['mb-3', $mq === 'mobile' ? 'px-2' : 'p-0']"
     active-nav-item-class="bg-transparent rounded-0 myuw-border-bottom
       border-dark text-body font-weight-bold"
     @activate-tab="displayedTabChange"
@@ -24,7 +24,13 @@
       <slot :tab="tab" />
     </b-tab>
     <b-tab
-      title-item-class="ml-auto text-nowrap myuw-text-lg mr-2 mb-1"
+      v-if="dropdownTabs.length > 1"
+      :title-item-class="{
+        'ml-auto': $mq !== 'mobile',
+        'text-nowrap': true,
+        'myuw-text-lg': true,
+        'mb-1': true,
+      }"
       title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
     >
       <template #title>
@@ -78,12 +84,11 @@ export default {
       tab.quarter.toLowerCase() == this.currentQuarter &&
       tab.year == this.currentYear,
     );
-    let displayedTabs = [
-      this.allTabs[currentIndex],
-      this.allTabs[currentIndex + 1],
-      this.allTabs[currentIndex + 2],
-    ];
 
+    // TODO:
+    // selection bug on the dropdown. Click on prev. terms.
+    // Click somewhere else to close the dropdown. Click on the prev. terms again.
+    let displayedTabs = this.allTabs.slice(currentIndex, currentIndex + 3);
     let dropdownTabs = this.allTabs.slice(0, -3).reverse();
 
     let dropdownTabsSelectable = dropdownTabs.map((tab, i) => {
@@ -93,7 +98,7 @@ export default {
       };
     });
 
-    dropdownTabs.unshift('Prev. Terms');
+    dropdownTabs.unshift({label: 'Prev. Terms'});
     dropdownTabsSelectable.unshift({
       value: 0,
       text: 'Prev. Terms',
@@ -105,13 +110,13 @@ export default {
 
     if (this.selectedTerm) {
       let i = displayedTabs.findIndex((tabData) =>
-        `${tabData.year},${tabData.quarter.toLowerCase()}` === this.selectedTerm
+        `${tabData.year},${tabData.quarter?.toLowerCase()}` === this.selectedTerm
       );
       if (i > -1) {
         selectedTab = i;
       } else {
         i = dropdownTabs.findIndex((tabData) =>
-          `${tabData.year},${tabData.quarter.toLowerCase()}` === this.selectedTerm
+          `${tabData.year},${tabData.quarter?.toLowerCase()}` === this.selectedTerm
         );
         if (i > -1) {
           selectedOption = i;
@@ -164,7 +169,7 @@ export default {
     optionTabChange(index) {
       this.selectedTermInner = this.dropdownTabs[index].label;
       this.selectedTab = 3;
-    }
+    },
   }
 };
 </script>

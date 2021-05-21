@@ -42,8 +42,11 @@ vueConf.store.registerModule('category_links', categoryLinks);
 vueConf.store.registerModule('advisers', advisers);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Academics',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'Academics',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

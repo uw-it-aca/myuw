@@ -23,7 +23,7 @@
               {{ permanentAddress.country }}
             </span>
           </div>
-          <div v-else>
+          <div v-else class="text-muted">
             No address available
           </div>
         </uw-card-property>

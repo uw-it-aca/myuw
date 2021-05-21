@@ -28,7 +28,7 @@
             <a href="https://washington.zoom.us/">Zoom</a>
           </li>
           <li class="mb-1">
-            <a href="https://panopto.uw.edu/">Panopto</a>
+            <a href="https://uw.hosted.panopto.com/">Panopto</a>
           </li>
           <li>
             <a href="http://polleverywhere.com/">Poll Everywhere</a>
@@ -58,7 +58,7 @@
             <a href="http://canvas.uw.edu">Canvas</a>
           </li>
           <li class="mb-1">
-            <a href="https://panopto.uw.edu">Panopto Lecture Capture</a>
+            <a href="https://uw.hosted.panopto.com">Panopto Lecture Capture</a>
           </li>
           <li class="mb-1">
             <a href="http://www.polleverywhere.com/auth/washington">Poll Everywhere</a></li>

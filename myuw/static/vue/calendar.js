@@ -15,8 +15,11 @@ vueConf.store.registerModule('academic_events', academicEvents);
 vueConf.store.registerModule('category_links', categoryLinks);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Academic Calendar',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'Academic Calendar',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

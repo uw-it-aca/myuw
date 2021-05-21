@@ -12,8 +12,11 @@ import hx_toolkit from './vuex/store/hx_toolkit';
 vueConf.store.registerModule('hx_toolkit', hx_toolkit);
 
 vueConf.store.commit('addVarToState', {
-  name: 'pageTitle',
-  value: 'Husky Experience Toolkit',
+  name: 'page',
+  value: {
+    hideTitle: false,
+    title: 'Husky Experience Toolkit',
+  },
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

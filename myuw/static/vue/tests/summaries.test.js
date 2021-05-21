@@ -1,5 +1,4 @@
 import axios from 'axios';
-import dayjs from 'dayjs';
 import {shallowMount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
@@ -12,7 +11,6 @@ import mockNotices from './mock_data/notice/javerage.json';
 const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
-jest.mock('dayjs');
 
 describe('Summaries', () => {
   let store;
@@ -27,22 +25,9 @@ describe('Summaries', () => {
     });
   });
 
-  it('toFromNowDate', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
-    dayjs.mockImplementation((s) => {
-      return {
-        from: jest.fn().mockReturnValueOnce(s),
-      };
-    });
-    const wrapper = shallowMount(Summaries, {store, localVue});
-    expect(wrapper.vm.toFromNowDate('test')).toEqual('test');
-    expect(dayjs).toHaveBeenCalledTimes(2);
-  });
-
   it('getWeeksApart', async () => {
     axios.get.mockResolvedValue({data: mockNotices});
     const wrapper = shallowMount(Summaries, {store, localVue});
-    dayjs.mockImplementation(jest.requireActual('dayjs'));
 
     // The week starts on Sundays
     // Winter quarter starts on Tuesday

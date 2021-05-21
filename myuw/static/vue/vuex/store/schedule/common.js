@@ -2,7 +2,6 @@ import {dayjs} from '../common';
 
 export const tryConvertDayJS = (obj, format=undefined) => {
   if (obj) {
-    dayjs.tz.setDefault("America/Los_Angeles");  // default tz of dates in SDB
     return dayjs(obj, format).second(0).millisecond(0);
   }
   return obj;
@@ -19,37 +18,40 @@ export const convertTermTimeAndDateToDateJSObj = (term) => {
   }
 };
 
-export const convertSectionsTimeAndDateToDateJSObj = (sections) => {
-  sections.forEach((section) => {
-    section.hasEosDates = false;
-    section.showMtgType = false;
-    section.start_date = tryConvertDayJS(section.start_date);
-    section.end_date = tryConvertDayJS(section.end_date);
+export const processSectionMeetings = (section) => {
+  section.hasEosDates = false;
+  section.showMtgType = false;
+  // Convert inside every meeting
+  section.meetings.forEach((meeting, j) => {
+    meeting.id = section.id + "-meeting-" + (j + 1);
+    meeting.curriculumAbbr = section.curriculum_abbr;
+    meeting.courseNumber = section.course_number;
+    meeting.sectionId = section.section_id;
+    meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
+    meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
+    section.hasEosDates = section.hasEosDates ||
+      meeting.eos_start_date && meeting.eos_end_date;
+    meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
+    meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
 
-    // Convert everything in the final_exam field
-    if (section.final_exam) {
-      section.final_exam.start_date =
-        tryConvertDayJS(section.final_exam.start_date);
-      section.final_exam.end_date =
-        tryConvertDayJS(section.final_exam.end_date);
-    }
-
-    // Convert inside every meeting
-    section.meetings.forEach((meeting) => {
-      meeting.start_time = tryConvertDayJS(meeting.start_time, "hh:mm");
-      meeting.end_time = tryConvertDayJS(meeting.end_time, "hh:mm");
-      section.hasEosDates = section.hasEosDates ||
-        meeting.eos_start_date && meeting.eos_end_date;
-      meeting.eos_start_date = tryConvertDayJS(meeting.eos_start_date);
-      meeting.eos_end_date = tryConvertDayJS(meeting.eos_end_date);
-
-      meeting.displayType = (
-        section.section_type && meeting.type && meeting.type !== 'NON' &&
-        meeting.type.toLowerCase() !== section.section_type.toLowerCase());
-      section.showMtgType = section.showMtgType || meeting.displayType;
-    });
+    meeting.displayType = (
+      section.section_type && meeting.type && meeting.type !== 'NON' &&
+      meeting.type.toLowerCase() !== section.section_type.toLowerCase());
+    section.showMtgType = section.showMtgType || meeting.displayType;
   });
-}
+};
+
+export const processSectionDates = (section) => {
+  section.start_date = tryConvertDayJS(section.start_date);
+  section.end_date = tryConvertDayJS(section.end_date);
+  // Convert everything in the final_exam field
+  if (section.final_exam) {
+    section.final_exam.start_date =
+      tryConvertDayJS(section.final_exam.start_date);
+    section.final_exam.end_date =
+      tryConvertDayJS(section.final_exam.end_date);
+  }
+};
 
 function encodeForMaps(s) {
   if (s) {
@@ -58,7 +60,7 @@ function encodeForMaps(s) {
     s = encodeURIComponent(s);
   }
   return s;
-}
+};
 
 export const generateMeetingLocationData = (meeting) => {
     const data = [{}];
