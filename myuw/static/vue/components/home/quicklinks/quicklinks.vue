@@ -116,9 +116,7 @@
             >
               Cancel
             </b-button>
-            <b-button  v-b-toggle.custom_qlinks
-                       variant="primary" type="submit" size="sm"
-            >
+            <b-button variant="primary" type="submit" size="sm">
               Add
             </b-button>
           </div>
@@ -176,6 +174,7 @@ export default {
       event.preventDefault();
       this.$logger.quicklink('add', this.customLink.url);
       this.quicklinksAddLink(this.customLink);
+      this.$root.$emit('bv::toggle::collapse', 'custom_qlinks');
     },
     onReset: function(event) {
       event.preventDefault();
