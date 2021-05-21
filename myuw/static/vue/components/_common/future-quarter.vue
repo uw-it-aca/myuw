@@ -1,7 +1,7 @@
 <template>
   <div v-if="student">
     <div v-if="isReady">
-      <div v-if="terms.length && shouldRender">
+      <div v-if="shouldRender">
         <div v-for="(term, i) in terms" :key="i">
           <uw-card v-if="term.has_registration" loaded>
             <template #card-heading>
@@ -103,9 +103,9 @@ export default {
       'statusCode',
     ]),
     shouldRender() {
-      return (
-        this.highlightFutureQuarters && this.highlighted
-      ) || !this.highlighted && !this.highlightFutureQuarters;
+      return this.terms.length && (
+        this.highlighted && this.highlightFutureQuarters ||
+        !this.highlighted && !this.highlightFutureQuarters);
     },
     showError: function() {
       return this.statusCode !== 404;
