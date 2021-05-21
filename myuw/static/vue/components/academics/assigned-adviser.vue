@@ -23,7 +23,9 @@
               class="font-weight-bold myuw-font-encode-sans"
               style="color: #333;"
             >{{ adviser.program }}</div>
-            <div>{{ adviser.full_name }} <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span></div>
+            <div>{{ adviser.full_name }}
+              <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span>
+            </div>
             <div>{{ adviser.email_address }}</div>
             <div>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</div>
             <div v-if="adviser.booking_url">
@@ -33,7 +35,7 @@
         </li>
       </ul>
       <hr class="my-0">
-      <uw-card-property title="Major" class="mt-3" :noMarginBottom="true">
+      <uw-card-property title="Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
             <template v-for="(termMajor, index) in termMajors">
               <li v-if="index == 0" :key="index" class="mb-1">
@@ -54,9 +56,14 @@
       </uw-card-property>
     </template>
     <template #card-error>
-      An error occurred and MyUW cannot load your adviser information right now. In the meantime, to contact a general adviser, try the
-      <a href="https://www.washington.edu/uaa/advising/">Undergraduate Advising</a> page and to contact a departmental or major adviser, try the 
-      <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">Departmental and Major Advising Offices</a> page.
+      An error occurred and MyUW cannot load your adviser information right now.
+      In the meantime, to contact a general adviser, try the
+      <a href="https://www.washington.edu/uaa/advising/">
+        Undergraduate Advising
+      </a> page and to contact a departmental or major adviser, try the 
+      <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">
+        Departmental and Major Advising Offices
+      </a> page.
     </template>
   </uw-card>
 </template>
