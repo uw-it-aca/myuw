@@ -19,7 +19,7 @@
               width="120px" height="150px"
           >
           <strong>{{ reg.first_name }} {{ reg.surname }}</strong>
-          <div class="myuw-text-sm">{{ reg.pronouns }}</div>
+          <!-- <div class="myuw-text-sm">{{ reg.pronouns }}</div> -->
         </div>
       </li>
     </ol>
