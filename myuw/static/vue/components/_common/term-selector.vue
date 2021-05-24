@@ -85,9 +85,9 @@ export default {
       tab.year == this.currentYear,
     );
 
-    // TODO:
-    // selection bug on the dropdown. Click on prev. terms.
-    // Click somewhere else to close the dropdown. Click on the prev. terms again.
+    // Bug on Mac OS:
+    // 1. Click on Past Terms, click somewhere else to close the dropdown.
+    // 2. Click on the Past terms again. can't select in the dropdown
     let displayedTabs = this.allTabs.slice(currentIndex, currentIndex + 3);
     let dropdownTabs = this.allTabs.slice(0, -3).reverse();
 
@@ -98,10 +98,10 @@ export default {
       };
     });
 
-    dropdownTabs.unshift({label: 'Prev. Terms'});
+    dropdownTabs.unshift({label: 'Past Terms'});
     dropdownTabsSelectable.unshift({
       value: 0,
-      text: 'Prev. Terms',
+      text: 'Past Terms',
       disabled: true,
     });
 
