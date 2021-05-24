@@ -44,8 +44,12 @@
                 grade{{section.grading_status.submitted_count ? 's' : ''}}
                 submitted
               </a>
-              by {{section.grading_status.submitted_by}} on
-              <span class="text-nowrap">{{section.grading_status.submittedFmt}}</span>
+              <span v-if="section.grading_status.submitted_by">
+                by {{section.grading_status.submitted_by}}
+              </span>
+              <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
+                on {{section.grading_status.submittedFmt}}
+              </span>
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
               <a
@@ -71,9 +75,7 @@
             </span>
             <span v-else>
               Grading for secondary section is disabled.
-              <a :href="section.grading_status.section_url">
-                Grade primary section
-              </a>.
+              <a :href="section.grading_status.section_url">Grade primary section</a>.
             </span>
           </span>
           <a
@@ -86,9 +88,7 @@
         <div v-else>
           <font-awesome-icon :icon="faExclamationTriangle" />
           An error occurred with
-          <a
-            href="https://gradepage.uw.edu/"
-          >Gradepage</a>. Please try again later.
+          <a href="https://gradepage.uw.edu/">Gradepage</a>. Please try again later.
         </div>
         <div class="myuw-text-sm font-italic">
           Grade submission closes
@@ -109,9 +109,14 @@
             >
               {{section.grading_status.submitted_count}}
               grade{{section.grading_status.submitted_count ? 's' : ''}}
-              submitted by {{section.grading_status.submitted_by}} on 
+              submitted
             </a>
-            <span class="text-nowrap">{{section.grading_status.submittedFmt}}</span>
+            <span v-if="section.grading_status.submitted_by">
+              by {{section.grading_status.submitted_by}}
+            </span>
+            <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
+              on {{section.grading_status.submittedFmt}}
+            </span>
             <br />
             <div>
               Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
