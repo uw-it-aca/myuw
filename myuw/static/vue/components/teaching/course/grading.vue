@@ -27,7 +27,7 @@
           Update grade submission delegate
         </span>
         <span v-else>
-          Add grade submission Delegate
+          Add grade submission delegate
         </span>
       </a>
     </uw-card-property>
