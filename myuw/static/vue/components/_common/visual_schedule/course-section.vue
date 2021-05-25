@@ -257,7 +257,7 @@ export default {
   &:focus, &:focus-within, &:hover {
     z-index:9999;
     flex-shrink: 0.3 !important;
-    outline: 2px solid $link-color;
+    outline: 1px solid lightgray;
     border: 0;
     /*
     & + .course-section {
