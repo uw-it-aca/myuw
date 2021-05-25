@@ -413,7 +413,7 @@ export default {
   }),
   mounted() {
     this.$logger.setUserProperties(this.affiliations);
-    this.$logger.configHybrid(this.isHybrid === "True");
+    this.$logger.setHybrid(this.isHybrid === "True");
 
     if (this.displayPopUp) {
       window.addEventListener('load', this.showTourModal);

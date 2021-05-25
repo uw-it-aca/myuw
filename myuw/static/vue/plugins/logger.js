@@ -222,9 +222,8 @@ class Logger {
     });
   }
 
-  configHybrid(value) {
-    this.config['is_hybrid'] = value;
-    this.sink.config(this.config);
+  setHybrid(value) {
+    this.sink.set('is_hybrid', value);
   }
 }
 
