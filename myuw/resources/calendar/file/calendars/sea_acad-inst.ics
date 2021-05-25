@@ -923,7 +923,7 @@ X-TRUMBA-CUSTOMFIELD;NAME="Event Type";ID=21;TYPE=number:Important Dates/Deadlin
 X-TRUMBA-CUSTOMFIELD;NAME="Year";ID=30147;TYPE=CustomAsset:2014
 X-TRUMBA-CUSTOMFIELD;NAME="Quarter";ID=30148;TYPE=CustomAsset:Winter
 DTSTAMP:20131122T091718Z
-DESCRIPTION:Missing Description
+DESCRIPTION:Year: 2014\nQuarter: Winter
 CATEGORIES:Dates of Instruction
 UID:http://uid.trumba.com/event/108067803
 END:VEVENT

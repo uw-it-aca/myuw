@@ -348,20 +348,28 @@ class UserCourseDisplay(models.Model):
     @classmethod
     @transaction.atomic
     def set_color(cls,  user, section_label, color_id):
-        obj = UserCourseDisplay.objects.select_for_update().get(
+        r = False
+        objs = UserCourseDisplay.objects.select_for_update().filter(
             user=user, section_label=section_label)
-        if obj.color_id != color_id:
-            obj.color_id = color_id
-            obj.save()
+        for obj in objs:
+            if obj.color_id != color_id:
+                obj.color_id = color_id
+                obj.save()
+            r = True
+        return r
 
     @classmethod
     @transaction.atomic
     def set_pin(cls,  user, section_label, pin):
-        obj = UserCourseDisplay.objects.select_for_update().get(
+        r = False
+        objs = UserCourseDisplay.objects.select_for_update().filter(
             user=user, section_label=section_label)
-        if obj.pin_on_teaching_page != pin:
-            obj.pin_on_teaching_page = pin
-            obj.save()
+        for obj in objs:
+            if obj.pin_on_teaching_page != pin:
+                obj.pin_on_teaching_page = pin
+                obj.save()
+            r = True
+        return r
 
     def json_data(self):
         return {

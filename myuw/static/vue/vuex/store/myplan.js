@@ -14,6 +14,10 @@ function postProcess(response, urlExtra) {
   data?.terms?.forEach((term) => {
     term.courses?.forEach((course) => {
       for (let i = 0; i < course.sections.length; i++) {
+        if (!course.sections[i].section_data) {
+          // unready course may not have section_data
+          continue;
+        }
         course.sections[i] = course.sections[i].section_data;
         const section = course.sections[i]
         section.anchor = (section.curriculum_abbr.replace(/ /g, '-') +

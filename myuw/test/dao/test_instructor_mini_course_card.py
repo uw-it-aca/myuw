@@ -39,8 +39,8 @@ class TestPinMiniCard(TransactionTestCase):
 
         # test if not in DB
         records[2].delete()
-        with self.assertRaises(UserCourseDisplay.DoesNotExist):
-            set_pin_on_teaching_page(req, section_label, pin=True)
+        self.assertFalse(
+            set_pin_on_teaching_page(req, section_label, pin=True))
 
         # not pin primary section
         section_label = '2013,spring,PHYS,122/A'

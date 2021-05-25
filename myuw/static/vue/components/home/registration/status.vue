@@ -171,7 +171,7 @@ export default {
       isMyPlanReadyTagged: 'isReadyTagged',
       isMyPlanErroredTagged: 'isErroredTagged',
     }),
-    isSummerReg: function() {
+    isSummerReg() {
       return this.forQuarter === 'Summer';
     },
     summerShouldDisplay() {
@@ -181,7 +181,7 @@ export default {
           (this.period === '1' && this.isAfterStartOfSummerRegDisplayPeriod1))
       );
     },
-    shouldDisplayAtAll: function() {
+    shouldDisplayAtAll() {
       let shouldDisplay = false;
 
       if (this.isSummerReg) {
@@ -194,11 +194,9 @@ export default {
     hasRegistration() {
       if (this.isQuarterReady) {
         if (this.isSummerReg) {
-          this.terms.forEach((term) => {
+          return this.terms.some((term) => {
             // if any summer term has registration
-            if (term.quarter === this.quarter && term.has_registration) {
-              return true;
-            }
+            return (term.quarter === this.quarter && term.has_registration);
           });
         } else {
           return this.nextTermHasReg;
@@ -243,7 +241,7 @@ export default {
     termMajors() {
       return this.profile.term_majors;
     },
-    estRegData: function() {
+    estRegData() {
       const estRegData = {};
 
       this.estRegDateNotices.forEach((notice) => {
@@ -265,10 +263,10 @@ export default {
 
       return estRegData;
     },
-    pendingMajors: function() {
+    pendingMajors() {
       return this.retrieveQuarterDegrees(this.termMajors, 'majors');
     },
-    pendingMinors: function() {
+    pendingMinors() {
       return this.retrieveQuarterDegrees(this.termMinors, 'minors');
     },
     loaded() {

@@ -58,37 +58,32 @@ export default {
   },
   methods: {
     splitByTerm(events) {
-      let groups = [];
-      let currentTerm = '';
+      let groupOrder = [];
+      let eventsByGroupName = {};
 
-      const byGroup = {};
       events.forEach((event) => {
-        const termName = event.year + ' ' + event.quarter;
-        let groupName = termName;
+        let groupName = `${event.year} ${event.quarter}`;
+        if (event.myuw_categories.term_breaks) groupName += ' break';
 
-        var newGroup = {
-          year: event.year,
-          quarter: event.quarter,
-          events: [],
-        };
-
-        if (event.myuw_categories.term_breaks) {
-          groupName = groupName + '-break';
-          newGroup.termBreak = true;
-
-          byGroup[groupName] = newGroup;
-          groups.push(newGroup);
-        } else if (termName !== currentTerm) {
-          currentTerm = termName;
-
-          byGroup[groupName] = newGroup;
-          groups.push(newGroup);
+        if (!(groupName in eventsByGroupName)) {
+          eventsByGroupName[groupName] = [];
+          groupOrder.push({
+            name: groupName,
+            quarter: event.quarter,
+            year: event.year,
+            termBreak: event.myuw_categories.term_breaks,
+          });
         }
 
-        byGroup[groupName].events.push(event);
+        eventsByGroupName[groupName].push(event);
       });
 
-      return groups;
+      return groupOrder.map((group) => ({
+        events: eventsByGroupName[group.name],
+        quarter: group.quarter,
+        year: group.year,
+        termBreak: group.termBreak,
+      }));
     },
   },
 };
