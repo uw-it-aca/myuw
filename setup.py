@@ -23,7 +23,7 @@ setup(
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
-        'Django~=2.2.22',
+        'Django~=2.2.23',
         'ordereddict',
         'django-compressor',
         'beautifulsoup4',
@@ -50,7 +50,7 @@ setup(
         'UW-RestClients-UPass~=1.0',
         'UW-RestClients-UWNetID~=1.0.7',
         'django-userservice~=3.1.3',
-        'UW-RestClients-Django-Utils~=2.3.1',
+        'UW-RestClients-Django-Utils==2.3.0.2',
         'Uw-Django-Oidc>=0.4,<1.0',
         'Django-SupportTools~=3.5.1',
         'Django-Safe-EmailBackend~=1.2',
