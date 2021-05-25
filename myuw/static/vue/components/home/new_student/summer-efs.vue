@@ -5,22 +5,18 @@
     :errored-show="showError"
   >
     <template #card-heading>
-      <h2
-        class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Summer &amp; Early Fall Start
-      </h2>
     </template>
 
     <template #card-body>
       <div v-for="notice in notices" :key="notice.id_hash" class="mb-3">
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+        <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
           Review Critical Summer Registration Info
-        </h3>
+        </h2>
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Consider Early Fall Start
-      </h3>
+      </h2>
       <div class="myuw-text-md">
         Early Fall Start is a single 5-credit intensive course held
         over four weeks before autumn quarter begins. Benefit from a small
