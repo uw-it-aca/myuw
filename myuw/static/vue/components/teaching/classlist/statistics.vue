@@ -61,9 +61,9 @@ export default {
 
 <style lang="scss" scoped>
 .statistics-card {
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  right: 0;
+  float: right;
   max-width: 285px
 }
 </style>
