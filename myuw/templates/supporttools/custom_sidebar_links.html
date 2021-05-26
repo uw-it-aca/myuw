@@ -46,14 +46,14 @@
             <li><a href="{{ ias_url }}">IASystem</a></li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'entity.html' as pws_url %}
-        {% if pws_url %}
-            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"PWS Entity" }}</a></li>
+        {% url 'restclients_proxy' 'pws' 'entity.html' as pws_entity_url %}
+        {% if pws_entity_url %}
+            <li><a href="{{ pws_entity_url }}">PWS Entity</a></li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'person.html' as pws_url %}
-        {% if pws_url %}
-            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"PWS Person" }}</a></li>
+        {% url 'restclients_proxy' 'pws' 'person.html' as pws_person_url %}
+        {% if pws_person_url %}
+            <li><a href="{{ pws_person_url }}">PWS Person</a></li>
         {% endif %}
 
         {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
