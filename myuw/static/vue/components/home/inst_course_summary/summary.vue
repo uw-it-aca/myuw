@@ -32,10 +32,8 @@
           </span>
           <p>
             You are teaching
-            <strong>
-              {{ instSchedule.sections.length }}
-              {{ instSchedule.sections.length > 1 ? 'courses' : 'course' }}
-            </strong>.
+            <strong>{{ instSchedule.sections.length }}
+               {{ instSchedule.sections.length > 1 ? 'courses' : 'course' }}</strong>.
             <br>
             The first day of instruction is
             {{ toFriendlyDate(instSchedule.term.first_day_quarter) }}
