@@ -31,11 +31,6 @@
             <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'identity/v2.json' as pws_url %}
-        {% if pws_url %}
-            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
-        {% endif %}
-
         {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
         {% if gws_url %}
             <li><a href="{{ gws_url }}">{{ restclients_gws_link|default:"Search Groups Web Service" }}</a></li>
@@ -49,6 +44,16 @@
         {% url 'restclients_proxy' 'iasystem' 'index.html' as ias_url %}
         {% if ias_url %}
             <li><a href="{{ ias_url }}">IASystem</a></li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'pws' 'entity.html' as pws_url %}
+        {% if pws_url %}
+            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"PWS Entity" }}</a></li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'pws' 'person.html' as pws_url %}
+        {% if pws_url %}
+            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"PWS Person" }}</a></li>
         {% endif %}
 
         {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
