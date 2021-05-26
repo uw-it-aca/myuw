@@ -33,62 +33,93 @@
 
         {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
         {% if gws_url %}
-            <li><a href="{{ gws_url }}">{{ restclients_gws_link|default:"Search Groups Web Service" }}</a></li>
+            <li><a href="{{ gws_url }}">
+                {{ restclients_gws_link|default:"Search Groups Web Service" }}</a>
+            </li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'sws' 'advisers.html' as advisers_url %}
+        {% if advisers_url %}
+            <li><a href="{{ advisers_url }}">
+                {{ restclients_sws_link|default:"Undergrad Academic Advisers" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'hfs' 'index.html' as hfs_url %}
         {% if hfs_url %}
-            <li><a href="{{ hfs_url }}">HFS</a></li>
+            <li><a href="{{ hfs_url }}">
+                {{ restclients_hfs_link|default:"HFS" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'iasystem' 'index.html' as ias_url %}
         {% if ias_url %}
-            <li><a href="{{ ias_url }}">IASystem</a></li>
+            <li><a href="{{ ias_url }}">
+                {{ restclients_iasystem_link|default:"IASystem Course Eval" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'pws' 'entity.html' as pws_entity_url %}
         {% if pws_entity_url %}
-            <li><a href="{{ pws_entity_url }}">PWS Entity</a></li>
+            <li><a href="{{ pws_entity_url }}">
+                {{ restclients_pws_link|default:"PWS Entity" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'pws' 'person.html' as pws_person_url %}
         {% if pws_person_url %}
-            <li><a href="{{ pws_person_url }}">PWS Person</a></li>
+            <li><a href="{{ pws_person_url }}">
+                {{ restclients_pws_link|default:"PWS Person" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
         {% if idcard_url %}
-            <li><a href="{{ idcard_url }}">{{ restclients_pws_link|default:"ID Photo Search" }}</a></li>
+            <li><a href="{{ idcard_url }}">
+                {{ restclients_pws_link|default:"ID Photo Search" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'libcurrics' 'index.html' as libcurrics_url %}
         {% if libcurrics_url %}
-            <li><a href="{{ libcurrics_url }}">Library Subject Guide</a></li>
+            <li><a href="{{ libcurrics_url }}">
+                {{ restclients_libcurrics_link|default:"Library Subject Guide" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'grad' 'index.html' as grad_url %}
         {% if grad_url %}
-            <li><a href="{{ grad_url }}">MyGrad</a></li>
+            <li><a href="{{ grad_url }}">
+                {{ restclients_grad_link|default:"MyGrad" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'libraries' 'index.html' as libraries_url %}
         {% if libraries_url %}
-            <li><a href="{{ libraries_url }}">My Library Info</a></li>
+            <li><a href="{{ libraries_url }}">
+                {{ restclients_libraries_link|default:"My Library Info" }}</a>
+            </li>
         {% endif %}
         
         {% url 'restclients_proxy' 'myplan' 'index.html' as myplan_url %}
         {% if myplan_url %}
-            <li><a href="{{ myplan_url }}">MyPlan</a></li>
+            <li><a href="{{ myplan_url }}">
+                {{ restclients_myplan_link|default:"MyPlan" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'uwnetid' 'index.html' as uwnetid_url %}
         {% if uwnetid_url %}
-            <li><a href="{{ uwnetid_url }}">UWNetID Password</a></li>
+            <li><a href="{{ uwnetid_url }}">
+                {{ restclients_uwnetid_link|default:"UWNetID Password" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'book' 'index.html' as book_url %}
         {% if book_url %}
-            <li><a href="{{ book_url }}">TextBook</a></li>
+            <li><a href="{{ book_url }}">
+                {{ restclients_book_link|default:"TextBook" }}</a>
+            </li>
         {% endif %}
 
         <br />
