@@ -5,10 +5,14 @@
             :errored="isErrored"
             no-bottom-margin
             class="myuw-printable-card"
+            style="max-width: 100vw; overflow-x: hidden;"
     >
       <template #card-heading>
-        <div v-if="sectionData" class="d-flex justify-content-between">
-          <h2 class="h3 text-dark-beige myuw-font-encode-sans">
+        <div v-if="sectionData" class="d-flex flex-wrap justify-content-between">
+          <h2
+            class="h3 text-dark-beige myuw-font-encode-sans"
+            :class="[$mq === 'mobile' ? 'w-100' : '']"
+          >
             {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
             {{ sectionData.sectionId }},
             {{ titleCaseWord(sectionData.quarter) }} {{ sectionData.year }}
