@@ -59,14 +59,14 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'entity.html' as pws_entity_url %}
+        {% url 'restclients_proxy' 'pws' 'identity/v2/entity.html' as pws_entity_url %}
         {% if pws_entity_url %}
             <li><a href="{{ pws_entity_url }}">
                 {{ restclients_pws_link|default:"PWS Entity" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'person.html' as pws_person_url %}
+        {% url 'restclients_proxy' 'pws' 'identity/v2/person.html' as pws_person_url %}
         {% if pws_person_url %}
             <li><a href="{{ pws_person_url }}">
                 {{ restclients_pws_link|default:"PWS Person" }}</a>
