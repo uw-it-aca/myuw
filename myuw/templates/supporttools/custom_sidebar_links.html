@@ -38,35 +38,35 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'sws' 'advisers.html' as advisers_url %}
+        {% url 'restclients_proxy' 'sws' 'customform/advisers.html' as advisers_url %}
         {% if advisers_url %}
             <li><a href="{{ advisers_url }}">
                 {{ restclients_sws_link|default:"Undergrad Academic Advisers" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'hfs' 'index.html' as hfs_url %}
+        {% url 'restclients_proxy' 'hfs' 'customform/index.html' as hfs_url %}
         {% if hfs_url %}
             <li><a href="{{ hfs_url }}">
                 {{ restclients_hfs_link|default:"HFS" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'iasystem' 'index.html' as ias_url %}
+        {% url 'restclients_proxy' 'iasystem' 'customform/index.html' as ias_url %}
         {% if ias_url %}
             <li><a href="{{ ias_url }}">
                 {{ restclients_iasystem_link|default:"IASystem Course Eval" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'identity/v2/entity.html' as pws_entity_url %}
+        {% url 'restclients_proxy' 'pws' 'customform/identity/v2/entity.html' as pws_entity_url %}
         {% if pws_entity_url %}
             <li><a href="{{ pws_entity_url }}">
                 {{ restclients_pws_link|default:"PWS Entity" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'pws' 'identity/v2/person.html' as pws_person_url %}
+        {% url 'restclients_proxy' 'pws' 'customform/identity/v2/person.html' as pws_person_url %}
         {% if pws_person_url %}
             <li><a href="{{ pws_person_url }}">
                 {{ restclients_pws_link|default:"PWS Person" }}</a>
@@ -80,42 +80,42 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'libcurrics' 'index.html' as libcurrics_url %}
+        {% url 'restclients_proxy' 'libcurrics' 'customform/index.html' as libcurrics_url %}
         {% if libcurrics_url %}
             <li><a href="{{ libcurrics_url }}">
                 {{ restclients_libcurrics_link|default:"Library Subject Guide" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'grad' 'index.html' as grad_url %}
+        {% url 'restclients_proxy' 'grad' 'customform/index.html' as grad_url %}
         {% if grad_url %}
             <li><a href="{{ grad_url }}">
                 {{ restclients_grad_link|default:"MyGrad" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'libraries' 'index.html' as libraries_url %}
+        {% url 'restclients_proxy' 'libraries' 'customform/index.html' as libraries_url %}
         {% if libraries_url %}
             <li><a href="{{ libraries_url }}">
                 {{ restclients_libraries_link|default:"My Library Info" }}</a>
             </li>
         {% endif %}
         
-        {% url 'restclients_proxy' 'myplan' 'index.html' as myplan_url %}
+        {% url 'restclients_proxy' 'myplan' 'customform/index.html' as myplan_url %}
         {% if myplan_url %}
             <li><a href="{{ myplan_url }}">
                 {{ restclients_myplan_link|default:"MyPlan" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'uwnetid' 'index.html' as uwnetid_url %}
+        {% url 'restclients_proxy' 'uwnetid' 'customform/index.html' as uwnetid_url %}
         {% if uwnetid_url %}
             <li><a href="{{ uwnetid_url }}">
                 {{ restclients_uwnetid_link|default:"UWNetID Password" }}</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'book' 'index.html' as book_url %}
+        {% url 'restclients_proxy' 'book' 'customform/index.html' as book_url %}
         {% if book_url %}
             <li><a href="{{ book_url }}">
                 {{ restclients_book_link|default:"TextBook" }}</a>
