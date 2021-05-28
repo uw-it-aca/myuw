@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const DjangoBridgePlugin = require('django-webpack-bridge');
@@ -17,6 +18,7 @@ module.exports = {
   context: __dirname,
   optimization: {
     minimizer: [
+      new CssMinimizerPlugin(),
       new TerserJSPlugin(),
     ],
     splitChunks: {
