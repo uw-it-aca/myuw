@@ -71,8 +71,7 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'libcurrics' 'customform/currics_db/api/v1/data/course.html'
-            as libcurrics_url %}
+        {% url 'restclients_proxy' 'libcurrics' 'customform/currics_db/api/v1/data/course.html' as libcurrics_url %}
         {% if libcurrics_url %}
             <li>
                 <a href="{{ libcurrics_url }}">Library Subject Guide</a>
