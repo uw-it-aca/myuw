@@ -99,10 +99,17 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'uwnetid' 'index.html' as uwnetid_url %}
+        {% url 'restclients_customform' 'uwnetid' 'password.html' as pw_url %}
+        {% if pw_url %}
+            <li>
+                <a href="{{ pw_url }}">UWNetID Password</a>
+            </li>
+        {% endif %}
+
+        {% url 'restclients_customform' 'uwnetid' 'subscription.html' as uwnetid_url %}
         {% if uwnetid_url %}
             <li>
-                <a href="{{ uwnetid_url }}">UWNetID Password</a>
+                <a href="{{ uwnetid_url }}">UWNetID Subscriptions</a>
             </li>
         {% endif %}
 
