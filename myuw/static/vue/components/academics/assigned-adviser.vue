@@ -54,6 +54,25 @@
             </template>
           </ul>
       </uw-card-property>
+      <uw-card-property v-if="hasMinors" title="Minor">
+          <ul class="list-unstyled mb-0">
+            <template v-for="(termMinor, index) in termMinors">
+              <li v-if="index == 0 && termMinor.minors.length" :key="index" class="mb-1">
+                {{ degreeListString(termMinor.minors) }}
+              </li>
+              <li v-else-if="termMinor.degrees_modified" :key="index" class="mb-1">
+                Beginning {{ titilizeTerm(termMinor.quarter) }} {{ termMinor.year }}:
+                &nbsp;&nbsp;
+                <span v-if="termMinor.minors.length > 0">
+                  {{ degreeListString(termMinor.minors) }}
+                </span>
+                <span v-else class="text-muted">
+                  None
+                </span>
+              </li>
+            </template>
+          </ul>
+      </uw-card-property>
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your adviser information right now.
