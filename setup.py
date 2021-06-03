@@ -24,7 +24,6 @@ setup(
     include_package_data=True,
     install_requires=[
         'Django~=2.2.24',
-        'django-compressor',
         'ordereddict',
         'beautifulsoup4',
         'urllib3',
@@ -63,6 +62,7 @@ setup(
         'user-agents',
         'django-user-agents',
         'django-webpack-bridge==0.1.0',
+        'django-compressor',
     ],
     license='Apache License, Version 2.0',
     description=('MyUW is the portal of the University of Washington'),
