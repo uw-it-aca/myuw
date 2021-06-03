@@ -16,9 +16,6 @@ module.exports = {
     'prettier',
     'prettier/vue',
   ],
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
   rules: {
     // global rules
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
