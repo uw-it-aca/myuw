@@ -60,6 +60,7 @@
       :id="`${customId}-collapse`"
       v-model="isEditOpen"
       class="bg-light mx-n3 p-3 my-1"
+      @open="populateCustomLink"
     >
       <b-form @submit="updateLink" @reset="onReset">
         <h3 class="h6 font-weight-bold">
@@ -151,8 +152,7 @@ export default {
       this.activeButtons[button] = true;
     });
 
-    // Create a deep clone
-    this.currentCustomLink = JSON.parse(JSON.stringify(this.link));
+    this.populateCustomLink();
   },
   methods: {
     ...mapActions('quicklinks', {
@@ -168,11 +168,11 @@ export default {
       event.preventDefault();
       this.$logger.quicklink('edit', this.currentCustomLink.url);
       this.quicklinksUpdateLink(this.currentCustomLink);
-      this.onReset({preventDefault: () => {}});
+      this.isEditOpen = false;
     },
     onReset: function(event) {
       event.preventDefault();
-      this.currentCustomLink = JSON.parse(JSON.stringify(this.link));
+      this.populateCustomLink();
       this.isEditOpen = false;
     },
     saveLink(event) {
@@ -180,6 +180,9 @@ export default {
       this.$logger.quicklink('add', this.link.url);
       this.addLink(this.link);
     },
+    populateCustomLink() {
+      this.currentCustomLink = JSON.parse(JSON.stringify(this.link));
+    }
   },
 };
 </script>

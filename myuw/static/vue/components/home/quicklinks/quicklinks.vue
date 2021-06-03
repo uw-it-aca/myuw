@@ -174,6 +174,7 @@ export default {
       event.preventDefault();
       this.$logger.quicklink('add', this.customLink.url);
       this.quicklinksAddLink(this.customLink);
+      this.customLink = {};
       this.$root.$emit('bv::toggle::collapse', 'custom_qlinks');
     },
     onReset: function(event) {
