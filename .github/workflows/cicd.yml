@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, feature/vue, vue/support-tools]
+    branches: [main, master, qa, develop, feature/vue]
   pull_request:
-    branches: [main, master, qa, develop, feature/vue, vue/support-tools]
+    branches: [main, master, qa, develop, feature/vue]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -320,7 +320,7 @@ jobs:
           app_instance: dev
 
       - name: Deploy Vue Branch
-        if: needs.context.outputs.git_repo_branch == 'vue/support-tools'
+        if: needs.context.outputs.git_repo_branch == 'feature/vue'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
