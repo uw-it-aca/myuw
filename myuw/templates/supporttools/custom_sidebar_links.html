@@ -26,27 +26,20 @@
 
     <h3>Web Services</h3>
     <ul>
-        {% url 'restclients_proxy' 'pws' 'identity/v2.json' as pws_url %}
-        {% if pws_url %}
-            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
-        {% endif %}
-
         {% url 'restclients_proxy' 'sws' 'student/v5.json' as sws_url %}
         {% if sws_url %}
             <li><a href="{{ sws_url }}">{{ restclients_sws_link|default:"Browse Student Web Service" }}</a></li>
+        {% endif %}
+
+        {% url 'restclients_proxy' 'pws' 'identity/v2.json' as pws_url %}
+        {% if pws_url %}
+            <li><a href="{{ pws_url }}">{{ restclients_pws_link|default:"Browse Person Web Service" }}</a></li>
         {% endif %}
 
         {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
         {% if gws_url %}
             <li><a href="{{ gws_url }}">
                 {{ restclients_gws_link|default:"Search Groups Web Service" }}</a>
-            </li>
-        {% endif %}
-
-        {% url 'restclients_customform' 'sws' 'advisers.html' as advisers_url %}
-        {% if advisers_url %}
-            <li>
-                <a href="{{ advisers_url }}">Undergrad Academic Advisers</a>
             </li>
         {% endif %}
 
@@ -96,6 +89,13 @@
         {% if myplan_url %}
             <li>
                 <a href="{{ myplan_url }}">MyPlan</a>
+            </li>
+        {% endif %}
+
+        {% url 'restclients_customform' 'sws' 'advisers.html' as advisers_url %}
+        {% if advisers_url %}
+            <li>
+                <a href="{{ advisers_url }}">Undergrad Academic Advisers</a>
             </li>
         {% endif %}
 
