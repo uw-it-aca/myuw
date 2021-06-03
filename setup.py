@@ -55,6 +55,7 @@ setup(
         'django_client_logger~=2.0',
         'UW-HX-Toolkit==2.5.3',
         'django-blti~=2.2.3',
+        'memcached_clients',
         'yajl',
         'bleach',
         'pyyaml',

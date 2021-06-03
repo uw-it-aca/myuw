@@ -20,7 +20,9 @@ class TestAdvisersApi(MyuwApiTest):
         self.assertEquals(
             data[0]["email_address"], "javg001@uw.edu")
         self.assertEquals(
-            data[1]["email_address"], "uwhonors@uw.edu")
+            data[1]["email_address"], "javg002@uw.edu")
+        self.assertEquals(
+            data[2]["email_address"], "uwhonors@uw.edu")
 
     def test_errors(self):
         self.set_user('jinter')
