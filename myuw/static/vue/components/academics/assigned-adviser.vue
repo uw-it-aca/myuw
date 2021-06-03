@@ -35,7 +35,7 @@
         </li>
       </ul>
       <hr class="my-0">
-      <uw-card-property title="Major" class="mt-3" :no-margin-bottom="true">
+      <uw-card-property title="Your Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
             <template v-for="(termMajor, index) in termMajors">
               <li v-if="index == 0" :key="index" class="mb-1">
@@ -48,6 +48,25 @@
                   {{ degreeListString(termMajor.majors) }}
                 </span>
                 <span v-else>
+                  None
+                </span>
+              </li>
+            </template>
+          </ul>
+      </uw-card-property>
+      <uw-card-property v-if="hasMinors" title="Your Minor">
+          <ul class="list-unstyled mb-0">
+            <template v-for="(termMinor, index) in termMinors">
+              <li v-if="index == 0 && termMinor.minors.length" :key="index" class="mb-1">
+                {{ degreeListString(termMinor.minors) }}
+              </li>
+              <li v-else-if="termMinor.degrees_modified" :key="index" class="mb-1">
+                Beginning {{ titilizeTerm(termMinor.quarter) }} {{ termMinor.year }}:
+                &nbsp;&nbsp;
+                <span v-if="termMinor.minors.length > 0">
+                  {{ degreeListString(termMinor.minors) }}
+                </span>
+                <span v-else class="text-muted">
                   None
                 </span>
               </li>
@@ -83,6 +102,8 @@ export default {
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
       termMajors: (state) => state.profile.value.term_majors,
+      termMinors: (state) => state.profile.value.term_minors,
+      hasMinors: (state) => state.profile.value.has_minors,
     }),
     ...mapGetters('advisers', {
       isReadyAdvisers: 'isReady',
