@@ -1,2 +1,2 @@
 -e .
--e git://github.com/uw-it-aca/uw-restclients-django-utils@qa#egg=UW-RestClients-Django-Utils
+
