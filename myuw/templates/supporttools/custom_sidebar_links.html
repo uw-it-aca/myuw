@@ -43,14 +43,14 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'hfs' 'accounts.html' as hfs_url %}
+        {% url 'myuw_rest_search' 'hfs' 'accounts.html' as hfs_url %}
         {% if hfs_url %}
             <li>
                 <a href="{{ hfs_url }}">HFS</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'iasystem' 'index.html' as ias_url %}
+        {% url 'myuw_rest_search' 'iasystem' 'index.html' as ias_url %}
         {% if ias_url %}
             <li><a href="{{ ias_url }}">
                 {{ restclients_iasystem_link|default:"IASystem Course Eval" }}</a>
@@ -64,56 +64,56 @@
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'libcurrics' 'index.html' as libcurrics_url %}
+        {% url 'myuw_rest_search' 'libcurrics' 'index.html' as libcurrics_url %}
         {% if libcurrics_url %}
             <li>
                 <a href="{{ libcurrics_url }}">Library Subject Guide</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'grad' 'index.html' as grad_url %}
+        {% url 'myuw_rest_search' 'grad' 'index.html' as grad_url %}
         {% if grad_url %}
             <li>
                 <a href="{{ grad_url }}">MyGrad</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'libraries' 'index.html' as libraries_url %}
+        {% url 'myuw_rest_search' 'libraries' 'index.html' as libraries_url %}
         {% if libraries_url %}
             <li>
                 <a href="{{ libraries_url }}">My Library Info</a>
             </li>
         {% endif %}
         
-        {% url 'restclients_customform' 'myplan' 'index.html' as myplan_url %}
+        {% url 'myuw_rest_search' 'myplan' 'index.html' as myplan_url %}
         {% if myplan_url %}
             <li>
                 <a href="{{ myplan_url }}">MyPlan</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'sws' 'advisers.html' as advisers_url %}
+        {% url 'myuw_rest_search' 'sws' 'advisers.html' as advisers_url %}
         {% if advisers_url %}
             <li>
                 <a href="{{ advisers_url }}">Undergrad Academic Advisers</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'uwnetid' 'password.html' as pw_url %}
+        {% url 'myuw_rest_search' 'uwnetid' 'password.html' as pw_url %}
         {% if pw_url %}
             <li>
                 <a href="{{ pw_url }}">UWNetID Password</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'uwnetid' 'subscription.html' as uwnetid_url %}
+        {% url 'myuw_rest_search' 'uwnetid' 'subscription.html' as uwnetid_url %}
         {% if uwnetid_url %}
             <li>
                 <a href="{{ uwnetid_url }}">UWNetID Subscriptions</a>
             </li>
         {% endif %}
 
-        {% url 'restclients_customform' 'book' 'index.html' as book_url %}
+        {% url 'myuw_rest_search' 'book' 'index.html' as book_url %}
         {% if book_url %}
             <li>
                 <a href="{{ book_url }}">TextBook</a>

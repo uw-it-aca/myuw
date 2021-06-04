@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.conf import settings
-from django.urls import include, re_path
+from django.urls import re_path
 from django.contrib.auth.decorators import login_required
 from myuw.views.page import logout
 from myuw.views.home import home
@@ -92,9 +92,8 @@ urlpatterns += [
     re_path(r'admin/links', popular_links, {'page': 1},
             name="myuw_popular_links"),
     re_path(r'^logger/(?P<interaction_type>.*)$', log_interaction),
-    re_path(r'^restclients/search/(\w+)/(.*)$',
+    re_path(r'^restsearch/(\w+)/(.*)$',
             MyUWRestSearchView.as_view(), name="myuw_rest_search"),
-    re_path(r'^restclients/', include('rc_django.urls')),
     re_path(r'api/v1/close_banner_message',
             CloseBannerMsg.as_view(),
             name="myuw_close_banner_message"),

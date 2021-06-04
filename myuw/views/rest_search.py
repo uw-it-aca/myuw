@@ -9,6 +9,9 @@ logger = logging.getLogger(__name__)
 
 
 class MyUWRestSearchView(RestSearchView):
+    def __init__(self):
+        super(MyUWRestSearchView, self).__init__()
+        self.form_action_url = "myuw_rest_search"
 
     def get_proxy_url(self, request, service, url):
         """
