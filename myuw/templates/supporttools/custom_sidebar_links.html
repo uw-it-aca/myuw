@@ -92,6 +92,13 @@
             </li>
         {% endif %}
 
+        {% url 'restclients_customform' 'sws' 'notices.html' as notices_url %}
+        {% if notices_url %}
+            <li>
+                <a href="{{ notices_url }}">Notices</a>
+            </li>
+        {% endif %}
+
         {% url 'restclients_customform' 'sws' 'advisers.html' as advisers_url %}
         {% if advisers_url %}
             <li>
