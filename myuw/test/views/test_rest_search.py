@@ -63,14 +63,14 @@ class RestSearchViewTest(MyuwApiTest):
             response.url,
             "/restclients/view/uwnetid/nws/v1/uwnetid/javerage/password")
 
-        url = reverse("myuw_rest_search", args=[
-                      "uwnetid", "subscription"])
-        response = self.client.post(url, {"id": "javerage"})
+        url = reverse("myuw_rest_search", args=["uwnetid", "subscription"])
+        response = self.client.post(url, {"uwnetid": "javerage"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            "/restclientsnws/v1/uwnetid/javerage/subscription/60,64,105")
-          
+            "/restclients/view/uwnetid/nws/v1/uwnetid/" +
+            "javerage/subscription/60,64,105")
+
         # grad
         url = reverse("myuw_rest_search", args=[
             "grad", "services/students/v1/api/committee"])
