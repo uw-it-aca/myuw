@@ -1,0 +1,93 @@
+# Copyright 2021 UW-IT, University of Washington
+# SPDX-License-Identifier: Apache-2.0
+
+# -*- coding: utf-8 -*-
+from unittest import skipIf
+from django.test.utils import override_settings
+from django.urls import reverse
+from myuw.test.api import missing_url, MyuwApiTest
+
+
+@override_settings(
+    RESTCLIENTS_ADMIN_AUTH_MODULE='rc_django.tests.can_proxy_restclient')
+class RestSearchViewTest(MyuwApiTest):
+    @skipIf(
+        missing_url("myuw_rest_search"),
+        "myuw_rest_search urls not configured")
+    def test_post(self):
+        self.set_user('javerage')
+        
+        # hfs
+        url = reverse("myuw_rest_search", args=["hfs", "accounts"])
+        response = self.client.post(url, {"uwnetid": "javerage"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.url, "/view/hfs/myuw/v1/javerage")
+
+        # bookstore
+        url = reverse("myuw_rest_search", args=["book", "index"])
+        response = self.client.post(url, {
+            "sln1": "123", "quarter": "spring", "returnlink": "t"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/view/book/uw/json_utf8_202007.ubs?"
+            "sln1=123&quarter=spring&returnlink=t"))
+
+        # myplan
+        url = reverse("myuw_rest_search", args=["myplan", "index"])
+        response = self.client.post(url, {
+            "uwregid": "ABC", "year": "2013", "quarter": "spring"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url,
+                         "/view/myplan/student/api/plan/v1/2013,spring,1,ABC")
+
+        # libraries
+        url = reverse("myuw_rest_search", args=["libraries", "accounts"])
+        response = self.client.post(url, {"id": "javerage"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url,
+                         "/view/libraries/mylibinfo/v1/?id=javerage")
+
+        # iasystem
+        url = reverse("myuw_rest_search", args=[
+            "iasystem_uw", "uw/api/v1/evaluation"])
+        response = self.client.post(url, {"student_id": "123456"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/view/iasystem_uw/api/v1/evaluation?student_id=123456"))
+
+        # uwnetid
+        url = reverse("myuw_rest_search", args=["uwnetid", "password"])
+        response = self.client.post(url, {"uwnetid": "javerage"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url,
+                         "/view/uwnetid/nws/v1/uwnetid/javerage/password")
+
+        # libraries
+        url = reverse("myuw_rest_search", args=[
+                      "uwnetid", "subscription"])
+        response = self.client.post(url, {"id": "javerage"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(
+            response.url,
+            "nws/v1/uwnetid/javerage/subscription/60,64,105")
+          
+        # grad
+        url = reverse("myuw_rest_search", args=[
+            "grad", "services/students/v1/api/committee"])
+        response = self.client.post(url, {
+            "id": "12345", "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/view/grad/services/students/v1/api/committee?id=12345"))
+
+        # notices
+        url = reverse("myuw_rest_search", args=[
+            "sws", "notices"])
+        response = self.client.post(url, {
+            "uwregid": "12345678123456781234567812345678",
+            "csrfmiddlewaretoken": "0000000"})
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, (
+            "/view/sws/student/v5/notice/" +
+            "12345678123456781234567812345678.json"))
