@@ -1,0 +1,24 @@
+<h1>MyPlan</h1>
+<form method="post" action="{{form_action}}">
+{% csrf_token %}
+  <p>
+    <label for="uwregid">UW RegID:</label>
+    <input id="uwregid" name="uwregid" size="40" type="text">
+  </p>
+  <p>
+    <label for="year">Year:</label>
+    <input id="year" name="year" type="text" maxlength="4">
+  </p>
+  <p>
+    <label for="quarter">Quarter:</label>
+    <select id="quarter" name="quarter" maxlength="6">
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+    </select>
+  </p>
+  <p>
+    <input value="Submit" type="submit">
+  </p>
+</form>
