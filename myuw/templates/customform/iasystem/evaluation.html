@@ -1,0 +1,38 @@
+<form method="post" action="{{form_action}}">
+{% csrf_token %}
+<div>
+    <p>
+    <label for="term_name">Term:</label>
+    <select id="term_name" name="term_name" value="{{search.term_name}}">
+        <option value="Winter">Winter</option>
+        <option value="Spring">Spring</option>
+        <option value="Summer">Summer</option>
+        <option value="Autumn">Autumn</option>
+    </select>
+    </p>
+    <p>
+    <label for="curriculum_abbreviation">Curriculum Abbreviation:</label>
+    <input class="" id="curriculum_abbreviation" name="curriculum_abbreviation" value="{{search.curriculum_abbreviation}}" size="10" type="text">
+    </p>
+    <p>
+    <label for="course_number">Course Number:</label>
+    <input class="" id="course_number" name="course_number" value="{{search.course_number}}" size="10" type="text">
+    </p>
+    <p>
+    <label for="section_id">Section Id:</label>
+    <input class="" id="section_id" name="section_id" value="{{search.section_id}}" size="5" type="text">
+    </p>
+    <p>
+    <label for="year">Year:</label>
+    <input class="" id="year" name="year" value="{{search.year}}" size="4">
+    </p>
+    <p>
+    <label for="instructor_id">Instructor Employee ID:</label>
+    <input class="" id="instructor_id" name="instructor_id" value="{{search.instructor_id}}" size="10">
+    </p>
+    <label for="student_id">Student Number:</label>
+    <input class="" id="student_id" name="student_id" value="{{search.student_id}}" size="10">
+    </p>
+    <input value="Search" type="submit">
+</div>
+</form>

@@ -1,0 +1,13 @@
+<h1>Committee Request</h1>
+<form method="post" action="{{form_action}}">
+{% csrf_token %}
+<div>
+
+    {% include 'customform/grad/services/students/v1/api/id.html' %}
+
+    <input type="hidden" name="status" value="active">
+    <p>
+        <input value="Search" type="submit">
+    </p>
+</div>
+</form>
