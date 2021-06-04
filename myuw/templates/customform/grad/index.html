@@ -1,21 +1,21 @@
 <h1>MyGrad Search</h1>
 <ul>
-    {% url 'restclients_customform' 'grad' 'services/students/v1/api/committee.html' as committee_url %}
+    {% url 'myuw_rest_search' 'grad' 'services/students/v1/api/committee.html' as committee_url %}
     {% if committee_url %}
     <li><a href="{{ committee_url }}">Committee</a></li>
     {% endif %}
 
-    {% url 'restclients_customform' 'grad' 'services/students/v1/api/request.html' as degree_url %}
+    {% url 'myuw_rest_search' 'grad' 'services/students/v1/api/request.html' as degree_url %}
     {% if degree_url %}
     <li><a href="{{ degree_url }}">Degree</a></li>
     {% endif %}
 
-    {% url 'restclients_customform' 'grad' 'services/students/v1/api/leave.html' as leave_url %}
+    {% url 'myuw_rest_search' 'grad' 'services/students/v1/api/leave.html' as leave_url %}
     {% if leave_url %}
     <li><a href="{{ leave_url }}">Leave</a></li>
     {% endif %}
 
-    {% url 'restclients_customform' 'grad' 'services/students/v1/api/petition.html' as petition_url %}
+    {% url 'myuw_rest_search' 'grad' 'services/students/v1/api/petition.html' as petition_url %}
     {% if petition_url %}
     <li><a href="{{ petition_url }}">Petition</a></li>
     {% endif %}

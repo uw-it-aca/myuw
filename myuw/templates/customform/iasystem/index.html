@@ -1,26 +1,26 @@
 <h1>Iasystem Search</h1>
 <ul>
-    {% url 'restclients_customform' 'iasystem' 'uw/api/v1/evaluation.html' as uw_url %}
+    {% url 'myuw_rest_search' 'iasystem' 'uw/api/v1/evaluation.html' as uw_url %}
     {% if uw_url %}
     <li><a href="{{ uw_url }}">Seattle Domain</a></li>
     {% endif %}
 
-    {% url 'restclients_customform' 'iasystem' 'uwb/api/v1/evaluation.html' as uwb_url %}
+    {% url 'myuw_rest_search' 'iasystem' 'uwb/api/v1/evaluation.html' as uwb_url %}
     {% if uwb_url %}
     <li><a href="{{ uwb_url }}">Bothell Domain</a></li>
     {% endif %}
 
-    {% url 'restclients_customform' 'iasystem' 'uwt/api/v1/evaluation.html' as uwt_url %}
+    {% url 'myuw_rest_search' 'iasystem' 'uwt/api/v1/evaluation.html' as uwt_url %}
     {% if uwt_url %}
     <li><a href="{{ uwt_url }}">Tacoma Domain</a></li>
     {% endif %}
 
-    {% url 'restclients_customform' 'iasystem' 'uweo_ap/api/v1/evaluation.html' as ap_url %}
+    {% url 'myuw_rest_search' 'iasystem' 'uweo_ap/api/v1/evaluation.html' as ap_url %}
     {% if ap_url %}
     <li><a href="{{ ap_url }}">PCE AP</a></li>
     {% endif %}
 
-    {% url 'restclients_customform' 'iasystem' 'uweo_ielp/api/v1/evaluation.html' as ielp_url %}
+    {% url 'myuw_rest_search' 'iasystem' 'uweo_ielp/api/v1/evaluation.html' as ielp_url %}
     {% if ielp_url %}
     <li><a href="{{ ielp_url }}">PCE IELP</a></li>
     {% endif %}
