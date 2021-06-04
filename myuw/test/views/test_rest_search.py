@@ -13,7 +13,7 @@ class RestSearchViewTest(MyuwApiTest):
 
     def test_post(self):
         self.set_user('javerage')
-        
+
         # hfs
         url = reverse("myuw_rest_search", args=["hfs", "accounts"])
         response = self.client.post(url, {"uwnetid": "javerage"})
@@ -53,7 +53,8 @@ class RestSearchViewTest(MyuwApiTest):
         response = self.client.post(url, {"student_id": "123456"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, (
-            "/restclients/view/iasystem_uw/api/v1/evaluation?student_id=123456"))
+            "/restclients/view/iasystem_uw/api/" +
+            "v1/evaluation?student_id=123456"))
 
         # uwnetid
         url = reverse("myuw_rest_search", args=["uwnetid", "password"])
@@ -78,7 +79,8 @@ class RestSearchViewTest(MyuwApiTest):
             "id": "12345", "csrfmiddlewaretoken": "0000000"})
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, (
-            "/restclients/view/grad/services/students/v1/api/committee?id=12345"))
+            "/restclients/view/grad/services/" +
+            "students/v1/api/committee?id=12345"))
 
         # notices
         url = reverse("myuw_rest_search", args=["sws", "notices"])
