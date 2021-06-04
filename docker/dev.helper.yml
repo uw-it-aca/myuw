@@ -42,8 +42,7 @@ services:
     stdin_open: true
     tty: true
     entrypoint:
-      - npx
-      - eslint
+      - ./node_modules/.bin/eslint
       - myuw/static/vue
       - --ext
       - .vue
@@ -60,8 +59,7 @@ services:
     tty: true
     working_dir: /app/
     entrypoint:
-      - npx
-      - jest
+      - ./node_modules/.bin/jest
   e2e-myuw:
     build:
       context: ../
