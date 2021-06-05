@@ -10,7 +10,6 @@
       >UW Libraries</a> page.
     </template>
     <template #card-body>
-      <div>
       <b-alert v-if="holdsReady" show variant="info">
         <div class="d-flex text-default m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
@@ -74,7 +73,6 @@
         <uw-link-button href="http://search.lib.uw.edu/account">
           Access library account
         </uw-link-button>
-      </div>
       </div>
     </template>
   </uw-card>

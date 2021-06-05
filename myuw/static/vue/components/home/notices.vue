@@ -8,8 +8,10 @@
         Notices
       </h2>
     </template>
-    <template v-if="!isErrored" #card-body>
-      <div>
+    <template
+      v-if="!isErrored"
+      #card-body
+    >
       <p v-if="notices.length == 0">
         You do not have any notices at this time.
       </p>
@@ -61,7 +63,6 @@
           </b-collapse>
         </li>
       </ul>
-      </div>
     </template>
     <template
       v-else

@@ -4,12 +4,12 @@
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">UW NetID</h2>
     </template>
     <template #card-body>
-      <div>
       <p>
         <uw-link-button href="https://uwnetid.washington.edu/manage/">
           Manage UW NetID account
         </uw-link-button>
       </p>
+      <div class="">
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a

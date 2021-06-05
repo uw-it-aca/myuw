@@ -11,7 +11,6 @@
       </h2>
     </template>
     <template #card-body>
-      <div>
       <div v-if="petitions">
         <div id="petition-reqs">
           <h3 class="h6 text-dark-beige myuw-font-encode-sans">
@@ -119,7 +118,6 @@
           v-out="'MyGrad'"
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
         >Go to MyGrad</a>
-      </div>
       </div>
     </template>
     <template #card-error>
