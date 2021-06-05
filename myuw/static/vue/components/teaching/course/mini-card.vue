@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    :id="idForSection(section)"
+    :id="section.anchor"
     v-meta="{term: term, course: section.anchor}"
     loaded
     :ribbon="{

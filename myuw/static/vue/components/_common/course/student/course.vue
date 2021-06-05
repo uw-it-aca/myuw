@@ -1,6 +1,7 @@
 <template>
   <div v-meta="{term: term, course: section.anchor}">
     <uw-card
+      :id="section.anchor"
       loaded
       :ribbon="{ side: 'top', colorId: section.color_id }"
     >
