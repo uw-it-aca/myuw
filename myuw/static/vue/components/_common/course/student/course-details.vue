@@ -1,9 +1,15 @@
 <template>
   <div>
+    <h3 v-if="displayHeading"
+      class="h6 text-dark-beige myuw-font-encode-sans"
+    >
+      Lecture Schedule
+    </h3>
     <uw-meeting-info :section="section"/>
     <uw-resources :section="section"/>
+
     <uw-instructors
-      v-if="section.is_ended && section.instructors.length > 0"
+      v-if="displayInstructor && section.instructors.length > 0"
       :instructors="section.instructors"
     />
   </div>
@@ -24,6 +30,14 @@ export default {
     section: {
       type: Object,
       required: true,
+    },
+    displayHeading: {
+      type: Boolean,
+      default: false,
+    },
+    displayInstructor: {
+      type: Boolean,
+      default: false,
     },
   },
 };

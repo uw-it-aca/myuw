@@ -10,20 +10,20 @@
 
       <template #card-body>
         <div>
-        <uw-course-eval
-          v-if="isReadyEval && getSectionEval(section.index).length > 0"
-          :eval-data="getSectionEval(section.index)"
-          :section="section"
-        />
-        <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
-          <p>
-            <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
-            An error has occurred and MyUW cannot display the course evaluation
-            information right now. Please try again later.
-          </p>
-        </template>
+          <uw-course-eval
+            v-if="isReadyEval && getSectionEval(section.index).length > 0"
+            :eval-data="getSectionEval(section.index)"
+            :section="section"
+          />
+          <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
+            <p>
+              <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
+              An error has occurred and MyUW cannot display the course evaluation
+              information right now. Please try again later.
+            </p>
+          </template>
 
-        <uw-course-details v-else-if="!section.is_ended" :section="section"/>
+          <uw-course-details v-else-if="!section.is_ended" :section="section"/>
         </div>
       </template>
 
@@ -35,7 +35,8 @@
             :id="`course-details-${index}`"
             v-model="isOpen"
           >
-            <uw-course-details :section="section" class="pt-3"/>
+            <uw-course-details :section="section"
+              displayHeading=true displayInstructor=true class="pt-3"/>
           </b-collapse>
         </template>
         <template v-else>
