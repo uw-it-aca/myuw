@@ -9,6 +9,7 @@
       </template>
 
       <template #card-body>
+        <div>
         <uw-course-eval
           v-if="isReadyEval && getSectionEval(section.index).length > 0"
           :eval-data="getSectionEval(section.index)"
@@ -23,6 +24,7 @@
         </template>
 
         <uw-course-details v-else-if="!section.is_ended" :section="section"/>
+        </div>
       </template>
 
       <template #card-disclosure>
@@ -51,6 +53,7 @@
       </template>
 
       <template #card-footer>
+        <div>
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
@@ -85,6 +88,7 @@
             No instructor information available
           </div>
         </template>
+        </div>
       </template>
     </uw-card>
   </div>

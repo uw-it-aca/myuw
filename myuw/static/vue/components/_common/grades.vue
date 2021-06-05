@@ -11,6 +11,7 @@
       </h2>
     </template>
     <template #card-body>
+      <div>
       <p
         v-if="!isAfterGradeSubmissionDeadline"
         class="text-muted font-italic myuw-text-md"
@@ -49,6 +50,7 @@
           </div>
         </li>
       </ul>
+      </div>
     </template>
     <template #card-disclosure>
       <b-collapse
