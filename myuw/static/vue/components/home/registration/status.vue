@@ -15,6 +15,7 @@
       </h2>
     </template>
     <template #card-body>
+      <div>
       <uw-est-reg-date :est-reg-data="estRegData" />
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
@@ -81,6 +82,7 @@
         v-if="finAidNotices && finAidNotices.length && isSummerReg"
         :fin-aid-notices="finAidNotices"
       />
+      </div>
     </template>
   </uw-card>
 </template>

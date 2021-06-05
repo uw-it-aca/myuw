@@ -6,6 +6,7 @@
       </h2>
     </template>
     <template #card-body>
+      <div>
       <ul class="list-unstyled myuw-text-md">
         <uw-link
           v-for="(link, index) in defaultLinks"
@@ -122,6 +123,7 @@
           </div>
         </b-form>
       </b-collapse>
+      </div>
     </template>
   </uw-card>
 </template>

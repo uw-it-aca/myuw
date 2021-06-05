@@ -12,6 +12,7 @@
       </h3>
     </template>
     <template #card-body>
+      <div>
       <p v-if="majors && majors.length">
         {{ majors[0].percent_students }}% of your students
         are {{ titleCaseWord(majors[0].major) }} majors.
@@ -20,6 +21,7 @@
         View more statistics for
         {{ sectionData.currAbbr }} {{ sectionData.courseNum }} {{ sectionData.sectionId }}
       </a>
+      </div>
     </template>
   </uw-card>
 </template>

@@ -8,6 +8,7 @@
     </template>
 
     <template #card-body>
+      <div>
       <div v-for="notice in notices" :key="notice.id_hash" class="mb-3">
         <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
           Review Critical Summer Registration Info
@@ -24,6 +25,7 @@
         course load during autumn quarter. The language courses may be
         particularly helpful to international students!
         <a href="http://www.outreach.washington.edu/efs/">Learn more about Early Fall Start and register</a>.
+      </div>
       </div>
     </template>
   </uw-card>

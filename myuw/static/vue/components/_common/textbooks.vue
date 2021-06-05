@@ -11,6 +11,7 @@
       </h2>
     </template>
     <template #card-body>
+      <div>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li v-for="(section, i) in bookData.sections" :key="i" class="d-flex">
           <div class="w-50">
@@ -49,6 +50,7 @@
         >
           <font-awesome-icon :icon="faChevronRight" />
         </a>
+      </div>
       </div>
     </template>
   </uw-card>

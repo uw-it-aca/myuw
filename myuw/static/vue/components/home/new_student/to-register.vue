@@ -11,6 +11,7 @@
       </h2>
     </template>
     <template #card-body>
+      <div>
       <div v-if="formatted_date">
         <p class="myuw-text-md">
           Register on <strong>{{ formatted_date }}</strong> through
@@ -127,6 +128,7 @@
         <div class="myuw-text-md">
           You have registered for an Advising &amp; Orientation Session.
         </div>
+      </div>
       </div>
     </template>
   </uw-card>

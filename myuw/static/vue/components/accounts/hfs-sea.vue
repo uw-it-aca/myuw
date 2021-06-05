@@ -12,6 +12,7 @@
       > Housing &amp; Food Services</a> page.
     </template>
     <template #card-body>
+      <div>
       <uw-card-status v-if="hfs.resident_dining">
         <template #status-label>Dining Balance</template>
         <template #status-value> ${{ hfs.resident_dining.balance.toFixed(2) }} </template>
@@ -98,6 +99,7 @@
             </a>
           </li>
         </ul>
+      </div>
       </div>
     </template>
   </uw-card>

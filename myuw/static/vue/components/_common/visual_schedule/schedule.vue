@@ -13,6 +13,7 @@
     </template>
 
     <template #card-body>
+      <div>
       <!-- schedule tabs -->
       <b-tabs v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
               v-model="tabIndex" pills
@@ -58,6 +59,7 @@
           {{ formatDate(termData.end_date) }}
         </span>
       </p>
+      </div>
     </template>
   </uw-card>
 </template>
