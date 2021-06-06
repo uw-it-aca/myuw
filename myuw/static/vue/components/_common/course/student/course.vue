@@ -162,5 +162,11 @@ export default {
       return [];
     },
   },
+  mounted() {
+    const currentUrl = window.location.href;
+    if (currentUrl.endsWith(this.section.anchor)) {
+      this.selfAnchoredOnce(this.section);
+    }
+  },
 };
 </script>
