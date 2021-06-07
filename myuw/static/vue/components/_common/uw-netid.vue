@@ -9,28 +9,28 @@
           Manage UW NetID account
         </uw-link-button>
       </p>
-      <div class="">
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a
-              href="https://uwnetid.washington.edu/manage/?password"
-              title="Change UW NetID password"
-            >Change UW NetID password</a>
-          </li>
-          <li>
-            <a
-              href="https://identity.uw.edu/account/recovery/"
-              title="NetID account recovery options"
-            >Set account recovery options</a>
-          </li>
-          <li v-if="two_factor" class="mt-1">
-            <a
-              href="https://identity.uw.edu/2fa/"
-              title="Manage two-factor authentication"
-            >Manage two-factor authentication (2FA)</a>
-          </li>
-        </ul>
-      </div>
+
+      <ul class="list-unstyled myuw-text-md">
+        <li class="mb-1">
+          <a
+            href="https://uwnetid.washington.edu/manage/?password"
+            title="Change UW NetID password"
+          >Change UW NetID password</a>
+        </li>
+        <li>
+          <a
+            href="https://identity.uw.edu/account/recovery/"
+            title="NetID account recovery options"
+          >Set account recovery options</a>
+        </li>
+        <li v-if="two_factor" class="mt-1">
+          <a
+            href="https://identity.uw.edu/2fa/"
+            title="Manage two-factor authentication"
+          >Manage two-factor authentication (2FA)</a>
+        </li>
+      </ul>
+
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your information right now. Please try again later. In
