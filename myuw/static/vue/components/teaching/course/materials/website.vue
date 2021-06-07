@@ -1,5 +1,4 @@
 <template>
-  <div>
   <span v-if="section.class_website_url">
     <span>Website:&nbsp;&nbsp;</span>
     <span>
@@ -34,7 +33,6 @@
       on MyUW.
     </div>
   </span>
-  </div>
 </template>
 
 <script>

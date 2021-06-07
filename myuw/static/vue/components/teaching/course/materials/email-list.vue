@@ -1,5 +1,4 @@
 <template>
-  <div>
   <span v-if="section.email_list">
     <span>Email List:&nbsp;&nbsp;</span>
     <span v-if="
@@ -67,7 +66,6 @@
       email list</a>.
     Please try again later.
   </span>
-  </div>
 </template>
 
 <script>
