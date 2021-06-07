@@ -22,7 +22,6 @@
         >UW Medicine Account</a> page.
       </template>
       <template #card-body>
-        <div>
         <p>
           This password is for UW Medicine applications
           like Epic, ORCA, MINDscape, AMC network, etc.
@@ -62,7 +61,6 @@
           <a :href="passwordChange">
             Change UW Medicine password
           </a>
-        </div>
         </div>
       </template>
     </uw-card>

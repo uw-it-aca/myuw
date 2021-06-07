@@ -9,22 +9,20 @@
       </template>
 
       <template #card-body>
-        <div>
-          <uw-course-eval
-            v-if="isReadyEval && getSectionEval(section.index).length > 0"
-            :eval-data="getSectionEval(section.index)"
-            :section="section"
-          />
-          <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
-            <p>
-              <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
-              An error has occurred and MyUW cannot display the course evaluation
-              information right now. Please try again later.
-            </p>
-          </template>
+        <uw-course-eval
+          v-if="isReadyEval && getSectionEval(section.index).length > 0"
+          :eval-data="getSectionEval(section.index)"
+          :section="section"
+        />
+        <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
+          <p>
+            <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
+            An error has occurred and MyUW cannot display the course evaluation
+            information right now. Please try again later.
+          </p>
+        </template>
 
-          <uw-course-details v-else-if="!section.is_ended" :section="section"/>
-        </div>
+        <uw-course-details v-else-if="!section.is_ended" :section="section"/>
       </template>
 
       <template #card-disclosure>
@@ -54,7 +52,6 @@
       </template>
 
       <template #card-footer>
-        <div>
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
@@ -89,7 +86,6 @@
             No instructor information available
           </div>
         </template>
-        </div>
       </template>
     </uw-card>
   </div>
