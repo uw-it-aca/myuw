@@ -105,10 +105,13 @@ export default {
       } ${this.meetingData.section.section_id}`;
     },
     sectionUrl: function() {
-      let page = this.meetingData.section.is_teaching ? 'teaching' : 'academics';
-      let term = this.meetingData.section.is_teaching
-        ? this.year + ',' + this.quarter.toLowerCase() : '';
-      return `/${page}/${term}#${
+      let page = (
+        this.meetingData.section.is_teaching ? 'teaching' : (
+        this.term.isNotCurrentTerm ? 'future_quarters' :'academics'));
+      let tm = this.meetingData.section.is_teaching ?
+        this.year + ',' + this.quarter.toLowerCase() :
+        (this.term.isNotCurrentTerm ? this.term.termLabel : '');
+      return `/${page}/${tm}#${
         this.meetingData.section.curriculum_abbr.replace(/ /g, '-')
       }-${
         this.meetingData.section.course_number
