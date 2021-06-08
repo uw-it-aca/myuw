@@ -63,4 +63,4 @@ class MyUWRestSearchView(RestSearchView):
 
         logger.debug(
             "Exit MyUWRestProxyView url: {}".format(url))
-        return url, params
+        return service, url, params
