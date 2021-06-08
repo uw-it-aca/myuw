@@ -35,7 +35,7 @@
             v-model="isOpen"
           >
             <uw-course-details :section="section"
-              displayHeading=true displayInstructor=true class="pt-3"/>
+              display-heading=true display-instructor=true class="pt-3"/>
           </b-collapse>
         </template>
         <template v-else>
@@ -146,6 +146,12 @@ export default {
       return this.section.year + "," + this.section.quarter;
     },
   },
+  mounted() {
+    const currentUrl = window.location.href;
+    if (currentUrl.endsWith(this.section.anchor)) {
+      this.selfAnchoredOnce(this.section);
+    }
+  },
   methods: {
     getSectionEval(index) {
       if (
@@ -157,12 +163,6 @@ export default {
       }
       return [];
     },
-  },
-  mounted() {
-    const currentUrl = window.location.href;
-    if (currentUrl.endsWith(this.section.anchor)) {
-      this.selfAnchoredOnce(this.section);
-    }
   },
 };
 </script>
