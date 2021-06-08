@@ -13,7 +13,7 @@
       </b-button>
     </div>
 
-    <uw-joint-section :section="section" :parent-id="idForSection(section)" />
+    <uw-joint-section :section="section" :parent-id="section.anchor" />
 
     <uw-card-property v-if="section.summer_term" title="Summer Term">
       {{ capitalizeString(section.summer_term) }}

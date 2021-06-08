@@ -87,10 +87,8 @@ export default {
     getTimeScheLinkLable(section) {
       return 'Time Schedule for SLN ' + section.sln;
     },
-    idForSection(section) {
-      return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
-    },
     selfAnchoredOnce(section) {
+      // anchor on the section uw-card where div id is section.anchor
       if (firstSelfAnchored) {
         const el = document.getElementById(section.anchor);
         if (el) {
