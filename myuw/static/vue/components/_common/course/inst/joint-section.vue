@@ -4,20 +4,20 @@
     Offered jointly with
     <span v-for="(jointSec, i) in section.joint_sections" :key="i">
       <span v-if="jointSec.is_ior">
-        <a :href="`#${idForSection(jointSec)}`">
+        <a :href="`#${anchorId(jointSec)}`">
           {{ jointSec.course_abbr }}
           {{ jointSec.course_number }}
           {{ jointSec.section_id }}
         </a>
       </span>
       <span v-else>
-        <span :id="`${parentId}-${idForSection(jointSec)}`">
+        <span :id="`${parentId}-${anchorId(jointSec)}`">
           {{ jointSec.course_abbr }}
           {{ jointSec.course_number }}
           {{ jointSec.section_id }}
           <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
         </span>
-        <b-tooltip :target="`${parentId}-${idForSection(jointSec)}`">
+        <b-tooltip :target="`${parentId}-${anchorId(jointSec)}`">
           You are not an instructor of record for
           {{ jointSec.course_abbr }}
           {{ jointSec.course_number }}
@@ -51,6 +51,11 @@ export default {
     return {
       faExclamationTriangle,
     };
+  },
+  methods: {
+    anchorId(section) {
+      return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
+    },
   },
 };
 </script>

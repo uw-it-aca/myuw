@@ -1,6 +1,7 @@
 <template>
   <div v-meta="{term: term, course: section.anchor}">
     <uw-card
+      :id="section.anchor"
       loaded
       :ribbon="{ side: 'top', colorId: section.color_id }"
     >
@@ -156,6 +157,12 @@ export default {
       }
       return [];
     },
+  },
+  mounted() {
+    const currentUrl = window.location.href;
+    if (currentUrl.endsWith(this.section.anchor)) {
+      this.selfAnchoredOnce(this.section);
+    }
   },
 };
 </script>
