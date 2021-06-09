@@ -109,7 +109,7 @@ export default {
       let term = this.meetingData.section.is_teaching
         ? this.year + ',' + this.quarter.toLowerCase() : '';
       return `/${page}/${term}#${
-        this.meetingData.section.curriculum_abbr
+        this.meetingData.section.curriculum_abbr.replace(/ /g, '-')
       }-${
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;

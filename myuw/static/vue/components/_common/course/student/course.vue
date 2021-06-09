@@ -1,6 +1,7 @@
 <template>
   <div v-meta="{term: term, course: section.anchor}">
     <uw-card
+      :id="section.anchor"
       loaded
       :ribbon="{ side: 'top', colorId: section.color_id }"
     >
@@ -33,7 +34,8 @@
             :id="`course-details-${index}`"
             v-model="isOpen"
           >
-            <uw-course-details :section="section" class="pt-3"/>
+            <uw-course-details :section="section"
+              display-heading=true display-instructor=true class="pt-3"/>
           </b-collapse>
         </template>
         <template v-else>
@@ -143,6 +145,12 @@ export default {
     term() {
       return this.section.year + "," + this.section.quarter;
     },
+  },
+  mounted() {
+    const currentUrl = window.location.href;
+    if (currentUrl.endsWith(this.section.anchor)) {
+      this.selfAnchoredOnce(this.section);
+    }
   },
   methods: {
     getSectionEval(index) {
