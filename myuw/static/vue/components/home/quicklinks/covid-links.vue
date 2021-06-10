@@ -4,13 +4,13 @@
       <h3 class="h6">
         UW Coronavirus
       </h3>
-      <ul v-if="links.student" class="list-unstyled myuw-text-md">
+      <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
-          <a href="https://www.washington.edu/coronavirus/autumnquarter/">
-            Autumn Quarter FAQs
+          <a href="https://www.washington.edu/coronavirus/">
+            UW Coronavirus Home
           </a>
         </li>
-        <li class="mb-1">
+        <li v-if="links.student" class="mb-1">
           <a href="https://www.washington.edu/coronavirus/students/">
             Resources for Students
           </a>
@@ -35,16 +35,9 @@
             Student Wellness Check-In
           </a>
         </li>
-        <li class="mb-1">
+        <li v-if="links.student" class="mb-1">
           <a href="https://www.washington.edu/counseling/covid-19/">
             Coping with COVID-19 Stress
-          </a>
-        </li>
-      </ul>
-      <ul v-else class="list-unstyled mb-0 myuw-text-md">
-        <li class="mb-1">
-          <a href="https://www.washington.edu/coronavirus/">
-            UW Coronavirus Home
           </a>
         </li>
       </ul>
