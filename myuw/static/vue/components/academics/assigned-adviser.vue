@@ -13,7 +13,7 @@
     <template #card-body>
       <ul class="d-flex flex-wrap list-unstyled mb-0">
         <li
-          v-for="(adviser, index) in advisers"
+          v-for="(adviser, index) in sortedAdvisers"
           :key="index"
           class="mb-3"
           :class="[$mq === 'mobile' ? 'w-100' : 'w-50']"
@@ -105,6 +105,14 @@ export default {
       termMinors: (state) => state.profile.value.term_minors,
       hasMinors: (state) => state.profile.value.has_minors,
     }),
+    sortedAdvisers() {
+      let priority = ['UAA Advising', 'OMAD Advising', 'UW Honors'];
+      return this.advisers.sort((a, b) => {
+        let aPriority = priority.indexOf(a.program) + 1 ? priority.indexOf(a.program) : priority.length;
+        let bPriority = priority.indexOf(b.program) + 1 ? priority.indexOf(b.program) : priority.length;
+        return aPriority - bPriority;
+      });
+    },
     ...mapGetters('advisers', {
       isReadyAdvisers: 'isReady',
       isErroredAdvisers: 'isErrored',
