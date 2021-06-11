@@ -17,13 +17,13 @@
             title="Change UW NetID password"
           >Change UW NetID password</a>
         </li>
-        <li>
+        <li class="mb-1">
           <a
             href="https://identity.uw.edu/account/recovery/"
             title="NetID account recovery options"
           >Set account recovery options</a>
         </li>
-        <li v-if="two_factor" class="mt-1">
+        <li v-if="two_factor" class="mb-1">
           <a
             href="https://identity.uw.edu/2fa/"
             title="Manage two-factor authentication"

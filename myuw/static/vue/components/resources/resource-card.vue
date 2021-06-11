@@ -34,7 +34,7 @@
         </template>
         <template #card-body>
           <ul class="list-unstyled myuw-text-md">
-            <li v-for="(link, j) in subcatRes.links" :key="j">
+            <li v-for="(link, j) in subcatRes.links" :key="j" class="mb-1">
               <a :href="link.url">{{link.title}}</a>
             </li>
           </ul>

@@ -22,12 +22,12 @@
           >the registration screen</a>.
         </p>
         <ul class="list-unstyled myuw-text-md">
-          <li>
+          <li class="mb-1">
             <a
               href="https://depts.washington.edu/sislearn/registration-resources/"
             >How to register</a>
           </li>
-          <li>
+          <li class="mb-1">
             <a
               href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/"
             >How to choose courses</a>

@@ -5,7 +5,7 @@
         <li v-if="'failure_rate' in section" class="mb-1">
           {{ (section.failure_rate * 100).toFixed(0) }}% historic course fail rate
         </li>
-        <li>
+        <li class="mb-1">
           <a
             :href="`https://coda.uw.edu/#${section.year}-${
               section.quarter}-${section.curriculum_abbr}-${section.course_number

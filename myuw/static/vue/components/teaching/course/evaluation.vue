@@ -16,7 +16,7 @@
                     </span>
                   </span>
                 </li>
-                <li v-if="section.evaluation.report_url">
+                <li v-if="section.evaluation.report_url" class="mb-1">
                   <a :href="section.evaluation.report_url">
                     View evaluation results report
                   </a>
@@ -38,7 +38,7 @@
                     {{section.evaluation.reportAvailableDateDisplay}}
                   </span>
                 </li>
-                <li>
+                <li class="mb-1">
                   <a
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
                   >Manage evaluation</a>
@@ -48,7 +48,7 @@
                 <li class="mb-1">
                   Online evaluation will open {{section.evaluation.evalOpenDateDisplay}}
                 </li>
-                <li>
+                <li class="mb-1">
                   <a
                     :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
                   >Manage evaluation</a>
@@ -60,12 +60,12 @@
                 Report Available
                 {{section.evaluation.reportAvailableDateDisplay}}
               </li>
-              <li v-if="section.evaluation.report_url">
-                <a :href="section.evaluation.report_url" class="mb-1">
+              <li v-if="section.evaluation.report_url" class="mb-1">
+                <a :href="section.evaluation.report_url">
                   View evaluation results report
                 </a>
               </li>
-              <li>
+              <li class="mb-1">
                 <strong>
                   {{section.evaluation.responseRatePercent}}% Response rate
                 </strong>
@@ -76,7 +76,7 @@
             <li class="mb-1">
               Paper-based evaluation
             </li>
-            <li>
+            <li class="mb-1">
               <a
                 :href="`https://${section.evaluation.domain}.iasystem.org/faculty`"
               >Manage evaluation</a>

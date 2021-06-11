@@ -10,7 +10,7 @@
       <li v-for="(reg, i) in registrations"
           :id="`student-photo-${reg.regid}`"
           :key="i"
-          class="p-1"
+          class="p-1 mb-1"
           :class="reg.isJoint ? (showJointCourseStud ? 'd-inline' : 'd-none') : 'd-inline'"
       >
         <div style="width: 120px">

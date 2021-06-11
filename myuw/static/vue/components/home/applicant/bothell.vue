@@ -33,14 +33,14 @@
         Resources for Bothell Applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Bothell Student Financial Aid'"
             href="http://www.uwb.edu/financialaid"
           >
             Learn all about student financial aid and scholarships
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Bothell Student Resources'"
             href="http://www.uwb.edu/studentaffairs"
           >
@@ -48,7 +48,7 @@
             career services, and more
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Bothell Academic calendars'"
             href="http://www.uwb.edu/calendars"
           >

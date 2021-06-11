@@ -30,7 +30,7 @@
               View details
             </b-link>
           </span>
-          <p>
+          <p class="myuw-text-sm">
             You are teaching
             <strong>{{ instSchedule.sections.length }}
                {{ instSchedule.sections.length > 1 ? 'courses' : 'course' }}</strong>.
