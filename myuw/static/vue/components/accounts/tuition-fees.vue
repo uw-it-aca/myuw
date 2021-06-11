@@ -32,7 +32,7 @@
 
       <ul class="list-unstyled">
         <!-- If there is some or no tuition due -->
-        <li v-if="tuiBalance >= 0" class="mb-1">
+        <li v-if="tuiBalance >= 0">
           <uw-card-status>
             <template #status-label>Amount Due</template>
             <template v-if="tuiBalance > 0" #status-value>
@@ -60,7 +60,7 @@
           </uw-card-status>
         </li>
         <!-- If there is credit on account -->
-        <li v-else-if="tuiBalance < 0" class="mb-1">
+        <li v-else-if="tuiBalance < 0">
           <uw-card-status>
             <template #status-label>Account Credit</template>
             <template #status-value>
@@ -80,7 +80,7 @@
           </uw-card-status>
         </li>
         <!-- If there is a PCE balance -->
-        <li v-if="pceBalance > 0" class="mb-1">
+        <li v-if="pceBalance > 0">
           <uw-card-status>
             <template #status-label>Amount Due</template>
             <template #status-value>
@@ -102,7 +102,7 @@
           </uw-card-status>
         </li>
         <!-- If there is no PCE balance, either not pce or paid off -->
-        <li v-else-if="isC2" class="mb-1">
+        <li v-else-if="isC2">
           <uw-card-status>
             <template #status-label>Amount Due</template>
             <template #status-value>$ 0</template>
@@ -120,7 +120,7 @@
           </uw-card-status>
         </li>
 
-        <li v-if="tuitionDate.formatted && tuitionDate.diff >= 0" class="mb-1">
+        <li v-if="tuitionDate.formatted && tuitionDate.diff >= 0">
           <uw-card-status>
             <template #status-label>Payment Due</template>
             <template #status-value>{{ tuitionDate.formatted }}</template>
