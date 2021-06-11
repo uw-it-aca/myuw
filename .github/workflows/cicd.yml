@@ -189,7 +189,7 @@ jobs:
         run: npm install .
       
       - name: Run jest
-        run: npx jest --ci --coverage myuw/*
+        run: ./node_modules/.bin/jest --ci --coverage myuw/*
 
       - uses: actions/upload-artifact@v2
         with:

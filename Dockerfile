@@ -11,7 +11,7 @@ ADD --chown=acait:acait requirements.txt /app/
 RUN . /app/bin/activate && pip install -r requirements.txt
 RUN . /app/bin/activate && pip install mysqlclient
 
-FROM node:14.6.0-stretch AS node-bundler
+FROM node:16.3-stretch-slim AS node-bundler
 
 ADD ./package.json /app/
 WORKDIR /app/
@@ -20,7 +20,7 @@ RUN npm install .
 ADD . /app/
 ARG VUE_DEVTOOLS
 ENV VUE_DEVTOOLS=$VUE_DEVTOOLS
-RUN npx webpack
+RUN ./node_modules/.bin/webpack
 
 FROM pre-container as app-container
 COPY --chown=acait:acait --from=node-bundler /static /static

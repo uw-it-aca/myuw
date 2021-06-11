@@ -1,6 +1,6 @@
 import { createLocalVue as createLocalVueOriginal } from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import BootstrapVue from 'bootstrap-vue';
 
 // Global Mixins
 import utils from '../mixins/utils';
@@ -65,6 +65,12 @@ const createLocalVue = (vuexModule) => {
     vue.directive('out', {});
     vue.directive('no-track-collapse', {});
     vue.directive('visibility-change', {});
+  });
+  // Mock $mq
+  localVue.mixin({
+    created() {
+      this.$mq = 'desktop';
+    },
   });
   localVue.use(Tracklink);
   // localVue.use(TrackCollapse);

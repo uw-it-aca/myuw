@@ -1,0 +1,21 @@
+<h1>Bookstore Get Books</h1>
+<form method="post" action="{{form_action}}">
+{% csrf_token %}
+  <p>
+    <label for="sln1">SLN:</label>
+    <input id="sln1" name="sln1" size="20" type="text">
+  </p>
+  <p>
+    <label for="quarter">Quarter:</label>
+    <select id="quarter" name="quarter" maxlength="6">
+            <option value="spring">Spring</option>
+            <option value="summer">Summer</option>
+            <option value="autumn">Autumn</option>
+            <option value="winter">Winter</option>
+    </select>
+  </p>
+  <p>
+    <input value="t" name="returnlink" type="hidden">
+    <input value="Submit" type="submit">
+  </p>
+</form>

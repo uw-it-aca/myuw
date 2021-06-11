@@ -13,7 +13,8 @@
         </ul>
       </div>
     </div>
-    <div v-for="(resource, i) in resources" :key="i" class="mt-5">
+    <div v-for="(resource, i) in resources" :key="i">
+      <hr>
       <h2 :id="resource.category_id" class="h4"
         :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
         {{ resource.category_name }}

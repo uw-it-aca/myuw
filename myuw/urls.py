@@ -26,6 +26,7 @@ from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
 from myuw.views.resources import resources
 from myuw.views.api.adviser import Advisers
+from myuw.views.rest_search import MyUWRestSearchView
 from myuw.views.api.affiliation import Affiliation
 from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
@@ -92,6 +93,8 @@ urlpatterns += [
     re_path(r'admin/links', popular_links, {'page': 1},
             name="myuw_popular_links"),
     re_path(r'^logger/(?P<interaction_type>.*)$', log_interaction),
+    re_path(r'^restsearch/(\w+)/(.*)$',
+            MyUWRestSearchView.as_view(), name="myuw_rest_search"),
     re_path(r'api/v1/close_banner_message',
             CloseBannerMsg.as_view(),
             name="myuw_close_banner_message"),
