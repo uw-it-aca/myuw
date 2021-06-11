@@ -74,7 +74,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .resource-card {
-  margin-bottom: 0 !important;
   &:not(:hover) {
     background-color: rgba(0,0,0,0);
     border: solid 1px transparent;
