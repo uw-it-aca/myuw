@@ -5,7 +5,7 @@
     </h3>
     <slot name="status" />
     <ul class="list-unstyled">
-      <li v-for="(notice, i) in finAidNotices" :key="i" class="mb-1">
+      <li v-for="(notice, i) in finAidNotices" :key="i">
         <b-button
           v-b-toggle="`finAid-${notice.id_hash}-collapse-${$meta.uid}`"
           v-no-track-collapse
