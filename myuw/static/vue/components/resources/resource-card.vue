@@ -6,7 +6,7 @@
         :id="subcatRes.subcat_id"
         :key="i"
         loaded
-        class="resource-card"
+        :class="[$mq === 'mobile' ? '' : 'resource-card']"
       >
         <template #card-heading>
           <div>
