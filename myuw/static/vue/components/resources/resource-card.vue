@@ -6,6 +6,7 @@
         :id="subcatRes.subcat_id"
         :key="i"
         loaded
+        class="resource-card"
       >
         <template #card-heading>
           <div>
@@ -33,8 +34,8 @@
           </div>
         </template>
         <template #card-body>
-          <ul class="list-unstyled myuw-text-md">
-            <li v-for="(link, j) in subcatRes.links" :key="j">
+          <ul class="list-unstyled myuw-text-md mb-0">
+            <li v-for="(link, j) in subcatRes.links" :key="j" class="mb-1">
               <a :href="link.url">{{link.title}}</a>
             </li>
           </ul>
@@ -71,3 +72,13 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.resource-card {
+  margin-bottom: 0 !important;
+  &:not(:hover) {
+    background-color: rgba(0,0,0,0);
+    border: solid 1px transparent;
+    box-shadow: none !important;
+  }
+}
+</style>
