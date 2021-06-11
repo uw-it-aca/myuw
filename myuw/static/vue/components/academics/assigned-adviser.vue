@@ -116,7 +116,7 @@ export default {
       statusCodeProfile: 'statusCode',
     }),
     showError: function() {
-      return this.statusCodeProfile !== 404 || this.statusCodeAdvisers !== 404;
+      return this.statusCodeProfile !== 404 && this.statusCodeAdvisers !== 404;
     },
     showCard: function() {
       return this.isUndergrad;
