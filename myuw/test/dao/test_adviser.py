@@ -11,14 +11,14 @@ class TestAdviserDao(TestCase):
 
     def test_get_normal_case(self):
         advisers = get_academic_advisers(
-            get_request_with_user('javergae')
+            get_request_with_user('javerage')
         )
-        self.assertEquals(len(advisers), 2)
+        self.assertEquals(len(advisers), 5)
 
     def test_get_error_case(self):
         self.assertRaises(DataFailureException,
                           get_academic_advisers,
-                          get_request_with_user('jerror'))
+                          get_request_with_user('javg002'))
 
         self.assertRaises(DataFailureException,
                           get_academic_advisers,
