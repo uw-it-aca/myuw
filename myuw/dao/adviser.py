@@ -17,7 +17,7 @@ def get_academic_advisers(request):
     for the current user
     """
     if is_using_file_dao():
-        if get_netid_of_current_user(request) == 'jerror':
+        if get_netid_of_current_user(request) == 'javg002':
             raise DataFailureException(
                 "/student/v5/person/advisers.json",
                 500, "mock 500 error")
