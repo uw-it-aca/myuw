@@ -13,34 +13,34 @@
     <template v-else #card-body>
       <b-tabs
         pills
-        nav-wrapper-class="mb-3 p-1"
-        nav-class=""
-        active-nav-item-class="bg-beige text-body font-weight-bold"
+        nav-wrapper-class="mb-3 p-0"
+        active-nav-item-class="bg-transparent rounded-0
+          myuw-border-bottom border-dark text-body"
       >
         <b-tab
           title="Seattle"
-          title-item-class="bg-light text-nowrap text-uppercase
-               myuw-text-xs mr-1 mb-1"
-          title-link-class="text-body h-100"
+          title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+          title-link-class="rounded-0 px-2 py-1 h-100
+               text-body myuw-border-bottom"
           active
         >
           <uw-seattle />
         </b-tab>
         <b-tab
-          title="Bothell"
-          title-item-class="bg-light text-nowrap text-uppercase
-               myuw-text-xs mr-1 mb-1"
-          title-link-class="text-body h-100"
-        >
-          <uw-bothell />
-        </b-tab>
-        <b-tab
           title="Tacoma"
-          title-item-class="bg-light text-nowrap text-uppercase
-               myuw-text-xs mr-1 mb-1"
-          title-link-class="text-body h-100"
+          title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+          title-link-class="rounded-0 px-2 py-1 h-100
+               text-body myuw-border-bottom"
         >
           <uw-tacoma />
+        </b-tab>
+        <b-tab
+          title="Bothell"
+          title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+          title-link-class="rounded-0 px-2 py-1 h-100
+               text-body myuw-border-bottom"
+        >
+          <uw-bothell />
         </b-tab>
       </b-tabs>
     </template>

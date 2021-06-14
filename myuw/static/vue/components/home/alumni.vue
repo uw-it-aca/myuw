@@ -30,7 +30,7 @@
         and in the know.
       </p>
       <ul class="list-unstyled mb-0 myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a v-out="'UWAA'"
             href="https://www.washington.edu/cms/alumni/membership/"
           >
