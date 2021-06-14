@@ -20,7 +20,7 @@
             See all events from:
           </p>
           <ul class="list-unstyled mb-0 myuw-text-md">
-            <li v-for="(event, i) in calLinks" :key="i">
+            <li v-for="(event, i) in calLinks" :key="i" class="mb-1">
               <a :href="event.url">{{ event.title }}</a>
             </li>
           </ul>
@@ -75,7 +75,7 @@
             See all events from:
           </p>
           <ul class="list-unstyled mb-0 myuw-text-md">
-            <li v-for="(event, i) in calLinks" :key="i">
+            <li v-for="(event, i) in calLinks" :key="i" class="mb-1">
               <a :href="event.url">{{ event.title }}</a>
             </li>
           </ul>
@@ -101,7 +101,7 @@
             See all events from:
           </p>
           <ul class="myuw-text-md">
-            <li v-for="(event, i) in calLinks" :key="i">
+            <li v-for="(event, i) in calLinks" :key="i" class="mb-1">
               <a :href="event.url">{{ event.title }}</a>
             </li>
           </ul>

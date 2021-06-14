@@ -56,7 +56,7 @@
           <ul v-for="(leave, index) in leaves" :key="index"
               class="list-unstyled myuw-text-md"
           >
-            <li>
+            <li class="mb-1">
               <h5 class="h6 mb-0">
                 <template v-for="(term, termIndex) in leave.terms">
                   <span v-if="termIndex > 0" :key="termIndex">, </span>
@@ -93,7 +93,7 @@
         <ul v-for="(degree, index) in degrees" :key="index"
             class="list-unstyled myuw-text-md"
         >
-          <li>
+          <li class="mb-1">
             <h5 class="h6 mb-0">
               {{ degree.req_type }}, {{ degree.target_award_quarter }}
               {{ degree.target_award_year }}

@@ -26,7 +26,7 @@
       </b-alert>
 
       <ul class="list-unstyled">
-        <li>
+        <li class="mb-1">
           <uw-card-status>
             <template #status-label>Items out</template>
             <template #status-value>
@@ -34,7 +34,7 @@
             </template>
           </uw-card-status>
         </li>
-        <li v-if="nextDue">
+        <li v-if="nextDue" class="mb-1">
           <uw-card-status>
             <template #status-label>Next item due</template>
             <template #status-value>
@@ -47,7 +47,7 @@
             </template>
           </uw-card-status>
         </li>
-        <li v-if="fines">
+        <li v-if="fines" class="mb-1">
           <uw-card-status>
             <template #status-label>You owe</template>
             <template #status-value>

@@ -45,21 +45,21 @@
         Resources for Tacoma Applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Tacoma Financial Aid'"
              href="http://www.tacoma.uw.edu/node/36610"
           >
             Learn all about student financial aid
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Tacoma Financial aid key dates and deadlines'"
             href="http://www.tacoma.uw.edu/node/41373"
           >
             Financial aid key dates and deadlines
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Tacoma Academic calendars'"
              href="http://www.tacoma.uw.edu/node/41353"
           >
@@ -81,7 +81,7 @@
         ADMISSIONS
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a
             v-out="'UW Tacoma Admission: Important dates &amp; deadlines'"
             href="http://www.tacoma.uw.edu/admissions/important-dates-deadlines-all-applicants"
@@ -94,14 +94,14 @@
         FINANCES
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a v-out="'Applying for financial Aid'"
              href="http://www.tacoma.uw.edu/node/20240"
           >
             Applying for a financial Aid
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'Financial aid key dates and deadlines'"
              href="http://www.tacoma.uw.edu/node/41373"
           >
@@ -113,21 +113,21 @@
         STUDENT LIFE
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Tacoma Campus Tours'"
              href="http://www.tacoma.uw.edu/admissions/visit"
           >
             Plan your visit: Tacoma campus tours
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'UW Tacoma Student Housing'"
              href="http://www.tacoma.uw.edu/node/38753"
           >
             Learn about student Housing
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           Check out
           <a
             v-out="'UW Tacoma New Student programs'"
@@ -147,14 +147,14 @@
         IF ADMITTED
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a v-out="'Next Steps for Admitted UW Tacoma Students'"
              href="http://www.tacoma.uw.edu/admissions/i-was-admitted-now-what"
           >
             Next steps for Admitted students
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'New UW Tacoma Student Orientation'"
              href="http://www.tacoma.uw.edu/node/41496"
           >

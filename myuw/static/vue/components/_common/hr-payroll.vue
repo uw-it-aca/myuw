@@ -33,7 +33,7 @@
           </li>
           <li class="mb-1">
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
-            <div v-if="!truncateView" class="myuw-text-md text-muted">
+            <div v-if="!truncateView" class="text-muted">
               Learn how to
               <a v-out="'ISC Time Off'"
                  href="https://isc.uw.edu/your-time-absence/time-off/"
@@ -62,7 +62,7 @@
           </li>
           <li class="mb-1">
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
-            <div class="myuw-text-md text-muted">
+            <div class="text-muted">
               Learn how to
               <a v-out="'ISC Enter Time'"
                  href="https://isc.uw.edu/your-time-absence/time-reporting/"

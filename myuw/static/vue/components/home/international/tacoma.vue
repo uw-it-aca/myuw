@@ -5,22 +5,22 @@
     </h3>
 
     <ul class="mb-4 list-unstyled myuw-text-md">
-      <li>
+      <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/iss/travel-visas"
         >Travel and Visas</a>
       </li>
-      <li>
+      <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/iss/maintaining-f-1-status"
         >Rules to maintain F-1 status</a>
       </li>
-      <li>
+      <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/isss/employment"
         >International Student Employment</a>
       </li>
-      <li>
+      <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/international-student-services/events"
         >International Student and Scholar Services (ISSS) Calendar</a>
@@ -31,12 +31,12 @@
       Academic Support
     </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">
-      <li>
+      <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0"
         >Academic Writing Resources</a>
       </li>
-      <li>
+      <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center"
         >Teaching and Learning Center</a>

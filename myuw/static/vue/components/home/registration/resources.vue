@@ -41,45 +41,45 @@
     <div>
       <h3 class="sr-only">Registration resources</h3>
       <ul class="m-0 list-unstyled myuw-text-md">
-        <li v-if="!registrationIsOpen">
+        <li v-if="!registrationIsOpen" class="mb-1">
           <a href="https://myplan.uw.edu"> MyPlan </a>
         </li>
-        <li v-if="bothell">
+        <li v-if="bothell" class="mb-1">
           <a href="http://www.uwb.edu/registration/time">
             Bothell Time Schedule
           </a>
         </li>
-        <li v-if="seattle">
+        <li v-if="seattle" class="mb-1">
           <a href="http://www.washington.edu/students/timeschd/">
             Seattle Time Schedule
           </a>
         </li>
-        <li v-if="tacoma">
+        <li v-if="tacoma" class="mb-1">
           <a href="http://www.washington.edu/students/timeschd/T/">
             Tacoma Time Schedule Browse
           </a>
         </li>
-        <li v-if="tacoma">
+        <li v-if="tacoma" class="mb-1">
           <a href="http://www.tacoma.uw.edu/ts-quicksearch/">
             Tacoma Time Schedule Quick Search
           </a>
         </li>
-        <li v-if="isC2">
+        <li v-if="isC2" class="mb-1">
           <a
             href="https://www.washington.edu/students/timeschd/95index.html"
           >
             PCE Time Schedule
           </a>
         </li>
-        <li v-if="isC2 && !registrationIsOpen">
+        <li v-if="isC2 && !registrationIsOpen" class="mb-1">
           <a href="https://www.degreereg.uw.edu/user-guide">
             How to register for PCE courses
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a :href="degreeAuditHref"> Audit your degree (DARS) </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a href="https://prereqmap.uw.edu/">Prereq Map</a>
         </li>
       </ul>

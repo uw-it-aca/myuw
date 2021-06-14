@@ -1,7 +1,7 @@
 <template>
   <div class="p-3 myuw-welcome">
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
-      <li>
+      <li class="mb-1">
         <div>
           <b-button
             v-b-modal.tourModal
@@ -13,7 +13,7 @@
           </b-button>
         </div>
       </li>
-      <li>
+      <li class="mb-1">
         <b-link 
           v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
