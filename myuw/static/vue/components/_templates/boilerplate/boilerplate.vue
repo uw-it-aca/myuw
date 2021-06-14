@@ -187,7 +187,7 @@
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
-                  role="separator"
+                  aria-hidden="true"
                   disabled
                   :link-classes="'text-dark d-block p-0'"
                 >
