@@ -211,8 +211,8 @@
                   <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources
                 </b-nav-item>
               </b-nav>
-              <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
+            <uw-welcome v-if="$mq === 'desktop'" />
           </b-col>
           <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
             <!-- MARK: message banner display for mobile and tablet -->
