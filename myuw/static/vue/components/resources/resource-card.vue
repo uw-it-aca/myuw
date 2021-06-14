@@ -6,7 +6,7 @@
         :id="subcatRes.subcat_id"
         :key="i"
         loaded
-        class="resource-card"
+        :class="[$mq === 'mobile' ? '' : 'resource-card']"
       >
         <template #card-heading>
           <div>
@@ -74,7 +74,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .resource-card {
-  margin-bottom: 0 !important;
+  margin-bottom: 6px !important;
   &:not(:hover) {
     background-color: rgba(0,0,0,0);
     border: solid 1px transparent;
