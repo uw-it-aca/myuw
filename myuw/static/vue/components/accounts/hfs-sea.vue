@@ -22,26 +22,26 @@
           Explore Campus Housing
         </h3>
         <ul class="list-unstyled myuw-text-md">
-          <li>
+          <li class="mb-1">
             <a href="https://www.hfs.uw.edu">
               Housing &amp; Food Services
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Dates and Deadlines'"
               href="https://www.trumba.com/calendars/sea_hfs"
             >
               Dates and Deadlines
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Apply for Campus Housing'"
               href="https://ucharm.hfs.washington.edu/ucharm"
             >
               Apply for Campus Housing
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="mailto:hfsinfo@uw.edu">Contact HFS </a>
           </li>
         </ul>
@@ -51,27 +51,27 @@
           Manage Account
         </h3>
         <ul class="list-unstyled myuw-text-md">
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Make a Payment'"
               href="https://www.hfs.uw.edu/myhfs/account.aspx"
             >
               Make a Payment
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: View Charges'"
               href="https://www.hfs.uw.edu/myhfs/ledger.aspx">
               View Charges
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Change Dining Level'"
               href="https://www.hfs.uw.edu/myhfs/dininglevel"
             >
               Change Dining Level
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Update Account'"
               href="https://ucharm.hfs.washington.edu/ucharm">
               Update Account
@@ -84,13 +84,13 @@
           Resident Resources
         </h3>
         <ul class="list-unstyled myuw-text-md">
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Check Laundry Status'"
               href="https://mc360.maytag.com/#/">
               Check Laundry Status
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Submit a Work Order'"
               href="https://fms.admin.uw.edu/fs-works/uwnetid"
             >

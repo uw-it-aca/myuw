@@ -16,7 +16,7 @@
         and social programs.
       </p>
       <ul class="list-unstyled mb-0 myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a v-out="'UWRA'" href="http://www.washington.edu/uwra/">
             Learn more about UWRA
           </a>

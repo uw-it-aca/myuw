@@ -15,8 +15,8 @@
       </b-alert>
       <p>Please note:</p>
       <ul>
-        <li>An email confirmation will be sent to {{netid}}@uw.edu</li>
-        <li>Mailing lists may take up to 24 hours to activate</li>
+        <li class="mb-1">An email confirmation will be sent to {{netid}}@uw.edu</li>
+        <li class="mb-1">Mailing lists may take up to 24 hours to activate</li>
       </ul>
     </template>
     <template v-else-if="!listView && !addError">
@@ -24,8 +24,14 @@
         <b-alert variant="danger" :show="disableActions">
           This action is disabled while overriding as another user.
         </b-alert>
-        <b-form-group label="Request a single email list for:">
-          <b-form-radio value="joint" checked>
+        <b-form-group v-model="selected" label="Request a single email list for:">
+          <b-form-radio
+            :value="{
+              key: `joint-section_joint_${emailList.section_list.section_id}`,
+              value: 'joint',
+            }"
+            checked
+          >
             {{emailList.course_abbr}}
             {{emailList.course_number}}
             {{emailList.section_id}}
@@ -35,16 +41,21 @@
               {{section.course_number}}
               {{section.section_id}}
             </span>
-            <p>
+            <p class="text-muted">
               Mailing list address:
               {{emailList.joint_section_list.list_address}}@uw.edu
             </p>
           </b-form-radio>
-          <b-form-radio value="single" checked>
+          <b-form-radio
+            :value="{
+              key: `joint-section_single_${emailList.section_list.section_id}`,
+              value: 'single',
+            }"
+          >
             {{emailList.course_abbr}}
             {{emailList.course_number}}
             {{emailList.section_id}}
-            <p>
+            <p class="text-muted">
               Mailing list address:
               {{emailList.section_list.list_address}}@uw.edu
             </p>
@@ -76,11 +87,11 @@
         </p>
 
         <ul>
-          <li>
+          <li class="mb-1">
             Mailing list address:
             {{emailList.section_list.list_address}}@uw.edu
           </li>
-          <li>Mailing list will stay synced with the official class list</li>
+          <li class="mb-1">Mailing list will stay synced with the official class list</li>
         </ul>
         <input type="hidden" :value="emailList.section_list.section_label"/>
       </div>
@@ -117,7 +128,7 @@
       <a
         href="https://itconnect.uw.edu/connect/email/resources/mailman/"
       >Mailman help</a>
-      <b-button variant="outline-secondary" @click="listView = false">
+      <b-button variant="light" @click="listView = false">
         <font-awesome-icon :icon="faArrowLeft" />
         Back
       </b-button>

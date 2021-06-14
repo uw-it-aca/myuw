@@ -59,8 +59,8 @@ class MyUWRestSearchView(RestSearchView):
                 url = "nws/v1/uwnetid/{}/subscription/60,64,105".format(
                     request.POST["uwnetid"])
         else:
-            url, params = super().get_proxy_url(request, service, url)
+            service, url, params = super().get_proxy_url(request, service, url)
 
         logger.debug(
             "Exit MyUWRestProxyView url: {}".format(url))
-        return url, params
+        return service, url, params

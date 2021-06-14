@@ -48,7 +48,7 @@
         Resources for Seattle Applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a
             v-out="'Student Financial Aid'"
             href="https://www.washington.edu/financialaid/"
@@ -56,14 +56,14 @@
             Learn all about student financial aid and scholarships
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'Student Guide'"
              href="http://www.washington.edu/students/"
           >
             Check out the Student guide for academics, student life, and more
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a
             href="http://www.washington.edu/students/reg/calendar.html"
           >
@@ -86,21 +86,21 @@
         ADMISSIONS
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li v-if="applicantData.is_freshman">
+        <li v-if="applicantData.is_freshman" class="mb-1">
           <a
             href="https://admit.washington.edu/apply/dates-deadlines/"
           >
             Key dates &amp; deadlines for freshmen
           </a>
         </li>
-        <li v-if="applicantData.is_transfer">
+        <li v-if="applicantData.is_transfer" class="mb-1">
           <a
             href="https://admit.washington.edu/apply/dates-deadlines/#transfer"
           >
             Key dates &amp; deadlines for Transfer
           </a>
         </li>
-        <li v-if="applicantData.if_post_bac">
+        <li v-if="applicantData.if_post_bac" class="mb-1">
           <a
             href="https://admit.washington.edu/apply/dates-deadlines/#postbac"
           >
@@ -113,14 +113,14 @@
         FINANCES
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a
             href="https://www.washington.edu/financialaid/"
           >
             Learn all about student financial aid and scholarships
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a
             href="https://admit.washington.edu/costs/coa/"
           >
@@ -133,17 +133,17 @@
         STUDENT LIFE
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a href="http://admit.washington.edu/Visit">
             Plan your visit: Seattle campus tours
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a href="https://hfs.uw.edu/Live">
             Learn about campus-living
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a
             href="http://hr.uw.edu/dso/services/matriculated-students/"
           >
@@ -155,14 +155,14 @@
         IF ADMITTED
       </h4>
       <ul class="list-unstyled myuw-text-md">
-        <li>
+        <li class="mb-1">
           <a
             href="http://www.washington.edu/newhuskies/must-do/"
           >
             Next steps for Admitted students
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'Accept admission offer'"
              href="http://www.washington.edu/newhuskies/must-do/#accept/"
           >
@@ -170,7 +170,7 @@
             &amp; Orientation Fee
           </a>
         </li>
-        <li v-if="applicantData.is_international">
+        <li v-if="applicantData.is_international" class="mb-1">
           <a v-out="'Intl student checklist'"
              href="https://iss.washington.edu/new-students/"
           >
@@ -178,26 +178,26 @@
             Services (ISS)
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a
             href="http://fyp.washington.edu/getting-started-at-the-university-of-washington/"
           >
             Register for an Advising &amp; Orientation session
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a
             href="http://www.washington.edu/uaa/advising/academic-planning/majors-and-minors/list-of-undergraduate-majors/"
           >
             View undergraduate Majors
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a href="http://fyp.washington.edu/">
             Learn about the First Year Programs
           </a>
         </li>
-        <li>
+        <li class="mb-1">
           <a href="http://www.washington.edu/students/">
             Check out the Student guide
           </a>

@@ -59,19 +59,19 @@
           Resources
         </h3>
         <ul class="list-unstyled myuw-text-md">
-          <li>
+          <li class="mb-1">
             <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">
               View credits and GPA
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'MyPlan DARS'"
                href="https://myplan.uw.edu/dars"
             >
               Degree Audit Reporting System (DARS)
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">
               Unofficial Transcript
             </a>

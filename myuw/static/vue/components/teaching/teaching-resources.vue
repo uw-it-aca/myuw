@@ -30,7 +30,7 @@
           <li class="mb-1">
             <a href="https://uw.hosted.panopto.com/">Panopto</a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="http://polleverywhere.com/">Poll Everywhere</a>
           </li>
         </ul>
@@ -46,7 +46,7 @@
           <li class="mb-1">
             <a href="http://www.lib.washington.edu/types/course">Course Reserves</a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="http://f2.washington.edu/fm/c2/printing-copying/course-packs">Request Course Packs</a>
           </li>
         </ul>
@@ -71,7 +71,7 @@
           <li class="mb-1">
             <a :href="linkData.courseEval">Course Evaluations</a>
           </li>
-          <li>
+          <li class="mb-1">
             <a href="https://coda.uw.edu">Course Stats</a>
           </li>
         </ul>
@@ -91,7 +91,7 @@
           <li class="mb-1">
             <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/"
              >Online Grade Submission</a></li>
-          <li>
+          <li class="mb-1">
             <a href="http://teaching.pce.uw.edu/">UW PCE Instructor Resources</a>
           </li>
         </ul>

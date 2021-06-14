@@ -33,7 +33,7 @@
           <a v-out="'PCE Degree Programs'" href="https://www.pce.uw.edu/degrees"
            >Degree Programs</a>
         </li>
-        <li>
+        <li class="mb-1">
           <a v-out="'PCE Courses'" href="https://www.pce.uw.edu/courses"
            >Courses</a>
         </li>

@@ -16,8 +16,8 @@
         </b-alert>
         <p>Please note:</p>
         <ul>
-          <li>An email confirmation will be sent to {{netid}}@uw.edu</li>
-          <li>Mailing lists may take up to 24 hours to activate</li>
+          <li class="mb-1">An email confirmation will be sent to {{netid}}@uw.edu</li>
+          <li class="mb-1">Mailing lists may take up to 24 hours to activate</li>
         </ul>
       </template>
       <template v-else-if="!addView">
