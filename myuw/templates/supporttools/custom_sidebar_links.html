@@ -127,6 +127,13 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'attest' 'covid19.html' as covid19_url %}
+        {% if covid19_url %}
+            <li>
+                <a href="{{ covid19_url }}">Covid19 Vaccination</a>
+            </li>
+        {% endif %}
+
         <br />
         {% url 'restclients_errors' as url %}
         {% if url %}

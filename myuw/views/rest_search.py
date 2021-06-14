@@ -28,6 +28,10 @@ class MyUWRestSearchView(RestSearchView):
                 "uw/json_utf8_202007.ubs",
                 request.POST["quarter"],
                 request.POST["sln1"])
+        elif service == "attest":
+            if url == "covid19":
+                url = "attestations/v1/covid19/{}".format(
+                    request.POST["uwregid"])
         elif service == "grad":
             params = self.format_params(request)
         elif service == "hfs":
