@@ -31,3 +31,17 @@ export const strToDate = (dateStr) => {
 export const getTime = (dateObj) => {
   return dateObj.format('LT');
 };
+
+// Returns a - b while ignoring the date
+export const diffIgnoreDate = (a, b) => {
+  let diff = 0;
+  diff += a.hour() - b.hour();
+  diff *= 60;
+  diff += a.minute() - b.minute();
+  diff *= 60;
+  diff += a.second() - b.second();
+  diff *= 1000;
+  diff += a.millisecond() - b.millisecond();
+  console.log(a, b, diff);
+  return diff;
+};
