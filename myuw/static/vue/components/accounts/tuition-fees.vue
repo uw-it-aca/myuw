@@ -151,7 +151,7 @@
       <uw-fin-aid :fin-aid-notices="finAidNotices">
         <template #status>
           <ul class="list-unstyled myuw-text-md mb-1">
-            <li>
+            <li class="mb-1">
               <a
                 href="https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
                 class="myuw-text-md"

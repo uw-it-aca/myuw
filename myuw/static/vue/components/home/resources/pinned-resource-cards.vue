@@ -26,7 +26,7 @@
         </template>
         <template #card-body>
           <ul class="list-unstyled myuw-text-md">
-            <li v-for="(link, k) in subcategories.links" :key="k">
+            <li v-for="(link, k) in subcategories.links" :key="k" class="mb-1">
               <a :href="link.url">{{link.title}}</a>
             </li>
           </ul>

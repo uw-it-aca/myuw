@@ -27,16 +27,16 @@
             No phone numbers listed
           </p>
           <ul v-else class="list-unstyled myuw-text-md">
-            <li v-if="phone">
+            <li v-if="phone" class="mb-1">
               Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
             </li>
-            <li v-if="mobile">
+            <li v-if="mobile" class="mb-1">
               Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
             </li>
-            <li v-if="voiceMail">
+            <li v-if="voiceMail" class="mb-1">
               Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
             </li>
-            <li v-if="fax">
+            <li v-if="fax" class="mb-1">
               Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
             </li>
           </ul>

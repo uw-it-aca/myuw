@@ -15,8 +15,8 @@
       </b-alert>
       <p>Please note:</p>
       <ul>
-        <li>An email confirmation will be sent to {{netid}}@uw.edu</li>
-        <li>Mailing lists may take up to 24 hours to activate</li>
+        <li class="mb-1">An email confirmation will be sent to {{netid}}@uw.edu</li>
+        <li class="mb-1">Mailing lists may take up to 24 hours to activate</li>
       </ul>
     </template>
     <template v-else-if="!listView && !addError">
@@ -87,11 +87,11 @@
         </p>
 
         <ul>
-          <li>
+          <li class="mb-1">
             Mailing list address:
             {{emailList.section_list.list_address}}@uw.edu
           </li>
-          <li>Mailing list will stay synced with the official class list</li>
+          <li class="mb-1">Mailing list will stay synced with the official class list</li>
         </ul>
         <input type="hidden" :value="emailList.section_list.section_label"/>
       </div>

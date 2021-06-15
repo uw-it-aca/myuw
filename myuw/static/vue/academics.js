@@ -14,9 +14,8 @@ import FutureQuarterCards from './components/_common/future-quarter.vue';
 // academics components
 import GradStatus from './components/academics/grad-status.vue';
 import SidebarLinks from './components/academics/sidebar-links.vue';
-// import CourseCards from './components/academics/schedule/course-cards.vue';
 import GradCommittee from './components/academics/grad-committee.vue';
-import AssignedAdviser from './components/academics/assigned-adviser.vue';
+import AcademicAdviser from './components/academics/adviser.vue';
 
 // stores
 import grad from './vuex/store/grad';
@@ -59,7 +58,7 @@ Vue.component('myuw-textbooks', Textbooks);
 Vue.component('myuw-grad-status', GradStatus);
 Vue.component('myuw-grad-committee', GradCommittee);
 Vue.component('myuw-academics-sidelinks', SidebarLinks);
-Vue.component('myuw-assigned-adviser', AssignedAdviser);
+Vue.component('myuw-academic-adviser', AcademicAdviser);
 
 new Vue({
   ...vueConf,

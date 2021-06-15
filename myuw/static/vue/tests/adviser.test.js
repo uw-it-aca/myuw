@@ -9,7 +9,7 @@ import profile from '../vuex/store/profile';
 import javgAdvisers from '../tests/mock_data/advisers/javerage.json';
 import javgProfile from '../tests/mock_data/profile/javerage.json';
 
-import AssignedAdviserCard from '../components/academics/assigned-adviser.vue';
+import AssignedAdviserCard from '../components/academics/adviser.vue';
 import UwCard from '../components/_templates/card.vue';
 
 const localVue = createLocalVue(Vuex);
