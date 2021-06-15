@@ -58,41 +58,45 @@
       </uw-card-property-group>
       <uw-card-property-group>
         <uw-card-property title="Local Address">
-          <div v-if="localAddress">
-            <div v-if="localAddress.street_line1"
-              v-text="localAddress.street_line1">
-            </div>
-            <div v-if="localAddress.street_line2"
-              v-text="localAddress.street_line2">
-            </div>
-            <span v-text="addressLocationString(localAddress)" />
-            <div v-if="localAddress.country"
-              v-text="localAddress.country">
-            </div>
-            <div v-if="localPhone">
+          <ul v-if="localAddress" class="list-unstyled myuw-text-md">
+            <li v-if="localAddress.street_line1" class="mb-1">
+              {{ localAddress.street_line1 }}
+            </li>
+            <li v-if="localAddress.street_line2" class="mb-1">
+              {{ localAddress.street_line2 }}
+            </li>
+            <li class="mb-1">
+              {{ addressLocationString(localAddress) }}
+            </li>
+            <li v-if="localAddress.country" class="mb-1">
+              {{ localAddress.country }}
+            </li>
+            <li v-if="localPhone" class="mb-1">
               Phone: {{ formatPhoneNumberDisaply(localPhone) }}
-            </div>
-          </div>
+            </li>
+          </ul>
           <div v-else class="text-muted">
             No address available
           </div>
         </uw-card-property>
         <uw-card-property title="Permanent Address">
-          <div v-if="permanentAddress">
-            <div v-if="permanentAddress.street_line1"
-              v-text="permanentAddress.street_line1">
-            </div>
-            <div v-if="permanentAddress.street_line2"
-              v-text="permanentAddress.street_line2">
-            </div>
-            <span v-text="addressLocationString(permanentAddress)" />
-            <div v-if="permanentAddress.country"
-              v-text="permanentAddress.country">
-            </div>
-            <div v-if="permanentPhone">
+          <ul v-if="permanentAddress" class="list-unstyled myuw-text-md">
+            <li v-if="permanentAddress.street_line1" class="mb-1">
+              {{ permanentAddress.street_line1 }}
+            </li>
+            <li v-if="permanentAddress.street_line2" class="mb-1">
+              {{ permanentAddress.street_line2 }}
+            </li>
+            <li class="mb-1">
+              {{ addressLocationString(permanentAddress) }}
+            </li>
+            <li v-if="permanentAddress.country" class="mb-1">
+              {{ permanentAddress.country }}
+            </li>
+            <li v-if="permanentPhone" class="mb-1">
               Phone: {{ formatPhoneNumberDisaply(permanentPhone) }}
-            </div>
-          </div>
+            </li>
+          </ul>
           <div v-else class="text-muted">
             No address available
           </div>
@@ -106,29 +110,30 @@
       </uw-card-property-group>
       <uw-card-property-group>
         <uw-card-property title="Student Directory Information">
-          <p>
-            Releasable: <span v-text="directoryRelease ? 'YES' : 'NO'"/>
-            <br><a v-out="'Change Student Address Release settings'"
-              href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-              title="Change address release settings on Student Personal Services website"
-            >Change your release settings</a>
-          </p>
-          <p>
-            Name, phone number, email, major, and class standing are
-            <em v-text="directoryRelease ? 'visible' : 'not visible'"/>
-            in the UW Directory.
-          </p>
-          <p>
-            Information such as date of birth, street address, and dates
-            of attendance are
-            <em v-text="directoryRelease ?
-                        'releasable' : 'cannot be released'"
-            />
-            by the Office of the University Registrar when requested.
-            <a href="http://www.washington.edu/students/reg/ferpa.html">
-              Learn more about your privacy (FERPA)
-            </a>
-          </p>
+          <ul class="list-unstyled myuw-text-md">
+            <li class="mb-1">
+              Releasable: <span v-text="directoryRelease ? 'YES' : 'NO'"/>
+            </li>
+            <li class="mb-2">
+              <a v-out="'Change Student Address Release settings'"
+                href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+              >Change your release settings</a>
+            </li>
+            <li class="mb-2">
+              Name, phone number, email, major, and class standing are
+              <em v-text="directoryRelease ? 'visible' : 'not visible'"/>
+              in the UW Directory.
+            </li>
+            <li>
+              Information such as date of birth, street address, and dates
+              of attendance are
+              <em v-text="directoryRelease ?
+                        'releasable' : 'cannot be released'"/>
+              by the Office of the University Registrar when requested.
+              <a href="http://www.washington.edu/students/reg/ferpa.html"
+              >Learn more about your privacy (FERPA)</a>
+            </li>
+          </ul>
         </uw-card-property>
       </uw-card-property-group>
     </template>

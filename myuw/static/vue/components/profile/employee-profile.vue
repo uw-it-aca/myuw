@@ -12,10 +12,10 @@
     <template #card-body>
       <uw-card-property-group>
         <template v-if="position">
-          <uw-card-property title="Department">
+          <uw-card-property v-if="position.department" title="Department">
             {{ position.department }}
           </uw-card-property>
-          <uw-card-property title="Job Title">
+          <uw-card-property v-if="position.title" title="Job Title">
             {{ position.title }}
           </uw-card-property>
         </template>
@@ -45,10 +45,10 @@
           <p v-if="!mailstop && !address" class="text-muted">
             No address available
           </p>
-          <div v-else>
-            <p v-if="mailstop">Box {{ mailstop }}</p>
-            <p v-if="address">{{ address }}</p>
-          </div>
+          <ul v-else class="list-unstyled myuw-text-md">
+            <li v-if="mailstop" class="mb-1">Box {{ mailstop }}</li>
+            <li v-if="address" class="mb-1">{{ address }}</li>
+          </ul>
         </uw-card-property>
         <uw-card-property title="">
           <p>
@@ -63,25 +63,24 @@
       </uw-card-property-group>
       <uw-card-property-group>
         <uw-card-property title="UW Directory">
-          <p>
-            <template v-if="publishEmpDir">
+          <ul class="list-unstyled myuw-text-md">
+            <li v-if="publishEmpDir" class="mb-1">
               Name, position, work contact information are published.
-            </template>
-            <template v-else class="text-muted">
+            </li>
+            <li v-else class="text-muted mb-1">
               Not published.
-            </template>
-            <br/>
-            <a href="https://identity.uw.edu/">Change directory settings</a>
-          </p>
-          <p>
-            Search for faculty, staff, and students in the
-            <a v-if="isTacoma"
-                href="http://directory.tacoma.uw.edu/"
-            >UW Tacoma Directory</a>
-            <a v-else
-                href="https://www.washington.edu/home/peopledir/"
-            >UW Directory</a>.
-          </p>
+            </li>
+            <li class="mb-2">
+              <a href="https://identity.uw.edu/">Change directory settings</a>
+            </li>
+            <li>
+              Search for faculty, staff, and students in the
+              <a v-if="isTacoma" href="http://directory.tacoma.uw.edu/"
+              >UW Tacoma Directory</a>
+              <a v-else href="https://www.washington.edu/home/peopledir/"
+              >UW Directory</a>.
+            </li>
+          </ul>
         </uw-card-property>
       </uw-card-property-group>
     </template>
