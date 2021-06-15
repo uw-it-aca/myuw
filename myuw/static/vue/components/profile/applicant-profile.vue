@@ -39,7 +39,7 @@
       <uw-card-property-group>
         <uw-card-property title="Email Address">
           <span v-if="email">{{ email }}</span>
-          <span v-else class="text-muted">No email address availabe</span>
+          <span v-else class="text-muted">No email address available</span>
         </uw-card-property>
       </uw-card-property-group>
     </template>
