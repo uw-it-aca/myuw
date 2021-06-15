@@ -50,16 +50,16 @@ export default {
       sectionJointList: 'joint',
     };
   },
+  watch: {
+    sectionJointList(newVal) {
+      this.$emit('selected', this.generateFormData(newVal, this.emailList.section_list));
+    }
+  },
   mounted() {
     this.$emit(
       'selected',
       this.generateFormData(this.sectionJointList, this.emailList.section_list)
     );
-  },
-  watch: {
-    sectionJointList(newVal) {
-      this.$emit('selected', this.generateFormData(newVal, this.emailList.section_list));
-    }
   },
   methods: {
     generateFormData(listType, sectionList) {
