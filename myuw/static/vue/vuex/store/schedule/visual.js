@@ -6,7 +6,7 @@ import {
   convertTermTimeAndDateToDateJSObj,
   generateMeetingLocationData,
 } from './common';
-import {dayjs} from '../common';
+import {dayjs, diffIgnoreDate} from '../common';
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
@@ -57,10 +57,10 @@ const postProcess = (response, urlExtra) => {
             earliestTime = section.final_exam.start_date;
             latestTime = section.final_exam.end_date;
           } else {
-            if (section.final_exam.start_date < earliestTime) {
+            if (diffIgnoreDate(section.final_exam.start_date, earliestTime) < 0) {
               earliestTime = section.final_exam.start_date;
             }
-            if (section.final_exam.end_date > latestTime) {
+            if (diffIgnoreDate(section.final_exam.end_date, latestTime) > 0) {
               latestTime = section.final_exam.end_date;
             }
           }
