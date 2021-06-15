@@ -13,15 +13,17 @@
       <uw-card-property-group>
         <uw-card-property title="Permanent Address">
           <div v-if="permanentAddress">
-            <span>
-              {{ permanentAddress.street_line1 }}
-              <br>
-              {{ permanentAddress.street_line2 }}
-              <br>
-              {{ addressLocationString(permanentAddress) }}
-              <br>
-              {{ permanentAddress.country }}
-            </span>
+            <div v-if="permanentAddress.street_line1"
+              v-text="permanentAddress.street_line1">
+            </div>
+            <div v-if="permanentAddress.street_line2"
+              v-text="permanentAddress.street_line2">
+            </div>
+            <div v-text="addressLocationString(permanentAddress)">
+            </div>
+            <div v-if="permanentAddress.country"
+              v-text="permanentAddress.country">
+            </div>
           </div>
           <div v-else class="text-muted">
             No address available
@@ -37,7 +39,7 @@
       <uw-card-property-group>
         <uw-card-property title="Email Address">
           <span v-if="email">{{ email }}</span>
-          <span v-else>No email address availabe</span>
+          <span v-else class="text-muted">No email address availabe</span>
         </uw-card-property>
       </uw-card-property-group>
     </template>
