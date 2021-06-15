@@ -103,7 +103,7 @@
       </template>
 
       <template v-else-if="!addViewError">
-        <uw-email-add-list v-model="selected" :email-list="emailList" />
+        <uw-email-add-list v-model="formData" :email-list="emailList" />
       </template>
 
       <template v-else>
@@ -138,8 +138,8 @@
           Back
         </b-button>
         <b-button variant="primary"
-          :disabled="selected.length === 0"
-          @click="requestCreateEmail({list: selected, onSuccess, onError})"
+          :disabled="!hasAnyKeys(formData)"
+          @click="requestCreateEmail({formData, onSuccess, onError})"
         >
           Submit
         </b-button>
@@ -184,7 +184,7 @@ export default {
       addView: false,
       addViewError: false,
       requestSuccess: false,
-      selected: [],
+      formData: {},
       faArrowLeft,
     };
   },
@@ -200,7 +200,7 @@ export default {
       this.addView = false;
       this.addViewError = false;
       this.requestSuccess = false;
-      this.selected = [];
+      this.formData = {};
     },
     onSuccess() {
       this.requestSuccess = true;
