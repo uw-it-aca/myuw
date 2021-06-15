@@ -1,0 +1,78 @@
+{
+    "AcademicAdvisers": [
+        {
+            "RepositoryTimeStamp": "04/01/2013 1:07:14 PM",
+            "Metadata": "AcademicAdviserSourceKey=UAA;",
+            "StudentAdvisingIsActive": true,
+            "AdvisingFullName": "John Average1",
+            "AdvisingPronouns": "he/him/his",
+            "AdvisingEmailAddress": "javg001@uw.edu",
+            "AdvisingPhoneNumber": "+1 206 543-0000",
+            "AdvisingUWNetID": "javg001",
+            "AdvisingRegID": "9136CCB8F66711D5BE060004AC494001",
+            "AdvisingProgram": "UAA Advising",
+            "BookingUrl": "https://secure.scheduleonce.com/javg001",
+            "IsDepartmentAdviser": false
+        },
+        {
+            "AdvisingFullName": "John Average4",
+            "AdvisingPronouns": null,
+            "AdvisingEmailAddress": "javg004@uw.edu",
+            "AdvisingPhoneNumber": "+1 206 543-0000",
+            "AdvisingUWNetID": "javg004",
+            "AdvisingRegID": "9136CCB8F66711D5BE060004AC494004",
+            "AdvisingProgram": "Robinson Center",
+            "BookingUrl": "https://robinsoncenter.uw.edu/current-students/student-advising/",
+            "IsDepartmentAdviser": false,
+            "StudentAdvisingIsActive": true,
+            "Metadata": "AcademicAdviserSourceKey=UAA;",
+            "RepositoryTimeStamp": "12/7/2020 7:32:19 AM"
+        },
+        {
+            "AdvisingFullName": "John Average3",
+            "AdvisingPronouns": null,
+            "AdvisingEmailAddress": "javg003@uw.edu",
+            "AdvisingPhoneNumber": "+1 206 221-0000",
+            "AdvisingUWNetID": "javg003",
+            "AdvisingRegID": "9136CCB8F66711D5BE060004AC494003",
+            "AdvisingProgram": "Athletics – SAAS",
+            "BookingUrl": "https://gohuskies.com/sports/academics/coaches",
+            "IsDepartmentAdviser": false,
+            "StudentAdvisingIsActive": true,
+            "Metadata": "AcademicAdviserSourceKey=UAA;",
+            "RepositoryTimeStamp": "1/5/2021 12:16:58 PM"
+        },
+        {
+            "AdvisingFullName": "John Average2",
+            "AdvisingPronouns": null,
+            "AdvisingEmailAddress": "javg002@uw.edu",
+            "AdvisingPhoneNumber": null,
+            "AdvisingUWNetID": "javg002",
+            "AdvisingRegID": "9136CCB8F66711D5BE060004AC494001",
+            "AdvisingProgram": "OMAD Advising",
+            "BookingUrl": null,
+            "IsDepartmentAdviser": false,
+            "StudentAdvisingIsActive": true,
+            "Metadata": "AcademicAdviserSourceKey=UAA;",
+            "RepositoryTimeStamp": "04/01/2013 7:32:28 AM"
+        },
+        {
+            "RepositoryTimeStamp": "04/01/2013  4:15:58 PM",
+            "Metadata": "AcademicAdviserSourceKey=UAA;",
+            "StudentAdvisingIsActive": true,
+            "AdvisingFullName": "UNIVERSITY HONORS PROGRAM",
+            "AdvisingEmailAddress": "uwhonors@uw.edu",
+            "AdvisingPhoneNumber": "+1 206 543-7444",
+            "AdvisingUWNetID": "uwhonors",
+            "AdvisingRegID": "24A20F50AE3511D68CBC0004AC494FFE",
+            "AdvisingProgram": "UW Honors",
+            "BookingUrl": "https://honors.uw.edu/advising/",
+            "IsDepartmentAdviser": false
+        }
+    ],
+    "StudentRegID": "9136CCB8F66711D5BE060004AC494FFE",
+    "StudentUWNetID": "javerage",
+    "StudentSystemKey": "000083856",
+    "StudentNumber": "1033334",
+    "StudentFullName": "John Joseph Average"
+}

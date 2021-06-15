@@ -10,37 +10,36 @@
       </h2>
     </template>
     <template #card-body>
-      <div vocab="http://schema.org/" typeof="Person">
-        <b-container>
-          <uw-card-property title="Permanent Address">
-            <div v-if="permanentAddress">
-              <span>
-                {{ permanentAddress.street_line1 }}
-                <br>
-                {{ permanentAddress.street_line2 }}
-                <br>
-                {{ addressLocationString(permanentAddress) }}
-                <br>
-                {{ permanentAddress.country }}
-              </span>
-            </div>
-            <div v-else class="myuw-muted">
-              No address available
-            </div>
-          </uw-card-property>
-          <uw-card-property title="">
-            <a v-out="'Change Student Address'"
-              href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
-              title="Change address on Student Personal Services website"
-            >Change Address</a>
-          </uw-card-property>
-          <hr>
-          <uw-card-property title="Email Address">
-            <span v-if="email">{{ email }}</span>
-            <span v-else class="myuw-muted">No email address availabe</span>
-          </uw-card-property>
-        </b-container>
-      </div>
+      <uw-card-property-group>
+        <uw-card-property title="Permanent Address">
+          <div v-if="permanentAddress">
+            <span>
+              {{ permanentAddress.street_line1 }}
+              <br>
+              {{ permanentAddress.street_line2 }}
+              <br>
+              {{ addressLocationString(permanentAddress) }}
+              <br>
+              {{ permanentAddress.country }}
+            </span>
+          </div>
+          <div v-else class="text-muted">
+            No address available
+          </div>
+        </uw-card-property>
+        <uw-card-property title="">
+          <a v-out="'Change Student Address'"
+            href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
+            title="Change address on Student Personal Services website"
+          >Change Address</a>
+        </uw-card-property>
+      </uw-card-property-group>
+      <uw-card-property-group>
+        <uw-card-property title="Email Address">
+          <span v-if="email">{{ email }}</span>
+          <span v-else>No email address availabe</span>
+        </uw-card-property>
+      </uw-card-property-group>
     </template>
   </uw-card>
 </template>
@@ -49,11 +48,13 @@
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardProperty from '../_templates/card-property.vue';
+import CardPropertyGroup from '../_templates/card-property-group.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-card-property': CardProperty,
+    'uw-card-property-group': CardPropertyGroup,
   },
   computed: {
     ...mapState('profile', {
