@@ -30,9 +30,20 @@
 <script>
 import {mapState} from 'vuex';
 
+function formDataToList(formData) {
+  let list = [];
+  Object.entries(formData).forEach(([key, label]) => list.push({key, label}));
+}
+
+function listToFormData(list) {
+  let formData = {};
+  list.forEach((item) => formData[item.key] = item.label);
+  return formData;
+}
+
 export default {
   model: {
-    prop: 'selectedModel',
+    prop: 'formData',
     event: 'selected'
   },
   props: {
@@ -40,14 +51,14 @@ export default {
       type: Object,
       required: true,
     },
-    selectedModel: {
-      type: Array,
+    formData: {
+      type: Object,
       required: true,
     }
   },
   data() {
     return {
-      selected: this.selectedModel,
+      selected: formDataToList(this.formData),
       indeterminate: false,
       allSelected: false,
     };
@@ -101,7 +112,7 @@ export default {
         this.indeterminate = true
         this.allSelected = false
       }
-      this.$emit('selected', newValue);
+      this.$emit('selected', listToFormData(newValue));
     }
   },
   methods: {

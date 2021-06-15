@@ -159,6 +159,10 @@ export default {
         let d = d1 ? d1 : d2;
         return `${d.format("MMM D")}`;
       }
+    },
+    hasAnyKeys(obj) {
+      console.log(obj);
+      return Object.entries(obj).length !== 0;
     }
   },
 }

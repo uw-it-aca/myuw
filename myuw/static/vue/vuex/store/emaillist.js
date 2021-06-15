@@ -3,13 +3,12 @@ import axios from 'axios';
 const customActions = {
   requestCreateEmail(
     {rootState},
-    {list = [], onSuccess = () => {}, onError = () => {}} = {}
+    {formData = {}, onSuccess = () => {}, onError = () => {}} = {}
   ) {
-    let formDataStr = '';
-    formDataStr += `csrfmiddlewaretoken=${rootState.csrfToken}`;
+    let formDataStr = `csrfmiddlewaretoken=${rootState.csrfToken}`;
 
-    list.forEach((item) => {
-      formDataStr += `&${encodeURIComponent(item.key)}=${encodeURIComponent(item.label)}`;
+    Object.entries(formData).forEach(([key, value]) => {
+      formDataStr += `&${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
     });
 
     return axios.post(
