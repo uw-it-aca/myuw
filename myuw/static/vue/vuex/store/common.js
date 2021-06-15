@@ -42,6 +42,5 @@ export const diffIgnoreDate = (a, b) => {
   diff += a.second() - b.second();
   diff *= 1000;
   diff += a.millisecond() - b.millisecond();
-  console.log(a, b, diff);
   return diff;
 };
