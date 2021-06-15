@@ -49,7 +49,13 @@ describe('Assigned Adviser Card', () => {
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.isUndergrad).toBe(true);
-    expect(wrapper.vm.advisers.length).toBe(5);
+    const advisers = wrapper.vm.advisers;
+    expect(advisers.length).toBe(5);
+    expect(advisers[0].program).toBe("UAA Advising");
+    expect(advisers[1].program).toBe("OMAD Advising");
+    expect(advisers[2].program).toBe("UW Honors");
+    expect(advisers[3].program).toBe("Robinson Center");
+    expect(advisers[4].program).toBe("Athletics – SAAS");
   });
 
   it('Hide Assigned Adviser card if not undergrad', async () => {
