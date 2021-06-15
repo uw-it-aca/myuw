@@ -187,7 +187,7 @@
                 </b-nav-item>
                 <b-nav-item
                   class="mb-2"
-                  role="separator"
+                  aria-hidden="true"
                   disabled
                   :link-classes="'text-dark d-block p-0'"
                 >
@@ -211,8 +211,8 @@
                   <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources
                 </b-nav-item>
               </b-nav>
-              <uw-welcome v-if="$mq === 'desktop'" />
             </b-collapse>
+            <uw-welcome v-if="$mq === 'desktop'" />
           </b-col>
           <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
             <!-- MARK: message banner display for mobile and tablet -->
@@ -287,6 +287,9 @@
       header-class="border-0"
       body-class="py-0"
       footer-class="border-0"
+      no-close-on-backdrop
+      no-close-on-esc
+      hide-header-close 
     >
       <img
         v-if="$mq === 'mobile' || $mq === 'tablet'"
