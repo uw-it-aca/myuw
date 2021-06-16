@@ -15,8 +15,8 @@
       </b-alert>
       <p>Please note:</p>
       <ul>
-        <li>An email confirmation will be sent to {{netid}}@uw.edu</li>
-        <li>Mailing lists may take up to 24 hours to activate</li>
+        <li class="mb-1">An email confirmation will be sent to {{netid}}@uw.edu</li>
+        <li class="mb-1">Mailing lists may take up to 24 hours to activate</li>
       </ul>
     </template>
     <template v-else-if="!listView && !addError">
@@ -24,69 +24,21 @@
         <b-alert variant="danger" :show="disableActions">
           This action is disabled while overriding as another user.
         </b-alert>
-        <b-form-group label="Request a single email list for:">
-          <b-form-radio value="joint" checked>
-            {{emailList.course_abbr}}
-            {{emailList.course_number}}
-            {{emailList.section_id}}
-            <span v-for="(section, i) in emailList.joint_sections" :key="i">
-              +
-              {{section.course_abbr}}
-              {{section.course_number}}
-              {{section.section_id}}
-            </span>
-            <p>
-              Mailing list address:
-              {{emailList.joint_section_list.list_address}}@uw.edu
-            </p>
-          </b-form-radio>
-          <b-form-radio value="single" checked>
-            {{emailList.course_abbr}}
-            {{emailList.course_number}}
-            {{emailList.section_id}}
-            <p>
-              Mailing list address:
-              {{emailList.section_list.list_address}}@uw.edu
-            </p>
-          </b-form-radio>
-        </b-form-group>
+        <uw-request-joint v-model="formData" :email-list="emailList" />
       </div>
       <div v-else-if="!emailList.has_lists && !emailList.section_list.list_exists">
         <b-alert variant="danger" :show="disableActions">
           This action is disabled while overriding as another user.
         </b-alert>
-        <p>
-          <strong>
-            Request a single email list for
-            {{emailList.course_abbr}}
-            {{emailList.course_number}}
-            {{emailList.section_id}},
-            {{titleCaseWord(emailList.quarter)}}
-            {{emailList.year}}.
-          </strong>
-          <span v-if="!emailList.no_secondary_section && !emailList.has_lists">
-            <br/>
-            <span>
-              Need more email lists for this class?
-              <b-link @click="listView = true">
-                Request multiple email lists.
-              </b-link>
-            </span>
-          </span>
-        </p>
-
-        <ul>
-          <li>
-            Mailing list address:
-            {{emailList.section_list.list_address}}@uw.edu
-          </li>
-          <li>Mailing list will stay synced with the official class list</li>
-        </ul>
-        <input type="hidden" :value="emailList.section_list.section_label"/>
+        <uw-request-single-list
+          v-model="formData"
+          :email-list="emailList"
+          @reqmulti="listView = true; formData = {}"
+        />
       </div>
     </template>
     <template v-else-if="!addError">
-      <uw-email-add-list v-model="selected" :email-list="emailList" />
+      <uw-email-add-list v-model="formData" :email-list="emailList" />
     </template>
     <template v-else>
       <b-alert show variant="danger">
@@ -117,7 +69,7 @@
       <a
         href="https://itconnect.uw.edu/connect/email/resources/mailman/"
       >Mailman help</a>
-      <b-button variant="outline-secondary" @click="listView = false">
+      <b-button variant="light" @click="listView = false">
         <font-awesome-icon :icon="faArrowLeft" />
         Back
       </b-button>
@@ -125,9 +77,9 @@
         Close
       </b-button>
       <b-button
-        :disabled="selected.length === 0"
+        :disabled="!hasAnyKeys(formData)"
         variant="primary"
-        @click="requestCreateEmail({list: selected, onSuccess, onError})"
+        @click="requestCreateEmail({formData, onSuccess, onError})"
       >
         Submit
       </b-button>
@@ -150,10 +102,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapState, mapActions} from 'vuex';
 import EmailAddList from './add_list.vue';
+import RequestJointList from './request/joint.vue';
+import RequestSingleList from './request/list.vue';
 
 export default {
   components: {
     'uw-email-add-list': EmailAddList,
+    'uw-request-joint': RequestJointList,
+    'uw-request-single-list': RequestSingleList,
   },
   props: {
     emailList: {
@@ -172,7 +128,7 @@ export default {
       requestSuccess: false,
       faCheck,
       faArrowLeft,
-      selected: [],
+      formData: {},
     };
   },
   computed: {
@@ -185,10 +141,10 @@ export default {
     ...mapActions('emaillist', ['requestCreateEmail']),
     requestSingle() {
       this.requestCreateEmail({
-        list: [{
-          key: `section_single_${this.emailList.section_list.section_id}`,
-          label: this.emailList.section_list.section_label,
-        }],
+        formData: {
+          [`section_single_${this.emailList.section_list.section_id}`]:
+            this.emailList.section_list.section_label,
+        },
         onSuccess: this.onSuccess,
         onError: this.onError,
       });
@@ -203,7 +159,7 @@ export default {
       this.listView = false;
       this.addError = false;
       this.requestSuccess = false;
-      this.selected = [];
+      this.formData = {};
     },
     logClassEmailListRequest() {
       this.$logger.classEmailList(this, "Request");

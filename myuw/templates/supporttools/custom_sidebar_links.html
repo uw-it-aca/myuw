@@ -38,102 +38,100 @@
 
         {% url 'restclients_proxy' 'gws' 'group_sws/v3/search' as gws_url %}
         {% if gws_url %}
-            <li><a href="{{ gws_url }}">{{ restclients_gws_link|default:"Search Groups Web Service" }}</a></li>
+            <li><a href="{{ gws_url }}">
+                {{ restclients_gws_link|default:"Search Groups Web Service" }}</a>
+            </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'canvas' 'api/v1/accounts' as canvas_url %}
-        {% if canvas_url %}
-            <li><a href="{{ canvas_url }}">Canvas Web Service</a></li>
+        {% url 'myuw_rest_search' 'hfs' 'accounts.html' as hfs_url %}
+        {% if hfs_url %}
+            <li>
+                <a href="{{ hfs_url }}">HFS</a>
+            </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'grad' 'index.html' as grad_url %}
-        {% if grad_url %}
-            <li><a href="{{ grad_url }}">MyGrad Request Web Service</a></li>
-        {% endif %}
-
-        {% url 'restclients_proxy' 'iasystem' 'index.html' as ias_url %}
+        {% url 'myuw_rest_search' 'iasystem' 'index.html' as ias_url %}
         {% if ias_url %}
-            <li><a href="{{ ias_url }}">IASystem Web Service</a></li>
+            <li><a href="{{ ias_url }}">
+                {{ restclients_iasystem_link|default:"IASystem Course Eval" }}</a>
+            </li>
         {% endif %}
 
         {% url 'restclients_proxy' 'pws' 'idcard/v1/photo' as idcard_url %}
         {% if idcard_url %}
-            <li><a href="{{ idcard_url }}">{{ restclients_pws_link|default:"ID Photo Search" }}</a></li>
+            <li><a href="{{ idcard_url }}">
+                {{ restclients_pws_link|default:"ID Photo Search" }}</a>
+            </li>
         {% endif %}
 
-        {% url 'restclients_proxy' 'libcurrics' 'index.html' as libcurrics_url %}
+        {% url 'myuw_rest_search' 'libcurrics' 'index.html' as libcurrics_url %}
         {% if libcurrics_url %}
-            <li><a href="{{ libcurrics_url }}">Library Subject Guide</a></li>
+            <li>
+                <a href="{{ libcurrics_url }}">Library Subject Guide</a>
+            </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'grad' 'index.html' as grad_url %}
+        {% if grad_url %}
+            <li>
+                <a href="{{ grad_url }}">MyGrad</a>
+            </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'libraries' 'index.html' as libraries_url %}
+        {% if libraries_url %}
+            <li>
+                <a href="{{ libraries_url }}">My Library Info</a>
+            </li>
+        {% endif %}
+        
+        {% url 'myuw_rest_search' 'myplan' 'index.html' as myplan_url %}
+        {% if myplan_url %}
+            <li>
+                <a href="{{ myplan_url }}">MyPlan</a>
+            </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'sws' 'notices.html' as notices_url %}
+        {% if notices_url %}
+            <li>
+                <a href="{{ notices_url }}">Notices</a>
+            </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'sws' 'advisers.html' as advisers_url %}
+        {% if advisers_url %}
+            <li>
+                <a href="{{ advisers_url }}">Undergrad Academic Advisers</a>
+            </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'uwnetid' 'password.html' as pw_url %}
+        {% if pw_url %}
+            <li>
+                <a href="{{ pw_url }}">UWNetID Password</a>
+            </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'uwnetid' 'subscription.html' as uwnetid_url %}
+        {% if uwnetid_url %}
+            <li>
+                <a href="{{ uwnetid_url }}">UWNetID Subscriptions</a>
+            </li>
+        {% endif %}
+
+        {% url 'myuw_rest_search' 'book' 'index.html' as book_url %}
+        {% if book_url %}
+            <li>
+                <a href="{{ book_url }}">TextBook</a>
+            </li>
+        {% endif %}
+
+        <br />
         {% url 'restclients_errors' as url %}
         {% if url %}
             <li><a href="{% url 'restclients_errors' %}">Web Service Errors</a></li>
         {% endif %}
     </ul>
 
-    {% url 'restclients_proxy' 'hfs' 'myuw/v1' as url %}
-    {% if url %}
-        <h4>HFS Web Service:</h4>
-        <script>
-        function direct_to_hfs_service() {
-            var netid = document.getElementById("hfs_service_input").value;
-            window.location.href = "{% url 'restclients_proxy' 'hfs' '/myuw/v1/' %}/" + netid;
-            return false;
-        }
-        </script>
-        <form onsubmit="return direct_to_hfs_service()">
-            <div class="form-group">
-                <input type="text" id="hfs_service_input" class="form-control">&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
-            </div>
-        </form>
-    {% endif %}
-    <br>
-
-    {% url 'restclients_proxy' 'libraries' '' as url %}
-    {% if url %}
-        <h4>My Library Account Info:</h4>
-        <form action="{% url 'restclients_proxy' 'libraries' 'mylibinfo/v1/' %}" method="GET">
-            <div class="form-group">
-                <input type="text" name="id" class="form-control" />&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
-            </div>
-        </form>
-    {% endif %}
-    <br>
-
-    {% url 'restclients_proxy' 'book' '' as url %}
-    {% if url %}
-        <h4>UW Bookstore Web Service:</h4>
-        <form action="{% url 'restclients_proxy' 'book' 'myuw/myuw_beta.ubs' %}" method="GET">
-
-            <div class="form-group">
-                Term: <select name="quarter" class="form-control">
-                    <option value="spring">spring</option>
-                    <option value="summer">summer</option>
-                    <option value="autumn">autumn</option>
-                    <option value="winter">winter</option>
-                </select>
-                SLN: <br/>
-                <input type="text" name="sln1" class="form-control" />&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
-            </div>
-        </form>
-    {% endif %}
-
-    {% url 'restclients_proxy' 'uwnetid' '/nws/v1/uwnetid' as url %}
-    {% if url %}
-        <h4>Netid Web Service:</h4>
-        <script>
-        function direct_to_netid_service() {
-            var netid = document.getElementById("netid_service_input").value;
-            window.location.href = "{% url 'restclients_proxy' 'uwnetid' '/nws/v1/uwnetid' %}/" + netid + "/subscription/105";
-            return false;
-        }
-        </script>
-
-        <form onsubmit="return direct_to_netid_service()">
-            <div class="form-group">
-                <input type="text" id="netid_service_input" class="form-control">&nbsp;<input type="submit" value="Go" class="btn btn-primary btn-sm" />
-            </div>
-        </form>
-    {% endif %}
 {% endif %}

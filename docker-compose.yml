@@ -31,7 +31,7 @@ services:
     volumes:
       - ./myuw:/app/myuw
       - statics-volume:/static
-    command: bash -c "cd /app/ && npx webpack --watch"
+    command: bash -c "cd /app/ && ./node_modules/.bin/webpack --watch"
     stdin_open: true
     tty: true
 volumes:

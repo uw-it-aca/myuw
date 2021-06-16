@@ -30,7 +30,7 @@
           <!-- tab content -->
           <uw-schedule-tab
             :period="period"
-            :term="allSchedules[termLabel].term"
+            :term="getTermData"
           />
         </b-tab>
       </b-tabs>
@@ -45,7 +45,7 @@
         >
           <uw-course-section
             :meeting-data="meeting"
-            :term="allSchedules[termLabel].term"
+            :term="getTermData"
           />
         </div>
       </div>
@@ -99,13 +99,16 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.termLabel);
     },
-    offTerm: function() {
+    isNotCurrentTerm() {
+      return this.termLabel && this.termLabel !== 'current';
+    },
+    offTerm() {
       return this.allSchedules[this.termLabel].off_term_trimmed;
     },
-    periods: function() {
+    periods() {
       return this.allSchedules[this.termLabel].periods;
     },
-    termName: function() {
+    termName() {
       const termData = this.allSchedules[this.termLabel].term;
       let name = this.titleCaseWord(termData.quarter) + ' ' + termData.year;
       if (termData.summer_term) {
@@ -131,6 +134,12 @@ export default {
         .flatMap((section) => section.meetings.map((meeting) => {
           return { section, meeting };
         }));
+    },
+    getTermData() {
+      let data = this.allSchedules[this.termLabel].term;
+      data.isNotCurrentTerm = this.isNotCurrentTerm;
+      data.termLabel = this.termLabel;
+      return data;
     }
   },
   mounted() {

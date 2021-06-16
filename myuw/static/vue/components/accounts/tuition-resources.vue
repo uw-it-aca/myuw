@@ -4,25 +4,25 @@
       Related
     </h3>
     <ul class="list-unstyled myuw-text-md">
-      <li v-if="is_C2">
+      <li v-if="is_C2" class="mb-1">
         <a href="https://degreereg.uw.edu/payment-procedures">
           Paying PCE-Continuum College
         </a>
       </li>
-      <li>
+      <li class="mb-1">
         <a :href="finAidScholarshipsLink">
           Financial Aid and Scholarships
         </a>
       </li>
-      <li v-if="is_grad">
+      <li v-if="is_grad" class="mb-1">
         <a href="http://www.lib.washington.edu/commons/services/gfis">
           Graduate Funding Information Service (GFIS)
         </a>
       </li>
-      <li v-if="!is_C2">
+      <li v-if="!is_C2" class="mb-1">
         <a href="http://f2.washington.edu/fm/sfs/tuition">About Tuition</a>
       </li>
-      <li>
+      <li class="mb-1">
         <a href="http://f2.washington.edu/fm/sfs/tax">Student Tax Information</a>
       </li>
     </ul>

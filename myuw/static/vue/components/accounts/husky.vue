@@ -6,7 +6,7 @@
 
     <template #card-body>
       <ul class="list-unstyled">
-        <li v-if="hfs.student_husky_card">
+        <li v-if="hfs.student_husky_card" class="mb-1">
           <uw-card-status>
             <template #status-label>Student Husky Account</template>
             <template #status-value>${{ hfs.student_husky_card.balance.toFixed(2) }}</template>
@@ -17,7 +17,7 @@
             </template>
           </uw-card-status>
         </li>
-        <li v-if="hfs.employee_husky_card">
+        <li v-if="hfs.employee_husky_card" class="mb-1">
           <uw-card-status>
             <template #status-label>Employee Husky Account</template>
             <template #status-value>${{ hfs.employee_husky_card.balance.toFixed(2) }}</template>

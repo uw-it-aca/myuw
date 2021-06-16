@@ -10,81 +10,80 @@
       </h2>
     </template>
     <template #card-body>
-      <div vocab="http://schema.org/" typeof="Person">
-        <b-container>
-          <template v-if="position">
-            <uw-card-property title="Department">
-              {{ position.department }}
-            </uw-card-property>
-            <uw-card-property title="Job Title">
-              {{ position.title }}
-            </uw-card-property>
-          </template>
-          <uw-card-property v-if="email" title="Email:">
-            {{ email }}
+      <uw-card-property-group>
+        <template v-if="position">
+          <uw-card-property title="Department">
+            {{ position.department }}
           </uw-card-property>
-          <uw-card-property title="Phone Number">
-            <p v-if="noFormsOfContact" class="text-muted">
-              No phone numbers listed
-            </p>
-            <ul v-else class="list-unstyled myuw-text-md">
-              <li v-if="phone">
-                Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
-              </li>
-              <li v-if="mobile">
-                Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
-              </li>
-              <li v-if="voiceMail">
-                Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
-              </li>
-              <li v-if="fax">
-                Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
-              </li>
-            </ul>
+          <uw-card-property title="Job Title">
+            {{ position.title }}
           </uw-card-property>
-          <uw-card-property title="Address">
-            <p v-if="!mailstop && !address" class="text-muted">
-              No address available
-            </p>
-            <div v-else>
-              <p v-if="mailstop">Box {{ mailstop }}</p>
-              <p v-if="address">{{ address }}</p>
-            </div>
-          </uw-card-property>
-          <uw-card-property title="">
-            <p>
-              <uw-link-button
-                class="myuw-workday"
-                href="https://wd5.myworkday.com/uw/login.htmld"
-                :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
-                >Manage profile in Workday
-              </uw-link-button>
-            </p>
-          </uw-card-property>
-          <hr>
-          <uw-card-property title="UW Directory">
-            <p>
-              <template v-if="publishEmpDir">
-                Name, position, work contact information are published.
-              </template>
-              <template v-else>
-                Not published.
-              </template>
-              <br/>
-              <a href="https://identity.uw.edu/">Change directory settings</a>
-            </p>
-            <p>
-              Search for faculty, staff, and students in the
-              <a v-if="isTacoma"
-                  href="http://directory.tacoma.uw.edu/"
-              >UW Tacoma Directory</a>
-              <a v-else
-                  href="https://www.washington.edu/home/peopledir/"
-              >UW Directory</a>.
-            </p>
-          </uw-card-property>
-        </b-container>
-      </div>
+        </template>
+        <uw-card-property v-if="email" title="Email:">
+          {{ email }}
+        </uw-card-property>
+        <uw-card-property title="Phone Number">
+          <p v-if="noFormsOfContact" class="text-muted">
+            No phone numbers listed
+          </p>
+          <ul v-else class="list-unstyled myuw-text-md">
+            <li v-if="phone" class="mb-1">
+              Office:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(phone) }}
+            </li>
+            <li v-if="mobile" class="mb-1">
+              Mobile:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(mobile) }}
+            </li>
+            <li v-if="voiceMail" class="mb-1">
+              Voicemail:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(voiceMail) }}
+            </li>
+            <li v-if="fax" class="mb-1">
+              Fax:&nbsp;&nbsp;{{ formatPhoneNumberDisaply(fax) }}
+            </li>
+          </ul>
+        </uw-card-property>
+        <uw-card-property title="Address">
+          <p v-if="!mailstop && !address" class="text-muted">
+            No address available
+          </p>
+          <div v-else>
+            <p v-if="mailstop">Box {{ mailstop }}</p>
+            <p v-if="address">{{ address }}</p>
+          </div>
+        </uw-card-property>
+        <uw-card-property title="">
+          <p>
+            <uw-link-button
+              class="myuw-workday"
+              href="https://wd5.myworkday.com/uw/login.htmld"
+              :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
+              >Manage profile in Workday
+            </uw-link-button>
+          </p>
+        </uw-card-property>
+      </uw-card-property-group>
+      <uw-card-property-group>
+        <uw-card-property title="UW Directory">
+          <p>
+            <template v-if="publishEmpDir">
+              Name, position, work contact information are published.
+            </template>
+            <template v-else class="text-muted">
+              Not published.
+            </template>
+            <br/>
+            <a href="https://identity.uw.edu/">Change directory settings</a>
+          </p>
+          <p>
+            Search for faculty, staff, and students in the
+            <a v-if="isTacoma"
+                href="http://directory.tacoma.uw.edu/"
+            >UW Tacoma Directory</a>
+            <a v-else
+                href="https://www.washington.edu/home/peopledir/"
+            >UW Directory</a>.
+          </p>
+        </uw-card-property>
+      </uw-card-property-group>
     </template>
   </uw-card>
 </template>
@@ -93,12 +92,14 @@
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardProperty from '../_templates/card-property.vue';
+import CardPropertyGroup from '../_templates/card-property-group.vue';
 import LinkButton from '../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-card-property': CardProperty,
+    'uw-card-property-group': CardPropertyGroup,
     'uw-link-button': LinkButton,
   },
   computed: {
