@@ -121,13 +121,10 @@
           <p>
             Information such as date of birth, street address, and dates
             of attendance are
-            <em v-text="directoryRelease ?
-                        'releasable' : 'cannot be released'"
-            />
+            <em v-text="directoryRelease ? 'releasable' : 'cannot be released'"/>
             by the Office of the University Registrar when requested.
-            <a href="http://www.washington.edu/students/reg/ferpa.html">
-              Learn more about your privacy (FERPA)
-            </a>
+            <a href="http://www.washington.edu/students/reg/ferpa.html"
+            >Learn more about your privacy (FERPA)</a>
           </p>
         </uw-card-property>
       </uw-card-property-group>
