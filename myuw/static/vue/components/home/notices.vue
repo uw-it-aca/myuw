@@ -62,7 +62,9 @@
             />
           </b-collapse>
         </li>
-        <covid19 />
+        <li class="mb-1">
+          <covid-vaccine />
+        </li>
       </ul>
     </template>
     <template
@@ -89,7 +91,7 @@ import Covid19 from './covid19.vue';
 export default {
   components: {
     'uw-card': Card,
-    'covid19': Covid19,
+    'covid-vaccine': Covid19,
   },
   data() {
     return {

@@ -1,13 +1,20 @@
 <template>
-  <p v-if="showCard">You are currently registered as NOT vaccinated. You should get vaccinated!</p>
+  <span v-if="showCard">
+    <font-awesome-icon :icon="faSyringe" />
+    You are currently registered as NOT vaccinated.
+  </span>
 </template>
 
 <script>
+import {
+  faSyringe,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 export default {
-  data() {
+  data: function() {
     return {
+      faSyringe,
     };
   },
   computed: {
