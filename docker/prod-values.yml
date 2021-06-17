@@ -208,14 +208,14 @@ environmentVariables:
   - name: LIBCURRICS_POOL_SIZE
     value: "30"
   - name: LIBCURRICS_TIMEOUT
-    value: "0.1"
+    value: "7"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
     value: "30"
   - name: LIBRARIES_TIMEOUT
-    value: "0.1"
+    value: "7"
 
   - name: MAILMAN_ENV
     value: PROD
