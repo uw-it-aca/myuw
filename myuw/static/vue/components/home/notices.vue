@@ -62,6 +62,7 @@
             />
           </b-collapse>
         </li>
+        <covid19 />
       </ul>
     </template>
     <template
@@ -83,10 +84,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import Covid19 from './covid19.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'covid19': Covid19,
   },
   data() {
     return {
