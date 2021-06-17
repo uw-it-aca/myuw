@@ -273,7 +273,7 @@
           </li>
         </ul>
 
-        <div class="text-white font-weight-light">
+        <div class="font-weight-light" style="color:#aaa">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
       </b-container>
