@@ -244,7 +244,7 @@
 
     <footer v-if="!displayHybrid" class="w-100 mt-auto bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
-        <ul class="list-inline m-0">
+        <ul class="list-inline mb-2">
           <li class="list-inline-item">
             <b-link :href="mailToUrl + netid" class="text-white mr-2">
               <font-awesome-icon :icon="faEnvelope" class="mr-1" />Contact
