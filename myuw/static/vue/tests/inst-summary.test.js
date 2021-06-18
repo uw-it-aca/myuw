@@ -11,6 +11,10 @@ import {createLocalVue} from './helper';
 import UwCard from '../components/_templates/card.vue';
 import InstructorCourseSummery from
   '../components/home/inst_course_summary/summary.vue';
+import UwSummerSectionList from
+  '../components/home/inst_course_summary/summer-list.vue';
+import UwSectionList from
+  '../components/home/inst_course_summary/section-list.vue';
 
 import mockBill2013Summer from
   './mock_data/inst_schedule/bill2013summer.json';
@@ -133,5 +137,48 @@ describe('Instructor Teaching Summary', () => {
     ).toEqual(200);
 
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
+  });
+
+  it('Verify Summer quarter summary card', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+          '/api/v1/instructor_schedule/2013,summer': mockBillpce2013Summer,
+        };
+        return Promise.resolve({data: urlData[url], status: 200});
+      });
+
+    const wrapper = mount(
+      InstructorCourseSummery, {
+        store,
+        localVue,
+        propsData: {
+          term: '2013,summer',
+        }
+      }
+    );
+    await new Promise((r) => setTimeout(r, 30));
+
+    expect(
+      inst_schedule.getters.isReadyTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )("2013,summer"),
+    ).toBeTruthy();
+
+    expect(
+      inst_schedule.getters.isErroredTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )("2013,summer"),
+    ).toBe(false);
+
+    expect(
+      inst_schedule.getters.statusCodeTagged(
+        wrapper.vm.$store.state.inst_schedule
+      )("2013,summer"),
+    ).toEqual(200);
+
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
+    expect(wrapper.findComponent(
+      UwSummerSectionList).exists()).toBe(true);
+    expect(wrapper.findAllComponents(UwSectionList).length).toBe(2);
   });
 });
