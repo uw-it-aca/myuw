@@ -1,12 +1,17 @@
 import dayjs from 'dayjs';
 dayjs.extend(require('dayjs/plugin/timezone'))
 import axios from 'axios';
-import {shallowMount} from '@vue/test-utils';
+import {mount} from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import tuition from '../vuex/store/tuition';
 import notices from '../vuex/store/notices';
 import TuitionFees from '../components/accounts/tuition-fees.vue';
+import TuitionRes from '../components/accounts/tuition-resources.vue';
+import CardStatus from '../components/_templates/card-status.vue';
+import LinkButton from '../components/_templates/link-button.vue';
+import FinAid from '../components/_common/finaid.vue';
+
 import jbotTuition from './mock_data/tuition/jbothell.json';
 import jbotNotices from './mock_data/notice/jbothell.json';
 import javgTuition from './mock_data/tuition/javerage.json';
@@ -47,7 +52,7 @@ describe('Tuition store', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = shallowMount(TuitionFees, {store, localVue});
+    const wrapper = mount(TuitionFees, {store, localVue});
     await new Promise(setImmediate);
 
     expect(wrapper.vm.isStudent).toBe(true);
@@ -71,12 +76,20 @@ describe('Tuition store', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = shallowMount(TuitionFees, {store, localVue});
+    const wrapper = mount(TuitionFees, {store, localVue});
     await new Promise(setImmediate);
     expect(wrapper.vm.tuitionDate.formatted ).toBe("Mon, Feb 22");
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(1000.00);
     expect(wrapper.vm.tuition.tuition_accbalance).toBe(12345.00);
     expect(wrapper.vm.tuition.tuition_due).toBe("2013-04-09");
+    expect(Boolean(wrapper.vm.tuitionDate)).toBe(true);
+    expect(wrapper.vm.finAidNotices.length).toBe(5);
+    expect(wrapper.vm.tuitionDueNotice.attributes.length).toBe(1);
+    expect(wrapper.findComponent(TuitionFees).exists()).toBe(true);
+    expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
+    expect(wrapper.findComponent(FinAid).exists()).toBe(true);
+    expect(wrapper.findComponent(TuitionRes).exists()).toBe(true);
+    expect(wrapper.findAllComponents(CardStatus).length).toBe(3);
   });
 });
