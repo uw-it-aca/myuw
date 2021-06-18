@@ -1,5 +1,5 @@
 <template>
-  <div class="p-3 myuw-welcome">
+  <div class="p-3 bg-light-gray">
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li class="mb-1">
         <div>
@@ -37,10 +37,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "sass:map";
-@import "../../../../css/myuw/variables.scss";
-
-.myuw-welcome {
-  background: $gray-300;
-}
 </style>
