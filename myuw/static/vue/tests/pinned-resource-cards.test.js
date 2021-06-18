@@ -26,7 +26,7 @@ describe('Pinned Resources Card', () => {
   it('Show Pinned cards', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
-        'api/v1/resources/pinned/': mockRes,
+        '/api/v1/resources/pinned/': mockRes,
       };
       return Promise.resolve({data: urlData[url]});
     });
@@ -36,8 +36,8 @@ describe('Pinned Resources Card', () => {
 
     expect(wrapper.findComponent(PinnedResources).exists()).toBe(true);
     expect(wrapper.findAllComponents(UwCard).length).toBe(2);
-    expect(wrapper.vm.resources.pinned.length).toBe(1);
     expect(wrapper.vm.maybePinnedResources.length).toBe(1);
-    expect(wrapper.vm.maybePinnedResources[0].subcategories.length).toBe(2);
+    expect(wrapper.findAll('button')).toHaveLength(2);
+    
   });
 });
