@@ -30,7 +30,12 @@ describe('Pinned Resources Card', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-
+    axios.delete.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/resources/academicsadvisingtutoring/pin': mockRes,
+      };
+      return Promise.resolve({data: urlData[url]});
+    });
     const wrapper = mount(PinnedResources, {store, localVue});
     await new Promise(setImmediate);
 
@@ -38,6 +43,8 @@ describe('Pinned Resources Card', () => {
     expect(wrapper.findAllComponents(UwCard).length).toBe(2);
     expect(wrapper.vm.maybePinnedResources.length).toBe(1);
     expect(wrapper.findAll('button')).toHaveLength(2);
-    
+    await wrapper.findAll('button').at(0).trigger('click');
+    expect(wrapper.findAllComponents(UwCard).length).toBe(1);
+    expect(wrapper.findAll('button')).toHaveLength(1);
   });
 });
