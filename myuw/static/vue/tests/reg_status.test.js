@@ -3,13 +3,21 @@ import {mount} from '@vue/test-utils';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
+import UwCard from '../components/_templates/card.vue';
 import RegStatus from '../components/home/registration/status.vue';
+import EstRegDate from '../components/home/registration/est-reg-date.vue';
+import Holds from '../components/home/registration/holds.vue';
+import Myplan from '../components/home/registration/myplan.vue';
+import MyplanCourses from '../components/home/registration/myplan-courses.vue';
+import Resources from '../components/home/registration/resources.vue';
+import FinAids from '../components/_common/finaid.vue';
+
 import notices from '../vuex/store/notices';
 import oquarter from '../vuex/store/oquarter';
 import profile from '../vuex/store/profile';
 import myplan from '../vuex/store/myplan';
 
-import mockNotices from './mock_data/notice/javerage.json';
+import mockNotices from './mock_data/notice/jinter.json';
 import myPlanAutumn from './mock_data/myplan/jinter-20130510.json';
 import myPlanSpring from './mock_data/myplan/jinter-20130210.json';
 import myPlanSummer from './mock_data/myplan/summer.json';
@@ -121,6 +129,7 @@ describe('Registration Status Card', () => {
     expect(myPlanCourses.has_sections).toBe(true);
     expect(myPlanCourses.has_unready_courses).toBe(true);
     expect(myPlanCourses.unready_count).toBe(1);
+    expect(wrapper.findComponent(FinAids).exists()).toBe(true);
   });
 
   it('Test normal case3, Jinter 2013 Autumn', async () => {
@@ -143,8 +152,10 @@ describe('Registration Status Card', () => {
     expect(wrapper.vm.quarter).toEqual('Autumn');
     expect(wrapper.vm.shouldDisplayAtAll).toBe(true);
     expect(wrapper.vm.hasRegistration).toBe(false);
-    expect(wrapper.vm.hasDataToDisplay).toBe(2);
+    expect(wrapper.vm.hasDataToDisplay).toBeTruthy();
     expect(wrapper.vm.finAidNotices.length).toBe(0);
+    expect(wrapper.vm.pendingMajors.length).toBe(1);
+    expect(wrapper.vm.pendingMinors.length).toBe(1);
     expect(wrapper.vm.regHoldsNotices.length).toBe(2);
     expect(wrapper.vm.estRegDateNotices.length).toBe(1);
     const myPlanCourses = wrapper.vm.myPlanData.terms[0];
@@ -152,5 +163,11 @@ describe('Registration Status Card', () => {
     expect(myPlanCourses.has_ready_courses).toBe(false);
     expect(myPlanCourses.has_unready_courses).toBe(true);
     expect(myPlanCourses.unready_count).toBe(5);
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
+    expect(wrapper.findComponent(EstRegDate).exists()).toBe(true);
+    expect(wrapper.findComponent(Holds).exists()).toBe(true);
+    expect(wrapper.findComponent(Myplan).exists()).toBe(true);
+    expect(wrapper.findComponent(MyplanCourses).exists()).toBe(true);
+    expect(wrapper.findComponent(Resources).exists()).toBe(true);
   });
 });
