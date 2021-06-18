@@ -6,13 +6,16 @@ import { BCollapse } from 'bootstrap-vue'
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
+import covid19 from '../vuex/store/covid19';
 import NoticeCard from '../components/home/notices';
+import Covid19 from '../components/home/covid19';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
 import jbotNotices from './mock_data/notice/jbothell.json';
 
 const localVue = createLocalVue(Vuex);
+localVue.component('covid-vaccine', Covid19);
 
 jest.mock('axios');
 
@@ -23,7 +26,15 @@ describe('Notice Card', () => {
     store = new Vuex.Store({
       modules: {
         notices,
+        covid19,
       },
+      state: {
+        user: {
+          affiliations: {
+            student: true,
+          }
+        }
+      }
     });
   });
 
@@ -145,5 +156,35 @@ describe('Notice Card', () => {
       wrapper.vm.onShowNotice(notice);
     });
     expect(axios.put).toHaveBeenCalledTimes(9);
+  });
+
+  it('Check covid vaccine display', async () => {
+    axios.get.mockImplementation((url) => {
+      if (url.includes('/api/v1/notices/')) {
+        return Promise.resolve({data: jnewNotices, status: 200});
+      } else if (url.includes('/api/v1/covid19/')) {
+        return Promise.reject({response: {status: 404}});
+      }
+    });
+    const wrapper = mount(NoticeCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(
+      wrapper.findComponent(Covid19).vm.showCard
+    ).toBe(true);
+  });
+
+  it('Check covid vaccine hide', async () => {
+    axios.get.mockImplementation((url) => {
+      if (url.includes('/api/v1/notices/')) {
+        return Promise.resolve({data: jnewNotices, status: 200});
+      } else if (url.includes('/api/v1/covid19/')) {
+        return Promise.reject({response: {status: 200}});
+      }
+    });
+    const wrapper = mount(NoticeCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(
+      wrapper.findComponent(Covid19).vm.showCard
+    ).toBe(false);
   });
 });
