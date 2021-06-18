@@ -93,6 +93,10 @@ describe('Registration Status Card', () => {
     expect(myPlanCourses.has_ready_courses).toBe(true);
     expect(myPlanCourses.has_sections).toBe(true);
     expect(myPlanCourses.has_unready_courses).toBe(false);
+    expect(wrapper.findComponent(Holds).exists()).toBe(true);
+    expect(wrapper.findComponent(Myplan).exists()).toBe(true);
+    expect(wrapper.findComponent(MyplanCourses).exists()).toBe(true);
+    expect(wrapper.findComponent(Resources).exists()).toBe(true);
   });
 
   it('Test normal case2, Jinter 2013 summer', async () => {
@@ -129,6 +133,9 @@ describe('Registration Status Card', () => {
     expect(myPlanCourses.has_sections).toBe(true);
     expect(myPlanCourses.has_unready_courses).toBe(true);
     expect(myPlanCourses.unready_count).toBe(1);
+    expect(wrapper.findComponent(Myplan).exists()).toBe(true);
+    expect(wrapper.findComponent(MyplanCourses).exists()).toBe(true);
+    expect(wrapper.findComponent(Resources).exists()).toBe(true);
     expect(wrapper.findComponent(FinAids).exists()).toBe(true);
   });
 
