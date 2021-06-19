@@ -67,7 +67,13 @@ describe('Tuition store', () => {
     expect(wrapper.vm.tuition.pce_accbalance).toBe(0);
     expect(wrapper.vm.tuition.tuition_accbalance).toBe(1);
     expect(wrapper.vm.tuition.tuition_due).toBe("2014-08-20");
+    expect(wrapper.findComponent(TuitionFees).exists()).toBe(true);
+    expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
+    expect(wrapper.findComponent(FinAid).exists()).toBe(true);
+    expect(wrapper.findComponent(TuitionRes).exists()).toBe(true);
+    expect(wrapper.findAllComponents(CardStatus).length).toBe(2);
   });
+
   it('Evaluate the computed properties of javerage', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
