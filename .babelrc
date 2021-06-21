@@ -1,12 +1,17 @@
 {
-    "presets": [
-        [
-            "@babel/preset-env",
-            {
-                "useBuiltIns": "usage",
-                "corejs": 3,
-                "targets": "defaults"
-            }
-        ]
+  "env": {
+    "test": {
+      "plugins": [ "istanbul" ]
+    }
+  },
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3,
+        "targets": "defaults"
+      }
     ]
+  ]
 }

@@ -1,0 +1,19 @@
+FROM cypress/browsers:node14.16.0-chrome90-ff88
+
+WORKDIR /
+RUN mkdir e2e
+
+ADD --chown=node:node ./package.json /e2e/package.json
+
+ENV NODE_ENV=development
+WORKDIR /e2e
+RUN npm install .
+
+ADD --chown=node:node ./webpack.cypress.config.js /e2e/webpack.cypress.config.js
+ADD --chown=node:node ./.babelrc /e2e/.babelrc
+ADD --chown=node:node ./cypress /e2e/cypress
+ADD --chown=node:node ./cypress.json /e2e/cypress.json
+
+ADD --chown=node:node ./myuw /e2e/myuw
+
+ENTRYPOINT [ "/e2e/node_modules/.bin/cypress", "run-ct" ]
