@@ -2,5 +2,5 @@
   "componentFolder": "myuw/static/vue",
   "fixturesFolder": false,
   "testFiles": "**/*.spec.js",
-  "video": true
+  "video": false
 }
