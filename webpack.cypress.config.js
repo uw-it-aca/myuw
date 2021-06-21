@@ -60,7 +60,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          plugins: ["istanbul"],
+        },
       },
       {
         test: /\.css$/,
@@ -110,5 +113,10 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
     },
-  }
+  },
+
+  stats: {
+    colors: true,
+  },
+  devtool: 'eval-source-map',
 }
