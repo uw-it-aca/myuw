@@ -18,7 +18,6 @@ jest.mock('axios');
 describe('hx_toolkit page content', () => {
   let store;
   beforeEach(() => {
-    let store;
     store = new Vuex.Store({
       modules: {
         hx_toolkit,
@@ -27,7 +26,7 @@ describe('hx_toolkit page content', () => {
         staticUrl: '/static/',
         user: {
           affiliations: {
-            hxtViewer: true,
+            hxt_viewer: true,
           }
         }
       }
