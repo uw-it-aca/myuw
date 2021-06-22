@@ -15,7 +15,8 @@ FROM node:16.3-stretch-slim AS node-bundler
 
 ADD ./package.json /app/
 WORKDIR /app/
-RUN npm install .
+ENV NODE_ENV=production
+RUN npm install
 
 ADD . /app/
 ARG VUE_DEVTOOLS
@@ -29,6 +30,11 @@ ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
+
+FROM node-bundler AS node-test-container
+
+ENV NODE_ENV=development
+RUN npm install
 
 FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.1 as app-test-container
 

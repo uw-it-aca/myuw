@@ -252,7 +252,12 @@ export default {
       statusCodeNotices: 'statusCode',
     }),
     showError() {
-      return this.statusCodeNotices != 404 && this.statusCodeTuition != 404;
+      return (
+        this.isErroredNotices &&
+        this.statusCodeNotices != 404 ||
+        this.isErroredTuition &&
+        this.statusCodeTuition != 404
+      );
     },
     finAidNotices: function () {
       const notices = [];

@@ -1,9 +1,5 @@
 <template>
-  <uw-card v-if="hxtViewer"
-           :loaded="isReady"
-           :errored="isErrored"
-           :errored-show="showError"
-  >
+  <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Husky Experience Toolkit
@@ -11,30 +7,29 @@
     </template>
     <template #card-body>
       <div class="mx-n3 mb-n3 myuw-huskyexp">
-        <div class="position-relative overflow-hidden"
-             style="max-height:300px;"
-        >
-          <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt">
+        <div class="position-relative overflow-hidden" style="max-height:300px;">
+          <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt" />
           <div class="position-absolute h-100 w-100 myuw-huskyexp-body">
             <a
               v-inner="articleTeaserTitle"
               :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
               :href="expLink"
-              class="d-block h-100 px-3 py-4"
+              class="d-block h-100 px-3 py-4 pr-5"
             >
-              <h3 class="h6 d-inline bg-white px-2 py-1
-            text-body myuw-font-encode-sans"
-              >
-                {{ articleTeaserTitle }}
+              <h3 class="myuw-teaser-title">
+                <span class="bg-white h5 myuw-font-encode-sans px-2 py-1">{{
+                  articleTeaserTitle
+                }}</span>
               </h3>
-              <div class="bg-white mt-3 px-2 py-1 text-body myuw-text-md">
+              <span class="myuw-highlight text-body myuw-text-md">
                 {{ articleTeaserBody }}
                 <font-awesome-icon
                   v-if="articleFaClass"
                   :icon="articleFaClass"
-                  aria-hidden="true" class="align-text-bottom"
+                  aria-hidden="true"
+                  class="align-text-bottom"
                 />
-              </div>
+              </span>
             </a>
           </div>
         </div>
@@ -44,10 +39,8 @@
 </template>
 
 <script>
-import {
-  faCaretRight,
-} from '@fortawesome/free-solid-svg-icons';
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
 export default {
@@ -85,13 +78,9 @@ export default {
         }
         return null;
       },
-      hxtViewer: (state) => state.user.affiliations.hxt_viewer,
+      hxtViewer: state => state.user.affiliations.hxt_viewer,
     }),
-    ...mapGetters('hx_toolkit', [
-      'isReadyTagged',
-      'isErroredTagged',
-      'statusCodeTagged',
-    ]),
+    ...mapGetters('hx_toolkit', ['isReadyTagged', 'isErroredTagged', 'statusCodeTagged']),
     isReady() {
       return this.isReadyTagged(this.urlExtra);
     },
@@ -127,7 +116,9 @@ export default {
         color: $link-color !important;
         text-decoration: underline !important;
       }
-      div { text-decoration: none !important; }
+      div {
+        text-decoration: none !important;
+      }
     }
   }
   img {
@@ -136,6 +127,24 @@ export default {
   .myuw-huskyexp-body {
     top: 0;
     padding: 2px;
+  }
+
+  .myuw-teaser-title {
+    color: black;
+    &:hover {
+      color: $link-color !important;
+      text-decoration: underline;
+    }
+  }
+
+  .myuw-highlight {
+    position: relative;
+    left: 8px;
+    padding: 3px 0;
+    background: #ffffff;
+    box-shadow: 8px 0 0 #ffffff, -8px 0 0 #ffffff;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
 }
 </style>
