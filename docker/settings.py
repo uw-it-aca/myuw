@@ -143,6 +143,27 @@ AWS_SQS = {
     }
 }
 
+if os.getenv('ATTEST_ENV') in RESTCLIENTS_DEFAULT_ENVS:
+    RESTCLIENTS_ATTEST_DAO_CLASS = 'Live'
+    RESTCLIENTS_ATTEST_CONNECT_TIMEOUT = 2
+    RESTCLIENTS_ATTEST_TIMEOUT = os.getenv("ATTEST_TIMEOUT", 15)
+    RESTCLIENTS_ATTEST_POOL_SIZE = os.getenv("ATTEST_POOL_SIZE", 5)
+    RESTCLIENTS_ATTEST_AUTH_SECRET = os.getenv('ATTEST_AUTH_SECRET')
+    if os.getenv('ATTEST_ENV') == 'PROD':
+        RESTCLIENTS_ATTEST_HOST = 'https://api.sps.sis.uw.edu:443'
+    else:
+        RESTCLIENTS_ATTEST_HOST = 'https://api.sps-dev.sis.uw.edu:443'
+
+if os.getenv('ATTEST_AUTH_ENV') in RESTCLIENTS_DEFAULT_ENVS:
+    RESTCLIENTS_ATTEST_AUTH_DAO_CLASS = 'Live'
+    RESTCLIENTS_ATTEST_AUTH_CONNECT_TIMEOUT = 3
+    RESTCLIENTS_ATTEST_AUTH_TIMEOUT = 10
+    RESTCLIENTS_ATTEST_AUTH_POOL_SIZE = 2
+    if os.getenv('ATTEST_AUTH_ENV') == 'PROD':
+        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://sps-prod.auth.us-west-2.amazoncognito.com:443'
+    else:
+        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://sps-dev.auth.us-west-2.amazoncognito.com:443'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
