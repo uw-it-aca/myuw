@@ -1,0 +1,156 @@
+{
+  "link_data": [
+    {
+      "links": [
+        {
+          "title": "Online Learning Tips and Resources",
+          "url": "https://webster.uaa.washington.edu/asp/website/online-learning/",
+          "new_tab": false
+        }
+      ],
+      "subcategory": "Remote Learning",
+      "subcat_slug": "remotelearning"
+    },
+    {
+      "links": [
+        {
+          "title": "Course Catalog",
+          "url": "http://www.washington.edu/students/crscat/",
+          "new_tab": false
+        },
+        { "title": "Degree Audit (DARS)", "url": "https://myplan.uw.edu/dars", "new_tab": true },
+        {
+          "title": "MyPlan",
+          "url": "https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/",
+          "new_tab": true
+        },
+        { "title": "Notify.UW", "url": "https://notify.uw.edu/", "new_tab": true },
+        { "title": "Prereq Map", "url": "https://prereqmap.uw.edu/", "new_tab": true },
+        {
+          "title": "Professional & Continuing Education Time Schedule",
+          "url": "https://www.washington.edu/students/timeschd/95index.html",
+          "new_tab": false
+        },
+        {
+          "title": "Register with SLN",
+          "url": "https://sdb.admin.uw.edu/students/uwnetid/register.asp",
+          "new_tab": true
+        },
+        {
+          "title": "Schedule Finder",
+          "url": "https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp",
+          "new_tab": true
+        },
+        {
+          "title": "Self-Service Enrollment Verification",
+          "url": "https://registrar.washington.edu/enrollment-and-degree-verification/",
+          "new_tab": false
+        },
+        {
+          "title": "UW Seattle Time Schedule",
+          "url": "https://www.washington.edu/students/timeschd/",
+          "new_tab": false
+        }
+      ],
+      "subcategory": "Registration",
+      "subcat_slug": "registration"
+    },
+    {
+      "links": [
+        {
+          "title": "Career & Internship Center",
+          "url": "http://careers.uw.edu/",
+          "new_tab": false
+        },
+        {
+          "title": "Center for Learning and Undergraduate Enrichment (CLUE)",
+          "url": "http://depts.washington.edu/aspuw/clue/home/",
+          "new_tab": false
+        },
+        {
+          "title": "International Student Services (ISS)",
+          "url": "https://iss.washington.edu/",
+          "new_tab": false
+        },
+        {
+          "title": "Odegaard Writing & Research Center",
+          "url": "http://depts.washington.edu/owrc",
+          "new_tab": false
+        },
+        { "title": "Study Abroad", "url": "http://studyabroad.washington.edu/", "new_tab": false },
+        {
+          "title": "Undergraduate Academic Advising (Pre-major)",
+          "url": "http://www.washington.edu/uaa/advising/",
+          "new_tab": false
+        }
+      ],
+      "subcategory": "Tutoring & Advising",
+      "subcat_slug": "tutoringadvising"
+    },
+    {
+      "links": [
+        {
+          "title": "GPA Calculator",
+          "url": "https://www.washington.edu/uaa/advising/grades-credits/gpa-calculator/",
+          "new_tab": false
+        },
+        {
+          "title": "Grade Report",
+          "url": "https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx",
+          "new_tab": true
+        },
+        {
+          "title": "Order Official Transcripts",
+          "url": "https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php",
+          "new_tab": true
+        },
+        {
+          "title": "Unofficial Transcript",
+          "url": "https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp",
+          "new_tab": true
+        }
+      ],
+      "subcategory": "Grades & Transcripts",
+      "subcat_slug": "gradestranscripts"
+    },
+    {
+      "links": [
+        {
+          "title": "Application for Graduation",
+          "url": "https://registrar.washington.edu/enrollment-and-records/graduation-commencement-and-diplomas/",
+          "new_tab": false
+        }
+      ],
+      "subcategory": "Graduation",
+      "subcat_slug": "graduation"
+    },
+    {
+      "links": [
+        {
+          "title": "LinkedIn Learning",
+          "url": "http://www.linkedinlearning.uw.edu/",
+          "new_tab": true
+        },
+        { "title": "Panopto", "url": "https://uw.hosted.panopto.com/", "new_tab": true },
+        {
+          "title": "Scout: Discover the UW",
+          "url": "https://scout.uw.edu/seattle",
+          "new_tab": false
+        },
+        {
+          "title": "Software & hardware for the UW",
+          "url": "https://itconnect.uw.edu/wares/",
+          "new_tab": true
+        },
+        {
+          "title": "Tableau Data Analysis Software",
+          "url": "https://itconnect.uw.edu/wares/uware/tableau-software/",
+          "new_tab": false
+        }
+      ],
+      "subcategory": "Tools & Software",
+      "subcat_slug": "toolssoftware"
+    }
+  ],
+  "category_name": "PageAcademics"
+}
