@@ -114,7 +114,7 @@ environmentVariables:
 
   - name: BOOKSTORE_ENV
     value: PROD
-  - name: BOOKSTORE_POOL_SIZE
+  - name: BOOK_POOL_SIZE
     value: "30"
   - name: BOOK_TIMEOUT
     value: "15"
