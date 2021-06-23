@@ -41,4 +41,10 @@ Cypress.Commands.add('createLocalVue', (vuex) => {
   localVue.use(vuex);
 
   return localVue;
-})
+});
+
+Cypress.Commands.add('componentWaitUntil', (condition) => {
+  cy.wrap({componentWaitUntil: () => condition(Cypress?.vueWrapper?.vm ?? {})}, {log: false})
+    .invoke('componentWaitUntil')
+    .should('eq', true);
+});

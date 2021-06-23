@@ -87,3 +87,5 @@ cypress/videos
 cypress/screenshots
 coverage
 .nyc_output
+cypress/snapshots/diff
+cypress/snapshots/actual
