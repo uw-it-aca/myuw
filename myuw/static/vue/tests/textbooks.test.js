@@ -58,6 +58,7 @@ describe('Textbook cards', () => {
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.findComponent(UwPanel).exists()).toBe(true);
     expect(wrapper.findAllComponents(Section).length).toBe(5);
+    expect(wrapper.findAllComponents(Book).length).toBe(3);
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
     expect(wrapper.findComponent(Covid).exists()).toBe(true);
     expect(orderUrl).toBe("http://www.ubookstore.com/adoption-search");
