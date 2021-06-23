@@ -28,7 +28,7 @@ describe('Resources Page Content', () => {
     spyScrollTo.mockClear();
   });
 
-  it('Show cards', async () => {
+  it('Verify all cards', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/resources/': mockRes,
@@ -41,7 +41,13 @@ describe('Resources Page Content', () => {
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = mount(Resources, {store, localVue});
+    axios.post.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/resources/academicsadvisingtutoring/pin': mockRes,
+      };
+      return Promise.resolve({data: urlData[url]});
+    });
+    let wrapper = mount(Resources, {store, localVue});
     await new Promise(setImmediate);
 
     expect(wrapper.findComponent(Resources).exists()).toBe(true);
@@ -49,11 +55,29 @@ describe('Resources Page Content', () => {
     expect(wrapper.findAllComponents(ResourceCard).length).toBe(9);
     expect(wrapper.findAllComponents(UwCard).length).toBe(29);
     expect(wrapper.findAll('button').length).toBe(30);
-    console.log(wrapper.findAll('button').at(29));
     await wrapper.findAll('button').at(29).trigger('click');
     expect(spyScrollTo).toHaveBeenCalledWith({
       top: 0,
       behavior: 'smooth',
     });
+
+    // Test Pin
+    const resUnpinned = wrapper.vm.resources[0];
+    const resPinned = wrapper.vm.resources[0];
+    wrapper = mount(ResourceCard,
+      {store, localVue, propsData: {'resource': resUnpinned}});
+    await new Promise(setImmediate);
+    expect(wrapper.findAllComponents(UwCard).length).toBe(5);
+    expect(wrapper.findAll('button').length).toBe(5);
+    expect(wrapper.findAll('button').at(0).text()).toBe("Pin to Home");
+    await wrapper.findAll('button').at(0).trigger('click');
+    expect(wrapper.findAll('button').at(0).text()).toBe("Unpin");
+
+    wrapper = mount(ResourceCard,
+      {store, localVue, propsData: {'resource': resPinned}});
+    await new Promise(setImmediate);
+    expect(wrapper.findAll('button').at(0).text()).toBe("Unpin");
+    await wrapper.findAll('button').at(0).trigger('click');
+    expect(wrapper.findAll('button').at(0).text()).toBe("Pin to Home");
   });
 });

@@ -50,7 +50,7 @@
             "Grades & Transcripts": {
                 "subcat_name": "Grades & Transcripts",
                 "subcat_id": "academicsgradestranscripts",
-                "is_pinned": false,
+                "is_pinned": true,
                 "order": null,
                 "links": [
                     {
