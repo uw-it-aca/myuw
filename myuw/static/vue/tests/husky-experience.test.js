@@ -33,19 +33,6 @@ describe('hx_toolkit page content', () => {
     });
   });
 
-  it('Check status changes on fetch - success', async () => {
-    axios.get.mockResolvedValue({data: mockList, status: 200});
-    const getters = {
-      isReadyTagged: () => false,
-      isFetchingTagged: () => false,
-    };
-    return expectAction(hx_toolkit.actions.fetch, null, hx_toolkit.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setValue', payload: mockList},
-      {type: 'setStatus', payload: statusOptions[0]},
-    ]);
-  });
-
   it('Check render', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
@@ -55,18 +42,9 @@ describe('hx_toolkit page content', () => {
     });
     const wrapper = mount(HuskyExp, {store, localVue});
     await new Promise(setImmediate);
+    expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.hxtViewer).toBe(true);
+    expect(wrapper.vm.staticUrl).toBe('/static/');
     expect(wrapper.findAllComponents(UwCard).length).toBe(4);
-  });
-
-  it('Check status changes on fetch - failure', () => {
-    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
-    const getters = {
-      isReadyTagged: () => false,
-      isFetchingTagged: () => false,
-    };
-    return expectAction(hx_toolkit.actions.fetch, null, hx_toolkit.state, getters, [
-      {type: 'setStatus', payload: statusOptions[1]},
-      {type: 'setStatus', payload: statusOptions[2]},
-    ]);
   });
 });
