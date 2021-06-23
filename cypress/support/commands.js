@@ -14,6 +14,7 @@ import Tracklink from '../../myuw/static/vue/plugins/tracklink';
 
 Cypress.Commands.add('createLocalVue', (vuex) => {
   let localVue = createLocalVue();
+  localVue.use(vuex);
 
   localVue.component('font-awesome-icon', FontAwesomeIcon);
   localVue.use(BootstrapVue);
@@ -38,7 +39,6 @@ Cypress.Commands.add('createLocalVue', (vuex) => {
   localVue.use(Tracklink);
   // localVue.use(TrackCollapse);
   localVue.mixin(utils);
-  localVue.use(vuex);
 
   return localVue;
 });
@@ -47,4 +47,9 @@ Cypress.Commands.add('componentWaitUntil', (condition) => {
   cy.wrap({componentWaitUntil: () => condition(Cypress?.vueWrapper?.vm ?? {})}, {log: false})
     .invoke('componentWaitUntil')
     .should('eq', true);
+});
+
+Cypress.Commands.add('invm', (value) => {
+  return cy.wrap({invm: () => value(Cypress?.vueWrapper?.vm ?? {})}, {log: false})
+    .invoke('invm');
 });
