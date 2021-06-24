@@ -168,7 +168,7 @@ jobs:
       - name: Run eslint
         run: ./node_modules/.bin/eslint myuw/static/vue --ext .vue
 
-  jest:
+  jest-cypress:
     runs-on: ubuntu-18.04
 
     container:
@@ -189,64 +189,18 @@ jobs:
         run: npm install .
       
       - name: Run jest
-        run: ./node_modules/.bin/jest --ci --coverage myuw/*
+        run: ./node_modules/.bin/jest --ci --coverage myuw/static/vue/tests/*
+
+      - name: Run cypress
+        run: ./node_modules/.bin/cypress run-ct
 
       - uses: actions/upload-artifact@v2
         with:
-          name: jest-coverage
+          name: jest-cypress-coverage
           path: coverage/*
 
-  # cypress:
-  #   runs-on: ubuntu-18.04
-
-  #   needs: build
-
-  #   container:
-  #     image: cypress/browsers:node12.18.3-chrome87-ff82
-
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v2
-
-  #     - uses: actions/cache@v2
-  #       with:
-  #         path: ~/.npm
-  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-node-
-
-  #     - name: Install node modules
-  #       run: |
-  #         cd e2e
-  #         npm install .
-
-  #     - name: Run cypress tests
-  #       env:
-  #         CYPRESS_BASE_URL: http://myuw:8000
-  #       run: |
-  #         cd e2e
-  #         ./node_modules/.bin/cypress run
-      
-  #     # TODO: Make cypress collect the coverage report and store
-  #     #       it as an artifact
-
-  #     - name: Collect failure screenshots
-  #       uses: actions/upload-artifact@v2
-  #       if: failure()
-  #       with:
-  #         name: cypress-screenshots
-  #         path: e2e/cypress/screenshots
-
-  #   services:
-  #     myuw:
-  #       image: gcr.io/uwit-mci-axdd/${{ needs.context.outputs.image_tag }}
-  #       env:
-  #         AUTH: SAML_MOCK
-  #       ports:
-  #         - 8000:8000
-
   collect-coverage:
-    needs: [build, jest]
+    needs: [build, jest-cypress]
     runs-on: ubuntu-18.04
 
     steps:
@@ -259,9 +213,7 @@ jobs:
       
       - uses: actions/download-artifact@v2
         with:
-          name: jest-coverage
-
-      # TODO: Download the cypress coverage artifact
+          name: jest-cypress-coverage
 
       - name: Set up Python
         uses: actions/setup-python@v2

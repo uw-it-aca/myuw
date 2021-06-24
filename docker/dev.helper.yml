@@ -46,38 +46,27 @@ services:
       - myuw/static/vue
       - --ext
       - .vue
-  jest:
-    build:
-      context: ../
-      target: node-test-container
+  jest-cypress:
+    image: cypress/browsers:node14.16.0-chrome90-ff88
     environment:
       NODE_ENV: producation
       ENV: localdev
     volumes:
       - ../myuw:/app/myuw
+      - ../cypress:/app/cypress
+      - ../.babelrc:/app/.babelrc
+      - ../package.json:/app/package.json
+      - ../webpack.config.js:/app/webpack.config.js
+      - ../webpack.cypress.config.js:/app/webpack.cypress.config.js
+      - ../cypress.json:/app/cypress.json
     stdin_open: true
     tty: true
     working_dir: /app/
     entrypoint:
-      - ./node_modules/.bin/jest
+      - bash
   e2e-myuw:
     build:
       context: ../
       target: app-container
     environment:
       AUTH: SAML_MOCK
-  cypress:
-    build:
-      context: ../e2e
-    environment:
-      CYPRESS_BASE_URL: http://e2e-myuw:8000
-    volumes:
-      - ../e2e/cypress.json:/e2e/cypress.json
-      - ../e2e/cypress/fixtures:/e2e/cypress/fixtures
-      - ../e2e/cypress/integration:/e2e/cypress/integration
-      - ../e2e/cypress/plugins:/e2e/cypress/plugins
-      - ../e2e/cypress/support:/e2e/cypress/support
-      - /tmp/myuw/cypress/screenshots:/e2e/cypress/screenshots
-      - /tmp/myuw/cypress/videos:/e2e/cypress/videos
-    depends_on:
-      - e2e-myuw
