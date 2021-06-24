@@ -203,7 +203,7 @@ jobs:
       - name: Merge cypress and jest lcov reports
         shell: bash
         run: |
-          sudo apt install lcov
+          apt install lcov -y
           lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
 
       - uses: actions/upload-artifact@v2
@@ -244,6 +244,7 @@ jobs:
         run: |
           gem install coveralls-lcov
           python -m pip install --upgrade pip coverage coveralls==2.2.0
+          coverage combine
           coveralls-lcov -v -n lcov.info > js-coverage.json
           coveralls --merge=js-coverage.json
 
