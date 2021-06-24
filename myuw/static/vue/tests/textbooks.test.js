@@ -43,8 +43,8 @@ describe('Textbook cards', () => {
   it('Verify content', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
-        '/api/v1/schedule/current': mockStudCourses,
-        '/api/v1/book/current': mockStudTextbook,
+        '/api/v1/book/2013,spring': mockStudTextbook,
+        '/api/v1/schedule/2013,spring': mockStudCourses,
         '/api/v1/instructor_schedule/2013,spring': mockInstSche,
       };
       return Promise.resolve({data: urlData[url]});
@@ -57,18 +57,18 @@ describe('Textbook cards', () => {
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.findComponent(UwPanel).exists()).toBe(true);
-    expect(wrapper.findAllComponents(Section).length).toBe(5);
-    expect(wrapper.findAllComponents(Book).length).toBe(3);
+    expect(wrapper.findAllComponents(Section).length).toBe(11);
+    expect(wrapper.findAllComponents(Book).length).toBe(6);
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
     expect(wrapper.findComponent(Covid).exists()).toBe(true);
-    expect(orderUrl).toBe("http://www.ubookstore.com/adoption-search");
+    expect(wrapper.vm.orderUrl).toBe("http://www.ubookstore.com/adoption-search");
     const bookData = wrapper.vm.bookData;
     expect(bookData.year).toBe(2013);
     expect(bookData.quarter).toBe('spring');
-    expect(bookData.collapseSections).toBe(false);
+    expect(bookData.collapseSections).toBe(true);
     expect(bookData.enrolledSections.length).toBe(5);
-    expect(bookData.sections.length).toBe(5);
-    expect(bookData.hasTeachingSections).toBe(false);
+    expect(bookData.sections.length).toBe(11);
+    expect(bookData.hasTeachingSections).toBe(true);
     
   });
 });
