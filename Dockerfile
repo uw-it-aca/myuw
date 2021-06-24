@@ -1,4 +1,4 @@
-FROM gcr.io/uwit-mci-axdd/django-container:1.3.1 as pre-container
+FROM gcr.io/uwit-mci-axdd/django-container:1.3.3 as pre-container
 # Has to be pre-container
 
 USER root
