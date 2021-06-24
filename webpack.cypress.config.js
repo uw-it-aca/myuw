@@ -62,7 +62,9 @@ module.exports = {
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
         options: {
-          plugins: ["istanbul"],
+          plugins: [
+            ["istanbul", {extension: ['.js', '.vue']}],
+          ],
         },
       },
       {
@@ -113,6 +115,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
     },
+    extensions: ['*', '.js', '.vue', '.json'],
   },
 
   stats: {

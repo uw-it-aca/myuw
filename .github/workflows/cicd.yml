@@ -191,13 +191,26 @@ jobs:
       - name: Run jest
         run: ./node_modules/.bin/jest --ci --coverage myuw/static/vue/tests/*
 
-      - name: Run cypress
-        run: ./node_modules/.bin/cypress run-ct
+      - name: Move jest lcov report
+        shell: bash
+        run: mv coverage/lcov.info lcov-jest.info
 
       - uses: actions/upload-artifact@v2
         with:
-          name: jest-cypress-coverage
-          path: coverage/*
+          name: jest-coverage
+          path: lcov-jest.info
+
+      - name: Run cypress
+        run: ./node_modules/.bin/cypress run-ct
+
+      - name: Move cypress lcov report
+        shell: bash
+        run: mv coverage/lcov.info lcov-cypress.info
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: cypress-coverage
+          path: lcov-cypress.info
 
   collect-coverage:
     needs: [build, jest-cypress]
@@ -213,7 +226,11 @@ jobs:
       
       - uses: actions/download-artifact@v2
         with:
-          name: jest-cypress-coverage
+          name: jest-coverage
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: cypress-coverage
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -230,9 +247,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
+          sudo apt install lcov
           gem install coveralls-lcov
           python -m pip install --upgrade pip coverage coveralls==2.2.0
-          coverage combine
+          lcov -a lcov-jest.info -a lcov-cypress.info -o lcov.info
           coveralls-lcov -v -n lcov.info > js-coverage.json
           coveralls --merge=js-coverage.json
 
