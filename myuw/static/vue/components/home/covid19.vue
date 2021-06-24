@@ -25,7 +25,7 @@
     </div>
     <b-collapse id="covid_notice" tabindex="0">
       <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body">
-      The University of Washington is requiring all students to be vaccinated against COVID-19, with certain exemptions allowed. In order to avoid a hold on your registration, please <a href="https://uw.edu/studentcovidform">complete the UW Student COVID-19 Vaccination Form</a> as soon as possible. 
+      The University of Washington is requiring all students to be vaccinated against COVID-19, with certain exemptions allowed. Please <a href="https://uw.edu/studentcovidform">complete the UW Student COVID-19 Vaccination Form</a> as soon as possible. 
       </div>
     </b-collapse>
   </span>
