@@ -5,7 +5,7 @@
       justified
       small
       nav-class="bg-white rounded"
-      active-nav-item-class="bg-purple"
+      active-nav-item-class="myuw-calendar-tab"
       nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto"
     >
       <b-tab title="All" title-item-class="myuw-text-md">
@@ -15,7 +15,7 @@
         <template #title>
           <font-awesome-icon
             :icon="faCircle"
-            class="align-baseline text-dark-beige myuw-text-tiny"
+            class="align-baseline text-mid-beige myuw-text-tiny"
           />
           Breaks
         </template>
@@ -65,3 +65,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+  .myuw-calendar-tab {
+    background-color:#4d307f !important;
+  }
+</style>
