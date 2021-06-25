@@ -4,7 +4,7 @@
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">HR and Payroll</h2>
     </template>
     <template #card-body>
-      <div style="position: relative">
+      <div style="position: relative" class="mb-3">
         <h3 class="sr-only">Workday</h3>
         <div class="mb-2">
           <uw-link-button
@@ -48,7 +48,7 @@
         </ul>
       </div>
       <div v-else>
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans mt-2">Related</h3>
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">Related</h3>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1"><a href="https://hr.uw.edu/">UW Human Resources</a></li>
           <li class="mb-1">
