@@ -16,7 +16,7 @@
       <p class="myuw-text-md">
         <a href="https://www.pce.uw.edu">About PCE</a>
       </p>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+      <h3 class="mt-4 h6 text-dark-beige myuw-font-encode-sans">
         Available programs
       </h3>
       <ul class="list-unstyled mb-0 myuw-text-md">
