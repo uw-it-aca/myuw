@@ -24,7 +24,7 @@
         </div>
       </div>
       <div v-if="!studEmployee">
-        <h3 class="mt-4 h6 text-dark-beige myuw-font-encode-sans">Get Help</h3>
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">Get Help</h3>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1">
             <a v-if="faculty" href="https://ap.washington.edu/ahr/">Academic HR</a>
