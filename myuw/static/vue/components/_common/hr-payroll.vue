@@ -6,7 +6,7 @@
     <template #card-body>
       <div style="position: relative">
         <h3 class="sr-only">Workday</h3>
-        <p>
+        <div class="mb-2">
           <uw-link-button
             id="og_workday"
             v-out="'Workday'"
@@ -14,15 +14,14 @@
             href="https://wd5.myworkday.com/uw/login.htmld"
             :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
             >Sign in to Workday
-          </uw-link-button
-          >
-        </p>
-        <p class="myuw-text-md">
+          </uw-link-button>
+        </div>
+        <div class="myuw-text-xs mb-1">
           Workday is the University’s cloud-based HR/payroll operations system.
-        </p>
-        <p class="myuw-text-md">
+        </div>
+        <div class="myuw-text-xs mb-1">
           *Please note: The Medical Centers continue to use Kronos for time-tracking and payroll.
-        </p>
+        </div>
       </div>
       <div v-if="!studEmployee">
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">Get Help</h3>
@@ -49,7 +48,7 @@
         </ul>
       </div>
       <div v-else>
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">Related</h3>
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans mt-2">Related</h3>
         <ul class="list-unstyled myuw-text-md">
           <li class="mb-1"><a href="https://hr.uw.edu/">UW Human Resources</a></li>
           <li class="mb-1">
@@ -62,7 +61,7 @@
           </li>
           <li class="mb-1">
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
-            <div class="text-muted myuw-text-xs">
+            <div class="myuw-text-xs">
               Learn how to
               <a v-out="'ISC Enter Time'"
                  href="https://isc.uw.edu/your-time-absence/time-reporting/"
