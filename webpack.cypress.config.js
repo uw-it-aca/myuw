@@ -2,29 +2,16 @@
 const path = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const DjangoBridgePlugin = require('django-webpack-bridge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 if (!('VUE_DEVTOOLS' in process.env) || process.env.VUE_DEVTOOLS.length === 0) {
   process.env.VUE_DEVTOOLS = process.env.ENV === 'localdev';
 }
 
 module.exports = {
-  mode: (process.env.ENV === 'localdev' ? 'development' : 'production'),
   context: __dirname,
-  optimization: {
-    minimizer: [
-      new CssMinimizerPlugin(),
-      new TerserJSPlugin(),
-    ],
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
   entry: {
     home: [
       "./myuw/static/vue/home.js",
@@ -63,12 +50,6 @@ module.exports = {
       "./myuw/static/vue/calendar.js"
     ],
   },
-  output: {
-      path: path.resolve('../static/myuw/'),
-      filename: "[name]-[contenthash].js",
-      chunkFilename: '[id]-[contenthash].js',
-      publicPath: '/myuw/',
-  },
 
   module: {
     rules: [
@@ -79,7 +60,12 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          plugins: [
+            ["istanbul", {extension: ['.js', '.vue']}],
+          ],
+        },
       },
       {
         test: /\.css$/,
@@ -122,24 +108,18 @@ module.exports = {
       filename: '[name]-[contenthash].css',
       chunkFilename: '[id]-[contenthash].css',
     }),
-    new DjangoBridgePlugin(),
+    new HtmlWebpackPlugin(),
   ],
 
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
     },
-  }
-}
+    extensions: ['*', '.js', '.vue', '.json'],
+  },
 
-if (process.env.ENV == 'localdev') {
-  module.exports.devtool = 'source-map';
-}
-
-if (process.env.BUNDLE_ANALYZER === "True") {
-  module.exports.plugins.push(
-    new BundleAnalyzerPlugin({
-      analyzerHost: '0.0.0.0',
-    })
-  );
+  stats: {
+    colors: true,
+  },
+  devtool: 'eval-source-map',
 }

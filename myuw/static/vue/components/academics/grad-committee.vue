@@ -90,7 +90,6 @@ export default {
       if (member.reading_type) {
         memberString = memberString.concat(', ', member.reading_type);
       }
-      console.log(memberString);
       return memberString;
     },
     ...mapActions('grad', ['fetch']),

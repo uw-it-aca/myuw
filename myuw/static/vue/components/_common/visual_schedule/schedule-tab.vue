@@ -461,13 +461,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 @import "../../../../css/myuw/variables.scss";
 
 $heading-height: 45px;
 $cell-height: 35px;
 
 .time-column {
-  padding-top: $heading-height - ($cell-height / 2) ;
+  padding-top: $heading-height - math.div($cell-height, 2);
   height: 100%;
   min-width: 42px;
 
