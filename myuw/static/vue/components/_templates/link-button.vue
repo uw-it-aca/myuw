@@ -1,5 +1,5 @@
 <template>
-  <a class="btn btn-outline-beige text-dark myuw-text-md">
+  <a class="btn btn-beige text-dark myuw-text-md">
     <slot></slot>
   </a>
 </template>
