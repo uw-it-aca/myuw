@@ -1,31 +1,39 @@
 <template>
   <!-- Having myplan courses -->
   <div v-if="hasSections || hasUnreadyCourses" class="mb-4">
-    <div class="d-flex align-items-center mb-2">
-      <h3 class="h6 text-dark font-weight-bold flex-fill">
-        In MyPlan
-      </h3>
-      <div class="flex-fill text-right">
+
+    <uw-card-status>
+      <template #status-label>In MyPlan</template>
+      <template #status-value>
         <ul class="list-unstyled m-0">
           <li class="font-weight-bold">
             {{ readyCount }} {{ readyCount == 1 ? "course" : "courses" }} ready
           </li>
-          <li class="myuw-text-md">
-            <span v-if="hasUnreadyCourses">{{ unreadyCount }} not ready</span>
-            <b-button
-              v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
-              size="sm"
-              variant="link"
-              class="ml-1 p-0 border-0 bg-transparent align-baseline"
-            >
-              Plan Details
-              <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
-              <font-awesome-icon v-else :icon="faChevronUp" />
-            </b-button>
-          </li>
         </ul>
-      </div>
-    </div>
+      </template>
+      <template #status-content>
+        <div class="d-flex mb-2 myuw-text-md">
+          <div class="flex-fill w-50"></div>
+          <div class="flex-fill w-50 text-right">
+            <ul class="list-unstyled m-0">
+              <li class="myuw-text-md">
+                <span v-if="hasUnreadyCourses">{{ unreadyCount }} not ready</span>
+                <b-button
+                  v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
+                  size="sm"
+                  variant="link"
+                  class="ml-1 p-0 border-0 bg-transparent align-baseline"
+                >
+                  Plan Details
+                  <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
+                  <font-awesome-icon v-else :icon="faChevronUp" />
+                </b-button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </template>
+    </uw-card-status>
     <b-collapse
       :id="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
       v-model="collapseOpen"
@@ -39,29 +47,32 @@
       </div>
     </b-collapse>
   </div>
+
   <!-- no myplan courses -->
   <div v-else class="mb-4">
-    <div class="d-flex align-items-center mb-2">
-      <h3 class="h6 text-dark font-weight-bold flex-fill">
-        In MyPlan
-      </h3>
-      <div class="flex-fill text-right">
-        <div>
-          No courses in your plan
+    <uw-card-status>
+      <template #status-label>In MyPlan</template>
+      <template #status-value>
+        No courses in your plan
+      </template>
+      <template #status-content>
+        <div class="d-flex mb-2 myuw-text-md">
+          <div class="flex-fill w-50"></div>
+          <div class="flex-fill w-50 text-right">
+            <a
+              v-out="'MyPlan Course Search'"
+              class="myuw-text-md"
+              :href="myplanCourseSearchHref"
+            >Add courses</a>
+          </div>
         </div>
-        <div>
-          <a
-            v-out="'MyPlan Course Search'"
-            class="myuw-text-md"
-            :href="myplanCourseSearchHref"
-          >Add courses</a>
-        </div>
-      </div>
-    </div>
+      </template>
+    </uw-card-status>
   </div>
 </template>
 
 <script>
+import CardStatus from '../../_templates/card-status.vue';
 import {
   faChevronUp,
   faChevronDown,
@@ -70,6 +81,7 @@ import MyplanCoursesComponent from './myplan-courses.vue';
 
 export default {
   components: {
+    'uw-card-status': CardStatus,
     'uw-myplan-courses': MyplanCoursesComponent,
   },
   props: {
