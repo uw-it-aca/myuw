@@ -13,7 +13,7 @@
     <template #card-body>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li v-for="(section, i) in bookData.sections" :key="i"
-          class="d-flex mb-1">
+          class="d-flex mb-2">
           <div class="w-50">
             <font-awesome-icon
               :icon="faSquareFull"
