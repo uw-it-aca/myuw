@@ -20,21 +20,20 @@
               :class="`text-c${section.colorId}`"
               class="mr-1"
             />
-            <span class="h6 myuw-font-encode-sans">
+            <span>
               {{ section.courseId }}:
             </span>
           </div>
           <div class="w-50">
-            <span v-if="section.noCourseBooks" class="myuw-font-encode-sans">
+            <span v-if="section.noCourseBooks" class="text-muted">
               No books
             </span>
             <span v-else class="myuw-font-encode-sans">
-              {{ section.totalBooks }}
-              {{ section.totalBooks > 1 ? 'books' : 'book' }}
-              <span class="font-weight-normal font-italic">
+              {{ section.totalBooks }} {{ section.totalBooks > 1 ? 'books' : 'book' }}
+            </span>
+            <span class="font-italic">
                 ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
                 required)
-              </span>
             </span>
           </div>
         </li>
