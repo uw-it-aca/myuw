@@ -4,9 +4,9 @@
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">HR and Payroll</h2>
     </template>
     <template #card-body>
-      <div style="position: relative" class="mb-3">
+      <div style="position: relative" class="mb-4">
         <h3 class="sr-only">Workday</h3>
-        <div class="mb-2">
+        <div class="mb-3">
           <uw-link-button
             id="og_workday"
             v-out="'Workday'"
