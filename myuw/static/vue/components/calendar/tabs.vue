@@ -8,10 +8,10 @@
       active-nav-item-class="bg-purple"
       nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto"
     >
-      <b-tab title="All">
+      <b-tab title="All" title-item-class="myuw-text-md">
         <uw-calendar-cards :events="allEvents" />
       </b-tab>
-      <b-tab>
+      <b-tab title-item-class="myuw-text-md">
         <template #title>
           <font-awesome-icon
             :icon="faCircle"
