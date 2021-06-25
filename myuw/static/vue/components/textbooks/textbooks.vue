@@ -136,10 +136,7 @@ export default {
       );
     },
     isErrored() {
-      return (
-        this.isStudScheduleErrored(this.term) ||
-        this.isTextbookErrored(this.term)
-      );
+      return this.isTextbookErrored(this.term);
     },
     bookData() {
       if (this.isReady) {
