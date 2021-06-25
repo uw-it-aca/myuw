@@ -11,10 +11,10 @@ version: '3.4'
 
 services:
   python-tests:
-    build: ../
+    build: .
     user: root
     volumes:
-      - ../myuw:/app/myuw
+      - ./myuw:/app/myuw
       - /tmp/myuw:/coverage
     environment:
       ENV: localdev
@@ -31,13 +31,13 @@ services:
     image: memcached
   eslint:
     build:
-      context: ../
-      target: node-test-container
+      context: .
+      dockerfile: Dockerfile.cypress
     environment:
       NODE_ENV: producation
       ENV: localdev
     volumes:
-      - ../myuw:/app/myuw
+      - ./myuw:/app/myuw
     working_dir: /app/
     stdin_open: true
     tty: true
@@ -46,27 +46,34 @@ services:
       - myuw/static/vue
       - --ext
       - .vue
-  jest-cypress:
-    image: cypress/browsers:node14.16.0-chrome90-ff88
+  jest:
+    build:
+      context: .
+      dockerfile: Dockerfile.cypress
     environment:
       NODE_ENV: producation
       ENV: localdev
     volumes:
-      - ../myuw:/app/myuw
-      - ../cypress:/app/cypress
-      - ../.babelrc:/app/.babelrc
-      - ../package.json:/app/package.json
-      - ../webpack.config.js:/app/webpack.config.js
-      - ../webpack.cypress.config.js:/app/webpack.cypress.config.js
-      - ../cypress.json:/app/cypress.json
+      - ./myuw:/app/myuw
+    working_dir: /app/
     stdin_open: true
     tty: true
-    working_dir: /app/
     entrypoint:
-      - bash
-  e2e-myuw:
+      - ./node_modules/.bin/jest
+      - myuw/static/vue/tests/*
+  cypress:
     build:
-      context: ../
-      target: app-container
+      context: .
+      dockerfile: Dockerfile.cypress
     environment:
-      AUTH: SAML_MOCK
+      NODE_ENV: producation
+      ENV: localdev
+    volumes:
+      - ./myuw:/app/myuw
+      - ./cypress:/app/cypress
+    working_dir: /app/
+    stdin_open: true
+    tty: true
+    entrypoint:
+      - ./node_modules/.bin/cypress
+      - run-ct
