@@ -62,7 +62,7 @@
           </li>
           <li class="mb-1">
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
-            <div class="text-muted">
+            <div class="text-muted myuw-text-xs">
               Learn how to
               <a v-out="'ISC Enter Time'"
                  href="https://isc.uw.edu/your-time-absence/time-reporting/"
