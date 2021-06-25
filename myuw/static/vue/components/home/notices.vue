@@ -57,7 +57,7 @@
             @show="onShowNotice(notice)"
           >
             <div
-              class="p-3 mt-2 mb-2 bg-light text-dark notice-body"
+              class="p-3 mt-2 mb-2 bg-light text-black notice-body"
               v-html="notice.notice_body"
             />
           </b-collapse>
