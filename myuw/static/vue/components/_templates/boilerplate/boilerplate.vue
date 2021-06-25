@@ -289,7 +289,6 @@
       footer-class="border-0"
       no-close-on-backdrop
       no-close-on-esc
-      hide-header-close 
     >
       <img
         v-if="$mq === 'mobile' || $mq === 'tablet'"

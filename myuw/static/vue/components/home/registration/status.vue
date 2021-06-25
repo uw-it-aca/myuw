@@ -15,6 +15,7 @@
       </h2>
     </template>
     <template #card-body>
+
       <uw-est-reg-date :est-reg-data="estRegData" />
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
@@ -22,13 +23,13 @@
       />
 
       <div v-if="pendingMajors.length" class="mb-4">
-        <div class="d-flex align-items-center">
-          <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
+        <uw-card-status>
+          <template #status-label>
             {{ pendingMajors.length > 1 ? 'Majors' : 'Major' }}
             Beginning <br>
             {{ quarter }}
-          </h3>
-          <div class="flex-fill text-right">
+          </template>
+          <template #status-value>
             <span
               v-for="(major, i) in pendingMajors"
               :key="i"
@@ -36,18 +37,18 @@
             >
               {{ major.degree_abbr }}
             </span>
-          </div>
-        </div>
+          </template>
+        </uw-card-status>
       </div>
 
       <div v-if="pendingMinors.length" class="mb-4">
-        <div class="d-flex align-items-center">
-          <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
+        <uw-card-status>
+          <template #status-label>
             {{ pendingMinors.length > 1 ? 'Minors' : 'Minor' }}
             Beginning <br>
             {{ quarter }}
-          </h3>
-          <div class="flex-fill text-right">
+          </template>
+          <template #status-value>
             <span
               v-for="(minor, i) in pendingMinors"
               :key="i"
@@ -55,8 +56,8 @@
             >
               {{ minor.abbr }}
             </span>
-          </div>
-        </div>
+          </template>
+        </uw-card-status>
       </div>
 
       <uw-myplan
@@ -89,6 +90,7 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
+import CardStatus from '../../_templates/card-status.vue';
 import EstRegComponent from './est-reg-date.vue';
 import HoldsComponent from './holds.vue';
 import MyPlanComponent from './myplan.vue';
@@ -98,6 +100,7 @@ import FinAidComponent from '../../_common/finaid.vue';
 export default {
   components: {
     'uw-card': Card,
+    'uw-card-status': CardStatus,
     'uw-est-reg-date': EstRegComponent,
     'uw-fin-aid': FinAidComponent,
     'uw-holds': HoldsComponent,
