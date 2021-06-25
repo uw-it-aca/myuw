@@ -17,7 +17,7 @@
         <uw-search />
       </b-collapse>
 
-      <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
+      <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-sm">
         <b-container fluid="xl" class="px-3">
           <b-row>
             <b-col xs="2">
@@ -479,12 +479,12 @@ export default {
   a {
     &:hover,
     &:focus {
-      background: $gray-300;
+      background: $light-gray;
       text-decoration: none;
     }
 
     &.active {
-      background: $gray-300;
+      background: $light-gray;
       color: map.get($theme-colors, 'purple') !important;
       svg {
         color: map.get($theme-colors, 'purple') !important;
