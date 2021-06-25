@@ -34,6 +34,7 @@
       </template>
     </uw-card>
   </div>
+  <uw-card v-else />
 </template>
 
 <script>
