@@ -1,0 +1,17 @@
+FROM cypress/browsers:node14.16.0-chrome90-ff88
+
+RUN mkdir /app
+
+ADD package.json /app/package.json
+WORKDIR /app
+RUN npm install
+
+ADD .babelrc /app/.babelrc
+ADD .coveragerc /app/.coveragerc
+ADD .eslintrc.js /app/.eslintrc.js
+ADD .prettierrc /app/.prettierrc
+ADD cypress.json /app/cypress.json
+ADD webpack.config.js /app/webpack.config.js
+ADD webpack.cypress.config.js /app/webpack.cypress.config.js
+ADD cypress /app/cypress
+ADD myuw /app/muw

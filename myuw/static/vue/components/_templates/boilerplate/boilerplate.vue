@@ -244,16 +244,16 @@
 
     <footer v-if="!displayHybrid" class="w-100 mt-auto bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
       <b-container fluid="xl" class="px-3">
-        <ul class="list-inline m-0">
-          <li class="list-inline-item mr-0">
-            <b-link :href="mailToUrl + netid" class="text-white">
+        <ul class="list-inline mb-2">
+          <li class="list-inline-item">
+            <b-link :href="mailToUrl + netid" class="text-white mr-2">
               <font-awesome-icon :icon="faEnvelope" class="mr-1" />Contact
             </b-link>
           </li>
-          <li class="list-inline-item mr-0">
+          <li class="list-inline-item">
             <b-link
               href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
-              class="text-white"
+              class="text-white mr-2"
             >
               MyUW Help
             </b-link>
@@ -261,19 +261,19 @@
           <li class="list-inline-item mr-0 d-lg-none">
             <b-link href="/logout/" class="text-white"> Sign Out </b-link>
           </li>
-          <li class="list-inline-item mr-0">
-            <b-link href="https://www.washington.edu/online/terms/" class="text-white">
+          <li class="list-inline-item">
+            <b-link href="https://www.washington.edu/online/terms/" class="text-white mr-2">
               Terms
             </b-link>
           </li>
           <li class="list-inline-item">
-            <b-link href="https://www.washington.edu/online/privacy/" class="text-white">
+            <b-link href="https://www.washington.edu/online/privacy/" class="text-white mr-2">
               Privacy
             </b-link>
           </li>
         </ul>
 
-        <div class="text-white font-weight-light">
+        <div class="font-weight-light" style="color:#aaa">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
       </b-container>
@@ -289,7 +289,6 @@
       footer-class="border-0"
       no-close-on-backdrop
       no-close-on-esc
-      hide-header-close 
     >
       <img
         v-if="$mq === 'mobile' || $mq === 'tablet'"

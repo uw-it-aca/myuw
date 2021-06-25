@@ -83,5 +83,9 @@ package-lock.json
 *.pyc
 
 # Cypress
-e2e/cypress/videos
-e2e/cypress/screenshots
+cypress/videos
+cypress/screenshots
+coverage
+.nyc_output
+cypress/snapshots/diff
+cypress/snapshots/actual
