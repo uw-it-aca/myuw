@@ -148,8 +148,8 @@ export default {
       return {};
     },
     orderUrl() {
-      if (this.bookData.order_url) {
-        return this.bookData.order_url;
+      if (this.bookData.orderUrl) {
+        return this.bookData.orderUrl;
       }
       return 'http://www.ubookstore.com/adoption-search';
     },
