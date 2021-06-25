@@ -168,11 +168,11 @@ jobs:
       - name: Run eslint
         run: ./node_modules/.bin/eslint myuw/static/vue --ext .vue
 
-  jest:
+  jest-cypress:
     runs-on: ubuntu-18.04
 
     container:
-      image: node:14.6.0-stretch
+      image: cypress/browsers:node14.16.0-chrome90-ff88
 
     steps:
       - name: Checkout Repo
@@ -189,64 +189,30 @@ jobs:
         run: npm install .
       
       - name: Run jest
-        run: ./node_modules/.bin/jest --ci --coverage myuw/*
+        run: ./node_modules/.bin/jest --ci --coverage myuw/static/vue/tests/*
+
+      - name: Move jest lcov report
+        shell: bash
+        run: |
+          mv coverage/lcov.info lcov-jest.info
+          rm -rf coverage
+
+      - name: Run cypress
+        run: ./node_modules/.bin/cypress run-ct
+
+      - name: Merge cypress and jest lcov reports
+        shell: bash
+        run: |
+          apt install lcov -y
+          lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
 
       - uses: actions/upload-artifact@v2
         with:
-          name: jest-coverage
-          path: coverage/*
-
-  # cypress:
-  #   runs-on: ubuntu-18.04
-
-  #   needs: build
-
-  #   container:
-  #     image: cypress/browsers:node12.18.3-chrome87-ff82
-
-  #   steps:
-  #     - name: Checkout Repo
-  #       uses: actions/checkout@v2
-
-  #     - uses: actions/cache@v2
-  #       with:
-  #         path: ~/.npm
-  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-node-
-
-  #     - name: Install node modules
-  #       run: |
-  #         cd e2e
-  #         npm install .
-
-  #     - name: Run cypress tests
-  #       env:
-  #         CYPRESS_BASE_URL: http://myuw:8000
-  #       run: |
-  #         cd e2e
-  #         ./node_modules/.bin/cypress run
-      
-  #     # TODO: Make cypress collect the coverage report and store
-  #     #       it as an artifact
-
-  #     - name: Collect failure screenshots
-  #       uses: actions/upload-artifact@v2
-  #       if: failure()
-  #       with:
-  #         name: cypress-screenshots
-  #         path: e2e/cypress/screenshots
-
-  #   services:
-  #     myuw:
-  #       image: gcr.io/uwit-mci-axdd/${{ needs.context.outputs.image_tag }}
-  #       env:
-  #         AUTH: SAML_MOCK
-  #       ports:
-  #         - 8000:8000
+          name: jest-cypress-coverage
+          path: lcov.info
 
   collect-coverage:
-    needs: [build, jest]
+    needs: [build, jest-cypress]
     runs-on: ubuntu-18.04
 
     steps:
@@ -256,12 +222,10 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: python-coverage
-      
+
       - uses: actions/download-artifact@v2
         with:
-          name: jest-coverage
-
-      # TODO: Download the cypress coverage artifact
+          name: jest-cypress-coverage
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -287,7 +251,7 @@ jobs:
   deploy:
     if: github.event_name == 'push'
 
-    needs: [context, build, eslint, jest]
+    needs: [context, build, eslint, jest-cypress]
 
     outputs:
       context: ${{ steps.context.outputs.context }}
