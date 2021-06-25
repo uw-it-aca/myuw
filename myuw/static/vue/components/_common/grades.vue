@@ -55,7 +55,7 @@
         id="grade_card_collapse"
         v-model="isOpen"
       >
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+        <h3 class="sr-only">
           Resources
         </h3>
         <ul class="list-unstyled myuw-text-md">
@@ -71,7 +71,7 @@
               Degree Audit Reporting System (DARS)
             </a>
           </li>
-          <li class="mb-1">
+          <li>
             <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">
               Unofficial Transcript
             </a>
