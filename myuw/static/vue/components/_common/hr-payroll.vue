@@ -30,9 +30,9 @@
             <a v-if="faculty" href="https://ap.washington.edu/ahr/">Academic HR</a>
             <a v-else href="https://hr.uw.edu/">UW Human Resources</a>
           </li>
-          <li class="mb-1">
+          <li>
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
-            <div v-if="!truncateView" class="text-muted">
+            <div v-if="!truncateView" class="myuw-text-xs">
               Learn how to
               <a v-out="'ISC Time Off'"
                  href="https://isc.uw.edu/your-time-absence/time-off/"
@@ -59,7 +59,7 @@
             <a href="https://grad.uw.edu/graduate-student-funding/funding-information-for-departments/administering-assistantships/ta-ra-salaries/"
             >Teaching or research assistant salary schedules</a>
           </li>
-          <li class="mb-1">
+          <li>
             <a href="https://isc.uw.edu/">Integrated Service Center (ISC)</a>
             <div class="myuw-text-xs">
               Learn how to
