@@ -125,4 +125,15 @@ describe('Textbook cards', () => {
       "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=uwtacoma"
     );
   });
+
+  it('Verify 404 book data error', async () => {
+    axios.get.mockImplementation((url) => {
+      return Promise.reject({response: {status: 404}});
+    });
+    let wrapper = mount(Textbooks, {store, localVue,
+      propsData: {'term': '2013,spring'}});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isErrored).toBe(true);
+    expect(wrapper.vm.bookData).toEqual({});
+  });
 });
