@@ -37,10 +37,11 @@
           </li>
         </ul>
       </div>
-      <div class="text-right myuw-text-md">
-        <a v-out="'MyGrad'"
-          href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
-        >Go to MyGrad</a>
+      <div class="text-right">
+        <uw-link-button
+          href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/">
+          Go to MyGrad
+        </uw-link-button>
       </div>
     </template>
     <template #card-error>
@@ -56,10 +57,12 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import LinkButton from '../_templates/link-button.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-link-button': LinkButton
   },
   computed: {
     ...mapState({
@@ -90,7 +93,6 @@ export default {
       if (member.reading_type) {
         memberString = memberString.concat(', ', member.reading_type);
       }
-      console.log(memberString);
       return memberString;
     },
     ...mapActions('grad', ['fetch']),

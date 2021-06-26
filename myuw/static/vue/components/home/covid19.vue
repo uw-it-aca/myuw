@@ -1,7 +1,33 @@
 <template>
   <span v-if="showCard">
-    <font-awesome-icon :icon="faSyringe" />
-    You are currently registered as NOT vaccinated.
+    <div class="d-flex d-sm-inline-flex notice-container">
+      <div class="flex-grow-1 pr-1">
+        <span class="notice-title">
+          <button
+            v-b-toggle.covid_notice
+            v-no-track-collapse
+            class="btn btn-link p-0 border-0 align-top notice-link text-left myuw-text-md"
+          >
+            <span class="d-inline-block font-weight-bold text-danger mr-1 notice-critical"
+              >Critical:</span
+            ><span>Complete the Student COVID-19 Vaccination</span>
+          </button>
+        </span>
+      </div>
+      <div>
+        <b-badge
+          variant="warning"
+          class="font-weight-normal notice-status"
+        >
+          New
+        </b-badge>
+      </div>
+    </div>
+    <b-collapse id="covid_notice" tabindex="0">
+      <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body">
+      The University of Washington is requiring all students to be vaccinated against COVID-19, with certain exemptions allowed. Please <a href="https://uw.edu/studentcovidform">complete the UW Student COVID-19 Vaccination Form</a> as soon as possible. 
+      </div>
+    </b-collapse>
   </span>
 </template>
 

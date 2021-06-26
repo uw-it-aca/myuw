@@ -11,10 +11,10 @@ version: '3.4'
 
 services:
   python-tests:
-    build: ../
+    build: .
     user: root
     volumes:
-      - ../myuw:/app/myuw
+      - ./myuw:/app/myuw
       - /tmp/myuw:/coverage
     environment:
       ENV: localdev
@@ -31,13 +31,13 @@ services:
     image: memcached
   eslint:
     build:
-      context: ../
-      target: node-test-container
+      context: .
+      dockerfile: Dockerfile.cypress
     environment:
       NODE_ENV: producation
       ENV: localdev
     volumes:
-      - ../myuw:/app/myuw
+      - ./myuw:/app/myuw
     working_dir: /app/
     stdin_open: true
     tty: true
@@ -48,36 +48,32 @@ services:
       - .vue
   jest:
     build:
-      context: ../
-      target: node-test-container
+      context: .
+      dockerfile: Dockerfile.cypress
     environment:
       NODE_ENV: producation
       ENV: localdev
     volumes:
-      - ../myuw:/app/myuw
+      - ./myuw:/app/myuw
+    working_dir: /app/
     stdin_open: true
     tty: true
-    working_dir: /app/
     entrypoint:
       - ./node_modules/.bin/jest
-  e2e-myuw:
-    build:
-      context: ../
-      target: app-container
-    environment:
-      AUTH: SAML_MOCK
+      - myuw/static/vue/tests/*
   cypress:
     build:
-      context: ../e2e
+      context: .
+      dockerfile: Dockerfile.cypress
     environment:
-      CYPRESS_BASE_URL: http://e2e-myuw:8000
+      NODE_ENV: producation
+      ENV: localdev
     volumes:
-      - ../e2e/cypress.json:/e2e/cypress.json
-      - ../e2e/cypress/fixtures:/e2e/cypress/fixtures
-      - ../e2e/cypress/integration:/e2e/cypress/integration
-      - ../e2e/cypress/plugins:/e2e/cypress/plugins
-      - ../e2e/cypress/support:/e2e/cypress/support
-      - /tmp/myuw/cypress/screenshots:/e2e/cypress/screenshots
-      - /tmp/myuw/cypress/videos:/e2e/cypress/videos
-    depends_on:
-      - e2e-myuw
+      - ./myuw:/app/myuw
+      - ./cypress:/app/cypress
+    working_dir: /app/
+    stdin_open: true
+    tty: true
+    entrypoint:
+      - ./node_modules/.bin/cypress
+      - run-ct
