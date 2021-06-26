@@ -14,7 +14,7 @@
               <font-awesome-icon
                 v-if="event.myuw_categories.breaks"
                 :icon="faCircle"
-                class="align-baseline text-dark-beige myuw-text-tiny"
+                class="align-baseline text-mid-beige myuw-text-tiny"
               />
               <a v-out="event.label" :href="event.event_url">
                 {{ event.summary }}
@@ -24,7 +24,7 @@
         </template>
       </uw-card>
       <div v-else :key="i" class="mb-3 text-center myuw-text-md">
-        <font-awesome-icon :icon="faCircle" class="align-baseline text-dark-beige myuw-text-tiny" />
+        <font-awesome-icon :icon="faCircle" class="align-baseline text-mid-beige myuw-text-tiny" />
         <a v-out="eventTerm.events[0].label" :href="eventTerm.events[0].event_url">
           {{ eventTerm.events[0].summary }}
         </a>
