@@ -22,7 +22,7 @@
           >Columns Magazine</a>
         </li>
       </ul>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+      <h3 class="mt-4 h6 text-dark-beige myuw-font-encode-sans">
         University of Washington Alumni Association (UWAA)
       </h3>
       <p class="myuw-text-md">
