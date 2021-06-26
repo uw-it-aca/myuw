@@ -31,10 +31,10 @@ class TestCustomCachePolicy(TestCase):
 
         self.assertEquals(cache.get_cache_expiration_time(
             "myplan", "/api/plan/"), FIVE_SECONDS)
-        
+
         self.assertEquals(cache.get_cache_expiration_time(
             "attest_auth", "/oauth2/token"), 60 * 45)
-        
+
         self.assertEquals(cache.get_cache_expiration_time(
             "attest", "/attestations/v1/covid19/"), FIVE_SECONDS)
 
