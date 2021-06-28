@@ -46,12 +46,13 @@ class TestInstSectDetails(MyuwApiTest):
             kwargs={'section_label': section_id})
         self.assertEqual(resp.status_code, 400)
 
-        # test with a section DoesNotExist in DB
+        # test section DoesNotExist in DB
         section_id = '2013,spring,PHYS,121/AB'
         resp = self.get_response_by_reverse(
             "myuw_inst_section_display_pin_mini",
             kwargs={'section_label': section_id})
-        self.assertEqual(resp.status_code, 543)
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.content, b'{"done": false}')
 
     def test_close_mini_card_when_override(self):
         with self.settings(DEBUG=False,

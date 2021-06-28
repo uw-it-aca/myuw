@@ -357,6 +357,7 @@ class TestTerm(TestCase):
         self.assertEquals(context['today'].year, 2013)
         self.assertEquals(context['today'].month, 3)
         self.assertEquals(context['today'].day, 10)
+        self.assertEquals(context['future_term'], "2013,spring")
 
     def test_term_data_context_in_finals(self):
         request = get_request_with_date("2013-03-22")

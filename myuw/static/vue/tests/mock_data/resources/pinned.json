@@ -1,0 +1,104 @@
+[
+    {
+        "category_name": "Academics",
+        "category_id": "academics",
+        "subcategories": {
+            "Advising & Tutoring": {
+                "subcat_name": "Advising & Tutoring",
+                "subcat_id": "academicsadvisingtutoring",
+                "is_pinned": true,
+                "order": 0,
+                "links": [
+                    {
+                        "title": "Career & Internship Center",
+                        "url": "http://careers.uw.edu/"
+                    },
+                    {
+                        "title": "Career & Internship Center - Graduate Student Resources",
+                        "url": "https://careers.uw.edu/graduate-students/"
+                    },
+                    {
+                        "title": "Center for Learning and Undergraduate Enrichment (CLUE)",
+                        "url": "https://webster.uaa.washington.edu/asp/website/"
+                    },
+                    {
+                        "title": "International Student Services (ISS)",
+                        "url": "http://iss.washington.edu/"
+                    },
+                    {
+                        "title": "Odegaard Writing & Research Center",
+                        "url": "http://depts.washington.edu/owrc"
+                    },
+                    {
+                        "title": "Undergraduate Academic Advising (Pre-major)",
+                        "url": "http://www.washington.edu/uaa/advising/"
+                    },
+                    {
+                        "title": "Study Abroad",
+                        "url": "http://studyabroad.washington.edu/"
+                    },
+                    {
+                        "title": "The Graduate School Student Resources",
+                        "url": "https://grad.uw.edu/for-students-and-post-docs/"
+                    },
+                    {
+                        "title": "Graduate School Core Programs",
+                        "url": "https://grad.uw.edu/for-students-and-post-docs/core-programs/"
+                    }
+                ]
+            },
+            "Registration": {
+                "subcat_name": "Registration",
+                "subcat_id": "academicsregistration",
+                "is_pinned": true,
+                "order": 1,
+                "links": [
+                    {
+                        "title": "Academic Calendar",
+                        "url": "http://www.washington.edu/students/reg/calendar.html"
+                    },
+                    {
+                        "title": "Course Catalog",
+                        "url": "http://www.washington.edu/students/crscat/"
+                    },
+                    {
+                        "title": "Check Your Degree Progress (DARS)",
+                        "url": "https://myplan.uw.edu/dars"
+                    },
+                    {
+                        "title": "MyPlan",
+                        "url": "https://myplan.uw.edu/"
+                    },
+                    {
+                        "title": "Notify.UW",
+                        "url": "https://notify.uw.edu/"
+                    },
+                    {
+                        "title": "Prereq Map",
+                        "url": "https://prereqmap.uw.edu/"
+                    },
+                    {
+                        "title": "Registration",
+                        "url": "https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+                    },
+                    {
+                        "title": "Schedule Finder",
+                        "url": "https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp"
+                    },
+                    {
+                        "title": "UW Seattle Time Schedule",
+                        "url": "http://www.washington.edu/students/timeschd/"
+                    },
+                    {
+                        "title": "Professional & Continuing Education (PCE) Time Schedule",
+                        "url": "http://www.washington.edu/students/timeschd/95index.html"
+                    },
+                    {
+                        "title": "How to Register for PCE Courses",
+                        "url": "https://www.degreereg.uw.edu/user-guide"
+                    }
+                ]
+            }
+        }
+    }
+]

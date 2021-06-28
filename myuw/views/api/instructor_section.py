@@ -202,6 +202,7 @@ class OpenInstSectionDetails(OpenAPI):
                     'full_name': person.display_name,
                     'netid': person.uwnetid,
                     'regid': person.uwregid,
+                    'pronouns': person.pronouns,
                     'student_number': person.student_number,
                     'credits': registration.credits,
                     'is_auditor': registration.is_auditor,

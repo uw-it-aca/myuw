@@ -1,6 +1,7 @@
 from .base_settings import *
 import sys
 import os
+import logging
 
 ALLOWED_HOSTS += [
     'myuw.washington.edu',
@@ -17,7 +18,8 @@ INSTALLED_APPS += [
     'userservice',
     'supporttools',
     'blti',
-    'myuw.apps.MyUWConfig'
+    'myuw.apps.MyUWConfig',
+    'webpack_bridge',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
@@ -71,7 +73,7 @@ UW_TOKEN_LEEWAY = 2
 UW_OIDC_ENABLE_LOGGING = True
 
 # Thrive required settings
-MEDIA_ROOT = "/statics/hx_images"
+MEDIA_ROOT = "../statics/hx_images"
 MEDIA_URL = "/uploaded_images/"
 THRIVE_OUTPUT = "/hx_toolkit_output"
 
@@ -81,6 +83,7 @@ if os.getenv("ENV", "") == "localdev":
     MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
     MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
     MYUW_SKIP_ACCESS_CHECK = True
+    MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
 else:
     MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
     MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"
@@ -109,13 +112,9 @@ COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
 if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
     COMPRESS_ENABLED = False
 
-COMPRESS_ROOT = "/static"
+COMPRESS_ROOT = "../static"
 STATICFILES_FINDERS += (
     'compressor.finders.CompressorFinder',
-)
-
-COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
 )
 
 TEMPLATES[0]['DIRS'] = ['/app/myuw/templates']
@@ -125,8 +124,8 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'django.template.context_processors.static',
     'django.template.context_processors.tz',
     'supporttools.context_processors.supportools_globals',
-    'supporttools.context_processors.has_less_compiled',
-    'supporttools.context_processors.has_google_analytics',
+    #'supporttools.context_processors.has_less_compiled',
+    #'supporttools.context_processors.has_google_analytics',
     'myuw.context_processors.is_hybrid',
 ]
 
@@ -144,28 +143,43 @@ AWS_SQS = {
     }
 }
 
+if os.getenv('ATTEST_ENV') in RESTCLIENTS_DEFAULT_ENVS:
+    RESTCLIENTS_ATTEST_DAO_CLASS = 'Live'
+    RESTCLIENTS_ATTEST_CONNECT_TIMEOUT = 3
+    RESTCLIENTS_ATTEST_TIMEOUT = os.getenv("ATTEST_TIMEOUT", 7)
+    RESTCLIENTS_ATTEST_POOL_SIZE = os.getenv("ATTEST_POOL_SIZE", 30)
+    RESTCLIENTS_ATTEST_AUTH_SECRET = os.getenv('ATTEST_AUTH_SECRET')
+    if os.getenv('ATTEST_ENV') == 'PROD':
+        RESTCLIENTS_ATTEST_HOST = 'https://api.sps.sis.uw.edu:443'
+    else:
+        RESTCLIENTS_ATTEST_HOST = 'https://api.sps-dev.sis.uw.edu:443'
+
+if os.getenv('ATTEST_AUTH_ENV') in RESTCLIENTS_DEFAULT_ENVS:
+    RESTCLIENTS_ATTEST_AUTH_DAO_CLASS = 'Live'
+    RESTCLIENTS_ATTEST_AUTH_CONNECT_TIMEOUT = 3
+    RESTCLIENTS_ATTEST_AUTH_TIMEOUT = 10
+    RESTCLIENTS_ATTEST_AUTH_POOL_SIZE = 3
+    if os.getenv('ATTEST_AUTH_ENV') == 'PROD':
+        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://sps-prod.auth.us-west-2.amazoncognito.com:443'
+    else:
+        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://sps-dev.auth.us-west-2.amazoncognito.com:443'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'filters': {
         'stdout_stream': {
             '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno <= logging.WARNING
+            'callback': lambda record: record.levelno < logging.WARN
         },
         'stderr_stream': {
             '()': 'django.utils.log.CallbackFilter',
-            'callback': lambda record: record.levelno >= logging.ERROR
+            'callback': lambda record: record.levelno > logging.INFO
         }
     },
     'formatters': {
         'myuw': {
             'format': '%(name)s %(levelname)-4s %(asctime)s %(message)s',
-        },
-        'pref': {
-            'format': 'pref:%(name)s %(levelname)-4s %(asctime)s %(message)s',
-        },
-        'event': {
-            'format': 'event:%(name)s %(levelname)-4s %(asctime)s %(message)s',
         },
     },
     'handlers': {
@@ -181,72 +195,16 @@ LOGGING = {
             'filters': ['stderr_stream'],
             'formatter': 'myuw',
         },
-        'pref': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'pref',
-        },
-        'event': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'stream': sys.stdout,
-            'filters': ['stdout_stream'],
-            'formatter': 'event',
-        },
-        'null': {
-            'class': 'logging.NullHandler',
-        },
     },
     'loggers': {
-        'django.security.DisallowedHost': {
-            'handlers': ['null'],
-            'propagate': False,
-        },
-        'django.request': {
-            'handlers': ['stderr'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'myuw.views.api.banner_message': {
-            'handlers': ['pref'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.views.api.resources.pin': {
-            'handlers': ['pref'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.views.api.instructor_section_display': {
-            'handlers': ['pref'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'aws_message': {
-            'handlers': ['event'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.event': {
-            'handlers': ['event'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'myuw.management.commands.load_section_status_changes': {
-            'handlers': ['event'],
-            'level': 'INFO',
-            'propagate': False,
-        },
         '': {
             'handlers': ['stdout', 'stderr'],
-            'level': 'DEBUG' if os.getenv('ENV', '') == 'dev' else 'INFO'
+            'level': 'INFO' if os.getenv('ENV', 'dev') == 'prod' else 'DEBUG'
         }
     }
 }
 
-
+DEBUG = False
 if os.getenv("ENV", '') == "localdev":
     DEBUG = True
     MEMCACHED_SERVERS=['localhost:11211']
@@ -256,3 +214,7 @@ else:
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
 GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
+
+STATICFILES_DIRS = [
+    '../static/myuw/'
+]

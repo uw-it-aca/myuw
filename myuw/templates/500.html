@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="no-js">
     <head>
@@ -120,12 +119,16 @@
             else if ( $('html').hasClass("tablet") ) {
                 mobile = false
                 tablet = true
-                deskotp = false
+                desktop = false
             }
             else if ( $('html').hasClass("desktop") ){
                 mobile = false
                 tablet = false
                 desktop = true
+            }
+
+            window.onload = function() {
+              document.getElementById('year').innerHTML = new Date().getFullYear()
             }
         </script>
     </head>
@@ -200,7 +203,7 @@
                          <li><a href="http://www.washington.edu/online/terms/">Terms</a></li>
                          <li style="border:none;"><a href="http://www.washington.edu/online/privacy/">Privacy</a></li>
                     </ul>
-                    <div>&copy; 2017 University of Washington</div>
+                    <div>&copy; <span id="year"></span> University of Washington</div>
                 </div>
             </div>
 

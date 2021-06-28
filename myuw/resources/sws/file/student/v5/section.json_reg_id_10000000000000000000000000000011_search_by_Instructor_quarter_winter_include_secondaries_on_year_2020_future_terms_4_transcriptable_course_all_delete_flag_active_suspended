@@ -1,0 +1,68 @@
+{
+    "Current": {
+        "ChangedSinceDate": null,
+        "CourseNumber": "215",
+        "CurriculumAbbreviation": "ACCTG",
+        "DeleteFlag": null,
+        "FacilityCode": null,
+        "FutureTerms": 0,
+        "Href": "/student/v5/section.json?year=2020&quarter=winter&future_terms=0&curriculum_abbreviation=ACCTG&course_number=215&reg_id=10000000000000000000000000000011&search_by=Instructor&include_secondaries=on&delete_flag=&changed_since_date=&transcriptable_course=all&page_size=10&page_start=1&facility_code=&room_number=&sln=",
+        "IncludeSecondaries": true,
+        "PageSize": "10",
+        "PageStart": "1",
+        "Quarter": "winter",
+        "RegID": "10000000000000000000000000000011",
+        "RoomNumber": null,
+        "SLN": null,
+        "SearchBy": "Instructor",
+        "TranscriptableCourse": "all",
+        "Year": "2020"
+    },
+    "Next": null,
+    "PageSize": "10",
+    "PageStart": "1",
+    "Previous": null,
+    "Sections": [
+        {
+            "CourseNumber": "215",
+            "CurriculumAbbreviation": "ACCTG",
+            "Href": "/student/v5/course/2020,winter,ACCTG,215/B.json",
+            "Quarter": "winter",
+            "SectionID": "B",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "215",
+            "CurriculumAbbreviation": "ACCTG",
+            "Href": "/student/v5/course/2020,winter,ACCTG,215/BA.json",
+            "Quarter": "winter",
+            "SectionID": "BA",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "215",
+            "CurriculumAbbreviation": "ACCTG",
+            "Href": "/student/v5/course/2020,winter,ACCTG,215/BB.json",
+            "Quarter": "winter",
+            "SectionID": "BB",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "215",
+            "CurriculumAbbreviation": "ACCTG",
+            "Href": "/student/v5/course/2020,winter,ACCTG,215/BC.json",
+            "Quarter": "winter",
+            "SectionID": "BC",
+            "Year": 2020
+        },
+        {
+            "CourseNumber": "215",
+            "CurriculumAbbreviation": "ACCTG",
+            "Href": "/student/v5/course/2020,winter,ACCTG,215/BD.json",
+            "Quarter": "winter",
+            "SectionID": "BD",
+            "Year": 2020
+        }
+    ],
+    "TotalCount": 5
+}

@@ -2,7 +2,7 @@
 .git
 *Dockerfile*
 *docker-compose*
-node_modules
+node_modules/
 
 .Python
 build/
@@ -32,3 +32,6 @@ wheels/
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+
+# Cypress
+e2e/
