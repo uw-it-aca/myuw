@@ -20,7 +20,7 @@
         <h3 class="h6 myuw-font-encode-sans">
           <span class="notice-title">Update Student Directory</span>
         </h3>
-        <div class="mb-3 myuw-text-md">
+        <div class="myuw-text-md mb-3">
           <span class="non-notice-body-with-title">
             Critical information (e.g. financial aid information) goes to your
             addresses found in the Student Directory, so keep them up to date.
@@ -34,7 +34,7 @@
         <h3 class="h6 myuw-font-encode-sans">
           <span class="notice-title">Non-Resident Classification</span>
         </h3>
-        <div class="mb-2 myuw-text-md">
+        <div class="myuw-text-md mb-2">
           <span class="non-notice-body-with-title">
             You are currently classified as a "Non-Resident.”
             If you believe you qualify for

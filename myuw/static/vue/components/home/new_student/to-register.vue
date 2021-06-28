@@ -38,14 +38,14 @@
       <div
         v-for="notice in orient_after"
         :key="notice.id_hash"
-        class="d-flex mb-3"
+        class="d-flex mb-2"
       >
         <font-awesome-icon
           :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
+          <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -53,14 +53,14 @@
       <div
         v-for="notice in iss_before"
         :key="notice.id_hash"
-        class="d-flex mb-3"
+        class="d-flex mb-2"
       >
         <font-awesome-icon
           :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
+          <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -68,7 +68,7 @@
       <div
         v-for="notice in iss_after"
         :key="notice.id_hash"
-        class="d-flex mb-3"
+        class="d-flex mb-2"
       >
         <font-awesome-icon
           :icon="faCheckCircle"
@@ -80,14 +80,14 @@
       <div
         v-for="notice in measles_before"
         :key="notice.id_hash"
-        class="d-flex mb-3"
+        class="d-flex mb-2"
       >
         <font-awesome-icon
           :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
+          <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
@@ -95,7 +95,7 @@
       <div
         v-for="notice in measles_after"
         :key="notice.id_hash"
-        class="d-flex mb-3"
+        class="d-flex mb-2"
       >
         <font-awesome-icon
           :icon="faCheckCircle"
@@ -107,14 +107,14 @@
       <div
         v-for="notice in orient_before"
         :key="notice.id_hash"
-        class="d-flex mb-3"
+        class="d-flex mb-2"
       >
         <font-awesome-icon
           :icon="faCircle"
           class="mr-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
-          <div class="mb-3 myuw-font-encode-sans" v-html="notice.notice_title" />
+          <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>

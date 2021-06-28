@@ -12,7 +12,7 @@
       </h2>
     </template>
     <template #card-body>
-      <div class="myuw-thank-you-notices myuw-text-md">
+      <div class="myuw-thank-you-notices myuw-text-md mb-2">
         <div
           v-for="notice in notices"
           v-once
