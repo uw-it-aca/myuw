@@ -13,7 +13,7 @@
               </h2>
             </template>
             <template #card-body>
-              <div>
+              <div class="mb-2">
                 <div class="myuw-text-md mr-auto">
                   <div>
                     You have registered for {{ term.credits }} credits

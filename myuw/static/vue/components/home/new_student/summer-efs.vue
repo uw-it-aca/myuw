@@ -17,7 +17,7 @@
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Consider Early Fall Start
       </h2>
-      <div class="myuw-text-md">
+      <div class="myuw-text-md mb-2">
         Early Fall Start is a single 5-credit intensive course held
         over four weeks before autumn quarter begins. Benefit from a small
         class size, an early introduction to college life, and a lighter
