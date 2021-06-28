@@ -4,7 +4,7 @@
       <h2 class="h5">
         Related Help
       </h2>
-      <ul class="list-unstyled myuw-text-md mb-4">
+      <ul class="list-unstyled myuw-text-md">
         <li v-if="isBothell" class="mb-1">
           <a v-out="'UWB Mailing Services'"
             href="https://www.uwb.edu/facility/mail-services">Mailing Services</a>

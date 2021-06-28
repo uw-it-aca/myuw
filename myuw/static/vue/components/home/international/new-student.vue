@@ -12,7 +12,7 @@
       <div
         v-for="notice in notices"
         :key="notice.id_hash"
-        class="myuw-text-md"
+        class="myuw-text-md mb-2"
         v-html="notice.notice_body"
       />
     </template>

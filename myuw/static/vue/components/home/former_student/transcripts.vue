@@ -12,7 +12,7 @@
       <p class="myuw-text-md">
         For those who have graduated in 1983 or later:
       </p>
-      <ul class="list-unstyled myuw-text-md mb-4">
+      <ul class="list-unstyled myuw-text-md mb-3">
         <li class="mb-1">
           <a
             v-out="'Official Transcript'"
@@ -32,7 +32,7 @@
         The Registrar provides administrative
         services to students, faculty, and staff.
       </p>
-      <ul class="list-unstyled myuw-text-md mb-0">
+      <ul class="list-unstyled myuw-text-md mb-2">
         <li class="mb-1">
           <a v-out="'UW Registrar'" href="https://registrar.washington.edu"
            >Contact the UW Registrar</a>
@@ -41,7 +41,7 @@
           <a v-out="'UW Bothell Registrar'" href="https://www.uwb.edu/registration"
            >Contact th UW Bothell Registrar</a>
         </li>
-        <li class="mb-1">
+        <li>
           <a v-out="'UW Tacoma Registrar'"
             href="https://www.tacoma.uw.edu/office-registrar/office-registrar">Contact the UW Tacoma Registrar</a>
         </li>

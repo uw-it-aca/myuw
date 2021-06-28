@@ -25,7 +25,7 @@
       </div>
       <div v-if="!studEmployee">
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">Get Help</h3>
-        <ul class="list-unstyled myuw-text-md">
+        <ul class="list-unstyled myuw-text-md mb-2">
           <li class="mb-1">
             <a v-if="faculty" href="https://ap.washington.edu/ahr/">Academic HR</a>
             <a v-else href="https://hr.uw.edu/">UW Human Resources</a>
@@ -49,7 +49,7 @@
       </div>
       <div v-else>
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">Related</h3>
-        <ul class="list-unstyled myuw-text-md">
+        <ul class="list-unstyled myuw-text-md mb-2">
           <li class="mb-1"><a href="https://hr.uw.edu/">UW Human Resources</a></li>
           <li class="mb-1">
             <a href="https://hr.uw.edu/benefits/insurance/health/graduate-appointees/"

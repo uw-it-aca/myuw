@@ -4,7 +4,7 @@
       Visa and Immigration Rules
     </h3>
 
-    <ul class="mb-4 list-unstyled myuw-text-md">
+    <ul class="list-unstyled myuw-text-md">
       <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/iss/travel-visas"
@@ -30,13 +30,13 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Academic Support
     </h3>
-    <ul class="mb-4 list-unstyled myuw-text-md">
+    <ul class="list-unstyled myuw-text-md mb-2">
       <li class="mb-1">
         <a
           href="http://www.tacoma.uw.edu/teaching-and-learning-center/writing-resources-0"
         >Academic Writing Resources</a>
       </li>
-      <li class="mb-1">
+      <li>
         <a
           href="http://www.tacoma.uw.edu/teaching-learning-center/teaching-learning-center"
         >Teaching and Learning Center</a>
