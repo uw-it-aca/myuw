@@ -1,13 +1,13 @@
 import axios from 'axios';
 import Vuex from 'vuex';
 
-import {createLocalVue} from './helper';
-import {statusOptions} from '../vuex/store/model_builder';
-import iasystem from '../vuex/store/iasystem';
-import {expectAction} from './helper';
+import {createLocalVue} from '../helper';
+import {statusOptions} from '../../vuex/store/model_builder';
+import iasystem from '../../vuex/store/iasystem';
+import {expectAction} from '../helper';
 
 import mockJaverage2013Spring from
-  './mock_data/iasystem/javerage2013Spring.json';
+  '../mock_data/iasystem/javerage2013Spring.json';
 
 createLocalVue(Vuex);
 jest.mock('axios');

@@ -136,10 +136,7 @@ export default {
       );
     },
     isErrored() {
-      return (
-        this.isStudScheduleErrored(this.term) ||
-        this.isTextbookErrored(this.term)
-      );
+      return this.isTextbookErrored(this.term);
     },
     bookData() {
       if (this.isReady) {
@@ -148,8 +145,8 @@ export default {
       return {};
     },
     orderUrl() {
-      if (this.bookData.order_url) {
-        return this.bookData.order_url;
+      if (this.bookData.orderUrl) {
+        return this.bookData.orderUrl;
       }
       return 'http://www.ubookstore.com/adoption-search';
     },

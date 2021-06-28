@@ -73,9 +73,9 @@ export default {
   computed: {
     teachingOrderBookUrl() {
       let baseUrl = 'http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=';
-      if (this.section.bothell_campus) {
+      if (this.section.bothellCampus) {
         baseUrl += 'uwbothell';
-      } else if (this.section.tacoma_campus) {
+      } else if (this.section.tacomaCampus) {
         baseUrl += 'uwtacoma';
       } else {
         baseUrl += 'uwmain';

@@ -65,12 +65,6 @@
     </h3>
     <ul class="mb-4 list-unstyled myuw-text-md">
       <li class="mb-1">
-        <a href="https://www.washington.edu/circle/calendar/"
-        >
-          CIRCLE Events Calendar
-        </a>
-      </li>
-      <li class="mb-1">
         <a
           href="https://www.washington.edu/circle/calendar/"
         >CIRCLE Events Calendar</a>

@@ -1,17 +1,17 @@
 import axios from 'axios';
 import Vuex from 'vuex';
-import {statusOptions} from '../vuex/store/model_builder';
-import inst_schedule from '../vuex/store/schedule/instructor';
-import {expectAction, createLocalVue} from './helper';
+import {statusOptions} from '../../vuex/store/model_builder';
+import inst_schedule from '../../vuex/store/schedule/instructor';
+import {expectAction, createLocalVue} from '../helper';
 
 import mockBill2013Summer from
-  './mock_data/inst_schedule/bill2013summer.json';
+  '../mock_data/inst_schedule/bill2013summer.json';
 import mockBillpce2013Summer from
-  './mock_data/inst_schedule/billpce2013summer.json';
+  '../mock_data/inst_schedule/billpce2013summer.json';
 import mockBillsea2013Spring from
-  './mock_data/inst_schedule/billsea2013spring.json';
+  '../mock_data/inst_schedule/billsea2013spring.json';
 import mockNoCourse2013Summer from
-  './mock_data/inst_schedule/2013summer.json';
+  '../mock_data/inst_schedule/2013summer.json';
 
 createLocalVue(Vuex);
 jest.mock('axios');

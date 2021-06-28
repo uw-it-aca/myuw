@@ -222,10 +222,8 @@
         "notice_content": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for winter quarter is <span class=\"date\">May 13, 2014</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorsp15.html\">View your Priority I Registration Date.</a></span>",
         "attributes": [
             {
-                "name": "Date",
-                "data_type": "date",
-                "value": "2021-06-28 07:00:00+00:00",
-                "formatted_value": "Mon, Jun 28"
+                "data_type": "gen_relative_date",
+                "value": "7"
             }
         ],
         "category": "Registration",
@@ -244,10 +242,8 @@
         "notice_content": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for winter quarter is due <span class=\"date\"></span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
         "attributes": [
             {
-                "name": "Date",
-                "data_type": "date",
-                "value": "2021-07-12 07:00:00+00:00",
-                "formatted_value": "Mon, Jul 12"
+                "data_type": "gen_relative_date",
+                "value": "21"
             }
         ],
         "category": "Fees & Finances",
@@ -453,10 +449,8 @@
         "notice_content": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
         "attributes": [
             {
-                "name": "Date",
-                "data_type": "date",
-                "value": "2021-06-23 07:00:00+00:00",
-                "formatted_value": "Wed, Jun 23"
+                "data_type": "gen_relative_date",
+                "value": "2"
             }
         ],
         "category": "Registration",
@@ -490,10 +484,8 @@
         "notice_content": "<span class=\"notice-title\">Online ISS information session required before registration</span><span class=\"notice-body-with-title\">All new international students are required to complete the <a href=\"https://catalysttools.washington.edu/webq/survey/torre/79003\">International Student Services (ISS) Online Information Session</a> before registering for classes. You will need your UW NetID and password to access the online ISS information session. After you arrive on campus, the International Student Services (ISS) must collect copies of your immigration documents.</span>",
         "attributes": [
             {
-                "name": "Date",
-                "data_type": "date",
-                "value": "2021-06-23 07:00:00+00:00",
-                "formatted_value": "Wed, Jun 23"
+                "data_type": "gen_relative_date",
+                "value": "2"
             }
         ],
         "category": "Holds",
