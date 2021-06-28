@@ -1,17 +1,17 @@
 import axios from 'axios';
 import Vuex from 'vuex';
 
-import {createLocalVue} from './helper';
-import {statusOptions} from '../vuex/store/model_builder';
-import stud_schedule from '../vuex/store/schedule/student';
-import {expectAction} from './helper';
+import {createLocalVue} from '../helper';
+import {statusOptions} from '../../vuex/store/model_builder';
+import stud_schedule from '../../vuex/store/schedule/student';
+import {expectAction} from '../helper';
 
 import mockCoursesJaverage2013Spring from
-  './mock_data/stud_schedule/javerage2013Spring.json';
+  '../mock_data/stud_schedule/javerage2013Spring.json';
 import mockCoursesJeos2013Spring from
-  './mock_data/stud_schedule/jeos2013Spring.json';
+  '../mock_data/stud_schedule/jeos2013Spring.json';
 import mockCoursesJeos2013SummerB from
-  './mock_data/stud_schedule/jeos2013SummerB.json';
+  '../mock_data/stud_schedule/jeos2013SummerB.json';
 
 const localVue = createLocalVue(Vuex);
 
