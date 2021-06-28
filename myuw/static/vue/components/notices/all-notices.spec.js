@@ -4,6 +4,29 @@ import Vuex from 'vuex';
 import notices from '../../vuex/store/notices';
 import AllNotices from './all-notices.vue';
 
+import dayjs from 'dayjs';
+dayjs.extend(require('dayjs/plugin/utc'));
+dayjs.extend(require('dayjs/plugin/duration'));
+
+function generatePlaceHolderInFixture(noticesFixture) {
+  noticesFixture.forEach((notice) => {
+    notice.attributes.forEach((attr) => {
+      switch (attr.data_type) {
+        case 'gen_relative_date':
+          const offset = parseInt(attr.value);
+          let compareTime = dayjs().hour(7).minute(0).second(0).millisecond(0).utc(true);
+          compareTime = compareTime.add(dayjs.duration({'days': offset}));
+          attr.name = 'Date';
+          attr.data_type = 'date';
+          attr.value = compareTime.format("YYYY-MM-DD HH:mm:ssZ");
+          attr.formatted_date = compareTime.format('ddd, MMM D');
+          break;
+      }
+    });
+  });
+  return noticesFixture;
+}
+
 describe('<AllNotices />', () => {
   it('No notices', () => {
     cy.intercept('GET', '/api/v1/notices/', []);
@@ -23,11 +46,12 @@ describe('<AllNotices />', () => {
   });
 
   it('javerage', () => {
-    // Can also use 
-    // cy.fixture('notices/javerage.json').then((javerageNotices) => {
-    //   cy.intercept({method: 'GET', url: '/api/v1/notices/'}, javerageNotices);
-    // });
-    cy.intercept('GET', '/api/v1/notices/', { fixture: 'notices/javerage.json' });
+    cy.fixture('notices/javerage.json').then((javerageNotices) => {
+      cy.intercept(
+        {method: 'GET', url: '/api/v1/notices/'},
+        generatePlaceHolderInFixture(javerageNotices),
+      );
+    });
 
     cy.createLocalVue(Vuex).then((localVue) => {
       let store = new Vuex.Store({
@@ -73,11 +97,12 @@ describe('<AllNotices />', () => {
   });
 
   it('notice open observer', () => {
-    // Can also use 
-    // cy.fixture('notices/javerage.json').then((javerageNotices) => {
-    //   cy.intercept({method: 'GET', url: '/api/v1/notices/'}, javerageNotices);
-    // });
-    cy.intercept('GET', '/api/v1/notices/', { fixture: 'notices/javerage.json' });
+    cy.fixture('notices/javerage.json').then((javerageNotices) => {
+      cy.intercept(
+        {method: 'GET', url: '/api/v1/notices/'},
+        generatePlaceHolderInFixture(javerageNotices),
+      );
+    });
 
     cy.createLocalVue(Vuex).then((localVue) => {
       let store = new Vuex.Store({
