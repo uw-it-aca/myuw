@@ -60,7 +60,6 @@ services:
     tty: true
     entrypoint:
       - ./node_modules/.bin/jest
-      - myuw/static/vue/tests/*
   cypress:
     build:
       context: .

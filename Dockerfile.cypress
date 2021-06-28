@@ -14,4 +14,4 @@ ADD cypress.json /app/cypress.json
 ADD webpack.config.js /app/webpack.config.js
 ADD webpack.cypress.config.js /app/webpack.cypress.config.js
 ADD cypress /app/cypress
-ADD myuw /app/muw
+ADD myuw /app/myuw

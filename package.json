@@ -77,6 +77,11 @@
       "!myuw/static/vue/*.js",
       "!**/tests/**",
       "!**/node_modules/**"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "vue/components",
+      "cypress"
     ]
   }
 }
