@@ -47,7 +47,7 @@
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           More topics
         </h3>
-        <ul class="list-inline myuw-text-md">
+        <ul class="list-inline myuw-text-md mb-1">
           <li class="list-inline-item">
             <a href="/resources/#teaching">Teaching</a>
           </li>

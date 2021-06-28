@@ -65,6 +65,12 @@ environmentVariables:
   - name: ENV
     value: dev
 
+  - name: ATTEST_ENV
+    value: EVAL
+
+  - name: ATTEST_AUTH_ENV
+    value: EVAL
+
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_TIMEOUT
@@ -203,6 +209,8 @@ externalSecrets:
     - name: dev.my.uw.edu-secrets
       externalKey: axdd/kv/data/my/dev/secrets
       data:
+        - name: attest-auth-secret
+          property: attest-auth-secret
         - name: canvas-account-id
           property: canvas-account-id
         - name: canvas-oauth-bearer
@@ -258,6 +266,10 @@ environmentVariablesSecrets:
     name: DJANGO_SECRET
     secretName: dev.my.uw.edu-secrets
     secretKey: django-secret
+  attest-auth-secret:
+    name: ATTEST_AUTH_SECRET
+    secretName: dev.my.uw.edu-secrets
+    secretKey: attest-auth-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
     secretName: dev.my.uw.edu-secrets

@@ -29,6 +29,7 @@ from myuw.views.api.adviser import Advisers
 from myuw.views.rest_search import MyUWRestSearchView
 from myuw.views.api.affiliation import Affiliation
 from myuw.views.api.applications import Applications
+from myuw.views.api.attestation import Covid19Attestation
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
@@ -113,6 +114,8 @@ urlpatterns += [
     re_path(r'^api/v1/affiliation/?$',
             Affiliation.as_view(),
             name="myuw_affiliation"),
+    re_path(r'^api/v1/covid19/$',
+            Covid19Attestation.as_view(), name="myuw_attest_covid19"),
     re_path(r'^api/v1/book/current/?$',
             TextbookCur.as_view(),
             name="myuw_current_book"),

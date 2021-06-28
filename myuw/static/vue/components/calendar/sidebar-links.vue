@@ -3,7 +3,7 @@
     <uw-panel v-for="(linkData, i) in pagecalendarLinks.link_data" :key="i" loaded>
       <template #panel-body>
         <h2 class="h5">{{linkData.subcategory}}</h2>
-        <ul class="list-unstyled myuw-text-md mb-4">
+        <ul class="list-unstyled myuw-text-md">
           <li v-for="(link, j) in linkData.links" :key="j" class="mb-1">
             <a :href="link.url">{{link.title}}</a>
           </li>

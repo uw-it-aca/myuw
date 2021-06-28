@@ -13,14 +13,14 @@
       <div v-for="notice in notices" :key="notice.id_hash">
         <h3 class="h6 text-dark-beige myuw-font-encode-sans"
           v-html="notice.notice_title" />
-        <div class="mb-4 myuw-text-md" v-html="notice.notice_body" />
+        <div class="mb-3 myuw-text-md" v-html="notice.notice_body" />
       </div>
       <!-- static notice content, goes after dynamic notices -->
       <div class="notice-content">
         <h3 class="h6 myuw-font-encode-sans">
           <span class="notice-title">Update Student Directory</span>
         </h3>
-        <div class="myuw-text-md mb-2">
+        <div class="myuw-text-md mb-3">
           <span class="non-notice-body-with-title">
             Critical information (e.g. financial aid information) goes to your
             addresses found in the Student Directory, so keep them up to date.

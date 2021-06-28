@@ -5,7 +5,7 @@
         <h2 :id="linkCategory.subcat_slug" class="h5">
           {{ linkCategory.subcategory }}
         </h2>
-        <ul class="list-unstyled myuw-text-md mb-4">
+        <ul class="list-unstyled myuw-text-md">
           <li v-for="link in linkCategory.links" :key="link.url" class="mb-1">
             <a v-if="link.new_tab" :href="link.url">
               {{ link.title }}

@@ -3,7 +3,7 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Visa and Immigration Rules
     </h3>
-    <ul class="mb-4 list-unstyled myuw-text-md">
+    <ul class="list-unstyled myuw-text-md">
       <li class="mb-1">
         <a
           v-out="'ISS: Travel and Visas'"
@@ -42,7 +42,7 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Academic Support
     </h3>
-    <ul class="mb-4 list-unstyled myuw-text-md">
+    <ul class="list-unstyled myuw-text-md">
       <li class="mb-1">
         <a
           href="http://depts.washington.edu/aspuw/clue/home/"
@@ -63,13 +63,13 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Social Events
     </h3>
-    <ul class="mb-4 list-unstyled myuw-text-md">
+    <ul class="list-unstyled myuw-text-md mb-2">
       <li class="mb-1">
         <a
           href="https://www.washington.edu/circle/calendar/"
         >CIRCLE Events Calendar</a>
       </li>
-      <li class="mb-1">
+      <li>
         <a
           href="http://www.fiuts.org/events"
         >FIUTS Event Calendar</a>

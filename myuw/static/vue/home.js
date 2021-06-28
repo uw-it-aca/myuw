@@ -15,7 +15,7 @@ import HRPayroll from './components/_common/hr-payroll.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
-import Notices from './components/home/notices.vue';
+import Notices from './components/home/notice/notices.vue';
 import Applicant from './components/home/applicant/applicant.vue';
 import Events from './components/home/events/events.vue';
 import InterStudent from './components/home/international/student.vue';
@@ -54,6 +54,7 @@ import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
 import academicEvents from './vuex/store/academic_events';
 import resources from './vuex/store/resources';
+import covid19 from './vuex/store/covid19';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -72,6 +73,7 @@ vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('inst_schedule', inst_schedule);
 vueConf.store.registerModule('academic_events', academicEvents);
 vueConf.store.registerModule('resources', resources);
+vueConf.store.registerModule('covid19', covid19);
 
 vueConf.store.commit('addVarToState', {
   name: 'page',

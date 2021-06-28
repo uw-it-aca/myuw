@@ -19,7 +19,7 @@
       <h3 class="mt-4 h6 text-dark-beige myuw-font-encode-sans">
         Available programs
       </h3>
-      <ul class="list-unstyled mb-0 myuw-text-md">
+      <ul class="list-unstyled myuw-text-md mb-2">
         <li class="mb-1">
           <a v-out="'PCE Career Accelerator Programs'"
             href="https://www.pce.uw.edu/career-accelerator-certificates">
@@ -33,7 +33,7 @@
           <a v-out="'PCE Degree Programs'" href="https://www.pce.uw.edu/degrees"
            >Degree Programs</a>
         </li>
-        <li class="mb-1">
+        <li>
           <a v-out="'PCE Courses'" href="https://www.pce.uw.edu/courses"
            >Courses</a>
         </li>
