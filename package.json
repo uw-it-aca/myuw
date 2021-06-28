@@ -76,7 +76,8 @@
       "myuw/static/**/*.{js,vue}",
       "!myuw/static/vue/*.js",
       "!**/tests/**",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!**/*.spec.js"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
