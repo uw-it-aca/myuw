@@ -26,7 +26,8 @@ from myuw.logger.logresp import (
 from myuw.logger.session_log import (
     log_session, is_native, log_session_end)
 from myuw.util.settings import (
-    get_google_search_key, get_logout_url, no_access_check)
+    get_google_search_key, get_google_analytics_key, get_django_debug,
+    get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import (
     unknown_uwnetid, no_access, blocked_uwnetid, pws_error_404)
@@ -62,13 +63,18 @@ def page(request,
         log_exception(logger, "GWS error", traceback)
         return render(request, '500.html', status=500)
 
+    netid = user.uwnetid
+    context["user"] = {
+        "netid": netid,
+        "isHybrid": is_native(request),
+    }
+
     if prefetch:
         # Some pages need to prefetch before this point
         failure = try_prefetch(request, template, context)
         if failure:
             return failure
 
-    netid = user.uwnetid
     try:
         affiliations = get_all_affiliations(request)
     except BlockedNetidErr:
@@ -81,14 +87,14 @@ def page(request,
     user_pref = get_migration_preference(request)
     log_session(request)
 
-    context["user"] = {
-        "netid": netid,
-        "session_key": request.session.session_key,
-    }
+    context["user"]["session_key"] = request.session.session_key
     context["home_url"] = "/"
     context["err"] = None
     context["user"]["affiliations"] = affiliations
-    context["banner_messages"] = get_current_messages(request)
+    banner_messages = []
+    for message in get_current_messages(request):
+        banner_messages.append(message.message_body)
+    context["banner_messages"] = banner_messages
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
     context["disable_actions"] = is_action_disabled()
@@ -104,6 +110,8 @@ def page(request,
     context['enabled_features'] = get_enabled_features()
 
     context['google_search_key'] = get_google_search_key()
+    context['google_analytics_key'] = get_google_analytics_key()
+    context['google_tracking_enabled'] = not get_django_debug()
 
     if add_quicklink_context:
         _add_quicklink_context(request, context)

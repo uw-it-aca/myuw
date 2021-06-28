@@ -65,124 +65,100 @@ environmentVariables:
   - name: ENV
     value: dev
 
+  - name: ATTEST_ENV
+    value: EVAL
+
+  - name: ATTEST_AUTH_ENV
+    value: EVAL
+
   - name: BOOKSTORE_ENV
     value: PROD
-  - name: BOOKSTORE_POOL_SIZE
-    value: "10"
   - name: BOOK_TIMEOUT
     value: "30"
 
   - name: CALENDAR_ENV
     value: PROD
-  - name: CALENDAR_POOL_SIZE
-    value: "10"
   - name: CALENDAR_TIMEOUT
     value: "5"
 
   - name: CANVAS_ENV
     value: EVAL
-  - name: CANVAS_POOL_SIZE
-    value: "10"
   - name: CANVAS_TIMEOUT
     value: "60"
 
   - name: CODA_ENV
     value: EVAL
-  - name: CODA_POOL_SIZE
-    value: "10"
   - name: CODA_TIMEOUT
     value: "5"
 
   - name: GRAD_ENV
     value: EVAL
-  - name: GRAD_POOL_SIZE
-    value: "10"
   - name: GRAD_TIMEOUT
     value: "30"
 
   - name: GRADEPAGE_ENV
     value: PROD
-  - name: GRADEPAGE_POOL_SIZE
-    value: "10"
   - name: GRADEPAGE_TIMEOUT
     value: "5"
 
   - name: GWS_ENV
     value: PROD
-  - name: GWS_POOL_SIZE
-    value: "10"
   - name: GWS_TIMEOUT
     value: "5"
 
   - name: HFS_ENV
     value: EVAL
-  - name: HFS_POOL_SIZE
-    value: "10"
   - name: HFS_TIMEOUT
     value: "60"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
-  - name: IASYSTEM_UW_POOL_SIZE
-    value: "10"
   - name: IASYSTEM_UW_TIMEOUT
     value: "5"
 
   - name: IASYSTEM_UWB_ENV
     value: PROD
-  - name: IASYSTEM_UWB_POOL_SIZE
-    value: "10"
   - name: IASYSTEM_UWB_TIMEOUT
     value: "5"
 
   - name: IASYSTEM_UWT_ENV
     value: PROD
-  - name: IASYSTEM_UWT_POOL_SIZE
-    value: "10"
   - name: IASYSTEM_UWT_TIMEOUT
     value: "5"
 
   - name: IASYSTEM_UWEO_AP_ENV
     value: PROD
-  - name: IASYSTEM_UWEO_AP_POOL_SIZE
-    value: "10"
   - name: IASYSTEM_UWEO_AP_TIMEOUT
     value: "5"
 
   - name: IASYSTEM_UWEO_IELP_ENV
     value: PROD
-  - name: IASYSTEM_UWEO_IELP_POOL_SIZE
-    value: "10"
   - name: IASYSTEM_UWEO_IELP_TIMEOUT
     value: "5"
 
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "10"
+    value: "15"
   - name: LIBCURRICS_TIMEOUT
     value: "5"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
-    value: "10"
+    value: "15"
   - name: LIBRARIES_TIMEOUT
     value: "5"
 
   - name: MAILMAN_ENV
     value: EVAL
-  - name: MAILMAN_POOL_SIZE
-    value: "10"
   - name: MAILMAN_TIMEOUT
-    value: "5"
+    value: "15"
 
   - name: MYPLAN_ENV
     value: EVAL
-  - name: MYPLAN_POOL_SIZE
-    value: "10"
   - name: MYPLAN_TIMEOUT
-    value: "5"
+    value: "15"
 
   - name: PWS_ENV
     value: EVAL
@@ -214,8 +190,6 @@ environmentVariables:
 
   - name: UWNETID_ENV
     value: PROD
-  - name: UWNETID_POOL_SIZE
-    value: "10"
   - name: UWNETID_TIMEOUT
     value: "5"
 
@@ -235,6 +209,8 @@ externalSecrets:
     - name: dev.my.uw.edu-secrets
       externalKey: axdd/kv/data/my/dev/secrets
       data:
+        - name: attest-auth-secret
+          property: attest-auth-secret
         - name: canvas-account-id
           property: canvas-account-id
         - name: canvas-oauth-bearer
@@ -290,6 +266,10 @@ environmentVariablesSecrets:
     name: DJANGO_SECRET
     secretName: dev.my.uw.edu-secrets
     secretKey: django-secret
+  attest-auth-secret:
+    name: ATTEST_AUTH_SECRET
+    secretName: dev.my.uw.edu-secrets
+    secretKey: attest-auth-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
     secretName: dev.my.uw.edu-secrets

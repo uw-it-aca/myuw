@@ -108,13 +108,13 @@ def data_error():
 def handle_exception(logger, timer, stack_trace):
     exc_type, exc_value, exc_traceback = sys.exc_info()
 
+    log_err(logger, timer, stack_trace)
+
     if (isinstance(exc_value, DataFailureException) and
             not isinstance(exc_value, ThreadedDataError) and
             (exc_value.status == 400 or exc_value.status == 404)):
         log_data_not_found_response(logger, timer)
         return data_not_found()
-
-    log_err(logger, timer, stack_trace)
 
     if isinstance(exc_value, DisabledAction):
         return disabled_action_error()

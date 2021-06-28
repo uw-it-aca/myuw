@@ -1,0 +1,214 @@
+{
+    "uwnetid": "javg001",
+    "uwregid": "9136CCB8F66711D5BE060004AC494001",
+    "birth_date": "1961-10-26",
+    "email": "javg001@u.washington.edu",
+    "first_name": "Jake",
+    "last_name": "Student1",
+    "student_name": "Average,Jake Joseph",
+    "student_number": "1033001",
+    "employee_id": "123456789",
+    "directory_release": true,
+    "local_address": {
+        "city": "Seattle",
+        "country": "United States",
+        "street_line1": "4634 26th Ave NE",
+        "street_line2": "APT 102",
+        "postal_code": "",
+        "state": "WA",
+        "zip_code": "98105-4566"
+    },
+    "local_phone": null,
+    "permanent_address": {
+        "city": "Bellevue",
+        "country": "United States",
+        "street_line1": "1645 140th Ave NE",
+        "street_line2": "APT 980",
+        "postal_code": "",
+        "state": "WA",
+        "zip_code": "98005-1234"
+    },
+    "permanent_phone": "4255556789",
+    "visa_type": null,
+    "is_student": true,
+    "is_grad_student": false,
+    "campus": "Seattle",
+    "class_level": "SENIOR",
+    "term_majors": [
+        {
+            "quarter": "spring",
+            "year": 2013,
+            "majors": [
+                {
+                    "degree_abbr": "ACMS",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+                    "campus": "Seattle",
+                    "name": "ACMS (SOC & BEH SCI)",
+                    "full_name": "App & Comp Math Sci (Social & Behav Sci)",
+                    "short_name": "ACMS (SBS)"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "summer",
+            "year": 2013,
+            "majors": [
+                {
+                    "degree_abbr": "ACMS",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+                    "campus": "Seattle",
+                    "name": "ACMS (SOC & BEH SCI)",
+                    "full_name": "App & Comp Math Sci (Social & Behav Sci)",
+                    "short_name": "ACMS (SBS)"
+                },
+                {
+                    "degree_abbr": "BSKT WVE",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
+                    "campus": "Seattle",
+                    "name": "BSKT WVE",
+                    "full_name": "Underwater Basket Weaving",
+                    "short_name": "BSKT WVE"
+                }
+            ],
+            "degrees_modified": true,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "autumn",
+            "year": 2013,
+            "majors": [
+                {
+                    "degree_abbr": "ACMS",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+                    "campus": "Seattle",
+                    "name": "ACMS (SOC & BEH SCI)",
+                    "full_name": "App & Comp Math Sci (Social & Behav Sci)",
+                    "short_name": "ACMS (SBS)"
+                },
+                {
+                    "degree_abbr": "BSKT WVE",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
+                    "campus": "Seattle",
+                    "name": "BSKT WVE",
+                    "full_name": "Underwater Basket Weaving",
+                    "short_name": "BSKT WVE"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "winter",
+            "year": 2014,
+            "majors": [
+                {
+                    "degree_abbr": "ACMS",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+                    "campus": "Seattle",
+                    "name": "ACMS (SOC & BEH SCI)",
+                    "full_name": "App & Comp Math Sci (Social & Behav Sci)",
+                    "short_name": "ACMS (SBS)"
+                },
+                {
+                    "degree_abbr": "BSKT WVE",
+                    "college_abbr": "",
+                    "college_full_name": "",
+                    "degree_level": 1,
+                    "degree_name": "BACHELOR OF SCIENCE (UNDERWATER BASKET WEAVING)",
+                    "campus": "Seattle",
+                    "name": "BSKT WVE",
+                    "full_name": "Underwater Basket Weaving",
+                    "short_name": "BSKT WVE"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        }
+    ],
+    "has_pending_major": true,
+    "term_minors": [
+        {
+            "quarter": "spring",
+            "year": 2013,
+            "minors": [
+                {
+                    "abbr": "ASL",
+                    "campus": "Seattle",
+                    "name": "AMERICAN SIGN LANGUAGE",
+                    "full_name": "American Sign Language",
+                    "short_name": "ASL"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "summer",
+            "year": 2013,
+            "minors": [
+                {
+                    "abbr": "ASL",
+                    "campus": "Seattle",
+                    "name": "AMERICAN SIGN LANGUAGE",
+                    "full_name": "American Sign Language",
+                    "short_name": "ASL"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "autumn",
+            "year": 2013,
+            "minors": [
+                {
+                    "abbr": "ASL",
+                    "campus": "Seattle",
+                    "name": "AMERICAN SIGN LANGUAGE",
+                    "full_name": "American Sign Language",
+                    "short_name": "ASL"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        },
+        {
+            "quarter": "winter",
+            "year": 2014,
+            "minors": [
+                {
+                    "abbr": "ASL",
+                    "campus": "Seattle",
+                    "name": "AMERICAN SIGN LANGUAGE",
+                    "full_name": "American Sign Language",
+                    "short_name": "ASL"
+                }
+            ],
+            "degrees_modified": false,
+            "has_only_dropped": false
+        }
+    ],
+    "has_minors": true,
+    "has_pending_minor": false,
+    "display_name": "Jake Average Student"
+}

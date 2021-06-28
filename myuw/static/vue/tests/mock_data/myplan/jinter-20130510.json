@@ -1,0 +1,51 @@
+{
+    "terms": [
+        {
+            "year": 2013,
+            "quarter": "Autumn",
+            "course_search_href": "https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/course",
+            "degree_audit_href": "https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/audit/degree",
+            "myplan_href": "https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/plan/20134",
+            "registration_href": "https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/registration/20134",
+            "registered_courses_count": 0,
+            "registered_sections_count": 0,
+            "courses": [
+                {
+                    "curriculum_abbr": "PHYS",
+                    "course_number": "121",
+                    "registrations_available": false,
+                    "sections": []
+                },
+                {
+                    "curriculum_abbr": "CSE",
+                    "course_number": "102",
+                    "registrations_available": false,
+                    "sections": []
+                },
+                {
+                    "curriculum_abbr": "ART",
+                    "course_number": "140",
+                    "registrations_available": false,
+                    "sections": []
+                },
+                {
+                    "curriculum_abbr": "B ARTS",
+                    "course_number": "141",
+                    "registrations_available": false,
+                    "sections": []
+                },
+                {
+                    "curriculum_abbr": "ART",
+                    "course_number": "191",
+                    "registrations_available": false,
+                    "sections": []
+                }
+            ],
+            "has_ready_courses": false,
+            "has_unready_courses": true,
+            "ready_count": 0,
+            "unready_count": 5,
+            "has_sections": false
+        }
+    ]
+}

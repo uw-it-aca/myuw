@@ -1,0 +1,219 @@
+{
+    "AddCodeRequired": false,
+    "Auditors": 0,
+    "BlockRegistrationChildren": [],
+    "BlockRegistrationParents": [],
+    "ClassWebsiteUrl": null,
+    "Course": {
+        "CourseNumber": "215",
+        "CurriculumAbbreviation": "ACCTG",
+        "Href": "/student/v5/course/2020,winter,ACCTG,215.json",
+        "Quarter": "winter",
+        "Year": 2020
+    },
+    "CourseCampus": "Seattle",
+    "CourseDescription": "Nature and social setting of accounting; uses of accounting information; introduction of basic accounting concepts and procedures; interpretation of financial statements. May not be repeated.",
+    "CourseHasVariableContent": false,
+    "CourseTitle": "ACCTG & FIN REPRTNG",
+    "CourseTitleLong": "Introduction to Accounting and Financial Reporting",
+    "CreditControl": "zero credits",
+    "CurrentEnrollment": 27,
+    "Curriculum": {
+        "CollegeName": "BUSINESS",
+        "DepartmentAbbreviation": "ACCTG",
+        "TimeScheduleLinkAbbreviation": "acctg"
+    },
+    "DeleteFlag": "active",
+    "DistanceLearning": false,
+    "DistanceLearningType": {
+        "Code": null,
+        "Description": null
+    },
+    "DuplicateEnrollmentAllowed": false,
+    "EOS_CID": null,
+    "EndDate": "",
+    "EnrollmentRestrictions": true,
+    "FeeAmount": null,
+    "FeeBudget": null,
+    "FeeType": null,
+    "FinalExam": {
+        "Building": null,
+        "Date": "",
+        "EndTime": "",
+        "FinalExamBuilding": {
+            "Href": ""
+        },
+        "MeetingStatus": null,
+        "RoomNumber": null,
+        "StartTime": ""
+    },
+    "FinancialAidEligible": true,
+    "FinancialAidEligibleDisplay": "",
+    "GeneralEducationRequirements": {
+        "Diversity": false,
+        "EnglishComposition": false,
+        "IndividualsAndSocieties": false,
+        "NaturalWorld": false,
+        "QuantitativeAndSymbolicReasoning": false,
+        "VisualLiteraryAndPerformingArts": false,
+        "Writing": false
+    },
+    "GradeSubmissionDelegates": [
+        {
+            "DelegateLevel": "college",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                "Name": "See pws",
+                "RegID": "10000000000000000000000000000011"
+            }
+        },
+        {
+            "DelegateLevel": "department",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000009.json",
+                "Name": "See pws",
+                "RegID": "10000000000000000000000000000009"
+            }
+        },
+        {
+            "DelegateLevel": "curriculum",
+            "Person": {
+                "Href": "/student/v5/person/10000000000000000000000000000001.json",
+                "Name": "See pws",
+                "RegID": "10000000000000000000000000000001"
+            }
+        }
+    ],
+    "GradingSystem": null,
+    "HonorsCourse": false,
+    "IndependentStudy": false,
+    "InstituteName": null,
+    "IsIndependentStart": false,
+    "JointSections": [],
+    "LMSOwnership": null,
+    "LimitEstimateEnrollment": 40,
+    "LimitEstimateEnrollmentIndicator": "limit",
+    "LinkedSectionTypes": [],
+    "MaximumCredit": "",
+    "MaximumTermCredit": "",
+    "Meetings": [
+        {
+            "Building": "DEM",
+            "BuildingToBeArranged": false,
+            "DaysOfWeek": {
+                "Days": [
+                    {
+                        "Name": "Wednesday"
+                    },
+                    {
+                        "Name": "Friday"
+                    }
+                ],
+                "Text": "  W F"
+            },
+            "DaysOfWeekToBeArranged": false,
+            "EndTime": "11:20",
+            "Instructors": [
+                {
+                    "FacultySequenceNumber": null,
+                    "GradeRoster": null,
+                    "PercentInvolve": "100",
+                    "Person": {
+                        "Href": "/student/v5/person/10000000000000000000000000000011.json",
+                        "Name": "See pws",
+                        "RegID": "10000000000000000000000000000011"
+                    },
+                    "TSPrint": true
+                }
+            ],
+            "Meeting": {
+                "Href": "https://ws.admin.washington.edu/space/v1/facility.json?aggregate_number=&city=&facility_code=DEM&facility_type=&leased_or_owned=&name=&page_size=10&postal_code=&site=&state=&status=&street="
+            },
+            "MeetingIndex": "1",
+            "MeetingType": "quiz",
+            "RoomNumber": "002",
+            "RoomToBeArranged": false,
+            "StartTime": "10:30"
+        }
+    ],
+    "Metadata": "SectionSourceKey=SDB;",
+    "MinimumTermCredit": "",
+    "OnlineLearningType": {
+        "Code": "00",
+        "Description": "No online learning component"
+    },
+    "PrimaryLMS": null,
+    "PrimarySection": {
+        "CourseNumber": "215",
+        "CurriculumAbbreviation": "ACCTG",
+        "Href": "/student/v5/course/2020,winter,ACCTG,215/B.json",
+        "Quarter": "winter",
+        "SectionID": "B",
+        "Year": 2020
+    },
+    "Registrations": {
+        "ChangedSinceDate": "",
+        "CourseNumber": "215",
+        "CurriculumAbbreviation": "ACCTG",
+        "Href": "/student/v5/registration.json?year=2020&quarter=winter&curriculum_abbreviation=ACCTG&course_number=215&section_id=BC&reg_id=&is_active=True&instructor_reg_id=&verbose=False&changed_since_date=&transcriptable_course=&page_start=&page_size=",
+        "InstructorRegID": null,
+        "IsActive": true,
+        "PageSize": "",
+        "PageStart": "",
+        "Quarter": "winter",
+        "RegID": null,
+        "SectionID": "BC",
+        "TranscriptableCourse": "",
+        "Verbose": false,
+        "Year": 2020
+    },
+    "RepositoryTimeStamp": "7/25/2020 4:05:04 AM",
+    "ResearchCredit": false,
+    "RoomCapacity": 40,
+    "SLN": "10106",
+    "SameVariableContentAs": [],
+    "SecondaryGradingOption": true,
+    "SectionID": "BC",
+    "SectionType": "quiz",
+    "SelfRegistrationAllowed": true,
+    "ServiceLearning": false,
+    "StartDate": "",
+    "StudentCreditHours": "   0.0",
+    "SummerTerm": "",
+    "Term": {
+        "Href": "/student/v5/term/2020,winter.json",
+        "Quarter": "winter",
+        "Year": 2020
+    },
+    "TimeMaskException": false,
+    "TimeScheduleComments": {
+        "CollegeComments": {
+            "Lines": []
+        },
+        "CourseComments": {
+            "Lines": []
+        },
+        "CurriculumComments": {
+            "Lines": []
+        },
+        "DepartmentComments": {
+            "Lines": []
+        },
+        "InstituteComments": {
+            "Lines": []
+        },
+        "SectionComments": {
+            "Lines": []
+        },
+        "TimeScheduleGeneratedComments": {
+            "Lines": [
+                {
+                    "Text": "Quiz Section"
+                },
+                {
+                    "Text": "No Freshmen,Grads"
+                }
+            ]
+        }
+    }
+}

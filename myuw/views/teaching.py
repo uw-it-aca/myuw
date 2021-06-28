@@ -19,7 +19,7 @@ def teaching_section(request,
                      quarter,
                      section):
     context = get_context(year, quarter, section)
-    return page(request, 'teaching_section.html', context=context)
+    return page(request, 'teaching.html', context=context)
 
 
 @page_view
@@ -28,7 +28,7 @@ def student_photo_list(request,
                        quarter,
                        section):
     context = get_context(year, quarter, section)
-    return page(request, 'teaching/photo_list.html', context=context)
+    return page(request, 'teaching_classlist.html', context=context)
 
 
 def get_context(year, quarter, section=None):

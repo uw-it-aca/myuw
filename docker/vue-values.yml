@@ -1,15 +1,3 @@
-autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 2
-targetAverageUtilization: 90
-resources:
-  limits:
-    cpu: 1.0
-    memory: 768Mi
-  requests:
-    cpu: 100m
-    memory: 700Mi
 ingress:
   enabled: true
   tls:
@@ -32,7 +20,7 @@ lifecycle:
   preStop:
     enabled: true
 securityPolicy:
-  enabled: true
+  enabled: false
 affinity:
    podsSpanNodes: true
 readiness:
@@ -58,11 +46,6 @@ memcached:
   replicaCount: 1
   updateStrategy:
     type: RollingUpdate
-  resources:
-    limits:
-      memory: 256Mi
-    requests:
-      memory: 256Mi
 certs:
   mounted: true
   certPath: /certs/myuw.s.uw.edu-uwca.cert
@@ -82,11 +65,16 @@ environmentVariables:
   - name: ENV
     value: dev
 
-  - name: WEBSERVER
-    value: nginx
+  - name: ATTEST_ENV
+    value: PROD
+
+  - name: ATTEST_AUTH_ENV
+    value: PROD
 
   - name: BOOKSTORE_ENV
     value: PROD
+  - name: BOOK_POOL_SIZE
+    value: "5"
   - name: BOOK_TIMEOUT
     value: "15"
 
@@ -214,6 +202,8 @@ externalSecrets:
     - name: vue.my.uw.edu-secrets
       externalKey: axdd/kv/data/my/vue/secrets
       data:
+        - name: attest-auth-secret
+          property: attest-auth-secret
         - name: django-secret
           property: django-secret
         - name: canvas-account-id
@@ -274,6 +264,10 @@ environmentVariablesSecrets:
     name: DJANGO_SECRET
     secretName: vue.my.uw.edu-secrets
     secretKey: django-secret
+  attest-auth-secret:
+    name: ATTEST_AUTH_SECRET
+    secretName: vue.my.uw.edu-secrets
+    secretKey: attest-auth-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
     secretName: vue.my.uw.edu-secrets
