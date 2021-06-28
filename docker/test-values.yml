@@ -67,6 +67,12 @@ environmentVariables:
   - name: ENV
     value: dev
 
+  - name: ATTEST_ENV
+    value: EVAL
+
+  - name: ATTEST_AUTH_ENV
+    value: EVAL
+
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_TIMEOUT

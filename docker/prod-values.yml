@@ -114,10 +114,9 @@ environmentVariables:
 
   - name: ATTEST_ENV
     value: PROD
-  - name: ATTEST_POOL_SIZE
-    value: "30"
-  - name: ATTEST_TIMEOUT
-    value: "15"
+
+  - name: ATTEST_AUTH_ENV
+    value: PROD
 
   - name: BOOKSTORE_ENV
     value: PROD
