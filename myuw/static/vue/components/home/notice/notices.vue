@@ -54,7 +54,7 @@
 <script>
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
-import Card from '../_templates/card.vue';
+import Card from '../../_templates/card.vue';
 import Covid19 from './covid19.vue';
 
 export default {

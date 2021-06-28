@@ -15,7 +15,7 @@ import HRPayroll from './components/_common/hr-payroll.vue';
 
 // home components
 import Summaries from './components/home/summaries.vue';
-import Notices from './components/home/notices.vue';
+import Notices from './components/home/notice/notices.vue';
 import Applicant from './components/home/applicant/applicant.vue';
 import Events from './components/home/events/events.vue';
 import InterStudent from './components/home/international/student.vue';

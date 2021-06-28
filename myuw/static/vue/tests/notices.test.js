@@ -7,8 +7,8 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import covid19 from '../vuex/store/covid19';
-import NoticeCard from '../components/home/notices';
-import Covid19 from '../components/home/covid19';
+import NoticeCard from '../components/home/notice/notices';
+import Covid19 from '../components/home/notice/covid19';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
