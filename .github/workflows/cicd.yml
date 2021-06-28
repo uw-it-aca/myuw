@@ -299,7 +299,9 @@ jobs:
         run: echo "::set-output name=context::$(< ${CONTEXT_FILENAME})"
 
   housekeeping:
-    if: github.event_name == 'push' && contains(fromJSON('["main", "master", "qa", "develop"]'), github.ref)
+    if: (github.event_name == 'push' &&
+      ${{ endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') ||
+        endsWith(github.ref, '/develop') || endsWith(github.ref, '/feature/vue') }}
 
     needs: [context, build, deploy]
 
