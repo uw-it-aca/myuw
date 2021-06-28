@@ -11,7 +11,6 @@ import Resources from '../components/resources/resources.vue';
 import ResourceCard from '../components/resources/resource-card.vue';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 jest.mock('axios');
 const spyScrollTo = jest.fn();
 Object.defineProperty(global.window, 'scrollTo', { value: spyScrollTo });

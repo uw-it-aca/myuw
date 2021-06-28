@@ -10,7 +10,6 @@ import UwCard from '../components/_templates/card.vue';
 import PinnedResources from '../components/home/resources/pinned-resource-cards.vue';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 jest.mock('axios');
 
 describe('Pinned Resources Card', () => {

@@ -12,7 +12,6 @@ import UwCard from '../components/_templates/card.vue';
 import HuskyExp from '../components/husky_experience/husky-exp.vue';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 jest.mock('axios');
 
 describe('hx_toolkit page content', () => {

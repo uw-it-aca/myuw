@@ -31,7 +31,6 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 library.add(faExclamationTriangle);
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-panel', UwPanel);
 jest.mock('axios');
 
 describe('Textbook cards', () => {

@@ -10,7 +10,6 @@ import HxtCard from '../components/_common/husky-experience.vue';
 import mockHxt from './mock_data/husky-exp/husky-experience.html';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 
