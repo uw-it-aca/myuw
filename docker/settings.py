@@ -124,9 +124,9 @@ TEMPLATES[0]['OPTIONS']['context_processors'] += [
     'django.template.context_processors.static',
     'django.template.context_processors.tz',
     'supporttools.context_processors.supportools_globals',
-    # 'supporttools.context_processors.has_less_compiled',
-    # 'supporttools.context_processors.has_google_analytics',
-    # 'myuw.context_processors.is_hybrid',
+    #'supporttools.context_processors.has_less_compiled',
+    'supporttools.context_processors.has_google_analytics',
+    'myuw.context_processors.is_hybrid',
 ]
 
 AWS_CA_BUNDLE = '/app/certs/ca-bundle.crt'
