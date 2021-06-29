@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, feature/vue]
+    branches: [main, master, qa, develop]
   pull_request:
-    branches: [main, master, qa, develop, feature/vue]
+    branches: [main, master, qa, develop]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -283,16 +283,6 @@ jobs:
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           app_instance: dev
 
-      - name: Deploy Vue Branch
-        if: needs.context.outputs.git_repo_branch == 'feature/vue'
-        uses: uw-it-aca/actions/cicd-deploy@main
-        with:
-          release_name: ${{ env.RELEASE_NAME }}
-          commit_hash: ${{ needs.context.outputs.commit_hash }}
-          git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
-          gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
-          app_instance: vue
-
       - name: 'Surface context from executed build step'
         id: context
         shell: bash
@@ -301,7 +291,7 @@ jobs:
   housekeeping:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') ||
-         endsWith(github.ref, '/develop') || endsWith(github.ref, '/feature/vue'))
+         endsWith(github.ref, '/develop'))
 
     needs: [context, build, deploy]
 
@@ -315,3 +305,36 @@ jobs:
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
           registry_password: ${{ secrets.GCP_JSON_KEY }}
           context: ${{ needs.deploy.outputs.context }}
+
+  extra-develop-vue-deploy:
+    if: github.event_name == 'push' && endsWith(github.ref, '/develop')
+
+    needs: [context, build, eslint, jest-cypress]
+
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Deploy Develop branch to vue
+        uses: uw-it-aca/actions/cicd-deploy@main
+        with:
+          release_name: ${{ env.RELEASE_NAME }}
+          commit_hash: ${{ needs.context.outputs.commit_hash }}
+          git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
+          gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
+          app_instance: vue
+
+      - name: 'Surface context from executed build step'
+        id: context
+        shell: bash
+        run: echo "::set-output name=context::$(< ${CONTEXT_FILENAME})"
+
+      - name: House Keeping
+        uses: uw-it-aca/actions/cicd-housekeeping@main
+        with:
+          release_name: ${{ env.RELEASE_NAME }}
+          gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
+          registry_password: ${{ secrets.GCP_JSON_KEY }}
+          context: ${{ steps.context.outputs.context }}
