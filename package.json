@@ -74,6 +74,8 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "myuw/static/**/*.{js,vue}",
+      "!myuw/static/vue/components/notices/**",
+      "!myuw/static/vue/components/calendar/**",
       "!myuw/static/vue/*.js",
       "!**/tests/**",
       "!**/node_modules/**",

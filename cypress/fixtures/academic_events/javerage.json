@@ -1,0 +1,416 @@
+[
+  {
+    "summary": "Example Event Pre + More",
+    "start": "2013-04-10",
+    "end": "2013-04-24",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": {
+      "all": true,
+      "breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": false
+  },
+  {
+    "summary": "Example Event First Day",
+    "start": "2013-04-15",
+    "end": "2013-04-15",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": {
+      "all": true,
+      "breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": true
+  },
+  {
+    "summary": "Example Event Few Days In",
+    "start": "2013-04-18",
+    "end": "2013-04-20",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": {
+      "all": true,
+      "breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": false
+  },
+  {
+    "summary": "Example Event End of 4Weeks",
+    "start": "2013-05-12 17:30:00",
+    "end": "2013-06-12",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": {
+      "all": true,
+      "breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271651",
+    "is_all_day": false
+  },
+  {
+    "summary": "Memorial Day (no classes)",
+    "start": "2013-05-29",
+    "end": "2013-05-29",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Holidays'",
+    "myuw_categories": {
+      "all": true,
+      "breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271673",
+    "is_all_day": true
+  },
+  {
+    "summary": "Last Day of Instruction - Spring Quarter",
+    "start": "2013-06-02",
+    "end": "2013-06-02",
+    "year": 2013,
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218036",
+    "is_all_day": true
+  },
+  {
+    "summary": "Finals -Spring Quarter",
+    "start": "2013-06-03",
+    "end": "2013-06-09",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218045",
+    "is_all_day": false
+  },
+  {
+    "summary": "Commencement- Tacoma",
+    "start": "2013-06-10",
+    "end": "2013-06-10",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108208628",
+    "is_all_day": true
+  },
+  {
+    "summary": "Commencement- Seattle",
+    "start": "2013-06-11",
+    "end": "2013-06-11",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108208632",
+    "is_all_day": true
+  },
+  {
+    "summary": "Summer Break",
+    "start": "2013-06-13",
+    "end": "2013-06-18",
+    "year": "2013",
+    "quarter": "Summer",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true,
+      "breaks": true,
+      "term_breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108330602",
+    "is_all_day": false
+  },
+  {
+    "summary": "Commencement- Bothell",
+    "start": "2013-06-14",
+    "end": "2013-06-14",
+    "year": "2013",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108208638",
+    "is_all_day": true
+  },
+  {
+    "summary": "Instruction Begins Full term and A-term",
+    "start": "2013-06-19",
+    "end": "2013-06-19",
+    "year": "2013",
+    "quarter": "Summer",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218065",
+    "is_all_day": true
+  },
+  {
+    "summary": "Independence Day (no classes)",
+    "start": "2013-07-04",
+    "end": "2013-07-04",
+    "year": "2013",
+    "quarter": "Summer",
+    "category": "b'Holidays'",
+    "myuw_categories": {
+      "all": true,
+      "breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D106271674",
+    "is_all_day": true
+  },
+  {
+    "summary": "Last Day of Instruction - Summer Quarter A-term",
+    "start": "2013-07-19",
+    "end": "2013-07-19",
+    "year": "2013",
+    "quarter": "Summer",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218075",
+    "is_all_day": true
+  },
+  {
+    "summary": "Instruction Begins B-term",
+    "start": "2013-07-20",
+    "end": "2013-07-20",
+    "year": "2013",
+    "quarter": "Summer",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218068",
+    "is_all_day": true
+  },
+  {
+    "summary": "Last Day of Instruction - Summer Quarter Full term",
+    "start": "2013-08-18",
+    "end": "2013-08-18",
+    "year": "2013",
+    "quarter": "Summer",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218072",
+    "is_all_day": true
+  },
+  {
+    "summary": "Last Day of Instruction - Summer Quarter B-term",
+    "start": "2013-08-19",
+    "end": "2013-08-19",
+    "year": "2013",
+    "quarter": "Summer",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218080",
+    "is_all_day": true
+  },
+  {
+    "summary": "*Autumn break",
+    "start": "2013-08-22",
+    "end": "2013-09-26",
+    "year": "2013",
+    "quarter": "Autumn",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true,
+      "breaks": true,
+      "term_breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108068529",
+    "is_all_day": false
+  },
+  {
+    "summary": "Instruction Begins- Autumn Quarter",
+    "start": "2013-09-27",
+    "end": "2013-09-27",
+    "year": "2013",
+    "quarter": "Autumn",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218097",
+    "is_all_day": true
+  },
+  {
+    "summary": "Last Day of Instruction - Autumn Quarter",
+    "start": "2013-12-08",
+    "end": "2013-12-08",
+    "year": "2013",
+    "quarter": "Autumn",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218100",
+    "is_all_day": true
+  },
+  {
+    "summary": "Finals - Autumn Quarter",
+    "start": "2013-12-09",
+    "end": "2013-12-15",
+    "year": "2013",
+    "quarter": "Autumn",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218119",
+    "is_all_day": false
+  },
+  {
+    "summary": "*Winter break",
+    "start": "2013-12-13",
+    "end": "2014-01-02",
+    "year": "2014",
+    "quarter": "Winter",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true,
+      "breaks": true,
+      "term_breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108067796",
+    "is_all_day": false
+  },
+  {
+    "summary": "Instruction Begins - Winter Quarter",
+    "start": "2014-01-03",
+    "end": "2014-01-03",
+    "year": "2014",
+    "quarter": "Winter",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218126",
+    "is_all_day": true
+  },
+  {
+    "summary": "Last Day of Instruction - Winter Quarter",
+    "start": "2014-03-09",
+    "end": "2014-03-09",
+    "year": "2014",
+    "quarter": "Winter",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218131",
+    "is_all_day": true
+  },
+  {
+    "summary": "Finals -Winter Quarter",
+    "start": "2014-03-10",
+    "end": "2014-03-16",
+    "year": "2014",
+    "quarter": "Winter",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218136",
+    "is_all_day": false
+  },
+  {
+    "summary": "*Spring break",
+    "start": "2014-03-21",
+    "end": "2014-03-25",
+    "year": "2014",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true,
+      "breaks": true,
+      "term_breaks": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108067803",
+    "is_all_day": false
+  },
+  {
+    "summary": "Instruction Begins- Spring quarter",
+    "start": "2014-03-26",
+    "end": "2014-03-26",
+    "year": "2014",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218153",
+    "is_all_day": true
+  },
+  {
+    "summary": "Last Day of Instruction - Spring Quarter",
+    "start": "2014-06-01",
+    "end": "2014-06-01",
+    "year": "2014",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218157",
+    "is_all_day": true
+  },
+  {
+    "summary": "Finals -Spring Quarter",
+    "start": "2014-06-02",
+    "end": "2014-06-08",
+    "year": "2014",
+    "quarter": "Spring",
+    "category": "b'Dates of Instruction'",
+    "myuw_categories": {
+      "all": true,
+      "classes": true
+    },
+    "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D108218169",
+    "is_all_day": false
+  }
+]
