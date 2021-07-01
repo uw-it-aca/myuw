@@ -1,8 +1,5 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCircle  } from '@fortawesome/free-solid-svg-icons';
-library.add(faCircle );
 
 import { mount } from '@vue/test-utils';
 import { createLocalVue, deepClone } from './helper';
@@ -15,11 +12,11 @@ import mockEventFaculty20210701 from
 import mockEventsStud20210928 from
   './mock_data/academic_events/acad_events_stud.json';
 
+import UwCard from '../components/_templates/card.vue';
 import AcadCalTabs from '../components/calendar/tabs.vue';
 import AcadCalCards from '../components/calendar/calendar-cards.vue';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', faCircle);
 
 jest.mock('axios');
 
