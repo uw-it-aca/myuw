@@ -77,35 +77,21 @@ export default {
       return "";
     },
     titleCaseName(nameStr) {
-      return nameStr.split(' ').map(this.titleCaseWord).join(' ');
-    },
-    titilizeTerm(term) {
-      //Takes a term string (Eg summer 2013, b-term)
-      //returns a title (Eg Summer 2013 B-Term)
-      let i;
-      let pieces = term.split(/ |, |,/);
-      let string = "";
-      for (i = 0; i < pieces.length; i += 1) {
-          if (i > 0) {
-              string += " ";
-          }
-          string += this.capitalizeString(pieces[i]);
-      }
-      return string;
+      return nameStr.split(" ").map(this.titleCaseWord).join(' ');
     },
     capitalizeString(string) {
-      if (string === undefined) {
-        return;
+      if (!string) {
+          return "";
       }
       if (string.match(/^(full|[ab])-term$/gi)) {
           return string.split("-").map(this.titleCaseWord).join('-');
       }
-      if (!string) {
-          return "";
-      }
       return this.titleCaseWord(string);
     },
     pageTitleFromTerm(termStr) {
+      if (!termStr) {
+        return "";
+      }
       let pageTitle = termStr.split(',');
       let term = pageTitle[1];
       pageTitle[1] = pageTitle[0];
@@ -161,8 +147,7 @@ export default {
       }
     },
     hasAnyKeys(obj) {
-      console.log(obj);
-      return Object.entries(obj).length !== 0;
+      return Object.entries(obj).length > 0;
     }
   },
 }
