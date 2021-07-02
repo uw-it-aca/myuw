@@ -35,8 +35,19 @@ describe('Academic Sidebar Links', () => {
 
     const wrapper = mount(AcadSidebarLinks, { store, localVue });
     await new Promise(setImmediate);
-
+    expect(wrapper.vm.isReady).toBeTruthy();
+    expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.vm.linkData).toBeTruthy();
     expect(wrapper.vm.linkData.length).toBe(6);
+  });
+
+  it('Verify data error', async () => {
+    axios.get.mockImplementation((url) => {
+      return Promise.reject({response: {status: 543}});
+    });
+
+    const wrapper = mount(AcadSidebarLinks, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isErrored).toBe(true);
   });
 });
