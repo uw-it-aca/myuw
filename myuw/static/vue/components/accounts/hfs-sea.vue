@@ -83,14 +83,14 @@
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           Resident Resources
         </h3>
-        <ul class="list-unstyled myuw-text-md mb-2">
+        <ul class="list-unstyled myuw-text-md mb-1">
           <li class="mb-1">
             <a v-out="'HFS: Check Laundry Status'"
               href="https://mc360.maytag.com/#/">
               Check Laundry Status
             </a>
           </li>
-          <li>
+          <li class="mb-1">
             <a v-out="'HFS: Submit a Work Order'"
               href="https://fms.admin.uw.edu/fs-works/uwnetid"
             >

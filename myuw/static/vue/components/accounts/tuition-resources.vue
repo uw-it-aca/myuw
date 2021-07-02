@@ -3,7 +3,7 @@
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">
       Related
     </h3>
-    <ul class="list-unstyled myuw-text-md mb-2">
+    <ul class="list-unstyled myuw-text-md mb-1">
       <li v-if="is_C2" class="mb-1">
         <a href="https://degreereg.uw.edu/payment-procedures">
           Paying PCE-Continuum College
@@ -22,7 +22,7 @@
       <li v-if="!is_C2" class="mb-1">
         <a href="http://f2.washington.edu/fm/sfs/tuition">About Tuition</a>
       </li>
-      <li>
+      <li class="mb-1">
         <a href="http://f2.washington.edu/fm/sfs/tax">Student Tax Information</a>
       </li>
     </ul>

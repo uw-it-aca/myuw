@@ -1,0 +1,31 @@
+{
+    "link_data": [
+        {
+            "links": [
+                {
+                    "title": "All Academic Calendars",
+                    "url": "http://www.washington.edu/students/reg/calendar.html",
+                    "new_tab": false
+                },
+                {
+                    "title": "Campus Event Calendar",
+                    "url": "https://www.washington.edu/calendar/",
+                    "new_tab": false
+                },
+                {
+                    "title": "HUB Event Calendar",
+                    "url": "https://hub.washington.edu/hub-events/event-calendars/",
+                    "new_tab": true
+                },
+                {
+                    "title": "Payroll Calendar",
+                    "url": "https://isc.uw.edu/workday-payroll-calendar/",
+                    "new_tab": true
+                }
+            ],
+            "subcategory": "Other Calendars",
+            "subcat_slug": "othercalendars"
+        }
+    ],
+    "category_name": "PageCalendar"
+}

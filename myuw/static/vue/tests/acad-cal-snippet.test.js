@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 library.add(faExclamationTriangle);
 
@@ -17,7 +16,6 @@ import AcadCalSnippet from '../components/home/calendar/acad-cal-snippet.vue';
 import facultyAcadEvents from './mock_data/academic_events/faculty.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
