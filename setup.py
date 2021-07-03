@@ -23,7 +23,7 @@ setup(
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
-        'Django~=2.2.24',
+        'Django~=2.2',
         'ordereddict',
         'beautifulsoup4',
         'urllib3',

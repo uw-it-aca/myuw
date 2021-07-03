@@ -130,15 +130,6 @@
                   <font-awesome-icon :icon="faHome" class="mr-2" fixed-width />Home
                 </b-nav-item>
                 <b-nav-item
-                  v-if="(undergrad && seattle) || hxtViewer"
-                  class="mb-2"
-                  href="/husky_experience/"
-                  :active="page.title == 'Husky Experience Toolkit'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience
-                </b-nav-item>
-                <b-nav-item
                   v-if="student || applicant"
                   class="mb-2"
                   href="/academics/"
@@ -146,6 +137,15 @@
                   :link-classes="'text-dark d-block px-2 py-1'"
                 >
                   <font-awesome-icon :icon="faGraduationCap" class="mr-2" fixed-width />Academics
+                </b-nav-item>
+                <b-nav-item
+                  v-if="(undergrad && seattle) || hxtViewer"
+                  class="mb-2"
+                  href="/husky_experience/"
+                  :active="page.title == 'Husky Experience Toolkit'"
+                  :link-classes="'text-dark d-block px-2 py-1'"
+                >
+                  <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience
                 </b-nav-item>
                 <b-nav-item
                   v-if="instructor"

@@ -72,7 +72,7 @@
             </p>
           </div>
         </div>
-        <ul class="list-unstyled myuw-text-md">
+        <ul class="list-unstyled myuw-text-md mb-1">
           <li class="mb-1">
             <a v-out="'What is U-PASS'" :href="getWhatIsUrl">
               What is the U-PASS?

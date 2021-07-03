@@ -50,12 +50,6 @@ export default {
     isErrored() {
       return this.isErroredTagged(this.urlExtra);
     },
-    statusCode() {
-      return this.statusCodeTagged(this.urlExtra);
-    },
-    showError: function() {
-      return this.statusCode !== 404;
-    },
   },
   created() {
     this.fetch(this.urlExtra);

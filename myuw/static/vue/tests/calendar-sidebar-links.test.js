@@ -5,10 +5,9 @@ import { createLocalVue } from './helper';
 
 import Vuex from 'vuex';
 import category_links from '../vuex/store/category_links';
-
-import AcadSidebarLinks from '../components/academics/sidebar-links.vue';
-
-import academicLinks from './mock_data/category_links/academics/javerage.json';
+import CalSidebarLinks from '../components/calendar/sidebar-links.vue';
+import mockCalLinks from
+  './mock_data/category_links/calendar.json';
 
 const localVue = createLocalVue(Vuex);
 
@@ -28,26 +27,17 @@ describe('Academic Sidebar Links', () => {
   it('Computed Properties', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
-        '/api/v1/categorylinks/pageacademics': academicLinks,
+        '/api/v1/categorylinks/pagecalendar': mockCalLinks,
       };
       return Promise.resolve({data: urlData[url], status: 200});
     });
 
-    const wrapper = mount(AcadSidebarLinks, { store, localVue });
+    const wrapper = mount(CalSidebarLinks, { store, localVue });
     await new Promise(setImmediate);
+
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.isErrored).toBe(false);
-    expect(wrapper.vm.linkData).toBeTruthy();
-    expect(wrapper.vm.linkData.length).toBe(6);
-  });
-
-  it('Verify data error', async () => {
-    axios.get.mockImplementation((url) => {
-      return Promise.reject({response: {status: 543}});
-    });
-
-    const wrapper = mount(AcadSidebarLinks, { store, localVue });
-    await new Promise(setImmediate);
-    expect(wrapper.vm.isErrored).toBe(true);
+    expect(wrapper.vm.pagecalendarLinks.category_name).toBe("PageCalendar");
+    expect(wrapper.vm.pagecalendarLinks.link_data[0].links.length).toBe(4);
   });
 });
