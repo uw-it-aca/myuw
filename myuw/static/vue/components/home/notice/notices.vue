@@ -37,9 +37,6 @@
             <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
           </b-collapse>
         </li>
-        <li class="mb-1">
-          <covid-vaccine />
-        </li>
       </ul>
     </template>
     <template v-else #card-body>
