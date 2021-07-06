@@ -52,12 +52,12 @@
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
-import Covid19 from './covid19.vue';
+//import Covid19 from './covid19.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'covid-vaccine': Covid19,
+    //'covid-vaccine': Covid19,
   },
   data() {
     return {
