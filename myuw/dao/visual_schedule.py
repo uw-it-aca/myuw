@@ -162,20 +162,18 @@ def _get_combined_schedule(request):
     try:
         instructor_schedule = get_instructor_schedule_by_term(request)
         _set_instructor_sections(instructor_schedule)
+        if instructor_schedule.term.is_summer_quarter():
+            logger.error("SUMMER TERM================{}".format(
+                instructor_schedule.summer_term))
     except DataFailureException:
         instructor_schedule = None
 
-    schedule = None
     if student_schedule is not None:
         schedule = student_schedule
         if instructor_schedule is not None:
             schedule.sections += instructor_schedule.sections
-    elif instructor_schedule is not None:
-        schedule = instructor_schedule
-    if schedule.term.is_summer_quarter():
-        logger.error("SUMMER TERM================{}".format(
-            schedule.summer_term))
-    return schedule
+        return schedule
+    return instructor_schedule
 
 
 def _get_combined_future_schedule(request, term, summer_term):

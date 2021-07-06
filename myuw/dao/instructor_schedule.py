@@ -43,6 +43,8 @@ def get_instructor_schedule_by_term(request, term=None, summer_term=None):
     if (len(inst_schedule.sections) and
             inst_schedule.term.is_summer_quarter()):
         filter_sections_by_summer_term(request, inst_schedule, summer_term)
+        logger.error("INST SUMMER TERM================{}".format(
+            inst_schedule.summer_term))
 
     if len(inst_schedule.sections):
         set_course_display_pref(request, inst_schedule)
