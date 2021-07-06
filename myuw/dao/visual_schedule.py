@@ -1,6 +1,7 @@
 # Copyright 2021 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+import logging
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_current_quarter, get_current_summer_term
@@ -10,6 +11,8 @@ from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
+
+logger = logging.getLogger(__name__)
 
 
 def get_schedule_json(visual_schedule, term, summer_term=None):
@@ -134,6 +137,8 @@ def get_current_visual_schedule(request):
         return None, None, None
     summer_term = None
     if schedule.term.is_summer_quarter():
+        logger.error("SCHEDULE================{}".format(
+            schedule.summer_term))
         summer_term = schedule.summer_term
     vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
     return vs, schedule.term, summer_term
@@ -167,6 +172,9 @@ def _get_combined_schedule(request):
             schedule.sections += instructor_schedule.sections
     elif instructor_schedule is not None:
         schedule = instructor_schedule
+    if schedule.term.is_summer_quarter():
+        logger.error("SUMMER TERM================{}".format(
+            schedule.summer_term))
     return schedule
 
 
