@@ -71,10 +71,21 @@ db.sqlite3
 pip-selfcheck.json
 share/
 
+# Node
 node_modules/
+package-lock.json
+
 .idea/
 
 *.[1-9]
 *.new
 *.old
 *.pyc
+
+# Cypress
+cypress/videos
+cypress/screenshots
+coverage
+.nyc_output
+cypress/snapshots/diff
+cypress/snapshots/actual

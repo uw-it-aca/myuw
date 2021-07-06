@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load settings_value %}
+{% load set_context %}
+
+{% block django_json_data %}
+  <script>
+    // TODO: Replace this with a object in the context and a json_script.
+    window.section = "{{ section }}";
+  </script>
+{% endblock django_json_data %}
+
+{% block body_content %}
+<myuw-boilerplate id="myuw-printable-page" is-hybrid="{{ user.isHybrid }}" force-hybrid>
+  <template #mobile>
+    <myuw-classlist section-label="{{ section }}"></myuw-classlist>
+  </template>
+  <template #desktop>
+    <b-col>
+      <myuw-classlist section-label="{{ section }}"></myuw-classlist>
+    </b-col>
+  </template>
+</myuw-boilerplate>
+{% endblock body_content %}
+
+{% block vue_script %}
+{% load webpack_bridge %}
+{% render_webpack_entry 'teaching_classlist' js='defer' %}
+{% endblock vue_script %}

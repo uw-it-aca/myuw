@@ -1,0 +1,390 @@
+[
+    {
+        "summary": "Quarter Break - Autumn",
+        "start": "2021-08-21",
+        "end": "2021-09-28",
+        "year": "2021",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141124492",
+        "is_all_day": false
+    },
+    {
+        "summary": "Instruction Begins for Autumn Quarter 2021",
+        "start": "2021-09-29",
+        "end": "2021-09-29",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182007",
+        "is_all_day": true
+    },
+    {
+        "summary": "Veterans Day",
+        "start": "2021-11-11",
+        "end": "2021-11-11",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175683",
+        "is_all_day": true
+    },
+    {
+        "summary": "Thanksgiving Break",
+        "start": "2021-11-25",
+        "end": "2021-11-25",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175684",
+        "is_all_day": true
+    },
+    {
+        "summary": "Thanksgiving Break",
+        "start": "2021-11-26",
+        "end": "2021-11-26",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175685",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Autumn Quarter 2021",
+        "start": "2021-12-10",
+        "end": "2021-12-10",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182008",
+        "is_all_day": true
+    },
+    {
+        "summary": "Final Examinations - Autumn Quarter 2021",
+        "start": "2021-12-11",
+        "end": "2021-12-17",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182424",
+        "is_all_day": false
+    },
+    {
+        "summary": "Quarter Break - Winter",
+        "start": "2021-12-18",
+        "end": "2022-01-02",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182425",
+        "is_all_day": false
+    },
+    {
+        "summary": "Christmas Day (Observed)",
+        "start": "2021-12-24",
+        "end": "2021-12-24",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175686",
+        "is_all_day": true
+    },
+    {
+        "summary": "New Year's Day (Observed)",
+        "start": "2021-12-31",
+        "end": "2021-12-31",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175687",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Winter Quarter 2022",
+        "start": "2022-01-03",
+        "end": "2022-01-03",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182009",
+        "is_all_day": true
+    },
+    {
+        "summary": "Martin Luther King Jr. Day",
+        "start": "2022-01-17",
+        "end": "2022-01-17",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175688",
+        "is_all_day": true
+    },
+    {
+        "summary": "Presidents' Day",
+        "start": "2022-02-21",
+        "end": "2022-02-21",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175689",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Winter Quarter 2022",
+        "start": "2022-03-11",
+        "end": "2022-03-11",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182010",
+        "is_all_day": true
+    },
+    {
+        "summary": "Final Examinations - Winter Quarter 2022",
+        "start": "2022-03-12",
+        "end": "2022-03-18",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182426",
+        "is_all_day": false
+    },
+    {
+        "summary": "Quarter Break - Spring",
+        "start": "2022-03-19",
+        "end": "2022-03-27",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182427",
+        "is_all_day": false
+    },
+    {
+        "summary": "Instruction Begins for Spring Quarter 2022",
+        "start": "2022-03-28",
+        "end": "2022-03-28",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182011",
+        "is_all_day": true
+    },
+    {
+        "summary": "Memorial Day",
+        "start": "2022-05-30",
+        "end": "2022-05-30",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175690",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Spring Quarter 2022",
+        "start": "2022-06-03",
+        "end": "2022-06-03",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182012",
+        "is_all_day": true
+    },
+    {
+        "summary": "Final Examinations - Spring Quarter 2022",
+        "start": "2022-06-06",
+        "end": "2022-06-10",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182428",
+        "is_all_day": false
+    },
+    {
+        "summary": "Quarter Break - Summer",
+        "start": "2022-06-11",
+        "end": "2022-06-19",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182429",
+        "is_all_day": false
+    },
+    {
+        "summary": "Instruction Begins for Summer Quarter 2022 - Full and A-term",
+        "start": "2022-06-20",
+        "end": "2022-06-20",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182013",
+        "is_all_day": true
+    },
+    {
+        "summary": "Independence Day",
+        "start": "2022-07-04",
+        "end": "2022-07-04",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175691",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Summer Quarter 2022 - A-term",
+        "start": "2022-07-20",
+        "end": "2022-07-20",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182014",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Summer Quarter 2022 - B-term",
+        "start": "2022-07-21",
+        "end": "2022-07-21",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182015",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Summer Quarter 2022 - Full and B-term",
+        "start": "2022-08-19",
+        "end": "2022-08-19",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182016",
+        "is_all_day": true
+    },
+    {
+        "summary": "Quarter Break - Autumn",
+        "start": "2022-08-20",
+        "end": "2022-09-27",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182430",
+        "is_all_day": false
+    }
+]

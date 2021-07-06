@@ -1,0 +1,98 @@
+{
+    "future_active_cals": [
+        {
+            "title": "Test title",
+            "base_url": "http://art.washington.edu/calendar/",
+            "count": 3
+        }
+    ],
+    "active_cals": [
+        {
+            "title": "Department of Five Events",
+            "url": "http://art.washington.edu/calendar/"
+        },
+        {
+            "title": "Department of Two Events",
+            "url": "http://www.trumba.com/calendar/2_current"
+        }
+    ],
+    "events": [
+        {
+            "summary": "Multi Day Event",
+            "start": "2013-04-16T16:00:00-07:00",
+            "end": "2013-04-19T17:00:00-07:00",
+            "event_url": "http://art.washington.edu/calendar/?trumbaEmbed=eventid%3D1107241160%26view%3Devent",
+            "event_location": "Chemistry Building (CHB)",
+            "is_all_day": false,
+            "start_time": "4:00 PM",
+            "start_date": "2013-04-16T23:00:00.000Z",
+            "end_date": "2013-04-20T00:00:00.000Z"
+        },
+        {
+            "summary": "Organic Chemistry Seminar: Prof. Matthew Becker2",
+            "start": "2013-04-17T06:00:00-07:00",
+            "end": "2013-04-17T17:00:00-07:00",
+            "event_url": "http://art.washington.edu/calendar/?trumbaEmbed=eventid%3D1107541160%26view%3Devent",
+            "event_location": "Chemistry Building (CHB)",
+            "is_all_day": false,
+            "start_time": "6:00 AM",
+            "start_date": "2013-04-17T13:00:00.000Z",
+            "end_date": "2013-04-18T00:00:00.000Z"
+        },
+        {
+            "summary": "Organic Chemistry Seminar: Prof. Matthew Becker7",
+            "start": "2013-04-17T16:00:00-07:00",
+            "end": "2013-04-18T17:00:00-07:00",
+            "event_url": "http://www.trumba.com/calendar/2_current?trumbaEmbed=eventid%3D1107418160%26view%3Devent",
+            "event_location": "Chemistry Building (CHB)",
+            "is_all_day": false,
+            "start_time": "4:00 PM",
+            "start_date": "2013-04-17T23:00:00.000Z",
+            "end_date": "2013-04-19T00:00:00.000Z"
+        },
+        {
+            "summary": "Organic Chemistry Seminar: Prof. Matthew Becker5",
+            "start": "2013-04-17T16:00:00-07:00",
+            "end": "2013-04-17T17:00:00-07:00",
+            "event_url": "http://art.washington.edu/calendar/?trumbaEmbed=eventid%3D1107241160%26view%3Devent",
+            "event_location": "Chemistry Building (CHB)",
+            "is_all_day": false,
+            "start_time": "4:00 PM",
+            "start_date": "2013-04-17T23:00:00.000Z",
+            "end_date": "2013-04-18T00:00:00.000Z"
+        },
+        {
+            "summary": "Organic Chemistry Seminar: Prof. Matthew Becker3",
+            "start": "2013-04-18T00:00:00-07:53",
+            "end": "2013-04-18T00:00:00-07:53",
+            "event_url": "http://art.washington.edu/calendar/?trumbaEmbed=eventid%3D1107421160%26view%3Devent",
+            "event_location": "",
+            "is_all_day": true,
+            "start_time": "12:53 AM",
+            "start_date": "2013-04-18T07:53:00.000Z",
+            "end_date": "2013-04-18T07:53:00.000Z"
+        },
+        {
+            "summary": "Organic Chemistry Seminar: Prof. Matthew Becker6",
+            "start": "2013-04-18T16:00:00-07:00",
+            "end": "2013-04-18T17:00:00-07:00",
+            "event_url": "http://www.trumba.com/calendar/2_current?trumbaEmbed=eventid%3D1107411670%26view%3Devent",
+            "event_location": "Chemistry Building (CHB)",
+            "is_all_day": false,
+            "start_time": "4:00 PM",
+            "start_date": "2013-04-18T23:00:00.000Z",
+            "end_date": "2013-04-19T00:00:00.000Z"
+        },
+        {
+            "summary": "Organic Chemistry Seminar: Prof. Matthew Becker4",
+            "start": "2013-04-19T16:00:00-07:00",
+            "end": "2013-04-19T17:00:00-07:00",
+            "event_url": "http://art.washington.edu/calendar/?trumbaEmbed=eventid%3D1107431160%26view%3Devent",
+            "event_location": "Chemistry Building (CHB)",
+            "is_all_day": false,
+            "start_time": "4:00 PM",
+            "start_date": "2013-04-19T23:00:00.000Z",
+            "end_date": "2013-04-20T00:00:00.000Z"
+        }
+    ]
+}

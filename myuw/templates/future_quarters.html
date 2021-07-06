@@ -1,70 +1,35 @@
-{% extends is_hybrid|yesno:"base_hybrid.html,base.html" %}
+{% extends 'base.html' %}
+
+{% load settings_value %}
 {% load set_context %}
-{% load static %}
-{% load compress %}
 
-{% block load_values %}
-{% set_context 'page_title' 'Preview Quarter' %}
-{% endblock %}
+{% block django_json_data %}
+  <script>
+    // TODO: Replace this with a object in the context and a json_script.
+    window.futureTerm = "{{ future_term }}";
+  </script>
+{% endblock django_json_data %}
 
-{% block content %}
+{% block body_content %}
+<myuw-boilerplate logout-url="{% settings_value 'LOGOUT_URL' %}" is-hybrid="{{ user.isHybrid }}">
+  <template #mobile>
+    <b-col md="12" class="px-0">
+      <myuw-visual-schedule term-label="{{ future_term }}"></myuw-visual-schedule>
+      <myuw-course-cards term="{{ future_term }}"></myuw-course-cards>
+      <myuw-textbooks term="{{ future_term }}"></myuw-textbooks>
+    </b-col>
+  </template>
+  <template #desktop>
+    <b-col md="12">
+      <myuw-visual-schedule term-label="{{ future_term }}"></myuw-visual-schedule>
+      <myuw-course-cards term="{{ future_term }}"></myuw-course-cards>
+      <myuw-textbooks term="{{ future_term }}"></myuw-textbooks>
+    </b-col>
+  </template>
+</myuw-boilerplate>
+{% endblock body_content %}
 
-    <div id="main-content" role="main" aria-labelledby="main"></div>
-    <div id="static-links"></div>
-
-    <!-- component content templates -->
-    {% include "handlebars/banner/notice.html" %}
-    {% include "handlebars/card/loading.html" %}
-    {% include "handlebars/card/outage.html" %}
-    {% include "handlebars/card/error.html" %}
-    {% include "handlebars/card/schedule/visual.html" %}
-    {% include "handlebars/card/schedule/visual_day.html" %}
-    {% include "handlebars/card/schedule/final_day.html" %}
-    {% include "handlebars/card/schedule/final_panel.html" %}
-    {% include "handlebars/card/schedule/course_cards.html" %}
-    {% include "handlebars/card/schedule/course_content.html" %}
-    {% include "handlebars/card/schedule/course_sche_panel.html" %}
-    {% include "handlebars/card/schedule/eval_panel.html" %}
-    {% include "handlebars/card/schedule/course_resource_panel.html" %}
-    {% include "handlebars/card/schedule/instructor_panel.html" %}
-    {% include "handlebars/card/schedule/sp_final.html" %}
-    {% include "handlebars/card/schedule/course_sche_col_days.html" %}
-    {% include "handlebars/card/schedule/course_sche_col_bldg.html" %}
-    {% include "handlebars/card/instructor_schedule/course_grading.html" %}
-    {% include "handlebars/card/instructor_schedule/course_eval.html" %}
-    {% include "handlebars/card/instructor_schedule/secondaries.html" %}
-    {% include "handlebars/card/instructor_schedule/term_panel.html" %}
-    {% include "handlebars/card/instructor_schedule/course_resource/course_class_list.html" %}
-    {% include "handlebars/card/instructor_schedule/course_resource/course_stats.html" %}
-    {% include "handlebars/card/instructor_schedule/course_resource/class_website.html" %}
-    {% include "handlebars/card/instructor_schedule/course_resource/email_list.html" %}
-    {% include "handlebars/card/instructor_schedule/course_resource/online_tools.html" %}
-    {% include "handlebars/card/instructor_schedule/course_resource/textbooks.html" %}
-    {% include "handlebars/card/textbook.html" %}
-
-    <!-- page content templates -->
-    {% include "handlebars/loading.html" %}
-    {% include "handlebars/error.html" %}
-    {% include "handlebars/future.html" %}
-    {% include "handlebars/future_410_error.html" %}
-
-    {% include "user_state.html" %}
-
-{% endblock %}
-
-{% block extra_js %}
-    <script>
-        window.future_term = "{{ future_term }}";
-        window.future_term_data = {
-            "year": "{{term_data.year}}",
-            "quarter": "{{term_data.quarter}}",
-            "first_day_quarter": "{{ term_data.first_day_quarter |date:"l, F j, Y" }}",
-            "last_day_instruction": "{{ term_data.last_day_instruction |date:"l, F j, Y" }}",
-            "aterm_last_date": "{{term_data.aterm_last_date |date:"l, F j, Y" }}",
-            "bterm_first_date": "{{ term_data.bterm_first_date |date:"l, F j, Y" }}"
-        };
-    </script>
-    {% compress js inline %}
-    <script src="{% static 'js/page/future.js' %}"></script>
-    {% endcompress %}
-{% endblock %}
+{% block vue_script %}
+{% load webpack_bridge %}
+{% render_webpack_entry 'future_quarters' js='defer' %}
+{% endblock vue_script %}

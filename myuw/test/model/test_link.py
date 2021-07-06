@@ -94,7 +94,7 @@ class TestLink(MyuwApiTest):
 
         self.assertEquals(len(popular_links), 3)
         self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 2)
+        self.assertEquals(popular_links[0]['popularity'], 4)
 
         self.assertEquals(popular_links[1]['url'], TEST_URLS[2])
         self.assertEquals(popular_links[1]['popularity'], 1)
@@ -110,7 +110,7 @@ class TestLink(MyuwApiTest):
         popular_links = VisitedLinkNew.get_popular(is_seattle=True)
         self.assertEquals(len(popular_links), 2)
         self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 2)
+        self.assertEquals(popular_links[0]['popularity'], 4)
         self.assertEquals(popular_links[1]['url'], TEST_URLS[2])
         self.assertEquals(popular_links[1]['popularity'], 1)
 
@@ -141,7 +141,7 @@ class TestLink(MyuwApiTest):
         popular_links = VisitedLinkNew.get_popular()
         self.assertEquals(len(popular_links), 2)
         self.assertEquals(popular_links[0]['url'], TEST_URLS[0])
-        self.assertEquals(popular_links[0]['popularity'], 12)
+        self.assertEquals(popular_links[0]['popularity'], 16)
         self.assertEquals(popular_links[0]['labels'], ['', 'x'])
 
         self.assertEquals(popular_links[1]['url'], TEST_URLS[1])

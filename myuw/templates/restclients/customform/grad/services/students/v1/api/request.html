@@ -1,0 +1,13 @@
+<h1>Degree Request</h1>
+<form method="post" action="{{form_action}}">
+{% csrf_token %}
+<div>
+
+    {% include 'restclients/customform/grad/services/students/v1/api/id.html' %}
+
+    <input type="hidden" name="exclude_past_quarter" value="true">
+    <p>
+        <input value="Search" type="submit">
+    </p>
+</div>
+</form>

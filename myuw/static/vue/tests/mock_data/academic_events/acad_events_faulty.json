@@ -1,0 +1,1314 @@
+[
+    {
+        "summary": "Registration Period 2 - Autumn Quarter",
+        "start": "2021-06-21",
+        "end": "2021-09-28",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184780",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration Period 3 - Summer Quarter - B-term",
+        "start": "2021-06-21",
+        "end": "2021-07-28",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141225656",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration Period for UW Access - Summer Quarter",
+        "start": "2021-06-23",
+        "end": "2021-07-07",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141225643",
+        "is_all_day": false
+    },
+    {
+        "summary": "Independence Day (observed)",
+        "start": "2021-07-05",
+        "end": "2021-07-05",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141124209",
+        "is_all_day": true
+    },
+    {
+        "summary": "$75 Late Registration Fee Begins - Summer Quarter - Full and A-term",
+        "start": "2021-07-05",
+        "end": "2021-07-05",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141225173",
+        "is_all_day": true
+    },
+    {
+        "summary": "W Grade Designation Date - Summer Quarter - Full-term",
+        "start": "2021-07-05",
+        "end": "2021-07-05",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141125191",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Summer Quarter 2021 - A-term",
+        "start": "2021-07-21",
+        "end": "2021-07-21",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141124481",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Summer Quarter 2021 - B-term",
+        "start": "2021-07-22",
+        "end": "2021-07-22",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141124482",
+        "is_all_day": true
+    },
+    {
+        "summary": "$25 Late Registration Fee Begin - Summer Quarter - B-term",
+        "start": "2021-07-23",
+        "end": "2021-07-23",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141225174",
+        "is_all_day": true
+    },
+    {
+        "summary": "W Grade Designation Date - Summer Quarter - B-term",
+        "start": "2021-07-28",
+        "end": "2021-07-28",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141125190",
+        "is_all_day": true
+    },
+    {
+        "summary": "$75 Late Registration Fee Begins - Summer Quarter - B-term",
+        "start": "2021-08-05",
+        "end": "2021-08-05",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141225175",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Summer Quarter 2021 - Full and B-term",
+        "start": "2021-08-20",
+        "end": "2021-08-20",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141124483",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Cancellation for Low Scholarship",
+        "start": "2021-08-20",
+        "end": "2021-08-20",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184546",
+        "is_all_day": true
+    },
+    {
+        "summary": "Quarter Break - Autumn",
+        "start": "2021-08-21",
+        "end": "2021-09-28",
+        "year": "2021",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141124492",
+        "is_all_day": false
+    },
+    {
+        "summary": "Grades Due from Faculty - Summer Quarter - All Terms",
+        "start": "2021-08-24",
+        "end": "2021-08-24",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141125180",
+        "is_all_day": true
+    },
+    {
+        "summary": "Grade posting begins - Summer Quarter - All terms",
+        "start": "2021-08-25",
+        "end": "2021-08-25",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141125176",
+        "is_all_day": true
+    },
+    {
+        "summary": "Labor Day",
+        "start": "2021-09-06",
+        "end": "2021-09-06",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175682",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Cancellation for Low Scholarship",
+        "start": "2021-09-24",
+        "end": "2021-09-24",
+        "year": "2021",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141125185",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Autumn Quarter 2021",
+        "start": "2021-09-29",
+        "end": "2021-09-29",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182007",
+        "is_all_day": true
+    },
+    {
+        "summary": "$25 Late Registration Fee Begins - Autumn Quarter",
+        "start": "2021-09-29",
+        "end": "2021-09-29",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184801",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 3 - Autumn Quarter",
+        "start": "2021-09-29",
+        "end": "2021-10-05",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184781",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration for UW Tuition Exemption Program - Autumn Quarter",
+        "start": "2021-10-01",
+        "end": "2021-10-01",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184802",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration for WA State Tuition Exemption Program - Autumn Quarter",
+        "start": "2021-10-02",
+        "end": "2021-10-02",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184803",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period for UW Access - Autumn Quarter",
+        "start": "2021-10-02",
+        "end": "2021-10-15",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D141225640",
+        "is_all_day": false
+    },
+    {
+        "summary": "$75 Late Registration Fee Begins - Autumn Quarter",
+        "start": "2021-10-13",
+        "end": "2021-10-13",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184792",
+        "is_all_day": true
+    },
+    {
+        "summary": "RD Grade Designation Date - Autumn Quarter",
+        "start": "2021-10-13",
+        "end": "2021-10-13",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184547",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 1 - Priority - Winter Quarter",
+        "start": "2021-11-05",
+        "end": "2021-11-21",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184782",
+        "is_all_day": false
+    },
+    {
+        "summary": "Veterans Day",
+        "start": "2021-11-11",
+        "end": "2021-11-11",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175683",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 2 - Winter Quarter",
+        "start": "2021-11-22",
+        "end": "2022-01-02",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184783",
+        "is_all_day": false
+    },
+    {
+        "summary": "Thanksgiving Break",
+        "start": "2021-11-25",
+        "end": "2021-11-25",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175684",
+        "is_all_day": true
+    },
+    {
+        "summary": "Thanksgiving Break",
+        "start": "2021-11-26",
+        "end": "2021-11-26",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175685",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Autumn Quarter 2021",
+        "start": "2021-12-10",
+        "end": "2021-12-10",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182008",
+        "is_all_day": true
+    },
+    {
+        "summary": "Final Examinations - Autumn Quarter 2021",
+        "start": "2021-12-11",
+        "end": "2021-12-17",
+        "year": "2021",
+        "quarter": "Autumn",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182424",
+        "is_all_day": false
+    },
+    {
+        "summary": "Quarter Break - Winter",
+        "start": "2021-12-18",
+        "end": "2022-01-02",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182425",
+        "is_all_day": false
+    },
+    {
+        "summary": "Grades Due from Faculty - Autumn Quarter",
+        "start": "2021-12-21",
+        "end": "2021-12-21",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184538",
+        "is_all_day": true
+    },
+    {
+        "summary": "Grade posting begins - Autumn Quarter",
+        "start": "2021-12-22",
+        "end": "2021-12-22",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184534",
+        "is_all_day": true
+    },
+    {
+        "summary": "Christmas Day (Observed)",
+        "start": "2021-12-24",
+        "end": "2021-12-24",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175686",
+        "is_all_day": true
+    },
+    {
+        "summary": "New Year's Day (Observed)",
+        "start": "2021-12-31",
+        "end": "2021-12-31",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175687",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Winter Quarter 2022",
+        "start": "2022-01-03",
+        "end": "2022-01-03",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182009",
+        "is_all_day": true
+    },
+    {
+        "summary": "$25 Late Registration Fee Begins - Winter Quarter",
+        "start": "2022-01-03",
+        "end": "2022-01-03",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184793",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 3 - Winter Quarter",
+        "start": "2022-01-03",
+        "end": "2022-01-09",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184784",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration for UW Tuition Exemption Program - Winter Quarter",
+        "start": "2022-01-05",
+        "end": "2022-01-05",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184804",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period for UW Access - Winter Quarter",
+        "start": "2022-01-05",
+        "end": "2022-01-19",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184776",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration Cancellation for Low Scholarship",
+        "start": "2022-01-05",
+        "end": "2022-01-05",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184542",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration for WA State Tuition Exemption Program - Winter Quarter",
+        "start": "2022-01-06",
+        "end": "2022-01-06",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184805",
+        "is_all_day": true
+    },
+    {
+        "summary": "Martin Luther King Jr. Day",
+        "start": "2022-01-17",
+        "end": "2022-01-17",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175688",
+        "is_all_day": true
+    },
+    {
+        "summary": "$75 Late Registration Fee Begins - Winter Quarter",
+        "start": "2022-01-17",
+        "end": "2022-01-17",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184794",
+        "is_all_day": true
+    },
+    {
+        "summary": "RD Grade Designation Date - Winter Quarter",
+        "start": "2022-01-17",
+        "end": "2022-01-17",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184552",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 1 - Priority - Spring Quarter",
+        "start": "2022-02-11",
+        "end": "2022-02-27",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184785",
+        "is_all_day": false
+    },
+    {
+        "summary": "Presidents' Day",
+        "start": "2022-02-21",
+        "end": "2022-02-21",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175689",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 2 - Spring Quarter",
+        "start": "2022-02-28",
+        "end": "2022-03-27",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184786",
+        "is_all_day": false
+    },
+    {
+        "summary": "Instruction Ends for Winter Quarter 2022",
+        "start": "2022-03-11",
+        "end": "2022-03-11",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182010",
+        "is_all_day": true
+    },
+    {
+        "summary": "Final Examinations - Winter Quarter 2022",
+        "start": "2022-03-12",
+        "end": "2022-03-18",
+        "year": "2022",
+        "quarter": "Winter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182426",
+        "is_all_day": false
+    },
+    {
+        "summary": "Quarter Break - Spring",
+        "start": "2022-03-19",
+        "end": "2022-03-27",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182427",
+        "is_all_day": false
+    },
+    {
+        "summary": "Grades Due from Faculty - Winter Quarter",
+        "start": "2022-03-22",
+        "end": "2022-03-22",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184541",
+        "is_all_day": true
+    },
+    {
+        "summary": "Grade posting begins - Winter Quarter",
+        "start": "2022-03-23",
+        "end": "2022-03-23",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184537",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Spring Quarter 2022",
+        "start": "2022-03-28",
+        "end": "2022-03-28",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182011",
+        "is_all_day": true
+    },
+    {
+        "summary": "$25 Late Registration Fee Begins - Spring Quarter",
+        "start": "2022-03-28",
+        "end": "2022-03-28",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184795",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 3 - Spring Quarter",
+        "start": "2022-03-28",
+        "end": "2022-04-03",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184787",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration for UW Tuition Exemption Program - Spring Quarter",
+        "start": "2022-03-30",
+        "end": "2022-03-30",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184806",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period for UW Access - Spring Quarter",
+        "start": "2022-03-30",
+        "end": "2022-04-12",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184777",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration Cancellation for Low Scholarship",
+        "start": "2022-03-30",
+        "end": "2022-03-30",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184543",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration for WA State Tuition Exemption Program - Spring Quarter",
+        "start": "2022-03-31",
+        "end": "2022-03-31",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184807",
+        "is_all_day": true
+    },
+    {
+        "summary": "$75 Late Registration Fee Begins - Spring Quarter",
+        "start": "2022-04-11",
+        "end": "2022-04-11",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184796",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 1 - Priority - Summer Quarter",
+        "start": "2022-04-11",
+        "end": "2022-05-18",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184788",
+        "is_all_day": false
+    },
+    {
+        "summary": "RD Grade Designation Date - Spring Quarter",
+        "start": "2022-04-11",
+        "end": "2022-04-11",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184548",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 2 - Summer Quarter",
+        "start": "2022-05-19",
+        "end": "2022-06-19",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184789",
+        "is_all_day": false
+    },
+    {
+        "summary": "Memorial Day",
+        "start": "2022-05-30",
+        "end": "2022-05-30",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175690",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Spring Quarter 2022",
+        "start": "2022-06-03",
+        "end": "2022-06-03",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182012",
+        "is_all_day": true
+    },
+    {
+        "summary": "Final Examinations - Spring Quarter 2022",
+        "start": "2022-06-06",
+        "end": "2022-06-10",
+        "year": "2022",
+        "quarter": "Spring",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182428",
+        "is_all_day": false
+    },
+    {
+        "summary": "Quarter Break - Summer",
+        "start": "2022-06-11",
+        "end": "2022-06-19",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182429",
+        "is_all_day": false
+    },
+    {
+        "summary": "Grades Due from Faculty - Spring Quarter",
+        "start": "2022-06-14",
+        "end": "2022-06-14",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184539",
+        "is_all_day": true
+    },
+    {
+        "summary": "Grade posting begins - Spring Quarter",
+        "start": "2022-06-15",
+        "end": "2022-06-15",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184535",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Summer Quarter 2022 - Full and A-term",
+        "start": "2022-06-20",
+        "end": "2022-06-20",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182013",
+        "is_all_day": true
+    },
+    {
+        "summary": "$25 Late Registration Fee Begin - Summer Quarter - Full and A-term",
+        "start": "2022-06-20",
+        "end": "2022-06-20",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184797",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period 3 - Summer Quarter - B-term",
+        "start": "2022-06-20",
+        "end": "2022-07-27",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184791",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration Period 3 - Summer Quarter - Full & A-term",
+        "start": "2022-06-20",
+        "end": "2022-06-26",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184790",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration for UW Tuition Exemption Program - Summer Quarter",
+        "start": "2022-06-22",
+        "end": "2022-06-22",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184808",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration Period for UW Access - Summer Quarter",
+        "start": "2022-06-22",
+        "end": "2022-07-06",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184778",
+        "is_all_day": false
+    },
+    {
+        "summary": "Registration Cancellation for Low Scholarship",
+        "start": "2022-06-22",
+        "end": "2022-06-22",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184544",
+        "is_all_day": true
+    },
+    {
+        "summary": "Registration for WA State Tuition Exemption Program - Summer Quarter",
+        "start": "2022-06-23",
+        "end": "2022-06-23",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184809",
+        "is_all_day": true
+    },
+    {
+        "summary": "RD Grade Designation Date - Summer Quarter - A-term",
+        "start": "2022-06-27",
+        "end": "2022-06-27",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184549",
+        "is_all_day": true
+    },
+    {
+        "summary": "Independence Day",
+        "start": "2022-07-04",
+        "end": "2022-07-04",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Holidays'",
+        "myuw_categories": {
+            "all": true,
+            "breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150175691",
+        "is_all_day": true
+    },
+    {
+        "summary": "$75 Late Registration Fee Begins - Summer Quarter - Full and A-term",
+        "start": "2022-07-04",
+        "end": "2022-07-04",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184798",
+        "is_all_day": true
+    },
+    {
+        "summary": "RD Grade Designation Date - Summer Quarter - Full-term",
+        "start": "2022-07-04",
+        "end": "2022-07-04",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184551",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Summer Quarter 2022 - A-term",
+        "start": "2022-07-20",
+        "end": "2022-07-20",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182014",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Begins for Summer Quarter 2022 - B-term",
+        "start": "2022-07-21",
+        "end": "2022-07-21",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182015",
+        "is_all_day": true
+    },
+    {
+        "summary": "$25 Late Registration Fee Begin - Summer Quarter - B-term",
+        "start": "2022-07-21",
+        "end": "2022-07-21",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184799",
+        "is_all_day": true
+    },
+    {
+        "summary": "RD Grade Designation Date - Summer Quarter - B-term",
+        "start": "2022-07-27",
+        "end": "2022-07-27",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184550",
+        "is_all_day": true
+    },
+    {
+        "summary": "$75 Late Registration Fee Begins - Summer Quarter - B-term",
+        "start": "2022-08-04",
+        "end": "2022-08-04",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Registration Dates'",
+        "myuw_categories": {
+            "all": true,
+            "registration": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184800",
+        "is_all_day": true
+    },
+    {
+        "summary": "Instruction Ends for Summer Quarter 2022 - Full and B-term",
+        "start": "2022-08-19",
+        "end": "2022-08-19",
+        "year": "2022",
+        "quarter": "Summer",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182016",
+        "is_all_day": true
+    },
+    {
+        "summary": "Quarter Break - Autumn",
+        "start": "2022-08-20",
+        "end": "2022-09-27",
+        "year": "2022",
+        "quarter": "Quarter",
+        "category": "b'Dates of Instruction'",
+        "myuw_categories": {
+            "all": true,
+            "classes": true,
+            "breaks": true,
+            "term_breaks": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150182430",
+        "is_all_day": false
+    },
+    {
+        "summary": "Grades Due from Faculty - Summer Quarter - All Terms",
+        "start": "2022-08-23",
+        "end": "2022-08-23",
+        "year": "2022",
+        "quarter": "Autumn",
+        "category": "b'Grade Deadlines'",
+        "myuw_categories": {
+            "all": true,
+            "grade": true
+        },
+        "event_url": "http://www.washington.edu/calendar/academic/?trumbaEmbed=view%3Devent%26eventid%3D150184540",
+        "is_all_day": true
+    }
+]

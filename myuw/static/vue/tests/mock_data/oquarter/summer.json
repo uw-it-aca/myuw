@@ -1,0 +1,38 @@
+{
+    "terms": [
+        {
+            "quarter": "Summer",
+            "year": 2013,
+            
+            "summer_term": "full-term",
+            "url": "/2013,summer,full-term",
+            "credits": "0",
+            "section_count": 0,
+            "has_registration": false,
+            "highlight": true
+        },
+        {
+            "quarter": "Autumn",
+            "year": 2013,
+            "label": "2013,autumn",
+            
+            "summer_term": null,
+            "url": "/2013,autumn",
+            "credits": "0",
+            "section_count": 0,
+            "has_registration": false,
+            "highlight": true
+        }
+    ],
+    "next_term_data": {
+        "quarter": "Autumn",
+        "year": 2013,
+        "summer_term": null,
+        "url": "/2013,autumn",
+        "credits": "0",
+        "section_count": 0,
+        "has_registration": false,
+        "highlight": true
+    },
+    "highlight_future_quarters": true
+}

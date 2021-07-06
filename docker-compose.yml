@@ -8,12 +8,31 @@ services:
     container_name: app-myuw
     volumes:
       - ./myuw:/app/myuw
+      - statics-volume:/static
     ports:
       - "8000:8000"
     environment:
       ENV: localdev
       AUTH: SAML_MOCK
       PORT: ${PORT:-8000}
-      COMPRESSOR_ENABLED: "False"
     stdin_open: true
     tty: true
+  node-bundler:
+    build:
+      context: .
+      target: node-bundler
+    ports:
+      - "8888:8888"
+    environment:
+      NODE_ENV: development
+      ENV: localdev
+      VUE_DEVTOOLS: "True"
+      # BUNDLE_ANALYZER: "True"
+    volumes:
+      - ./myuw:/app/myuw
+      - statics-volume:/static
+    command: bash -c "cd /app/ && ./node_modules/.bin/webpack --watch"
+    stdin_open: true
+    tty: true
+volumes:
+  statics-volume:

@@ -5,7 +5,7 @@ from django.conf import settings
 from django.urls import re_path
 from django.contrib.auth.decorators import login_required
 from myuw.views.page import logout
-from myuw.views.index import index
+from myuw.views.home import home
 from myuw.views.teaching import teaching, teaching_section, student_photo_list
 from myuw.views.notices import notices
 from myuw.views.thrive import thrive
@@ -25,8 +25,11 @@ from myuw.views.profile import profile
 from myuw.views.husky_experience import husky_experience
 from myuw.views.link import outbound_link
 from myuw.views.resources import resources
+from myuw.views.api.adviser import Advisers
+from myuw.views.rest_search import MyUWRestSearchView
 from myuw.views.api.affiliation import Affiliation
 from myuw.views.api.applications import Applications
+from myuw.views.api.attestation import Covid19Attestation
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
@@ -91,21 +94,28 @@ urlpatterns += [
     re_path(r'admin/links', popular_links, {'page': 1},
             name="myuw_popular_links"),
     re_path(r'^logger/(?P<interaction_type>.*)$', log_interaction),
+    re_path(r'^restsearch/(\w+)/(.*)$',
+            MyUWRestSearchView.as_view(), name="myuw_rest_search"),
     re_path(r'api/v1/close_banner_message',
             CloseBannerMsg.as_view(),
             name="myuw_close_banner_message"),
     re_path(r'api/v1/turn_off_tour_popup',
             TurnOffPopup.as_view(),
             name="myuw_turn_off_tour_popup"),
-    re_path(r'^api/v1/academic_events$',
+    re_path(r'^api/v1/academic_events/$',
             AcademicEvents.as_view(),
             name="myuw_academic_calendar"),
     re_path(r'^api/v1/academic_events/current/$',
             AcademicEvents.as_view(), {'current': True},
             name="myuw_academic_calendar_current"),
+    re_path(r'^api/v1/advisers/?$',
+            Advisers.as_view(),
+            name="myuw_advisers_api"),
     re_path(r'^api/v1/affiliation/?$',
             Affiliation.as_view(),
             name="myuw_affiliation"),
+    re_path(r'^api/v1/covid19/$',
+            Covid19Attestation.as_view(), name="myuw_attest_covid19"),
     re_path(r'^api/v1/book/current/?$',
             TextbookCur.as_view(),
             name="myuw_current_book"),
@@ -277,5 +287,5 @@ urlpatterns += [
             LTIPhotoList.as_view(), name='myuw_lti_photo_list'),
     re_path(r'photo/(?P<url_key>.*)', show_photo),
     re_path(r'out/?', outbound_link, name='myuw_outbound_link'),
-    re_path(r'.*', index, name="myuw_home"),
+    re_path(r'.*', home, name="myuw_home"),
 ]

@@ -1,0 +1,197 @@
+{
+  "uwnetid": "javerage",
+  "uwregid": "9136CCB8F66711D5BE060004AC494FFE",
+  "birth_date": "1961-10-26",
+  "email": "javerage@u.washington.edu",
+  "first_name": "John Joseph",
+  "last_name": "Average",
+  "pronouns": "he/him/his",
+  "student_name": "Average,John Joseph",
+  "student_number": "1033334",
+  "employee_id": "123456789",
+  "directory_release": true,
+  "local_address": {
+    "city": "Seattle",
+    "country": "United States",
+    "street_line1": "4634 26th Ave NE",
+    "street_line2": "APT 102",
+    "postal_code": "",
+    "state": "WA",
+    "zip_code": "98105-4566"
+  },
+  "local_phone": null,
+  "permanent_address": {
+    "city": "Bellevue",
+    "country": "United States",
+    "street_line1": "1645 140th Ave NE",
+    "street_line2": "APT 980",
+    "postal_code": "",
+    "state": "WA",
+    "zip_code": "98005-1234"
+  },
+  "permanent_phone": "4255556789",
+  "visa_type": null,
+  "veteran_code": "0",
+  "is_student": true,
+  "is_grad_student": false,
+  "campus": "Seattle",
+  "class_level": "SENIOR",
+  "term_majors": [
+    {
+      "quarter": "spring",
+      "year": 2013,
+      "majors": [
+        {
+          "degree_abbr": "ACMS",
+          "college_abbr": "",
+          "college_full_name": "",
+          "degree_level": 1,
+          "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+          "campus": "Seattle",
+          "name": "ACMS (SOC & BEH SCI)",
+          "full_name": "App & Comp Math Sci (Social & Behav Sci)",
+          "short_name": "ACMS (SBS)"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "summer",
+      "year": 2013,
+      "majors": [
+        {
+          "degree_abbr": "ACMS",
+          "college_abbr": "",
+          "college_full_name": "",
+          "degree_level": 1,
+          "degree_name": "BACHELOR OF SCIENCE (APPLIED & COMPUTATIONAL MATH SCIENCES)",
+          "campus": "Seattle",
+          "name": "ACMS (SOC & BEH SCI)",
+          "full_name": "App & Comp Math Sci (Social & Behav Sci)",
+          "short_name": "ACMS (SBS)"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "autumn",
+      "year": 2013,
+      "majors": [
+        {
+          "degree_abbr": "C SCI",
+          "college_abbr": "A & S",
+          "college_full_name": "A & S",
+          "degree_level": 1,
+          "degree_name": "BACHELOR OF SCIENCE (COMPUTER SCIENCE)",
+          "campus": "Seattle",
+          "name": "COMPUTER SCIENCE",
+          "full_name": "Computer Science",
+          "short_name": "COMPUTER SCI"
+        }
+      ],
+      "degrees_modified": true,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "winter",
+      "year": 2014,
+      "majors": [
+        {
+          "degree_abbr": "ENGL",
+          "college_abbr": "A & S",
+          "college_full_name": "A & S",
+          "degree_level": 1,
+          "degree_name": "BACHELOR OF ARTS (ENGLISH)",
+          "campus": "Seattle",
+          "name": "ENGLISH",
+          "full_name": "English",
+          "short_name": "ENGLISH"
+        }
+      ],
+      "degrees_modified": true,
+      "has_only_dropped": false
+    }
+  ],
+  "has_pending_major": true,
+  "term_minors": [
+    {
+      "quarter": "spring",
+      "year": 2013,
+      "minors": [
+        {
+          "abbr": "ASL",
+          "campus": "Seattle",
+          "name": "AMERICAN SIGN LANGUAGE",
+          "full_name": "American Sign Language",
+          "short_name": "ASL"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "summer",
+      "year": 2013,
+      "minors": [
+        {
+          "abbr": "ASL",
+          "campus": "Seattle",
+          "name": "AMERICAN SIGN LANGUAGE",
+          "full_name": "American Sign Language",
+          "short_name": "ASL"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "autumn",
+      "year": 2013,
+      "minors": [
+        {
+          "abbr": "ASL",
+          "campus": "Seattle",
+          "name": "AMERICAN SIGN LANGUAGE",
+          "full_name": "American Sign Language",
+          "short_name": "ASL"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "winter",
+      "year": 2014,
+      "minors": [
+        {
+          "abbr": "MATH",
+          "campus": "Seattle",
+          "name": "MATHEMATICS",
+          "full_name": "Mathematics",
+          "short_name": "MATH"
+        }
+      ],
+      "degrees_modified": true,
+      "has_only_dropped": false
+    }
+  ],
+  "has_minors": true,
+  "has_pending_minor": true,
+  "display_name": "J. Average Student",
+  "password": {
+    "uwnetid": "javerage",
+    "kerb_status": "Active",
+    "last_change": "2013-01-27 10:49:42-08:00",
+    "interval": 10368000,
+    "last_change_med": null,
+    "expires_med": null,
+    "interval_med": null,
+    "minimum_length": 8,
+    "time_stamp": "2016-12-16 14:21:40-08:00",
+    "netid_status": ["Person", "Active"],
+    "days_after_last_pw_change": 77,
+    "has_active_med_pw": false
+  }
+}

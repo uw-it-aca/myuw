@@ -57,7 +57,7 @@
             "DelegateLevel": "college",
             "Person": {
                 "Href": "/student/v5/person/10000000000000000000000000000011.json",
-                "Name": "Barbara Pearson",
+                "Name": "See pws",
                 "RegID": "10000000000000000000000000000011"
             }
         },
@@ -65,7 +65,7 @@
             "DelegateLevel": "department",
             "Person": {
                 "Href": "/student/v5/person/10000000000000000000000000000009.json",
-                "Name": "Vikki Haag Day",
+                "Name": "See pws",
                 "RegID": "10000000000000000000000000000009"
             }
         },
@@ -73,7 +73,7 @@
             "DelegateLevel": "curriculum",
             "Person": {
                 "Href": "/student/v5/person/10000000000000000000000000000001.json",
-                "Name": "CYNTHIA SILVERNALE",
+                "Name": "See pws",
                 "RegID": "10000000000000000000000000000001"
             }
         }
@@ -113,7 +113,7 @@
                     "PercentInvolve": "60",
                     "Person": {
                         "Href": "/student/v5/person/10000000000000000000000000000011.json",
-                        "Name": "JASON HECKEL",
+                        "Name": "See pws",
                         "RegID": "10000000000000000000000000000011"
                     },
                     "TSPrint": true
@@ -126,7 +126,7 @@
                     "PercentInvolve": "40",
                     "Person": {
                         "Href": "/student/v5/person/10000000000000000000000000000001.json",
-                        "Name": "JEFFREY J. WONG",
+                        "Name": "See pws",
                         "RegID": "10000000000000000000000000000001"
                     },
                     "TSPrint": true
