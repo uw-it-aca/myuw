@@ -659,6 +659,15 @@ class TestVisualSchedule(TestCase):
         for section in schedule.sections:
             self.assertTrue(section.is_teaching)
 
+        request = get_request_with_user('bill',
+                                        get_request_with_date("2013-07-05"))
+        schedule = _get_combined_schedule(request)
+        self.assertEqual(schedule.summer_term, 'a-term')
+
+        schedule = _get_combined_schedule(request)
+        for section in schedule.sections:
+            self.assertTrue(section.is_teaching)
+
     def test_get_mixed_sections(self):
         request = get_request_with_user('eight',
                                         get_request_with_date("2013-04-01"))
