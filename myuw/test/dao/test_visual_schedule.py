@@ -9,7 +9,8 @@ from myuw.dao.visual_schedule import (
     _get_visual_schedule_from_schedule, get_future_visual_schedule,
     get_schedule_bounds, _add_dates_to_sections, _get_weeks_from_bounds,
     _add_sections_to_weeks, _section_lists_are_same, _sections_are_same,
-    _consolidate_weeks, _add_weekend_meeting_data, _get_combined_schedule,
+    _consolidate_weeks, _add_weekend_meeting_data,
+    _get_combined_schedule, _get_combined_future_schedule,
     get_summer_schedule_bounds, trim_summer_meetings, _get_finals_period,
     get_current_visual_schedule, _trim_summer_term,
     _get_disabled_days, _get_earliest_meeting_day, get_schedule_json,
@@ -18,7 +19,7 @@ from myuw.dao.visual_schedule import (
     trim_weeks_no_meetings, _get_off_term_trimmed, _adjust_off_term_dates,
     _add_qtr_start_data_to_weeks, _remove_empty_periods,
     _adjust_period_dates, get_visual_schedule_from_schedule)
-from myuw.dao.term import get_current_quarter
+from myuw.dao.term import get_current_quarter, get_next_quarter
 from myuw.test import (
     fdao_sws_override, fdao_pws_override,
     get_request, get_request_with_user, get_request_with_date)
@@ -652,12 +653,36 @@ class TestVisualSchedule(TestCase):
         self.assertEqual(len(finals.sections), 5)
 
     def test_get_instructor_sections(self):
-        request = get_request_with_user('bill',
-                                        get_request_with_date("2013-04-01"))
+        request = get_request_with_user(
+            'bill', get_request_with_date("2013-04-01"))
 
         schedule = _get_combined_schedule(request)
         for section in schedule.sections:
             self.assertTrue(section.is_teaching)
+
+        summerq = get_next_quarter(request)
+        schedule = _get_combined_future_schedule(request, summerq, None)
+        self.assertEqual(schedule.summer_term, 'a-term')
+
+        # MUWM-4973: student schedule returns 200
+        request = get_request_with_user(
+            'bill', get_request_with_date("2013-07-05"))
+        schedule = _get_combined_schedule(request)
+        self.assertEqual(schedule.summer_term, 'a-term')
+        schedule = _get_combined_schedule(request)
+        for section in schedule.sections:
+            self.assertTrue(section.is_teaching)
+
+        # student schedule returns 404
+        request = get_request_with_user(
+            'billsea', get_request_with_date("2013-07-05"))
+        schedule = _get_combined_schedule(request)
+        self.assertEqual(len(schedule.sections), 0)
+
+        request = get_request_with_user(
+            'bill', get_request_with_date("2013-04-01"))
+        schedule = _get_combined_future_schedule(request, summerq, None)
+        self.assertEqual(len(schedule.sections), 0)
 
     def test_get_mixed_sections(self):
         request = get_request_with_user('eight',
