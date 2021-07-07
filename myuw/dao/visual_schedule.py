@@ -137,8 +137,6 @@ def get_current_visual_schedule(request):
         return None, None, None
     summer_term = None
     if schedule.term.is_summer_quarter():
-        logger.error("SCHEDULE================{}".format(
-            schedule.summer_term))
         summer_term = schedule.summer_term
     vs = get_visual_schedule_from_schedule(request, schedule, summer_term)
     return vs, schedule.term, summer_term
@@ -162,9 +160,6 @@ def _get_combined_schedule(request):
     try:
         instructor_schedule = get_instructor_schedule_by_term(request)
         _set_instructor_sections(instructor_schedule)
-        if instructor_schedule.term.is_summer_quarter():
-            logger.error("SUMMER TERM================{}".format(
-                instructor_schedule.summer_term))
     except DataFailureException:
         instructor_schedule = None
 
