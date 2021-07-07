@@ -659,14 +659,20 @@ class TestVisualSchedule(TestCase):
         for section in schedule.sections:
             self.assertTrue(section.is_teaching)
 
+        # MUWM-4973: student schedule returns 200
         request = get_request_with_user('bill',
                                         get_request_with_date("2013-07-05"))
         schedule = _get_combined_schedule(request)
         self.assertEqual(schedule.summer_term, 'a-term')
-
         schedule = _get_combined_schedule(request)
         for section in schedule.sections:
             self.assertTrue(section.is_teaching)
+
+        # student schedule returns 404
+        request = get_request_with_user('billsea',
+                                        get_request_with_date("2013-07-05"))
+        schedule = _get_combined_schedule(request)
+        self.assertEqual(len(schedule.sections), 0)
 
     def test_get_mixed_sections(self):
         request = get_request_with_user('eight',
