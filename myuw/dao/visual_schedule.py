@@ -162,14 +162,7 @@ def _get_combined_schedule(request):
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
-
-    if (student_schedule is None or
-            len(student_schedule.sections) == 0):
-        return instructor_schedule
-    schedule = student_schedule
-    if instructor_schedule is not None:
-        schedule.sections += instructor_schedule.sections
-    return schedule
+    return __combine_schedules(student_schedule, instructor_schedule)
 
 
 def _get_combined_future_schedule(request, term, summer_term):
@@ -186,17 +179,17 @@ def _get_combined_future_schedule(request, term, summer_term):
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
+    return __combine_schedules(student_schedule, instructor_schedule)
 
-    schedule = None
-    if student_schedule is not None:
-        schedule = student_schedule
-        if instructor_schedule is not None:
-            schedule.sections += instructor_schedule.sections
-    elif instructor_schedule is not None:
-        schedule = instructor_schedule
 
+def __combine_schedules(student_schedule, instructor_schedule):
+    if (student_schedule is None or
+            len(student_schedule.sections) == 0):
+        return instructor_schedule
+    schedule = student_schedule
+    if instructor_schedule is not None:
+        schedule.sections += instructor_schedule.sections
     return schedule
-
 
 def _set_instructor_sections(instructor_schedule):
     for section in instructor_schedule.sections:
