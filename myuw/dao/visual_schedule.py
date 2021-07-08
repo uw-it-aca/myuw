@@ -1,6 +1,7 @@
 # Copyright 2021 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+import logging
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_current_quarter, get_current_summer_term
@@ -10,6 +11,8 @@ from dateutil.relativedelta import *
 from datetime import timedelta
 import math
 import copy
+
+logger = logging.getLogger(__name__)
 
 
 def get_schedule_json(visual_schedule, term, summer_term=None):
@@ -159,15 +162,7 @@ def _get_combined_schedule(request):
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
-
-    schedule = None
-    if student_schedule is not None:
-        schedule = student_schedule
-        if instructor_schedule is not None:
-            schedule.sections += instructor_schedule.sections
-    elif instructor_schedule is not None:
-        schedule = instructor_schedule
-    return schedule
+    return __combine_schedules(student_schedule, instructor_schedule)
 
 
 def _get_combined_future_schedule(request, term, summer_term):
@@ -184,15 +179,16 @@ def _get_combined_future_schedule(request, term, summer_term):
         _set_instructor_sections(instructor_schedule)
     except DataFailureException:
         instructor_schedule = None
+    return __combine_schedules(student_schedule, instructor_schedule)
 
-    schedule = None
-    if student_schedule is not None:
-        schedule = student_schedule
-        if instructor_schedule is not None:
-            schedule.sections += instructor_schedule.sections
-    elif instructor_schedule is not None:
-        schedule = instructor_schedule
 
+def __combine_schedules(student_schedule, instructor_schedule):
+    if (student_schedule is None or
+            len(student_schedule.sections) == 0):
+        return instructor_schedule
+    schedule = student_schedule
+    if instructor_schedule is not None:
+        schedule.sections += instructor_schedule.sections
     return schedule
 
 
