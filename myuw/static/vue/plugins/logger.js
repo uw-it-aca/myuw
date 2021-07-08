@@ -223,7 +223,7 @@ class Logger {
   }
 
   setHybrid(value) {
-    this.sink.set('is_hybrid', value);
+    this.sink.hybrid = value;
   }
 }
 
@@ -265,9 +265,11 @@ class ConsoleSink {
 class GtagSink {
   constructor(gtag) {
     this.gtag = gtag;
+    this.hybrid = false;
   }
 
   event(name, data) {
+    data.is_hybrid = this.hybrid;
     this.gtag.event(name, data);
   }
 
@@ -289,6 +291,9 @@ export default function (Vue, options) {
   if ('gtag' in options) {
     Vue.use(VueGtag, options['gtag']);
     sink = new GtagSink(Vue.prototype.$gtag);
+    sink.config({
+      cookie_flags: 'max-age=63072000;secure;samesite=none',
+    });
   } else if ('console' in options) {
     sink = new ConsoleSink(options['console']);
   } else {
