@@ -157,4 +157,34 @@ describe('Notice Card', () => {
     });
     expect(axios.put).toHaveBeenCalledTimes(9);
   });
+
+  it('Check covid vaccine display', async () => {
+    axios.get.mockImplementation((url) => {
+      if (url.includes('/api/v1/notices/')) {
+        return Promise.resolve({data: jnewNotices, status: 200});
+      } else if (url.includes('/api/v1/covid19/')) {
+        return Promise.reject({response: {status: 404}});
+      }
+    });
+    const wrapper = mount(NoticeCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(
+      wrapper.findComponent(Covid19).vm.showCard
+    ).toBe(true);
+  });
+
+  it('Check covid vaccine hide', async () => {
+    axios.get.mockImplementation((url) => {
+      if (url.includes('/api/v1/notices/')) {
+        return Promise.resolve({data: jnewNotices, status: 200});
+      } else if (url.includes('/api/v1/covid19/')) {
+        return Promise.reject({response: {status: 200}});
+      }
+    });
+    const wrapper = mount(NoticeCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(
+      wrapper.findComponent(Covid19).vm.showCard
+    ).toBe(false);
+  });
 });
