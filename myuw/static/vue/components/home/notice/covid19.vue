@@ -10,7 +10,7 @@
           >
             <span class="d-inline-block font-weight-bold text-danger mr-1 notice-critical"
               >Critical:</span
-            ><span>Complete the Student COVID-19 Vaccination</span>
+            ><span>Complete the UW Student COVID-19 Vaccine Attestation Form</span>
           </button>
         </span>
       </div>
