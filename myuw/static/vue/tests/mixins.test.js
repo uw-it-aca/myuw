@@ -105,7 +105,23 @@ describe('mixins', () => {
     expect(utils.methods.hasAnyKeys(object1)).toBe(true);
     expect(utils.methods.hasAnyKeys({})).toEqual(false);
   });
-
+  it('degreeListString', () => {
+    const majors = [
+      {"abbr": "ASL",
+       "campus": "Tacoma",
+       "name": "AMERICAN SIGN LANGUAGE",
+       "full_name": "American Sign Language",
+       "short_name": "ASL"},
+     {"abbr": "POL SCI",
+      "campus": "Tacoma",
+      "name": "POLITICAL SCIENCE",
+      "full_name": "Political Science",
+      "short_name": "POL SCI"}
+    ];
+    expect(utils.methods.degreeListString(majors)).toBe(
+      "American Sign Language, Political Science"
+    );
+  });
   it('buildClasslistCsv', () => {
   {
     const registrations = [
