@@ -70,6 +70,16 @@ export default {
         return n1.sortDate - n2.sortDate;
       });
     },
+    degreeListString(degrees) {
+      let list = '';
+      for (let i = 0; i < degrees.length; i++) {
+        list += degrees[i].full_name;
+        if (i < degrees.length - 1) {
+          list += ', ';
+        }
+      }
+      return list;
+    },
     titleCaseWord(w) {
       if (w && w.length) {
         return w[0].toUpperCase() + w.substr(1).toLowerCase();

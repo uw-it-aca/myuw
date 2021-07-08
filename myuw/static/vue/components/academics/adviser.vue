@@ -35,7 +35,7 @@
         </li>
       </ul>
       <hr class="my-0">
-      <uw-card-property title="Your Major" class="mt-3" :no-margin-bottom="true">
+      <uw-card-property v-if="hasMajors" title="Your Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
             <template v-for="(termMajor, index) in termMajors">
               <li v-if="index == 0" :key="index" class="mb-1">
@@ -104,6 +104,7 @@ export default {
       termMajors: (state) => state.profile.value.term_majors,
       termMinors: (state) => state.profile.value.term_minors,
       hasMinors: (state) => state.profile.value.has_minors,
+      hasMajors: (state) => state.profile.value.term_majors.length > 0,
     }),
     ...mapGetters('advisers', {
       isReadyAdvisers: 'isReady',
@@ -140,16 +141,6 @@ export default {
     ...mapActions('profile', {
       fetchProfile: 'fetch',
     }),
-    degreeListString(degrees) {
-      let list = '';
-      for (let i = 0; i < degrees.length; i++) {
-        list += degrees[i].full_name;
-        if (i < degrees.length - 1) {
-          list += ', ';
-        }
-      }
-      return list;
-    },
   },
 };
 </script>
