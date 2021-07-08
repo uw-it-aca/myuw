@@ -179,16 +179,6 @@ export default {
   },
   methods: {
     ...mapActions('profile', ['fetch']),
-    degreeListString(degrees) {
-      let list = '';
-      for (let i = 0; i < degrees.length; i++) {
-        list += degrees[i].full_name;
-        if (i < degrees.length - 1) {
-          list += ', ';
-        }
-      }
-      return list;
-    },
     addressLocationString(address) {
       let location = '';
       if (address.city && address.state) {

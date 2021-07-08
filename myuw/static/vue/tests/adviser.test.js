@@ -11,10 +11,10 @@ import javgProfile from '../tests/mock_data/profile/javerage.json';
 
 import AssignedAdviserCard from '../components/academics/adviser.vue';
 import UwCard from '../components/_templates/card.vue';
+import UwCardProperty from '../components/_templates/card-property.vue';
 
 const localVue = createLocalVue(Vuex);
 jest.mock('axios');
-localVue.component('uw-card', UwCard);
 
 describe('Assigned Adviser Card', () => {
   let store;
@@ -47,8 +47,11 @@ describe('Assigned Adviser Card', () => {
     await new Promise(setImmediate);
 
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
+    expect(wrapper.findAllComponents(UwCardProperty)).toHaveLength(2);
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.isUndergrad).toBe(true);
+    expect(wrapper.vm.hasMajors).toBe(true);
+    expect(wrapper.vm.hasMinors).toBe(true);
     const advisers = wrapper.vm.advisers;
     expect(advisers.length).toBe(5);
     expect(advisers[0].program).toBe("UAA Advising");
