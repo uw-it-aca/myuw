@@ -191,7 +191,6 @@ def __combine_schedules(student_schedule, instructor_schedule):
         schedule.sections += instructor_schedule.sections
     return schedule
 
-
 def _set_instructor_sections(instructor_schedule):
     for section in instructor_schedule.sections:
         section.is_teaching = True
