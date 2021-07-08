@@ -34,7 +34,7 @@
           </div>
         </li>
       </ul>
-      <hr class="my-0">
+      <hr class="my-0" v-if="hasMajors || hasMinors">
       <uw-card-property v-if="hasMajors" title="Your Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
             <template v-for="(termMajor, index) in termMajors">
