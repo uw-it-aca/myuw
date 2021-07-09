@@ -128,6 +128,7 @@ Vue.use(Logger, {
       id: gaCode,
       params: {
         anonymize_ip: true,
+        cookie_flags: 'max-age=63072000;secure;samesite=none',
         send_page_view: true,
         user_id: hashId,
       },
