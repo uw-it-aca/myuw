@@ -291,9 +291,6 @@ export default function (Vue, options) {
   if ('gtag' in options) {
     Vue.use(VueGtag, options['gtag']);
     sink = new GtagSink(Vue.prototype.$gtag);
-    sink.config({
-      cookie_flags: 'max-age=63072000;secure;samesite=none',
-    });
   } else if ('console' in options) {
     sink = new ConsoleSink(options['console']);
   } else {
