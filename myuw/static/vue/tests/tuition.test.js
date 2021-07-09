@@ -68,7 +68,6 @@ describe('Tuition store', () => {
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(0);
     expect(wrapper.vm.tuition.tuition_accbalance).toBe(1);
-    expect(wrapper.vm.tuition.tuition_due).toBe("2014-08-20");
     expect(wrapper.findComponent(TuitionFees).exists()).toBe(true);
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
     expect(wrapper.findComponent(FinAid).exists()).toBe(true);
@@ -90,7 +89,6 @@ describe('Tuition store', () => {
     expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
     expect(wrapper.vm.tuition.pce_accbalance).toBe(1000.00);
     expect(wrapper.vm.tuition.tuition_accbalance).toBe(12345.00);
-    expect(wrapper.vm.tuition.tuition_due).toBe("2013-04-09");
     expect(Boolean(wrapper.vm.tuitionDate)).toBe(true);
     expect(wrapper.vm.finAidNotices.length).toBe(5);
     expect(wrapper.vm.tuitionDueNotice.attributes.length).toBe(1);
