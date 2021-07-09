@@ -65,9 +65,8 @@ describe('Tuition store', () => {
     expect(wrapper.vm.finAidNotices.length).toBe(1);
     expect(wrapper.vm.pceTuitionDup.length).toBe(0);
     expect(wrapper.vm.tuitionDate.formatted ).toBe('Wed, Aug 20');
-    expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
-    expect(wrapper.vm.tuition.pce_accbalance).toBe(0);
-    expect(wrapper.vm.tuition.tuition_accbalance).toBe(1);
+    expect(wrapper.vm.pceBalance).toBe(0);
+    expect(wrapper.vm.tuiBalance).toBe(1);
     expect(wrapper.findComponent(TuitionFees).exists()).toBe(true);
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
     expect(wrapper.findComponent(FinAid).exists()).toBe(true);
@@ -86,9 +85,8 @@ describe('Tuition store', () => {
     const wrapper = mount(TuitionFees, {store, localVue});
     await new Promise(setImmediate);
     expect(wrapper.vm.tuitionDate.formatted ).toBe("Mon, Feb 22");
-    expect(wrapper.vm.tuitionDate.tuitionDue).toBe(undefined);
-    expect(wrapper.vm.tuition.pce_accbalance).toBe(1000.00);
-    expect(wrapper.vm.tuition.tuition_accbalance).toBe(12345.00);
+    expect(wrapper.vm.pceBalance).toBe(1000.00);
+    expect(wrapper.vm.tuiBalance).toBe(12345.00);
     expect(Boolean(wrapper.vm.tuitionDate)).toBe(true);
     expect(wrapper.vm.finAidNotices.length).toBe(5);
     expect(wrapper.vm.tuitionDueNotice.attributes.length).toBe(1);
@@ -109,9 +107,9 @@ describe('Tuition store', () => {
     });
     const wrapper = mount(TuitionFees, {store, localVue});
     await new Promise(setImmediate);
+    expect(wrapper.findAllComponents(CardStatus).length).toBe(3);
     expect(wrapper.vm.tuitionDate.formatted ).toBe("Fri, Jul 9");
-    //expect(wrapper.vm.tuitionDate).toBe("2021-07-09");
     expect(wrapper.vm.pceBalance).toBe(2897.00);
-    expect(wrapper.vm.tuiBalance).toBe(10.00);
+    expect(wrapper.vm.tuiBalance).toBe(-10.00);
   });
 });
