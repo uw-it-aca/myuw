@@ -16,6 +16,8 @@ import jbotTuition from './mock_data/tuition/jbothell.json';
 import jbotNotices from './mock_data/notice/jbothell.json';
 import javgTuition from './mock_data/tuition/javerage.json';
 import javgNotices from './mock_data/notice/javerage.json';
+import gc2Tuition from './mock_data/tuition/grad-c2.json';
+import gc2Notices from './mock_data/notice/grad-c2.json';
 
 const localVue = createLocalVue(Vuex);
 jest.mock('axios');
@@ -97,5 +99,21 @@ describe('Tuition store', () => {
     expect(wrapper.findComponent(FinAid).exists()).toBe(true);
     expect(wrapper.findComponent(TuitionRes).exists()).toBe(true);
     expect(wrapper.findAllComponents(CardStatus).length).toBe(3);
+  });
+
+  it('Evaluate the computed properties of jpce', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/notices/': gc2Notices,
+        '/api/v1/finance/': gc2Tuition,
+      };
+      return Promise.resolve({data: urlData[url]});
+    });
+    const wrapper = mount(TuitionFees, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.tuitionDate.formatted ).toBe("Fri, Jul 9");
+    expect(wrapper.vm.tuition.tuition_due).toBe("2021-07-09");
+    expect(wrapper.vm.pceBalance).toBe(2897.00);
+    expect(wrapper.vm.tuiBalance).toBe(10.00);
   });
 });

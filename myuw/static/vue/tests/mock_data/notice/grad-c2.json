@@ -1,0 +1,26 @@
+{
+    "Notices": [
+        {
+            "NoticeAttributes": [
+                {
+                    "DataType": "date",
+                    "Name": "DisplayEnd",
+                    "Value": "20210709"
+                },
+                {
+                    "DataType": "date",
+                    "Name": "Date",
+                    "Value": "20210709"
+                },
+                {
+                    "DataType": "string",
+                    "Name": "Quarter",
+                    "Value": "Summer"
+                }
+            ],
+            "NoticeCategory": "StudentDAD",
+            "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 9</span>. For details, view your <a href=\"https://sdb.admin.uw.edu/students/UWNetID/tuition.asp\">Tuition Statement</a> and <a href=\"https://portal.continuum.uw.edu\">PCE-Continuum College account balance</a>.</span>",
+            "NoticeType": "TuitDue"
+        }
+    ]
+}
