@@ -223,7 +223,7 @@ class Logger {
   }
 
   setHybrid(value) {
-    this.sink.set('is_hybrid', value);
+    this.sink.hybrid = value;
   }
 }
 
@@ -265,9 +265,11 @@ class ConsoleSink {
 class GtagSink {
   constructor(gtag) {
     this.gtag = gtag;
+    this.hybrid = false;
   }
 
   event(name, data) {
+    data.is_hybrid = this.hybrid;
     this.gtag.event(name, data);
   }
 
