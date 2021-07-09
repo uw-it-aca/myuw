@@ -1,26 +1,286 @@
-{
-    "Notices": [
-        {
-            "NoticeAttributes": [
-                {
-                    "DataType": "date",
-                    "Name": "DisplayEnd",
-                    "Value": "20210709"
-                },
-                {
-                    "DataType": "date",
-                    "Name": "Date",
-                    "Value": "20210709"
-                },
-                {
-                    "DataType": "string",
-                    "Name": "Quarter",
-                    "Value": "Summer"
-                }
-            ],
-            "NoticeCategory": "StudentDAD",
-            "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 9</span>. For details, view your <a href=\"https://sdb.admin.uw.edu/students/UWNetID/tuition.asp\">Tuition Statement</a> and <a href=\"https://portal.continuum.uw.edu\">PCE-Continuum College account balance</a>.</span>",
-            "NoticeType": "TuitDue"
-        }
-    ]
-}
+[
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline for Registration Changes With Fees</span><span class=\"notice-body-with-title\">There is a $20 Change of Registration Fee and possible tuition forfeiture for all changes made to your full-term summer quarter schedule on a single day through <span class=\"date\"> Fri, Aug 13</span>. <a href=\"http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/\">About tuition forfeiture</a></span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2021-06-28 07:00:00+00:00",
+                "formatted_value": "Mon, Jun 28"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-08-13 07:00:00+00:00",
+                "formatted_value": "Fri, Aug 13"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-08-13 07:00:00+00:00",
+                "formatted_value": "Fri, Aug 13"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "820e5dbae3cd27e13386802db21f4115",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline for Registration Changes With Fees</span><span class=\"notice-body-with-title\">There is a $20 Change of Registration Fee and possible tuition forfeiture for all changes made to your A-term schedule on a single day through <span class=\"date\"> Wed, July 14</span>. <a href=\"http://f2.washington.edu/fm/sfs/tuition/forfeiture-refund/\">About tuition forfeiture</a></span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2021-06-21 07:00:00+00:00",
+                "formatted_value": "Mon, Jun 21"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-07-14 07:00:00+00:00",
+                "formatted_value": "Wed, Jul 14"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-07-14 07:00:00+00:00",
+                "formatted_value": "Wed, Jul 14"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "7464377da33cdd6a8f16b8aff73a12db",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your full-term summer quarter schedule is <span class=\"date\"> Sun, July 11</span>.</span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2021-07-05 07:00:00+00:00",
+                "formatted_value": "Mon, Jul 5"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-07-11 07:00:00+00:00",
+                "formatted_value": "Sun, Jul 11"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-07-11 07:00:00+00:00",
+                "formatted_value": "Sun, Jul 11"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "045c03bf65cc8ca63e89b1712e5a5c63",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Add Classes</span><span class=\"notice-body-with-title\">The last day to add classes to your A-term schedule is <span class=\"date\"> Sun, July 11</span>.</span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2021-07-05 07:00:00+00:00",
+                "formatted_value": "Mon, Jul 5"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-07-11 07:00:00+00:00",
+                "formatted_value": "Sun, Jul 11"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-07-11 07:00:00+00:00",
+                "formatted_value": "Sun, Jul 11"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "70c1b0ab3cc9ebe4424eb9a75efabb46",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Use Quarterly Drop</span><span class=\"notice-body-with-title\">The last day to use your Quarterly Drop for A-term is <span class=\"date\"> Wed, July 14</span>. <a href=\"https://registrar.washington.edu/registration/changes/\">About Quarterly Drop</a></span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2021-07-05 07:00:00+00:00",
+                "formatted_value": "Mon, Jul 5"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-07-14 07:00:00+00:00",
+                "formatted_value": "Wed, Jul 14"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-07-14 07:00:00+00:00",
+                "formatted_value": "Wed, Jul 14"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "ab4465fd8b59c6fbc18ae6116fc7b0fa",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Change Grading Option</span><span class=\"notice-body-with-title\">The last day to change a class on your A-term schedule to or from an S/NS Grading Option is <span class=\"date\"> Sun, July 11</span>. <a href=\"http://www.washington.edu/students/gencat/front/Grading_Sys.html\">About Grading Options</a></span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2021-07-05 07:00:00+00:00",
+                "formatted_value": "Mon, Jul 5"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-07-14 07:00:00+00:00",
+                "formatted_value": "Wed, Jul 14"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-07-11 07:00:00+00:00",
+                "formatted_value": "Sun, Jul 11"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "bb6bb3cb99e7dbcc0c53ee5a68e2aa5b",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Deadline to Withdraw</span><span class=\"notice-body-with-title\">The last day to withdraw completely from A-term is <span class=\"date\"> Wed, July 14</span>.</span>",
+        "attributes": [
+            {
+                "name": "DisplayBegin",
+                "data_type": "date",
+                "value": "2021-07-05 07:00:00+00:00",
+                "formatted_value": "Mon, Jul 5"
+            },
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-07-14 07:00:00+00:00",
+                "formatted_value": "Wed, Jul 14"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-07-14 07:00:00+00:00",
+                "formatted_value": "Wed, Jul 14"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Registration",
+        "sws_category": "StudentDAD",
+        "is_critical": false,
+        "id_hash": "8ad86a1fef7465b720def3ae49282994",
+        "is_read": false,
+        "location_tags": [
+            "notices_date_sort"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 9</span>. For details, view your <a href=\"https://sdb.admin.uw.edu/students/UWNetID/tuition.asp\">Tuition Statement</a> and <a href=\"https://portal.continuum.uw.edu\">PCE-Continuum College account balance</a>.</span>",
+        "attributes": [
+            {
+                "name": "DisplayEnd",
+                "data_type": "date",
+                "value": "2021-07-09 07:00:00+00:00",
+                "formatted_value": "Fri, Jul 9"
+            },
+            {
+                "name": "Date",
+                "data_type": "date",
+                "value": "2021-07-09 07:00:00+00:00",
+                "formatted_value": "Fri, Jul 9"
+            },
+            {
+                "name": "Quarter",
+                "data_type": "string",
+                "value": "Summer"
+            }
+        ],
+        "category": "Fees & Finances",
+        "sws_category": "StudentDAD",
+        "is_critical": true,
+        "id_hash": "c5da80bb9bc547dade87358601b75aff",
+        "is_read": false,
+        "location_tags": [
+            "tuition_due_date",
+            "finance_card",
+            "notice_date_sort"
+        ]
+    }
+]
