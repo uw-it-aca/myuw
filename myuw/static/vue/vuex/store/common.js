@@ -3,8 +3,8 @@ import dayjsCommon from 'dayjs';
 dayjsCommon.extend(require('dayjs/plugin/advancedFormat'))
 dayjsCommon.extend(require('dayjs/plugin/calendar'))
 dayjsCommon.extend(require('dayjs/plugin/relativeTime'))
-dayjsCommon.extend(require('dayjs/plugin/timezone'))
 dayjsCommon.extend(require('dayjs/plugin/utc'))
+dayjsCommon.extend(require('dayjs/plugin/timezone'))
 dayjsCommon.extend(require('dayjs/plugin/localizedFormat'))
 dayjsCommon.extend(require('dayjs/plugin/customParseFormat'))
 
