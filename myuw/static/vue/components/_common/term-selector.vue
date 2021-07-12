@@ -181,6 +181,7 @@ select {
   }
 
   &.form-control {
+    -webkit-appearance: none; 
     appearance: none;
     background: initial;
     border: initial;

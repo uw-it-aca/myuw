@@ -35,7 +35,7 @@
             v-model="isOpen"
           >
             <uw-course-details :section="section"
-              display-heading=true display-instructor=true class="pt-3"/>
+              display-heading display-instructor class="pt-3"/>
           </b-collapse>
         </template>
         <template v-else>

@@ -87,7 +87,7 @@ class TestIasystemApi(MyuwApiTest):
         eval_data = data["sections"][0]["evaluation_data"]
         self.assertEquals(len(eval_data), 1)
         self.assertEquals(eval_data[0]['close_date'],
-                          "2013-07-29 06:59:59+00:00")
+                          "2013-07-29T06:59:59+00:00")
 
         eval_data = data["sections"][1]["evaluation_data"]
         self.assertEquals(len(eval_data), 0)
@@ -105,7 +105,7 @@ class TestIasystemApi(MyuwApiTest):
         eval_data = data["sections"][1]["evaluation_data"]
         self.assertEquals(len(eval_data), 1)
         self.assertEquals(eval_data[0]['close_date'],
-                          "2013-08-29 06:59:59+00:00")
+                          "2013-08-29T06:59:59+00:00")
 
     def test_jeos_2013_spring(self):
         self.set_user('jeos')
@@ -118,4 +118,4 @@ class TestIasystemApi(MyuwApiTest):
         self.assertEqual(eval_data[0]['instructors'][0]['instructor_name'],
                          'BILL Pce Instructor')
         self.assertEqual(eval_data[0]['close_date'],
-                         '2013-06-08 06:59:59+00:00')
+                         '2013-06-08T06:59:59+00:00')
