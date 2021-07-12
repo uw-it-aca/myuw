@@ -92,7 +92,7 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(json_data)
         self.assertEqual(len(json_data), 1)
         self.assertEqual(json_data[0]['close_date'],
-                         "2013-07-23 06:59:59+00:00")
+                         "2013-07-23T06:59:59+00:00")
         # before close date
         now_request = get_request_with_date("2013-07-22")
         json_data = json_for_evaluation(now_request, evals, section)
@@ -118,7 +118,7 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(json_data)
         self.assertEqual(len(json_data), 1)
         self.assertEqual(json_data[0]['close_date'],
-                         "2013-03-23 07:59:59+00:00")
+                         "2013-03-23T07:59:59+00:00")
 
         now_request = get_request_with_date("2013-03-22")
         json_data = json_for_evaluation(now_request, evals, None)
@@ -127,7 +127,7 @@ class IASystemDaoTest(TestCase):
         self.assertEqual(json_data[0]['instructors'][0]['instructor_title'],
                          u'Teaching Assistant')
         self.assertEqual(json_data[0]['close_date'],
-                         "2013-03-23 07:59:59+00:00")
+                         "2013-03-23T07:59:59+00:00")
         # after close date
         now_request = get_request_with_date("2013-03-24")
         json_data = json_for_evaluation(now_request, evals, None)
@@ -216,7 +216,7 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(json_data)
         self.assertEqual(len(json_data), 1)
         self.assertEqual(json_data[0]['close_date'],
-                         "2013-07-01 07:59:59+00:00")
+                         "2013-07-01T07:59:59+00:00")
         # after open dates of 1 eval
         now_request = get_request_with_date("2013-06-04")
         json_data = json_for_evaluation(now_request, evals, None)
@@ -229,9 +229,9 @@ class IASystemDaoTest(TestCase):
         self.assertIsNotNone(json_data)
         self.assertEqual(len(json_data), 2)
         self.assertEqual(json_data[0]['close_date'],
-                         "2013-07-01 07:59:59+00:00")
+                         "2013-07-01T07:59:59+00:00")
         self.assertEqual(json_data[1]['close_date'],
-                         "2013-06-17 06:59:59+00:00")
+                         "2013-06-17T06:59:59+00:00")
 
         # after open dates of three evals
         now_request = get_request_with_date("2013-06-10")
@@ -244,7 +244,7 @@ class IASystemDaoTest(TestCase):
         json_data = json_for_evaluation(now_request, evals, None)
         self.assertEqual(len(json_data), 2)
         self.assertEqual(json_data[0]['close_date'],
-                         "2013-07-01 07:59:59+00:00")
+                         "2013-07-01T07:59:59+00:00")
 
         # after close date of two evals
         now_request = get_request_with_date("2013-06-19")
