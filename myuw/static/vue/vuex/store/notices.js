@@ -19,13 +19,17 @@ const postProcess = (response, _, rootState) => {
           notice.notice_body = notice.notice_body.slice(1);
         }
       } else {
-        const htmlDoc = parser.parseFromString(
-            noticeContent, 'text/html',
-        );
+        try {
+          const htmlDoc = parser.parseFromString(
+              noticeContent, 'text/html',
+          );
 
-        notice.notice_title = htmlDoc.getElementsByClassName('notice-title')[0].outerHTML;
-        htmlDoc.body.removeChild(htmlDoc.getElementsByClassName('notice-title')[0]);
-        notice.notice_body = htmlDoc.body.innerHTML;
+          notice.notice_title = htmlDoc.getElementsByClassName('notice-title')[0].outerHTML;
+          htmlDoc.body.removeChild(htmlDoc.getElementsByClassName('notice-title')[0]);
+          notice.notice_body = htmlDoc.body.innerHTML;
+        } catch (_) {
+          // Ignore this error beacuse we couldn't parse the notice given to us
+        }
       }
     }
 
@@ -56,6 +60,8 @@ const postProcess = (response, _, rootState) => {
     return notice;
   });
 };
+
+window.noticePostProcess = postProcess;
 
 const customGetters = {
   hasRegisterNotices: (state) => {
