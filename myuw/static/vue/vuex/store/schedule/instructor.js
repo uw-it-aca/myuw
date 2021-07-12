@@ -169,20 +169,20 @@ function addCourseEvalData(courseData) {
         section.evaluation.responseRatePercent = Math.round(section.evaluation.response_rate * 100);
       }
       if (section.evaluation.eval_open_date) {
-        let evalOpen = dayjs(section.evaluation.eval_open_date);
+        let evalOpen = dayjs(section.evaluation.eval_open_date, 'YYYY-MM-DD HH:mm:ssZ').tz("America/Los_Angeles");
         section.evaluation.evalOpenDateDisplay = evalOpen.format(fmt);
         section.evaluation.isOpen = comparisonDate.isAfter(evalOpen);
       }
       if (section.evaluation.eval_close_date) {
-        let evalClose = dayjs(section.evaluation.eval_close_date);
+        let evalClose = dayjs(section.evaluation.eval_close_date, 'YYYY-MM-DD HH:mm:ssZ').tz("America/Los_Angeles");
         section.evaluation.evalCloseDateDisplay = evalClose.format(fmt);
         section.evaluation.inPast = comparisonDate.isAfter(evalClose);
         if (section.evaluation.isPast) {
-          section.evaluation.is_open = false;
+          section.evaluation.isOpen = false;
         }
       }
       if (section.evaluation.report_available_date) {
-        var reportDate = dayjs(section.evaluation.report_available_date);
+        var reportDate = dayjs(section.evaluation.report_available_date, 'YYYY-MM-DD HH:mm:ssZ').tz("America/Los_Angeles");
         section.evaluation.reportAvailableDateDisplay = reportDate.format(fmt);
         section.evaluation.reportIsAvailable = comparisonDate.isAfter(reportDate);
       }
