@@ -12,7 +12,7 @@ import {
 import {
   dayjs,
   getNow,
-  strToDate,
+  parseDate,
 } from '../common';
 
 const fmt = 'MMM D [at] h:mm A z';
@@ -22,7 +22,6 @@ function postProcess(response, urlExtra, rootState) {
 
   const courseData = data[urlExtra];
   const time_schedule_published = courseData.term.time_schedule_published;
-  // {"bothell": true, "seattle": true, "tacoma": true}
   courseData.now = getNow(rootState);
 
   let linkedPrimaryLabel = undefined;
@@ -98,8 +97,8 @@ function addCourseGradeData(courseData) {
   let data = {
     isOpen: courseData.grading_period_is_open,
     isClosed: courseData.grading_period_is_past,
-    open: strToDate(courseData.term.grading_period_open),
-    deadline: strToDate(courseData.term.grade_submission_deadline),
+    open: parseDate(courseData.term.grading_period_open),
+    deadline: parseDate(courseData.term.grade_submission_deadline),
   };
 
   data.openRelative = data.open.from(now);
@@ -169,12 +168,12 @@ function addCourseEvalData(courseData) {
         section.evaluation.responseRatePercent = Math.round(section.evaluation.response_rate * 100);
       }
       if (section.evaluation.eval_open_date) {
-        let evalOpen = dayjs(section.evaluation.eval_open_date, 'YYYY-MM-DD HH:mm:ssZ').tz("America/Los_Angeles");
+        let evalOpen = parseDate(section.evaluation.eval_open_date);
         section.evaluation.evalOpenDateDisplay = evalOpen.format(fmt);
         section.evaluation.isOpen = comparisonDate.isAfter(evalOpen);
       }
       if (section.evaluation.eval_close_date) {
-        let evalClose = dayjs(section.evaluation.eval_close_date, 'YYYY-MM-DD HH:mm:ssZ').tz("America/Los_Angeles");
+        let evalClose = parseDate(section.evaluation.eval_close_date);
         section.evaluation.evalCloseDateDisplay = evalClose.format(fmt);
         section.evaluation.inPast = comparisonDate.isAfter(evalClose);
         if (section.evaluation.isPast) {
@@ -182,7 +181,7 @@ function addCourseEvalData(courseData) {
         }
       }
       if (section.evaluation.report_available_date) {
-        var reportDate = dayjs(section.evaluation.report_available_date, 'YYYY-MM-DD HH:mm:ssZ').tz("America/Los_Angeles");
+        var reportDate = parseDate(section.evaluation.report_available_date);
         section.evaluation.reportAvailableDateDisplay = reportDate.format(fmt);
         section.evaluation.reportIsAvailable = comparisonDate.isAfter(reportDate);
       }

@@ -23,11 +23,6 @@ export const getNow = (rootState = null) => {
   return dayjs();
 };
 
-export const strToDate = (dateStr) => {
-  // timezone unaware date or datetime string
-  return dayjs.tz(dateStr, "America/Los_Angeles");
-};
-
 export const getTime = (dateObj) => {
   return dateObj.format('LT');
 };
@@ -44,3 +39,15 @@ export const diffIgnoreDate = (a, b) => {
   diff += a.millisecond() - b.millisecond();
   return diff;
 };
+
+export const parseDate = (dateStr) => {
+  let parsableDate = JSON.parse(JSON.stringify(dateStr));
+
+  // Convert 2021-08-24 17:00:00+00:00 => 2021-08-24T17:00:00+00:00
+  // See MUWM-4979
+  if (parsableDate.match(/\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/)) {
+    parsableDate = parsableDate.substring(0, 10) + "T" + parsableDate.substring(11);
+  }
+
+  return dayjs(parsableDate);
+}
