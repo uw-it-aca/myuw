@@ -21,7 +21,6 @@
           <div class="myuw-text-md">
             <div
               class="font-weight-bold myuw-font-encode-sans"
-              style="color: #333;"
             >{{ adviser.program }}</div>
             <div>{{ adviser.full_name }}
               <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span>
@@ -34,6 +33,11 @@
           </div>
         </li>
       </ul>
+      <hr class="my-0">
+      <div class="myuw-text-md mt-3 mb-3"> 
+        <div class="font-weight-bold myuw-font-encode-sans">Departmental and Major Advising Offices</div>
+        <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">View departmental and major advising offices’ contact information</a>
+      </div>
       <hr class="my-0" v-if="hasMajors || hasMinors">
       <uw-card-property v-if="hasMajors" title="Your Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
