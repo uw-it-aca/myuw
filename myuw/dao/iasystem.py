@@ -137,7 +137,7 @@ def json_for_evaluation(request, evaluations, section):
             json_item = {
                 'instructors': [],
                 'url': evaluation.eval_url,
-                'close_date': str(evaluation.eval_close_date),
+                'close_date': evaluation.eval_close_date.isoformat(),
                 'is_multi_instr': len(evaluation.instructor_ids) > 1
                 }
 

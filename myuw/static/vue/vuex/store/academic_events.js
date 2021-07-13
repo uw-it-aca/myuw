@@ -1,6 +1,6 @@
 import {fetchBuilder, extractData, buildWith} from './model_builder';
 import {
-  dayjs,
+  parseDate,
 } from './common';
 
 const postProccess = (response, urlExtra) => {
@@ -8,8 +8,8 @@ const postProccess = (response, urlExtra) => {
   data[urlExtra] = extractData(response);
 
   data[urlExtra].forEach((event) => {
-    event.start = dayjs(event.start);
-    event.end = dayjs(event.end);
+    event.start = parseDate(event.start);
+    event.end = parseDate(event.end);
     event.year = String(event.year);
     event.label = event.year + ' '+ event.quarter + ', ' + event.summary;
   });
