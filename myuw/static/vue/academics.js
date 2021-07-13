@@ -24,6 +24,7 @@ import oquarter from './vuex/store/oquarter';
 import iasystem from './vuex/store/iasystem';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
+import instSchedule from './vuex/store/schedule/instructor';
 import profile from './vuex/store/profile';
 import visualSchedule from './vuex/store/schedule/visual';
 import categoryLinks from './vuex/store/category_links';
@@ -37,6 +38,7 @@ vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('profile', profile);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('visual_schedule', visualSchedule);
+vueConf.store.registerModule('inst_schedule', instSchedule);
 vueConf.store.registerModule('category_links', categoryLinks);
 vueConf.store.registerModule('advisers', advisers);
 
