@@ -35,10 +35,13 @@
       </ul>
       <hr class="my-0">
       <div class="myuw-text-md mt-3 mb-3"> 
-        <div class="font-weight-bold myuw-font-encode-sans">Departmental and Major Advising Offices</div>
-        <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">View departmental and major advising offices’ contact information</a>
+        <div class="font-weight-bold myuw-font-encode-sans"
+        >Departmental and Major Advising Offices</div>
+        <a
+          href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+        >View departmental and major advising offices’ contact information</a>
       </div>
-      <hr class="my-0" v-if="hasMajors || hasMinors">
+      <hr v-if="hasMajors || hasMinors" class="my-0">
       <uw-card-property v-if="hasMajors" title="Your Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
             <template v-for="(termMajor, index) in termMajors">
