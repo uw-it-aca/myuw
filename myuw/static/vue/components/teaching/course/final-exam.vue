@@ -77,8 +77,8 @@ export default {
     confirmFinalLink() {
       return ''.concat(
         'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=',
-        this.titleCaseWord(this.section.quarter), '+', this.section.year, '+',
-        this.section.year, '&sln=', this.section.sln, '&chanid=');
+        this.titleCaseWord(this.section.quarter), '+', this.section.year,
+        '&sln=', this.section.sln, '&chanid=');
     }
   },
   mounted() {
