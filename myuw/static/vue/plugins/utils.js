@@ -1,12 +1,15 @@
 export class VisibilityTracker {
   constructor(
-    {ratioThreshold = 0.9, durationThreshold = 2} = {},
+    {ratioThreshold = 0.9, durationThreshold = 2, upperDurationThreshold = 1800} = {},
     onFlush = () => {}
   ) {
     this.components = {};
     this.groups = {};
     this.ratioThreshold = ratioThreshold;
     this.durationThreshold = durationThreshold;
+    // Upper duration threshold should remove any cases where the page is left
+    // open and forgotten
+    this.upperDurationThreshold = upperDurationThreshold;
 
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden') {
@@ -62,7 +65,8 @@ export class VisibilityTracker {
       report: (
         !this.groups[group.$meta.uid].isVisible &&
         timer &&
-        duration >= this.durationThreshold
+        duration >= this.durationThreshold &&
+        duration < this.upperDurationThreshold
       ),
       tag: group.$meta.tag,
       duration: duration,
