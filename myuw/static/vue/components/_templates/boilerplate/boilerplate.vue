@@ -413,10 +413,11 @@ export default {
     disableActions: (state) => state.disableActions,
     displayPopUp: (state) => state.displayPopUp,
   }),
-  mounted() {
+  created() {
     this.$logger.setUserProperties(this.affiliations);
     this.$logger.setHybrid(this.isHybrid === "True");
-
+  },
+  mounted() {
     if (this.displayPopUp) {
       window.addEventListener('load', this.showTourModal);
     }
