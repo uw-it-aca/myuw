@@ -69,10 +69,17 @@ export default {
   },
   data() {
     return {
-      confirmFinalLink: null,
       displayConfirmFinalLink: false,
       displayNoFinalPeriod: false,
     };
+  },
+  computed: {
+    confirmFinalLink() {
+      return ''.concat(
+        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=',
+        this.titleCaseWord(this.section.quarter), '+', this.section.year, '+',
+        this.section.year, '&sln=', this.section.sln, '&chanid=');
+    }
   },
   mounted() {
     if (
@@ -86,10 +93,6 @@ export default {
         this.displayNoFinalPeriod = true;
       } else {
         this.displayConfirmFinalLink = true;
-        this.confirmFinalLink = (
-          `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=' +
-          this.titleCaseWord(this.section.quarter) + '+' + this.section.year +
-          '&sln=' + this.section.sln + '&chanid=`);
       }
     }
   },
