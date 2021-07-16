@@ -61,8 +61,6 @@ const postProcess = (response, _, rootState) => {
   });
 };
 
-window.noticePostProcess = postProcess;
-
 const customGetters = {
   hasRegisterNotices: (state) => {
     return state.value.filter(
