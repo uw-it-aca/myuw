@@ -191,25 +191,25 @@ jobs:
       - name: Run jest
         run: ./node_modules/.bin/jest --ci --coverage
 
-      - name: Move jest lcov report
-        shell: bash
-        run: |
-          mv coverage/lcov.info lcov-jest.info
-          rm -rf coverage
+      #- name: Move jest lcov report
+      #  shell: bash
+      #  run: |
+      #    mv coverage/lcov.info lcov-jest.info
+      #    rm -rf coverage
 
       #- name: Run cypress
       #  run: ./node_modules/.bin/cypress run-ct
 
-      - name: Merge cypress and jest lcov reports
-        shell: bash
-        run: |
-          apt install lcov -y
-          lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
+      #- name: Merge cypress and jest lcov reports
+      #  shell: bash
+      #  run: |
+      #    apt install lcov -y
+      #   lcov -a lcov-jest.info -a coverage/lcov.info -o lcov.info
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: jest-cypress-coverage
-          path: lcov.info
+      #- uses: actions/upload-artifact@v2
+      #  with:
+      #    name: jest-cypress-coverage
+      #    path: lcov.info
 
   collect-coverage:
     needs: [build, jest-cypress]
