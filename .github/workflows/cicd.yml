@@ -197,8 +197,8 @@ jobs:
           mv coverage/lcov.info lcov-jest.info
           rm -rf coverage
 
-      - name: Run cypress
-        run: ./node_modules/.bin/cypress run-ct
+      #- name: Run cypress
+      #  run: ./node_modules/.bin/cypress run-ct
 
       - name: Merge cypress and jest lcov reports
         shell: bash
