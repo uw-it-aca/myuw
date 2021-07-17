@@ -1,0 +1,61 @@
+/*** Notice administration in the Support Tool ***/
+
+
+/* Notices list */
+.notice-admin .notices-custom-list li > a {
+  margin-right: 1em;
+}
+
+/* Set back to bootstrap default */
+.notice-admin .form-group .form-control {
+  width: 100%;
+  display: block;
+}
+.notice-admin .form-inline .form-group:not(:last-child),
+.notice-admin .form-inline .form-group .checkbox {
+  margin-right: 2em;
+}
+@media (min-width: 768px) {
+  .notice-admin .form-inline .form-control {
+    display: inline-block;
+    width: auto;
+  }
+  .notice-admin .form-inline .input-group > .form-control {
+    width: 100%;
+  }
+  .notice-admin .form-inline .input-group .form-control {
+    width: auto;
+  }
+}
+.notice-admin ul.affiliation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  -webkit-columns: 2 160px;
+  -moz-columns: 2 160px;
+  columns: 2 160px;
+  -webkit-column-gap: 8px;
+  -moz-column-gap: 8px;
+  column-gap: 8px;
+}
+@media (min-width: 768px) {
+  .notice-admin ul.affiliation {
+    -webkit-columns-count: 3;
+    -moz-columns-count: 3;
+    column-count: 3;
+  }
+}
+@media (min-width: 1000px) {
+  .notice-admin ul.affiliation {
+    -webkit-columns-count: 4;
+    -moz-columns-count: 4;
+    column-count: 4;
+  }
+}
+.notice-admin ul.affiliation li.checkbox:first-child {
+  margin-top: 0;
+}
+
+.notice-admin .btn-danger {
+    margin-left: 1em;
+}
