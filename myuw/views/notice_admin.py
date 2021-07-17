@@ -8,6 +8,7 @@ from dateutil.parser import parse
 from django.utils import timezone
 from myuw.dao.messages import clean_html
 from myuw.models.myuw_notice import MyuwNotice
+from myuw.logger.logresp import log_info
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
@@ -59,6 +60,7 @@ def _get_notice_by_id(notice_id):
 
 
 def _save_notice(request, context, notice_id=None):
+    log_info(logger, request.POST)
     form_action = request.POST.get('action')
     if form_action not in ('save', 'edit'):
         return False
@@ -106,20 +108,28 @@ def _save_notice(request, context, notice_id=None):
     except TypeError:
         has_error = True
         context['title_error'] = True
-    if title is not None and len(title) == 0:
-        has_error = True
-        context['title_error'] = True
+
+    if title is not None:
+        if len(title) == 0:
+            has_error = True
+            context['title_error'] = True
+        else:
+            title = title.strip()
     try:
         content = clean_html(request.POST.get('content'),
                              MYUW_NOTICE_ALLOWED_TAGS)
     except TypeError:
         has_error = True
         context['content_error'] = True
+
     if content is not None and len(content) == 0:
         has_error = True
         context['content_error'] = True
 
     target_group = request.POST.get('target_group')
+    if target_group is not None:
+        target_group = target_group.strip()
+
     campus_list = request.POST.getlist('campus')
     affil_list = request.POST.getlist('affil')
     if not has_error:
