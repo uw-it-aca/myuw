@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 import {createLocalVue} from '../helper';
 import {statusOptions} from '../../vuex/store/model_builder';
-import stud_schedule from '../../vuex/store/schedule/student';
+import stud_schedule, { postProcess } from '../../vuex/store/schedule/student';
 import {expectAction} from '../helper';
 
 import mockCoursesJaverage2013Spring from
@@ -94,4 +94,13 @@ describe('Stud Course model', () => {
       ]);
   });
 
+  it ('Check postProcess - javerage 2013 spring', () => {
+    let mockData = {
+      '2013,spring': mockCoursesJaverage2013Spring,
+    };
+
+    let proccessedData = postProcess(mockData);
+
+    console.log(proccessedData);
+  });
 });
