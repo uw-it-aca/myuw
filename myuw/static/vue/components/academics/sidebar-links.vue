@@ -1,21 +1,12 @@
 <template>
   <uw-panel :loaded="isReady">
     <template #panel-body>
-      <div v-for="linkCategory in linkData" :key="linkCategory.subcat_slug">
-        <h2 :id="linkCategory.subcat_slug" class="h5">
-          {{ linkCategory.subcategory }}
-        </h2>
-        <ul class="list-unstyled myuw-text-md">
-          <li v-for="link in linkCategory.links" :key="link.url" class="mb-1">
-            <a v-if="link.new_tab" :href="link.url">
-              {{ link.title }}
-            </a>
-            <a v-else :href="link.url">
-              {{ link.title }}
-            </a>
-          </li>
-        </ul>
-      </div>
+      <uw-sidelink-section
+        v-for="linkCategory in linkData"
+        :key="linkCategory.subcat_slug"
+        :categoryTitle="linkCategory.subcategory"
+        :links="linkCategory.links"
+      />
     </template>
   </uw-panel>
 </template>
@@ -23,10 +14,12 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Panel from '../_templates/panel.vue';
+import SidelinkSection from '../_templates/sidelink-section.vue';
 
 export default {
   components: {
     'uw-panel': Panel,
+    'uw-sidelink-section': SidelinkSection,
   },
   data: function() {
     return {
