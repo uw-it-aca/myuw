@@ -1,5 +1,5 @@
 <template>
-  <uw-panel loaded>
+  <uw-panel :loaded="isReady">
     <template #panel-body>
       <uw-sidelink-section
         v-for="linkCategory in pagecalendarLinks.link_data"
