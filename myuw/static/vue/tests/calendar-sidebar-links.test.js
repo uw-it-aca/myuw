@@ -13,7 +13,7 @@ const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
 
-describe('Academic Sidebar Links', () => {
+describe('Calendar Sidebar Links', () => {
   let store;
 
   beforeEach(() => {
