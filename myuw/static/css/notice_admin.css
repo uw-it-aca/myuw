@@ -59,3 +59,7 @@
 .notice-admin .btn-danger {
     margin-left: 1em;
 }
+
+.grey-out-text {
+  color: lightgray;
+}

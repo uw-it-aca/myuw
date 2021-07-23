@@ -15,11 +15,11 @@ var NoticeAdmin = {
 
     form_action: function(notice_group_value) {
         if (notice_group_value.length === 0) {
-            $('input[name="campus"]').prop('disabled', false);
-            $('input[name="affil"]').prop('disabled', false);
+            $('input[name="campus"]').prop('disabled', false).parent().removeClass('grey-out-text');
+            $('input[name="affil"]').prop('disabled', false).parent().removeClass('grey-out-text');
         } else {
-            $('input[name="campus"]').prop('disabled', true);
-            $('input[name="affil"]').prop('disabled', true);
+            $('input[name="campus"]').prop('disabled', true).parent().addClass('grey-out-text');
+            $('input[name="affil"]').prop('disabled', true).parent().addClass('grey-out-text');
         }
     },
 
