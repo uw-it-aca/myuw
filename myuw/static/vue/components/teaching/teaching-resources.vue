@@ -59,11 +59,18 @@ export default {
       },
       remoteTeachingLinks() {
         return [
-          { url: "https://teachingremotely.washington.edu/", title: "Teaching Remotely" },
-          this.bothell_emp ? { url: "https://www.uwb.edu/it/teaching", title: "UWB Teach Anywhere" } : null,
-          this.tacoma_emp ? { url: "https://www.tacoma.uw.edu/digital-learning/instructional-continuity", title: "UWT Instructional Continuity" } : null,
-          { url: "https://canvas.uw.edu/courses/1392969", title: "Teaching with UW Technologies" },
-          { url: "https://teachingremotely.washington.edu/#getHelp", title: "Workshops and Office Hours" },
+          { url: "https://teachingremotely.washington.edu/",
+            title: "Teaching Remotely" },
+          this.bothell_emp ?
+            { url: "https://www.uwb.edu/it/teaching",
+              title: "UWB Teach Anywhere" } : null,
+          this.tacoma_emp ?
+            { url: "https://www.tacoma.uw.edu/uwt/digital-learning/instructional-continuity",
+              title: "UWT Instructional Continuity" } : null,
+          { url: "https://canvas.uw.edu/courses/1392969",
+            title: "Teaching with UW Technologies" },
+          { url: "https://teachingremotely.washington.edu/#getHelp",
+            title: "Workshops and Office Hours" },
           { url: "https://washington.zoom.us/", title: "Zoom" },
           { url: "https://uw.hosted.panopto.com/", title: "Panopto" },
           { url: "http://polleverywhere.com/", title: "Poll Everywhere" }
@@ -71,9 +78,12 @@ export default {
       },
       courseMaterialLinks() {
         return [
-          { url: "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=" + this.linkData.textbook, title: "Order Textbooks" },
-          { url: "http://www.lib.washington.edu/types/course", title: "Course Reserves" },
-          { url: "http://f2.washington.edu/fm/c2/printing-copying/course-packs", title: "Request Course Packs" }
+          { url: "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=" + this.linkData.textbook,
+            title: "Order Textbooks" },
+          { url: "http://www.lib.washington.edu/types/course",
+            title: "Course Reserves" },
+          { url: "http://f2.washington.edu/fm/c2/printing-copying/course-packs",
+            title: "Request Course Packs" }
         ];
       },
       webToolsLinks() {
@@ -82,7 +92,8 @@ export default {
           { url: "https://uw.hosted.panopto.com", title: "Panopto Lecture Capture" },
           { url: "http://www.polleverywhere.com/auth/washington", title: "Poll Everywhere" },
           { url: "https://gradepage.uw.edu", title: "GradePage" },
-          { url: "https://apps.registrar.washington.edu/grade-change/pages/change.php", title: "Change Submitted Grades" },
+          { url: "https://apps.registrar.washington.edu/grade-change/pages/change.php",
+            title: "Change Submitted Grades" },
           { url: this.linkData.courseEval, title: "Course Evaluations" },
           { url: "https://coda.uw.edu", title: "Course Stats" }
         ];
@@ -92,7 +103,8 @@ export default {
           { url: "https://itconnect.uw.edu/learn/tools/", title: "Teaching & Learning Tools" },
           { url: "http://www.washington.edu/teaching/", title: "Center for Teaching & Learning" },
           { url: "http://depts.washington.edu/grading/", title: "Faculty Resources on Grading" },
-          { url: "https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/", title: "Online Grade Submission" },
+          { url: "https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/",
+            title: "Online Grade Submission" },
           { url: "http://teaching.pce.uw.edu/", title: "UW PCE Instructor Resources" }
         ];
       }
