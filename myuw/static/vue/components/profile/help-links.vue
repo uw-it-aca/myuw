@@ -2,7 +2,7 @@
   <uw-panel :loaded="true">
     <template #panel-body>
       <uw-sidelink-section
-        categoryTitle="Related Help"
+        category-title="Related Help"
         :links="linkList"
       />
     </template>

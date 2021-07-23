@@ -2,19 +2,19 @@
   <uw-panel :loaded="true">
     <template #panel-body>
       <uw-sidelink-section
-        categoryTitle="Remote Teaching"
+        category-title="Remote Teaching"
         :links="remoteTeachingLinks"
       />
       <uw-sidelink-section
-        categoryTitle="Course Materials"
+        category-title="Course Materials"
         :links="courseMaterialLinks"
       />
       <uw-sidelink-section
-        categoryTitle="Web Tools &amp; Services"
+        category-title="Web Tools &amp; Services"
         :links="webToolsLinks"
       />
       <uw-sidelink-section
-        categoryTitle="Help Guides"
+        category-title="Help Guides"
         :links="helpLinks"
       />
     </template>

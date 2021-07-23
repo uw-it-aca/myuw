@@ -4,7 +4,7 @@
       <uw-sidelink-section
         v-for="linkCategory in linkData"
         :key="linkCategory.subcat_slug"
-        :categoryTitle="linkCategory.subcategory"
+        :category-title="linkCategory.subcategory"
         :links="linkCategory.links"
       />
     </template>

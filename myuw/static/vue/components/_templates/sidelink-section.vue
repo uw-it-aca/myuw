@@ -15,8 +15,14 @@
 
 export default {
   props: {
-    categoryTitle: String,
-    links: Array,
-  },
+    categoryTitle: {
+      type: String,
+      required: true,
+    },
+    links: {
+      type: Array,
+      required: true,
+    }
+  }
 }
 </script>

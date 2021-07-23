@@ -4,7 +4,7 @@
       <uw-sidelink-section
         v-for="linkCategory in pagecalendarLinks.link_data"
         :key="linkCategory.subcat_slug"
-        :categoryTitle="linkCategory.subcategory"
+        :category-title="linkCategory.subcategory"
         :links="linkCategory.links"
       />
     </template>
