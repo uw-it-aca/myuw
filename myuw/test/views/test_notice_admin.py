@@ -38,7 +38,7 @@ class TestNoticeAdmin(MyuwApiTest):
 
         notice_context = {
             'action': 'save',
-            'title': 'The Title',
+            'title': 'The Title ',
             'content': "<p>Foobar</p>",
             'affil': 'is_intl_stud',
             'campus': 'is_seattle',
@@ -46,7 +46,7 @@ class TestNoticeAdmin(MyuwApiTest):
             'end_date': '2018-05-26 12:00',
             'notice_type': 'Foo',
             'notice_category': 'Bar',
-            'target_group': 'uw_group'
+            'target_group': ' uw_group '
         }
         request = rf.post('', notice_context)
         self.assertTrue(_save_notice(request, {}))
@@ -59,6 +59,8 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertTrue(entries[0].is_intl_stud)
         self.assertTrue(entries[0].is_seattle)
         self.assertTrue(entries[0].has_target_group())
+        self.assertEqual(entries[0].title, "The Title")
+        self.assertEqual(entries[0].target_group, "uw_group")
 
         # end before start
         notice_context = {
