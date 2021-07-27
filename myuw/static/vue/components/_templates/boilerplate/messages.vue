@@ -19,8 +19,9 @@
         <b-link v-b-modal.tourModal class="text-white">
           <u>See MyUW at a glance</u>
         </b-link>
-        <button type="button" class="btn-close" aria-label="Close"
-          @click="hideOnboardMessage"></button>
+        <button type="button" aria-label="Close"
+          class="close myuw-text-sm text-white"
+          @click="hideOnboardMessage">X</button>
       </div>
     </div>
   </div>
