@@ -135,7 +135,8 @@
       <template v-else-if="!addViewError" #modal-footer>
         <button type="button" class="btn btn-outline-secondary"
           @click="addView=false">
-          <font-awesome-icon :icon="faArrowLeft" />Back
+          <font-awesome-icon :icon="faArrowLeft" />
+          Back
         </button>
         <button type="button" class="btn btn-primary"
           :disabled="!hasAnyKeys(formData)"
