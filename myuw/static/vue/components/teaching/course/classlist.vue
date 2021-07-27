@@ -4,14 +4,14 @@
       <template v-if="useLegacyViewClasslist">
         <span>
           View class list in
-          <b-link
+          <a
             v-out="'Legacy myuw class list'"
             class="myuw-muted"
             :href="legacyLink"
             :title="`View class list of ${section.label}`"
           >
             My Class Resources
-          </b-link>
+          </a>
           <b-button :id="`cl_info_${section.id}`" variant="link">
             <font-awesome-icon :icon="faInfoCircle" />
             <span class="sr-only">More information</span>
@@ -40,12 +40,12 @@
 
       <template v-else-if="section.enrollment_student_name">
         <span>{{ section.enrollment_student_name }}</span>
-        <b-link
+        <a
           :href="`/teaching/${section.apiTag}/students`"
           :title="`View class list of ${section.label}`"
         >
           View student
-        </b-link>
+        </a>
       </template>
 
       <template v-else>
@@ -57,22 +57,22 @@
         </span>
 
         <span class="mr-3">
-          <b-link v-if="section.current_enrollment"
+          <a v-if="section.current_enrollment"
             :href="`/teaching/${section.apiTag}/students`"
             :title="`View class list of ${section.label}`"
           >
             View class list
-          </b-link>
+          </a>
         </span>
 
         <span class="mr-3">
-          <b-link v-if="displayDownloadLink"
+          <a v-if="displayDownloadLink"
             id="csv_download_class_list"
             :title="`Download class list of ${section.label}`"
             @click="downloadCL"
           >
             <font-awesome-icon :icon="faDownload" /> Download (CSV)
-          </b-link>
+          </a>
         </span>
       </template>
     </uw-card-property>
