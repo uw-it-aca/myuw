@@ -56,30 +56,26 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <b-button
+          <button type="button"
             v-b-toggle="`course-details-${index}`"
-            variant="link"
-            size="sm"
-            class="w-100 p-0 border-0 text-dark"
+            class="btn btn-link w-100 p-0 border-0 text-dark"
           >
             Course Details
             <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
             <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
-          </b-button>
+          </button>
         </template>
 
         <template v-else>
           <template v-if="section.instructors.length > 0">
-            <b-button
+            <button type="button"
               v-b-toggle="`instructors-collapse-${index}`"
-              variant="link"
-              size="sm"
-              class="w-100 p-0 border-0 text-dark"
+              class="btn btn-link w-100 p-0 border-0 text-dark"
             >
               Instructors
               <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
               <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
-            </b-button>
+            </button>
           </template>
           <div v-else class="text-center text-muted font-italic myuw-text-md"
                style="line-height:1.5rem"

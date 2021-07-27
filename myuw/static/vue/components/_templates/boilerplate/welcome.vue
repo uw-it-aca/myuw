@@ -3,14 +3,12 @@
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li class="mb-1">
         <div>
-          <b-button
-            v-b-modal.tourModal
-            variant="link"
-            size="sm"
-            class="p-0 m-0 text-body text-left myuw-text-xs"
+          <button v-b-modal.tourModal
+            type="button"
+            class="btn btn-link btn-sm p-0 m-0 text-body text-left myuw-text-xs"
           >
             See MyUW at a glance
-          </b-button>
+          </button>
         </div>
       </li>
       <li class="mb-1">

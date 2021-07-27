@@ -3,14 +3,14 @@
     <div class="d-flex">
       <uw-course-title show-sln :section="section" class="flex-fill" />
 
-      <b-button v-if="section.mini_card"
-        variant="link" size="sm"
+      <button v-if="section.mini_card"
+        type="button"
         :title="`Remove mini-card of ${section.label}`"
-        class="ml-3 align-self-start p-0"
+        class="btn btn-link btn-sm ml-3 align-self-start p-0"
         @click="toggleMiniWrapper"
       >
         <font-awesome-icon :icon="faTimes" />
-      </b-button>
+      </button>
     </div>
 
     <uw-joint-section :section="section" :parent-id="section.anchor" />

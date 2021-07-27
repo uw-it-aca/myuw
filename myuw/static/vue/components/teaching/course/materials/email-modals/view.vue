@@ -117,33 +117,34 @@
         <a v-out="'Mailman Help'"
            href="https://itconnect.uw.edu/connect/email/resources/mailman/"
         >Mailman help</a>
-        <b-button variant="light" @click="$refs['view-modal'].hide()">
-          Close
-        </b-button>
+        <button type="button" class="btn btn-light"
+          @click="$refs['view-modal'].hide()">Close</button>
       </template>
 
       <template v-else-if="!addView" #modal-footer>
-        <b-button v-if="emailList.total_course_wo_list"
-          variant="primary"
+        <button v-if="emailList.total_course_wo_list"
+          type="button" class="btn btn-primary"
           @click="addView=true"
         >
           Add Mailing List
-        </b-button>
-        <b-button variant="light" @click="$refs['view-modal'].hide()">Close</b-button>
+        </button>
+        <button type="button" class="btn btn-light"
+          @click="$refs['view-modal'].hide()">Close</button>
       </template>
 
       <template v-else-if="!addViewError" #modal-footer>
-        <b-button variant="outline-secondary" @click="addView=false">
-          <font-awesome-icon :icon="faArrowLeft" />
-          Back
-        </b-button>
-        <b-button variant="primary"
+        <button type="button" class="btn btn-outline-secondary"
+          @click="addView=false">
+          <font-awesome-icon :icon="faArrowLeft" />Back
+        </button>
+        <button type="button" class="btn btn-primary"
           :disabled="!hasAnyKeys(formData)"
           @click="requestCreateEmail({formData, onSuccess, onError})"
         >
           Submit
-        </b-button>
-        <b-button variant="light" @click="$refs['view-modal'].hide()">Close</b-button>
+        </button>
+        <button type="button" class="btn btn-light"
+          @click="$refs['view-modal'].hide()">Close</button>
       </template>
 
       <template v-else #modal-footer>
@@ -152,7 +153,8 @@
         >
           Mailman Help
         </a>
-        <b-button variant="light" @click="$refs['view-modal'].hide()">Close</b-button>
+        <button type="button" class="btn btn-light"
+          @click="$refs['view-modal'].hide()">Close</button>
       </template>
     </b-modal>
   </div>

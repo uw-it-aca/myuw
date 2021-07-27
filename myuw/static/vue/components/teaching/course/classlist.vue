@@ -12,10 +12,12 @@
           >
             My Class Resources
           </b-link>
-          <b-button :id="`cl_info_${section.id}`" variant="link">
+          <button :id="`cl_info_${section.id}`" type="button"
+           class="btn btn-link"
+          >
             <font-awesome-icon :icon="faInfoCircle" />
             <span class="sr-only">More information</span>
-          </b-button>
+          </button>
           <b-popover
             :target="`cl_info_${section.id}`"
             triggers="hover focus"

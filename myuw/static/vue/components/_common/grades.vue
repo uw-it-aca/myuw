@@ -80,17 +80,14 @@
       </b-collapse>
     </template>
     <template #card-footer>
-      <b-button
-        v-b-toggle.grade_card_collapse
-        variant="link"
-        size="sm"
-        class="w-100 p-0 text-dark"
+      <button v-b-toggle.grade_card_collapse
+        type="button" class="btn btn-link btn-sm w-100 p-0 text-dark"
         title='Additional grade resources'
       >
         Resources
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
         <font-awesome-icon v-else :icon="faChevronDown" />
-      </b-button>
+      </button>
     </template>
   </uw-card>
 </template>
