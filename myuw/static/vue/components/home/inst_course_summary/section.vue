@@ -90,7 +90,7 @@
           <font-awesome-icon v-else :icon="faChevronUp" />
         </button>
 
-        <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
+        <div :id="`linked-sections-${section.id}`" v-model="isOpen" class="collapse">
           <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
             Linked Sections
           </h3>
@@ -99,7 +99,7 @@
             :key="`secondary-${section.id}-${j}`"
             :section="sec"
           />
-        </b-collapse>
+        </div>
       </div>
     </template>
     <hr>

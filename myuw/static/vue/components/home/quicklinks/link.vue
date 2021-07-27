@@ -49,11 +49,10 @@
       </span>
     </div>
 
-    <b-collapse
-      v-if="activeButtons['edit']"
+    <div v-if="activeButtons['edit']"
       :id="`${customId}-collapse`"
       v-model="isEditOpen"
-      class="bg-light mx-n3 p-3 my-1"
+      class="collapse bg-light mx-n3 p-3 my-1"
       @open="populateCustomLink"
     >
       <b-form @submit="updateLink" @reset="onReset">
@@ -88,7 +87,7 @@
           >Save</button>
         </div>
       </b-form>
-    </b-collapse>
+    </div>
   </li>
 </template>
 

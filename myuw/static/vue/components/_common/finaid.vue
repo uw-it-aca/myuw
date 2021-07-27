@@ -16,17 +16,16 @@
           <font-awesome-icon v-else :icon="faCaretRight" />
           <span v-html="notice.short_content" />
         </button>
-        <b-collapse
-          :id="`finAid-${notice.id_hash}-collapse-${$meta.uid}`"
+        <div :id="`finAid-${notice.id_hash}-collapse-${$meta.uid}`"
           v-model="collapseOpen[i]"
-          class="myuw-fin-aid"
+          class="collapse myuw-fin-aid"
           @show="onShowNotice(notice)"
         >
           <div
             class="bg-warning m-0 p-3 border-0 rounded-0 myuw-text-sm"
             v-html="notice.notice_body"
           />
-        </b-collapse>
+        </div>
       </li>
     </ul>
   </div>

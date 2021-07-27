@@ -19,10 +19,9 @@
         </button>
       </template>
     </uw-card-status>
-    <b-collapse
-      :id="`${summerCardLabel}holds-collapse-${$meta.uid}`"
+    <div :id="`${summerCardLabel}holds-collapse-${$meta.uid}`"
       v-model="collapseOpen"
-      class="myuw-reg-holds"
+      class="collapse myuw-reg-holds"
     >
       <div class="bg-danger m-0 p-3 border-0 rounded-0">
         <h4 class="h6 font-weight-bold">
@@ -32,7 +31,7 @@
           <li v-for="(notice, i) in regHoldsNotices" :key="i" v-html="notice.notice_content" />
         </ul>
       </div>
-    </b-collapse>
+    </div>
   </div>
 </template>
 

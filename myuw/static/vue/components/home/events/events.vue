@@ -65,9 +65,9 @@
     </template>
     <!-- v-if condition is common with #card-footer -->
     <template v-if="hiddenEvents.length > 0" #card-disclosure>
-      <b-collapse
-        id="hidden_events_collapse"
+      <div id="hidden_events_collapse"
         v-model="isOpen"
+        class="collapse"
       >
         <uw-list-events :events="hiddenEvents" />
         <div v-if="calLinks.length > 1" class="mt-3">
@@ -89,12 +89,12 @@
             calendar.
           </p>
         </div>
-      </b-collapse>
+      </div>
     </template>
     <template v-else-if="calLinks.length > 0" #card-disclosure>
-      <b-collapse
-        id="hidden_events_collapse"
+      <div id="hidden_events_collapse"
         v-model="isOpen"
+        class="collapse"
       >
         <div v-if="calLinks.length > 1">
           <p class="text-muted myuw-text-md">
@@ -111,7 +111,7 @@
             {{ calLinks[0].title }}
           </a> calendar.
         </div>
-      </b-collapse>
+      </div>
     </template>
     <template v-if="hiddenEvents.length > 0" #card-footer>
       <button v-b-toggle.hidden_events_collapse

@@ -59,7 +59,7 @@
         </span>
       </p>
 
-      <b-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
+      <div id="popular_qlinks" class="collapse bg-light mx-n3 p-3 mt-3">
         <h3 class="h6">
           Popular Links
         </h3>
@@ -69,12 +69,10 @@
             :link="link" :buttons="['save']" :custom-id="`popular-${index}`"
           />
         </ul>
-      </b-collapse>
+      </div>
 
-      <b-collapse
-        id="custom_qlinks"
-        role="form"
-        class="bg-light mx-n3 p-3 mt-3"
+      <div id="custom_qlinks" role="form"
+        class="collapse bg-light mx-n3 p-3 mt-3"
       >
         <b-form class="myuw-text-md" @submit="addLink" @reset="onReset">
           <h3 class="h6">
@@ -118,7 +116,7 @@
             >Add</button>
           </div>
         </b-form>
-      </b-collapse>
+      </div>
     </template>
   </uw-card>
 </template>

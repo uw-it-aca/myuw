@@ -13,9 +13,9 @@
         </b-container>
       </div>
 
-      <b-collapse id="app_search" class="myuw-search bg-light">
+      <div id="app_search" class="collapse myuw-search bg-light">
         <uw-search />
-      </b-collapse>
+      </div>
 
       <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
         <b-container fluid="xl" class="px-3">
@@ -112,9 +112,8 @@
         <b-row :no-gutters="$mq !== 'desktop'">
           <b-col v-if="!displayHybrid" lg="2">
             <!-- main sidebar navigation -->
-            <b-collapse
-              id="nav-collapse"
-              class="pt-4 text-nowrap myuw-navigation"
+            <div id="nav-collapse"
+              class="collapse pt-4 text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
             >
@@ -209,7 +208,7 @@
                   <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources
                 </b-nav-item>
               </b-nav>
-            </b-collapse>
+            </div>
             <uw-welcome v-if="$mq === 'desktop'" />
           </b-col>
           <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">

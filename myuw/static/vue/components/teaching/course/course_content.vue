@@ -24,9 +24,9 @@
       <uw-evaluation v-if="section.evaluation" :section="section" />
     </template>
     <template v-if="linkedSections.length > 0" #card-disclosure>
-      <b-collapse
-        :id="`secondary-${section.section_label}`"
+      <div :id="`secondary-${section.section_label}`"
         v-model="isOpen"
+        class="collapse"
       >
         <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
             Linked Sections
@@ -36,7 +36,7 @@
           :key="`secondary-${section.section_label}-${i}`"
           :section="linkedSection"
         />
-      </b-collapse>
+      </div>
     </template>
     <template v-if="linkedSections.length > 0" #card-footer>
       <button v-b-toggle="`secondary-${section.section_label}`"

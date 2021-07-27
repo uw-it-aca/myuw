@@ -21,7 +21,7 @@
         {{ criticalCount }} Critical
       </span>
     </div>
-    <b-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen" class="mt-3">
+    <div :id="collapseId" ref="collapsible" v-model="collapseOpen" class="collapse mt-3">
       <div
         v-for="(notice, i) in sortNotices(notices)"
         :key="i"
@@ -44,7 +44,7 @@
         <h3 class="h6 myuw-font-encode-sans" v-html="notice.notice_title" />
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
-    </b-collapse>
+    </div>
   </div>
 </template>
 

@@ -15,22 +15,21 @@
         {{ section.books.length > 1 ? "textbooks" : "textbook" }}
       </div>
     </div>
-    <b-collapse
-      v-if="section.hasBooks"
+    <div v-if="section.hasBooks"
       :id="`books-${section.sln}`"
       v-model="isOpen"
+      class="collapse"
     >
       <uw-book
         v-for="book in section.books"
         :key="`books-${section.sln}-${book.isbn}`"
         :book="book"
       />
-    </b-collapse>
-    <b-collapse
-      v-else
+    </div>
+    <div v-else
       :id="`books-${section.sln}`"
       v-model="isOpen"
-      class="myuw-text-md"
+      class="collapse myuw-text-md"
     >
       <slot name="no-books">
         No textbooks have been ordered for this course.
@@ -38,7 +37,7 @@
           Order textbooks
         </a>.
       </slot>
-    </b-collapse>
+    </div>
 
     <hr v-if="!collapsable">
   </div>

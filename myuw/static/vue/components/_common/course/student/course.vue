@@ -30,25 +30,25 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <b-collapse
-            :id="`course-details-${index}`"
+          <div :id="`course-details-${index}`"
             v-model="isOpen"
+            class="collapse"
           >
             <uw-course-details :section="section"
               display-heading display-instructor class="pt-3"/>
-          </b-collapse>
+          </div>
         </template>
         <template v-else>
-          <b-collapse
-            :id="`instructors-collapse-${index}`"
+          <div :id="`instructors-collapse-${index}`"
             v-model="isOpen"
+            class="collapse"
           >
             <uw-instructors
               v-if="section.instructors.length > 0"
               :instructors="section.instructors"
               class="pt-3"
             />
-          </b-collapse>
+          </div>
         </template>
       </template>
 

@@ -51,9 +51,9 @@
       </ul>
     </template>
     <template #card-disclosure>
-      <b-collapse
-        id="grade_card_collapse"
+      <div id="grade_card_collapse"
         v-model="isOpen"
+        class="collapse"
       >
         <h3 class="sr-only">
           Resources
@@ -77,7 +77,7 @@
             </a>
           </li>
         </ul>
-      </b-collapse>
+      </div>
     </template>
     <template #card-footer>
       <button v-b-toggle.grade_card_collapse

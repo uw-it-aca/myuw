@@ -32,9 +32,9 @@
         </div>
       </template>
     </uw-card-status>
-    <b-collapse
-      :id="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
+    <div :id="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
       v-model="collapseOpen"
+      class="collapse"
     >
       <div class="bg-light m-0 p-3 border-0 rounded-0">
         <uw-myplan-courses
@@ -43,7 +43,7 @@
           :my-plan-data="myPlanData"
         />
       </div>
-    </b-collapse>
+    </div>
   </div>
 
   <!-- no myplan courses -->

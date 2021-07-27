@@ -4,10 +4,10 @@
       <slot name="heading">
       </slot>
     </div>
-    <b-collapse :id="collapseId">
+    <div :id="collapseId" class="collapse">
       <slot name="body">
       </slot>
-    </b-collapse>
+    </div>
   </div>
 </template>
 

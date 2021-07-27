@@ -33,9 +33,9 @@
               </b-badge>
             </div>
           </div>
-          <b-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
+          <div :id="notice.id_hash" class="collapse" tabindex="0" @show="onShowNotice(notice)">
             <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
-          </b-collapse>
+          </div>
         </li>
         <li class="mb-1">
           <covid-vaccine />

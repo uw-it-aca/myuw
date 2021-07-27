@@ -9,16 +9,16 @@
         :schedule="instSchedule"
         :section="section"
       />
-      <b-collapse
-        v-else
+      <div v-else
         :id="`collapse-${section.section_label}`"
+        class="collapse"
         :visible="section.mini_card"
       >
         <uw-mini-course-card
           :schedule="instSchedule"
           :section="section"
         />
-      </b-collapse>
+      </div>
     </div>
   </div>
   <uw-card
