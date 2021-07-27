@@ -69,8 +69,8 @@
           class="px-3 myuw-brand-logo"
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
-          <button type="button"
-            v-b-toggle.nav-collapse
+          <button v-b-toggle.nav-collapse
+            type="button"
             class="btn btn-link btn-sm d-lg-none p-0 border-0 text-white"
             title="Toggle Navigation Menu"
           >
@@ -321,8 +321,8 @@
         >.
       </p>
       <template #modal-footer="{ hide }">
-        <button type="button" class="btn btn-primary btn-sm"
-         slot-scope="" @click="hide()"> Close </button>
+        <button slot-scope="" type="button"
+         class="btn btn-primary btn-sm" @click="hide()"> Close </button>
       </template>
     </b-modal>
   </div>

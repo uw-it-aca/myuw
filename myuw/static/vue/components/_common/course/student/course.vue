@@ -56,8 +56,8 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <button type="button"
-            v-b-toggle="`course-details-${index}`"
+          <button v-b-toggle="`course-details-${index}`"
+            type="button"
             class="btn btn-link w-100 p-0 border-0 text-dark"
           >
             Course Details
@@ -68,8 +68,8 @@
 
         <template v-else>
           <template v-if="section.instructors.length > 0">
-            <button type="button"
-              v-b-toggle="`instructors-collapse-${index}`"
+            <button v-b-toggle="`instructors-collapse-${index}`"
+              type="button"
               class="btn btn-link w-100 p-0 border-0 text-dark"
             >
               Instructors
