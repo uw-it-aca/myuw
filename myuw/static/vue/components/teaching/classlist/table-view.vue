@@ -3,40 +3,52 @@
     <h3 class="sr-only">
       Table of Student Information
     </h3>
-    <div class="myuw-text-md">
-      <b-table
+    <div class="myuw-text-md table-responsive">
+      <table
         id="student-list"
-        hover
-        show-empty
-        sort-icon-left
-        responsive
-        small
-        head-variant="light"
-        :fields="fields"
-        :items="items"
-        primary-key="netid"
+        class="table table-sm table-hover"
+        cellspacing="0"
       >
-        <template #cell(linkedSection)="data">
-          <div class="text-center">{{data.value}}</div>
-        </template>
-        <template #cell(credits)="data">
-          <div class="text-center">{{data.value}}</div>
-        </template>
-        <template #cell(email)="data">
-          <div class="text-center">
-            <a
-              v-inner="'Email student'"
-              :href="data.value.href"
-              :title="data.value.title"
-            >
-              <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
-              <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
-                {{ data.value.email }}
-              </span>
-            </a>
-          </div>
-        </template>
-      </b-table>
+        <thead class="thead-light">
+          <tr>
+            <th v-for="(field, index) in fields"
+              :id="field.key"
+              :key="index"
+              :class="field.sortable ? 'b-table-sort-icon-left' : ''"
+              :aria-colindex="index">
+              {{ field.label }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(dataItems, j) in items" :key="j">
+            <td v-for="(data, i) in dataItems" :key="`${j}-${i}`"
+              :headers="data.key" :aria-colindex="i">
+              <template
+                v-if="data.key == 'linkedSection' || data.key == 'credits'">
+                <div class="text-center">{{data.value}}</div>
+              </template>
+              <template v-else-if="data.key == 'email'">
+                <div class="text-center">
+                  <a
+                    v-inner="'Email student'"
+                    :href="data.href"
+                    :title="data.title"
+                  >
+                    <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
+                    <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
+                      {{ data.email }}
+                    </span>
+                  </a>
+                </div>
+              </template>
+              <template v-else>
+                {{ data.value }}
+              </template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -149,39 +161,86 @@ export default {
         if (reg.isJoint && !this.showJointCourseStud) {
           continue;
         }
-        const dataItem = {
-          studentNumber: reg.student_number,
-          netid: reg.netid,
-          surName: reg.surname,
-          firstName: reg.first_name,
-          //Pronouns: reg.pronouns,
-        };
+        const dataItems = [];
+        dataItems.push({
+          key: 'studentNumber',
+          value: reg.student_number
+        });
+        dataItems.push({
+          key: 'netid',
+          value: reg.netid
+        });
+        dataItems.push({
+          key: 'surName',
+          value: reg.surname
+        });
+        dataItems.push({
+          key: 'firstName',
+          value: reg.first_name
+        });
+        // dataItems.push({
+        //   key: 'Pronouns',
+        //   value: 'reg.pronouns'
+        // });
+
         if (this.showJointCourseStud) {
-          dataItem.jointCourse = (
-            reg.isJoint ?
-            (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
-            (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
-            this.section.section_id));
+          dataItems.push({
+            key: 'jointCourse',
+            value: (
+              reg.isJoint ?
+              (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
+              (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
+              this.section.section_id))
+          });
         }
+
         if (this.section.has_linked_sections) {
-          dataItem.linkedSection = reg.linked_sections;
+          dataItems.push({
+            key: 'linkedSection',
+            value: reg.linked_sections
+          });
         }
-        dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
-        dataItem.classLevel = this.titleCaseWord(reg.class_level);
-        dataItem.majors = this.combineMajors(reg.majors);
+
+        dataItems.push({
+          key: 'credits',
+          value: reg.is_auditor ? 'Audit' : reg.credits
+        });
+
+        dataItems.push({
+          key: 'classLevel',
+          value: this.titleCaseWord(reg.class_level)
+        });
+
+        dataItems.push({
+          key: 'majors',
+          value: this.combineMajors(reg.majors)
+        });
+
         if (this.section.is_independent_start) {
-          dataItem.startDate = reg.start_date;
-          dataItem.endDate = reg.end_date;
+          dataItems.push({
+            key: 'startDate',
+            value: reg.start_date
+          });
+
+          dataItems.push({
+            key: 'endDate',
+            value: reg.end_date
+          });
         }
-        dataItem.email = {
+        dataItems.push({
+          key: 'email',
           email: reg.email,
           href: 'mailto:' + reg.email,
           title: 'Email ' + reg.first_name + ' ' + reg.surname,
-        };
-        data.push(dataItem);
+        });
+
+        data.push(dataItems);
       }
       return data;
     },
   },
 };
 </script>
+<style lang="scss" scoped>
+
+</style>
