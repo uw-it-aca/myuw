@@ -6,11 +6,11 @@
         id="actions_disabled_banner"
         class="bg-gold myuw-override myuw-text-md"
       >
-        <b-container fluid="xl" class="py-2 text-center">
+        <div class="container-xl py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
           no actions will be saved.
           <a v-inner="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
-        </b-container>
+        </div>
       </div>
 
       <b-collapse id="app_search" class="myuw-search bg-light">
@@ -18,55 +18,56 @@
       </b-collapse>
 
       <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
-        <b-container fluid="xl" class="px-3">
-          <b-row>
-            <b-col xs="2">
+        <div class="container-xl px-3">
+          <div class="row">
+            <div class="col">
               <b-link
                 v-inner="'MyUW profile page'"
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-              ><font-awesome-icon :icon="faUser"
-                 class="mr-1" />{{ netid }}</b-link>
-            </b-col>
-            <b-col xs="10" class="text-right">
+                ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</b-link
+              >
+            </div>
+            <div class="col text-right">
               <b-link
                 v-if="emailError"
                 v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-              ><font-awesome-icon :icon="faExclamationTriangle"
-                 class="mr-1" />Email error</b-link>
+                ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</b-link
+              >
               <b-link
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
                 title="Open your email"
-              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</b-link>
+                ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</b-link
+              >
               <b-link
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
                 title="Open search panel"
-              ><font-awesome-icon :icon="faSearch" flip="horizontal"
-                 class="mr-1" />Search</b-link>
+                ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</b-link
+              >
               <b-link
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</b-link>
-            </b-col>
-          </b-row>
-        </b-container>
+                ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</b-link
+              >
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="bg-purple myuw-brand">
-        <b-container
-          fluid="xl"
-          class="px-3 myuw-brand-logo"
+        <div
+          class="container-xl px-3 myuw-brand-logo"
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
           <b-button
@@ -102,7 +103,7 @@
               <a href="/">MyUW</a>
             </template>
           </div>
-        </b-container>
+        </div>
       </div>
     </header>
 
@@ -110,9 +111,9 @@
     <uw-messages v-if="$mq === 'desktop'" />
 
     <div class="w-100 myuw-body">
-      <b-container fluid="xl">
-        <b-row :no-gutters="$mq !== 'desktop'">
-          <b-col v-if="!displayHybrid" lg="2">
+      <div class="container-xl">
+        <div class="row" :no-gutters="$mq !== 'desktop'">
+          <div class="col-lg-2" v-if="!displayHybrid">
             <!-- main sidebar navigation -->
             <b-collapse
               id="nav-collapse"
@@ -213,37 +214,37 @@
               </b-nav>
             </b-collapse>
             <uw-welcome v-if="$mq === 'desktop'" />
-          </b-col>
-          <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
+          </div>
+          <div v-if="$mq === 'mobile' || $mq === 'tablet'" class="col">
             <!-- MARK: message banner display for mobile and tablet -->
             <div style="margin-left: -10px; margin-right: -10px">
               <uw-messages />
             </div>
-          </b-col>
-          <b-col
-            lg="10"
+          </div>
+          <div
+            class="col-lg-10"
             role="main"
             aria-labelledby="mainHeader"
-            :class="{'pt-4': true, 'mx-auto': displayHybrid}"
+            :class="{ 'pt-4': true, 'mx-auto': displayHybrid }"
           >
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="{'sr-only': page.hideTitle || $mq != 'desktop'}"
+              :class="{ 'sr-only': page.hideTitle || $mq != 'desktop' }"
             >
               {{ page.title }}
             </h1>
-            <b-row>
+            <div class="row">
               <slot v-if="$mq === 'mobile'" name="mobile" />
               <slot v-else name="desktop" />
-            </b-row>
-          </b-col>
-        </b-row>
-      </b-container>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer v-if="!displayHybrid" class="w-100 mt-auto bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
-      <b-container fluid="xl" class="px-3">
+      <div class="container-xl px-3">
         <ul class="list-inline mb-2">
           <li class="list-inline-item">
             <b-link :href="mailToUrl + netid" class="text-white mr-2">
@@ -276,7 +277,7 @@
         <div class="font-weight-light" style="color:#aaa">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
-      </b-container>
+      </div>
     </footer>
     <b-modal
       id="tourModal"
@@ -330,11 +331,7 @@
 </template>
 
 <script>
-import {
-  faCreditCard,
-  faSquare,
-  faCalendarCheck,
-} from '@fortawesome/free-regular-svg-icons';
+import { faCreditCard, faSquare, faCalendarCheck } from '@fortawesome/free-regular-svg-icons';
 
 import {
   faExclamationTriangle,
@@ -377,7 +374,7 @@ export default {
   },
   data() {
     return {
-      displayHybrid: this.isHybrid === "True" || this.forceHybrid,
+      displayHybrid: this.isHybrid === 'True' || this.forceHybrid,
       selectedMenu: '',
       mailToUrl:
         'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20',
@@ -398,24 +395,24 @@ export default {
     };
   },
   computed: mapState({
-    netid: (state) => state.user.netid,
-    emailError: (state) => state.user.email_error,
-    emailForwardUrl: (state) => state.user.email_forward_url,
-    affiliations: (state) => state.user.affiliations,
-    undergrad: (state) => state.user.affiliations.undergrad,
-    seattle: (state) => state.user.affiliations.seattle,
-    hxtViewer: (state) => state.user.affiliations.hxt_viewer,
-    student: (state) => state.user.affiliations.student,
-    applicant: (state) => state.user.affiliations.applicant,
-    instructor: (state) => state.user.affiliations.instructor,
-    staticUrl: (state) => state.staticUrl,
-    page: (state) => state.page,
-    disableActions: (state) => state.disableActions,
-    displayPopUp: (state) => state.displayPopUp,
+    netid: state => state.user.netid,
+    emailError: state => state.user.email_error,
+    emailForwardUrl: state => state.user.email_forward_url,
+    affiliations: state => state.user.affiliations,
+    undergrad: state => state.user.affiliations.undergrad,
+    seattle: state => state.user.affiliations.seattle,
+    hxtViewer: state => state.user.affiliations.hxt_viewer,
+    student: state => state.user.affiliations.student,
+    applicant: state => state.user.affiliations.applicant,
+    instructor: state => state.user.affiliations.instructor,
+    staticUrl: state => state.staticUrl,
+    page: state => state.page,
+    disableActions: state => state.disableActions,
+    displayPopUp: state => state.displayPopUp,
   }),
   created() {
     this.$logger.setUserProperties(this.affiliations);
-    this.$logger.setHybrid(this.isHybrid === "True");
+    this.$logger.setHybrid(this.isHybrid === 'True');
   },
   mounted() {
     if (this.displayPopUp) {
@@ -423,14 +420,14 @@ export default {
     }
   },
   methods: {
-    showTourModal: function () {
+    showTourModal: function() {
       this.$logger.onBoarding(this);
       this.$refs['tourModal'].show();
       axios
         .get('/api/v1/turn_off_tour_popup', {
           responseType: 'json',
         })
-        .then((response) => {
+        .then(response => {
           this.addVarToState({
             name: 'displayPopUp',
             value: false,
@@ -508,7 +505,12 @@ export default {
 }
 
 .myuw-title {
-  a, a:hover, a:focus, a:visited {color: #fff;}
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    color: #fff;
+  }
 }
 
 ::v-deep .myuw-modal {

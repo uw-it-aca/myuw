@@ -15,32 +15,32 @@
       <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         For application status, contact the UW Tacoma Office of Registrar
       </h3>
-      <b-container>
-        <b-row>
-          <b-col>Email</b-col>
-          <b-col><a href="mailto:reguwt@uw.edu">reguwt@uw.edu</a></b-col>
-        </b-row>
-        <b-row>
-          <b-col>Phone</b-col>
-          <b-col>(253) 692-4913</b-col>
-        </b-row>
-        <b-row>
-          <b-col>Fax</b-col>
-          <b-col>(253) 692-4414</b-col>
-        </b-row>
-        <b-row>
-          <b-col>Location</b-col>
-          <b-col>MAT 253</b-col>
-        </b-row>
-        <b-row>
-          <b-col>Mail</b-col>
-          <b-col>
+      <div class="container">
+        <div class="row">
+          <div class="col">Email</div>
+          <div class="col"><a href="mailto:reguwt@uw.edu">reguwt@uw.edu</a></div>
+        </div>
+        <div class="row">
+          <div class="col">Phone</div>
+          <div class="col">(253) 692-4913</div>
+        </div>
+        <div class="row">
+          <div class="col">Fax</div>
+          <div class="col">(253) 692-4414</div>
+        </div>
+        <div class="row">
+          <div class="col">Location</div>
+          <div class="col">MAT 253</div>
+        </div>
+        <div class="row">
+          <div class="col">Mail</div>
+          <div class="col">
             University of Washington Tacoma
             <br>1900 Commerce Street
             <br>Tacoma, WA 98402-3100
-          </b-col>
-        </b-row>
-      </b-container>
+          </div>
+        </div>
+      </div>
       <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         Resources for Tacoma Applicants
       </h3>
