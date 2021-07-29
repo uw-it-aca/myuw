@@ -1,15 +1,14 @@
 <template>
   <div>
-    <b-alert
+    <div
       v-if="isSummerQuarter && isFinalsTab && !hasMeetingsWithTime"
-      show
-      variant="primary"
-      class="myuw-text-md"
+      class="alert alert-primary myuw-text-md"
+      role="alert"
     >
       Most Summer quarter final examinations are given on the final meeting
       day of the course instead of a final examination week. Consult with
       your instructors when your final examinations will be.
-    </b-alert>
+    </div>
     <div v-else class="mb-4 d-flex">
       <div class="flex-shrink-1 myuw-text-xs"
            aria-hidden="true"

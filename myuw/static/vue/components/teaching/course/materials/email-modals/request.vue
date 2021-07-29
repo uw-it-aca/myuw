@@ -9,10 +9,10 @@
     @hidden="onHide()"
   >
     <template v-if="emailList.request_sent || requestSuccess">
-      <b-alert variant="success" show>
+      <div class="alert alert-success" role="alert">
         <font-awesome-icon :icon="faCheck" />
         Request submitted
-      </b-alert>
+      </div>
       <p>Please note:</p>
       <ul>
         <li class="mb-1">An email confirmation will be sent to {{netid}}@uw.edu</li>
