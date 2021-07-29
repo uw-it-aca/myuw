@@ -13,9 +13,9 @@
         <br/>
         <span>
           Need more email lists for this class?
-          <b-link @click="$emit('reqmulti')">
+          <a @click="$emit('reqmulti')">
             Request multiple email lists.
-          </b-link>
+          </a>
         </span>
       </span>
     </p>
