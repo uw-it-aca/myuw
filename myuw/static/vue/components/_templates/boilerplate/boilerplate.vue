@@ -21,45 +21,40 @@
         <div class="container-xl px-3">
           <div class="row">
             <div class="col">
-              <b-link
+              <a
                 v-inner="'MyUW profile page'"
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-                ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</b-link
-              >
+              ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a>
             </div>
             <div class="col text-right">
-              <b-link
+              <a
                 v-if="emailError"
                 v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-                ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</b-link
-              >
-              <b-link
+              ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</a>
+              <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
                 title="Open your email"
-                ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</b-link
-              >
-              <b-link
+              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</a>
+              <a
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
                 title="Open search panel"
-                ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</b-link
-              >
-              <b-link
+              ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</a>
+              <a
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-                ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</b-link
-              >
+              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</a>
             </div>
           </div>
         </div>
@@ -247,30 +242,30 @@
       <div class="container-xl px-3">
         <ul class="list-inline mb-2">
           <li class="list-inline-item">
-            <b-link :href="mailToUrl + netid" class="text-white mr-2">
+            <a :href="mailToUrl + netid" class="text-white mr-2">
               <font-awesome-icon :icon="faEnvelope" class="mr-1" />Contact
-            </b-link>
+            </a>
           </li>
           <li class="list-inline-item">
-            <b-link
+            <a
               href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
               class="text-white mr-2"
             >
               MyUW Help
-            </b-link>
+            </a>
           </li>
           <li class="list-inline-item mr-0 d-lg-none">
-            <b-link href="/logout/" class="text-white"> Sign Out </b-link>
+            <a href="/logout/" class="text-white"> Sign Out </a>
           </li>
           <li class="list-inline-item">
-            <b-link href="https://www.washington.edu/online/terms/" class="text-white mr-2">
+            <a href="https://www.washington.edu/online/terms/" class="text-white mr-2">
               Terms
-            </b-link>
+            </a>
           </li>
           <li class="list-inline-item">
-            <b-link href="https://www.washington.edu/online/privacy/" class="text-white mr-2">
+            <a href="https://www.washington.edu/online/privacy/" class="text-white mr-2">
               Privacy
-            </b-link>
+            </a>
           </li>
         </ul>
 
