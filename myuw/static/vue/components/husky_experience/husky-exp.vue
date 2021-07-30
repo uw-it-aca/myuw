@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="!renderedFromParam">
-      <b-row :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
-        <b-col md="8">
+      <div class="row" :class="[$mq === 'mobile' ? 'px-3' : 'px-0']">
+        <div class="col-md-8">
           <p class="myuw-text-lg">
             This toolkit is designed to help you make the most of your time at UW.
             The articles here address four interconnected dimensions of the Husky
@@ -11,8 +11,8 @@
             to challenge yourself, explore your options, and integrate all you are
             learning - your Husky Experience is more than a major!
           </p>
-        </b-col>
-        <b-col md="4" class="p-4 text-center">
+        </div>
+        <div class="col-md-4 p-4 text-center">
           <img :src="`${staticUrl}/images/HX_dimensions-1.0x.png`"
                 :srcset="`${staticUrl}/images/HX_dimensions-1.0x.png 1x, ${
                   staticUrl
@@ -22,8 +22,8 @@
                 alt="Husky Experience dimensions diagram"
                 class="img-fluid mx-auto"
           />
-        </b-col>
-      </b-row>
+        </div>
+      </div>
 
       <div v-if="isReady" class="d-flex flex-row flex-wrap card-cols">
         <uw-card v-for="(cd, i) in cardData" :key="i" loaded>
