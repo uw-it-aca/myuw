@@ -20,8 +20,8 @@
           <u>See MyUW at a glance</u>
         </b-link>
         <button type="button" aria-label="Close"
-          class="close myuw-text-sm text-white"
-          @click="hideOnboardMessage">X</button>
+          class="close text-white"
+          @click="hideOnboardMessage"><span aria-hidden="true">×</span></button>
       </div>
     </div>
   </div>
