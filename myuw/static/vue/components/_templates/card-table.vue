@@ -4,7 +4,7 @@
     <table
       id="student-list"
       class="table table-sm table-hover"
-      cellspacing="0"
+      :aria-colcount="fields.length"
     >
       <thead class="thead-light">
         <tr>
@@ -12,7 +12,7 @@
             :id="field.key"
             :key="index"
             :class="field.sortable ? 'b-table-sort-icon-left' : ''"
-            :aria-colindex="index">
+            :aria-colindex="index + 1">
             {{ field.label }}
           </th>
         </tr>
@@ -20,7 +20,7 @@
       <tbody>
         <tr v-for="(dataItems, rowIdx) in items" :key="rowIdx">
           <td v-for="(data, colIdx) in dataItems" :key="`${rowIdx}-${colIdx}`"
-            :headers="data.key" :aria-colindex="colIdx">
+            :headers="data.key" :aria-colindex="colIdx + 1">
             <slot :cellData="data" />
           </td>
         </tr>
@@ -49,5 +49,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  .b-table-sort-icon-left {
 
+  }
 </style>
