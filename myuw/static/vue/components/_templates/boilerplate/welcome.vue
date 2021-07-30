@@ -12,13 +12,13 @@
         </div>
       </li>
       <li class="mb-1">
-        <b-link 
+        <a
           v-out="'MyUW Help Center'"
           href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
           class="text-body"
         >
           Learn more about MyUW
-        </b-link>
+        </a>
       </li>
     </ul>
   </div>
