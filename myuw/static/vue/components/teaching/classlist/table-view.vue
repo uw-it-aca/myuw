@@ -3,60 +3,45 @@
     <h3 class="sr-only">
       Table of Student Information
     </h3>
-    <div class="myuw-text-md table-responsive">
-      <table
-        id="student-list"
-        class="table table-sm table-hover"
-        cellspacing="0"
-      >
-        <thead class="thead-light">
-          <tr>
-            <th v-for="(field, index) in fields"
-              :id="field.key"
-              :key="index"
-              :class="field.sortable ? 'b-table-sort-icon-left' : ''"
-              :aria-colindex="index">
-              {{ field.label }}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(dataItems, j) in items" :key="j">
-            <td v-for="(data, i) in dataItems" :key="`${j}-${i}`"
-              :headers="data.key" :aria-colindex="i">
-              <template
-                v-if="data.key == 'linkedSection' || data.key == 'credits'">
-                <div class="text-center">{{data.value}}</div>
-              </template>
-              <template v-else-if="data.key == 'email'">
-                <div class="text-center">
-                  <a
-                    v-inner="'Email student'"
-                    :href="data.href"
-                    :title="data.title"
-                  >
-                    <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
-                    <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
-                      {{ data.email }}
-                    </span>
-                  </a>
-                </div>
-              </template>
-              <template v-else>
-                {{ data.value }}
-              </template>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <uw-table :fields="fields" :items="items">
+      <template v-slot="slotProps">
+        <div
+          v-if="slotProps.cellData.key == 'linkedSection' ||
+                slotProps.cellData.key == 'credits'"
+          class="text-center"
+        >
+          {{slotProps.cellData.value}}
+        </div>
+        <div v-else-if="slotProps.cellData.key == 'email'"
+          class="text-center"
+        >
+          <a
+            v-inner="'Email student'"
+            :href="slotProps.cellData.href"
+            :title="slotProps.cellData.title"
+          >
+            <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
+            <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
+              {{ slotProps.cellData.email }}
+            </span>
+          </a>
+        </div>
+        <template v-else>
+          {{ slotProps.cellData.value }}
+        </template>
+      </template>
+    </uw-table>
   </div>
 </template>
 <script>
 import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
+import Table from '../../_templates/card-table.vue';
 export default {
+  components: {
+    'uw-table': Table,
+  },
   props: {
     section: {
       type: Object,
@@ -241,6 +226,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-
-</style>
