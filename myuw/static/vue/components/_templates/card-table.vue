@@ -45,6 +45,11 @@ export default {
   },
   data: function () {
     return {};
+  },
+  methods: {
+    sortCompare(a, b, sortBy) {
+      return this.defaultSortCompare(a, b, { sortBy });
+    },
   }
 }
 </script>

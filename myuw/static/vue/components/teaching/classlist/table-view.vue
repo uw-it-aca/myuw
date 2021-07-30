@@ -4,7 +4,7 @@
       Table of Student Information
     </h3>
     <uw-table :fields="fields" :items="items">
-      <template v-slot="slotProps">
+      <template #default="slotProps">
         <div
           v-if="slotProps.cellData.key == 'linkedSection' ||
                 slotProps.cellData.key == 'credits'"
