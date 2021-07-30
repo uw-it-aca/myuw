@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      v-if="isSummerQuarter && isFinalsTab && !hasMeetingsWithTime"
+      v-if="isSummerQuarter && isLastTab"
       class="alert alert-primary myuw-text-md"
       role="alert"
     >
@@ -9,7 +9,7 @@
       day of the course instead of a final examination week. Consult with
       your instructors when your final examinations will be.
     </div>
-    <div v-else class="mb-4 d-flex">
+    <div v-if="hasMeetingsWithTime" class="mb-4 d-flex">
       <div class="flex-shrink-1 myuw-text-xs"
            aria-hidden="true"
       >
