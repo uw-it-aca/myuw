@@ -12,16 +12,16 @@
           <div class="myuw-text-md m-0">
             {{ course.curriculum_abbr }} {{ course.course_number }}
           </div>
-          <b-container>
-            <b-row v-for="section in course.sections" :key="section.id">
-              <b-col class="myuw-text-md" cols="2">
+          <div class="container">
+            <div v-for="section in course.sections" :key="section.id" class="row">
+              <div class="col-2 myuw-text-md">
                 {{section.section_id}} 
-              </b-col>
-              <b-col>
+              </div>
+              <div class="col">
                 <uw-meeting-schedule :section="section" />
-              </b-col>
-            </b-row>
-          </b-container>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
