@@ -80,16 +80,15 @@
 
     <template v-if="getLinkedSections(section).length > 0">
       <div :class="$mq !== 'mobile' ? 'ml-3' : ''">
-        <b-button
-          v-b-toggle="`linked-sections-${section.id}`"
-          variant="link"
-          class="p-0 text-dark myuw-text-md my-2"
+        <button v-b-toggle="`linked-sections-${section.id}`"
+          type="button"
+          class="btn btn-link p-0 text-dark myuw-text-md my-2"
         >
           Linked Sections of {{ section.curriculum_abbr }}
           {{ section.course_number }} {{ section.section_id }}
           <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
           <font-awesome-icon v-else :icon="faChevronUp" />
-        </b-button>
+        </button>
 
         <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
           <h3 class="myuw-text-md myuw-font-encode-sans pt-3">

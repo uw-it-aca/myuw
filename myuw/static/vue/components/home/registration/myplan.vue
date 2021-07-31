@@ -18,16 +18,14 @@
             <ul class="list-unstyled m-0">
               <li class="myuw-text-md">
                 <span v-if="hasUnreadyCourses">{{ unreadyCount }} not ready</span>
-                <b-button
-                  v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
-                  size="sm"
-                  variant="link"
-                  class="ml-1 p-0 border-0 bg-transparent align-baseline"
+                <button v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
+                  type="button"
+                  class="btn btn-link btn-sm ml-1 p-0 border-0 bg-transparent align-baseline"
                 >
                   Plan Details
                   <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
                   <font-awesome-icon v-else :icon="faChevronUp" />
-                </b-button>
+                </button>
               </li>
             </ul>
           </div>

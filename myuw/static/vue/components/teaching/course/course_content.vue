@@ -39,17 +39,15 @@
       </b-collapse>
     </template>
     <template v-if="linkedSections.length > 0" #card-footer>
-      <b-button
-        v-b-toggle="`secondary-${section.section_label}`"
-        variant="link"
-        size="sm"
-        class="w-100 p-0 border-0 text-dark"
+      <button v-b-toggle="`secondary-${section.section_label}`"
+        type="button"
+        class="btn btn-link w-100 p-0 border-0 text-dark"
       >
         Linked Sections of {{ section.curriculum_abbr }}
         {{ section.course_number }} {{ section.section_id }}
         <font-awesome-icon v-if="!isOpen"  :icon="faChevronDown" />
         <font-awesome-icon v-else :icon="faChevronUp" />
-      </b-button>
+      </button>
     </template>
   </uw-card>
 </template>

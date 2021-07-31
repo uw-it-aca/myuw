@@ -84,22 +84,20 @@
         </div>
         <div class="col-2 col-sm-1 px-0">
           <div class="d-inline-block float-right">
-            <b-button v-if="!section.mini_card"
-              variant="link"
+            <button v-if="!section.mini_card"
               :title="`Pin mini-card of ${section.label} onto Teaching page`"
-              class="myuw-text-md text-muted p-0 ml-1"
+              type="button" class="btn btn-link myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Pin
-            </b-button>
-            <b-button v-else
-              variant="link"
+            </button>
+            <button v-else
               :title="`Remove mini-card of ${section.label} from Teaching page`"
-              class="myuw-text-md text-muted p-0 ml-1"
+              type="button" class="btn btn-link myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Unpin
-            </b-button>
+            </button>
           </div>
         </div>
       </div>
