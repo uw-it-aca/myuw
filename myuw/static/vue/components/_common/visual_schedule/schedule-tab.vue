@@ -165,6 +165,10 @@ export default {
       type: Object,
       required: true,
     },
+    isLastTab: {
+      type: Boolean,
+      required: true,
+    },
   },
   data: function() {
     return {
