@@ -165,7 +165,7 @@ export default {
       type: Object,
       required: true,
     },
-    isLastTab: {
+    isLastTab: {  // MUWM-4987
       type: Boolean,
       required: true,
     },
