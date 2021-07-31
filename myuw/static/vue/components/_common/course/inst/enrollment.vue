@@ -13,7 +13,7 @@
   </span>
 
   <span v-else>
-    <b-link
+    <a
       v-inner="'View Class list'"
       :href="classListHref()"
       :title="`View Classlist of ${section.label}`"
@@ -23,7 +23,7 @@
         <span>&nbsp;of&nbsp;</span>
         {{ section.limit_estimate_enrollment }}
       </span>
-    </b-link>
+    </a>
   </span>
 </template>
 

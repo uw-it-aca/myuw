@@ -1,5 +1,4 @@
-@import "./variables.scss";
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700&display=swap');
+@import './variables.scss';
 
 // add bootstrap flex utility for even column widths
 .flex-even {
@@ -42,7 +41,7 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
 } //11px
 .myuw-text-tiny {
   font-size: 0.625rem !important;
-} 
+}
 
 // myuw custom fonts
 .myuw-font-open-sans {
@@ -55,15 +54,17 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
 // myuw chevron card link
 .myuw-chevron {
   position: absolute;
-  right: 1rem; 
-  top: 50%; 
+  right: 1rem;
+  top: 50%;
   margin-top: -20px;
   a {
-    line-height:40px; 
+    line-height: 40px;
     width: 40px;
     display: inline-block;
     text-align: center;
-    &:focus, &:focus-within, &:hover {
+    &:focus,
+    &:focus-within,
+    &:hover {
       background-color: $gray-200;
     }
   }
@@ -114,27 +115,28 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
     * {
       visibility: hidden;
     }
-  
+
     .myuw-printable-card {
-      * { 
-        .myuw-print-hidden, .myuw-print-hidden * {
+      * {
+        .myuw-print-hidden,
+        .myuw-print-hidden * {
           display: none;
         }
-  
+
         .myuw-print-sr-only {
           display: inline !important;
           width: unset;
           height: unset;
           position: unset;
         }
-  
+
         visibility: visible;
       }
-  
+
       // Overwrite default card stylings
       padding: 0;
       width: 100%;
-  
+
       position: fixed;
       top: 0;
       left: 0;

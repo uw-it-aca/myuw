@@ -49,48 +49,40 @@
     <template v-if="emailList.request_sent || requestSuccess" #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
       >Mailman help</a>
-      <b-button variant="light" @click="$refs['request-modal'].hide()">
-        Close
-      </b-button>
+      <button type="button" class="btn btn-light"
+        @click="$refs['request-modal'].hide()">Close</button>
     </template>
 
     <template v-else-if="!listView && !addError" #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
       >Mailman help</a>
-      <b-button variant="light" @click="$refs['request-modal'].hide()">
-        Close
-      </b-button>
-      <b-button :disabled="disableActions" variant="primary" @click="requestSingle()">
-        Submit
-      </b-button>
+      <button type="button" class="btn btn-light"
+        @click="$refs['request-modal'].hide()">Close</button>
+      <button type="button" class="btn btn-primary"
+        :disabled="disableActions" @click="requestSingle()">Submit</button>
     </template>
 
     <template v-else-if="!addError" #modal-footer>
       <a
         href="https://itconnect.uw.edu/connect/email/resources/mailman/"
       >Mailman help</a>
-      <b-button variant="light" @click="listView = false">
-        <font-awesome-icon :icon="faArrowLeft" />
-        Back
-      </b-button>
-      <b-button variant="light" @click="$refs['request-modal'].hide()">
-        Close
-      </b-button>
-      <b-button
+      <button type="button" class="btn btn-light"
+        @click="listView = false">
+        <font-awesome-icon :icon="faArrowLeft" />Back
+      </button>
+      <button type="button" class="btn btn-light"
+        @click="$refs['request-modal'].hide()">Close</button>
+      <button type="button" class="btn btn-primary"
         :disabled="!hasAnyKeys(formData)"
-        variant="primary"
         @click="requestCreateEmail({formData, onSuccess, onError})"
-      >
-        Submit
-      </b-button>
+      >Submit</button>
     </template>
 
     <template v-else #modal-footer>
       <a href="https://itconnect.uw.edu/connect/email/resources/mailman/"
       >Mailman help</a>
-      <b-button variant="light" @click="$refs['request-modal'].hide()">
-        Close
-      </b-button>
+      <button type="button" class="btn btn-light"
+        @click="$refs['request-modal'].hide()">Close</button>
     </template>
   </b-modal>
 </template>
