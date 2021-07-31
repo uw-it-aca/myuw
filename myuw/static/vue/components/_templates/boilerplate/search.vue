@@ -18,10 +18,7 @@
               placeholder="Search the UW website"
             />
             <b-input-group-append>
-              <b-button
-                variant="purple"
-                class="rounded-0"
-                type="submit"
+              <button class="btn btn-purple rounded-0" type="submit"
               >
                 <font-awesome-icon
                   :icon="faSearch"
@@ -29,7 +26,7 @@
                   class="mr-1"
                 />
                 <span class="sr-only">Search</span>
-              </b-button>
+              </button>
             </b-input-group-append>
           </b-input-group>
         </b-form>

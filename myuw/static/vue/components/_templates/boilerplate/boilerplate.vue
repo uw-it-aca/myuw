@@ -65,18 +65,16 @@
           class="container-xl px-3 myuw-brand-logo"
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
-          <b-button
-            v-b-toggle.nav-collapse
-            variant="link"
-            size="sm"
-            class="d-lg-none p-0 border-0 text-white"
+          <button v-b-toggle.nav-collapse
+            type="button"
+            class="btn btn-link btn-sm d-lg-none p-0 border-0 text-white"
             title="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="faSquare" transform="right-1" class="m-0" />
               <font-awesome-icon :icon="faBars" transform="shrink-8 right-1 " class="m-0" />
             </font-awesome-layers>
-          </b-button>
+          </button>
           <div
             class="myuw-title d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
@@ -319,7 +317,8 @@
         >.
       </p>
       <template #modal-footer="{ hide }">
-        <b-button variant="primary" size="sm" @click="hide()"> Close </b-button>
+        <button slot-scope="" type="button"
+         class="btn btn-primary btn-sm" @click="hide()"> Close </button>
       </template>
     </b-modal>
   </div>

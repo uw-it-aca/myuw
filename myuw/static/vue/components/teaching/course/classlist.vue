@@ -9,13 +9,13 @@
             class="myuw-muted"
             :href="legacyLink"
             :title="`View class list of ${section.label}`"
+          >My Class Resources</a>
+          <button :id="`cl_info_${section.id}`" type="button"
+           class="btn btn-link"
           >
-            My Class Resources
-          </a>
-          <b-button :id="`cl_info_${section.id}`" variant="link">
             <font-awesome-icon :icon="faInfoCircle" />
             <span class="sr-only">More information</span>
-          </b-button>
+          </button>
           <b-popover
             :target="`cl_info_${section.id}`"
             triggers="hover focus"
