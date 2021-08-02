@@ -1,8 +1,12 @@
 <template>
   <div>
-    <b-alert variant="danger" :show="disableActions">
+    <div
+      v-show="disableActions"
+      class="alert alert-danger"
+      role="alert"
+    >
       This action is disabled while overriding as another user.
-    </b-alert>
+    </div>
 
     <b-form-group
       v-slot="{ ariaDescribedby }"

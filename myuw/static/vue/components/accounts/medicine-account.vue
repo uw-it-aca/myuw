@@ -27,8 +27,7 @@
           like Epic, ORCA, MINDscape, AMC network, etc.
         </p>
         <div v-if="medPwExpired">
-          <!--TODO: Maybe use a b-alert..?-->
-          <b-alert show variant="danger">
+          <div class="alert alert-danger" role="alert">
             <p>
               Password expired on {{ toFriendlyDate(expiresMed) }}.
               <a v-out="'Change UW Medicine password'"
@@ -37,7 +36,7 @@
                 <br>Change your password to regain access.
               </a>
             </p>
-          </b-alert>
+          </div>
         </div>
         <div v-else>
           <uw-card-status>

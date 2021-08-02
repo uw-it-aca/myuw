@@ -12,8 +12,10 @@ import Textbooks from './components/_common/textbooks.vue';
 import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
 import visualSchedule from './vuex/store/schedule/visual';
+import iasystem from './vuex/store/iasystem';
 
 vueConf.store.registerModule('stud_schedule', studSchedule);
+vueConf.store.registerModule('iasystem', iasystem);
 vueConf.store.registerModule('textbooks', textbooks);
 vueConf.store.registerModule('visual_schedule', visualSchedule);
 

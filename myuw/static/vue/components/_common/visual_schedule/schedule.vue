@@ -31,6 +31,7 @@
           <uw-schedule-tab
             :period="period"
             :term="getTermData"
+            :isLastTab="i === periods.length - 1"
           />
         </b-tab>
       </b-tabs>
