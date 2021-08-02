@@ -41,9 +41,11 @@
   </div>
   <div v-else class="card rounded-0 shadow-sm mb-3">
     <div class="card-body p-3">
-      <p class="card-text d-flex justify-content-center card-loading">
-        <b-spinner small variant="muted" class="my-auto" label="Loading..." />
-      </p>
+      <div class="card-text d-flex justify-content-center card-loading">
+        <div class="spinner-border spinner-border-sm text-muted my-auto" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
