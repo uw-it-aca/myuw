@@ -10,7 +10,7 @@
       >UW Libraries</a> page.
     </template>
     <template #card-body>
-      <b-alert v-if="holdsReady" show variant="info">
+      <div v-if="holdsReady" class="alert alert-info" role="alert">
         <div class="d-flex text-default m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
             <font-awesome-icon :icon="faInfoCircle" />
@@ -23,7 +23,7 @@
             </a>
           </div>
         </div>
-      </b-alert>
+      </div>
 
       <ul class="list-unstyled">
         <li class="mb-1">

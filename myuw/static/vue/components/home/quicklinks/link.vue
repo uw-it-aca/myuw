@@ -5,30 +5,26 @@
         {{ link.label }}
       </a>
       <span v-if="!isEditOpen">
-        <b-button
-          v-if="activeButtons['edit']"
+        <button v-if="activeButtons['edit']"
           v-b-toggle="`${customId}-collapse`"
-          variant="link"
+          type="button"
           :aria-label="`Edit link '${link.label}'`"
           title="Edit link"
-          class="p-0 mr-1 border-0 align-bottom"
+          class="btn btn-link btn-sm p-0 mr-1 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
-          size="sm"
         >
           <font-awesome-icon :icon="faPencilAlt" />
-        </b-button>
-        <b-button
-          v-if="activeButtons['remove']"
-          variant="link"
+        </button>
+        <button v-if="activeButtons['remove']"
+          type="button"
           :aria-label="`Remove link '${link.label}' from Quick Links list`"
           title="Remove link from Quick Links list"
-          class="p-0 m-0 border-0 align-bottom"
+          class="btn btn-link btn-sm p-0 m-0 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
-          size="sm"
           @click="removeLink(link, canActuallyRemove)"
         >
           <font-awesome-icon :icon="faTimes" />
-        </b-button>
+        </button>
         <span v-if="activeButtons['save']">
           <font-awesome-icon
             v-if="link.added"
@@ -39,18 +35,16 @@
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
             size="sm"
           />
-          <b-button
-            v-else
-            variant="link"
+          <button v-else
+            type="button"
             :aria-label="`Save link '${link.label}' to your Quick Links list`"
             title="Save link to your Quick Links list"
-            class="p-0 m-0 border-0 align-bottom"
+            class="btn btn-link btn-sm p-0 m-0 border-0 align-bottom"
             :class="[$mq === 'mobile' ? 'text-muted' : 'text-light']"
-            size="sm"
             @click="saveLink"
           >
             <font-awesome-icon :icon="faPlus" />
-          </b-button>
+          </button>
         </span>
       </span>
     </div>
@@ -87,17 +81,11 @@
           />
         </b-form-group>
         <div class="d-flex justify-content-end">
-          <b-button
-            v-b-toggle="`${customId}-collapse`"
-            variant="link"
-            size="sm"
+          <button v-b-toggle="`${customId}-collapse`" class="btn btn-link btn-sm"
             type="reset"
-          >
-            Cancel
-          </b-button>
-          <b-button variant="primary" size="sm" type="submit">
-            Save
-          </b-button>
+          >Cancel</button>
+          <button class="btn btn-primary btn-sm" type="submit"
+          >Save</button>
         </div>
       </b-form>
     </b-collapse>

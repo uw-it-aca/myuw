@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-container fluid>
-      <b-row>
-        <b-col cols="12" sm="4" class="px-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-4 px-0">
           <div class="d-flex">
             <!-- A linked secondary section -->
             <font-awesome-icon
@@ -62,8 +62,8 @@
               </span>
             </div>
           </div>
-        </b-col>
-        <b-col cols="8" sm="5" class="px-0">
+        </div>
+        <div class="col-8 col-sm-5 px-0">
           <div class="d-flex">
             <div class="flex-fill">
               <h5 class="sr-only">
@@ -72,8 +72,8 @@
               <uw-meeting-info :section="section" no-heading />
             </div>
           </div>
-        </b-col>
-        <b-col cols="2" sm="2" class="px-0">
+        </div>
+        <div class="col-2 col-sm-2 px-0">
           <h5 class="sr-only">
             Section Enrollments:
           </h5>
@@ -81,29 +81,27 @@
             class="myuw-text-md text-nowrap"
             :class="$mq === 'desktop' ? 'ml-2' : 'ml-1'"
           />
-        </b-col>
-        <b-col cols="2" sm="1" class="px-0">
+        </div>
+        <div class="col-2 col-sm-1 px-0">
           <div class="d-inline-block float-right">
-            <b-button v-if="!section.mini_card"
-              variant="link"
+            <button v-if="!section.mini_card"
               :title="`Pin mini-card of ${section.label} onto Teaching page`"
-              class="myuw-text-md text-muted p-0 ml-1"
+              type="button" class="btn btn-link myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Pin
-            </b-button>
-            <b-button v-else
-              variant="link"
+            </button>
+            <button v-else
               :title="`Remove mini-card of ${section.label} from Teaching page`"
-              class="myuw-text-md text-muted p-0 ml-1"
+              type="button" class="btn btn-link myuw-text-md text-muted p-0 ml-1"
               @click="miniCard"
             >
               Unpin
-            </b-button>
+            </button>
           </div>
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

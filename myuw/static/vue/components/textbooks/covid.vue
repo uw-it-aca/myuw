@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-alert show variant="dark-beige" class="myuw-textbook-covid">
+    <div class="alert alert-dark-beige myuw-textbook-covid" role="alert">
       <div class="d-flex text-dark-beige m-0 myuw-text-md">
         <div class="pr-2 flex-shrink-1">
           <font-awesome-icon :icon="faExclamationTriangle" />
@@ -15,7 +15,7 @@
         Fall 2020 quarter are online only; University Book Store&rsquo;s
         course materials department will be closed to the public.
       </div>
-    </b-alert>
+    </div>
   </div>
 </template>
 

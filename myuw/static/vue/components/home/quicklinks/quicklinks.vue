@@ -42,20 +42,20 @@
           Not seeing the links you're looking for?
           <span v-if="popularLinks.length">
             Select from
-            <b-button v-b-toggle.popular_qlinks variant="link" size="sm"
-                      :disabled="disableActions"
-                      class="d-inline-block align-bottom p-0 border-0"
-            >
-              popular links
-            </b-button>, or
+            <button v-b-toggle.popular_qlinks
+              type="button"
+              :disabled="disableActions"
+              class="btn btn-link btn-sm d-inline-block align-bottom p-0 border-0"
+            >popular links</button>, or
           </span>
-          <b-button v-b-toggle.custom_qlinks variant="link" size="sm"
-                    :disabled="disableActions"
-                    class="d-inline-block align-bottom p-0 border-0"
+          <button v-b-toggle.custom_qlinks
+            type="button"
+            :disabled="disableActions"
+            class="btn btn-link btn-sm d-inline-block align-bottom p-0 border-0"
           >
             <span v-if="popularLinks.length">add your own</span>
             <span v-else>Add your own</span>
-          </b-button>.
+          </button>
         </span>
       </p>
 
@@ -111,14 +111,11 @@
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <b-button v-b-toggle.custom_qlinks
-                      variant="link" type="reset" size="sm"
-            >
-              Cancel
-            </b-button>
-            <b-button variant="primary" type="submit" size="sm">
-              Add
-            </b-button>
+            <button v-b-toggle.custom_qlinks
+              type="reset" class="btn btn-link btn-sm"
+            >Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm"
+            >Add</button>
           </div>
         </b-form>
       </b-collapse>

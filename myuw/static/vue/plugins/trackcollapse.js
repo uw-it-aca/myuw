@@ -22,21 +22,25 @@ export default function(Vue, _) {
 	Vue.mixin({
 		updated() {
 			if (this.$el && this.$el.querySelectorAll) {
-				this.$el.querySelectorAll(
-					'button:is(.collapsed,.not-collapsed):not(.no-track-collapse):not(.track-collapse)'
-				).forEach((el) => {
-					// Find nearest vue component parent
-					let context = null;
-					for (let comp = el; comp; comp = comp.parentElement) {
-						if (comp.__vue__) {
-							context = comp.__vue__;
-							break;
+				try {
+					this.$el.querySelectorAll(
+						'button:is(.collapsed,.not-collapsed):not(.no-track-collapse):not(.track-collapse)'
+					).forEach((el) => {
+						// Find nearest vue component parent
+						let context = null;
+						for (let comp = el; comp; comp = comp.parentElement) {
+							if (comp.__vue__) {
+								context = comp.__vue__;
+								break;
+							}
 						}
-					}
 
-					el.onclick = (evt) => linkClickHandler(evt, el, {context});
-					el.classList.add('track-collapse');
-				});
+						el.onclick = (evt) => linkClickHandler(evt, el, {context});
+						el.classList.add('track-collapse');
+					});
+				} catch (error) {
+					// IGNORED: Error ignored for Safari 11
+				}
 			}
 		}
 	});

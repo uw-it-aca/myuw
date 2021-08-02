@@ -1,8 +1,8 @@
 <template>
   <div v-if="section.is_primary_section || !section.isLinkedSecondary">
-    <b-container fluid>
-      <b-row>
-        <b-col cols="12" sm="3" class="px-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 col-sm-3 px-0">
           <div class="d-flex">
             <font-awesome-icon
               :icon="faSquareFull"
@@ -54,8 +54,8 @@
               </div>
             </div>
           </div>
-        </b-col>
-        <b-col cols="9" sm="7" class="px-0">
+        </div>
+        <div class="col-9 col-sm-7 px-0">
           <div class="d-flex">
             <div class="flex-fill">
               <h4 class="sr-only">
@@ -64,8 +64,8 @@
               <uw-meeting-info :section="section" class="myuw-text-md"/>
             </div>
           </div>
-        </b-col>
-        <b-col cols="3" sm="2" class="px-0 text-right">
+        </div>
+        <div class="col-3 col-sm-2 px-0 text-right">
           <h4 class="sr-only">
             Section Enrollments:
           </h4>
@@ -74,22 +74,21 @@
             class="myuw-text-md text-nowrap"
             :class="$mq === 'desktop' ? 'ml-3' : ''"
           />
-        </b-col>
-      </b-row>
-    </b-container>
+        </div>
+      </div>
+    </div>
 
     <template v-if="getLinkedSections(section).length > 0">
       <div :class="$mq !== 'mobile' ? 'ml-3' : ''">
-        <b-button
-          v-b-toggle="`linked-sections-${section.id}`"
-          variant="link"
-          class="p-0 text-dark myuw-text-md my-2"
+        <button v-b-toggle="`linked-sections-${section.id}`"
+          type="button"
+          class="btn btn-link p-0 text-dark myuw-text-md my-2"
         >
           Linked Sections of {{ section.curriculum_abbr }}
           {{ section.course_number }} {{ section.section_id }}
           <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" />
           <font-awesome-icon v-else :icon="faChevronUp" />
-        </b-button>
+        </button>
 
         <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
           <h3 class="myuw-text-md myuw-font-encode-sans pt-3">

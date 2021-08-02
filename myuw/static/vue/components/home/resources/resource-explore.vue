@@ -9,38 +9,38 @@
       <p class="myuw-text-md">Explore tools, services, and resources by popular topics.</p>
       
       <ul class="list-unstyled myuw-text-lg myuw-resource-links">
-        <b-container fluid>
-          <b-row>
-            <b-col md="6">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#academics">Academic Resources</a>
               </li>
-            </b-col>
-            <b-col md="6">
+            </div>
+            <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#studentfinances">Student Finances</a>
               </li>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col md="6">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1"
                    href="/resources/#emailandaccountsandidentity"
                 >Accounts, Identity, and Email</a>
               </li>
-            </b-col>
-            <b-col md="6">
+            </div>
+            <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#employment">Employment</a>
               </li>
-            </b-col>
-          </b-row>
-        </b-container>
+            </div>
+          </div>
+        </div>
       </ul>
       <hr>
       <div>
