@@ -12,10 +12,10 @@
           Joint Course Students
         </b-form-checkbox>
 
-        <b-link class="mr-2" @click="downloadCL">
+        <a class="mr-2" @click="downloadCL">
           <font-awesome-icon :icon="faDownload" />
           Download (CSV)
-        </b-link>
+        </a>
 
         <a
           href="javascript:window.print()" class="">

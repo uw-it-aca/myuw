@@ -1,11 +1,10 @@
 <template>
-  <b-container
-    fluid="xl"
-    class="px-3 text-center"
+  <div
+    class="container-xl px-3 text-center"
     :class="[$mq == 'desktop' ? 'py-5' : 'py-3']"
   >
-    <b-row class="justify-content-md-center">
-      <b-col md="7">
+    <div class="row justify-content-md-center">
+      <div class="col-md-7">
         <b-form @submit.prevent="performSearch">
           <b-input-group>
             <label
@@ -19,10 +18,7 @@
               placeholder="Search the UW website"
             />
             <b-input-group-append>
-              <b-button
-                variant="purple"
-                class="rounded-0"
-                type="submit"
+              <button class="btn btn-purple rounded-0" type="submit"
               >
                 <font-awesome-icon
                   :icon="faSearch"
@@ -30,13 +26,13 @@
                   class="mr-1"
                 />
                 <span class="sr-only">Search</span>
-              </b-button>
+              </button>
             </b-input-group-append>
           </b-input-group>
         </b-form>
-      </b-col>
-    </b-row>
-  </b-container>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

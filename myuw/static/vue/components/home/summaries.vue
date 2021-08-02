@@ -1,11 +1,11 @@
 <template>
-  <b-row class="mb-3"
+  <div class="row mb-3"
          role="group" aria-labelledby="summaryHeader"
   >
     <h2 id="summaryHeader" class="sr-only">
       Account Summaries
     </h2>
-    <b-col md="2">
+    <div class="col-md-2">
       <a
         v-if="termData"
         v-inner="'MyUW Calendar page'"
@@ -46,8 +46,8 @@
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
         </span>
       </a>
-    </b-col>
-    <b-col v-if="isHfsReady && isLibraryReady" md="10">
+    </div>
+    <div v-if="isHfsReady && isLibraryReady" class="col-md-10">
       <div class="row float-md-right" style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
@@ -143,8 +143,8 @@
           </span>
         </a>
       </div>
-    </b-col>
-  </b-row>
+    </div>
+  </div>
 </template>
 
 <script>

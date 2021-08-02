@@ -114,16 +114,14 @@
       </b-collapse>
     </template>
     <template v-if="hiddenEvents.length > 0" #card-footer>
-      <b-button
-        v-b-toggle.hidden_events_collapse
-        variant="link"
-        size="sm"
-        class="w-100 p-0 border-0 text-dark"
+      <button v-b-toggle.hidden_events_collapse
+        type="button"
+        class="btn btn-link btn-sm w-100 p-0 border-0 text-dark"
       >
         Future Events
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
         <font-awesome-icon v-else :icon="faChevronDown" />
-      </b-button>
+      </button>
     </template>
   </uw-card>
 </template>

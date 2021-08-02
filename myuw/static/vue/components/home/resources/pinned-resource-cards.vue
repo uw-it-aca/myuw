@@ -9,14 +9,13 @@
       >
         <template #card-heading>
           <div>
-            <b-button
-              variant="link"
-              class="myuw-text-sm text-muted float-right"
+            <button type="button"
+              class="btn btn-link myuw-text-sm text-muted float-right"
               :title="`Remove ${subcategories.subcat_name} resources from home page`"
               @click="unpinWrapper(subcategories)"
             >
               Unpin
-            </b-button>
+            </button>
             UW Resources
             <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
               {{subcategories.subcat_name}}

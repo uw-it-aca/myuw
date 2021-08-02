@@ -15,21 +15,21 @@
       <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         For application status, contact the Office of the University Registrar
       </h3>
-      <b-container>
-        <b-row>
-          <b-col>Email</b-col>
-          <b-col><a v-out="'Contact Registrar Office'"
-                   href="mailto:regoff@uw.edu">regoff@uw.edu</a></b-col>
-        </b-row>
-        <b-row>
-          <b-col>Phone</b-col>
-          <b-col>(206) 543-4000</b-col>
-        </b-row>
-        <b-row>
-          <b-col>Location</b-col>
-          <b-col>225 Schmitz Hall</b-col>
-        </b-row>
-      </b-container>
+      <div class="container">
+        <div class="row">
+          <div class="col">Email</div>
+          <div class="col"><a v-out="'Contact Registrar Office'"
+                   href="mailto:regoff@uw.edu">regoff@uw.edu</a></div>
+        </div>
+        <div class="row">
+          <div class="col">Phone</div>
+          <div class="col">(206) 543-4000</div>
+        </div>
+        <div class="row">
+          <div class="col">Location</div>
+          <div class="col">225 Schmitz Hall</div>
+        </div>
+      </div>
 
       <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         Registration for Returning Student
