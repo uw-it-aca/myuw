@@ -35,24 +35,10 @@ describe('mixins', () => {
     expect(sortc.methods.defaultSortCompare({ a: 1.234 }, { a: 1.567 }, options)).toBe(-1);
     expect(sortc.methods.defaultSortCompare({ a: 1.561 }, { a: 1.234 }, options)).toBe(1);
 
-    // sorts date strings correctly
-    const date1 = { a: new Date(2020, 1, 1).toISOString() };
-    console.log(date1);
-    const date2 = { a: new Date(1999, 11, 31).toISOString() };
-    const date3 = { a: new Date(1999, 1, 1).toISOString() };
-    const date4 = { a: new Date(1999, 1, 1, 12, 12, 12, 12).toISOString() };
-    expect(sortc.methods.defaultSortCompare(date1, date2, options)).toBe(1);
-    expect(sortc.methods.defaultSortCompare(date1, date1, options)).toBe(0);
-    expect(sortc.methods.defaultSortCompare(date2, date1, options)).toBe(-1);
-    expect(sortc.methods.defaultSortCompare(date2, date3, options)).toBe(1);
-    expect(sortc.methods.defaultSortCompare(date3, date2, options)).toBe(-1);
-    expect(sortc.methods.defaultSortCompare(date3, date4, options)).toBe(-1);
-    expect(sortc.methods.defaultSortCompare(date4, date3, options)).toBe(1);
-    expect(sortc.methods.defaultSortCompare(date4, date4, options)).toBe(0);
-
     //sorts strings correctly
     expect(sortc.methods.defaultSortCompare({ a: 'a' }, { a: 'b' }, options)).toBe(-1);
-    expect(sortc.methods.defaultSortCompare({ a: 'b' }, { a: 'a' }, options)).toBe(1);
+    expect(sortc.methods.defaultSortCompare({ a: 'Bao' }, { a: 'Ab' }, options)).toBe(1);
+    expect(sortc.methods.defaultSortCompare({ a: 'A' }, { a: 'a' }, options)).toBe(-1);
     expect(sortc.methods.defaultSortCompare({ a: 'a' }, { a: 'a' }, options)).toBe(0);
     expect(sortc.methods.defaultSortCompare({ a: 'a' }, { a: 'aaa' }, options)).toBe(-1);
     expect(sortc.methods.defaultSortCompare({ a: 'aaa' }, { a: 'a' }, options)).toBe(1);
