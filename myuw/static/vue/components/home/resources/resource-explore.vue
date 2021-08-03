@@ -11,13 +11,13 @@
       <ul class="list-unstyled myuw-text-lg myuw-resource-links">
         <div class="container">
           <div class="row">
-            <div class="col-md-6">>
+            <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#academics">Academic Resources</a>
               </li>
             </div>
-            <div class="col-md-6">>
+            <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
                 <a class="ml-1" href="/resources/#studentfinances">Student Finances</a>

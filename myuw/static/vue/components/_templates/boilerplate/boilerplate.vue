@@ -106,7 +106,7 @@
     <div class="w-100 myuw-body">
       <div class="container-xl">
         <div class="row" :no-gutters="$mq !== 'desktop'">
-          <div class="col-lg-2" v-if="!displayHybrid">
+          <div v-if="!displayHybrid" class="col-lg-2">
             <!-- main sidebar navigation -->
             <div id="nav-collapse"
               class="collapse pt-4 text-nowrap myuw-navigation"
