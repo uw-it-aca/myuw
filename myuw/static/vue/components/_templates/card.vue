@@ -45,8 +45,9 @@
   </div>
   <b-card v-else class="rounded-0 shadow-sm mb-3" body-class="p-3">
     <b-card-text class="d-flex justify-content-center card-loading">
-      <!-- TODO: replace this with a cog -->
-      <b-spinner small variant="muted" class="my-auto" label="Loading..." />
+      <div class="spinner-border spinner-border-sm text-muted my-auto" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
     </b-card-text>
   </b-card>
 </template>
