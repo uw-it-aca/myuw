@@ -17,12 +17,12 @@
         >
           <a
             v-inner="'Email student'"
-            :href="slotProps.cellData.href"
-            :title="slotProps.cellData.title"
+            :href="slotProps.cellData.value.href"
+            :title="slotProps.cellData.value.title"
           >
             <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
             <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
-              {{ slotProps.cellData.email }}
+              {{ slotProps.cellData.value.email }}
             </span>
           </a>
         </div>
@@ -146,78 +146,38 @@ export default {
         if (reg.isJoint && !this.showJointCourseStud) {
           continue;
         }
-        const dataItems = [];
-        dataItems.push({
-          key: 'studentNumber',
-          value: reg.student_number
-        });
-        dataItems.push({
-          key: 'netid',
-          value: reg.netid
-        });
-        dataItems.push({
-          key: 'surName',
-          value: reg.surname
-        });
-        dataItems.push({
-          key: 'firstName',
-          value: reg.first_name
-        });
-        // dataItems.push({
-        //   key: 'Pronouns',
-        //   value: 'reg.pronouns'
-        // });
+        const dataItems = {};
+        dataItems['studentNumber'] = reg.student_number;
+        dataItems['netid'] = reg.netid;
+        dataItems['surName'] = reg.surname;
+        dataItems['firstName'] = reg.first_name;
+        // dataItems['Pronouns'] = reg.pronouns;
 
         if (this.showJointCourseStud) {
-          dataItems.push({
-            key: 'jointCourse',
-            value: (
+          dataItems['jointCourse'] = (
               reg.isJoint ?
               (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
               (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
-              this.section.section_id))
-          });
+              this.section.section_id));
         }
 
         if (this.section.has_linked_sections) {
-          dataItems.push({
-            key: 'linkedSection',
-            value: reg.linked_sections
-          });
+          dataItems['linkedSection'] = reg.linked_sections;
         }
 
-        dataItems.push({
-          key: 'credits',
-          value: reg.is_auditor ? 'Audit' : reg.credits
-        });
-
-        dataItems.push({
-          key: 'classLevel',
-          value: this.titleCaseWord(reg.class_level)
-        });
-
-        dataItems.push({
-          key: 'majors',
-          value: this.combineMajors(reg.majors)
-        });
+        dataItems['credits'] = reg.is_auditor ? 'Audit' : reg.credits;
+        dataItems['classLevel'] = this.titleCaseWord(reg.class_level);
+        dataItems['majors'] = this.combineMajors(reg.majors);
 
         if (this.section.is_independent_start) {
-          dataItems.push({
-            key: 'startDate',
-            value: reg.start_date
-          });
-
-          dataItems.push({
-            key: 'endDate',
-            value: reg.end_date
-          });
+          dataItems['startDate'] =  reg.start_date;
+          dataItems['endDate'] = reg.end_date;
         }
-        dataItems.push({
-          key: 'email',
+        dataItems['email'] = {
           email: reg.email,
           href: 'mailto:' + reg.email,
           title: 'Email ' + reg.first_name + ' ' + reg.surname,
-        });
+        };
 
         data.push(dataItems);
       }
