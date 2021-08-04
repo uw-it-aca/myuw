@@ -15,7 +15,7 @@
             :aria-sort="sortTheadThAttrs(field)"
             :aria-colindex="index + 1"
           >
-            <a v-if="field.sortable" href="#" @click="sortCol(field)"
+            <a v-if="field.sortable" href="#" @click="sortByCol(field)"
             >{{ field.label }}<span class="sr-only">(Click to sort)</span>
             </a>
             <span v-else>{{ field.label }}</span>
@@ -51,7 +51,6 @@ export default {
   data: function() {
 return {
       localSortBy: '',
-      localSortDesc: false,
   };
 },
   computed: {
@@ -77,10 +76,18 @@ return {
     sortCompare(a, b) {
       return this.defaultSortCompare(a, b, { sortByField: this.localSortBy });
     },
-    sortCol(field) {
+    sortDesc(field) {
+      // sort in descending order
+      return field.hasOwnProperty('sortDesc') ? field.sortDesc : false;
+    },
+    sortByCol(field) {
       this.localSortBy = field.key;
       this.items = this.items.sort(this.sortCompare);
-      this.localSortDesc = !this.localSortDesc;
+      field.sortDesc = this.sortDesc(field);
+      if (field.sortDesc) {
+        this.items = this.items.reverse();
+      }
+      field.sortDesc = !field.sortDesc;
     },
   }
 }
