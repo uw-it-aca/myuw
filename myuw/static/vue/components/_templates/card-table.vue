@@ -15,7 +15,7 @@
             :aria-sort="sortTheadThAttrs(field)"
             :aria-colindex="index + 1"
           >
-            <a v-if="field.sortable" @click="sortCol(field)" href="#"
+            <a v-if="field.sortable" href="#" @click="sortCol(field)"
             >{{ field.label }}<span class="sr-only">(Click to sort)</span>
             </a>
             <span v-else>{{ field.label }}</span>
@@ -48,10 +48,12 @@ export default {
       required: true,
     }
   },
-  data: {
+  data: function() {
+return {
       localSortBy: '',
       localSortDesc: false,
-  },
+  };
+},
   computed: {
   },
   methods: {
