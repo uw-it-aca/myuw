@@ -16,8 +16,8 @@
             :aria-colindex="index + 1"
           >
             <a v-if="field.sortable" href="#" @click="sortByCol(field)"
-            >{{ field.label }}<span class="sr-only">(Click to sort)</span>
-            </a>
+              :title="`Sort by ${field.label}`"
+            >{{ field.label }}</a>
             <span v-else>{{ field.label }}</span>
           </th>
         </tr>
@@ -87,17 +87,13 @@ return {
  // $b-table-sort-icon-bg-width: 0.65em !default;
  // $b-table-sort-icon-bg-height: 1em !default;
  // Sort icons are square, but "squished" horizontally by the above variables
- // b-table-sort-icon-bg-not-sorted: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' opacity='.3' d='M51 1l25 23 24 22H1l25-22zM51 101l25-23 24-22H1l25 22z'/></svg>") !default;
- // b-table-sort-icon-bg-ascending: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' d='M51 1l25 23 24 22H1l25-22z'/><path fill='black' opacity='.3' d='M51 101l25-23 24-22H1l25 22z'/></svg>") !default;
- // b-table-sort-icon-bg-descending: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' opacity='.3' d='M51 1l25 23 24 22H1l25-22z'/><path fill='black' d='M51 101l25-23 24-22H1l25 22z'/></svg>") !default;
+ // $b-table-sort-icon-bg-not-sorted: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' opacity='.3' d='M51 1l25 23 24 22H1l25-22zM51 101l25-23 24-22H1l25 22z'/></svg>") !default;
+ // $b-table-sort-icon-bg-ascending: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' d='M51 1l25 23 24 22H1l25-22z'/><path fill='black' opacity='.3' d='M51 101l25-23 24-22H1l25 22z'/></svg>") !default;
  // > [aria-sort="none"] {
  //    background-image: bv-escape-svg($b-table-sort-icon-bg-not-sorted);
  //   }
  // > [aria-sort="ascending"] {
  //   background-image: bv-escape-svg($b-table-sort-icon-bg-ascending);
- //   }
- // > [aria-sort="descending"] {
- //   background-image: bv-escape-svg($b-table-sort-icon-bg-descending);
  //   }
   .sort-icon-left {
   // background-position: left calc(#{$table-cell-padding} / 2) center;
