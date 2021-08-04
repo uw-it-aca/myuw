@@ -16,7 +16,7 @@
             :aria-colindex="index + 1"
           >
             <a v-if="field.sortable" href="#" @click="sortByCol(field)"
-              :title="`Sort by ${field.label}`"
+              :title="`Sort table content by ${field.label}`"
             >{{ field.label }}</a>
             <span v-else>{{ field.label }}</span>
           </th>
