@@ -59,7 +59,7 @@ return {
     sortTheadThAttrs(field) {
       if (field.sortable) {
         if (this.localSortBy === field.key) {
-          return this.localSortDesc ? 'descending' : 'ascending';
+          return 'ascending';
         }
         return 'none';
       }
@@ -76,18 +76,9 @@ return {
     sortCompare(a, b) {
       return this.defaultSortCompare(a, b, { sortByField: this.localSortBy });
     },
-    sortDesc(field) {
-      // sort in descending order
-      return field.hasOwnProperty('sortDesc') ? field.sortDesc : false;
-    },
     sortByCol(field) {
       this.localSortBy = field.key;
       this.items = this.items.sort(this.sortCompare);
-      field.sortDesc = this.sortDesc(field);
-      if (field.sortDesc) {
-        this.items = this.items.reverse();
-      }
-      field.sortDesc = !field.sortDesc;
     },
   }
 }
