@@ -15,8 +15,8 @@
             :aria-sort="sortTheadThAttrs(field)"
             :aria-colindex="index + 1"
           >
-            <a v-if="field.sortable" href="#" @click="sortByCol(field)"
-              :title="`Sort table content by ${field.label}`"
+            <a v-if="field.sortable" href="#" :title="`Sort table content by ${field.label}`"
+              @click="sortByCol(field)"
             >{{ field.label }}</a>
             <span v-else>{{ field.label }}</span>
           </th>
@@ -74,7 +74,8 @@ return {
       return v.join(' ');
     },
     sortCompare(a, b) {
-      return this.defaultSortCompare(a, b, { sortByField: this.localSortBy });
+      return this.defaultSortCompare(
+        a, b, { sortByField: this.localSortBy, nullLast: true });
     },
     sortByCol(field) {
       this.localSortBy = field.key;
