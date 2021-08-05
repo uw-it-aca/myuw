@@ -3,48 +3,45 @@
     <h3 class="sr-only">
       Table of Student Information
     </h3>
-    <div class="myuw-text-md">
-      <b-table
-        id="student-list"
-        hover
-        show-empty
-        sort-icon-left
-        responsive
-        small
-        head-variant="light"
-        :fields="fields"
-        :items="items"
-        primary-key="netid"
-      >
-        <template #cell(linkedSection)="data">
-          <div class="text-center">{{data.value}}</div>
+    <uw-table :fields="fields" :items="items">
+      <template #default="slotProps">
+        <div
+          v-if="slotProps.cellData.key == 'linkedSection' ||
+                slotProps.cellData.key == 'credits'"
+          class="text-center"
+        >
+          {{slotProps.cellData.value}}
+        </div>
+        <div v-else-if="slotProps.cellData.key == 'email'"
+          class="text-center"
+        >
+          <a
+            v-inner="'Email student'"
+            :href="slotProps.cellData.value.href"
+            :title="slotProps.cellData.value.title"
+          >
+            <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
+            <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
+              {{ slotProps.cellData.value.email }}
+            </span>
+          </a>
+        </div>
+        <template v-else>
+          {{ slotProps.cellData.value }}
         </template>
-        <template #cell(credits)="data">
-          <div class="text-center">{{data.value}}</div>
-        </template>
-        <template #cell(email)="data">
-          <div class="text-center">
-            <a
-              v-inner="'Email student'"
-              :href="data.value.href"
-              :title="data.value.title"
-            >
-              <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
-              <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
-                {{ data.value.email }}
-              </span>
-            </a>
-          </div>
-        </template>
-      </b-table>
-    </div>
+      </template>
+    </uw-table>
   </div>
 </template>
 <script>
 import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
+import Table from '../../_templates/card-table.vue';
 export default {
+  components: {
+    'uw-table': Table,
+  },
   props: {
     section: {
       type: Object,
@@ -149,36 +146,40 @@ export default {
         if (reg.isJoint && !this.showJointCourseStud) {
           continue;
         }
-        const dataItem = {
-          studentNumber: reg.student_number,
-          netid: reg.netid,
-          surName: reg.surname,
-          firstName: reg.first_name,
-          //Pronouns: reg.pronouns,
-        };
+        const dataItems = {};
+        dataItems['studentNumber'] = reg.student_number;
+        dataItems['netid'] = reg.netid;
+        dataItems['surName'] = reg.surname;
+        dataItems['firstName'] = reg.first_name;
+        // dataItems['Pronouns'] = reg.pronouns;
+
         if (this.showJointCourseStud) {
-          dataItem.jointCourse = (
-            reg.isJoint ?
-            (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
-            (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
-            this.section.section_id));
+          dataItems['jointCourse'] = (
+              reg.isJoint ?
+              (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
+              (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
+              this.section.section_id));
         }
+
         if (this.section.has_linked_sections) {
-          dataItem.linkedSection = reg.linked_sections;
+          dataItems['linkedSection'] = reg.linked_sections;
         }
-        dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
-        dataItem.classLevel = this.titleCaseWord(reg.class_level);
-        dataItem.majors = this.combineMajors(reg.majors);
+
+        dataItems['credits'] = reg.is_auditor ? 'Audit' : reg.credits;
+        dataItems['classLevel'] = this.titleCaseWord(reg.class_level);
+        dataItems['majors'] = this.combineMajors(reg.majors);
+
         if (this.section.is_independent_start) {
-          dataItem.startDate = reg.start_date;
-          dataItem.endDate = reg.end_date;
+          dataItems['startDate'] =  reg.start_date;
+          dataItems['endDate'] = reg.end_date;
         }
-        dataItem.email = {
+        dataItems['email'] = {
           email: reg.email,
           href: 'mailto:' + reg.email,
           title: 'Email ' + reg.first_name + ' ' + reg.surname,
         };
-        data.push(dataItem);
+
+        data.push(dataItems);
       }
       return data;
     },
