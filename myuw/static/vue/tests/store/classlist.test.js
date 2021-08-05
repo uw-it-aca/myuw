@@ -1,13 +1,13 @@
 import axios from 'axios';
 import Vuex from 'vuex';
-import {statusOptions} from '../vuex/store/model_builder';
-import classlist from '../vuex/store/classlist';
-import {expectAction, createLocalVue} from './helper';
+import {statusOptions} from '../../vuex/store/model_builder';
+import classlist from '../../vuex/store/classlist';
+import {expectAction, createLocalVue, deepClone} from '../helper';
 
 import mockJointPols306A from
-  './mock_data/classlist/2013-autumn-POLS-306-A.json';
+  '../mock_data/classlist/2013-autumn-POLS-306-A.json';
 import mockBillEss102A from
-  './mock_data/classlist/2013-spring-ESS-102-A.json';
+  '../mock_data/classlist/2013-spring-ESS-102-A.json';
 
 // This is required to initilize global Vuex
 createLocalVue(Vuex);
@@ -66,7 +66,7 @@ describe('Classlist Data', () => {
 
   it ('Check postProcess - billjoint POLS', async () => {
     axios.get.mockResolvedValue(
-        {data: mockJointPols306A, status: 200}
+        {data: deepClone(mockJointPols306A), status: 200}
     );
     store.dispatch('classlist/fetch', '2013,autumn,POL S,306/A');
     await new Promise(setImmediate);
