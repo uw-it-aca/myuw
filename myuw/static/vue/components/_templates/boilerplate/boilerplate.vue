@@ -26,8 +26,7 @@
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-                ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a
-              >
+              ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a>
             </div>
             <div class="col text-right">
               <a
@@ -36,30 +35,26 @@
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-                ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</a
-              >
+              ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</a>
               <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
                 title="Open your email"
-                ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</a
-              >
+              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</a>
               <a
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
                 title="Open search panel"
-                ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</a
-              >
+              ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</a>
               <a
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-                ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</a
-              >
+              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</a>
             </div>
           </div>
         </div>
