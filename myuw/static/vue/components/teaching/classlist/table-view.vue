@@ -146,39 +146,35 @@ export default {
         if (reg.isJoint && !this.showJointCourseStud) {
           continue;
         }
-        const dataItems = {};
-        dataItems['studentNumber'] = reg.student_number;
-        dataItems['netid'] = reg.netid;
-        dataItems['surName'] = reg.surname;
-        dataItems['firstName'] = reg.first_name;
-        // dataItems['Pronouns'] = reg.pronouns;
-
+        const dataItems = {
+          studentNumber: reg.student_number,
+          netid: reg.netid,
+          surName: reg.surname,
+          firstName: reg.first_name,
+          //Pronouns: reg.pronouns,
+        };
         if (this.showJointCourseStud) {
-          dataItems['jointCourse'] = (
-              reg.isJoint ?
-              (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
-              (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
-              this.section.section_id));
+          dataItem.jointCourse = (
+            reg.isJoint ?
+            (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
+            (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
+            this.section.section_id));
         }
-
         if (this.section.has_linked_sections) {
-          dataItems['linkedSection'] = reg.linked_sections;
+          dataItem.linkedSection = reg.linked_sections;
         }
-
-        dataItems['credits'] = reg.is_auditor ? 'Audit' : reg.credits;
-        dataItems['classLevel'] = this.titleCaseWord(reg.class_level);
-        dataItems['majors'] = this.combineMajors(reg.majors);
-
+        dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
+        dataItem.classLevel = this.titleCaseWord(reg.class_level);
+        dataItem.majors = this.combineMajors(reg.majors);
         if (this.section.is_independent_start) {
-          dataItems['startDate'] =  reg.start_date;
-          dataItems['endDate'] = reg.end_date;
+          dataItem.startDate = reg.start_date;
+          dataItem.endDate = reg.end_date;
         }
-        dataItems['email'] = {
+        dataItem.email = {
           email: reg.email,
           href: 'mailto:' + reg.email,
           title: 'Email ' + reg.first_name + ' ' + reg.surname,
         };
-
         data.push(dataItems);
       }
       return data;
