@@ -146,7 +146,7 @@ export default {
         if (reg.isJoint && !this.showJointCourseStud) {
           continue;
         }
-        const dataItems = {
+        const dataItem = {
           studentNumber: reg.student_number,
           netid: reg.netid,
           surName: reg.surname,
@@ -175,7 +175,7 @@ export default {
           href: 'mailto:' + reg.email,
           title: 'Email ' + reg.first_name + ' ' + reg.surname,
         };
-        data.push(dataItems);
+        data.push(dataItem);
       }
       return data;
     },
