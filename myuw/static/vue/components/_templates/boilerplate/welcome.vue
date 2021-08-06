@@ -3,9 +3,11 @@
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li class="mb-1">
         <div>
-          <button v-b-modal.tourModal
+          <button
             type="button"
             class="btn btn-link btn-sm p-0 m-0 text-body text-start myuw-text-xs"
+            data-toggle="modal"
+            data-target="#tourModal"
           >
             See MyUW at a glance
           </button>
@@ -25,14 +27,13 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   computed: mapState({
-    staticUrl: (state) => state.staticUrl,
+    staticUrl: state => state.staticUrl,
   }),
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
