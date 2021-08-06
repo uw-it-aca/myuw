@@ -345,58 +345,6 @@
       </div>
     </div>
 
-    <!--
-    <b-modal
-      id="tourModal"
-      ref="tourModal"
-      dialog-class="myuw-modal"
-      title="Welcome! Here's MyUW at a glance"
-      title-class="text-dark-beige myuw-font-encode-sans"
-      header-class="border-0"
-      body-class="py-0"
-      footer-class="border-0"
-      no-close-on-backdrop
-      no-close-on-esc
-    >
-      <img
-        v-if="$mq === 'mobile' || $mq === 'tablet'"
-        :src="staticUrl + 'images/myuw-tour-mobile-2.0x.png'"
-        class="img-fluid"
-      />
-      <img v-else :src="staticUrl + 'images/myuw-tour-2.0x.png'" class="img-fluid" />
-      <p class="mt-3 mb-0 myuw-text-md">
-        Watch a video tour of
-        <a
-          v-out="'MyUW video for Instructors'"
-          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
-          title="MyUW video tour for instructors"
-          >MyUW for Instructors</a
-        >,
-        <a
-          v-out="'MyUW video for staff'"
-          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
-          title="MyUW video tour for staff"
-          >for staff</a
-        >, or
-        <a
-          v-out="'MyUW video for students'"
-          href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
-          title="MyUW video tour for students"
-          >for students</a
-        >. <br /><a
-          v-out="'MyUW Help Center'"
-          href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
-          title="MyUW Help Center in IT Connect"
-          >Visit the MyUW help guide for more information</a
-        >.
-      </p>
-      <template #modal-footer="{ hide }">
-        <button slot-scope="" type="button" class="btn btn-primary btn-sm" @click="hide()">
-          Close
-        </button>
-      </template>
-    </b-modal>
-    -->
   </div>
 </template>
 
