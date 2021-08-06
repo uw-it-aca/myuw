@@ -7,6 +7,9 @@ import {
   FontAwesomeLayersText,
 } from '@fortawesome/vue-fontawesome';
 
+// bootstrap importing
+import "bootstrap";
+
 // bootstrap vue plugins
 import {
   AlertPlugin,

@@ -26,7 +26,8 @@
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-              ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a>
+                ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a
+              >
             </div>
             <div class="col text-right">
               <a
@@ -35,26 +36,30 @@
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-              ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</a>
+                ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</a
+              >
               <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
                 title="Open your email"
-              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</a>
+                ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</a
+              >
               <a
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
                 title="Open search panel"
-              ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</a>
+                ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</a
+              >
               <a
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</a>
+                ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</a
+              >
             </div>
           </div>
         </div>
@@ -277,6 +282,70 @@
         </div>
       </div>
     </footer>
+
+    <div
+      id="tourModal"
+      class="modal fade"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <div class="modal-dialog modal-md myuw-modal">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h5 id="exampleModalLabel" class="modal-title text-dark-beige myuw-font-encode-sans">
+              Welcome! Here's MyUW at a glance
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body py-0">
+            <img
+              v-if="$mq === 'mobile' || $mq === 'tablet'"
+              :src="staticUrl + 'images/myuw-tour-mobile-2.0x.png'"
+              class="img-fluid"
+            />
+            <img v-else :src="staticUrl + 'images/myuw-tour-2.0x.png'" class="img-fluid" />
+            <p class="mt-3 mb-0 myuw-text-md">
+              Watch a video tour of
+              <a
+                v-out="'MyUW video for Instructors'"
+                href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-instructors/"
+                title="MyUW video tour for instructors"
+                >MyUW for Instructors</a
+              >,
+              <a
+                v-out="'MyUW video for staff'"
+                href="https://itconnect.uw.edu/learn/tools/myuw-help-center/myuw-staff/"
+                title="MyUW video tour for staff"
+                >for staff</a
+              >, or
+              <a
+                v-out="'MyUW video for students'"
+                href="https://www.youtube.com/watch?v=K7GoUc32TMs&amp;t=5s&amp;list=PL-hNmjMg7KSHFdXj6yXDjZtCpjkkKBLUZ&amp;index=1"
+                title="MyUW video tour for students"
+                >for students</a
+              >. <br /><a
+                v-out="'MyUW Help Center'"
+                href="https://itconnect.uw.edu/learn/tools/myuw-help-center/#annotated"
+                title="MyUW Help Center in IT Connect"
+                >Visit the MyUW help guide for more information</a
+              >.
+            </p>
+          </div>
+          <div class="modal-footer border-0">
+            <button slot-scope="" type="button" class="btn btn-primary btn-sm" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
     <b-modal
       id="tourModal"
       ref="tourModal"
@@ -327,6 +396,7 @@
         </button>
       </template>
     </b-modal>
+    -->
   </div>
 </template>
 
