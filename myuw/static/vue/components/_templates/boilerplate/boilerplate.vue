@@ -109,7 +109,8 @@
         <div class="row" :no-gutters="$mq !== 'desktop'">
           <div v-if="!displayHybrid" class="col-lg-2">
             <!-- main sidebar navigation -->
-            <div id="nav-collapse"
+            <div
+              id="nav-collapse"
               class="collapse pt-4 text-nowrap myuw-navigation"
               role="navigation"
               :visible="$mq == 'desktop'"
@@ -153,8 +154,8 @@
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/accounts/"
                     :class="{ active: page.title == 'Accounts' }"
-                  ><font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts
-                  </a>
+                  ><font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts</a
+                  >
                 </li>
                 <li v-if="student" class="nav-item mb-2">
                   <a
@@ -162,7 +163,7 @@
                     href="/notices/"
                     :class="{ active: page.title == 'Notices' }"
                   ><font-awesome-icon :icon="faExclamationTriangle" class="mr-2"
-                      fixed-width />Notices</a
+                     fixed-width />Notices</a
                   >
                 </li>
                 <li class="nav-item mb-2">
