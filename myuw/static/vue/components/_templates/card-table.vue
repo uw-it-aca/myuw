@@ -14,7 +14,7 @@
             :key="index"
             :class="sortTheadThClasses(field)"
             aria-sort="none"
-            :aria-colindex="index + 1"
+            :aria-colindex="index"
           >
             <a v-if="field.sortable" href="#"
               :title="`Sort table content by ${field.label}`"
@@ -28,7 +28,7 @@
       <tbody>
         <tr v-for="(dataItems, rowIdx) in renderedItems" :key="rowIdx">
           <td v-for="(value, name, colIdx) in dataItems" :key="`${rowIdx}-${name}`"
-            :headers="name" :aria-colindex="colIdx + 1">
+            :headers="name" :aria-colindex="colIdx">
             <slot :cellData="{key: name, value: value}" />
           </td>
         </tr>
@@ -64,7 +64,7 @@ export default {
       let sortedBy = this.sortedBy();
 
       if (sortedBy) {
-        this.sortByCol(sortedBy.id, sortedBy.getAttribute('aria-colindex') - 1);
+        this.sortByCol(sortedBy.id, sortedBy.getAttribute('aria-colindex'));
       }
     }
   },
