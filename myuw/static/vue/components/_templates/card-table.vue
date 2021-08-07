@@ -71,7 +71,7 @@ export default {
   methods: {
     sortTheadThClasses(field) {
       // methods to compute classes for thead>th cells
-      const v = ['sticky-header'];
+      const v = ['text-nowrap', 'sticky-header'];
       if (field.sortable) {
         v.push('sort-icon-left');
       }
