@@ -1,12 +1,54 @@
 import axios from 'axios';
 import utils from '../mixins/utils'
 import courses from '../mixins/courses';
+import sortc from '../mixins/sort-compare';
 
 import mockNotices from './mock_data/notice/javerage.json';
 
 jest.mock('axios');
 
 describe('mixins', () => {
+  it('isUndefinedOrNull', () => {
+    expect(sortc.methods.isUndefinedOrNull(null)).toEqual(true);
+    expect(sortc.methods.isUndefinedOrNull(undefined)).toEqual(true);
+    expect(sortc.methods.isUndefinedOrNull(1)).toEqual(false);
+    expect(sortc.methods.isUndefinedOrNull('abc')).toEqual(false);
+  });
+
+  it('normalizeValue', () => {
+    expect(sortc.methods.normalizeValue(null)).toEqual("");
+    expect(sortc.methods.normalizeValue(undefined)).toEqual("");
+    expect(sortc.methods.normalizeValue(1)).toEqual(1.00);
+    expect(sortc.methods.normalizeValue("1,000")).toEqual(1000.00);
+    expect(sortc.methods.normalizeValue('abc')).toEqual("abc");
+  });
+
+  it('defaultSortCompare', () => {
+    const options = { sortByField: 'a' };
+    // sorts numbers correctly
+    expect(sortc.methods.defaultSortCompare({ a: 1 }, { a: 2 }, options)).toBe(-1);
+    expect(sortc.methods.defaultSortCompare({ a: 2 }, { a: 1 }, options)).toBe(1);
+    expect(sortc.methods.defaultSortCompare({ a: 1 }, { a: 1 }, options)).toBe(0);
+    expect(sortc.methods.defaultSortCompare({ a: -1 }, { a: 1 }, options)).toBe(-1);
+    expect(sortc.methods.defaultSortCompare({ a: 1 }, { a: -1 }, options)).toBe(1);
+    expect(sortc.methods.defaultSortCompare({ a: 0 }, { a: 0 }, options)).toBe(0);
+    expect(sortc.methods.defaultSortCompare({ a: 1.234 }, { a: 1.567 }, options)).toBe(-1);
+    expect(sortc.methods.defaultSortCompare({ a: 1.561 }, { a: 1.234 }, options)).toBe(1);
+
+    //sorts strings correctly
+    expect(sortc.methods.defaultSortCompare({ a: 'a' }, { a: 'b' }, options)).toBe(-1);
+    expect(sortc.methods.defaultSortCompare({ a: 'Bao' }, { a: 'Ab' }, options)).toBe(1);
+    expect(sortc.methods.defaultSortCompare({ a: 'A' }, { a: 'a' }, options)).toBe(-1);
+    expect(sortc.methods.defaultSortCompare({ a: 'a' }, { a: 'a' }, options)).toBe(0);
+    expect(sortc.methods.defaultSortCompare({ a: 'a' }, { a: 'aaa' }, options)).toBe(-1);
+    expect(sortc.methods.defaultSortCompare({ a: 'aaa' }, { a: 'a' }, options)).toBe(1);
+
+    //sorts nulls always last
+    options.nullLast = true;
+    expect(sortc.methods.defaultSortCompare({ a: 'a' }, { a: undefined }, options)).toBe(-1);
+    expect(sortc.methods.defaultSortCompare({ a: null }, { a: 'a' }, options)).toBe(1);
+  });
+
   it('titleCaseWord', () => {
     expect(utils.methods.titleCaseWord(null)).toEqual("");
     expect(utils.methods.titleCaseWord('TEST')).toEqual('Test');
