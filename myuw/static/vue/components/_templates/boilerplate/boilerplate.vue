@@ -66,7 +66,10 @@
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
           <button
-            v-b-toggle.nav-collapse
+            data-toggle="collapse"
+            data-target="#nav-collapse"
+            aria-controls="nav-collapse"
+            aria-expanded="false" aria-label="Toggle navigation"
             type="button"
             class="btn btn-link btn-sm d-lg-none p-0 border-0 text-white"
             title="Toggle Navigation Menu"
@@ -113,7 +116,7 @@
               id="nav-collapse"
               class="collapse pt-4 text-nowrap myuw-navigation"
               role="navigation"
-              :visible="$mq == 'desktop'"
+              :class="{'show': $mq == 'desktop'}"
             >
               <div class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
                 <li class="nav-item mb-2">
