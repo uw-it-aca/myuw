@@ -53,14 +53,14 @@ export default {
   },
   data() {
     return {
-      // A deep copy so that we don't modify the prop
-      renderedItems: JSON.parse(JSON.stringify(this.items)),
+      // A shallow clone so that we don't modify the prop
+      renderedItems: [...this.items],
     };
   },
   watch: {
     // Used to sync the renderedItems copy
     items(newValue) {
-      this.renderedItems = JSON.parse(JSON.stringify(newValue));
+      this.renderedItems = [...newValue];
       let sortedBy = this.sortedBy();
 
       if (sortedBy) {
