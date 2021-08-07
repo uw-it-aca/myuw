@@ -51,38 +51,43 @@
       </ul>
     </template>
     <template #card-disclosure>
-      <div id="grade_card_collapse"
-        v-model="isOpen"
-        class="collapse"
-      >
-        <h3 class="sr-only">
-          Resources
-        </h3>
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">
-              View credits and GPA
-            </a>
-          </li>
-          <li class="mb-1">
-            <a v-out="'MyPlan DARS'"
-               href="https://myplan.uw.edu/dars"
-            >
-              Degree Audit Reporting System (DARS)
-            </a>
-          </li>
-          <li>
-            <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">
-              Unofficial Transcript
-            </a>
-          </li>
-        </ul>
-      </div>
+      <uw-collapse :collapse-id="`grade_card_collapse`">
+        <template #collapsed>
+          <h3 class="sr-only">
+            Resources
+          </h3>
+          <ul class="list-unstyled myuw-text-md">
+            <li class="mb-1">
+              <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx">
+                View credits and GPA
+              </a>
+            </li>
+            <li class="mb-1">
+              <a v-out="'MyPlan DARS'"
+                href="https://myplan.uw.edu/dars"
+              >
+                Degree Audit Reporting System (DARS)
+              </a>
+            </li>
+            <li>
+              <a href="https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp">
+                Unofficial Transcript
+              </a>
+            </li>
+          </ul>
+        </template>
+      </uw-collapse>
     </template>
     <template #card-footer>
-      <button v-b-toggle.grade_card_collapse
-        type="button" class="btn btn-link btn-sm w-100 p-0 text-dark"
-        title='Additional grade resources'
+      <button
+        data-toggle="collapse"
+        data-target="#grade_card_collapse"
+        aria-controls="grade_card_collapse"
+        aria-expanded="false"
+        aria-label="Toggle grade resources"
+        type="button"
+        class="btn btn-link btn-sm w-100 p-0 text-dark"
+        title='Toggle grade resources'
       >
         Resources
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
@@ -100,10 +105,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import Collapsed from '../_templates/collapsed.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapsed,
   },
   data: function() {
     return {
