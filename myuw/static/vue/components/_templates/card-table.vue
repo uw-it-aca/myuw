@@ -10,22 +10,23 @@
         <tr>
           <th v-for="(field, index) in fields"
             :id="field.key"
+            ref="fields"
             :key="index"
             :class="sortTheadThClasses(field)"
-            :aria-sort="sortTheadThAttrs(field)"
+            aria-sort="none"
             :aria-colindex="index + 1"
           >
             <a v-if="field.sortable" href="#"
               :title="`Sort table content by ${field.label}`"
               style="text-decoration: none; color: #495057"
-              @click="sortByCol(field)"
+              @click="sortByCol(field.key, index)"
             >{{ field.label }}</a>
             <span v-else>{{ field.label }}</span>
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(dataItems, rowIdx) in items" :key="rowIdx">
+        <tr v-for="(dataItems, rowIdx) in renderedItems" :key="rowIdx">
           <td v-for="(value, name, colIdx) in dataItems" :key="`${rowIdx}-${name}`"
             :headers="name" :aria-colindex="colIdx + 1">
             <slot :cellData="{key: name, value: value}" />
@@ -50,23 +51,24 @@ export default {
       required: true,
     }
   },
-  data: function() {
-return {
-      localSortBy: '',
-  };
-},
-  computed: {
+  data() {
+    return {
+      // A deep copy so that we don't modify the prop
+      renderedItems: JSON.parse(JSON.stringify(this.items)),
+    };
+  },
+  watch: {
+    // Used to sync the renderedItems copy
+    items(newValue) {
+      this.renderedItems = JSON.parse(JSON.stringify(newValue));
+      let sortedBy = this.sortedBy();
+
+      if (sortedBy) {
+        this.sortByCol(sortedBy.id, sortedBy.getAttribute('aria-colindex') - 1);
+      }
+    }
   },
   methods: {
-    sortTheadThAttrs(field) {
-      if (field.sortable) {
-        if (this.localSortBy === field.key) {
-          return 'ascending';
-        }
-        return 'none';
-      }
-      return "";
-    },
     sortTheadThClasses(field) {
       // methods to compute classes for thead>th cells
       const v = ['sticky-header'];
@@ -75,40 +77,74 @@ return {
       }
       return v.join(' ');
     },
-    sortCompare(a, b) {
-      return this.defaultSortCompare(
-        a, b, { sortByField: this.localSortBy, nullLast: true });
+    sortedBy() {
+      return this.$refs['fields']
+        .find((field) => field.attributes['aria-sort'].value != 'none');
     },
-    sortByCol(field) {
-      this.localSortBy = field.key;
-      this.items = this.items.sort(this.sortCompare);
+    sortByCol(key, index) {
+      let sortedBy = this.sortedBy();
+
+      // Clear current sorted
+      if (sortedBy) {
+        if (sortedBy.id == key) {
+          if (sortedBy.attributes['aria-sort'].value == 'ascending') {
+            sortedBy.attributes['aria-sort'].value = 'descending';
+          } else if (sortedBy.attributes['aria-sort'].value == 'descending') {
+            sortedBy.attributes['aria-sort'].value = 'ascending';
+          } else {
+            console.error(
+              'aria-sort in invalid state: ',
+              sortedBy.attributes['aria-sort'],
+              ' for element: ',
+              sortedBy,
+            );
+          }
+        } else {
+          sortedBy.attributes['aria-sort'].value = 'none';
+          this.$refs['fields'][index].attributes['aria-sort'].value = 'ascending';
+        }
+      } else {
+        this.$refs['fields'][index].attributes['aria-sort'].value = 'ascending';
+      }
+
+      let direction = this.$refs['fields'][index]
+          .attributes['aria-sort'].value == 'ascending' ? 1 : -1;
+      
+      // We only want to sort on the renderedItems becuase this.items is a
+      // prop and should not be modified
+      this.renderedItems.sort((a, b) => {
+        return direction * this.defaultSortCompare(
+          a,
+          b,
+          { sortByField: key, nullLast: true },
+        );
+      });
     },
-  }
+  },
 }
 </script>
 <style lang="scss" scoped>
- // $b-table-sort-icon-bg-width: 0.65em !default;
- // $b-table-sort-icon-bg-height: 1em !default;
- // Sort icons are square, but "squished" horizontally by the above variables
- // $b-table-sort-icon-bg-not-sorted: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' opacity='.3' d='M51 1l25 23 24 22H1l25-22zM51 101l25-23 24-22H1l25 22z'/></svg>") !default;
- // $b-table-sort-icon-bg-ascending: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' d='M51 1l25 23 24 22H1l25-22z'/><path fill='black' opacity='.3' d='M51 101l25-23 24-22H1l25 22z'/></svg>") !default;
- // $b-table-sort-icon-bg-descending: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' opacity='.3' d='M51 1l25 23 24 22H1l25-22z'/><path fill='black' d='M51 101l25-23 24-22H1l25 22z'/></svg>") !default;
- // > [aria-sort="none"] {
- //    background-image: bv-escape-svg($b-table-sort-icon-bg-not-sorted);
- //   }
- // > [aria-sort="ascending"] {
- //   background-image: bv-escape-svg($b-table-sort-icon-bg-ascending);
- //   }
- // > [aria-sort="descending"] {
- //   background-image: bv-escape-svg($b-table-sort-icon-bg-descending);
- //   }
-  .sort-icon-left {
-  // background-position: left calc(#{$table-cell-padding} / 2) center;
-  // padding-left: calc(#{$table-cell-padding} + #{$b-table-sort-icon-bg-width});
+.sort-icon-left {
+  background-position: left .0rem center;
+  background-repeat: no-repeat;
+  padding-left: calc(.75rem + .1rem);
+  background-size: .65em 1em;
+
+  &[aria-sort="none"] {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' opacity='.3' d='M51 1l25 23 24 22H1l25-22zM51 101l25-23 24-22H1l25 22z'/></svg>");
   }
-  .sticky-header {
-    position: sticky;
-    top: 0;
-    z-index: 2;
+  
+  &[aria-sort="ascending"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' d='M51 1l25 23 24 22H1l25-22z'/><path fill='black' opacity='.3' d='M51 101l25-23 24-22H1l25 22z'/></svg>");
   }
+
+  &[aria-sort="descending"] {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='101' height='101' view-box='0 0 101 101' preserveAspectRatio='none'><path fill='black' opacity='.3' d='M51 1l25 23 24 22H1l25-22z'/><path fill='black' d='M51 101l25-23 24-22H1l25 22z'/></svg>");
+  }
+}
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
 </style>
