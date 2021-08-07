@@ -30,25 +30,23 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <div :id="`course-details-${index}`"
-            v-model="isOpen"
-            class="collapse"
-          >
-            <uw-course-details :section="section"
-              display-heading display-instructor class="pt-3"/>
-          </div>
+          <uw-collapse :collapseId="`course-details-${index}`">
+            <template #collapsed>
+              <uw-course-details :section="section"
+                display-heading display-instructor class="pt-3" />
+            </template>
+          </uw-collapse>
         </template>
         <template v-else>
-          <div :id="`instructors-collapse-${index}`"
-            v-model="isOpen"
-            class="collapse"
-          >
-            <uw-instructors
-              v-if="section.instructors.length > 0"
-              :instructors="section.instructors"
-              class="pt-3"
-            />
-          </div>
+          <uw-collapse :collapseId="`instructors-collapse-${index}`">
+            <template #collapsed>
+              <uw-instructors
+                v-if="section.instructors.length > 0"
+                :instructors="section.instructors"
+                class="pt-3"
+              />
+            </template>
+          </uw-collapse>
         </template>
       </template>
 
@@ -56,7 +54,12 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <button v-b-toggle="`course-details-${index}`"
+          <button
+            data-toggle="collapse"
+            :data-target="`#course-details-${index}`"
+            :aria-controls="`course-details-${index}`"
+            aria-expanded="false"
+            aria-label="Toggle Course Details"
             type="button"
             class="btn btn-link w-100 p-0 border-0 text-dark"
           >
@@ -68,7 +71,12 @@
 
         <template v-else>
           <template v-if="section.instructors.length > 0">
-            <button v-b-toggle="`instructors-collapse-${index}`"
+            <button
+              data-toggle="collapse"
+              :data-target="`#instructors-collapse-${index}`"
+              :aria-controls="`instructors-collapse-${index}`"
+              aria-expanded="false"
+              aria-label="Toggle Course Instructors"
               type="button"
               class="btn btn-link w-100 p-0 border-0 text-dark"
             >
@@ -96,6 +104,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../../_templates/card.vue';
+import Collapsed from '../../../_templates/collapsed.vue';
 import EvalInfo from './course-eval.vue';
 import CourseDetails from './course-details.vue';
 import Instructors from './instructors.vue';
@@ -104,6 +113,7 @@ import CourseHeader from './header.vue';
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapsed,
     'uw-course-details': CourseDetails,
     'uw-course-eval': EvalInfo,
     'uw-instructors': Instructors,
