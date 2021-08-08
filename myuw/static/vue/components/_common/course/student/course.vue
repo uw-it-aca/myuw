@@ -31,7 +31,7 @@
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
           <uw-collapse :collapse-id="`course-details-${index}`">
-            <template #collapsed>
+            <template #collapsible>
               <uw-course-details :section="section"
                 display-heading display-instructor class="pt-3" />
             </template>
@@ -39,7 +39,7 @@
         </template>
         <template v-else>
           <uw-collapse :collapse-id="`instructors-collapse-${index}`">
-            <template #collapsed>
+            <template #collapsible>
               <uw-instructors
                 v-if="section.instructors.length > 0"
                 :instructors="section.instructors"
@@ -104,7 +104,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../../_templates/card.vue';
-import Collapsed from '../../../_templates/collapsed.vue';
+import Collapsible from '../../../_templates/collapsible.vue';
 import EvalInfo from './course-eval.vue';
 import CourseDetails from './course-details.vue';
 import Instructors from './instructors.vue';
@@ -113,7 +113,7 @@ import CourseHeader from './header.vue';
 export default {
   components: {
     'uw-card': Card,
-    'uw-collapse': Collapsed,
+    'uw-collapse': Collapsible,
     'uw-course-details': CourseDetails,
     'uw-course-eval': EvalInfo,
     'uw-instructors': Instructors,

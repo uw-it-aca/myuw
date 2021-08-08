@@ -52,7 +52,7 @@
     </template>
     <template #card-disclosure>
       <uw-collapse :collapse-id="`grade_card_collapse`">
-        <template #collapsed>
+        <template #collapsible>
           <h3 class="sr-only">
             Resources
           </h3>
@@ -105,12 +105,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
-import Collapsed from '../_templates/collapsed.vue';
+import Collapsible from '../_templates/collapsible.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-collapse': Collapsed,
+    'uw-collapse': Collapsible,
   },
   data: function() {
     return {
