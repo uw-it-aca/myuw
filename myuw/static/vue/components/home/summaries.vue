@@ -52,7 +52,7 @@
         <a
           v-if="hfs.student_husky_card"
           v-inner="'MyUW Accounts page - Student Husky card'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -70,7 +70,7 @@
         <a
           v-if="hfs.resident_dining"
           v-inner="'MyUW Accounts page - Resident Dining'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -89,7 +89,7 @@
         <a
           v-if="hfs.employee_husky_card"
           v-inner="'MyUW Accounts page - Employee Husky card'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -107,7 +107,7 @@
         <a
           v-if="library.next_due"
           v-inner="'MyUW Accounts page - Library Account'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
@@ -125,7 +125,7 @@
         <a
           v-else-if="library.holds_ready"
           v-inner="'MyUW Accounts page - Library Account'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'

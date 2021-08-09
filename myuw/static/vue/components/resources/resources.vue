@@ -22,7 +22,7 @@
       <uw-resource-card :resource="resource" />
     </div>
     <button type="button"
-      class="btn btn-secondary position-sticky mb-3 mr-3 float-right text-center myuw-back-to-top"
+      class="btn btn-secondary position-sticky mb-3 me-3 float-right text-center myuw-back-to-top"
       title="Back to Top"
       @click="scrollToTop"
     >

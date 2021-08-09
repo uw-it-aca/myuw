@@ -12,7 +12,7 @@
           Joint Course Students
         </b-form-checkbox>
 
-        <a class="mr-2" @click="downloadCL">
+        <a class="me-2" @click="downloadCL">
           <font-awesome-icon :icon="faDownload" />
           Download (CSV)
         </a>
@@ -32,7 +32,7 @@
       myuw-border-bottom border-dark text-body font-weight-bold"
     >
       <b-tab
-        title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+        title-item-class="text-nowrap myuw-text-md me-2 mb-1"
         title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
         active
       >
@@ -45,7 +45,7 @@
         />
       </b-tab>
       <b-tab
-        title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+        title-item-class="text-nowrap myuw-text-md me-2 mb-1"
         title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
       >
         <template #title>

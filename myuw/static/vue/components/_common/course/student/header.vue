@@ -14,7 +14,7 @@
     </div>
 
     <div v-if="section.cc_display_dates" class="d-flex">
-      <h3 class="mr-2 myuw-text-md">
+      <h3 class="me-2 myuw-text-md">
         Dates:
       </h3>
       <div class="myuw-text-md">
@@ -23,7 +23,7 @@
     </div>
 
     <div v-if="section.on_standby" class="d-flex">
-      <h3 class="mr-2 myuw-text-md">
+      <h3 class="me-2 myuw-text-md">
         Your Status:
       </h3>
       <div class="myuw-text-md">

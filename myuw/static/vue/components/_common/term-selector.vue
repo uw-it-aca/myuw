@@ -15,7 +15,7 @@
     <b-tab
       v-for="(tab, i) in displayedTabs"
       :key="i"
-      title-item-class="text-nowrap myuw-text-lg mr-2 mb-1"
+      title-item-class="text-nowrap myuw-text-lg me-2 mb-1"
       title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
     >
       <template #title>
@@ -26,7 +26,7 @@
     <b-tab
       v-if="dropdownTabs.length > 1"
       :title-item-class="{
-        'ml-auto': $mq !== 'mobile',
+        'ms-auto': $mq !== 'mobile',
         'text-nowrap': true,
         'myuw-text-lg': true,
         'mb-1': true,

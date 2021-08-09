@@ -29,7 +29,7 @@
               <font-awesome-icon
                 :icon="faSquareFull"
                 :class="`text-c${section.color_id}`"
-                class="mr-1"
+                class="me-1"
               />
               <span class="h6 myuw-font-encode-sans m-0">
                 {{ section.curriculum_abbr }} {{ section.course_number }}
@@ -38,7 +38,7 @@
             <div class="w-50 text-end text-nowrap">
               <span
                 v-if="section.grade === 'X'"
-                class="m-0 mr-2 text-muted font-italic myuw-text-md"
+                class="m-0 me-2 text-muted font-italic myuw-text-md"
               >
                 No grade yet
               </span>

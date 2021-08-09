@@ -14,7 +14,7 @@
             </template>
             <template #card-body>
               <div class="mb-2">
-                <div class="myuw-text-md mr-auto">
+                <div class="myuw-text-md me-auto">
                   <div>
                     You have registered for {{ term.credits }} credits
                   </div>

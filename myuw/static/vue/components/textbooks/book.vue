@@ -5,7 +5,7 @@
     </h3>
 
     <div class="d-flex">
-      <div class="mr-3"
+      <div class="me-3"
            style="min-width:80px !important; width:80px !important;"
       >
         <img

@@ -8,7 +8,7 @@
               :icon="faSquareFull"
               size="sm"
               :class="`text-c${section.color_id}`"
-              class="mr-1 mt-1"
+              class="me-1 mt-1"
             />
             <div class="flex-fill">
               <h3
@@ -35,7 +35,7 @@
                     {{ section.section_type }}
                   </span>
                 </div>
-                <div v-if="section.sln" class="ml-1 d-inline">
+                <div v-if="section.sln" class="ms-1 d-inline">
                   <h4 class="sr-only">
                     Section SLN:
                   </h4>
@@ -72,14 +72,14 @@
           <uw-enrollment
             :section="section"
             class="myuw-text-md text-nowrap"
-            :class="$mq === 'desktop' ? 'ml-3' : ''"
+            :class="$mq === 'desktop' ? 'ms-3' : ''"
           />
         </div>
       </div>
     </div>
 
     <template v-if="getLinkedSections(section).length > 0">
-      <div :class="$mq !== 'mobile' ? 'ml-3' : ''">
+      <div :class="$mq !== 'mobile' ? 'ms-3' : ''">
         <button v-b-toggle="`linked-sections-${section.id}`"
           type="button"
           class="btn btn-link p-0 text-dark myuw-text-md my-2"

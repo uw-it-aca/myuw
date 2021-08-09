@@ -49,14 +49,14 @@
       </template>
 
       <template v-else>
-        <span class="mr-3">
+        <span class="me-3">
           {{ section.current_enrollment }}
           <span v-if="!section.is_independent_study">
             &nbsp;of&nbsp; {{ section.limit_estimate_enrollment }}
           </span>
         </span>
 
-        <span class="mr-3">
+        <span class="me-3">
           <a v-if="section.current_enrollment"
             :href="`/teaching/${section.apiTag}/students`"
             :title="`View class list of ${section.label}`"
@@ -65,7 +65,7 @@
           </a>
         </span>
 
-        <span class="mr-3">
+        <span class="me-3">
           <a v-if="displayDownloadLink"
             id="csv_download_class_list"
             :title="`Download class list of ${section.label}`"

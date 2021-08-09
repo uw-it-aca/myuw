@@ -1,7 +1,7 @@
 <template>
   <div v-if="isReady">
     <div class="d-flex border-bottom pb-3">
-      <div class="ml-auto myuw-text-md">
+      <div class="ms-auto myuw-text-md">
         <a
           v-if="!everyNoticeListExpanded"
           @click="expandAll()"

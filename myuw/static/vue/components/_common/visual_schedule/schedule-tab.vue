@@ -102,7 +102,7 @@
       <uw-course-section
         v-for="(eosSection, i) in period.eosData" :key="i"
         :meeting-data="{section: eosSection}" :term="term"
-        :is-finals-card="false" class="d-inline-block w-auto mr-2"
+        :is-finals-card="false" class="d-inline-block w-auto me-2"
       >
         <ol class="m-0 px-4 text-left">
           <li v-for="(meeting, j) in eosSection.meetings" :key="j">
@@ -140,7 +140,7 @@
         no final exam:
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
-           class="d-inline-block w-auto mr-2"
+           class="d-inline-block w-auto me-2"
            style="min-width:110px;"
       >
         <uw-course-section :meeting-data="meeting" :term="term" />

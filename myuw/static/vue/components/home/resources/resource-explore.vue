@@ -14,13 +14,13 @@
             <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
-                <a class="ml-1" href="/resources/#academics">Academic Resources</a>
+                <a class="ms-1" href="/resources/#academics">Academic Resources</a>
               </li>
             </div>
             <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
-                <a class="ml-1" href="/resources/#studentfinances">Student Finances</a>
+                <a class="ms-1" href="/resources/#studentfinances">Student Finances</a>
               </li>
             </div>
           </div>
@@ -28,7 +28,7 @@
             <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
-                <a class="ml-1"
+                <a class="ms-1"
                    href="/resources/#emailandaccountsandidentity"
                 >Accounts, Identity, and Email</a>
               </li>
@@ -36,7 +36,7 @@
             <div class="col-md-6">
               <li class="mb-2">
                 <font-awesome-icon :icon="faChevronRight" aria-hidden="true"/>
-                <a class="ml-1" href="/resources/#employment">Employment</a>
+                <a class="ms-1" href="/resources/#employment">Employment</a>
               </li>
             </div>
           </div>

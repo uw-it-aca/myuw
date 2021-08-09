@@ -5,7 +5,7 @@
       <a
         :href="section.class_website_url"
         :title="`Class Website of ${section.label}`"
-        class="mr-2"
+        class="me-2"
       >View class website</a>
       <span v-if="!pastTerm">
         <a

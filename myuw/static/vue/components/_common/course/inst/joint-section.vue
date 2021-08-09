@@ -15,7 +15,7 @@
           {{ jointSec.course_abbr }}
           {{ jointSec.course_number }}
           {{ jointSec.section_id }}
-          <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
+          <font-awesome-icon :icon="faExclamationTriangle" class="me-1" />
         </span>
         <b-tooltip :target="`${parentId}-${anchorId(jointSec)}`">
           You are not an instructor of record for

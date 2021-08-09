@@ -26,35 +26,35 @@
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-              ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a>
+              ><font-awesome-icon :icon="faUser" class="me-1" />{{ netid }}</a>
             </div>
             <div class="col text-end">
               <a
                 v-if="emailError"
                 v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
-                class="ml-2 text-danger font-weight-light"
+                class="ms-2 text-danger font-weight-light"
                 title="UW email services"
-              ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</a>
+              ><font-awesome-icon :icon="faExclamationTriangle" class="me-1" />Email error</a>
               <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
-                class="ml-2 text-white font-weight-light"
+                class="ms-2 text-white font-weight-light"
                 title="Open your email"
-              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</a>
+              ><font-awesome-icon :icon="faEnvelope" class="me-1" />Email</a>
               <a
                 v-b-toggle.app_search
                 href="#"
-                class="ml-2 text-white font-weight-light"
+                class="ms-2 text-white font-weight-light"
                 title="Open search panel"
-              ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</a>
+              ><font-awesome-icon :icon="faSearch" flip="horizontal" class="me-1" />Search</a>
               <a
                 v-inner="'Sign Out'"
                 href="/logout/"
-                class="d-none d-lg-inline ml-2 text-white font-weight-light"
+                class="d-none d-lg-inline ms-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</a>
+              ><font-awesome-icon :icon="faSignOutAlt" class="me-1" />Sign Out</a>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/"
                     :class="{ active: page.title == 'Home' }"
-                    ><font-awesome-icon :icon="faHome" class="mr-2" fixed-width />Home</a
+                    ><font-awesome-icon :icon="faHome" class="me-2" fixed-width />Home</a
                   >
                 </li>
                 <li v-if="student || applicant" class="nav-item mb-2">
@@ -129,7 +129,7 @@
                     class="nav-link text-dark d-block px-2 py-1"
                     href="/academics/"
                     :class="{ active: page.title == 'Academics' }"
-                    ><font-awesome-icon :icon="faGraduationCap" class="mr-2" fixed-width />Academics
+                    ><font-awesome-icon :icon="faGraduationCap" class="me-2" fixed-width />Academics
                   </a>
                 </li>
                 <li v-if="(undergrad && seattle) || hxtViewer" class="nav-item mb-2">
@@ -138,7 +138,7 @@
                     href="/husky_experience/"
                     :class="{ active: page.title == 'Husky Experience Toolkit' }"
                   >
-                    <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience</a
+                    <font-awesome-icon :icon="faPaw" class="me-2" fixed-width />Husky Experience</a
                   >
                 </li>
                 <li v-if="instructor" class="nav-item mb-2">
@@ -147,7 +147,7 @@
                     href="/teaching/"
                     :class="{ active: page.title == 'Teaching' }"
                   >
-                    <font-awesome-icon :icon="faEdit" class="mr-2" fixed-width />Teaching</a
+                    <font-awesome-icon :icon="faEdit" class="me-2" fixed-width />Teaching</a
                   >
                 </li>
                 <li class="nav-item mb-2">
@@ -156,7 +156,7 @@
                     href="/accounts/"
                     :class="{ active: page.title == 'Accounts' }"
                   >
-                    <font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts</a
+                    <font-awesome-icon :icon="faCreditCard" class="me-2" fixed-width />Accounts</a
                   >
                 </li>
                 <li v-if="student" class="nav-item mb-2">
@@ -167,7 +167,7 @@
                   >
                     <font-awesome-icon
                       :icon="faExclamationTriangle"
-                      class="mr-2"
+                      class="me-2"
                       fixed-width
                     />Notices</a
                   >
@@ -178,7 +178,7 @@
                     href="/profile/"
                     :class="{ active: page.title == 'Profile' }"
                   >
-                    <font-awesome-icon :icon="faUser" class="mr-2" fixed-width />Profile</a
+                    <font-awesome-icon :icon="faUser" class="me-2" fixed-width />Profile</a
                   >
                 </li>
                 <li class="nav-item mb-2" aria-hidden="true">
@@ -195,7 +195,7 @@
                   >
                     <font-awesome-icon
                       :icon="faCalendarCheck"
-                      class="mr-2"
+                      class="me-2"
                       fixed-width
                     />Calendar</a
                   >
@@ -206,7 +206,7 @@
                     href="/resources/"
                     :class="{ active: page.title == 'UW Resources' }"
                   >
-                    <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources</a
+                    <font-awesome-icon :icon="faBookmark" class="me-2" fixed-width />UW Resources</a
                   >
                 </li>
               </div>
@@ -245,28 +245,28 @@
       <div class="container-xl px-3">
         <ul class="list-inline mb-2">
           <li class="list-inline-item">
-            <a :href="mailToUrl + netid" class="text-white mr-2">
-              <font-awesome-icon :icon="faEnvelope" class="mr-1" />Contact
+            <a :href="mailToUrl + netid" class="text-white me-2">
+              <font-awesome-icon :icon="faEnvelope" class="me-1" />Contact
             </a>
           </li>
           <li class="list-inline-item">
             <a
               href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
-              class="text-white mr-2"
+              class="text-white me-2"
             >
               MyUW Help
             </a>
           </li>
-          <li class="list-inline-item mr-0 d-lg-none">
+          <li class="list-inline-item me-0 d-lg-none">
             <a href="/logout/" class="text-white"> Sign Out </a>
           </li>
           <li class="list-inline-item">
-            <a href="https://www.washington.edu/online/terms/" class="text-white mr-2">
+            <a href="https://www.washington.edu/online/terms/" class="text-white me-2">
               Terms
             </a>
           </li>
           <li class="list-inline-item">
-            <a href="https://www.washington.edu/online/privacy/" class="text-white mr-2">
+            <a href="https://www.washington.edu/online/privacy/" class="text-white me-2">
               Privacy
             </a>
           </li>

@@ -22,7 +22,7 @@
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
                title-item-class="text-nowrap text-uppercase
-               myuw-text-xs mr-2 mb-1"
+               myuw-text-xs me-2 mb-1"
                title-link-class="rounded-0 px-2 py-1 h-100
                text-body myuw-border-bottom"
                :active="period.id == activePeriod.id"
@@ -41,7 +41,7 @@
           No meeting time specified:
         </p>
         <div v-for="(meeting, i) in allMeetings" :key="i"
-            class="d-inline-block w-auto mr-2"
+            class="d-inline-block w-auto me-2"
             style="min-width:110px;"
         >
           <uw-course-section

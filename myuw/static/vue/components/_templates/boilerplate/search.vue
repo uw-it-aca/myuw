@@ -23,7 +23,7 @@
                 <font-awesome-icon
                   :icon="faSearch"
                   flip="horizontal"
-                  class="mr-1"
+                  class="me-1"
                 />
                 <span class="sr-only">Search</span>
               </button>
