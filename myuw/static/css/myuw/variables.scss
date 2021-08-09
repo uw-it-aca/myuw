@@ -1,9 +1,6 @@
-@use "sass:map";
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
 
-// override max width of containers
-$container-max-widths: map.merge($container-max-widths, (xl: 1400px));
+
+
 
 // enable responsive font sizing
 // $enable-responsive-font-sizes: true;
@@ -52,5 +49,13 @@ $theme-colors: (
 
 // override all links
 $link-color: #4d66ca; //a11y blue
+$btn-link-color: #4d66ca; //a11y blue
 
 $ribbon-width: 0.4rem;
+
+@use "sass:map";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// override max width of containers
+$container-max-widths: map.merge($container-max-widths, (xl: 1400px, xxl: 1600px));
