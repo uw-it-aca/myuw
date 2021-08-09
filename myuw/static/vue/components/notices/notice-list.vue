@@ -5,11 +5,11 @@
         <h2 class="h4 mb-0">
           {{ title }}
         </h2>
-        <div class="ml-auto">
+        <div class="ms-auto">
           <span
             v-if="unreadCount"
             :class="[title.includes('Critical') ? 'border-danger' : 'border-secondary']"
-            class="mr-2 border rounded-pill px-2 myuw-text-md"
+            class="me-2 border rounded-pill px-2 myuw-text-md"
           >
             {{ unreadCount }} new
           </span>
@@ -31,8 +31,8 @@
       >
         <div class="d-flex">
           <div class="text-muted mb-2 myuw-text-md">{{ notice.category }}</div>
-          <div class="ml-auto myuw-text-md">
-            <span v-if="!notice.is_read" class="badge badge-warning font-weight-normal"
+          <div class="ms-auto myuw-text-md">
+            <span v-if="!notice.is_read" class="badge badge-warning text-dark fw-normal"
             >New</span>
             <font-awesome-icon
               v-if="notice.is_critical"

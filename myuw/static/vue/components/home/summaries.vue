@@ -2,7 +2,7 @@
   <div class="row mb-3"
          role="group" aria-labelledby="summaryHeader"
   >
-    <h2 id="summaryHeader" class="sr-only">
+    <h2 id="summaryHeader" class="visually-hidden">
       Account Summaries
     </h2>
     <div class="col-md-2">
@@ -13,7 +13,7 @@
         font-weight-light"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
-            ? 'border-left text-left'
+            ? 'border-start text-start'
             : 'border-bottom text-center',
         ]"
         href="/academic_calendar/"
@@ -48,15 +48,15 @@
       </a>
     </div>
     <div v-if="isHfsReady && isLibraryReady" class="col-md-10">
-      <div class="row float-md-right" style="padding: 0 10px;">
+      <div class="row float-md-end" style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
           v-inner="'MyUW Accounts page - Student Husky card'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -70,11 +70,11 @@
         <a
           v-if="hfs.resident_dining"
           v-inner="'MyUW Accounts page - Resident Dining'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -89,11 +89,11 @@
         <a
           v-if="hfs.employee_husky_card"
           v-inner="'MyUW Accounts page - Employee Husky card'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -107,11 +107,11 @@
         <a
           v-if="library.next_due"
           v-inner="'MyUW Accounts page - Library Account'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -125,11 +125,11 @@
         <a
           v-else-if="library.holds_ready"
           v-inner="'MyUW Accounts page - Library Account'"
-          class="d-inline-block col px-3 py-1 ml-1
+          class="d-inline-block col px-3 py-1 ms-1
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"

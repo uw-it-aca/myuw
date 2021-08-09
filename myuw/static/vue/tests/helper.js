@@ -4,6 +4,9 @@ import BootstrapVue from 'bootstrap-vue';
 
 // Global Mixins
 import utils from '../mixins/utils';
+import courses from '../mixins/courses';
+import sortCompare from '../mixins/sort-compare';
+
 
 // Custom Plugins
 import Logger from '../plugins/logger';
@@ -75,6 +78,8 @@ const createLocalVue = (vuexModule) => {
   localVue.use(Tracklink);
   // localVue.use(TrackCollapse);
   localVue.mixin(utils);
+  localVue.mixin(courses);
+  localVue.mixin(sortCompare);
 
   return localVue;
 };

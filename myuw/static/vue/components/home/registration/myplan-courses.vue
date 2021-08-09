@@ -38,7 +38,7 @@
           {{ course.curriculum_abbr }} {{ course.course_number }}
         </li>
       </ul>
-      <div class="text-right myuw-text-sm">
+      <div class="text-end myuw-text-sm">
         <a
           title="Edit plan to fix issues"
           :href="currentPlanData.myplan_href"

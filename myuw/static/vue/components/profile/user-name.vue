@@ -23,7 +23,7 @@
           href="https://identity.uw.edu/"
           title="Manage your preferred name">
             <font-awesome-icon :icon="faPencilAlt" class="myuw-text-md" />
-            <span class="sr-only">Manage your preferred name</span>
+            <span class="visually-hidden">Manage your preferred name</span>
         </a>
       </h2>
     </template>

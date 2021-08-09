@@ -65,7 +65,7 @@
         <hr>
         <div class="well">
             <span><strong>Viewing by:</strong> {% if checked.is_anonymous %}Anonymous users |{% endif %} Campus: {% if checked.is_any_campus %}<strong>Any</strong>{% endif %}{% if checked.is_seattle %}<strong>Seattle</strong>{% endif %}{% if checked.is_tacoma %}<strong>Tacoma</strong>{% endif %}{% if checked.is_bothell %}<strong>Bothell</strong>{% endif %} | Affiliation: {% if checked.is_any_affiliation%}<strong>Any</strong>{% endif %}{% if checked.is_student %}<strong>Student</strong>{% endif %}{% if checked.is_undergrad %}<strong>Undergrad</strong>{% endif %}{% if checked.is_grad_student %}<strong>Grad Student</strong>{% endif %}{% if checked.is_employee %}<strong>Employee</strong>{% endif %}{% if checked.is_staff %}<strong>Staff</strong>{% endif %}{% if checked.is_faculty %}<strong>Faculty</strong>{% endif %}{% if checked.is_student_employee %}<strong>Student Employee</strong>{% endif %}{% if checked.is_pce %} | <strong>PCE</strong>{% endif %}</span>
-            <span class="pull-right"><a href="{% url 'myuw_popular_links' %}">Clear all</a></span>
+            <span class="float-end"><a href="{% url 'myuw_popular_links' %}">Clear all</a></span>
         </div>
 
         <ol type="1" class="list-group">

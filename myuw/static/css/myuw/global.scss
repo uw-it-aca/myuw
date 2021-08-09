@@ -80,11 +80,11 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   }
 
   &.myuw-ribbon-left {
-    border-left-width: $ribbon-width;
+    border-start-width: $ribbon-width;
   }
 
   &.myuw-ribbon-right {
-    border-right-width: $ribbon-width;
+    border-end-width: $ribbon-width;
   }
 
   &.myuw-ribbon-bottom {
@@ -123,7 +123,7 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
           display: none;
         }
 
-        .myuw-print-sr-only {
+        .myuw-print-visually-hidden {
           display: inline !important;
           width: unset;
           height: unset;

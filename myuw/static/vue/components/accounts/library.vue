@@ -12,7 +12,7 @@
     <template #card-body>
       <div v-if="holdsReady" class="alert alert-info" role="alert">
         <div class="d-flex text-default m-0 myuw-text-md">
-          <div class="pr-2 flex-shrink-1">
+          <div class="pe-2 flex-shrink-1">
             <font-awesome-icon :icon="faInfoCircle" />
           </div>
           <div class="w-100">
@@ -41,7 +41,7 @@
               {{ toFromNowDate(nextDue) }}
             </template>
             <template #status-content>
-              <div class="myuw-text-sm text-muted text-right">
+              <div class="myuw-text-sm text-muted text-end">
                 {{ toFriendlyDatetime(nextDue) }}
               </div>
             </template>
@@ -56,7 +56,7 @@
               </span>
             </template>
             <template #status-content>
-              <div class="myuw-text-sm text-muted text-right">
+              <div class="myuw-text-sm text-muted text-end">
                 <a
                   v-out="'Pay Library Fees'"
                   href="https://p.lib.washington.edu/payfines/"
@@ -69,7 +69,7 @@
         </li>
       </ul>
 
-      <div class="text-right">
+      <div class="text-end">
         <uw-link-button href="http://search.lib.uw.edu/account">
           Access library account
         </uw-link-button>

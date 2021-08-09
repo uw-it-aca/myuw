@@ -156,9 +156,11 @@ Vue.config.devtools = process.env.VUE_DEVTOOLS === "True";
 
 // Mixins
 import courses from './mixins/courses';
+import sortCompare from './mixins/sort-compare';
 import utils from './mixins/utils';
 Vue.mixin(courses);
 Vue.mixin(utils);
+Vue.mixin(sortCompare);
 
 const vueConf = {
   el: '#vue_root',

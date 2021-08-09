@@ -12,7 +12,7 @@
     </div>
 
     <div class="d-flex">
-      <span v-if="showSln && section.sln" class="mr-2 myuw-text-sm text-muted">
+      <span v-if="showSln && section.sln" class="me-2 myuw-text-sm text-muted">
         SLN
         <a
           v-out="'Time Schedule for SLN'"
@@ -32,7 +32,7 @@
       </div>
 
       <div v-if="showCredits && section.is_primary_section && section.for_credit"
-          :class="`px-1 myuw-text-sm text-right
+          :class="`px-1 myuw-text-sm text-end
           text-uppercase text-c${section.color_id}`"
         >
           {{ section.credits }} CR

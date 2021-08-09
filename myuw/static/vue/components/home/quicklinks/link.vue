@@ -1,7 +1,7 @@
 <template>
   <li class="mb-1 myuw-quicklinks">
     <div class="d-flex">
-      <a :href="link.url" class="mr-auto pr-1">
+      <a :href="link.url" class="me-auto pe-1">
         {{ link.label }}
       </a>
       <span v-if="!isEditOpen">
@@ -10,7 +10,7 @@
           type="button"
           :aria-label="`Edit link '${link.label}'`"
           title="Edit link"
-          class="btn btn-link btn-sm p-0 mr-1 border-0 align-bottom"
+          class="btn btn-link btn-sm p-0 me-1 border-0 align-bottom"
           :class="[$mq === 'mobile' ? 'text-muted' : 'text-white']"
         >
           <font-awesome-icon :icon="faPencilAlt" />

@@ -1,21 +1,21 @@
 <template>
   <span v-if="showCard">
     <div class="d-flex d-sm-inline-flex notice-container">
-      <div class="flex-grow-1 pr-1">
+      <div class="flex-grow-1 pe-1">
         <span class="notice-title">
           <button
             v-b-toggle.covid_notice
             v-no-track-collapse
-            class="btn btn-link p-0 border-0 align-top notice-link text-left myuw-text-md"
+            class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
           >
-            <span class="d-inline-block font-weight-bold text-danger mr-1 notice-critical"
+            <span class="d-inline-block font-weight-bold text-danger me-1 notice-critical"
               >Critical:</span
             ><span>Complete the UW Student COVID-19 Vaccine Attestation Form</span>
           </button>
         </span>
       </div>
       <div>
-        <span class="badge bg-warning font-weight-normal notice-status">New</span>
+        <span class="badge bg-warning text-dark fw-normal notice-status">New</span>
       </div>
     </div>
     <b-collapse id="covid_notice" tabindex="0">

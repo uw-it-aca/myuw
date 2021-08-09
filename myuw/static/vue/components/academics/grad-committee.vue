@@ -37,7 +37,7 @@
           </li>
         </ul>
       </div>
-      <div class="text-right">
+      <div class="text-end">
         <uw-link-button
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/">
           Go to MyGrad

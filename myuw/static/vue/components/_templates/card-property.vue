@@ -3,13 +3,13 @@
     <slot name="title">
       <h3
         v-if="title.length > 0"
-        class="myuw-text-md flex-md-fill mr-3 mb-2 bd-highlight
+        class="myuw-text-md flex-md-fill me-3 mb-2 bd-highlight
           myuw-font-encode-sans property-label"
-        :class="{'sr-only': srOnlyTitle}"
+        :class="{'visually-hidden': srOnlyTitle}"
       >
         {{ title }}
       </h3>
-      <span v-else class="flex-md-fill mr-3 property-label"/>
+      <span v-else class="flex-md-fill me-3 property-label"/>
     </slot>
     <div class="property-content flex-md-fill">
       <slot></slot>

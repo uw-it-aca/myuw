@@ -24,7 +24,7 @@
         <!-- default card error message -->
         <div class="alert alert-light p-0 m-0 border-0 bg-transparent" role="alert">
           <div class="d-flex text-danger mb-3 myuw-text-md">
-            <div class="pr-2 flex-shrink-1">
+            <div class="pe-2 flex-shrink-1">
               <font-awesome-icon :icon="faExclamationTriangle" />
             </div>
             <div class="w-100">
@@ -43,7 +43,7 @@
     <div class="card-body p-3">
       <div class="card-text d-flex justify-content-center card-loading">
         <div class="spinner-border spinner-border-sm text-muted my-auto" role="status">
-          <span class="sr-only">Loading...</span>
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
     </div>

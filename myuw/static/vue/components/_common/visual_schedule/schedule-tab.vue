@@ -102,9 +102,9 @@
       <uw-course-section
         v-for="(eosSection, i) in period.eosData" :key="i"
         :meeting-data="{section: eosSection}" :term="term"
-        :is-finals-card="false" class="d-inline-block w-auto mr-2"
+        :is-finals-card="false" class="d-inline-block w-auto me-2"
       >
-        <ol class="m-0 px-4 text-left">
+        <ol class="m-0 px-4 text-start">
           <li v-for="(meeting, j) in eosSection.meetings" :key="j">
             <span v-if="i !== 0">,&nbsp;</span>
             <span v-if="meeting.eos_start_date">
@@ -140,7 +140,7 @@
         no final exam:
       </p>
       <div v-for="(meeting, i) in meetingsWithoutTime" :key="i"
-           class="d-inline-block w-auto mr-2"
+           class="d-inline-block w-auto me-2"
            style="min-width:110px;"
       >
         <uw-course-section :meeting-data="meeting" :term="term" />
@@ -510,7 +510,7 @@ $cell-height: 35px;
 
   .day-cell {
     height: $cell-height;
-    border-left: 1px solid darken($table-border-color, 5%);
+    border-start: 1px solid darken($table-border-color, 5%);
 
     &:nth-child(even) {
       border-top: 1px solid darken($table-border-color, 5%);
@@ -535,7 +535,7 @@ $cell-height: 35px;
 
   &:last-child {
     .day-cell {
-      border-right: 1px solid darken($table-border-color, 5%);
+      border-end: 1px solid darken($table-border-color, 5%);
     }
   }
 }
