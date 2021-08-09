@@ -1,6 +1,4 @@
-
-
-
+@use "sass:map";
 
 // enable responsive font sizing
 // $enable-responsive-font-sizes: true;
@@ -8,16 +6,12 @@
 // override the boostrap gutter from 30px to 20px
 $grid-gutter-width: 20px;
 
-// override theme colors
+// override bootstrap colors
 $theme-colors: (
-  // override bootstrap colors
   'danger': #a94442,
   'warning': #f5d300,
 );
 
-@use "sass:map";
-
-// pathways custom colors
 $custom-colors: (
    // myuw custom colors
    'purple': #4d307f, // uw purple
