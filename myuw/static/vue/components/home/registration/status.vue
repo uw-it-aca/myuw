@@ -33,7 +33,7 @@
             <span
               v-for="(major, i) in pendingMajors"
               :key="i"
-              class="font-weight-bold"
+              class="fw-bold"
             >
               {{ major.degree_abbr }}
             </span>
@@ -52,7 +52,7 @@
             <span
               v-for="(minor, i) in pendingMinors"
               :key="i"
-              class="font-weight-bold"
+              class="fw-bold"
             >
               {{ minor.abbr }}
             </span>

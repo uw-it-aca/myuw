@@ -32,16 +32,16 @@
           </span>
         </span>
         <span v-if="termData.isFinal"
-              class="text-dark d-block font-weight-bold"
+              class="text-dark d-block fw-bold"
         >Finals Week</span>
         <span
           v-else-if="termData.isBreak"
-          class="text-dark d-block font-weight-bold"
+          class="text-dark d-block fw-bold"
         >
           {{ titleCaseWord(termData.breakQuarter) }}
           Break
         </span>
-        <span v-else class="text-dark d-block font-weight-bold">
+        <span v-else class="text-dark d-block fw-bold">
           Week {{ getWeeksApart(termData.firstDay, termData.todayDate) }} of
           {{ getWeeksApart(termData.firstDay, termData.lastDay) }}
         </span>
@@ -63,7 +63,7 @@
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Student Husky</span>
-          <span class="text-dark d-block font-weight-bold">
+          <span class="text-dark d-block fw-bold">
             ${{ hfs.student_husky_card.balance.toFixed(2) }}
           </span>
         </a>
@@ -81,7 +81,7 @@
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Resident Dining</span>
-          <span class="text-dark d-block font-weight-bold">
+          <span class="text-dark d-block fw-bold">
             ${{ hfs.resident_dining.balance.toFixed(2) }}
           </span>
         </a>
@@ -100,7 +100,7 @@
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Employee Husky</span>
-          <span class="text-dark d-block font-weight-bold">
+          <span class="text-dark d-block fw-bold">
             ${{ hfs.employee_husky_card.balance.toFixed(2) }}
           </span>
         </a>
@@ -118,7 +118,7 @@
         >
           <span class="d-inline-block bg-light myuw-text-sm">
             Library Item Due</span>
-          <span class="text-dark d-block font-weight-bold">
+          <span class="text-dark d-block fw-bold">
             {{ toFromNowDate(library.next_due) }}
           </span>
         </a>
@@ -137,7 +137,7 @@
           <span class="d-inline-block bg-light myuw-text-sm">
             Library {{ library.holds_ready === 1 ? 'Items' : 'Item' }} Ready
           </span>
-          <span class="text-dark d-block font-weight-bold">
+          <span class="text-dark d-block fw-bold">
             {{ library.holds_ready }}
             {{ library.holds_ready === 1 ? 'Items' : 'Item' }} ready
           </span>

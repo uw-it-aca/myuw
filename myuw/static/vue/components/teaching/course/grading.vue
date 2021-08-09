@@ -92,7 +92,7 @@
         </div>
         <div class="myuw-text-sm font-italic">
           Grade submission closes
-          <strong class="font-weight-bold">
+          <strong class="fw-bold">
             {{section.gradingPeriod.deadlineFmt}}
           </strong>
           <span v-if="!section.deadline_in_24_hours">

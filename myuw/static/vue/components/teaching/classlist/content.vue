@@ -29,7 +29,7 @@
       pills
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
       active-nav-item-class="bg-transparent rounded-0
-      myuw-border-bottom border-dark text-body font-weight-bold"
+      myuw-border-bottom border-dark text-body fw-bold"
     >
       <b-tab
         title-item-class="text-nowrap myuw-text-md me-2 mb-1"

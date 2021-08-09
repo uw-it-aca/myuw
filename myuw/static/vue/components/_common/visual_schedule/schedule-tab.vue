@@ -17,7 +17,7 @@
           <div v-for="(time, i) in timeSlots" :key="i"
                class="time-cell"
           >
-            <div v-if="time.minute() == 0" class="font-weight-bold text-nowrap">
+            <div v-if="time.minute() == 0" class="fw-bold text-nowrap">
               {{ time.format('ha') }}
             </div>
             <div v-else class="d-none">
@@ -36,7 +36,7 @@
                role="group"
                class="day-column-desktop flex-even"
           >
-            <div class="font-weight-bold text-center myuw-text-xs day-heading">
+            <div class="fw-bold text-center myuw-text-xs day-heading">
               <div :id="`${day}-${period.id}`">
                 {{ days[day] }}
                 <span v-if="isFinalsTab && period.daySlots[day]"
@@ -73,7 +73,7 @@
               v-model="mobile['current']"
               title="Select the Day of Week:"
               :options="mobile['options']"
-              class="font-weight-bold myuw-text-md"
+              class="fw-bold myuw-text-md"
             />
           </div>
           <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">

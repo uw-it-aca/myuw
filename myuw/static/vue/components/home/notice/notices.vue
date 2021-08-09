@@ -17,7 +17,7 @@
                 >
                   <span
                     v-if="notice.is_critical"
-                    class="d-inline-block font-weight-bold text-danger me-1 notice-critical"
+                    class="d-inline-block fw-bold text-danger me-1 notice-critical"
                     >Critical:</span
                   ><span v-html="notice.notice_title" />
                 </button>

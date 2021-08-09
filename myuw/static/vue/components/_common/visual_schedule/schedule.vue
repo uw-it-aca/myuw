@@ -18,7 +18,7 @@
               v-model="tabIndex" pills
               nav-wrapper-class="mb-3 p-0"
               active-nav-item-class="bg-transparent rounded-0
-              myuw-border-bottom border-dark text-body font-weight-bold"
+              myuw-border-bottom border-dark text-body fw-bold"
       >
         <b-tab v-for="(period, i) in periods" :key="i" :title="period.title"
                title-item-class="text-nowrap text-uppercase

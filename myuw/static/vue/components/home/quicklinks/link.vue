@@ -57,7 +57,7 @@
       @open="populateCustomLink"
     >
       <b-form @submit="updateLink" @reset="onReset">
-        <h3 class="h6 font-weight-bold">
+        <h3 class="h6 fw-bold">
           Edit Quick Link
         </h3>
         <b-form-group label="URL" :label-for="`${customId}-edit-url`">
