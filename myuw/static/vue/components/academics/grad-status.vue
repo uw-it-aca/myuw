@@ -29,7 +29,7 @@
                 <div class="flex-fill w-50">
                   Department Recommendation
                 </div>
-                <div class="flex-fill w-50 text-right">
+                <div class="flex-fill w-50 text-end">
                   {{ petition.dept_recommend }}
                 </div>
               </div>
@@ -39,7 +39,7 @@
                 <div class="flex-fill w-50">
                   Graduate School Decision
                 </div>
-                <div class="flex-fill w-50 text-right">
+                <div class="flex-fill w-50 text-end">
                   {{ petition.gradschool_decision }}
                 </div>
               </div>
@@ -67,7 +67,7 @@
                 <div class="flex-fill w-50">
                   Status
                 </div>
-                <div class="flex-fill w-50 text-right">
+                <div class="flex-fill w-50 text-end">
                   <span v-if="leave.status === 'Approved'">
                     Approved<br>
                     <a
@@ -105,7 +105,7 @@
               <div class="flex-fill w-50">
                 Status
               </div>
-              <div class="flex-fill w-50 text-right">
+              <div class="flex-fill w-50 text-end">
                 {{ degree.status }}
               </div>
             </div>
@@ -113,7 +113,7 @@
         </ul>
       </div>
 
-      <div class="text-right">
+      <div class="text-end">
         <uw-link-button
           href="https://grad.uw.edu/for-students-and-post-docs/mygrad-program/">
           Go to MyGrad

@@ -11,11 +11,11 @@
         :aria-label="generateLabel(event)"
       >
         <span v-if="event.is_all_day" class="text-dark font-weight-light
-        d-inline-block mr-1"
+        d-inline-block me-1"
         >
           All Day
         </span>
-        <span v-else class="text-dark font-weight-light d-inline-block mr-1">
+        <span v-else class="text-dark font-weight-light d-inline-block me-1">
           {{ event.start_time }}
         </span>
         <span v-html="event.summary" />

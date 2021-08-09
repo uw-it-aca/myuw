@@ -19,7 +19,7 @@
       >
         <b-tab
           title="Seattle"
-          title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+          title-item-class="text-nowrap myuw-text-md me-2 mb-1"
           title-link-class="rounded-0 px-2 py-1 h-100
                text-body myuw-border-bottom"
           active
@@ -28,7 +28,7 @@
         </b-tab>
         <b-tab
           title="Tacoma"
-          title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+          title-item-class="text-nowrap myuw-text-md me-2 mb-1"
           title-link-class="rounded-0 px-2 py-1 h-100
                text-body myuw-border-bottom"
         >
@@ -36,7 +36,7 @@
         </b-tab>
         <b-tab
           title="Bothell"
-          title-item-class="text-nowrap myuw-text-md mr-2 mb-1"
+          title-item-class="text-nowrap myuw-text-md me-2 mb-1"
           title-link-class="rounded-0 px-2 py-1 h-100
                text-body myuw-border-bottom"
         >

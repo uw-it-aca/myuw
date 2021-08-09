@@ -6,7 +6,7 @@
       <button v-if="section.mini_card"
         type="button"
         :title="`Remove mini-card of ${section.label}`"
-        class="btn btn-link btn-sm ml-3 align-self-start p-0"
+        class="btn btn-link btn-sm ms-3 align-self-start p-0"
         @click="toggleMiniWrapper"
       >
         <font-awesome-icon :icon="faTimes" />

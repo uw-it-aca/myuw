@@ -14,13 +14,13 @@
       <template #status-content>
         <div class="d-flex mb-2 myuw-text-md">
           <div class="flex-fill w-50"></div>
-          <div class="flex-fill w-50 text-right">
+          <div class="flex-fill w-50 text-end">
             <ul class="list-unstyled m-0">
               <li class="myuw-text-md">
                 <span v-if="hasUnreadyCourses">{{ unreadyCount }} not ready</span>
                 <button v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
                   type="button"
-                  class="btn btn-link btn-sm ml-1 p-0 border-0 bg-transparent align-baseline"
+                  class="btn btn-link btn-sm ms-1 p-0 border-0 bg-transparent align-baseline"
                 >
                   Plan Details
                   <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
@@ -56,7 +56,7 @@
       <template #status-content>
         <div class="d-flex mb-2 myuw-text-md">
           <div class="flex-fill w-50"></div>
-          <div class="flex-fill w-50 text-right">
+          <div class="flex-fill w-50 text-end">
             <a
               v-out="'MyPlan Course Search'"
               class="myuw-text-md"

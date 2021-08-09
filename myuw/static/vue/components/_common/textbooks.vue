@@ -18,7 +18,7 @@
             <font-awesome-icon
               :icon="faSquareFull"
               :class="`text-c${section.colorId}`"
-              class="mr-1"
+              class="me-1"
             />
             <span>
               {{ section.courseId }}:

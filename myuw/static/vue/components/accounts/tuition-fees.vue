@@ -40,13 +40,13 @@
             <template #status-content>
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">Student Fiscal Services</div>
-                <div class="flex-fill w-50 text-right">
+                <div class="flex-fill w-50 text-end">
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
                     Tuition Statement
                     </a>
                 </div>
               </div>
-              <div v-if="tuiBalance != 0" class="text-right">
+              <div v-if="tuiBalance != 0" class="text-end">
                 <uw-link-button
                   v-out="'Make tuition payment'"
                   href="http://f2.washington.edu/fm/sfs/tuition/payment"
@@ -67,7 +67,7 @@
             <template #status-content>
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">Student Fiscal Services</div>
-                <div class="flex-fill w-50 text-right">
+                <div class="flex-fill w-50 text-end">
                   No payment needed<br>
                   <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx">
                     Tuition Statement
@@ -87,7 +87,7 @@
             <template #status-content>
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">PCE-Continuum College</div>
-                <div class="flex-fill w-50 text-right">
+                <div class="flex-fill w-50 text-end">
                   <uw-link-button
                     v-out="'Make Continuum College tuition payment'"
                     href="http://portal.continuum.uw.edu"
@@ -107,7 +107,7 @@
             <template #status-content>
               <div class="d-flex mb-2 myuw-text-md">
                 <div class="flex-fill w-50">PCE-Continuum College</div>
-                <div class="flex-fill w-50 text-right">
+                <div class="flex-fill w-50 text-end">
                   <a v-out="'Continuum College Account Statement'"
                     href="http://portal.continuum.uw.edu"
                     class="myuw-text-md"
@@ -123,7 +123,7 @@
             <template #status-label>Payment Due</template>
             <template #status-value>{{ tuitionDate.formatted }}</template>
             <template #status-content>
-              <div class="myuw-text-md text-body text-right">
+              <div class="myuw-text-md text-body text-end">
                 <span v-if="tuitionDate.diff === 0">Today</span>
                 <span v-else-if="tuitionDate.diff === 1">Tomorrow</span>
                 <span v-else>in {{ tuitionDate.diff }} days</span>

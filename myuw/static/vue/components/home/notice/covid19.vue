@@ -6,9 +6,9 @@
           <button
             v-b-toggle.covid_notice
             v-no-track-collapse
-            class="btn btn-link p-0 border-0 align-top notice-link text-left myuw-text-md"
+            class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
           >
-            <span class="d-inline-block font-weight-bold text-danger mr-1 notice-critical"
+            <span class="d-inline-block font-weight-bold text-danger me-1 notice-critical"
               >Critical:</span
             ><span>Complete the UW Student COVID-19 Vaccine Attestation Form</span>
           </button>

@@ -254,7 +254,7 @@ export default {
   }
 
   &:not(:last-child) {
-    border-right: solid 1px transparent;
+    border-end: solid 1px transparent;
   }
 
   &:focus, &:focus-within, &:hover {

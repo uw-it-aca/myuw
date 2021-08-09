@@ -14,7 +14,7 @@
             </template>
             <template #card-body>
               <div class="mb-2">
-                <div class="myuw-text-md mr-auto">
+                <div class="myuw-text-md me-auto">
                   <div>
                     You have registered for {{ term.credits }} credits
                   </div>
@@ -32,7 +32,7 @@
                     v-inner="'View future quarter courses'"
                     :href="`../future_quarters${term.url}`"
                   >
-                    <span class="sr-only">
+                    <span class="visually-hidden">
                       View {{ term.quarter }} {{ term.year }}
                       <span v-if="term.summer_term" class="text-capitalize">
                         {{ term.summer_term }}

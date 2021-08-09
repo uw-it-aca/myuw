@@ -22,12 +22,12 @@
       <uw-resource-card :resource="resource" />
     </div>
     <button type="button"
-      class="btn btn-secondary position-sticky mb-3 mr-3 float-right text-center myuw-back-to-top"
+      class="btn btn-secondary position-sticky mb-3 me-3 float-end text-center myuw-back-to-top"
       title="Back to Top"
       @click="scrollToTop"
     >
       <font-awesome-icon :icon="faChevronUp" size="lg" />
-      <span class="d-block myuw-text-xs"><span class="sr-only">Back to</span> TOP</span>
+      <span class="d-block myuw-text-xs"><span class="visually-hidden">Back to</span> TOP</span>
     </button>
   </div>
 </template>

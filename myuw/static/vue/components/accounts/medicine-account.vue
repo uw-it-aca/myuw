@@ -49,7 +49,7 @@
               </div>
             </template>
             <template #status-content>
-              <div class="text-right">
+              <div class="text-end">
                 in {{ daysBeforeExpires }} days*
               </div>
             </template>

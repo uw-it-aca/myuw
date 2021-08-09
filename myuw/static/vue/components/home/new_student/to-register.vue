@@ -42,7 +42,7 @@
       >
         <font-awesome-icon
           :icon="faCircle"
-          class="mr-3 mt-1 text-muted myuw-text-lg"
+          class="me-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
           <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
@@ -57,7 +57,7 @@
       >
         <font-awesome-icon
           :icon="faCircle"
-          class="mr-3 mt-1 text-muted myuw-text-lg"
+          class="me-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
           <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
@@ -72,7 +72,7 @@
       >
         <font-awesome-icon
           :icon="faCheckCircle"
-          class="mr-3 mt-1 text-success myuw-text-lg"
+          class="me-3 mt-1 text-success myuw-text-lg"
         />
         <div class="myuw-text-md" v-html="notice.notice_content" />
       </div>
@@ -84,7 +84,7 @@
       >
         <font-awesome-icon
           :icon="faCircle"
-          class="mr-3 mt-1 text-muted myuw-text-lg"
+          class="me-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
           <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
@@ -99,7 +99,7 @@
       >
         <font-awesome-icon
           :icon="faCheckCircle"
-          class="mr-3 mt-1 text-success myuw-text-lg"
+          class="me-3 mt-1 text-success myuw-text-lg"
         />
         <div class="myuw-text-md" v-html="notice.notice_content" />
       </div>
@@ -111,7 +111,7 @@
       >
         <font-awesome-icon
           :icon="faCircle"
-          class="mr-3 mt-1 text-muted myuw-text-lg"
+          class="me-3 mt-1 text-muted myuw-text-lg"
         />
         <div>
           <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
@@ -122,7 +122,7 @@
       <div v-if="orient_after.length > 0" class="d-flex mb-2">
         <font-awesome-icon
           :icon="faCheckCircle"
-          class="mr-3 mt-1 text-success myuw-text-lg"
+          class="me-3 mt-1 text-success myuw-text-lg"
         />
         <div class="myuw-text-md">
           You have registered for an Advising &amp; Orientation Session.

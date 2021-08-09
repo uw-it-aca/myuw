@@ -8,7 +8,7 @@
             <font-awesome-icon
               :icon="faSquareFull"
               :class="`text-c${section.color_id}`"
-              class="my-auto mr-1"
+              class="my-auto me-1"
               size="xs"
             />
             <div>
@@ -34,8 +34,8 @@
               </a>
             </h4>
             </div>
-            <div v-if="section.sln" class="ml-2">
-              <h5 class="sr-only">
+            <div v-if="section.sln" class="ms-2">
+              <h5 class="visually-hidden">
                 Section SLN:
               </h5>
               <span>
@@ -52,9 +52,9 @@
             </div>
             <div
               class="flex-fill"
-              :class="[$mq === 'mobile' ? 'ml-2' : 'text-center']"
+              :class="[$mq === 'mobile' ? 'ms-2' : 'text-center']"
             >
-              <h5 class="sr-only">
+              <h5 class="visually-hidden">
                 Section Type:
               </h5>
               <span class="text-capitalize myuw-text-md">
@@ -66,7 +66,7 @@
         <div class="col-8 col-sm-5 px-0">
           <div class="d-flex">
             <div class="flex-fill">
-              <h5 class="sr-only">
+              <h5 class="visually-hidden">
                 Section Meetings:
               </h5>
               <uw-meeting-info :section="section" no-heading />
@@ -74,26 +74,26 @@
           </div>
         </div>
         <div class="col-2 col-sm-2 px-0">
-          <h5 class="sr-only">
+          <h5 class="visually-hidden">
             Section Enrollments:
           </h5>
           <uw-enrollment :section="section"
             class="myuw-text-md text-nowrap"
-            :class="$mq === 'desktop' ? 'ml-2' : 'ml-1'"
+            :class="$mq === 'desktop' ? 'ms-2' : 'ms-1'"
           />
         </div>
         <div class="col-2 col-sm-1 px-0">
-          <div class="d-inline-block float-right">
+          <div class="d-inline-block float-end">
             <button v-if="!section.mini_card"
               :title="`Pin mini-card of ${section.label} onto Teaching page`"
-              type="button" class="btn btn-link myuw-text-md text-muted p-0 ml-1"
+              type="button" class="btn btn-link myuw-text-md text-muted p-0 ms-1"
               @click="miniCard"
             >
               Pin
             </button>
             <button v-else
               :title="`Remove mini-card of ${section.label} from Teaching page`"
-              type="button" class="btn btn-link myuw-text-md text-muted p-0 ml-1"
+              type="button" class="btn btn-link myuw-text-md text-muted p-0 ms-1"
               @click="miniCard"
             >
               Unpin

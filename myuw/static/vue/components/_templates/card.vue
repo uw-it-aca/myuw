@@ -43,7 +43,7 @@
     <div class="card-body p-3">
       <div class="card-text d-flex justify-content-center card-loading">
         <div class="spinner-border spinner-border-sm text-muted my-auto" role="status">
-          <span class="sr-only">Loading...</span>
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
     </div>

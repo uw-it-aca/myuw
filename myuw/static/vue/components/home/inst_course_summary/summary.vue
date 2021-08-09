@@ -20,7 +20,7 @@
       <div v-else>
         <!-- teach some courses -->
         <div v-if="instSchedule.future_term">
-          <span class="float-right">
+          <span class="float-end">
             <a
               v-inner="`View details: ${term}`"
               :href="`/teaching/${term}`"

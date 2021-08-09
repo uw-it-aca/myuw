@@ -8,7 +8,7 @@
         <b-form @submit.prevent="performSearch">
           <b-input-group>
             <label
-              class="sr-only" for="search_nav"
+              class="visually-hidden" for="search_nav"
             >Search the UW website</label>
             <b-form-input
               id="search_nav"
@@ -23,9 +23,9 @@
                 <font-awesome-icon
                   :icon="faSearch"
                   flip="horizontal"
-                  class="mr-1"
+                  class="me-1"
                 />
-                <span class="sr-only">Search</span>
+                <span class="visually-hidden">Search</span>
               </button>
             </b-input-group-append>
           </b-input-group>

@@ -11,6 +11,7 @@ import {
 import "bootstrap";
 
 // bootstrap vue plugins
+/*
 import {
   AlertPlugin,
   BadgePlugin,
@@ -35,6 +36,9 @@ import {
   VBTogglePlugin,
   TooltipPlugin,
 } from 'bootstrap-vue';
+*/
+
+import 'bootstrap';
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
@@ -51,6 +55,7 @@ Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 // bootstrap-vue components as plugins
+/*
 Vue.use(AlertPlugin);
 Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
@@ -73,6 +78,7 @@ Vue.use(VBTogglePlugin);
 Vue.use(ModalPlugin);
 Vue.use(TablePlugin);
 Vue.use(TooltipPlugin);
+*/
 
 // vuex
 Vue.use(Vuex);
@@ -151,9 +157,11 @@ Vue.config.devtools = process.env.VUE_DEVTOOLS === "True";
 
 // Mixins
 import courses from './mixins/courses';
+import sortCompare from './mixins/sort-compare';
 import utils from './mixins/utils';
 Vue.mixin(courses);
 Vue.mixin(utils);
+Vue.mixin(sortCompare);
 
 const vueConf = {
   el: '#vue_root',

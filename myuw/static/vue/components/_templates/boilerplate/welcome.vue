@@ -5,7 +5,7 @@
         <div>
           <button
             type="button"
-            class="btn btn-link btn-sm p-0 m-0 text-body text-left myuw-text-xs"
+            class="btn btn-link btn-sm p-0 m-0 text-body text-start myuw-text-xs"
             data-toggle="modal"
             data-target="#tourModal"
           >

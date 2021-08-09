@@ -4,7 +4,7 @@
     class="w-100 myuw-messages bg-teal" role="complementary"
   >
     <div class="text-center text-white myuw-text-md">
-      <h2 class="sr-only">
+      <h2 class="visually-hidden">
         Announcements
       </h2>
       <template v-if="bannerMessages.length > 0" id="message_banner_location">

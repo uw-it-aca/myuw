@@ -17,7 +17,7 @@
         />
         <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
           <p>
-            <font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />
+            <font-awesome-icon :icon="faExclamationTriangle" class="me-1" />
             An error has occurred and MyUW cannot display the course evaluation
             information right now. Please try again later.
           </p>

@@ -5,7 +5,7 @@
       <template #status-value>
         <font-awesome-icon
           :icon="faExclamationTriangle"
-          class="mr-1 align-middle text-danger"
+          class="me-1 align-middle text-danger"
           aria-hidden="true"
         />
         <button v-b-toggle="`${summerCardLabel}holds-collapse-${$meta.uid}`"
