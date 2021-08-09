@@ -5,7 +5,7 @@
     </div>
 
     <div v-if="section.summer_term">
-      <h3 class="sr-only">
+      <h3 class="visually-hidden">
         Term:
       </h3>
       <div class="myuw-text-md">

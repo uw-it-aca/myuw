@@ -28,7 +28,7 @@
               </h3>
               <div :class="$mq !== 'mobile' ? 'd-block' : 'float-right'" class="text-nowrap">
                 <div class="d-inline">
-                  <h4 class="sr-only">
+                  <h4 class="visually-hidden">
                     Section Type:
                   </h4>
                   <span class="text-uppercase myuw-text-sm">
@@ -36,7 +36,7 @@
                   </span>
                 </div>
                 <div v-if="section.sln" class="ms-1 d-inline">
-                  <h4 class="sr-only">
+                  <h4 class="visually-hidden">
                     Section SLN:
                   </h4>
                   <span>
@@ -58,7 +58,7 @@
         <div class="col-9 col-sm-7 px-0">
           <div class="d-flex">
             <div class="flex-fill">
-              <h4 class="sr-only">
+              <h4 class="visually-hidden">
                 Section Meetings:
               </h4>
               <uw-meeting-info :section="section" class="myuw-text-md"/>
@@ -66,7 +66,7 @@
           </div>
         </div>
         <div class="col-3 col-sm-2 px-0 text-end">
-          <h4 class="sr-only">
+          <h4 class="visually-hidden">
             Section Enrollments:
           </h4>
           <uw-enrollment

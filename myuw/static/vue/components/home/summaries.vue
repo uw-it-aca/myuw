@@ -2,7 +2,7 @@
   <div class="row mb-3"
          role="group" aria-labelledby="summaryHeader"
   >
-    <h2 id="summaryHeader" class="sr-only">
+    <h2 id="summaryHeader" class="visually-hidden">
       Account Summaries
     </h2>
     <div class="col-md-2">

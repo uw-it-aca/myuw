@@ -83,7 +83,7 @@
             <template v-if="$mq != 'desktop'">
               <template v-if="page.title == 'Home'"> MyUW </template>
               <template v-else>
-                <span class="sr-only">MyUW</span>
+                <span class="visually-hidden">MyUW</span>
                 <span aria-hidden="true">
                   <template v-if="page.title.includes('Preview')"> Preview Quarter </template>
                   <template v-else-if="page.title.includes('Textbooks')"> Textbooks </template>
@@ -184,7 +184,7 @@
                 <li class="nav-item mb-2" aria-hidden="true">
                   <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#">
                     <hr class="m-0" />
-                    <span class="sr-only"> Navigation separator</span></a
+                    <span class="visually-hidden"> Navigation separator</span></a
                   >
                 </li>
                 <li class="nav-item mb-2">
@@ -228,7 +228,7 @@
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="{ 'sr-only': page.hideTitle || $mq != 'desktop' }"
+              :class="{ 'visually-hidden': page.hideTitle || $mq != 'desktop' }"
             >
               {{ page.title }}
             </h1>

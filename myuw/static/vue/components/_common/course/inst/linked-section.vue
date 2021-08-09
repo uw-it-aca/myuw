@@ -35,7 +35,7 @@
             </h4>
             </div>
             <div v-if="section.sln" class="ms-2">
-              <h5 class="sr-only">
+              <h5 class="visually-hidden">
                 Section SLN:
               </h5>
               <span>
@@ -54,7 +54,7 @@
               class="flex-fill"
               :class="[$mq === 'mobile' ? 'ms-2' : 'text-center']"
             >
-              <h5 class="sr-only">
+              <h5 class="visually-hidden">
                 Section Type:
               </h5>
               <span class="text-capitalize myuw-text-md">
@@ -66,7 +66,7 @@
         <div class="col-8 col-sm-5 px-0">
           <div class="d-flex">
             <div class="flex-fill">
-              <h5 class="sr-only">
+              <h5 class="visually-hidden">
                 Section Meetings:
               </h5>
               <uw-meeting-info :section="section" no-heading />
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="col-2 col-sm-2 px-0">
-          <h5 class="sr-only">
+          <h5 class="visually-hidden">
             Section Enrollments:
           </h5>
           <uw-enrollment :section="section"

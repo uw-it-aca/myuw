@@ -1,7 +1,7 @@
 <template>
-  <uw-card-property title="Meeting Time" :sr-only-title="!showRowHeading">
+  <uw-card-property title="Meeting Time" :visually-hidden-title="!showRowHeading">
     <table class="mb-0 w-100 table table-sm table-borderless myuw-text-md">
-      <thead class="sr-only">
+      <thead class="visually-hidden">
         <tr>
           <th v-if="section.hasEosDates" :id="`dates-${section.id}`">
             Meeting Date(s)

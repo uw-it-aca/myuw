@@ -55,7 +55,7 @@
         id="grade_card_collapse"
         v-model="isOpen"
       >
-        <h3 class="sr-only">
+        <h3 class="visually-hidden">
           Resources
         </h3>
         <ul class="list-unstyled myuw-text-md">

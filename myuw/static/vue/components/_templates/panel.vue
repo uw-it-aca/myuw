@@ -8,7 +8,7 @@
   <div v-else>
     <div class="p-3 d-flex justify-content-center">
       <div class="spinner-border spinner-border-sm text-muted my-auto" role="status">
-        <span class="sr-only">Loading...</span>
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
   </div>

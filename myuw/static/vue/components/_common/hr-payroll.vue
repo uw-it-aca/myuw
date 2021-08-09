@@ -5,7 +5,7 @@
     </template>
     <template #card-body>
       <div style="position: relative" class="mb-4">
-        <h3 class="sr-only">Workday</h3>
+        <h3 class="visually-hidden">Workday</h3>
         <div class="mb-3">
           <uw-link-button
             id="og_workday"

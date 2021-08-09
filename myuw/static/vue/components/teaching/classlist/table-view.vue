@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="sr-only">
+    <h3 class="visually-hidden">
       Table of Student Information
     </h3>
     <uw-table :fields="fields" :items="items">
@@ -21,7 +21,7 @@
             :title="slotProps.cellData.value.title"
           >
             <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
-            <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
+            <span style="overflow-wrap: break-word;" class="visually-hidden myuw-print-visually-hidden">
               {{ slotProps.cellData.value.email }}
             </span>
           </a>
@@ -132,7 +132,7 @@ export default {
       }
       data.push(
           {
-            // class: "sr-only",
+            // class: "visually-hidden",
             key: 'email',
             label: 'Email',
           },

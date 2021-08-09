@@ -45,7 +45,7 @@
               <th :id="`emaillist_section_${sln}`" class="w-50 border-0">Section</th>
               <th :id="`emaillist_maillist_${sln}`" class="border-0">Mailing List</th>
               <th :id="`emaillist_manage_${sln}`" class="border-0">
-                <span class="sr-only">Manage list in Mailman</span>
+                <span class="visually-hidden">Manage list in Mailman</span>
               </th>
             </tr>
           </thead>

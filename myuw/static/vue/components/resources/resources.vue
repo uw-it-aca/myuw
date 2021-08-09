@@ -27,7 +27,7 @@
       @click="scrollToTop"
     >
       <font-awesome-icon :icon="faChevronUp" size="lg" />
-      <span class="d-block myuw-text-xs"><span class="sr-only">Back to</span> TOP</span>
+      <span class="d-block myuw-text-xs"><span class="visually-hidden">Back to</span> TOP</span>
     </button>
   </div>
 </template>

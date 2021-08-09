@@ -14,7 +14,7 @@
            class="btn btn-link"
           >
             <font-awesome-icon :icon="faInfoCircle" />
-            <span class="sr-only">More information</span>
+            <span class="visually-hidden">More information</span>
           </button>
           <b-popover
             :target="`cl_info_${section.id}`"

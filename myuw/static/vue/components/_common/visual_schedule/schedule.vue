@@ -6,7 +6,7 @@
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         {{ termName }} Schedule
-        <span class="sr-only">
+        <span class="visually-hidden">
           Final exam schedule and Visual Schedule
         </span>
       </h2>

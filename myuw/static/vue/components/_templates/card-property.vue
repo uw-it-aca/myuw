@@ -5,7 +5,7 @@
         v-if="title.length > 0"
         class="myuw-text-md flex-md-fill me-3 mb-2 bd-highlight
           myuw-font-encode-sans property-label"
-        :class="{'sr-only': srOnlyTitle}"
+        :class="{'visually-hidden': srOnlyTitle}"
       >
         {{ title }}
       </h3>

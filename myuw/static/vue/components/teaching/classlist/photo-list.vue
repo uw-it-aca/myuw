@@ -3,7 +3,7 @@
        class=""
        aria-labelledby="photo-grid"
   >
-    <h3 class="sr-only">
+    <h3 class="visually-hidden">
       Grid of Student Photos
     </h3>
     <ol class="list-unstyled d-flex flex-wrap">

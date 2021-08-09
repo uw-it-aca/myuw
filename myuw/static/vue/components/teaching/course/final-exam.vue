@@ -11,7 +11,7 @@
         <table
           class="mb-0 w-100 table table-sm table-borderless myuw-text-md"
         >
-          <thead class="sr-only">
+          <thead class="visually-hidden">
             <tr>
               <th :id="`final-days-${section.id}`">Day</th>
               <th :id="`final-time-${section.id}`">Time</th>
