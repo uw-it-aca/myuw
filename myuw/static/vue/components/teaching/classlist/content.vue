@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="myuw-print-hidden mt-2" :class="$mq === 'mobile' ? '' : 'float-right'">
+    <div class="myuw-print-hidden mt-2" :class="$mq === 'mobile' ? '' : 'float-end'">
       <div class="myuw-text-md align-middle">
         <b-form-checkbox
           v-if="section.has_joint"

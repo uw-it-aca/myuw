@@ -10,7 +10,7 @@
         <template #card-heading>
           <div>
             <button type="button"
-              class="btn btn-link myuw-text-sm text-muted float-right"
+              class="btn btn-link myuw-text-sm text-muted float-end"
               :title="`Remove ${subcategories.subcat_name} resources from home page`"
               @click="unpinWrapper(subcategories)"
             >

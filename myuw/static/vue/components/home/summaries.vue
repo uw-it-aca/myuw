@@ -48,7 +48,7 @@
       </a>
     </div>
     <div v-if="isHfsReady && isLibraryReady" class="col-md-10">
-      <div class="row float-md-right" style="padding: 0 10px;">
+      <div class="row float-md-end" style="padding: 0 10px;">
         <a
           v-if="hfs.student_husky_card"
           v-inner="'MyUW Accounts page - Student Husky card'"

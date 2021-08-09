@@ -26,7 +26,7 @@
                   {{ section.section_id }}
                 </a>
               </h3>
-              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-right'" class="text-nowrap">
+              <div :class="$mq !== 'mobile' ? 'd-block' : 'float-end'" class="text-nowrap">
                 <div class="d-inline">
                   <h4 class="visually-hidden">
                     Section Type:
