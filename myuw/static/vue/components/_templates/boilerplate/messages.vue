@@ -21,7 +21,7 @@
       <div v-if="displayOnboardMessage" class="px-3 py-2">
         New here?
 
-        <a role="button" class="text-white" data-toggle="modal" data-target="#tourModal">
+        <a role="button" class="text-white" data-bs-toggle="modal" data-bs-target="#tourModal">
           <u>See MyUW at a glance</u>
         </a>
 

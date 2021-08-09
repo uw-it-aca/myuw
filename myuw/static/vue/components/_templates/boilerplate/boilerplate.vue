@@ -26,7 +26,8 @@
                 href="/profile/"
                 class="text-white fw-light"
                 title="View your profile"
-              ><font-awesome-icon :icon="faUser" class="me-1" />{{ netid }}</a>
+                ><font-awesome-icon :icon="faUser" class="me-1" />{{ netid }}</a
+              >
             </div>
             <div class="col text-end">
               <a
@@ -35,26 +36,30 @@
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ms-2 text-danger fw-light"
                 title="UW email services"
-              ><font-awesome-icon :icon="faExclamationTriangle" class="me-1" />Email error</a>
+                ><font-awesome-icon :icon="faExclamationTriangle" class="me-1" />Email error</a
+              >
               <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ms-2 text-white fw-light"
                 title="Open your email"
-              ><font-awesome-icon :icon="faEnvelope" class="me-1" />Email</a>
+                ><font-awesome-icon :icon="faEnvelope" class="me-1" />Email</a
+              >
               <a
                 v-b-toggle.app_search
                 href="#"
                 class="ms-2 text-white fw-light"
                 title="Open search panel"
-              ><font-awesome-icon :icon="faSearch" flip="horizontal" class="me-1" />Search</a>
+                ><font-awesome-icon :icon="faSearch" flip="horizontal" class="me-1" />Search</a
+              >
               <a
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ms-2 text-white fw-light"
                 title="Sign out of MyUW"
-              ><font-awesome-icon :icon="faSignOutAlt" class="me-1" />Sign Out</a>
+                ><font-awesome-icon :icon="faSignOutAlt" class="me-1" />Sign Out</a
+              >
             </div>
           </div>
         </div>
@@ -284,8 +289,8 @@
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
-      data-backdrop="static"
-      data-keyboard="false"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
     >
       <div class="modal-dialog modal-md myuw-modal">
         <div class="modal-content">
@@ -293,9 +298,12 @@
             <h5 id="exampleModalLabel" class="modal-title text-dark-beige myuw-font-encode-sans">
               Welcome! Here's MyUW at a glance
             </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body py-0">
             <img
@@ -332,14 +340,18 @@
             </p>
           </div>
           <div class="modal-footer border-0">
-            <button slot-scope="" type="button" class="btn btn-primary btn-sm" data-dismiss="modal">
+            <button
+              slot-scope=""
+              type="button"
+              class="btn btn-primary btn-sm"
+              data-bs-dismiss="modal"
+            >
               Close
             </button>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
