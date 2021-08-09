@@ -10,18 +10,18 @@
         class="d-block"
         :aria-label="generateLabel(event)"
       >
-        <span v-if="event.is_all_day" class="text-dark font-weight-light
+        <span v-if="event.is_all_day" class="text-dark fw-light
         d-inline-block me-1"
         >
           All Day
         </span>
-        <span v-else class="text-dark font-weight-light d-inline-block me-1">
+        <span v-else class="text-dark fw-light d-inline-block me-1">
           {{ event.start_time }}
         </span>
         <span v-html="event.summary" />
       </a>
       <em v-if="event.event_location" class="text-muted
-      font-weight-light myuw-text-xs"
+      fw-light myuw-text-xs"
       >
         <font-awesome-icon :icon="faLocationArrow" size="sm" />
         <span v-html="getLocation(event)" />

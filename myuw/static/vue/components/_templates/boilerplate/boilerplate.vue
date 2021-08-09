@@ -24,7 +24,7 @@
               <a
                 v-inner="'MyUW profile page'"
                 href="/profile/"
-                class="text-white font-weight-light"
+                class="text-white fw-light"
                 title="View your profile"
               ><font-awesome-icon :icon="faUser" class="me-1" />{{ netid }}</a>
             </div>
@@ -33,26 +33,26 @@
                 v-if="emailError"
                 v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
-                class="ms-2 text-danger font-weight-light"
+                class="ms-2 text-danger fw-light"
                 title="UW email services"
               ><font-awesome-icon :icon="faExclamationTriangle" class="me-1" />Email error</a>
               <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
-                class="ms-2 text-white font-weight-light"
+                class="ms-2 text-white fw-light"
                 title="Open your email"
               ><font-awesome-icon :icon="faEnvelope" class="me-1" />Email</a>
               <a
                 v-b-toggle.app_search
                 href="#"
-                class="ms-2 text-white font-weight-light"
+                class="ms-2 text-white fw-light"
                 title="Open search panel"
               ><font-awesome-icon :icon="faSearch" flip="horizontal" class="me-1" />Search</a>
               <a
                 v-inner="'Sign Out'"
                 href="/logout/"
-                class="d-none d-lg-inline ms-2 text-white font-weight-light"
+                class="d-none d-lg-inline ms-2 text-white fw-light"
                 title="Sign out of MyUW"
               ><font-awesome-icon :icon="faSignOutAlt" class="me-1" />Sign Out</a>
             </div>
@@ -272,7 +272,7 @@
           </li>
         </ul>
 
-        <div class="font-weight-light" style="color:#aaa">
+        <div class="fw-light" style="color:#aaa">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
       </div>

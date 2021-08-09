@@ -17,7 +17,7 @@
       <div>
         <b-badge
           variant="warning"
-          class="font-weight-normal notice-status"
+          class="fw-normal notice-status"
         >
           New
         </b-badge>

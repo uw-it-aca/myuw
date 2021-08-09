@@ -10,7 +10,7 @@
         v-if="termData"
         v-inner="'MyUW Calendar page'"
         class="d-block px-3 py-1 text-dark text-nowrap
-        font-weight-light"
+        fw-light"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
             ? 'border-start text-start'
@@ -53,7 +53,7 @@
           v-if="hfs.student_husky_card"
           v-inner="'MyUW Accounts page - Student Husky card'"
           class="d-inline-block col px-3 py-1 ms-1
-          font-weight-light text-dark text-nowrap"
+          fw-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-start text-start'
@@ -71,7 +71,7 @@
           v-if="hfs.resident_dining"
           v-inner="'MyUW Accounts page - Resident Dining'"
           class="d-inline-block col px-3 py-1 ms-1
-          font-weight-light text-dark text-nowrap"
+          fw-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-start text-start'
@@ -90,7 +90,7 @@
           v-if="hfs.employee_husky_card"
           v-inner="'MyUW Accounts page - Employee Husky card'"
           class="d-inline-block col px-3 py-1 ms-1
-          font-weight-light text-dark text-nowrap"
+          fw-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-start text-start'
@@ -108,7 +108,7 @@
           v-if="library.next_due"
           v-inner="'MyUW Accounts page - Library Account'"
           class="d-inline-block col px-3 py-1 ms-1
-          font-weight-light text-dark text-nowrap"
+          fw-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-start text-start'
@@ -126,7 +126,7 @@
           v-else-if="library.holds_ready"
           v-inner="'MyUW Accounts page - Library Account'"
           class="d-inline-block col px-3 py-1 ms-1
-          font-weight-light text-dark text-nowrap"
+          fw-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
               ? 'border-start text-start'

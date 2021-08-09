@@ -99,7 +99,7 @@
           <a href="https://teachingremotely.washington.edu/">
             Teaching Remotely
           </a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             Plan and deliver high-quality remote learning
           </div>
         </li>
@@ -107,7 +107,7 @@
           <a href="https://www.uwb.edu/it/teaching">
             UWB Teach Anywhere
           </a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             UW Bothell resources for teaching online
           </div>
         </li>
@@ -115,7 +115,7 @@
           <a href="https://www.tacoma.uw.edu/digital-learning/instructional-continuity">
             UWT Instructional Continuity
           </a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             UW Tacoma resources for teaching online
           </div>
         </li>
@@ -123,7 +123,7 @@
           <a href="https://canvas.uw.edu/courses/1392969">
             Teaching with UW Technologies
           </a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             Learn about technology to support online instruction
           </div>
         </li>
@@ -131,25 +131,25 @@
           <a href="https://teachingremotely.washington.edu/#getHelp">
             Workshops and Office Hours
           </a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             Calendars for workshops and office hours for all three campuses
           </div>
         </li>
         <li class="mb-2">
           <a href="https://washington.zoom.us/">Zoom</a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             Schedule and start online class sessions
           </div>
         </li>
         <li class="mb-2">
           <a href="https://uw.hosted.panopto.com/">Panopto</a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             Lecture capture – record, schedule, and review lectures
           </div>
         </li>
         <li class="mb-2">
           <a href="http://polleverywhere.com/">Poll Everywhere</a>
-          <div class="font-weight-light myuw-text-sm">
+          <div class="fw-light myuw-text-sm">
             Create poll responses for your classes
           </div>
         </li>
