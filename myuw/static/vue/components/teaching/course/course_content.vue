@@ -24,7 +24,7 @@
       <uw-evaluation v-if="section.evaluation" :section="section" />
     </template>
     <template v-if="linkedSections.length > 0" #card-disclosure>
-      <b-collapse
+      <uw-collapse
         :id="`secondary-${section.section_label}`"
         v-model="isOpen"
       >
@@ -36,10 +36,10 @@
           :key="`secondary-${section.section_label}-${i}`"
           :section="linkedSection"
         />
-      </b-collapse>
+      </uw-collapse>
     </template>
     <template v-if="linkedSections.length > 0" #card-footer>
-      <button v-b-toggle="`secondary-${section.section_label}`"
+      <button v-uw-collapse="`secondary-${section.section_label}`"
         type="button"
         class="btn btn-link w-100 p-0 border-0 text-dark"
       >
@@ -61,6 +61,7 @@ import {
 
 import Card from '../../_templates/card.vue';
 import CardPropertyGroup from '../../_templates/card-property-group.vue';
+import Collapse from '../../_templates/collapse.vue';
 import CourseHeader from '../../_common/course/inst/header.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 import FinalExam from './final-exam.vue';
@@ -75,6 +76,7 @@ export default {
   components: {
     'uw-card': Card,
     'uw-card-property-group': CardPropertyGroup,
+    'uw-collapse': Collapse,
     'uw-course-header': CourseHeader,
     'uw-meeting-info': MeetingInfo,
     'uw-final-exam': FinalExam,

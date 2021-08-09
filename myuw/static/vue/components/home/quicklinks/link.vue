@@ -6,7 +6,7 @@
       </a>
       <span v-if="!isEditOpen">
         <button v-if="activeButtons['edit']"
-          v-b-toggle="`${customId}-collapse`"
+          v-uw-collapse="`${customId}-collapse`"
           type="button"
           :aria-label="`Edit link '${link.label}'`"
           title="Edit link"
@@ -49,7 +49,7 @@
       </span>
     </div>
 
-    <b-collapse
+    <uw-collapse
       v-if="activeButtons['edit']"
       :id="`${customId}-collapse`"
       v-model="isEditOpen"
@@ -81,14 +81,14 @@
           />
         </b-form-group>
         <div class="d-flex justify-content-end">
-          <button v-b-toggle="`${customId}-collapse`" class="btn btn-link btn-sm"
+          <button v-uw-collapse="`${customId}-collapse`" class="btn btn-link btn-sm"
             type="reset"
           >Cancel</button>
           <button class="btn btn-primary btn-sm" type="submit"
           >Save</button>
         </div>
       </b-form>
-    </b-collapse>
+    </uw-collapse>
   </li>
 </template>
 
@@ -100,8 +100,12 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
+import Collapse from '../../_templates/collapse.vue';
 
 export default {
+  components: {
+    'uw-collapse': Collapse,
+  },
   props: {
     link: {
       type: Object,

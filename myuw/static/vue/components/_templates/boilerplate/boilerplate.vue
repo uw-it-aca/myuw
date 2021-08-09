@@ -13,9 +13,9 @@
         </div>
       </div>
 
-      <b-collapse id="app_search" class="myuw-search bg-light">
+      <uw-collapse id="app_search" class="myuw-search bg-light">
         <uw-search />
-      </b-collapse>
+      </uw-collapse>
 
       <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
         <div class="container-xl px-3">
@@ -44,7 +44,7 @@
                 title="Open your email"
               ><font-awesome-icon :icon="faEnvelope" class="me-1" />Email</a>
               <a
-                v-b-toggle.app_search
+                v-uw-collapse.app_search
                 href="#"
                 class="ms-2 text-white font-weight-light"
                 title="Open search panel"
@@ -66,7 +66,7 @@
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
           <button
-            v-b-toggle.nav-collapse
+            v-uw-collapse.nav-collapse
             type="button"
             class="btn btn-link btn-sm d-lg-none p-0 border-0 text-white"
             title="Toggle Navigation Menu"
@@ -109,7 +109,7 @@
         <div class="row" :no-gutters="$mq !== 'desktop'">
           <div v-if="!displayHybrid" class="col-lg-2">
             <!-- main sidebar navigation -->
-            <b-collapse
+            <uw-collapse
               id="nav-collapse"
               class="pt-4 text-nowrap myuw-navigation"
               role="navigation"
@@ -210,7 +210,7 @@
                   >
                 </li>
               </div>
-            </b-collapse>
+            </uw-collapse>
             <uw-welcome v-if="$mq === 'desktop'" />
           </div>
           <div v-if="$mq === 'mobile' || $mq === 'tablet'" class="col">
@@ -351,12 +351,14 @@ import axios from 'axios';
 import Search from './search.vue';
 import Welcome from './welcome.vue';
 import Messages from './messages.vue';
+import Collapse from '../collapse.vue';
 
 export default {
   components: {
     'uw-search': Search,
     'uw-messages': Messages,
     'uw-welcome': Welcome,
+    'uw-collapse': Collapse,
   },
   props: {
     logoutUrl: {

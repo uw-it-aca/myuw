@@ -11,7 +11,7 @@
             <div class="flex-grow-1 pr-1">
               <span class="notice-title">
                 <button
-                  v-b-toggle="notice.id_hash"
+                  v-uw-collapse="notice.id_hash"
                   v-no-track-collapse
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
@@ -33,9 +33,9 @@
               </b-badge>
             </div>
           </div>
-          <b-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
+          <uw-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
             <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
-          </b-collapse>
+          </uw-collapse>
         </li>
         <li class="mb-1">
           <covid-vaccine />
@@ -55,11 +55,13 @@
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
 import Covid19 from './covid19.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
     'covid-vaccine': Covid19,
   },
   data() {

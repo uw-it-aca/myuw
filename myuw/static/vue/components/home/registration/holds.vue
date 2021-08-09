@@ -8,7 +8,7 @@
           class="me-1 align-middle text-danger"
           aria-hidden="true"
         />
-        <button v-b-toggle="`${summerCardLabel}holds-collapse-${$meta.uid}`"
+        <button v-uw-collapse="`${summerCardLabel}holds-collapse-${$meta.uid}`"
           type="button"
           class="btn btn-link btn-lg p-0 border-0 text-danger font-weight-bold"
         >
@@ -19,7 +19,7 @@
         </button>
       </template>
     </uw-card-status>
-    <b-collapse
+    <uw-collapse
       :id="`${summerCardLabel}holds-collapse-${$meta.uid}`"
       v-model="collapseOpen"
       class="myuw-reg-holds"
@@ -32,7 +32,7 @@
           <li v-for="(notice, i) in regHoldsNotices" :key="i" v-html="notice.notice_content" />
         </ul>
       </div>
-    </b-collapse>
+    </uw-collapse>
   </div>
 </template>
 
@@ -43,9 +43,11 @@ import {
   faChevronDown,
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
+import Collapse from '../../_templates/collapse.vue';
 
 export default {
   components: {
+    'uw-collapse': Collapse,
     'uw-card-status': CardStatus,
   },
   props: {

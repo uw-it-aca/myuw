@@ -18,7 +18,7 @@
             <ul class="list-unstyled m-0">
               <li class="myuw-text-md">
                 <span v-if="hasUnreadyCourses">{{ unreadyCount }} not ready</span>
-                <button v-b-toggle="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
+                <button v-uw-collapse="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
                   type="button"
                   class="btn btn-link btn-sm ms-1 p-0 border-0 bg-transparent align-baseline"
                 >
@@ -32,7 +32,7 @@
         </div>
       </template>
     </uw-card-status>
-    <b-collapse
+    <uw-collapse
       :id="`${summerCardLabel}inMyPlanUnready-collapse-${$meta.uid}`"
       v-model="collapseOpen"
     >
@@ -43,7 +43,7 @@
           :my-plan-data="myPlanData"
         />
       </div>
-    </b-collapse>
+    </uw-collapse>
   </div>
 
   <!-- no myplan courses -->
@@ -71,6 +71,7 @@
 
 <script>
 import CardStatus from '../../_templates/card-status.vue';
+import Collapse from '../../_templates/collapse.vue';
 import {
   faChevronUp,
   faChevronDown,
@@ -79,6 +80,7 @@ import MyplanCoursesComponent from './myplan-courses.vue';
 
 export default {
   components: {
+    'uw-collapse': Collapse,
     'uw-card-status': CardStatus,
     'uw-myplan-courses': MyplanCoursesComponent,
   },

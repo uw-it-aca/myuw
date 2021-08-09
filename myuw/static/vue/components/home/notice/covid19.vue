@@ -4,7 +4,7 @@
       <div class="flex-grow-1 pr-1">
         <span class="notice-title">
           <button
-            v-b-toggle.covid_notice
+            v-uw-collapse.covid_notice
             v-no-track-collapse
             class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
           >
@@ -23,13 +23,13 @@
         </b-badge>
       </div>
     </div>
-    <b-collapse id="covid_notice" tabindex="0">
+    <uw-collapse id="covid_notice" tabindex="0">
       <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body">
       The University of Washington is requiring all students to be vaccinated
       against COVID-19, with certain exemptions allowed. Please
       <a href="https://uw.edu/studentcovidform">complete the UW Student COVID-19 Vaccine Attestation Form</a> as soon as possible.
       </div>
-    </b-collapse>
+    </uw-collapse>
   </span>
 </template>
 
@@ -38,8 +38,12 @@ import {
   faSyringe,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
+import Collapse from '../../_templates/collapse.vue';
 
 export default {
+  components: {
+    'uw-collapse': Collapse,
+  },
   data: function() {
     return {
       faSyringe,

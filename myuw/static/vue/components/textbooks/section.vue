@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-b-toggle="`books-${section.sln}`" :disabled="!collapsable">
+    <div v-uw-collapse="`books-${section.sln}`" :disabled="!collapsable">
       <h2 class="h5 mb-3">
         <font-awesome-icon
           :icon="faSquareFull"
@@ -15,7 +15,7 @@
         {{ section.books.length > 1 ? "textbooks" : "textbook" }}
       </div>
     </div>
-    <b-collapse
+    <uw-collapse
       v-if="section.hasBooks"
       :id="`books-${section.sln}`"
       v-model="isOpen"
@@ -25,8 +25,8 @@
         :key="`books-${section.sln}-${book.isbn}`"
         :book="book"
       />
-    </b-collapse>
-    <b-collapse
+    </uw-collapse>
+    <uw-collapse
       v-else
       :id="`books-${section.sln}`"
       v-model="isOpen"
@@ -38,7 +38,7 @@
           Order textbooks
         </a>.
       </slot>
-    </b-collapse>
+    </uw-collapse>
 
     <hr v-if="!collapsable">
   </div>
@@ -48,10 +48,12 @@
 import {
   faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
+import Collapse from '../_templates/collapse.vue';
 import Book from './book.vue';
 
 export default {
   components: {
+    'uw-collapse': Collapse,
     'uw-book': Book,
   },
   props: {

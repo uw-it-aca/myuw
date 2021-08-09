@@ -1,6 +1,6 @@
 <template>
   <div v-if="notices.length !== 0" class="border-bottom py-3">
-    <div v-b-toggle="collapseId">
+    <div v-uw-collapse="collapseId">
       <div :class="[title.includes('Critical') ? 'text-danger' : '']" class="d-flex py-1">
         <h2 class="h4 mb-0">
           {{ title }}
@@ -21,7 +21,7 @@
         {{ criticalCount }} Critical
       </span>
     </div>
-    <b-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen" class="mt-3">
+    <uw-collapse :id="collapseId" ref="collapsible" v-model="collapseOpen" class="mt-3">
       <div
         v-for="(notice, i) in sortNotices(notices)"
         :key="i"
@@ -44,7 +44,7 @@
         <h3 class="h6 myuw-font-encode-sans" v-html="notice.notice_title" />
         <div class="myuw-text-md" v-html="notice.notice_body" />
       </div>
-    </b-collapse>
+    </uw-collapse>
   </div>
 </template>
 
@@ -55,8 +55,12 @@ import {
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 import { mapActions } from 'vuex';
+import Collapse from '../_templates/collapse.vue';
 
 export default {
+  components: {
+    'uw-collapse': Collapse,
+  },
   props: {
     notices: {
       type: Array,
