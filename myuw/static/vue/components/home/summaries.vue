@@ -13,7 +13,7 @@
         font-weight-light"
         :class="[
           $mq == 'tablet' || $mq == 'desktop'
-            ? 'border-left text-left'
+            ? 'border-start text-start'
             : 'border-bottom text-center',
         ]"
         href="/academic_calendar/"
@@ -56,7 +56,7 @@
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -74,7 +74,7 @@
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -93,7 +93,7 @@
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -111,7 +111,7 @@
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"
@@ -129,7 +129,7 @@
           font-weight-light text-dark text-nowrap"
           :class="[
             $mq == 'tablet' || $mq == 'desktop'
-              ? 'border-left text-left'
+              ? 'border-start text-start'
               : 'border-none text-center',
           ]"
           href="/accounts/"

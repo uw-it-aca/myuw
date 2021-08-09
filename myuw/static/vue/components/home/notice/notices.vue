@@ -13,7 +13,7 @@
                 <button
                   v-b-toggle="notice.id_hash"
                   v-no-track-collapse
-                  class="btn btn-link p-0 border-0 align-top notice-link text-left myuw-text-md"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   <span
                     v-if="notice.is_critical"

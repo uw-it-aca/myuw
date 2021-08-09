@@ -5,7 +5,7 @@
         <div>
           <button v-b-modal.tourModal
             type="button"
-            class="btn btn-link btn-sm p-0 m-0 text-body text-left myuw-text-xs"
+            class="btn btn-link btn-sm p-0 m-0 text-body text-start myuw-text-xs"
           >
             See MyUW at a glance
           </button>
