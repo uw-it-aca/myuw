@@ -1,5 +1,3 @@
-@use "sass:map";
-
 // enable responsive font sizing
 // $enable-responsive-font-sizes: true;
 
@@ -8,13 +6,12 @@ $enable-negative-margins: true;
 // override the boostrap gutter from 30px to 20px
 $grid-gutter-width: 20px;
 
-// override bootstrap colors
-$theme-colors: (
+// myuw custom colors
+$custom-colors: (
+  // override bootstrap colors
   'danger': #a94442,
   'warning': #f5d300,
-);
 
-$custom-colors: (
    // myuw custom colors
    'purple': #4d307f, // uw purple
    'dark-purple': #452a78, // thin bar
@@ -44,22 +41,20 @@ $custom-colors: (
    'c8a': #473EC5,
 );
 
-// axdd-components + pathways custom colors
-$theme-colors: map-merge($theme-colors, $custom-colors);
-
-
 // override global line height (1.5rem default)
 //$line-height-base: 1.55;
 
 // override all links
 $link-color: #4d66ca; //a11y blue
-$btn-link-color: #4d66ca; //a11y blue
 
 $ribbon-width: 0.4rem;
 
-
+@use "sass:map";
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+
+// bt.$theme-colors + myuw custom colors
+$theme-colors: map.merge($theme-colors, $custom-colors);
 
 // override max width of containers
 $container-max-widths: map.merge($container-max-widths, (xl: 1400px, xxl: 1600px));
