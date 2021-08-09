@@ -10,6 +10,7 @@ import {
 // bootstrap importing
 import "bootstrap";
 
+
 // bootstrap vue plugins
 /*
 import {
@@ -37,8 +38,6 @@ import {
   TooltipPlugin,
 } from 'bootstrap-vue';
 */
-
-import 'bootstrap';
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
