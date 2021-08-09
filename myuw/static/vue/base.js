@@ -38,8 +38,6 @@ import {
 } from 'bootstrap-vue';
 */
 
-import 'bootstrap';
-
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
 import '../css/myuw/global.scss';
