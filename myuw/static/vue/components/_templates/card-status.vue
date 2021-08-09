@@ -4,7 +4,7 @@
       <h3 class="h6 m-0 myuw-font-encode-sans status-label flex-fill">
         <slot name="status-label" />
       </h3>
-      <div class="flex-fill text-right">
+      <div class="flex-fill text-end">
         <span class="h4 myuw-font-encode-sans status-label">
           <slot name="status-value" />
         </span>

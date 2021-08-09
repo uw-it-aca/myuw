@@ -65,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3 col-sm-2 px-0 text-right">
+        <div class="col-3 col-sm-2 px-0 text-end">
           <h4 class="sr-only">
             Section Enrollments:
           </h4>

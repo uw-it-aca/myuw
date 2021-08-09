@@ -28,7 +28,7 @@
                 title="View your profile"
               ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a>
             </div>
-            <div class="col text-right">
+            <div class="col text-end">
               <a
                 v-if="emailError"
                 v-out="'UW email services'"

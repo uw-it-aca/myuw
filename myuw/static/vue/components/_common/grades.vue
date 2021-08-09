@@ -35,7 +35,7 @@
                 {{ section.curriculum_abbr }} {{ section.course_number }}
               </span>
             </div>
-            <div class="w-50 text-right text-nowrap">
+            <div class="w-50 text-end text-nowrap">
               <span
                 v-if="section.grade === 'X'"
                 class="m-0 mr-2 text-muted font-italic myuw-text-md"

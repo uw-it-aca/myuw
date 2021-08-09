@@ -32,7 +32,7 @@
       </div>
 
       <div v-if="showCredits && section.is_primary_section && section.for_credit"
-          :class="`px-1 myuw-text-sm text-right
+          :class="`px-1 myuw-text-sm text-end
           text-uppercase text-c${section.color_id}`"
         >
           {{ section.credits }} CR

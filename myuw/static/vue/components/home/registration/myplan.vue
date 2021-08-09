@@ -14,7 +14,7 @@
       <template #status-content>
         <div class="d-flex mb-2 myuw-text-md">
           <div class="flex-fill w-50"></div>
-          <div class="flex-fill w-50 text-right">
+          <div class="flex-fill w-50 text-end">
             <ul class="list-unstyled m-0">
               <li class="myuw-text-md">
                 <span v-if="hasUnreadyCourses">{{ unreadyCount }} not ready</span>
@@ -56,7 +56,7 @@
       <template #status-content>
         <div class="d-flex mb-2 myuw-text-md">
           <div class="flex-fill w-50"></div>
-          <div class="flex-fill w-50 text-right">
+          <div class="flex-fill w-50 text-end">
             <a
               v-out="'MyPlan Course Search'"
               class="myuw-text-md"

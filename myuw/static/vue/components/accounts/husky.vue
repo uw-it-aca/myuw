@@ -30,7 +30,7 @@
         </li>
       </ul>
 
-      <div class="text-right">
+      <div class="text-end">
         <uw-link-button v-if="hasActionUrl" :href="getActionUrl">
           Manage Husky account
         </uw-link-button>
