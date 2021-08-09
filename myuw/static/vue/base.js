@@ -10,7 +10,9 @@ import {
 // bootstrap importing
 import "bootstrap";
 
+
 // bootstrap vue plugins
+/*
 import {
   AlertPlugin,
   BadgePlugin,
@@ -35,6 +37,7 @@ import {
   VBTogglePlugin,
   TooltipPlugin,
 } from 'bootstrap-vue';
+*/
 
 // myuw custom theming and global styles
 import '../css/myuw/custom.scss';
@@ -51,6 +54,7 @@ Vue.component('font-awesome-layers', FontAwesomeLayers);
 Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
 // bootstrap-vue components as plugins
+/*
 Vue.use(AlertPlugin);
 Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
@@ -73,6 +77,7 @@ Vue.use(VBTogglePlugin);
 Vue.use(ModalPlugin);
 Vue.use(TablePlugin);
 Vue.use(TooltipPlugin);
+*/
 
 // vuex
 Vue.use(Vuex);

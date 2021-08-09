@@ -24,13 +24,9 @@
               </span>
             </div>
             <div>
-              <b-badge
-                v-if="!notice.is_read"
-                variant="warning"
-                class="font-weight-normal notice-status"
+              <span v-if="!notice.is_read" class="badge bg-warning font-weight-normal notice-status"
+                >New</span
               >
-                New
-              </b-badge>
             </div>
           </div>
           <b-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
@@ -69,14 +65,14 @@ export default {
   },
   computed: {
     ...mapState('notices', {
-      allNotices: (state) => state.value,
+      allNotices: state => state.value,
     }),
     hasAnyNotices() {
       return this.allNotices.length > 0;
     },
     notices() {
       return this.allNotices.filter(
-        (notice) =>
+        notice =>
           notice.is_critical ||
           notice.category.includes('Legal') ||
           notice.location_tags.includes('notices_date_sort') ||

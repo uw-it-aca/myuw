@@ -1,16 +1,11 @@
 <template>
   <div class="course-section flex-fill" :style="computedStyles">
-    <div
-      role="group"
-      tabindex="0"
-      class="course-section-inner"
-    >
-      <div :class="`bg-c${meetingData.section.color_id}`"
-           class="p-1 text-center myuw-text-xxs"
-      >
-        <b-badge v-if="meetingData.section.is_teaching" variant="light">
-          <abbr title="Teaching Course">T</abbr>
-        </b-badge>
+    <div role="group" tabindex="0" class="course-section-inner">
+      <div :class="`bg-c${meetingData.section.color_id}`" class="p-1 text-center myuw-text-xxs">
+        <span v-if="meetingData.section.is_teaching" class="badge bg-light"
+          ><abbr title="Teaching Course">T</abbr></span
+        >
+
         <a :href="sectionUrl" class="text-white">
           {{ sectionTitle }}
         </a>
@@ -18,19 +13,18 @@
 
       <div class="p-1 text-center myuw-text-xxs">
         <slot>
-          <a v-if="(
-               !meetingData.section.is_remote &&
-               meetingLocationUrl
-             )"
-             v-out="ariaMeetingLocation"
-             :href="meetingLocationUrl"
+          <a
+            v-if="!meetingData.section.is_remote && meetingLocationUrl"
+            v-out="ariaMeetingLocation"
+            :href="meetingLocationUrl"
           >
             {{ meetingLocation }}
           </a>
           <span v-else>
             {{ meetingLocation }}
           </span>
-          <a v-if="showConfirmLink"
+          <a
+            v-if="showConfirmLink"
             v-out="'Confirm Meeting'"
             :href="confirmationLink"
             class="d-block"
@@ -44,7 +38,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from 'vuex';
 
 export default {
   props: {
@@ -67,7 +61,7 @@ export default {
   },
   computed: {
     ...mapState({
-      netid: (state) => state.user.netid,
+      netid: state => state.user.netid,
     }),
     quarter() {
       return this.titleCaseWord(this.term.quarter);
@@ -77,22 +71,14 @@ export default {
     },
     computedStyles: function() {
       if (this.meetingData.meeting && !this.meetingData.meeting.no_meeting) {
-        const startTime = (
-          this.meetingData.meeting.start_time ||
-          this.meetingData.meeting.start_date
-        );
-        const endTime = (
-          this.meetingData.meeting.end_time ||
-          this.meetingData.meeting.end_date
-        );
+        const startTime =
+          this.meetingData.meeting.start_time || this.meetingData.meeting.start_date;
+        const endTime = this.meetingData.meeting.end_time || this.meetingData.meeting.end_date;
 
         if (startTime && endTime) {
           return {
-            'height': `${(this.getMFM(endTime) - this.getMFM(startTime))*35/30}px`,
-            'margin-top': `${
-              startTime.minute() -
-              (this.meetingData.renderTime.minute() + 1)
-            }px`,
+            height: `${((this.getMFM(endTime) - this.getMFM(startTime)) * 35) / 30}px`,
+            'margin-top': `${startTime.minute() - (this.meetingData.renderTime.minute() + 1)}px`,
           };
         }
       }
@@ -100,20 +86,20 @@ export default {
       return {};
     },
     sectionTitle: function() {
-      return `${this.meetingData.section.curriculum_abbr} ${
-        this.meetingData.section.course_number
-      } ${this.meetingData.section.section_id}`;
+      return `${this.meetingData.section.curriculum_abbr} ${this.meetingData.section.course_number} ${this.meetingData.section.section_id}`;
     },
     sectionUrl: function() {
-      let page = (
-        this.meetingData.section.is_teaching ? 'teaching' : (
-        this.term.isNotCurrentTerm ? 'future_quarters' :'academics'));
-      let tm = this.meetingData.section.is_teaching ?
-        this.year + ',' + this.quarter.toLowerCase() :
-        (this.term.isNotCurrentTerm ? this.term.termLabel : '');
-      return `/${page}/${tm}#${
-        this.meetingData.section.curriculum_abbr.replace(/ /g, '-')
-      }-${
+      let page = this.meetingData.section.is_teaching
+        ? 'teaching'
+        : this.term.isNotCurrentTerm
+        ? 'future_quarters'
+        : 'academics';
+      let tm = this.meetingData.section.is_teaching
+        ? this.year + ',' + this.quarter.toLowerCase()
+        : this.term.isNotCurrentTerm
+        ? this.term.termLabel
+        : '';
+      return `/${page}/${tm}#${this.meetingData.section.curriculum_abbr.replace(/ /g, '-')}-${
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;
     },
@@ -121,16 +107,11 @@ export default {
       if (this.meetingData.section.is_remote) {
         return 'Remote';
       }
-      if (
-        this.meetingData.meeting != null &&
-        this.meetingData.meeting.no_meeting
-      ) {
+      if (this.meetingData.meeting != null && this.meetingData.meeting.no_meeting) {
         return 'No meeting';
       }
       if (!this.isRoomTBD()) {
-        return `${
-          this.meetingData.meeting.building
-        } ${this.meetingData.meeting.room}`;
+        return `${this.meetingData.meeting.building} ${this.meetingData.meeting.room}`;
       }
       return 'Room TBD';
     },
@@ -138,16 +119,11 @@ export default {
       if (this.meetingData.section.is_remote) {
         return 'Location: Remote';
       }
-      if (
-        this.meetingData.meeting != null &&
-        this.meetingData.meeting.no_meeting
-      ) {
+      if (this.meetingData.meeting != null && this.meetingData.meeting.no_meeting) {
         return 'Location: None';
       }
       if (!this.isRoomTBD()) {
-        return `Building: ${
-          this.meetingData.meeting.building
-        } Room: ${this.meetingData.meeting.room}`;
+        return `Building: ${this.meetingData.meeting.building} Room: ${this.meetingData.meeting.room}`;
       }
       return 'Location: Room TBD';
     },
@@ -157,11 +133,7 @@ export default {
         'latitude' in this.meetingData.meeting &&
         'longitude' in this.meetingData.meeting
       ) {
-        return `http://maps.google.com/maps?q=${
-          this.meetingData.meeting.latitude
-        },${this.meetingData.meeting.longitude}+(${
-          this.meetingData.meeting.building
-        })&z=18`;
+        return `http://maps.google.com/maps?q=${this.meetingData.meeting.latitude},${this.meetingData.meeting.longitude}+(${this.meetingData.meeting.building})&z=18`;
       }
       return false;
     },
@@ -174,24 +146,15 @@ export default {
       );
     },
     confirmationLink: function() {
-      return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/${
-        this.netid
-      }/finalexam.asp?${this.quarter}+${
-        this.year
-      }&sln=${this.meetingData.section.sln}`;
+      return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/${this.netid}/finalexam.asp?${this.quarter}+${this.year}&sln=${this.meetingData.section.sln}`;
     },
     ariaLabel: function() {
       let label = '';
 
       if (this.meetingData.meeting) {
-        const startTime = (
-          this.meetingData.meeting.start_time ||
-          this.meetingData.meeting.start_date
-        );
-        const endTime = (
-          this.meetingData.meeting.end_time ||
-          this.meetingData.meeting.end_date
-        );
+        const startTime =
+          this.meetingData.meeting.start_time || this.meetingData.meeting.start_date;
+        const endTime = this.meetingData.meeting.end_time || this.meetingData.meeting.end_date;
 
         label += 'Meeting time: ';
 
@@ -200,9 +163,7 @@ export default {
         }
 
         if (startTime && endTime) {
-          label += `${
-            startTime.format('h:mma')
-          }-${endTime.format('h:mma')}`;
+          label += `${startTime.format('h:mma')}-${endTime.format('h:mma')}`;
         }
 
         if (!this.day && !startTime && !endTime) {
@@ -218,20 +179,18 @@ export default {
   methods: {
     // Returns minutes from midnight
     getMFM(t) {
-      return (t.hour() * 60) + t.minute();
+      return t.hour() * 60 + t.minute();
     },
     isRoomTBD: function() {
       return (
         this.meetingData.meeting == null ||
-        (
-          this.meetingData.meeting.room_tbd ||
+        this.meetingData.meeting.room_tbd ||
           !(
             'building' in this.meetingData.meeting &&
             this.meetingData.meeting.building != '*' &&
             'room' in this.meetingData.meeting &&
             this.meetingData.meeting.room != '*'
           )
-        )
       );
     },
   },
@@ -240,7 +199,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../../css/myuw/variables.scss";
+@import '../../../../css/myuw/variables.scss';
 
 .course-section {
   width: 100%;
@@ -248,7 +207,7 @@ export default {
   overflow: hidden;
 
   .course-section-inner {
-    background-color: lighten(map.get($theme-colors, "beige"), 7%) !important;
+    background-color: lighten(map.get($theme-colors, 'beige'), 7%) !important;
     height: 100%;
     overflow: hidden;
   }
@@ -257,8 +216,10 @@ export default {
     border-right: solid 1px transparent;
   }
 
-  &:focus, &:focus-within, &:hover {
-    z-index:9999;
+  &:focus,
+  &:focus-within,
+  &:hover {
+    z-index: 9999;
     flex-shrink: 0.3 !important;
     outline: 1px solid lightgray;
     border: 0;

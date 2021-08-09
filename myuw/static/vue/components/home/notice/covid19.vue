@@ -15,29 +15,25 @@
         </span>
       </div>
       <div>
-        <b-badge
-          variant="warning"
-          class="font-weight-normal notice-status"
-        >
-          New
-        </b-badge>
+        <span class="badge bg-warning font-weight-normal notice-status">New</span>
       </div>
     </div>
     <b-collapse id="covid_notice" tabindex="0">
       <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body">
-      The University of Washington is requiring all students to be vaccinated
-      against COVID-19, with certain exemptions allowed. Please
-      <a href="https://uw.edu/studentcovidform">complete the UW Student COVID-19 Vaccine Attestation Form</a> as soon as possible.
+        The University of Washington is requiring all students to be vaccinated against COVID-19,
+        with certain exemptions allowed. Please
+        <a href="https://uw.edu/studentcovidform"
+          >complete the UW Student COVID-19 Vaccine Attestation Form</a
+        >
+        as soon as possible.
       </div>
     </b-collapse>
   </span>
 </template>
 
 <script>
-import {
-  faSyringe,
-} from '@fortawesome/free-solid-svg-icons';
-import {mapGetters, mapState, mapActions} from 'vuex';
+import { faSyringe } from '@fortawesome/free-solid-svg-icons';
+import { mapGetters, mapState, mapActions } from 'vuex';
 
 export default {
   data: function() {
@@ -47,10 +43,10 @@ export default {
   },
   computed: {
     ...mapState({
-      student: (state) => state.user.affiliations.student,
+      student: state => state.user.affiliations.student,
     }),
     ...mapState('covid19', {
-      covid19: (state) => state.value,
+      covid19: state => state.value,
     }),
     ...mapGetters('covid19', {
       isReady: 'isReady',
@@ -59,7 +55,7 @@ export default {
     }),
     showCard() {
       return this.student && this.statusCode === 404;
-    }
+    },
   },
   mounted() {
     this.fetch();
