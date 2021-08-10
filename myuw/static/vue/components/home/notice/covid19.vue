@@ -15,7 +15,7 @@
         </span>
       </div>
       <div>
-        <span class="badge bg-warning fw-normal notice-status">
+        <span class="badge bg-warning fw-normal notice-status text-dark p-1">
           New
         </span>
       </div>

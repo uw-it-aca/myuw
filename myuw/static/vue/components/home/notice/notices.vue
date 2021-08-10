@@ -26,7 +26,7 @@
             <div>
               <span
                 v-if="!notice.is_read"
-                class="badge bg-warning fw-normal notice-status text-dark"
+                class="badge bg-warning fw-normal notice-status text-dark p-1"
               >
                 New
               </span>
