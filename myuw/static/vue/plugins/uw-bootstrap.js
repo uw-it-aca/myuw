@@ -15,6 +15,13 @@ export default function(Vue, _) {
       el.setAttribute('aria-controls', target);
       el.setAttribute('role', 'button');
     },
+    update: (el, binding) => {
+      let target = getTarget(binding);
+
+      // update the target attributes
+      el.setAttribute('data-bs-target', `#${CSS.escape(target)}`);
+      el.setAttribute('aria-controls', target);
+    },
   });
 
   Vue.directive('uw-modal', {
@@ -25,6 +32,13 @@ export default function(Vue, _) {
       el.setAttribute('data-bs-toggle', 'modal');
       el.setAttribute('data-bs-target', `#${CSS.escape(target)}`);
       el.setAttribute('role', 'button');
+    },
+
+    update: (el, binding) => {
+      let target = getTarget(binding);
+
+      // update the target attributes
+      el.setAttribute('data-bs-target', `#${CSS.escape(target)}`);
     },
   });
 }
