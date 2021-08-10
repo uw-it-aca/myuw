@@ -33,7 +33,7 @@
             </div>
           </div>
           <uw-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
-            <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
+            <div class="p-3 mt-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
           </uw-collapse>
         </li>
         <li class="mb-1">

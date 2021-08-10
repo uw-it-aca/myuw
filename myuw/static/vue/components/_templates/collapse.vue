@@ -60,7 +60,10 @@ export default {
     },
   },
   mounted() {
-    this.collapse = Collapse.getOrCreateInstance(this.$el, { toggle: false });
+    this.collapse = Collapse.getOrCreateInstance(
+      this.$el,
+      { toggle: this.visible || this.isOpen },
+    );
 
     this.$el.addEventListener(
       'show.bs.collapse',

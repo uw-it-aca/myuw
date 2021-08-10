@@ -1,7 +1,11 @@
 <template>
   <div>
-    <div v-uw-collapse="`books-${section.sln}`" :disabled="!collapsable">
-      <h2 class="h5 mb-3">
+    <button
+      v-uw-collapse="`books-${section.sln}`"
+      :disabled="!collapsable"
+      class="btn btn-link no-btn-disable-style p-0 border-0 align-top text-start myuw-text-md mb-1"
+    >
+      <h2 class="h5">
         <font-awesome-icon
           :icon="faSquareFull"
           :class="`text-c${section.colorId}`"
@@ -14,7 +18,7 @@
         {{ section.books.length }}
         {{ section.books.length > 1 ? "textbooks" : "textbook" }}
       </div>
-    </div>
+    </button>
     <uw-collapse
       v-if="section.hasBooks"
       :id="`books-${section.sln}`"
@@ -87,3 +91,13 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.btn:disabled.no-btn-disable-style {
+  opacity: 1.0;
+}
+
+.btn-link:disabled.no-btn-disable-style {
+  color: black;
+}
+</style>
