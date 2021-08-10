@@ -14,7 +14,7 @@
         {{ section.curriculum }}
         {{ section.courseNumber }}{{ section.sectionId }}
       </h2>
-      <div v-if="collapsable && !isOpen">
+      <div v-if="collapsable && !isOpen" class="mb-3">
         {{ section.books.length }}
         {{ section.books.length > 1 ? "textbooks" : "textbook" }}
       </div>
@@ -34,7 +34,7 @@
       v-else
       :id="`books-${section.sln}`"
       v-model="isOpen"
-      class="myuw-text-md"
+      class="myuw-text-md mb-3"
     >
       <slot name="no-books">
         No textbooks have been ordered for this course.
