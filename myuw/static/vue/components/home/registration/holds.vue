@@ -10,7 +10,7 @@
         />
         <button v-uw-collapse="`${summerCardLabel}holds-collapse-${$meta.uid}`"
           type="button"
-          class="btn btn-link btn-lg p-0 border-0 text-danger font-weight-bold"
+          class="btn btn-link btn-lg p-0 border-0 text-danger fw-bold"
         >
           {{ regHoldsNotices.length }}
           {{ regHoldsNotices.length > 1 ? 'holds' : 'hold' }}
@@ -25,7 +25,7 @@
       class="myuw-reg-holds"
     >
       <div class="bg-danger m-0 p-3 border-0 rounded-0">
-        <h4 class="h6 font-weight-bold">
+        <h4 class="h6 fw-bold">
           Registration and/or Transcript Holds
         </h4>
         <ul class="list-unstyled p-0 m-0 myuw-text-sm myuw-reg-holds-list">

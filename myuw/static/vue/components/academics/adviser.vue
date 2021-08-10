@@ -20,7 +20,7 @@
         >
           <div class="myuw-text-md">
             <div
-              class="font-weight-bold myuw-font-encode-sans"
+              class="fw-bold myuw-font-encode-sans"
             >{{ adviser.program }}</div>
             <div>{{ adviser.full_name }}
               <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span>
@@ -35,7 +35,7 @@
       </ul>
       <hr class="my-0">
       <div class="myuw-text-md mt-3 mb-3"> 
-        <div class="font-weight-bold myuw-font-encode-sans"
+        <div class="fw-bold myuw-font-encode-sans"
         >Departmental and Major Advising Offices</div>
         <a
           href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"

@@ -8,7 +8,7 @@
       <ul v-else class="list-unstyled mb-0 myuw-text-md">
         <li v-for="notice in sortNotices(notices)" :key="notice.id_hash" class="mb-1">
           <div class="d-flex d-sm-inline-flex notice-container">
-            <div class="flex-grow-1 pr-1">
+            <div class="flex-grow-1 pe-1">
               <span class="notice-title">
                 <button
                   v-uw-collapse="notice.id_hash"
@@ -17,7 +17,7 @@
                 >
                   <span
                     v-if="notice.is_critical"
-                    class="d-inline-block font-weight-bold text-danger me-1 notice-critical"
+                    class="d-inline-block fw-bold text-danger me-1 notice-critical"
                     >Critical:</span
                   ><span v-html="notice.notice_title" />
                 </button>
@@ -26,7 +26,7 @@
             <div>
               <span
                 v-if="!notice.is_read"
-                class="badge bg-warning font-weight-normal notice-status"
+                class="badge bg-warning fw-normal notice-status text-dark"
               >
                 New
               </span>

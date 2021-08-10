@@ -9,11 +9,11 @@
     </div>
 
     <div v-else class="d-flex align-items-center">
-      <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
+      <h3 class="h6 m-0 text-dark fw-bold flex-fill">
         Est. Registration Date
       </h3>
       <div class="flex-fill text-end">
-        <div class="font-weight-bold">
+        <div class="fw-bold">
           {{ estRegData.estRegDate.date.format('ddd, MMM D') }}
         </div>
         <span class="myuw-text-md" aria-hidden="true">

@@ -13,7 +13,7 @@
     <template #card-body>
       <p
         v-if="!isAfterGradeSubmissionDeadline"
-        class="text-muted font-italic myuw-text-md"
+        class="text-muted fst-italic myuw-text-md"
       >
         These grades are not official until 11:59 p.m. on
         {{ toFriendlyDate(gradeSubmissionDeadline) }}.
@@ -38,7 +38,7 @@
             <div class="w-50 text-end text-nowrap">
               <span
                 v-if="section.grade === 'X'"
-                class="m-0 me-2 text-muted font-italic myuw-text-md"
+                class="m-0 me-2 text-muted fst-italic myuw-text-md"
               >
                 No grade yet
               </span>

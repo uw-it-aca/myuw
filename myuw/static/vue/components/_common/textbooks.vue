@@ -32,7 +32,7 @@
               {{ section.totalBooks }}
               {{ section.totalBooks > 1 ? 'books' : 'book' }}
             </span>
-            <span class="font-weight-normal font-italic">
+            <span class="fw-normal fst-italic">
                 ({{ section.requiredBooks ? section.requiredBooks : 'not' }}
                 required)
             </span>

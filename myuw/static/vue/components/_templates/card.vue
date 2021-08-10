@@ -24,7 +24,7 @@
         <!-- default card error message -->
         <div class="alert alert-light p-0 m-0 border-0 bg-transparent" role="alert">
           <div class="d-flex text-danger mb-3 myuw-text-md">
-            <div class="pr-2 flex-shrink-1">
+            <div class="pe-2 flex-shrink-1">
               <font-awesome-icon :icon="faExclamationTriangle" />
             </div>
             <div class="w-100">

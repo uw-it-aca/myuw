@@ -77,7 +77,7 @@
               <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
             </button>
           </template>
-          <div v-else class="text-center text-muted font-italic myuw-text-md"
+          <div v-else class="text-center text-muted fst-italic myuw-text-md"
                style="line-height:1.5rem"
           >
             No instructor information available

@@ -55,7 +55,7 @@
 
           <template v-else-if="meeting.start_time && meeting.end_time">
             <td :headers="`days-${meeting.id}`"
-              class="p-0 text-start text-nowrap pr-3"
+              class="p-0 text-start text-nowrap pe-3"
             >
               <uw-meeting-days :meeting="meeting" />
             </td>

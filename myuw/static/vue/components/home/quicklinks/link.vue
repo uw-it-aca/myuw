@@ -1,7 +1,7 @@
 <template>
   <li class="mb-1 myuw-quicklinks">
     <div class="d-flex">
-      <a :href="link.url" class="me-auto pr-1">
+      <a :href="link.url" class="me-auto pe-1">
         {{ link.label }}
       </a>
       <span v-if="!isEditOpen">
@@ -57,7 +57,7 @@
       @open="populateCustomLink"
     >
       <b-form @submit="updateLink" @reset="onReset">
-        <h3 class="h6 font-weight-bold">
+        <h3 class="h6 fw-bold">
           Edit Quick Link
         </h3>
         <b-form-group label="URL" :label-for="`${customId}-edit-url`">

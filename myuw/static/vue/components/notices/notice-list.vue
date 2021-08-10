@@ -32,7 +32,7 @@
         <div class="d-flex">
           <div class="text-muted mb-2 myuw-text-md">{{ notice.category }}</div>
           <div class="ms-auto myuw-text-md">
-            <span v-if="!notice.is_read" class="badge badge-warning font-weight-normal"
+            <span v-if="!notice.is_read" class="badge badge-warning fw-normal"
             >New</span>
             <font-awesome-icon
               v-if="notice.is_critical"

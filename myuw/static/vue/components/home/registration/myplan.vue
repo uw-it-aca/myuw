@@ -6,7 +6,7 @@
       <template #status-label>In MyPlan</template>
       <template #status-value>
         <ul class="list-unstyled m-0">
-          <li class="font-weight-bold">
+          <li class="fw-bold">
             {{ readyCount }} {{ readyCount == 1 ? "course" : "courses" }} ready
           </li>
         </ul>

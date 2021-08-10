@@ -73,7 +73,7 @@
                     <a
                       v-out="'MyGrad Payment Portal'"
                       href="https://webapps.grad.uw.edu/mgp-stu/uwnetid/default.aspx"
-                      class="font-weight-normal"
+                      class="fw-normal"
                     >Pay Your Fee To Confirm</a>
                   </span>
                   <span v-else>

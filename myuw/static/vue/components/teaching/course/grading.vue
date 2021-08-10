@@ -90,9 +90,9 @@
           An error occurred with
           <a href="https://gradepage.uw.edu/">Gradepage</a>. Please try again later.
         </div>
-        <div class="myuw-text-sm font-italic">
+        <div class="myuw-text-sm fst-italic">
           Grade submission closes
-          <strong class="font-weight-bold">
+          <strong class="fw-bold">
             {{section.gradingPeriod.deadlineFmt}}
           </strong>
           <span v-if="!section.deadline_in_24_hours">
@@ -151,7 +151,7 @@
             ({{section.gradingPeriod.openRelative}})
           </span>
         </div>
-        <div class="myuw-text-sm font-italic">
+        <div class="myuw-text-sm fst-italic">
           Grade submission closes
           {{section.gradingPeriod.deadlineFmt}}
         </div>
