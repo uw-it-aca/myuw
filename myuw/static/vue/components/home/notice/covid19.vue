@@ -15,12 +15,9 @@
         </span>
       </div>
       <div>
-        <b-badge
-          variant="warning"
-          class="font-weight-normal notice-status"
-        >
+        <span class="badge bg-warning font-weight-normal notice-status">
           New
-        </b-badge>
+        </span>
       </div>
     </div>
     <uw-collapse id="covid_notice" tabindex="0">

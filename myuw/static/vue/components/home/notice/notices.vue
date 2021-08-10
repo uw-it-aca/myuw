@@ -24,13 +24,12 @@
               </span>
             </div>
             <div>
-              <b-badge
+              <span
                 v-if="!notice.is_read"
-                variant="warning"
-                class="font-weight-normal notice-status"
+                class="badge bg-warning font-weight-normal notice-status"
               >
                 New
-              </b-badge>
+              </span>
             </div>
           </div>
           <uw-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">

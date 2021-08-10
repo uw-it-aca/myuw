@@ -277,7 +277,7 @@
         </div>
       </div>
     </footer>
-    <b-modal
+    <uw-modal
       id="tourModal"
       ref="tourModal"
       dialog-class="myuw-modal"
@@ -326,7 +326,7 @@
           Close
         </button>
       </template>
-    </b-modal>
+    </uw-modal>
   </div>
 </template>
 
@@ -352,6 +352,7 @@ import Search from './search.vue';
 import Welcome from './welcome.vue';
 import Messages from './messages.vue';
 import Collapse from '../collapse.vue';
+import Modal from '../modal.vue';
 
 export default {
   components: {
@@ -359,6 +360,7 @@ export default {
     'uw-messages': Messages,
     'uw-welcome': Welcome,
     'uw-collapse': Collapse,
+    'uw-modal': Modal,
   },
   props: {
     logoutUrl: {

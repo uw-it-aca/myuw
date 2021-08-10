@@ -1,5 +1,5 @@
 <template>
-  <b-modal
+  <uw-modal
     :id="`emaillist_request_${sln}`"
     ref="request-modal"
     size="lg"
@@ -84,7 +84,7 @@
       <button type="button" class="btn btn-light"
         @click="$refs['request-modal'].hide()">Close</button>
     </template>
-  </b-modal>
+  </uw-modal>
 </template>
 
 <script>
@@ -93,12 +93,14 @@ import {
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapState, mapActions} from 'vuex';
+import Modal from '../../../../_templates/modal.vue';
 import EmailAddList from './add_list.vue';
 import RequestJointList from './request/joint.vue';
 import RequestSingleList from './request/list.vue';
 
 export default {
   components: {
+    'uw-modal': Modal,
     'uw-email-add-list': EmailAddList,
     'uw-request-joint': RequestJointList,
     'uw-request-single-list': RequestSingleList,
