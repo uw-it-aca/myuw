@@ -107,24 +107,26 @@ export default {
   },
   watch: {
     isOpen(newIsOpen) {
-      console.log(newIsOpen, this.$el.classList.contains('show'))
-      if (newIsOpen && !this.$el.classList.contains('show')) {
-        this.modal.show();
-      } else {
-        this.modal.hide();
-      }
-      if (newIsOpen) {
-        this.$emit('open');
-        this.$emit('show');
-      } else {
-        this.$emit('close');
-        this.$emit('hide');
+      if (this.isOpenBT != newIsOpen) {
+        if (newIsOpen) {
+          this.modal.show();
+        } else {
+          this.modal.hide();
+        }
       }
     },
     isOpenBT(newIsOpenBT, oldIsOpenBT) {
       if (newIsOpenBT == oldIsOpenBT) return;
 
       this.$emit('toggled', newIsOpenBT);
+
+      if (newIsOpenBT) {
+        this.$emit('open');
+        this.$emit('show');
+      } else {
+        this.$emit('close');
+        this.$emit('hide');
+      }
     }
   },
   mounted() {
@@ -147,7 +149,7 @@ export default {
   },
   methods: {
     hide() {
-      this.$emit('toggled', false);
+      this.modal.hide();
     },
   }
 };
