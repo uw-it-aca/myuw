@@ -6,7 +6,7 @@
       section.email_list.section_list.list_exists
     ">
       <span v-if="section.email_list.has_multiple_sections">
-        <a v-b-modal="`emaillist_view_${section.sln}`">
+        <a v-uw-modal="`emaillist_view_${section.sln}`">
           Manage mailing lists
         </a>
         <uw-email-view-model :email-list="section.email_list" :sln="section.sln" />
@@ -46,13 +46,13 @@
     <span v-else>
       <span v-if="section.email_list.has_secondary_lists">
         <a
-          v-b-modal="`emaillist_view_${section.sln}`">
+          v-uw-modal="`emaillist_view_${section.sln}`">
           Manage mailing lists
         </a>
         <uw-email-view-model :email-list="section.email_list" :sln="section.sln" />
       </span>
       <span v-else>
-        <a v-b-modal="`emaillist_request_${section.sln}`">
+        <a v-uw-modal="`emaillist_request_${section.sln}`">
           Create mailing lists
         </a>
         <uw-email-request-model :email-list="section.email_list" :sln="section.sln" />

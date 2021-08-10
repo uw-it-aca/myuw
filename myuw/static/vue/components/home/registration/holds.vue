@@ -8,9 +8,9 @@
           class="me-1 align-middle text-danger"
           aria-hidden="true"
         />
-        <button v-b-toggle="`${summerCardLabel}holds-collapse-${$meta.uid}`"
+        <button v-uw-collapse="`${summerCardLabel}holds-collapse-${$meta.uid}`"
           type="button"
-          class="btn btn-link btn-lg p-0 border-0 text-danger font-weight-bold"
+          class="btn btn-link btn-lg p-0 border-0 text-danger fw-bold"
         >
           {{ regHoldsNotices.length }}
           {{ regHoldsNotices.length > 1 ? 'holds' : 'hold' }}
@@ -19,20 +19,20 @@
         </button>
       </template>
     </uw-card-status>
-    <b-collapse
+    <uw-collapse
       :id="`${summerCardLabel}holds-collapse-${$meta.uid}`"
       v-model="collapseOpen"
       class="myuw-reg-holds"
     >
       <div class="bg-danger m-0 p-3 border-0 rounded-0">
-        <h4 class="h6 font-weight-bold">
+        <h4 class="h6 fw-bold">
           Registration and/or Transcript Holds
         </h4>
         <ul class="list-unstyled p-0 m-0 myuw-text-sm myuw-reg-holds-list">
           <li v-for="(notice, i) in regHoldsNotices" :key="i" v-html="notice.notice_content" />
         </ul>
       </div>
-    </b-collapse>
+    </uw-collapse>
   </div>
 </template>
 
@@ -43,9 +43,11 @@ import {
   faChevronDown,
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
+import Collapse from '../../_templates/collapse.vue';
 
 export default {
   components: {
+    'uw-collapse': Collapse,
     'uw-card-status': CardStatus,
   },
   props: {

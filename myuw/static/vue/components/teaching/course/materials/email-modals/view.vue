@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-modal
+    <uw-modal
       :id="`emaillist_view_${sln}`"
       ref="view-modal"
       size="lg"
@@ -157,7 +157,7 @@
         <button type="button" class="btn btn-light"
           @click="$refs['view-modal'].hide()">Close</button>
       </template>
-    </b-modal>
+    </uw-modal>
   </div>
 </template>
 
@@ -166,10 +166,12 @@ import {
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapState, mapActions} from 'vuex';
+import Modal from '../../../../_templates/modal.vue';
 import EmailAddList from './add_list.vue';
 
 export default {
   components: {
+    'uw-modal': Modal,
     'uw-email-add-list': EmailAddList,
   },
   props: {

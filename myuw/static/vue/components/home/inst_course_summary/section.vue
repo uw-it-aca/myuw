@@ -80,7 +80,7 @@
 
     <template v-if="getLinkedSections(section).length > 0">
       <div :class="$mq !== 'mobile' ? 'ms-3' : ''">
-        <button v-b-toggle="`linked-sections-${section.id}`"
+        <button v-uw-collapse="`linked-sections-${section.id}`"
           type="button"
           class="btn btn-link p-0 text-dark myuw-text-md my-2"
         >
@@ -90,7 +90,7 @@
           <font-awesome-icon v-else :icon="faChevronUp" />
         </button>
 
-        <b-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
+        <uw-collapse :id="`linked-sections-${section.id}`" v-model="isOpen">
           <h3 class="myuw-text-md myuw-font-encode-sans pt-3">
             Linked Sections
           </h3>
@@ -99,7 +99,7 @@
             :key="`secondary-${section.id}-${j}`"
             :section="sec"
           />
-        </b-collapse>
+        </uw-collapse>
       </div>
     </template>
     <hr>
@@ -113,12 +113,14 @@ import {
   faChevronDown,
   faSquareFull,
 } from '@fortawesome/free-solid-svg-icons';
+import Collapse from '../../_templates/collapse.vue';
 import LinkedSection from '../../_common/course/inst/linked-section.vue';
 import Enrollment from '../../_common/course/inst/enrollment.vue';
 import MeetingInfo from '../../_common/course/meeting/schedule.vue';
 
 export default {
   components: {
+    'uw-collapse': Collapse,
     'uw-linked-section': LinkedSection,
     'uw-meeting-info': MeetingInfo,
     'uw-enrollment': Enrollment,

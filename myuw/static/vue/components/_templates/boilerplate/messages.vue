@@ -16,10 +16,13 @@
       </template>
       <div v-if="displayOnboardMessage" class="px-3 py-2">
         New here?
-        <a v-b-modal.tourModal class="text-white"><u>See MyUW at a glance</u></a>
-        <button type="button" aria-label="Close"
-          class="close text-white"
-          @click="hideOnboardMessage"><span aria-hidden="true">×</span></button>
+        <a v-uw-modal.tourModal class="text-white"><u>See MyUW at a glance</u></a>
+        <button
+          type="button"
+          class="btn-close btn-close-white align-top float-end"
+          aria-label="Close"
+          @click="hideOnboardMessage"
+        />
       </div>
     </div>
   </div>

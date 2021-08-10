@@ -65,7 +65,7 @@
     </template>
     <!-- v-if condition is common with #card-footer -->
     <template v-if="hiddenEvents.length > 0" #card-disclosure>
-      <b-collapse
+      <uw-collapse
         id="hidden_events_collapse"
         v-model="isOpen"
       >
@@ -89,10 +89,10 @@
             calendar.
           </p>
         </div>
-      </b-collapse>
+      </uw-collapse>
     </template>
     <template v-else-if="calLinks.length > 0" #card-disclosure>
-      <b-collapse
+      <uw-collapse
         id="hidden_events_collapse"
         v-model="isOpen"
       >
@@ -111,10 +111,10 @@
             {{ calLinks[0].title }}
           </a> calendar.
         </div>
-      </b-collapse>
+      </uw-collapse>
     </template>
     <template v-if="hiddenEvents.length > 0" #card-footer>
-      <button v-b-toggle.hidden_events_collapse
+      <button v-uw-collapse.hidden_events_collapse
         type="button"
         class="btn btn-link btn-sm w-100 p-0 border-0 text-dark"
       >
@@ -134,11 +134,13 @@ import {
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
 import ListEvents from './list-events.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
     'uw-list-events': ListEvents,
   },
   data: function() {

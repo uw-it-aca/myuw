@@ -12,7 +12,7 @@
     <template #card-body>
       <div v-if="holdsReady" class="alert alert-info" role="alert">
         <div class="d-flex text-default m-0 myuw-text-md">
-          <div class="pr-2 flex-shrink-1">
+          <div class="pe-2 flex-shrink-1">
             <font-awesome-icon :icon="faInfoCircle" />
           </div>
           <div class="w-100">

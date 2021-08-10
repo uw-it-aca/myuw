@@ -2,10 +2,10 @@
   <div>
     <div class="alert alert-dark-beige myuw-textbook-covid" role="alert">
       <div class="d-flex text-dark-beige m-0 myuw-text-md">
-        <div class="pr-2 flex-shrink-1">
+        <div class="pe-2 flex-shrink-1">
           <font-awesome-icon :icon="faExclamationTriangle" />
         </div>
-        <div class="w-100 font-weight-bold">
+        <div class="w-100 fw-bold">
           University Book Store Autumn 2020 Update
         </div>
       </div>

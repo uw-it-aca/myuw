@@ -30,16 +30,16 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <b-collapse
+          <uw-collapse
             :id="`course-details-${index}`"
             v-model="isOpen"
           >
             <uw-course-details :section="section"
               display-heading display-instructor class="pt-3"/>
-          </b-collapse>
+          </uw-collapse>
         </template>
         <template v-else>
-          <b-collapse
+          <uw-collapse
             :id="`instructors-collapse-${index}`"
             v-model="isOpen"
           >
@@ -48,7 +48,7 @@
               :instructors="section.instructors"
               class="pt-3"
             />
-          </b-collapse>
+          </uw-collapse>
         </template>
       </template>
 
@@ -56,7 +56,7 @@
         <template
           v-if="section.is_ended || getSectionEval(section.index).length > 0"
         >
-          <button v-b-toggle="`course-details-${index}`"
+          <button v-uw-collapse="`course-details-${index}`"
             type="button"
             class="btn btn-link w-100 p-0 border-0 text-dark"
           >
@@ -68,7 +68,7 @@
 
         <template v-else>
           <template v-if="section.instructors.length > 0">
-            <button v-b-toggle="`instructors-collapse-${index}`"
+            <button v-uw-collapse="`instructors-collapse-${index}`"
               type="button"
               class="btn btn-link w-100 p-0 border-0 text-dark"
             >
@@ -77,7 +77,7 @@
               <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
             </button>
           </template>
-          <div v-else class="text-center text-muted font-italic myuw-text-md"
+          <div v-else class="text-center text-muted fst-italic myuw-text-md"
                style="line-height:1.5rem"
           >
             No instructor information available
@@ -96,6 +96,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState} from 'vuex';
 import Card from '../../../_templates/card.vue';
+import Collapse from '../../../_templates/collapse.vue';
 import EvalInfo from './course-eval.vue';
 import CourseDetails from './course-details.vue';
 import Instructors from './instructors.vue';
@@ -104,6 +105,7 @@ import CourseHeader from './header.vue';
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
     'uw-course-details': CourseDetails,
     'uw-course-eval': EvalInfo,
     'uw-instructors': Instructors,

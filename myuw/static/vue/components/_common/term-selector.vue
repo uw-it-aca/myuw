@@ -5,7 +5,7 @@
     pills
     :nav-wrapper-class="['mb-3', $mq === 'mobile' ? 'px-2' : 'p-0']"
     active-nav-item-class="bg-transparent rounded-0 myuw-border-bottom
-      border-dark text-body font-weight-bold"
+      border-dark text-body fw-bold"
     @activate-tab="displayedTabChange"
   >
     <!--

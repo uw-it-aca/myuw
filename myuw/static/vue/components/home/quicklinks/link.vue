@@ -1,12 +1,12 @@
 <template>
   <li class="mb-1 myuw-quicklinks">
     <div class="d-flex">
-      <a :href="link.url" class="me-auto pr-1">
+      <a :href="link.url" class="me-auto pe-1">
         {{ link.label }}
       </a>
       <span v-if="!isEditOpen">
         <button v-if="activeButtons['edit']"
-          v-b-toggle="`${customId}-collapse`"
+          v-uw-collapse="`${customId}-collapse`"
           type="button"
           :aria-label="`Edit link '${link.label}'`"
           title="Edit link"
@@ -49,7 +49,7 @@
       </span>
     </div>
 
-    <b-collapse
+    <uw-collapse
       v-if="activeButtons['edit']"
       :id="`${customId}-collapse`"
       v-model="isEditOpen"
@@ -57,7 +57,7 @@
       @open="populateCustomLink"
     >
       <b-form @submit="updateLink" @reset="onReset">
-        <h3 class="h6 font-weight-bold">
+        <h3 class="h6 fw-bold">
           Edit Quick Link
         </h3>
         <b-form-group label="URL" :label-for="`${customId}-edit-url`">
@@ -81,14 +81,14 @@
           />
         </b-form-group>
         <div class="d-flex justify-content-end">
-          <button v-b-toggle="`${customId}-collapse`" class="btn btn-link btn-sm"
+          <button v-uw-collapse="`${customId}-collapse`" class="btn btn-link btn-sm"
             type="reset"
           >Cancel</button>
           <button class="btn btn-primary btn-sm" type="submit"
           >Save</button>
         </div>
       </b-form>
-    </b-collapse>
+    </uw-collapse>
   </li>
 </template>
 
@@ -100,8 +100,12 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapActions} from 'vuex';
+import Collapse from '../../_templates/collapse.vue';
 
 export default {
+  components: {
+    'uw-collapse': Collapse,
+  },
   props: {
     link: {
       type: Object,

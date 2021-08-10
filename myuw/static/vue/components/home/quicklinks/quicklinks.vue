@@ -42,13 +42,13 @@
           Not seeing the links you're looking for?
           <span v-if="popularLinks.length">
             Select from
-            <button v-b-toggle.popular_qlinks
+            <button v-uw-collapse.popular_qlinks
               type="button"
               :disabled="disableActions"
               class="btn btn-link btn-sm d-inline-block align-bottom p-0 border-0"
             >popular links</button>, or
           </span>
-          <button v-b-toggle.custom_qlinks
+          <button v-uw-collapse.custom_qlinks
             type="button"
             :disabled="disableActions"
             class="btn btn-link btn-sm d-inline-block align-bottom p-0 border-0"
@@ -59,7 +59,7 @@
         </span>
       </p>
 
-      <b-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
+      <uw-collapse id="popular_qlinks" class="bg-light mx-n3 p-3 mt-3">
         <h3 class="h6">
           Popular Links
         </h3>
@@ -69,9 +69,9 @@
             :link="link" :buttons="['save']" :custom-id="`popular-${index}`"
           />
         </ul>
-      </b-collapse>
+      </uw-collapse>
 
-      <b-collapse
+      <uw-collapse
         id="custom_qlinks"
         role="form"
         class="bg-light mx-n3 p-3 mt-3"
@@ -111,14 +111,14 @@
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <button v-b-toggle.custom_qlinks
+            <button v-uw-collapse.custom_qlinks
               type="reset" class="btn btn-link btn-sm"
             >Cancel</button>
             <button type="submit" class="btn btn-primary btn-sm"
             >Add</button>
           </div>
         </b-form>
-      </b-collapse>
+      </uw-collapse>
     </template>
   </uw-card>
 </template>
@@ -127,12 +127,14 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 
 import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
 import Link from './link.vue';
 import CovidLinks from './covid-links.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
     'uw-link': Link,
     'uw-covid-links': CovidLinks,
   },

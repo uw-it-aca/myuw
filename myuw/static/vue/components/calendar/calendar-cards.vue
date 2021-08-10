@@ -10,7 +10,7 @@
         <template #card-body>
           <ul class="list-unstyled mb-0 myuw-text-md">
             <li v-for="(event, j) in eventTerm.events" :key="j" class="mb-2">
-              <div class="font-weight-bold">{{ formatDateRange(event.start, event.end) }}</div>
+              <div class="fw-bold">{{ formatDateRange(event.start, event.end) }}</div>
               <font-awesome-icon
                 v-if="event.myuw_categories.breaks"
                 :icon="faCircle"
@@ -28,7 +28,7 @@
         <a v-out="eventTerm.events[0].label" :href="eventTerm.events[0].event_url">
           {{ eventTerm.events[0].summary }}
         </a>
-        <div class="font-weight-bold">
+        <div class="fw-bold">
           {{ formatDateRange(eventTerm.events[0].start, eventTerm.events[0].end) }}
         </div>
       </div>

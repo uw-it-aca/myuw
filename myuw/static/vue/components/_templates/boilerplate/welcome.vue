@@ -3,7 +3,7 @@
     <ul class="m-0 list-unstyled myuw-text-xs text-wrap">
       <li class="mb-1">
         <div>
-          <button v-b-modal.tourModal
+          <button v-uw-modal.tourModal
             type="button"
             class="btn btn-link btn-sm p-0 m-0 text-body text-start myuw-text-xs"
           >

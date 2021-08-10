@@ -13,7 +13,7 @@
     <template #card-body>
       <p
         v-if="!isAfterGradeSubmissionDeadline"
-        class="text-muted font-italic myuw-text-md"
+        class="text-muted fst-italic myuw-text-md"
       >
         These grades are not official until 11:59 p.m. on
         {{ toFriendlyDate(gradeSubmissionDeadline) }}.
@@ -38,7 +38,7 @@
             <div class="w-50 text-end text-nowrap">
               <span
                 v-if="section.grade === 'X'"
-                class="m-0 me-2 text-muted font-italic myuw-text-md"
+                class="m-0 me-2 text-muted fst-italic myuw-text-md"
               >
                 No grade yet
               </span>
@@ -51,7 +51,7 @@
       </ul>
     </template>
     <template #card-disclosure>
-      <b-collapse
+      <uw-collapse
         id="grade_card_collapse"
         v-model="isOpen"
       >
@@ -77,10 +77,10 @@
             </a>
           </li>
         </ul>
-      </b-collapse>
+      </uw-collapse>
     </template>
     <template #card-footer>
-      <button v-b-toggle.grade_card_collapse
+      <button v-uw-collapse.grade_card_collapse
         type="button" class="btn btn-link btn-sm w-100 p-0 text-dark"
         title='Additional grade resources'
       >
@@ -100,10 +100,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../_templates/card.vue';
+import Collapse from '../_templates/collapse.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
   },
   data: function() {
     return {

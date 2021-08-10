@@ -37,7 +37,7 @@
               class="mb-2"
             >
               <strong>{{ titleCaseName(instructor.instructor_name) }}</strong>
-              <div v-if="hasTitle(instructor)" class="font-italic text-muted">
+              <div v-if="hasTitle(instructor)" class="fst-italic text-muted">
                 {{ instructor.instructor_title }}
               </div>
             </li>
@@ -55,7 +55,7 @@
                 {{ titleCaseName(instructor.instructor_name) }}
               </a>
               <div v-if="hasTitle(instructor)"
-                   class="font-italic text-muted mb-2"
+                   class="fst-italic text-muted mb-2"
               >
                 {{ instructor.instructor_title }}
               </div>

@@ -8,7 +8,7 @@
         <li v-for="(instructor, i) in instructors" :key="i" class="mb-2">
           <strong>{{ instructor.display_name }}</strong>
           <div v-if="instructorPrimaryTitle(instructor)"
-               class="text-muted font-italic"
+               class="text-muted fst-italic"
           >
             {{ instructorPrimaryTitle(instructor) }}
           </div>

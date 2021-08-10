@@ -8,34 +8,33 @@
       <ul v-else class="list-unstyled mb-0 myuw-text-md">
         <li v-for="notice in sortNotices(notices)" :key="notice.id_hash" class="mb-1">
           <div class="d-flex d-sm-inline-flex notice-container">
-            <div class="flex-grow-1 pr-1">
+            <div class="flex-grow-1 pe-1">
               <span class="notice-title">
                 <button
-                  v-b-toggle="notice.id_hash"
+                  v-uw-collapse="notice.id_hash"
                   v-no-track-collapse
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   <span
                     v-if="notice.is_critical"
-                    class="d-inline-block font-weight-bold text-danger me-1 notice-critical"
+                    class="d-inline-block fw-bold text-danger me-1 notice-critical"
                     >Critical:</span
                   ><span v-html="notice.notice_title" />
                 </button>
               </span>
             </div>
             <div>
-              <b-badge
+              <span
                 v-if="!notice.is_read"
-                variant="warning"
-                class="font-weight-normal notice-status"
+                class="badge bg-warning fw-normal notice-status text-dark"
               >
                 New
-              </b-badge>
+              </span>
             </div>
           </div>
-          <b-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
+          <uw-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
             <div class="p-3 mt-2 mb-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
-          </b-collapse>
+          </uw-collapse>
         </li>
         <li class="mb-1">
           <covid-vaccine />
@@ -55,11 +54,13 @@
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
 import Covid19 from './covid19.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
     'covid-vaccine': Covid19,
   },
   data() {

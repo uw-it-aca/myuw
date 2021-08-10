@@ -27,7 +27,7 @@
       :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
       :title="`Add Class Website for ${section.label}`"
     >Add</a>
-    <div class="myuw-text-sm font-italic">
+    <div class="myuw-text-sm fst-italic">
       A link to the course Canvas is automatically shown to students.
       Changes to the course website may take up to one hour to display
       on MyUW.

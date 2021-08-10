@@ -14,7 +14,7 @@
               v-inner="articleTeaserTitle"
               :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
               :href="expLink"
-              class="d-block h-100 px-3 py-4 pr-5"
+              class="d-block h-100 px-3 py-4 pe-5"
             >
               <h3 class="myuw-teaser-title">
                 <span class="bg-white h5 myuw-font-encode-sans px-2 py-1">{{

@@ -13,9 +13,9 @@
         </div>
       </div>
 
-      <b-collapse id="app_search" class="myuw-search bg-light">
+      <uw-collapse id="app_search" class="myuw-search bg-light">
         <uw-search />
-      </b-collapse>
+      </uw-collapse>
 
       <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
         <div class="container-xl px-3">
@@ -24,7 +24,7 @@
               <a
                 v-inner="'MyUW profile page'"
                 href="/profile/"
-                class="text-white font-weight-light"
+                class="text-white fw-light"
                 title="View your profile"
               ><font-awesome-icon :icon="faUser" class="me-1" />{{ netid }}</a>
             </div>
@@ -33,26 +33,26 @@
                 v-if="emailError"
                 v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
-                class="ms-2 text-danger font-weight-light"
+                class="ms-2 text-danger fw-light"
                 title="UW email services"
               ><font-awesome-icon :icon="faExclamationTriangle" class="me-1" />Email error</a>
               <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
-                class="ms-2 text-white font-weight-light"
+                class="ms-2 text-white fw-light"
                 title="Open your email"
               ><font-awesome-icon :icon="faEnvelope" class="me-1" />Email</a>
               <a
-                v-b-toggle.app_search
+                v-uw-collapse.app_search
                 href="#"
-                class="ms-2 text-white font-weight-light"
+                class="ms-2 text-white fw-light"
                 title="Open search panel"
               ><font-awesome-icon :icon="faSearch" flip="horizontal" class="me-1" />Search</a>
               <a
                 v-inner="'Sign Out'"
                 href="/logout/"
-                class="d-none d-lg-inline ms-2 text-white font-weight-light"
+                class="d-none d-lg-inline ms-2 text-white fw-light"
                 title="Sign out of MyUW"
               ><font-awesome-icon :icon="faSignOutAlt" class="me-1" />Sign Out</a>
             </div>
@@ -66,7 +66,7 @@
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
           <button
-            v-b-toggle.nav-collapse
+            v-uw-collapse.nav-collapse
             type="button"
             class="btn btn-link btn-sm d-lg-none p-0 border-0 text-white"
             title="Toggle Navigation Menu"
@@ -109,7 +109,7 @@
         <div class="row" :no-gutters="$mq !== 'desktop'">
           <div v-if="!displayHybrid" class="col-lg-2">
             <!-- main sidebar navigation -->
-            <b-collapse
+            <uw-collapse
               id="nav-collapse"
               class="pt-4 text-nowrap myuw-navigation"
               role="navigation"
@@ -210,7 +210,7 @@
                   >
                 </li>
               </div>
-            </b-collapse>
+            </uw-collapse>
             <uw-welcome v-if="$mq === 'desktop'" />
           </div>
           <div v-if="$mq === 'mobile' || $mq === 'tablet'" class="col">
@@ -272,12 +272,12 @@
           </li>
         </ul>
 
-        <div class="font-weight-light" style="color:#aaa">
+        <div class="fw-light" style="color:#aaa">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
       </div>
     </footer>
-    <b-modal
+    <uw-modal
       id="tourModal"
       ref="tourModal"
       dialog-class="myuw-modal"
@@ -326,7 +326,7 @@
           Close
         </button>
       </template>
-    </b-modal>
+    </uw-modal>
   </div>
 </template>
 
@@ -351,12 +351,16 @@ import axios from 'axios';
 import Search from './search.vue';
 import Welcome from './welcome.vue';
 import Messages from './messages.vue';
+import Collapse from '../collapse.vue';
+import Modal from '../modal.vue';
 
 export default {
   components: {
     'uw-search': Search,
     'uw-messages': Messages,
     'uw-welcome': Welcome,
+    'uw-collapse': Collapse,
+    'uw-modal': Modal,
   },
   props: {
     logoutUrl: {

@@ -127,6 +127,7 @@ import Observer from './plugins/observer';
 import TrackLink from './plugins/tracklink';
 import TrackCollapse from './plugins/trackcollapse';
 import Metadata from './plugins/metadata';
+import UwBootstrap from './plugins/uw-bootstrap';
 
 Vue.use(Logger, {
   gtag: {
@@ -149,6 +150,7 @@ Vue.use(Observer);
 Vue.use(TrackLink);
 Vue.use(TrackCollapse);
 Vue.use(Metadata);
+Vue.use(UwBootstrap);
 
 Vue.config.devtools = process.env.VUE_DEVTOOLS === "True";
 

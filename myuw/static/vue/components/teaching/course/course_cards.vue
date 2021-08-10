@@ -9,7 +9,7 @@
         :schedule="instSchedule"
         :section="section"
       />
-      <b-collapse
+      <uw-collapse
         v-else
         :id="`collapse-${section.section_label}`"
         :visible="section.mini_card"
@@ -18,7 +18,7 @@
           :schedule="instSchedule"
           :section="section"
         />
-      </b-collapse>
+      </uw-collapse>
     </div>
   </div>
   <uw-card
@@ -42,12 +42,14 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
 import CourseCard from './course_content.vue';
 import MiniCourseCard from './mini-card.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
     'uw-course-card': CourseCard,
     'uw-mini-course-card': MiniCourseCard,
   },
