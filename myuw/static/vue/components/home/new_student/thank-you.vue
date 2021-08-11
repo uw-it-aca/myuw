@@ -95,7 +95,7 @@ export default {
 .myuw-thank-you {
   // override card background color using $success background
   ::v-deep .card-body {
-    background-color: lighten($success, 57%) !important;
+    background-color: lighten($success, 65%) !important;
   }
   .myuw-thank-you-notices {
     div { margin-bottom: 1rem;
