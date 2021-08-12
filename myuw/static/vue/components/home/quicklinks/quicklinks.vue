@@ -76,32 +76,37 @@
         role="form"
         class="bg-light mx-n3 p-3 mt-3"
       >
-        <b-form class="myuw-text-md" @submit="addLink" @reset="onReset">
+        <form class="myuw-text-md" @submit="addLink" @reset="onReset">
           <h3 class="h6">
             Add your link to Quick Links
           </h3>
-          <b-form-group label="URL" label-for="myuw-custom-qlink">
-            <b-form-input
+          <div class="mb-3">
+            <label for="myuw-custom-qlink" class="form-label">
+              URL
+            </label>
+            <input
               id="myuw-custom-qlink"
               v-model="customLink.url"
+              class="form-control"
               type="url"
               placeholder="https://www.washington.edu"
               required
               size="sm"
             />
-          </b-form-group>
-          <b-form-group
-            label="Link name (optional)"
-            label-for="myuw-custom-qlink-label"
-          >
-            <b-form-input
+          </div>
+          <div class="mb-3">
+            <label for="myuw-custom-qlink-label" class="form-label">
+              Link name (optional)
+            </label>
+            <input
               id="myuw-custom-qlink-label"
               v-model="customLink.label"
+              class="form-control"
               type="text"
               placeholder="UW Homepage"
               size="sm"
             />
-          </b-form-group>
+          </div>
           <div>
             <div v-if="isAddErrored" id="error_saving">
               <span class="text-danger">Error saving</span>
@@ -111,13 +116,17 @@
             </div>
           </div>
           <div class="d-flex justify-content-end">
-            <button v-uw-collapse.custom_qlinks
-              type="reset" class="btn btn-link btn-sm"
+            <button
+              v-uw-collapse.custom_qlinks
+              type="reset"
+              class="btn btn-link btn-sm"
             >Cancel</button>
-            <button type="submit" class="btn btn-primary btn-sm"
+            <button
+              type="submit"
+              class="btn btn-primary btn-sm"
             >Add</button>
           </div>
-        </b-form>
+        </form>
       </uw-collapse>
     </template>
   </uw-card>

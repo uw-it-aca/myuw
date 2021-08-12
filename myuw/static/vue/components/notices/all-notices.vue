@@ -130,7 +130,7 @@ export default {
         return this.$refs.notice_list &&
               this.$refs.notice_list.every((n) => {
                 if (n.$refs.collapsible) {
-                  return n.$refs.collapsible.show;
+                  return n.$refs.collapsible.isOpen;
                 }
                 return true;
               });
@@ -151,14 +151,14 @@ export default {
     expandAll() {
       this.$refs.notice_list.forEach((n) => {
         if (n.$refs.collapsible) {
-          n.$refs.collapsible.show = true;
+          n.$refs.collapsible.collapse.show();
         }
       });
     },
     collapseAll() {
       this.$refs.notice_list.forEach((n) => {
         if (n.$refs.collapsible) {
-          n.$refs.collapsible.show = false;
+          n.$refs.collapsible.collapse.hide();
         }
       });
     },

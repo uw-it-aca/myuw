@@ -69,12 +69,21 @@
       <div v-else class="w-100">
         <div class="day-column">
           <div class="mobile-column-selector">
-            <b-form-select
+            <select
               v-model="mobile['current']"
               title="Select the Day of Week:"
               :options="mobile['options']"
               class="fw-bold myuw-text-md"
-            />
+            >
+              <option
+                v-for="(option, i) in mobile['options']"
+                :key="i"
+                :value="option.value"
+                :disabled="option.disabled"
+              >
+                {{option.text}}
+              </option>
+            </select>
           </div>
           <div v-for="(time, i) in timeSlots" :key="i" class="day-cell">
             <div v-if="(
@@ -510,7 +519,7 @@ $cell-height: 35px;
 
   .day-cell {
     height: $cell-height;
-    border-start: 1px solid darken($table-border-color, 5%);
+    border-left: 1px solid darken($table-border-color, 5%);
 
     &:nth-child(even) {
       border-top: 1px solid darken($table-border-color, 5%);
@@ -535,7 +544,7 @@ $cell-height: 35px;
 
   &:last-child {
     .day-cell {
-      border-end: 1px solid darken($table-border-color, 5%);
+      border-right: 1px solid darken($table-border-color, 5%);
     }
   }
 }

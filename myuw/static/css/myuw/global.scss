@@ -80,11 +80,11 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   }
 
   &.myuw-ribbon-left {
-    border-start-width: $ribbon-width;
+    border-left-width: $ribbon-width;
   }
 
   &.myuw-ribbon-right {
-    border-end-width: $ribbon-width;
+    border-right-width: $ribbon-width;
   }
 
   &.myuw-ribbon-bottom {
