@@ -5,31 +5,30 @@
   >
     <div class="row justify-content-md-center">
       <div class="col-md-7">
-        <b-form @submit.prevent="performSearch">
-          <b-input-group>
+        <form @submit.prevent="performSearch">
+          <div class="input-group">
             <label
               class="visually-hidden" for="search_nav"
             >Search the UW website</label>
-            <b-form-input
+            <input
               id="search_nav"
               v-model="searchText"
+              class="form-control"
               size="lg"
               type="text"
               placeholder="Search the UW website"
             />
-            <b-input-group-append>
-              <button class="btn btn-purple rounded-0" type="submit"
-              >
-                <font-awesome-icon
-                  :icon="faSearch"
-                  flip="horizontal"
-                  class="me-1"
-                />
-                <span class="visually-hidden">Search</span>
-              </button>
-            </b-input-group-append>
-          </b-input-group>
-        </b-form>
+            <button class="btn btn-purple rounded-0" type="submit"
+            >
+              <font-awesome-icon
+                :icon="faSearch"
+                flip="horizontal"
+                class="me-1"
+              />
+              <span class="visually-hidden">Search</span>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

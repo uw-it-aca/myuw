@@ -56,30 +56,35 @@
       class="bg-light mx-n3 p-3 my-1"
       @open="populateCustomLink"
     >
-      <b-form @submit="updateLink" @reset="onReset">
+      <form @submit="updateLink" @reset="onReset">
         <h3 class="h6 fw-bold">
           Edit Quick Link
         </h3>
-        <b-form-group label="URL" :label-for="`${customId}-edit-url`">
-          <b-form-input
+        <div class="mb-3">
+          <label :for="`${customId}-edit-url`" class="form-label">
+            URL
+          </label>
+          <input
             :id="`${customId}-edit-url`"
             v-model="currentCustomLink.url"
+            class="form-control"
             type="url"
             required
             size="sm"
           />
-        </b-form-group>
-        <b-form-group
-          label="Link name (optional)"
-          :label-for="`${customId}-edit-label`"
-        >
-          <b-form-input
+        </div>
+        <div class="mb-3">
+          <label :for="`${customId}-edit-label`" class="form-label">
+            Link name (optional)
+          </label>
+          <input
             :id="`${customId}-edit-label`"
             v-model="currentCustomLink.label"
+            class="form-control"
             type="text"
             size="sm"
           />
-        </b-form-group>
+        </div>
         <div class="d-flex justify-content-end">
           <button v-uw-collapse="`${customId}-collapse`" class="btn btn-link btn-sm"
             type="reset"
@@ -87,7 +92,7 @@
           <button class="btn btn-primary btn-sm" type="submit"
           >Save</button>
         </div>
-      </b-form>
+      </form>
     </uw-collapse>
   </li>
 </template>

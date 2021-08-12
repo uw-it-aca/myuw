@@ -1,5 +1,5 @@
 <template>
-  <b-tabs
+  <uw-tabs
     v-model="selectedTab"
     lazy
     pills
@@ -12,7 +12,7 @@
       Only mounts the tab when it is selected, so the data should be
       fetched on mount for the components in here
      -->
-    <b-tab
+    <uw-tab
       v-for="(tab, i) in displayedTabs"
       :key="i"
       title-item-class="text-nowrap myuw-text-lg me-2 mb-1"
@@ -22,8 +22,8 @@
         {{ tab.quarter }} '{{ tab.year % 100 }}
       </template>
       <slot :tab="tab" />
-    </b-tab>
-    <b-tab
+    </uw-tab>
+    <uw-tab
       v-if="dropdownTabs.length > 1"
       :title-item-class="{
         'ms-auto': $mq !== 'mobile',
@@ -34,27 +34,40 @@
       title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
     >
       <template #title>
-        <div class="form-select-parent">
-          <b-form-select
+        <div class="select-parent">
+          <select
             v-model="selectedOption"
-            plain
-            :options="dropdownTabsSelectable"
             @change="optionTabChange"
-          />
+          >
+            <option
+              v-for="(option, i) in dropdownTabsSelectable"
+              :key="i"
+              :value="option.value"
+              :disabled="option.disabled"
+            >
+              {{option.text}}
+            </option>
+          </select>
           <font-awesome-icon :icon="faChevronDown" class="down-arrow"/>
         </div>
       </template>
       <slot :tab="dropdownTabs[selectedOption]" />
-    </b-tab>
-  </b-tabs>
+    </uw-tab>
+  </uw-tabs>
 </template>
 
 <script>
 import {
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
+import Tabs from '../_templates/tabs/tabs.vue';
+import Tab from '../_templates/tabs/tab.vue';
 
 export default {
+  components: {
+    'uw-tabs': Tabs,
+    'uw-tab': Tab,
+  },
   model: {
     prop: 'selectedTerm',
     event: 'selected'
@@ -166,8 +179,8 @@ export default {
         }
       }
     },
-    optionTabChange(index) {
-      this.selectedTermInner = this.dropdownTabs[index].label;
+    optionTabChange() {
+      this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
       this.selectedTab = 3;
     },
   }
@@ -180,24 +193,22 @@ select {
     display: none;
   }
 
-  &.form-control {
-    -webkit-appearance: none; 
-    appearance: none;
-    background: initial;
-    border: initial;
-    border-radius: inherit;
-    padding: 0;
-    font-size: inherit;
-    text-transform: inherit;
-    color: inherit;
-    cursor: pointer;
+  -webkit-appearance: none; 
+  appearance: none;
+  background: initial;
+  border: initial;
+  border-radius: inherit;
+  padding: 0;
+  font-size: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
 
-    padding-left: 0.5rem;
-    padding-right: 2.0rem;
-  }
+  padding-left: 0.5rem;
+  padding-right: 2.0rem;
 }
 
-.form-select-parent {
+.select-parent {
   position: relative;
 
   .down-arrow {
