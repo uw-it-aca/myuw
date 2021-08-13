@@ -9,7 +9,7 @@
             class="form-check-input"
             type="checkbox"
             :title="buttonTitle(showJointCourse)"
-          >
+          />
           <label class="form-check-label" for="toggle_joint">
             Joint Course Students
           </label>
@@ -20,8 +20,7 @@
           Download (CSV)
         </a>
 
-        <a
-          href="javascript:window.print()" class="">
+        <a href="javascript:window.print()" class="">
           <font-awesome-icon :icon="faPrint" /> Print
         </a>
       </div>
@@ -31,29 +30,21 @@
       title="Views"
       pills
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
-      active-nav-item-class="bg-transparent rounded-0
-      myuw-border-bottom border-dark text-body fw-bold"
+      active-nav-item-class="bg-transparent rounded-0 text-body fw-bold"
     >
       <uw-tab
         title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-        title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
+        title-link-class="rounded-0 px-2 py-1 h-100 text-body"
         active
       >
-        <template #title>
-          <font-awesome-icon :icon="faTable" /> Table
-        </template>
-        <uw-table-view
-          :section="section"
-          :show-joint-course-stud="showJointCourse"
-        />
+        <template #title> <font-awesome-icon :icon="faTable" /> Table </template>
+        <uw-table-view :section="section" :show-joint-course-stud="showJointCourse" />
       </uw-tab>
       <uw-tab
         title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-        title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
+        title-link-class="rounded-0 px-2 py-1 h-100 text-body"
       >
-        <template #title>
-          <font-awesome-icon :icon="faUserCircle" /> Photo Grid
-        </template>
+        <template #title> <font-awesome-icon :icon="faUserCircle" /> Photo Grid </template>
         <uw-photo-list
           :registrations="section.registrations"
           :show-joint-course-stud="showJointCourse"
@@ -64,12 +55,7 @@
 </template>
 
 <script>
-import {
-  faDownload,
-  faPrint,
-  faTable,
-  faUserCircle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faPrint, faTable, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '../../_templates/tabs/tabs.vue';
 import Tab from '../../_templates/tabs/tab.vue';
 import TableView from './table-view.vue';
@@ -99,9 +85,9 @@ export default {
   },
   methods: {
     buttonTitle(showJointCourse) {
-      return (showJointCourse ?
-        'To hide students from joint courses' :
-        'To show students from joint courses');
+      return showJointCourse
+        ? 'To hide students from joint courses'
+        : 'To show students from joint courses';
     },
     downloadCL() {
       this.downloadClassList(this.section);

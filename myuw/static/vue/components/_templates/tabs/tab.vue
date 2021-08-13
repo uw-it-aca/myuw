@@ -1,7 +1,7 @@
 <template>
   <li class="nav-item" :class="titleItemClass" role="presentation">
     <button
-      class="nav-link"
+      class="nav-link text-nowrap text-uppercase"
       :class="titleLinkClass"
       data-bs-toggle="tab"
       data-bs-target="#home"
