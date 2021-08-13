@@ -18,13 +18,13 @@
               v-model="tabIndex" pills
               nav-wrapper-class="mb-3 p-0"
               active-nav-item-class="bg-transparent rounded-0
-              myuw-border-bottom border-dark text-body fw-bold"
+              text-body fw-bold"
       >
         <uw-tab v-for="(period, i) in periods" :key="i" :title="period.title"
                title-item-class="text-nowrap text-uppercase
                myuw-text-xs me-2 mb-1"
                title-link-class="rounded-0 px-2 py-1 h-100
-               text-body myuw-border-bottom"
+               text-body"
                :active="period.id == activePeriod.id"
         >
           <!-- tab content -->

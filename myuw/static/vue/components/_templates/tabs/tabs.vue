@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="nav" :class="navClassesComputed" role="tablist">
+    <ul class="nav myuw-tabs" :class="navClassesComputed" role="tablist">
       <slot />
     </ul>
     <slot-content :node="tabSlot" />
@@ -73,3 +73,14 @@ export default {
   // }
 }
 </script>
+
+<style lang="scss">
+.myuw-tabs {
+  .nav-link { border-bottom: 0.3125rem solid #ddd; }
+  .nav-link.active { 
+    background: transparent;
+    font-weight: bold; 
+    border-bottom-color: #000;
+  }
+}
+</style>

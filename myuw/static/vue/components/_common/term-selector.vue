@@ -4,7 +4,7 @@
     lazy
     pills
     :nav-wrapper-class="['mb-3', $mq === 'mobile' ? 'px-2' : 'p-0']"
-    active-nav-item-class="bg-transparent rounded-0 myuw-border-bottom
+    active-nav-item-class="bg-transparent rounded-0
       border-dark text-body fw-bold"
     @activate-tab="displayedTabChange"
   >
@@ -16,7 +16,7 @@
       v-for="(tab, i) in displayedTabs"
       :key="i"
       title-item-class="text-nowrap myuw-text-lg me-2 mb-1"
-      title-link-class="rounded-0 px-2 py-1 h-100 text-body myuw-border-bottom"
+      title-link-class="rounded-0 px-2 py-1 h-100 text-body"
     >
       <template #title>
         {{ tab.quarter }} '{{ tab.year % 100 }}
@@ -31,7 +31,7 @@
         'myuw-text-lg': true,
         'mb-1': true,
       }"
-      title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-border-bottom myuw-font-open-sans"
+      title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-font-open-sans"
     >
       <template #title>
         <div class="select-parent">
