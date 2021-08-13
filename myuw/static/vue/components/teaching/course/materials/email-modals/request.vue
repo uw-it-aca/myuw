@@ -21,15 +21,15 @@
     </template>
     <template v-else-if="!listView && !addError">
       <div v-if="!emailList.has_lists && emailList.has_joint">
-        <b-alert variant="danger" :show="disableActions">
+        <div class="alert alert-danger" role="alert" :v-if="disableActions">
           This action is disabled while overriding as another user.
-        </b-alert>
+        </div>
         <uw-request-joint v-model="formData" :email-list="emailList" />
       </div>
       <div v-else-if="!emailList.has_lists && !emailList.section_list.list_exists">
-        <b-alert variant="danger" :show="disableActions">
+        <div class="alert alert-danger" role="alert" :v-if="disableActions">
           This action is disabled while overriding as another user.
-        </b-alert>
+        </div>
         <uw-request-single-list
           v-model="formData"
           :email-list="emailList"
@@ -41,9 +41,9 @@
       <uw-email-add-list v-model="formData" :email-list="emailList" />
     </template>
     <template v-else>
-      <b-alert show variant="danger">
+      <div class="alert alert-danger" role="alert">
         An error has occurred. Please try again in a few minutes.
-      </b-alert>
+      </div>
     </template>
 
     <template v-if="emailList.request_sent || requestSuccess" #modal-footer>

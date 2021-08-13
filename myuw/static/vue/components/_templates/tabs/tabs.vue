@@ -39,11 +39,13 @@ export default {
   data() {
     return {
       ready: [],
+      rerender: false,
     };
   },
   computed: {
     tabSlot() {
-      if (this.$slots.default.length == this.ready.length) {
+      this.rerender;
+      if (this.$slots.default.filter((i) => i.tag?.includes('uw-tab')).length == this.ready.length) {
         return this.$slots
           .default[this.tabIndex]
           .componentInstance
@@ -64,9 +66,9 @@ export default {
       return wrapperClasses;
     }
   },
-  // mounted() {
-  //   console.log(this.$slots.default[this.tabIndex]);
-  // },
+  mounted() {
+    console.log(this.$slots);
+  },
   // render: function(createElement) {
   //   let elm = createElement('div', this.$slots.default);
   //   return elm;

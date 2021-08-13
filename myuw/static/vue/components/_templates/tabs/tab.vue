@@ -8,7 +8,7 @@
       type="button"
       role="tab"
       aria-controls="home"
-      aria-selected="true"
+      :aria-selected="selected"
     >
       <slot name="title">{{title}}</slot>
     </button>
@@ -30,6 +30,13 @@ export default {
       type: String,
       default: '',
     },
+  },
+  data() {
+    return {
+      selected: false,
+      index: -1,
+      parentId: '',
+    };
   },
   mounted() {
     this.$parent.ready.push(true);
