@@ -145,7 +145,7 @@ export default {
         );
       },
       orient_after: (state) => {
-        // ewstudentclist_advorientregdatec
+        // newstudentclist_advorientregdatec
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_orient_after'),
         );
