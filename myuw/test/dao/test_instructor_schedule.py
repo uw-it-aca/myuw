@@ -59,13 +59,13 @@ class TestInstructorSchedule(TestCase):
             request, term=get_next_quarter(request))
         self.assertEqual(len(schedule.sections), 0)
 
-        # remote learning MUWM-4989
+        # remote learning
         request = get_request_with_user('billsea',
                                         get_request_with_date("2020-10-01"))
         schedule = get_instructor_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 5)
-        self.assertFalse(schedule.sections[0].is_remote)
-        self.assertFalse(schedule.sections[3].is_remote)
+        self.assertTrue(schedule.sections[0].is_remote)
+        self.assertTrue(schedule.sections[3].is_remote)
 
     def test_specific_summer_term(self):
         request = get_request_with_user(

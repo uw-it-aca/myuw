@@ -216,7 +216,6 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(response.status_code, 403)
 
     def test_remote_courese(self):
-        # MUWM-4728, MUWM-4989
         response = self.get_current_schedule_res('eight',
                                                  '2020-10-01 00:00:01')
         self.assertEquals(response.status_code, 200)
@@ -226,16 +225,16 @@ class TestSchedule(MyuwApiTest):
         self.assertEquals(len(data["sections"]), 3)
 
         ee = self.get_section(data, 'E E', '233', 'A')
-        self.assertFalse(ee["is_remote"])
-        self.assertFalse(ee["meetings"][0]["is_remote"])
-        self.assertFalse(ee["final_exam"]["is_remote"])
+        self.assertTrue(ee["is_remote"])
+        self.assertTrue(ee["meetings"][0]["is_remote"])
+        self.assertTrue(ee["final_exam"]["is_remote"])
 
         chem = self.get_section(data, 'CHEM', '321', 'A')
-        self.assertFalse(chem["is_remote"])
-        self.assertFalse(chem["meetings"][0]["is_remote"])
-        self.assertFalse(chem["final_exam"]["is_remote"])
+        self.assertTrue(chem["is_remote"])
+        self.assertTrue(chem["meetings"][0]["is_remote"])
+        self.assertTrue(chem["final_exam"]["is_remote"])
 
         chem = self.get_section(data, 'CHEM', '321', 'AA')
-        self.assertFalse(chem["is_remote"])
-        self.assertFalse(chem["meetings"][0]["is_remote"])
-        self.assertFalse(chem["final_exam"]["is_remote"])
+        self.assertTrue(chem["is_remote"])
+        self.assertTrue(chem["meetings"][0]["is_remote"])
+        self.assertTrue(chem["final_exam"]["is_remote"])
