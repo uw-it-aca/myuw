@@ -18,10 +18,7 @@
 
       <div class="p-1 text-center myuw-text-xxs">
         <slot>
-          <a v-if="(
-               !meetingData.section.is_remote &&
-               meetingLocationUrl
-             )"
+          <a v-if="meetingLocationUrl"
              v-out="ariaMeetingLocation"
              :href="meetingLocationUrl"
           >
@@ -121,10 +118,8 @@ export default {
       if (this.meetingData.section.is_remote) {
         return 'Remote';
       }
-      if (
-        this.meetingData.meeting != null &&
-        this.meetingData.meeting.no_meeting
-      ) {
+      if (this.meetingData.meeting != null &&
+          this.meetingData.meeting.no_meeting) {
         return 'No meeting';
       }
       if (!this.isRoomTBD()) {
@@ -153,6 +148,7 @@ export default {
     },
     meetingLocationUrl: function() {
       if (
+        !this.meetingData.section.is_remote &&
         !this.isRoomTBD() &&
         'latitude' in this.meetingData.meeting &&
         'longitude' in this.meetingData.meeting
