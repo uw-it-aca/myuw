@@ -13,8 +13,8 @@
     <template v-else #card-body>
       <uw-tabs
         pills
+        bottom-border
         nav-wrapper-class="mb-3 p-0"
-        active-nav-item-class="bg-transparent rounded-0 text-body"
       >
         <uw-tab
           title="Seattle"

@@ -3,9 +3,8 @@
     v-model="selectedTab"
     lazy
     pills
+    bottom-border
     :nav-wrapper-class="['mb-3', $mq === 'mobile' ? 'px-2' : 'p-0']"
-    active-nav-item-class="bg-transparent rounded-0
-      border-dark text-body fw-bold"
     @activate-tab="displayedTabChange"
   >
     <!--

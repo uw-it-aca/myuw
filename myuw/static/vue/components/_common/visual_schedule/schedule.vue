@@ -15,10 +15,8 @@
     <template #card-body>
       <!-- schedule tabs -->
       <uw-tabs v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
-              v-model="tabIndex" pills
+              v-model="tabIndex" pills bottom-border
               nav-wrapper-class="mb-3 p-0"
-              active-nav-item-class="bg-transparent rounded-0
-              text-body fw-bold"
       >
         <uw-tab v-for="(period, i) in periods" :key="i" :title="period.title"
                title-item-class="text-nowrap text-uppercase
