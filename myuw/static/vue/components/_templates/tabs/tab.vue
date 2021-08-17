@@ -1,21 +1,11 @@
 <template>
-  <li class="nav-item" :class="titleItemClass" role="presentation">
-    <button
-      class="nav-link text-nowrap text-uppercase"
-      :class="titleLinkClass"
-      data-bs-toggle="tab"
-      data-bs-target="#home"
-      type="button"
-      role="tab"
-      aria-controls="home"
-      :aria-selected="selected"
-    >
-      <slot name="title">{{title}}</slot>
-    </button>
-  </li>
+  <div ref="tab" class="tab-pane fade" role="tabpanel" aria-labelledby="todo">
+    <slot v-if="render" />
+  </div>
 </template>
 
 <script>
+
 export default {
   props: {
     title: {
@@ -23,23 +13,28 @@ export default {
       default: '',
     },
     titleItemClass: {
-      type: String,
+      type: [String, Array, Object],
       default: '',
     },
     titleLinkClass: {
-      type: String,
+      type: [String, Array, Object],
       default: '',
     },
   },
   data() {
     return {
-      selected: false,
-      index: -1,
-      parentId: '',
+      render: false,
     };
   },
   mounted() {
-    this.$parent.ready.push(true);
+    this.$set(this.$parent.actualTabs, this.$refs.tab.id, this);
+    if (this.$refs.tab.classList.contains('active')) { this.render = true };
+    var tabEl = document
+      .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${this.$refs.tab.id}"]`);
+    let setRenderTrue = () => { this.render = true; }
+    tabEl.addEventListener('show.bs.tab', function (_event) {
+      setRenderTrue();
+    });
   }
 }
 </script>
