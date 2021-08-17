@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="!isReady || hasRegisterNotices"
+    v-if="!isReady || student && hasRegisterNotices"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -138,6 +138,7 @@ export default {
   },
   computed: {
     ...mapState({
+      student: (state) => state.user.affiliations.student,
       no_orient: (state) => {
         // newstudentclist_advorientregdateb
         return state.notices.value.filter((notice) =>

@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="showThankYou(notices)"
+    v-if="!isReady || student && showThankYou(notices)"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -40,6 +40,7 @@ export default {
   },
   computed: {
     ...mapState({
+      student: (state) => state.user.affiliations.student,
       ty_notices: (state) => {
         return state.notices.value.filter(
             (notice) => notice.location_tags.includes('checklist_thankyou'),

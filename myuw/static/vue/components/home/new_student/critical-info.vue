@@ -1,7 +1,8 @@
 <template>
   <uw-card
     v-if="!isReady || student && hasRegisterNotices"
-    :loaded="isReady" :errored="isErrored"
+    :loaded="isReady"
+    :errored="isErrored"
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
