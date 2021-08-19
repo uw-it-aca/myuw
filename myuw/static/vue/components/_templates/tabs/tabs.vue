@@ -81,18 +81,21 @@ export default {
             .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${id}"]`);
           tabEl.addEventListener('show.bs.tab', (event) => {
             let selected = this.decodeId(event.target.attributes['data-bs-target'].value);
-            // TODO: do i only want a one way sync?
-            this.$emit('selected', selected.index);
             let oldSelected = this.decodeId(event.relatedTarget.attributes['data-bs-target'].value);
             this.$emit('activate-tab', selected.index, oldSelected.index, event);
+            this.$nextTick(() => {
+              if (!event.defaultPrevented) {
+                this.$emit('selected', selected.index);
+              }
+            });
           });
         }
       });
-    }
+    },
   },
   mounted() {
     document.addEventListener('keydown', (keyEvt) => {
-      if (document.activeElement.getAttribute('data-bs-target').substr(1) in this.actualTabs) {
+      if (document.activeElement?.getAttribute('data-bs-target')?.substr(1) in this.actualTabs) {
         let current = this.tabIndex;
         if (keyEvt.key === 'ArrowLeft' && current > 0) {
           current -= 1;
@@ -151,8 +154,6 @@ export default {
               'nav-link': true,
               'text-nowrap': true,
               'text-uppercase': true,
-              // TODO: This causes the whole thing to rerender when the
-              // tab index is changed
               'active': this.tabIndex === i,
               ...this.classesToClassDict(tab.componentOptions.propsData.titleLinkClass),
             },
@@ -162,8 +163,6 @@ export default {
               'type': 'button',
               'role': 'tab',
               'aria-controls': `${tab.data.attrs.id}`,
-              // TODO: This causes the whole thing to rerender when the
-              // tab index is changed
               'aria-selected': this.tabIndex === i,
               'tabindex': this.tabIndex === i ? 0 : -1,
             },
@@ -225,16 +224,19 @@ export default {
         class: this.navWrapperClassesComputed,
       },
       [ul],
-    )
-    // TODO: This causes the whole thing to rerender when the
-    // tab index is changed
-    tabNodes[this.tabIndex].data.class = {
-      show: true,
-      active: true,
-    };
+    );
 
-    let tabs = createElement('div', { class: { 'tab-content': true } }, this.$slots.default);
-    let elm = createElement('div', [ulWrapper, tabs]);
+    let tabs = null;
+    if (this.firstRender) {
+      tabNodes[this.tabIndex].data.class = {
+        show: true,
+        active: true,
+      };
+      tabs = [createElement('div', { class: { 'tab-content': true } }, this.$slots.default)];
+    } else {
+      tabs = [createElement('div', { class: { 'tab-content': true } }, tabNodes)];
+    }
+    let elm = createElement('div', [ulWrapper].concat(tabs));
 
     this.firstRender = false;
     return elm;

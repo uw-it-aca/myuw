@@ -31,9 +31,12 @@ export default {
     if (this.$refs.tab.classList.contains('active')) { this.render = true };
     var tabEl = document
       .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${this.$refs.tab.id}"]`);
-    let setRenderTrue = () => { this.render = true; }
-    tabEl.addEventListener('show.bs.tab', function (_event) {
-      setRenderTrue();
+    tabEl.addEventListener('show.bs.tab', (event) => {
+      this.$nextTick(() => {
+        if (!event.defaultPrevented) {
+          this.render = true;
+        }
+      });
     });
   }
 }
