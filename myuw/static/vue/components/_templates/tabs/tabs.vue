@@ -1,5 +1,6 @@
 <script>
-import Tab from './tab.vue';
+import { Tab } from 'bootstrap';
+import UwTab from './tab.vue';
 
 export default {
   model: {
@@ -43,7 +44,7 @@ export default {
       // TODO: not used right now
       firstRender: true,
       // Unique identifier for a tab component
-      tab_cid: Tab['_Ctor'][0].cid,
+      tab_cid: UwTab['_Ctor'][0].cid,
     };
   },
   computed: {
@@ -74,21 +75,39 @@ export default {
   },
   watch: {
     actualTabs(actualTabs) {
-      Object.entries(actualTabs).forEach(([id, tab]) => {
+      Object.entries(actualTabs).forEach(([id, tab], i) => {
         if (!(id in this.eventHandlers)) {
           var tabEl = document
             .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${id}"]`);
           tabEl.addEventListener('show.bs.tab', (event) => {
             let selected = this.decodeId(event.target.attributes['data-bs-target'].value);
             // TODO: do i only want a one way sync?
-            console.log(selected);
-            // this.$emit('selected', selected.index);
+            this.$emit('selected', selected.index);
             let oldSelected = this.decodeId(event.relatedTarget.attributes['data-bs-target'].value);
             this.$emit('activate-tab', selected.index, oldSelected.index, event);
           });
         }
       });
     }
+  },
+  mounted() {
+    document.addEventListener('keydown', (keyEvt) => {
+      if (document.activeElement.getAttribute('data-bs-target').substr(1) in this.actualTabs) {
+        let current = this.tabIndex;
+        if (keyEvt.key === 'ArrowLeft' && current > 0) {
+          current -= 1;
+        } else if (keyEvt.key === 'ArrowRight' && current < Object.keys(this.actualTabs).length - 1) {
+          current += 1;
+        }
+        if (current != this.tabIndex) {
+          var tabEl = document
+            .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${this.genId(current, this.$meta.uid)}"]`);
+          tabEl.focus();
+          let tab = Tab.getOrCreateInstance(tabEl);
+          tab.show();
+        }
+      }
+    });
   },
   methods: {
     classesToClassDict(classes) {
@@ -111,7 +130,7 @@ export default {
     decodeId(id) {
       const selectGroups = id.match(/uw-tab-(\d+)-in-group-(\d+)/);
       return {index: parseInt(selectGroups[1]), group: parseInt(selectGroups[2])};
-    }
+    },
   },
   render: function(createElement) {
     let liElements = [];
@@ -146,6 +165,7 @@ export default {
               // TODO: This causes the whole thing to rerender when the
               // tab index is changed
               'aria-selected': this.tabIndex === i,
+              'tabindex': this.tabIndex === i ? 0 : -1,
             },
           },
           content,
