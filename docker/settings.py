@@ -150,9 +150,9 @@ if os.getenv('ATTEST_ENV') in RESTCLIENTS_DEFAULT_ENVS:
     RESTCLIENTS_ATTEST_POOL_SIZE = os.getenv("ATTEST_POOL_SIZE", 30)
     RESTCLIENTS_ATTEST_AUTH_SECRET = os.getenv('ATTEST_AUTH_SECRET')
     if os.getenv('ATTEST_ENV') == 'PROD':
-        RESTCLIENTS_ATTEST_HOST = 'https://auth.api.sps.sis.uw.edu:443'
+        RESTCLIENTS_ATTEST_HOST = 'https://api.sps.sis.uw.edu:443'
     else:
-        RESTCLIENTS_ATTEST_HOST = 'https://auth.api.sps-dev.sis.uw.edu:443'
+        RESTCLIENTS_ATTEST_HOST = 'https://api.sps-dev.sis.uw.edu:443'
 
 if os.getenv('ATTEST_AUTH_ENV') in RESTCLIENTS_DEFAULT_ENVS:
     RESTCLIENTS_ATTEST_AUTH_DAO_CLASS = 'Live'
