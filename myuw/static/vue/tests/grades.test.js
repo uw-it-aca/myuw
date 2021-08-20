@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {mount} from '@vue/test-utils';
-import {createLocalVue, expectAction} from './helper';
+import {createLocalVue, deepClone, expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
 import Courses from '../vuex/store/schedule/student';
@@ -10,7 +10,7 @@ import {
   FontAwesomeLayers,
 } from '@fortawesome/vue-fontawesome';
 
-import mockCourses from './mock_data/courses.json';
+import mockCourses from './mock_data/stud_schedule/javerage2013Spring.json';
 
 const localVue = createLocalVue(Vuex);
 localVue.component('font-awesome-layers', FontAwesomeLayers);
@@ -29,7 +29,7 @@ describe('Courses Store', () => {
   });
 
   it('Check status changes on fetch - success', () => {
-    axios.get.mockResolvedValue({data: mockCourses, status: 200});
+    axios.get.mockResolvedValue({data: deepClone(mockCourses), status: 200});
     const getters = {
       isReadyTagged: () => false,
       isFetchingTagged: () => false,
@@ -63,6 +63,11 @@ describe('Events Card', () => {
         'stud_schedule': Courses,
       },
       state: {
+        user: {
+          affiliations: {
+            student: true,
+          }
+        },
         cardDisplayDates: {
             is_after_7d_before_last_instruction: true,
             is_after_grade_submission_deadline: false,
@@ -91,15 +96,23 @@ describe('Events Card', () => {
   });
 
   it('Basic Render - 1', async () => {
-    axios.get.mockResolvedValue({data: mockCourses, status: 200});
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/schedule/current': deepClone(mockCourses),
+      };
+      return Promise.resolve({data: urlData[url]});
+    });
     const wrapper = mount(GradesCard, {store, localVue});
-  
     await new Promise(setImmediate);
-    expect(wrapper.find('h2').text()).toEqual('Final Grades');
+    expect(wrapper.vm.isAfterLastDayOfClasses).toBe(true);
+    expect(wrapper.vm.gradeSubmissionDeadline).toBe("2013-06-18 17:00:00");
+    expect(wrapper.vm.filteredSections.length).toBe(3);
+    expect(wrapper.vm.showGradeCard).toBe(true);
+    expect(wrapper.findComponent(GradesCard).exists()).toBe(true);
   });
 
   it('Basic Render - 2', async () => {
-    axios.get.mockResolvedValue({data: mockCourses, status: 200});
+    axios.get.mockResolvedValue({data: deepClone(mockCourses), status: 200});
 
     store.state.cardDisplayDates = {
       is_after_7d_before_last_instruction: true,
@@ -130,26 +143,35 @@ describe('Events Card', () => {
     expect(wrapper.find('h2').text()).toEqual('Final Grades');
   });
 
-  it('Basic Render - 3', () => {
-    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
+  it('Not student - not create the card', async() => {
+    store.state.user.affiliations.student = false;
+    axios.get.mockImplementation((url) => {
+      return Promise.reject({response: {status: 404}});
+    });
     const wrapper = mount(GradesCard, {store, localVue});
-
-    expect(wrapper.find('h2').exists()).toBe(false);
+    expect(wrapper.vm.term).toBe(null);
+    expect(wrapper.vm.showGradeCard).toBe(false);
   });
 
-  it('toFriendlyDate', () => {
-    axios.get.mockResolvedValue({data: mockCourses, status: 200});
+  it('Data 404, hide card', async () => {
+    axios.get.mockImplementation((url) => {
+      return Promise.reject({response: {status: 404}});
+    });
     const wrapper = mount(GradesCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isErrored).toBe(true);
+    expect(wrapper.vm.showError).toBe(false);
+    expect(wrapper.vm.showGradeCard).toBe(false);
+  });
 
-    expect(
-      wrapper.vm.toFriendlyDate('2020-08-24')
-    ).toEqual('Mon, Aug 24');
-
-    expect(
-      wrapper.vm.toFriendlyDate(undefined)
-    ).toEqual('');
-    expect(
-      wrapper.vm.toFriendlyDate('')
-    ).toEqual('');
+  it('Data 543, show card with err', async () => {
+    axios.get.mockImplementation((url) => {
+      return Promise.reject({response: {status: 543}});
+    });
+    const wrapper = mount(GradesCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isErrored).toBe(true);
+    expect(wrapper.vm.showError).toBe(true);
+    expect(wrapper.findComponent(GradesCard).exists()).toBe(true);
   });
 });

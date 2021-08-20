@@ -81,7 +81,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.applicant) this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),

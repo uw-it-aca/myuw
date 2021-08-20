@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="!isReady || student && hasRegisterNotices"
+    v-if="student && (!isReady || hasRegisterNotices)"
     :loaded="isReady"
     :errored="isErrored"
   >
@@ -101,7 +101,7 @@ export default {
     }),
   },
   created() {
-    this.fetch();
+    if (this.student) this.fetch();
   },
   methods: {
     ...mapActions('notices', ['fetch']),

@@ -112,7 +112,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.student) this.fetch();
   },
   methods: {
     ...mapActions('oquarter', ['fetch']),

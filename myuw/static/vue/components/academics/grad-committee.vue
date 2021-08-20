@@ -78,11 +78,11 @@ export default {
       return this.statusCode !== 404;
     },
     showCard: function() {
-      return !this.isReady || (this.isGrad && (this.committees != undefined));
+      return this.isGrad && (!this.isReady || Boolean(this.committees));
     },
   },
   created() {
-    this.fetch();
+    if (this.isGrad) this.fetch();
   },
   methods: {
     formatMemberString(member) {

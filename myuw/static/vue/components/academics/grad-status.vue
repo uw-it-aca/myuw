@@ -171,12 +171,13 @@ export default {
       return this.statusCode !== 404;
     },
     showCard: function() {
-      return !this.isReady || this.isGrad &&
-              (this.leaves || this.petitions || this.degrees);
+      return this.isGrad && (
+        !this.isReady ||
+        Boolean(this.leaves) || Boolean(this.petitions) || Boolean(this.degrees));
     },
   },
   created() {
-    this.fetch();
+    if (this.isGrad) this.fetch();
   },
   methods: {
     ...mapActions('grad', ['fetch']),

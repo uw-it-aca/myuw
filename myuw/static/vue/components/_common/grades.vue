@@ -117,6 +117,7 @@ export default {
   },
   computed: {
     ...mapState({
+      student: (state) => state.user.affiliations.student,
       currentSummerTerm: (state) => state.cardDisplayDates.current_summer_term,
       isAfterLastDayOfClasses: (state) =>
         state.cardDisplayDates.is_after_last_day_of_classes,
@@ -176,7 +177,8 @@ export default {
     },
     showGradeCard: function() {
       return (
-        this.term &&
+        this.student &&
+        this.term !== null &&
         // This is done so that when there is a error it goes to the second
         // if conditional
         ((!this.isReady && !this.isErrored) ||

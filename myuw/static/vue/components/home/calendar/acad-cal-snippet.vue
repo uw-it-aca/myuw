@@ -76,7 +76,7 @@ export default {
     },
   },
   created() {
-    this.fetch(this.urlExtra);
+    if (this.instructor) this.fetch(this.urlExtra);
   },
   methods: {
     ...mapActions('academic_events', ['fetch']),

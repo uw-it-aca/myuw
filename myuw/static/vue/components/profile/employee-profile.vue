@@ -137,7 +137,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.employee || this.studentEmployee) this.fetch();
   },
   methods: {
     ...mapActions('directory', ['fetch']),

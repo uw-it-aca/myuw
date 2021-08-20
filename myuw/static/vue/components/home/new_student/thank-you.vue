@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="!isReady || student && showThankYou(notices)"
+    v-if="student && (!isReady || showThankYou(notices))"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -67,7 +67,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.student) this.fetch();
   },
   methods: {
     showThankYou(notices) {
