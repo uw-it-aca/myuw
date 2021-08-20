@@ -19,7 +19,7 @@
 
       <p class="mb-0 myuw-text-md">
         If you are interested in registration,
-        <a href="../resource/academics">
+        <a href="/resources/#academics">
           view registration resources.
         </a>
       </p>
