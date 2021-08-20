@@ -1,6 +1,5 @@
 import { createLocalVue } from '@vue/test-utils';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import BootstrapVue from 'bootstrap-vue';
 import VueObserveVisibility from 'vue-observe-visibility';
 
 // Global Mixins
@@ -17,7 +16,6 @@ Cypress.Commands.add('createLocalVue', (vuex) => {
   localVue.use(vuex);
 
   localVue.component('font-awesome-icon', FontAwesomeIcon);
-  localVue.use(BootstrapVue);
   localVue.use(Metadata);
   localVue.use(Logger, {
     console: {},

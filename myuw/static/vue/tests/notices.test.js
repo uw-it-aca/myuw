@@ -2,13 +2,13 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 dayjs.extend(require('dayjs/plugin/timezone'))
 import {mount, shallowMount} from '@vue/test-utils';
-import { BCollapse } from 'bootstrap-vue'
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import covid19 from '../vuex/store/covid19';
 import NoticeCard from '../components/home/notice/notices';
 import Covid19 from '../components/home/notice/covid19';
+import UwCollapse from '../components/_templates/collapse.vue';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
@@ -126,12 +126,14 @@ describe('Notice Card', () => {
     expect(wrapper.vm.isReady).toBeTruthy();
 
     expect(wrapper.findAll('button')).toHaveLength(9);
-    expect(wrapper.findAllComponents(BCollapse)).toHaveLength(9);
+    expect(wrapper.findAllComponents(UwCollapse)).toHaveLength(9);
 
     for (let i = 0; i < 9; i++) {
-      expect(wrapper.findAllComponents(BCollapse).at(i).vm.show).toBeFalsy();
+      expect(wrapper.findAllComponents(UwCollapse).at(i).vm.$el.classList.contains('show'))
+        .toBeFalsy();
       await wrapper.findAll('button').at(i).trigger('click');
-      expect(wrapper.findAllComponents(BCollapse).at(i).vm.show).toBeTruthy();
+      expect(wrapper.findAllComponents(UwCollapse).at(i).vm.$el.classList.contains('show'))
+        .toBeTruthy();
     }
   });
 

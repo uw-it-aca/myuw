@@ -47,6 +47,7 @@
     "@vue/test-utils": "1.2.1",
     "babel-plugin-istanbul": "6.0.0",
     "coveralls": "3.1.0",
+    "css.escape": "1.5.1",
     "cypress": "7.7.0",
     "eslint": "7.30.0",
     "eslint-config-google": "0.14.0",
