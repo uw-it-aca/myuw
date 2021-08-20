@@ -149,7 +149,6 @@ describe('Events Card', () => {
       return Promise.reject({response: {status: 404}});
     });
     const wrapper = mount(GradesCard, {store, localVue});
-    expect(wrapper.vm.term).toBe(null);
     expect(wrapper.vm.showGradeCard).toBe(false);
   });
 
