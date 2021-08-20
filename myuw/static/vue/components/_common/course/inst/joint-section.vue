@@ -17,14 +17,10 @@
           {{ jointSec.section_id }}
           <font-awesome-icon :icon="faExclamationTriangle" class="me-1" />
         </span>
-        <b-tooltip :target="`${parentId}-${anchorId(jointSec)}`">
-          You are not an instructor of record for
-          {{ jointSec.course_abbr }}
-          {{ jointSec.course_number }}
-          {{ jointSec.section_id }}.
-          Contact your Time Schedule Coordinator and ask to be added as an
-          instructor of record.
-        </b-tooltip>
+        <uw-tooltip
+          :target="`${parentId}-${anchorId(jointSec)}`"
+          :title="tooltipMessage(jointSec)"
+        />
       </span>
       <span v-if="i != (section.joint_sections.length - 1)">, </span>
     </span>
@@ -35,8 +31,12 @@
 import {
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
+import Tooltip from '../../../_templates/tooltip.vue';
 
 export default {
+  components: {
+    'uw-tooltip': Tooltip,
+  },
   props: {
     section: {
       type: Object,
@@ -56,6 +56,14 @@ export default {
     anchorId(section) {
       return `${section.course_abbr_slug}-${section.course_number}-${section.section_id}`;
     },
+    tooltipMessage(jointSec) {
+      return `You are not an instructor of record for ` +
+          `${ jointSec.course_abbr } ` +
+          `${ jointSec.course_number }` +
+          `${ jointSec.section_id }. ` +
+          `Contact your Time Schedule Coordinator and ask to be added as an` +
+          `instructor of record.`;
+    }
   },
 };
 </script>

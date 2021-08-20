@@ -16,13 +16,10 @@
             <font-awesome-icon :icon="faInfoCircle" />
             <span class="visually-hidden">More information</span>
           </button>
-          <b-popover
-            :target="`cl_info_${section.id}`"
-            triggers="hover focus"
-          >
+          <uw-tooltip :target="`cl_info_${section.id}`" placement="right">
             Class lists for independent study and secondary sections
             in previous quarters are only available via My Class Resources.
-          </b-popover>
+          </uw-tooltip>
         </span>
       </template>
 
@@ -87,11 +84,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import CardPropertyGroup from '../../_templates/card-property-group.vue';
 import CardProperty from '../../_templates/card-property.vue';
+import Tooltip from '../../_templates/tooltip.vue';
 
 export default {
   components: {
     'uw-card-property-group': CardPropertyGroup,
     'uw-card-property': CardProperty,
+    'uw-tooltip': Tooltip,
   },
   props: {
     section: {

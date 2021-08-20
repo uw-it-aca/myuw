@@ -1,45 +1,46 @@
 <template>
-  <div>
-    <b-card-group columns class="mt-3" :class="[$mq != 'mobile' ? 'myuw-column-count-2' : '']">
-      <uw-card
-        v-for="(subcatRes, i) in Object.values(resource.subcategories)"
-        :id="subcatRes.subcat_id"
-        :key="i"
-        loaded
-        :class="[$mq === 'mobile' ? '' : 'resource-card']"
-      >
-        <template #card-heading>
-          <div>
-            <h3 class="h6 text-dark-beige myuw-font-encode-sans d-inline-block">
-              {{subcatRes.subcat_name}}
-            </h3>
-            <button
-              v-if="!subcatRes.is_pinned"
-               type="button" class="btn btn-link myuw-text-sm text-muted"
-              :title="`Add ${subcatRes.subcat_name} resources to home page`"
-              @click="pinWrapper(subcatRes)"
-            >
-              Pin to Home
-            </button>
-            <button
-              v-else
-               type="button" class="btn btn-link myuw-text-sm text-muted"
-              :title="`Remove ${subcatRes.subcat_name} resources from home page`"
-              @click="unpinWrapper(subcatRes)"
-            >
-              Unpin
-            </button>
-          </div>
-        </template>
-        <template #card-body>
-          <ul class="list-unstyled myuw-text-md mb-0">
-            <li v-for="(link, j) in subcatRes.links" :key="j" class="mb-1">
-              <a :href="link.url">{{link.title}}</a>
-            </li>
-          </ul>
-        </template>
-      </uw-card>
-    </b-card-group>
+  <div
+    class="mt-3 card-group myuw-card-group-display"
+    :class="[$mq != 'mobile' ? 'myuw-column-count-2' : '']"
+  >
+    <uw-card
+      v-for="(subcatRes, i) in Object.values(resource.subcategories)"
+      :id="subcatRes.subcat_id"
+      :key="i"
+      loaded
+      :class="[$mq === 'mobile' ? '' : 'resource-card']"
+    >
+      <template #card-heading>
+        <div>
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans d-inline-block">
+            {{subcatRes.subcat_name}}
+          </h3>
+          <button
+            v-if="!subcatRes.is_pinned"
+              type="button" class="btn btn-link myuw-text-sm text-muted"
+            :title="`Add ${subcatRes.subcat_name} resources to home page`"
+            @click="pinWrapper(subcatRes)"
+          >
+            Pin to Home
+          </button>
+          <button
+            v-else
+              type="button" class="btn btn-link myuw-text-sm text-muted"
+            :title="`Remove ${subcatRes.subcat_name} resources from home page`"
+            @click="unpinWrapper(subcatRes)"
+          >
+            Unpin
+          </button>
+        </div>
+      </template>
+      <template #card-body>
+        <ul class="list-unstyled myuw-text-md mb-0">
+          <li v-for="(link, j) in subcatRes.links" :key="j" class="mb-1">
+            <a :href="link.url">{{link.title}}</a>
+          </li>
+        </ul>
+      </template>
+    </uw-card>
   </div>
 </template>
 
@@ -73,6 +74,7 @@ export default {
 <style lang="scss" scoped>
 .resource-card {
   margin-bottom: 6px !important;
+
   &:not(:hover) {
     background-color: rgba(0,0,0,0);
     border: solid 1px transparent;
