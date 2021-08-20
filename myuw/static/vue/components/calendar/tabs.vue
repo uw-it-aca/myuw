@@ -1,17 +1,16 @@
 <template>
   <div v-if="isReady">
-    <b-tabs
+    <uw-tabs
       pills
       justified
       small
       nav-class="bg-white rounded"
-      active-nav-item-class="myuw-calendar-tab"
       nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto"
     >
-      <b-tab title="All" title-item-class="myuw-text-md">
+      <uw-tab title="All" title-item-class="myuw-text-md">
         <uw-calendar-cards :events="allEvents" />
-      </b-tab>
-      <b-tab title-item-class="myuw-text-md">
+      </uw-tab>
+      <uw-tab title-item-class="myuw-text-md">
         <template #title>
           <font-awesome-icon
             :icon="faCircle"
@@ -20,8 +19,8 @@
           Breaks
         </template>
         <uw-calendar-cards :events="breakEvents" />
-      </b-tab>
-    </b-tabs>
+      </uw-tab>
+    </uw-tabs>
   </div>
 </template>
 
@@ -29,10 +28,14 @@
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import CalendarCards from './calendar-cards.vue';
+import Tabs from '../_templates/tabs/tabs.vue';
+import Tab from '../_templates/tabs/tab.vue';
 
 export default {
   components: {
     'uw-calendar-cards': CalendarCards,
+    'uw-tabs': Tabs,
+    'uw-tab': Tab,
   },
   data() {
     return {
@@ -66,8 +69,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-  .myuw-calendar-tab {
-    background-color:#4d307f !important;
-  }
+<style lang="scss" scoped>
+::v-deep .nav-link.active {
+  background-color:#4d307f !important;
+}
 </style>

@@ -151,6 +151,9 @@ export default {
     hide() {
       this.modal.hide();
     },
+    show() {
+      this.modal.show();
+    },
   }
 };
 </script>

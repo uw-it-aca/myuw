@@ -1,5 +1,5 @@
 <template>
-  <uw-card-property title="Meeting Time" :visually-hidden-title="!showRowHeading">
+  <uw-card-property title="Meeting Time" :sr-only-title="!showRowHeading">
     <table class="mb-0 w-100 table table-sm table-borderless myuw-text-md">
       <thead class="visually-hidden">
         <tr>

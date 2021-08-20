@@ -1,7 +1,18 @@
 <template>
-  <b-form-group label="Request a single email list for:">
-    <b-form-radio-group v-model="sectionJointList">
-      <b-form-radio value="joint" checked>
+  <fieldset class="form-group">
+    <legend>
+      Request a single email list for:
+    </legend>
+    <div class="form-check">
+      <input
+        id="joint_radio"
+        v-model="sectionJointList"
+        class="form-check-input"
+        type="radio"
+        value="joint"
+        checked
+      >
+      <label class="form-check-label" for="joint_radio">
         {{emailList.course_abbr}}
         {{emailList.course_number}}
         {{emailList.section_id}}
@@ -15,8 +26,18 @@
           Mailing list address:
           {{emailList.joint_section_list.list_address}}@uw.edu
         </p>
-      </b-form-radio>
-      <b-form-radio value="single">
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        id="single_radio"
+        v-model="sectionJointList"
+        class="form-check-input"
+        type="radio"
+        value="single"
+        checked
+      >
+      <label class="form-check-label" for="single_radio">
         {{emailList.course_abbr}}
         {{emailList.course_number}}
         {{emailList.section_id}}
@@ -24,9 +45,9 @@
           Mailing list address:
           {{emailList.section_list.list_address}}@uw.edu
         </p>
-      </b-form-radio>
-    </b-form-radio-group>
-  </b-form-group>
+      </label>
+    </div>
+  </fieldset>
 </template>
 
 <script>

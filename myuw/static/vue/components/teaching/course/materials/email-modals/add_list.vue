@@ -8,26 +8,41 @@
       This action is disabled while overriding as another user.
     </div>
 
-    <b-form-group
-      v-slot="{ ariaDescribedby }"
-      label="Request multiple email lists, one for each section selected:"
-    >
-      <b-form-checkbox
-        v-model="allSelected"
-        :indeterminate="indeterminate"
-        aria-describedby="flavours"
-        aria-controls="flavours"
-        @change="toggleAll"
+    <fieldset class="form-group">
+      <legend>
+        Request multiple email lists, one for each section selected:
+      </legend>
+      <div class="form-check">
+        <input
+          id="request_multiple_checkbox"
+          v-model="allSelected"
+          :indeterminate.prop="indeterminate"
+          class="form-check-input"
+          type="checkbox"
+          @change="toggleAll"
+        >
+        <label class="form-check-label" for="request_multiple_checkbox">
+          {{ allSelected ? 'Un-Select All' : 'Select All' }}
+        </label>
+      </div>
+      <div
+        v-for="(selectable, i) in selectableEmailList"
+        :key="i"
+        class="form-check"
       >
-        {{ allSelected ? 'Un-Select All' : 'Select All' }}
-      </b-form-checkbox>
-      <b-form-checkbox-group
-        v-model="selected"
-        :options="selectableEmailList"
-        :aria-describedby="ariaDescribedby"
-        stacked
-      ></b-form-checkbox-group>
-    </b-form-group>
+        <input
+          :id="`checkbox_${i}`"
+          v-model="selected"
+          class="form-check-input"
+          type="checkbox"
+          :value="selectable.value"
+          :disabled="selectable.disabled"
+        >
+        <label class="form-check-label" :for="`checkbox_${i}`">
+          {{ selectable.text }}
+        </label>
+      </div>
+    </fieldset>
   </div>
 </template>
 
@@ -62,7 +77,7 @@ export default {
   },
   data() {
     return {
-      selected: formDataToList(this.formData),
+      selected: formDataToList(this.formData) ?? [],
       indeterminate: false,
       allSelected: false,
     };
@@ -120,8 +135,8 @@ export default {
     }
   },
   methods: {
-    toggleAll(checked) {
-      this.selected = checked ? 
+    toggleAll(evt) {
+      this.selected = evt.target.checked ?
         this.selectableEmailList.filter((o) => !o.disabled).map((o) => o.value) : [];
     },
   },

@@ -107,9 +107,9 @@
       </template>
 
       <template v-else>
-        <b-alert show variant="danger">
+        <div class="alert alert-danger" role="alert">
           An error has occurred. Please try again in a few minutes.
-        </b-alert>
+        </div>
       </template>
 
 
