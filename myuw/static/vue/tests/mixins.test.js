@@ -91,7 +91,17 @@ describe('mixins', () => {
       utils.methods.dayjs("2021-04-12"), null)
     ).toEqual('Apr 12');
   });
-
+  it('toFriendlyDate', () => {
+    expect(
+      utils.methods.toFriendlyDate('2020-08-24')
+    ).toEqual('Mon, Aug 24');
+    expect(
+      utils.methods.toFriendlyDate(undefined)
+    ).toEqual('');
+    expect(
+      utils.methods.toFriendlyDate('')
+    ).toEqual('');
+  });
   it('toFromNowDate', async () => {
     axios.get.mockResolvedValue({data: mockNotices});
     expect(utils.methods.toFromNowDate()).toEqual('');

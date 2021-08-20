@@ -68,15 +68,15 @@ export default {
     statusCode() {
       return this.statusCodeTagged(this.urlExtra);
     },
-    showCard: function () {
+    showCard() {
       return this.instructor && (!this.isReady || this.events.length > 0);
     },
-    showError: function () {
+    showError() {
       return this.statusCode !== 404;
     },
   },
   created() {
-    this.fetch(this.urlExtra);
+    if (this.instructor) this.fetch(this.urlExtra);
   },
   methods: {
     ...mapActions('academic_events', ['fetch']),

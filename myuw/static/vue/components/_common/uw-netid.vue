@@ -67,10 +67,10 @@ export default {
       student: (state) => state.user.affiliations.student,
     }),
     ...mapGetters('profile', ['isReady', 'isErrored', 'statusCode']),
-    showCard: function () {
+    showCard() {
       return !this.isHomePage || (!this.applicant && !this.employee && !this.student);
     },
-    showError: function () {
+    showError() {
       return this.statusCode !== 404;
     },
   },

@@ -73,29 +73,29 @@ export default {
       past_stud: (state) => state.user.affiliations.past_stud,
       past_employee: (state) => state.user.affiliations.past_employee,
     }),
-    showCard: function () {
+    showCard() {
       return (
         (this.student || this.past_stud || this.employee || this.past_employee) &&
         (!this.isReady || this.hfs.student_husky_card || this.hfs.employee_husky_card)
       );
     },
-    showError: function () {
+    showError() {
       return this.statusCode !== 404;
     },
-    hasActionUrl: function () {
+    hasActionUrl() {
       return (
         (this.hfs.student_husky_card && this.hfs.student_husky_card.add_funds_url) ||
         (this.hfs.employee_husky_card && this.hfs.employee_husky_card.add_funds_url)
       );
     },
-    getActionUrl: function () {
+    getActionUrl() {
       return (this.hfs.student_husky_card
         ? this.hfs.student_husky_card.add_funds_url
         : this.hfs.employee_husky_card.add_funds_url);
     },
   },
-  mounted() {
-    this.fetchHfs();
+  created() {
+    if (this.student || this.past_stud || this.employee || this.past_employee) this.fetchHfs();
   },
   methods: {
     ...mapActions('hfs', {
