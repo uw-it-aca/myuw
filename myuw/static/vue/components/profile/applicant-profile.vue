@@ -73,10 +73,10 @@ export default {
       student: (state) => state.user.affiliations.student,
       applicant: (state) => state.user.affiliations.applicant,
     }),
-    showCard: function () {
+    showCard() {
       return this.applicant && !this.student && Boolean(this.profile);
     },
-    showError: function () {
+    showError() {
       return false;
     },
   },

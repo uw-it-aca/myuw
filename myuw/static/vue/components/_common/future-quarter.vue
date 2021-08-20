@@ -107,7 +107,7 @@ export default {
         this.highlighted && this.highlightFutureQuarters ||
         !this.highlighted && !this.highlightFutureQuarters);
     },
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },

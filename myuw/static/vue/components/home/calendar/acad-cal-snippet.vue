@@ -68,10 +68,10 @@ export default {
     statusCode() {
       return this.statusCodeTagged(this.urlExtra);
     },
-    showCard: function () {
+    showCard() {
       return this.instructor && (!this.isReady || this.events.length > 0);
     },
-    showError: function () {
+    showError() {
       return this.statusCode !== 404;
     },
   },

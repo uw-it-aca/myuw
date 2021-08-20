@@ -126,10 +126,10 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
-    showCard: function () {
+    showCard() {
       return (this.employee || this.studentEmployee) && Boolean(this.directory);
     },
-    showError: function () {
+    showError() {
       return false;
     },
     noFormsOfContact() {

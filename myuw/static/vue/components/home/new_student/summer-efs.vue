@@ -53,7 +53,7 @@ export default {
       'isErrored',
       'statusCode',
     ]),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },

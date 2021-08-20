@@ -167,10 +167,10 @@ export default {
       'isErrored',
       'statusCode',
     ]),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
-    showCard: function() {
+    showCard() {
       return this.isGrad && (
         !this.isReady ||
         Boolean(this.leaves) || Boolean(this.petitions) || Boolean(this.degrees));

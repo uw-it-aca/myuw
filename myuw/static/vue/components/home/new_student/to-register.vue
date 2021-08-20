@@ -188,7 +188,7 @@ export default {
       'statusCode',
       'hasRegisterNotices',
     ]),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },

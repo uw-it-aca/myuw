@@ -51,7 +51,7 @@ export default {
             (notice) => notice.location_tags.includes('checklist_feespaid'),
         );
       },
-      notices: function() {
+      notices() {
         return this.ty_notices.concat(this.fp_notices).filter(
             (notice) => notice.is_read == false,
         );
@@ -62,7 +62,7 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },
