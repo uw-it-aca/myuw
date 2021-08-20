@@ -1,5 +1,5 @@
 <template>
-  <div ref="tab" class="tab-pane fade" role="tabpanel" aria-labelledby="todo" tabindex="0">
+  <div ref="tab" class="tab-pane" role="tabpanel" aria-labelledby="todo" tabindex="0">
     <slot v-if="render" />
   </div>
 </template>
