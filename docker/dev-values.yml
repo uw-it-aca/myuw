@@ -59,7 +59,7 @@ cronjob:
       command: ["/scripts/management_command.sh"]
       args: ["clearsessions"]
     - name: cleanup_instructors
-      schedule: "1 15 1 1 *"
+      schedule: "1 12 1 9 *"
       command: ["/scripts/management_command.sh"]
       args: ["cleanup_instructors"]
 environmentVariables:
