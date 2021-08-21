@@ -6,7 +6,6 @@ Test all the links in the CSV for non-200 status codes (after redirects).
 """
 
 import logging
-import sys
 import urllib3
 from django.core.mail import send_mail
 from django.core.management.base import BaseCommand, CommandError
