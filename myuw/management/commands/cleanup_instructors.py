@@ -59,7 +59,7 @@ class Command(BaseCommand):
                     rec.delete()
                     deleted += 1
                 except Exception as ex:
-                    logger.error("update({}): {}".format(
+                    logger.error("delete({}): {}".format(
                         rec.user.uwnetid, ex))
 
         logger.info(
