@@ -16,7 +16,7 @@ pws = PWS()
 
 class Command(BaseCommand):
     # clean up or update the old instructor records.
-    # run on Sept 1st of each year
+    # run once in early autumn quarter of each year
 
     def handle(self, *args, **options):
         cur_year = date.today().year
@@ -27,7 +27,7 @@ class Command(BaseCommand):
             number_of_future_terms = 4
         else:
             term = get_specific_term(start_year, 'autumn')
-            number_of_future_terms = 24
+            number_of_future_terms = 25
         deleted = 0
         updated = 0
         records = Instructor.objects.filter(year__lt=start_year)
