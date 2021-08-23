@@ -191,7 +191,9 @@ describe('Vue SFC Tests', () => {
       },
       state: {
         user: {
-          netid: 'test',
+          affiliations: {
+            student: true,
+          }
         },
         termData: {
           quarter: 'summer',
@@ -202,6 +204,13 @@ describe('Vue SFC Tests', () => {
         }
       }
     });
+  });
+
+  it('Not student nor instructor - not create the card', async() => {
+    store.state.user.affiliations.student = false;
+    axios.get.mockResolvedValue(Promise.reject({response: {status: 404}}));
+    const wrapper = mount(VisualSchedule, {store, localVue});
+    expect(wrapper.vm.showCard).toBe(false);
   });
 
   it ('Check Mount - javerage', async () => {
@@ -253,6 +262,8 @@ describe('Vue SFC Tests', () => {
   });
 
   it ('Check Overlapping classes', async () => {
+    store.state.user.affiliations.student = false;
+    store.state.user.affiliations.instructor = true;
     axios.get.mockResolvedValue({data: mockScheduleBill, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
 

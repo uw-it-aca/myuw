@@ -152,13 +152,11 @@ export default {
         : 'http://www.washington.edu/u-pass/';
     },
   },
-  mounted() {
-    this.fetch();
+  created() {
+    if (this.employee || this.student) this.fetch();
   },
   methods: {
-    ...mapActions('upass', {
-      fetch: 'fetch',
-    }),
+    ...mapActions('upass', ['fetch']),
   },
 };
 </script>

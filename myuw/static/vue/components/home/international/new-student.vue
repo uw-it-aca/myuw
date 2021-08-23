@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="!isReady || internationalStudent && notices.length > 0"
+    v-if="internationalStudent && (!isReady || notices.length > 0)"
     :loaded="isReady" :errored="isErrored"
   >
     <template #card-heading>
@@ -42,7 +42,7 @@ export default {
     }),
   },
   created() {
-    this.fetch();
+    if (this.internationalStudent) this.fetch();
   },
   methods: {
     ...mapActions('notices', ['fetch']),
