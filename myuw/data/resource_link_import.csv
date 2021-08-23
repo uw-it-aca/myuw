@@ -56,40 +56,40 @@ Services for Faculty and Staff,Research,all,https://www.washington.edu/research/
 Services for Faculty and Staff,Research,all,https://www.washington.edu/research/oris/,Office of Research Information Services (ORIS),,,,,,,no
 Services for Faculty and Staff,Research,all,http://ucs.admin.uw.edu/myfd,MyFinancial.Desktop,,,,,,,no
 Services for Faculty and Staff,Procurement,all,https://finance.uw.edu/ps/how-to-buy/ariba,ARIBA,,,,,,,no
-Services for Faculty and Staff,Procurement,all,,,https://finance.uw.edu/ps/,Procurement Services,https://www.uwb.edu/finance/purchasing,Purchasing,http://www.tacoma.uw.edu/node/40039,Procurement Services,no
+Services for Faculty and Staff,Procurement,all,,,https://finance.uw.edu/ps/,Procurement Services,https://www.uwb.edu/finance/purchasing,Purchasing,https://www.tacoma.uw.edu/uwt/fa/finance/procurement,Procurement Services,no
 Services for Faculty and Staff,Others,all,http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears,Electronic Advising Records System (EARS),,,,,,,no
-Services for Faculty and Staff,Others,all,,,https://itconnect.uw.edu/,IT Connect,https://www.uwb.edu/it,Information Technologies,http://www.tacoma.uw.edu/information-technology/information-technology,Information Technology,no
+Services for Faculty and Staff,Others,all,,,https://itconnect.uw.edu/,IT Connect,https://www.uwb.edu/it,Information Technologies,https://www.tacoma.uw.edu/uwt/it,Information Technology,no
 Services for Faculty and Staff,Others,all,https://itconnect.uw.edu/wares/,Software and Hardware,,,,,,,
 Services for Faculty and Staff,Others,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/facility/ehs,Environmental Health & Safety,http://www.tacoma.uw.edu/node/38910,Environmental Health & Safety,no
 Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/,UW Facilities,https://www.uwb.edu/facility,Facilities and Campus Operations,http://www.tacoma.uw.edu/facilities-services/facilities-services,Facilities Services,no
-Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/services/requests,UW Facilities: Request Service,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,http://www.tacoma.uw.edu/facilities-services/work-order-request,Facilities Services: Work Order Request,no
+Services for Faculty and Staff,Others,all,,,https://facilities.uw.edu/services/requests,UW Facilities: Request Service,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,https://www.tacoma.uw.edu/uwt/fa/facilities/work-order-request,Facilities Services: Work Order Request,no
 Campus Life,Campus Retail,all,,,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwseattle,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwbothell,University Book Store,http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwtacoma,University Book Store,no
-Campus Life,Campus Safety,all,,,https://www.washington.edu/safety/,Campus Safety,https://www.uwb.edu/safety,Campus Safety Department,https://www.tacoma.uw.edu/campus-safety/,Campus Safety & Security,no
+Campus Life,Campus Safety,all,,,https://www.washington.edu/safety/,Campus Safety,https://www.uwb.edu/safety,Campus Safety Department,https://www.tacoma.uw.edu/uwt/fa/safety/,Campus Safety & Security,no
 Campus Life,Campus Safety,all,http://www.washington.edu/safecampus/,SafeCampus,,,,,,,no
 Campus Life,Campus Safety,all,,,https://www.ehs.washington.edu/,Environmental Health & Safety,https://www.uwb.edu/facility/ehs,Environmental Health & Safety,http://www.tacoma.uw.edu/node/38910,Environmental Health & Safety,no
 Campus Life,Campus Safety,all,https://cspc.admin.uw.edu/mychem,MyChem,,,,,,,no
-Campus Life,Campus Safety,all,,,https://www.washington.edu/uwem/,UW Emergency Management,https://www.uwb.edu/emergency,UW Bothell Emergency Page,http://www.tacoma.uw.edu/campus-safety/emergency-response,UW Tacoma Emergency Response,no
-Campus Life,Getting Around Campus,all,,,http://www.washington.edu/maps/,Campus Map,http://www.uwb.edu/visitors/uw-bothell-map.pdf,Campus Map,http://www.tacoma.uw.edu/campus-map/campus-map,Campus Map,no
+Campus Life,Campus Safety,all,,,https://www.washington.edu/uwem/,UW Emergency Management,https://www.uwb.edu/emergency,UW Bothell Emergency Page,https://www.tacoma.uw.edu/uwt/fa/safety/emergency-response-preparedness,UW Tacoma Emergency Response,no
+Campus Life,Getting Around Campus,all,,,http://www.washington.edu/maps/,Campus Map,https://www.uwb.edu/uwbothell/media/maps/uw-bothell-campus-map.pdf,Campus Map,http://www.tacoma.uw.edu/campus-map/campus-map,Campus Map,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/park-directions,Getting to Seattle Campus,http://www.uwb.edu/visitors/directions,Getting to UW Bothell Campus,http://www.tacoma.uw.edu/getting-campus/getting-campus,Getting to UW Tacoma Campus,no
-Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/student-u-pass,U-PASS for Students,https://www.uwb.edu/administration-planning/facilities/transportation/upass,U-PASS,http://www.tacoma.uw.edu/getting-campus/what-u-pass,U-PASS,no
+Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/student-u-pass,U-PASS for Students,https://www.uwb.edu/administration-planning/facilities/transportation/upass,U-PASS,https://www.tacoma.uw.edu/uwt/fa/facilities/transportation/u-pass,U-PASS,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/employee-u-pass,U-PASS for Employees,,,,,no
 Campus Life,Getting Around Campus,all,,,https://facilities.uw.edu/transportation/,Transportation Services,https://www.uwb.edu/administration-planning/facilities/transportation,Commuter Services,http://www.tacoma.uw.edu/node/39836,Transportation Services,no
 Campus Life,Getting Around Campus,all,,,http://uwshuttles.com/,UW Shuttles,,,,,no
 Campus Life,Health & Wellness,all,https://wellbeing.uw.edu/,Husky Health & Well-Being,,,,,,,no
-Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,http://www.uwb.edu/studentservices/counseling,Counseling Services,http://www.tacoma.uw.edu/node/44255,Student Counseling Center,no
+Campus Life,Health & Wellness,all,,,http://www.washington.edu/counseling/,Counseling Center,http://www.uwb.edu/studentservices/counseling,Counseling Services,https://www.tacoma.uw.edu/uwt/caps,Counseling & Psychological Services,no
 Campus Life,Health & Wellness,all,,,https://wellbeing.uw.edu/unit/hall-health/,Hall Health Center,https://www.uwb.edu/arc/hawrc,Health and Wellness Resource Center,http://www.tacoma.uw.edu/student-health-services/about-student-health-services,Student Health Services (SHS),no
 Campus Life,Health & Wellness,all,,,https://wellbeing.uw.edu/unit/livewell/,LiveWell Office,,,,,no
 Campus Life,Health & Wellness,all,,,http://www.washington.edu/ima/,Recreational Sports Programs (IMA),http://www.uwb.edu/recwell,Recreation and Wellness,http://www.tacoma.uw.edu/uwy/fitness,Recreation & Fitness,no
 Campus Life,Health & Wellness,all,https://www.washington.edu/wholeu/,Whole U (for staff and faculty),,,,,,,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account,https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx,Husky Card Account,http://apps.tacoma.uw.edu/dawgdollars/,Tacoma Dawg Dollars Account,no
-Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/dining/,Campus Dining,http://www.uwb.edu/food,Campus Dining,http://www.tacoma.uw.edu/food-services/locations,Campus Dining,no
+Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/dining/,Campus Dining,http://www.uwb.edu/food,Campus Dining,https://www.tacoma.uw.edu/uwt/fa/facilities/food-services,Campus Dining,no
 Campus Life,Housing & Dining,all,https://www.hfs.washington.edu/myhfs/ledger.aspx,Check HFS Balance,,,,,,,no
 Campus Life,Housing & Dining,all,,,https://www.hfs.washington.edu/housing/,Student Housing,http://www.uwb.edu/housing,Student Housing,http://www.tacoma.uw.edu/housing,Housing,no
 Campus Life,Housing & Dining,all,,,https://facilities.uw.edu/,UW Facilities,https://www.uwb.edu/facility,Facilities and Campus Operations,http://www.tacoma.uw.edu/facilities-services/facilities-services,Facilities Services,no
-Campus Life,Housing & Dining,all,,,https://facilities.uw.edu/services/requests,Submit Work Request,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,http://www.tacoma.uw.edu/facilities-services/work-order-request,Facilities Services: Work Order Request,no
+Campus Life,Housing & Dining,all,,,https://facilities.uw.edu/services/requests,Submit Work Request,http://dlweb.megamation.com/uwb/DLWEB.php/O4W_INFO_PAGE,Facilities Maintenance Request,https://www.tacoma.uw.edu/uwt/fa/facilities/work-order-request,Facilities Services: Work Order Request,no
 Campus Life,Rules and Regulations,all,http://www.washington.edu/students/reg/ferpa.html,Family Educational Rights and Privacy Act (FERPA) – Privacy of Student Information,,,,,,,no
-Campus Life,Rules and Regulations,all,,,https://ap.washington.edu/ormp/,Office of Research Misconduct Proceedings,https://www.uwb.edu/academic-affairs/about/policies/studentconduct/student-guide,Student Guide to Academic Integrity,https://ap.washington.edu/ormp/,Office of Research Misconduct Proceedings,no
-Campus Life,Rules and Regulations,all,,,http://www.washington.edu/cssc/student-conduct-overview/student-code-of-conduct/,Student Conduct Code,http://www.uwb.edu/studentservices/studentconduct,Student Conduct and Responsibility,https://www.tacoma.uw.edu/catalog-two/student-rights-responsibilities,Student Rights and Responsibilities,no
+Campus Life,Rules and Regulations,all,,,https://ap.washington.edu/ormp/,Office of Research Misconduct Proceedings,https://www.uwb.edu/studentaffairs/studentconduct/student-guidee,Student Guide to Academic Integrity,https://ap.washington.edu/ormp/,Office of Research Misconduct Proceedings,no
+Campus Life,Rules and Regulations,all,,,http://www.washington.edu/cssc/student-conduct-overview/student-code-of-conduct/,Student Conduct Code,http://www.uwb.edu/studentservices/studentconduct,Student Conduct and Responsibility,https://www.tacoma.uw.edu/uwt/drs/rights,Student Rights and Responsibilities,no
 Campus Life,Support Services,all,,,,,https://www.uwb.edu/cie,Center for International Studies,,,no
 Campus Life,Support Services,all,http://www.fiuts.org/,Foundation for International Understanding Through Students (FIUTS),,,,,,,no
 Campus Life,Support Services,all,http://grad.uw.edu/for-students-and-post-docs/core-programs/,Graduate School Core Programs,,,,,,,no
@@ -103,7 +103,7 @@ Campus Life,Support Services,all,https://www.washington.edu/compliance/titleix/,
 Campus Life,Support Services,all,http://www.washington.edu/bias/,Reporting Bias Incidents,,,,,,,no
 Campus Life,Support Services,all,http://www.washington.edu/sexualassault/,Sexual Assault Resources,,,,,,,no
 Campus Life,Support Services,all,http://depts.washington.edu/slsuw/,Student Legal Services,,,,,,,no
-Employment,Employment Resources,all,,,http://careers.uw.edu/,Career & Internship Center,http://www.bothell.washington.edu/careers,Career Services,http://www.tacoma.uw.edu/career-development/career-development-education,Career Development,no
+Employment,Employment Resources,all,,,http://careers.uw.edu/,Career & Internship Center,http://www.bothell.washington.edu/careers,Career Services,https://www.tacoma.uw.edu/uwt/career,Career Development,no
 Employment,Employment Resources,all,https://wd5.myworkday.com/uw/d/home.htmld,Workday,,,,,,,no
 Employment,Employment Resources,all,https://prp.admin.uw.edu/legacyess,Legacy ESS,,,,,,,no
 Employment,Employment Resources,all,https://careers.uw.edu/jobs,Career & Internship Center - Job Postings,,,,,,,no
@@ -144,7 +144,7 @@ Teaching,Course Materials,all,https://finance.uw.edu/c2/printing-copying/course-
 Teaching,Course Materials,all,https://lib.washington.edu/types/course/instructors/request,Request Course Reserves,,,,,,,no
 Teaching,Grading,all,https://gradepage.uw.edu,GradePage,,,,,,,no
 Teaching,Grading,all,https://apps.registrar.washington.edu/grade-change/pages/change.php,Change Submitted Grades,,,,,,,no
-Teaching,Grading,all,,,http://depts.washington.edu/grading,Faculty Resource on Grading,https://www.uwb.edu/registration/policies/grading,Grading Policies,http://www.tacoma.uw.edu/node/37545,Grading Policy,no
+Teaching,Grading,all,,,http://depts.washington.edu/grading,Faculty Resource on Grading,https://www.uwb.edu/registration/policies/grading,Grading Policies,https://www.tacoma.uw.edu/uwt/registrar/grading-policy,Grading Policy,no
 Teaching,Tools,all,https://canvas.uw.edu,Canvas LMS,,,,,,,no
 Teaching,Tools,all,https://catalyst.uw.edu/,Catalyst Web Tools,,,,,,,no
 Teaching,Tools,all,https://uw.hosted.panopto.com,Panopto Lecture Capture,,,,,,,no
