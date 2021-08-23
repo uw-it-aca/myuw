@@ -28,19 +28,16 @@ def is_instructor(request):
         return request.myuw_is_instructor
 
     user = get_user_model(request)
-    if (is_using_file_dao() and
-            user.uwnetid == 'jerror'):
+    if is_using_file_dao() and user.uwnetid == 'jerror':
         return True
 
-    if Instructor.is_seen_instructor(user):
-        request.myuw_is_instructor = True
-        return True
-
-    request.myuw_is_instructor = False
-    sectionref = get_most_recent_sectionref_by_instructor(request)
-    if sectionref:
-        request.myuw_is_instructor = True
-        set_instructor(user, sectionref)
+    request.myuw_is_instructor = Instructor.is_seen_instructor(user)
+    if not request.myuw_is_instructor:
+        # not in DB, check if the user has taught any course
+        sectionref = get_most_recent_sectionref_by_instructor(request)
+        if sectionref:
+            request.myuw_is_instructor = True
+            set_instructor(user, sectionref)
     return request.myuw_is_instructor
 
 
