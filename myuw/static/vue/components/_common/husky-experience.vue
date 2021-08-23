@@ -90,8 +90,8 @@ export default {
     statusCode() {
       return this.statusCodeTagged(this.urlExtra);
     },
-    showError: function() {
-      return this.isErrored && this.statusCode !== 404;
+    showError() {
+      return this.statusCode !== 404;
     },
   },
   created() {

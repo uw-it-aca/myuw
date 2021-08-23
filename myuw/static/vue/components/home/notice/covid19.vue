@@ -62,8 +62,8 @@ export default {
       return this.student && this.statusCode === 404;
     }
   },
-  mounted() {
-    this.fetch();
+  created() {
+    if (this.student) this.fetch();
   },
   methods: {
     ...mapActions('covid19', ['fetch']),

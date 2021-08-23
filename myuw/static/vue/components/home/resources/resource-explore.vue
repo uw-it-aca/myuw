@@ -58,7 +58,7 @@
             <a href="/resources/#campuslife">Campus Life</a>
           </li>
           <li class="list-inline-item">
-            <a href="/resources/#eventsactivities">Events and Activities</a>
+            <a href="/resources/#eventsandactivities">Events and Activities</a>
           </li>
           <li class="list-inline-item">
             <a href="/resources/#servicesforfacultyandstaff">Services for Faculty and Staff</a>

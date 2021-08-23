@@ -74,15 +74,15 @@ export default {
       'isErrored',
       'statusCode',
     ]),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
-    showCard: function() {
-      return !this.isReady || (this.isGrad && (this.committees != undefined));
+    showCard() {
+      return this.isGrad && (!this.isReady || Boolean(this.committees));
     },
   },
   created() {
-    this.fetch();
+    if (this.isGrad) this.fetch();
   },
   methods: {
     formatMemberString(member) {

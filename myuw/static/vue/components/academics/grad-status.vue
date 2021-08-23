@@ -167,16 +167,17 @@ export default {
       'isErrored',
       'statusCode',
     ]),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
-    showCard: function() {
-      return !this.isReady || this.isGrad &&
-              (this.leaves || this.petitions || this.degrees);
+    showCard() {
+      return this.isGrad && (
+        !this.isReady ||
+        Boolean(this.leaves) || Boolean(this.petitions) || Boolean(this.degrees));
     },
   },
   created() {
-    this.fetch();
+    if (this.isGrad) this.fetch();
   },
   methods: {
     ...mapActions('grad', ['fetch']),

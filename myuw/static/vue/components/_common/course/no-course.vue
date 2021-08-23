@@ -12,14 +12,12 @@
         error, please contact the
         <a href="https://itconnect.uw.edu/it-connect-home/question/"
            title="Send email to UW-IT Service Center"
-        >
-          UW-IT Service Center
-        </a>.
+        >UW-IT Service Center</a>.
       </p>
 
       <p class="mb-0 myuw-text-md">
         If you are interested in registration,
-        <a href="../resource/academics">
+        <a href="/resources/#academics">
           view registration resources.
         </a>
       </p>

@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="showThankYou(notices)"
+    v-if="student && (!isReady || showThankYou(notices))"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -40,6 +40,7 @@ export default {
   },
   computed: {
     ...mapState({
+      student: (state) => state.user.affiliations.student,
       ty_notices: (state) => {
         return state.notices.value.filter(
             (notice) => notice.location_tags.includes('checklist_thankyou'),
@@ -50,7 +51,7 @@ export default {
             (notice) => notice.location_tags.includes('checklist_feespaid'),
         );
       },
-      notices: function() {
+      notices() {
         return this.ty_notices.concat(this.fp_notices).filter(
             (notice) => notice.is_read == false,
         );
@@ -61,12 +62,12 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },
   created() {
-    this.fetch();
+    if (this.student) this.fetch();
   },
   methods: {
     showThankYou(notices) {

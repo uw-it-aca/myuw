@@ -30,7 +30,7 @@
                 <div class="myuw-chevron">
                   <a
                     v-inner="'View future quarter courses'"
-                    :href="`../future_quarters${term.url}`"
+                    :href="`/future_quarters${term.url}`"
                   >
                     <span class="visually-hidden">
                       View {{ term.quarter }} {{ term.year }}
@@ -107,7 +107,7 @@ export default {
         this.highlighted && this.highlightFutureQuarters ||
         !this.highlighted && !this.highlightFutureQuarters);
     },
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },

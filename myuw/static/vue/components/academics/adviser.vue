@@ -123,7 +123,7 @@ export default {
       isErroredProfile: 'isErrored',
       statusCodeProfile: 'statusCode',
     }),
-    showError: function() {
+    showError() {
       return (
         this.isErroredAdvisers &&
         this.statusCodeAdvisers != 404 ||
@@ -131,7 +131,7 @@ export default {
         this.statusCodeProfile != 404
       );
     },
-    showCard: function() {
+    showCard() {
       return this.isUndergrad;
     }
   },

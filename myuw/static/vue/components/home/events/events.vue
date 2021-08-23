@@ -163,8 +163,8 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
-    showError: function() {
-      return this.isErrored && this.statusCode !== 404;
+    showError() {
+      return this.statusCode !== 404;
     },
   },
   created() {

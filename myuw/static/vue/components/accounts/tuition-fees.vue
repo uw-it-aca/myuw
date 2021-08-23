@@ -257,7 +257,7 @@ export default {
         this.statusCodeTuition != 404
       );
     },
-    finAidNotices: function () {
+    finAidNotices () {
       const notices = [];
       for (let i = 0; i < this.finAidTags.length; i++) {
         const notice = this.notices.filter((notice) => {

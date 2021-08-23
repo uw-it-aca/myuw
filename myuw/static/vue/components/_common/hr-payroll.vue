@@ -104,14 +104,14 @@ export default {
       pastEmployee: (state) => state.user.affiliations.past_employee,
       staticUrl: (state) => state.staticUrl,
     }),
-    showCard: function () {
+    showCard () {
       if (this.isHomePage) {
         return this.retiree || this.pastEmployee ||
           this.employee && !this.student && !this.instructor;
       }
       return this.studEmployee || this.instructor;
     },
-    truncateView: function () {
+    truncateView () {
       return this.retiree || this.pastEmployee;
     },
   },

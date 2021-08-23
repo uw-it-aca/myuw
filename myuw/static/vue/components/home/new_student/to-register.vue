@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="!isReady || hasRegisterNotices"
+    v-if="student && (!isReady || hasRegisterNotices)"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -11,28 +11,21 @@
       </h2>
     </template>
     <template #card-body>
-      <div v-if="formatted_date">
-        <p class="myuw-text-md">
-          Register on <strong>{{ formatted_date }}</strong> through
-          <a
-            href="https://myplan.uw.edu/"
-          >MyPlan</a> or
-          <a
-            href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
-          >the registration screen</a>.
-        </p>
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a
-              href="https://depts.washington.edu/sislearn/registration-resources/"
-            >How to register</a>
-          </li>
-          <li class="mb-1">
-            <a
-              href="http://www.washington.edu/uaa/advising/academic-planning/choosing-courses/overview/"
-            >How to choose courses</a>
-          </li>
-        </ul>
+      <div v-if="no_orient.length > 0">
+        <div
+          v-for="notice in no_orient"
+          :key="notice.id_hash"
+          class="d-flex mb-2"
+        >
+          <font-awesome-icon
+            :icon="faCircle"
+            class="mr-3 mt-1 text-muted myuw-text-lg"
+          />
+          <div>
+            <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />
+            <div class="myuw-text-md" v-html="notice.notice_body" />
+          </div>
+        </div>
       </div>
 
       <div
@@ -118,16 +111,6 @@
           <div class="myuw-text-md" v-html="notice.notice_body" />
         </div>
       </div>
-
-      <div v-if="orient_after.length > 0" class="d-flex mb-2">
-        <font-awesome-icon
-          :icon="faCheckCircle"
-          class="me-3 mt-1 text-success myuw-text-lg"
-        />
-        <div class="myuw-text-md">
-          You have registered for an Advising &amp; Orientation Session.
-        </div>
-      </div>
     </template>
   </uw-card>
 </template>
@@ -153,49 +136,48 @@ export default {
     };
   },
   computed: {
-    formatted_date: function() {
-      let date = false;
-      if (this.isReady) {
-        if (this.no_orient.length > 0) {
-          date = this.no_orient[0].formattedDate;
-        }
-      }
-      return date;
-    },
     ...mapState({
+      student: (state) => state.user.affiliations.student,
       no_orient: (state) => {
+        // newstudentclist_advorientregdateb
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_no_orient'),
         );
       },
       orient_after: (state) => {
+        // newstudentclist_advorientregdatec
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_orient_after'),
         );
       },
+      orient_before: (state) => {
+        // newstudentclist_advorientregdatea
+        return state.notices.value.filter((notice) =>
+          notice.location_tags.includes('checklist_orient_before'),
+        );
+      },
       iss_before: (state) => {
+        // newstudentclist_intlstucheckina
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_iss_before'),
         );
       },
       iss_after: (state) => {
+        // newstudentclist_intlstucheckinb
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_iss_after'),
         );
       },
       measles_before: (state) => {
+        // newstudentclist_measlesa
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_measles_before'),
         );
       },
       measles_after: (state) => {
+        // newstudentclist_measlesb
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_measles_after'),
-        );
-      },
-      orient_before: (state) => {
-        return state.notices.value.filter((notice) =>
-          notice.location_tags.includes('checklist_orient_before'),
         );
       },
     }),
@@ -205,12 +187,12 @@ export default {
       'statusCode',
       'hasRegisterNotices',
     ]),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },
   created() {
-    this.fetch();
+    if (this.student) this.fetch();
   },
   methods: {
     ...mapActions('notices', ['fetch']),
