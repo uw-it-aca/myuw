@@ -35,6 +35,7 @@ import {
 } from 'bootstrap-vue';
 */
 
+// bootstrap js
 import 'bootstrap';
 
 // myuw custom theming and global styles

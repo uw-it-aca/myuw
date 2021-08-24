@@ -54,9 +54,14 @@ $ribbon-width: 0.4rem;
 @use "sass:map";
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 // bt.$theme-colors + myuw custom colors
 $theme-colors: map.merge($theme-colors, $custom-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-colors: map-merge($utilities-colors, $theme-colors-rgb);
+$utilities-text-colors: map-loop($utilities-colors, rgba-css-var, "$key", "text");
+$utilities-bg-colors: map-loop($utilities-colors, rgba-css-var, "$key", "bg");
 
 // override max width of containers
 $container-max-widths: map.merge($container-max-widths, (xl: 1400px, xxl: 1600px));
