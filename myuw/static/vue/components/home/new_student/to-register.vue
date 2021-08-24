@@ -19,7 +19,7 @@
         >
           <font-awesome-icon
             :icon="faCircle"
-            class="mr-3 mt-1 text-muted myuw-text-lg"
+            class="me-3 mt-1 text-muted myuw-text-lg"
           />
           <div>
             <div class="mb-1 myuw-font-encode-sans" v-html="notice.notice_title" />

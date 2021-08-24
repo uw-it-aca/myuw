@@ -44,7 +44,7 @@
       </slot>
     </uw-collapse>
 
-    <hr v-if="!collapsable">
+    <hr v-if="!collapsable" class="bg-secondary">
   </div>
 </template>
 

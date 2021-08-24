@@ -102,7 +102,7 @@
         </uw-collapse>
       </div>
     </template>
-    <hr>
+    <hr class="bg-secondary">
   </div>
 </template>
 

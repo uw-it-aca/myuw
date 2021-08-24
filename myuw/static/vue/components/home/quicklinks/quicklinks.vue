@@ -36,7 +36,7 @@
           Save your recently visited links for future access.
         </p>
       </div>
-      <hr v-if="recentLinks.length">
+      <hr v-if="recentLinks.length" class="bg-secondary">
       <p class="m-0 myuw-text-md">
         <span>
           Not seeing the links you're looking for?

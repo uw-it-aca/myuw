@@ -9,7 +9,7 @@
           University Book Store Autumn 2020 Update
         </div>
       </div>
-      <hr>
+      <hr class="bg-secondary">
       <div class="text-dark-beige myuw-text-md">
         In order to ensure public health, all course materials purchases for
         Fall 2020 quarter are online only; University Book Store&rsquo;s

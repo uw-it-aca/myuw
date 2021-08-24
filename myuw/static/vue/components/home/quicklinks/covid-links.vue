@@ -43,7 +43,7 @@
       </ul>
     </div>
     <div v-if="links.student">
-      <hr>
+      <hr class="bg-secondary">
       <h3 class="h6">
         Remote Learning
       </h3>
@@ -90,7 +90,7 @@
       </ul>
     </div>
     <div v-if="links.instructor">
-      <hr>
+      <hr class="bg-secondary">
       <h3 class="h6">
         Remote Teaching
       </h3>
