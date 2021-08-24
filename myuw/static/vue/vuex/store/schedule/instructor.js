@@ -159,7 +159,6 @@ function addCourseGradeData(courseData) {
 }
 
 function addCourseEvalData(courseData) {
-  const comparisonDate = courseData.now;
   courseData.sections.forEach((section) => {
     if (section.evaluation) {
       section.evaluation.responseRatePercent = 0;
