@@ -42,7 +42,7 @@
           </div>
         </div>
       </ul>
-      <hr>
+      <hr class="bg-secondary">
       <div>
         <h3 class="h6 text-dark-beige myuw-font-encode-sans">
           More topics

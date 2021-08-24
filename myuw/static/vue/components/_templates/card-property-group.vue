@@ -2,7 +2,7 @@
   <div class="card-property-group">
     <slot />
     <uw-card-property title="" class="card-group-divider">
-      <hr class="my-1">
+      <hr class="my-1 bg-secondary">
     </uw-card-property>
   </div>
 </template>

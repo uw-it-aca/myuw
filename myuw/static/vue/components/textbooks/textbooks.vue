@@ -3,19 +3,19 @@
     <template #panel-body>
       <div v-if="bookData.teachingSections.length > 0">
         <h2 class="h5">Teaching</h2>
-        <hr>
+        <hr class="bg-secondary">
         <uw-section
           v-for="(section, i) in bookData.teachingSections"
           :key="i"
           :section="section"
           :collapsable="bookData.collapseSections"
         />
-        <hr v-if="bookData.collapseSections">
+        <hr v-if="bookData.collapseSections" class="bg-secondary">
         <div v-if="bookData.enrolledSections.length > 0">
           <h2 class="h5">
             Enrolled
           </h2>
-          <hr>
+          <hr class="bg-secondary">
         </div>
       </div>
 
