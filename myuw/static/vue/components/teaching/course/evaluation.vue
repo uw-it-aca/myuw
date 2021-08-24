@@ -22,7 +22,7 @@
                   </a>
                 </li>
               </template>
-              <template v-if="section.evaluation.isOpen">
+              <template v-if="section.evaluation.is_open">
                 <li class="mb-1">
                   <span>
                     Open:&nbsp;&nbsp;{{section.evaluation.responseRatePercent}}%
