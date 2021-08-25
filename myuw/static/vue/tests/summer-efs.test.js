@@ -18,7 +18,13 @@ describe('Summer EFS Card', () => {
       modules: {
         notices,
       },
-      state: {},
+      state: {
+        user: {
+          affiliations: {
+            student: true,
+          }
+        }
+      }
     });
   });
 

@@ -65,7 +65,8 @@
           class="container-xl px-3 myuw-brand-logo"
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
-          <button v-b-toggle.nav-collapse
+          <button
+            v-b-toggle.nav-collapse
             type="button"
             class="btn btn-link btn-sm d-lg-none p-0 border-0 text-white"
             title="Toggle Navigation Menu"
@@ -114,97 +115,101 @@
               role="navigation"
               :visible="$mq == 'desktop'"
             >
-              <b-nav vertical :class="[$mq == 'desktop' ? '' : 'border-bottom']">
-                <b-nav-item
-                  class="mb-2"
-                  href="/"
-                  :active="page.title == 'Home'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faHome" class="mr-2" fixed-width />Home
-                </b-nav-item>
-                <b-nav-item
-                  v-if="student || applicant"
-                  class="mb-2"
-                  href="/academics/"
-                  :active="page.title == 'Academics'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faGraduationCap" class="mr-2" fixed-width />Academics
-                </b-nav-item>
-                <b-nav-item
-                  v-if="(undergrad && seattle) || hxtViewer"
-                  class="mb-2"
-                  href="/husky_experience/"
-                  :active="page.title == 'Husky Experience Toolkit'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience
-                </b-nav-item>
-                <b-nav-item
-                  v-if="instructor"
-                  class="mb-2"
-                  href="/teaching/"
-                  :active="page.title == 'Teaching'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faEdit" class="mr-2" fixed-width />Teaching
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/accounts/"
-                  :active="page.title == 'Accounts'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts
-                </b-nav-item>
-                <b-nav-item
-                  v-if="student"
-                  class="mb-2"
-                  href="/notices/"
-                  :active="page.title == 'Notices'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon
-                    :icon="faExclamationTriangle"
-                    class="mr-2"
-                    fixed-width
-                  />Notices
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/profile/"
-                  :active="page.title == 'Profile'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faUser" class="mr-2" fixed-width />Profile
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  aria-hidden="true"
-                  disabled
-                  :link-classes="'text-dark d-block p-0'"
-                >
-                  <hr class="m-0" />
-                  <span class="sr-only"> Navigation separator</span>
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/academic_calendar/"
-                  :active="page.title == 'Academic Calendar'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faCalendarCheck" class="mr-2" fixed-width />Calendar
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/resources/"
-                  :active="page.title == 'UW Resources'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources
-                </b-nav-item>
-              </b-nav>
+              <div class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/"
+                    :class="{ active: page.title == 'Home' }"
+                    ><font-awesome-icon :icon="faHome" class="mr-2" fixed-width />Home</a
+                  >
+                </li>
+                <li v-if="student || applicant" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/academics/"
+                    :class="{ active: page.title == 'Academics' }"
+                    ><font-awesome-icon :icon="faGraduationCap" class="mr-2" fixed-width />Academics
+                  </a>
+                </li>
+                <li v-if="(undergrad && seattle) || hxtViewer" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/husky_experience/"
+                    :class="{ active: page.title == 'Husky Experience Toolkit' }"
+                  >
+                    <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience</a
+                  >
+                </li>
+                <li v-if="instructor" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/teaching/"
+                    :class="{ active: page.title == 'Teaching' }"
+                  >
+                    <font-awesome-icon :icon="faEdit" class="mr-2" fixed-width />Teaching</a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/accounts/"
+                    :class="{ active: page.title == 'Accounts' }"
+                  >
+                    <font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts</a
+                  >
+                </li>
+                <li v-if="student" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/notices/"
+                    :class="{ active: page.title == 'Notices' }"
+                  >
+                    <font-awesome-icon
+                      :icon="faExclamationTriangle"
+                      class="mr-2"
+                      fixed-width
+                    />Notices</a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/profile/"
+                    :class="{ active: page.title == 'Profile' }"
+                  >
+                    <font-awesome-icon :icon="faUser" class="mr-2" fixed-width />Profile</a
+                  >
+                </li>
+                <li class="nav-item mb-2" aria-hidden="true">
+                  <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#">
+                    <hr class="m-0" />
+                    <span class="sr-only"> Navigation separator</span></a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/academic_calendar/"
+                    :class="{ active: page.title == 'Academic Calendar' }"
+                  >
+                    <font-awesome-icon
+                      :icon="faCalendarCheck"
+                      class="mr-2"
+                      fixed-width
+                    />Calendar</a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/resources/"
+                    :class="{ active: page.title == 'UW Resources' }"
+                  >
+                    <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources</a
+                  >
+                </li>
+              </div>
             </b-collapse>
             <uw-welcome v-if="$mq === 'desktop'" />
           </div>
@@ -317,8 +322,9 @@
         >.
       </p>
       <template #modal-footer="{ hide }">
-        <button slot-scope="" type="button"
-         class="btn btn-primary btn-sm" @click="hide()"> Close </button>
+        <button slot-scope="" type="button" class="btn btn-primary btn-sm" @click="hide()">
+          Close
+        </button>
       </template>
     </b-modal>
   </div>

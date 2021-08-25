@@ -1,7 +1,8 @@
 <template>
   <uw-card
-    v-if="!isReady || hasRegisterNotices"
-    :loaded="isReady" :errored="isErrored"
+    v-if="student && (!isReady || hasRegisterNotices)"
+    :loaded="isReady"
+    :errored="isErrored"
     :errored-show="showError"
   >
     <template #card-heading>
@@ -38,12 +39,13 @@ export default {
     'uw-card': Card,
   },
   computed: {
-    ...mapState('notices', {
+    ...mapState({
       notices: (state) => {
-        return state.value.filter((notice) =>
+        return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_summerreg'),
         );
       },
+      student: (state) => state.user.affiliations.student,
     }),
     ...mapGetters('notices', [
       'hasRegisterNotices',
@@ -51,12 +53,12 @@ export default {
       'isErrored',
       'statusCode',
     ]),
-    showError: function() {
+    showError() {
       return this.statusCode !== 404;
     },
   },
   created() {
-    this.fetch();
+    if (this.student) this.fetch();
   },
   methods: {
     ...mapActions('notices', ['fetch']),
