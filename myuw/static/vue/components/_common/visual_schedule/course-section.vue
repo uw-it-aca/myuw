@@ -72,7 +72,7 @@ export default {
     year() {
       return this.term.year;
     },
-    computedStyles: function() {
+    computedStyles() {
       if (this.meetingData.meeting && !this.meetingData.meeting.no_meeting) {
         const startTime = (
           this.meetingData.meeting.start_time ||
@@ -96,12 +96,12 @@ export default {
 
       return {};
     },
-    sectionTitle: function() {
+    sectionTitle() {
       return `${this.meetingData.section.curriculum_abbr} ${
         this.meetingData.section.course_number
       } ${this.meetingData.section.section_id}`;
     },
-    sectionUrl: function() {
+    sectionUrl() {
       let page = (
         this.meetingData.section.is_teaching ? 'teaching' : (
         this.term.isNotCurrentTerm ? 'future_quarters' :'academics'));
@@ -114,7 +114,7 @@ export default {
         this.meetingData.section.course_number
       }-${this.meetingData.section.section_id}`;
     },
-    meetingLocation: function() {
+    meetingLocation() {
       if (this.meetingData.section.is_remote) {
         return 'Remote';
       }
@@ -129,7 +129,7 @@ export default {
       }
       return 'Room TBD';
     },
-    ariaMeetingLocation: function() {
+    ariaMeetingLocation() {
       if (this.meetingData.section.is_remote) {
         return 'Location: Remote';
       }
@@ -146,7 +146,7 @@ export default {
       }
       return 'Location: Room TBD';
     },
-    meetingLocationUrl: function() {
+    meetingLocationUrl() {
       if (
         !this.meetingData.section.is_remote &&
         !this.isRoomTBD() &&
@@ -161,7 +161,7 @@ export default {
       }
       return false;
     },
-    showConfirmLink: function() {
+    showConfirmLink() {
       return (
         this.meetingData.section.is_teaching &&
         this.isFinalsCard &&
@@ -169,14 +169,14 @@ export default {
         !this.meetingData.section.final_exam.is_confirmed
       );
     },
-    confirmationLink: function() {
+    confirmationLink() {
       return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/${
         this.netid
       }/finalexam.asp?${this.quarter}+${
         this.year
       }&sln=${this.meetingData.section.sln}`;
     },
-    ariaLabel: function() {
+    ariaLabel() {
       let label = '';
 
       if (this.meetingData.meeting) {
@@ -216,7 +216,7 @@ export default {
     getMFM(t) {
       return (t.hour() * 60) + t.minute();
     },
-    isRoomTBD: function() {
+    isRoomTBD() {
       return (
         this.meetingData.meeting == null ||
         (

@@ -117,6 +117,7 @@ export default {
   },
   computed: {
     ...mapState({
+      student: (state) => state.user.affiliations.student,
       currentSummerTerm: (state) => state.cardDisplayDates.current_summer_term,
       isAfterLastDayOfClasses: (state) =>
         state.cardDisplayDates.is_after_last_day_of_classes,
@@ -143,14 +144,14 @@ export default {
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
     },
-    gradeSubmissionDeadline: function() {
+    gradeSubmissionDeadline() {
       if (this.term in this.courses) {
         return this.courses[this.term].term.grade_submission_deadline;
       } else {
         return [];
       }
     },
-    filteredSections: function() {
+    filteredSections() {
       if (this.term in this.courses) {
         return this.courses[this.term].sections.filter((section) => {
           let shouldDisplay = true; // display grade
@@ -174,9 +175,10 @@ export default {
         return [];
       }
     },
-    showGradeCard: function() {
+    showGradeCard() {
       return (
-        this.term &&
+        this.student &&
+        this.term !== null &&
         // This is done so that when there is a error it goes to the second
         // if conditional
         ((!this.isReady && !this.isErrored) ||

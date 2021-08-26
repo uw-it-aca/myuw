@@ -126,10 +126,10 @@ export default {
       undergrad: (state) => state.user.affiliations.undergrad,
       grad: (state) => state.user.affiliations.grad,
     }),
-    showCard: function () {
+    showCard() {
       return this.seattle && (this.undergrad || this.grad);
     },
-    showError: function () {
+    showError() {
       return this.statusCode !== 404;
     },
   },

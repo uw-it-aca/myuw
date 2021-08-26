@@ -126,10 +126,10 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
-    showCard: function () {
+    showCard() {
       return (this.employee || this.studentEmployee) && Boolean(this.directory);
     },
-    showError: function () {
+    showError() {
       return false;
     },
     noFormsOfContact() {
@@ -137,7 +137,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.employee || this.studentEmployee) this.fetch();
   },
   methods: {
     ...mapActions('directory', ['fetch']),
