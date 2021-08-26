@@ -226,16 +226,11 @@ export default {
       [ul],
     );
 
-    let tabs = null;
-    if (this.firstRender) {
-      tabNodes[this.tabIndex].data.class = {
-        show: true,
-        active: true,
-      };
-      tabs = [createElement('div', { class: { 'tab-content': true } }, this.$slots.default)];
-    } else {
-      tabs = [createElement('div', { class: { 'tab-content': true } }, tabNodes)];
-    }
+    tabNodes[this.tabIndex].data.class = {
+      show: true,
+      active: true,
+    };
+    let tabs = [createElement('div', { class: { 'tab-content': true } }, this.$slots.default)];
     let elm = createElement('div', [ulWrapper].concat(tabs));
 
     this.firstRender = false;
