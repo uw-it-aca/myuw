@@ -2,7 +2,7 @@
   <uw-panel :loaded="true">
     <template #panel-body>
       <uw-sidelink-section
-        category-title="Remote Teaching"
+        category-title="Online Teaching"
         :links="remoteTeachingLinks"
       />
       <uw-sidelink-section
@@ -60,7 +60,7 @@ export default {
       remoteTeachingLinks() {
         return [
           { url: "https://teachingremotely.washington.edu/",
-            title: "Teaching Remotely" },
+            title: "Teaching Online" },
           this.bothell_emp ?
             { url: "https://www.uwb.edu/it/teaching",
               title: "UWB Teach Anywhere" } : null,
