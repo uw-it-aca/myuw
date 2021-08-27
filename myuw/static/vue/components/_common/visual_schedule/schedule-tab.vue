@@ -287,35 +287,20 @@ export default {
     this.period.sections.forEach((section) => {
       if (!this.isFinalsTab) {
         section.meetings.forEach((meeting) => {
-          if (
-            (
-              meeting.no_meeting ||
-              !(meeting.start_time && meeting.end_time)
-            ) &&
-            (
-              !(
-                meeting.eos_start_date &&
-                meeting.eos_end_date
-              ) ||
-              (
-                meeting.eos_start_date &&
-                meeting.eos_end_date &&
-                (
-                  (
-                    meeting.eos_start_date >= this.period.start_date &&
-                    meeting.eos_start_date <= this.period.end_date
-                  ) || (
-                    meeting.eos_end_date >= this.period.start_date &&
-                    meeting.eos_end_date <= this.period.end_date
-                  )
-                )
-              )
-            )
-          ) {
-            this.meetingsWithoutTime.push({
+          if (meeting.eos_start_date === null ||
+              meeting.eos_end_date === null ||
+              (meeting.eos_start_date >= this.period.start_date &&
+               meeting.eos_start_date <= this.period.end_date ||
+               meeting.eos_end_date >= this.period.start_date &&
+               meeting.eos_end_date <= this.period.end_date
+              )) {
+            if (!meeting.no_meeting &&
+                (meeting.start_time === null || meeting.end_time === null)) {
+              this.meetingsWithoutTime.push({
               section: section,
               meeting: meeting,
             });
+            }
           }
         });
       } else {
