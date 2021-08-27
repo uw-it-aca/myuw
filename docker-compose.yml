@@ -14,7 +14,7 @@ services:
     environment:
       ENV: localdev
       AUTH: SAML_MOCK
-      #PORT: ${RUNSERVER_PORT:-8000}
+      PORT: ${PORT:-8000}
     stdin_open: true
     tty: true
   node-bundler:
@@ -27,7 +27,7 @@ services:
       NODE_ENV: development
       ENV: localdev
       VUE_DEVTOOLS: "True"
-      BUNDLE_ANALYZER: "True"
+      #BUNDLE_ANALYZER: "True"
     volumes:
       - ./myuw:/app/myuw
       - statics-volume:/static
