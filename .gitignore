@@ -89,3 +89,12 @@ coverage
 .nyc_output
 cypress/snapshots/diff
 cypress/snapshots/actual
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
