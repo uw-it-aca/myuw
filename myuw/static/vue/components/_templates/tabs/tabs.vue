@@ -44,7 +44,7 @@ export default {
       // TODO: not used right now
       firstRender: true,
       // Unique identifier for a tab component
-      tab_cid: UwTab['_Ctor'][0].cid,
+      tab_cid: Object.values(UwTab['_Ctor'])[0].cid,
     };
   },
   computed: {
@@ -77,7 +77,7 @@ export default {
     actualTabs(actualTabs) {
       Object.entries(actualTabs).forEach(([id, tab], i) => {
         if (!(id in this.eventHandlers)) {
-          var tabEl = document
+          let tabEl = document
             .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${id}"]`);
           tabEl.addEventListener('show.bs.tab', (event) => {
             let selected = this.decodeId(event.target.attributes['data-bs-target'].value);

@@ -1,6 +1,7 @@
 import { createLocalVue as createLocalVueOriginal } from '@vue/test-utils';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import BootstrapVue from 'bootstrap-vue';
+import 'bootstrap';
+import 'css.escape';
 
 // Global Mixins
 import utils from '../mixins/utils';
@@ -13,6 +14,7 @@ import Logger from '../plugins/logger';
 import Metadata from '../plugins/metadata';
 import Tracklink from '../plugins/tracklink';
 // import TrackCollapse from '../plugins/trackcollapse';
+import UwBootstrap from '../plugins/uw-bootstrap';
 
 let error = console.error;
 
@@ -57,7 +59,6 @@ const expectAction = (
 const createLocalVue = (vuexModule) => {
   const localVue = createLocalVueOriginal();
   localVue.component('font-awesome-icon', FontAwesomeIcon);
-  localVue.use(BootstrapVue);
   localVue.use(vuexModule);
   localVue.use(Metadata);
   localVue.use(Logger, {
@@ -76,6 +77,7 @@ const createLocalVue = (vuexModule) => {
     },
   });
   localVue.use(Tracklink);
+  localVue.use(UwBootstrap);
   // localVue.use(TrackCollapse);
   localVue.mixin(utils);
   localVue.mixin(courses);

@@ -21,7 +21,10 @@
             :title="slotProps.cellData.value.title"
           >
             <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
-            <span style="overflow-wrap: break-word;" class="visually-hidden myuw-print-visually-hidden">
+            <span
+              style="overflow-wrap: break-word;"
+              class="visually-hidden myuw-print-visually-hidden"
+            >
               {{ slotProps.cellData.value.email }}
             </span>
           </a>

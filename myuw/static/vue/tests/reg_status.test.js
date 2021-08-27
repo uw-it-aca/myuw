@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {mount} from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import UwCard from '../components/_templates/card.vue';
