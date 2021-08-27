@@ -60,7 +60,7 @@ export default {
       remoteTeachingLinks() {
         return [
           { url: "https://teachingremotely.washington.edu/",
-            title: "Teaching Online" },
+            title: "Teaching Remotely" },
           this.bothell_emp ?
             { url: "https://www.uwb.edu/it/teaching",
               title: "UWB Teach Anywhere" } : null,

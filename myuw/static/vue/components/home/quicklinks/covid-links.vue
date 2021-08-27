@@ -97,7 +97,7 @@
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-2">
           <a href="https://teachingremotely.washington.edu/">
-            Teaching Online
+            Teaching Remotely
           </a>
           <div class="font-weight-light myuw-text-sm">
             Plan digital learning experiences for your remote and hybrid courses.
