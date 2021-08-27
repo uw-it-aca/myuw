@@ -294,8 +294,9 @@ export default {
                meeting.eos_end_date >= this.period.start_date &&
                meeting.eos_end_date <= this.period.end_date
               )) {
-            if (!meeting.no_meeting &&
-                (meeting.start_time === null || meeting.end_time === null)) {
+            if (meeting.no_meeting ||
+                meeting.start_time === null ||
+                meeting.end_time === null) {
               this.meetingsWithoutTime.push({
               section: section,
               meeting: meeting,
