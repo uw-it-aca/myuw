@@ -114,10 +114,10 @@
               </span>
             </span>
             <span v-if="meeting.wont_meet">
-              (Class does not meet)
+              Class does not meet
             </span>
             <span v-else-if="meeting.no_meeting">
-              (Online learning)
+              No meeting
             </span>
             <span v-else>
               <span v-if="meeting.start_time">
