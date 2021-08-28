@@ -106,7 +106,6 @@
       >
         <ol class="m-0 px-4 text-left">
           <li v-for="(meeting, j) in eosSection.meetings" :key="j">
-            <span v-if="j !== 0">,&nbsp;</span>
             <span v-if="meeting.eos_start_date">
               {{ formatDate(meeting.eos_start_date) }}
               <span v-if="!meeting.start_end_same">
@@ -118,8 +117,8 @@
             </span>
             <span v-else>
               <span v-if="meeting.start_time">
-                {{ formatTime(meeting.start_time) }} &ndash;
-                {{ formatTime(meeting.end_time) }}
+                ({{ formatTime(meeting.start_time) }} &ndash;
+                {{ formatTime(meeting.end_time) }})
               </span>
             </span>
           </li>
@@ -283,6 +282,7 @@ export default {
     // Put the meeting without time into its list.
     this.period.sections.forEach((section) => {
       if (!this.isFinalsTab) {
+        let addOnce = false;
         section.meetings.forEach((meeting) => {
           if (meeting.eos_start_date === null ||
               meeting.eos_end_date === null ||
@@ -294,10 +294,14 @@ export default {
             if (meeting.no_meeting ||
                 meeting.start_time === null ||
                 meeting.end_time === null) {
-              this.meetingsWithoutTime.push({
-              section: section,
-              meeting: meeting,
-            });
+              if (!addOnce) {
+                this.meetingsWithoutTime.push({
+                  section: section,
+                  meeting: meeting,
+                  });
+                addOnce = true;
+                // add the same section only once
+              }
             }
           }
         });
