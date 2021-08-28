@@ -98,7 +98,7 @@ const postProcess = (response, urlExtra) => {
           );
         }
 
-        if (section.eos_cid && !eosAlreadyAdded) {
+        if (!meeting.no_meeting && section.eos_cid && !eosAlreadyAdded) {
           period.eosData.push(section);
           eosAlreadyAdded = true;
         }

@@ -106,7 +106,7 @@
       >
         <ol class="m-0 px-4 text-left">
           <li v-for="(meeting, j) in eosSection.meetings" :key="j">
-            <span v-if="i !== 0">,&nbsp;</span>
+            <span v-if="j !== 0">,&nbsp;</span>
             <span v-if="meeting.eos_start_date">
               {{ formatDate(meeting.eos_start_date) }}
               <span v-if="!meeting.start_end_same">
