@@ -118,8 +118,8 @@
             </span>
             <span v-else>
               <span v-if="meeting.start_time">
-                ({{ formatTime(meeting.start_time) }} &ndash;
-                {{ formatTime(meeting.end_time) }})
+                {{ formatTime(meeting.start_time) }} &ndash;
+                {{ formatTime(meeting.end_time) }}
               </span>
             </span>
           </li>
