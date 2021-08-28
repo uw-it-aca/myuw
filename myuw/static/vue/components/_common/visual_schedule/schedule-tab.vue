@@ -116,9 +116,6 @@
             <span v-if="meeting.wont_meet">
               Class does not meet
             </span>
-            <span v-else-if="meeting.no_meeting">
-              No meeting
-            </span>
             <span v-else>
               <span v-if="meeting.start_time">
                 ({{ formatTime(meeting.start_time) }} &ndash;
