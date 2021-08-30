@@ -346,7 +346,6 @@ export default {
       meetingsToAdd[0].renderTime = startTime;
 
       if (
-        this.meetingMap[day] &&
         this.meetingMap[day][this.formatToUnique(startTime)] &&
         this.meetingMap[day][this.formatToUnique(startTime)].length > 0
       ) {
