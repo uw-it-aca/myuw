@@ -31,7 +31,8 @@ const postProcess = (response, urlExtra) => {
   schedule[urlExtra].periods.forEach((period) => {
     // Do conversions to dayjs objects from time and date
     convertPeriodTimeAndDateToDateJSObj(period);
-    period.eosData = [];
+
+    period.eosData = []; // EOS Meeting time notes:
 
     if (period.end_date && period.start_date) {
       // Construct the title
@@ -92,15 +93,15 @@ const postProcess = (response, urlExtra) => {
         }
 
         meeting.locationData = generateMeetingLocationData(meeting);
+
         if (meeting.eos_start_date && meeting.eos_end_date) {
           meeting.start_end_same = (
             meeting.eos_start_date.format() === meeting.eos_end_date.format()
           );
-        }
-
-        if (section.eos_cid && !eosAlreadyAdded) {
-          period.eosData.push(section);
-          eosAlreadyAdded = true;
+          if (section.eos_cid && !eosAlreadyAdded) {
+            period.eosData.push(section);
+            eosAlreadyAdded = true;
+          }
         }
       });
 
