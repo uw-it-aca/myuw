@@ -28,9 +28,6 @@ const postProcess = (response, urlExtra) => {
   const schedule = setTermAndExtractData(response, urlExtra);
 
   convertTermTimeAndDateToDateJSObj(schedule[urlExtra].term);
-  const term = schedule[urlExtra].term;
-  const finalWeekBegin = term.last_final_exam_date.subtract(6, 'day');
-  const finalWeekEnd = term.last_final_exam_date.add(1, 'day');
 
   schedule[urlExtra].periods.forEach((period) => {
     // Do conversions to dayjs objects from time and date
@@ -48,6 +45,7 @@ const postProcess = (response, urlExtra) => {
     }
 
     let earliestTime = null;
+    let earliestFinalDate = null; // MUWM-5001
     let latestTime = null;
     let finalPeriod = isFinalPeriod(period);
     period.sections.forEach((section) => {
@@ -57,23 +55,27 @@ const postProcess = (response, urlExtra) => {
         section.final_exam.locationData =
           generateMeetingLocationData(section.final_exam);
         if (finalPeriod) {
+
+          // // MUWM-5001
+          if (earliestFinalDate === null) {
+            earliestFinalDate = section.final_exam.start_date;
+          } else {
+            if (section.final_exam.start_date < earliestFinalDate) {
+              earliestFinalDate = section.final_exam.start_date;
+            }
+          }
+
           // Update min and max time if needed
           if (earliestTime === null && latestTime === null) {
             earliestTime = section.final_exam.start_date;
             latestTime = section.final_exam.end_date;
           } else {
-            // MUWM-5001
-            if (section.final_exam.start_date < earliestTime &&
-                section.final_exam.start_date >= finalWeekBegin ||
-                diffIgnoreDate(section.final_exam.start_date, earliestTime) < 0) {
+            if (diffIgnoreDate(section.final_exam.start_date, earliestTime) < 0) {
               earliestTime = section.final_exam.start_date;
             }
-            if (section.final_exam.end_date > latestTime &&
-                section.final_exam.end_date < finalWeekEnd ||
-                diffIgnoreDate(section.final_exam.end_date, latestTime) > 0) {
+            if (diffIgnoreDate(section.final_exam.end_date, latestTime) > 0) {
               latestTime = section.final_exam.end_date;
             }
-            console.log(section.final_exam.start_date, earliestTime, latestTime);
           }
         }
       }
@@ -140,7 +142,9 @@ const postProcess = (response, urlExtra) => {
       }
     } else if (earliestTime) {
       // Generate dates if on a final period
-      let refrenceDate = earliestTime;
+      let refrenceDate = (
+        earliestFinalDate < earliestTime ? earliestFinalDate : earliestTime);
+      // MUWM-5001
 
       if (refrenceDate.day() === 6) {
         period.daySlots['saturday'] = refrenceDate.clone();
