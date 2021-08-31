@@ -267,6 +267,7 @@ export default {
             section.final_exam.start_date &&
             section.final_exam.end_date
           ) {
+            console.log(section.final_exam.start_date.format('dddd'));
             this.putMeeting(
                 section,
                 section.final_exam,
