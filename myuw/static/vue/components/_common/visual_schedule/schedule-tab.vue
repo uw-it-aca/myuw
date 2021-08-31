@@ -354,7 +354,9 @@ export default {
             this.meetingMap[day][this.formatToUnique(startTime)],
         );
       }
-
+      // MUWM-5001: course meets M-F, finals on Saturday
+      // this.meetingMap[day] not initialized
+      if (!this.meetingMap[day]) this.meetingMap[day] = {};
       this.meetingMap[day][this.formatToUnique(startTime)] = meetingsToAdd;
     },
     isDayDisabled(day) {
