@@ -267,7 +267,6 @@ export default {
             section.final_exam.start_date &&
             section.final_exam.end_date
           ) {
-            console.log(section.final_exam.start_date.format('dddd'));
             this.putMeeting(
                 section,
                 section.final_exam,
@@ -345,10 +344,6 @@ export default {
         startTime = startTime.subtract(startTime.minute(), 'minutes');
       }
       meetingsToAdd[0].renderTime = startTime;
-
-      // MUWM-5001: course meets M-F, finals on Saturday
-      // this.meetingMap[day] not initialized
-      if (!this.meetingMap[day]) this.meetingMap[day] = {};
 
       if (
         this.meetingMap[day][this.formatToUnique(startTime)] &&
