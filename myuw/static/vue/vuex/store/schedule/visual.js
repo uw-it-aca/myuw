@@ -28,6 +28,10 @@ const postProcess = (response, urlExtra) => {
   const schedule = setTermAndExtractData(response, urlExtra);
 
   convertTermTimeAndDateToDateJSObj(schedule[urlExtra].term);
+  const term = schedule[urlExtra].term;
+  const finalWeekBegin = term.last_final_exam_date.subtract(6, 'day');
+  const finalWeekEnd = term.last_final_exam_date.add(1, 'day');
+
   schedule[urlExtra].periods.forEach((period) => {
     // Do conversions to dayjs objects from time and date
     convertPeriodTimeAndDateToDateJSObj(period);
@@ -58,10 +62,16 @@ const postProcess = (response, urlExtra) => {
             earliestTime = section.final_exam.start_date;
             latestTime = section.final_exam.end_date;
           } else {
-            if (diffIgnoreDate(section.final_exam.start_date, earliestTime) < 0) {
+            // MUWM-5001
+            console.log(section.final_exam.start_date, finalWeekBegin, finalWeekEnd);
+            if (section.final_exam.start_date < earliestTime &&
+                section.final_exam.start_date >= finalWeekBegin ||
+                diffIgnoreDate(section.final_exam.start_date, earliestTime) < 0) {
               earliestTime = section.final_exam.start_date;
             }
-            if (diffIgnoreDate(section.final_exam.end_date, latestTime) > 0) {
+            if (section.final_exam.end_date > latestTime &&
+                section.final_exam.end_date < finalWeekEnd ||
+                diffIgnoreDate(section.final_exam.end_date, latestTime) > 0) {
               latestTime = section.final_exam.end_date;
             }
           }
