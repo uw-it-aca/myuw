@@ -63,7 +63,6 @@ const postProcess = (response, urlExtra) => {
             latestTime = section.final_exam.end_date;
           } else {
             // MUWM-5001
-            console.log(section.final_exam.start_date, finalWeekBegin, finalWeekEnd);
             if (section.final_exam.start_date < earliestTime &&
                 section.final_exam.start_date >= finalWeekBegin ||
                 diffIgnoreDate(section.final_exam.start_date, earliestTime) < 0) {
@@ -74,6 +73,7 @@ const postProcess = (response, urlExtra) => {
                 diffIgnoreDate(section.final_exam.end_date, latestTime) > 0) {
               latestTime = section.final_exam.end_date;
             }
+            console.log(section.final_exam.start_date, earliestTime, latestTime);
           }
         }
       }
