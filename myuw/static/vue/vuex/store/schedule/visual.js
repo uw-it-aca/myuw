@@ -28,10 +28,12 @@ const postProcess = (response, urlExtra) => {
   const schedule = setTermAndExtractData(response, urlExtra);
 
   convertTermTimeAndDateToDateJSObj(schedule[urlExtra].term);
+
   schedule[urlExtra].periods.forEach((period) => {
     // Do conversions to dayjs objects from time and date
     convertPeriodTimeAndDateToDateJSObj(period);
-    period.eosData = [];
+
+    period.eosData = []; // EOS Meeting time notes:
 
     if (period.end_date && period.start_date) {
       // Construct the title
@@ -43,6 +45,7 @@ const postProcess = (response, urlExtra) => {
     }
 
     let earliestTime = null;
+    let earliestFinalDate = null; // MUWM-5001
     let latestTime = null;
     let finalPeriod = isFinalPeriod(period);
     period.sections.forEach((section) => {
@@ -52,6 +55,16 @@ const postProcess = (response, urlExtra) => {
         section.final_exam.locationData =
           generateMeetingLocationData(section.final_exam);
         if (finalPeriod) {
+
+          // // MUWM-5001
+          if (earliestFinalDate === null) {
+            earliestFinalDate = section.final_exam.start_date;
+          } else {
+            if (section.final_exam.start_date < earliestFinalDate) {
+              earliestFinalDate = section.final_exam.start_date;
+            }
+          }
+
           // Update min and max time if needed
           if (earliestTime === null && latestTime === null) {
             earliestTime = section.final_exam.start_date;
@@ -92,15 +105,15 @@ const postProcess = (response, urlExtra) => {
         }
 
         meeting.locationData = generateMeetingLocationData(meeting);
+
         if (meeting.eos_start_date && meeting.eos_end_date) {
           meeting.start_end_same = (
             meeting.eos_start_date.format() === meeting.eos_end_date.format()
           );
-        }
-
-        if (section.eos_cid && !eosAlreadyAdded) {
-          period.eosData.push(section);
-          eosAlreadyAdded = true;
+          if (section.eos_cid && !eosAlreadyAdded) {
+            period.eosData.push(section);
+            eosAlreadyAdded = true;
+          }
         }
       });
 
@@ -129,7 +142,9 @@ const postProcess = (response, urlExtra) => {
       }
     } else if (earliestTime) {
       // Generate dates if on a final period
-      let refrenceDate = earliestTime;
+      let refrenceDate = (
+        earliestFinalDate < earliestTime ? earliestFinalDate : earliestTime);
+      // MUWM-5001
 
       if (refrenceDate.day() === 6) {
         period.daySlots['saturday'] = refrenceDate.clone();
