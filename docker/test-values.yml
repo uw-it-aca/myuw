@@ -60,7 +60,7 @@ cronjob:
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
-    - name: cleanup_instructors
+    - name: cleanup-instructors
       schedule: "1 12 11 11 *"
       command: ["/scripts/management_command.sh"]
       args: ["cleanup_instructors"]

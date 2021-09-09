@@ -18,7 +18,7 @@ class TestLinks(MyuwApiTest):
         data = json.loads(response.content)
 
         self.assertEquals(data["link_data"][0]["subcategory"],
-                          "Remote Learning")
+                          "Online Learning")
         self.assertEquals(len(data["link_data"][0]["links"]), 1)
         self.assertEquals(data["link_data"][1]["subcategory"],
                           "Registration")

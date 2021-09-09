@@ -2,7 +2,7 @@
   <uw-panel :loaded="true">
     <template #panel-body>
       <uw-sidelink-section
-        category-title="Remote Teaching"
+        category-title="Online Teaching"
         :links="remoteTeachingLinks"
       />
       <uw-sidelink-section
