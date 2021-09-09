@@ -90,6 +90,7 @@ export default {
             {
               key: 'jointCourse',
               label: 'Joint Course',
+              sortable: true,
             },
         );
       }
