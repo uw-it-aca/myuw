@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, fix/res-links, vue/dev]
+    branches: [main, master, qa, develop, vue/dev]
   pull_request:
-    branches: [main, master, qa, fix/res-links, vue/dev]
+    branches: [main, master, qa, develop, vue/dev]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -274,7 +274,7 @@ jobs:
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
 
       - name: Deploy Develop Branch
-        if: needs.context.outputs.git_repo_branch == 'fix/res-links'
+        if: needs.context.outputs.git_repo_branch == 'develop'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
@@ -301,7 +301,7 @@ jobs:
   housekeeping:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') ||
-         endsWith(github.ref, '/fix/res-links') || endsWith(github.ref, '/vue/dev'))
+         endsWith(github.ref, '/develop') || endsWith(github.ref, '/vue/dev'))
 
     needs: [context, build, deploy]
 
