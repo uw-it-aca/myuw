@@ -13,8 +13,6 @@ except ImportError:
 from uw_gws import GWS
 from myuw.util.settings import get_myuw_test_access_group
 from myuw.dao import get_netid_of_current_user, get_netid_of_original_user
-from myuw.dao.pws import is_employee
-
 
 logger = logging.getLogger(__name__)
 gws = GWS()
@@ -188,22 +186,11 @@ def is_staff_employee(request):
     return staff in get_groups(request)
 
 
-def is_regular_employee(request):
-    return ((is_employee(request) or is_clinician(request)) and
-            not is_student_employee(request))
-
-
 def is_applicant(request):
     """
     An UW applicant ((grace 90 days)
     """
     return applicant in get_groups(request)
-
-
-def no_major_affiliations(request):
-    return (not is_applicant(request) and
-            not is_regular_employee(request) and
-            not is_student(request))
 
 
 def is_effective_member(request, group_id):

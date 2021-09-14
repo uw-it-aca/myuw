@@ -26,8 +26,8 @@ describe('Employee Profile Card', () => {
       state: {
         user: {
           affiliations: { 
-            employee: true,
-            stud_employee: true,
+            all_employee: false,
+            stud_employee: false,
             tacoma: false,
           }
         }
@@ -36,6 +36,16 @@ describe('Employee Profile Card', () => {
   });
 
   it('Verify computed properties', async () => {
+    store.state.user.affiliations.all_employee = true;
+    axios.get.mockResolvedValue({data: javerageDirectory, status: 200});
+    const wrapper = mount(EmployeeProfileCard, {store, localVue});
+    await new Promise(setImmediate);
+
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.noFormsOfContact).toBe(false);
+  });
+  it('Verify computed properties', async () => {
+    store.state.user.affiliations.stud_employee = true;
     axios.get.mockResolvedValue({data: javerageDirectory, status: 200});
     const wrapper = mount(EmployeeProfileCard, {store, localVue});
     await new Promise(setImmediate);

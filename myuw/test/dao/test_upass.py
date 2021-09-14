@@ -50,9 +50,7 @@ class TestUPassDao(TestCase):
                                     get_request_with_date("2013-06-24"))
         status = get_upass(req)
         self.assertFalse(status['is_current'])
-        self.assertTrue(status['is_employee'])
-        self.assertTrue(status['is_student'])
-        self.assertTrue(status['in_summer'])
+        self.assertTrue('in_summer' not in status)
         try:
             self.assertFalse(status['display_activation'])
             self.fail("Non current should not have activation message")
@@ -63,8 +61,6 @@ class TestUPassDao(TestCase):
         req = get_request_with_user("seagrad", req)
         status = get_upass(req)
         self.assertTrue(status['is_current'])
-        self.assertTrue(status['is_employee'])
-        self.assertTrue(status['is_student'])
         self.assertTrue(status['display_activation'])
         self.assertFalse(status['in_summer'])
 
@@ -72,21 +68,19 @@ class TestUPassDao(TestCase):
         req = get_request_with_user("botgrad", req)
         status = get_upass(req)
         self.assertTrue(status['is_current'])
-        self.assertTrue(status['is_student'])
+        self.assertTrue(status['in_summer'])
         self.assertFalse(status['display_activation'])
 
         req = get_request_with_date("2013-10-10")
         req = get_request_with_user("tacgrad", req)
         status = get_upass(req)
         self.assertTrue(status['is_current'])
-        self.assertTrue(status['is_student'])
         self.assertFalse(status['display_activation'])
 
         req = get_request_with_user("staff")
         status = get_upass(req)
         self.assertFalse(status['is_current'])
-        self.assertTrue(status['is_employee'])
-        self.assertFalse(status['is_student'])
+        self.assertTrue('display_activation' not in status)
 
     def test_error(self):
         req = get_request_with_user("jerror")
