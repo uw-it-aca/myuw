@@ -60,7 +60,7 @@ def get_all_affiliations(request):
     ["intl_stud"]: F1 or J1 international student
     ["hxt_viewer"]: Husky Experience Toolkit viewer
     ["no_1st_class_affi"]: not applicant, current employee,
-                           current student, instructor
+                           clinician, student, instructor
     The following are secondary affiliations (without 1st_class_aff):
     ["alumni"]: True if the user is currently an UW alumni and NOT
                 current student, employee, applicant
