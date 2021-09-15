@@ -50,7 +50,7 @@ class TestUPassDao(TestCase):
                                     get_request_with_date("2013-06-24"))
         status = get_upass(req)
         self.assertFalse(status['is_current'])
-        self.assertTrue('in_summer' not in status)
+        self.assertTrue(status['in_summer'])
         try:
             self.assertFalse(status['display_activation'])
             self.fail("Non current should not have activation message")

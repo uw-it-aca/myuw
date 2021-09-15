@@ -8,6 +8,7 @@ This class encapsulates the interactions with the UPass web service.
 from datetime import timedelta
 from uw_upass import get_upass_status
 from myuw.dao import get_netid_of_current_user
+from myuw.dao.gws import is_student
 from myuw.dao.term import Term, get_comparison_datetime,\
     get_current_quarter, get_next_quarter
 
@@ -26,7 +27,7 @@ def get_upass(request):
     if status.is_current:
         ret_json['display_activation'] = (status.is_employee or
                                           around_qtr_begin(request))
-    if status.is_student:
+    if status.is_student or is_student(request):
         ret_json['in_summer'] = in_summer_display_window(request)
 
     return ret_json
