@@ -33,7 +33,7 @@ describe('Upass Card', () => {
             seattle: false,
             bothell: false,
             tacoma: false,
-            employee: false,
+            all_employee: false,
           }
         }
       }
@@ -99,7 +99,7 @@ describe('Upass Card', () => {
       "https://facilities.uw.edu/transportation/student-u-pass#9");
   });
    it('Evaluate the computed properties for employee', async () => {
-    store.state.user.affiliations.employee = true;
+    store.state.user.affiliations.all_employee = true;
     axios.get.mockResolvedValue({data: mockUpass});
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess

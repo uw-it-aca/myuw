@@ -28,7 +28,7 @@ describe('Husky Card', () => {
           affiliations: {
             student: false,
             past_stud: false,
-            employee: false,
+            all_employee: false,
             past_employee: false,
           }
         }
@@ -78,7 +78,7 @@ describe('Husky Card', () => {
   });
 
   it('Show error msg if api returns 543', async () => {
-    store.state.user.affiliations.employee = true;
+    store.state.user.affiliations.all_employee = true;
     axios.get.mockResolvedValue(Promise.reject({response: {status: 543}}));
     const wrapper = mount(HuskyCard, {store, localVue});
     await new Promise(setImmediate);

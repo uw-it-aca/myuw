@@ -105,7 +105,7 @@ export default {
     ...mapState({
       isStudent: (state) => state.user.affiliations.student,
       isInstructor: (state) => state.user.affiliations.instructor,
-      isEmployee: (state) => state.user.affiliations.employee,
+      isEmployee: (state) => state.user.affiliations.all_employee,
     }),
     ...mapGetters('inst_schedule', {
       instScheduleErrored: 'isErroredTagged',
