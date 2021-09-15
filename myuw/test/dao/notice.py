@@ -186,10 +186,9 @@ class TestNotices(TestCase):
         self.assertEquals(notices[16].notice_type, 'HSImmunReqDateA')
         self.assertEquals(notices[17].notice_type, 'HSImmunReqDateB')
 
-        regid = "FE36CCB8F66711D5BE060004AC494FCD"  #jbothell
+        regid = "FE36CCB8F66711D5BE060004AC494FCD"  # jbothell
         notices = _get_notices_by_regid(regid)
         for notice in notices:
             if notice.notice_type == "Fees & Finances":
                 self.assertTrue("tuition_due_date" in notice.location_tags)
                 self.assertTrue(notice.is_critical)
-
