@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     ...mapState({
-      employee: (state) => state.user.affiliations.employee,
+      employee: (state) => state.user.affiliations.all_employee,
       studEmployee: (state) => state.user.affiliations.stud_employee,
       student: (state) => state.user.affiliations.student,
       isTacoma: (state) => state.user.affiliations.tacoma,

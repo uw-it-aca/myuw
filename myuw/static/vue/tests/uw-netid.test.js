@@ -36,7 +36,7 @@ describe('UWNetID Card', () => {
           affiliations: {
             student: false,
             applicant: false,
-            employee: false,
+            instructor: false,
             '2fa_permitted': true,
           }
         }
@@ -83,8 +83,8 @@ describe('UWNetID Card', () => {
     expect(wrapper.vm.showCard).toBe(true);
   });
 
-  it('Check showCard on Accounts page for employee', async () => {
-    store.state.user.affiliations.employee = true;
+  it('Check showCard on Accounts page for instructor', async () => {
+    store.state.user.affiliations.instructor = true;
     axios.get.mockResolvedValue({data: mockProfileData, status: 200});
     const wrapper = mount(UWNetidCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
