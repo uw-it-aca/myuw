@@ -179,9 +179,17 @@ class TestNotices(TestCase):
                 self.assertFalse(notice.is_critical)
 
         # test MUWM-4535
-        regid = "FE36CCB8F66711D5BE060004AC494F31"
+        regid = "FE36CCB8F66711D5BE060004AC494F31"  # jnew
         notices = _get_notices_by_regid(regid)
         self.assertEquals(len(notices), 18)
         self.assertEquals(notices[15].notice_type, 'HSImmunBlock')
         self.assertEquals(notices[16].notice_type, 'HSImmunReqDateA')
         self.assertEquals(notices[17].notice_type, 'HSImmunReqDateB')
+
+        regid = "FE36CCB8F66711D5BE060004AC494FCD"  #jbothell
+        notices = _get_notices_by_regid(regid)
+        for notice in notices:
+            if notice.notice_type == "Fees & Finances":
+                self.assertTrue("tuition_due_date" in notice.location_tags)
+                self.assertTrue(notice.is_critical)
+
