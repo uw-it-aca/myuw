@@ -69,7 +69,7 @@ export default {
       const csvData = this.buildClasslistCsv(
           classlist.registrations, classlist.has_linked_sections);
 
-      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData); // MUWM-5004
       hiddenElement.target = '_blank';
       hiddenElement.download = this.classlistFileName(classlist);
       hiddenElement.click();
