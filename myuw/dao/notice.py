@@ -9,7 +9,7 @@ the SWS notice resource.
 import logging
 from django.db import IntegrityError
 from uw_sws.notice import get_notices_by_regid
-from myuw.models import TuitionDate, UserNotices
+from myuw.models import UserNotices
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.notice_mapping import categorize_notices
 from myuw.dao.user import get_user_model
@@ -91,44 +91,3 @@ def _get_user_notices(request, notices):
     # Add newly created UserNotices into returned list
     notices_with_read_status.extend(list(notice_dict.values()))
     return notices_with_read_status
-
-
-def _is_tuition_due_notice(notice):
-    category = notice.notice_category
-    notice_type = notice.notice_type
-    if category + "_" + notice_type == "StudentDAD_TuitDue":
-        return True
-    return False
-
-
-def get_tuition_due_date(request):
-    tuition_date = None
-    notices = get_notices_for_current_user(request)
-    for notice in notices:
-        if _is_tuition_due_notice(notice):
-            tuition_notice = _store_tuition_notice_date(request, notice)
-            if tuition_notice is not None:
-                tuition_date = tuition_notice.date
-    if tuition_date is None:
-        try:
-            stored_tuition = TuitionDate.objects.get(
-                user=get_user_model(request))
-            tuition_date = stored_tuition.date
-        except Exception:
-            pass
-    return tuition_date
-
-
-def _store_tuition_notice_date(request, notice):
-    for attrib in notice.attributes:
-        if attrib.name == "Date":
-            defaults = {'date': attrib.get_value()}
-            td_get_or_create = TuitionDate.objects.get_or_create
-            tuition_date, created = td_get_or_create(
-                user=get_user_model(request),
-                defaults=defaults)
-            if not created:
-                tuition_date.date = attrib.get_value()
-                tuition_date.save()
-            return tuition_date
-    return None

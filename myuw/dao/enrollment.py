@@ -15,7 +15,6 @@ from myuw.dao import log_err
 from myuw.dao.term import (
     get_current_quarter, get_current_and_next_quarters,
     get_previous_number_quarters, get_comparison_date)
-from restclients_core.exceptions import DataFailureException
 from myuw.dao.pws import get_regid_of_current_user
 
 CLASS_CODES = {

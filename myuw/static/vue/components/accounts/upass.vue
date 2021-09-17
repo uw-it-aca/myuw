@@ -108,7 +108,7 @@ export default {
       statusCode: 'statusCode',
     }),
     ...mapState({
-      employee: (state) => state.user.affiliations.employee,
+      employee: (state) => state.user.affiliations.all_employee,
       student: (state) => state.user.affiliations.student,
       tacoma: (state) => state.user.affiliations.tacoma,
       bothell: (state) => state.user.affiliations.bothell,

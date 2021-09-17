@@ -52,6 +52,8 @@ class TestAffilliationDao(TransactionTestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations['instructor'])
         self.assertTrue(affiliations['clinician'])
+        self.assertTrue(affiliations['employee'])
+        self.assertTrue(affiliations['all_employee'])
 
     def test_is_faculty(self):
         now_request = get_request_with_user('billtac')
@@ -130,6 +132,8 @@ class TestAffilliationDao(TransactionTestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("tacoma"))
         self.assertFalse(affiliations.get("hxt_viewer"))
+        self.assertFalse(affiliations.get("employee"))
+        self.assertTrue(affiliations.get("all_employee"))
 
     def test_is_grad_stud_employee(self):
         now_request = get_request_with_user('billseata')
@@ -139,6 +143,7 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations.get("seattle"))
         self.assertTrue(affiliations.get("instructor"))
         self.assertTrue(affiliations.get("stud_employee"))
+        self.assertTrue(affiliations.get("all_employee"))
         self.assertTrue(affiliations.get("seattle"))
         self.assertTrue(affiliations.get("official_seattle"))
         self.assertFalse(affiliations.get("hxt_viewer"))
@@ -165,6 +170,9 @@ class TestAffilliationDao(TransactionTestCase):
         now_request = get_request_with_user('staff')
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("official_seattle"))
+        self.assertTrue(affiliations['employee'])
+        self.assertTrue(affiliations['all_employee'])
+        self.assertTrue(affiliations['clinician'])
 
     def test_eos_enrollment(self):
         now_request = get_request_with_user('jeos')
