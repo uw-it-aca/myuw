@@ -26,37 +26,37 @@
       </h3>
 
       <ul class="list-unstyled myuw-text-md">
-        <li class="mb-1">
+        <li v-if="isInstructor || isStudent" class="mb-1">
           <a href="https://canvas.uw.edu/">Canvas LMS</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isInstructor || isStudent" class="mb-1">
           <a href="https://catalyst.uw.edu/">Catalyst Web Tools</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isStudent" class="mb-1">
           <a href="https://sdb.admin.uw.edu/students/uwnetid/register.asp"
           >Student Registration</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isStudent" class="mb-1">
           <a href="https://sdb.admin.uw.edu/students/uwnetid/schedule.asp"
           >Student Class Schedule</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isStudent" class="mb-1">
           <a href="https://sdb.admin.uw.edu/sisStudents/uwnetid/tuition.aspx"
           >Student Tuition Statement</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isInstructor || isStudent" class="mb-1">
           <a href="https://www.washington.edu/students/timeschd/"
           >Time Schedule</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isStudent" class="mb-1">
           <a href="https://myplan.uw.edu"
           >MyPlan</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isInstructor" class="mb-1">
           <a href="https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/default.aspx"
           >My Class Instructor Resources</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isInstructor" class="mb-1">
           <a href="https://gradepage.uw.edu/">GradePage</a>
         </li>
         <li class="mb-1">
@@ -66,11 +66,11 @@
           <a href="https://eo.admin.washington.edu/uweomyuw/outage/uwnetid/myuwoutage.asp"
           >UW Professional &amp; Continuing Education</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isEmployee && !isAcademicsPage" class="mb-1">
           <a href="https://wd5.myworkday.com/uw/d/home.htmld"
           >Workday</a>
         </li>
-        <li class="mb-1">
+        <li v-if="isEmployee && !isAcademicsPage" class="mb-1">
           <a href="http://ucs.admin.uw.edu/myfd/"
           >MyFinancial.desktop</a>
         </li>
@@ -94,6 +94,10 @@ export default {
     term: {
       type: String,
       required: true,
+    },
+    isAcademicsPage: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -151,7 +155,8 @@ export default {
         this.empProfileStatusCode !== 404;
     },
     showOutageCard() {
-      return this.studDataError || this.instDataError || this.employeeDataError;
+      return (this.isAcademicsPage ? this.studDataError :
+        this.studDataError || this.instDataError || this.employeeDataError);
     },
   },
   created() {
@@ -160,10 +165,10 @@ export default {
       this.fetchSchedule(this.term);
       this.fetchProfile();
     }
-    if (this.isInstructor) {
+    if (!this.isAcademicsPage && this.isInstructor) {
       this.fetchInstSchedule(this.term);
     }
-    if (this.isEmployee) {
+    if (!this.isAcademicsPage && this.isEmployee) {
       this.fetchEmployeeProfile();
     }
   },
