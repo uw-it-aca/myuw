@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showOutageCard" :loaded="true" class="myuw-outage">
     <template #card-heading>
-      <h2 class="text-danger">
+      <h2 class="h4 mb-3 text-danger myuw-font-encode-sans">
         Limited data due to technical difficulties
       </h2>
     </template>
