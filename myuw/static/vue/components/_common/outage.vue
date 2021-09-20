@@ -198,10 +198,12 @@ export default {
 
 .myuw-outage {
   // override card background color using new warning theme background
-  ::v-deep .card {
+  ::v-deep .card-body {
     background-color: lighten(
       map.get($theme-colors, 'warning'), 49%
     ) !important;
   }
+
+
 }
 </style>
