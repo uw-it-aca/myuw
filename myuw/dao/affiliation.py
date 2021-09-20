@@ -32,7 +32,7 @@ def get_all_affiliations(request):
 
     The first class affiliations:
     ["all_employee"]: employee or clinician (include student employee)
-    ["employee"]: True if is current employee (not student employee)
+    ["employee"]: True if is current employee (not student employee, clinician)
     ["clinician"]: True if in uw affiliation clinical groups
     ["faculty"]: True if the user is currently faculty.
     ["instructor"]: True if is instructor in the past 6 years
