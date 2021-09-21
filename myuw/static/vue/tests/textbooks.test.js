@@ -6,7 +6,6 @@ import Vuex from 'vuex';
 import UwPanel from '../components/_templates/panel.vue';
 import Textbooks from '../components/textbooks/textbooks.vue';
 import Section from '../components/textbooks/section.vue';
-import Covid from '../components/textbooks/covid.vue';
 import Book from '../components/textbooks/book.vue';
 import LinkButton from '../components/_templates/link-button.vue';
 
@@ -66,7 +65,6 @@ describe('Textbook cards', () => {
     expect(wrapper.findAllComponents(Section).length).toBe(11);
     expect(wrapper.findAllComponents(Book).length).toBe(6);
     expect(wrapper.findComponent(LinkButton).exists()).toBe(true);
-    expect(wrapper.findComponent(Covid).exists()).toBe(true);
     expect(wrapper.vm.orderUrl).toBe(
       "http://www.ubookstore.com/adoption-search-results?ccid=9335,1132,5320,2230,4405");
     const bookData = wrapper.vm.bookData;
