@@ -15,6 +15,7 @@ vueConf.store.commit('addVarToState', {
   name: 'page',
   value: {
     hideTitle: false,
+    // display h1 "Husky Experience Toolkit" if open via tab
     title: 'Husky Experience Toolkit',
   },
 });
