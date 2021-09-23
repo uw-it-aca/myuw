@@ -4,7 +4,6 @@
 import logging
 import traceback
 from myuw.dao.finance import get_account_balances_for_current_user
-# from myuw.dao.notice import get_tuition_due_date
 from myuw.dao.pws import is_student
 from myuw.logger.timer import Timer
 from myuw.logger.logresp import log_msg, log_api_call
@@ -32,7 +31,6 @@ class Finance(ProtectedAPI):
             balances = get_account_balances_for_current_user(request)
 
             response = balances.json_data()
-            # response['tuition_due'] = str(get_tuition_due_date(request))
 
             log_api_call(timer, request, "Get Student Account Balances")
             return self.json_response(response)

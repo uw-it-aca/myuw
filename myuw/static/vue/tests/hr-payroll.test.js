@@ -17,7 +17,7 @@ describe('HR Payroll Card - Home Page', () => {
       state: {
         user: {
           affiliations: {
-            employee: false,
+            all_employee: false,
             student: false,
             stud_employee: false,
             instructor: false,
@@ -142,7 +142,7 @@ describe('HR Payroll Card - Home Page', () => {
   });
 
   it('Show HR-Payroll card for employee', () => {
-    store.state.user.affiliations.employee = true;
+    store.state.user.affiliations.all_employee = true;
     store.state.user.affiliations.faculty = true;
     const wrapper = mount(HRPayrollCard, { store, localVue,
       propsData: {'isHomePage': true}});
@@ -202,7 +202,7 @@ describe('HR Payroll Card - Home Page', () => {
   });
 
   it('Hide HR-Payroll card for employee', () => {
-    store.state.user.affiliations.employee = true;
+    store.state.user.affiliations.all_employee = true;
     return testCardHidden(mount(HRPayrollCard, { store, localVue }));
   });
 
