@@ -43,11 +43,7 @@
     <template v-else>
       No Final Exam Scheduled.
     </template>
-    <a
-      v-if="displayConfirmFinalLink"
-      :href="confirmFinalLink"
-      target="_blank"
-    >
+    <a v-if="displayConfirmFinalLink" @click="openConfirmFinal">
       Confirm final exam
     </a>
   </uw-card-property>
@@ -81,6 +77,12 @@ export default {
         this.titleCaseWord(this.section.quarter), '+', this.section.year,
         '&sln=', this.section.sln, '&chanid=');
     }
+  },
+  methods: {
+    openConfirmFinal() {
+      window.open(this.confirmFinalLink,
+        'Confirm Final Exam of ' + section.navtarget);
+    },
   },
   mounted() {
     if (

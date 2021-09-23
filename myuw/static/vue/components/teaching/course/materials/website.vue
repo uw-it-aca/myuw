@@ -10,9 +10,8 @@
       <span v-if="!pastTerm">
         <a
           v-out="'Update Course Website'"
-          :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
+          @click="updateCourseWebsite"
           :title="`Update Class Website of ${section.label}`"
-          target="_blank"
         >Update</a>
       </span>
     </span>
@@ -25,9 +24,8 @@
     <span>Website:&nbsp;&nbsp;</span>
     <a
       v-out="'Add Course Website'"
-      :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
+      @click="addCourseWebsite"
       :title="`Add Class Website for ${section.label}`"
-      target="_blank"
     >Add</a>
     <div class="myuw-text-sm font-italic">
       A link to the course Canvas is automatically shown to students.
@@ -47,6 +45,18 @@ export default {
     pastTerm: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    addCourseWebsite() {
+      window.open(
+        "`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`",
+        'Add Class Website for ' + section.navtarget, 'width=700,height=400');
+    },
+    updateCourseWebsite() {
+      window.open(
+        "`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`",
+        'Update Class Website for ' + section.navtarget, 'width=700,height=400');
     },
   },
 };

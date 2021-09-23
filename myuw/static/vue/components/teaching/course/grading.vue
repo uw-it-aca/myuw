@@ -22,7 +22,7 @@
       <span v-else>
         None assigned
       </span>
-      <a :href="gradeDelegateUrl" target="_blank">
+      <a @click="openGradeSubmissionDelegate">
         <span v-if="section.gradeSubmissionSectionDelegate">
           Update grade submission delegate
         </span>
@@ -196,6 +196,13 @@ export default {
       return 'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=' +
         this.titleCaseWord(this.section.quarter) + '+' + this.section.year + '&sln=' +
          this.section.sln + '&chanid=11';
+    },
+  },
+  methods: {
+    openGradeSubmissionDelegate() {
+      window.open(this.gradeDelegateUrl,
+        'Manage Grade Submission Delegate of ' + section.navtarget,
+        'width=800,height=400');
     },
   },
 };
