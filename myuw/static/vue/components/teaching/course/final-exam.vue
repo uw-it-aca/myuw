@@ -78,12 +78,6 @@ export default {
         '&sln=', this.section.sln, '&chanid=');
     }
   },
-  methods: {
-    openConfirmFinal() {
-      window.open(this.confirmFinalLink,
-        'Confirm Final Exam of ' + section.navtarget);
-    },
-  },
   mounted() {
     if (
       this.section.is_primary_section &&
@@ -98,6 +92,12 @@ export default {
         this.displayConfirmFinalLink = true;
       }
     }
+  },
+  methods: {
+    openConfirmFinal() {
+      window.open(this.confirmFinalLink,
+        'Confirm Final Exam of ' + this.section.navtarget);
+    },
   },
 };
 </script>

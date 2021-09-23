@@ -201,7 +201,7 @@ export default {
   methods: {
     openGradeSubmissionDelegate() {
       window.open(this.gradeDelegateUrl,
-        'Manage Grade Submission Delegate of ' + section.navtarget,
+        'Manage Grade Submission Delegate of ' + this.section.navtarget,
         'width=800,height=400');
     },
   },
