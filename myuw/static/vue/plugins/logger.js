@@ -153,7 +153,8 @@ class Logger {
       time_before_read: 0,
     };
     if (notice.startDate && !notice.is_read) {
-      data.time_before_read = Math.floor((Date.now() - notice.startDate) / (1000 * 60 * 60));
+      let timeBeforeRead = Math.floor((Date.now() - notice.startDate) / (1000 * 60 * 60));
+      if (timeBeforeRead > 0) data.time_before_read = timeBeforeRead;
     }
     this.sink.event('notice_open', data);
   }
