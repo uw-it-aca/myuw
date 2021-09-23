@@ -150,6 +150,7 @@ class Logger {
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
       is_critical: notice.is_critical,
       is_new: !notice.is_read,
+      time_before_read: 0,
     };
     if (notice.startDate && !notice.is_read) {
       data.time_before_read = Math.floor((Date.now() - notice.startDate) / (1000 * 60 * 60));
