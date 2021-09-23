@@ -37,8 +37,6 @@
         </uw-link-button>
       </div>
 
-      <uw-covid />
-
       <div>
         <p class="text-muted myuw-text-md">
           Information on course textbooks is collected by and provided
@@ -74,13 +72,11 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Panel from '../_templates/panel.vue';
 import LinkButton from '../_templates/link-button.vue';
 import Section from './section.vue';
-import Covid from './covid.vue';
 
 export default {
   components: {
     'uw-panel': Panel,
     'uw-section': Section,
-    'uw-covid': Covid,
     'uw-link-button': LinkButton,
   },
   props: {
