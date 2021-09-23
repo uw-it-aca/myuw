@@ -115,7 +115,7 @@ class Logger {
     if (compData.report) {
       this.sink.event('comp_in_viewport', {
         comp_tag: compData.tag,
-        duration: compData.duration,
+        duration: Math.floor(compData.duration),
       });
     }
   }
