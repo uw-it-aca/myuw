@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="student && shouldDisplayAtAll && (!loaded || hasDataToDisplay)"
+    v-if="shouldDisplayAtAll && (!loaded || hasDataToDisplay)"
     v-meta="{term: loaded ? `${year},${quarter}` : null}"
     :loaded="loaded"
     :errored="errored"
@@ -185,12 +185,11 @@ export default {
       );
     },
     shouldDisplayAtAll() {
-      let shouldDisplay = false;
-
       if (this.isSummerReg) {
-        return this.summerShouldDisplay;
+        return this.summerShouldDisplay && this.student;
       }
       return (
+        this.student &&
         this.isAfterStartOfRegistrationDisplayPeriod &&
         this.isBeforeEndOfRegistrationDisplayPeriod);
     },
@@ -305,6 +304,7 @@ export default {
   watch: {
     isQuarterReady: function(newValue, oldValue) {
       if (
+        this.shouldDisplayAtAll &&
         !oldValue &&
         newValue &&
         !this.hasRegistration &&
@@ -319,7 +319,7 @@ export default {
     },
   },
   created() {
-    if (this.student) {
+    if (this.shouldDisplayAtAll) {
       this.fetchNotices();
       this.fetchQuarters();
       this.fetchProfile();

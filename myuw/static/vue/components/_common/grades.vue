@@ -187,6 +187,7 @@ export default {
     },
   },
   mounted() {
+    if (!this.student) return;
     // display window: [lastDayOfClasses..firstDayOfTerm]
     if (this.isBeforeFirstDayOfTerm) {
       this.term = this.lastTerm;
