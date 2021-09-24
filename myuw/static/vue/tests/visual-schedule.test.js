@@ -46,7 +46,7 @@ describe('Vue SFC Tests', () => {
 
   it('Not student nor instructor - not create the card', async() => {
     store.state.user.affiliations.student = false;
-    axios.get.mockResolvedValue({response: {status: 404}});
+    axios.get.mockRejectedValue({response: {status: 404}});
     const wrapper = mount(VisualSchedule, {store, localVue});
     expect(wrapper.vm.showCard).toBe(false);
   });
