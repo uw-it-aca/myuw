@@ -96,7 +96,8 @@ export default {
   methods: {
     openConfirmFinal() {
       window.open(this.confirmFinalLink,
-        'Confirm Final Exam of ' + this.section.navtarget);
+        'Confirm Final Exam of ' + this.section.navtarget,
+        'width=800,height=400');
     },
   },
 };
