@@ -23,8 +23,10 @@ export default {
       const rmajors = [];
       for (let j = 0; j < majors.length; j++) {
         const mj = majors[j];
-        let v = mj.full_name ? mj.full_name : utils.methods.titleCaseName(mj.name);
-        rmajors.push(v.replace(/, /g, ' '));
+        if (mj.full_name || mj.name) {
+          let v = mj.full_name ? mj.full_name : utils.methods.titleCaseName(mj.name);
+          rmajors.push(v.replace(/, /g, ' '));
+        }
       }
       return rmajors.length > 1 ? rmajors.join(', ') : rmajors[0];
     },
