@@ -111,13 +111,13 @@ export class VisibilityTracker {
     Object.values(this.groups)
       .filter((groupData) => groupData.isVisible)
       .forEach((groupData) => {
-        const duration = (Date.now() - groupData.timer) / 1000;
+        const duration = (Date.now() - groupData.timer ?? Date.now()) / 1000;
 
         groupData.stopped = true;
         groupData.timer = null;
 
         callbackfn({
-          report: duration >= this.durationThreshold,
+          report: duration >= this.durationThreshold && duration < this.upperDurationThreshold,
           tag: groupData.tag,
           duration: duration,
         });
