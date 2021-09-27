@@ -4,7 +4,7 @@ import {createLocalVue, deepClone, expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
 import Courses from '../vuex/store/schedule/student';
-import GradesCard from '../components/_common/grades.vue';
+import GradesCard from '../components/academics/grades.vue';
 
 import {
   FontAwesomeLayers,

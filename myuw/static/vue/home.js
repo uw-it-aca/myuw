@@ -4,7 +4,6 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import Grades from './components/_common/grades.vue';
 import HuskyExperience from './components/_common/husky-experience.vue';
 import Outage from './components/_common/outage.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';
@@ -93,7 +92,6 @@ Vue.component('myuw-applicant-cards', Applicant);
 Vue.component('myuw-international-student', InterStudent);
 Vue.component('myuw-retiree', Retiree);
 Vue.component('myuw-events', Events);
-Vue.component('myuw-grades', Grades);
 Vue.component('myuw-husky-experience', HuskyExperience);
 Vue.component('myuw-outage', Outage);
 Vue.component('myuw-quicklinks', Quicklinks);
