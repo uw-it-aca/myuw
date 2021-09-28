@@ -63,7 +63,7 @@ setup(
         'ua-parser',
         'user-agents',
         'django-user-agents',
-        'django-webpack-bridge==0.1.0',
+        'django-webpack-loader==1.4.0',
         'django-compressor',
     ],
     license='Apache License, Version 2.0',
