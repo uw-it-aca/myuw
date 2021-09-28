@@ -10,6 +10,7 @@ import Logger from '../../myuw/static/vue/plugins/logger';
 import Observer from '../../myuw/static/vue/plugins/observer';
 import Metadata from '../../myuw/static/vue/plugins/metadata';
 import Tracklink from '../../myuw/static/vue/plugins/tracklink';
+import UwBootstrap from '../../myuw/static/vue/plugins/uw-bootstrap';
 
 Cypress.Commands.add('createLocalVue', (vuex) => {
   let localVue = createLocalVue();
@@ -22,6 +23,7 @@ Cypress.Commands.add('createLocalVue', (vuex) => {
   });
   localVue.use(Observer);
   localVue.use(VueObserveVisibility);
+  localVue.use(UwBootstrap);
   // Mock directive
   localVue.use((vue) => {
     vue.directive('out', {});
