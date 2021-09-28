@@ -93,14 +93,4 @@ describe('Stud Course model', () => {
         {type: 'setStatus', payload: statusOptions[0]},
       ]);
   });
-
-  it ('Check postProcess - javerage 2013 spring', () => {
-    let mockData = {
-      '2013,spring': mockCoursesJaverage2013Spring,
-    };
-
-    let proccessedData = postProcess(mockData);
-
-    console.log(proccessedData);
-  });
 });
