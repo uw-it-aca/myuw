@@ -12,16 +12,14 @@ from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.enrollment import (
     get_main_campus, get_class_level, is_registered_current_quarter)
 from myuw.dao.gws import (
-    is_clinician, is_regular_employee, is_staff_employee, is_student_employee,
+    is_clinician, is_staff_employee, is_student_employee,
     is_alum_asso, is_student, is_grad_student, is_undergrad_student,
     is_pce_student, is_seattle_student, is_bothell_student, is_tacoma_student,
-    is_applicant, is_grad_c2, is_undergrad_c2, no_major_affiliations,
-    in_hxtoolkit_group)
+    is_applicant, is_grad_c2, is_undergrad_c2, in_hxtoolkit_group)
 from myuw.dao.instructor import is_instructor
 from myuw.dao.pws import (
     get_employee_campus, is_employee, is_faculty, is_prior_employee,
     is_prior_student, is_retiree, is_alumni)
-from myuw.dao.term import get_current_quarter
 from myuw.dao.uwnetid import is_2fa_permitted
 from myuw.dao.student_profile import get_profile_of_current_user
 
@@ -33,11 +31,14 @@ def get_all_affiliations(request):
     return a dictionary of affiliation indicators.
 
     The first class affiliations:
-    ["employee"]: True if the user is currently a uw employee.
+    ["all_employee"]: employee or clinician (include student employee)
+    ["employee"]: True if is current employee (not student employee, clinician)
+    ["clinician"]: True if in uw affiliation clinical groups
     ["faculty"]: True if the user is currently faculty.
+    ["instructor"]: True if is instructor in the past 6 years
     ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
-    ["registered_stud"]: True if the student is registered in current quarter.
+    ["registered_stud"]: True if the student is registered in current quarter
     ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
@@ -58,8 +59,8 @@ def get_all_affiliations(request):
     ["J1"]: J1 international student
     ["intl_stud"]: F1 or J1 international student
     ["hxt_viewer"]: Husky Experience Toolkit viewer
-    ["no_1st_class_affi"]: not applicant, employee, student, instructor
-
+    ["no_1st_class_affi"]: not applicant, current employee,
+                           clinician, student, instructor
     The following are secondary affiliations (without 1st_class_aff):
     ["alumni"]: True if the user is currently an UW alumni and NOT
                 current student, employee, applicant
@@ -74,7 +75,11 @@ def get_all_affiliations(request):
     if hasattr(request, 'myuw_user_affiliations'):
         return request.myuw_user_affiliations
 
-    not_major_affi = no_major_affiliations(request)
+    not_major_affi = (not is_applicant(request) and
+                      not is_employee(request) and
+                      not is_clinician(request) and
+                      not is_instructor(request) and
+                      not is_student(request))
     (is_sea_stud, is_undergrad, is_hxt_viewer) = get_is_hxt_viewer(request)
     data = {"class_level": None,
             "grad": is_grad_student(request),
@@ -89,9 +94,11 @@ def get_all_affiliations(request):
             "J1": False,
             "intl_stud": False,
             "2fa_permitted": is_2fa_permitted(request),
-            "employee": is_regular_employee(request),
-            "faculty": is_faculty(request),
+            "all_employee": is_employee(request) or is_clinician(request),
             "clinician": is_clinician(request),
+            "employee": (is_employee(request) and
+                         not is_student_employee(request)),
+            "faculty": is_faculty(request),
             "instructor": is_instructor(request),
             "staff_employee": is_staff_employee(request),
             "stud_employee": is_student_employee(request),

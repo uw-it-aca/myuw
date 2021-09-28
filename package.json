@@ -18,7 +18,7 @@
     "css-loader": "5.2.7",
     "css-minimizer-webpack-plugin": "3.0.2",
     "dayjs": "1.10.6",
-    "django-webpack-bridge": "0.1.4",
+    "webpack-bundle-tracker": "1.4.0",
     "file-loader": "6.2.0",
     "less": "4.1.1",
     "less-loader": "10.0.0",

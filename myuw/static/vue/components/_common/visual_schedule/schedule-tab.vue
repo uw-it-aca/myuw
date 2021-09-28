@@ -115,7 +115,6 @@
       >
         <ol class="m-0 px-4 text-start">
           <li v-for="(meeting, j) in eosSection.meetings" :key="j">
-            <span v-if="i !== 0">,&nbsp;</span>
             <span v-if="meeting.eos_start_date">
               {{ formatDate(meeting.eos_start_date) }}
               <span v-if="!meeting.start_end_same">
@@ -123,10 +122,7 @@
               </span>
             </span>
             <span v-if="meeting.wont_meet">
-              (Class does not meet)
-            </span>
-            <span v-else-if="meeting.no_meeting">
-              (Online learning)
+              Class does not meet
             </span>
             <span v-else>
               <span v-if="meeting.start_time">
@@ -295,36 +291,27 @@ export default {
     // Put the meeting without time into its list.
     this.period.sections.forEach((section) => {
       if (!this.isFinalsTab) {
+        let addOnce = false;
         section.meetings.forEach((meeting) => {
-          if (
-            (
-              meeting.no_meeting ||
-              !(meeting.start_time && meeting.end_time)
-            ) &&
-            (
-              !(
-                meeting.eos_start_date &&
-                meeting.eos_end_date
-              ) ||
-              (
-                meeting.eos_start_date &&
-                meeting.eos_end_date &&
-                (
-                  (
-                    meeting.eos_start_date >= this.period.start_date &&
-                    meeting.eos_start_date <= this.period.end_date
-                  ) || (
-                    meeting.eos_end_date >= this.period.start_date &&
-                    meeting.eos_end_date <= this.period.end_date
-                  )
-                )
-              )
-            )
-          ) {
-            this.meetingsWithoutTime.push({
-              section: section,
-              meeting: meeting,
-            });
+          if (meeting.eos_start_date === null ||
+              meeting.eos_end_date === null ||
+              (meeting.eos_start_date >= this.period.start_date &&
+               meeting.eos_start_date <= this.period.end_date ||
+               meeting.eos_end_date >= this.period.start_date &&
+               meeting.eos_end_date <= this.period.end_date
+              )) {
+            if (meeting.no_meeting ||
+                meeting.start_time === null ||
+                meeting.end_time === null) {
+              if (!addOnce) {
+                this.meetingsWithoutTime.push({
+                  section: section,
+                  meeting: meeting,
+                  });
+                addOnce = true;
+                // add the same section only once
+              }
+            }
           }
         });
       } else {

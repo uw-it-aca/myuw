@@ -63,6 +63,24 @@ describe('Registration Status Card', () => {
   });
 
   it('Test normal case1, Jinter 2013 Spring', async () => {
+    store.state.cardDisplayDates.is_after_start_of_registration_display_period = false;
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/notices/': mockNotices,
+        '/api/v1/oquarters/': oQuarterSpring,
+        '/api/v1/profile/': profileJinter,
+        '/api/v1/myplan/2013/Spring': myPlanSpring,
+      };
+
+      return Promise.resolve({data: urlData[url]});
+    });
+
+    const wrapper = mount(RegStatus, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.shouldDisplayAtAll).toBe(false);
+  });
+
+  it('Test normal case1, Jinter 2013 Spring', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,

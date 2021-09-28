@@ -69,7 +69,7 @@ export default {
     }),
     ...mapState({
       student: (state) => state.user.affiliations.student,
-      employee: (state) => state.user.affiliations.employee,
+      employee: (state) => state.user.affiliations.all_employee,
       past_stud: (state) => state.user.affiliations.past_stud,
       past_employee: (state) => state.user.affiliations.past_employee,
     }),

@@ -95,7 +95,7 @@ export default {
   },
   computed: {
     ...mapState({
-      employee: (state) => state.user.affiliations.employee,
+      employee: (state) => state.user.affiliations.all_employee,
       faculty: (state) => state.user.affiliations.faculty,
       student: (state) => state.user.affiliations.student,
       studEmployee: (state) => state.user.affiliations.stud_employee,

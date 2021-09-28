@@ -12,11 +12,9 @@ import directory from '../vuex/store/directory';
 const localVue = createLocalVue(Vuex);
 
 jest.mock('axios');
-
 const propsData = {
   term: 'current',
 };
-
 import mockInstSche from
   './mock_data/inst_schedule/billsea2013spring.json';
 import mockEmpProfile from './mock_data/directory/javerage.json';
@@ -76,7 +74,7 @@ describe('Outage card', () => {
           affiliations: {
             student: true,
             instructor: true,
-            employee: true,
+            all_employee: true,
           }
         }
       },
@@ -86,6 +84,7 @@ describe('Outage card', () => {
   it('No error, hide card', async () => {
     axios.get.mockImplementation(generateMockModuleImpl(200, 200, 200, 200, 200));
     const wrapper = mount(Outage, {store, localVue, propsData});
+    expect(wrapper.vm.isAcademicsPage).toBeFalsy();
     expect(wrapper.vm.isStudent).toBeTruthy();
     expect(wrapper.vm.isInstructor).toBeTruthy();
     expect(wrapper.vm.isEmployee).toBeTruthy();
@@ -115,7 +114,7 @@ describe('Outage card', () => {
 
   it('Show OutageCard if student schedule 543', async () => {
     store.state.user.affiliations.instructor = false;
-    store.state.user.affiliations.employee = false;
+    store.state.user.affiliations.all_employee = false;
     axios.get.mockImplementation(generateMockModuleImpl(543, 200, 200, 200, 200));
     const wrapper = mount(Outage, {store, localVue, propsData});
     await new Promise(setImmediate);
@@ -128,7 +127,7 @@ describe('Outage card', () => {
 
   it('Show OutageCard if notices 543', async () => {
     store.state.user.affiliations.instructor = false;
-    store.state.user.affiliations.employee = false;
+    store.state.user.affiliations.all_employee = false;
     axios.get.mockImplementation(generateMockModuleImpl(200, 543, 200, 200, 200));
     const wrapper = mount(Outage, {store, localVue, propsData});
     await new Promise(setImmediate);
@@ -141,7 +140,7 @@ describe('Outage card', () => {
 
   it('Show OutageCard if profile 543', async () => {
     store.state.user.affiliations.instructor = false;
-    store.state.user.affiliations.employee = false;
+    store.state.user.affiliations.all_employee = false;
     axios.get.mockImplementation(generateMockModuleImpl(200, 200, 543, 200, 200));
     const wrapper = mount(Outage, {store, localVue, propsData});
     await new Promise(setImmediate);
@@ -171,6 +170,24 @@ describe('Outage card', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.isStudent).toBeFalsy();
     expect(wrapper.vm.instDataError).toBeTruthy();
+    expect(wrapper.vm.showOutageCard).toBeTruthy();
+  });
+
+  it('Show OutageCard on Academics page', async () => {
+    const propsData = {
+      term: 'current',
+      isAcademicsPage: true,
+    };
+    store.state.user.affiliations.instructor = false;
+    store.state.user.affiliations.all_employee = false;
+    axios.get.mockImplementation(generateMockModuleImpl(543, 200, 200, 200, 200));
+    const wrapper = mount(Outage, { store, localVue, propsData });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isAcademicsPage).toBeTruthy();
+    expect(wrapper.vm.isInstructor).toBeFalsy();
+    expect(wrapper.vm.isEmployee).toBeFalsy();
+    expect(wrapper.vm.scheDataError).toBeTruthy();
+    expect(wrapper.vm.studDataError).toBeTruthy();
     expect(wrapper.vm.showOutageCard).toBeTruthy();
   });
 });

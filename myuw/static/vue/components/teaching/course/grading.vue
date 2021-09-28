@@ -22,7 +22,7 @@
       <span v-else>
         None assigned
       </span>
-      <a :href="gradeDelegateUrl">
+      <a :href="gradeDelegateUrl" target="_blank">
         <span v-if="section.gradeSubmissionSectionDelegate">
           Update grade submission delegate
         </span>

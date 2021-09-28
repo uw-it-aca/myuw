@@ -228,7 +228,7 @@
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="{ 'visually-hidden': page.hideTitle || $mq != 'desktop' }"
+              :class="{ 'visually-hidden': hideTitle || $mq != 'desktop' }"
             >
               {{ page.title }}
             </h1>
@@ -398,22 +398,28 @@ export default {
       faBookmark,
     };
   },
-  computed: mapState({
-    netid: state => state.user.netid,
-    emailError: state => state.user.email_error,
-    emailForwardUrl: state => state.user.email_forward_url,
-    affiliations: state => state.user.affiliations,
-    undergrad: state => state.user.affiliations.undergrad,
-    seattle: state => state.user.affiliations.seattle,
-    hxtViewer: state => state.user.affiliations.hxt_viewer,
-    student: state => state.user.affiliations.student,
-    applicant: state => state.user.affiliations.applicant,
-    instructor: state => state.user.affiliations.instructor,
-    staticUrl: state => state.staticUrl,
-    page: state => state.page,
-    disableActions: state => state.disableActions,
-    displayPopUp: state => state.displayPopUp,
-  }),
+  computed: {
+    ...mapState({
+      netid: state => state.user.netid,
+      emailError: state => state.user.email_error,
+      emailForwardUrl: state => state.user.email_forward_url,
+      affiliations: state => state.user.affiliations,
+      undergrad: state => state.user.affiliations.undergrad,
+      seattle: state => state.user.affiliations.seattle,
+      hxtViewer: state => state.user.affiliations.hxt_viewer,
+      student: state => state.user.affiliations.student,
+      applicant: state => state.user.affiliations.applicant,
+      instructor: state => state.user.affiliations.instructor,
+      staticUrl: state => state.staticUrl,
+      page: state => state.page,
+      disableActions: state => state.disableActions,
+      displayPopUp: state => state.displayPopUp,
+    }),
+    hideTitle() {
+      const currentUrl = window.location.href;
+      return currentUrl.includes("husky_experience_message") || this.page.hideTitle;
+    },
+  },
   created() {
     this.$logger.setUserProperties(this.affiliations);
     this.$logger.setHybrid(this.isHybrid === 'True');

@@ -63,12 +63,12 @@ export default {
       },
       two_factor: (state) => state.user.affiliations['2fa_permitted'],
       applicant: (state) => state.user.affiliations.applicant,
-      employee: (state) => state.user.affiliations.employee,
+      instructor: (state) => state.user.affiliations.instructor,
       student: (state) => state.user.affiliations.student,
     }),
     ...mapGetters('profile', ['isReady', 'isErrored', 'statusCode']),
     showCard() {
-      return !this.isHomePage || (!this.applicant && !this.employee && !this.student);
+      return !this.isHomePage || (!this.applicant && !this.instructor && !this.student);
     },
     showError() {
       return this.statusCode !== 404;

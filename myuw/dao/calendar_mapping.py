@@ -3,10 +3,7 @@
 
 import csv
 import os
-from restclients_core.exceptions import DataFailureException
-from uw_sws.term import get_current_term
 from myuw.dao.gws import is_grad_student
-from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.enrollment import enrollment_history
 from myuw.dao.term import get_comparison_datetime
 

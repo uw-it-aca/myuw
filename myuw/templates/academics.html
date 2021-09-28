@@ -10,6 +10,7 @@
 <myuw-boilerplate logout-url="{% settings_value 'LOGOUT_URL' %}" is-hybrid="{{ user.isHybrid }}">
   <template #mobile>
     <div class="col-md-12 px-0">
+      <myuw-outage is-academics-page term="{{ term|default:'current' }}"></myuw-outage>
       <myuw-academic-adviser></myuw-academic-adviser>
       <myuw-grades></myuw-grades>
       <myuw-course-cards></myuw-course-cards>
@@ -20,11 +21,11 @@
       <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
       <myuw-academics-sidelinks></myuw-academics-sidelinks>
-      <myuw-outage term="{{ term|default:'current' }}"></myuw-outage>
     </div>
   </template>
   <template #desktop>
     <div class="col-md-8">
+      <myuw-outage is-academics-page term="{{ term|default:'current' }}"></myuw-outage>
       <myuw-academic-adviser></myuw-academic-adviser>
       <myuw-grades></myuw-grades>
       <myuw-course-cards></myuw-course-cards>
@@ -34,7 +35,6 @@
       <myuw-grad-committee></myuw-grad-committee>
       <myuw-future-quarter-cards highlighted></myuw-future-quarter-cards>
       <myuw-future-quarter-cards></myuw-future-quarter-cards>
-      <myuw-outage term="{{ term|default:'current' }}"></myuw-outage>
     </div>
      <div class="col-md-4">
       <myuw-academics-sidelinks></myuw-academics-sidelinks>
@@ -44,6 +44,7 @@
 {% endblock body_content %}
 
 {% block vue_script %}
-{% load webpack_bridge %}
-{% render_webpack_entry 'academics' js='defer' %}
+{% load render_bundle from webpack_loader %}
+{% render_bundle 'academics' 'js' attrs='defer' %}
+{% render_bundle 'academics' 'css' %}
 {% endblock vue_script %}

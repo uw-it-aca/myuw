@@ -45,7 +45,7 @@
     <div v-if="links.student">
       <hr class="bg-secondary">
       <h3 class="h6">
-        Remote Learning
+        Online Learning
       </h3>
       <ul v-if="links.sea_student" class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
@@ -92,7 +92,7 @@
     <div v-if="links.instructor">
       <hr class="bg-secondary">
       <h3 class="h6">
-        Remote Teaching
+        Online Teaching
       </h3>
       <ul class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-2">
@@ -100,7 +100,7 @@
             Teaching Remotely
           </a>
           <div class="fw-light myuw-text-sm">
-            Plan and deliver high-quality remote learning
+            Plan digital learning experiences for your remote and hybrid courses.
           </div>
         </li>
         <li v-if="links.bot_emp" class="mb-2">

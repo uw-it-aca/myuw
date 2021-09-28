@@ -153,7 +153,7 @@ export default {
     }
   },
   mounted() {
-    if (this.termLabel) this.fetch(this.termLabel);
+    if ((this.instructor || this.student) && this.termLabel) this.fetch(this.termLabel);
   },
   methods: {
     ...mapActions('visual_schedule', ['fetch']),

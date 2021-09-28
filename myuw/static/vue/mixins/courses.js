@@ -23,8 +23,10 @@ export default {
       const rmajors = [];
       for (let j = 0; j < majors.length; j++) {
         const mj = majors[j];
-        let v = mj.full_name ? mj.full_name : utils.methods.titleCaseName(mj.name);
-        rmajors.push(v.replace(/, /g, ' '));
+        if (mj.full_name || mj.name) {
+          let v = mj.full_name ? mj.full_name : utils.methods.titleCaseName(mj.name);
+          rmajors.push(v.replace(/, /g, ' '));
+        }
       }
       return rmajors.length > 1 ? rmajors.join(', ') : rmajors[0];
     },
@@ -69,7 +71,7 @@ export default {
       const csvData = this.buildClasslistCsv(
           classlist.registrations, classlist.has_linked_sections);
 
-      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData);
+      hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData); // MUWM-5004
       hiddenElement.target = '_blank';
       hiddenElement.download = this.classlistFileName(classlist);
       hiddenElement.click();
