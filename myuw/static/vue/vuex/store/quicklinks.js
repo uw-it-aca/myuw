@@ -71,8 +71,8 @@ const customActions = {
   updateLink({commit, rootState}, link) {
     axios.post('/api/v1/link', {
       type: "custom-edit",
-      url: link.url,
-      label: link.label,
+      url: link.url.trim(),
+      label: link.label.trim(),
       id: `${link.id}`,
     }, {
       headers: {

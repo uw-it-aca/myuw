@@ -80,8 +80,6 @@ describe('To Register Card', () => {
     expect(wrapper.vm.isErrored).toBeFalsy();
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
 
-    expect(wrapper.vm.formatted_date).toBe('Mon, Apr 1');
-
     expect(wrapper.vm.no_orient).toHaveLength(1);
     expect(wrapper.vm.orient_after).toHaveLength(0);
     expect(wrapper.vm.iss_before).toHaveLength(0);

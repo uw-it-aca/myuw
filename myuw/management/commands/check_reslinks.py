@@ -44,7 +44,7 @@ def verify_links(links, messages):
         if link.url.startswith("https://sdb."):
             continue
         status = get_http_status(link.url, messages)
-        if status not in [200]:
+        if status and status not in [200]:
             msg = {"title": link.title,
                    "campus": make_campus_human_readable(link.campus),
                    "url": link.url,

@@ -6,11 +6,11 @@
         id="actions_disabled_banner"
         class="bg-gold myuw-override myuw-text-md"
       >
-        <b-container fluid="xl" class="py-2 text-center">
+        <div class="container-xl py-2 text-center">
           <strong>YOU ARE CURRENTLY OVERRIDING AS ANOTHER USER</strong>. Overriding is read-only and
           no actions will be saved.
           <a v-inner="'MyUW Support tool'" href="/support/"> Back to MyUW Support tool </a>
-        </b-container>
+        </div>
       </div>
 
       <b-collapse id="app_search" class="myuw-search bg-light">
@@ -18,69 +18,64 @@
       </b-collapse>
 
       <div class="bg-dark-purple text-nowrap myuw-thin-bar myuw-text-xs">
-        <b-container fluid="xl" class="px-3">
-          <b-row>
-            <b-col xs="2">
-              <b-link
+        <div class="container-xl px-3">
+          <div class="row">
+            <div class="col">
+              <a
                 v-inner="'MyUW profile page'"
                 href="/profile/"
                 class="text-white font-weight-light"
                 title="View your profile"
-              ><font-awesome-icon :icon="faUser"
-                 class="mr-1" />{{ netid }}</b-link>
-            </b-col>
-            <b-col xs="10" class="text-right">
-              <b-link
+              ><font-awesome-icon :icon="faUser" class="mr-1" />{{ netid }}</a>
+            </div>
+            <div class="col text-right">
+              <a
                 v-if="emailError"
                 v-out="'UW email services'"
                 href="https://itconnect.uw.edu/connect/email/"
                 class="ml-2 text-danger font-weight-light"
                 title="UW email services"
-              ><font-awesome-icon :icon="faExclamationTriangle"
-                 class="mr-1" />Email error</b-link>
-              <b-link
+              ><font-awesome-icon :icon="faExclamationTriangle" class="mr-1" />Email error</a>
+              <a
                 v-else-if="emailForwardUrl"
                 v-out="'Open your email'"
                 :href="emailForwardUrl"
                 class="ml-2 text-white font-weight-light"
                 title="Open your email"
-              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</b-link>
-              <b-link
+              ><font-awesome-icon :icon="faEnvelope" class="mr-1" />Email</a>
+              <a
                 v-b-toggle.app_search
                 href="#"
                 class="ml-2 text-white font-weight-light"
                 title="Open search panel"
-              ><font-awesome-icon :icon="faSearch" flip="horizontal"
-                 class="mr-1" />Search</b-link>
-              <b-link
+              ><font-awesome-icon :icon="faSearch" flip="horizontal" class="mr-1" />Search</a>
+              <a
                 v-inner="'Sign Out'"
                 href="/logout/"
                 class="d-none d-lg-inline ml-2 text-white font-weight-light"
                 title="Sign out of MyUW"
-              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</b-link>
-            </b-col>
-          </b-row>
-        </b-container>
+              ><font-awesome-icon :icon="faSignOutAlt" class="mr-1" />Sign Out</a>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="bg-purple myuw-brand">
-        <b-container
-          fluid="xl"
-          class="px-3 myuw-brand-logo"
+        <div
+          class="container-xl px-3 myuw-brand-logo"
           :style="`background-image: url(${staticUrl}images/w-logo-white.png);`"
         >
-          <b-button
+          <button
             v-b-toggle.nav-collapse
-            variant="link"
-            size="sm"
-            class="d-lg-none p-0 border-0 text-white"
+            type="button"
+            class="btn btn-link btn-sm d-lg-none p-0 border-0 text-white"
             title="Toggle Navigation Menu"
           >
             <font-awesome-layers class="fa-2x">
               <font-awesome-icon :icon="faSquare" transform="right-1" class="m-0" />
               <font-awesome-icon :icon="faBars" transform="shrink-8 right-1 " class="m-0" />
             </font-awesome-layers>
-          </b-button>
+          </button>
           <div
             class="myuw-title d-inline align-middle text-white"
             :class="[$mq == 'desktop' ? 'h3' : 'h5']"
@@ -102,7 +97,7 @@
               <a href="/">MyUW</a>
             </template>
           </div>
-        </b-container>
+        </div>
       </div>
     </header>
 
@@ -110,9 +105,9 @@
     <uw-messages v-if="$mq === 'desktop'" />
 
     <div class="w-100 myuw-body">
-      <b-container fluid="xl">
-        <b-row :no-gutters="$mq !== 'desktop'">
-          <b-col v-if="!displayHybrid" lg="2">
+      <div class="container-xl">
+        <div class="row" :no-gutters="$mq !== 'desktop'">
+          <div v-if="!displayHybrid" class="col-lg-2">
             <!-- main sidebar navigation -->
             <b-collapse
               id="nav-collapse"
@@ -120,163 +115,167 @@
               role="navigation"
               :visible="$mq == 'desktop'"
             >
-              <b-nav vertical :class="[$mq == 'desktop' ? '' : 'border-bottom']">
-                <b-nav-item
-                  class="mb-2"
-                  href="/"
-                  :active="page.title == 'Home'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faHome" class="mr-2" fixed-width />Home
-                </b-nav-item>
-                <b-nav-item
-                  v-if="student || applicant"
-                  class="mb-2"
-                  href="/academics/"
-                  :active="page.title == 'Academics'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faGraduationCap" class="mr-2" fixed-width />Academics
-                </b-nav-item>
-                <b-nav-item
-                  v-if="(undergrad && seattle) || hxtViewer"
-                  class="mb-2"
-                  href="/husky_experience/"
-                  :active="page.title == 'Husky Experience Toolkit'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience
-                </b-nav-item>
-                <b-nav-item
-                  v-if="instructor"
-                  class="mb-2"
-                  href="/teaching/"
-                  :active="page.title == 'Teaching'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faEdit" class="mr-2" fixed-width />Teaching
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/accounts/"
-                  :active="page.title == 'Accounts'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts
-                </b-nav-item>
-                <b-nav-item
-                  v-if="student"
-                  class="mb-2"
-                  href="/notices/"
-                  :active="page.title == 'Notices'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon
-                    :icon="faExclamationTriangle"
-                    class="mr-2"
-                    fixed-width
-                  />Notices
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/profile/"
-                  :active="page.title == 'Profile'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faUser" class="mr-2" fixed-width />Profile
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  aria-hidden="true"
-                  disabled
-                  :link-classes="'text-dark d-block p-0'"
-                >
-                  <hr class="m-0" />
-                  <span class="sr-only"> Navigation separator</span>
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/academic_calendar/"
-                  :active="page.title == 'Academic Calendar'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faCalendarCheck" class="mr-2" fixed-width />Calendar
-                </b-nav-item>
-                <b-nav-item
-                  class="mb-2"
-                  href="/resources/"
-                  :active="page.title == 'UW Resources'"
-                  :link-classes="'text-dark d-block px-2 py-1'"
-                >
-                  <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources
-                </b-nav-item>
-              </b-nav>
+              <div class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/"
+                    :class="{ active: page.title == 'Home' }"
+                    ><font-awesome-icon :icon="faHome" class="mr-2" fixed-width />Home</a
+                  >
+                </li>
+                <li v-if="student || applicant" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/academics/"
+                    :class="{ active: page.title == 'Academics' }"
+                    ><font-awesome-icon :icon="faGraduationCap" class="mr-2" fixed-width />Academics
+                  </a>
+                </li>
+                <li v-if="(undergrad && seattle) || hxtViewer" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/husky_experience/"
+                    :class="{ active: page.title == 'Husky Experience Toolkit' }"
+                  >
+                    <font-awesome-icon :icon="faPaw" class="mr-2" fixed-width />Husky Experience</a
+                  >
+                </li>
+                <li v-if="instructor" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/teaching/"
+                    :class="{ active: page.title == 'Teaching' }"
+                  >
+                    <font-awesome-icon :icon="faEdit" class="mr-2" fixed-width />Teaching</a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/accounts/"
+                    :class="{ active: page.title == 'Accounts' }"
+                  >
+                    <font-awesome-icon :icon="faCreditCard" class="mr-2" fixed-width />Accounts</a
+                  >
+                </li>
+                <li v-if="student" class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/notices/"
+                    :class="{ active: page.title == 'Notices' }"
+                  >
+                    <font-awesome-icon
+                      :icon="faExclamationTriangle"
+                      class="mr-2"
+                      fixed-width
+                    />Notices</a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/profile/"
+                    :class="{ active: page.title == 'Profile' }"
+                  >
+                    <font-awesome-icon :icon="faUser" class="mr-2" fixed-width />Profile</a
+                  >
+                </li>
+                <li class="nav-item mb-2" aria-hidden="true">
+                  <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#">
+                    <hr class="m-0" />
+                    <span class="sr-only"> Navigation separator</span></a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/academic_calendar/"
+                    :class="{ active: page.title == 'Academic Calendar' }"
+                  >
+                    <font-awesome-icon
+                      :icon="faCalendarCheck"
+                      class="mr-2"
+                      fixed-width
+                    />Calendar</a
+                  >
+                </li>
+                <li class="nav-item mb-2">
+                  <a
+                    class="nav-link text-dark d-block px-2 py-1"
+                    href="/resources/"
+                    :class="{ active: page.title == 'UW Resources' }"
+                  >
+                    <font-awesome-icon :icon="faBookmark" class="mr-2" fixed-width />UW Resources</a
+                  >
+                </li>
+              </div>
             </b-collapse>
             <uw-welcome v-if="$mq === 'desktop'" />
-          </b-col>
-          <b-col v-if="$mq === 'mobile' || $mq === 'tablet'">
+          </div>
+          <div v-if="$mq === 'mobile' || $mq === 'tablet'" class="col">
             <!-- MARK: message banner display for mobile and tablet -->
             <div style="margin-left: -10px; margin-right: -10px">
               <uw-messages />
             </div>
-          </b-col>
-          <b-col
-            lg="10"
+          </div>
+          <div
+            class="col-lg-10"
             role="main"
             aria-labelledby="mainHeader"
-            :class="{'pt-4': true, 'mx-auto': displayHybrid}"
+            :class="{ 'pt-4': true, 'mx-auto': displayHybrid }"
           >
             <h1
               id="mainHeader"
               class="mb-3 h3 myuw-font-encode-sans"
-              :class="{'sr-only': page.hideTitle || $mq != 'desktop'}"
+              :class="{ 'sr-only': hideTitle || $mq != 'desktop' }"
             >
               {{ page.title }}
             </h1>
-            <b-row>
+            <div class="row">
               <slot v-if="$mq === 'mobile'" name="mobile" />
               <slot v-else name="desktop" />
-            </b-row>
-          </b-col>
-        </b-row>
-      </b-container>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <footer v-if="!displayHybrid" class="w-100 mt-auto bg-dark pt-3 pb-3 myuw-footer myuw-text-xs">
-      <b-container fluid="xl" class="px-3">
+      <div class="container-xl px-3">
         <ul class="list-inline mb-2">
           <li class="list-inline-item">
-            <b-link :href="mailToUrl + netid" class="text-white mr-2">
+            <a :href="mailToUrl + netid" class="text-white mr-2">
               <font-awesome-icon :icon="faEnvelope" class="mr-1" />Contact
-            </b-link>
+            </a>
           </li>
           <li class="list-inline-item">
-            <b-link
+            <a
               href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
               class="text-white mr-2"
             >
               MyUW Help
-            </b-link>
+            </a>
           </li>
           <li class="list-inline-item mr-0 d-lg-none">
-            <b-link href="/logout/" class="text-white"> Sign Out </b-link>
+            <a href="/logout/" class="text-white"> Sign Out </a>
           </li>
           <li class="list-inline-item">
-            <b-link href="https://www.washington.edu/online/terms/" class="text-white mr-2">
+            <a href="https://www.washington.edu/online/terms/" class="text-white mr-2">
               Terms
-            </b-link>
+            </a>
           </li>
           <li class="list-inline-item">
-            <b-link href="https://www.washington.edu/online/privacy/" class="text-white mr-2">
+            <a href="https://www.washington.edu/online/privacy/" class="text-white mr-2">
               Privacy
-            </b-link>
+            </a>
           </li>
         </ul>
 
         <div class="font-weight-light" style="color:#aaa">
           &copy; {{ new Date().getFullYear() }} University of Washington
         </div>
-      </b-container>
+      </div>
     </footer>
     <b-modal
       id="tourModal"
@@ -323,18 +322,16 @@
         >.
       </p>
       <template #modal-footer="{ hide }">
-        <b-button variant="primary" size="sm" @click="hide()"> Close </b-button>
+        <button slot-scope="" type="button" class="btn btn-primary btn-sm" @click="hide()">
+          Close
+        </button>
       </template>
     </b-modal>
   </div>
 </template>
 
 <script>
-import {
-  faCreditCard,
-  faSquare,
-  faCalendarCheck,
-} from '@fortawesome/free-regular-svg-icons';
+import { faCreditCard, faSquare, faCalendarCheck } from '@fortawesome/free-regular-svg-icons';
 
 import {
   faExclamationTriangle,
@@ -377,7 +374,7 @@ export default {
   },
   data() {
     return {
-      displayHybrid: this.isHybrid === "True" || this.forceHybrid,
+      displayHybrid: this.isHybrid === 'True' || this.forceHybrid,
       selectedMenu: '',
       mailToUrl:
         'mailto:help@uw.edu?subject=MyUW%20Comment,%20Request,%20Suggestion&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20',
@@ -397,25 +394,31 @@ export default {
       faBookmark,
     };
   },
-  computed: mapState({
-    netid: (state) => state.user.netid,
-    emailError: (state) => state.user.email_error,
-    emailForwardUrl: (state) => state.user.email_forward_url,
-    affiliations: (state) => state.user.affiliations,
-    undergrad: (state) => state.user.affiliations.undergrad,
-    seattle: (state) => state.user.affiliations.seattle,
-    hxtViewer: (state) => state.user.affiliations.hxt_viewer,
-    student: (state) => state.user.affiliations.student,
-    applicant: (state) => state.user.affiliations.applicant,
-    instructor: (state) => state.user.affiliations.instructor,
-    staticUrl: (state) => state.staticUrl,
-    page: (state) => state.page,
-    disableActions: (state) => state.disableActions,
-    displayPopUp: (state) => state.displayPopUp,
-  }),
+  computed: {
+    ...mapState({
+      netid: state => state.user.netid,
+      emailError: state => state.user.email_error,
+      emailForwardUrl: state => state.user.email_forward_url,
+      affiliations: state => state.user.affiliations,
+      undergrad: state => state.user.affiliations.undergrad,
+      seattle: state => state.user.affiliations.seattle,
+      hxtViewer: state => state.user.affiliations.hxt_viewer,
+      student: state => state.user.affiliations.student,
+      applicant: state => state.user.affiliations.applicant,
+      instructor: state => state.user.affiliations.instructor,
+      staticUrl: state => state.staticUrl,
+      page: state => state.page,
+      disableActions: state => state.disableActions,
+      displayPopUp: state => state.displayPopUp,
+    }),
+    hideTitle() {
+      const currentUrl = window.location.href;
+      return currentUrl.includes("husky_experience_message") || this.page.hideTitle;
+    },
+  },
   created() {
     this.$logger.setUserProperties(this.affiliations);
-    this.$logger.setHybrid(this.isHybrid === "True");
+    this.$logger.setHybrid(this.isHybrid === 'True');
   },
   mounted() {
     if (this.displayPopUp) {
@@ -423,14 +426,14 @@ export default {
     }
   },
   methods: {
-    showTourModal: function () {
+    showTourModal: function() {
       this.$logger.onBoarding(this);
       this.$refs['tourModal'].show();
       axios
         .get('/api/v1/turn_off_tour_popup', {
           responseType: 'json',
         })
-        .then((response) => {
+        .then(response => {
           this.addVarToState({
             name: 'displayPopUp',
             value: false,
@@ -508,7 +511,12 @@ export default {
 }
 
 .myuw-title {
-  a, a:hover, a:focus, a:visited {color: #fff;}
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    color: #fff;
+  }
 }
 
 ::v-deep .myuw-modal {

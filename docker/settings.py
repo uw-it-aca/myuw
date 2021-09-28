@@ -19,7 +19,7 @@ INSTALLED_APPS += [
     'supporttools',
     'blti',
     'myuw.apps.MyUWConfig',
-    'webpack_bridge',
+    'webpack_loader',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
@@ -160,9 +160,9 @@ if os.getenv('ATTEST_AUTH_ENV') in RESTCLIENTS_DEFAULT_ENVS:
     RESTCLIENTS_ATTEST_AUTH_TIMEOUT = 10
     RESTCLIENTS_ATTEST_AUTH_POOL_SIZE = 3
     if os.getenv('ATTEST_AUTH_ENV') == 'PROD':
-        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://sps-prod.auth.us-west-2.amazoncognito.com:443'
+        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://auth.api.sps.sis.uw.edu:443'
     else:
-        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://sps-dev.auth.us-west-2.amazoncognito.com:443'
+        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://auth.api.sps-dev.sis.uw.edu:443'
 
 LOGGING = {
     'version': 1,
@@ -218,3 +218,9 @@ GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 STATICFILES_DIRS = [
     '../static/myuw/'
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'STATS_FILE': os.path.join('../static/myuw/', 'webpack-stats.json')
+    }
+}

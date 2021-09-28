@@ -33,7 +33,7 @@ export default {
       isErrored: 'isErrored',
     }),
   },
-  mounted() {
+  created() {
     if (this.applicant) this.fetch();
   },
   methods: {
@@ -41,4 +41,3 @@ export default {
   },
 };
 </script>
-

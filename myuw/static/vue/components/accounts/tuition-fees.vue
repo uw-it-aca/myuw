@@ -10,24 +10,22 @@
     </template>
     <template #card-body>
       <div style="text-align: center">
-        <b-alert
+        <div
           v-if="tuitionDate.diff === 0 && tuiBalance > 0"
-          show
-          variant="danger"
-          class="text-danger"
+          class="alert alert-danger text-danger"
+          role="alert"
         >
           <font-awesome-icon :icon="faExclamationTriangle" /> Tuition and fees are due
           today.
-        </b-alert>
-        <b-alert
+        </div>
+        <div
           v-if="tuitionDate.diff < 0 && tuiBalance > 0"
-          show
-          variant="danger"
-          class="text-danger"
+          class="alert alert-danger text-danger"
+          role="alert"
         >
           <font-awesome-icon :icon="faExclamationTriangle" />
           You have a balance that may be past due. See your statement for details.
-        </b-alert>
+        </div>
       </div>
 
       <ul class="list-unstyled">
@@ -259,7 +257,7 @@ export default {
         this.statusCodeTuition != 404
       );
     },
-    finAidNotices: function () {
+    finAidNotices () {
       const notices = [];
       for (let i = 0; i < this.finAidTags.length; i++) {
         const notice = this.notices.filter((notice) => {

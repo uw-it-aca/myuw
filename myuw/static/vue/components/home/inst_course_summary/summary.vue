@@ -21,14 +21,14 @@
         <!-- teach some courses -->
         <div v-if="instSchedule.future_term">
           <span class="float-right">
-            <b-link
+            <a
               v-inner="`View details: ${term}`"
               :href="`/teaching/${term}`"
               :future-nav-target="`${term}`"
               :title="getTeachingLinkLabel"
             >
               View details
-            </b-link>
+            </a>
           </span>
           <p class="myuw-text-sm">
             You are teaching
@@ -45,12 +45,12 @@
         <uw-section-list v-else :sections="instSchedule.sections" />
 
         <div class="myuw-text-md">
-          <b-link
+          <a
             v-inner="`important dates and deadlines: ${term}`"
             :href="getAcadCalLink">
             View {{ titleCaseWord(getQuarter) }} {{ getYear }}
             important dates and deadlines
-          </b-link>
+          </a>
         </div>
       </div>
     </template>

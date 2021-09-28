@@ -167,10 +167,10 @@ export default {
       student: (state) => state.user.affiliations.student,
       studentEmployee: (state) => state.user.affiliations.stud_employee,
     }),
-    showCard: function () {
+    showCard() {
       return (this.student || this.studentEmployee) && Boolean(this.profile);
     },
-    showError: function () {
+    showError() {
       return false;
     },
   },

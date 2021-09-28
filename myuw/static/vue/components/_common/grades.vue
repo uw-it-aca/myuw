@@ -80,17 +80,14 @@
       </b-collapse>
     </template>
     <template #card-footer>
-      <b-button
-        v-b-toggle.grade_card_collapse
-        variant="link"
-        size="sm"
-        class="w-100 p-0 text-dark"
+      <button v-b-toggle.grade_card_collapse
+        type="button" class="btn btn-link btn-sm w-100 p-0 text-dark"
         title='Additional grade resources'
       >
         Resources
         <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
         <font-awesome-icon v-else :icon="faChevronDown" />
-      </b-button>
+      </button>
     </template>
   </uw-card>
 </template>
@@ -120,6 +117,7 @@ export default {
   },
   computed: {
     ...mapState({
+      student: (state) => state.user.affiliations.student,
       currentSummerTerm: (state) => state.cardDisplayDates.current_summer_term,
       isAfterLastDayOfClasses: (state) =>
         state.cardDisplayDates.is_after_last_day_of_classes,
@@ -146,14 +144,14 @@ export default {
     showError() {
       return this.statusCodeTagged(this.term) !== 404;
     },
-    gradeSubmissionDeadline: function() {
+    gradeSubmissionDeadline() {
       if (this.term in this.courses) {
         return this.courses[this.term].term.grade_submission_deadline;
       } else {
         return [];
       }
     },
-    filteredSections: function() {
+    filteredSections() {
       if (this.term in this.courses) {
         return this.courses[this.term].sections.filter((section) => {
           let shouldDisplay = true; // display grade
@@ -177,9 +175,10 @@ export default {
         return [];
       }
     },
-    showGradeCard: function() {
+    showGradeCard() {
       return (
-        this.term &&
+        this.student &&
+        this.term !== null &&
         // This is done so that when there is a error it goes to the second
         // if conditional
         ((!this.isReady && !this.isErrored) ||
@@ -188,6 +187,7 @@ export default {
     },
   },
   mounted() {
+    if (!this.student) return;
     // display window: [lastDayOfClasses..firstDayOfTerm]
     if (this.isBeforeFirstDayOfTerm) {
       this.term = this.lastTerm;

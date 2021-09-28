@@ -1,101 +1,22 @@
 <template>
   <uw-panel :loaded="true">
     <template #panel-body>
-      <div>
-        <h2 class="h5">
-          Remote Teaching
-        </h2>
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a href="https://teachingremotely.washington.edu/">Teaching Remotely</a>
-          </li>
-          <li v-if="bothell_emp" class="mb-1">
-            <a href="https://www.uwb.edu/it/teaching">UWB Teach Anywhere</a>
-          </li>
-          <li v-if="tacoma_emp" class="mb-1">
-            <a href="https://www.tacoma.uw.edu/digital-learning/instructional-continuity"
-             >UWT Instructional Continuity</a>
-          </li>
-          <li class="mb-1">
-            <a href="https://canvas.uw.edu/courses/1392969"
-             >Teaching with UW Technologies</a>
-          </li>
-          <li class="mb-1">
-            <a href="https://teachingremotely.washington.edu/#getHelp"
-             >Workshops and Office Hours</a>
-          </li>
-          <li class="mb-1">
-            <a href="https://washington.zoom.us/">Zoom</a>
-          </li>
-          <li class="mb-1">
-            <a href="https://uw.hosted.panopto.com/">Panopto</a>
-          </li>
-          <li class="mb-1">
-            <a href="http://polleverywhere.com/">Poll Everywhere</a>
-          </li>
-        </ul>
-
-        <h2 class="h5">
-          Course Materials
-        </h2>
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a :href="'http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=' + linkData.textbook"
-             >Order Textbooks</a>
-            </li>
-          <li class="mb-1">
-            <a href="http://www.lib.washington.edu/types/course">Course Reserves</a>
-          </li>
-          <li class="mb-1">
-            <a href="http://f2.washington.edu/fm/c2/printing-copying/course-packs">Request Course Packs</a>
-          </li>
-        </ul>
-        <h2 class="h5">
-          Web Tools &amp; Services
-        </h2>
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a href="http://canvas.uw.edu">Canvas</a>
-          </li>
-          <li class="mb-1">
-            <a href="https://uw.hosted.panopto.com">Panopto Lecture Capture</a>
-          </li>
-          <li class="mb-1">
-            <a href="http://www.polleverywhere.com/auth/washington">Poll Everywhere</a></li>
-          <li class="mb-1">
-            <a href="https://gradepage.uw.edu">GradePage</a>
-          </li>
-          <li class="mb-1">
-            <a href="https://apps.registrar.washington.edu/grade-change/pages/change.php">Change Submitted Grades</a>
-          </li>
-          <li class="mb-1">
-            <a :href="linkData.courseEval">Course Evaluations</a>
-          </li>
-          <li class="mb-1">
-            <a href="https://coda.uw.edu">Course Stats</a>
-          </li>
-        </ul>
-        <h2 class="h5">
-          Help Guides
-        </h2>
-        <ul class="list-unstyled myuw-text-md">
-          <li class="mb-1">
-            <a href="https://itconnect.uw.edu/learn/tools/">Teaching &amp; Learning Tools</a>
-            </li>
-          <li class="mb-1">
-            <a href="http://www.washington.edu/teaching/">Center for Teaching &amp; Learning</a>
-            </li>
-          <li class="mb-1">
-            <a href="http://depts.washington.edu/grading/">Faculty Resources on Grading</a>
-            </li>
-          <li class="mb-1">
-            <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/"
-             >Online Grade Submission</a></li>
-          <li class="mb-1">
-            <a href="http://teaching.pce.uw.edu/">UW PCE Instructor Resources</a>
-          </li>
-        </ul>
-      </div>
+      <uw-sidelink-section
+        category-title="Online Teaching"
+        :links="remoteTeachingLinks"
+      />
+      <uw-sidelink-section
+        category-title="Course Materials"
+        :links="courseMaterialLinks"
+      />
+      <uw-sidelink-section
+        category-title="Web Tools &amp; Services"
+        :links="webToolsLinks"
+      />
+      <uw-sidelink-section
+        category-title="Help Guides"
+        :links="helpLinks"
+      />
     </template>
   </uw-panel>
 </template>
@@ -103,10 +24,12 @@
 <script>
 import {mapState} from 'vuex';
 import Panel from '../_templates/panel.vue';
+import SidelinkSection from '../_templates/sidelink-section.vue';
 
 export default {
   components: {
     'uw-panel': Panel,
+    'uw-sidelink-section': SidelinkSection,
   },
   computed: {
     ...mapState({
@@ -134,6 +57,57 @@ export default {
           courseEval: courseEvalLink,
         };
       },
+      remoteTeachingLinks() {
+        return [
+          { url: "https://teachingremotely.washington.edu/",
+            title: "Teaching Remotely" },
+          this.bothell_emp ?
+            { url: "https://www.uwb.edu/it/teaching",
+              title: "UWB Teach Anywhere" } : null,
+          this.tacoma_emp ?
+            { url: "https://www.tacoma.uw.edu/uwt/digital-learning/instructional-continuity",
+              title: "UWT Instructional Continuity" } : null,
+          { url: "https://canvas.uw.edu/courses/1392969",
+            title: "Teaching with UW Technologies" },
+          { url: "https://teachingremotely.washington.edu/#getHelp",
+            title: "Workshops and Office Hours" },
+          { url: "https://washington.zoom.us/", title: "Zoom" },
+          { url: "https://uw.hosted.panopto.com/", title: "Panopto" },
+          { url: "http://polleverywhere.com/", title: "Poll Everywhere" }
+        ].filter(x => x !== null);
+      },
+      courseMaterialLinks() {
+        return [
+          { url: "http://www2.bookstore.washington.edu/textsys/TextReqLogin.taf?school=" + this.linkData.textbook,
+            title: "Order Textbooks" },
+          { url: "http://www.lib.washington.edu/types/course",
+            title: "Course Reserves" },
+          { url: "http://f2.washington.edu/fm/c2/printing-copying/course-packs",
+            title: "Request Course Packs" }
+        ];
+      },
+      webToolsLinks() {
+        return [
+          { url: "http://canvas.uw.edu", title: "Canvas" },
+          { url: "https://uw.hosted.panopto.com", title: "Panopto Lecture Capture" },
+          { url: "http://www.polleverywhere.com/auth/washington", title: "Poll Everywhere" },
+          { url: "https://gradepage.uw.edu", title: "GradePage" },
+          { url: "https://apps.registrar.washington.edu/grade-change/pages/change.php",
+            title: "Change Submitted Grades" },
+          { url: this.linkData.courseEval, title: "Course Evaluations" },
+          { url: "https://coda.uw.edu", title: "Course Stats" }
+        ];
+      },
+      helpLinks() {
+        return [
+          { url: "https://itconnect.uw.edu/learn/tools/", title: "Teaching & Learning Tools" },
+          { url: "http://www.washington.edu/teaching/", title: "Center for Teaching & Learning" },
+          { url: "http://depts.washington.edu/grading/", title: "Faculty Resources on Grading" },
+          { url: "https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/",
+            title: "Online Grade Submission" },
+          { url: "http://teaching.pce.uw.edu/", title: "UW PCE Instructor Resources" }
+        ];
+      }
     }),
   },
 };

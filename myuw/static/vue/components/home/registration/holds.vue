@@ -8,17 +8,15 @@
           class="mr-1 align-middle text-danger"
           aria-hidden="true"
         />
-        <b-button
-          v-b-toggle="`${summerCardLabel}holds-collapse-${$meta.uid}`"
-          variant="link"
-          size="lg"
-          class="p-0 border-0 text-danger font-weight-bold"
+        <button v-b-toggle="`${summerCardLabel}holds-collapse-${$meta.uid}`"
+          type="button"
+          class="btn btn-link btn-lg p-0 border-0 text-danger font-weight-bold"
         >
           {{ regHoldsNotices.length }}
           {{ regHoldsNotices.length > 1 ? 'holds' : 'hold' }}
           <font-awesome-icon v-if="!collapseOpen" :icon="faChevronDown" />
           <font-awesome-icon v-else :icon="faChevronUp" />
-        </b-button>
+        </button>
       </template>
     </uw-card-status>
     <b-collapse

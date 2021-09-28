@@ -3,48 +3,45 @@
     <h3 class="sr-only">
       Table of Student Information
     </h3>
-    <div class="myuw-text-md">
-      <b-table
-        id="student-list"
-        hover
-        show-empty
-        sort-icon-left
-        responsive
-        small
-        head-variant="light"
-        :fields="fields"
-        :items="items"
-        primary-key="netid"
-      >
-        <template #cell(linkedSection)="data">
-          <div class="text-center">{{data.value}}</div>
+    <uw-table :fields="fields" :items="items">
+      <template #default="slotProps">
+        <div
+          v-if="slotProps.cellData.key == 'linkedSection' ||
+                slotProps.cellData.key == 'credits'"
+          class="text-center"
+        >
+          {{slotProps.cellData.value}}
+        </div>
+        <div v-else-if="slotProps.cellData.key == 'email'"
+          class="text-center"
+        >
+          <a
+            v-inner="'Email student'"
+            :href="slotProps.cellData.value.href"
+            :title="slotProps.cellData.value.title"
+          >
+            <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
+            <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
+              {{ slotProps.cellData.value.email }}
+            </span>
+          </a>
+        </div>
+        <template v-else>
+          {{ slotProps.cellData.value }}
         </template>
-        <template #cell(credits)="data">
-          <div class="text-center">{{data.value}}</div>
-        </template>
-        <template #cell(email)="data">
-          <div class="text-center">
-            <a
-              v-inner="'Email student'"
-              :href="data.value.href"
-              :title="data.value.title"
-            >
-              <font-awesome-icon :icon="faEnvelope" class="myuw-print-hidden" />
-              <span style="overflow-wrap: break-word;" class="sr-only myuw-print-sr-only">
-                {{ data.value.email }}
-              </span>
-            </a>
-          </div>
-        </template>
-      </b-table>
-    </div>
+      </template>
+    </uw-table>
   </div>
 </template>
 <script>
 import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
+import Table from '../../_templates/card-table.vue';
 export default {
+  components: {
+    'uw-table': Table,
+  },
   props: {
     section: {
       type: Object,
@@ -93,6 +90,7 @@ export default {
             {
               key: 'jointCourse',
               label: 'Joint Course',
+              sortable: true,
             },
         );
       }

@@ -1,26 +1,26 @@
 <template>
-  <div v-if="isReady">
-    <uw-panel v-for="(linkData, i) in pagecalendarLinks.link_data" :key="i" loaded>
-      <template #panel-body>
-        <h2 class="h5">{{linkData.subcategory}}</h2>
-        <ul class="list-unstyled myuw-text-md">
-          <li v-for="(link, j) in linkData.links" :key="j" class="mb-1">
-            <a :href="link.url">{{link.title}}</a>
-          </li>
-        </ul>
-      </template>
-    </uw-panel>
-  </div>
+  <uw-panel :loaded="isReady">
+    <template #panel-body>
+      <uw-sidelink-section
+        v-for="linkCategory in pagecalendarLinks.link_data"
+        :key="linkCategory.subcat_slug"
+        :category-title="linkCategory.subcategory"
+        :links="linkCategory.links"
+      />
+    </template>
+  </uw-panel>
 </template>
 
 <script>
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Panel from '../_templates/panel.vue';
+import SidelinkSection from '../_templates/sidelink-section.vue';
 
 export default {
   components: {
     'uw-panel': Panel,
+    'uw-sidelink-section': SidelinkSection,
   },
   data() {
     return {

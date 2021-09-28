@@ -95,7 +95,7 @@ export default {
   },
   computed: {
     ...mapState({
-      employee: (state) => state.user.affiliations.employee,
+      employee: (state) => state.user.affiliations.all_employee,
       faculty: (state) => state.user.affiliations.faculty,
       student: (state) => state.user.affiliations.student,
       studEmployee: (state) => state.user.affiliations.stud_employee,
@@ -104,14 +104,14 @@ export default {
       pastEmployee: (state) => state.user.affiliations.past_employee,
       staticUrl: (state) => state.staticUrl,
     }),
-    showCard: function () {
+    showCard () {
       if (this.isHomePage) {
         return this.retiree || this.pastEmployee ||
           this.employee && !this.student && !this.instructor;
       }
       return this.studEmployee || this.instructor;
     },
-    truncateView: function () {
+    truncateView () {
       return this.retiree || this.pastEmployee;
     },
   },

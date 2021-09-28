@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     ...mapState({
-      employee: (state) => state.user.affiliations.employee,
+      employee: (state) => state.user.affiliations.all_employee,
       studentEmployee: (state) => state.user.affiliations.stud_employee,
       isTacoma: (state) => state.user.affiliations.tacoma,
       staticUrl: (state) => state.staticUrl,
@@ -126,10 +126,10 @@ export default {
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
-    showCard: function () {
+    showCard() {
       return (this.employee || this.studentEmployee) && Boolean(this.directory);
     },
-    showError: function () {
+    showError() {
       return false;
     },
     noFormsOfContact() {
@@ -137,7 +137,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.employee || this.studentEmployee) this.fetch();
   },
   methods: {
     ...mapActions('directory', ['fetch']),

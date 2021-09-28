@@ -1,7 +1,8 @@
 <template>
   <uw-card
-    v-if="!isErrored && termLabel && (!isReady || periods.length > 0)"
-    :loaded="isReady" :errored="isErrored"
+    v-if="showCard"
+    :loaded="isReady"
+    :errored="isErrored"
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -31,6 +32,7 @@
           <uw-schedule-tab
             :period="period"
             :term="getTermData"
+            :is-last-tab="i === periods.length - 1"
           />
         </b-tab>
       </b-tabs>
@@ -88,6 +90,8 @@ export default {
   computed: {
     ...mapState({
       allSchedules: (state) => state.visual_schedule.value,
+      instructor: (state) => state.user.affiliations.instructor,
+      student: (state) => state.user.affiliations.student,
     }),
     ...mapGetters('visual_schedule', [
       'isReadyTagged',
@@ -98,6 +102,10 @@ export default {
     },
     isErrored() {
       return this.isErroredTagged(this.termLabel);
+    },
+    showCard() {
+      return (this.instructor || this.student) && !this.isErrored && (
+        !this.isReady || this.periods.length > 0);
     },
     isNotCurrentTerm() {
       return this.termLabel && this.termLabel !== 'current';
@@ -143,7 +151,7 @@ export default {
     }
   },
   mounted() {
-    if (this.termLabel) this.fetch(this.termLabel);
+    if ((this.instructor || this.student) && this.termLabel) this.fetch(this.termLabel);
   },
   methods: {
     ...mapActions('visual_schedule', ['fetch']),

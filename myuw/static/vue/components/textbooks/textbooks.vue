@@ -37,8 +37,6 @@
         </uw-link-button>
       </div>
 
-      <uw-covid />
-
       <div>
         <p class="text-muted myuw-text-md">
           Information on course textbooks is collected by and provided
@@ -51,8 +49,7 @@
       </div>
     </template>
     <template #panel-error>
-      <!-- error message for textbooks -->
-      <b-alert show variant="light" class="p-0 border-0 bg-transparent">
+      <div class="alert alert-light p-0 border-0 bg-transparent" role="alert">
         <div class="d-flex text-danger m-0 myuw-text-md">
           <div class="pr-2 flex-shrink-1">
             <font-awesome-icon :icon="faExclamationTriangle" />
@@ -62,7 +59,7 @@
             Please try again later.
           </div>
         </div>
-      </b-alert>
+      </div>
     </template>
   </uw-panel>
 </template>
@@ -75,13 +72,11 @@ import {mapGetters, mapState, mapActions} from 'vuex';
 import Panel from '../_templates/panel.vue';
 import LinkButton from '../_templates/link-button.vue';
 import Section from './section.vue';
-import Covid from './covid.vue';
 
 export default {
   components: {
     'uw-panel': Panel,
     'uw-section': Section,
-    'uw-covid': Covid,
     'uw-link-button': LinkButton,
   },
   props: {
