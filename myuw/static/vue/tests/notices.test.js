@@ -118,25 +118,6 @@ describe('Notice Card', () => {
     });
   });
 
-  it('Check notices populate and click', async () => {
-    axios.get.mockResolvedValue({data: javgNotices, status: 200});
-    const wrapper = mount(NoticeCard, {store, localVue});
-    // It takes like 10 ms to process the mock data through fetch postProcess
-    await new Promise(setImmediate);
-    expect(wrapper.vm.isReady).toBeTruthy();
-
-    expect(wrapper.findAll('button')).toHaveLength(9);
-    expect(wrapper.findAllComponents(UwCollapse)).toHaveLength(9);
-
-    for (let i = 0; i < 9; i++) {
-      expect(wrapper.findAllComponents(UwCollapse).at(i).vm.$el.classList.contains('show'))
-        .toBeFalsy();
-      await wrapper.findAll('button').at(i).trigger('click');
-      expect(wrapper.findAllComponents(UwCollapse).at(i).vm.$el.classList.contains('show'))
-        .toBeTruthy();
-    }
-  });
-
   it('Check show event', async () => {
     axios.get.mockResolvedValue({data: javgNotices, status: 200});
     axios.put = jest.fn(() => Promise.resolve());
