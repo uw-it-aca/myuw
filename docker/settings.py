@@ -19,7 +19,7 @@ INSTALLED_APPS += [
     'supporttools',
     'blti',
     'myuw.apps.MyUWConfig',
-    'webpack_bridge',
+    'webpack_loader',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
@@ -218,3 +218,9 @@ GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 STATICFILES_DIRS = [
     '../static/myuw/'
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'STATS_FILE': os.path.join('../static/myuw/', 'webpack-stats.json')
+    }
+}
