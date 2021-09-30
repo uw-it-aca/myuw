@@ -1,0 +1,815 @@
+{
+  "year": 2013,
+  "quarter": "autumn",
+  "term": {
+    "quarter": "Autumn",
+    "year": 2013,
+    "label": "2013,autumn",
+    "last_day_add": "2013-10-15",
+    "last_day_drop": "2013-11-12",
+    "first_day_quarter": "2013-09-25",
+    "census_day": "2013-10-04",
+    "last_day_instruction": "2013-12-06",
+    "grading_period_open": "2013-11-18 08:00:00",
+    "aterm_grading_period_open": null,
+    "grade_submission_deadline": "2013-12-17 17:00:00",
+    "registration_periods": [
+      {
+        "start": "2013-05-10",
+        "end": "2013-06-23"
+      },
+      {
+        "start": "2013-06-24",
+        "end": "2013-09-24"
+      },
+      {
+        "start": "2013-09-25",
+        "end": "2013-10-01"
+      }
+    ],
+    "time_schedule_published": {
+      "bothell": true,
+      "seattle": true,
+      "tacoma": true
+    },
+    "last_final_exam_date": "2013-12-13 23:59:59"
+  },
+  "sections": [
+    {
+      "curriculum_abbr": "POL S",
+      "course_number": "306",
+      "section_id": "A",
+      "eos_cid": null,
+      "is_primary_section": true,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "MEDIA, SOC & POL ID",
+      "course_campus": "Seattle",
+      "course_description": "Explores how society and culture are both represented in and shaped by communication technologies and media content. Media include film, advertising, news, entertainment television, talk shows, and the Internet. Explores how media represent and affect individual identity, values, and political engagement. Offered: jointly with COM 306.",
+      "class_website_url": null,
+      "sln": 25769,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 200,
+      "limit_estimate_enrollment": 200,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 1,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": true,
+            "wednesday": null,
+            "thursday": true,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "10:00",
+          "end_time": "11:20",
+          "building_tbd": false,
+          "building": "ARC",
+          "room_tbd": false,
+          "room": "147",
+          "room_number": "147",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "FBB38FE46A7C11D5A4AE0004AC494888",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "Bill Joint",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.654561,
+          "longitude": -122.310904,
+          "building_name": "Architecture Hall (ARC)",
+          "classroom_info_url": "http://www.washington.edu/classroom/ARC+147"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-04 10:30",
+        "end_date": "2013-06-04 12:20",
+        "building": "ARC",
+        "room_number": "147",
+        "room": "147",
+        "is_remote": false,
+        "longitude": -122.310904,
+        "latitude": 47.654561,
+        "building_name": "Architecture Hall (ARC)",
+        "classroom_info_url": "http://www.washington.edu/classroom/ARC+147"
+      },
+      "index": 0,
+      "color_id": 1,
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "POL-S",
+      "section_label": "2013_autumn_POL_S_306_A",
+      "total_linked_secondaries": 1,
+      "allows_secondary_grading": true,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [],
+      "has_eos_dates": false,
+      "joint_sections": [
+        {
+          "course_abbr": "COM",
+          "course_number": "306",
+          "section_id": "A",
+          "course_abbr_slug": "COM",
+          "is_ior": true,
+          "registrations": [
+            {
+              "full_name": "June Average Student",
+              "netid": "javg003",
+              "regid": "9136CCB8F66711D5BE060004AC494003",
+              "student_number": "1033003",
+              "credits": "3",
+              "is_auditor": false,
+              "is_independent_start": false,
+              "class_level": "Senior",
+              "email": "javg003@u.washington.edu",
+              "url_key": "9136CCB8F66711D5BE060004AC494003",
+              "start_date": "",
+              "end_date": "",
+              "first_name": "Zune",
+              "surname": "Student2"
+            },
+            {
+              "full_name": "Jade Average Student",
+              "netid": "javg002",
+              "regid": "9136CCB8F66711D5BE060004AC494002",
+              "student_number": "1033002",
+              "credits": "4",
+              "is_auditor": false,
+              "is_independent_start": false,
+              "class_level": "Senior",
+              "email": "javg002@u.washington.edu",
+              "url_key": "9136CCB8F66711D5BE060004AC494002",
+              "start_date": "",
+              "end_date": "",
+              "first_name": "Jade",
+              "surname": "Student2"
+            },
+            {
+              "full_name": "Jake Average Student",
+              "netid": "javg001",
+              "regid": "9136CCB8F66711D5BE060004AC494001",
+              "student_number": "0133001",
+              "credits": "5",
+              "is_auditor": false,
+              "is_independent_start": false,
+              "class_level": "Senior",
+              "email": "javg001@u.washington.edu",
+              "url_key": "9136CCB8F66711D5BE060004AC494001",
+              "start_date": "",
+              "end_date": "",
+              "first_name": "Jake",
+              "surname": "Student1"
+            }
+          ]
+        },
+        {
+          "course_abbr": "CSE",
+          "course_number": "306",
+          "section_id": "A",
+          "course_abbr_slug": "CSE",
+          "is_ior": false,
+          "registrations": [
+            {
+              "full_name": "Jong Average Student",
+              "netid": "javg016",
+              "regid": "9136CCB8F66711D5BE060004AC494016",
+              "student_number": "1033016",
+              "credits": "3",
+              "is_auditor": false,
+              "is_independent_start": false,
+              "class_level": "Freshman",
+              "email": "javg016@u.washington.edu",
+              "url_key": "9136CCB8F66711D5BE060004AC494016",
+              "start_date": "",
+              "end_date": "",
+              "first_name": "Jong Average",
+              "surname": "Average"
+            }
+          ]
+        }
+      ],
+      "has_joint": true,
+      "registrations": [
+        {
+          "full_name": "Jerry Average Student",
+          "netid": "javg004",
+          "regid": "9136CCB8F66711D5BE060004AC494004",
+          "student_number": "1033004",
+          "credits": "3",
+          "is_auditor": false,
+          "is_independent_start": false,
+          "class_level": "senior",
+          "email": "javg004@u.washington.edu",
+          "url_key": "9136CCB8F66711D5BE060004AC494004",
+          "start_date": "",
+          "end_date": "",
+          "first_name": "Jerry Average",
+          "surname": "Average",
+          "linked_sections": "AB"
+        },
+        {
+          "full_name": "Jebedia Average Student",
+          "netid": "javg005",
+          "regid": "9136CCB8F66711D5BE060004AC494005",
+          "student_number": "1033005",
+          "credits": "4",
+          "is_auditor": false,
+          "is_independent_start": false,
+          "class_level": "senior",
+          "email": "javg005@u.washington.edu",
+          "url_key": "9136CCB8F66711D5BE060004AC494005",
+          "start_date": "",
+          "end_date": "",
+          "first_name": "Jebedia Average",
+          "surname": "Average",
+          "linked_sections": "AB"
+        },
+        {
+          "full_name": "Julia Average Student",
+          "netid": "javg006",
+          "regid": "9136CCB8F66711D5BE060004AC494006",
+          "student_number": "1033006",
+          "credits": "5",
+          "is_auditor": false,
+          "is_independent_start": false,
+          "class_level": "senior",
+          "email": "javg006@u.washington.edu",
+          "url_key": "9136CCB8F66711D5BE060004AC494006",
+          "start_date": "",
+          "end_date": "",
+          "first_name": "Julia Average",
+          "surname": "Average",
+          "linked_sections": "AB"
+        }
+      ],
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "email_list": {
+        "year": 2013,
+        "quarter": "autumn",
+        "course_abbr": "POL S",
+        "course_number": "306",
+        "section_id": "A",
+        "is_primary": true,
+        "has_multiple_sections": true,
+        "total_course_wo_list": 1,
+        "joint_sections": [
+          {
+            "course_abbr": "COM",
+            "course_number": "306",
+            "section_id": "A",
+            "course_abbr_slug": "COM"
+          },
+          {
+            "course_abbr": "CSE",
+            "course_number": "306",
+            "section_id": "A",
+            "course_abbr_slug": "CSE"
+          }
+        ],
+        "has_joint": true,
+        "joint_section_list": {
+          "list_exists": false,
+          "list_address": "multi_pols306a_au13",
+          "list_admin_url": null,
+          "section_id": "A",
+          "section_label": "2013,autumn,POL S,306/A"
+        },
+        "section_list": {
+          "list_exists": false,
+          "list_address": "pols306a_au13",
+          "list_admin_url": null,
+          "section_id": "A",
+          "section_label": "2013,autumn,POL S,306/A"
+        },
+        "no_secondary_section": false,
+        "secondary_section_lists": [],
+        "has_secondary_lists": true,
+        "has_lists": true
+      },
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "has_linked_sections": true,
+      "current": true
+    },
+    {
+      "curriculum_abbr": "POL S",
+      "course_number": "306",
+      "section_id": "AB",
+      "eos_cid": null,
+      "is_primary_section": false,
+      "is_independent_study": false,
+      "section_type": "lecture",
+      "independent_study_instructor_regid": null,
+      "course_title": "MEDIA, SOC & POL ID",
+      "course_campus": "Seattle",
+      "course_description": "Explores how society and culture are both represented in and shaped by communication technologies and media content. Media include film, advertising, news, entertainment television, talk shows, and the Internet. Explores how media represent and affect individual identity, values, and political engagement. Offered: jointly with COM 306.",
+      "class_website_url": null,
+      "sln": 25769,
+      "summer_term": "",
+      "start_date": null,
+      "end_date": null,
+      "current_enrollment": 200,
+      "limit_estimate_enrollment": 200,
+      "limit_estimate_enrollment_indicator": "limit",
+      "auditors": 1,
+      "meetings": [
+        {
+          "index": "1",
+          "type": "lecture",
+          "days_tbd": false,
+          "eos_start_date": null,
+          "eos_end_date": null,
+          "meeting_days": {
+            "monday": null,
+            "tuesday": true,
+            "wednesday": null,
+            "thursday": true,
+            "friday": null,
+            "saturday": null,
+            "sunday": null
+          },
+          "wont_meet": false,
+          "no_meeting": false,
+          "start_time": "10:00",
+          "end_time": "11:20",
+          "building_tbd": false,
+          "building": "ARC",
+          "room_tbd": false,
+          "room": "147",
+          "room_number": "147",
+          "instructors": [
+            {
+              "uwnetid": "",
+              "uwregid": "FBB38FE46A7C11D5A4AE0004AC494888",
+              "is_test_entity": false,
+              "first_name": "",
+              "surname": "",
+              "full_name": "",
+              "display_name": "Bill Joint",
+              "whitepages_publish": false,
+              "employee_id": null,
+              "addresses": [],
+              "email_addresses": [],
+              "faxes": [],
+              "mobiles": [],
+              "pagers": [],
+              "phones": [],
+              "voice_mails": [],
+              "touch_dials": [],
+              "positions": [],
+              "mailstop": null,
+              "home_department": null,
+              "publish_in_emp_directory": null,
+              "student_number": null,
+              "student_system_key": null,
+              "student_class": null,
+              "student_departments": [],
+              "publish_in_stu_directory": null,
+              "development_id": null,
+              "alumni_state": null,
+              "employee_state": null,
+              "student_state": null
+            }
+          ],
+          "is_remote": false,
+          "latitude": 47.654561,
+          "longitude": -122.310904,
+          "building_name": "Architecture Hall (ARC)",
+          "classroom_info_url": "http://www.washington.edu/classroom/ARC+147"
+        }
+      ],
+      "for_credit": true,
+      "credits": "None",
+      "is_auditor": false,
+      "grade": null,
+      "grade_date": null,
+      "grading_system": "standard",
+      "is_remote": false,
+      "final_exam": {
+        "is_confirmed": true,
+        "no_exam_or_nontraditional": false,
+        "start_date": "2013-06-04 10:30",
+        "end_date": "2013-06-04 12:20",
+        "building": "ARC",
+        "room_number": "147",
+        "room": "147"
+      },
+      "index": 1,
+      "color_id": "1a",
+      "mini_card": false,
+      "is_independent_start": false,
+      "course_abbr_slug": "POL-S",
+      "section_label": "2013_autumn_POL_S_306_AB",
+      "primary_section_label": "2013_autumn_POL_S_306_A",
+      "allows_secondary_grading": true,
+      "cc_display_dates": false,
+      "grade_submission_delegates": [],
+      "has_eos_dates": false,
+      "registrations": [
+        "9136CCB8F66711D5BE060004AC494004",
+        "9136CCB8F66711D5BE060004AC494005",
+        "9136CCB8F66711D5BE060004AC494006"
+      ],
+      "canvas_url": null,
+      "lib_subj_guide": "http://guides.lib.uw.edu/research",
+      "grading_status": null,
+      "evaluation": {
+        "eval_not_exist": true
+      },
+      "current": true
+    }
+  ],
+  "registered_summer_terms": {},
+  "summer_term": "",
+  "related_terms": [
+    {
+      "quarter": "Winter",
+      "year": 2012,
+      "label": "2012,winter",
+      "last_day_add": "2012-01-23",
+      "last_day_drop": "2012-02-20",
+      "first_day_quarter": "2012-01-03",
+      "census_day": "2012-01-13",
+      "last_day_instruction": "2012-03-09",
+      "grading_period_open": "2012-02-27 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2012-03-20 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2011-11-04",
+          "end": "2011-11-27"
+        },
+        {
+          "start": "2011-11-28",
+          "end": "2012-01-02"
+        },
+        {
+          "start": "2012-01-03",
+          "end": "2012-01-09"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-03-16 23:59:59"
+    },
+    {
+      "quarter": "Spring",
+      "year": 2012,
+      "label": "2012,spring",
+      "last_day_add": "2012-04-15",
+      "last_day_drop": "2012-05-13",
+      "first_day_quarter": "2012-03-26",
+      "census_day": "2012-04-06",
+      "last_day_instruction": "2012-06-01",
+      "grading_period_open": "2012-05-21 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2012-06-12 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-02-17",
+          "end": "2012-03-04"
+        },
+        {
+          "start": "2012-03-05",
+          "end": "2012-03-25"
+        },
+        {
+          "start": "2012-03-26",
+          "end": "2012-04-01"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-06-08 23:59:59"
+    },
+    {
+      "quarter": "Summer",
+      "year": 2012,
+      "label": "2012,summer",
+      "last_day_add": "2012-07-08",
+      "last_day_drop": "2012-08-05",
+      "first_day_quarter": "2012-06-18",
+      "census_day": "2012-06-29",
+      "last_day_instruction": "2012-08-17",
+      "grading_period_open": "2012-08-10 08:00:00",
+      "aterm_grading_period_open": "2012-07-12 08:00:00",
+      "grade_submission_deadline": "2012-08-21 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-04-16",
+          "end": "2012-05-22"
+        },
+        {
+          "start": "2012-05-23",
+          "end": "2012-06-17"
+        },
+        {
+          "start": "2012-06-18",
+          "end": "2012-06-24"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-08-17 23:59:59"
+    },
+    {
+      "quarter": "Autumn",
+      "year": 2012,
+      "label": "2012,autumn",
+      "last_day_add": "2012-10-14",
+      "last_day_drop": "2012-11-11",
+      "first_day_quarter": "2012-09-24",
+      "census_day": "2012-10-05",
+      "last_day_instruction": "2012-12-07",
+      "grading_period_open": "2012-11-19 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2012-12-18 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-05-04",
+          "end": "2012-06-17"
+        },
+        {
+          "start": "2012-06-18",
+          "end": "2012-09-23"
+        },
+        {
+          "start": "2012-09-24",
+          "end": "2012-09-30"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2012-12-14 23:59:59"
+    },
+    {
+      "quarter": "Winter",
+      "year": 2013,
+      "label": "2013,winter",
+      "last_day_add": "2013-01-27",
+      "last_day_drop": "2013-02-24",
+      "first_day_quarter": "2013-01-07",
+      "census_day": "2013-01-18",
+      "last_day_instruction": "2013-03-15",
+      "grading_period_open": "2013-02-25 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2013-03-26 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2012-11-02",
+          "end": "2012-11-25"
+        },
+        {
+          "start": "2012-11-26",
+          "end": "2013-01-06"
+        },
+        {
+          "start": "2013-01-07",
+          "end": "2013-01-13"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-03-22 23:59:59"
+    },
+    {
+      "quarter": "Spring",
+      "year": 2013,
+      "label": "2013,spring",
+      "last_day_add": "2013-04-21",
+      "last_day_drop": "2013-05-19",
+      "first_day_quarter": "2013-04-01",
+      "census_day": "2013-04-12",
+      "last_day_instruction": "2013-06-07",
+      "grading_period_open": "2020-12-07 17:00:00",
+      "aterm_grading_period_open": "2020-12-07 17:00:00",
+      "grade_submission_deadline": "2020-12-09 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-02-15",
+          "end": "2013-03-03"
+        },
+        {
+          "start": "2013-03-04",
+          "end": "2013-03-31"
+        },
+        {
+          "start": "2013-04-01",
+          "end": "2013-04-07"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-06-14 23:59:59"
+    },
+    {
+      "quarter": "Summer",
+      "year": 2013,
+      "label": "2013,summer",
+      "last_day_add": "2013-07-14",
+      "last_day_drop": "2013-08-11",
+      "first_day_quarter": "2013-06-24",
+      "census_day": "2013-07-05",
+      "last_day_instruction": "2013-08-23",
+      "grading_period_open": "2013-08-16 08:00:00",
+      "aterm_grading_period_open": "2013-07-18 08:00:00",
+      "grade_submission_deadline": "2013-08-27 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-04-15",
+          "end": "2013-05-22"
+        },
+        {
+          "start": "2013-05-23",
+          "end": "2013-06-23"
+        },
+        {
+          "start": "2013-06-24",
+          "end": "2013-06-30"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-08-23 23:59:59"
+    },
+    {
+      "quarter": "Autumn",
+      "year": 2013,
+      "label": "2013,autumn",
+      "last_day_add": "2013-10-15",
+      "last_day_drop": "2013-11-12",
+      "first_day_quarter": "2013-09-25",
+      "census_day": "2013-10-04",
+      "last_day_instruction": "2013-12-06",
+      "grading_period_open": "2013-11-18 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2013-12-17 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-05-10",
+          "end": "2013-06-23"
+        },
+        {
+          "start": "2013-06-24",
+          "end": "2013-09-24"
+        },
+        {
+          "start": "2013-09-25",
+          "end": "2013-10-01"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": true,
+        "seattle": true,
+        "tacoma": true
+      },
+      "last_final_exam_date": "2013-12-13 23:59:59"
+    },
+    {
+      "quarter": "Winter",
+      "year": 2014,
+      "label": "2014,winter",
+      "last_day_add": "2014-01-26",
+      "last_day_drop": "2014-02-23",
+      "first_day_quarter": "2014-01-06",
+      "census_day": "2014-01-17",
+      "last_day_instruction": "2014-03-14",
+      "grading_period_open": "2014-02-24 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2014-03-25 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2013-11-01",
+          "end": "2013-11-24"
+        },
+        {
+          "start": "2013-11-25",
+          "end": "2014-01-05"
+        },
+        {
+          "start": "2014-01-06",
+          "end": "2014-01-12"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": false,
+        "seattle": false,
+        "tacoma": false
+      },
+      "last_final_exam_date": "2014-03-21 23:59:59"
+    },
+    {
+      "quarter": "Spring",
+      "year": 2014,
+      "label": "2014,spring",
+      "last_day_add": "2014-04-20",
+      "last_day_drop": "2014-05-18",
+      "first_day_quarter": "2014-03-31",
+      "census_day": "2014-04-11",
+      "last_day_instruction": "2014-06-06",
+      "grading_period_open": "2014-05-26 08:00:00",
+      "aterm_grading_period_open": null,
+      "grade_submission_deadline": "2014-06-17 17:00:00",
+      "registration_periods": [
+        {
+          "start": "2014-02-14",
+          "end": "2014-03-02"
+        },
+        {
+          "start": "2014-03-03",
+          "end": "2014-03-30"
+        },
+        {
+          "start": "2014-03-31",
+          "end": "2014-04-06"
+        }
+      ],
+      "time_schedule_published": {
+        "bothell": false,
+        "seattle": false,
+        "tacoma": false
+      },
+      "last_final_exam_date": "2014-06-13 23:59:59"
+    }
+  ],
+  "past_term": false,
+  "future_term": false,
+  "grading_period_is_open": false,
+  "grading_period_is_past": true,
+  "has_eos_dates": false,
+  "current": true
+}

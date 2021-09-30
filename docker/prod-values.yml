@@ -1,15 +1,15 @@
 autoscaling:
   enabled: true
   minReplicas: 3
-  maxReplicas: 60
+  maxReplicas: 80
 targetAverageUtilization: 100
 resources:
   limits:
     cpu: 1.0
-    memory: 1280Mi
+    memory: 1.0Gi
   requests:
     cpu: 256m
-    memory: 1024Mi
+    memory: 0.6Gi
 affinity:
    podsSpanNodes: true
 ingress:
