@@ -18,7 +18,7 @@ describe('<PinnedResourceCards />', () => {
 
       cy.intercept(
         {method: 'DELETE', url: '/api/v1/resources/academicsadvisingtutoring/pin'},
-        mockPinned,
+        {},
       );
     });
 

@@ -2,6 +2,7 @@ import { mount } from '@cypress/vue';
 import Vuex from 'vuex';
 
 import notices from '../../../vuex/store/notices';
+import covid19 from '../../../vuex/store/covid19';
 import Notices from './notices.vue';
 
 import dayjs from 'dayjs';
@@ -40,6 +41,11 @@ describe('<Notices />', () => {
         {method: 'GET', url: '/api/v1/notices/'},
         generatePlaceHolderInFixture(javerageNotices),
       );
+
+      cy.intercept(
+        {method: 'GET', url: '/api/v1/covid19/'},
+        {statusCode: 200},
+      );
     });
 
     // `createLocalVue` is a custom helper that sets up a local vue instance
@@ -48,6 +54,14 @@ describe('<Notices />', () => {
       let store = new Vuex.Store({
         modules: {
           notices,
+          covid19,
+        },
+        state: {
+          user: {
+            affiliations: {
+              student: true,
+            }
+          }
         }
       });
 
@@ -65,7 +79,7 @@ describe('<Notices />', () => {
         cy.invm((vm) => vm.isReady).should('be.true');
 
         // Setup a hook to make sure that notice open puts are being sent
-        cy.intercept({method: 'PUT', url: '/api/v1/notices/', times: 8}, []);
+        // cy.intercept({method: 'PUT', url: '/api/v1/notices/', times: 8}, []);
   
         cy.get('button').should('have.length', 8);
         cy.get('.collapse').should('have.length', 8);
