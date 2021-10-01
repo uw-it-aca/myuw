@@ -175,7 +175,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.student || this.studentEmployee) this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),

@@ -1,0 +1,3 @@
+.babelrc controls the browser supported by the compiled bundles.
+It does so by controlling which polyfills get included in the final package.
+To see which browsers are currenty supported search at https://browserslist.dev/?q=ZGVmYXVsdHM%3D with the value from "targets"
