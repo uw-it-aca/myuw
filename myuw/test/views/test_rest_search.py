@@ -92,12 +92,12 @@ class RestSearchViewTest(MyuwApiTest):
             "/restclients/view/sws/student/v5/notice/" +
             "12345678123456781234567812345678.json"))
 
-        # attest covid19
-        url = reverse("myuw_rest_search", args=["attest", "covid19"])
+        # upasd
+        url = reverse("myuw_rest_search", args=["upass", "index"])
         response = self.client.post(url, {
-            "uwregid": "9136CCB8F66711D5BE060004AC494FFE",
+            "uwnetid": "bill",
             "csrfmiddlewaretoken": "0000000"})
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, (
-            "/restclients/view/attest/attestations/v1/covid19/" +
-            "9136CCB8F66711D5BE060004AC494FFE"))
+        self.assertEqual(
+            response.url,
+                "/restclients/view/upass/MyUWUpass/MyUWUpass.aspx%3Fid=bill")
