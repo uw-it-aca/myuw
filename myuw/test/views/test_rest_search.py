@@ -92,7 +92,7 @@ class RestSearchViewTest(MyuwApiTest):
             "/restclients/view/sws/student/v5/notice/" +
             "12345678123456781234567812345678.json"))
 
-        # upasd
+        # upass
         url = reverse("myuw_rest_search", args=["upass", "index"])
         response = self.client.post(url, {
             "uwnetid": "bill",
@@ -100,4 +100,4 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-                "/restclients/view/upass/MyUWUpass/MyUWUpass.aspx%3Fid=bill")
+            "/restclients/view/upass/MyUWUpass/MyUWUpass.aspx%3Fid=bill")
