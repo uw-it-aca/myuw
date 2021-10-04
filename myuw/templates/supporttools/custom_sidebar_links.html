@@ -127,10 +127,10 @@
             </li>
         {% endif %}
 
-        {% url 'myuw_rest_search' 'attest' 'covid19.html' as covid19_url %}
-        {% if covid19_url %}
+        {% url 'myuw_rest_search' 'upass' 'index.html' as upass_url %}
+        {% if upass_url %}
             <li>
-                <a href="{{ covid19_url }}">Covid19 Vaccination</a>
+                <a href="{{ upass_url }}">UPASS</a>
             </li>
         {% endif %}
 

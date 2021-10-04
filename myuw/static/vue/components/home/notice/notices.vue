@@ -36,9 +36,6 @@
             <div class="p-3 mt-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
           </uw-collapse>
         </li>
-        <li class="mb-1">
-          <covid-vaccine />
-        </li>
       </ul>
     </template>
     <template v-else #card-body>
@@ -55,13 +52,11 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
-import Covid19 from './covid19.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
-    'covid-vaccine': Covid19,
   },
   data() {
     return {
