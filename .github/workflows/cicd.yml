@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, vue/dev]
   pull_request:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, vue/dev]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -273,16 +273,6 @@ jobs:
           git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
           gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
 
-      - name: Deploy Develop Branch
-        if: needs.context.outputs.git_repo_branch == 'develop'
-        uses: uw-it-aca/actions/cicd-deploy@main
-        with:
-          release_name: ${{ env.RELEASE_NAME }}
-          commit_hash: ${{ needs.context.outputs.commit_hash }}
-          git_repo_branch: ${{ needs.context.outputs.git_repo_branch }}
-          gh_auth_token: ${{ secrets.GH_AUTH_TOKEN }}
-          app_instance: dev
-
       - name: Deploy Vue Branch
         if: needs.context.outputs.git_repo_branch == 'vue/dev'
         uses: uw-it-aca/actions/cicd-deploy@main
@@ -300,8 +290,9 @@ jobs:
 
   housekeeping:
     if: github.event_name == 'push' &&
-        (endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') ||
-         endsWith(github.ref, '/develop') || endsWith(github.ref, '/vue/dev'))
+        (endsWith(github.ref, '/master') ||
+         endsWith(github.ref, '/qa') ||
+         endsWith(github.ref, '/vue/dev'))
 
     needs: [context, build, deploy]
 
