@@ -19,6 +19,7 @@
       <a v-out="'Course Dashboard'" :href="url" target="_blank" :title="label">
         View more statistics for
         {{ sectionData.currAbbr }} {{ sectionData.courseNum }} {{ sectionData.sectionId }}
+        on the Course Dashboard
       </a>
     </template>
   </uw-card>
