@@ -95,7 +95,7 @@ jobs:
       - name: Disable Vue Devtools
         if: endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')
         run: echo "VUE_DEVTOOLS=False" >> $GITHUB_ENV
-      
+
       - name: Enable Vue Devtools
         if: ${{ !(endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')) }}
         run: echo "VUE_DEVTOOLS=True" >> $GITHUB_ENV
@@ -119,6 +119,9 @@ jobs:
           push: false
           load: true
 
+      - name: Start Memcached
+        run: docker run -d -p 11211:11211 memcached:1.6-alpine
+
       - name: Run Tests in Image
         id: tests
         shell: bash
@@ -126,7 +129,7 @@ jobs:
           docker run -u root -t
           -v ${PWD}:/coverage
           -e DJANGO_APP="$DJANGO_APP"
-          -e "ENV=localdev" -e "AUTH=SAML_MOCK"
+          -e "ENV=localdev" -e "AUTH=SAML_MOCK" -e "LIVE_CACHE=1"
           app-test-container
           bash -c ". ./docker/test_python.sh"
 
@@ -154,7 +157,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      
+
       - uses: actions/cache@v2
         with:
           path: ~/.npm
@@ -164,7 +167,7 @@ jobs:
 
       - name: Install packages
         run: npm install .
-      
+
       - name: Run eslint
         run: ./node_modules/.bin/eslint myuw/static/vue --ext .vue
 
@@ -177,7 +180,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      
+
       - uses: actions/cache@v2
         with:
           path: ~/.npm
@@ -187,7 +190,7 @@ jobs:
 
       - name: Install packages
         run: npm install .
-      
+
       - name: Run jest
         run: ./node_modules/.bin/jest --ci --coverage
 
