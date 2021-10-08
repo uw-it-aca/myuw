@@ -36,7 +36,7 @@ FROM node-bundler AS node-test-container
 ENV NODE_ENV=development
 RUN npm install
 
-FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.1 as app-test-container
+FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.3 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/

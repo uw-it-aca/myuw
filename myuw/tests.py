@@ -37,4 +37,3 @@ from myuw.test.views.logout import TestLogoutLink
 from myuw.test.views.mobile_login import TestLogins
 from myuw.test.views.test_api import TestDispatchErrorCases
 from myuw.test.views.textbooks import TestTextbook
-from myuw.test.speed import TestPageSpeeds
