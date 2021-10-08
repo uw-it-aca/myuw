@@ -1,6 +1,8 @@
 <template>
   <b-form-group label="Request a single email list for:">
-    <b-form-radio-group v-model="sectionJointList">
+    <b-form-radio-group
+      id="`joint-section_joint_${emailList.section_id}`"
+      v-model="sectionJointList">
       <b-form-radio value="joint" checked>
         {{emailList.course_abbr}}
         {{emailList.course_number}}
