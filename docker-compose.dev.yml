@@ -28,7 +28,12 @@ services:
     tty: true
     command: bash -c ". ./docker/test_python.sh"
   memcached:
-    image: memcached
+    container_name: memcached
+    image: memcached:latest
+    ports:
+        - "11211:11211"
+    expose:
+      - "11211"
   eslint:
     build:
       context: .
