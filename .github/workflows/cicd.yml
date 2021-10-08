@@ -120,7 +120,7 @@ jobs:
           load: true
 
       - name: Start Memcached
-        run: docker run -d -p 11211:11211 memcached:1.6-alpine
+        run: docker run -d -h memcached -p 11211:11211 memcached:1.6-alpine
 
       - name: Run Tests in Image
         id: tests
@@ -129,7 +129,7 @@ jobs:
           docker run -u root -t
           -v ${PWD}:/coverage
           -e DJANGO_APP="$DJANGO_APP"
-          -e "ENV=localdev" -e "AUTH=SAML_MOCK" -e "LIVE_CACHE=1"
+          -e "ENV=localdev" -e "AUTH=SAML_MOCK"
           app-test-container
           bash -c ". ./docker/test_python.sh"
 
