@@ -1,7 +1,18 @@
 <template>
-  <b-form-group label="Request a single email list for:">
-    <b-form-radio-group v-model="sectionJointList">
-      <b-form-radio value="joint" checked>
+  <fieldset class="form-group">
+    <legend>
+      Request a single email list for:
+    </legend>
+    <div class="form-check">
+      <input
+        id="joint_radio"
+        v-model="sectionJointList"
+        class="form-check-input"
+        type="radio"
+        value="joint"
+        checked
+      >
+      <label class="form-check-label" for="joint_radio">
         {{emailList.course_abbr}}
         {{emailList.course_number}}
         {{emailList.section_id}}
@@ -15,8 +26,18 @@
           Mailing list address:
           {{emailList.joint_section_list.list_address}}@uw.edu
         </p>
-      </b-form-radio>
-      <b-form-radio value="single">
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        id="single_radio"
+        v-model="sectionJointList"
+        class="form-check-input"
+        type="radio"
+        value="single"
+        checked
+      >
+      <label class="form-check-label" for="single_radio">
         {{emailList.course_abbr}}
         {{emailList.course_number}}
         {{emailList.section_id}}
@@ -24,9 +45,9 @@
           Mailing list address:
           {{emailList.section_list.list_address}}@uw.edu
         </p>
-      </b-form-radio>
-    </b-form-radio-group>
-  </b-form-group>
+      </label>
+    </div>
+  </fieldset>
 </template>
 
 <script>
@@ -63,12 +84,6 @@ export default {
   },
   methods: {
     generateFormData(listType, sectionList) {
-      // MUWM-5022
-      // for a multi-course list, should return 
-      //  {section_joint_list: joint, section_id_A: <section_label>}
-      // for single course list, return
-      //  {section_joint_list: single, section_id_A: <section_label>}
-      // Current code return {section_single_A: "2013,autumn,MUSEUM,700/A"}
       return {
         section_joint_list: listType,
         [`section_id_${sectionList.section_id}`]: sectionList.section_label,
