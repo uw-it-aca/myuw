@@ -59,7 +59,7 @@
       <button type="button" class="btn btn-light"
         @click="$refs['request-modal'].hide()">Close</button>
       <button type="button" class="btn btn-primary"
-        :disabled="disableActions" @click="requestSingle()">Submit</button>
+        :disabled="disableActions" @click="requestList()">Submit</button>
     </template>
 
     <template v-else-if="!addError" #modal-footer>
@@ -137,10 +137,28 @@ export default {
     //  {section_joint_list: single, section_id_A: <section_label>}
     // Current code always returns {section_single_A: "2013,autumn,MUSEUM,700/A"}
     ...mapActions('emaillist', ['requestCreateEmail']),
+    requestList() {
+      if(this.formData.section_joint_list === "single"){
+        this.requestSingle();
+      } else if(this.formData.section_joint_list === "joint"){
+        this.requestJoint();
+      }
+    },
     requestSingle() {
       this.requestCreateEmail({
         formData: {
           [`section_single_${this.emailList.section_list.section_id}`]:
+            this.emailList.section_list.section_label,
+        },
+        onSuccess: this.onSuccess,
+        onError: this.onError,
+      });
+    },
+    requestJoint() {
+      this.requestCreateEmail({
+        formData: {
+          'section_joint_list': "joint",
+          [`section_id_${this.emailList.section_list.section_id}`]:
             this.emailList.section_list.section_label,
         },
         onSuccess: this.onSuccess,
