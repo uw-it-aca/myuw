@@ -73,20 +73,19 @@ export default {
   },
   watch: {
     sectionJointList(newVal) {
-      this.$emit('selected', this.generateFormData(newVal, this.emailList.section_list));
+      this.$emit('selected', this.generateFormData(newVal));
     }
   },
   mounted() {
     this.$emit(
       'selected',
-      this.generateFormData(this.sectionJointList, this.emailList.section_list)
+      this.generateFormData(this.sectionJointList)
     );
   },
   methods: {
-    generateFormData(listType, sectionList) {
+    generateFormData(listType) {
       return {
-        section_joint_list: listType,
-        [`section_id_${sectionList.section_id}`]: sectionList.section_label,
+        section_joint_list: listType
       };
     },
   },
