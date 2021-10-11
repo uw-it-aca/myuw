@@ -130,19 +130,13 @@ export default {
     }),
   },
   methods: {
-    // MUWM-5022
-    // for a multi-course list, should return
-    //  {section_joint_list: joint, section_id_A: <section_label>}
-    // for single course list, return
-    //  {section_joint_list: single, section_id_A: <section_label>}
-    // Current code always returns {section_single_A: "2013,autumn,MUSEUM,700/A"}
     ...mapActions('emaillist', ['requestCreateEmail']),
     requestList() {
-      if(this.formData.section_joint_list === "single"){
-        this.requestSingle();
-      } else if(this.formData.section_joint_list === "joint"){
-        this.requestJoint();
+      if(this.formData.section_joint_list !== undefined){
+        this.requestJoint();  // MUWM-5022
+        return;
       }
+      this.requestSingle();
     },
     requestSingle() {
       this.requestCreateEmail({
@@ -157,7 +151,7 @@ export default {
     requestJoint() {
       this.requestCreateEmail({
         formData: {
-          'section_joint_list': "joint",
+          'section_joint_list': this.formData.section_joint_list,  //match pre-Vue
           [`section_id_${this.emailList.section_list.section_id}`]:
             this.emailList.section_list.section_label,
         },
