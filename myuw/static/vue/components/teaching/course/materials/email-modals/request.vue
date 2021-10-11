@@ -130,6 +130,12 @@ export default {
     }),
   },
   methods: {
+    // MUWM-5022
+    // for a multi-course list, should return
+    //  {section_joint_list: joint, section_id_A: <section_label>}
+    // for single course list, return
+    //  {section_joint_list: single, section_id_A: <section_label>}
+    // Current code always returns {section_single_A: "2013,autumn,MUSEUM,700/A"}
     ...mapActions('emaillist', ['requestCreateEmail']),
     requestSingle() {
       this.requestCreateEmail({
