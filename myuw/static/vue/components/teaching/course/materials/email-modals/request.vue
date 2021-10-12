@@ -59,7 +59,7 @@
       <button type="button" class="btn btn-light"
         @click="$refs['request-modal'].hide()">Close</button>
       <button type="button" class="btn btn-primary"
-        :disabled="disableActions" @click="requestSingle()">Submit</button>
+        :disabled="disableActions" @click="requestList()">Submit</button>
     </template>
 
     <template v-else-if="!addError" #modal-footer>
@@ -131,10 +131,28 @@ export default {
   },
   methods: {
     ...mapActions('emaillist', ['requestCreateEmail']),
+    requestList() {
+      if(this.formData.section_joint_list !== undefined){
+        this.requestJoint();  // MUWM-5022
+        return;
+      }
+      this.requestSingle();
+    },
     requestSingle() {
       this.requestCreateEmail({
         formData: {
           [`section_single_${this.emailList.section_list.section_id}`]:
+            this.emailList.section_list.section_label,
+        },
+        onSuccess: this.onSuccess,
+        onError: this.onError,
+      });
+    },
+    requestJoint() {
+      this.requestCreateEmail({
+        formData: {
+          'section_joint_list': this.formData.section_joint_list,  //match pre-Vue
+          [`section_id_${this.emailList.section_list.section_id}`]:
             this.emailList.section_list.section_label,
         },
         onSuccess: this.onSuccess,
