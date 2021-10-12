@@ -163,7 +163,7 @@ describe('International Student Card - tacoma.vue', () => {
     const wrapper = shallowMount(TacomaComp, { store, localVue });
     expect(
       wrapper.findAll('a').at(0).attributes().href
-    ).toBe('http://www.tacoma.uw.edu/iss/travel-visas');
+    ).toBe('https://www.tacoma.uw.edu/uwt/oga/isss-travel-and-visa');
   });
 });
 
