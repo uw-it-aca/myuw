@@ -19,7 +19,7 @@
             class="mb-3"
             :class="[$mq === 'mobile' ? 'w-100' : 'w-50']"
           >
-            <div v-if="adviser.is_active" class="myuw-text-md">
+            <div class="myuw-text-md">
               <div
                 class="font-weight-bold myuw-font-encode-sans"
               >{{ adviser.program }}</div>
@@ -153,5 +153,3 @@ export default {
   },
 };
 </script>
-
-

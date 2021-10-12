@@ -55,7 +55,7 @@ describe('Assigned Adviser Card', () => {
     expect(wrapper.vm.hasMinors).toBe(true);
   });
 
-  it('Show card but no Assigned Adviser (jbothell)', async () => {
+  it('Show card but no Assigned Adviser (jbot)', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/advisers/': inactiveAdvisers,
@@ -69,7 +69,7 @@ describe('Assigned Adviser Card', () => {
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.findAllComponents(UwCardProperty)).toHaveLength(2);
     expect(wrapper.vm.showCard).toBe(true);
-    expect(wrapper.find('ul').exists()).toBe(false);
+    expect(wrapper.vm.advisers.length).toBe(0);
     expect(wrapper.vm.hasMajors).toBe(true);
     expect(wrapper.vm.hasMinors).toBe(true);
   });
