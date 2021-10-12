@@ -7,22 +7,22 @@
     <ul class="list-unstyled myuw-text-md">
       <li class="mb-1">
         <a
-          href="http://www.tacoma.uw.edu/iss/travel-visas"
+          href="https://www.tacoma.uw.edu/uwt/oga/isss-travel-and-visa"
         >Travel and Visas</a>
       </li>
       <li class="mb-1">
         <a
-          href="http://www.tacoma.uw.edu/iss/maintaining-f-1-status"
+          href="https://www.tacoma.uw.edu/uwt/oga/isss-maintaining-f1"
         >Rules to maintain F-1 status</a>
       </li>
       <li class="mb-1">
         <a
-          href="http://www.tacoma.uw.edu/isss/employment"
+          href="https://www.tacoma.uw.edu/uwt/oga/isss-employment"
         >International Student Employment</a>
       </li>
       <li class="mb-1">
         <a
-          href="http://www.tacoma.uw.edu/international-student-services/events"
+          href="https://www.trumba.com/calendars/tac-iss"
         >International Student and Scholar Services (ISSS) Calendar</a>
       </li>
     </ul>

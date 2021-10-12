@@ -47,6 +47,8 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
         if "pws" == service:
             if status == 404:
                 return 60 * 5
+            if status == 503:
+                return FIFTEEN_MINS
             return ONE_HOUR
 
         if "uwnetid" == service:
