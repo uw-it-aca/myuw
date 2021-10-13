@@ -6,7 +6,7 @@
     <template #card-error>
       An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if
       you want to add funds, try the
-      <a href="https://transportation.uw.edu/">UW Transportation</a> page.
+      <a href="https://transportation.uw.edu">UW Transportation</a> page.
     </template>
     <template #card-body>
       <uw-card-status>
@@ -29,7 +29,7 @@
             registered for a class or are a
             <a
               v-out="'Temporary Employee U-PASS'"
-              href="https://facilities.uw.edu/transportation/employee-u-pass#8"
+              href="https://transportation.uw.edu/getting-here/transit/u-pass"
             >
               temporary employee
             </a>.
@@ -55,7 +55,7 @@
                 for a class or are a
                 <a
                   v-out="'Temporary Employee U-PASS'"
-                  href="https://facilities.uw.edu/transportation/employee-u-pass#8"
+                  href="https://transportation.uw.edu/getting-here/transit/u-pass"
                 >
                   temporary employee
                 </a>.
@@ -81,7 +81,7 @@
           <li v-if="pce" class="mb-1">
             <a
               v-out="'Continuum College Student Purchase U-PASS'"
-              href="https://facilities.uw.edu/transportation/student-purchased-u-pass"
+              href="https://transportation.uw.edu/getting-here/transit/u-pass"
             >
               Purchasing a U-PASS
             </a>
@@ -126,12 +126,12 @@ export default {
     },
     getUrl() {
       return this.employee
-        ? 'https://facilities.uw.edu/transportation/employee-u-pass#10'
+        ? 'https://transportation.uw.edu/getting-here/transit/u-pass'
         : this.bothell
         ? 'https://www.uwb.edu/facility/commuter-services/upass'
         : this.tacoma
         ? 'https://www.tacoma.uw.edu/getting-campus/u-pass-orca'
-        : 'https://facilities.uw.edu/transportation/student-u-pass#3';
+        : 'https://transportation.uw.edu/getting-here/transit/u-pass';
     },
     getPurchaseUrl() {
       return this.bothell
@@ -140,16 +140,12 @@ export default {
     },
     getWhatIsUrl() {
       return this.employee
-        ? 'http://www.washington.edu/u-pass'
+        ? 'https://transportation.uw.edu/getting-here/transit/u-pass'
         : this.tacoma
         ? 'https://www.tacoma.uw.edu/getting-campus/what-u-pass'
         : this.bothell
         ? 'https://www.uwb.edu/facility/commuter-services/upass'
-        : this.seattle
-        ? 'https://facilities.uw.edu/transportation/student-u-pass'
-        : this.pce
-        ? 'https://facilities.uw.edu/transportation/student-u-pass#9'
-        : 'http://www.washington.edu/u-pass/';
+        : 'https://transportation.uw.edu/getting-here/transit/u-pass';
     },
   },
   created() {
