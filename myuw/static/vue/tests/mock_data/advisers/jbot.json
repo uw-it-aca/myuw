@@ -1,0 +1,17 @@
+[
+  {
+    "email_address": "javg001@uw.edu",
+    "full_name": "John Average1",
+    "pronouns": "he/him/his",
+    "phone_number": "+1 206 543-0000",
+    "program": "UAA Advising",
+    "uwnetid": "javg001",
+    "regid": "9136CCB8F66711D5BE060004AC494001",
+    "booking_url": "https://secure.scheduleonce.com/javg001",
+    "is_active": false,
+    "is_dept_adviser": false,
+    "is_honors_program": false,
+    "metadata": "AcademicAdviserSourceKey=UAA;",
+    "timestamp": "2013-04-01 13:07:14"
+  }
+]

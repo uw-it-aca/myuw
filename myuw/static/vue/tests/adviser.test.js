@@ -6,8 +6,9 @@ import Vuex from 'vuex';
 
 import advisers from '../vuex/store/advisers';
 import profile from '../vuex/store/profile';
-import javgAdvisers from '../tests/mock_data/advisers/javerage.json';
-import javgProfile from '../tests/mock_data/profile/javerage.json';
+import javgAdvisers from './mock_data/advisers/javerage.json';
+import inactiveAdvisers from './mock_data/advisers/jbot.json';
+import javgProfile from './mock_data/profile/javerage.json';
 
 import AssignedAdviserCard from '../components/academics/adviser.vue';
 import UwCard from '../components/_templates/card.vue';
@@ -52,13 +53,25 @@ describe('Assigned Adviser Card', () => {
     expect(wrapper.vm.isUndergrad).toBe(true);
     expect(wrapper.vm.hasMajors).toBe(true);
     expect(wrapper.vm.hasMinors).toBe(true);
-    const advisers = wrapper.vm.advisers;
-    expect(advisers.length).toBe(5);
-    expect(advisers[0].program).toBe("UAA Advising");
-    expect(advisers[1].program).toBe("OMAD Advising");
-    expect(advisers[2].program).toBe("UW Honors");
-    expect(advisers[3].program).toBe("Robinson Center");
-    expect(advisers[4].program).toBe("Athletics – SAAS");
+  });
+
+  it('Show card but no Assigned Adviser (jbot)', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/advisers/': inactiveAdvisers,
+        '/api/v1/profile/': javgProfile,
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(AssignedAdviserCard, { store, localVue });
+    await new Promise(setImmediate);
+
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
+    expect(wrapper.findAllComponents(UwCardProperty)).toHaveLength(2);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.advisers.length).toBe(0);
+    expect(wrapper.vm.hasMajors).toBe(true);
+    expect(wrapper.vm.hasMinors).toBe(true);
   });
 
   it('Hide Assigned Adviser card if not undergrad', async () => {
