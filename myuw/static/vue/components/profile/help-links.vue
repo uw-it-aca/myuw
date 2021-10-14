@@ -29,7 +29,7 @@ export default {
     }),
     prefNameLink() {
       return (this.isTacoma
-      ? 'https://www.tacoma.uw.edu/office-registrar/preferred-names'
+      ? 'https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977'
       : 'https://registrar.washington.edu/students/preferred-names/');
     },
     linkList() {
@@ -41,7 +41,7 @@ export default {
             title: "Addressing Letters to the UW"} : null,
         { url: this.prefNameLink, title: "Preferred Names"},
         (this.student || this.studEmployee) && this.isTacoma ?
-          { url: "http://www.tacoma.uw.edu/sites/default/files/sections/Registrar/Change-Student-Name.pdf",
+          { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-10969",
             title: "Change Your Legal Name" } : null,
         (this.student || this.studEmployee) && this.isBothell ?
           { url: "https://www.uwb.edu/registration/policies/name-change",
