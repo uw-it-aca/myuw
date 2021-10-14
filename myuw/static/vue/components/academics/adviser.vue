@@ -11,29 +11,31 @@
       </h2>
     </template>
     <template #card-body>
-      <ul class="d-flex flex-wrap list-unstyled mb-0">
-        <li
-          v-for="(adviser, index) in advisers"
-          :key="index"
-          class="mb-3"
-          :class="[$mq === 'mobile' ? 'w-100' : 'w-50']"
-        >
-          <div class="myuw-text-md">
-            <div
-              class="font-weight-bold myuw-font-encode-sans"
-            >{{ adviser.program }}</div>
-            <div>{{ adviser.full_name }}
-              <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span>
+      <div v-if="advisers.length">
+        <ul class="d-flex flex-wrap list-unstyled mb-0">
+          <li
+            v-for="(adviser, index) in advisers"
+            :key="index"
+            class="mb-3"
+            :class="[$mq === 'mobile' ? 'w-100' : 'w-50']"
+          >
+            <div class="myuw-text-md">
+              <div
+                class="font-weight-bold myuw-font-encode-sans"
+              >{{ adviser.program }}</div>
+              <div>{{ adviser.full_name }}
+                <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span>
+              </div>
+              <div>{{ adviser.email_address }}</div>
+              <div>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</div>
+              <div v-if="adviser.booking_url">
+                <a :href="adviser.booking_url">Make an appointment online</a>
+              </div>
             </div>
-            <div>{{ adviser.email_address }}</div>
-            <div>{{ formatPhoneNumberDisaply(adviser.phone_number) }}</div>
-            <div v-if="adviser.booking_url">
-              <a :href="adviser.booking_url">Make an appointment online</a>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <hr class="my-0">
+          </li>
+        </ul>
+        <hr class="my-0">
+      </div>
       <div class="myuw-text-md mt-3 mb-3"> 
         <div class="font-weight-bold myuw-font-encode-sans"
         >Departmental and Major Advising Offices</div>
@@ -151,5 +153,3 @@ export default {
   },
 };
 </script>
-
-
