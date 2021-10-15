@@ -3,7 +3,7 @@
     <div class="myuw-print-hidden mt-2" :class="$mq === 'mobile' ? '' : 'float-right'">
       <div class="myuw-text-md align-middle">
         <b-form-checkbox
-          v-if="section.has_joint"
+          v-if="section.has_joint && isJointSectionDataReady"
           id="toggle_joint"
           v-model="showJointCourse"
           inline
@@ -61,6 +61,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import {
   faDownload,
   faPrint,
@@ -89,6 +90,21 @@ export default {
       faTable,
       faUserCircle,
     };
+  },
+  computed: {
+    ...mapGetters('classlist', {
+      isReadyTagged: 'isReadyTagged',
+      isErroredTagged: 'isErroredTagged',
+    }),
+    isJointSectionDataReady() {
+      let ret = true;
+      this.section.joint_sections.forEach((section) => {
+        ret = ret && (
+          this.isReadyTagged[section.url] ||
+          this.isErroredTagged[section.url]);
+      });
+      return ret;
+    },
   },
   methods: {
     buttonTitle(showJointCourse) {

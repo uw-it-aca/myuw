@@ -67,6 +67,11 @@ export default {
       required: true,
     },
   },
+  data: function() {
+    return {
+      isLoadedJointRegLinkedSection: false,
+    };
+  },
   computed: {
     ...mapState({
       instructor: (state) => state.user.affiliations.instructor,
@@ -80,7 +85,7 @@ export default {
       statusCodeTagged: 'statusCodeTagged',
     }),
     getKey() {
-      return this.ampEscape(this.sectionLabel);
+      return this.sectionLabel.replace(/&amp;/g, '%26');
     },
     isReady() {
       return this.isReadyTagged(this.getKey);
@@ -117,11 +122,13 @@ export default {
     },
   },
   watch: {
-    isReadyTagged: function (newValue, oldValue) {
-      if (this.sectionData && this.sectionData.sections[0].joint_sections) {
-        const section = this.sectionData.sections[0];
-        this.loadJointRegLinkedSection(
-          section.year, section.quarter, section.joint_sections);
+    // MUWM-4385
+    isReady: function (newValue, oldValue) {
+      if (this.showContent && this.sectionData.sections[0].joint_sections) {
+        if (!this.isLoadedJointRegLinkedSection) {
+          this.loadJointRegLinkedSection();
+          this.isLoadedJointRegLinkedSection = true;
+        }
       }
     }
   },
@@ -134,14 +141,8 @@ export default {
     ...mapActions('classlist', {
       fetchClasslist: 'fetch',
     }),
-    ampEscape(url) {
-      return url.replace(/&amp;/g, '%26');
-    },
-    loadJointRegLinkedSection(year, quarter, jointSections) {
-      jointSections.forEach((section) => {
-        section.url = this.ampEscape(year + ',' + quarter + ',' +
-        section.course_abbr + "," + section.course_number + "/" + section.section_id);
-        console.log("Fetch", section.url);
+    loadJointRegLinkedSection() {
+      this.sectionData.sections[0].joint_sections.forEach((section) => {
         this.fetchClasslist(section.url);
       });
     }

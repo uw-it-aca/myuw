@@ -34,6 +34,7 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
@@ -58,13 +59,9 @@ export default {
     };
   },
   computed: {
-    isJointSectionDataReady() {
-      let ret = true;
-      this.section.joint_sections.forEach((section) => {
-        ret = ret && this.isReadyTagged[section.url];
-      });
-      return ret;
-    },
+    ...mapState('classlist', {
+      allData: (state) => state.value,
+    }),
     fields() {
       const data = [
         {
@@ -166,10 +163,9 @@ export default {
         }
         if (this.section.has_linked_sections) {
           if (this.showJointCourseStud) {
-            dataItem.linkedSection = (
-              this.isJointSectionDataReady
-              ? this.getRegisteredLinkedSection(reg.sectionLabel, reg.netid)
-              : '');
+            // MUWM-4385
+            dataItem.linkedSection = this.getRegisteredLinkedSection(
+              reg.sectionLabel, reg.netid);
           } else {
             dataItem.linkedSection = reg.linked_sections;
           }
@@ -192,6 +188,7 @@ export default {
     },
   },
   methods: {
+    // MUWM-4385
     getRegisteredLinkedSection(jointSectionLabel, netid) {
       let linkedSectionId = '';
       this.section.joint_sections.forEach((section) => {

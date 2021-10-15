@@ -44,6 +44,9 @@ function postProcess(response, sectionLabel) {
       const jsection = section.joint_sections[i];
       jsection.label = (jsection.course_abbr + ' ' +
         jsection.course_number + ' ' + jsection.section_id);
+      jsection.url = (section.year + ',' + section.quarter + ',' +
+        jsection.course_abbr + "," + jsection.course_number + "/" +
+        jsection.section_id).replace(/&amp;/g, '%26');
       jsection.registrations.forEach(function(reg){
         reg.isJoint = true;
         reg.sectionLabel = jsection.label;
