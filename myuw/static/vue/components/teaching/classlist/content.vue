@@ -61,7 +61,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import {
   faDownload,
   faPrint,
@@ -81,6 +80,10 @@ export default {
       type: Object,
       required: true,
     },
+    isJointSectionDataReady: {
+      type: Boolean,
+      required: true,
+    }
   },
   data() {
     return {
@@ -90,22 +93,6 @@ export default {
       faTable,
       faUserCircle,
     };
-  },
-  computed: {
-    ...mapGetters('classlist', {
-      isReadyTagged: 'isReadyTagged',
-      isErroredTagged: 'isErroredTagged',
-    }),
-    isJointSectionDataReady() {
-      let ret = true;
-      for (let i = 0; i < this.section.joint_sections.length; i++) {
-        const section = this.section.joint_sections[i];
-        const ready = this.isReadyTagged[section.url];
-        const error = this.isErroredTagged[section.url];
-        ret = ret && (ready || error);
-      }
-      return ret;
-    },
   },
   methods: {
     buttonTitle(showJointCourse) {

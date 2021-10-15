@@ -24,7 +24,9 @@
       </template>
 
       <template #card-body>
-        <uw-classlist-content :section="sectionData.sections[0]" />
+        <uw-classlist-content
+          :section="sectionData.sections[0]"
+          :isJointSectionDataReady="isJointSectionDataReady" />
       </template>
 
       <template v-if="noData" #card-error>
@@ -70,6 +72,7 @@ export default {
   data: function() {
     return {
       isLoadedJointRegLinkedSection: false,
+      isJointSectionDataReady: false,
     };
   },
   computed: {
@@ -120,16 +123,21 @@ export default {
       return this.isErrored && !(this.noData ||
         this.noAccessPermission || this.invalidCourse);
     },
+    jointSections() {
+      return this.sectionData.sections[0].joint_sections;
+    },
   },
-  watch: {
-    // MUWM-4385
+  watch: {  // MUWM-4385
     isReady: function (newValue, oldValue) {
-      if (this.showContent && this.sectionData.sections[0].joint_sections) {
+      if (this.showContent && this.jointSections) {
         if (!this.isLoadedJointRegLinkedSection) {
           this.loadJointRegLinkedSection();
           this.isLoadedJointRegLinkedSection = true;
         }
       }
+    },
+    isLoadedJointRegLinkedSection: function (newValue, oldValue) {
+      this.isJointSectionDataReady = this.isJointDataReady();
     }
   },
   created() {
@@ -141,11 +149,21 @@ export default {
     ...mapActions('classlist', {
       fetchClasslist: 'fetch',
     }),
-    loadJointRegLinkedSection() {
-      this.sectionData.sections[0].joint_sections.forEach((section) => {
+    loadJointRegLinkedSection() {  // MUWM-4385
+      this.jointSections.forEach((section) => {
         this.fetchClasslist(section.url);
       });
-    }
+    },
+    isJointDataReady() {  // MUWM-4385
+      let ret = true;
+      for (let i = 0; i < this.jointSections.length; i++) {
+        const section = this.sectionData.sections[0].joint_sections[i];
+        const ready = this.isReadyTagged[section.url];
+        const error = this.isErroredTagged[section.url];
+        ret = ret && (ready || error);
+      }
+      return Boolean(ret);
+    },
   },
 };
 </script>
