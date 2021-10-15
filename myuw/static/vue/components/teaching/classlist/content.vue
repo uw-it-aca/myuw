@@ -98,11 +98,12 @@ export default {
     }),
     isJointSectionDataReady() {
       let ret = true;
-      this.section.joint_sections.forEach((section) => {
-        ret = ret && (
-          this.isReadyTagged[section.url] ||
-          this.isErroredTagged[section.url]);
-      });
+      for (let i = 0; i < this.section.joint_sections.length; i++) {
+        const section = this.section.joint_sections[i];
+        const ready = this.isReadyTagged[section.url];
+        const error = this.isErroredTagged[section.url];
+        ret = ret && (ready || error);
+      }
       return ret;
     },
   },
