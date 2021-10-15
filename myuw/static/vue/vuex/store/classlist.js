@@ -27,22 +27,26 @@ function postProcess(response, sectionLabel) {
 
   const sectionData = data[urlExtra];
   const section = sectionData.sections[0];
+  section.year = sectionData.year;
+  section.quarter = sectionData.quarter;
   sectionData.currAbbr = section.curriculum_abbr;
   sectionData.courseNum = section.course_number;
   sectionData.sectionId = section.section_id;
+  sectionData.sln = section.sln;
   section.anchor = (section.course_abbr_slug + "-" +
     section.course_number + "-" + section.section_id);
-  sectionData.sln = section.sln;
+  section.label = (section.curriculum_abbr + ' ' +
+    section.course_number + ' ' + section.section_id);
 
   if("joint_sections" in section) {
     let jointRegistrations = [];
     for (let i = 0; i < section.joint_sections.length; i++) {
       const jsection = section.joint_sections[i];
+      jsection.label = (jsection.course_abbr + ' ' +
+        jsection.course_number + ' ' + jsection.section_id);
       jsection.registrations.forEach(function(reg){
         reg.isJoint = true;
-        reg.jointCurric = jsection.course_abbr;
-        reg.jointCourseNumber = jsection.course_number;
-        reg.jointSectionId = jsection.section_id;
+        reg.sectionLabel = jsection.label;
       });
       jointRegistrations = jointRegistrations.concat(jsection.registrations);
     }
