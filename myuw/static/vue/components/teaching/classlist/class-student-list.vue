@@ -84,7 +84,6 @@ export default {
     ...mapGetters('classlist', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
-      isFetchingTagged: 'isFetchingTagged',
       statusCodeTagged: 'statusCodeTagged',
     }),
     getKey() {
@@ -129,7 +128,7 @@ export default {
   },
   watch: {  // MUWM-4385
     isReady: function (newValue, oldValue) {
-      if (this.showContent && this.jointSections) {
+      if (this.showContent && this.jointSections && this.jointSections.length) {
         this.loadJointRegLinkedSection();
       }
     },

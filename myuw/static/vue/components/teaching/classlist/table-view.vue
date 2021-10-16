@@ -162,10 +162,9 @@ export default {
           dataItem.jointCourse = reg.isJoint ? reg.sectionLabel : this.section.label;
         }
         if (this.section.has_linked_sections) {
-          if (this.showJointCourseStud) {
+          if (reg.isJoint && this.showJointCourseStud) {
             // MUWM-4385
-            dataItem.linkedSection = this.getRegisteredLinkedSection(
-              reg.sectionLabel, reg.netid);
+            dataItem.linkedSection = this.getRegisteredLinkedSection(reg.sectionLabel, reg.netid);
           } else {
             dataItem.linkedSection = reg.linked_sections;
           }

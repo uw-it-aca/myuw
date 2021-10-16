@@ -71,7 +71,7 @@ describe('Show Classlist Content', () => {
     wrapper = mount(ClasslistContent,
       { store,
         localVue,
-        propsData: {'section': section}
+        propsData: {'section': section, 'isJointSectionDataReady': true}
       });
     await new Promise(setImmediate);
     const link1 = wrapper.findAll('a').at(0);
