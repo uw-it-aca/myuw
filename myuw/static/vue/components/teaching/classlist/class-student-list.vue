@@ -71,7 +71,6 @@ export default {
   },
   data: function() {
     return {
-      isLoadedJointRegLinkedSection: false,
       isJointSectionDataReady: false,
     };
   },
@@ -131,10 +130,7 @@ export default {
   watch: {  // MUWM-4385
     isReady: function (newValue, oldValue) {
       if (this.showContent && this.jointSections) {
-        if (!this.isLoadedJointRegLinkedSection) {
-          this.loadJointRegLinkedSection();
-          this.isLoadedJointRegLinkedSection = true;
-        }
+        this.loadJointRegLinkedSection();
       }
     },
   },
@@ -153,21 +149,10 @@ export default {
         fetches.push(this.fetchClasslist(section.url));
       }
       Promise.all(fetches).then(results => {
-        this.isJointSectionDataReady = true;  // this.isJointDataReady();
+        this.isJointSectionDataReady = true;
       }).catch(err => {
         console.error(err);
       })
-    },
-    isJointDataReady() {  // MUWM-4385
-      let ret = true;
-      for (let i = 0; i < this.jointSections.length; i++) {
-        const section = this.sectionData.sections[0].joint_sections[i];
-        const fetch = this.isFetchingTagged[section.url];
-        const ready = this.isReadyTagged[section.url];
-        const error = this.isErroredTagged[section.url];
-        ret = ret && (ready || error);
-      }
-      return Boolean(ret);
     },
   },
 };
