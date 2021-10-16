@@ -194,7 +194,7 @@ export default {
       this.section.joint_sections.forEach((section) => {
         if (jointSectionLabel === section.label) {
           if (this.allData[section.url]) {
-            this.allData[section.url].section[0].registrations.forEach((reg) => {
+            this.allData[section.url].sections[0].registrations.forEach((reg) => {
               if (reg.netid === netid) {
                 linkedSectionId = reg.linked_sections;
                 return;

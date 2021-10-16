@@ -85,6 +85,7 @@ export default {
     ...mapGetters('classlist', {
       isReadyTagged: 'isReadyTagged',
       isErroredTagged: 'isErroredTagged',
+      isFetchingTagged: 'isFetchingTagged',
       statusCodeTagged: 'statusCodeTagged',
     }),
     getKey() {
@@ -158,6 +159,7 @@ export default {
       let ret = true;
       for (let i = 0; i < this.jointSections.length; i++) {
         const section = this.sectionData.sections[0].joint_sections[i];
+        const fetch = this.isFetchingTagged[section.url];
         const ready = this.isReadyTagged[section.url];
         const error = this.isErroredTagged[section.url];
         ret = ret && (ready || error);
