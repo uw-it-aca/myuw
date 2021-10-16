@@ -137,9 +137,6 @@ export default {
         }
       }
     },
-    isLoadedJointRegLinkedSection: function (newValue, oldValue) {
-      this.isJointSectionDataReady = this.isJointDataReady();
-    }
   },
   created() {
     if (this.instructor) {
@@ -151,9 +148,15 @@ export default {
       fetchClasslist: 'fetch',
     }),
     loadJointRegLinkedSection() {  // MUWM-4385
-      this.jointSections.forEach((section) => {
-        this.fetchClasslist(section.url);
-      });
+      const fetches = [];
+      for (const section of this.jointSections) {
+        fetches.push(this.fetchClasslist(section.url));
+      }
+      Promise.all(fetches).then(results => {
+        this.isJointSectionDataReady = true;  // this.isJointDataReady();
+      }).catch(err => {
+        console.error(err);
+      })
     },
     isJointDataReady() {  // MUWM-4385
       let ret = true;
