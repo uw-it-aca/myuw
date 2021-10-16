@@ -26,7 +26,7 @@
       <template #card-body>
         <uw-classlist-content
           :section="sectionData.sections[0]"
-          :isJointSectionDataReady="isJointSectionDataReady" />
+          :is-joint-section-data-ready="isJointSectionDataReady" />
       </template>
 
       <template v-if="noData" #card-error>
@@ -144,7 +144,7 @@ export default {
     }),
     loadJointRegLinkedSection() {  // MUWM-4385
       const fetches = [];
-      for (const section of this.jointSections) {
+      for(const section of this.jointSections) {
         fetches.push(this.fetchClasslist(section.url));
       }
       Promise.all(fetches).then(results => {

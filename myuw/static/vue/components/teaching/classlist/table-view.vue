@@ -190,21 +190,21 @@ export default {
     // MUWM-4385
     getRegisteredLinkedSection(jointSectionLabel, netid) {
       let linkedSectionId = '';
-      this.section.joint_sections.forEach((section) => {
+      for(const section of this.section.joint_sections) {
         if (jointSectionLabel === section.label) {
           if (this.allData[section.url]) {
-            this.allData[section.url].sections[0].registrations.forEach((reg) => {
+            for(const reg of this.allData[section.url].sections[0].registrations) {
               if (reg.netid === netid) {
                 linkedSectionId = reg.linked_sections;
-                return;
+                break;
               }
-            });
+            }
           }
-          return;
+          break;
         }
-      });
+      }
       return linkedSectionId;
-    },
+    }
   },
 };
 </script>
