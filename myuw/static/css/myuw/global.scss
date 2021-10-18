@@ -120,7 +120,7 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
 }
 
 @media print {
-  #myuw-printable-page {
+  .myuw-printable-page {
     * {
       visibility: hidden;
     }

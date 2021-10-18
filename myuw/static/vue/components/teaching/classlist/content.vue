@@ -2,7 +2,8 @@
   <div>
     <div class="myuw-print-hidden mt-2" :class="$mq === 'mobile' ? '' : 'float-end'">
       <div class="myuw-text-md align-middle">
-        <div v-if="section.has_joint" class="form-check form-check-inline">
+        <div v-if="section.has_joint && isJointSectionDataReady"
+          class="form-check form-check-inline">
           <input
             id="toggle_joint"
             v-model="showJointCourse"
@@ -73,6 +74,10 @@ export default {
       type: Object,
       required: true,
     },
+    isJointSectionDataReady: {
+      type: Boolean,
+      required: true,
+    }
   },
   data() {
     return {

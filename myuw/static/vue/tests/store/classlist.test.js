@@ -84,8 +84,7 @@ describe('Classlist Data', () => {
     const reg = section.registrations[2];
     expect(reg.netid).toBe('javg016');
     expect(reg.isJoint).toBe(true);
-    expect(reg.jointCurric).toBe("CSE");
-    expect(reg.jointCourseNumber).toBe("306");
+    expect(reg.sectionLabel).toBe("CSE 306 A");
     expect(section.registrations[3].netid).toBe('javg006');
     expect(section.registrations[4].netid).toBe('javg001');
     expect(section.registrations[5].netid).toBe('javg002');
