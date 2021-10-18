@@ -87,6 +87,8 @@ describe('Show Classlist Content', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.fields.length).toBe(10);
     expect(wrapper.vm.items.length).toBe(7);
+    // MUWM-4385
+    expect(wrapper.vm.getRegisteredLinkedSection("COM 306 A", "javg001")).toBe("AA");
   });
 
   it('Show data error', async () => {
