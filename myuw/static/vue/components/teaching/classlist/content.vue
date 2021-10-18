@@ -3,7 +3,7 @@
     <div class="myuw-print-hidden mt-2" :class="$mq === 'mobile' ? '' : 'float-right'">
       <div class="myuw-text-md align-middle">
         <b-form-checkbox
-          v-if="section.has_joint"
+          v-if="section.has_joint && isJointSectionDataReady"
           id="toggle_joint"
           v-model="showJointCourse"
           inline
@@ -80,6 +80,10 @@ export default {
       type: Object,
       required: true,
     },
+    isJointSectionDataReady: {
+      type: Boolean,
+      required: true,
+    }
   },
   data() {
     return {
