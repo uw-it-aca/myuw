@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, develop, fix/cal-map]
   pull_request:
-    branches: [main, master, qa, develop, vue/dev]
+    branches: [main, master, qa, develop, fix/cal-map]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -287,7 +287,7 @@ jobs:
           app_instance: dev
 
       - name: Deploy Vue Branch
-        if: needs.context.outputs.git_repo_branch == 'vue/dev'
+        if: needs.context.outputs.git_repo_branch == 'fix/cal-map'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
@@ -304,7 +304,7 @@ jobs:
   housekeeping:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') ||
-         endsWith(github.ref, '/develop') || endsWith(github.ref, '/vue/dev'))
+         endsWith(github.ref, '/develop') || endsWith(github.ref, '/fix/cal-map'))
 
     needs: [context, build, deploy]
 
