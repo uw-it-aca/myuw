@@ -71,11 +71,11 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 8
+  replicaCount: 4
   command:
     - "memcached"
     - "-m"
-    - "128"
+    - "256"
     - "-c"
     - "16384"
     - "-t"
