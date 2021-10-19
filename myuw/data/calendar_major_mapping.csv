@@ -93,8 +93,8 @@
 ,ART HISTORY                             ,,ART HISTORY             ,,sea_art-history,
 ,ART HISTORY                             ,,,ART HISTORY             ,sea_art-history,
 ,ART HISTORY                             ,,,ART HISTORY (TEXT ST)   ,sea_art-history,
-,ARTS AND SCIENCES DEAN'S OFFICE         ,INTEG SOC SCI (OL)      ,,,,
-,ARTS AND SCIENCES DEAN'S OFFICE         ,,DISABILITY STUDIES      ,,sea_coas-disa,
+,ARTS AND SCIENCES DEAN'S OFFICE         ,INTEG SOC SCI (OL)      ,,,sea_issp,https://integrated-social-sciences.washington.edu/calendar
+,ARTS AND SCIENCES         ,,DISABILITY STUDIES      ,,sea_coas-disa,https://disabilitystudies.washington.edu/calendar
 ,ASIAN LANGUAGES & LITERATURE            ,CHINESE                 ,,,sea_asian,
 ,ASIAN LANGUAGES & LITERATURE            ,JAPANESE                ,,,sea_asian,
 ,ASIAN LANGUAGES & LITERATURE            ,KOREAN                  ,,,sea_asian,
@@ -148,10 +148,9 @@
 ,BIOLOGY                                 ,,,ZOOLOGY                 ,sea_bio,
 ,BIOLOGY TEACHING GROUP                  ,,,BIOLOGY TEACHING        ,,
 ,BIOMEDICAL INFORMATICS & MEDICAL EDUC   ,,,BIOMED & HEALTH INFORM  ,,
-,BIOSTATISTICS                           ,,,BIOSTATISTICS           ,,
-,BIOSTATISTICS                           ,,,BIOSTATISTICS           ,,
-,BIOSTATISTICS                           ,,,BIOST: STAT GENETICS    ,,
-,BIOSTATISTICS                           ,,,BIOSTATISTICS (CLIN RES),,
+,BIOSTATISTICS                           ,,,BIOSTATISTICS           ,sea_artsci-statbiostat,
+,BIOSTATISTICS                           ,,,BIOST: STAT GENETICS    ,sea_artsci-statbiostat,
+,BIOSTATISTICS                           ,,,BIOSTATISTICS (CLIN RES),sea_artsci-statbiostat,
 ,BOTHELL CAMPUS EXCHANGE                 ,EXCHANGE UW BOTHELL     ,,,,
 ,BOTHELL CAMPUS EXCHANGE                 ,EXCHANGE BUS ADMIN      ,,,,
 ,BOTHELL CAMPUS EXCHANGE                 ,EXCHANGE ELEC ENGR      ,,,,
@@ -161,8 +160,8 @@
 ,BOTHELL CAMPUS VISITING                 ,BOTHELL SPECIAL STUDENT ,,,,
 ,BOTHELL CAMPUS VISITING                 ,BOTHELL VISITING STUDENT,,,,
 ,BOTHELL CAMPUS VISITING                 ,,,BOTHELL VISITING STUDENT,,
-,BUILT ENVIRONMENT                       ,,,BUILT ENVIRONMENT       ,,
-,BUSINESS ADMINISTRATION                 ,BUSINESS ADMINISTRATION ,,,sea_bus_undergraduate,
+,BUILT ENVIRONMENT                       ,,,BUILT ENVIRONMENT       ,sea_be,https://be.uw.edu/social-media/cbe-event-calendar/
+,BUSINESS ADMINISTRATION                 ,BUSINESS ADMINISTRATION ,,,,
 ,BUSINESS ADMINISTRATION                 ,BUSINESS ADMIN VISITING ,,,,
 ,BUSINESS ADMINISTRATION                 ,CERTIF INTERNATIONAL BUS,,,sea_bus_ucis sea_bus_undergraduate,
 ,BUSINESS ADMINISTRATION                 ,BUS ADMIN (ENTREPRENEUR),,,sea_buerk sea_bus_undergraduate,
@@ -172,20 +171,16 @@
 ,BUSINESS ADMINISTRATION                 ,BUS ADMIN (MARKETING)   ,,,sea_salesmark sea_bus_undergraduate,
 ,BUSINESS ADMINISTRATION                 ,BUS ADMIN (OSCM)        ,,,sea_bus_undergraduate,
 ,BUSINESS ADMINISTRATION                 ,,BUS ADMIN (ENTREPRENEUR),,,
-,BUSINESS ADMINISTRATION                 ,,,BUSINESS ADMINISTRATION ,,
-,BUSINESS ADMINISTRATION                 ,,,BUSINESS ADMIN VISITING ,,
-,BUSINESS ADMINISTRATION                 ,,,BUSINESS ADMINISTRATION ,,
-,BUSINESS ADMINISTRATION                 ,,,BUS ADMIN               ,,
+,BUSINESS ADMINISTRATION                 ,,,BUSINESS ADMINISTRATION,sea_bus_undergraduate,
+,BUSINESS ADMINISTRATION                 ,,,BUSINESS ADMIN VISITING,,
 ,BUSINESS ADMINISTRATION                 ,,,EXECUTIVE MBA           ,sea_mba_executive,
 ,BUSINESS ADMINISTRATION                 ,,,GLOBAL EXECUTIVE MBA    ,sea_gbc,
 ,BUSINESS ADMINISTRATION                 ,,,GLOBAL MBA              ,sea_gbc,
 ,BUSINESS ADMINISTRATION                 ,,,BUS ADMIN (INFOR SYS)   ,sea_is ,
-,BUSINESS ADMINISTRATION                 ,,,BUS ADMIN (INFOR SYS)   ,sea_is,
-,BUSINESS ADMINISTRATION                 ,,,BUSINESS ADMINISTRATION ,,
 ,BUSINESS ADMINISTRATION                 ,,,INFORMATION SYSTEMS     ,sea_msis,
 ,BUSINESS ADMINISTRATION                 ,,,ENVIRONMENTAL MANAGEMENT,,
 ,BUSINESS ADMINISTRATION                 ,,,"BUSINESS, EVENING (MBA)",sea_mba_evening,
-,BUSINESS ADMINISTRATION                 ,,,TECHNOLOGY MGMT MBA     ,,
+,BUSINESS ADMINISTRATION                 ,,,TECHNOLOGY MGMT MBA     ,sea_foster-technology-management-mba,
 ,BUSINESS ADMINISTRATION (BOTHELL CAMPUS),BUSINESS ADMIN (BOTHELL),,,bot_business,
 ,BUSINESS ADMINISTRATION (BOTHELL CAMPUS),BUS ADMIN:ACCT (BOTHELL),,,bot_business,
 ,BUSINESS ADMINISTRATION (BOTHELL CAMPUS),BUSINESS ADMIN (BOTHELL),,,bot_business,
@@ -206,8 +201,8 @@
 ,BUSINESS ADMINISTRATION (TACOMA CAMPUS) ,,BUSINESS ADMIN (TACOMA) ,,tac_milgard-school-of-business,
 ,BUSINESS ADMINISTRATION (TACOMA CAMPUS) ,,,ACCOUNTING (TACOMA)     ,tac_milgard-school-of-business,
 ,BUSINESS ADMINISTRATION (TACOMA CAMPUS) ,,,UW TACOMA MBA           ,tac_milgard-school-of-business,
-,CENTER FOR DIGITAL ARTS AND EXPMTL MEDIA,DIGTL ARTS AND EXP MEDIA,,,,
-,CENTER FOR DIGITAL ARTS AND EXPMTL MEDIA,,,DIGTL ARTS AND EXP MEDIA,,
+,CENTER FOR DIGITAL ARTS AND EXPMTL MEDIA,DIGTL ARTS AND EXP MEDIA,,,sea_dxarts,
+,CENTER FOR DIGITAL ARTS AND EXPMTL MEDIA,,,DIGTL ARTS AND EXP MEDIA,sea_dxarts,
 ,CENTER FOR UNIV STUDIES AND PROGRAMS    ,PREMAJOR (BOTHELL)      ,,,,
 ,CENTER FOR UNIV STUDIES AND PROGRAMS    ,EXTND PREMAJOR (BOTHELL),,,,
 ,CHEMICAL ENGINEERING                    ,CHEMICAL ENGINEERING    ,,,sea_cheme,
@@ -345,12 +340,12 @@
 ,COMPUTING & SOFTWARE SYSTEMS            ,,,CYBER SECURITY ENGINEER ,,
 ,COMPUTING & SOFTWARE SYSTEMS            ,,,COMP SCI & SOFTWARE ENGR,,
 ,COMPUTING & SOFTWARE SYSTEMS            ,,,SOFTWARE DESIGN AND DEV ,,
-,CONSTRUCTION MANAGEMENT                 ,CONSTRUCTION MANAGEMENT ,,,,
-,CONSTRUCTION MANAGEMENT                 ,CONSTR MGMT (W/ARCH DES),,,,
-,CONSTRUCTION MANAGEMENT                 ,,,CONSTRUCTION MANAGEMENT ,,
-,CONSTRUCTION MANAGEMENT                 ,,,CONSTRUCTION MGMT EVE DG,,
-,CONSTRUCTION MANAGEMENT                 ,,,CONSTRUCTION MANAGEMENT ,,
-,CTR FOR STUDIES IN DEMOGRAPHY & ECOLOGY ,,,DEMOGRAPHIC METHODS     ,,
+,CONSTRUCTION MANAGEMENT                 ,CONSTRUCTION MANAGEMENT ,,,sea_be-cm,https://cm.be.uw.edu/events-calendar/
+,CONSTRUCTION MANAGEMENT                 ,CONSTR MGMT (W/ARCH DES),,,sea_be-cm,https://cm.be.uw.edu/events-calendar/
+,CONSTRUCTION MANAGEMENT                 ,,,CONSTRUCTION MANAGEMENT ,sea_be-cm,https://cm.be.uw.edu/events-calendar/
+,CONSTRUCTION MANAGEMENT                 ,,,CONSTRUCTION MGMT EVE DG,sea_be-cm,https://cm.be.uw.edu/events-calendar/
+,CONSTRUCTION MANAGEMENT                 ,,,CONSTRUCTION MANAGEMENT ,sea_be-cm,https://cm.be.uw.edu/events-calendar/
+,CTR FOR STUDIES IN DEMOGRAPHY & ECOLOGY ,,,DEMOGRAPHIC METHODS     ,sea_csde,https://csde.washington.edu/newsevents/calendar/
 ,DANCE                                   ,DANCE                   ,,,sea_dance,
 ,DANCE                                   ,DANCE: DANCE STUDIES    ,,,sea_dance,
 ,DANCE                                   ,DANCE: CREATIVE STUDIES ,,,sea_dance,
@@ -364,7 +359,7 @@
 ,DENTISTRY/ORAL BIOLOGY                  ,,,DENTISTRY/ORAL BIOLOGY  ,sea_dental,http://dental.washington.edu/calendar/
 ,DENTISTRY/PUBLIC HEALTH                 ,,,DENT/EPIDEM CONCURRENT  ,sea_dental,http://dental.washington.edu/calendar/
 ,DENTISTRY/PUBLIC HEALTH                 ,,,DENT/HSERV CONCURRENT   ,sea_dental,http://dental.washington.edu/calendar/
-,Design Use Build                        ,,,HUMAN-COMPUTER INT & DES,,
+,Design Use Build                        ,,,HUMAN-COMPUTER INT & DES,sea_hcde,http://hcde.uw.edu/calendar
 ,"Division of Culture, Art and Comm",HISPANIC STUDIES        ,,,,
 ,"Division of Culture, Art and Comm",AMERICAN STUDIES - TAC  ,,,,
 ,"Division of Culture, Art and Comm","ARTS, MEDIA & CULT - TAC",,,,
@@ -372,13 +367,13 @@
 ,"Division of Culture, Art and Comm",WRITING STUDIES (TACOMA),,,,
 ,"Division of Culture, Art and Comm",,HISPANIC STUDIES        ,,,
 ,"Division of Politics, Phil and Pub Aff",LAW AND POLICY          ,,,,
-,"Division of Politics, Phil and Pub Aff","POL, PHIL & ECON (TAC)",,,,
-,"Division of Politics, Phil and Pub Aff",,ASIAN STUDIES           ,,,
-,"Division of Politics, Phil and Pub Aff",,ECONOMICS               ,,,
-,"Division of Politics, Phil and Pub Aff",,HUMAN RIGHTS            ,,,
-,"Division of Politics, Phil and Pub Aff",,LAW AND POLICY          ,,,
-,"Division of Politics, Phil and Pub Aff",,POLITICS                ,,,
-,"Division of Politics, Phil and Pub Aff",,RELIGIOUS ST (TACOMA)   ,,,
+,"Division of Politics, Phil and Pub Aff","POL, PHIL & ECON (TAC)",,,tac_ias-pppa,
+,"Division of Politics, Phil and Pub Aff",,ASIAN STUDIES           ,,tac_ias-pppa,
+,"Division of Politics, Phil and Pub Aff",,ECONOMICS               ,,tac_ias-pppa,
+,"Division of Politics, Phil and Pub Aff",,HUMAN RIGHTS            ,,tac_ias-pppa,
+,"Division of Politics, Phil and Pub Aff",,LAW AND POLICY          ,,tac_ias-pppa,
+,"Division of Politics, Phil and Pub Aff",,POLITICS                ,,tac_ias-pppa,
+,"Division of Politics, Phil and Pub Aff",,RELIGIOUS ST (TACOMA)   ,,tac_ias-pppa,
 ,Division of Sciences and Mathematics    ,ENVIRON SCIENCE (TACOMA),,,,
 ,Division of Sciences and Mathematics    ,ENVIRONMENTAL ST - TAC  ,,,,
 ,Division of Sciences and Mathematics    ,PRE ENV SCIENCE (TACOMA),,,,
@@ -412,17 +407,17 @@
 ,DRAMA                                   ,,,DRAMA                   ,sea_uwdrama,
 ,DRAMA                                   ,,,DRAMA (THEORY & CRITISM),sea_uwdrama,
 ,DRAMA                                   ,,,DRAMA (TEXT ST)         ,sea_uwdrama,
-,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCIENCES  ,,,,
-,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCI (BIOL),,,,
-,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCI (PHYS),,,,
-,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCI (ENVR),,,,
-,EARTH AND SPACE SCIENCES                ,ESS: GEOLOGY            ,,,,
-,EARTH AND SPACE SCIENCES                ,,EARTH & SPACE SCIENCES  ,,,
-,EARTH AND SPACE SCIENCES                ,,,EARTH & SPACE SCIENCES  ,,
-,EARTH AND SPACE SCIENCES                ,,,ESS: APPLIED GEOSCIENCES,,
-,EARTH AND SPACE SCIENCES                ,,,EARTH & SPACE SCI & ASTB,,
-,EARTH AND SPACE SCIENCES                ,,,GEOLOGICAL SCIENCES     ,,
-,EARTH AND SPACE SCIENCES                ,,,GEOPHYSICS              ,,
+,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCIENCES  ,,,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCI (BIOL),,,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCI (PHYS),,,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,EARTH & SPACE SCI (ENVR),,,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,ESS: GEOLOGY            ,,,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,,EARTH & SPACE SCIENCES  ,,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,,,EARTH & SPACE SCIENCES  ,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,,,ESS: APPLIED GEOSCIENCES,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,,,EARTH & SPACE SCI & ASTB,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,,,GEOLOGICAL SCIENCES     ,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
+,EARTH AND SPACE SCIENCES                ,,,GEOPHYSICS              ,sea_coe-ess,https://www.ess.washington.edu/news_events/calendar.php
 ,ECONOMICS                               ,ECONOMICS               ,,,sea_econ,
 ,ECONOMICS                               ,,,ECONOMICS               ,sea_econ,
 ,ECONOMICS                               ,,,ECONOMICS (GTTL)        ,sea_econ,
@@ -452,15 +447,15 @@
 ,ELECTRICAL ENGINEERING                  ,,,ELECT ENGR (NANO & MOLE),sea_ee,
 ,ELECTRICAL ENGINEERING                  ,,,ELECTRICAL ENGR         ,sea_ee,
 ,ENDODONTICS                             ,,,ENDODONTICS             ,,
-,ENGINEERING                             ,ENGR VISITING           ,,,,
-,ENGINEERING                             ,EXTENDED PRE ENGINEERING,,,,
-,ENGINEERING                             ,INTERDISC ENGINEERING   ,,,,
-,ENGINEERING                             ,PRE ENGINEERING         ,,,sea_engr,
-,ENGINEERING                             ,,,ENGINEERING (INTER ENGR),,
-,ENGINEERING                             ,,,ENGINEERING (INTR ENGR) ,,
-,ENGINEERING                             ,,,ENGR (MANUF)(EDGE)      ,,
-,ENGINEERING                             ,,,ENGR VISITING           ,,
-,ENGINEERING                             ,,,INTERDISC ENGINEERING   ,,
+,ENGINEERING                             ,ENGR VISITING           ,,,sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,EXTENDED PRE ENGINEERING,,,sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,INTERDISC ENGINEERING   ,,,sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,PRE ENGINEERING         ,,,sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,,,ENGINEERING (INTER ENGR),sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,,,ENGINEERING (INTR ENGR) ,sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,,,ENGR (MANUF)(EDGE)      ,sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,,,ENGR VISITING           ,sea_engr,https://www.engr.washington.edu/calendar
+,ENGINEERING                             ,,,INTERDISC ENGINEERING   ,sea_engr,https://www.engr.washington.edu/calendar
 ,Engineering and Mathematics (Bothell)   ,ELEC ENGR (BOTHELL)     ,,,,
 ,Engineering and Mathematics (Bothell)   ,ELEC ENGR (BOTHELL)     ,,,,
 ,Engineering and Mathematics (Bothell)   ,MATHEMATICS (BOTHELL)   ,,,,
@@ -610,10 +605,10 @@
 ,HUMAN CENTERED DESIGN AND ENGINEERING   ,,,HUM CTR DES & ENGR (GTC),sea_hcde,
 ,IMMUNOLOGY                              ,,,IMMUNOLOGY              ,sea_immun,
 ,INDIVIDUAL PHD PROGRAM                  ,,,INDIVIDUAL PHD          ,,
-,INDUSTRIAL ENGINEERING                  ,INDUSTRIAL ENGINEERING  ,,,,
-,INDUSTRIAL ENGINEERING                  ,,,INDUSTRIAL ENGINEERING  ,,
-,INDUSTRIAL ENGINEERING                  ,,,INDUSTRIAL ENGR (EDGE)  ,,
-,INDUSTRIAL ENGINEERING                  ,,,IND AND SYS ENGINEERING ,,
+,INDUSTRIAL ENGINEERING                  ,INDUSTRIAL ENGINEERING  ,,,sea_engr-ise,https://ise.washington.edu/calendar
+,INDUSTRIAL ENGINEERING                  ,,,INDUSTRIAL ENGINEERING  ,sea_engr-ise,https://ise.washington.edu/calendar
+,INDUSTRIAL ENGINEERING                  ,,,INDUSTRIAL ENGR (EDGE)  ,sea_engr-ise,https://ise.washington.edu/calendar
+,INDUSTRIAL ENGINEERING                  ,,,IND AND SYS ENGINEERING ,sea_engr-ise,https://ise.washington.edu/calendar
 ,INSTITUTE OF TECHNOLOGY - TACOMA        ,INFO TECH (TACOMA)      ,,,tac_institute-technology,
 ,INSTITUTE OF TECHNOLOGY - TACOMA        ,INFO TECH: IAC (TACOMA) ,,,tac_institute-technology,
 ,INSTITUTE OF TECHNOLOGY - TACOMA        ,COMPUTER ENGR & SYS     ,,,tac_institute-technology,
@@ -627,9 +622,9 @@
 ,INSTITUTE OF TECHNOLOGY - TACOMA        ,,COMPUTER SCI & SYS      ,,tac_institute-technology,
 ,INSTITUTE OF TECHNOLOGY - TACOMA        ,,,CYBERSECRTY & LEADERSHIP,tac_institute-technology,
 ,INSTITUTE OF TECHNOLOGY - TACOMA        ,,,COMPUTER SCI & SYS      ,tac_institute-technology,
-,INTEGRATED SCIENCE                      ,INTEGRATED SCIENCES     ,,,tac_institute-technology,
-,Interactive Media Design                ,INTERACTIVE MEDIA DESIGN,,,,
-,INTERDISC MOLECULAR MEDICINE PROGRAM    ,,,MOLECULAR MEDICINE      ,,
+,INTEGRATED SCIENCE                      ,INTEGRATED SCIENCES     ,,,,
+,Interactive Media Design - BOTHELL      ,INTERACTIVE MEDIA DESIGN,,,,
+,INTERDISC MOLECULAR MEDICINE PROGRAM    ,,,MOLECULAR MEDICINE      ,sea_uwmedicine-mcb,
 ,INTERDISCIPLINARY ARTS & SCI - BOTHELL  ,AMERICAN ST (BOTHELL)   ,,,,
 ,INTERDISCIPLINARY ARTS & SCI - BOTHELL  ,"CULT, LIT, ART (BOTHELL)",,,,
 ,INTERDISCIPLINARY ARTS & SCI - BOTHELL  ,COM PSYCHOLOGY (BOTHELL),,,,
@@ -687,9 +682,8 @@
 ,INTERDISCIPLINARY ARTS & SCI - TACOMA   ,,,T MAIS (COMM & SOC CHNG),,
 ,INTERDISCIPLINARY ARTS & SCI - TACOMA   ,,,T MAIS (NON-PROF MGMT)  ,,
 ,INTERDISCIPLINARY ARTS & SCI - TACOMA   ,,,TIAS(FOUND PUB ACTION)  ,,
-,INTERDISCIPLINARY PATHOBIOLOGY GROUP    ,,,PATHOBIOLOGY            ,,
-,INTERDISCIPLINARY PATHOBIOLOGY GROUP    ,,,PATHOBIOLOGY            ,,
-,INTERDISCIPLINARY PATHOBIOLOGY GROUP    ,,,PUBLIC HLTH PATHOBIOLOGY,,
+,INTERDISCIPLINARY PATHOBIOLOGY GROUP    ,,,PATHOBIOLOGY            ,sea_pathobio,
+,INTERDISCIPLINARY PATHOBIOLOGY GROUP    ,,,PUBLIC HLTH PATHOBIOLOGY,sea_pathobio,
 ,INTERDSC COMMITTEE ON PUBLIC SCHOLARSHIP,,,PUBLIC SCHOLARSHIP      ,,
 ,INTERNATIONAL STUDIES/BUSINESS ADMIN    ,,,INTERNATL STDY/BUS ADM  ,,
 ,INTERNATIONAL STUDIES/EPIDEMIOLOGY      ,,,INTERNATL STUDIES/EPIDEM,,
@@ -704,10 +698,10 @@
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,INT ST:JEWISH STUDIES   ,,,sea_jewish,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,INT ST: LAT AM & CARIB  ,,,sea_jsis-latam,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,INT ST:SOUTHEAST ASIA   ,,,sea_jsis-seasi,
-,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,ARCTIC STUDIES          ,,,
+,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,ARCTIC STUDIES          ,,sea_jsis,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:EUROPE           ,,sea_west_european_center sea_euc sea_jsis-hellenic,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:COMPARATIVE RELIG,,sea_jsis-relig,
-,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INTERNATIONAL STUDIES   ,,sea_jsis,
+,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INTERNATIONAL STUDIES   ,,sea_jsis,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:AFRICA           ,,sea_jsis-afric,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:CANADA           ,,sea_canad,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:CHINA            ,,sea_jsis-china,
@@ -721,9 +715,9 @@
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:SOUTH ASIA       ,,sea_southasia,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:SOUTHEAST ASIA   ,,sea_jsis-seasi,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:COMPARATIVE RELIG,sea_jsis-relig,
-,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INTERNATIONAL STUDIES   ,sea_jsis,
-,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INTERNATIONAL STUDIES   ,sea_jsis,
-,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INTL ST: APPL INTL ST   ,sea_jsis,
+,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INTERNATIONAL STUDIES   ,sea_jsis,http://jsis.washington.edu/events/
+,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INTERNATIONAL STUDIES   ,sea_jsis,http://jsis.washington.edu/events/
+,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INTL ST: APPL INTL ST   ,sea_jsis,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:CHINA            ,sea_jsis-china,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:JAPAN            ,sea_japan,
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:KOREA            ,sea_korea,
