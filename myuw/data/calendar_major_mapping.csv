@@ -464,7 +464,7 @@
 ,Engineering and Mathematics (Bothell)   ,,,ELEC ENGR (BOTHELL)     ,,
 ,ENGLISH                                 ,ENGLISH                 ,,,sea_engl,
 ,ENGLISH                                 ,ENGLISH(CREATIVE WRITNG),,,sea_engl,
-,ENGLISH                                 ,ENGLISH,EVENING,,,sea_engl,
+,ENGLISH                                 ,"ENGLISH,EVENING",,,sea_engl,
 ,ENGLISH                                 ,,,ENGLISH                 ,sea_engl,
 ,ENGLISH                                 ,,,ENGLISH(ENGL AS 2ND LAN),sea_engl,
 ,ENGLISH                                 ,,,ENGLISH(CREATIVE WRITNG),sea_engl,
@@ -490,8 +490,8 @@
 ,EPIDEMIOLOGY                            ,,,PUB HEALTH NUTRITION    ,sea_epidem sea_nutr,
 ,EPIDEMIOLOGY                            ,,,PUB HLTH NUTR: PRACT EXP,sea_epidem sea_nutr,
 ,EPIDEMIOLOGY                            ,,,PUBLIC HEALTH GENETICS  ,sea_epidem,
-,EVENING DEGREE PROGRAM                  ,HUMANITIES,EVENING,,,,
-,EVENING DEGREE PROGRAM                  ,SOCIAL SCIENCES,EVENING,,,,
+,EVENING DEGREE PROGRAM                  ,"HUMANITIES,EVENING",,,,
+,EVENING DEGREE PROGRAM                  ,"SOCIAL SCIENCES,EVENING",,,,
 ,EXCHANGE (ARTS & SCIENCES)              ,EXCHANGE ARTS & SCIENCES,,,,
 ,EXCHANGE (ARTS & SCIENCES)              ,,,EXCHANGE ARTS & SCIENCES,,
 ,EXCHANGE (BUSINESS ADMINISTRATION)      ,EXCHANGE BUS ADMIN      ,,,,
@@ -711,7 +711,7 @@
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:KOREA            ,,sea_korea,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST: LAT AM & CARIB  ,,sea_jsis-latam,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:MIDDLE EAST      ,,sea_mideast,http://jsis.washington.edu/events/
-,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:RUS,E.E.,&C.ASIA,,sea_ellison ,http://jsis.washington.edu/events/
+,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,"INT ST:RUS,E.E.,&C.ASIA",,sea_ellison ,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:SOUTH ASIA       ,,sea_southasia,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,INT ST:SOUTHEAST ASIA   ,,sea_jsis-seasi,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:COMPARATIVE RELIG,sea_jsis-relig,http://jsis.washington.edu/events/
@@ -722,7 +722,7 @@
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:JAPAN            ,sea_japan,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:KOREA            ,sea_korea,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:MIDDLE EAST      ,sea_mideast,http://jsis.washington.edu/events/
-,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:RUS,E.E.,&C.ASIA,sea_ellison,http://jsis.washington.edu/events/
+,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,"INT ST:RUS,E.E.,&C.ASIA",sea_ellison,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:SOUTH ASIA       ,sea_southasia,http://jsis.washington.edu/events/
 ,JACKSON SCHOOL INTERNATIONAL STUDIES    ,,,INT ST:SOUTHEAST ASIA   ,sea_jsis-seasi,http://jsis.washington.edu/events/
 ,JAPAN STUDIES/BUSINESS ADMINISTRATION   ,,,JAPAN ST/BUS ADMIN      ,sea_japan,
@@ -1196,7 +1196,7 @@
 ,SOCIAL WORK                             ,,,SOCIAL WORK (ADMIN PRAC),sea_socialwork,
 ,SOCIAL WORK                             ,,,SOCIAL WORK (CYF: ASP)  ,sea_socialwork,
 ,SOCIAL WORK                             ,,,SOCIAL WORK (CYF)       ,sea_socialwork,
-,SOCIAL WORK                             ,,,SOCIAL WORK,EXTENDED DEG,sea_socialwork,
+,SOCIAL WORK                             ,,,"SOCIAL WORK,EXTENDED DEG",sea_socialwork,
 ,SOCIAL WORK                             ,,,SOCIAL WORK (AGP EVEN)  ,sea_socialwork,
 ,SOCIAL WORK                             ,,,SOCIAL WORK (HP: ASP)   ,sea_socialwork,
 ,SOCIAL WORK                             ,,,SOCIAL WORK (H)         ,sea_socialwork,
@@ -1231,7 +1231,7 @@
 ,SOCIOLOGY                               ,SOC: INDIV & SOCIETY    ,,,sea_soc,
 ,SOCIOLOGY                               ,SOC: SOCIAL ORGS        ,,,sea_soc,
 ,SOCIOLOGY                               ,SOC: GLOBAL & SOC CHANGE,,,sea_soc,
-,SOCIOLOGY                               ,SOCIOLOGY,EVENING,,,sea_soc,
+,SOCIOLOGY                               ,"SOCIOLOGY,EVENING",,,sea_soc,
 ,SOCIOLOGY                               ,,,SOCIOLOGY               ,sea_soc,
 ,SPECIAL PROGRAM GRADUATE STUDENT        ,,,SPECIAL PROGRAM STUDENT ,,
 ,SPEECH & HEARING SCIENCES               ,SPEECH & HEARING SCI    ,,,sea_sphsc,
