@@ -108,6 +108,8 @@ export default {
   computed: {
     ...mapState({
       isUndergrad: (state) => state.user.affiliations.undergrad,
+      studEmployee: (state) => state.user.affiliations.stud_employee,
+      isGrad: (state) => state.user.affiliations.grad,
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
       termMajors: (state) => state.profile.value.term_majors,
@@ -134,7 +136,7 @@ export default {
       );
     },
     showCard() {
-      return this.isUndergrad;
+      return this.isUndergrad || this.studEmployee && !this.isGrad;
     }
   },
   created() {
