@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    :loaded="isReadyAdvisers && isReadyProfile"
+    :loaded="isReadyAdvisers || isReadyProfile"
     :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
   >
@@ -11,7 +11,7 @@
       </h2>
     </template>
     <template #card-body>
-      <div v-if="advisers.length">
+      <div v-if="advisers && advisers.length">
         <ul class="d-flex flex-wrap list-unstyled mb-0">
           <li
             v-for="(adviser, index) in advisers"
