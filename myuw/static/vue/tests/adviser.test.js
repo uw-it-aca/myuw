@@ -30,6 +30,8 @@ describe('Assigned Adviser Card', () => {
         user: {
           affiliations: {
             undergrad: true,
+            stud_employee: false,
+            grad: false,
           }
         }
       }
@@ -77,6 +79,15 @@ describe('Assigned Adviser Card', () => {
   it('Hide Assigned Adviser card if not undergrad', async () => {
     store.state.user.affiliations.undergrad = false;
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.showCard).toBe(false);
+  });
+
+  it('Hide Assigned Adviser card if is a student employee and grad', async () => {
+    store.state.user.affiliations.stud_employee = true;
+    store.state.user.affiliations.grad = true;
+    store.state.user.affiliations.undergrad = false;
+    const wrapper = mount(AssignedAdviserCard, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(false);
   });
