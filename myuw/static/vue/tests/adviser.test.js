@@ -92,13 +92,32 @@ describe('Assigned Adviser Card', () => {
     expect(wrapper.vm.showCard).toBe(false);
   });
 
+  it('Show card if no adviser record', async () => {
+    axios.get.mockImplementation((url) => {
+      if (url === '/api/v1/advisers/') {
+        return Promise.reject({response: {status: 404}});
+      }
+      const urlData = {
+        '/api/v1/profile/': javgProfile,
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(AssignedAdviserCard, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.isReadyAdvisers).toBe(false);
+    expect(wrapper.vm.isReadyProfile).toBe(true);
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
+    expect(wrapper.vm.showError).toBe(false);
+  });
+
   it('Show error', async () => {
     axios.get.mockImplementation((url) => {
       return Promise.reject({response: {status: 543}});
     });
     const wrapper = mount(AssignedAdviserCard, {store, localVue});
     await new Promise(setImmediate);
-    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.showError).toBe(true);
   });
 
@@ -110,5 +129,7 @@ describe('Assigned Adviser Card', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.showError).toBe(false);
+    expect(wrapper.vm.isReadyAdvisers).toBe(false);
+    expect(wrapper.vm.isReadyProfile).toBe(false);
   });
 });
