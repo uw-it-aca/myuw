@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    :loaded="isReadyAdvisers && isReadyProfile"
+    :loaded="isReadyAdvisers || isReadyProfile"
     :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
   >
@@ -11,7 +11,7 @@
       </h2>
     </template>
     <template #card-body>
-      <div v-if="advisers.length">
+      <div v-if="advisers && advisers.length">
         <ul class="d-flex flex-wrap list-unstyled mb-0">
           <li
             v-for="(adviser, index) in advisers"
@@ -108,6 +108,8 @@ export default {
   computed: {
     ...mapState({
       isUndergrad: (state) => state.user.affiliations.undergrad,
+      studEmployee: (state) => state.user.affiliations.stud_employee,
+      isGrad: (state) => state.user.affiliations.grad,
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
       termMajors: (state) => state.profile.value.term_majors,
@@ -134,7 +136,7 @@ export default {
       );
     },
     showCard() {
-      return this.isUndergrad;
+      return this.isUndergrad || this.studEmployee && !this.isGrad;
     }
   },
   created() {
