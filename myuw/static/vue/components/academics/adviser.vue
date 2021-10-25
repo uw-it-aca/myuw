@@ -21,7 +21,7 @@
           >
             <div class="myuw-text-md">
               <div
-                class="font-weight-bold myuw-font-encode-sans"
+                class="fw-bold myuw-font-encode-sans"
               >{{ adviser.program }}</div>
               <div>{{ adviser.full_name }}
                 <span v-if="adviser.pronouns">({{ adviser.pronouns }})</span>
@@ -34,7 +34,7 @@
             </div>
           </li>
         </ul>
-        <hr class="my-0">
+        <hr class="my-0 bg-secondary">
       </div>
       <div class="myuw-text-md mt-3 mb-3"> 
         <div class="fw-bold myuw-font-encode-sans"
