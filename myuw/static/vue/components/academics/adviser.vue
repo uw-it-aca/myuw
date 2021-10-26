@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    :loaded="isReadyAdvisers || isReadyProfile"
+    :loaded="isReadyProfile"
     :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
   >
@@ -112,10 +112,6 @@ export default {
       isGrad: (state) => state.user.affiliations.grad,
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
-      termMajors: (state) => state.profile.value.term_majors,
-      termMinors: (state) => state.profile.value.term_minors,
-      hasMinors: (state) => state.profile.value.has_minors,
-      hasMajors: (state) => state.profile.value.term_majors.length > 0,
     }),
     ...mapGetters('advisers', {
       isReadyAdvisers: 'isReady',
@@ -127,6 +123,20 @@ export default {
       isErroredProfile: 'isErrored',
       statusCodeProfile: 'statusCode',
     }),
+    termMajors() {
+      return this.profile.term_majors;
+    },
+    termMinors() {
+      return this.profile.term_minors;
+    },
+    hasMinors() {
+      return (this.termMinors && this.termMinors.length &&
+        this.termMinors[0].minors && this.termMinors[0].minors.length > 0);
+    },
+    hasMajors() {
+      return (this.termMajors && this.termMajors.length &&
+        this.termMajors[0].majors && this.termMajors[0].majors.length > 0);
+    },
     showError() {
       return (
         this.isErroredAdvisers &&
