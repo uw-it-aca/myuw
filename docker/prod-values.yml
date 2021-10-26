@@ -85,6 +85,16 @@ memcached:
     - "-v"
   updateStrategy:
     type: RollingUpdate
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: "app.kubernetes.io/name"
+              operator: In
+              values:
+                - "myuw-prod-prod-memcached"
+        topologyKey: "kubernetes.io/hostname"
 certs:
   mounted: true
   certPath: /certs/myuw.s.uw.edu-uwca.cert
