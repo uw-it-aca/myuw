@@ -12,7 +12,7 @@
             }-${section.section_id}`"
             :title="`Course Dashboard for ${section.label}`"
           >
-            View stats on Course Dashboard
+            View course statistics dashboard
           </a>
         </li>
       </ul>

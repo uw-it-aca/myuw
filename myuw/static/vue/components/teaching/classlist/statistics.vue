@@ -17,9 +17,7 @@
         are {{ titleCaseWord(majors[0].major) }} majors.
       </p>
       <a v-out="'Course Dashboard'" :href="url" target="_blank" :title="label">
-        View more statistics for
-        {{ sectionData.currAbbr }} {{ sectionData.courseNum }} {{ sectionData.sectionId }}
-        on the Course Dashboard
+        View course statistics dashboard
       </a>
     </template>
   </uw-card>
