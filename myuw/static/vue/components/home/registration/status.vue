@@ -254,7 +254,7 @@ export default {
               estRegData.hasEstRegDataNotice = true;
               estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
               estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
-              estRegData.estRegDate = notice.formattedDate;
+              estRegData.estRegDate = notice.formattedDate;     // MUWM-5034
             });
       });
 
