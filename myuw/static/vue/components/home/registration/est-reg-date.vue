@@ -14,7 +14,7 @@
       </h3>
       <div class="flex-fill text-right">
         <div class="font-weight-bold">
-          {{ estRegData.estRegDate.date.format('ddd, MMM D') }}
+          {{ estRegData.estRegDate }}
         </div>
         <span class="myuw-text-md" aria-hidden="true">
           at 6:00 AM
