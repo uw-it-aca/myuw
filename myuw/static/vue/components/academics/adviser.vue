@@ -1,7 +1,7 @@
 <template>
   <uw-card
     v-if="showCard"
-    :loaded="isReadyAdvisers && isReadyProfile"
+    :loaded="isReadyProfile"
     :errored="isErroredAdvisers || isErroredProfile"
     :errored-show="showError"
   >
@@ -11,7 +11,7 @@
       </h2>
     </template>
     <template #card-body>
-      <div v-if="advisers.length">
+      <div v-if="advisers && advisers.length">
         <ul class="d-flex flex-wrap list-unstyled mb-0">
           <li
             v-for="(adviser, index) in advisers"
@@ -108,12 +108,10 @@ export default {
   computed: {
     ...mapState({
       isUndergrad: (state) => state.user.affiliations.undergrad,
+      studEmployee: (state) => state.user.affiliations.stud_employee,
+      isGrad: (state) => state.user.affiliations.grad,
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
-      termMajors: (state) => state.profile.value.term_majors,
-      termMinors: (state) => state.profile.value.term_minors,
-      hasMinors: (state) => state.profile.value.has_minors,
-      hasMajors: (state) => state.profile.value.term_majors.length > 0,
     }),
     ...mapGetters('advisers', {
       isReadyAdvisers: 'isReady',
@@ -125,6 +123,20 @@ export default {
       isErroredProfile: 'isErrored',
       statusCodeProfile: 'statusCode',
     }),
+    termMajors() {
+      return this.profile.term_majors;
+    },
+    termMinors() {
+      return this.profile.term_minors;
+    },
+    hasMinors() {
+      return (this.termMinors && this.termMinors.length &&
+        this.termMinors[0].minors && this.termMinors[0].minors.length > 0);
+    },
+    hasMajors() {
+      return (this.termMajors && this.termMajors.length &&
+        this.termMajors[0].majors && this.termMajors[0].majors.length > 0);
+    },
     showError() {
       return (
         this.isErroredAdvisers &&
@@ -134,7 +146,7 @@ export default {
       );
     },
     showCard() {
-      return this.isUndergrad;
+      return this.isUndergrad || this.studEmployee && !this.isGrad;
     }
   },
   created() {
