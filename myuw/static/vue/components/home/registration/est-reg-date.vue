@@ -13,7 +13,7 @@
         Est. Registration Date
       </h3>
       <div class="flex-fill text-right">
-        <div class="font-weight-bold">
+        <div class="h4 myuw-font-encode-sans status-label">
           {{ estRegData.estRegDate }}
         </div>
         <span class="myuw-text-md" aria-hidden="true">
