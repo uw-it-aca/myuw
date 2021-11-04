@@ -247,8 +247,6 @@ export default {
       const estRegData = {};
 
       this.estRegDateNotices.forEach((notice) => {
-        let registrationDate = notice.date;
-
         notice.attributes
             .filter((a) => a.name === 'Quarter' && a.value === this.quarter)
             .slice(0, 1)
@@ -256,10 +254,7 @@ export default {
               estRegData.hasEstRegDataNotice = true;
               estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
               estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
-              estRegData.estRegDate = {
-                notice: notice,
-                date: registrationDate,
-              };
+              estRegData.estRegDate = notice.formattedDate;     // MUWM-5034
             });
       });
 

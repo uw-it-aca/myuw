@@ -7,25 +7,25 @@
     >
       Registration opens at 6:00AM
     </div>
-
-    <div v-else class="d-flex align-items-center">
-      <h3 class="h6 m-0 text-dark font-weight-bold flex-fill">
-        Est. Registration Date
-      </h3>
-      <div class="flex-fill text-right">
-        <div class="font-weight-bold">
-          {{ estRegData.estRegDate.date.format('ddd, MMM D') }}
+    <uw-card-status v-else>
+      <template #status-label>Est. Registration Date</template>
+      <template #status-value>{{ estRegData.estRegDate }}</template>
+      <template #status-content>
+        <div class="d-flex myuw-text-md">
+          <div class="flex-fill w-50"></div>
+          <div class="flex-fill w-50 text-right">at 6:00 AM</div>
         </div>
-        <span class="myuw-text-md" aria-hidden="true">
-          at 6:00 AM
-        </span>
-      </div>
-    </div>
+      </template>
+    </uw-card-status>
   </div>
 </template>
 
 <script>
+import CardStatus from '../../_templates/card-status.vue';
 export default {
+  components: {
+    'uw-card-status': CardStatus,
+  },
   props: {
     estRegData: {
       type: Object,
