@@ -2,8 +2,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from uw_space import Facilities
-from myuw.models import Buildings
-from myuw.test import get_request_with_user
+from myuw.models.campus_building import Buildings
 from myuw.test.api import MyuwApiTest
 
 
