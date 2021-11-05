@@ -1,7 +1,8 @@
 # Copyright 2021 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from restclients_core import models
+from django.db import models
+from django.db import transaction
 import json
 
 
@@ -43,6 +44,7 @@ class Buildings(models.Model):
         return Buildings.objects.get(number=number)
 
     @staticmethod
+    @transaction.atomic
     def upd_building(fac_obj):
         if Buildings.exists_by_number(fac_obj.number):
             b_entry = Buildings.objects.select_for_update().get(
