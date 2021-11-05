@@ -1,11 +1,23 @@
 # Copyright 2021 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
-from restclients_core import models
+from django.db import models
+from restclients_core.models import Model
 import json
 
 
-class Buildings(models.Model):
+class Building(models.Model):
+    code = models.CharField(max_length=6, db_index=True)
+    latititude = models.CharField(max_length=40)
+    longitude = models.CharField(max_length=40)
+    name = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = "myuw_mobile_building"
+        app_label = "myuw"
+
+
+class Buildings(Model):
     code = models.CharField(max_length=10, db_index=True)
     number = models.CharField(max_length=10, db_index=True)
     latititude = models.CharField(max_length=40)
@@ -88,15 +100,4 @@ class Buildings(models.Model):
 
     class Meta:
         db_table = "myuw_buildings"
-        app_label = "myuw"
-
-
-class Building(models.Model):
-    code = models.CharField(max_length=6, db_index=True)
-    latititude = models.CharField(max_length=40)
-    longitude = models.CharField(max_length=40)
-    name = models.CharField(max_length=200)
-
-    class Meta:
-        db_table = "myuw_mobile_building"
         app_label = "myuw"
