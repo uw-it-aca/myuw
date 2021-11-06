@@ -49,22 +49,22 @@ class Buildings(models.Model):
         if Buildings.exists_by_number(fac_obj.number):
             b_entry = Buildings.objects.select_for_update().get(
                 number=fac_obj.number)
-            b_entry.code = fac_obj.code.code
-            b_entry.latititude = fac_obj.latitude,
-            b_entry.longitude = fac_obj.longitude
-            b_entry.name = fac_obj.name
-            if b_entry != Buildings.get_building_by_number(fac_obj.number):
+            if not b_entry.no_change(fac_obj):
+                b_entry.code = fac_obj.code.code
+                b_entry.latititude = fac_obj.latitude,
+                b_entry.longitude = fac_obj.longitude
+                b_entry.name = fac_obj.name
                 b_entry.save()
             return b_entry
 
         if Buildings.exists(fac_obj.code):
             b_entry = Buildings.objects.select_for_update().get(
                 code=fac_obj.code)
-            b_entry.number = fac_obj.number
-            b_entry.latititude = fac_obj.latitude,
-            b_entry.longitude = fac_obj.longitude
-            b_entry.name = fac_obj.name
-            if b_entry != Buildings.get_building_by_code(fac_obj.code):
+            if not b_entry.no_change(fac_obj):
+                b_entry.number = fac_obj.number
+                b_entry.latititude = fac_obj.latitude,
+                b_entry.longitude = fac_obj.longitude
+                b_entry.name = fac_obj.name
                 b_entry.save()
             return b_entry
 
@@ -75,6 +75,14 @@ class Buildings(models.Model):
             longitude=fac_obj.longitude,
             name=fac_obj.name
             )
+
+    def no_change(self, fac_obj):
+        return (
+            self.code == fac_obj.code and
+            self.number == fac_obj.number and
+            self.latititude == fac_obj.latitude and
+            self.longitude == fac_obj.longitude and
+            self.name == fac_obj.name)
 
     def json_data(self):
         return {
