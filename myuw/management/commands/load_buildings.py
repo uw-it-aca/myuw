@@ -339,7 +339,8 @@ class Command(BaseCommand):
         logger.info("Loaded {} buildings".format(count))
 
         if len(messages):
-            send_mail("Update Buildings",
-                  "\n".join(messages),
-                  "{}@uw.edu".format(get_cronjob_sender()),
-                  ["{}@uw.edu".format(get_cronjob_recipient())])
+            send_mail(
+                "Update Buildings",
+                "\n".join(messages),
+                "{}@uw.edu".format(get_cronjob_sender()),
+                ["{}@uw.edu".format(get_cronjob_recipient())])
