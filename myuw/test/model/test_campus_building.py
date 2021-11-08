@@ -40,8 +40,3 @@ class TestBuilding(MyuwApiTest):
         obj3 = Buildings.upd_building(fac_obj)
         self.assertEquals(obj3.code, 'MEBB')
         self.assertFalse(b_obj == obj3)
-
-        fac_obj.number = '1348'
-        obj4 = Buildings.upd_building(fac_obj)
-        self.assertEquals(obj4.number, '1348')
-        self.assertFalse(b_obj == obj4)

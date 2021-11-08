@@ -8,7 +8,9 @@ import json
 
 class Buildings(models.Model):
     code = models.CharField(max_length=10, db_index=True)
+    # unique, but does change
     number = models.CharField(max_length=10, db_index=True)
+    # unique and will never change
     latititude = models.CharField(max_length=40)
     longitude = models.CharField(max_length=40)
     name = models.CharField(max_length=100)
@@ -51,17 +53,6 @@ class Buildings(models.Model):
                 number=fac_obj.number)
             if not b_entry.no_change(fac_obj):
                 b_entry.code = fac_obj.code.code
-                b_entry.latititude = fac_obj.latitude,
-                b_entry.longitude = fac_obj.longitude
-                b_entry.name = fac_obj.name
-                b_entry.save()
-            return b_entry
-
-        if Buildings.exists(fac_obj.code):
-            b_entry = Buildings.objects.select_for_update().get(
-                code=fac_obj.code)
-            if not b_entry.no_change(fac_obj):
-                b_entry.number = fac_obj.number
                 b_entry.latititude = fac_obj.latitude,
                 b_entry.longitude = fac_obj.longitude
                 b_entry.name = fac_obj.name
