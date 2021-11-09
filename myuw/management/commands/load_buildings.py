@@ -324,15 +324,14 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         count = 0
         messages = []
-        fac = Facilities()
+        space = Facilities()
         for bcode in BUILDING_CODES:
             try:
-                fac_objs = fac.search_by_code(bcode)
+                fac_objs = space.search_by_code(bcode)
                 if fac_objs and len(fac_objs):
-                    for obj in fac_objs:
-                        ret_obj = CampusBuilding.upd_building(obj)
-                        logger.info("Loaded {}".format(ret_obj))
-                        count += 1
+                    ret_obj = CampusBuilding.upd_building(fac_objs)
+                    logger.info("Loaded {}".format(ret_obj))
+                    count += 1
             except Exception as ex:
                 msg = {"Load building": bcode, "err": ex}
                 logger.error(msg)
