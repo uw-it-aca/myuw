@@ -52,7 +52,7 @@ class CampusBuilding(models.Model):
             b_entry = CampusBuilding.objects.select_for_update().get(
                 number=fac_obj.number)
             if not b_entry.no_change(fac_obj):
-                b_entry.code = fac_obj.code.code
+                b_entry.code = fac_obj.code
                 b_entry.latitude = fac_obj.latitude,
                 b_entry.longitude = fac_obj.longitude
                 b_entry.name = fac_obj.name
