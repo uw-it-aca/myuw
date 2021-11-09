@@ -14,11 +14,11 @@ class Migration(migrations.Migration):
             name='CampusBuilding',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('code', models.CharField(db_index=True, max_length=10)),
-                ('number', models.CharField(db_index=True, max_length=10)),
-                ('latititude', models.CharField(max_length=40)),
-                ('longitude', models.CharField(max_length=40)),
-                ('name', models.CharField(max_length=100)),
+                ('code', models.CharField(db_index=True, max_length=16)),
+                ('number', models.CharField(db_index=True, max_length=16)),
+                ('latitude', models.CharField(max_length=32)),
+                ('longitude', models.CharField(max_length=32)),
+                ('name', models.CharField(max_length=96)),
             ],
         ),
     ]

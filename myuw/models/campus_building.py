@@ -7,13 +7,13 @@ import json
 
 
 class CampusBuilding(models.Model):
-    code = models.CharField(max_length=10, db_index=True)
+    code = models.CharField(max_length=16, db_index=True)
     # unique, but does change
-    number = models.CharField(max_length=10, db_index=True)
+    number = models.CharField(max_length=16, db_index=True)
     # unique and will never change
-    latititude = models.CharField(max_length=40)
-    longitude = models.CharField(max_length=40)
-    name = models.CharField(max_length=100)
+    latitude = models.CharField(max_length=32)
+    longitude = models.CharField(max_length=32)
+    name = models.CharField(max_length=96)
 
     def __init__(self, *args, **kwargs):
         super(CampusBuilding, self).__init__(*args, **kwargs)
@@ -22,7 +22,7 @@ class CampusBuilding(models.Model):
         return (
             self.code == other.code and
             self.number == other.number and
-            self.latititude == other.latitude and
+            self.latitude == other.latitude and
             self.longitude == other.longitude and
             self.name == other.name)
 
@@ -53,7 +53,7 @@ class CampusBuilding(models.Model):
                 number=fac_obj.number)
             if not b_entry.no_change(fac_obj):
                 b_entry.code = fac_obj.code.code
-                b_entry.latititude = fac_obj.latitude,
+                b_entry.latitude = fac_obj.latitude,
                 b_entry.longitude = fac_obj.longitude
                 b_entry.name = fac_obj.name
                 b_entry.save()
@@ -62,7 +62,7 @@ class CampusBuilding(models.Model):
         return CampusBuilding.objects.create(
             code=fac_obj.code,
             number=fac_obj.number,
-            latititude=fac_obj.latitude,
+            latitude=fac_obj.latitude,
             longitude=fac_obj.longitude,
             name=fac_obj.name
             )
@@ -71,7 +71,7 @@ class CampusBuilding(models.Model):
         return (
             self.code == fac_obj.code and
             self.number == fac_obj.number and
-            self.latititude == fac_obj.latitude and
+            self.latitude == fac_obj.latitude and
             self.longitude == fac_obj.longitude and
             self.name == fac_obj.name)
 
