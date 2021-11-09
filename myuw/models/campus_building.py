@@ -6,7 +6,7 @@ from django.db import transaction
 import json
 
 
-class Buildings(models.Model):
+class CampusBuilding(models.Model):
     code = models.CharField(max_length=10, db_index=True)
     # unique, but does change
     number = models.CharField(max_length=10, db_index=True)
@@ -16,7 +16,7 @@ class Buildings(models.Model):
     name = models.CharField(max_length=100)
 
     def __init__(self, *args, **kwargs):
-        super(Buildings, self).__init__(*args, **kwargs)
+        super(CampusBuilding, self).__init__(*args, **kwargs)
 
     def __eq__(self, other):
         return (
@@ -31,25 +31,25 @@ class Buildings(models.Model):
 
     @classmethod
     def exists(cls, code):
-        return Buildings.objects.filter(code=code).exists()
+        return CampusBuilding.objects.filter(code=code).exists()
 
     @classmethod
     def exists_by_number(cls, number):
-        return Buildings.objects.filter(number=number).exists()
+        return CampusBuilding.objects.filter(number=number).exists()
 
     @classmethod
     def get_building_by_code(cls, code):
-        return Buildings.objects.get(code=code)
+        return CampusBuilding.objects.get(code=code)
 
     @classmethod
     def get_building_by_number(cls, number):
-        return Buildings.objects.get(number=number)
+        return CampusBuilding.objects.get(number=number)
 
     @staticmethod
     @transaction.atomic
     def upd_building(fac_obj):
-        if Buildings.exists_by_number(fac_obj.number):
-            b_entry = Buildings.objects.select_for_update().get(
+        if CampusBuilding.exists_by_number(fac_obj.number):
+            b_entry = CampusBuilding.objects.select_for_update().get(
                 number=fac_obj.number)
             if not b_entry.no_change(fac_obj):
                 b_entry.code = fac_obj.code.code
@@ -59,7 +59,7 @@ class Buildings(models.Model):
                 b_entry.save()
             return b_entry
 
-        return Buildings.objects.update_or_create(
+        return CampusBuilding.objects.create(
             code=fac_obj.code,
             number=fac_obj.number,
             latititude=fac_obj.latitude,
@@ -86,7 +86,3 @@ class Buildings(models.Model):
 
     def __str__(self):
         return json.dumps(self.json_data(), default=str)
-
-    class Meta:
-        db_table = "myuw_campus_buildings"
-        app_label = "myuw"

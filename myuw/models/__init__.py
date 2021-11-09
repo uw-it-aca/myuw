@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.db import models
 from django.db.models import Count
 from django.db import transaction
-from myuw.models.building import Building
+from myuw.models.campus_building import CampusBuilding
 from myuw.models.banner_msg import BannerMessage
 from myuw.models.popular_link import PopularLink
 from myuw.models.res_category_link import ResCategoryLink

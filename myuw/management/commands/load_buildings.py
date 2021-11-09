@@ -5,7 +5,7 @@ import logging
 from django.core.mail import send_mail
 from django.core.management.base import BaseCommand
 from uw_space import Facilities
-from myuw.models.building import Buildings
+from myuw.models import CampusBuilding
 from myuw.util.settings import get_cronjob_recipient, get_cronjob_sender
 
 BUILDING_CODES = [
@@ -328,19 +328,22 @@ class Command(BaseCommand):
         for bcode in BUILDING_CODES:
             try:
                 fac_objs = fac.search_by_code(bcode)
-                if fac_objs:
+                if fac_objs and len(fac_objs):
                     for obj in fac_objs:
-                        Buildings.upd_building(obj)
+                        ret_obj = CampusBuilding.upd_building(obj)
+                        logger.info("Loaded {}".format(ret_obj))
                         count += 1
             except Exception as ex:
-                msg = {"updateBuilding": bcode, "err": ex}
+                msg = {"Load building": bcode, "err": ex}
                 logger.error(msg)
                 messages.append("\n{}".format(msg))
-        logger.info("Loaded {} buildings".format(count))
+        logger.info(
+            "Loaded {}/{} building codes".format(
+                count, len(BUILDING_CODES)))
 
         if len(messages):
             send_mail(
-                "Update Buildings",
+                "Update CampusBuilding",
                 "\n".join(messages),
                 "{}@uw.edu".format(get_cronjob_sender()),
                 ["{}@uw.edu".format(get_cronjob_recipient())])
