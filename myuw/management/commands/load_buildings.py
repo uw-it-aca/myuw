@@ -329,8 +329,8 @@ class Command(BaseCommand):
             try:
                 fac_objs = space.search_by_code(bcode)
                 if fac_objs and len(fac_objs):
-                    ret_obj = CampusBuilding.upd_building(fac_objs)
-                    logger.info("Loaded {}".format(ret_obj))
+                    bdg = CampusBuilding.upd_building(fac_objs[0])
+                    logger.info("Loaded {}".format(bdg))
                     count += 1
             except Exception as ex:
                 msg = {"Load building": bcode, "err": ex}
