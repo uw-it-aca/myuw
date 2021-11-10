@@ -80,3 +80,15 @@ class TestStudentProfile(TestCase):
                                     get_request_with_date("2013-07-01"))
         data = get_student_profile(req)
         self.assertEqual(data['class_level'], 'SOPHOMORE')
+
+    def test_degree_status(self):
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-07-01"))
+        data = get_student_profile(req)
+        self.assertIsNotNone(data['degree_status'])
+        self.assertEqual(len(data['degree_status']), 1)
+        self.assertEqual(
+            data['degree_status'][0],
+            {
+                
+            })
