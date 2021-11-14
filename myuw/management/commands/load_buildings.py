@@ -325,6 +325,7 @@ class Command(BaseCommand):
         count = 0
         messages = []
         space = Facilities()
+        CampusBuilding.objects.all().delete()
         for bcode in BUILDING_CODES:
             try:
                 fac_objs = space.search_by_code(bcode)
