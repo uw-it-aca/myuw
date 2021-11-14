@@ -303,6 +303,9 @@ environmentVariables:
   - name: SWS_POOL_SIZE
     value: "50"
 
+  - name: SPACE_ENV
+    value: PROD
+
   - name: UPASS_ENV
     value: PROD
   - name: UPASS_TIMEOUT
