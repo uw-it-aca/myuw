@@ -17,7 +17,7 @@ from uw_sws.person import get_person_by_regid
 from uw_sws.enrollment import get_enrollment_by_regid_and_term
 from uw_sws.term import get_specific_term
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.building import get_buildings_by_schedule
+from myuw.dao.campus_building import get_buildings_by_schedule
 from myuw.dao.canvas import get_canvas_course_url, sws_section_label
 from myuw.dao.enrollment import get_code_for_class_level
 from myuw.dao.iasystem import get_evaluation_by_section_and_instructor

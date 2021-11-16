@@ -5,7 +5,7 @@ import logging
 import traceback
 from operator import itemgetter
 from restclients_core.exceptions import InvalidNetID
-from myuw.dao.building import get_buildings_by_schedule
+from myuw.dao.campus_building import get_buildings_by_schedule
 from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls)
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
