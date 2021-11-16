@@ -53,7 +53,7 @@ class CampusBuilding(models.Model):
                 number=fac_obj.number)
             if not b_entry.no_change(fac_obj):
                 b_entry.code = fac_obj.code
-                b_entry.latitude = fac_obj.latitude,
+                b_entry.latitude = fac_obj.latitude
                 b_entry.longitude = fac_obj.longitude
                 b_entry.name = fac_obj.name
                 b_entry.save()
