@@ -4,14 +4,14 @@
 import traceback
 import logging
 import re
-from django.http import HttpResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_protect
 from restclients_core.exceptions import DataFailureException
+from uw_sws.section import get_section_by_label, get_joint_sections
 from uw_sws.exceptions import InvalidSectionID
-from myuw.dao import get_netid_of_current_user, is_action_disabled
+from myuw.dao import is_action_disabled
 from myuw.dao.exceptions import NotSectionInstructorException
-from myuw.dao.pws import get_person_of_current_user
+from myuw.dao.pws import get_person_of_current_user, is_employee
 from myuw.dao.instructor_schedule import check_section_instructor
 from myuw.dao.mailman import (
     get_course_email_lists, request_mailman_lists, is_valid_section_label,
@@ -22,7 +22,6 @@ from myuw.views.api import ProtectedAPI
 from myuw.views.exceptions import DisabledAction, NotInstructorError,\
     InvalidInputFormData
 from myuw.views.error import handle_exception
-from uw_sws.section import get_section_by_label, get_joint_sections
 from myuw.views.api import unescape_curriculum_abbr
 
 logger = logging.getLogger(__name__)
@@ -77,9 +76,10 @@ class Emaillist(ProtectedAPI):
                             single_section_labels,
                             joint_section_labels))
 
-                if not validate_is_instructor(request,
-                                              single_section_labels,
-                                              joint_section_labels):
+                if (not validate_is_instructor(request,
+                                               single_section_labels,
+                                               joint_section_labels) or
+                        not is_employee(request)):
                     raise NotInstructorError(
                         "Not instructor can't request emaillist for"
                         "single :{} and joint:{}".format(
