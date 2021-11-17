@@ -76,12 +76,13 @@ class Emaillist(ProtectedAPI):
                             single_section_labels,
                             joint_section_labels))
 
-                if (not validate_is_instructor(request,
-                                               single_section_labels,
-                                               joint_section_labels) or
-                        not is_employee(request)):
+                if (not is_employee(request) or
+                        not validate_is_instructor(
+                            request,
+                            single_section_labels,
+                            joint_section_labels)):
                     raise NotInstructorError(
-                        "Not instructor can't request emaillist for"
+                        "Not a current instructor can't request emaillist for"
                         "single :{} and joint:{}".format(
                             single_section_labels,
                             joint_section_labels))
