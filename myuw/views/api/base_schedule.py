@@ -117,7 +117,7 @@ def load_schedule(request, schedule):
             # MUWM-4728
             final["is_remote"] = section.is_remote
 
-            # MUWM-596 we don't display 
+            # MUWM-596 we don't display
             # if section.final_exam.building:
             #    building = get_building_by_code(section.final_exam.building)
             #    if building:
