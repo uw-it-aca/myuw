@@ -27,6 +27,9 @@ class TestBuildings(TestCase):
 
         self.assertTrue(CampusBuilding.exists('PAA'))
         self.assertIsNotNone(get_building_by_code('PAA'))
+        self.assertIsNone(get_building_by_code(''))
+        self.assertIsNone(get_building_by_code('*'))
+        self.assertIsNone(get_building_by_code(None))
 
     def test_get_by_schedule(self):
         req = get_request_with_user('javerage',

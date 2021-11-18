@@ -23,19 +23,25 @@ def get_building_by_code(building_code):
 
         log_info(
             logger,
-            {'msg': "CampusBuilding Not in DB: {}".format(building_code)})
+            {'msg': "get_building_by_code({}) Not in DB".format(
+                building_code)})
 
         fac_objs = space.search_by_code(
             'MEB' if is_using_file_dao() else building_code)
 
-        if fac_objs and len(fac_objs) > 0:
-            fac_obj = fac_objs[0]
-            if is_using_file_dao():
-                fac_obj.code = building_code
+        if len(fac_objs) == 0:
+            logger.error(
+                {'msg': "get_building_by_code({}) Invalid code!".format(
+                    building_code)})
+            return None
 
-            return CampusBuilding.upd_building(fac_obj)
+        fac_obj = fac_objs[0]
+        if is_using_file_dao():
+            fac_obj.code = building_code
+
+        return CampusBuilding.upd_building(fac_obj)
     except Exception:
-        log_err(logger, "CampusBuilding get_building_by_code({})".format(
+        log_err(logger, "get_building_by_code({})".format(
             building_code), traceback, None)
     return None
 
@@ -53,12 +59,11 @@ def get_buildings_by_schedule(schedule):
             code = section.final_exam.building
             if code not in buildings:
                 buildings[code] = get_building_by_code(code)
-                logger.debug(buildings[code])
+
         for meeting in section.meetings:
             if not meeting.building_to_be_arranged:
                 code = meeting.building
                 if code not in buildings:
                     buildings[code] = get_building_by_code(code)
-                    logger.debug(buildings[code])
 
     return buildings
