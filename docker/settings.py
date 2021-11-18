@@ -72,6 +72,18 @@ UW_TOKEN_AUDIENCE = "oidc/myuw"
 UW_TOKEN_LEEWAY = 2
 UW_OIDC_ENABLE_LOGGING = True
 
+if os.getenv('SPACE_ENV') in ['PROD', 'EVAL']:
+    RESTCLIENTS_SPACE_DAO_CLASS = 'Live'
+    RESTCLIENTS_SPACE_CONNECT_TIMEOUT = 3
+    RESTCLIENTS_SPACE_TIMEOUT = os.getenv("SPACE_TIMEOUT", 10)
+    RESTCLIENTS_SPACE_POOL_SIZE = os.getenv("SPACE_POOL_SIZE", 10)
+    RESTCLIENTS_SPACE_CERT_FILE = os.getenv('CERT_PATH', '')
+    RESTCLIENTS_SPACE_KEY_FILE = os.getenv('KEY_PATH', '')
+    if os.getenv('SPACE_ENV') == 'PROD':
+        RESTCLIENTS_SPACE_HOST = 'https://ws.admin.washington.edu:443'
+    else:
+        RESTCLIENTS_SPACE_HOST = 'https://wseval.s.uw.edu:443'
+
 # Thrive required settings
 MEDIA_ROOT = "../statics/hx_images"
 MEDIA_URL = "/uploaded_images/"

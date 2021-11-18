@@ -181,3 +181,12 @@ class TestEmaillistApi(MyuwApiTest):
                                                 "2013,summer,B BIO,180/A"))
         self.assertFalse(is_emaillist_authorized(req,
                                                  "2013,summer,B%20BIO,180/A"))
+
+    def test_instructor_no_longer_employee(self):
+        self.set_user('retirestaff')
+        url = reverse("myuw_emaillist_api")
+        resp = self.client.post(
+            url,
+            {u'section_single_A': u'2013,spring,ESS,102/A'})
+        self.assertEquals(resp.status_code, 403)
+        self.assertEquals(resp.content, b'Access Forbidden to Non Instructor')
