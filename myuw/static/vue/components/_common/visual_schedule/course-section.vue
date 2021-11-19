@@ -21,6 +21,7 @@
           <a v-if="meetingLocationUrl"
              v-out="ariaMeetingLocation"
              :href="meetingLocationUrl"
+             :title="`Map of ${meetingData.meeting.building_name}`"
           >
             {{ meetingLocation }}
           </a>
