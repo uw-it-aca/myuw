@@ -38,6 +38,7 @@ class TestDeleteSessions(TransactionTestCase):
 
     @patch.object(Facilities, 'search_by_number', spec=True)
     def test_error(self, mock):
+        call_command('load_buildings', '-l')
         mock.side_effect = DataFailureException(
             'facility/1347.json', 404, '')
         call_command('load_buildings')
