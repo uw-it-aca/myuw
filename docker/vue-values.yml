@@ -167,6 +167,9 @@ environmentVariables:
   - name: SWS_TIMEOUT
     value: "10"
 
+  - name: SPACE_ENV
+    value: PROD
+
   - name: UPASS_ENV
     value: PROD
   - name: UPASS_TIMEOUT

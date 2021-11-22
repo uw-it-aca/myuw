@@ -5,7 +5,7 @@ import logging
 import traceback
 from operator import itemgetter
 from restclients_core.exceptions import InvalidNetID
-from myuw.dao.building import get_buildings_by_schedule
+from myuw.dao.campus_building import get_building_by_code
 from myuw.dao.canvas import (
     get_canvas_active_enrollments, set_section_canvas_course_urls)
 from myuw.dao.enrollment import get_enrollment_for_term, is_ended
@@ -65,7 +65,6 @@ def load_schedule(request, schedule):
     json_data = schedule.json_data()
     if schedule.term.is_summer_quarter():
         json_data["summer_term"] = schedule.summer_term
-    buildings = get_buildings_by_schedule(schedule)
     if len(schedule.sections):
         try:
             set_section_canvas_course_urls(
@@ -118,13 +117,13 @@ def load_schedule(request, schedule):
             # MUWM-4728
             final["is_remote"] = section.is_remote
 
-            # MUWM-596
-            if section.final_exam.building:
-                building = buildings[section.final_exam.building]
-                if building:
-                    final["longitude"] = building.longitude
-                    final["latitude"] = building.latitude
-                    final["building_name"] = building.name
+            # MUWM-596 we don't display
+            # if section.final_exam.building:
+            #    building = get_building_by_code(section.final_exam.building)
+            #    if building:
+            #        final["longitude"] = building.longitude
+            #        final["latitude"] = building.latitude
+            #        final["building_name"] = building.name
 
         # Also backfill the meeting building data
         section_data["has_eos_dates"] = False
@@ -144,7 +143,7 @@ def load_schedule(request, schedule):
                     mdata["start_end_same"] = True
             try:
                 if not mdata["building_tbd"] and len(mdata["building"]):
-                    building = buildings.get(mdata["building"])
+                    building = get_building_by_code(mdata["building"])
                     if building is not None:
                         mdata["latitude"] = building.latitude
                         mdata["longitude"] = building.longitude
