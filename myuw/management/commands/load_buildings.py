@@ -307,7 +307,7 @@ class Command(BaseCommand):
             "-l", "--initial-load", action="store_true", dest="load",
             default=False,
             help="operation")
-    
+
     def handle(self, *args, **options):
         count = 0
         messages = []
