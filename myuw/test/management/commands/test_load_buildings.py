@@ -38,7 +38,18 @@ class TestDeleteSessions(TransactionTestCase):
 
     @patch.object(Facilities, 'search_by_number', spec=True)
     def test_error(self, mock):
-        call_command('load_buildings', '-l')
+        fac_obj = Facility(
+            code='MEB',
+            last_updated=datetime.now(),
+            latitude='47.653693',
+            longitude='-122.304747',
+            name='Mechanical Engineering Building',
+            number='1347',
+            site='Seattle Main Campus',
+            type='Building')
+        CampusBuilding.upd_building(fac_obj)
         mock.side_effect = DataFailureException(
             'facility/1347.json', 404, '')
         call_command('load_buildings')
+        records = CampusBuilding.objects.all()
+        self.assertEquals(len(records), 1)
