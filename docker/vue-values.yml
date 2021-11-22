@@ -58,6 +58,35 @@ cronjob:
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
+    - name: cleanup-instructors
+      schedule: "1 12 4 7 *"
+      command: ["/scripts/management_command.sh"]
+      args: ["cleanup_instructors"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
+    - name: update-buildings
+      schedule: "1 11 1 * *"
+      command: ["/scripts/management_command.sh"]
+      args: ["load_buildings"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
 environmentVariables:
   - name: AUTH
     value: SAML
