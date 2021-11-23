@@ -90,5 +90,18 @@ class TestStudentProfile(TestCase):
         self.assertEqual(
             data['degree_status'][0],
             {
-                
+                'campus': 'SEATTLE',
+                'diploma_mail': 0,
+                'diploma_mail_to_local_address': False,
+                'has_applied': True,
+                'is_admin_hole': False,
+                'is_granted': False,
+                'is_incomplete': False,
+                'level': 1,
+                'name_on_diploma': 'John Joseph Average',
+                'quarter': 'spring',
+                'status': 5,
+                'title': 'BACHELOR OF ARTS (POLITICAL SCIENCE)',
+                'type': 1,
+                'year': 2014
             })
