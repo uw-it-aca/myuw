@@ -302,25 +302,46 @@ logger = logging.getLogger(__name__)
 class Command(BaseCommand):
     help = "Update building table"
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "-l", "--initial-load", action="store_true", dest="load",
+            default=False,
+            help="operation")
+
     def handle(self, *args, **options):
         count = 0
         messages = []
-        CampusBuilding.objects.all().delete()
         space = Facilities()
-        for bcode in BUILDING_CODES:
-            try:
-                fac_objs = space.search_by_code(bcode)
-                if fac_objs and len(fac_objs):
-                    bdg = CampusBuilding.upd_building(fac_objs[0])
-                    logger.info("Loaded {}".format(bdg))
-                    count += 1
-            except Exception as ex:
-                msg = {"Load building": bcode, "err": ex}
-                logger.error(msg)
-                messages.append("\n{}".format(msg))
-        logger.info(
-            "Loaded {}/{} building codes".format(
-                count, len(BUILDING_CODES)))
+
+        if options.get('load'):
+            CampusBuilding.objects.all().delete()
+            for bcode in BUILDING_CODES:
+                try:
+                    fac_objs = space.search_by_code(bcode)
+                    if fac_objs and len(fac_objs):
+                        bdg = CampusBuilding.upd_building(fac_objs[0])
+                        logger.info("Loaded {}".format(bdg))
+                        count += 1
+                except Exception as ex:
+                    msg = {"Load building": bcode, "err": ex}
+                    logger.error(msg)
+                    messages.append("\n{}".format(msg))
+            logger.info(
+                "Loaded {}/{} building codes".format(
+                    count, len(BUILDING_CODES)))
+        else:
+            builds_in_db = CampusBuilding.objects.all()
+            for bdg in builds_in_db:
+                try:
+                    fac = space.search_by_number(bdg.number)
+                    if not bdg.no_change(fac):
+                        updated_bdg = CampusBuilding.upd_building(fac)
+                        logger.info("Updated {}".format(updated_bdg))
+                        count += 1
+                except Exception as ex:
+                    msg = {"Load building": bdg, "err": ex}
+                    logger.error(msg)
+                    messages.append("\n{}".format(msg))
 
         if len(messages):
             send_mail(
