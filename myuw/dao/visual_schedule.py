@@ -5,7 +5,7 @@ import logging
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.instructor_schedule import get_instructor_schedule_by_term
 from myuw.dao.term import get_current_quarter, get_current_summer_term
-from myuw.dao.building import get_building_by_code
+from myuw.dao.campus_building import get_building_by_code
 from restclients_core.exceptions import DataFailureException
 from dateutil.relativedelta import *
 from datetime import timedelta
@@ -35,6 +35,18 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
         period_id += 1
 
         for section in period_data["sections"]:
+            # MUWM-596
+            if period_data['id'] == 'finals':
+                if section.get('final_exam'):
+                    final = section['final_exam']
+                    if final.get('building'):
+                        building = get_building_by_code(final['building'])
+
+                        if building is not None:
+                            final["latitude"] = building.latitude
+                            final["longitude"] = building.longitude
+                            final["building_name"] = building.name
+
             for meeting in section["meetings"]:
                 if 'building' in meeting:
                     building_code = meeting["building"]
@@ -43,6 +55,7 @@ def get_schedule_json(visual_schedule, term, summer_term=None):
                     if building is not None:
                         meeting["latitude"] = building.latitude
                         meeting["longitude"] = building.longitude
+                        meeting["building_name"] = building.name
 
     response['periods'] = schedule_periods
 

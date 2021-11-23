@@ -85,6 +85,25 @@ memcached:
     - "-v"
   updateStrategy:
     type: RollingUpdate
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 30m
+      memory: 256Mi
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: "app.kubernetes.io/name"
+                  operator: In
+                  values:
+                    - "myuw-prod-prod-memcached"
+            topologyKey: "kubernetes.io/hostname"
 certs:
   mounted: true
   certPath: /certs/myuw.s.uw.edu-uwca.cert
@@ -97,18 +116,57 @@ cronjob:
       schedule: "*/1 * * * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_section_status_changes"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
     - name: clear-expired-sessions
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
     - name: cleanup-instructors
-      schedule: "1 12 5 9 *"
+      schedule: "1 12 4 7 *"
       command: ["/scripts/management_command.sh"]
       args: ["cleanup_instructors"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
     - name: check-reslinks
       schedule: "1 10 * * 0"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
+    - name: update-buildings
+      schedule: "1 11 1 * *"
+      command: ["/scripts/management_command.sh"]
+      args: ["load_buildings"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
 environmentVariables:
   - name: AUTH
     value: SAML
@@ -255,6 +313,9 @@ environmentVariables:
     value: "10"
   - name: SWS_POOL_SIZE
     value: "50"
+
+  - name: SPACE_ENV
+    value: PROD
 
   - name: UPASS_ENV
     value: PROD
