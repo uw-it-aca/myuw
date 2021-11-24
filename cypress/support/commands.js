@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import VueObserveVisibility from 'vue-observe-visibility';
 
 // Global Mixins
-import utils from '../../myuw/static/vue/mixins/utils';
+import utils from '../../myuw_vue/mixins/utils';
 
 // Custom Plugins
-import Logger from '../../myuw/static/vue/plugins/logger';
-import Observer from '../../myuw/static/vue/plugins/observer';
-import Metadata from '../../myuw/static/vue/plugins/metadata';
-import Tracklink from '../../myuw/static/vue/plugins/tracklink';
-import UwBootstrap from '../../myuw/static/vue/plugins/uw-bootstrap';
+import Logger from '../../myuw_vue/plugins/logger';
+import Observer from '../../myuw_vue/plugins/observer';
+import Metadata from '../../myuw_vue/plugins/metadata';
+import Tracklink from '../../myuw_vue/plugins/tracklink';
+import UwBootstrap from '../../myuw_vue/plugins/uw-bootstrap';
 
 Cypress.Commands.add('createLocalVue', (vuex) => {
   let localVue = createLocalVue();

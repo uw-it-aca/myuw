@@ -49,7 +49,7 @@ services:
     tty: true
     entrypoint:
       - ./node_modules/.bin/eslint
-      - myuw/static/vue
+      - myuw_vue
       - --ext
       - .vue
   jest:
