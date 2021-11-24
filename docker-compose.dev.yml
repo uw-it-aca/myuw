@@ -2,10 +2,10 @@
 # in a development environment
 #
 # How to use this:
-# docker-compose -f dev.helper.yml run (django-test|eslint-fix|eslint|jest) 
+# docker-compose -f docker-compose.dev.yml run (django-test|eslint-fix|eslint|jest) 
 #
 # You can also run a command in the container by using:
-# docker-compose -f dev.helper.yml run <service-name> <command>
+# docker-compose -f docker-compose.dev.yml run <service-name> <command>
 
 version: '3.4'
 
