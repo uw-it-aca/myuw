@@ -171,7 +171,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../../css/myuw/variables.scss";
+@import '../../../../myuw/static/css/myuw/variables.scss';
 
 .myuw-covid-links {
   background-color: lighten(map.get($theme-colors, "beige"), 10%) !important;

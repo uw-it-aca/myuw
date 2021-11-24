@@ -43,6 +43,7 @@ services:
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
     working_dir: /app/
     stdin_open: true
     tty: true
@@ -60,6 +61,7 @@ services:
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
     working_dir: /app/
     stdin_open: true
     tty: true
@@ -74,6 +76,7 @@ services:
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
       - ./cypress:/app/cypress
     working_dir: /app/
     stdin_open: true

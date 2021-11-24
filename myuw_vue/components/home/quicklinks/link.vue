@@ -186,7 +186,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "sass:map";
-@import "../../../../css/myuw/variables.scss";
+@import '../../../../myuw/static/css/myuw/variables.scss';
 
 .myuw-quicklinks {
   &:focus,

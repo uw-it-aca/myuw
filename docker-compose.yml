@@ -1,11 +1,12 @@
 version: '3.4'
 
 services:
-  myuw:
+  app:
     build:
       context: .
       target: app-container
-    container_name: app-myuw
+    restart: always
+    container_name: myuw_app
     volumes:
       - ./myuw:/app/myuw
       - statics-volume:/static
@@ -17,10 +18,12 @@ services:
       #PORT: ${PORT:-8000}
     stdin_open: true
     tty: true
-  node-bundler:
+  devtools:
     build:
       context: .
-      target: node-bundler
+      target: wpack
+    restart: always
+    container_name: myuw_devtools
     ports:
       - "${BUNDLE_ANALYZER_PORT:-8888}:8888" # Required when environment.BUNDLE_ANALYZER is true
     environment:
@@ -29,9 +32,11 @@ services:
       VUE_DEVTOOLS: "True"
       BUNDLE_ANALYZER: "True"
     volumes:
-      - ./myuw:/app/myuw
+      - ./myuw:/app/myuw # expose main django app so webpack-loader can output bundles here
+      - ./myuw_vue:/app/myuw_vue
       - statics-volume:/static
-    command: bash -c "cd /app/ && ./node_modules/.bin/webpack --watch"
+    #command: bash -c "cd /app/ && ./node_modules/.bin/webpack --watch"
+    command: npx webpack --watch --mode=development
     stdin_open: true
     tty: true
 volumes:
