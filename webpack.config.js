@@ -72,6 +72,7 @@ module.exports = {
   output: {
     path: path.resolve('./myuw/static/myuw/bundles/'),
     filename: "[name]-[contenthash].js",
+    chunkFilename: '[id]-[contenthash].js',
     publicPath: '/static/myuw/bundles/',
   },
   
