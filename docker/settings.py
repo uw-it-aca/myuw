@@ -206,14 +206,17 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
 GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 
-#STATICFILES_DIRS = [
-#    '../static/myuw/'
-#]
-
 # Location of stats file that can be accessed during local development and 
 # collected from during production build process
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'STATS_FILE': os.path.join(BASE_DIR, 'myuw/static/webpack-stats.json'),
+if os.getenv("ENV") == "localdev":
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'STATS_FILE': os.path.join(BASE_DIR, 'myuw/static/webpack-stats.json'),
+        }
     }
-}
+else:
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'STATS_FILE': os.path.join(BASE_DIR, '/static/webpack-stats.json'),
+        }
+    }
