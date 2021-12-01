@@ -461,7 +461,7 @@ export default {
 
 <style lang="scss" scoped>
 @use 'sass:math';
-@import "../../../../css/myuw/variables.scss";
+@import '../../../../myuw/static/css/myuw/variables.scss';
 
 $heading-height: 45px;
 $cell-height: 35px;

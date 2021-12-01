@@ -39,8 +39,8 @@ import {
 import 'bootstrap';
 
 // myuw custom theming and global styles
-import '../css/myuw/custom.scss';
-import '../css/myuw/global.scss';
+import '../myuw/static/css/myuw/custom.scss';
+import '../myuw/static/css/myuw/global.scss';
 
 // MARK: google analytics data stream measurement_id
 const gaCode = document.body.getAttribute('data-gtag');

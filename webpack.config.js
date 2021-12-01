@@ -25,51 +25,57 @@ module.exports = {
       chunks: 'all',
     },
   },
+
+  // MARK: Specify the 'entry point' js for the vue application. Multiple entry points can be
+  // declared using an object
   entry: {
     home: [
-      "./myuw/static/vue/home.js",
+      "./myuw_vue/home.js",
     ],
     academics: [
-      "./myuw/static/vue/academics.js",
+      "./myuw_vue/academics.js",
     ],
     teaching: [
-      "./myuw/static/vue/teaching.js",
+      "./myuw_vue/teaching.js",
     ],
     accounts: [
-      "./myuw/static/vue/accounts.js"
+      "./myuw_vue/accounts.js"
     ],
     future_quarters: [
-      "./myuw/static/vue/future_quarters.js"
+      "./myuw_vue/future_quarters.js"
     ],
     profile: [
-      "./myuw/static/vue/profile.js"
+      "./myuw_vue/profile.js"
     ],
     textbooks: [
-      "./myuw/static/vue/textbooks.js"
+      "./myuw_vue/textbooks.js"
     ],
     husky_experience: [
-      "./myuw/static/vue/husky_experience.js"
+      "./myuw_vue/husky_experience.js"
     ],
     notices: [
-      "./myuw/static/vue/notices.js"
+      "./myuw_vue/notices.js"
     ],
     teaching_classlist: [
-      "./myuw/static/vue/teaching_classlist.js"
+      "./myuw_vue/teaching_classlist.js"
     ],
     resources: [
-      "./myuw/static/vue/resources.js"
+      "./myuw_vue/resources.js"
     ],
     calendar: [
-      "./myuw/static/vue/calendar.js"
+      "./myuw_vue/calendar.js"
     ],
   },
-  output: {
-      path: path.resolve('../static/myuw/'),
-      filename: "[name]-[contenthash].js",
-      chunkFilename: '[id]-[contenthash].js',
-      publicPath: '/static/myuw/',
-  },
 
+  // MARK: Put the 'bundles' in a name-spaced directory in the django app statics
+  // where it be collected when using 'collectstatic'
+  output: {
+    path: path.resolve('./myuw/static/myuw/bundles/'),
+    filename: "[name]-[contenthash].js",
+    chunkFilename: '[id]-[contenthash].js',
+    publicPath: '/static/myuw/bundles/',
+  },
+  
   module: {
     rules: [
       {
@@ -122,9 +128,12 @@ module.exports = {
       filename: '[name]-[contenthash].css',
       chunkFilename: '[id]-[contenthash].css',
     }),
+
+    // MARK: Put the 'webpack-stats.json' file in the static location directory so that it 
+    // can be accessed during development and production static collection
     new BundleTracker({
-      path: path.resolve('../static/myuw/'),
-      filename: '../static/myuw/webpack-stats.json',
+      //path: path.resolve('../static/myuw/'),
+      filename: './myuw/static/webpack-stats.json',
     }),
   ],
 

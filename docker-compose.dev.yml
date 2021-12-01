@@ -2,10 +2,10 @@
 # in a development environment
 #
 # How to use this:
-# docker-compose -f dev.helper.yml run (django-test|eslint-fix|eslint|jest) 
+# docker-compose -f docker-compose.dev.yml run (django-test|eslint-fix|eslint|jest) 
 #
 # You can also run a command in the container by using:
-# docker-compose -f dev.helper.yml run <service-name> <command>
+# docker-compose -f docker-compose.dev.yml run <service-name> <command>
 
 version: '3.4'
 
@@ -43,12 +43,13 @@ services:
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
     working_dir: /app/
     stdin_open: true
     tty: true
     entrypoint:
       - ./node_modules/.bin/eslint
-      - myuw/static/vue
+      - myuw_vue
       - --ext
       - .vue
   jest:
@@ -60,6 +61,7 @@ services:
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
     working_dir: /app/
     stdin_open: true
     tty: true
@@ -74,6 +76,7 @@ services:
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
       - ./cypress:/app/cypress
     working_dir: /app/
     stdin_open: true
