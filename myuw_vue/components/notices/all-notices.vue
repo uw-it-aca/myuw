@@ -2,17 +2,17 @@
   <div v-if="isReady">
     <div class="d-flex border-bottom pb-3">
       <div class="ms-auto myuw-text-md">
-        <a
+        <button type="button" class="btn btn-link"
           v-if="!everyNoticeListExpanded"
           @click="expandAll()"
         >
           Expand All
-        </a>
-        <a v-else
+        </button>
+        <button v-else type="button" class="btn btn-link"
           @click="collapseAll()"
         >
           Collapse All
-        </a>
+        </button>
       </div>
     </div>
     <div v-if="hasAnyNotices">
