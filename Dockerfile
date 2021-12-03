@@ -1,4 +1,4 @@
-FROM gcr.io/uwit-mci-axdd/django-container:1.3.7 as app-prewebpack-container
+FROM gcr.io/uwit-mci-axdd/django-container:1.3.8 as app-prewebpack-container
 
 USER root
 RUN apt-get update && apt-get install mysql-client libmysqlclient-dev -y
@@ -42,7 +42,7 @@ FROM devtools AS node-test-container
 ENV NODE_ENV=development
 RUN npm install
 
-FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.7 as app-test-container
+FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.8 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/
