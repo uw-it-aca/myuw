@@ -29,6 +29,10 @@ COPY --chown=acait:acait --from=node-bundler /static /static
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
 
+USER root
+RUN cat project/uwca.crt >> /etc/ssl/certs/ca-certificates.crt
+USER acait
+
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 
 FROM node-bundler AS node-test-container
