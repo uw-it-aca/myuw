@@ -78,7 +78,7 @@
       "myuw/static/**/*.{js,vue}",
       "!myuw/static/js/**",
       "!myuw/static/vendor/**",
-      "!myuw/static/vue/*.js",
+      "!myuw_vue/*.{js,vue}",
       "!**/tests/**",
       "!**/node_modules/**",
       "!**/*.spec.js"
