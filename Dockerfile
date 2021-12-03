@@ -1,4 +1,4 @@
-FROM gcr.io/uwit-mci-axdd/django-container:1.3.3 as pre-container
+FROM gcr.io/uwit-mci-axdd/django-container:1.3.8 as pre-container
 # Has to be pre-container
 
 USER root
@@ -28,10 +28,6 @@ COPY --chown=acait:acait --from=node-bundler /static /static
 
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
-
-USER root
-RUN cat project/uwca.crt >> /etc/ssl/certs/ca-certificates.crt
-USER acait
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 

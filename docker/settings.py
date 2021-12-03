@@ -118,9 +118,6 @@ USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
 
-# Address CERTIFICATE_VERIFY_FAILED Error
-RESTCLIENTS_CA_BUNDLE = '/etc/ssl/certs/ca-certificates.crt'
-
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
 
