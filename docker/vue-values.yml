@@ -58,18 +58,41 @@ cronjob:
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
+    - name: cleanup-instructors
+      schedule: "1 12 4 7 *"
+      command: ["/scripts/management_command.sh"]
+      args: ["cleanup_instructors"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
+    - name: update-buildings
+      schedule: "1 11 1 * *"
+      command: ["/scripts/management_command.sh"]
+      args: ["load_buildings"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
 environmentVariables:
   - name: AUTH
     value: SAML
 
   - name: ENV
     value: dev
-
-  - name: ATTEST_ENV
-    value: PROD
-
-  - name: ATTEST_AUTH_ENV
-    value: PROD
 
   - name: BOOKSTORE_ENV
     value: PROD
@@ -173,6 +196,9 @@ environmentVariables:
   - name: SWS_TIMEOUT
     value: "10"
 
+  - name: SPACE_ENV
+    value: PROD
+
   - name: UPASS_ENV
     value: PROD
   - name: UPASS_TIMEOUT
@@ -202,8 +228,6 @@ externalSecrets:
     - name: vue.my.uw.edu-secrets
       externalKey: axdd/kv/data/my/vue/secrets
       data:
-        - name: attest-auth-secret
-          property: attest-auth-secret
         - name: django-secret
           property: django-secret
         - name: canvas-account-id
@@ -264,10 +288,6 @@ environmentVariablesSecrets:
     name: DJANGO_SECRET
     secretName: vue.my.uw.edu-secrets
     secretKey: django-secret
-  attest-auth-secret:
-    name: ATTEST_AUTH_SECRET
-    secretName: vue.my.uw.edu-secrets
-    secretKey: attest-auth-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
     secretName: vue.my.uw.edu-secrets

@@ -10,7 +10,16 @@ function compareFn(a, b) {
 };
 
 const postProcess = (response) => {
-    return response.data.sort(compareFn);
+    if (response.data && response.data.length) {
+        let advisers = [];
+        response.data.forEach((adv) => {
+            if (adv.is_active) {
+                advisers.push(adv);
+            }
+        });
+        return advisers.sort(compareFn);
+    }
+    return response;
 };
 
 const customActions = {

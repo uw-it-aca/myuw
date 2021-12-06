@@ -362,8 +362,8 @@ def _get_joint_line(section):
     <list_address> <quarter_code> YYYY <sln>
     """
     joint_slns = [section.sln]
-    for section in get_joint_sections(section):
-        joint_slns.append(section.sln)
+    for joint_section in get_joint_sections(section):
+        joint_slns.append(joint_section.sln)
 
     sln_string = " ".join(map(str, joint_slns))
     return "{} {} {} {}\n".format(

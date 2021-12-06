@@ -227,6 +227,6 @@ def in_wi_xfer_group(request):
 
 def in_hxtoolkit_group(request):
     if not hasattr(request, "in_hxtoolkit_group"):
-        request.in_hxtoolkit_group = is_effective_member(
-            request, "u_myuwgroup_hxtoolkit")
+        request.in_hxtoolkit_group = gws.is_direct_member(
+            "u_myuwgroup_hxtoolkit", get_netid_of_current_user(request))
     return request.in_hxtoolkit_group

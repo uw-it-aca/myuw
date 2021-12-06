@@ -24,7 +24,9 @@
       </template>
 
       <template #card-body>
-        <uw-classlist-content :section="sectionData.sections[0]" />
+        <uw-classlist-content
+          :section="sectionData.sections[0]"
+          :is-joint-section-data-ready="isJointSectionDataReady" />
       </template>
 
       <template v-if="noData" #card-error>
@@ -66,6 +68,11 @@ export default {
       type: String,
       required: true,
     },
+  },
+  data: function() {
+    return {
+      isJointSectionDataReady: false,
+    };
   },
   computed: {
     ...mapState({
@@ -115,6 +122,16 @@ export default {
       return this.isErrored && !(this.noData ||
         this.noAccessPermission || this.invalidCourse);
     },
+    jointSections() {
+      return this.sectionData.sections[0].joint_sections;
+    },
+  },
+  watch: {  // MUWM-4385
+    isReady: function (newValue, oldValue) {
+      if (this.showContent && this.jointSections && this.jointSections.length) {
+        this.loadJointRegLinkedSection();
+      }
+    },
   },
   created() {
     if (this.instructor) {
@@ -125,6 +142,17 @@ export default {
     ...mapActions('classlist', {
       fetchClasslist: 'fetch',
     }),
+    loadJointRegLinkedSection() {  // MUWM-4385
+      const fetches = [];
+      for(const section of this.jointSections) {
+        fetches.push(this.fetchClasslist(section.url));
+      }
+      Promise.all(fetches).then(results => {
+        this.isJointSectionDataReady = true;
+      }).catch(err => {
+        console.error(err);
+      })
+    },
   },
 };
 </script>

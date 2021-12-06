@@ -64,6 +64,24 @@ describe('Registration Status Card', () => {
   });
 
   it('Test normal case1, Jinter 2013 Spring', async () => {
+    store.state.cardDisplayDates.is_after_start_of_registration_display_period = false;
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/notices/': mockNotices,
+        '/api/v1/oquarters/': oQuarterSpring,
+        '/api/v1/profile/': profileJinter,
+        '/api/v1/myplan/2013/Spring': myPlanSpring,
+      };
+
+      return Promise.resolve({data: urlData[url]});
+    });
+
+    const wrapper = mount(RegStatus, {store, localVue});
+    await new Promise(setImmediate);
+    expect(wrapper.vm.shouldDisplayAtAll).toBe(false);
+  });
+
+  it('Test normal case1, Jinter 2013 Spring', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/notices/': mockNotices,
@@ -165,6 +183,7 @@ describe('Registration Status Card', () => {
     expect(wrapper.vm.pendingMinors.length).toBe(1);
     expect(wrapper.vm.regHoldsNotices.length).toBe(2);
     expect(wrapper.vm.estRegDateNotices.length).toBe(1);
+    expect(wrapper.vm.estRegData.estRegDate).toBe("Fri, May 10");  // MUWM-5034
     const myPlanCourses = wrapper.vm.myPlanData.terms[0];
     expect(myPlanCourses.ready_count).toBe(0);
     expect(myPlanCourses.has_ready_courses).toBe(false);

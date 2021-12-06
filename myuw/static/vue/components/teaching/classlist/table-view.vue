@@ -34,6 +34,7 @@
   </div>
 </template>
 <script>
+import {mapState} from 'vuex';
 import {
   faEnvelope,
 } from '@fortawesome/free-solid-svg-icons';
@@ -58,6 +59,9 @@ export default {
     };
   },
   computed: {
+    ...mapState('classlist', {
+      allData: (state) => state.value,
+    }),
     fields() {
       const data = [
         {
@@ -155,14 +159,15 @@ export default {
           //Pronouns: reg.pronouns,
         };
         if (this.showJointCourseStud) {
-          dataItem.jointCourse = (
-            reg.isJoint ?
-            (reg.jointCurric + ' ' + reg.jointCourseNumber+ ' ' + reg.jointSectionId) :
-            (this.section.curriculum_abbr + ' ' + this.section.course_number + ' ' +
-            this.section.section_id));
+          dataItem.jointCourse = reg.isJoint ? reg.sectionLabel : this.section.label;
         }
         if (this.section.has_linked_sections) {
-          dataItem.linkedSection = reg.linked_sections;
+          if (reg.isJoint && this.showJointCourseStud) {
+            // MUWM-4385
+            dataItem.linkedSection = this.getRegisteredLinkedSection(reg.sectionLabel, reg.netid);
+          } else {
+            dataItem.linkedSection = reg.linked_sections;
+          }
         }
         dataItem.credits = reg.is_auditor ? 'Audit' : reg.credits;
         dataItem.classLevel = this.titleCaseWord(reg.class_level);
@@ -180,6 +185,26 @@ export default {
       }
       return data;
     },
+  },
+  methods: {
+    // MUWM-4385
+    getRegisteredLinkedSection(jointSectionLabel, netid) {
+      let linkedSectionId = '';
+      for(const section of this.section.joint_sections) {
+        if (jointSectionLabel === section.label) {
+          if (this.allData[section.url]) {
+            for(const reg of this.allData[section.url].sections[0].registrations) {
+              if (reg.netid === netid) {
+                linkedSectionId = reg.linked_sections;
+                break;
+              }
+            }
+          }
+          break;
+        }
+      }
+      return linkedSectionId;
+    }
   },
 };
 </script>

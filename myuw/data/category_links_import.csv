@@ -11,7 +11,7 @@ PageAcademics,Registration,all,,,https://www.washington.edu/students/timeschd/,U
 PageAcademics,Registration,pce,https://www.washington.edu/students/timeschd/95index.html,Professional & Continuing Education Time Schedule,,,,,,,no,,,,,,,,,,,,,
 PageAcademics,Registration,all,,,http://www.washington.edu/students/crscat/,Course Catalog,https://www.washington.edu/students/crscatb/,Course Catalog,https://www.washington.edu/students/crscatt/,Course Catalog,no,,,,,,,,,,,,,
 PageAcademics,Registration,all,https://myplan.uw.edu/dars,Degree Audit (DARS),,,,,,,yes,,,,,,,,,,,,,
-PageAcademics,Registration,all,https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/,MyPlan,,,,,,,yes,,,,,,,,,,,,,
+PageAcademics,Registration,all,https://myplan.uw.edu/plan/,MyPlan,,,,,,,yes,,,,,,,,,,,,,
 PageAcademics,Registration,all,https://sdb.admin.uw.edu/students/uwnetid/register.asp,Register with SLN,,,,,,,yes,,,,,,,,,,,,,
 PageAcademics,Registration,all,,,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp,Schedule Finder,,,yes,,,,,,,,,,,,,
 PageAcademics,Registration,all,https://notify.uw.edu/,Notify.UW,,,,,,,yes,,,,,,,,,,,,,

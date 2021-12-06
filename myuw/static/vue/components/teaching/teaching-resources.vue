@@ -95,7 +95,7 @@ export default {
           { url: "https://apps.registrar.washington.edu/grade-change/pages/change.php",
             title: "Change Submitted Grades" },
           { url: this.linkData.courseEval, title: "Course Evaluations" },
-          { url: "https://coda.uw.edu", title: "Course Stats" }
+          { url: "https://coda.uw.edu", title: "Course Statistics Dashboard" }
         ];
       },
       helpLinks() {

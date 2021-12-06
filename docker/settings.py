@@ -19,7 +19,7 @@ INSTALLED_APPS += [
     'supporttools',
     'blti',
     'myuw.apps.MyUWConfig',
-    'webpack_bridge',
+    'webpack_loader',
 ]
 
 MIDDLEWARE.insert(3, 'uw_oidc.middleware.IDTokenAuthenticationMiddleware')
@@ -71,6 +71,18 @@ else:
 UW_TOKEN_AUDIENCE = "oidc/myuw"
 UW_TOKEN_LEEWAY = 2
 UW_OIDC_ENABLE_LOGGING = True
+
+if os.getenv('SPACE_ENV') in ['PROD', 'EVAL']:
+    RESTCLIENTS_SPACE_DAO_CLASS = 'Live'
+    RESTCLIENTS_SPACE_CONNECT_TIMEOUT = 3
+    RESTCLIENTS_SPACE_TIMEOUT = os.getenv("SPACE_TIMEOUT", 10)
+    RESTCLIENTS_SPACE_POOL_SIZE = os.getenv("SPACE_POOL_SIZE", 10)
+    RESTCLIENTS_SPACE_CERT_FILE = os.getenv('CERT_PATH', '')
+    RESTCLIENTS_SPACE_KEY_FILE = os.getenv('KEY_PATH', '')
+    if os.getenv('SPACE_ENV') == 'PROD':
+        RESTCLIENTS_SPACE_HOST = 'https://ws.admin.washington.edu:443'
+    else:
+        RESTCLIENTS_SPACE_HOST = 'https://wseval.s.uw.edu:443'
 
 # Thrive required settings
 MEDIA_ROOT = "../statics/hx_images"
@@ -143,27 +155,6 @@ AWS_SQS = {
     }
 }
 
-if os.getenv('ATTEST_ENV') in RESTCLIENTS_DEFAULT_ENVS:
-    RESTCLIENTS_ATTEST_DAO_CLASS = 'Live'
-    RESTCLIENTS_ATTEST_CONNECT_TIMEOUT = 3
-    RESTCLIENTS_ATTEST_TIMEOUT = os.getenv("ATTEST_TIMEOUT", 7)
-    RESTCLIENTS_ATTEST_POOL_SIZE = os.getenv("ATTEST_POOL_SIZE", 30)
-    RESTCLIENTS_ATTEST_AUTH_SECRET = os.getenv('ATTEST_AUTH_SECRET')
-    if os.getenv('ATTEST_ENV') == 'PROD':
-        RESTCLIENTS_ATTEST_HOST = 'https://api.sps.sis.uw.edu:443'
-    else:
-        RESTCLIENTS_ATTEST_HOST = 'https://api.sps-dev.sis.uw.edu:443'
-
-if os.getenv('ATTEST_AUTH_ENV') in RESTCLIENTS_DEFAULT_ENVS:
-    RESTCLIENTS_ATTEST_AUTH_DAO_CLASS = 'Live'
-    RESTCLIENTS_ATTEST_AUTH_CONNECT_TIMEOUT = 3
-    RESTCLIENTS_ATTEST_AUTH_TIMEOUT = 10
-    RESTCLIENTS_ATTEST_AUTH_POOL_SIZE = 3
-    if os.getenv('ATTEST_AUTH_ENV') == 'PROD':
-        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://auth.api.sps.sis.uw.edu:443'
-    else:
-        RESTCLIENTS_ATTEST_AUTH_HOST = 'https://auth.api.sps-dev.sis.uw.edu:443'
-
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -218,3 +209,9 @@ GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 STATICFILES_DIRS = [
     '../static/myuw/'
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'STATS_FILE': os.path.join('../static/myuw/', 'webpack-stats.json')
+    }
+}

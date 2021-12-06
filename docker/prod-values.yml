@@ -1,15 +1,15 @@
 autoscaling:
   enabled: true
   minReplicas: 3
-  maxReplicas: 60
+  maxReplicas: 80
 targetAverageUtilization: 100
 resources:
   limits:
     cpu: 1.0
-    memory: 1280Mi
+    memory: 1.0Gi
   requests:
     cpu: 256m
-    memory: 1024Mi
+    memory: 0.6Gi
 affinity:
    podsSpanNodes: true
 ingress:
@@ -71,11 +71,11 @@ image:
   tag: IMAGE_TAG
 memcached:
   enabled: true
-  replicaCount: 8
+  replicaCount: 4
   command:
     - "memcached"
     - "-m"
-    - "128"
+    - "256"
     - "-c"
     - "16384"
     - "-t"
@@ -85,6 +85,25 @@ memcached:
     - "-v"
   updateStrategy:
     type: RollingUpdate
+  resources:
+    limits:
+      cpu: 250m
+      memory: 512Mi
+    requests:
+      cpu: 30m
+      memory: 256Mi
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: "app.kubernetes.io/name"
+                  operator: In
+                  values:
+                    - "myuw-prod-prod-memcached"
+            topologyKey: "kubernetes.io/hostname"
 certs:
   mounted: true
   certPath: /certs/myuw.s.uw.edu-uwca.cert
@@ -97,30 +116,63 @@ cronjob:
       schedule: "*/1 * * * *"
       command: ["/scripts/management_command.sh"]
       args: ["load_section_status_changes"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
     - name: clear-expired-sessions
       schedule: "1 10 * * 6"
       command: ["/scripts/management_command.sh"]
       args: ["clear_expired_sessions", "7"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
     - name: cleanup-instructors
-      schedule: "1 12 5 9 *"
+      schedule: "1 12 4 7 *"
       command: ["/scripts/management_command.sh"]
       args: ["cleanup_instructors"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
     - name: check-reslinks
       schedule: "1 10 * * 0"
       command: ["/scripts/management_command.sh"]
       args: ["check_reslinks"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
+    - name: update-buildings
+      schedule: "1 11 1 * *"
+      command: ["/scripts/management_command.sh"]
+      args: ["load_buildings"]
+      resources:
+        limits:
+          cpu: 100m
+          memory: 128Mi
+        requests:
+          cpu: 25m
+          memory: 64Mi
 environmentVariables:
   - name: AUTH
     value: SAML
 
   - name: ENV
     value: prod
-
-  - name: ATTEST_ENV
-    value: PROD
-
-  - name: ATTEST_AUTH_ENV
-    value: PROD
 
   - name: BOOKSTORE_ENV
     value: PROD
@@ -262,6 +314,9 @@ environmentVariables:
   - name: SWS_POOL_SIZE
     value: "50"
 
+  - name: SPACE_ENV
+    value: PROD
+
   - name: UPASS_ENV
     value: PROD
   - name: UPASS_TIMEOUT
@@ -295,8 +350,6 @@ externalSecrets:
     - name: my.uw.edu-secrets
       externalKey: axdd/kv/data/my/prod/secrets
       data:
-        - name: attest-auth-secret
-          property: attest-auth-secret
         - name: canvas-account-id
           property: canvas-account-id
         - name: canvas-oauth-bearer
@@ -353,10 +406,6 @@ environmentVariablesSecrets:
     name: DJANGO_SECRET
     secretName: my.uw.edu-secrets
     secretKey: django-secret
-  attest-auth-secret:
-    name: ATTEST_AUTH_SECRET
-    secretName: my.uw.edu-secrets
-    secretKey: attest-auth-secret
   canvas-account-secret:
     name: CANVAS_ACCOUNT_ID
     secretName: my.uw.edu-secrets

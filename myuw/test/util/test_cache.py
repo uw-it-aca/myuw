@@ -33,12 +33,6 @@ class TestCustomCachePolicy(TestCase):
             "myplan", "/api/plan/"), FIVE_SECONDS)
 
         self.assertEquals(cache.get_cache_expiration_time(
-            "attest_auth", "/oauth2/token"), 60 * 45)
-
-        self.assertEquals(cache.get_cache_expiration_time(
-            "attest", "/attestations/v1/covid19/"), FIVE_SECONDS)
-
-        self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
         self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/term/current.json"), ONE_DAY)
@@ -61,9 +55,18 @@ class TestCustomCachePolicy(TestCase):
             "gws", "/group_sws/v3"), HALF_HOUR)
 
         self.assertEquals(cache.get_cache_expiration_time(
-            "pws", "/nws/v1/uwnetid"), ONE_HOUR)
+            "pws", "/identity/v2/person"), ONE_HOUR)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "pws", "/identity/v2/person", status=404), 60 * 5)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "pws", "/identity/v2/person", status=503), 60 * 15)
+
         self.assertEquals(cache.get_cache_expiration_time(
             "uwnetid", "/nws/v1/uwnetid"), FOUR_HOURS)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "uwnetid", "/nws/v1/uwnetid", status=404), 60 * 5)
+        self.assertEquals(cache.get_cache_expiration_time(
+            "uwnetid", "/nws/v1/uwnetid", status=409), 60 * 5)
 
         self.assertEquals(cache.get_cache_expiration_time(
             "grad", "/services/students"), FOUR_HOURS)

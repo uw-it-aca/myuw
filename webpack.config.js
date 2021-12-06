@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const DjangoBridgePlugin = require('django-webpack-bridge');
+const BundleTracker = require('webpack-bundle-tracker');
 
 if (!('VUE_DEVTOOLS' in process.env) || process.env.VUE_DEVTOOLS.length === 0) {
   process.env.VUE_DEVTOOLS = process.env.ENV === 'localdev';
@@ -67,7 +67,7 @@ module.exports = {
       path: path.resolve('../static/myuw/'),
       filename: "[name]-[contenthash].js",
       chunkFilename: '[id]-[contenthash].js',
-      publicPath: '/myuw/',
+      publicPath: '/static/myuw/',
   },
 
   module: {
@@ -122,7 +122,10 @@ module.exports = {
       filename: '[name]-[contenthash].css',
       chunkFilename: '[id]-[contenthash].css',
     }),
-    new DjangoBridgePlugin(),
+    new BundleTracker({
+      path: path.resolve('../static/myuw/'),
+      filename: '../static/myuw/webpack-stats.json',
+    }),
   ],
 
   resolve: {

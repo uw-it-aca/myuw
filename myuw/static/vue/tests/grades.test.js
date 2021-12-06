@@ -54,7 +54,7 @@ describe('Courses Store', () => {
   });
 });
 
-describe('Events Card', () => {
+describe('Grades Card', () => {
   let store;
 
   beforeEach(() => {

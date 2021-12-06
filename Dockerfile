@@ -1,4 +1,4 @@
-FROM gcr.io/uwit-mci-axdd/django-container:1.3.3 as pre-container
+FROM gcr.io/uwit-mci-axdd/django-container:1.3.8 as pre-container
 # Has to be pre-container
 
 USER root
@@ -36,7 +36,7 @@ FROM node-bundler AS node-test-container
 ENV NODE_ENV=development
 RUN npm install
 
-FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.1 as app-test-container
+FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.8 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/

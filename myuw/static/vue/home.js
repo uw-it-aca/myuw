@@ -54,7 +54,6 @@ import textbooks from './vuex/store/textbooks';
 import studSchedule from './vuex/store/schedule/student';
 import academicEvents from './vuex/store/academic_events';
 import resources from './vuex/store/resources';
-import covid19 from './vuex/store/covid19';
 
 vueConf.store.registerModule('notices', notices);
 vueConf.store.registerModule('hfs', hfs);
@@ -73,7 +72,6 @@ vueConf.store.registerModule('stud_schedule', studSchedule);
 vueConf.store.registerModule('inst_schedule', inst_schedule);
 vueConf.store.registerModule('academic_events', academicEvents);
 vueConf.store.registerModule('resources', resources);
-vueConf.store.registerModule('covid19', covid19);
 
 vueConf.store.commit('addVarToState', {
   name: 'page',

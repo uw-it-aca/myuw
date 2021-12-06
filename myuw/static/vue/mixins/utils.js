@@ -87,7 +87,8 @@ export default {
       return "";
     },
     titleCaseName(nameStr) {
-      return nameStr.split(" ").map(this.titleCaseWord).join(' ');
+      return ((nameStr && nameStr.length)
+        ? nameStr.split(" ").map(this.titleCaseWord).join(' ')  : "");
     },
     capitalizeString(string) {
       if (!string) {

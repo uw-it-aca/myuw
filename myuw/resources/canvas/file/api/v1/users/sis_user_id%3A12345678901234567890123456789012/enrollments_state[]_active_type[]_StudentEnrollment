@@ -5,6 +5,8 @@
         "user_id": 496168,
         "enrollment_state": "active",
         "type": "TeacherEnrollment",
+        "role": "TeacherEnrollment",
+        "role_id": 982,
         "course_section_id": 225705,
         "course_id": 149650,
         "sis_course_id": "2013-spring-TRAIN-101-A",

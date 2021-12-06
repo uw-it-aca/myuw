@@ -4,7 +4,7 @@ import {
   processSectionMeetings,
 } from './common';
 
-function postProcess(response, urlExtra) {
+export function postProcess(response, urlExtra) {
   let data = setTermAndExtractData(response, urlExtra);
 
   let courseData = data[urlExtra];

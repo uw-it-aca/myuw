@@ -56,6 +56,8 @@ describe('mixins', () => {
   });
 
   it('titleCaseName', () => {
+    expect(utils.methods.titleCaseName(null)).toEqual("");
+    expect(utils.methods.titleCaseName("")).toEqual("");
     expect(utils.methods.titleCaseName('WORD A WORD')).toEqual('Word A Word');
     expect(utils.methods.titleCaseName('string string')).toEqual('String String');
   });
@@ -252,6 +254,30 @@ describe('mixins', () => {
           }
         ],
         "linked_sections": "AC"
+      },
+      {
+        "netid": "q1",
+        "student_number": "0000005",
+        "credits": "5.0",
+        "is_auditor": false,
+        "class_level": "SENIOR",
+        "email": "q1@uw.edu",
+        "first_name": "Ha Pe",
+        "surname": "Ru",
+        "pronouns": "his",
+        "majors": [
+          {"degree_abbr": null,
+           "college_abbr": "BOTHL",
+           "college_full_name": "BOTHL",
+           "degree_level": 1,
+           "degree_name": null,
+           "campus": "Bothell",
+           "name": null,
+           "full_name": null,
+           "short_name": null
+          }],
+        "class_code": 4,
+        "linked_sections": ""
       }
     ];
     const csvD = courses.methods.buildClasslistCsv(registrations, true);
@@ -260,7 +286,8 @@ describe('mixins', () => {
       "\"\t0000001\",\"w1\",\"We\",\"Ma El\",\"\",\"AA\",\"5.0\",\"SENIOR\",\"Sociology\",\"w1@uw.edu\"\n" +
       "\"\t0000002\",\"f1\",\"Or\",\"Fa\",\"\",\"AB\",\"5.0\",\"SENIOR\",\"Bioengineering, Sociology\",\"f1@uw.edu\"\n" +
       "\"\t0000003\",\"a1\",\"Di\",\"Al\",\"her\",\"AA\",\"5.0\",\"SENIOR\",\"Sociology\",\"a1@uw.edu\"\n" +
-      "\"\t0000004\",\"h1\",\"Ru\",\"Ha Pe\",\"his\",\"AC\",\"5.0\",\"SENIOR\",\"Political Science, Sociology\",\"h1@uw.edu\""
+      "\"\t0000004\",\"h1\",\"Ru\",\"Ha Pe\",\"his\",\"AC\",\"5.0\",\"SENIOR\",\"Political Science, Sociology\",\"h1@uw.edu\"\n" +
+      "\"\t0000005\",\"q1\",\"Ru\",\"Ha Pe\",\"his\",\"\",\"5.0\",\"SENIOR\",\"\",\"q1@uw.edu\""
       );
     }
   });

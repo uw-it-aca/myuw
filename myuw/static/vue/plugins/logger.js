@@ -115,7 +115,7 @@ class Logger {
     if (compData.report) {
       this.sink.event('comp_in_viewport', {
         comp_tag: compData.tag,
-        duration: compData.duration,
+        duration: Math.floor(compData.duration),
       });
     }
   }
@@ -150,9 +150,11 @@ class Logger {
       notice_title: htmlDoc.getElementsByClassName('notice-title')[0].innerText,
       is_critical: notice.is_critical,
       is_new: !notice.is_read,
+      time_before_read: 0,
     };
     if (notice.startDate && !notice.is_read) {
-      data.time_before_read = Math.floor((Date.now() - notice.startDate) / (1000 * 60 * 60));
+      let timeBeforeRead = Math.floor((Date.now() - notice.startDate) / (1000 * 60 * 60));
+      if (timeBeforeRead > 0) data.time_before_read = timeBeforeRead;
     }
     this.sink.event('notice_open', data);
   }

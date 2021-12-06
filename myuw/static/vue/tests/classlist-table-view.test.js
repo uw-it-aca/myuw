@@ -8,6 +8,8 @@ import classlist from '../vuex/store/classlist';
 
 import mockBilljoint2013Aut from
   './mock_data/classlist/2013-autumn-POLS-306-A.json';
+import mockBilljoint2013AutCOM306A from
+  './mock_data/classlist/2013-autumn-COM-306-A.json';
 
 import Classlist from '../components/teaching/classlist/class-student-list.vue';
 import ClasslistContent from '../components/teaching/classlist/content.vue';
@@ -39,9 +41,14 @@ describe('Show Classlist Content', () => {
 
   it('POL S 306 A Autumn 2013 Content', async () => {
     axios.get.mockImplementation((url) => {
+      if (url.endsWith("CSE,306/A")) {
+        return Promise.reject({response: {status: 403}});
+      }
       const urlData = {
         '/api/v1/instructor_section_details/2013,autumn,POL S,306/A': deepClone(
           mockBilljoint2013Aut),
+        '/api/v1/instructor_section_details/2013,autumn,COM,306/A': deepClone(
+          mockBilljoint2013AutCOM306A),
       };
       return Promise.resolve({data: urlData[url], status: 200});
     });
@@ -64,7 +71,7 @@ describe('Show Classlist Content', () => {
     wrapper = mount(ClasslistContent,
       { store,
         localVue,
-        propsData: {'section': section}
+        propsData: {'section': section, 'isJointSectionDataReady': true}
       });
     await new Promise(setImmediate);
     const link1 = wrapper.findAll('a').at(0);
@@ -80,6 +87,8 @@ describe('Show Classlist Content', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.fields.length).toBe(10);
     expect(wrapper.vm.items.length).toBe(7);
+    // MUWM-4385
+    expect(wrapper.vm.getRegisteredLinkedSection("COM 306 A", "javg001")).toBe("AA");
   });
 
   it('Show data error', async () => {
