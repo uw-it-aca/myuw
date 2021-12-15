@@ -61,8 +61,8 @@ export default {
           `${ jointSec.course_abbr } ` +
           `${ jointSec.course_number }` +
           `${ jointSec.section_id }. ` +
-          `Contact your Time Schedule Coordinator and ask to be added as an` +
-          `instructor of record.`;
+          `Contact your Time Schedule Coordinator and ` +
+          `ask to be added as an instructor of record.`;
     }
   },
 };
