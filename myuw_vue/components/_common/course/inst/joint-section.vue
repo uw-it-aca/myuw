@@ -59,7 +59,7 @@ export default {
     tooltipMessage(jointSec) {
       return `You are not an instructor of record for ` +
           `${ jointSec.course_abbr } ` +
-          `${ jointSec.course_number }` +
+          `${ jointSec.course_number } ` +
           `${ jointSec.section_id }. ` +
           `Contact your Time Schedule Coordinator and ` +
           `ask to be added as an instructor of record.`;
