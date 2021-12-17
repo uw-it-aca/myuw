@@ -2,8 +2,8 @@
   <div v-if="isReady">
     <div class="d-flex border-bottom pb-3">
       <div class="ms-auto myuw-text-md">
-        <button type="button" class="btn btn-link"
-          v-if="!everyNoticeListExpanded"
+        <button v-if="!everyNoticeListExpanded" type="button"
+          class="btn btn-link"
           @click="expandAll()"
         >
           Expand All

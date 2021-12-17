@@ -21,13 +21,13 @@
     </template>
     <template v-else-if="!listView && !addError">
       <div v-if="!emailList.has_lists && emailList.has_joint">
-        <div class="alert alert-danger" role="alert" :v-if="disableActions">
+        <div v-if="disableActions" class="alert alert-danger" role="alert">
           This action is disabled while overriding as another user.
         </div>
         <uw-request-joint v-model="formData" :email-list="emailList" />
       </div>
       <div v-else-if="!emailList.has_lists && !emailList.section_list.list_exists">
-        <div class="alert alert-danger" role="alert" :v-if="disableActions">
+        <div v-if="disableActions" class="alert alert-danger" role="alert" >
           This action is disabled while overriding as another user.
         </div>
         <uw-request-single-list
