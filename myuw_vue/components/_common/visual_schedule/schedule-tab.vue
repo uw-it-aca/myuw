@@ -73,7 +73,7 @@
               v-model="mobile['current']"
               title="Select the Day of Week:"
               :options="mobile['options']"
-              class="fw-bold myuw-text-md"
+              class="form-select fw-bold myuw-text-md"
             >
               <option
                 v-for="(option, i) in mobile['options']"
