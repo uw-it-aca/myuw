@@ -5,16 +5,7 @@
     </h3>
     <uw-table :fields="fields" :items="items">
       <template #default="slotProps">
-        <div
-          v-if="slotProps.cellData.key == 'linkedSection' ||
-                slotProps.cellData.key == 'credits'"
-          class="text-center"
-        >
-          {{slotProps.cellData.value}}
-        </div>
-        <div v-else-if="slotProps.cellData.key == 'email'"
-          class="text-center"
-        >
+        <div v-if="slotProps.cellData.key == 'email'">
           <a
             v-inner="'Email student'"
             :href="slotProps.cellData.value.href"
