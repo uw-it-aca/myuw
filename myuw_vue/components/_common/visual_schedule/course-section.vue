@@ -8,7 +8,7 @@
       <div :class="`bg-c${meetingData.section.color_id}`"
            class="p-1 text-center myuw-text-xxs"
       >
-        <span v-if="meetingData.section.is_teaching" class="badge bg-light">
+        <span v-if="meetingData.section.is_teaching" class="badge bg-light text-dark">
           <abbr title="Teaching Course">T</abbr>
         </span>
         <a :href="sectionUrl" class="text-white">
