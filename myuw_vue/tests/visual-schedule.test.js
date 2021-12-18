@@ -5,8 +5,8 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import visual_schedule from '../vuex/store/schedule/visual';
 
-import CourseSection from '../components/_common/visual_schedule/course-section.vue';
-import ScheduleTab from '../components/_common/visual_schedule/schedule-tab.vue';
+// import CourseSection from '../components/_common/visual_schedule/course-section.vue';
+// import ScheduleTab from '../components/_common/visual_schedule/schedule-tab.vue';
 import VisualSchedule from '../components/_common/visual_schedule/schedule.vue';
 
 import mockScheduleBill from './mock_data/schedule/bill2013.json';
@@ -56,12 +56,12 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise(setImmediate);
-    expect(wrapper.find('h2').exists()).toBeTruthy();
-    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
-    expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
-
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("finals");
+    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.termName).toBe("Spring 2013");
+    expect(wrapper.vm.periods[0].title).toBe("Apr 01 - Jun 07");
+    expect(wrapper.vm.periods[1].title).toBe("finals");
+    expect(wrapper.vm.activePeriod.title).toBe("Apr 01 - Jun 07");
+    expect(wrapper.vm.allMeetings).toHaveLength(12);
   });
 
   it ('Check Mount - javerage summer', async () => {
@@ -69,12 +69,10 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise(setImmediate);
-    expect(wrapper.find('h2').exists()).toBeTruthy();
-    expect(wrapper.find('h2').text()).toMatch("Summer 2013 A-Term Schedule");
-    expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
-
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Jun 24 - Jul 19");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Jul 22 - Jul 24");
+    expect(wrapper.vm.termName).toBe("Summer 2013 A-Term");
+    expect(wrapper.vm.periods[0].title).toBe("Jun 24 - Jul 19");
+    expect(wrapper.vm.periods[1].title).toBe("Jul 22 - Jul 24");
+    expect(wrapper.vm.allMeetings).toHaveLength(4);
   }); 
 
   it ('Check Mount - jeos', async () => {
@@ -82,21 +80,19 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise(setImmediate);
-    expect(wrapper.find('h2').exists()).toBeTruthy();
-    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
-
-    expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(5);
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Apr 05");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Apr 07 - May 03");
-    expect(wrapper.findAll('a[role=tab]').at(2).text()).toBe("May 05 - Jun 15");
-    expect(wrapper.findAll('a[role=tab]').at(3).text()).toBe("Jun 17 - Jul 06");
-    expect(wrapper.findAll('a[role=tab]').at(4).text()).toBe("finals");
+    expect(wrapper.vm.termName).toBe("Spring 2013");
+    expect(wrapper.vm.periods[0].title).toBe("Apr 01 - Apr 05");
+    expect(wrapper.vm.periods[1].title).toBe("Apr 07 - May 03");
+    expect(wrapper.vm.periods[2].title).toBe("May 05 - Jun 15");
+    expect(wrapper.vm.periods[3].title).toBe("Jun 17 - Jul 06");
+    expect(wrapper.vm.periods[4].title).toBe("finals");
 
     expect(wrapper.vm.periods[0].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[1].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[2].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[3].eosData).toHaveLength(0);
     expect(wrapper.vm.periods[4].eosData).toHaveLength(1);
+    expect(wrapper.vm.allMeetings).toHaveLength(18);
   });
 
   it ('Check Overlapping classes', async () => {
@@ -106,18 +102,11 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise(setImmediate);
-    expect(wrapper.find('h2').exists()).toBeTruthy();
-    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
-
-    expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
-    expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
-    expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("finals");
-
-    expect(
-      wrapper.findAllComponents(ScheduleTab).at(0).vm
-        .meetingMap["tuesday"]["08:30 AM"]
-    ).toHaveLength(2);
-
+    expect(wrapper.vm.termName).toBe("Spring 2013");
+    expect(wrapper.vm.periods[0].title).toBe("Apr 01 - Jun 07");
+    expect(wrapper.vm.periods[1].title).toBe("finals");
+    expect(wrapper.vm.allMeetings).toHaveLength(14);
+    // expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
     // expect(
     //   wrapper.findAllComponents(ScheduleTab).at(1).vm
         // .meetingMap["monday"]["08:30 AM"]
@@ -129,8 +118,7 @@ describe('Vue SFC Tests', () => {
     const wrapper = mount(VisualSchedule, {store, localVue});
 
     await new Promise(setImmediate);
-    expect(wrapper.find('h2').exists()).toBeTruthy();
-    expect(wrapper.find('h2').text()).toMatch("Spring 2013 Schedule");
+    expect(wrapper.vm.termName).toBe("Spring 2013");
 
     expect(wrapper.vm.activePeriod.id).toEqual(0);
     
