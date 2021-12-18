@@ -5,26 +5,27 @@
     :errored="isErrored"
   >
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        {{ termName }} Schedule
-        <span class="visually-hidden">
-          Final exam schedule and Visual Schedule
-        </span>
+      <h2
+        class="h4 mb-3 text-dark-beige myuw-font-encode-sans"
+      >{{ termName }} Schedule<span class="visually-hidden"
+        >Final exam schedule and Visual Schedule</span>
       </h2>
     </template>
 
     <template #card-body>
       <!-- schedule tabs -->
-      <uw-tabs v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
-              v-model="tabIndex" pills bottom-border
-              nav-wrapper-class="mb-3 p-0"
+      <uw-tabs
+        v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
+        v-model="tabIndex" pills bottom-border
+        nav-wrapper-class="mb-3 p-0"
       >
-        <uw-tab v-for="(period, i) in periods" :key="i" :title="period.title"
-               title-item-class="text-nowrap text-uppercase
-               myuw-text-xs me-2 mb-1"
-               title-link-class="rounded-0 px-2 py-1 h-100
-               text-body"
-               :active="period.id == activePeriod.id"
+        <uw-tab
+          v-for="(period, i) in periods" :key="i" :title="period.title"
+          title-item-class="text-nowrap text-uppercase
+          myuw-text-xs me-2 mb-1"
+          title-link-class="rounded-0 px-2 py-1 h-100
+          text-body"
+          :active="period.id == activePeriod.id"
         >
           <!-- tab content -->
           <uw-schedule-tab
@@ -39,9 +40,10 @@
         <p class="text-muted myuw-text-md mb-1">
           No meeting time specified:
         </p>
-        <div v-for="(meeting, i) in allMeetings" :key="i"
-            class="d-inline-block w-auto me-2"
-            style="min-width:110px;"
+        <div
+          v-for="(meeting, i) in allMeetings" :key="i"
+          class="d-inline-block w-auto me-2"
+          style="min-width:110px;"
         >
           <uw-course-section
             :meeting-data="meeting"
@@ -126,7 +128,7 @@ export default {
       }
       return name;
     },
-    activePeriod: function() {
+    activePeriod() {
       for (const i in Object.keys(this.periods)) {
         if (
           !this.periods[i].end_date ||
