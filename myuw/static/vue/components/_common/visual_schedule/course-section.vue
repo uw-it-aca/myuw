@@ -64,9 +64,6 @@ export default {
     },
   },
   computed: {
-    ...mapState({
-      netid: (state) => state.user.netid,
-    }),
     quarter() {
       return this.titleCaseWord(this.term.quarter);
     },
@@ -171,9 +168,8 @@ export default {
       );
     },
     confirmationLink() {
-      return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/${
-        this.netid
-      }/finalexam.asp?${this.quarter}+${
+      // MUWM-4938
+      return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/finalexam.asp?${this.quarter}+${
         this.year
       }&sln=${this.meetingData.section.sln}`;
     },
