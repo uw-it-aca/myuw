@@ -2,6 +2,6 @@
   "componentFolder": "myuw/static/vue",
   "testFiles": "**/*.spec.js",
   "video": true,
-  "defaultCommandTimeout": 15000,
+  "defaultCommandTimeout": 20000,
   "requestTimeout": 14000
 }
