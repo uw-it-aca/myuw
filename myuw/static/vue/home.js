@@ -35,6 +35,8 @@ import Retiree from './components/home/former_employee/retiree.vue';
 import AcadCalSnippet from './components/home/calendar/acad-cal-snippet.vue';
 import PinnedResourceCards from './components/home/resources/pinned-resource-cards.vue';
 import ResourceExplore from './components/home/resources/resource-explore.vue';
+import GraduationPreApplication from './components/home/graduation/pre-application.vue';
+import GraduationChecklist from './components/home/graduation/checklist.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -110,6 +112,8 @@ Vue.component('myuw-alumni', Alumni);
 Vue.component('myuw-hr-payroll', HRPayroll);
 Vue.component('myuw-pinned-resources', PinnedResourceCards);
 Vue.component('myuw-resource-explore', ResourceExplore);
+Vue.component('myuw-grad-pre-application', GraduationPreApplication);
+Vue.component('myuw-grad-checklist', GraduationChecklist);
 
 new Vue({
   ...vueConf,
