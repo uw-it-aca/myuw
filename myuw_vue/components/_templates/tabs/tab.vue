@@ -29,8 +29,9 @@ export default {
   mounted() {
     this.$set(this.$parent.actualTabs, this.$refs.tab.id, this);
     if (this.$refs.tab.classList.contains('active')) { this.render = true };
-    var tabEl = document
-      .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${this.$refs.tab.id}"]`);
+
+    // BUG: calling this function in Jest tests results in a null error
+    var tabEl = document.querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${this.$refs.tab.id}"]`);    
     tabEl.addEventListener('show.bs.tab', (event) => {
       this.$nextTick(() => {
         if (!event.defaultPrevented) {

@@ -77,8 +77,8 @@ export default {
     actualTabs(actualTabs) {
       Object.entries(actualTabs).forEach(([id, tab], i) => {
         if (!(id in this.eventHandlers)) {
-          let tabEl = document
-            .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${id}"]`);
+          // BUG: calling this function in Jest tests results in a null error
+          let tabEl = document.querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${id}"]`);
           tabEl.addEventListener('show.bs.tab', (event) => {
             let selected = this.decodeId(event.target.attributes['data-bs-target'].value);
             let oldSelected = this.decodeId(event.relatedTarget.attributes['data-bs-target'].value);
