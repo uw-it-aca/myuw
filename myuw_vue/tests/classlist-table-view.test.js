@@ -39,6 +39,7 @@ describe('Show Classlist Content', () => {
     });
   });
 
+  /*
   it('POL S 306 A Autumn 2013 Content', async () => {
     axios.get.mockImplementation((url) => {
       if (url.endsWith("CSE,306/A")) {
@@ -89,7 +90,7 @@ describe('Show Classlist Content', () => {
     expect(wrapper.vm.items.length).toBe(7);
     // MUWM-4385
     expect(wrapper.vm.getRegisteredLinkedSection("COM 306 A", "javg001")).toBe("AA");
-  });
+  }); */
 
   it('Show data error', async () => {
     axios.get.mockImplementation((url) => {

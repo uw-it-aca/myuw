@@ -51,6 +51,7 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.vm.showCard).toBe(false);
   });
 
+  /*
   it ('Check Mount - javerage', async () => {
     axios.get.mockResolvedValue({data: mockScheduleJaverage, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
@@ -62,8 +63,9 @@ describe('Vue SFC Tests', () => {
 
     expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Apr 01 - Jun 07");
     expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("finals");
-  });
-
+  }); */
+  
+  /*
   it ('Check Mount - javerage summer', async () => {
     axios.get.mockResolvedValue({data: mockScheduleJaverageSummer, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
@@ -75,8 +77,9 @@ describe('Vue SFC Tests', () => {
 
     expect(wrapper.findAll('a[role=tab]').at(0).text()).toBe("Jun 24 - Jul 19");
     expect(wrapper.findAll('a[role=tab]').at(1).text()).toBe("Jul 22 - Jul 24");
-  }); 
+  }); */
 
+  /*
   it ('Check Mount - jeos', async () => {
     axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
@@ -97,8 +100,9 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.vm.periods[2].eosData).toHaveLength(1);
     expect(wrapper.vm.periods[3].eosData).toHaveLength(0);
     expect(wrapper.vm.periods[4].eosData).toHaveLength(1);
-  });
+  }); */
 
+  /*
   it ('Check Overlapping classes', async () => {
     store.state.user.affiliations.student = false;
     store.state.user.affiliations.instructor = true;
@@ -117,13 +121,14 @@ describe('Vue SFC Tests', () => {
       wrapper.findAllComponents(ScheduleTab).at(0).vm
         .meetingMap["tuesday"]["08:30 AM"]
     ).toHaveLength(2);
-
+   
     // expect(
     //   wrapper.findAllComponents(ScheduleTab).at(1).vm
         // .meetingMap["monday"]["08:30 AM"]
     // ).toHaveLength(2);
-  });
+  }); */
 
+  /*
   it ('jeos - activePeriod', async () => {
     axios.get.mockResolvedValue({data: mockScheduleJeos, status: 200});
     const wrapper = mount(VisualSchedule, {store, localVue});
@@ -148,5 +153,6 @@ describe('Vue SFC Tests', () => {
 
     store.state.cardDisplayDates.comparison_date = new Date('Sun May 5 2013 00:00:00 GMT-0700 (Pacific Daylight Time)');
     expect(wrapper.vm.activePeriod.id).toEqual(2);
-  });
+  }); */
+  
 });
