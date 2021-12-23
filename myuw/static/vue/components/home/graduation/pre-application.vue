@@ -11,11 +11,7 @@
       </p>
     </template>
     <template #card-disclosure>
-
-      <b-collapse
-        :id="`collapseGraduationContent`"
-        v-model="isOpen"
-      >
+      <b-collapse :id="`collapseGraduationContent`" v-model="isOpen">
         <p>this is the disclosure content</p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorem labore a sit
@@ -23,24 +19,23 @@
           incidunt nostrum.
         </p>
       </b-collapse>
-
     </template>
     <template #card-footer>
-       <button v-b-toggle="`collapseGraduationContent`"
-            type="button"
-            class="btn btn-link w-100 p-0 border-0 text-dark"
-          >
-            show more content
-            <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
-            <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
-          </button>
+      <button
+        v-b-toggle="`collapseGraduationContent`"
+        type="button"
+        class="btn btn-link w-100 p-0 border-0 text-dark"
+      >
+        show more content
+        <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
+        <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
+      </button>
     </template>
   </uw-card>
 </template>
 
 <script>
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-
 
 import Card from '../../_templates/card.vue';
 
@@ -55,9 +50,7 @@ export default {
       faChevronDown,
     };
   },
-  watch: {
-
-  },
+  watch: {},
   computed: {},
 
   mounted() {
