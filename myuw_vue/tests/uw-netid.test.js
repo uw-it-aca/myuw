@@ -7,9 +7,6 @@ import UWNetidCard from '../components/_common/uw-netid.vue';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {
-  FontAwesomeIcon,
-} from '@fortawesome/vue-fontawesome';
-import {
   faExclamationTriangle,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,8 +15,6 @@ import mockProfileData from './mock_data/profile/jinter.json';
 const localVue = createLocalVue(Vuex);
 
 library.add(faExclamationTriangle);
-
-localVue.component('font-awesome-icon', FontAwesomeIcon);
 
 jest.mock('axios');
 

@@ -25,12 +25,7 @@ import oQuarterSumAut from './mock_data/oquarter/summer.json';
 import profileJavg001 from './mock_data/profile/javg001.json';
 import profileJinter from './mock_data/profile/jinter.json';
 
-import {
-  FontAwesomeLayers,
-} from '@fortawesome/vue-fontawesome';
-
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
 

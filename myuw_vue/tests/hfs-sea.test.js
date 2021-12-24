@@ -11,7 +11,6 @@ import HfsSeaCard from '../components/accounts/hfs-sea.vue';
 import mockJaverageHfs from './mock_data/hfs.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 
