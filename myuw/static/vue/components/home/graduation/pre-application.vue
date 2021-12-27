@@ -5,9 +5,8 @@
     </template>
     <template #card-body>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorem labore a sit
-        placeat nisi iusto ullam, ipsam vitae numquam ad, magni at ex quas ut magnam dignissimos
-        incidunt nostrum.
+        <strong>To graduate, you'll need apply.</strong> Dont worry, it's an easy process you 
+        complete with your departmental adviser!
       </p>
     </template>
     <template #card-disclosure>
@@ -26,7 +25,7 @@
         type="button"
         class="btn btn-link w-100 p-0 border-0 text-dark"
       >
-        show more content
+        Deadlines and details
         <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
         <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
       </button>
