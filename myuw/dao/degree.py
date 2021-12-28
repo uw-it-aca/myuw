@@ -25,10 +25,15 @@ def get_degrees(request):
 
 
 def get_degrees_json(request):
-    ret = []
+    response = {
+        'degrees': None,
+        'error_code': None
+        }
     try:
+        degrees = []
         for degree in get_degrees(request):
-            ret.append(degree.json_data())
+            degrees.append(degree.json_data())
+        response['degrees'] = degrees
     except DataFailureException as ex:
-        ret.append({'error_code': ex.status})
-    return ret
+        response['error_code'] = ex.status
+    return response

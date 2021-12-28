@@ -85,11 +85,9 @@ class TestStudentProfile(TestCase):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-07-01"))
         data = get_student_profile(req)
-        self.assertIsNotNone(data['degree_status'])
-        self.assertEqual(len(data['degree_status']), 1)
         self.assertEqual(
-            data['degree_status'][0],
-            {
+            data['degree_status'],
+            {'degrees': [{
                 'campus': 'SEATTLE',
                 'diploma_mail': 0,
                 'diploma_mail_to_local_address': False,
@@ -104,4 +102,6 @@ class TestStudentProfile(TestCase):
                 'title': 'BACHELOR OF ARTS (POLITICAL SCIENCE)',
                 'type': 1,
                 'year': 2014
-            })
+                }],
+             'error_code': None}
+        )
