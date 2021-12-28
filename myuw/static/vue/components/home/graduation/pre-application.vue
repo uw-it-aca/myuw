@@ -10,7 +10,7 @@
       </p>
     </template>
     <template #card-disclosure>
-      <b-collapse :id="`collapseGraduationContent`" v-model="isOpen">
+      <b-collapse :id="`collapseGradAppDeadlineAndDetails`" v-model="isOpen">
         <ul class="list-style">
           <li> <strong>Deadline:</strong> The third Friday of the quarter in which you intend to graduate.</li>
           <li> <strong>Submit early:</strong> If you apply 2-3 quarters before graduation, you get Graduating Senior Priority 
@@ -27,7 +27,7 @@
     </template>
     <template #card-footer>
       <button
-        v-b-toggle="`collapseGraduationContent`"
+        v-b-toggle="`collapseGradAppDeadlineAndDetails`"
         type="button"
         class="btn btn-link w-100 p-0 border-0 text-dark"
       >
@@ -64,7 +64,7 @@ export default {
 
   methods: {
     getOpen: function () {
-      let blah = document.querySelector('#collapseGraduationContent');
+      let blah = document.querySelector('#collapseGradAppDeadlineAndDetails');
       if (blah.classList.contains('show')) {
         console.log('shown');
       } else {

@@ -18,7 +18,7 @@
       </div>
     </template>
        <template #card-disclosure>
-      <b-collapse :id="`collapseGraduationContent`" v-model="isOpen">
+      <b-collapse :id="`collapseGradSupportAndHelp`" v-model="isOpen">
         <p>this is the disclosure content</p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorem labore a sit
@@ -29,7 +29,7 @@
     </template>
     <template #card-footer>
       <button
-        v-b-toggle="`collapseGraduationContent`"
+        v-b-toggle="`collapseGradSupportAndHelp`"
         type="button"
         class="btn btn-link w-100 p-0 border-0 text-dark"
       >
@@ -66,7 +66,7 @@ export default {
 
   methods: {
     getOpen: function () {
-      let blah = document.querySelector('#collapseGraduationContent');
+      let blah = document.querySelector('#collapseGradSupportAndHelp');
       if (blah.classList.contains('show')) {
         console.log('shown');
       } else {
