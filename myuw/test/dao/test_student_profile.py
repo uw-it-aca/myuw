@@ -83,7 +83,7 @@ class TestStudentProfile(TestCase):
 
     def test_degree_status(self):
         req = get_request_with_user('javerage',
-                                    get_request_with_date("2013-07-01"))
+                                    get_request_with_date("2013-04-01"))
         data = get_student_profile(req)
         self.assertEqual(
             data['degree_status'],
@@ -105,3 +105,8 @@ class TestStudentProfile(TestCase):
                 }],
              'error_code': None}
         )
+
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2013-04-01"))
+        data = get_student_profile(req)
+        self.assertFalse('degree_status' in data)

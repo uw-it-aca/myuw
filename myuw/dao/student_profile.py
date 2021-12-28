@@ -48,8 +48,8 @@ def get_student_profile(request):
     response = profile
     response['is_student'] = True
     response['is_grad_student'] = is_grad_student(request)
-    response['degree_status'] = get_degrees_json(request)
 
+    # MUWM-5045
     current_class_level = get_class_level(request)
     if current_class_level and current_class_level.upper() == 'SENIOR':
         response['degree_status'] = get_degrees_json(request)
