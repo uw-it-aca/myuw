@@ -36,7 +36,7 @@ import AcadCalSnippet from './components/home/calendar/acad-cal-snippet.vue';
 import PinnedResourceCards from './components/home/resources/pinned-resource-cards.vue';
 import ResourceExplore from './components/home/resources/resource-explore.vue';
 import GraduationPreApplication from './components/home/graduation/pre-application.vue';
-import GraduationChecklist from './components/home/graduation/checklist.vue';
+import Graduation from './components/home/graduation/application-submitted.vue';
 
 // stores
 import notices from './vuex/store/notices';
@@ -113,7 +113,7 @@ Vue.component('myuw-hr-payroll', HRPayroll);
 Vue.component('myuw-pinned-resources', PinnedResourceCards);
 Vue.component('myuw-resource-explore', ResourceExplore);
 Vue.component('myuw-grad-pre-application', GraduationPreApplication);
-Vue.component('myuw-grad-checklist', GraduationChecklist);
+Vue.component('myuw-grad-application-submitted', Graduation);
 
 new Vue({
   ...vueConf,
