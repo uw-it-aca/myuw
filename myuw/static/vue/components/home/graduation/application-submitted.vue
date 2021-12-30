@@ -9,10 +9,34 @@
           <p>
             <strong>You're on your way!</strong> We're here to help you get to the finish line!
           </p>
+          <p class = myuw-text-lg>
+            Start with these Checklists
+          </p>
+          <ul class="list-style">
+            <li>Review the
+              <a href="https://www.washington.edu/students/graduation-checklist/">
+              UW Graduation checklist
+              </a> for an overview of tasks.
+            </li>
+            <li>International students, review the
+              <a href="https://iss.washington.edu/resources/final-checklist/">
+              ISS graduation checklist
+              </a> for additional guidance.
+            </li>
+          </ul>
+          <p class = myuw-text-lg>
+            Take part in the commencement ceremonies
+          </p>
+          <p class = myuw-text-lg>
+            Verify that your information and data will not be lost
+          </p>
         </div>
         <div class="col-4">
           <p>
             <strong>Graduation application status</strong>
+          </p>
+          <p>
+            <strong>Intended degree(s)</strong>
           </p>
         </div>
       </div>
