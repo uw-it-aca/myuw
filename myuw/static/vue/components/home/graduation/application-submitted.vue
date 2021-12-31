@@ -32,12 +32,23 @@
           </p>
         </div>
         <div class="col-4">
-          <p>
-            <strong>Graduation application status</strong>
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+            Graduation application status
+          </h3>
+          <p v-if="isApproved(degrees[0].status)" class="myuw-text-md">
+            Approved for {{ titleCaseWord(degrees[0].quarter) }} {{ degrees[0].year }} graduation
           </p>
-          <p>
-            <strong>Intended degree(s)</strong>
+          <p v-else class="myuw-text-md">
+            There is an issue with your graduation status. Talk to your departmental advisor.
           </p>
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+            Intended degree<span v-if="degrees.length > 1">s</span>
+          </h3>
+          <ul class="list-unstyled mb-0 myuw-text-md">
+            <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
+              {{ degree.title }}
+            </li>
+          </ul>
         </div>
       </div>
     </template>
@@ -101,13 +112,19 @@ export default {
     showCard() {
       return (this.isReady && !this.degreeStatus.error_code);
     },
+    degrees() {
+      return this.degreeStatus.degrees;
+    },
   },
   created() {
     if (this.classLevel === 'SENIOR') this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),
-  },
+    isApproved(status) {
+      return (status >= 3 && status <= 5);
+    },
+  }
 };
 </script>
 
