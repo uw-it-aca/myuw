@@ -15,7 +15,7 @@
       </p>
     </template>
     <template #card-disclosure>
-      <b-collapse
+      <uw-collapse
         id="collapseGradAppDeadlineAndDetails"
         v-model="isOpen"
       >
@@ -41,11 +41,11 @@
             ISS Graduation checklist
           </a> for additional guidance.
         </p>
-      </b-collapse>
+      </uw-collapse>
     </template>
     <template #card-footer>
       <button
-        v-b-toggle.collapseGradAppDeadlineAndDetails
+        v-uw-collapse.collapseGradAppDeadlineAndDetails
         type="button"
         class="btn btn-link btn-sm w-100 p-0 text-dark"
       >
@@ -62,10 +62,12 @@
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
 
 export default {
   components: {
     'uw-card': Card,
+    'uw-collapse': Collapse,
   },
   data() {
     return {
