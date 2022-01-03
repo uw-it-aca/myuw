@@ -9,7 +9,7 @@
       </h2>
     </template>
     <template #card-body>
-      <p>
+      <p class="myuw-text-md">
         <strong>To graduate, you'll need apply.</strong> Dont worry, it's an easy
         process you complete with your departmental adviser!
       </p>
@@ -19,23 +19,24 @@
         id="collapseGradAppDeadlineAndDetails"
         v-model="isOpen"
       >
-        <ul class="list-style">
-          <li>
+        <ul class="list-style myuw-text-md mb-3">
+          <li class="mb-1">
             <strong>Deadline:</strong> The third Friday of the quarter
             in which you intend to graduate.
           </li>
-          <li>
+          <li class="mb-1">
             <strong>Submit early:</strong> If you apply 2-3 quarters before
             graduation, you get Graduating Senior Priority for registration for 2 quarters.
           </li>
         </ul>
-        <p>
+
+        <p class="myuw-text-md">
           <strong>Get all the details:</strong> Follow the
           <a href="https://www.washington.edu/students/graduation-checklist/">
             UW Graduation checklist
           </a>.
         </p>
-        <p v-if="intlStudent">
+        <p v-if="intlStudent" class="myuw-text-md">
           International students, review the
           <a href="https://iss.washington.edu/resources/final-checklist/">
             ISS Graduation checklist
