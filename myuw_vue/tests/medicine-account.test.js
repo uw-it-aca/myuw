@@ -11,7 +11,6 @@ import MedicineAccountCard from '../components/accounts/medicine-account.vue';
 import mockJinterProfile from './mock_data/profile/jinter.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 

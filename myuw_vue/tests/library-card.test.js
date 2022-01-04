@@ -17,7 +17,6 @@ let mockRes = {
 };
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 

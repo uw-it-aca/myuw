@@ -8,13 +8,7 @@ import Quicklinks from '../components/home/quicklinks/quicklinks.vue';
 
 import mockQuicklinks from './mock_data/quicklinks.json';
 
-import {
-  FontAwesomeLayers,
-} from '@fortawesome/vue-fontawesome';
-
 const localVue = createLocalVue(Vuex);
-
-localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
 

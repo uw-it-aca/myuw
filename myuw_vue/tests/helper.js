@@ -1,5 +1,9 @@
 import { createLocalVue as createLocalVueOriginal } from '@vue/test-utils';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+  FontAwesomeLayers,
+  FontAwesomeIcon
+} from '@fortawesome/vue-fontawesome';
+
 import 'bootstrap';
 import 'css.escape';
 
@@ -59,6 +63,7 @@ const expectAction = (
 const createLocalVue = (vuexModule) => {
   const localVue = createLocalVueOriginal();
   localVue.component('font-awesome-icon', FontAwesomeIcon);
+  localVue.component('font-awesome-layers', FontAwesomeLayers);
   localVue.use(vuexModule);
   localVue.use(Metadata);
   localVue.use(Logger, {
