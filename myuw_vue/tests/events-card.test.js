@@ -8,15 +8,9 @@ import events from '../vuex/store/events';
 import EventsCard from '../components/home/events/events.vue';
 import ListEvents from '../components/home/events/list-events.vue';
 
-import {
-  FontAwesomeLayers,
-} from '@fortawesome/vue-fontawesome';
-
 import mockEvents from './mock_data/events.json';
 
 const localVue = createLocalVue(Vuex);
-
-localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
 

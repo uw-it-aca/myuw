@@ -12,11 +12,7 @@
           <h2
             class="h3 text-dark-beige myuw-font-encode-sans"
             :class="[$mq === 'mobile' ? 'w-100' : '']"
-          >
-            {{ sectionData.currAbbr }} {{ sectionData.courseNum }}
-            {{ sectionData.sectionId }},
-            {{ titleCaseWord(sectionData.quarter) }} {{ sectionData.year }}
-          </h2>
+          >{{ cardHeading }}</h2>
           <span v-if="sectionData.sln">
             SLN {{ sectionData.sln }}
           </span>
@@ -125,6 +121,14 @@ export default {
     jointSections() {
       return this.sectionData.sections[0].joint_sections;
     },
+    cardHeading() {
+      return (
+        this.sectionData.currAbbr + ' ' +
+        this.sectionData.courseNum + ' ' +
+        this.sectionData.sectionId + ', ' +
+        this.titleCaseWord(this.sectionData.quarter) + ' ' +
+        this.sectionData.year);
+    }
   },
   watch: {  // MUWM-4385
     isReady: function (newValue, oldValue) {

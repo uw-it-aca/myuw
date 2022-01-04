@@ -6,14 +6,9 @@ import Vuex from 'vuex';
 import Courses from '../vuex/store/schedule/student';
 import GradesCard from '../components/_common/grades.vue';
 
-import {
-  FontAwesomeLayers,
-} from '@fortawesome/vue-fontawesome';
-
 import mockCourses from './mock_data/stud_schedule/javerage2013Spring.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('font-awesome-layers', FontAwesomeLayers);
 
 jest.mock('axios');
 

@@ -7,7 +7,6 @@ import HRPayrollCard from '../components/_common/hr-payroll.vue';
 import UwCard from '../components/_templates/card.vue';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 describe('HR Payroll Card - Home Page', () => {
   let store;

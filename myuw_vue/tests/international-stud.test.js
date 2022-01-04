@@ -9,6 +9,8 @@ import SeattleComp from '../components/home/international/seattle.vue';
 import BothellComp from '../components/home/international/bothell.vue';
 import TacomaComp from '../components/home/international/tacoma.vue';
 import UwCard from '../components/_templates/card.vue';
+import UwTabs from '../components/_templates/tabs/tabs.vue';
+import UwTab from '../components/_templates/tabs/tab.vue';
 
 import mockNotices from './mock_data/notice/jinter.json';
 
@@ -33,25 +35,28 @@ describe('International Student Card - student.vue', () => {
     });
   });
 
-  it('Render Logic intl_stud = true', () => {
+  it('Render Logic intl student', () => {
     const wrapper = shallowMount(StudentCard, { store, localVue });
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
   });
 
-  it('Render Logic intl_stud = false', () => {
+  it('Render Logic not intl student', () => {
     store.state.user.affiliations.intl_stud = false;
     const wrapper = shallowMount(StudentCard, { store, localVue });
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 
-  it('Render Logic seattle = true', () => {
+  it('Render Logic seattle intl student', () => {
     const wrapper = shallowMount(StudentCard, { store, localVue });
+    expect(wrapper.vm.seattle).toBe(true);
+    expect(wrapper.vm.bothell).toBe(false);
+    expect(wrapper.vm.tacoma).toBe(false);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(true);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(false);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(false);
   });
 
-  it('Render Logic bothell = true', () => {
+  it('Render Logic bothell intl student', () => {
     store.state.user.affiliations.seattle = false;
     store.state.user.affiliations.bothell = true;
     const wrapper = shallowMount(StudentCard, { store, localVue });
@@ -60,7 +65,7 @@ describe('International Student Card - student.vue', () => {
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(false);
   });
 
-  it('Render Logic tacoma = true', () => {
+  it('Render Logic tacoma intl student', () => {
     store.state.user.affiliations.seattle = false;
     store.state.user.affiliations.tacoma = true;
     const wrapper = shallowMount(StudentCard, { store, localVue });
@@ -69,9 +74,11 @@ describe('International Student Card - student.vue', () => {
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(true);
   });
 
-  it('Render Logic all campus false', () => {
+  it('Render Logic for no campus', () => {
     store.state.user.affiliations.seattle = false;
     const wrapper = shallowMount(StudentCard, { store, localVue });
+    expect(wrapper.findComponent(UwTabs).exists()).toBe(true);
+    expect(wrapper.findAllComponents(UwTab).length).toBe(3);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(true);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(true);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(true);

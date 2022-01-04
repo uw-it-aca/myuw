@@ -11,7 +11,6 @@ import StudentProfileCard from '../components/profile/student-profile.vue';
 import javg001Profile from './mock_data/profile/javg001.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 

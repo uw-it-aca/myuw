@@ -16,7 +16,6 @@ import AcadCalSnippet from '../components/home/calendar/acad-cal-snippet.vue';
 import facultyAcadEvents from './mock_data/academic_events/faculty.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 

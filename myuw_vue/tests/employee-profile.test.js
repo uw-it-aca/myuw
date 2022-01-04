@@ -11,7 +11,6 @@ import EmployeeProfileCard from '../components/profile/employee-profile.vue';
 import javerageDirectory from './mock_data/directory/javerage.json';
 
 const localVue = createLocalVue(Vuex);
-localVue.component('uw-card', UwCard);
 
 jest.mock('axios');
 

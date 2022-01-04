@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
@@ -80,3 +80,33 @@ class TestStudentProfile(TestCase):
                                     get_request_with_date("2013-07-01"))
         data = get_student_profile(req)
         self.assertEqual(data['class_level'], 'SOPHOMORE')
+
+    def test_degree_status(self):
+        req = get_request_with_user('javerage',
+                                    get_request_with_date("2013-04-01"))
+        data = get_student_profile(req)
+        self.assertEqual(
+            data['degree_status'],
+            {'degrees': [{
+                'campus': 'SEATTLE',
+                'diploma_mail': 0,
+                'diploma_mail_to_local_address': False,
+                'has_applied': True,
+                'is_admin_hold': False,
+                'is_granted': False,
+                'is_incomplete': False,
+                'level': 1,
+                'name_on_diploma': 'John Joseph Average',
+                'quarter': 'spring',
+                'status': 5,
+                'title': 'BACHELOR OF ARTS (POLITICAL SCIENCE)',
+                'type': 1,
+                'year': 2014
+                }],
+             'error_code': None}
+        )
+
+        req = get_request_with_user('jbothell',
+                                    get_request_with_date("2013-04-01"))
+        data = get_student_profile(req)
+        self.assertFalse('degree_status' in data)
