@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -10,9 +10,11 @@ import logging
 import traceback
 from uw_sws.person import get_person_by_regid
 from myuw.dao import log_err
+from myuw.dao.degree import get_degrees_json
+from myuw.dao.enrollment import (
+    get_class_level, get_main_campus, get_enrollments_of_terms)
 from myuw.dao.gws import is_grad_student
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.enrollment import get_main_campus, get_enrollments_of_terms
 from myuw.dao.term import get_current_and_next_quarters
 
 
@@ -47,6 +49,11 @@ def get_student_profile(request):
     response['is_student'] = True
     response['is_grad_student'] = is_grad_student(request)
 
+    # MUWM-5045
+    current_class_level = get_class_level(request)
+    if current_class_level and current_class_level.upper() == 'SENIOR':
+        response['degree_status'] = get_degrees_json(request)
+
     campuses = get_main_campus(request)
     if 'Seattle' in campuses:
         response['campus'] = 'Seattle'
@@ -56,6 +63,7 @@ def get_student_profile(request):
         response['campus'] = 'Bothell'
 
     get_academic_info(request, response)
+
     return response
 
 
