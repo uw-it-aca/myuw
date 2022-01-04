@@ -34,7 +34,7 @@ class TestAdviserDao(TestCase):
                  'diploma_mail': 0,
                  'diploma_mail_to_local_address': False,
                  'has_applied': True,
-                 'is_admin_hole': False,
+                 'is_admin_hold': False,
                  'is_granted': False,
                  'is_incomplete': False,
                  'level': 1,
