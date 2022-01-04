@@ -5,7 +5,7 @@
     :loaded="isReady">
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Graduation: Pre Application
+        Graduation Preparation
       </h2>
     </template>
     <template #card-body>
@@ -31,10 +31,11 @@
         </ul>
 
         <p class="myuw-text-md">
-          <strong>Get all the details:</strong> Follow the
+          <strong>Get all the details:
           <a href="https://www.washington.edu/students/graduation-checklist/">
-            UW Graduation checklist
-          </a>.
+            Follow the UW Graduation checklist
+            </a>.
+          </strong> 
         </p>
         <p v-if="intlStudent" class="myuw-text-md">
           International students, review the
