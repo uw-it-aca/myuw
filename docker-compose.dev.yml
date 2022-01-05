@@ -39,7 +39,7 @@ services:
       context: .
       dockerfile: Dockerfile.cypress
     environment:
-      NODE_ENV: producation
+      NODE_ENV: production
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
@@ -57,7 +57,7 @@ services:
       context: .
       dockerfile: Dockerfile.cypress
     environment:
-      NODE_ENV: producation
+      NODE_ENV: production
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
@@ -72,7 +72,7 @@ services:
       context: .
       dockerfile: Dockerfile.cypress
     environment:
-      NODE_ENV: producation
+      NODE_ENV: production
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
