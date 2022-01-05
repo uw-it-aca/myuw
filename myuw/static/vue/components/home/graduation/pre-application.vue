@@ -87,6 +87,9 @@ export default {
       year: (state) => state.termData.year,
       intlStudent: (state) => state.user.affiliations.intl_stud,
       classLevel: (state) => state.user.affiliations.class_level,
+      seattle: (state) => state.user.affiliations.seattle,
+      bothell: (state) => state.user.affiliations.bothell,
+      tacoma: (state) => state.user.affiliations.tacoma,
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
