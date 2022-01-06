@@ -30,9 +30,9 @@
           </li>
         </ul>
 
-        <p class="myuw-text-md">
+        <p v-if="seattle" class="myuw-text-md">
           <strong>Get all the details:
-          <a href="https://www.washington.edu/students/graduation-checklist/">Follow the UW Graduation checklist</a>.
+          <a href="https://www.washington.edu/students/graduation-checklist/">Follow the UW Seattle Graduation checklist</a>.
           </strong> 
         </p>
         <p v-if="tacoma" class="myuw-text-md">
@@ -47,13 +47,13 @@
             UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
           </strong> 
         </p>
-        <p v-if="bothell & intlStudent" class="myuw-text-md">
+        <p v-if="bothell && intlStudent" class="myuw-text-md">
           International students, may find
           <a href="https://www.uwb.edu/cie/alumni">
             additional graduation guidance
           </a> at the Center for International Education.
         </p>
-        <p v-if="intlStudent" class="myuw-text-md">
+        <p v-if="seattle && intlStudent" class="myuw-text-md">
           International students, review the
           <a href="https://iss.washington.edu/resources/final-checklist/">
             ISS Graduation checklist
