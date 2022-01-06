@@ -32,9 +32,13 @@
 
         <p class="myuw-text-md">
           <strong>Get all the details:
-          <a href="https://www.washington.edu/students/graduation-checklist/">
-            Follow the UW Graduation checklist
-            </a>.
+          <a href="https://www.washington.edu/students/graduation-checklist/">Follow the UW Graduation checklist</a>.
+          </strong> 
+        </p>
+        <p v-if="bothell" class="myuw-text-md">
+          <strong>Get all the details on
+          <a href="https://www.uwb.edu/registration/graduation">
+            UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
           </strong> 
         </p>
         <p v-if="intlStudent" class="myuw-text-md">
