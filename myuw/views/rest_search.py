@@ -48,6 +48,9 @@ class MyUWRestSearchView(RestSearchView):
             if "advisers" == url:
                 url = "student/v5/person/{}/advisers.json".format(
                     request.POST["uwregid"])
+            elif "degree" == url:
+                url = "student/v5/person/{}/degree.json?deg_status=all".format(
+                    request.POST["uwregid"])
             elif "notices" == url:
                 url = "student/v5/notice/{}.json".format(
                     request.POST["uwregid"])
