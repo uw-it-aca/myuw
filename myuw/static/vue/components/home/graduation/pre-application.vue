@@ -35,11 +35,23 @@
           <a href="https://www.washington.edu/students/graduation-checklist/">Follow the UW Graduation checklist</a>.
           </strong> 
         </p>
+        <p v-if="tacoma" class="myuw-text-md">
+          <strong>Get an
+          <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
+            overview of the UW Tacoma graduation process</a>.
+          </strong> 
+        </p>
         <p v-if="bothell" class="myuw-text-md">
           <strong>Get all the details on
           <a href="https://www.uwb.edu/registration/graduation">
             UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
           </strong> 
+        </p>
+        <p v-if="bothell & intlStudent" class="myuw-text-md">
+          International students, may find
+          <a href="https://www.uwb.edu/cie/alumni">
+            additional graduation guidance
+          </a> at the Center for International Education.
         </p>
         <p v-if="intlStudent" class="myuw-text-md">
           International students, review the
