@@ -1,6 +1,6 @@
 <template>
-  <div ref="tab" class="tab-pane" role="tabpanel" aria-labelledby="todo" tabindex="0">
-    <slot v-if="render" />
+  <div ref="tab" role="tabpanel" aria-labelledby="todo" :class="tabPanelClassesComputed">
+      <slot></slot>
   </div>
 </template>
 
@@ -21,23 +21,23 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-      render: false,
-    };
+  computed: {
+    active() {
+      if (this.$parent) {
+        let activeUid = this.$parent.$slots.default[
+          this.$parent.activeTabIdx].componentInstance.$meta.uid;
+        return activeUid == this.$meta.uid;
+      } else {
+        return false;
+      }
+    },
+    tabPanelClassesComputed() {
+      let tabPanelClass = {};
+      tabPanelClass['tab-pane'] = true;
+      tabPanelClass['active'] = this.active;
+      tabPanelClass['show'] = this.active;
+      return tabPanelClass;
+    },
   },
-  mounted() {
-    this.$set(this.$parent.actualTabs, this.$refs.tab.id, this);
-    if (this.$refs.tab.classList.contains('active')) { this.render = true };
-    var tabEl = document
-      .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${this.$refs.tab.id}"]`);
-    tabEl.addEventListener('show.bs.tab', (event) => {
-      this.$nextTick(() => {
-        if (!event.defaultPrevented) {
-          this.render = true;
-        }
-      });
-    });
-  }
 }
 </script>
