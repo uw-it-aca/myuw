@@ -106,6 +106,13 @@
             </li>
         {% endif %}
 
+        {% url 'myuw_rest_search' 'sws' 'degree.html' as degree_url %}
+        {% if degree_url %}
+        <li>
+            <a href="{{ degree_url }}">Undergrad Degree Status</a>
+        </li>
+        {% endif %}
+
         {% url 'myuw_rest_search' 'uwnetid' 'password.html' as pw_url %}
         {% if pw_url %}
             <li>

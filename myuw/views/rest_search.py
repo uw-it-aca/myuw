@@ -1,4 +1,4 @@
-# Copyright 2021 UW-IT, University of Washington
+# Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
@@ -47,6 +47,9 @@ class MyUWRestSearchView(RestSearchView):
         elif service == "sws":
             if "advisers" == url:
                 url = "student/v5/person/{}/advisers.json".format(
+                    request.POST["uwregid"])
+            elif "degree" == url:
+                url = "student/v5/person/{}/degree.json?deg_status=all".format(
                     request.POST["uwregid"])
             elif "notices" == url:
                 url = "student/v5/notice/{}.json".format(
