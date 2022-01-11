@@ -11,7 +11,7 @@
     <template #card-body>
       <p class="myuw-text-md">
         <strong>To graduate, you'll need apply.</strong> Dont worry, it's an easy
-        process you complete with your departmental adviser!
+        process that you complete with your departmental adviser!
       </p>
     </template>
     <template #card-disclosure>
