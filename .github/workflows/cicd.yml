@@ -197,7 +197,7 @@ jobs:
       - name: Move jest lcov report
         shell: bash
         run: |
-          ls -la coverage
+          ls -la coverage/lcov-report
           mv coverage/lcov.info lcov-jest.info
           rm -rf coverage
 
