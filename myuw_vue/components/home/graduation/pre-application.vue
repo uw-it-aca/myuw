@@ -5,37 +5,57 @@
     :loaded="isReady">
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Graduation: Pre Application
+        Graduation Preparation
       </h2>
     </template>
+
     <template #card-body>
-      <p>
-        <strong>To graduate, you'll need apply.</strong> Dont worry, it's an easy
-        process you complete with your departmental adviser!
+      <p class="myuw-text-md">
+        <strong>To graduate, you'll need apply.</strong> Don't worry, it's an easy
+        process that you complete with your departmental adviser!
       </p>
     </template>
+
     <template #card-disclosure>
       <uw-collapse
         id="collapseGradAppDeadlineAndDetails"
         v-model="isOpen"
       >
-        <ul class="list-style">
-          <li>
+        <ul class="list-style myuw-text-md mb-3">
+          <li class="mb-1">
             <strong>Deadline:</strong> The third Friday of the quarter
             in which you intend to graduate.
           </li>
-          <li>
+          <li class="mb-1">
             <strong>Submit early:</strong> If you apply 2-3 quarters before
             graduation, you get Graduating Senior Priority for registration for 2 quarters.
           </li>
         </ul>
-        <p>
-          <strong>Get all the details:</strong> Follow the
-          <a href="https://www.washington.edu/students/graduation-checklist/">
-            UW Graduation checklist
-          </a>.
+
+        <p v-if="seattle" class="myuw-text-md">
+          <strong>Get all the details:
+          <a href="https://www.washington.edu/students/graduation-checklist/">Follow the UW Seattle Graduation checklist</a>.
+          </strong> 
         </p>
-        <p v-if="intlStudent">
+        <p v-if="tacoma" class="myuw-text-md">
+          <strong>Get an
+          <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
+            overview of the UW Tacoma graduation process</a>.
+          </strong> 
+        </p>
+        <p v-if="bothell" class="myuw-text-md">
+          <strong>Get all the details on
+          <a href="https://www.uwb.edu/registration/graduation">
+            UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
+          </strong> 
+        </p>
+        <p v-if="bothell && intlStudent" class="myuw-text-md">
+          International students, may find
+          <a href="https://www.uwb.edu/cie/alumni">
+            additional graduation guidance
+          </a> at the Center for International Education.
+        </p>
+        <p v-if="seattle && intlStudent" class="myuw-text-md">
           International students, review the
           <a href="https://iss.washington.edu/resources/final-checklist/">
             ISS Graduation checklist
@@ -43,6 +63,7 @@
         </p>
       </uw-collapse>
     </template>
+
     <template #card-footer>
       <button
         v-uw-collapse.collapseGradAppDeadlineAndDetails

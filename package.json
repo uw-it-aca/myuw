@@ -75,13 +75,12 @@
     },
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "myuw/static/**/*.{js,vue}",
-      "!myuw/static/js/**",
-      "!myuw/static/vendor/**",
-      "!myuw_vue/*.{js,vue}",
+      "myuw_vue/**/*.{js,vue}",
+      "!myuw_vue/components /**/*.spec.js",
       "!**/tests/**",
-      "!**/node_modules/**",
-      "!**/*.spec.js"
+      "!myuw/static/**",
+      "!myuw_vue/*.js",
+      "!**/node_modules/**"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
