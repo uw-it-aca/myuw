@@ -76,7 +76,7 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "myuw_vue/**/*.{js,vue}",
-      "!myuw_vue/components /**/*.spec.js",
+      "!**/*.spec.js",
       "!**/tests/**",
       "!myuw/static/**",
       "!myuw_vue/*.js",
