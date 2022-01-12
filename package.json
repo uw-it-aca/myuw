@@ -75,7 +75,7 @@
     },
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "myuw/static/**/*.{js,vue}",
+      "myuw_vue/**/*.{js,vue}",
       "!myuw/static/js/**",
       "!myuw/static/vendor/**",
       "!myuw_vue/*.{js,vue}",
