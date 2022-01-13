@@ -126,12 +126,14 @@ jobs:
         id: tests
         shell: bash
         run: >-
+          ls -la
           docker run -u root -t
           -v ${PWD}:/coverage
           -e DJANGO_APP="$DJANGO_APP"
           -e "ENV=localdev" -e "AUTH=SAML_MOCK"
           app-test-container
           bash -c ". ./docker/test_python.sh"
+          ls -la
 
       - name: Push Image to Repository
         if: github.event_name == 'push'
