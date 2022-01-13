@@ -220,6 +220,6 @@ if os.getenv("ENV") == "localdev":
 else:
     WEBPACK_LOADER = {
         'DEFAULT': {
-            'STATS_FILE': '/static/webpack-stats.json'),
+            'STATS_FILE': '/static/webpack-stats.json',
         }
     }
