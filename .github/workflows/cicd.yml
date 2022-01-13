@@ -131,7 +131,7 @@ jobs:
           -e DJANGO_APP="$DJANGO_APP"
           -e "ENV=localdev" -e "AUTH=SAML_MOCK"
           app-test-container
-          bash -c "echo $ENV; ls -al myuw/static; . ./docker/test_python.sh; ls -al myuw/static"
+          bash -c "echo $ENV; ls -al /static; . ./docker/test_python.sh; ls -al myuw/static"
 
       - name: Push Image to Repository
         if: github.event_name == 'push'
