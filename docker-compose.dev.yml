@@ -15,6 +15,7 @@ services:
     user: root
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
       - statics-volume:/static
       - /tmp/myuw:/coverage
     environment:
