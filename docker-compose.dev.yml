@@ -11,7 +11,9 @@ version: '3.4'
 
 services:
   python-tests:
-    build: .
+    build:
+      context: .
+      target: app-test-container
     user: root
     volumes:
       - ./myuw:/app/myuw
