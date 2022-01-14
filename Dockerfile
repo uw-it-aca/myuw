@@ -20,7 +20,7 @@ FROM node:16.3-stretch AS wpack
 
 ADD ./package.json /app/
 WORKDIR /app/
-ENV NODE_ENV=production
+#ENV NODE_ENV=production
 RUN npm install .
 
 ADD . /app/
