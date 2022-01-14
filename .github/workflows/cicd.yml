@@ -132,7 +132,7 @@ jobs:
           -e ENV="localdev"
           -e AUTH="SAML_MOCK"
           app-test-container
-          bash -c "echo $ENV; ls -al /static; . ./docker/test_python.sh; ls -al myuw/static"
+          bash -c ". ./docker/test_python.sh"
 
       - name: Push Image to Repository
         if: github.event_name == 'push'
