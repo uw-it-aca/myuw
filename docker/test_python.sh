@@ -22,7 +22,7 @@ function catch {
     exit 1
 }
 
-run_test "pycodestyle ${DJANGO_APP}/ --exclude=migrations,static"
+#run_test "pycodestyle ${DJANGO_APP}/ --exclude=migrations,static"
 
 # template compress mistakes
 run_test "grep -re '<\s*/\s*br\s*>' myuw/templates/ ; test \$? -eq 1 &&\
