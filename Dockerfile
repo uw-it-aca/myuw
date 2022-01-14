@@ -37,7 +37,7 @@ COPY --chown=acait:acait --from=wpack /app/myuw/static /static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
 
-FROM devtools AS node-test-container
+FROM wpack AS node-test-container
 
 ENV NODE_ENV=development
 RUN npm install

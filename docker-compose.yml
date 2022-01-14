@@ -7,15 +7,14 @@ services:
       target: app-container
     restart: always
     container_name: myuw_app
+    environment:
+      ENV: localdev
+      AUTH: SAML_MOCK
     volumes:
       - ./myuw:/app/myuw
       - statics-volume:/static
     ports:
       - "${RUNSERVER_PORT:-8000}:8000"
-    environment:
-      ENV: localdev
-      AUTH: SAML_MOCK
-      #PORT: ${PORT:-8000}
     stdin_open: true
     tty: true
   devtools:
@@ -35,7 +34,6 @@ services:
       - ./myuw:/app/myuw # expose main django app so webpack-loader can output bundles here
       - ./myuw_vue:/app/myuw_vue
       - statics-volume:/static
-    #command: bash -c "cd /app/ && ./node_modules/.bin/webpack --watch"
     command: npx webpack --watch --mode=development
     stdin_open: true
     tty: true
