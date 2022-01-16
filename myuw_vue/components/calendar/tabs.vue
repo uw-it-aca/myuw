@@ -10,14 +10,7 @@
       <uw-tab title="All" title-item-class="myuw-text-md">
         <uw-calendar-cards :events="allEvents" />
       </uw-tab>
-      <uw-tab title-item-class="myuw-text-md">
-        <template #title>
-          <font-awesome-icon
-            :icon="faCircle"
-            class="align-baseline text-mid-beige myuw-text-tiny"
-          />
-          Breaks
-        </template>
+      <uw-tab title="Breaks" title-item-class="myuw-text-md" :title-item-icon="faCircle">
         <uw-calendar-cards :events="breakEvents" />
       </uw-tab>
     </uw-tabs>

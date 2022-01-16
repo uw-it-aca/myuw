@@ -2,10 +2,15 @@
   <div>
     <div :class="navWrapperClassesComputed">
       <ul role="tablist" :class="navClassesComputed">
-        <li v-for="(item, idx) in $slots.default" :key="idx" :class="listItemClasses(item, idx)" role="presentation">
-          <button ref="tabButton" role="tab" data-bs-toggle="tab" type="button" @click="activeTabIdx=idx" :class="buttonClasses(item, idx)" @keydown.left="moveActiveTabLeft" @keydown.right="moveActiveTabRight" :aria-selected="activeTabIdx === idx">
+        <li v-for="(item, idx) in validSlots" :key="idx" :class="listItemClasses(item, idx)" role="presentation">
+          <a ref="tabButton" role="tab" data-bs-toggle="tab" type="button" @click="activeTabIdx=idx" :class="buttonClasses(item, idx)" @keydown.left="moveActiveTabLeft" @keydown.right="moveActiveTabRight" :aria-selected="activeTabIdx === idx">
+            <font-awesome-icon
+              v-if="listItemIcon(item, idx)"
+              :icon="listItemIcon(item, idx)"
+              class="align-baseline text-mid-beige myuw-text-tiny"
+            />
             {{item.componentOptions.propsData.title}}
-          </button>
+          </a>
         </li>
       </ul>
     </div>
@@ -58,6 +63,13 @@ export default {
     };
   },
   computed: {
+    validSlots() {
+      var filtered = this.$slots.default;
+      filtered = this.$slots.default.filter(record => {
+          return record.tag
+      });
+      return filtered
+    },
     navWrapperClassesComputed() {
       let wrapperClasses = this.classesToClassDict(this.navWrapperClass);
 
@@ -120,15 +132,17 @@ export default {
       return classDict;
     },
     listItemClasses(item, idx) {
-      let liClass =  this.classesToClassDict(item.componentOptions.propsData.titleItemClass);
+      let liClass = this.classesToClassDict(item.componentOptions.propsData.titleItemClass);
       liClass['nav-item'] = true;
       return liClass;
+    },
+    listItemIcon(item, idx) {
+      return item.componentOptions.propsData.titleItemIcon;
     },
     buttonClasses(item, idx) {
       let buttonClass = this.classesToClassDict(item.componentOptions.propsData.titleLinkClass);
       buttonClass['nav-link'] = true;
       buttonClass['text-nowrap'] =true;
-      buttonClass['text-uppercase'] = true;
       if (idx === this.activeTabIdx) {
         buttonClass['active'] = true;
       }

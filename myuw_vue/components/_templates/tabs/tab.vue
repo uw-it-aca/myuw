@@ -1,6 +1,6 @@
 <template>
   <div ref="tab" role="tabpanel" aria-labelledby="todo" :class="tabPanelClassesComputed">
-      <slot></slot>
+    <slot></slot>
   </div>
 </template>
 
@@ -20,11 +20,15 @@ export default {
       type: [String, Array, Object],
       default: '',
     },
+    titleItemIcon: {
+      type: [String, Array, Object],
+      default: undefined,
+    }
   },
   computed: {
     active() {
       if (this.$parent) {
-        let activeUid = this.$parent.$slots.default[
+        let activeUid = this.$parent.validSlots[
           this.$parent.activeTabIdx].componentInstance.$meta.uid;
         return activeUid == this.$meta.uid;
       } else {
