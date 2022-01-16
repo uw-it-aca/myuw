@@ -4,17 +4,17 @@
       <ul role="tablist" :class="navClassesComputed">
         <li v-for="(item, idx) in validSlots" :key="idx"
             :class="listItemClasses(item, idx)" role="presentation">
-          <a ref="tabButton" role="tab" data-bs-toggle="tab" type="button"
+          <button ref="tabButton" role="tab" data-bs-toggle="tab"
               :class="buttonClasses(item, idx)" :aria-selected="activeTabIdx === idx"
-              @click="activeTabIdx=idx" @keydown.left="moveActiveTabLeft"
-              @keydown.right="moveActiveTabRight">
+              @click="activeTabIdx=idx" @keydown.left.prevent="moveActiveTabLeft"
+              @keydown.right.prevent="moveActiveTabRight">
             <font-awesome-icon
               v-if="listItemIcon(item, idx)"
               :icon="listItemIcon(item, idx)"
               class="align-baseline text-mid-beige myuw-text-tiny"
             />
             {{item.componentOptions.propsData.title}}
-          </a>
+          </button>
         </li>
       </ul>
     </div>
@@ -146,7 +146,8 @@ export default {
     buttonClasses(item, idx) {
       let buttonClass = this.classesToClassDict(item.componentOptions.propsData.titleLinkClass);
       buttonClass['nav-link'] = true;
-      buttonClass['text-nowrap'] =true;
+      buttonClass['text-nowrap'] = true;
+      buttonClass['text-uppercase'] = true;
       if (idx === this.activeTabIdx) {
         buttonClass['active'] = true;
       }
