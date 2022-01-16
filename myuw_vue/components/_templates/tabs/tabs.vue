@@ -2,8 +2,12 @@
   <div>
     <div :class="navWrapperClassesComputed">
       <ul role="tablist" :class="navClassesComputed">
-        <li v-for="(item, idx) in validSlots" :key="idx" :class="listItemClasses(item, idx)" role="presentation">
-          <a ref="tabButton" role="tab" data-bs-toggle="tab" type="button" @click="activeTabIdx=idx" :class="buttonClasses(item, idx)" @keydown.left="moveActiveTabLeft" @keydown.right="moveActiveTabRight" :aria-selected="activeTabIdx === idx">
+        <li v-for="(item, idx) in validSlots" :key="idx"
+            :class="listItemClasses(item, idx)" role="presentation">
+          <a ref="tabButton" role="tab" data-bs-toggle="tab" type="button"
+              :class="buttonClasses(item, idx)" :aria-selected="activeTabIdx === idx"
+              @click="activeTabIdx=idx" @keydown.left="moveActiveTabLeft"
+              @keydown.right="moveActiveTabRight">
             <font-awesome-icon
               v-if="listItemIcon(item, idx)"
               :icon="listItemIcon(item, idx)"
@@ -100,13 +104,13 @@ export default {
       return navClass;
     },
   },
-  created() {
-    this.activeTabIdx = this.tabIndex;
-  },
   watch: {
     activeTabIdx: function() {
-      this.$refs.tabButton[this.activeTabIdx].focus()
+      this.$refs.tabButton[this.activeTabIdx].focus();
     }
+  },
+  created() {
+    this.activeTabIdx = this.tabIndex;
   },
   methods: {
     moveActiveTabLeft: function() {
