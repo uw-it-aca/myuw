@@ -1,0 +1,888 @@
+[
+    {
+        "category_name": "Academics",
+        "category_id": "academics",
+        "subcategories": {
+            "Advising & Tutoring": {
+                "subcat_name": "Advising & Tutoring",
+                "subcat_id": "academicsadvisingtutoring",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Career & Internship Center",
+                        "url": "http://careers.uw.edu/"
+                    },
+                    {
+                        "title": "Career & Internship Center - Graduate Student Resources",
+                        "url": "https://careers.uw.edu/graduate-students/"
+                    },
+                    {
+                        "title": "Center for Learning and Undergraduate Enrichment (CLUE)",
+                        "url": "https://webster.uaa.washington.edu/asp/website/"
+                    },
+                    {
+                        "title": "International Student Services (ISS)",
+                        "url": "http://iss.washington.edu/"
+                    },
+                    {
+                        "title": "Odegaard Writing & Research Center",
+                        "url": "http://depts.washington.edu/owrc"
+                    },
+                    {
+                        "title": "Undergraduate Academic Advising (Pre-major)",
+                        "url": "http://www.washington.edu/uaa/advising/"
+                    },
+                    {
+                        "title": "Study Abroad",
+                        "url": "http://studyabroad.washington.edu/"
+                    },
+                    {
+                        "title": "The Graduate School Student Resources",
+                        "url": "https://grad.uw.edu/for-students-and-post-docs/"
+                    },
+                    {
+                        "title": "Graduate School Core Programs",
+                        "url": "https://grad.uw.edu/for-students-and-post-docs/core-programs/"
+                    }
+                ]
+            },
+            "Grades & Transcripts": {
+                "subcat_name": "Grades & Transcripts",
+                "subcat_id": "academicsgradestranscripts",
+                "is_pinned": true,
+                "order": null,
+                "links": [
+                    {
+                        "title": "GPA Calculator",
+                        "url": "https://www.washington.edu/uaa/advising/academic-planning/plan-your-degree/"
+                    },
+                    {
+                        "title": "Grade Report",
+                        "url": "https://sdb.admin.uw.edu/sisStudents/uwnetid/grades.aspx"
+                    },
+                    {
+                        "title": "About Ordering Transcripts",
+                        "url": "https://registrar.washington.edu/students/transcripts/"
+                    },
+                    {
+                        "title": "Order Official Transcripts",
+                        "url": "https://apps.registrar.washington.edu/credential_solutions_authentication/public/ce.php"
+                    },
+                    {
+                        "title": "Unofficial Transcript",
+                        "url": "https://sdb.admin.uw.edu/students/uwnetid/unofficial.asp"
+                    }
+                ]
+            },
+            "Graduation": {
+                "subcat_name": "Graduation",
+                "subcat_id": "academicsgraduation",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Applying for Graduation",
+                        "url": "https://registrar.washington.edu/students/graduation-commencement-and-diplomas/"
+                    }
+                ]
+            },
+            "Registration": {
+                "subcat_name": "Registration",
+                "subcat_id": "academicsregistration",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Academic Calendar",
+                        "url": "http://www.washington.edu/students/reg/calendar.html"
+                    },
+                    {
+                        "title": "Course Catalog",
+                        "url": "http://www.washington.edu/students/crscat/"
+                    },
+                    {
+                        "title": "Check Your Degree Progress (DARS)",
+                        "url": "https://myplan.uw.edu/dars"
+                    },
+                    {
+                        "title": "MyPlan",
+                        "url": "https://myplan.uw.edu/"
+                    },
+                    {
+                        "title": "Notify.UW",
+                        "url": "https://notify.uw.edu/"
+                    },
+                    {
+                        "title": "Prereq Map",
+                        "url": "https://prereqmap.uw.edu/"
+                    },
+                    {
+                        "title": "Registration",
+                        "url": "https://sdb.admin.uw.edu/students/uwnetid/register.asp"
+                    },
+                    {
+                        "title": "Schedule Finder",
+                        "url": "https://sdb.admin.uw.edu/timeschd/uwnetid/findschd.asp"
+                    },
+                    {
+                        "title": "UW Seattle Time Schedule",
+                        "url": "http://www.washington.edu/students/timeschd/"
+                    },
+                    {
+                        "title": "Professional & Continuing Education (PCE) Time Schedule",
+                        "url": "http://www.washington.edu/students/timeschd/95index.html"
+                    },
+                    {
+                        "title": "How to Register for PCE Courses",
+                        "url": "https://www.degreereg.uw.edu/user-guide"
+                    }
+                ]
+            },
+            "Tools and Software": {
+                "subcat_name": "Tools and Software",
+                "subcat_id": "academicstoolsandsoftware",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Canvas LMS",
+                        "url": "http://canvas.uw.edu/"
+                    },
+                    {
+                        "title": "Catalyst Web Tools",
+                        "url": "https://catalyst.uw.edu/"
+                    },
+                    {
+                        "title": "Notify.UW",
+                        "url": "https://notify.uw.edu/"
+                    },
+                    {
+                        "title": "Scout: Discover the UW",
+                        "url": "https://scout.uw.edu/seattle"
+                    },
+                    {
+                        "title": "MyGrad – Graduate School Portal",
+                        "url": "http://grad.uw.edu/for-students-and-post-docs/mygrad-program/"
+                    },
+                    {
+                        "title": "Tableau Data Analysis Software",
+                        "url": "https://itconnect.uw.edu/wares/uware/tableau-software/"
+                    },
+                    {
+                        "title": "Panopto Lecture Capture",
+                        "url": "https://uw.hosted.panopto.com/"
+                    },
+                    {
+                        "title": "Other Software and Hardware Services",
+                        "url": "https://itconnect.uw.edu/wares/"
+                    },
+                    {
+                        "title": "Help with Teaching and Learning Tools",
+                        "url": "https://itconnect.uw.edu/learn/tools/"
+                    },
+                    {
+                        "title": "LinkedIn Learning",
+                        "url": "http://www.linkedinlearning.uw.edu/"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Email, and Accounts and Identity",
+        "category_id": "emailandaccountsandidentity",
+        "subcategories": {
+            "Email": {
+                "subcat_name": "Email",
+                "subcat_id": "emailandaccountsandidentityemail",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "UW Office 365 Email",
+                        "url": "https://outlook.office365.com/uw.edu"
+                    },
+                    {
+                        "title": "UW Gmail",
+                        "url": "http://mail.google.com/a/uw.edu"
+                    },
+                    {
+                        "title": "MyUW.net Email",
+                        "url": "http://outlook.com/owa/myuw.net"
+                    },
+                    {
+                        "title": "Email Forwarding",
+                        "url": "https://uwnetid.washington.edu/manage/?forward"
+                    },
+                    {
+                        "title": "Email and Calendaring Options",
+                        "url": "http://itconnect.uw.edu/connect/email"
+                    }
+                ]
+            },
+            "Accounts and Identity": {
+                "subcat_name": "Accounts and Identity",
+                "subcat_id": "emailandaccountsandidentityaccountsandidentity",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Manage UW NetID Account",
+                        "url": "https://uwnetid.washington.edu/manage/"
+                    },
+                    {
+                        "title": "UW Medicine Password Portal",
+                        "url": "http://services.uwmedicine.org/passwordportal"
+                    },
+                    {
+                        "title": "Identity.UW",
+                        "url": "https://identity.uw.edu/"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Services for Faculty and Staff",
+        "category_id": "servicesforfacultyandstaff",
+        "subcategories": {
+            "HR, Payroll, and Benefits": {
+                "subcat_name": "HR, Payroll, and Benefits",
+                "subcat_id": "servicesforfacultyandstaffhrpayrollandbenefits",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Workday",
+                        "url": "http://wd5.myworkday.com/uw/login.htmld"
+                    },
+                    {
+                        "title": "Integrated Service Center (ISC)",
+                        "url": "http://isc.uw.edu"
+                    },
+                    {
+                        "title": "Benefits",
+                        "url": "https://hr.uw.edu/benefits/"
+                    },
+                    {
+                        "title": "ISC Administrators' Corner",
+                        "url": "http://isc.uw.edu/admin-corner"
+                    },
+                    {
+                        "title": "Whole U (for staff and faculty)",
+                        "url": "https://www.washington.edu/wholeu/"
+                    }
+                ]
+            },
+            "Research": {
+                "subcat_name": "Research",
+                "subcat_id": "servicesforfacultyandstaffresearch",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "UW Libraries: Start Your Research",
+                        "url": "http://lib.washington.edu/types"
+                    },
+                    {
+                        "title": "FIDS",
+                        "url": "https://sage.admin.uw.edu/era/uwnetid/profile"
+                    },
+                    {
+                        "title": "SAGE",
+                        "url": "https://sage.admin.uw.edu/era/uwnetid/sage/"
+                    },
+                    {
+                        "title": "Reseach Administration Tools",
+                        "url": "https://www.washington.edu/research/tools/"
+                    },
+                    {
+                        "title": "Office of Research Information Services (ORIS)",
+                        "url": "https://www.washington.edu/research/oris/"
+                    },
+                    {
+                        "title": "MyFinancial.Desktop",
+                        "url": "http://ucs.admin.uw.edu/myfd"
+                    }
+                ]
+            },
+            "Procurement": {
+                "subcat_name": "Procurement",
+                "subcat_id": "servicesforfacultyandstaffprocurement",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "ARIBA",
+                        "url": "https://finance.uw.edu/ps/how-to-buy/ariba"
+                    },
+                    {
+                        "title": "Procurement Services",
+                        "url": "https://finance.uw.edu/ps/"
+                    }
+                ]
+            },
+            "Others": {
+                "subcat_name": "Others",
+                "subcat_id": "servicesforfacultyandstaffothers",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Electronic Advising Records System (EARS)",
+                        "url": "http://registrar.washington.edu/staffandfaculty/electronic-academic-records-system-ears"
+                    },
+                    {
+                        "title": "IT Connect",
+                        "url": "https://itconnect.uw.edu/"
+                    },
+                    {
+                        "title": "Software and Hardware",
+                        "url": "https://itconnect.uw.edu/wares/"
+                    },
+                    {
+                        "title": "Environmental Health & Safety",
+                        "url": "https://www.ehs.washington.edu/"
+                    },
+                    {
+                        "title": "UW Facilities",
+                        "url": "https://facilities.uw.edu/"
+                    },
+                    {
+                        "title": "UW Facilities: Request Service",
+                        "url": "https://facilities.uw.edu/services/requests"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Campus Life",
+        "category_id": "campuslife",
+        "subcategories": {
+            "Campus Retail": {
+                "subcat_name": "Campus Retail",
+                "subcat_id": "campuslifecampusretail",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "University Book Store",
+                        "url": "http://www.bookstore.washington.edu/student_faculty/student_faculty.taf?verba=uwseattle"
+                    }
+                ]
+            },
+            "Campus Safety": {
+                "subcat_name": "Campus Safety",
+                "subcat_id": "campuslifecampussafety",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Campus Safety",
+                        "url": "https://www.washington.edu/safety/"
+                    },
+                    {
+                        "title": "SafeCampus",
+                        "url": "http://www.washington.edu/safecampus/"
+                    },
+                    {
+                        "title": "Environmental Health & Safety",
+                        "url": "https://www.ehs.washington.edu/"
+                    },
+                    {
+                        "title": "MyChem",
+                        "url": "https://cspc.admin.uw.edu/mychem"
+                    },
+                    {
+                        "title": "UW Emergency Management",
+                        "url": "https://www.washington.edu/uwem/"
+                    }
+                ]
+            },
+            "Getting Around Campus": {
+                "subcat_name": "Getting Around Campus",
+                "subcat_id": "campuslifegettingaroundcampus",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Campus Map",
+                        "url": "http://www.washington.edu/maps/"
+                    },
+                    {
+                        "title": "Getting to Seattle Campus",
+                        "url": "https://facilities.uw.edu/transportation/park-directions"
+                    },
+                    {
+                        "title": "U-PASS for Students",
+                        "url": "https://facilities.uw.edu/transportation/student-u-pass"
+                    },
+                    {
+                        "title": "U-PASS for Employees",
+                        "url": "https://facilities.uw.edu/transportation/employee-u-pass"
+                    },
+                    {
+                        "title": "Transportation Services",
+                        "url": "https://facilities.uw.edu/transportation/"
+                    },
+                    {
+                        "title": "UW Shuttles",
+                        "url": "http://uwshuttles.com/"
+                    }
+                ]
+            },
+            "Health & Wellness": {
+                "subcat_name": "Health & Wellness",
+                "subcat_id": "campuslifehealthwellness",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Husky Health & Well-Being",
+                        "url": "https://wellbeing.uw.edu/"
+                    },
+                    {
+                        "title": "Counseling Center",
+                        "url": "http://www.washington.edu/counseling/"
+                    },
+                    {
+                        "title": "Hall Health Center",
+                        "url": "https://wellbeing.uw.edu/unit/hall-health/"
+                    },
+                    {
+                        "title": "LiveWell Office",
+                        "url": "https://wellbeing.uw.edu/unit/livewell/"
+                    },
+                    {
+                        "title": "Recreational Sports Programs (IMA)",
+                        "url": "http://www.washington.edu/ima/"
+                    },
+                    {
+                        "title": "Whole U (for staff and faculty)",
+                        "url": "https://www.washington.edu/wholeu/"
+                    }
+                ]
+            },
+            "Housing & Dining": {
+                "subcat_name": "Housing & Dining",
+                "subcat_id": "campuslifehousingdining",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Husky Card Account",
+                        "url": "https://www.hfs.washington.edu/olco/Secure/AccountSummary.aspx"
+                    },
+                    {
+                        "title": "Campus Dining",
+                        "url": "https://www.hfs.washington.edu/dining/"
+                    },
+                    {
+                        "title": "Check HFS Balance",
+                        "url": "https://www.hfs.washington.edu/myhfs/ledger.aspx"
+                    },
+                    {
+                        "title": "Student Housing",
+                        "url": "https://www.hfs.washington.edu/housing/"
+                    },
+                    {
+                        "title": "UW Facilities",
+                        "url": "https://facilities.uw.edu/"
+                    },
+                    {
+                        "title": "Submit Work Request",
+                        "url": "https://facilities.uw.edu/services/requests"
+                    }
+                ]
+            },
+            "Rules and Regulations": {
+                "subcat_name": "Rules and Regulations",
+                "subcat_id": "campusliferulesandregulations",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Family Educational Rights and Privacy Act (FERPA) – Privacy of Student Information",
+                        "url": "http://www.washington.edu/students/reg/ferpa.html"
+                    },
+                    {
+                        "title": "Office of Research Misconduct Proceedings",
+                        "url": "https://ap.washington.edu/ormp/"
+                    },
+                    {
+                        "title": "Student Conduct Code",
+                        "url": "http://www.washington.edu/cssc/student-conduct-overview/student-code-of-conduct/"
+                    }
+                ]
+            },
+            "Support Services": {
+                "subcat_name": "Support Services",
+                "subcat_id": "campuslifesupportservices",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Foundation for International Understanding Through Students (FIUTS)",
+                        "url": "http://www.fiuts.org/"
+                    },
+                    {
+                        "title": "Graduate School Core Programs",
+                        "url": "http://grad.uw.edu/for-students-and-post-docs/core-programs/"
+                    },
+                    {
+                        "title": "Disability Resources",
+                        "url": "http://www.washington.edu/admin/dso/uw-resources.html"
+                    },
+                    {
+                        "title": "Diversity Resources",
+                        "url": "http://www.washington.edu/omad/"
+                    },
+                    {
+                        "title": "Graduate Opportunities and Minority Achievement Program (GO-MAP)",
+                        "url": "http://grad.uw.edu/diversity/go-map/"
+                    },
+                    {
+                        "title": "Q Center",
+                        "url": "http://depts.washington.edu/qcenter/wordpress/"
+                    },
+                    {
+                        "title": "Women's Center",
+                        "url": "http://depts.washington.edu/womenctr/"
+                    },
+                    {
+                        "title": "Office of the Ombud",
+                        "url": "https://www.washington.edu/ombud/"
+                    },
+                    {
+                        "title": "Discrimination and Title IX Compliance",
+                        "url": "https://www.washington.edu/compliance/titleix/"
+                    },
+                    {
+                        "title": "Reporting Bias Incidents",
+                        "url": "http://www.washington.edu/bias/"
+                    },
+                    {
+                        "title": "Sexual Assault Resources",
+                        "url": "http://www.washington.edu/sexualassault/"
+                    },
+                    {
+                        "title": "Student Legal Services",
+                        "url": "http://depts.washington.edu/slsuw/"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Employment",
+        "category_id": "employment",
+        "subcategories": {
+            "Employment Resources": {
+                "subcat_name": "Employment Resources",
+                "subcat_id": "employmentemploymentresources",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Career & Internship Center",
+                        "url": "http://careers.uw.edu/"
+                    },
+                    {
+                        "title": "Workday",
+                        "url": "https://wd5.myworkday.com/uw/d/home.htmld"
+                    },
+                    {
+                        "title": "Legacy ESS",
+                        "url": "https://prp.admin.uw.edu/legacyess"
+                    },
+                    {
+                        "title": "Career & Internship Center - Job Postings",
+                        "url": "https://careers.uw.edu/jobs"
+                    },
+                    {
+                        "title": "Handshake",
+                        "url": "https://uw.joinhandshake.com/"
+                    },
+                    {
+                        "title": "Student Employment in the Libraries",
+                        "url": "http://www.lib.washington.edu/about/employment/students"
+                    },
+                    {
+                        "title": "Integrated Service Center (ISC)",
+                        "url": "http://isc.uw.edu"
+                    },
+                    {
+                        "title": "Employment at UW",
+                        "url": "http://hr.uw.edu/jobs/"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Events and Activities",
+        "category_id": "eventsandactivities",
+        "subcategories": {
+            "Events": {
+                "subcat_name": "Events",
+                "subcat_id": "eventsandactivitiesevents",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Campus Event Calendar",
+                        "url": "http://www.washington.edu/calendar/"
+                    },
+                    {
+                        "title": "HUB Events",
+                        "url": "https://hub.washington.edu/hub-events/event-calendars/"
+                    },
+                    {
+                        "title": "Husky Sports",
+                        "url": "http://gohuskies.com/"
+                    }
+                ]
+            },
+            "Stay Connected": {
+                "subcat_name": "Stay Connected",
+                "subcat_id": "eventsandactivitiesstayconnected",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Campus News",
+                        "url": "http://www.washington.edu/news/"
+                    },
+                    {
+                        "title": "UW Facebook Page",
+                        "url": "http://www.facebook.com/UofWA"
+                    },
+                    {
+                        "title": "UW YouTube Channel",
+                        "url": "http://www.youtube.com/user/uwhuskies"
+                    },
+                    {
+                        "title": "UW Instagram",
+                        "url": "https://www.instagram.com/uofwa/"
+                    },
+                    {
+                        "title": "UW Twitter",
+                        "url": "https://twitter.com/UW"
+                    },
+                    {
+                        "title": "UW LinkedIn",
+                        "url": "https://www.linkedin.com/company/university-of-washington"
+                    }
+                ]
+            },
+            "Student Clubs and Organizations": {
+                "subcat_name": "Student Clubs and Organizations",
+                "subcat_id": "eventsandactivitiesstudentclubsandorganizations",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Registered Student Organizations (RSO) Directory",
+                        "url": "https://hub.washington.edu/sao/rso-directory/"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Libraries",
+        "category_id": "libraries",
+        "subcategories": {
+            "Library Resources": {
+                "subcat_name": "Library Resources",
+                "subcat_id": "librarieslibraryresources",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "UW Libraries",
+                        "url": "http://lib.washington.edu/"
+                    },
+                    {
+                        "title": "Your Library Account",
+                        "url": "http://search.lib.uw.edu/account"
+                    },
+                    {
+                        "title": "Articles and Research Databases",
+                        "url": "http://guides.lib.uw.edu/az.php"
+                    },
+                    {
+                        "title": "Electronic Journals",
+                        "url": "http://guides.lib.uw.edu/research/ejournals"
+                    },
+                    {
+                        "title": "UW Libraries: Start Your Research",
+                        "url": "http://lib.washington.edu/types"
+                    },
+                    {
+                        "title": "PubMed",
+                        "url": "http://offcampus.lib.washington.edu/login?url=http://ncbi.nlm.nih.gov/pubmed?myncbishare=uwonline"
+                    },
+                    {
+                        "title": "Care Provider Toolkit",
+                        "url": "http://hsl.uw.edu/toolkits/care-provider"
+                    },
+                    {
+                        "title": "Health Sciences Library",
+                        "url": "http://hsl.uw.edu"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Student Finances",
+        "category_id": "studentfinances",
+        "subcategories": {
+            "Tuition and Financial Aid": {
+                "subcat_name": "Tuition and Financial Aid",
+                "subcat_id": "studentfinancestuitionandfinancialaid",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Student Fiscal Services",
+                        "url": "http://finance.uw.edu/sfs/home"
+                    },
+                    {
+                        "title": "Financial Aid and Scholarships",
+                        "url": "http://www.washington.edu/students/osfa/"
+                    },
+                    {
+                        "title": "Financial Aid Status",
+                        "url": "https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx"
+                    },
+                    {
+                        "title": "Graduate Funding Information Service (GFIS)",
+                        "url": "http://www.lib.washington.edu/commons/services/gfis"
+                    },
+                    {
+                        "title": "Tuition Overview",
+                        "url": "http://f2.washington.edu/fm/sfs/tuition"
+                    }
+                ]
+            },
+            "Taxes": {
+                "subcat_name": "Taxes",
+                "subcat_id": "studentfinancestaxes",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Form 1098-T",
+                        "url": "https://sdb.admin.uw.edu/sisStudents/uwnetid/irs1098t.aspx"
+                    },
+                    {
+                        "title": "Student Tax Information",
+                        "url": "http://f2.washington.edu/fm/sfs/tax"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "category_name": "Teaching",
+        "category_id": "teaching",
+        "subcategories": {
+            "Course Evaluation": {
+                "subcat_name": "Course Evaluation",
+                "subcat_id": "teachingcourseevaluation",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Course Evaluation Catalog",
+                        "url": "https:washington.edu/cec"
+                    },
+                    {
+                        "title": "My Course Evaluations",
+                        "url": "https://uw.iasystem.org/faculty"
+                    },
+                    {
+                        "title": "Course Evaluations",
+                        "url": "https://www.washington.edu/assessment/course-evaluations/"
+                    }
+                ]
+            },
+            "Course Materials": {
+                "subcat_name": "Course Materials",
+                "subcat_id": "teachingcoursematerials",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Order Textbooks",
+                        "url": "https://www.ubookstore.com/faculty"
+                    },
+                    {
+                        "title": "Request Course Packs",
+                        "url": "https://finance.uw.edu/c2/printing-copying/course-packs"
+                    },
+                    {
+                        "title": "Request Course Reserves",
+                        "url": "https://lib.washington.edu/types/course/instructors/request"
+                    }
+                ]
+            },
+            "Grading": {
+                "subcat_name": "Grading",
+                "subcat_id": "teachinggrading",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "GradePage",
+                        "url": "https://gradepage.uw.edu"
+                    },
+                    {
+                        "title": "Change Submitted Grades",
+                        "url": "https://apps.registrar.washington.edu/grade-change/pages/change.php"
+                    },
+                    {
+                        "title": "Faculty Resource on Grading",
+                        "url": "http://depts.washington.edu/grading"
+                    }
+                ]
+            },
+            "Tools": {
+                "subcat_name": "Tools",
+                "subcat_id": "teachingtools",
+                "is_pinned": false,
+                "order": null,
+                "links": [
+                    {
+                        "title": "Canvas LMS",
+                        "url": "https://canvas.uw.edu"
+                    },
+                    {
+                        "title": "Catalyst Web Tools",
+                        "url": "https://catalyst.uw.edu/"
+                    },
+                    {
+                        "title": "Panopto Lecture Capture",
+                        "url": "https://uw.hosted.panopto.com"
+                    },
+                    {
+                        "title": "Poll Everywhere",
+                        "url": "https://itconnect.uw.edu/learn/tools/polleverywhere/"
+                    },
+                    {
+                        "title": "Course Stats",
+                        "url": "https://coda.uw.edu"
+                    },
+                    {
+                        "title": "Zoom",
+                        "url": "https://washington.zoom.us"
+                    }
+                ]
+            }
+        }
+    }
+]

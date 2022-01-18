@@ -10,7 +10,6 @@ from userservice.user import (
 from myuw.util.settings import get_disable_actions_when_override
 
 logger = logging.getLogger(__name__)
-disable_actions_when_override = get_disable_actions_when_override()
 
 
 def get_netid_of_current_user(request=None):
