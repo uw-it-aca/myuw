@@ -18,12 +18,12 @@ services:
       #PORT: ${PORT:-8000}
     stdin_open: true
     tty: true
-  devtools:
+  node-bundler:
     build:
       context: .
-      target: wpack
+      target: node-bundler
     restart: always
-    container_name: myuw_devtools
+    container_name: myuw_node
     ports:
       - "${BUNDLE_ANALYZER_PORT:-8888}:8888" # Required when environment.BUNDLE_ANALYZER is true
     environment:

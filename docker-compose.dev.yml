@@ -2,7 +2,7 @@
 # in a development environment
 #
 # How to use this:
-# docker-compose -f docker-compose.dev.yml run (django-test|eslint-fix|eslint|jest) 
+# docker-compose -f docker-compose.dev.yml run (python-test|eslint|jest|cypress)
 #
 # You can also run a command in the container by using:
 # docker-compose -f docker-compose.dev.yml run <service-name> <command>
@@ -11,7 +11,9 @@ version: '3.4'
 
 services:
   python-tests:
-    build: .
+    build:
+      context: .
+      target: app-test-container
     user: root
     volumes:
       - ./myuw:/app/myuw

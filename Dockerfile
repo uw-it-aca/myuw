@@ -16,7 +16,7 @@ RUN . /app/bin/activate && pip install mysqlclient
 #ADD --chown=acait:acait docker/app_start.sh /scripts
 #RUN chmod u+x /scripts/app_start.sh
 
-FROM node:16.3-stretch AS wpack
+FROM node:16.3-stretch AS node-bundler
 
 ADD ./package.json /app/
 WORKDIR /app/
@@ -33,17 +33,17 @@ FROM app-prewebpack-container as app-container
 
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
-COPY --chown=acait:acait --from=wpack /app/myuw/static /static
+COPY --chown=acait:acait --from=node-bundler /app/myuw/static /app/myuw/static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput
-
-FROM devtools AS node-test-container
-
-ENV NODE_ENV=development
-RUN npm install
 
 FROM gcr.io/uwit-mci-axdd/django-test-container:1.3.8 as app-test-container
 
 ENV NODE_PATH=/app/lib/node_modules
 COPY --from=app-container /app/ /app/
 COPY --from=app-container /static/ /static/
+
+FROM node-bundler AS node-test-container
+
+ENV NODE_ENV=development
+RUN npm install
