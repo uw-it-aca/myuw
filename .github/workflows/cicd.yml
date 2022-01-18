@@ -129,7 +129,8 @@ jobs:
           docker run -u root -t
           -v ${PWD}:/coverage
           -e DJANGO_APP="$DJANGO_APP"
-          -e "ENV=localdev" -e "AUTH=SAML_MOCK"
+          -e ENV="localdev"
+          -e AUTH="SAML_MOCK"
           app-test-container
           bash -c ". ./docker/test_python.sh"
 
@@ -169,7 +170,7 @@ jobs:
         run: npm install .
 
       - name: Run eslint
-        run: ./node_modules/.bin/eslint myuw/static/vue --ext .vue
+        run: ./node_modules/.bin/eslint myuw_vue/ --ext .vue
 
   jest-cypress:
     runs-on: ubuntu-18.04
@@ -197,6 +198,7 @@ jobs:
       - name: Move jest lcov report
         shell: bash
         run: |
+          ls -la coverage
           mv coverage/lcov.info lcov-jest.info
           rm -rf coverage
 

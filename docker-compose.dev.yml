@@ -2,16 +2,18 @@
 # in a development environment
 #
 # How to use this:
-# docker-compose -f dev.helper.yml run (django-test|eslint-fix|eslint|jest) 
+# docker-compose -f docker-compose.dev.yml run (python-test|eslint|jest|cypress)
 #
 # You can also run a command in the container by using:
-# docker-compose -f dev.helper.yml run <service-name> <command>
+# docker-compose -f docker-compose.dev.yml run <service-name> <command>
 
 version: '3.4'
 
 services:
   python-tests:
-    build: .
+    build:
+      context: .
+      target: app-test-container
     user: root
     volumes:
       - ./myuw:/app/myuw
@@ -39,16 +41,17 @@ services:
       context: .
       dockerfile: Dockerfile.cypress
     environment:
-      NODE_ENV: producation
+      NODE_ENV: production
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
     working_dir: /app/
     stdin_open: true
     tty: true
     entrypoint:
       - ./node_modules/.bin/eslint
-      - myuw/static/vue
+      - myuw_vue
       - --ext
       - .vue
   jest:
@@ -56,10 +59,11 @@ services:
       context: .
       dockerfile: Dockerfile.cypress
     environment:
-      NODE_ENV: producation
+      NODE_ENV: production
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
     working_dir: /app/
     stdin_open: true
     tty: true
@@ -70,10 +74,11 @@ services:
       context: .
       dockerfile: Dockerfile.cypress
     environment:
-      NODE_ENV: producation
+      NODE_ENV: production
       ENV: localdev
     volumes:
       - ./myuw:/app/myuw
+      - ./myuw_vue:/app/myuw_vue
       - ./cypress:/app/cypress
     working_dir: /app/
     stdin_open: true

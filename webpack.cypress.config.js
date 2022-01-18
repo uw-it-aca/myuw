@@ -14,40 +14,40 @@ module.exports = {
   context: __dirname,
   entry: {
     home: [
-      "./myuw/static/vue/home.js",
+      "./myuw_vue/home.js",
     ],
     academics: [
-      "./myuw/static/vue/academics.js",
+      "./myuw_vue/academics.js",
     ],
     teaching: [
-      "./myuw/static/vue/teaching.js",
+      "./myuw_vue/teaching.js",
     ],
     accounts: [
-      "./myuw/static/vue/accounts.js"
+      "./myuw_vue/accounts.js"
     ],
     future_quarters: [
-      "./myuw/static/vue/future_quarters.js"
+      "./myuw_vue/future_quarters.js"
     ],
     profile: [
-      "./myuw/static/vue/profile.js"
+      "./myuw_vue/profile.js"
     ],
     textbooks: [
-      "./myuw/static/vue/textbooks.js"
+      "./myuw_vue/textbooks.js"
     ],
     husky_experience: [
-      "./myuw/static/vue/husky_experience.js"
+      "./myuw_vue/husky_experience.js"
     ],
     notices: [
-      "./myuw/static/vue/notices.js"
+      "./myuw_vue/notices.js"
     ],
     teaching_classlist: [
-      "./myuw/static/vue/teaching_classlist.js"
+      "./myuw_vue/teaching_classlist.js"
     ],
     resources: [
-      "./myuw/static/vue/resources.js"
+      "./myuw_vue/resources.js"
     ],
     calendar: [
-      "./myuw/static/vue/calendar.js"
+      "./myuw_vue/calendar.js"
     ],
   },
 

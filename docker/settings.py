@@ -91,14 +91,14 @@ if os.getenv('SPACE_ENV') in ['PROD', 'EVAL']:
 MEDIA_ROOT = "../statics/hx_images"
 MEDIA_URL = "/uploaded_images/"
 THRIVE_OUTPUT = "/hx_toolkit_output"
+MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
+MYUW_SKIP_ACCESS_CHECK = True
 
 # dev/test site access settings
 if os.getenv("ENV", "") == "localdev":
     MYUW_ASTRA_GROUP_STEM = "u_astratst_myuw"
     MYUW_ADMIN_GROUP = 'u_astratst_myuw_test-support-admin'
     MYUW_OVERRIDE_GROUP = 'u_astratst_myuw_test-support-impersonate'
-    MYUW_SKIP_ACCESS_CHECK = True
-    MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
 else:
     MYUW_ASTRA_GROUP_STEM = "u_astra_myuw"
     MYUW_TEST_ACCESS_GROUP = "u_acadev_myuw-test-access"
@@ -106,11 +106,9 @@ else:
         MYUW_ADMIN_GROUP = "u_astra_myuw_prod-support-admin"
         MYUW_OVERRIDE_GROUP = "u_astra_myuw_prod-support-impersonate"
         MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = True
-        MYUW_SKIP_ACCESS_CHECK = True
     else:
         MYUW_ADMIN_GROUP = "u_astra_myuw_test-support-admin"
         MYUW_OVERRIDE_GROUP = "u_astra_myuw_test-support-impersonate"
-        MYUW_DISABLE_ACTIONS_WHEN_OVERRIDE = False
         MYUW_SKIP_ACCESS_CHECK = False
 
 # Support Tools settings
@@ -209,12 +207,18 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 GOOGLE_ANALYTICS_KEY = os.getenv('GOOGLE_ANALYTICS_KEY', None)
 GOOGLE_SEARCH_KEY = os.getenv('GOOGLE_SEARCH_KEY', None)
 
-STATICFILES_DIRS = [
-    '../static/myuw/'
-]
+# Location of stats file that can be accessed during local development and 
+# collected from during production build process
 
-WEBPACK_LOADER = {
-    'DEFAULT': {
-        'STATS_FILE': os.path.join('../static/myuw/', 'webpack-stats.json')
+if os.getenv("ENV") == "localdev":
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'STATS_FILE': os.path.join(BASE_DIR, 'myuw/static/webpack-stats.json'),
+        }
     }
-}
+else:
+    WEBPACK_LOADER = {
+        'DEFAULT': {
+            'STATS_FILE': '/static/webpack-stats.json',
+        }
+    }
