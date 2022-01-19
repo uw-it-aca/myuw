@@ -10,7 +10,7 @@
             <strong>You're on your way!</strong> We're here to help you get to the finish line!
           </p>
           <p class = myuw-text-lg>
-            Start with these Checklists
+            Get an overview
           </p>
           <ul class="list-style">
             <li>Review the
@@ -25,7 +25,7 @@
             </li>
           </ul>
           <p class = myuw-text-lg>
-            Take part in the commencement ceremonies
+            Take part in the commencement ceremony
           </p>
           <p class = myuw-text-lg>
             Verify that your information and data will not be lost
