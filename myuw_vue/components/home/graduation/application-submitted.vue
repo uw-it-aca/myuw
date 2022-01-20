@@ -1,7 +1,7 @@
 <template>
   <uw-card v-if="showCard" :loaded="isReady">
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation: Checklist</h2>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
     </template>
     <template #card-body>
       <div class="row">
@@ -30,6 +30,16 @@
           <p class = myuw-text-lg>
             Verify that your information and data will not be lost
           </p>
+          <ul>
+            <li>
+              <button v-uw-collapse.myCollapseId type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md">Review your diploma name and mailing address</button>
+              <uw-collapse id="myCollapseId">
+                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+              </uw-collapse>
+            </li>
+            <li>Save your UW work before it is deleted</li>
+            <li>Keep receiving emails sent to your UW address – set up forwarding</li>
+          </ul>
         </div>
         <div class="col-4">
           <h3 class="h6 text-dark-beige myuw-font-encode-sans">
