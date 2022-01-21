@@ -6,63 +6,81 @@
     <template #card-body>
       <div class="row">
         <div class="col-8">
-          <p>
-            <strong>You're on your way!</strong> We're here to help you get to the finish line!
-          </p>
-          <p class = "myuw-text-lg mb-0">
-            Get an overview
-          </p>
+          <p><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
+          <p class="myuw-text-lg mb-0">Get an overview</p>
           <ul class="list-style">
-            <li>Review the
+            <li>
+              Review the
               <a href="https://www.washington.edu/students/graduation-checklist/">
-              UW Graduation checklist
-              </a> for an overview of tasks.
+                UW Graduation checklist
+              </a>
+              for an overview of tasks.
             </li>
-            <li>International students, review the
+            <li>
+              International students, review the
               <a href="https://iss.washington.edu/resources/final-checklist/">
-              ISS graduation checklist
-              </a> for additional guidance.
+                ISS graduation checklist
+              </a>
+              for additional guidance.
             </li>
           </ul>
-          <p class = "myuw-text-lg mb-0">
-            Take part in the commencement ceremony
-          </p>
+          <p class="myuw-text-lg mb-0">Take part in the commencement ceremony</p>
           <ul class="list-unstyled">
             <li>
-              <button v-uw-collapse.commencementCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Participate in the UW commencement celebration</button>
+              <button
+                v-uw-collapse.commencementCollapse
+                type="button"
+                class="btn btn-link p-0 border-0 align-top notice-link text-start"
+              >
+                Participate in the UW commencement celebration
+              </button>
               <uw-collapse id="commencementCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
               </uw-collapse>
             </li>
           </ul>
-          <p class = "myuw-text-lg mb-0">
-            Verify that your information and data will not be lost
-          </p>
+          <p class="myuw-text-lg mb-0">Verify that your information and data will not be lost</p>
           <ul class="list-unstyled">
             <li>
-              <button v-uw-collapse.diplomaCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Review your diploma name and mailing address</button>
+              <button
+                v-uw-collapse.diplomaCollapse
+                type="button"
+                class="btn btn-link p-0 border-0 align-top notice-link text-start"
+              >
+                Review your diploma name and mailing address
+              </button>
               <uw-collapse id="diplomaCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
               </uw-collapse>
             </li>
             <li>
-              <button v-uw-collapse.saveWorkCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Save your UW work before it is deleted</button>
+              <button
+                v-uw-collapse.saveWorkCollapse
+                type="button"
+                class="btn btn-link p-0 border-0 align-top notice-link text-start"
+              >
+                Save your UW work before it is deleted
+              </button>
               <uw-collapse id="saveWorkCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
               </uw-collapse>
             </li>
             <li>
-              <button v-uw-collapse.emailForwardingCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Keep receiving emails sent to your UW address – set up forwarding</button>
+              <button
+                v-uw-collapse.emailForwardingCollapse
+                type="button"
+                class="btn btn-link p-0 border-0 align-top notice-link text-start"
+              >
+                Keep receiving emails sent to your UW address – set up forwarding
+              </button>
               <uw-collapse id="emailForwardingCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
               </uw-collapse>
             </li>
           </ul>
         </div>
         <div class="col-4">
-          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-            Graduation application status
-          </h3>
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">Graduation application status</h3>
           <p v-if="isApproved(degrees[0].status)" class="myuw-text-md">
             Approved for {{ titleCaseWord(degrees[0].quarter) }} {{ degrees[0].year }} graduation
           </p>
@@ -81,28 +99,31 @@
       </div>
     </template>
     <template #card-disclosure>
-      <uw-collapse
-        id="collapseGradSupportAndHelp"
-        v-model="isOpen"
-      >
-        <p class = "myuw-text-lg text-dark-beige mb-0">
-          Get Help and Support
-        </p>
+      <uw-collapse id="collapseGradSupportAndHelp" v-model="isOpen">
+        <p class="myuw-text-lg text-dark-beige mb-0">Get Help and Support</p>
         <p>
-          Moving on from the UW can be overwhelming. If you are worried, confused, or uncertain about what is next, you are not alone!
+          Moving on from the UW can be overwhelming. If you are worried, confused, or uncertain
+          about what is next, you are not alone!
         </p>
         <ul>
           <li>
-            <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">Departmental advisor</a>  - graduation and academic support
+            <a
+              href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
+              >Departmental advisor</a
+            >
+            - graduation and academic support
           </li>
           <li>
             <a href="https://careers.uw.edu/">Career and Internship Center</a> - career consulting
           </li>
           <li>
-            <a href="https://www.washington.edu/financialaid/">Office of Student Financial Aid</a> - financial management consulting
+            <a href="https://www.washington.edu/financialaid/">Office of Student Financial Aid</a> -
+            financial management consulting
           </li>
           <li>
-            <a href="https://www.washington.edu/counseling/">Counseling Center</a> - If you are anxious about your future or need someone compassionate to talk to about your future or anything else, connect with a counselor.
+            <a href="https://www.washington.edu/counseling/">Counseling Center</a> - If you are
+            anxious about your future or need someone compassionate to talk to about your future or
+            anything else, connect with a counselor.
           </li>
         </ul>
       </uw-collapse>
@@ -154,7 +175,7 @@ export default {
       degreeStatus: (state) => state.value.degree_status,
     }),
     showCard() {
-      return (this.isReady && !this.degreeStatus.error_code);
+      return this.isReady && !this.degreeStatus.error_code;
     },
     degrees() {
       return this.degreeStatus.degrees;
@@ -166,11 +187,10 @@ export default {
   methods: {
     ...mapActions('profile', ['fetch']),
     isApproved(status) {
-      return (status >= 3 && status <= 5);
+      return status >= 3 && status <= 5;
     },
-  }
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
