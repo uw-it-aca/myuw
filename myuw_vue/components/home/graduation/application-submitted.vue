@@ -35,7 +35,25 @@
                 Participate in the UW commencement celebration
               </button>
               <uw-collapse id="commencementCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body">
+                  <p>
+                    <a href="https://www.washington.edu/graduation/how-to-participate-2/">Learn all about commencement</a>, including:
+                  </p>
+                  <ul class="list-style">
+                    <li>
+                      Commencement criteria
+                    </li>
+                    <li>
+                      Deadline for registration
+                    </li>
+                    <li>
+                      How to register
+                    </li>
+                    <li>
+                      Ordering cap and gown
+                    </li>
+                  </ul>
+                </div>
               </uw-collapse>
             </li>
           </ul>
