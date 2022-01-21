@@ -9,7 +9,7 @@
           <p>
             <strong>You're on your way!</strong> We're here to help you get to the finish line!
           </p>
-          <p class = myuw-text-lg>
+          <p class = "myuw-text-lg mb-0">
             Get an overview
           </p>
           <ul class="list-style">
@@ -24,21 +24,39 @@
               </a> for additional guidance.
             </li>
           </ul>
-          <p class = myuw-text-lg>
+          <p class = "myuw-text-lg mb-0">
             Take part in the commencement ceremony
           </p>
-          <p class = myuw-text-lg>
-            Verify that your information and data will not be lost
-          </p>
-          <ul>
+          <ul class="list-unstyled">
             <li>
-              <button v-uw-collapse.myCollapseId type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md">Review your diploma name and mailing address</button>
-              <uw-collapse id="myCollapseId">
+              <button v-uw-collapse.commencementCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Participate in the UW commencement celebration</button>
+              <uw-collapse id="commencementCollapse">
                 <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
               </uw-collapse>
             </li>
-            <li>Save your UW work before it is deleted</li>
-            <li>Keep receiving emails sent to your UW address – set up forwarding</li>
+          </ul>
+          <p class = "myuw-text-lg mb-0">
+            Verify that your information and data will not be lost
+          </p>
+          <ul class="list-unstyled">
+            <li>
+              <button v-uw-collapse.diplomaCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Review your diploma name and mailing address</button>
+              <uw-collapse id="diplomaCollapse">
+                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+              </uw-collapse>
+            </li>
+            <li>
+              <button v-uw-collapse.saveWorkCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Save your UW work before it is deleted</button>
+              <uw-collapse id="saveWorkCollapse">
+                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+              </uw-collapse>
+            </li>
+            <li>
+              <button v-uw-collapse.emailForwardingCollapse type="button" class="btn btn-link p-0 border-0 align-top notice-link text-start">Keep receiving emails sent to your UW address – set up forwarding</button>
+              <uw-collapse id="emailForwardingCollapse">
+                <div class="p-3 mt-2 bg-light text-dark notice-body"> <h3>hello!</h3> </div>
+              </uw-collapse>
+            </li>
           </ul>
         </div>
         <div class="col-4">
