@@ -27,6 +27,7 @@ class TestAdviserDao(TestCase):
         degree_data = get_degrees_json(
             get_request_with_user('javerage')
         )
+        print(degree_data)
         self.assertEquals(
             degree_data,
             {'degrees': [
@@ -37,6 +38,9 @@ class TestAdviserDao(TestCase):
                  'is_admin_hold': False,
                  'is_granted': False,
                  'is_incomplete': False,
+                 'is_degree_earned_term': False,
+                 'before_degree_earned_term': True,
+                 'during_april_may': True,
                  'level': 1,
                  'name_on_diploma': 'John Joseph Average',
                  'quarter': 'spring',

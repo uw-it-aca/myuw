@@ -7,8 +7,10 @@ the student advisers.
 """
 from restclients_core.exceptions import DataFailureException
 from uw_sws.degree import get_degrees_by_regid
-from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao import is_using_file_dao, get_netid_of_current_user
+from myuw.dao.pws import get_regid_of_current_user
+from myuw.dao.term import (
+    during_april_may, is_cur_term_before, is_cur_term_same)
 
 
 def get_degrees(request):
@@ -25,6 +27,9 @@ def get_degrees(request):
 
 
 def get_degrees_json(request):
+    """
+    MUWM-5009, MUWM-5010
+    """
     response = {
         'degrees': None,
         'error_code': None
@@ -32,7 +37,14 @@ def get_degrees_json(request):
     try:
         degrees = []
         for degree in get_degrees(request):
-            degrees.append(degree.json_data())
+            json_data = degree.json_data()
+            during_april_may, is_cur_term_before, is_cur_term_same
+            json_data["is_degree_earned_term"] = is_cur_term_same(
+                request, degree.year, degree.quarter)
+            json_data["before_degree_earned_term"] = is_cur_term_before(
+                request, degree.year, degree.quarter)
+            json_data["during_april_may"] = during_april_may(request)
+            degrees.append(json_data)
         response['degrees'] = degrees
     except DataFailureException as ex:
         response['error_code'] = ex.status
