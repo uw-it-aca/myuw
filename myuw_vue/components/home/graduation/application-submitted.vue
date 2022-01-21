@@ -85,12 +85,26 @@
         id="collapseGradSupportAndHelp"
         v-model="isOpen"
       >
-        <p>this is the disclosure content</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorem labore a sit
-          placeat nisi iusto ullam, ipsam vitae numquam ad, magni at ex quas ut magnam dignissimos
-          incidunt nostrum.
+        <p class = "myuw-text-lg text-dark-beige mb-0">
+          Get Help and Support
         </p>
+        <p>
+          Moving on from the UW can be overwhelming. If you are worried, confused, or uncertain about what is next, you are not alone!
+        </p>
+        <ul>
+          <li>
+            <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">Departmental advisor</a>  - graduation and academic support
+          </li>
+          <li>
+            <a href="https://careers.uw.edu/">Career and Internship Center</a> - career consulting
+          </li>
+          <li>
+            <a href="https://www.washington.edu/financialaid/">Office of Student Financial Aid</a> - financial management consulting
+          </li>
+          <li>
+            <a href="https://www.washington.edu/counseling/">Counseling Center</a> - If you are anxious about your future or need someone compassionate to talk to about your future or anything else, connect with a counselor.
+          </li>
+        </ul>
       </uw-collapse>
     </template>
     <template #card-footer>
@@ -99,7 +113,7 @@
         type="button"
         class="btn btn-link btn-sm w-100 p-0 text-dark"
       >
-        Learn how to get support and help
+        Learn how to get help and support
         <font-awesome-icon v-if="!isOpen" :icon="faChevronDown" class="align-middle" />
         <font-awesome-icon v-else :icon="faChevronUp" class="align-middle" />
       </button>
