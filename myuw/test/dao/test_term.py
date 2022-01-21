@@ -8,9 +8,9 @@ from uw_sws.models import ClassSchedule, Term, Section, Person
 from myuw.dao.term import (
     get_specific_term, is_past, is_future, sws_now,
     get_default_date, get_default_datetime, get_comparison_date,
-    get_current_quarter, get_next_quarter,
+    get_current_quarter, get_next_quarter, is_cur_term_before,
     get_previous_quarter, get_previous_number_quarters,
-    get_future_number_quarters,
+    get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
     is_in_summer_a_term, is_in_summer_b_term,
     get_bod_current_term_class_start, get_eod_7d_after_class_start,
@@ -82,6 +82,23 @@ class TestTerm(TestCase):
         self.assertEquals(no_override.year, 2014)
         self.assertEquals(no_override.month, 1)
         self.assertEquals(no_override.day, 1)
+
+    def test_during_april_may(self):
+        request = get_request()
+        self.assertTrue(is_cur_term_before(request, 2013, 'autumn'))
+        self.assertTrue(is_cur_term_before(request, 2013, 'summer'))
+        self.assertTrue(is_cur_term_same(request, 2013, 'spring'))
+        self.assertTrue(during_april_may(request))
+
+        request = get_request_with_date("2013-06-01")
+        self.assertTrue(is_cur_term_same(request, 2013, 'spring'))
+        self.assertFalse(during_april_may(request))
+
+        request = get_request_with_date("2013-01-25")
+        self.assertTrue(is_cur_term_before(request, 2013, 'spring'))
+        self.assertTrue(is_cur_term_before(request, 2013, 'summer'))
+        self.assertTrue(is_cur_term_same(request, 2013, 'winter'))
+        self.assertFalse(during_april_may(request))
 
     def test_current_quarter(self):
         now_request = get_request()

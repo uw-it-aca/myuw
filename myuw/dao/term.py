@@ -112,6 +112,33 @@ def get_current_quarter(request):
     return term
 
 
+def during_april_may(request):
+    if get_current_quarter(request).quarter.lower() == Term.SPRING:
+        now = get_comparison_datetime(request)
+        april1 = convert_to_begin_of_day(date(now.year, 4, 1))
+        may31 = convert_to_end_of_day(date(now.year, 5, 31))
+        return now > april1 and now < may31
+    return False
+
+
+def is_cur_term_before(request, year, quarter):
+    """
+    return True if current term is before year+quarter
+    """
+    comparison_term = get_specific_term(year, quarter)
+    current_term = get_current_quarter(request)
+    return current_term < comparison_term
+
+
+def is_cur_term_same(request, year, quarter):
+    """
+    return True if current term is the same as year+quarter
+    """
+    comparison_term = get_specific_term(year, quarter)
+    current_term = get_current_quarter(request)
+    return current_term == comparison_term
+
+
 def get_term_from_quarter_string(quarter_string):
     """
     Return a uw_sws.models.Term object
