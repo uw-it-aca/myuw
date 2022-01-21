@@ -68,7 +68,22 @@
                 Review your diploma name and mailing address
               </button>
               <uw-collapse id="diplomaCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body">
+                  <p class="fw-bold">
+                    Name on your diploma:
+                  </p>
+                  <p>PLACEHOLDER NAME HERE</p>
+                  <p>You can change your name using the <a href="https://registrar.washington.edu/students/student-forms/">Diploma Name Request Form</a>.
+                  </p>
+                  <p class="fw-bold">
+                    Diploma will be mailed to:
+                  </p>
+                  <p>PLACEHOLDER ADDRESS HERE</p>
+                  <a href="placeholder">Update your mailing address</a>.
+                  <p class="mt-4">
+                    <span class="fw-bold fst-italic">Diploma timing - </span>Your diploma will be sent 3 to 4 months after you graduate.
+                  </p>
+                </div>
               </uw-collapse>
             </li>
             <li>
