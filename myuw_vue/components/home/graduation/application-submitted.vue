@@ -37,21 +37,15 @@
               <uw-collapse id="commencementCollapse">
                 <div class="p-3 mt-2 bg-light text-dark notice-body">
                   <p>
-                    <a href="https://www.washington.edu/graduation/how-to-participate-2/">Learn all about commencement</a>, including:
+                    <a href="https://www.washington.edu/graduation/how-to-participate-2/"
+                      >Learn all about commencement</a
+                    >, including:
                   </p>
                   <ul class="list-style">
-                    <li>
-                      Commencement criteria
-                    </li>
-                    <li>
-                      Deadline for registration
-                    </li>
-                    <li>
-                      How to register
-                    </li>
-                    <li>
-                      Ordering cap and gown
-                    </li>
+                    <li>Commencement criteria</li>
+                    <li>Deadline for registration</li>
+                    <li>How to register</li>
+                    <li>Ordering cap and gown</li>
                   </ul>
                 </div>
               </uw-collapse>
@@ -69,19 +63,20 @@
               </button>
               <uw-collapse id="diplomaCollapse">
                 <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p class="fw-bold">
-                    Name on your diploma:
-                  </p>
+                  <p class="fw-bold">Name on your diploma:</p>
                   <p>PLACEHOLDER NAME HERE</p>
-                  <p>You can change your name using the <a href="https://registrar.washington.edu/students/student-forms/">Diploma Name Request Form</a>.
+                  <p>
+                    You can change your name using the
+                    <a href="https://registrar.washington.edu/students/student-forms/"
+                      >Diploma Name Request Form</a
+                    >.
                   </p>
-                  <p class="fw-bold">
-                    Diploma will be mailed to:
-                  </p>
+                  <p class="fw-bold">Diploma will be mailed to:</p>
                   <p>PLACEHOLDER ADDRESS HERE</p>
                   <a href="placeholder">Update your mailing address</a>.
                   <p class="mt-4">
-                    <span class="fw-bold fst-italic">Diploma timing - </span>Your diploma will be sent 3 to 4 months after you graduate.
+                    <span class="fw-bold fst-italic">Diploma timing - </span>Your diploma will be
+                    sent 3 to 4 months after you graduate.
                   </p>
                 </div>
               </uw-collapse>
@@ -96,7 +91,13 @@
               </button>
               <uw-collapse id="saveWorkCollapse">
                 <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p>All UW accounts will be deleted two quarters after graduation. Take steps now to <a href="https://itconnect.uw.edu/students/save-work-before-graduation/">save all your UW work</a> so that you don't lose it.</p>
+                  <p>
+                    All UW accounts will be deleted two quarters after graduation. Take steps now to
+                    <a href="https://itconnect.uw.edu/students/save-work-before-graduation/"
+                      >save all your UW work</a
+                    >
+                    so that you don't lose it.
+                  </p>
                 </div>
               </uw-collapse>
             </li>
@@ -110,7 +111,11 @@
               </button>
               <uw-collapse id="emailForwardingCollapse">
                 <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p>Don't miss critical emails sent to your UW account. <a href="PLACEHOLDER">Set up your email forwarding</a> before you permanently lose access.</p>
+                  <p>
+                    Don't miss critical emails sent to your UW account.
+                    <a href="PLACEHOLDER">Set up your email forwarding</a> before you permanently
+                    lose access.
+                  </p>
                 </div>
               </uw-collapse>
             </li>
