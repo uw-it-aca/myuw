@@ -95,7 +95,9 @@
                 Save your UW work before it is deleted
               </button>
               <uw-collapse id="saveWorkCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body">
+                  <p>All UW accounts will be deleted two quarters after graduation. Take steps now to <a href="https://itconnect.uw.edu/students/save-work-before-graduation/">save all your UW work</a> so that you don't lose it.</p>
+                </div>
               </uw-collapse>
             </li>
             <li>
