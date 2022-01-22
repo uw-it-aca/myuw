@@ -109,7 +109,9 @@
                 Keep receiving emails sent to your UW address – set up forwarding
               </button>
               <uw-collapse id="emailForwardingCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body"><h3>hello!</h3></div>
+                <div class="p-3 mt-2 bg-light text-dark notice-body">
+                  <p>Don't miss critical emails sent to your UW account. <a href="PLACEHOLDER">Set up your email forwarding</a> before you permanently lose access.</p>
+                </div>
               </uw-collapse>
             </li>
           </ul>
