@@ -33,7 +33,7 @@
                 </a>
                 for an overview of tasks.
               </li>
-              <li>
+              <li v-if="intlStudent">
                 International students, review the
                 <a href="https://iss.washington.edu/resources/final-checklist/">
                   ISS graduation checklist
@@ -227,7 +227,7 @@
 </template>
 
 <script>
-// MUWM-5009
+// MUWM-5010
 import { mapGetters, mapState, mapActions } from 'vuex';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
