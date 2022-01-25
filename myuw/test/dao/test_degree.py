@@ -35,6 +35,11 @@ class TestAdviserDao(TestCase):
         )
         self.assertEquals(len(degrees), 1)
 
+        degrees = get_degrees(
+            get_request_with_user('eight')
+        )
+        self.assertEquals(len(degrees), 2)
+
         self.assertRaises(DataFailureException,
                           get_degrees,
                           get_request_with_user('jerror'))
