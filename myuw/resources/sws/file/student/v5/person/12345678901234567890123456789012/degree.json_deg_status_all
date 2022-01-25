@@ -7,7 +7,7 @@
   "Degrees": [{
     "Campus": "TACOMA",
     "DegreeLevel": 1,
-    "DegreeTitle": "BACHELOR OF ARTS IN BUSINESS ADMINISTRATION ()",
+    "DegreeTitle": "BACHELOR OF ARTS IN BUSINESS ADMINISTRATION",
     "DegreeType": 1,
     "DegreeEarnedYear": 2013,
     "DegreeEarnedQuarter": "spring",
@@ -15,5 +15,18 @@
     "DiplomaName": "Eight Student",
     "DiplomaMail": 0,
     "DiplomaMailToLocalAddress": false
-  }]
+   },
+   {
+    "Campus": "TACOMA",
+    "DegreeEarnedQuarter": "spring",
+    "DegreeEarnedYear": 2013,
+    "DegreeLevel": 1,
+    "DegreeStatus": 9,
+    "DegreeTitle": "BACHELOR OF SCIENCE IN DATA SCIENCE",
+    "DegreeType": 6,
+    "DiplomaMail": 0,
+    "DiplomaMailToLocalAddress": false,
+    "DiplomaName": "Eight Student"
+   }
+  ]
 }
