@@ -7,51 +7,77 @@
       <div class="row">
         <div class="col-8">
           <p><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
-          <p class="myuw-text-lg mb-0">Get an overview</p>
-          <ul class="list-style">
-            <li>
-              Review the
-              <a href="https://www.washington.edu/students/graduation-checklist/">
-                UW Graduation checklist
-              </a>
-              for an overview of tasks.
-            </li>
-            <li>
-              International students, review the
-              <a href="https://iss.washington.edu/resources/final-checklist/">
-                ISS graduation checklist
-              </a>
-              for additional guidance.
-            </li>
-          </ul>
-          <p class="myuw-text-lg mb-0">Take part in the commencement ceremony</p>
-          <ul class="list-unstyled">
-            <li>
-              <button
-                v-uw-collapse.commencementCollapse
-                type="button"
-                class="btn btn-link p-0 border-0 align-top notice-link text-start"
-              >
-                Participate in the UW commencement celebration
-              </button>
-              <uw-collapse id="commencementCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p>
-                    <a href="https://www.washington.edu/graduation/how-to-participate-2/"
-                      >Learn all about commencement</a
-                    >, including:
-                  </p>
-                  <ul class="list-style">
-                    <li>Commencement criteria</li>
-                    <li>Deadline for registration</li>
-                    <li>How to register</li>
-                    <li>Ordering cap and gown</li>
-                  </ul>
-                </div>
-              </uw-collapse>
-            </li>
-          </ul>
-          <p class="myuw-text-lg mb-0">Verify that your information and data will not be lost</p>
+
+          <div v-if="hasGraduatedDegree">
+            <h3 class="h6 text-dark myuw-font-encode-sans">
+              Post-Graduation Success
+            </h3>
+            <ul class="list-style">
+              <li>
+                
+              </li>
+              <li>
+                
+              </li>
+            </ul>
+          </div>
+          <div v-if="hasApprovedDegree">
+            <h3 class="h6 text-dark myuw-font-encode-sans">
+              Get an Overview
+            </h3>
+            <ul class="list-style">
+              <li>
+                Review the
+                <a href="https://www.washington.edu/students/graduation-checklist/">
+                  UW Graduation checklist
+                </a>
+                for an overview of tasks.
+              </li>
+              <li>
+                International students, review the
+                <a href="https://iss.washington.edu/resources/final-checklist/">
+                  ISS graduation checklist
+                </a>
+                for additional guidance.
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="duringAprilMay">
+            <h3 class="h6 text-dark myuw-font-encode-sans">
+              Take part in Commencement Ceremony
+            </h3>
+            <ul class="list-unstyled">
+              <li>
+                <button
+                  v-uw-collapse.commencementCollapse
+                  type="button"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                >
+                  Participate in the UW commencement celebration
+                </button>
+                <uw-collapse id="commencementCollapse">
+                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                    <p>
+                      <a href="https://www.washington.edu/graduation/how-to-participate-2/"
+                        >Learn all about commencement</a
+                      >, including:
+                    </p>
+                    <ul class="list-style">
+                      <li>Commencement criteria</li>
+                      <li>Deadline for registration</li>
+                      <li>How to register</li>
+                      <li>Ordering cap and gown</li>
+                    </ul>
+                  </div>
+                </uw-collapse>
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="h6 text-dark myuw-font-encode-sans">
+            Verify that your information and data will not be lost
+          </h3>
           <ul class="list-unstyled">
             <li>
               <button
@@ -64,7 +90,7 @@
               <uw-collapse id="diplomaCollapse">
                 <div class="p-3 mt-2 bg-light text-dark notice-body">
                   <p class="fw-bold">Name on your diploma:</p>
-                  <p>PLACEHOLDER NAME HERE</p>
+                  <p>{{ nameOnDiploma }}</p>
                   <p>
                     You can change your name using the
                     <a href="https://registrar.washington.edu/students/student-forms/"
@@ -72,7 +98,19 @@
                     >.
                   </p>
                   <p class="fw-bold">Diploma will be mailed to:</p>
-                  <p>PLACEHOLDER ADDRESS HERE</p>
+                  <div v-if="mailingAddree">
+                    <div v-if="mailingAddree.street_line1"
+                      v-text="mailingAddree.street_line1">
+                    </div>
+                    <div v-if="mailingAddree.street_line2"
+                      v-text="mailingAddree.street_line2">
+                    </div>
+                    <span v-text="addressLocationString(mailingAddree)" />
+                    <div v-if="mailingAddree.country"
+                      v-text="mailingAddree.country">
+                    </div>
+                  </div>
+
                   <a href="placeholder">Update your mailing address</a>.
                   <p class="mt-4">
                     <span class="fw-bold fst-italic">Diploma timing - </span>Your diploma will be
@@ -122,14 +160,16 @@
           </ul>
         </div>
         <div class="col-4">
-          <h3 class="h6 text-dark-beige myuw-font-encode-sans">Graduation application status</h3>
-          <p v-if="isApproved(degrees[0].status)" class="myuw-text-md">
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+            Graduation application status
+          </h3>
+          <p v-if="hasApprovedDegree" class="myuw-text-md">
             Approved for {{ titleCaseWord(degrees[0].quarter) }} {{ degrees[0].year }} graduation
           </p>
           <p v-else class="myuw-text-md">
             There is an issue with your graduation status. Talk to your departmental advisor.
           </p>
-          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+          <h3 class="h6 text-dark myuw-font-encode-sans">
             Intended degree<span v-if="degrees.length > 1">s</span>
           </h3>
           <ul class="list-unstyled mb-0 myuw-text-md">
@@ -142,7 +182,9 @@
     </template>
     <template #card-disclosure>
       <uw-collapse id="collapseGradSupportAndHelp" v-model="isOpen">
-        <p class="myuw-text-lg text-dark-beige mb-0">Get Help and Support</p>
+        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+            Get Help and Support
+        </h3>
         <p>
           Moving on from the UW can be overwhelming. If you are worried, confused, or uncertain
           about what is next, you are not alone!
@@ -215,23 +257,117 @@ export default {
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
+      localAddress: (state) => state.value.local_address,
+      permanentAddress:  (state) => state.value.permanent_address,
     }),
     showCard() {
-      return this.isReady && !this.degreeStatus.error_code;
+      return (this.isReady && this.degreeStatus && !this.degreeStatus.error_code);
     },
     degrees() {
       return this.degreeStatus.degrees;
     },
+    isDoubleDegrees() {
+      return this.degrees.length > 1
+    },
+    earnedInDiffTerms() {
+      return (
+        this.isDoubleDegrees &&
+        !(this.degrees[0].quarter == this.degrees[1].quarter &&
+          this.degrees[0].year  == this.degrees[1].year));
+    },
+    // The properties below are true as long as one degree status satifies
+    beforeGrantTerm() {
+      // exclude status 1-2
+      let value = this.degrees[0].before_degree_earned_term;
+      if (this.earnedInDiffTerms) {
+        value ||= this.degrees[1].before_degree_earned_term;
+      }
+      return value
+    },
+    duringAprilMay() {
+      // exclude status 1-2
+      let value = (
+          this.degrees[0].is_degree_earned_term &&
+          this.degrees[0].during_april_may);
+      if (this.earnedInDiffTerms) {
+        value ||= this.degrees[1].is_degree_earned_term && this.degrees[1].during_april_may;
+      }
+      return value;
+    },
+    duringDegreeGrantTerm() {
+      // exclude status 1-2
+      let value = this.degrees[0].is_degree_earned_term;
+      if (this.earnedInDiffTerms) {
+        value ||= this.degrees[1].is_degree_earned_term;
+      }
+      return value;
+    },
+    hasApprovedDegree() {
+      let value = this.degrees[0].has_applied;
+      if (this.isDoubleDegrees) {
+        value ||= this.degrees[1].has_applied;
+      }
+      return value;
+    },
+    hasGraduatedDegree() {
+      // data available only within 2 terms after graduation
+      let value = this.degrees[0].is_granted;
+      if (this.isDoubleDegrees) {
+        value ||= this.degrees[1].is_granted;
+      }
+      return value;
+    },
+    isSeattle() {
+      let value = this.degrees[0].campus.toUpperCase() === 'SEATTLE';
+      if (this.isDoubleDegrees) {
+        value ||= this.degrees[1].campus.toUpperCase() === 'SEATTLE';
+      }
+      return value;
+    },
+    isBothell() {
+      let value = this.degrees[0].campus.toUpperCase() === 'BOTHELL';
+      if (this.isDoubleDegrees) {
+        value ||= this.degrees[1].campus.toUpperCase() === 'BOTHELL';
+      }
+      return value;
+    },
+    isTacoma() {
+      let value = this.degrees[0].campus.toUpperCase() === 'TACOMA';
+      if (this.isDoubleDegrees) {
+        value ||= this.degrees[1].campus.toUpperCase() === 'TACOMA';
+      }
+      return value;
+    },
+    mailingAddree() {
+      return (this.degrees[0].diploma_mail_to_local_address
+        ? this.localAddress : this.permanentAddress);
+    },
+    nameOnDiploma() {
+      return this.degrees[0].name_on_diploma;
+    },
   },
   created() {
-    if (this.classLevel === 'SENIOR') this.fetch();
+    this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),
-    isApproved(status) {
-      return status >= 3 && status <= 5;
+    isApplicationErr(degree) {
+      return degree.is_admin_hold || degree.is_incomplete;
     },
-  },
+    addressLocationString(address) {
+      let location = '';
+      if (address.city && address.state) {
+        location += address.city + ', ' + address.state;
+      }
+      if (address.postal_code) {
+        location += ' ' + address.postal_code;
+      }
+      if (address.zip_code) {
+        location += ' ' + address.zip_code;
+      }
+      return location;
+    },
+  }
 };
 </script>
 
