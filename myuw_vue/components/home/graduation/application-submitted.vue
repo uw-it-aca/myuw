@@ -163,20 +163,58 @@
           <h3 class="h6 text-dark-beige myuw-font-encode-sans">
             Graduation application status
           </h3>
-          <p v-if="hasApprovedDegree" class="myuw-text-md">
-            Approved for {{ titleCaseWord(degrees[0].quarter) }} {{ degrees[0].year }} graduation
-          </p>
-          <p v-else class="myuw-text-md">
-            There is an issue with your graduation status. Talk to your departmental advisor.
-          </p>
-          <h3 class="h6 text-dark myuw-font-encode-sans">
-            Intended degree<span v-if="degrees.length > 1">s</span>
-          </h3>
-          <ul class="list-unstyled mb-0 myuw-text-md">
-            <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-              {{ degree.title }}
-            </li>
-          </ul>
+          <div v-if="doubleDegreesInDiffTerms">
+            <ul class="list-unstyled mb-0 myuw-text-md">
+              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
+                <p v-if="isApplicationErr(degree)" class="myuw-text-md">
+                  There is an issue with your graduation status. Talk to your departmental advisor.
+                </p>
+                <p v-else-if="isGraduated(degree)" class="myuw-text-md">
+                  Graduated {{ degreeTerm(degree) }}
+                </p>
+                <p v-else class="myuw-text-md">
+                  Application approved for {{ degreeTerm(degree) }}
+                </p>
+                <p>
+                {{ degree.title }}
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div v-else-if="doubleDegreeDiffStatus">
+            <ul class="list-unstyled mb-0 myuw-text-md">
+              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
+                <p v-if="isApplicationErr(degree)" class="myuw-text-md">
+                  There is an issue with your graduation status. Talk to your departmental advisor.
+                </p>
+                <p v-else-if="isGraduated(degree)" class="myuw-text-md">
+                  Graduated {{ degreeTerm(degree) }}
+                </p>
+                <p v-else>
+                  Application approved for {{ degreeTerm(degree) }}
+                </p>
+                <p>
+                  {{ degree.title }}
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div v-else>
+            <p v-if="isApplicationErr(degrees[0])" class="myuw-text-md">
+              There is an issue with your graduation status. Talk to your departmental advisor.
+            </p>
+            <p v-else-if="isGraduated(degrees[0])" class="myuw-text-md">
+              Graduated {{ degreeTerm(degrees[0]) }}
+            </p>
+            <p v-else>
+              Application approved for {{ degreeTerm(degrees[0]) }}
+            </p>
+            <ul class="list-unstyled mb-0 myuw-text-md">
+              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
+                <p>{{ degree.title }}</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </template>
@@ -266,12 +304,12 @@ export default {
     degrees() {
       return this.degreeStatus.degrees;
     },
-    isDoubleDegrees() {
+    hasDoubleDegrees() {
       return this.degrees.length > 1
     },
-    earnedInDiffTerms() {
+    doubleDegreesInDiffTerms() {
       return (
-        this.isDoubleDegrees &&
+        this.hasDoubleDegrees &&
         !(this.degrees[0].quarter == this.degrees[1].quarter &&
           this.degrees[0].year  == this.degrees[1].year));
     },
@@ -279,7 +317,7 @@ export default {
     beforeGrantTerm() {
       // exclude status 1-2
       let value = this.degrees[0].before_degree_earned_term;
-      if (this.earnedInDiffTerms) {
+      if (this.doubleDegreesInDiffTerms) {
         value ||= this.degrees[1].before_degree_earned_term;
       }
       return value
@@ -289,7 +327,7 @@ export default {
       let value = (
           this.degrees[0].is_degree_earned_term &&
           this.degrees[0].during_april_may);
-      if (this.earnedInDiffTerms) {
+      if (this.doubleDegreesInDiffTerms) {
         value ||= this.degrees[1].is_degree_earned_term && this.degrees[1].during_april_may;
       }
       return value;
@@ -297,43 +335,50 @@ export default {
     duringDegreeGrantTerm() {
       // exclude status 1-2
       let value = this.degrees[0].is_degree_earned_term;
-      if (this.earnedInDiffTerms) {
+      if (this.doubleDegreesInDiffTerms) {
         value ||= this.degrees[1].is_degree_earned_term;
       }
       return value;
     },
     hasApprovedDegree() {
       let value = this.degrees[0].has_applied;
-      if (this.isDoubleDegrees) {
+      if (this.hasDoubleDegrees) {
         value ||= this.degrees[1].has_applied;
       }
       return value;
     },
     hasGraduatedDegree() {
       // data available only within 2 terms after graduation
-      let value = this.degrees[0].is_granted;
-      if (this.isDoubleDegrees) {
-        value ||= this.degrees[1].is_granted;
+      let value = this.isGraduated(this.degrees[0]);
+      if (this.hasDoubleDegrees) {
+        value ||= this.isGraduated(this.degrees[1]);
       }
       return value;
     },
-    isSeattle() {
+    doubleDegreeDiffStatus() {
+      return (
+        this.hasDoubleDegrees &&
+        (this.isApplicationErr(this.degrees[0]) && !this.isApplicationErr(this.degrees[1]) ||
+         this.isAppoved(this.degrees[0]) && !this.isAppoved(this.degrees[1]) ||
+         this.isGraduated(this.degrees[0]) && !this.isGraduated(this.degrees[1])));
+    },
+    seattle() {
       let value = this.degrees[0].campus.toUpperCase() === 'SEATTLE';
-      if (this.isDoubleDegrees) {
+      if (this.hasDoubleDegrees) {
         value ||= this.degrees[1].campus.toUpperCase() === 'SEATTLE';
       }
       return value;
     },
-    isBothell() {
+    bothell() {
       let value = this.degrees[0].campus.toUpperCase() === 'BOTHELL';
-      if (this.isDoubleDegrees) {
+      if (this.hasDoubleDegrees) {
         value ||= this.degrees[1].campus.toUpperCase() === 'BOTHELL';
       }
       return value;
     },
-    isTacoma() {
+    tacoma() {
       let value = this.degrees[0].campus.toUpperCase() === 'TACOMA';
-      if (this.isDoubleDegrees) {
+      if (this.hasDoubleDegrees) {
         value ||= this.degrees[1].campus.toUpperCase() === 'TACOMA';
       }
       return value;
@@ -354,6 +399,12 @@ export default {
     isApplicationErr(degree) {
       return degree.is_admin_hold || degree.is_incomplete;
     },
+    isAppoved(degree) {
+      return degree.has_applied;
+    },
+    isGraduated(degree) {
+      return degree.is_granted;
+    },
     addressLocationString(address) {
       let location = '';
       if (address.city && address.state) {
@@ -367,6 +418,9 @@ export default {
       }
       return location;
     },
+    degreeTerm(degree) {
+      return this.titleCaseWord(degree.quarter) + ' ' + degree.year;
+    }
   }
 };
 </script>
