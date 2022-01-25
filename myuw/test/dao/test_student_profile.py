@@ -2,10 +2,12 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from myuw.dao.student_profile import _get_degrees_for_terms,\
-    get_cur_future_enrollments, get_student_profile
+from myuw.dao.student_profile import (
+    _get_degrees_for_terms, get_degree_status,
+    get_cur_future_enrollments, get_student_profile)
 from myuw.test import fdao_sws_override, fdao_pws_override,\
     get_request_with_date, get_request_with_user
+from myuw.test.dao.test_degree import DEGREE_DATA
 
 
 @fdao_pws_override
@@ -85,31 +87,19 @@ class TestStudentProfile(TestCase):
         req = get_request_with_user('javerage',
                                     get_request_with_date("2013-04-01"))
         data = get_student_profile(req)
-        self.assertEqual(
-            data['degree_status'],
-            {'degrees': [{
-                'campus': 'SEATTLE',
-                'diploma_mail': 0,
-                'diploma_mail_to_local_address': False,
-                'has_applied': True,
-                'is_admin_hold': False,
-                'is_granted': False,
-                'is_incomplete': False,
-                'is_degree_earned_term': False,
-                'before_degree_earned_term': True,
-                'during_april_may': True,
-                'level': 1,
-                'name_on_diploma': 'John Joseph Average',
-                'quarter': 'spring',
-                'status': 5,
-                'title': 'BACHELOR OF ARTS (POLITICAL SCIENCE)',
-                'type': 1,
-                'year': 2014
-                }],
-             'error_code': None}
-        )
+        self.assertEqual(data['degree_status'], DEGREE_DATA)
+
+        # enrolled in the previous term
+        req = get_request_with_user('javg003',
+                                    get_request_with_date("2013-07-01"))
+        self.assertEqual(data['degree_status'], DEGREE_DATA)
+
+        # enrolled in the term before previous term
+        req = get_request_with_user('javg003',
+                                    get_request_with_date("2013-10-01"))
+        self.assertEqual(data['degree_status'], DEGREE_DATA)
 
         req = get_request_with_user('jbothell',
                                     get_request_with_date("2013-04-01"))
         data = get_student_profile(req)
-        self.assertFalse('degree_status' in data)
+        self.assertIsNone(data['degree_status'])

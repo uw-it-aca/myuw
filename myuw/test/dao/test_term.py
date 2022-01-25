@@ -12,7 +12,7 @@ from myuw.dao.term import (
     get_previous_quarter, get_previous_number_quarters,
     get_future_number_quarters, during_april_may, is_cur_term_same,
     get_next_non_summer_quarter, get_next_autumn_quarter,
-    is_in_summer_a_term, is_in_summer_b_term,
+    is_in_summer_a_term, is_in_summer_b_term, within_2_terms,
     get_bod_current_term_class_start, get_eod_7d_after_class_start,
     get_eod_current_term, get_eod_current_term_last_instruction,
     get_bod_7d_before_last_instruction, get_eod_current_term_last_final_exam,
@@ -202,6 +202,13 @@ class TestTerm(TestCase):
         quarter = get_specific_term(2013, 'autumn')
         now_request = get_request_with_date("2014-01-01")
         self.assertTrue(is_past(quarter, now_request))
+
+    def test_within_2_terms(self):
+        now_request = get_request_with_date("2013-07-01")
+        self.assertTrue(within_2_terms(now_request, 2013, "spring"))
+        now_request = get_request_with_date("2013-10-01")
+        self.assertTrue(within_2_terms(now_request, 2013, "spring"))
+        self.assertFalse(within_2_terms(now_request, 2013, "winter"))
 
     def test_get_next_non_summer_quarter(self):
         now_request = get_request_with_date("2013-04-01")

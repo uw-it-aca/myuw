@@ -6,6 +6,26 @@ from restclients_core.exceptions import DataFailureException
 from myuw.dao.degree import get_degrees, get_degrees_json
 from myuw.test import get_request_with_user
 
+DEGREE_DATA = {
+    'degrees': [{
+        'campus': 'SEATTLE',
+        'diploma_mail': 0,
+        'diploma_mail_to_local_address': False,
+        'has_applied': True,
+        'is_admin_hold': False,
+        'is_granted': False,
+        'is_incomplete': False,
+        'is_degree_earned_term': True,
+        'before_degree_earned_term': False,
+        'during_april_may': True,
+        'level': 1,
+        'name_on_diploma': 'John Joseph Average',
+        'quarter': 'spring',
+        'status': 5,
+        'title': 'BACHELOR OF ARTS (POLITICAL SCIENCE)',
+        'type': 1,
+        'year': 2013}],
+    'error_code': None}
 
 class TestAdviserDao(TestCase):
 
@@ -27,31 +47,10 @@ class TestAdviserDao(TestCase):
         degree_data = get_degrees_json(
             get_request_with_user('javerage')
         )
-        print(degree_data)
-        self.assertEquals(
-            degree_data,
-            {'degrees': [
-                {'campus': 'SEATTLE',
-                 'diploma_mail': 0,
-                 'diploma_mail_to_local_address': False,
-                 'has_applied': True,
-                 'is_admin_hold': False,
-                 'is_granted': False,
-                 'is_incomplete': False,
-                 'is_degree_earned_term': False,
-                 'before_degree_earned_term': True,
-                 'during_april_may': True,
-                 'level': 1,
-                 'name_on_diploma': 'John Joseph Average',
-                 'quarter': 'spring',
-                 'status': 5,
-                 'title': 'BACHELOR OF ARTS (POLITICAL SCIENCE)',
-                 'type': 1,
-                 'year': 2014}],
-             'error_code': None})
+        self.assertEquals(degree_data, DEGREE_DATA)
 
         degree_data = get_degrees_json(
-            get_request_with_user('jinter')
+            get_request_with_user('jbothell')
         )
         self.assertEquals(
             degree_data,
