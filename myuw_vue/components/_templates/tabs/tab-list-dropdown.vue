@@ -4,7 +4,7 @@
       <select
         v-model="selectedOption"
         :class="titleLinkClassComputed"
-        @change="$parent.$emit('setActivePanel', panelId);"
+        @change="changeOption"
         @keydown.left.prevent="$parent.$emit('moveActiveTabLeft')"
         @keydown.right.prevent="$parent.$emit('moveActiveTabRight')"
         ref="tab" role="tab"
@@ -87,13 +87,21 @@ export default {
     active: function() {
       if(this.active) {
         this.$refs.tab.focus();
+        if (this.selectedOption == 0 && this.optionsList[0].disabled) {
+          // never allow disabled option to be active
+          this.$emit('input', 1);
+        }
+      } else {
+        // reset dropdown
+        this.$emit('input', 0);
       }
     },
-    selectedOption: function() {
-      this.$emit('input', this.selectedOption);
-    }
   },
   methods: {
+    changeOption() {
+      this.$emit('input', this.selectedOption);
+      this.$parent.$emit('setActivePanel', this.panelId);
+    },
     classesToClassDict(classes) {
       let classDict = {};
       if (classes instanceof String || typeof(classes) === 'string') {

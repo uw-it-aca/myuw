@@ -146,29 +146,23 @@ export default {
     };
   },
   watch: {
-    selectedOption() {
-      this.updateSelectedTerm()
+    selectedOption(newValue, oldValue) {
+      this.updateSelectedTerm();
     },
     selectedTab() {
-      this.updateSelectedTerm()
+      this.updateSelectedTerm();
     },
     selectedTermInner(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.$emit('selected', newValue);
-        this.$logger.termSelected(newValue);
-      }
+      this.$emit('selected', newValue);
+      this.$logger.termSelected(newValue);
     },
   },
   methods: {
     updateSelectedTerm() {
       if (this.selectedTab < 3) {
-        this.selectedOption = 0;
         this.selectedTermInner = this.displayedTabs[this.selectedTab].label;
       } else {
-        if (this.selectedOption == 0)
-          this.selectedOption = 1;
-        else
-          this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
+        this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
       }
     },
   },
