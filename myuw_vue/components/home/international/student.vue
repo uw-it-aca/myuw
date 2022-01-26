@@ -12,33 +12,31 @@
     </template>
     <template v-else #card-body>
       <uw-tabs
-        pills
-        bottom-border
-        nav-wrapper-class="mb-3 p-0"
-      >
-        <uw-tab
-          title="Seattle"
-          title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-          title-link-class="rounded-0 px-2 py-1 h-100
-               text-body"
-          active
-        >
-          <uw-seattle />
-        </uw-tab>
-        <uw-tab
-          title="Tacoma"
-          title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-          title-link-class="rounded-0 px-2 py-1 h-100 text-body"
-        >
-          <uw-tacoma />
-        </uw-tab>
-        <uw-tab
-          title="Bothell"
-          title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-          title-link-class="rounded-0 px-2 py-1 h-100 text-body"
-        >
-          <uw-bothell />
-        </uw-tab>
+          pills
+          bottom-border
+          nav-wrapper-class="mb-3 p-0">
+        <template #tabs>
+          <uw-tab-list-button content-id="tab1">
+            Seattle
+          </uw-tab-list-button>
+          <uw-tab-list-button content-id="tab2">
+            Tacoma
+          </uw-tab-list-button>
+          <uw-tab-list-button content-id="tab3">
+            Bothell
+          </uw-tab-list-button>
+        </template>
+        <template #panels>
+          <uw-tab-panel content-id="tab1">
+            <uw-seattle />
+          </uw-tab-panel>
+          <uw-tab-panel content-id="tab2">
+            <uw-tacoma />
+          </uw-tab-panel>
+          <uw-tab-panel content-id="tab3">
+            <uw-bothell />
+          </uw-tab-panel>
+        </template>
       </uw-tabs>
     </template>
   </uw-card>
@@ -48,8 +46,9 @@
 import { mapState } from 'vuex';
 
 import Card from '../../_templates/card.vue';
-import Tabs from '../../_templates/tabs/tabs.vue';
-import Tab from '../../_templates/tabs/tab.vue';
+import Tabs from '../../_templates/tabs/tab-container.vue';
+import TabListButton from '../../_templates/tabs/tab-list-button.vue';
+import TabPanel from '../../_templates/tabs/tab-panel.vue';
 import Seattle from './seattle.vue';
 import Bothell from './bothell.vue';
 import Tacoma from './tacoma.vue';
@@ -58,7 +57,8 @@ export default {
   components: {
     'uw-card': Card,
     'uw-tabs': Tabs,
-    'uw-tab': Tab,
+    'uw-tab-list-button': TabListButton,
+    'uw-tab-panel': TabPanel,
     'uw-seattle': Seattle,
     'uw-bothell': Bothell,
     'uw-tacoma': Tacoma,

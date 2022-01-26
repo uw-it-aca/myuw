@@ -15,24 +15,27 @@
 
     <template #card-body>
       <!-- schedule tabs -->
-      <uw-tabs v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
-              v-model="tabIndex" pills bottom-border
-              nav-wrapper-class="mb-3 p-0"
-      >
-        <uw-tab v-for="(period, i) in periods" :key="i" :title="period.title"
-               title-item-class="text-nowrap text-uppercase
-               myuw-text-xs me-2 mb-1"
-               title-link-class="rounded-0 px-2 py-1 h-100
-               text-body"
-               :active="period.id == activePeriod.id"
-        >
-          <!-- tab content -->
-          <uw-schedule-tab
-            :period="period"
-            :term="getTermData"
-            :is-last-tab="i === periods.length - 1"
-          />
-        </uw-tab>
+      <uw-tabs
+           v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
+           v-model="tabIndex"
+           pills bottom-border nav-wrapper-class="mb-3 p-0">
+        <template #tabs>
+          <uw-tab-list-button v-for="(period, i) in periods" :key="i" 
+              :panel-id="period.id"
+              title-item-class="text-nowrap text-uppercase myuw-text-xs me-2 mb-1"
+              title-link-class="rounded-0 px-2 py-1 h-100 text-body">
+            {{period.title}}
+          </uw-tab-list-button>
+        </template>
+        <template #panels>
+          <uw-tab-panel v-for="(period, i) in periods" :key="i" :panel-id="period.id">
+            <uw-schedule-tab
+              :period="period"
+              :term="getTermData"
+              :is-last-tab="i === periods.length - 1"
+            />
+          </uw-tab-panel>
+        </template>
       </uw-tabs>
 
       <div v-else>
@@ -65,8 +68,9 @@
 <script>
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
-import Tabs from '../../_templates/tabs/tabs.vue';
-import Tab from '../../_templates/tabs/tab.vue';
+import Tabs from '../../_templates/tabs/tab-container.vue';
+import TabListButton from '../../_templates/tabs/tab-list-button.vue';
+import TabPanel from '../../_templates/tabs/tab-panel.vue';
 import ScheduleTab from './schedule-tab.vue';
 import CourseSection from './course-section.vue';
 
@@ -74,7 +78,8 @@ export default {
   components: {
     'uw-card': Card,
     'uw-tabs': Tabs,
-    'uw-tab': Tab,
+    'uw-tab-list-button': TabListButton,
+    'uw-tab-panel': TabPanel,
     'uw-schedule-tab': ScheduleTab,
     'uw-course-section': CourseSection,
   },

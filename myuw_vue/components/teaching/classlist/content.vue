@@ -33,39 +33,50 @@
       bottom-border
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
     >
-      <uw-tab
-        title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-        title-link-class="rounded-0 px-2 py-1 h-100 text-body"
-        active
-      >
-        <template #title> <font-awesome-icon :icon="faTable" /> Table </template>
-        <uw-table-view :section="section" :show-joint-course-stud="showJointCourse" />
-      </uw-tab>
-      <uw-tab
-        title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-        title-link-class="rounded-0 px-2 py-1 h-100 text-body"
-      >
-        <template #title> <font-awesome-icon :icon="faUserCircle" /> Photo Grid </template>
-        <uw-photo-list
-          :registrations="section.registrations"
-          :show-joint-course-stud="showJointCourse"
-        />
-      </uw-tab>
+      <template #tabs>
+        <uw-tab-list-button content-id="tab1">
+          <font-awesome-icon
+            :icon="faTable"
+            class="align-baseline text-mid-beige myuw-text-tiny"
+          />
+          Table
+        </uw-tab-list-button>
+        <uw-tab-list-button content-id="tab2">
+          <font-awesome-icon
+            :icon="faUserCircle"
+            class="align-baseline text-mid-beige myuw-text-tiny"
+          />
+          Photo Grid
+        </uw-tab-list-button>
+      </template>
+      <template #panels>
+        <uw-tab-panel content-id="tab1">
+          <uw-table-view :section="section" :show-joint-course-stud="showJointCourse" />
+        </uw-tab-panel>
+        <uw-tab-panel content-id="tab2">
+          <uw-photo-list
+            :registrations="section.registrations"
+            :show-joint-course-stud="showJointCourse"
+          />
+        </uw-tab-panel>
+      </template>
     </uw-tabs>
   </div>
 </template>
 
 <script>
 import { faDownload, faPrint, faTable, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import Tabs from '../../_templates/tabs/tabs.vue';
-import Tab from '../../_templates/tabs/tab.vue';
+import Tabs from '../../_templates/tabs/tab-container.vue';
+import TabListButton from '../../_templates/tabs/tab-list-button.vue';
+import TabPanel from '../../_templates/tabs/tab-panel.vue';
 import TableView from './table-view.vue';
 import PhotoList from './photo-list.vue';
 
 export default {
   components: {
     'uw-tabs': Tabs,
-    'uw-tab': Tab,
+    'uw-tab-list-button': TabListButton,
+    'uw-tab-panel': TabPanel,
     'uw-table-view': TableView,
     'uw-photo-list': PhotoList,
   },
