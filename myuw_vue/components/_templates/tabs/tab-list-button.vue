@@ -1,14 +1,18 @@
 <template>
   <li role="presentation" :class="titleItemClassComputed">
-    <button :id="'tab-' + panelId"
+    <button
+      :id="'tab-' + panelId"
+      ref="tab"
       :aria-controls="'panel-' + panelId"
-      :data-bs-target="'#panel-' + panelId"
       :area-selected="active"
       :class="titleLinkClassComputed"
+      :data-bs-target="'#panel-' + panelId"
+      type="button"
+      role="tab"
+      data-bs-toggle="tab"
       @click="$parent.$emit('setActivePanel', panelId)"
       @keydown.left.prevent="$parent.$emit('moveActiveTabLeft')"
-      @keydown.right.prevent="$parent.$emit('moveActiveTabRight')"
-      ref="tab" type="button" role="tab" data-bs-toggle="tab">
+      @keydown.right.prevent="$parent.$emit('moveActiveTabRight')">
         <slot></slot>
     </button>
   </li>
@@ -19,7 +23,8 @@
 export default {
   props: {
     panelId: {
-      type: [String, Number]
+      type: [String, Number],
+      required: true
     },
     titleItemClass: {
       type: [String, Array, Object],

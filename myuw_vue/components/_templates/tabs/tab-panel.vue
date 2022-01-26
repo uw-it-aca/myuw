@@ -1,5 +1,8 @@
 <template>
-  <div :id="'panel-' + panelId" :aria-labelledby="'tab-' + panelId" :class="tabPanelClassComputed" role="tabpanel">
+  <div :id="'panel-' + panelId"
+      role="tabpanel"
+      :aria-labelledby="'tab-' + panelId"
+      :class="tabPanelClassComputed">
     <slot></slot>
   </div>
 </template>
@@ -9,7 +12,8 @@
 export default {
   props: {
     panelId: {
-      type: [String, Number]
+      type: [String, Number],
+      required: true
     }
   },
   computed: {

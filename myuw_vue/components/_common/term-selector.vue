@@ -1,8 +1,8 @@
 <template>
   <uw-tabs
+    v-model="selectedTab"
     pills
     bottom-border
-    v-model="selectedTab"
     :nav-wrapper-class="['mb-3', $mq === 'mobile' ? 'px-2' : 'p-0']"
   >
     <!--
@@ -34,10 +34,13 @@
       </uw-tab-list-dropdown>
     </template>
     <template #panels>
-      <uw-tab-panel v-for="(tab, i) in displayedTabs" :key="i" :panel-id="tab.quarter + (tab.year % 100)">
+      <uw-tab-panel
+          v-for="(tab, i) in displayedTabs"
+          :key="i"
+          :panel-id="tab.quarter + (tab.year % 100)">
         <slot :tab="tab" />
       </uw-tab-panel>
-      <uw-tab-panel panel-id="dropdown" v-if="selectedOption > 0">
+      <uw-tab-panel v-if="selectedOption > 0" panel-id="dropdown">
         <slot :tab="dropdownTabs[selectedOption]" />
       </uw-tab-panel>
     </template>
@@ -83,9 +86,6 @@ export default {
       type: String,
       default: null,
     }
-  },
-  created() {
-    this.$logger.termSelected(this.selectedTermInner);
   },
   data() {
     const currentIndex = this.allTabs.findIndex((tab) =>
@@ -156,6 +156,9 @@ export default {
       this.$emit('selected', newValue);
       this.$logger.termSelected(newValue);
     },
+  },
+  created() {
+    this.$logger.termSelected(this.selectedTermInner);
   },
   methods: {
     updateSelectedTerm() {

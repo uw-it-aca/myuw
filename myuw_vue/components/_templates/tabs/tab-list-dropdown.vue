@@ -2,12 +2,14 @@
   <li role="presentation" :class="titleItemClassComputed">
     <div class="select-parent">
       <select
+        :id="'tab-' + panelId"
+        ref="tab"
         v-model="selectedOption"
+        role="tab"
         :class="titleLinkClassComputed"
         @change="changeOption"
         @keydown.left.prevent="$parent.$emit('moveActiveTabLeft')"
         @keydown.right.prevent="$parent.$emit('moveActiveTabRight')"
-        ref="tab" role="tab"
       >
         <option
           v-for="(option, i) in optionsList"
@@ -36,10 +38,12 @@ export default {
   },
   props: {
     panelId: {
-      type: String
+      type: String,
+      required: true
     },
     optionsList: {
-      type: [String, Array, Object]
+      type: [String, Array, Object],
+      required: true
     },
     selectedOption: {
       type: [String, Number, Object],

@@ -48,17 +48,6 @@ export default {
       default: false,
     },
   },
-  created() {
-    this.$on("setActivePanel", (panelId) => {
-      this.setActivePanel(panelId);
-    });
-    this.$on("moveActiveTabLeft", () => {
-      this.moveActiveTabLeft();
-    });
-    this.$on("moveActiveTabRight", () => {
-      this.moveActiveTabRight();
-    });
-  },
   computed: {
     tabs() {
       var filtered = this.$scopedSlots.tabs();
@@ -100,6 +89,22 @@ export default {
       return navClass;
     },
   },
+  watch: {
+    activeTabIdx() {
+      this.$emit('selected', this.activeTabIdx);
+    },
+  },
+  created() {
+    this.$on("setActivePanel", (panelId) => {
+      this.setActivePanel(panelId);
+    });
+    this.$on("moveActiveTabLeft", () => {
+      this.moveActiveTabLeft();
+    });
+    this.$on("moveActiveTabRight", () => {
+      this.moveActiveTabRight();
+    });
+  },
   methods: {
     setActivePanel: function(panelId) {
       let idx = 0;
@@ -130,11 +135,6 @@ export default {
         Object.entries(classes).forEach(([key, value]) => classDict[key] = value);
       }
       return classDict;
-    },
-  },
-  watch: {
-    activeTabIdx() {
-      this.$emit('selected', this.activeTabIdx);
     },
   }
 }
