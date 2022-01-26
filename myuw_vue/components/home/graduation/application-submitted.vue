@@ -128,8 +128,8 @@
 
                     <a href="placeholder">Update your mailing address</a>.
                     <p class="mt-4">
-                      <span class="fw-bold fst-italic">Diploma timing - </span>Your diploma will be
-                      sent 3 to 4 months after you graduate.
+                      <span class="fw-bold fst-italic">Diploma timing -</span> Your
+                      diploma will be sent 3 to 4 months after you graduate.
                     </p>
                   </div>
                 </uw-collapse>
@@ -246,9 +246,7 @@
           <li>
             <a
               href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
-              >Departmental advisor</a
-            >
-            - graduation and academic support
+            >Departmental advisor</a> - graduation and academic support
           </li>
           <li>
             <a href="https://careers.uw.edu/">Career and Internship Center</a> - career consulting
