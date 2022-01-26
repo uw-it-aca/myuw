@@ -29,7 +29,7 @@
             </ul>
           </div>
 
-          <div v-if="hasApprovedDegreeBeforeGrantTerm">
+          <div v-if="hasApprovedDegreeBeforeEarnedTerm">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Ensure that you stay on track
             </h3>
@@ -89,7 +89,7 @@
             </ul>
           </div>
 
-          <div v-if="hasANoneErrDegreeDuringDegreeTerm">
+          <div v-if="hasANoneErrDegreeDuringEarnedTerm">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Verify that your information and data will not be lost
             </h3>
@@ -314,11 +314,14 @@ export default {
       localAddress: (state) => state.value.local_address,
       permanentAddress:  (state) => state.value.permanent_address,
     }),
-    showCard() {
-      return (this.isReady && this.degreeStatus && !this.degreeStatus.error_code);
-    },
     degrees() {
       return this.degreeStatus.degrees;
+    },
+    showCard() {
+      // having at least one degree
+      return (this.isReady && this.degreeStatus &&
+        !this.degreeStatus.error_code &&
+        this.degrees.length > 0);
     },
     hasDoubleDegrees() {
       return this.degrees.length > 1
@@ -354,17 +357,17 @@ export default {
       }
       return value;
     },
-    hasANoneErrDegreeDuringDegreeTerm() {
+    hasANoneErrDegreeDuringEarnedTerm() {
       // exclude status 1-2
       let value = (
-        !this.isApplicationErrthis.degrees[0]) && this.degrees[0].is_degree_earned_term);
+        !this.isApplicationErr(this.degrees[0]) && this.degrees[0].is_degree_earned_term);
       if (this.doubleDegreesInDiffTerms) {
         value = (value ||
           !this.isApplicationErr(this.degrees[1]) && this.degrees[1].is_degree_earned_term);
       }
       return value;
     },
-    hasApprovedDegreeBeforeGrantTerm() {
+    hasApprovedDegreeBeforeEarnedTerm() {
       let value = (
         this.isAppoved(this.degrees[0]) && this.degrees[0].before_degree_earned_term);
       if (this.doubleDegreesInDiffTerms) {
