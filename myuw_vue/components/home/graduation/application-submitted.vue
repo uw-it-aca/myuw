@@ -7,20 +7,6 @@
       <div class="row">
         <div class="col-8">
           <p><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
-
-          <div v-if="hasGraduatedDegree">
-            <h3 class="h6 text-dark myuw-font-encode-sans">
-              Post-Graduation Success
-            </h3>
-            <ul class="list-style">
-              <li>
-                
-              </li>
-              <li>
-                
-              </li>
-            </ul>
-          </div>
           <div v-if="hasApprovedDegree">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Get an Overview
@@ -43,7 +29,35 @@
             </ul>
           </div>
 
-          <div v-if="duringAprilMay">
+          <div v-if="hasApprovedDegreeBeforeGrantTerm">
+            <h3 class="h6 text-dark myuw-font-encode-sans">
+              Ensure that you stay on track
+            </h3>
+            <ul class="list-style">
+              <li>
+                
+              </li>
+              <li>
+                
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="hasGraduatedDegree">
+            <h3 class="h6 text-dark myuw-font-encode-sans">
+              Post-Graduation Success
+            </h3>
+            <ul class="list-style">
+              <li>
+                
+              </li>
+              <li>
+                
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="hasANoneErrDegreeDuringAprilMay">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Take part in Commencement Ceremony
             </h3>
@@ -75,89 +89,91 @@
             </ul>
           </div>
 
-          <h3 class="h6 text-dark myuw-font-encode-sans">
-            Verify that your information and data will not be lost
-          </h3>
-          <ul class="list-unstyled">
-            <li>
-              <button
-                v-uw-collapse.diplomaCollapse
-                type="button"
-                class="btn btn-link p-0 border-0 align-top notice-link text-start"
-              >
-                Review your diploma name and mailing address
-              </button>
-              <uw-collapse id="diplomaCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p class="fw-bold">Name on your diploma:</p>
-                  <p>{{ nameOnDiploma }}</p>
-                  <p>
-                    You can change your name using the
-                    <a href="https://registrar.washington.edu/students/student-forms/"
-                      >Diploma Name Request Form</a
-                    >.
-                  </p>
-                  <p class="fw-bold">Diploma will be mailed to:</p>
-                  <div v-if="mailingAddree">
-                    <div v-if="mailingAddree.street_line1"
-                      v-text="mailingAddree.street_line1">
+          <div v-if="hasANoneErrDegreeDuringDegreeTerm">
+            <h3 class="h6 text-dark myuw-font-encode-sans">
+              Verify that your information and data will not be lost
+            </h3>
+            <ul class="list-unstyled">
+              <li>
+                <button
+                  v-uw-collapse.diplomaCollapse
+                  type="button"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                >
+                  Review your diploma name and mailing address
+                </button>
+                <uw-collapse id="diplomaCollapse">
+                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                    <p class="fw-bold">Name on your diploma:</p>
+                    <p>{{ nameOnDiploma }}</p>
+                    <p>
+                      You can change your name using the
+                      <a href="https://registrar.washington.edu/students/student-forms/"
+                        >Diploma Name Request Form</a
+                      >.
+                    </p>
+                    <p class="fw-bold">Diploma will be mailed to:</p>
+                    <div v-if="mailingAddree">
+                      <div v-if="mailingAddree.street_line1"
+                        v-text="mailingAddree.street_line1">
+                      </div>
+                      <div v-if="mailingAddree.street_line2"
+                        v-text="mailingAddree.street_line2">
+                      </div>
+                      <span v-text="addressLocationString(mailingAddree)" />
+                      <div v-if="mailingAddree.country"
+                        v-text="mailingAddree.country">
+                      </div>
                     </div>
-                    <div v-if="mailingAddree.street_line2"
-                      v-text="mailingAddree.street_line2">
-                    </div>
-                    <span v-text="addressLocationString(mailingAddree)" />
-                    <div v-if="mailingAddree.country"
-                      v-text="mailingAddree.country">
-                    </div>
-                  </div>
 
-                  <a href="placeholder">Update your mailing address</a>.
-                  <p class="mt-4">
-                    <span class="fw-bold fst-italic">Diploma timing - </span>Your diploma will be
-                    sent 3 to 4 months after you graduate.
-                  </p>
-                </div>
-              </uw-collapse>
-            </li>
-            <li>
-              <button
-                v-uw-collapse.saveWorkCollapse
-                type="button"
-                class="btn btn-link p-0 border-0 align-top notice-link text-start"
-              >
-                Save your UW work before it is deleted
-              </button>
-              <uw-collapse id="saveWorkCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p>
-                    All UW accounts will be deleted two quarters after graduation. Take steps now to
-                    <a href="https://itconnect.uw.edu/students/save-work-before-graduation/"
-                      >save all your UW work</a
-                    >
-                    so that you don't lose it.
-                  </p>
-                </div>
-              </uw-collapse>
-            </li>
-            <li>
-              <button
-                v-uw-collapse.emailForwardingCollapse
-                type="button"
-                class="btn btn-link p-0 border-0 align-top notice-link text-start"
-              >
-                Keep receiving emails sent to your UW address – set up forwarding
-              </button>
-              <uw-collapse id="emailForwardingCollapse">
-                <div class="p-3 mt-2 bg-light text-dark notice-body">
-                  <p>
-                    Don't miss critical emails sent to your UW account.
-                    <a href="PLACEHOLDER">Set up your email forwarding</a> before you permanently
-                    lose access.
-                  </p>
-                </div>
-              </uw-collapse>
-            </li>
-          </ul>
+                    <a href="placeholder">Update your mailing address</a>.
+                    <p class="mt-4">
+                      <span class="fw-bold fst-italic">Diploma timing - </span>Your diploma will be
+                      sent 3 to 4 months after you graduate.
+                    </p>
+                  </div>
+                </uw-collapse>
+              </li>
+              <li>
+                <button
+                  v-uw-collapse.saveWorkCollapse
+                  type="button"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                >
+                  Save your UW work before it is deleted
+                </button>
+                <uw-collapse id="saveWorkCollapse">
+                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                    <p>
+                      All UW accounts will be deleted two quarters after graduation. Take steps now to
+                      <a href="https://itconnect.uw.edu/students/save-work-before-graduation/"
+                        >save all your UW work</a
+                      >
+                      so that you don't lose it.
+                    </p>
+                  </div>
+                </uw-collapse>
+              </li>
+              <li>
+                <button
+                  v-uw-collapse.emailForwardingCollapse
+                  type="button"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                >
+                  Keep receiving emails sent to your UW address – set up forwarding
+                </button>
+                <uw-collapse id="emailForwardingCollapse">
+                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                    <p>
+                      Don't miss critical emails sent to your UW account.
+                      <a href="PLACEHOLDER">Set up your email forwarding</a> before you permanently
+                      lose access.
+                    </p>
+                  </div>
+                </uw-collapse>
+              </li>
+            </ul>
+          </div>
         </div>
         <div class="col-4">
           <h3 class="h6 text-dark-beige myuw-font-encode-sans">
@@ -307,36 +323,53 @@ export default {
     hasDoubleDegrees() {
       return this.degrees.length > 1
     },
+    doubleDegreeDiffStatus() {
+      return (
+        this.hasDoubleDegrees &&
+        (this.isApplicationErr(this.degrees[0]) && !this.isApplicationErr(this.degrees[1]) ||
+         this.isAppoved(this.degrees[0]) && !this.isAppoved(this.degrees[1]) ||
+         this.isGraduated(this.degrees[0]) && !this.isGraduated(this.degrees[1])));
+    },
     doubleDegreesInDiffTerms() {
       return (
         this.hasDoubleDegrees &&
         !(this.degrees[0].quarter == this.degrees[1].quarter &&
           this.degrees[0].year  == this.degrees[1].year));
     },
-    // The properties below are true as long as one degree status satifies
-    beforeGrantTerm() {
-      // exclude status 1-2
-      let value = this.degrees[0].before_degree_earned_term;
-      if (this.doubleDegreesInDiffTerms) {
-        value = value || this.degrees[1].before_degree_earned_term;
-      }
-      return value
+    mailingAddree() {
+      return (this.degrees[0].diploma_mail_to_local_address
+        ? this.localAddress : this.permanentAddress);
     },
-    duringAprilMay() {
+    nameOnDiploma() {
+      return this.degrees[0].name_on_diploma;
+    },
+    // The properties below are true as long as one degree status satifies the condition
+    hasANoneErrDegreeDuringAprilMay() {
       // exclude status 1-2
       let value = (
-          this.degrees[0].is_degree_earned_term &&
-          this.degrees[0].during_april_may);
+          !this.isApplicationErr(this.degrees[0]) && this.degrees[0].during_april_may);
       if (this.doubleDegreesInDiffTerms) {
-        value = value || this.degrees[1].is_degree_earned_term && this.degrees[1].during_april_may;
+        value = (value ||
+          !this.isApplicationErr(this.degrees[1]) && this.degrees[1].during_april_may);
       }
       return value;
     },
-    duringDegreeGrantTerm() {
+    hasANoneErrDegreeDuringDegreeTerm() {
       // exclude status 1-2
-      let value = this.degrees[0].is_degree_earned_term;
+      let value = (
+        !this.isApplicationErrthis.degrees[0]) && this.degrees[0].is_degree_earned_term);
       if (this.doubleDegreesInDiffTerms) {
-        value = value || this.degrees[1].is_degree_earned_term;
+        value = (value ||
+          !this.isApplicationErr(this.degrees[1]) && this.degrees[1].is_degree_earned_term);
+      }
+      return value;
+    },
+    hasApprovedDegreeBeforeGrantTerm() {
+      let value = (
+        this.isAppoved(this.degrees[0]) && this.degrees[0].before_degree_earned_term);
+      if (this.doubleDegreesInDiffTerms) {
+        value = (value ||
+          this.isAppoved(this.degrees[1]) && this.degrees[1].before_degree_earned_term);
       }
       return value;
     },
@@ -354,13 +387,6 @@ export default {
         value = value || this.isGraduated(this.degrees[1]);
       }
       return value;
-    },
-    doubleDegreeDiffStatus() {
-      return (
-        this.hasDoubleDegrees &&
-        (this.isApplicationErr(this.degrees[0]) && !this.isApplicationErr(this.degrees[1]) ||
-         this.isAppoved(this.degrees[0]) && !this.isAppoved(this.degrees[1]) ||
-         this.isGraduated(this.degrees[0]) && !this.isGraduated(this.degrees[1])));
     },
     seattle() {
       let value = this.degrees[0].campus.toUpperCase() === 'SEATTLE';
@@ -382,13 +408,6 @@ export default {
         value = value || this.degrees[1].campus.toUpperCase() === 'TACOMA';
       }
       return value;
-    },
-    mailingAddree() {
-      return (this.degrees[0].diploma_mail_to_local_address
-        ? this.localAddress : this.permanentAddress);
-    },
-    nameOnDiploma() {
-      return this.degrees[0].name_on_diploma;
     },
   },
   created() {
