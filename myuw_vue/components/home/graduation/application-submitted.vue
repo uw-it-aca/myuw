@@ -377,9 +377,9 @@ export default {
       return value;
     },
     hasApprovedDegree() {
-      let value = this.degrees[0].has_applied;
+      let value = this.isAppoved(this.degrees[0]);
       if (this.hasDoubleDegrees) {
-        value = value || this.degrees[1].has_applied;
+        value = value || this.isAppoved(this.degrees[1]);
       }
       return value;
     },
