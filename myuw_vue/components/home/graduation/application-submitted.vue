@@ -318,7 +318,7 @@ export default {
       // exclude status 1-2
       let value = this.degrees[0].before_degree_earned_term;
       if (this.doubleDegreesInDiffTerms) {
-        value ||= this.degrees[1].before_degree_earned_term;
+        value = value || this.degrees[1].before_degree_earned_term;
       }
       return value
     },
@@ -328,7 +328,7 @@ export default {
           this.degrees[0].is_degree_earned_term &&
           this.degrees[0].during_april_may);
       if (this.doubleDegreesInDiffTerms) {
-        value ||= this.degrees[1].is_degree_earned_term && this.degrees[1].during_april_may;
+        value = value || this.degrees[1].is_degree_earned_term && this.degrees[1].during_april_may;
       }
       return value;
     },
@@ -336,14 +336,14 @@ export default {
       // exclude status 1-2
       let value = this.degrees[0].is_degree_earned_term;
       if (this.doubleDegreesInDiffTerms) {
-        value ||= this.degrees[1].is_degree_earned_term;
+        value = value || this.degrees[1].is_degree_earned_term;
       }
       return value;
     },
     hasApprovedDegree() {
       let value = this.degrees[0].has_applied;
       if (this.hasDoubleDegrees) {
-        value ||= this.degrees[1].has_applied;
+        value = value || this.degrees[1].has_applied;
       }
       return value;
     },
@@ -351,7 +351,7 @@ export default {
       // data available only within 2 terms after graduation
       let value = this.isGraduated(this.degrees[0]);
       if (this.hasDoubleDegrees) {
-        value ||= this.isGraduated(this.degrees[1]);
+        value = value || this.isGraduated(this.degrees[1]);
       }
       return value;
     },
@@ -365,21 +365,21 @@ export default {
     seattle() {
       let value = this.degrees[0].campus.toUpperCase() === 'SEATTLE';
       if (this.hasDoubleDegrees) {
-        value ||= this.degrees[1].campus.toUpperCase() === 'SEATTLE';
+        value = value || this.degrees[1].campus.toUpperCase() === 'SEATTLE';
       }
       return value;
     },
     bothell() {
       let value = this.degrees[0].campus.toUpperCase() === 'BOTHELL';
       if (this.hasDoubleDegrees) {
-        value ||= this.degrees[1].campus.toUpperCase() === 'BOTHELL';
+        value = value || this.degrees[1].campus.toUpperCase() === 'BOTHELL';
       }
       return value;
     },
     tacoma() {
       let value = this.degrees[0].campus.toUpperCase() === 'TACOMA';
       if (this.hasDoubleDegrees) {
-        value ||= this.degrees[1].campus.toUpperCase() === 'TACOMA';
+        value = value || this.degrees[1].campus.toUpperCase() === 'TACOMA';
       }
       return value;
     },
