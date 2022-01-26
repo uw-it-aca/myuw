@@ -12,19 +12,25 @@
               Get an Overview
             </h3>
             <ul class="list-style">
-              <li>
+              <li v-if="seattle">
                 Review the
                 <a href="https://www.washington.edu/students/graduation-checklist/">
                   UW Graduation checklist
                 </a>
                 for an overview of tasks.
               </li>
-              <li v-if="intlStudent">
+              <li v-if="seattle && intlStudent">
                 International students, review the
                 <a href="https://iss.washington.edu/resources/final-checklist/">
                   ISS graduation checklist
                 </a>
                 for additional guidance.
+              </li>
+              <li v-if="bothell && intlStudent">
+                International students, may find
+                <a href="https://www.uwb.edu/cie/alumni">
+                additional graduation guidance
+                </a> at the Center for International Education.
               </li>
             </ul>
           </div>
@@ -165,7 +171,7 @@
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
                       Don't miss critical emails sent to your UW account.
-                      <a href="PLACEHOLDER">Set up your email forwarding</a> before you permanently
+                      <a href="https://uwnetid.washington.edu/manage/?forward">Set up your email forwarding</a> before you permanently
                       lose access.
                     </p>
                   </div>
