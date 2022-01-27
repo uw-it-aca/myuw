@@ -93,8 +93,18 @@
                 </button>
                 <uw-collapse id="commencementCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
-                    <p>
+                    <p v-if="seattle">
                       <a href="https://www.washington.edu/graduation/how-to-participate-2/"
+                        >Learn all about commencement</a
+                      >, including:
+                    </p>
+                    <p v-if="bothell">
+                      <a href="https://www.uwb.edu/commencement"
+                        >Learn all about commencement</a
+                      >, including:
+                    </p>
+                    <p v-if="tacoma">
+                      <a href="https://www.tacoma.uw.edu/commencement"
                         >Learn all about commencement</a
                       >, including:
                     </p>
