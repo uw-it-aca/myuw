@@ -6,7 +6,6 @@ import { createLocalVue } from './helper';
 import Vuex from 'vuex';
 import directory from '../vuex/store/directory';
 
-import UwCard from '../components/_templates/card.vue';
 import EmployeeProfileCard from '../components/profile/employee-profile.vue';
 import javerageDirectory from './mock_data/directory/javerage.json';
 
@@ -34,7 +33,7 @@ describe('Employee Profile Card', () => {
     });
   });
 
-  it('Verify computed properties', async () => {
+  it('Verify computed properties of employees', async () => {
     store.state.user.affiliations.all_employee = true;
     axios.get.mockResolvedValue({data: javerageDirectory, status: 200});
     const wrapper = mount(EmployeeProfileCard, {store, localVue});
@@ -43,7 +42,7 @@ describe('Employee Profile Card', () => {
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.noFormsOfContact).toBe(false);
   });
-  it('Verify computed properties', async () => {
+  it('Verify computed properties of stud_employee', async () => {
     store.state.user.affiliations.stud_employee = true;
     axios.get.mockResolvedValue({data: javerageDirectory, status: 200});
     const wrapper = mount(EmployeeProfileCard, {store, localVue});
