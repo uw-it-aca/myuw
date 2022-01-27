@@ -55,7 +55,7 @@
                 href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
               </li>
               <li>
-                Plan remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>.
+                Plan your remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>.
               </li>
               <li>
                 <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm
