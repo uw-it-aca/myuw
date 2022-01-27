@@ -26,11 +26,21 @@
                 </a>
                 for additional guidance.
               </li>
+              <li v-if="bothell">
+                Get all the details on
+                <a href="https://www.uwb.edu/registration/graduation">
+                UW Bothell’s Graduation, Diplomas, and Commencement page</a>.
+              </li>
               <li v-if="bothell && intlStudent">
                 International students, may find
                 <a href="https://www.uwb.edu/cie/alumni">
                 additional graduation guidance
                 </a> at the Center for International Education.
+              </li>
+               <li v-if="tacoma">
+                Get an
+                <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
+                overview of the UW Tacoma graduation process</a>.
               </li>
             </ul>
           </div>
