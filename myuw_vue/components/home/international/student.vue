@@ -16,24 +16,24 @@
           bottom-border
           nav-wrapper-class="mb-3 p-0">
         <template #tabs>
-          <uw-tab-list-button content-id="tab1">
+          <uw-tab-list-button panel-id="tab1">
             Seattle
           </uw-tab-list-button>
-          <uw-tab-list-button content-id="tab2">
+          <uw-tab-list-button panel-id="tab2">
             Tacoma
           </uw-tab-list-button>
-          <uw-tab-list-button content-id="tab3">
+          <uw-tab-list-button panel-id="tab3">
             Bothell
           </uw-tab-list-button>
         </template>
         <template #panels>
-          <uw-tab-panel content-id="tab1">
+          <uw-tab-panel panel-id="tab1">
             <uw-seattle />
           </uw-tab-panel>
-          <uw-tab-panel content-id="tab2">
+          <uw-tab-panel panel-id="tab2">
             <uw-tacoma />
           </uw-tab-panel>
-          <uw-tab-panel content-id="tab3">
+          <uw-tab-panel panel-id="tab3">
             <uw-bothell />
           </uw-tab-panel>
         </template>

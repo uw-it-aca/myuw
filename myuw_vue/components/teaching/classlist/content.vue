@@ -34,14 +34,14 @@
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
     >
       <template #tabs>
-        <uw-tab-list-button content-id="tab1">
+        <uw-tab-list-button panel-id="tab1">
           <font-awesome-icon
             :icon="faTable"
             class="align-baseline text-mid-beige myuw-text-tiny"
           />
           Table
         </uw-tab-list-button>
-        <uw-tab-list-button content-id="tab2">
+        <uw-tab-list-button panel-id="tab2">
           <font-awesome-icon
             :icon="faUserCircle"
             class="align-baseline text-mid-beige myuw-text-tiny"
@@ -50,10 +50,10 @@
         </uw-tab-list-button>
       </template>
       <template #panels>
-        <uw-tab-panel content-id="tab1">
+        <uw-tab-panel panel-id="tab1">
           <uw-table-view :section="section" :show-joint-course-stud="showJointCourse" />
         </uw-tab-panel>
-        <uw-tab-panel content-id="tab2">
+        <uw-tab-panel panel-id="tab2">
           <uw-photo-list
             :registrations="section.registrations"
             :show-joint-course-stud="showJointCourse"

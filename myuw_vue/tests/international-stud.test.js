@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { shallowMount } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import Notices from '../vuex/store/notices';
@@ -9,8 +9,9 @@ import SeattleComp from '../components/home/international/seattle.vue';
 import BothellComp from '../components/home/international/bothell.vue';
 import TacomaComp from '../components/home/international/tacoma.vue';
 import UwCard from '../components/_templates/card.vue';
-import UwTabs from '../components/_templates/tabs/tabs.vue';
-import UwTab from '../components/_templates/tabs/tab.vue';
+import UwTabs from '../components/_templates/tabs/tab-container.vue';
+import UwTabListButton from '../components/_templates/tabs/tab-list-button.vue';
+import UwTabPanel from '../components/_templates/tabs/tab-panel.vue';
 
 import mockNotices from './mock_data/notice/jinter.json';
 
@@ -76,9 +77,10 @@ describe('International Student Card - student.vue', () => {
 
   it('Render Logic for no campus', () => {
     store.state.user.affiliations.seattle = false;
-    const wrapper = shallowMount(StudentCard, { store, localVue });
+    const wrapper = mount(StudentCard, { store, localVue });
     expect(wrapper.findComponent(UwTabs).exists()).toBe(true);
-    expect(wrapper.findAllComponents(UwTab).length).toBe(3);
+    expect(wrapper.findAllComponents(UwTabListButton).length).toBe(3);
+    expect(wrapper.findAllComponents(UwTabPanel).length).toBe(3);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(true);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(true);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(true);

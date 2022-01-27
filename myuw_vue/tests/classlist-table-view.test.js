@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { shallowMount } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 import { createLocalVue, deepClone } from './helper';
 
 import Vuex from 'vuex';
@@ -17,8 +17,10 @@ import TableView from '../components/teaching/classlist/table-view.vue';
 import CourseStats from '../components/teaching/classlist/statistics.vue';
 import UwCard from '../components/_templates/card.vue';
 import UwTable from '../components/_templates/card-table.vue';
-import UwTabs from '../components/_templates/tabs/tabs.vue';
-import UwTab from '../components/_templates/tabs/tab.vue';
+import UwTabs from '../components/_templates/tabs/tab-container.vue';
+import UwTabListButton from '../components/_templates/tabs/tab-list-button.vue';
+import UwTabPanel from '../components/_templates/tabs/tab-panel.vue';
+
 
 const localVue = createLocalVue(Vuex);
 
@@ -72,7 +74,7 @@ describe('Show Classlist Content', () => {
     expect(wrapper.findComponent(CourseStats).exists()).toBe(true);
 
     const section = wrapper.vm.sectionData.sections[0];
-    wrapper = shallowMount(ClasslistContent,
+    wrapper = mount(ClasslistContent,
       { store,
         localVue,
         propsData: {'section': section, 'isJointSectionDataReady': true}
@@ -83,7 +85,8 @@ describe('Show Classlist Content', () => {
     const link2 = wrapper.findAll('a').at(1);
     expect(link2.text()).toBe('Print');
     expect(wrapper.findComponent(UwTabs).exists()).toBe(true);
-    expect(wrapper.findAllComponents(UwTab).length).toBe(2);
+    expect(wrapper.findAllComponents(UwTabPanel).length).toBe(2);
+    expect(wrapper.findAllComponents(UwTabListButton).length).toBe(2);
 
     wrapper = shallowMount(TableView,
       { store,
