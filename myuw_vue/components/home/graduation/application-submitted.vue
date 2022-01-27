@@ -60,10 +60,10 @@
             </h3>
             <ul class="list-style">
               <li>
-                
+                Get guidance and resources for <a href="https://www.washington.edu/graduation/after-graduation/">after graduation</a>.
               </li>
               <li>
-                
+                Find out how to <a href="PLACEHOLDER">provide degree certification</a> to other parties.
               </li>
             </ul>
           </div>
