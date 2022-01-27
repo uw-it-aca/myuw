@@ -273,20 +273,54 @@
           about what is next, you are not alone!
         </p>
         <ul>
-          <li>
+          <li v-if="seattle">
             <a
               href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
             >Departmental advisor</a> - graduation and academic support
           </li>
-          <li>
+          <li v-if="bothell">
+            <a
+              href="https://www.uwb.edu/advising"
+            >Departmental advisor</a> - graduation and academic support
+          </li>
+          <li v-if="tacoma">
+            <a
+              href="https://www.tacoma.uw.edu/gaa"
+            >Departmental advisor</a> - graduation and academic support
+          </li>
+          <li v-if="seattle">
             <a href="https://careers.uw.edu/">Career and Internship Center</a> - career consulting
           </li>
-          <li>
+          <li v-if="bothell">
+            <a href="https://www.uwb.edu/careers">Career and Internship Center</a> - career consulting
+          </li>
+          <li v-if="tacoma">
+            <a href="https://www.tacoma.uw.edu/career">Career and Internship Center</a> - career consulting
+          </li>
+          <li v-if="seattle">
             <a href="https://www.washington.edu/financialaid/">Office of Student Financial Aid</a> -
             financial management consulting
           </li>
-          <li>
+          <li v-if="bothell">
+            <a href="https://www.uwb.edu/financial-aid">Office of Student Financial Aid</a> -
+            financial management consulting
+          </li>
+          <li v-if="tacoma">
+            <a href="https://www.tacoma.uw.edu/finaid">Office of Student Financial Aid</a> -
+            financial management consulting
+          </li>
+          <li v-if="seattle">
             <a href="https://www.washington.edu/counseling/">Counseling Center</a> - If you are
+            anxious about your future or need someone compassionate to talk to about your future or
+            anything else, connect with a counselor.
+          </li>
+           <li v-if="bothell">
+            <a href="https://www.uwb.edu/studentaffairs/counseling">Counseling Center</a> - If you are
+            anxious about your future or need someone compassionate to talk to about your future or
+            anything else, connect with a counselor.
+          </li>
+          <li v-if="tacoma">
+            <a href="https://www.tacoma.uw.edu/paws">Counseling Center</a> - If you are
             anxious about your future or need someone compassionate to talk to about your future or
             anything else, connect with a counselor.
           </li>
