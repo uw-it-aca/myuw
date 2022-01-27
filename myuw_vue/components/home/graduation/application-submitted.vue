@@ -41,10 +41,13 @@
             </h3>
             <ul class="list-style">
               <li>
-                
+                See what courses you have left - run a <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
               </li>
               <li>
-                
+                Plan remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>.
+              </li>
+              <li>
+                <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm your plan will lead you to graduation.
               </li>
             </ul>
           </div>
