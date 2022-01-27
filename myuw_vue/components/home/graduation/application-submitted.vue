@@ -41,13 +41,15 @@
             </h3>
             <ul class="list-style">
               <li>
-                See what courses you have left - run a <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
+                See what courses you have left - run a <a
+                href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
               </li>
               <li>
                 Plan remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>.
               </li>
               <li>
-                <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm your plan will lead you to graduation.
+                <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm
+                your plan will lead you to graduation.
               </li>
             </ul>
           </div>
@@ -118,8 +120,7 @@
                     <p>
                       You can change your name using the
                       <a href="https://registrar.washington.edu/students/student-forms/"
-                        >Diploma Name Request Form</a
-                      >.
+                        >Diploma Name Request Form</a>.
                     </p>
                     <p class="fw-bold">Diploma will be mailed to:</p>
                     <div v-if="mailingAddree">
@@ -174,8 +175,8 @@
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
                       Don't miss critical emails sent to your UW account.
-                      <a href="https://uwnetid.washington.edu/manage/?forward">Set up your email forwarding</a> before you permanently
-                      lose access.
+                      <a href="https://uwnetid.washington.edu/manage/?forward"
+                      >Set up your email forwarding</a> before you permanently lose access.
                     </p>
                   </div>
                 </uw-collapse>
