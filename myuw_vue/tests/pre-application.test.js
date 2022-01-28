@@ -51,6 +51,8 @@ describe('Graduation PreApplication Card', () => {
     expect(wrapper.vm.bothell).toBeTruthy();
     expect(wrapper.vm.tacoma).toBeTruthy();
     expect(wrapper.vm.classLevel).toBe('SENIOR');
+    expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.term).toBe('2013,spring');
     expect(wrapper.findComponent(GraduationPreApplication).exists()).toBe(true);
@@ -60,6 +62,7 @@ describe('Graduation PreApplication Card', () => {
     const wrapper = shallowMount(GraduationPreApplication, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBe(true);
+    expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.vm.showCard).toBe(false);
   });
   it('Verify hide card if not a senior', async () => {
@@ -69,12 +72,15 @@ describe('Graduation PreApplication Card', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.curSenior).toBe(false);
     expect(wrapper.vm.isReady).toBe(false);
+    expect(wrapper.vm.isErrored).toBe(false);
+    expect(wrapper.vm.showCard).toBe(false);
   });
-  it('Verify data error', async () => {
+  it('Verify show error', async () => {
     axios.get.mockResolvedValue(Promise.reject({ response: { status: 404 } }));
     const wrapper = shallowMount(GraduationPreApplication, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.curSenior).toBe(true);
+    expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.vm.isErrored).toBe(true);
   });
 });

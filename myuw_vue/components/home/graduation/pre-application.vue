@@ -1,8 +1,8 @@
 <template>
   <uw-card
-    v-if="curSenior"
+    v-if="showCard"
     v-meta="{term: term}"
-    :loaded="isReady && showCard"
+    :loaded="isReady"
     :errored="isErrored"
   >
     <template #card-heading>
@@ -101,6 +101,7 @@ export default {
   },
   computed: {
     ...mapGetters('profile', {
+      isFetching: 'isFetching',
       isReady: 'isReady',
       isErrored: 'isErrored',
       statusCode: 'statusCode',
@@ -121,7 +122,10 @@ export default {
       return (this.classLevel === 'SENIOR');
     },
     showCard() {
-      return (this.degreeStatus && this.degreeStatus.error_code === 404);
+      return (
+        this.curSenior &&
+        (this.isFetching || this.isErrored ||
+         this.degreeStatus && this.degreeStatus.error_code === 404));
     },
     term() {
       return this.year + ',' + this.quarter;

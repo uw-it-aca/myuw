@@ -1,0 +1,116 @@
+{
+  "uwnetid": "javg004",
+  "uwregid": "9136CCB8F66711D5BE060004AC494004",
+  "birth_date": "1961-10-26",
+  "email": "javg004@u.washington.edu",
+  "first_name": "Jerry Average",
+  "last_name": "Average",
+  "pronouns": null,
+  "student_name": "Average,Jerry Joseph",
+  "student_number": "1033004",
+  "employee_id": "123456789",
+  "directory_release": true,
+  "local_address": {
+    "city": "Seattle",
+    "country": "United States",
+    "street_line1": "4634 26th Ave NE",
+    "street_line2": "APT 102",
+    "postal_code": "",
+    "state": "WA",
+    "zip_code": "98105-4566"
+  },
+  "local_phone": null,
+  "permanent_address": {
+    "city": "Bellevue",
+    "country": "United States",
+    "street_line1": "1645 140th Ave NE",
+    "street_line2": "APT 980",
+    "postal_code": "",
+    "state": "WA",
+    "zip_code": "98005-1234"
+  },
+  "permanent_phone": "4255556789",
+  "visa_type": null,
+  "veteran_code": "0",
+  "is_student": true,
+  "is_grad_student": false,
+  "degree_status": {
+    "degrees": [
+      {
+        "campus": "BOTHELL",
+        "diploma_mail": 0,
+        "diploma_mail_to_local_address": false,
+        "quarter": "spring",
+        "year": 2013,
+        "level": 1,
+        "status": 4,
+        "type": 2,
+        "title": "BACHELOR OF ARTS IN BUSINESS ADMINISTRATION",
+        "name_on_diploma": "Javg004 Student",
+        "has_applied": true,
+        "is_granted": false,
+        "is_admin_hold": false,
+        "is_incomplete": false,
+        "is_degree_earned_term": true,
+        "before_degree_earned_term": false,
+        "during_april_may": true
+      },
+      {
+        "campus": "BOTHELL",
+        "diploma_mail": 0,
+        "diploma_mail_to_local_address": false,
+        "quarter": "autumn",
+        "year": 2013,
+        "level": 1,
+        "status": 3,
+        "type": 1,
+        "title": "BACHELOR OF ARTS (APPLIED COMPUTING)",
+        "name_on_diploma": "Javg004 Student",
+        "has_applied": true,
+        "is_granted": false,
+        "is_admin_hold": false,
+        "is_incomplete": false,
+        "is_degree_earned_term": false,
+        "before_degree_earned_term": true,
+        "during_april_may": true
+      }
+    ],
+    "error_code": null
+  },
+  "class_level": "SENIOR",
+  "term_majors": [
+    {
+      "quarter": "spring",
+      "year": 2013,
+      "majors": [],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "summer",
+      "year": 2013,
+      "majors": [],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    }
+  ],
+  "has_pending_major": false,
+  "term_minors": [
+    {
+      "quarter": "spring",
+      "year": 2013,
+      "minors": [],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "summer",
+      "year": 2013,
+      "minors": [],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    }
+  ],
+  "has_pending_minor": false,
+  "display_name": "Jerry Average Student"
+}
