@@ -22,8 +22,8 @@
         <template #tabs>
           <uw-tab-list-button v-for="(period, i) in periods" :key="i" 
               :panel-id="period.id"
-              title-item-class="text-nowrap text-uppercase myuw-text-xs me-2 mb-1"
-              title-link-class="rounded-0 px-2 py-1 h-100 text-body">
+              title-item-class="myuw-text-xs me-2 mb-1"
+              title-link-class="rounded-0 text-body">
             {{period.title}}
           </uw-tab-list-button>
         </template>

@@ -34,26 +34,30 @@
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
     >
       <template #tabs>
-        <uw-tab-list-button panel-id="tab1">
+        <uw-tab-list-button panel-id="table"
+            title-item-class="me-2 mb-1"
+            title-link-class="rounded-0 text-body">
           <font-awesome-icon
             :icon="faTable"
-            class="align-baseline text-mid-beige myuw-text-tiny"
+            class="align-baseline"
           />
           Table
         </uw-tab-list-button>
-        <uw-tab-list-button panel-id="tab2">
+        <uw-tab-list-button panel-id="photo-grid"
+            title-item-class="me-2 mb-1"
+            title-link-class="rounded-0 text-body">
           <font-awesome-icon
             :icon="faUserCircle"
-            class="align-baseline text-mid-beige myuw-text-tiny"
+            class="align-baseline"
           />
           Photo Grid
         </uw-tab-list-button>
       </template>
       <template #panels>
-        <uw-tab-panel panel-id="tab1">
+        <uw-tab-panel panel-id="table">
           <uw-table-view :section="section" :show-joint-course-stud="showJointCourse" />
         </uw-tab-panel>
-        <uw-tab-panel panel-id="tab2">
+        <uw-tab-panel panel-id="photo-grid">
           <uw-photo-list
             :registrations="section.registrations"
             :show-joint-course-stud="showJointCourse"

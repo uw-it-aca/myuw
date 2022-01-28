@@ -77,13 +77,12 @@ export default {
       cls['nav-link'] = true;
       cls['text-nowrap'] = true;
       cls['text-uppercase'] = true;
-      cls['rounded-0'] = true;
       cls['pb-1'] = true;
       cls['pt-1'] = true;
       cls['h-100'] = true;
-      cls['text-body'] = true;
-      cls['myuw-font-open-sans'] = true;
       cls['active'] = this.active;
+      cls['text-body'] = true;
+      cls['rounded-0'] = true;
       return cls;
     },
   },

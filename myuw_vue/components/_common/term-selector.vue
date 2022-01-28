@@ -27,8 +27,7 @@
         :title-item-class="{
           'ms-auto': $mq !== 'mobile',
           'text-nowrap': true,
-          'myuw-text-lg': true,
-          'mb-1': true,
+          'myuw-text-lg': true
         }"
       >
       </uw-tab-list-dropdown>

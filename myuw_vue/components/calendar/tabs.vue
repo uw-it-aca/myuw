@@ -7,10 +7,10 @@
         nav-class="bg-white rounded"
         nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto">
       <template #tabs>
-        <uw-tab-list-button panel-id="tab1">
+        <uw-tab-list-button panel-id="all">
           All
         </uw-tab-list-button>
-        <uw-tab-list-button panel-id="tab2">
+        <uw-tab-list-button panel-id="breaks">
           <font-awesome-icon
             :icon="faCircle"
             class="align-baseline text-mid-beige myuw-text-tiny"
@@ -19,10 +19,10 @@
         </uw-tab-list-button>
       </template>
       <template #panels>
-        <uw-tab-panel panel-id="tab1">
+        <uw-tab-panel panel-id="all">
           <uw-calendar-cards :events="allEvents" />
         </uw-tab-panel>
-        <uw-tab-panel panel-id="tab2">
+        <uw-tab-panel panel-id="breaks">
           <uw-calendar-cards :events="breakEvents" />
         </uw-tab-panel>
       </template>

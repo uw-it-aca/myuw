@@ -49,6 +49,9 @@ export default {
       cls['nav-link'] = true;
       cls['text-nowrap'] = true;
       cls['text-uppercase'] = true;
+      cls['px-2'] = true;
+      cls['py-1'] = true;
+      cls['h-100'] = true;
       cls['active'] = this.active;
       return cls;
     },
@@ -81,7 +84,7 @@ export default {
 .myuw-tabs {
   .nav-link.active { 
     background: transparent;
-    font-weight: bold; 
+    font-weight: bold;
   }
 }
 .myuw-bottom-border {
