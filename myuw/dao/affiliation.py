@@ -10,7 +10,8 @@ import traceback
 from myuw.dao import log_err
 from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.enrollment import (
-    get_main_campus, get_class_level, is_registered_current_quarter)
+    get_main_campus, get_cur_class_level, get_latest_class_level,
+    is_registered_current_quarter)
 from myuw.dao.gws import (
     is_clinician, is_staff_employee, is_student_employee,
     is_alum_asso, is_student, is_grad_student, is_undergrad_student,
@@ -54,7 +55,8 @@ def get_all_affiliations(request):
     ["official_bothell"]: True if the user is Bothell employee
     ["official_tacoma"]: True if the user is Tacoma employee
     ["official_pce"]: waiting on sws to add a field in Enrollment.
-    ["class_level"]: current term class level
+    ["class_level"]: class level in current term enrollment.
+    ["latest_class_level"]: the class level in the latest enrollment.
     ["F1"]: F1 international student
     ["J1"]: J1 international student
     ["intl_stud"]: F1 or J1 international student
@@ -82,6 +84,7 @@ def get_all_affiliations(request):
                       not is_student(request))
     (is_sea_stud, is_undergrad, is_hxt_viewer) = get_is_hxt_viewer(request)
     data = {"class_level": None,
+            "latest_class_level": get_latest_class_level(request),
             "grad": is_grad_student(request),
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
@@ -120,7 +123,7 @@ def get_all_affiliations(request):
     campuses = []
 
     if data["student"]:
-        data["class_level"] = get_class_level(request)
+        data["class_level"] = get_cur_class_level(request)
         data["registered_stud"] = is_registered_current_quarter(request)
         try:
             sws_person = get_profile_of_current_user(request)

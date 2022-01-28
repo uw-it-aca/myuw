@@ -12,11 +12,10 @@ from uw_sws.person import get_person_by_regid
 from myuw.dao import log_err
 from myuw.dao.degree import get_degrees_json
 from myuw.dao.enrollment import (
-    get_main_campus, get_enrollment_for_term, get_enrollments_of_terms)
+    get_main_campus, get_latest_class_level, get_enrollments_of_terms)
 from myuw.dao.gws import is_grad_student
 from myuw.dao.pws import get_regid_of_current_user
-from myuw.dao.term import (
-    get_current_and_next_quarters, get_current_quarter, get_term_before)
+from myuw.dao.term import get_current_and_next_quarters
 
 
 logger = logging.getLogger(__name__)
@@ -67,15 +66,8 @@ def get_student_profile(request):
 
 
 def get_degree_status(request):
-    term = get_current_quarter(request)
-    enrollment = get_enrollment_for_term(request, term)
-    if not enrollment:
-        term = get_term_before(term)
-        enrollment = get_enrollment_for_term(request, term)
-        if not enrollment:
-            term = get_term_before(term)
-            enrollment = get_enrollment_for_term(request, term)
-    if enrollment and enrollment.class_level.upper() == 'SENIOR':
+    class_level = get_latest_class_level(request)
+    if class_level and class_level.upper() == 'SENIOR':
         return get_degrees_json(request)
     return None
 

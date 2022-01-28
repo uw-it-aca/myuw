@@ -1,5 +1,10 @@
 <template>
-  <uw-card v-if="showCard" :loaded="isReady">
+  <uw-card
+    v-if="showCard"
+    :loaded="isReady"
+    :errored="isErrored"
+    :errored-show="false"
+  >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
     </template>
@@ -371,27 +376,33 @@ export default {
   },
   computed: {
     ...mapGetters('profile', {
+      isFetching: 'isFetching',
       isReady: 'isReady',
       isErrored: 'isErrored',
       statusCode: 'statusCode',
     }),
     ...mapState({
       intlStudent: (state) => state.user.affiliations.intl_stud,
-      classLevel: (state) => state.user.affiliations.class_level,
+      classLevel: (state) => state.user.affiliations.latest_class_level,
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
       localAddress: (state) => state.value.local_address,
       permanentAddress:  (state) => state.value.permanent_address,
     }),
+    graduationSenior() {
+      return (this.classLevel === 'SENIOR');
+    },
     degrees() {
       return this.degreeStatus.degrees;
     },
     showCard() {
       // having at least one degree
-      return (this.isReady && this.degreeStatus &&
-        !this.degreeStatus.error_code &&
-        this.degrees.length > 0);
+      return (
+        this.graduationSenior &&
+        (this.isFetching || this.isErrored ||
+         this.degreeStatus && !this.degreeStatus.error_code &&
+         this.degrees.length > 0));
     },
     hasDoubleDegrees() {
       return this.degrees.length > 1
@@ -484,7 +495,7 @@ export default {
     },
   },
   created() {
-    this.fetch();
+    if (this.graduationSenior) this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),

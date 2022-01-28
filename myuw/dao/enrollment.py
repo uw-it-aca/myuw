@@ -13,8 +13,8 @@ from uw_sws.enrollment import (
     enrollment_search_by_regid, get_enrollment_history_by_regid)
 from myuw.dao import log_err
 from myuw.dao.term import (
-    get_current_quarter, get_current_and_next_quarters,
-    get_previous_number_quarters, get_comparison_date)
+    get_current_quarter, get_comparison_date, get_term_before,
+    get_current_and_next_quarters, get_previous_number_quarters)
 from myuw.dao.pws import get_regid_of_current_user
 
 CLASS_CODES = {
@@ -106,7 +106,7 @@ def get_main_campus(request):
     return campuses
 
 
-def get_class_level(request):
+def get_cur_class_level(request):
     """
     Return current term class level
     """
@@ -114,6 +114,22 @@ def get_class_level(request):
     if enrollment:
         return enrollment.class_level
     return None
+
+
+def get_latest_class_level(request):
+    """
+    Return True if the latest enrollment in the current or past 2 terms
+    has senior class level.
+    """
+    term = get_current_quarter(request)
+    enrollment = get_enrollment_for_term(request, term)
+    if not enrollment:
+        term = get_term_before(term)
+        enrollment = get_enrollment_for_term(request, term)
+        if not enrollment:
+            term = get_term_before(term)
+            enrollment = get_enrollment_for_term(request, term)
+    return enrollment.class_level if enrollment else None
 
 
 def get_code_for_class_level(class_name):
