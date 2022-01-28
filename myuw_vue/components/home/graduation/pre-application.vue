@@ -1,8 +1,10 @@
 <template>
   <uw-card
-    v-if="showCard"
+    v-if="curSenior"
     v-meta="{term: term}"
-    :loaded="isReady">
+    :loaded="isReady && showCard"
+    :errored="isErrored"
+  >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Graduation Preparation
@@ -34,7 +36,8 @@
 
         <p v-if="seattle" class="myuw-text-md">
           <strong>Get all the details:
-          <a href="https://www.washington.edu/students/graduation-checklist/">Follow the UW Seattle Graduation checklist</a>.
+          <a href="https://www.washington.edu/students/graduation-checklist/">
+          Follow the UW Seattle Graduation checklist</a>.
           </strong> 
         </p>
         <p v-if="tacoma" class="myuw-text-md">
@@ -57,9 +60,8 @@
         </p>
         <p v-if="seattle && intlStudent" class="myuw-text-md">
           International students, review the
-          <a href="https://iss.washington.edu/resources/final-checklist/">
-            ISS Graduation checklist
-          </a> for additional guidance.
+          <a href="https://iss.washington.edu/resources/final-checklist/"
+          >ISS Graduation checklist</a> for additional guidance.
         </p>
       </uw-collapse>
     </template>
@@ -115,15 +117,18 @@ export default {
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
     }),
+    curSenior() {
+      return (this.classLevel === 'SENIOR');
+    },
     showCard() {
-      return (this.isReady && this.degreeStatus.error_code === 404);
+      return (this.degreeStatus && this.degreeStatus.error_code === 404);
     },
     term() {
       return this.year + ',' + this.quarter;
     }
   },
   created() {
-    if (this.classLevel === 'SENIOR') this.fetch();
+    if (this.curSenior) this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),
