@@ -7,16 +7,16 @@
         nav-class="bg-white rounded"
         nav-wrapper-class="mb-2 border rounded p-0 w-75 mx-auto">
       <template #tabs>
-        <uw-tab-list-button panel-id="all">
+        <uw-tab-button panel-id="all">
           All
-        </uw-tab-list-button>
-        <uw-tab-list-button panel-id="breaks">
+        </uw-tab-button>
+        <uw-tab-button panel-id="breaks">
           <font-awesome-icon
             :icon="faCircle"
             class="align-baseline text-mid-beige myuw-text-tiny"
           />
           Breaks
-        </uw-tab-list-button>
+        </uw-tab-button>
       </template>
       <template #panels>
         <uw-tab-panel panel-id="all">
@@ -34,16 +34,16 @@
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import CalendarCards from './calendar-cards.vue';
-import Tabs from '../_templates/tabs/tab-container.vue';
-import TabListButton from '../_templates/tabs/tab-list-button.vue';
-import TabPanel from '../_templates/tabs/tab-panel.vue';
+import Tabs from '../_templates/tabs/tabs.vue';
+import TabButton from '../_templates/tabs/button.vue';
+import TabPanel from '../_templates/tabs/panel.vue';
 
 
 export default {
   components: {
     'uw-calendar-cards': CalendarCards,
     'uw-tabs': Tabs,
-    'uw-tab-list-button': TabListButton,
+    'uw-tab-button': TabButton,
     'uw-tab-panel': TabPanel,
   },
   data() {

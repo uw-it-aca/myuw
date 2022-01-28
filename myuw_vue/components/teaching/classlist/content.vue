@@ -34,7 +34,7 @@
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
     >
       <template #tabs>
-        <uw-tab-list-button panel-id="table"
+        <uw-tab-button panel-id="table"
             title-item-class="me-2 mb-1"
             title-link-class="rounded-0 text-body">
           <font-awesome-icon
@@ -42,8 +42,8 @@
             class="align-baseline"
           />
           Table
-        </uw-tab-list-button>
-        <uw-tab-list-button panel-id="photo-grid"
+        </uw-tab-button>
+        <uw-tab-button panel-id="photo-grid"
             title-item-class="me-2 mb-1"
             title-link-class="rounded-0 text-body">
           <font-awesome-icon
@@ -51,7 +51,7 @@
             class="align-baseline"
           />
           Photo Grid
-        </uw-tab-list-button>
+        </uw-tab-button>
       </template>
       <template #panels>
         <uw-tab-panel panel-id="table">
@@ -70,16 +70,16 @@
 
 <script>
 import { faDownload, faPrint, faTable, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import Tabs from '../../_templates/tabs/tab-container.vue';
-import TabListButton from '../../_templates/tabs/tab-list-button.vue';
-import TabPanel from '../../_templates/tabs/tab-panel.vue';
+import Tabs from '../../_templates/tabs/tabs.vue';
+import TabButton from '../../_templates/tabs/button.vue';
+import TabPanel from '../../_templates/tabs/panel.vue';
 import TableView from './table-view.vue';
 import PhotoList from './photo-list.vue';
 
 export default {
   components: {
     'uw-tabs': Tabs,
-    'uw-tab-list-button': TabListButton,
+    'uw-tab-button': TabButton,
     'uw-tab-panel': TabPanel,
     'uw-table-view': TableView,
     'uw-photo-list': PhotoList,

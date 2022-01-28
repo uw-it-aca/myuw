@@ -17,9 +17,9 @@ import TableView from '../components/teaching/classlist/table-view.vue';
 import CourseStats from '../components/teaching/classlist/statistics.vue';
 import UwCard from '../components/_templates/card.vue';
 import UwTable from '../components/_templates/card-table.vue';
-import UwTabs from '../components/_templates/tabs/tab-container.vue';
-import UwTabListButton from '../components/_templates/tabs/tab-list-button.vue';
-import UwTabPanel from '../components/_templates/tabs/tab-panel.vue';
+import Tabs from '../components/_templates/tabs/tabs.vue';
+import TabButton from '../components/_templates/tabs/button.vue';
+import TabPanel from '../components/_templates/tabs/panel.vue';
 
 
 const localVue = createLocalVue(Vuex);
@@ -84,9 +84,9 @@ describe('Show Classlist Content', () => {
     expect(link1.text()).toBe('Download (CSV)');
     const link2 = wrapper.findAll('a').at(1);
     expect(link2.text()).toBe('Print');
-    expect(wrapper.findComponent(UwTabs).exists()).toBe(true);
-    expect(wrapper.findAllComponents(UwTabPanel).length).toBe(2);
-    expect(wrapper.findAllComponents(UwTabListButton).length).toBe(2);
+    expect(wrapper.findComponent(Tabs).exists()).toBe(true);
+    expect(wrapper.findAllComponents(TabPanel).length).toBe(2);
+    expect(wrapper.findAllComponents(TabButton).length).toBe(2);
 
     wrapper = shallowMount(TableView,
       { store,

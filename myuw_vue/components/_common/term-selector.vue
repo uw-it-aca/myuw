@@ -10,7 +10,7 @@
       fetched on mount for the components in here
      -->
     <template #tabs>
-      <uw-tab-list-button
+      <uw-tab-button
         v-for="(tab, i) in displayedTabs"
         :key="i"
         :panel-id="tab.quarter + (tab.year % 100)"
@@ -18,8 +18,8 @@
         title-link-class="rounded-0 px-2 py-1 h-100 text-body"
       >
         {{ tab.quarter + " '" + (tab.year % 100) }}
-      </uw-tab-list-button>
-      <uw-tab-list-dropdown
+      </uw-tab-button>
+      <uw-tab-dropdown
         v-if="dropdownTabs.length > 1"
         v-model="selectedOption"
         panel-id="dropdown"
@@ -30,7 +30,7 @@
           'myuw-text-lg': true
         }"
       >
-      </uw-tab-list-dropdown>
+      </uw-tab-dropdown>
     </template>
     <template #panels>
       <uw-tab-panel
@@ -50,16 +50,16 @@
 import {
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
-import Tabs from '../_templates/tabs/tab-container.vue';
-import TabListButton from '../_templates/tabs/tab-list-button.vue';
-import TabListDropdown from '../_templates/tabs/tab-list-dropdown.vue';
-import TabPanel from '../_templates/tabs/tab-panel.vue';
+import Tabs from '../_templates/tabs/tabs.vue';
+import TabButton from '../_templates/tabs/button.vue';
+import TabDropdown from '../_templates/tabs/dropdown.vue';
+import TabPanel from '../_templates/tabs/panel.vue';
 
 export default {
   components: {
     'uw-tabs': Tabs,
-    'uw-tab-list-button': TabListButton,
-    'uw-tab-list-dropdown': TabListDropdown,
+    'uw-tab-button': TabButton,
+    'uw-tab-dropdown': TabDropdown,
     'uw-tab-panel': TabPanel,
   },
   model: {

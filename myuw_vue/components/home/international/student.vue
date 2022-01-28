@@ -16,21 +16,21 @@
           bottom-border
           nav-wrapper-class="mb-3 p-0">
         <template #tabs>
-          <uw-tab-list-button panel-id="seattle"
+          <uw-tab-button panel-id="seattle"
               title-item-class="me-2 mb-1"
               title-link-class="rounded-0 text-body">
             Seattle
-          </uw-tab-list-button>
-          <uw-tab-list-button panel-id="tacoma"
+          </uw-tab-button>
+          <uw-tab-button panel-id="tacoma"
               title-item-class="me-2 mb-1"
               title-link-class="rounded-0 text-body">
             Tacoma
-          </uw-tab-list-button>
-          <uw-tab-list-button panel-id="bothell"
+          </uw-tab-button>
+          <uw-tab-button panel-id="bothell"
               title-item-class="me-2 mb-1"
               title-link-class="rounded-0 text-body">
             Bothell
-          </uw-tab-list-button>
+          </uw-tab-button>
         </template>
         <template #panels>
           <uw-tab-panel panel-id="seattle">
@@ -52,9 +52,9 @@
 import { mapState } from 'vuex';
 
 import Card from '../../_templates/card.vue';
-import Tabs from '../../_templates/tabs/tab-container.vue';
-import TabListButton from '../../_templates/tabs/tab-list-button.vue';
-import TabPanel from '../../_templates/tabs/tab-panel.vue';
+import Tabs from '../../_templates/tabs/tabs.vue';
+import TabButton from '../../_templates/tabs/button.vue';
+import TabPanel from '../../_templates/tabs/panel.vue';
 import Seattle from './seattle.vue';
 import Bothell from './bothell.vue';
 import Tacoma from './tacoma.vue';
@@ -63,7 +63,7 @@ export default {
   components: {
     'uw-card': Card,
     'uw-tabs': Tabs,
-    'uw-tab-list-button': TabListButton,
+    'uw-tab-button': TabButton,
     'uw-tab-panel': TabPanel,
     'uw-seattle': Seattle,
     'uw-bothell': Bothell,

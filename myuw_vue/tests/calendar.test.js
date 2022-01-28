@@ -15,9 +15,9 @@ import mockEventsStud20210928 from
 import UwCard from '../components/_templates/card.vue';
 import AcadCalTabs from '../components/calendar/tabs.vue';
 import AcadCalCards from '../components/calendar/calendar-cards.vue';
-import UwTabs from '../components/_templates/tabs/tab-container.vue';
-import UwTabListButton from '../components/_templates/tabs/tab-list-button.vue';
-import UwTabPanel from '../components/_templates/tabs/tab-panel.vue';
+import Tabs from '../components/_templates/tabs/tabs.vue';
+import TabButton from '../components/_templates/tabs/button.vue';
+import TabPanel from '../components/_templates/tabs/panel.vue';
 
 
 const localVue = createLocalVue(Vuex);
@@ -39,9 +39,9 @@ describe('Academic Calendar Page Content', () => {
     axios.get.mockResolvedValue({data: mockEventFaculty20210701, status: 200});
     let wrapper = mount(AcadCalTabs, { store, localVue });
     await new Promise(setImmediate);
-    expect(wrapper.findComponent(UwTabs).exists()).toBe(true);
-    expect(wrapper.findAllComponents(UwTabListButton).length).toBe(2);
-    expect(wrapper.findAllComponents(UwTabPanel).length).toBe(2);
+    expect(wrapper.findComponent(Tabs).exists()).toBe(true);
+    expect(wrapper.findAllComponents(TabButton).length).toBe(2);
+    expect(wrapper.findAllComponents(TabPanel).length).toBe(2);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.allEvents.length).toBe(93);
     expect(wrapper.vm.breakEvents.length).toBe(16);
