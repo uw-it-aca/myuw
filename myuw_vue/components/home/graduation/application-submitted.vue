@@ -70,10 +70,13 @@
             </h3>
             <ul class="list-style">
               <li>
-                Get guidance and resources for <a href="https://www.washington.edu/graduation/after-graduation/">after graduation</a>.
+                Get guidance and resources for
+                <a href="https://www.washington.edu/graduation/after-graduation/"
+                >after graduation</a>.
               </li>
               <li>
-                Find out how to <a href="PLACEHOLDER">provide degree certification</a> to other parties.
+                Find out how to <a href="PLACEHOLDER">provide degree certification</a>
+                to other parties.
               </li>
             </ul>
           </div>
@@ -140,7 +143,7 @@
                     <p>
                       You can change your name using the
                       <a href="https://registrar.washington.edu/students/student-forms/"
-                        >Diploma Name Request Form</a>.
+                      >Diploma Name Request Form</a>.
                     </p>
                     <p class="fw-bold">Diploma will be mailed to:</p>
                     <div v-if="mailingAddree">
@@ -176,8 +179,8 @@
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
                       All UW accounts will be deleted two quarters after graduation.
-                      Take steps now to <a
-                      href="https://itconnect.uw.edu/students/save-work-before-graduation/"
+                      Take steps now to
+                      <a href="https://itconnect.uw.edu/students/save-work-before-graduation/"
                       >save all your UW work</a> so that you don't lose it.
                     </p>
                   </div>
@@ -212,7 +215,8 @@
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
                 <p v-if="isApplicationErr(degree)" class="myuw-text-md">
-                  There is an issue with your graduation status. Talk to your departmental advisor.
+                  There is an issue with your graduation status.
+                  Talk to your departmental advisor.
                 </p>
                 <p v-else-if="isGraduated(degree)" class="myuw-text-md">
                   Graduated {{ degreeTerm(degree) }}
@@ -230,7 +234,8 @@
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
                 <p v-if="isApplicationErr(degree)" class="myuw-text-md">
-                  There is an issue with your graduation status. Talk to your departmental advisor.
+                  There is an issue with your graduation status.
+                  Talk to your departmental advisor.
                 </p>
                 <p v-else-if="isGraduated(degree)" class="myuw-text-md">
                   Graduated {{ degreeTerm(degree) }}
@@ -246,7 +251,8 @@
           </div>
           <div v-else>
             <p v-if="isApplicationErr(degrees[0])" class="myuw-text-md">
-              There is an issue with your graduation status. Talk to your departmental advisor.
+              There is an issue with your graduation status.
+              Talk to your departmental advisor.
             </p>
             <p v-else-if="isGraduated(degrees[0])" class="myuw-text-md">
               Graduated {{ degreeTerm(degrees[0]) }}
@@ -269,8 +275,8 @@
             Get Help and Support
         </h3>
         <p>
-          Moving on from the UW can be overwhelming. If you are worried, confused, or uncertain
-          about what is next, you are not alone!
+          Moving on from the UW can be overwhelming. If you are worried, confused, or
+          uncertain about what is next, you are not alone!
         </p>
         <ul>
           <li v-if="seattle">
@@ -289,40 +295,43 @@
             >Departmental advisor</a> - graduation and academic support
           </li>
           <li v-if="seattle">
-            <a href="https://careers.uw.edu/">Career and Internship Center</a> - career consulting
+            <a href="https://careers.uw.edu/">Career and Internship Center</a>
+            - career consulting
           </li>
           <li v-if="bothell">
-            <a href="https://www.uwb.edu/careers">Career and Internship Center</a> - career consulting
+            <a href="https://www.uwb.edu/careers">Career and Internship Center</a>
+            - career consulting
           </li>
           <li v-if="tacoma">
-            <a href="https://www.tacoma.uw.edu/career">Career and Internship Center</a> - career consulting
+            <a href="https://www.tacoma.uw.edu/career">Career and Internship Center</a>
+            - career consulting
           </li>
           <li v-if="seattle">
-            <a href="https://www.washington.edu/financialaid/">Office of Student Financial Aid</a> -
-            financial management consulting
+            <a href="https://www.washington.edu/financialaid/">Office of Student Financial Aid</a>
+            - financial management consulting
           </li>
           <li v-if="bothell">
-            <a href="https://www.uwb.edu/financial-aid">Office of Student Financial Aid</a> -
-            financial management consulting
+            <a href="https://www.uwb.edu/financial-aid">Office of Student Financial Aid</a>
+            - financial management consulting
           </li>
           <li v-if="tacoma">
-            <a href="https://www.tacoma.uw.edu/finaid">Office of Student Financial Aid</a> -
-            financial management consulting
+            <a href="https://www.tacoma.uw.edu/finaid">Office of Student Financial Aid</a>
+            - financial management consulting
           </li>
           <li v-if="seattle">
-            <a href="https://www.washington.edu/counseling/">Counseling Center</a> - If you are
-            anxious about your future or need someone compassionate to talk to about your future or
-            anything else, connect with a counselor.
+            <a href="https://www.washington.edu/counseling/">Counseling Center</a>
+            - If you are anxious about your future or need someone compassionate to talk to about
+            your future or anything else, connect with a counselor.
           </li>
            <li v-if="bothell">
-            <a href="https://www.uwb.edu/studentaffairs/counseling">Counseling Center</a> - If you are
-            anxious about your future or need someone compassionate to talk to about your future or
-            anything else, connect with a counselor.
+            <a href="https://www.uwb.edu/studentaffairs/counseling">Counseling Center</a>
+            - If you are anxious about your future or need someone compassionate to talk to about
+            your future or anything else, connect with a counselor.
           </li>
           <li v-if="tacoma">
-            <a href="https://www.tacoma.uw.edu/paws">Counseling Center</a> - If you are
-            anxious about your future or need someone compassionate to talk to about your future or
-            anything else, connect with a counselor.
+            <a href="https://www.tacoma.uw.edu/paws">Counseling Center</a>
+            - If you are anxious about your future or need someone compassionate to talk to about
+            your future or anything else, connect with a counselor.
           </li>
         </ul>
       </uw-collapse>
