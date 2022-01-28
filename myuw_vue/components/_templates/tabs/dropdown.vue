@@ -38,14 +38,17 @@ export default {
   },
   props: {
     panelId: {
+      // must match uw-tab-panel panelId
       type: String,
       required: true
     },
     optionsList: {
+      // list of dropdown options
       type: [String, Array, Object],
       required: true
     },
     selectedOption: {
+      // initially selected option 
       type: [String, Number, Object],
       default: 0
     },
@@ -65,6 +68,8 @@ export default {
   },
   computed: {
     active() {
+      // the tab is active if the parent's active panel id
+      // matches the tab panel id
       return this.$parent.activePanelId == this.panelId
     },
     titleItemClassComputed() {
@@ -89,33 +94,25 @@ export default {
   watch: {
     active: function() {
       if(this.active) {
+        // bring the tab into focus
         this.$refs.tab.focus();
+        // never allow disabled option to be active
         if (this.selectedOption == 0 && this.optionsList[0].disabled) {
-          // never allow disabled option to be active
+          // set the selected option to the first option in the list
           this.$emit('input', 1);
         }
       } else {
-        // reset dropdown
+        // reset dropdown to first option
         this.$emit('input', 0);
       }
     },
   },
   methods: {
     changeOption() {
+      // when the selected dropdown option is changed, first set the
+      // selected option and set the tab panel content to that option
       this.$emit('input', this.selectedOption);
       this.$parent.$emit('setActivePanel', this.panelId);
-    },
-    classesToClassDict(classes) {
-      let classDict = {};
-      if (classes instanceof String || typeof(classes) === 'string') {
-        classes.split(/\s+/).forEach((c) => classDict[c] = true);
-      } else if (classes instanceof Array) {
-        classes.forEach((c) => classDict[c] = true);
-      } else if (classes) {
-        // Want to copy here?
-        Object.entries(classes).forEach(([key, value]) => classDict[key] = value);
-      }
-      return classDict;
     },
   }
 }

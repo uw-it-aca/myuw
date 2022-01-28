@@ -2,11 +2,15 @@
   <div class="tabs">
     <div :class="navWrapperClassesComputed">
       <ul role="tablist" :class="navClassesComputed">
-        <slot name="tabs"></slot>
+        <slot name="tabs">
+          <!-- uw-tab-button and uw-tab-dropdown components with panelId-->
+        </slot>
       </ul>
     </div>
     <div class="tab-content">
-      <slot name="panels"></slot>
+      <slot name="panels">
+        <!-- uw-tab-panel components with panelId matching tabs-->
+      </slot>
     </div>
   </div>
 </template>
@@ -15,6 +19,7 @@
 
 export default {
   model: {
+    // allows v-model binding on activeTabIdx
     prop: 'activeTabIdx',
     event: 'selected'
   },
@@ -50,16 +55,16 @@ export default {
   },
   computed: {
     tabs() {
+      // this is a check to remove any components in the scoped slot
+      // that are undefined. Vue sometimes adds undefined components.
       var filtered = this.$scopedSlots.tabs();
       filtered = filtered.filter(record => {
           return record.tag
       });
       return filtered
     },
-    activeTab() {
-      return this.tabs[this.activeTabIdx];
-    },
     activePanelId() {
+      // currently visible panel
       return this.tabs[this.activeTabIdx].componentOptions.propsData.panelId
     },
     navWrapperClassesComputed() {
@@ -91,22 +96,30 @@ export default {
   },
   watch: {
     activeTabIdx() {
+      // when the activeTabIdx changes we emit a selected event.
+      // this allows for a v-model binding to the activeTabIdx.
       this.$emit('selected', this.activeTabIdx);
     },
   },
   created() {
     this.$on("setActivePanel", (panelId) => {
+      // child tab components emit setActivePanel when
+      // a tab is activated
       this.setActivePanel(panelId);
     });
     this.$on("moveActiveTabLeft", () => {
+      // on pressing the left keyboard key, shift the activeTabIdx left
       this.moveActiveTabLeft();
     });
     this.$on("moveActiveTabRight", () => {
+      // on pressing the right keyboard key, shift the activeTabIdx right
       this.moveActiveTabRight();
     });
   },
   methods: {
     setActivePanel: function(panelId) {
+      // find the index of the tab with the specified panelId
+      // and set it as the activeTabIdx
       let idx = 0;
       this.tabs.forEach((tab, i) => {
         if(tab.componentOptions &&
@@ -117,24 +130,14 @@ export default {
       this.activeTabIdx = idx;
     },
     moveActiveTabLeft: function() {
+      // move active tab to the left, not exceeding first tab
       if (this.activeTabIdx > 0)
         this.activeTabIdx -= 1;
     },
     moveActiveTabRight: function() {
+      // move active tab to the right, not exceeding last tab
       if (this.activeTabIdx < this.tabs.length - 1)
         this.activeTabIdx += 1;
-    },
-    classesToClassDict(classes) {
-      let classDict = {};
-      if (classes instanceof String || typeof(classes) === 'string') {
-        classes.split(/\s+/).forEach((c) => classDict[c] = true);
-      } else if (classes instanceof Array) {
-        classes.forEach((c) => classDict[c] = true);
-      } else if (classes) {
-        // Want to copy here?
-        Object.entries(classes).forEach(([key, value]) => classDict[key] = value);
-      }
-      return classDict;
     },
   }
 }

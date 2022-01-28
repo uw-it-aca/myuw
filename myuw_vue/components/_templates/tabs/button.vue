@@ -23,6 +23,7 @@
 export default {
   props: {
     panelId: {
+      // must match uw-tab-panel panelId
       type: [String, Number],
       required: true
     },
@@ -37,6 +38,8 @@ export default {
   },
   computed: {
     active() {
+      // the tab is active if the parent's active panel id
+      // matches the tab panel id
       return this.$parent.activePanelId == this.panelId
     },
     titleItemClassComputed() {
@@ -58,23 +61,10 @@ export default {
   },
   watch: {
     active: function() {
+      // bring the tab into focus
       if(this.active)
         this.$refs.tab.focus();
     }
-  },
-  methods: {
-    classesToClassDict(classes) {
-      let classDict = {};
-      if (classes instanceof String || typeof(classes) === 'string') {
-        classes.split(/\s+/).forEach((c) => classDict[c] = true);
-      } else if (classes instanceof Array) {
-        classes.forEach((c) => classDict[c] = true);
-      } else if (classes) {
-        // Want to copy here?
-        Object.entries(classes).forEach(([key, value]) => classDict[key] = value);
-      }
-      return classDict;
-    },
   }
 }
 </script>
