@@ -1,3 +1,4 @@
+
 {
   "uwnetid": "javerage",
   "uwregid": "9136CCB8F66711D5BE060004AC494FFE",
@@ -34,6 +35,30 @@
   "veteran_code": "0",
   "is_student": true,
   "is_grad_student": false,
+  "degree_status": {
+    "degrees": [
+      {
+        "campus": "SEATTLE",
+        "diploma_mail": 0,
+        "diploma_mail_to_local_address": false,
+        "quarter": "spring",
+        "year": 2013,
+        "level": 1,
+        "status": 5,
+        "type": 1,
+        "title": "BACHELOR OF ARTS (POLITICAL SCIENCE)",
+        "name_on_diploma": "John Joseph Average",
+        "has_applied": true,
+        "is_granted": false,
+        "is_admin_hold": false,
+        "is_incomplete": false,
+        "is_degree_earned_term": true,
+        "before_degree_earned_term": false,
+        "during_april_may": true
+      }
+    ],
+    "error_code": null
+  },
   "campus": "Seattle",
   "class_level": "SENIOR",
   "term_majors": [
@@ -190,7 +215,10 @@
     "interval_med": null,
     "minimum_length": 8,
     "time_stamp": "2016-12-16 14:21:40-08:00",
-    "netid_status": ["Person", "Active"],
+    "netid_status": [
+      "Person",
+      "Active"
+    ],
     "days_after_last_pw_change": 77,
     "has_active_med_pw": false
   }
