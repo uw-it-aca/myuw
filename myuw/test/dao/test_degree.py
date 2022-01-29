@@ -27,6 +27,7 @@ DEGREE_DATA = {
         'year': 2013}],
     'error_code': None}
 
+
 class TestAdviserDao(TestCase):
 
     def test_get_degrees(self):

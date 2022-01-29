@@ -147,8 +147,11 @@ def within_2_terms(request, year, quarter):
     current_term = get_current_quarter(request)
     prev_term = get_term_before(current_term)
     pprev_term = get_term_before(prev_term)
-    return (comparison_term == current_term or
-        comparison_term == prev_term or comparison_term == pprev_term)
+    return (
+        comparison_term == current_term or
+        comparison_term == prev_term or
+        comparison_term == pprev_term)
+
 
 def get_term_from_quarter_string(quarter_string):
     """

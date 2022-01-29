@@ -69,7 +69,6 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations["past_stud"])
         self.assertTrue(affiliations["past_employee"])
         self.assertTrue(affiliations["alum_asso"])
-        self.assertFalse(affiliations["registered_stud"])
 
     def test_is_retiree(self):
         now_request = get_request_with_user('retirestaff')
@@ -126,7 +125,6 @@ class TestAffilliationDao(TransactionTestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("seattle"))
         self.assertTrue(affiliations.get("undergrad"))
-        self.assertTrue(affiliations.get("registered_stud"))
         self.assertTrue(affiliations.get("hxt_viewer"))
 
         now_request = get_request_with_user('jbothell')

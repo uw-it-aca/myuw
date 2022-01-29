@@ -10,8 +10,7 @@ import traceback
 from myuw.dao import log_err
 from myuw.dao.exceptions import IndeterminateCampusException
 from myuw.dao.enrollment import (
-    get_main_campus, get_cur_class_level, get_latest_class_level,
-    is_registered_current_quarter)
+    get_main_campus, get_cur_class_level, get_latest_class_level)
 from myuw.dao.gws import (
     is_clinician, is_staff_employee, is_student_employee,
     is_alum_asso, is_student, is_grad_student, is_undergrad_student,
@@ -39,7 +38,6 @@ def get_all_affiliations(request):
     ["instructor"]: True if is instructor in the past 6 years
     ["staff_employee"]: True if the user is currently staff.
     ["student"]: True if the user is currently an UW student.
-    ["registered_stud"]: True if the student is registered in current quarter
     ["stud_employee"]: True if the user is currently a student employee.
     ["grad"]: True if the user is currently an UW graduate student.
     ["undergrad"]: True if the user is currently an UW undergraduate student.
@@ -89,7 +87,6 @@ def get_all_affiliations(request):
             "undergrad": is_undergrad,
             "applicant": is_applicant(request),
             "student": is_student(request),
-            "registered_stud": False,
             "pce": is_pce_student(request),
             "grad_c2": is_grad_c2(request),
             "undergrad_c2": is_undergrad_c2(request),
@@ -124,7 +121,6 @@ def get_all_affiliations(request):
 
     if data["student"]:
         data["class_level"] = get_cur_class_level(request)
-        data["registered_stud"] = is_registered_current_quarter(request)
         try:
             sws_person = get_profile_of_current_user(request)
             data["F1"] = sws_person.is_F1()
