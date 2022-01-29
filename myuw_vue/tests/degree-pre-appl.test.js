@@ -54,6 +54,7 @@ describe('Graduation PreApplication Card', () => {
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.showContent).toBe(true);
     expect(wrapper.vm.term).toBe('2013,spring');
     expect(wrapper.findComponent(GraduationPreApplication).exists()).toBe(true);
   });
@@ -64,6 +65,7 @@ describe('Graduation PreApplication Card', () => {
     expect(wrapper.vm.isReady).toBe(true);
     expect(wrapper.vm.isErrored).toBe(false);
     expect(wrapper.vm.showCard).toBe(false);
+    expect(wrapper.vm.showContent).toBe(false);
   });
   it('Verify hide card if not a senior', async () => {
     store.state.user.affiliations.class_level = 'JUNIOR';
@@ -80,8 +82,8 @@ describe('Graduation PreApplication Card', () => {
     const wrapper = shallowMount(GraduationPreApplication, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.curSenior).toBe(true);
-    expect(wrapper.vm.showCard).toBe(true);
+    expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.vm.isErrored).toBe(true);
+    expect(wrapper.vm.showContent).toBe(false);
   });
 });
- 

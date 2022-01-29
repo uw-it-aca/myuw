@@ -2,8 +2,9 @@
   <uw-card
     v-if="showCard"
     v-meta="{term: term}"
-    :loaded="isReady"
+    :loaded="showContent"
     :errored="isErrored"
+    :errored-show="false"
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
@@ -122,10 +123,10 @@ export default {
       return (this.classLevel === 'SENIOR');
     },
     showCard() {
-      return (
-        this.curSenior &&
-        (this.isFetching || this.isErrored ||
-         this.degreeStatus && this.degreeStatus.error_code === 404));
+      return (this.curSenior && (this.isFetching || this.showContent));
+    },
+    showContent() {
+      return (this.isReady && this.degreeStatus && this.degreeStatus.error_code === 404);
     },
     term() {
       return this.year + ',' + this.quarter;

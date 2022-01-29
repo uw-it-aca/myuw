@@ -1,9 +1,8 @@
 <template>
   <uw-card
     v-if="showCard"
-    :loaded="isReady"
-    :errored="isErrored"
-    :errored-show="false"
+    :loaded="showContent"
+    :errored="showError"
   >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
@@ -393,16 +392,26 @@ export default {
     graduationSenior() {
       return (this.classLevel === 'SENIOR');
     },
-    degrees() {
-      return this.degreeStatus.degrees;
-    },
     showCard() {
-      // having at least one degree
       return (
         this.graduationSenior &&
-        (this.isFetching || this.isErrored ||
-         this.degreeStatus && !this.degreeStatus.error_code &&
-         this.degrees.length > 0));
+        (this.isFetching || this.showContent || this.showError));
+    },
+    showContent() {
+      // having a non-empty degree status
+      return (
+        this.degreeStatus && this.degreeStatus.degrees &&
+        this.degreeStatus.degrees.length > 0);
+    },
+    showError() {
+      // if fetching profile having any error or degree status has a non-404 error
+      return (
+        this.isErrored ||
+        this.degreeStatus && this.degreeStatus.error_code &&
+        this.degreeStatus.error_code !== 404);
+    },
+    degrees() {
+      return this.degreeStatus.degrees;
     },
     hasDoubleDegrees() {
       return this.degrees.length > 1
