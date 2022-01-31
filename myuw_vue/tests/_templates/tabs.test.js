@@ -13,10 +13,10 @@ const localVue = createLocalVue(Vuex);
 const TabsTestComponent = {
   template: `
   <uw-tabs
-    title="Test Tabs"
     pills
     bottom-border
-    nav-wrapper-class="mb-3 p-0 myuw-print-hidden">
+    nav-class="mock-nav-class"
+    nav-wrapper-class="mock-nav-wrapper-class">
         <template #tabs>
             <uw-tab-button panel-id="tab1"
                 title-item-class="me-2 mb-1"
@@ -83,7 +83,16 @@ it('test tabs initial content', () => {
   // tabs container
   expect(tabs.exists()).toBe(true);
   expect(tabs.attributes('class')).toBe('tabs');
-  expect(tabs.attributes('title')).toBe('Test Tabs');
+  expect(tabs.props('activeTabIdx')).toBe(0);
+  expect(tabs.props('small')).toBe(false);
+  expect(tabs.props('justified')).toBe(false);
+  expect(tabs.props('pills')).toBe(true);
+  expect(tabs.props('bottomBorder')).toBe(true);
+  expect(tabs.vm.navWrapperClassesComputed).toStrictEqual(
+      {"mock-nav-wrapper-class": true});
+  expect(tabs.vm.navClassesComputed).toStrictEqual(
+      {"mock-nav-class": true, "nav": true, "myuw-tabs": true,
+       "nav-pills": true, "nav-tabs": false, "myuw-bottom-border": true});
 
   // buttons
   expect(tabButtons.length).toBe(2);

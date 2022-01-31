@@ -28,7 +28,6 @@
     </div>
 
     <uw-tabs
-      title="Views"
       pills
       bottom-border
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
