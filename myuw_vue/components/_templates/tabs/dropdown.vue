@@ -4,7 +4,7 @@
       <select
         :id="'tab-' + panelId"
         ref="tab"
-        v-model="selectedOption"
+        v-model="option"
         role="tab"
         :class="titleLinkClassComputed"
         @change="changeOption"
@@ -12,12 +12,12 @@
         @keydown.right.prevent="$parent.$emit('moveActiveTabRight')"
       >
         <option
-          v-for="(option, i) in optionsList"
+          v-for="(opt, i) in optionsList"
           :key="i"
-          :value="option.value"
-          :disabled="option.disabled"
+          :value="opt.value"
+          :disabled="opt.disabled"
         >
-          {{option.text}}
+          {{opt.text}}
         </option>
       </select>
       <font-awesome-icon :icon="faChevronDown" class="down-arrow"/>
@@ -72,6 +72,14 @@ export default {
       // matches the tab panel id
       return this.$parent.activePanelId == this.panelId
     },
+    option: {
+        get: function(){
+          return this.selectedOption;
+        },
+        set: function(newValue){
+          this.$emit('input', newValue);
+        }   
+    },
     titleItemClassComputed() {
       let cls = this.classesToClassDict(this.titleItemClass);
       cls['nav-item'] = true;
@@ -97,7 +105,7 @@ export default {
         // bring the tab into focus
         this.$refs.tab.focus();
         // never allow disabled option to be active
-        if (this.selectedOption == 0 && this.optionsList[0].disabled) {
+        if (this.option == 0 && this.optionsList[0].disabled) {
           // set the selected option to the first option in the list
           this.$emit('input', 1);
         }
@@ -111,7 +119,6 @@ export default {
     changeOption() {
       // when the selected dropdown option is changed, first set the
       // selected option and set the tab panel content to that option
-      this.$emit('input', this.selectedOption);
       this.$parent.$emit('setActivePanel', this.panelId);
     },
   }

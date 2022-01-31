@@ -63,6 +63,14 @@ export default {
       });
       return filtered
     },
+    index: {
+        get: function(){
+          return this.activeTabIdx;
+        },
+        set: function(newValue){
+          this.$emit('selected', newValue);
+        }   
+    },
     activePanelId() {
       // currently visible panel
       return this.tabs[this.activeTabIdx].componentOptions.propsData.panelId
@@ -94,13 +102,6 @@ export default {
       return navClass;
     },
   },
-  watch: {
-    activeTabIdx() {
-      // when the activeTabIdx changes we emit a selected event.
-      // this allows for a v-model binding to the activeTabIdx.
-      this.$emit('selected', this.activeTabIdx);
-    },
-  },
   created() {
     this.$on("setActivePanel", (panelId) => {
       // child tab components emit setActivePanel when
@@ -108,18 +109,18 @@ export default {
       this.setActivePanel(panelId);
     });
     this.$on("moveActiveTabLeft", () => {
-      // on pressing the left keyboard key, shift the activeTabIdx left
+      // on pressing the left keyboard key, shift the index left
       this.moveActiveTabLeft();
     });
     this.$on("moveActiveTabRight", () => {
-      // on pressing the right keyboard key, shift the activeTabIdx right
+      // on pressing the right keyboard key, shift the index right
       this.moveActiveTabRight();
     });
   },
   methods: {
     setActivePanel: function(panelId) {
       // find the index of the tab with the specified panelId
-      // and set it as the activeTabIdx
+      // and set it as the index
       let idx = 0;
       this.tabs.forEach((tab, i) => {
         if(tab.componentOptions &&
@@ -127,17 +128,17 @@ export default {
           idx = i
         }          
       });
-      this.activeTabIdx = idx;
+      this.index = idx;
     },
     moveActiveTabLeft: function() {
       // move active tab to the left, not exceeding first tab
-      if (this.activeTabIdx > 0)
-        this.activeTabIdx -= 1;
+      if (this.index > 0)
+        this.index -= 1;
     },
     moveActiveTabRight: function() {
       // move active tab to the right, not exceeding last tab
-      if (this.activeTabIdx < this.tabs.length - 1)
-        this.activeTabIdx += 1;
+      if (this.index < this.tabs.length - 1)
+        this.index += 1;
     },
   }
 }
