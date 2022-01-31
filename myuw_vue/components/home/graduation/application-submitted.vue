@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-8">
           <p><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
-          <div v-if="hasApprovedDegree">
+          <div v-if="hasActiveApplication">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Get an Overview
             </h3>
@@ -49,7 +49,7 @@
             </ul>
           </div>
 
-          <div v-if="hasApprovedDegreeBeforeEarnedTerm">
+          <div v-if="hasActiveApplicationBeforeEarnedTerm">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Ensure that you stay on track
             </h3>
@@ -68,7 +68,7 @@
             </ul>
           </div>
 
-          <div v-if="hasGraduatedDegree">
+          <div v-if="hasGrantedDegree">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Post-Graduation Success
             </h3>
@@ -85,7 +85,7 @@
             </ul>
           </div>
 
-          <div v-if="hasANoneErrDegreeDuringAprilMay">
+          <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Take part in Commencement Ceremony
             </h3>
@@ -127,7 +127,7 @@
             </ul>
           </div>
 
-          <div v-if="hasANoneErrDegreeDuringEarnedTerm">
+          <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Verify that your information and data will not be lost
             </h3>
@@ -143,7 +143,7 @@
                 <uw-collapse id="diplomaCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p class="fw-bold">Name on your diploma:</p>
-                    <p>{{ nameOnDiploma }}</p>
+                    <p>{{ diplomaName }}</p>
                     <p>
                       You can change your name using the
                       <a href="https://registrar.washington.edu/students/student-forms/"
@@ -218,15 +218,18 @@
           <div v-if="doubleDegreesInDiffTerms">
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <p v-if="isApplicationErr(degree)" class="myuw-text-md">
+                <p v-if="hasMisconduct(degree)" class="myuw-text-md">
+                  
+                </p>
+                <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
                   There is an issue with your graduation status.
                   Talk to your departmental advisor.
                 </p>
-                <p v-else-if="isGraduated(degree)" class="myuw-text-md">
-                  Graduated {{ degreeTerm(degree) }}
+                <p v-else-if="isGranted(degree)" class="myuw-text-md">
+                  Application granted for {{ degreeTerm(degree) }}
                 </p>
                 <p v-else class="myuw-text-md">
-                  Application approved for {{ degreeTerm(degree) }}
+                  Application active for {{ degreeTerm(degree) }}
                 </p>
                 <p>
                 {{ degree.title }}
@@ -237,15 +240,18 @@
           <div v-else-if="doubleDegreeDiffStatus">
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <p v-if="isApplicationErr(degree)" class="myuw-text-md">
+                <p v-if="hasMisconduct(degree)" class="myuw-text-md">
+                  
+                </p>
+                <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
                   There is an issue with your graduation status.
                   Talk to your departmental advisor.
                 </p>
-                <p v-else-if="isGraduated(degree)" class="myuw-text-md">
-                  Graduated {{ degreeTerm(degree) }}
+                <p v-else-if="isGranted(degree)" class="myuw-text-md">
+                  Application granted for {{ degreeTerm(degree) }}
                 </p>
                 <p v-else>
-                  Application approved for {{ degreeTerm(degree) }}
+                  Application active for {{ degreeTerm(degree) }}
                 </p>
                 <p>
                   {{ degree.title }}
@@ -254,15 +260,18 @@
             </ul>
           </div>
           <div v-else>
-            <p v-if="isApplicationErr(degrees[0])" class="myuw-text-md">
+            <p v-if="hasMisconduct(degree)" class="myuw-text-md">
+              
+            </p>
+            <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
               There is an issue with your graduation status.
               Talk to your departmental advisor.
             </p>
-            <p v-else-if="isGraduated(degrees[0])" class="myuw-text-md">
-              Graduated {{ degreeTerm(degrees[0]) }}
+            <p v-else-if="isGranted(degrees[0])" class="myuw-text-md">
+              Application granted for {{ degreeTerm(degrees[0]) }}
             </p>
             <p v-else>
-              Application approved for {{ degreeTerm(degrees[0]) }}
+              Application active for {{ degreeTerm(degrees[0]) }}
             </p>
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
@@ -419,9 +428,9 @@ export default {
     doubleDegreeDiffStatus() {
       return (
         this.hasDoubleDegrees &&
-        (this.isApplicationErr(this.degrees[0]) && !this.isApplicationErr(this.degrees[1]) ||
-         this.isAppoved(this.degrees[0]) && !this.isAppoved(this.degrees[1]) ||
-         this.isGraduated(this.degrees[0]) && !this.isGraduated(this.degrees[1])));
+        (this.inActive(this.degrees[0]) && !this.inActive(this.degrees[1]) ||
+         this.isActive(this.degrees[0]) && !this.isActive(this.degrees[1]) ||
+         this.isGranted(this.degrees[0]) && !this.isGranted(this.degrees[1])));
     },
     doubleDegreesInDiffTerms() {
       return (
@@ -433,50 +442,50 @@ export default {
       return (this.degrees[0].diploma_mail_to_local_address
         ? this.localAddress : this.permanentAddress);
     },
-    nameOnDiploma() {
+    diplomaName() {
       return this.degrees[0].name_on_diploma;
     },
     // The properties below are true as long as one degree status satifies the condition
-    hasANoneErrDegreeDuringAprilMay() {
+    hasActiveOrGrantedDegreeDuringAprilMay() {
       let value = (
           this.degrees[0].during_april_may && (
-            this.isAppoved(this.degrees[0]) || this.isGraduated(this.degrees[0])));
+            this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])));
       if (!value && this.hasDoubleDegrees) {
         value = (this.degrees[1].during_april_may && (
-            this.isAppoved(this.degrees[1]) || this.isGraduated(this.degrees[1])));
+            this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])));
       }
       return value;
     },
-    hasANoneErrDegreeDuringEarnedTerm() {
+    hasActiveOrGrantedDegreeDuringEarnedTerm() {
       let value = (
         this.degrees[0].is_degree_earned_term && (
-            this.isAppoved(this.degrees[0]) || this.isGraduated(this.degrees[0])));
+            this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])));
       if (!value && this.doubleDegreesInDiffTerms) {
         value = (this.degrees[1].is_degree_earned_term && (
-            this.isAppoved(this.degrees[1]) || this.isGraduated(this.degrees[1])));
+            this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])));
       }
       return value;
     },
-    hasApprovedDegreeBeforeEarnedTerm() {
+    hasActiveApplicationBeforeEarnedTerm() {
       let value = (
-        this.isAppoved(this.degrees[0]) && this.degrees[0].before_degree_earned_term);
+        this.isActive(this.degrees[0]) && this.degrees[0].before_degree_earned_term);
       if (!value && this.doubleDegreesInDiffTerms) {
-        value = this.isAppoved(this.degrees[1]) && this.degrees[1].before_degree_earned_term;
+        value = this.isActive(this.degrees[1]) && this.degrees[1].before_degree_earned_term;
       }
       return value;
     },
-    hasApprovedDegree() {
-      let value = this.isAppoved(this.degrees[0]);
+    hasActiveApplication() {
+      let value = this.isActive(this.degrees[0]);
       if (!value && this.hasDoubleDegrees) {
-        value = this.isAppoved(this.degrees[1]);
+        value = this.isActive(this.degrees[1]);
       }
       return value;
     },
-    hasGraduatedDegree() {
+    hasGrantedDegree() {
       // data available only within 2 terms after graduation
-      let value = this.isGraduated(this.degrees[0]);
+      let value = this.isGranted(this.degrees[0]);
       if (!value && this.hasDoubleDegrees) {
-        value = this.isGraduated(this.degrees[1]);
+        value = this.isGranted(this.degrees[1]);
       }
       return value;
     },
@@ -507,13 +516,16 @@ export default {
   },
   methods: {
     ...mapActions('profile', ['fetch']),
-    isApplicationErr(degree) {
-      return degree.is_admin_hold || degree.is_incomplete;
+    hasMisconduct(degree) {
+      return degree.is_admin_hold;
     },
-    isAppoved(degree) {
+    isIncomplete(degree) {
+      return degree.is_incomplete;
+    },
+    isActive(degree) {
       return degree.has_applied;
     },
-    isGraduated(degree) {
+    isGranted(degree) {
       return degree.is_granted;
     },
     addressLocationString(address) {
