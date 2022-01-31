@@ -10,7 +10,8 @@ from uw_sws.degree import get_degrees_by_regid
 from myuw.dao import is_using_file_dao, get_netid_of_current_user
 from myuw.dao.pws import get_regid_of_current_user
 from myuw.dao.term import (
-    during_april_may, is_cur_term_before, is_cur_term_same, within_2_terms)
+    during_april_may, is_cur_term_before, is_cur_term_same)
+from myuw.dao.term import more_than_2terms_before as before_display_window
 
 
 def get_degrees(request):
@@ -38,8 +39,8 @@ def get_degrees_json(request):
         degrees = []
         for degree in get_degrees(request):
             if degree.is_granted():
-                # return data if within 2 terms after graduation
-                if not within_2_terms(request, degree.year, degree.quarter):
+                # Exclude if the degree earned term is older
+                if before_display_window(request, degree.year, degree.quarter):
                     continue
             json_data = degree.json_data()
             during_april_may, is_cur_term_before, is_cur_term_same

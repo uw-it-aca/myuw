@@ -139,18 +139,15 @@ def is_cur_term_same(request, year, quarter):
     return current_term == comparison_term
 
 
-def within_2_terms(request, year, quarter):
+def more_than_2terms_before(request, year, quarter):
     """
-    return True if current term is not more than 2 terms after year+quarter
+    return True if year+quarter is more than 2 terms before current term
     """
     comparison_term = get_specific_term(year, quarter)
     current_term = get_current_quarter(request)
     prev_term = get_term_before(current_term)
     pprev_term = get_term_before(prev_term)
-    return (
-        comparison_term == current_term or
-        comparison_term == prev_term or
-        comparison_term == pprev_term)
+    return comparison_term < pprev_term
 
 
 def get_term_from_quarter_string(quarter_string):
