@@ -1,4 +1,3 @@
-
 {
   "uwnetid": "javerage",
   "uwregid": "9136CCB8F66711D5BE060004AC494FFE",
@@ -41,7 +40,7 @@
         "campus": "SEATTLE",
         "diploma_mail": 0,
         "diploma_mail_to_local_address": false,
-        "quarter": "spring",
+        "quarter": "summer",
         "year": 2013,
         "level": 1,
         "status": 5,
@@ -52,8 +51,8 @@
         "is_granted": false,
         "is_admin_hold": false,
         "is_incomplete": false,
-        "is_degree_earned_term": true,
-        "before_degree_earned_term": false,
+        "is_degree_earned_term": false,
+        "before_degree_earned_term": true,
         "during_april_may": true
       }
     ],

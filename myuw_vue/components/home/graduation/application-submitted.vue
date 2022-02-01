@@ -49,7 +49,7 @@
             </ul>
           </div>
 
-          <div v-if="hasActiveApplicationBeforeEarnedTerm">
+          <div v-if="hasActiveApplBeforeEarnedTerm">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Ensure that you stay on track
             </h3>
@@ -398,12 +398,12 @@ export default {
       localAddress: (state) => state.value.local_address,
       permanentAddress:  (state) => state.value.permanent_address,
     }),
-    graduationSenior() {
+    graduatingSenior() {
       return (this.classLevel === 'SENIOR');
     },
     showCard() {
       return (
-        this.graduationSenior &&
+        this.graduatingSenior &&
         (this.isFetching || this.showContent || this.showError));
     },
     showContent() {
@@ -467,7 +467,7 @@ export default {
       }
       return value;
     },
-    hasActiveApplicationBeforeEarnedTerm() {
+    hasActiveApplBeforeEarnedTerm() {
       let value = (
         this.isActive(this.degrees[0]) && this.degrees[0].before_degree_earned_term);
       if (!value && this.doubleDegreesInDiffTerms) {
@@ -513,7 +513,7 @@ export default {
     },
   },
   created() {
-    if (this.graduationSenior) this.fetch();
+    if (this.graduatingSenior) this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),
