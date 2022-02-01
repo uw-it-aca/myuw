@@ -291,4 +291,17 @@ describe('mixins', () => {
       );
     }
   });
+
+  it('classesToClassDict', () => {
+    expect(utils.methods.classesToClassDict("mock-class-1 mock-class-2")).toStrictEqual(
+      {"mock-class-1": true, "mock-class-2": true}
+    );
+    expect(utils.methods.classesToClassDict(["mock-class-1", "mock-class-2"])).toStrictEqual(
+      {"mock-class-1": true, "mock-class-2": true}
+    );
+    let mockClasses = {"mock-class-1": true, "mock-class-2": true}
+    expect(utils.methods.classesToClassDict(mockClasses)).toStrictEqual(
+      {"mock-class-1": true, "mock-class-2": true}
+    );
+  });
 })
