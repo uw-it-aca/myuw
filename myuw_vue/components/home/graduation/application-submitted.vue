@@ -260,10 +260,10 @@
             </ul>
           </div>
           <div v-else>
-            <p v-if="hasMisconduct(degree)" class="myuw-text-md">
+            <p v-if="hasMisconduct(degrees[0])" class="myuw-text-md">
               
             </p>
-            <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
+            <p v-else-if="isIncomplete(degrees[0])" class="myuw-text-md">
               There is an issue with your graduation status.
               Talk to your departmental advisor.
             </p>
