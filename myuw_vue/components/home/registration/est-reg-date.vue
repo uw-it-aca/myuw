@@ -14,7 +14,7 @@
       <template #status-content>
         <div class="d-flex myuw-text-md">
           <div class="flex-fill w-50"></div>
-          <div class="flex-fill w-50 text-right">at 6:00 AM</div>
+          <div class="flex-fill w-50 text-end">at 6:00 AM</div>
         </div>
       </template>
     </uw-card-status>
