@@ -23,7 +23,7 @@
           <uw-tab-button v-for="(period, i) in periods" :key="i" 
               :panel-id="period.id"
               title-item-class="myuw-text-xs me-2 mb-1"
-              title-link-class="rounded-0 text-body">
+              title-link-class="rounded-0 text-body text-uppercase">
             {{period.title}}
           </uw-tab-button>
         </template>

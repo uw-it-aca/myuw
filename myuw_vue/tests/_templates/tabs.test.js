@@ -107,8 +107,8 @@ it('test tabs initial content', () => {
   expect(tabButton0.attributes('class')).toBe('me-2 mb-1 nav-item');
   expect(tabButton0.vm.titleLinkClassComputed).toStrictEqual(
     {"rounded-0": true, "text-body": true, "nav-link": true,
-     "text-nowrap": true, "text-uppercase": true,
-     "px-2": true, "py-1": true, "h-100": true, "active": true});
+     "text-nowrap": true, "px-2": true, "py-1": true, "h-100": true,
+     "active": true});
 
   expect(tabButton1.text()).toBe("TAB 2 TITLE")
   expect(tabButton1.props('panelId')).toBe('tab2');
@@ -120,8 +120,8 @@ it('test tabs initial content', () => {
   expect(tabButton1.attributes('class')).toBe('mock-title-item-class nav-item');
   expect(tabButton1.vm.titleLinkClassComputed).toStrictEqual(
     {"mock-title-link-class": true, "nav-link": true,
-     "text-nowrap": true, "text-uppercase": true,
-     "px-2": true, "py-1": true, "h-100": true, "active": false});
+     "text-nowrap": true, "px-2": true, "py-1": true, "h-100": true,
+     "active": false});
 
   // dropdowns
   expect(tabDropdowns.length).toBe(1);
@@ -132,9 +132,8 @@ it('test tabs initial content', () => {
   expect(tabDropdown0.attributes('class')).toBe('mock-title-item-class nav-item');
   expect(tabDropdown0.vm.titleLinkClassComputed).toStrictEqual(
     {"mock-title-link-class": true, "nav-link": true,
-     "text-nowrap": true, "text-uppercase": true,
-     "pb-1": true, "pt-1": true, "h-100": true, "active": false,
-     "text-body": true, "rounded-0": true});
+     "text-nowrap": true, "pb-1": true, "pt-1": true, "h-100": true,
+     "active": false, "text-body": true, "rounded-0": true});
   // dropdown options
   const optionEls = tabDropdown0.findAll('option');
   expect(optionEls.exists()).toBe(true);

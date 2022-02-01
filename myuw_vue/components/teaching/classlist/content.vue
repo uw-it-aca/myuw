@@ -35,7 +35,7 @@
       <template #tabs>
         <uw-tab-button panel-id="table"
             title-item-class="me-2 mb-1"
-            title-link-class="rounded-0 text-body">
+            title-link-class="rounded-0 text-body text-uppercase">
           <font-awesome-icon
             :icon="faTable"
             class="align-baseline"
@@ -44,7 +44,7 @@
         </uw-tab-button>
         <uw-tab-button panel-id="photo-grid"
             title-item-class="me-2 mb-1"
-            title-link-class="rounded-0 text-body">
+            title-link-class="rounded-0 text-body text-uppercase">
           <font-awesome-icon
             :icon="faUserCircle"
             class="align-baseline"

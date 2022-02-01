@@ -18,17 +18,17 @@
         <template #tabs>
           <uw-tab-button panel-id="seattle"
               title-item-class="me-2 mb-1"
-              title-link-class="rounded-0 text-body">
+              title-link-class="rounded-0 text-body text-uppercase">
             Seattle
           </uw-tab-button>
           <uw-tab-button panel-id="tacoma"
               title-item-class="me-2 mb-1"
-              title-link-class="rounded-0 text-body">
+              title-link-class="rounded-0 text-body text-uppercase">
             Tacoma
           </uw-tab-button>
           <uw-tab-button panel-id="bothell"
               title-item-class="me-2 mb-1"
-              title-link-class="rounded-0 text-body">
+              title-link-class="rounded-0 text-body text-uppercase">
             Bothell
           </uw-tab-button>
         </template>
