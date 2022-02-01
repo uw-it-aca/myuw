@@ -25,7 +25,7 @@ describe('Graduation PreApplication Card', () => {
       },
       state: {
         user: {
-          affiliations: { 
+          affiliations: {
             class_level: 'SENIOR',
             intl_stud: true,
             seattle: true,

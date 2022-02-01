@@ -402,8 +402,7 @@ export default {
       return (this.classLevel === 'SENIOR');
     },
     showCard() {
-      return (
-        this.graduatingSenior &&
+      return (this.graduatingSenior &&
         (this.isFetching || this.showContent || this.showError));
     },
     showContent() {
@@ -420,10 +419,10 @@ export default {
         this.degreeStatus.error_code !== 404);
     },
     degrees() {
-      return this.degreeStatus.degrees;
+      return this.degreeStatus ? this.degreeStatus.degrees : null;
     },
     hasDoubleDegrees() {
-      return this.degrees.length > 1
+      return this.degrees && this.degrees.length > 1
     },
     doubleDegreeDiffStatus() {
       return (
@@ -440,16 +439,18 @@ export default {
           this.degrees[0].year  == this.degrees[1].year));
     },
     mailingAddree() {
+      if (!this.degrees) return '';
       return (this.degrees[0].diploma_mail_to_local_address
         ? this.localAddress : this.permanentAddress);
     },
     diplomaName() {
+      if (!this.degrees) return '';
       return this.degrees[0].name_on_diploma;
     },
     // The properties below are true as long as one degree status satifies the condition
     hasActiveOrGrantedDegreeDuringAprilMay() {
       let value = (
-          this.degrees[0].during_april_may && (
+          this.degrees && this.degrees[0].during_april_may && (
             this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])));
       if (!value && this.hasDoubleDegrees) {
         value = (this.degrees[1].during_april_may && (
@@ -459,53 +460,53 @@ export default {
     },
     hasActiveOrGrantedDegreeDuringEarnedTerm() {
       let value = (
-        this.degrees[0].is_degree_earned_term && (
+        this.degrees && this.degrees[0].is_degree_earned_term && (
             this.isActive(this.degrees[0]) || this.isGranted(this.degrees[0])));
-      if (!value && this.doubleDegreesInDiffTerms) {
+      if (!value && this.hasDoubleDegrees) {
         value = (this.degrees[1].is_degree_earned_term && (
             this.isActive(this.degrees[1]) || this.isGranted(this.degrees[1])));
       }
       return value;
     },
     hasActiveApplBeforeEarnedTerm() {
-      let value = (
+      let value = (this.degrees &&
         this.isActive(this.degrees[0]) && this.degrees[0].before_degree_earned_term);
-      if (!value && this.doubleDegreesInDiffTerms) {
+      if (!value && this.hasDoubleDegrees) {
         value = this.isActive(this.degrees[1]) && this.degrees[1].before_degree_earned_term;
       }
       return value;
     },
     hasActiveApplication() {
-      let value = this.isActive(this.degrees[0]);
+      let value = this.degrees && this.isActive(this.degrees[0]);
       if (!value && this.hasDoubleDegrees) {
         value = this.isActive(this.degrees[1]);
       }
       return value;
     },
     hasGrantedDegree() {
-      // data available only within 2 terms after graduation
-      let value = this.isGranted(this.degrees[0]);
+      // data available only within 2 terms after degree granted term
+      let value = this.degrees && this.isGranted(this.degrees[0]);
       if (!value && this.hasDoubleDegrees) {
         value = this.isGranted(this.degrees[1]);
       }
       return value;
     },
     seattle() {
-      let value = this.degrees[0].campus.toUpperCase() === 'SEATTLE';
+      let value = this.degrees && this.degrees[0].campus.toUpperCase() === 'SEATTLE';
       if (!value && this.hasDoubleDegrees) {
         value = this.degrees[1].campus.toUpperCase() === 'SEATTLE';
       }
       return value;
     },
     bothell() {
-      let value = this.degrees[0].campus.toUpperCase() === 'BOTHELL';
+      let value = this.degrees && this.degrees[0].campus.toUpperCase() === 'BOTHELL';
       if (!value && this.hasDoubleDegrees) {
         value = this.degrees[1].campus.toUpperCase() === 'BOTHELL';
       }
       return value;
     },
     tacoma() {
-      let value = this.degrees[0].campus.toUpperCase() === 'TACOMA';
+      let value = this.degrees && this.degrees[0].campus.toUpperCase() === 'TACOMA';
       if (!value && this.hasDoubleDegrees) {
         value = this.degrees[1].campus.toUpperCase() === 'TACOMA';
       }
