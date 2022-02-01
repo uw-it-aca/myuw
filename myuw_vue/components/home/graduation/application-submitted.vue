@@ -204,14 +204,13 @@
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
                 <p v-if="hasMisconduct(degree)" class="myuw-text-md">
-                  
+                  Administrative hold, please contact the graduation office.
                 </p>
                 <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
-                  There is an issue with your graduation status.
-                  Talk to your departmental advisor.
+                  Application inactive, please contact your departmental advisor.
                 </p>
                 <p v-else-if="isGranted(degree)" class="myuw-text-md">
-                  Application granted for {{ degreeTerm(degree) }}
+                  Degree granted for {{ degreeTerm(degree) }}
                 </p>
                 <p v-else class="myuw-text-md">
                   Application active for {{ degreeTerm(degree) }}
@@ -226,14 +225,13 @@
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
                 <p v-if="hasMisconduct(degree)" class="myuw-text-md">
-                  
+                  Administrative hold, please contact the graduation office.
                 </p>
                 <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
-                  There is an issue with your graduation status.
-                  Talk to your departmental advisor.
+                  Application inactive, please contact your departmental advisor.
                 </p>
                 <p v-else-if="isGranted(degree)" class="myuw-text-md">
-                  Application granted for {{ degreeTerm(degree) }}
+                  Degree granted for {{ degreeTerm(degree) }}
                 </p>
                 <p v-else>
                   Application active for {{ degreeTerm(degree) }}
@@ -246,14 +244,13 @@
           </div>
           <div v-else>
             <p v-if="hasMisconduct(degrees[0])" class="myuw-text-md">
-              
+              Administrative hold, please contact the graduation office.
             </p>
             <p v-else-if="isIncomplete(degrees[0])" class="myuw-text-md">
-              There is an issue with your graduation status.
-              Talk to your departmental advisor.
+              Application inactive, please contact your departmental advisor.
             </p>
             <p v-else-if="isGranted(degrees[0])" class="myuw-text-md">
-              Application granted for {{ degreeTerm(degrees[0]) }}
+              Degree granted for {{ degreeTerm(degrees[0]) }}
             </p>
             <p v-else>
               Application active for {{ degreeTerm(degrees[0]) }}
