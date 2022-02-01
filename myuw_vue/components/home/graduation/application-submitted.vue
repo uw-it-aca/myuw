@@ -79,7 +79,7 @@
                 >after graduation</a>.
               </li>
               <li>
-                Find out how to <a href="PLACEHOLDER">provide degree certification</a>
+                Find out how to <a href="https://registrar.washington.edu/students/enrollment-and-degree-verification/">provide degree certification</a>
                 to other parties.
               </li>
             </ul>
@@ -87,7 +87,7 @@
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
             <h3 class="h6 text-dark myuw-font-encode-sans">
-              Take part in Commencement Ceremony
+              Choose to take part in Commencement Ceremony
             </h3>
             <ul class="list-unstyled">
               <li>
@@ -96,7 +96,7 @@
                   type="button"
                   class="btn btn-link p-0 border-0 align-top notice-link text-start"
                 >
-                  Participate in the UW commencement celebration
+                  Decide if you'd like to participate in the UW commencement celebration
                 </button>
                 <uw-collapse id="commencementCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
@@ -142,31 +142,16 @@
                 </button>
                 <uw-collapse id="diplomaCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
-                    <p class="fw-bold">Name on your diploma:</p>
-                    <p>{{ diplomaName }}</p>
                     <p>
-                      You can change your name using the
-                      <a href="https://registrar.washington.edu/students/student-forms/"
-                      >Diploma Name Request Form</a>.
+                      The Office of the University Registrar will send you an email about one month after graduation with the link to a 
+                      form where you can log in and enter your diploma name and diploma mailing address.
                     </p>
-                    <p class="fw-bold">Diploma will be mailed to:</p>
-                    <div v-if="mailingAddree">
-                      <div v-if="mailingAddree.street_line1"
-                        v-text="mailingAddree.street_line1">
-                      </div>
-                      <div v-if="mailingAddree.street_line2"
-                        v-text="mailingAddree.street_line2">
-                      </div>
-                      <span v-text="addressLocationString(mailingAddree)" />
-                      <div v-if="mailingAddree.country"
-                        v-text="mailingAddree.country">
-                      </div>
-                    </div>
-
-                    <a href="placeholder">Update your mailing address</a>.
-                    <p class="mt-4">
-                      <span class="fw-bold fst-italic">Diploma timing -</span> Your
-                      diploma will be sent 3 to 4 months after you graduate.
+                    <p>
+                      If you do not submit the form, the name on your diploma will default to the name on your official student 
+                      record which may vary from your preferred name.
+                    </p>
+                    <p>
+                      For more information about diplomas, visit the <a href="https://registrar.washington.edu/students/graduation-diplomas/">Graduations and Diplomas</a> site.
                     </p>
                   </div>
                 </uw-collapse>
