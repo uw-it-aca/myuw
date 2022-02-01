@@ -70,6 +70,15 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
   }
 }
 
+.myuw-card-group-display {
+  display: block;
+
+  .card {
+    display: inline-block;
+    width: 100%;
+  }
+}
+
 // myuw ribbion
 .myuw-ribbon {
   border-style: solid;
@@ -123,7 +132,7 @@ PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  PX   REM     |  
           display: none;
         }
 
-        .myuw-print-sr-only {
+        .myuw-print-visually-hidden {
           display: inline !important;
           width: unset;
           height: unset;
