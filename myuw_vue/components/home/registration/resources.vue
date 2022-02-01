@@ -80,7 +80,7 @@
           <a :href="degreeAuditHref"> Audit your degree (DARS) </a>
         </li>
         <li class="mb-1">
-          <a href="https://prereqmap.uw.edu/">Prereq Map</a>
+          <a href="http://dawgpath.uw.edu">DawgPath</a>
         </li>
       </ul>
     </div>
