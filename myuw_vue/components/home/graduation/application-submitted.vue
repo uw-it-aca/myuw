@@ -428,7 +428,8 @@ export default {
     doubleDegreeDiffStatus() {
       return (
         this.hasDoubleDegrees &&
-        (this.inActive(this.degrees[0]) && !this.inActive(this.degrees[1]) ||
+        (this.hasMisconduct(this.degrees[0]) && !this.hasMisconduct(this.degrees[1]) ||
+         this.isIncomplete(this.degrees[0]) && !this.isIncomplete(this.degrees[1]) ||
          this.isActive(this.degrees[0]) && !this.isActive(this.degrees[1]) ||
          this.isGranted(this.degrees[0]) && !this.isGranted(this.degrees[1])));
     },
