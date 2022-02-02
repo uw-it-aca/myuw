@@ -143,15 +143,19 @@
                 <uw-collapse id="diplomaCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
-                      The Office of the University Registrar will send you an email about one month after graduation with the link to a 
-                      form where you can log in and enter your diploma name and diploma mailing address.
+                      The Office of the University Registrar will send you an email about
+                      one month after graduation with the link to a form where you can log
+                      in and enter your diploma name and diploma mailing address.
                     </p>
                     <p>
-                      If you do not submit the form, the name on your diploma will default to the name on your official student 
-                      record which may vary from your preferred name.
+                      If you do not submit the form, the name on your diploma will default
+                      to the name on your official student record which may vary from your
+                      preferred name.
                     </p>
                     <p>
-                      For more information about diplomas, visit the <a href="https://registrar.washington.edu/students/graduation-diplomas/">Graduations and Diplomas</a> site.
+                      For more information about diplomas, visit the 
+                      <a href="https://registrar.washington.edu/students/graduation-diplomas/"
+                      >Graduations and Diplomas</a> site.
                     </p>
                   </div>
                 </uw-collapse>
