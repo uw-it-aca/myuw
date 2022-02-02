@@ -13,7 +13,7 @@
           <p><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
           <div v-if="hasActiveApplication">
             <h3 class="h6 text-dark myuw-font-encode-sans">
-              Get an Overview
+              Get an overview
             </h3>
             <ul class="list-style">
               <li v-if="seattle">
@@ -79,7 +79,7 @@
               </li>
             </ul>
           </div>
-          
+
           <div v-if="hasGrantedDegree">
             <h3 class="h6 text-dark myuw-font-encode-sans">
               Post-Graduation Success
@@ -99,7 +99,7 @@
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
             <h3 class="h6 text-dark myuw-font-encode-sans">
-              Choose to take part in Commencement Ceremony
+              Choose to take part in commencement ceremony
             </h3>
             <ul class="list-unstyled">
               <li>
