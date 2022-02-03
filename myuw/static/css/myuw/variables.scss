@@ -12,7 +12,10 @@ $custom-colors: (
   'danger': #a94442,
   'warning': #f5d300,
 
-   // myuw custom colors
+  // myuw status colors
+  'success-light': #ebffe2,
+
+   // myuw brand colors
    'purple': #4d307f, // uw purple
    'dark-purple': #452a78, // thin bar
    'beige': #e8e3d3, // tan
@@ -39,6 +42,7 @@ $custom-colors: (
    'c7a': #653FB2,
    'c8': #352E9B,
    'c8a': #473EC5,
+
 );
 
 // override global line height (1.5rem default)

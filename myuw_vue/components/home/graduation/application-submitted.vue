@@ -12,7 +12,7 @@
         <div class="col-8">
           <p><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
           <div v-if="hasActiveApplication">
-            <h3 class="h6 text-dark myuw-font-encode-sans">
+            <h3 class="h6 text-dark mb-0">
               Get an overview
             </h3>
             <ul class="list-style">
@@ -50,7 +50,7 @@
           </div>
 
           <div v-if="hasActiveApplBeforeEarnedTerm">
-            <h3 class="h6 text-dark myuw-font-encode-sans">
+            <h3 class="h6 text-dark mb-0">
               Ensure that you stay on track
             </h3>
             <ul class="list-style">
@@ -69,7 +69,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
-            <h3 class="h6 text-dark myuw-font-encode-sans">
+            <h3 class="h6 text-dark mb-0">
               Run a final audit
             </h3>
             <ul class="list-style">
@@ -81,7 +81,7 @@
           </div>
 
           <div v-if="hasGrantedDegree">
-            <h3 class="h6 text-dark myuw-font-encode-sans">
+            <h3 class="h6 text-dark mb-0">
               Post-Graduation Success
             </h3>
             <ul class="list-style">
@@ -98,7 +98,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
-            <h3 class="h6 text-dark myuw-font-encode-sans">
+            <h3 class="h6 text-dark mb-0">
               Choose to take part in commencement ceremony
             </h3>
             <ul class="list-unstyled">
@@ -140,7 +140,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
-            <h3 class="h6 text-dark myuw-font-encode-sans">
+            <h3 class="h6 text-dark mb-0">
               Verify that your information and data will not be lost
             </h3>
             <ul class="list-unstyled">
@@ -209,67 +209,69 @@
           </div>
         </div>
         <div class="col-4">
-          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+          <h3 class="h6 text-dark myuw-font-encode-sans">
             Graduation application status
           </h3>
           <div v-if="doubleDegreesInDiffTerms">
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <p v-if="hasMisconduct(degree)" class="myuw-text-md">
+                <p v-if="hasMisconduct(degree)" class="myuw-text-md mb-0">
                   Administrative hold, please contact the graduation office.
                 </p>
-                <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
+                <p v-else-if="isIncomplete(degree)" class="myuw-text-md mb-0">
                   Application inactive, please contact your departmental advisor.
                 </p>
-                <p v-else-if="isGranted(degree)" class="myuw-text-md">
+                <p v-else-if="isGranted(degree)" class="myuw-text-md mb-0">
                   Degree granted for {{ degreeTerm(degree) }}
                 </p>
-                <p v-else class="myuw-text-md">
+                <p v-else class="myuw-text-md mb-0">
                   Application active for {{ degreeTerm(degree) }}
                 </p>
-                <p>
-                {{ degree.title }}
-                </p>
+                <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
+                  {{ degree.title }}
+                </span>
               </li>
             </ul>
           </div>
           <div v-else-if="doubleDegreeDiffStatus">
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <p v-if="hasMisconduct(degree)" class="myuw-text-md">
+                <p v-if="hasMisconduct(degree)" class="myuw-text-md mb-0">
                   Administrative hold, please contact the graduation office.
                 </p>
-                <p v-else-if="isIncomplete(degree)" class="myuw-text-md">
+                <p v-else-if="isIncomplete(degree)" class="myuw-text-md mb-0">
                   Application inactive, please contact your departmental advisor.
                 </p>
-                <p v-else-if="isGranted(degree)" class="myuw-text-md">
+                <p v-else-if="isGranted(degree)" class="myuw-text-md mb-0">
                   Degree granted for {{ degreeTerm(degree) }}
                 </p>
-                <p v-else>
+                <p v-else class="mb-0">
                   Application active for {{ degreeTerm(degree) }}
                 </p>
-                <p>
+                <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
                   {{ degree.title }}
-                </p>
+                </span>
               </li>
             </ul>
           </div>
           <div v-else>
-            <p v-if="hasMisconduct(degrees[0])" class="myuw-text-md">
+            <p v-if="hasMisconduct(degrees[0])" class="myuw-text-md mb-0">
               Administrative hold, please contact the graduation office.
             </p>
-            <p v-else-if="isIncomplete(degrees[0])" class="myuw-text-md">
+            <p v-else-if="isIncomplete(degrees[0])" class="myuw-text-md mb-0">
               Application inactive, please contact your departmental advisor.
             </p>
-            <p v-else-if="isGranted(degrees[0])" class="myuw-text-md">
+            <p v-else-if="isGranted(degrees[0])" class="myuw-text-md mb-0">
               Degree granted for {{ degreeTerm(degrees[0]) }}
             </p>
-            <p v-else>
+            <p v-else class="mb-0">
               Application active for {{ degreeTerm(degrees[0]) }}
             </p>
-            <ul class="list-unstyled mb-0 myuw-text-md">
+            <ul class="list-unstyled mb-0">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <p>{{ degree.title }}</p>
+                <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
+                  {{ degree.title }}
+                </span>
               </li>
             </ul>
           </div>
@@ -278,7 +280,7 @@
     </template>
     <template #card-disclosure>
       <uw-collapse id="collapseGradSupportAndHelp" v-model="isOpen">
-        <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+        <h3 class="h6 text-dark mb-0">
             Get Help and Support
         </h3>
         <p>
