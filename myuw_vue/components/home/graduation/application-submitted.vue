@@ -522,19 +522,6 @@ export default {
     isGranted(degree) {
       return degree.is_granted;
     },
-    addressLocationString(address) {
-      let location = '';
-      if (address.city && address.state) {
-        location += address.city + ', ' + address.state;
-      }
-      if (address.postal_code) {
-        location += ' ' + address.postal_code;
-      }
-      if (address.zip_code) {
-        location += ' ' + address.zip_code;
-      }
-      return location;
-    },
     degreeTerm(degree) {
       return this.titleCaseWord(degree.quarter) + ' ' + degree.year;
     }

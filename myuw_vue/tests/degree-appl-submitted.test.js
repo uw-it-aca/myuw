@@ -64,6 +64,7 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.seattle).toBeTruthy();
     expect(wrapper.vm.bothell).toBe(false);
     expect(wrapper.vm.tacoma).toBe(false);
+    expect(wrapper.vm.degreeTerm(wrapper.vm.degrees[0])).toBe('Summer 2013');
     expect(wrapper.findComponent(Graduation).exists()).toBe(true);
   });
   it('Verify double degrees diff terms', async () => {
