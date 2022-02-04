@@ -10,12 +10,12 @@
     <template #card-body>
       <div class="row">
         <div class="col-8">
-          <p><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
+          <p class="myuw-text-md"><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
           <div v-if="hasActiveApplication">
             <h3 class="h6 text-dark mb-0">
               Get an overview
             </h3>
-            <ul class="list-style">
+            <ul class="list-style myuw-text-md">
               <li v-if="seattle">
                 Review the
                 <a href="https://www.washington.edu/students/graduation-checklist/">
@@ -53,7 +53,7 @@
             <h3 class="h6 text-dark mb-0">
               Ensure that you stay on track
             </h3>
-            <ul class="list-style">
+            <ul class="list-style myuw-text-md">
               <li>
                 See what courses you have left - run a <a
                 href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
@@ -72,7 +72,7 @@
             <h3 class="h6 text-dark mb-0">
               Run a final audit
             </h3>
-            <ul class="list-style">
+            <ul class="list-style myuw-text-md">
               <li>
                 Make sure all your grades are recorded and that your final quarter course load satisfies your degree requirements using a <a
                 href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
@@ -84,7 +84,7 @@
             <h3 class="h6 text-dark mb-0">
               Post-Graduation Success
             </h3>
-            <ul class="list-style">
+            <ul class="list-style myuw-text-md">
               <li>
                 Get guidance and resources for
                 <a href="https://www.washington.edu/graduation/after-graduation/"
@@ -101,12 +101,12 @@
             <h3 class="h6 text-dark mb-0">
               Choose to take part in commencement ceremony
             </h3>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled myuw-text-md">
               <li>
                 <button
                   v-uw-collapse.commencementCollapse
                   type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   Decide if you'd like to participate in the UW commencement celebration
                 </button>
@@ -143,12 +143,12 @@
             <h3 class="h6 text-dark mb-0">
               Verify that your information and data will not be lost
             </h3>
-            <ul class="list-unstyled">
+            <ul class="list-unstyled myuw-text-md">
               <li>
                 <button
                   v-uw-collapse.diplomaCollapse
                   type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   How to update your diploma name and mailing address
                 </button>
@@ -172,7 +172,7 @@
                 <button
                   v-uw-collapse.saveWorkCollapse
                   type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   Save your UW work before it is deleted
                 </button>
@@ -191,7 +191,7 @@
                 <button
                   v-uw-collapse.emailForwardingCollapse
                   type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start"
+                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   Keep receiving emails sent to your UW address – set up forwarding
                 </button>
@@ -209,7 +209,7 @@
           </div>
         </div>
         <div class="col-4">
-          <h3 class="h6 text-dark myuw-font-encode-sans">
+          <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md">
             Graduation application status
           </h3>
           <div v-if="doubleDegreesInDiffTerms">
@@ -283,11 +283,11 @@
         <h3 class="h6 text-dark mb-0">
             Get Help and Support
         </h3>
-        <p>
+        <p class="myuw-text-md">
           Moving on from the UW can be overwhelming. If you are worried, confused, or
           uncertain about what is next, you are not alone!
         </p>
-        <ul>
+        <ul class="myuw-text-md">
           <li v-if="seattle">
             <a
               href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
