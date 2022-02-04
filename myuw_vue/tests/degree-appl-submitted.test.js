@@ -64,7 +64,6 @@ describe('Graduation Card', () => {
     expect(wrapper.vm.seattle).toBeTruthy();
     expect(wrapper.vm.bothell).toBe(false);
     expect(wrapper.vm.tacoma).toBe(false);
-    expect(wrapper.vm.diplomaName).toBe("John Joseph Average");
     expect(wrapper.findComponent(Graduation).exists()).toBe(true);
   });
   it('Verify double degrees diff terms', async () => {

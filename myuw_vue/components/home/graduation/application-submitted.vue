@@ -10,7 +10,9 @@
     <template #card-body>
       <div class="row">
         <div class="col-8">
-          <p class="myuw-text-md"><strong>You're on your way!</strong> We're here to help you get to the finish line!</p>
+          <p class="myuw-text-md">
+            <strong>You're on your way!</strong> We're here to help you get to the finish line!
+          </p>
           <div v-if="hasActiveApplication">
             <h3 class="h6 text-dark mb-0">
               Get an overview
@@ -74,8 +76,9 @@
             </h3>
             <ul class="list-style myuw-text-md">
               <li>
-                Make sure all your grades are recorded and that your final quarter course load satisfies your degree requirements using a <a
-                href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
+                Make sure all your grades are recorded and that your final quarter course load
+                satisfies your degree requirements using a
+                <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
               </li>
             </ul>
           </div>
@@ -91,7 +94,9 @@
                 >after graduation</a>.
               </li>
               <li>
-                Find out how to <a href="https://registrar.washington.edu/students/enrollment-and-degree-verification/">provide degree certification</a>
+                Find out how to <a 
+                href="https://registrar.washington.edu/students/enrollment-and-degree-verification/"
+                >provide degree certification</a>
                 to other parties.
               </li>
             </ul>
@@ -149,21 +154,23 @@
                   v-uw-collapse.diplomaCollapse
                   type="button"
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                >
-                  How to update your diploma name and mailing address
-                </button>
+                >How to update your diploma name and mailing address</button>
                 <uw-collapse id="diplomaCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
-                      The Office of the University Registrar will send you an email about one month after graduation with the link to a 
-                      form where you can log in and enter your diploma name and diploma mailing address.
+                      The Office of the University Registrar will send you an email about one
+                      month after graduation with the link to a form where you can log in and
+                      enter your diploma name and diploma mailing address.
                     </p>
                     <p>
-                      If you do not submit the form, the name on your diploma will default to the name on your official student 
-                      record which may vary from your preferred name.
+                      If you do not submit the form, the name on your diploma will default to
+                      the name on your official student record which may vary from your
+                      preferred name.
                     </p>
                     <p>
-                      For more information about diplomas, visit the <a href="https://registrar.washington.edu/students/graduation-diplomas/">Graduations and Diplomas</a> site.
+                      For more information about diplomas, visit the
+                      <a href="https://registrar.washington.edu/students/graduation-diplomas/"
+                      >Graduations and Diplomas</a> site.
                     </p>
                   </div>
                 </uw-collapse>
@@ -262,10 +269,10 @@
               Application inactive, please contact your departmental advisor.
             </p>
             <p v-else-if="isGranted(degrees[0])" class="myuw-text-md mb-0">
-              Degree granted for <em>{{ degreeTerm(degree) }}</em>
+              Degree granted for <em>{{ degreeTerm(degrees[0]) }}</em>
             </p>
             <p v-else class="mb-0">
-              Application active for <em>{{ degreeTerm(degree) }}</em>
+              Application active for <em>{{ degreeTerm(degrees[0]) }}</em>
             </p>
             <ul class="list-unstyled mb-0">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
@@ -391,8 +398,6 @@ export default {
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
-      localAddress: (state) => state.value.local_address,
-      permanentAddress:  (state) => state.value.permanent_address,
     }),
     graduatingSenior() {
       return (this.classLevel === 'SENIOR');
@@ -433,15 +438,6 @@ export default {
         this.hasDoubleDegrees &&
         !(this.degrees[0].quarter == this.degrees[1].quarter &&
           this.degrees[0].year  == this.degrees[1].year));
-    },
-    mailingAddree() {
-      if (!this.degrees) return '';
-      return (this.degrees[0].diploma_mail_to_local_address
-        ? this.localAddress : this.permanentAddress);
-    },
-    diplomaName() {
-      if (!this.degrees) return '';
-      return this.degrees[0].name_on_diploma;
     },
     // The properties below are true as long as one degree status satifies the condition
     hasActiveOrGrantedDegreeDuringAprilMay() {
