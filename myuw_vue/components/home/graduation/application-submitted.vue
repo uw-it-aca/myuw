@@ -222,10 +222,10 @@
                   Application inactive, please contact your departmental advisor.
                 </p>
                 <p v-else-if="isGranted(degree)" class="myuw-text-md mb-0">
-                  Degree granted for {{ degreeTerm(degree) }}
+                  Degree granted for <em>{{ degreeTerm(degree) }}</em>
                 </p>
                 <p v-else class="myuw-text-md mb-0">
-                  Application active for {{ degreeTerm(degree) }}
+                  Application active for <em>{{ degreeTerm(degree) }}</em>
                 </p>
                 <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
                   {{ degree.title }}
@@ -243,10 +243,10 @@
                   Application inactive, please contact your departmental advisor.
                 </p>
                 <p v-else-if="isGranted(degree)" class="myuw-text-md mb-0">
-                  Degree granted for {{ degreeTerm(degree) }}
+                  Degree granted for <em>{{ degreeTerm(degree) }}</em>
                 </p>
                 <p v-else class="mb-0">
-                  Application active for {{ degreeTerm(degree) }}
+                  Application active for <em>{{ degreeTerm(degree) }}</em>
                 </p>
                 <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
                   {{ degree.title }}
@@ -262,10 +262,10 @@
               Application inactive, please contact your departmental advisor.
             </p>
             <p v-else-if="isGranted(degrees[0])" class="myuw-text-md mb-0">
-              Degree granted for {{ degreeTerm(degrees[0]) }}
+              Degree granted for <em>{{ degreeTerm(degree) }}</em>
             </p>
             <p v-else class="mb-0">
-              Application active for {{ degreeTerm(degrees[0]) }}
+              Application active for <em>{{ degreeTerm(degree) }}</em>
             </p>
             <ul class="list-unstyled mb-0">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
