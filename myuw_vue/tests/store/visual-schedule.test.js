@@ -11,9 +11,9 @@ import {createLocalVue, expectAction} from '../helper';
 import ScheduleTab from '../../components/_common/visual_schedule/schedule-tab.vue';
 import VisualSchedule from '../../components/_common/visual_schedule/schedule.vue';
 
-import mockScheduleBill from '../mock_data/schedule/bill2013.json';
+import mockScheduleBill from '../mock_data/schedule/muwm-5071-bill2013spring.json';
 import mockScheduleBillsea2020 from '../mock_data/schedule/billsea2020.json';
-import mockScheduleJaverage from '../mock_data/schedule/javerage2013.json';
+import mockScheduleJaverage from '../mock_data/schedule/muwm-5071-javerage2013spring.json';
 import mockScheduleJaverageSummer from '../mock_data/schedule/javerageSummer2013.json';
 import mockScheduleJeos from '../mock_data/schedule/jeos2013.json';
 import mockScheduleMuwm5000 from '../mock_data/schedule/2021-aut-muwm-5000.json';
@@ -127,6 +127,7 @@ describe('Schedule Model', () => {
 
     expect(store.state.visual_schedule.value).toBeDefined();
     expect(store.state.visual_schedule.value.testCurrent).toBeDefined();
+    console.log(store.state.visual_schedule.value.testCurrent.periods);
     expect(store.state.visual_schedule.value.testCurrent.periods).toHaveLength(2);
 
     expect(
@@ -142,6 +143,10 @@ describe('Schedule Model', () => {
     expect(
       store.state.visual_schedule.value.testCurrent.periods[0].latestMeetingTime.format('hh:mm A')
     ).toBe("06:20 PM");
+
+    expect(
+      store.state.visual_schedule.value.testCurrent.periods[1].daySlots['sunday']
+    ).toBeTruthy;
 
     expect(
       store.state.visual_schedule.value.testCurrent.periods[1].earliestMeetingTime
