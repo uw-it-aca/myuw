@@ -144,7 +144,7 @@ const postProcess = (response, urlExtra) => {
       // Generate dates if on a final period
       let refrenceDate = earliestFinalDate;  // MUWM-5001
 
-      if (refrenceDate.day() === 7) {
+      if (refrenceDate.day() === 0) {   // MUWM-5071
         period.daySlots['sunday'] = refrenceDate.clone();
         period.daySlots['monday'] = refrenceDate.clone().day(8);
         period.daySlots['tuesday'] = refrenceDate.clone().day(9);
