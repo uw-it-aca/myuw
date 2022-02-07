@@ -223,7 +223,10 @@ export default {
         for (const day in this.period.daySlots) {
           if (!this.period.daySlots[day]) {
             if (day === 'saturday') {
-              this.period.daySlots[day] = refrenceDate.clone().day(6);
+              this.period.daySlots[day] = refrenceDate.clone().day(6); // 6: Saturday
+            } else if (day === 'sunday') {
+              // MUWM-5071
+              this.period.daySlots[day] = refrenceDate.clone().day(0); // 0: Sunday
             } else {
               this.period.daySlots[day] = refrenceDate.clone().day(
                   7 + Object.keys(this.days).indexOf(day),
