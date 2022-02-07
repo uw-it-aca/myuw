@@ -147,6 +147,18 @@ describe('Schedule Model', () => {
     expect(
       store.state.visual_schedule.value.testCurrent.periods[1].daySlots['sunday']
     ).toBeTruthy;
+    expect(
+      store.state.visual_schedule.value.testCurrent.periods[1].daySlots['sunday'].date()
+    ).toBe(9);
+    expect(
+      store.state.visual_schedule.value.testCurrent.periods[1].daySlots['monday']
+    ).toBeTruthy;
+    expect(
+      store.state.visual_schedule.value.testCurrent.periods[1].daySlots['monday'].date()
+    ).toBe(10);
+    expect(
+      store.state.visual_schedule.value.testCurrent.periods[1].daySlots['saturday']
+    ).toBe(undefined);
 
     expect(
       store.state.visual_schedule.value.testCurrent.periods[1].earliestMeetingTime
