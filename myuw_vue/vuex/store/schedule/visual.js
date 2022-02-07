@@ -144,8 +144,16 @@ const postProcess = (response, urlExtra) => {
       // Generate dates if on a final period
       let refrenceDate = earliestFinalDate;  // MUWM-5001
 
-      if (refrenceDate.day() === 6) {
+      if (refrenceDate.day() === 0) {   // MUWM-5071
+        period.daySlots['sunday'] = refrenceDate.clone();
+        period.daySlots['monday'] = refrenceDate.clone().day(1);
+        period.daySlots['tuesday'] = refrenceDate.clone().day(2);
+        period.daySlots['wednesday'] = refrenceDate.clone().day(3);
+        period.daySlots['thursday'] = refrenceDate.clone().day(4);
+        period.daySlots['friday'] = refrenceDate.clone().day(5);
+      } else if (refrenceDate.day() === 6) {
         period.daySlots['saturday'] = refrenceDate.clone();
+        period.daySlots['sunday'] = refrenceDate.clone().day(7);
         period.daySlots['monday'] = refrenceDate.clone().day(8);
         period.daySlots['tuesday'] = refrenceDate.clone().day(9);
         period.daySlots['wednesday'] = refrenceDate.clone().day(10);
