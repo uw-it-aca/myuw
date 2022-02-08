@@ -91,7 +91,7 @@ export default {
   },
   data: function() {
     return {
-      tabIndex: 0,
+      activePeriodIdx: undefined,
     };
   },
   computed: {
@@ -131,16 +131,29 @@ export default {
       }
       return name;
     },
-    activePeriod: function() {
-      for (const i in Object.keys(this.periods)) {
-        if (
-          !this.periods[i].end_date ||
-          this.periods[i].end_date >= this.nowDatetime().clone().hour(0).minute(0)
-        ) {
-          return this.periods[i];
+    tabIndex: {
+      get: function() {
+        if (this.activePeriodIdx == undefined) {
+          // default to period for the current date
+          for (const i in Object.keys(this.periods)) {
+            if (
+              !this.periods[i].end_date ||
+              this.periods[i].end_date >= this.nowDatetime().clone().hour(0).minute(0)
+            ) {
+              return i;
+            }
+          }
+          return this.periods.length - 1;
+        } else {
+          return this.activePeriodIdx;
         }
+      },
+      set: function(newValue) {
+        this.activePeriodIdx = newValue;
       }
-      return this.periods[Object.keys(this.periods)[this.periods.length - 1]];
+    },
+    activePeriod: function() {
+      return this.periods[this.activePeriodIdx];
     },
     allMeetings() {
       return this.allSchedules[this.termLabel]
