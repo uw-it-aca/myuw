@@ -122,12 +122,20 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.vm.tabIndex).toEqual(1);
     expect(wrapper.vm.endOfDay(wrapper.vm.periods[0].end_date)).toEqual(
       dayjs("2013-04-05T23:59:00.000Z"));
+    expect(wrapper.vm.formatDate(wrapper.vm.periods[0].end_date)).toEqual(
+      "Fri, Apr 5");
 
     today = dayjs("2013-05-04T00:00:01");
     store.state.cardDisplayDates.comparison_date = today;
     wrapper = mount(VisualSchedule, { store, localVue });
     await new Promise(setImmediate);
     expect(wrapper.vm.tabIndex).toEqual(2);
+
+    today = dayjs("2013-07-07T00:00:01");
+    store.state.cardDisplayDates.comparison_date = today;
+    wrapper = mount(VisualSchedule, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.tabIndex).toEqual(4);
   });
 
   it ('Check Overlapping classes', async () => {
