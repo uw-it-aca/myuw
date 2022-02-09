@@ -133,14 +133,13 @@ export default {
     },
     tabIndex: {
       get: function() {
-        if (this.activePeriodIdx == undefined) {
+        if (this.activePeriodIdx == undefined && this.periods) {
           // default to period for the current date
           for (const i in Object.keys(this.periods)) {
-            if (
-              !this.periods[i].end_date ||
-              this.periods[i].end_date >= this.nowDatetime().clone().hour(0).minute(0)
-            ) {
-              return i;
+            const index = parseInt(i);
+            const periodEnd = this.periods[index].end_date;
+            if (!periodEnd || this.nowDatetime() <= this.endOfDay(periodEnd)) {
+              return index;
             }
           }
           return this.periods.length - 1;
@@ -177,6 +176,9 @@ export default {
     ...mapActions('visual_schedule', ['fetch']),
     formatDate(t) {
       return this.dayjs(t).format('ddd, MMM D');
+    },
+    endOfDay(aday) {
+      return aday.add(23, 'hour').add(59, 'minute');
     },
   },
 };
