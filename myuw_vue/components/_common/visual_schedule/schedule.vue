@@ -134,7 +134,7 @@ export default {
     tabIndex: {
       get: function() {
         if (this.activePeriodIdx == undefined && this.periods) {
-          // default to period for the current date
+          // default to period based on comparision_date
           for (const i in Object.keys(this.periods)) {
             const index = parseInt(i);
             const periodEnd = this.periods[index].end_date;
@@ -142,7 +142,7 @@ export default {
               return index;
             }
           }
-          return this.periods.length - 1;
+          return this.periods.length - 1;  // summer terms
         } else {
           return this.activePeriodIdx;
         }
