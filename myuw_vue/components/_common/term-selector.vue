@@ -13,7 +13,7 @@
       <uw-tab-button
         v-for="(tab, i) in displayedTabs"
         :key="i"
-        :panel-id="tab.quarter + (tab.year % 100)"
+        :panel-id="panleId(tab)"
         title-item-class="text-nowrap myuw-text-lg me-2 mb-1"
         title-link-class="rounded-0 px-2 py-1 h-100 text-body"
       >
@@ -36,7 +36,7 @@
       <uw-tab-panel
           v-for="(tab, i) in displayedTabs"
           :key="i"
-          :panel-id="tab.quarter + (tab.year % 100)">
+          :panel-id="panleId(tab)">
         <slot :tab="tab" />
       </uw-tab-panel>
       <uw-tab-panel v-if="selectedOption > 0" panel-id="dropdown">
@@ -166,6 +166,9 @@ export default {
       } else {
         this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
       }
+    },
+    panleId(tab) {
+      return tab.quarter + (tab.year % 100);
     },
   },
 };
