@@ -76,9 +76,10 @@
             </h3>
             <ul class="list-style myuw-text-md">
               <li>
-                During and after the final quarter ends use <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a> to make sure that your final quarter course load
+                During and after the final quarter ends use
+                <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>
+                to make sure that your final quarter course load
                 will satisfy your degree requirements and that all your grades are recorded.
-                .
               </li>
             </ul>
           </div>
@@ -163,9 +164,9 @@
                       enter your diploma name and diploma mailing address.
                     </p>
                     <p>
-                      If you do not submit the form by the deadline given in the email, the name on your diploma will default to
-                      the name on your official student record which may vary from your
-                      preferred name.
+                      If you do not submit the form by the deadline given in the email,
+                      the name on your diploma will default to the name on your official
+                      student record which may vary from your preferred name.
                     </p>
                     <p>
                       For more information about diplomas, visit the
@@ -223,7 +224,8 @@
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
                 <p v-if="hasMisconduct(degree)" class="myuw-text-md mb-0">
-                  Administrative hold, please contact the graduation office at <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
+                  Administrative hold, please contact the graduation office at
+                  <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
                 </p>
                 <p v-else-if="isIncomplete(degree)" class="myuw-text-md mb-0">
                   Application inactive, please contact your departmental advisor.
@@ -244,7 +246,8 @@
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
                 <p v-if="hasMisconduct(degree)" class="myuw-text-md mb-0">
-                  Administrative hold, please contact the graduation office at <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
+                  Administrative hold, please contact the graduation office at
+                  <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
                 </p>
                 <p v-else-if="isIncomplete(degree)" class="myuw-text-md mb-0">
                   Application inactive, please contact your departmental advisor.
@@ -263,7 +266,8 @@
           </div>
           <div v-else>
             <p v-if="hasMisconduct(degrees[0])" class="myuw-text-md mb-0">
-              Administrative hold, please contact the graduation office at <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
+              Administrative hold, please contact the graduation office at
+              <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
             </p>
             <p v-else-if="isIncomplete(degrees[0])" class="myuw-text-md mb-0">
               Application inactive, please contact your departmental advisor.
