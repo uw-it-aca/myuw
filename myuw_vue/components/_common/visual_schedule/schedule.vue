@@ -142,7 +142,7 @@ export default {
               return index;
             }
           }
-          return this.periods.length - 1;  // summer terms
+          return this.periods.length - 1;  // unnecessary?
         } else {
           return this.activePeriodIdx;
         }
