@@ -9,7 +9,7 @@
       </h2>
       <template v-if="bannerMessages.length > 0" id="message_banner_location">
         <div v-for="(message, i) in bannerMessages" id="messages" :key="i"
-          class="message px-3 py-2"
+          class="message px-3 py-2 text-white"
           v-html="message"
         ></div>
       </template>
