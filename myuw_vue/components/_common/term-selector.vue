@@ -1,57 +1,48 @@
 <template>
   <uw-tabs
     v-model="selectedTab"
-    lazy
     pills
     bottom-border
     :nav-wrapper-class="['mb-3', $mq === 'mobile' ? 'px-2' : 'p-0']"
-    @activate-tab="displayedTabChange"
   >
     <!--
       Only mounts the tab when it is selected, so the data should be
       fetched on mount for the components in here
      -->
-    <uw-tab
-      v-for="(tab, i) in displayedTabs"
-      :key="i"
-      title-item-class="text-nowrap myuw-text-lg me-2 mb-1"
-      title-link-class="rounded-0 px-2 py-1 h-100 text-body"
-    >
-      <template #title>
-        {{ tab.quarter }} '{{ tab.year % 100 }}
-      </template>
-      <slot :tab="tab" />
-    </uw-tab>
-    <uw-tab
-      v-if="dropdownTabs.length > 1"
-      :title-item-class="{
-        'ms-auto': $mq !== 'mobile',
-        'text-nowrap': true,
-        'myuw-text-lg': true,
-        'mb-1': true,
-      }"
-      title-link-class="rounded-0 px-0 py-1 h-100 text-body myuw-font-open-sans"
-    >
-      <template #title>
-        <div class="select-parent">
-          <select
-            v-model="selectedOption"
-            @change="optionTabChange"
-          >
-            <option
-              v-for="(option, i) in dropdownTabsSelectable"
-              :key="i"
-              :value="option.value"
-              :disabled="option.disabled"
-            >
-              {{option.text}}
-            </option>
-          </select>
-          <font-awesome-icon :icon="faChevronDown" class="down-arrow"/>
-        </div>
-      </template>
-      <slot :tab="dropdownTabs[selectedOption]" />
-    </uw-tab>
+    <template #tabs>
+      <uw-tab-button
+        v-for="(tab, i) in displayedTabs"
+        :key="i"
+        :panel-id="panleId(tab)"
+        title-item-class="text-nowrap myuw-text-lg me-2 mb-1"
+        title-link-class="rounded-0 px-2 py-1 h-100 text-body"
+      >
+        {{ tab.quarter + " '" + (tab.year % 100) }}
+      </uw-tab-button>
+      <uw-tab-dropdown
+        v-if="dropdownTabs.length > 1"
+        v-model="selectedOption"
+        panel-id="dropdown"
+        :options-list="dropdownTabsSelectable"
+        :title-item-class="{
+          'ms-auto': $mq !== 'mobile',
+          'text-nowrap': true,
+          'myuw-text-lg': true
+        }"
+      >
+      </uw-tab-dropdown>
+    </template>
+    <template #panels>
+      <uw-tab-panel
+          v-for="(tab, i) in displayedTabs"
+          :key="i"
+          :panel-id="panleId(tab)">
+        <slot :tab="tab" />
+      </uw-tab-panel>
+      <uw-tab-panel v-if="selectedOption > 0" panel-id="dropdown">
+        <slot :tab="dropdownTabs[selectedOption]" />
+      </uw-tab-panel>
+    </template>
   </uw-tabs>
 </template>
 
@@ -60,12 +51,16 @@ import {
   faChevronDown,
 } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '../_templates/tabs/tabs.vue';
-import Tab from '../_templates/tabs/tab.vue';
+import TabButton from '../_templates/tabs/button.vue';
+import TabDropdown from '../_templates/tabs/dropdown.vue';
+import TabPanel from '../_templates/tabs/panel.vue';
 
 export default {
   components: {
     'uw-tabs': Tabs,
-    'uw-tab': Tab,
+    'uw-tab-button': TabButton,
+    'uw-tab-dropdown': TabDropdown,
+    'uw-tab-panel': TabPanel,
   },
   model: {
     prop: 'selectedTerm',
@@ -96,30 +91,25 @@ export default {
       tab.quarter.toLowerCase() == this.currentQuarter &&
       tab.year == this.currentYear,
     );
-
     // Bug on Mac OS:
     // 1. Click on Past Terms, click somewhere else to close the dropdown.
     // 2. Click on the Past terms again. can't select in the dropdown
     let displayedTabs = this.allTabs.slice(currentIndex, currentIndex + 3);
     let dropdownTabs = this.allTabs.slice(0, -3).reverse();
-
     let dropdownTabsSelectable = dropdownTabs.map((tab, i) => {
       return {
         value: i + 1,
         text: `${tab.quarter} '${tab.year % 100}`,
       };
     });
-
     dropdownTabs.unshift({label: 'Past Terms'});
     dropdownTabsSelectable.unshift({
       value: 0,
       text: 'Past Terms',
       disabled: true,
     });
-
     let selectedTab = 0;
     let selectedOption = 0;
-
     if (this.selectedTerm) {
       let i = displayedTabs.findIndex((tabData) =>
         `${tabData.year},${tabData.quarter?.toLowerCase()}` === this.selectedTerm
@@ -136,7 +126,6 @@ export default {
         }
       }
     }
-
     let selectedTermInner = this.selectedTerm;
     if (!selectedTermInner) {
       if (selectedTab < 3) {
@@ -145,7 +134,6 @@ export default {
         selectedTermInner = dropdownTabs[selectedOption].label;
       }
     }
-
     return {
       selectedTab,
       selectedOption,
@@ -157,32 +145,32 @@ export default {
     };
   },
   watch: {
+    selectedOption(newValue, oldValue) {
+      this.updateSelectedTerm();
+    },
+    selectedTab() {
+      this.updateSelectedTerm();
+    },
     selectedTermInner(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.$emit('selected', newValue);
-        this.$logger.termSelected(newValue);
-      }
-    }
+      this.$emit('selected', newValue);
+      this.$logger.termSelected(newValue);
+    },
   },
   created() {
     this.$logger.termSelected(this.selectedTermInner);
   },
   methods: {
-    displayedTabChange(newIndex, _prevIndex, bvEvent) {
-      if (newIndex < 3) {
-        this.selectedTermInner = this.displayedTabs[newIndex].label;
-        this.selectedOption = 0;
+    updateSelectedTerm() {
+      if (this.selectedTab < 3) {
+        this.selectedTermInner = this.displayedTabs[this.selectedTab].label;
       } else {
-        if (this.selectedOption === 0) {
-          bvEvent.preventDefault();
-        }
+        this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
       }
     },
-    optionTabChange() {
-      this.selectedTermInner = this.dropdownTabs[this.selectedOption].label;
-      this.selectedTab = 3;
+    panleId(tab) {
+      return tab.quarter + (tab.year % 100);
     },
-  }
+  },
 };
 </script>
 

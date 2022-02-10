@@ -159,6 +159,19 @@ export default {
     },
     hasAnyKeys(obj) {
       return Object.entries(obj).length > 0;
+    },
+    classesToClassDict(classes) {
+      // converts a html class attribute string to a dictionary
+      let classDict = {};
+      if (classes instanceof String || typeof(classes) === 'string') {
+        classes.split(/\s+/).forEach((c) => classDict[c] = true);
+      } else if (classes instanceof Array) {
+        classes.forEach((c) => classDict[c] = true);
+      } else if (classes) {
+        // Want to copy here?
+        Object.entries(classes).forEach(([key, value]) => classDict[key] = value);
+      }
+      return classDict;
     }
   },
 }
