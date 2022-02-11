@@ -1,10 +1,26 @@
+<template>
+  <div class="tabs">
+    <div :class="navWrapperClassesComputed">
+      <ul role="tablist" :class="navClassesComputed">
+        <slot name="tabs">
+          <!-- uw-tab-button and uw-tab-dropdown components with panelId-->
+        </slot>
+      </ul>
+    </div>
+    <div class="tab-content">
+      <slot name="panels">
+        <!-- uw-tab-panel components with panelId matching tabs-->
+      </slot>
+    </div>
+  </div>
+</template>
+
 <script>
-import { Tab } from 'bootstrap';
-import UwTab from './tab.vue';
 
 export default {
   model: {
-    prop: 'tabIndex',
+    // allows v-model binding on activeTabIdx
+    prop: 'activeTabIdx',
     event: 'selected'
   },
   props: {
@@ -16,7 +32,7 @@ export default {
       type: [String, Array, Object],
       default: '',
     },
-    tabIndex: {
+    activeTabIdx: {
       type: Number,
       default: 0,
     },
@@ -37,25 +53,36 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      actualTabs: {},
-      eventHandlers: {},
-      // TODO: not used right now
-      firstRender: true,
-      // Unique identifier for a tab component
-      tab_cid: Object.values(UwTab['_Ctor'])[0].cid,
-    };
-  },
   computed: {
+    tabs() {
+      // this is a check to remove any components in the scoped slot
+      // that are undefined. Vue sometimes adds undefined components.
+      var filtered = this.$scopedSlots.tabs();
+      filtered = filtered.filter(record => {
+          return record.tag
+      });
+      return filtered
+    },
+    index: {
+        get: function(){
+          return this.activeTabIdx;
+        },
+        set: function(newValue){
+          this.$emit('selected', newValue);
+        }   
+    },
+    activePanelId() {
+      // currently visible panel
+      return this.tabs[this.activeTabIdx].componentOptions.propsData.panelId
+    },
     navWrapperClassesComputed() {
       let wrapperClasses = this.classesToClassDict(this.navWrapperClass);
-
       return wrapperClasses;
     },
     navClassesComputed() {
       let navClass = this.classesToClassDict(this.navClass);
-      
+      navClass['nav'] = true;
+      navClass['myuw-tabs'] = true;
       if (this.pills) {
         navClass['nav-pills'] = true;
         navClass['nav-tabs'] = false;
@@ -69,187 +96,50 @@ export default {
       if (this.small) {
         navClass['small'] = true;
       }
-
+      if (this.bottomBorder) {
+        navClass['myuw-bottom-border'] = true;
+      }
       return navClass;
-    }
-  },
-  watch: {
-    actualTabs(actualTabs) {
-      Object.entries(actualTabs).forEach(([id, tab], i) => {
-        if (!(id in this.eventHandlers)) {
-          let tabEl = document
-            .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${id}"]`);
-          tabEl.addEventListener('show.bs.tab', (event) => {
-            let selected = this.decodeId(event.target.attributes['data-bs-target'].value);
-            let oldSelected = this.decodeId(event.relatedTarget.attributes['data-bs-target'].value);
-            this.$emit('activate-tab', selected.index, oldSelected.index, event);
-            this.$nextTick(() => {
-              if (!event.defaultPrevented) {
-                this.$emit('selected', selected.index);
-              }
-            });
-          });
-        }
-      });
     },
   },
-  mounted() {
-    document.addEventListener('keydown', (keyEvt) => {
-      if (document.activeElement?.getAttribute('data-bs-target')?.substr(1) in this.actualTabs) {
-        let current = this.tabIndex;
-        if (keyEvt.key === 'ArrowLeft' && current > 0) {
-          current -= 1;
-        } else if (keyEvt.key === 'ArrowRight' && current < Object.keys(this.actualTabs).length - 1) {
-          current += 1;
-        }
-        if (current != this.tabIndex) {
-          var tabEl = document
-            .querySelector(`button[data-bs-toggle="tab"][data-bs-target="#${this.genId(current, this.$meta.uid)}"]`);
-          tabEl.focus();
-          let tab = Tab.getOrCreateInstance(tabEl);
-          tab.show();
-        }
-      }
+  created() {
+    this.$on("setActivePanel", (panelId) => {
+      // child tab components emit setActivePanel when
+      // a tab is activated
+      this.setActivePanel(panelId);
+    });
+    this.$on("moveActiveTabLeft", () => {
+      // on pressing the left keyboard key, shift the index left
+      this.moveActiveTabLeft();
+    });
+    this.$on("moveActiveTabRight", () => {
+      // on pressing the right keyboard key, shift the index right
+      this.moveActiveTabRight();
     });
   },
   methods: {
-    classesToClassDict(classes) {
-      let classDict = {};
-
-      if (classes instanceof String || typeof(classes) === 'string') {
-        classes.split(/\s+/).forEach((c) => classDict[c] = true);
-      } else if (classes instanceof Array) {
-        classes.forEach((c) => classDict[c] = true);
-      } else if (classes) {
-        // Want to copy here?
-        Object.entries(classes).forEach(([key, value]) => classDict[key] = value);
-      }
-
-      return classDict;
+    setActivePanel: function(panelId) {
+      // find the index of the tab with the specified panelId
+      // and set it as the index
+      let idx = 0;
+      this.tabs.forEach((tab, i) => {
+        if(tab.componentOptions &&
+           tab.componentOptions.propsData.panelId == panelId) {
+          idx = i
+        }          
+      });
+      this.index = idx;
     },
-    genId(index, groupIndex) {
-      return `uw-tab-${index}-in-group-${groupIndex}`;
+    moveActiveTabLeft: function() {
+      // move active tab to the left, not exceeding first tab
+      if (this.index > 0)
+        this.index -= 1;
     },
-    decodeId(id) {
-      const selectGroups = id.match(/uw-tab-(\d+)-in-group-(\d+)/);
-      return {index: parseInt(selectGroups[1]), group: parseInt(selectGroups[2])};
+    moveActiveTabRight: function() {
+      // move active tab to the right, not exceeding last tab
+      if (this.index < this.tabs.length - 1)
+        this.index += 1;
     },
-  },
-  render: function(createElement) {
-    let liElements = [];
-    let tabNodes = this.$slots.default
-      .filter((child) => child.componentOptions)
-      .filter((child) => child.componentOptions.Ctor.cid == this.tab_cid);
-    
-    tabNodes.forEach((tab, i) => {
-      // Set a id for the tab
-      tab.data.attrs.id = this.genId(i, this.$meta.uid);
-
-      let li = [];
-      let createButtonWith = (content) => {
-        return createElement(
-          'button',
-          {
-            class: {
-              'nav-link': true,
-              'text-nowrap': true,
-              'text-uppercase': true,
-              'active': this.tabIndex === i,
-              ...this.classesToClassDict(tab.componentOptions.propsData.titleLinkClass),
-            },
-            attrs: {
-              'data-bs-toggle': 'tab',
-              'data-bs-target': `#${tab.data.attrs.id}`,
-              'type': 'button',
-              'role': 'tab',
-              'aria-controls': `${tab.data.attrs.id}`,
-              'aria-selected': this.tabIndex === i,
-              'tabindex': this.tabIndex === i ? 0 : -1,
-            },
-          },
-          content,
-        );
-      };
-      let createLiWith = (content) => {
-        return createElement(
-          'li',
-          {
-            class: {
-              'nav-item': true,
-              ...this.classesToClassDict(tab.componentOptions.propsData.titleItemClass),
-            },
-            attrs: {
-              role: 'presentation',
-            },
-          },
-          content,
-        );
-      };
-
-      if (tab.data.attrs.id in this.actualTabs) {
-        let realTab = this.actualTabs[tab.data.attrs.id];
-
-        if (realTab.$slots['title-no-button']) {
-          li = createLiWith([realTab.$slots['title-no-button']]);
-        } else if (realTab.$slots.title) {
-          li = createLiWith([createButtonWith(realTab.$slots.title)]);
-        } else {
-          li = createLiWith([createButtonWith(realTab.title)]);
-        }
-      } else {
-        li = createLiWith([createButtonWith("")]);
-      }
-
-      liElements.push(li);
-    });
-
-    let ul = createElement(
-      'ul',
-      {
-        class: {
-          nav: true,
-          'myuw-tabs': true,
-          'myuw-bottom-border': this.bottomBorder, 
-          ...this.navClassesComputed,
-        },
-        attrs: {
-          role: 'tablist',
-        }
-      },
-      liElements,
-    );
-    let ulWrapper = createElement(
-      'div',
-      {
-        class: this.navWrapperClassesComputed,
-      },
-      [ul],
-    );
-
-    tabNodes[this.tabIndex].data.class = {
-      show: true,
-      active: true,
-    };
-    let tabs = [createElement('div', { class: { 'tab-content': true } }, this.$slots.default)];
-    let elm = createElement('div', [ulWrapper].concat(tabs));
-
-    this.firstRender = false;
-    return elm;
-  },
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-.myuw-tabs {
-  .nav-link.active { 
-    background: transparent;
-    font-weight: bold; 
-  }
-}
-.myuw-bottom-border {
-  .nav-link { border-bottom: 0.3125rem solid #ddd; }
-  .nav-link.active {
-    border-bottom-color: #000;
-  }
-}
-</style>

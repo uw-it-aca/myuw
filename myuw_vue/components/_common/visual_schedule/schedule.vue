@@ -15,24 +15,27 @@
 
     <template #card-body>
       <!-- schedule tabs -->
-      <uw-tabs v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
-              v-model="tabIndex" pills bottom-border
-              nav-wrapper-class="mb-3 p-0"
-      >
-        <uw-tab v-for="(period, i) in periods" :key="i" :title="period.title"
-               title-item-class="text-nowrap text-uppercase
-               myuw-text-xs me-2 mb-1"
-               title-link-class="rounded-0 px-2 py-1 h-100
-               text-body"
-               :active="period.id == activePeriod.id"
-        >
-          <!-- tab content -->
-          <uw-schedule-tab
-            :period="period"
-            :term="getTermData"
-            :is-last-tab="i === periods.length - 1"
-          />
-        </uw-tab>
+      <uw-tabs
+           v-if="!allSchedules[termLabel].noPeriodsNoMeetings"
+           v-model="tabIndex"
+           pills bottom-border nav-wrapper-class="mb-3 p-0">
+        <template #tabs>
+          <uw-tab-button v-for="(period, i) in periods" :key="i" 
+              :panel-id="period.id"
+              title-item-class="myuw-text-xs me-2 mb-1"
+              title-link-class="rounded-0 text-body text-uppercase">
+            {{period.title}}
+          </uw-tab-button>
+        </template>
+        <template #panels>
+          <uw-tab-panel v-for="(period, i) in periods" :key="i" :panel-id="period.id">
+            <uw-schedule-tab
+              :period="period"
+              :term="getTermData"
+              :is-last-tab="i === periods.length - 1"
+            />
+          </uw-tab-panel>
+        </template>
       </uw-tabs>
 
       <div v-else>
@@ -66,7 +69,8 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import Tabs from '../../_templates/tabs/tabs.vue';
-import Tab from '../../_templates/tabs/tab.vue';
+import TabButton from '../../_templates/tabs/button.vue';
+import TabPanel from '../../_templates/tabs/panel.vue';
 import ScheduleTab from './schedule-tab.vue';
 import CourseSection from './course-section.vue';
 
@@ -74,7 +78,8 @@ export default {
   components: {
     'uw-card': Card,
     'uw-tabs': Tabs,
-    'uw-tab': Tab,
+    'uw-tab-button': TabButton,
+    'uw-tab-panel': TabPanel,
     'uw-schedule-tab': ScheduleTab,
     'uw-course-section': CourseSection,
   },
@@ -86,7 +91,7 @@ export default {
   },
   data: function() {
     return {
-      tabIndex: 0,
+      activePeriodIdx: undefined,
     };
   },
   computed: {
@@ -126,16 +131,28 @@ export default {
       }
       return name;
     },
-    activePeriod: function() {
-      for (const i in Object.keys(this.periods)) {
-        if (
-          !this.periods[i].end_date ||
-          this.periods[i].end_date >= this.nowDatetime().clone().hour(0).minute(0)
-        ) {
-          return this.periods[i];
+    tabIndex: {
+      get: function() {
+        if (this.activePeriodIdx == undefined && this.periods) {
+          // default to period based on comparision_date
+          for (const i in Object.keys(this.periods)) {
+            const index = parseInt(i);
+            const periodEnd = this.periods[index].end_date;
+            if (!periodEnd || this.nowDatetime() <= this.endOfDay(periodEnd)) {
+              return index;
+            }
+          }
+          return this.periods.length - 1;  // unnecessary?
+        } else {
+          return this.activePeriodIdx;
         }
+      },
+      set: function(newValue) {
+        this.activePeriodIdx = newValue;
       }
-      return this.periods[Object.keys(this.periods)[this.periods.length - 1]];
+    },
+    activePeriod: function() {
+      return this.periods[this.activePeriodIdx];
     },
     allMeetings() {
       return this.allSchedules[this.termLabel]
@@ -159,6 +176,9 @@ export default {
     ...mapActions('visual_schedule', ['fetch']),
     formatDate(t) {
       return this.dayjs(t).format('ddd, MMM D');
+    },
+    endOfDay(aday) {
+      return aday.add(23, 'hour').add(59, 'minute');
     },
   },
 };
