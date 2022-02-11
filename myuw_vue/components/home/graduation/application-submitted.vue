@@ -5,12 +5,13 @@
     :errored="showError"
   >
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
+      <h2 v-if="hasGrantedDegree" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Congratulations, You've Graduated!</h2>
+      <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
     </template>
     <template #card-body>
       <div class="row">
         <div class="col-8">
-          <p class="myuw-text-md">
+          <p v-if="hasActiveApplication" class="myuw-text-md">
             <strong>You're on your way!</strong> We're here to help you get to the finish line!
           </p>
           <div v-if="hasActiveApplication">
@@ -76,7 +77,7 @@
             </h3>
             <ul class="list-style myuw-text-md">
               <li>
-                During and after the final quarter ends use <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a> to make sure that your final quarter course load
+                During and after the final quarter ends, use <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a> to make sure that your final quarter course load
                 will satisfy your degree requirements and that all your grades are recorded.
                 .
               </li>
@@ -93,7 +94,13 @@
                 <a href="https://www.washington.edu/graduation/after-graduation/"
                 >after graduation</a>.
               </li>
-              <li>
+              <li v-if="bothell">
+                Find out how to <a 
+                href="https://www.uwb.edu/registration/enrollment-verify"
+                >provide degree certification</a>
+                to other parties.
+              </li>
+              <li v-if="seattle && tacoma">
                 Find out how to <a 
                 href="https://registrar.washington.edu/students/enrollment-and-degree-verification/"
                 >provide degree certification</a>
@@ -529,4 +536,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.badge {white-space: normal;}
+</style>
