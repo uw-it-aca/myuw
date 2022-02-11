@@ -10,7 +10,7 @@
     </template>
     <template #card-body>
       <p class="myuw-text-md">
-        <strong>To graduate, you'll need apply.</strong> Don't worry, it's an easy
+        <strong>To graduate, you'll need to apply.</strong> Don't worry, it's an easy
         process that you complete with your departmental adviser!
       </p>
     </template>
