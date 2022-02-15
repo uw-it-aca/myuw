@@ -5,8 +5,12 @@
     :errored="showError"
   >
     <template #card-heading>
-      <h2 v-if="hasGrantedDegree" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Congratulations, You've Graduated!</h2>
-      <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
+      <h2 v-if="hasGrantedDegree" class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+        Congratulations, You've Graduated!
+      </h2>
+      <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
+        Graduation Preparation
+      </h2>
     </template>
     <template #card-body>
       <div class="row gx-md-4">
@@ -199,7 +203,8 @@
             </h3>
             <ul class="list-style myuw-text-md">
               <li>
-                During and after the final quarter ends, use <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>
+                During and after the final quarter ends, use
+                <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>
                 to make sure that your final quarter course load will satisfy your degree
                 requirements and that all your grades are recorded.
               </li>
