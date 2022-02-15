@@ -28,29 +28,41 @@
     </div>
 
     <uw-tabs
-      title="Views"
       pills
       bottom-border
       nav-wrapper-class="mb-3 p-0 myuw-print-hidden"
     >
-      <uw-tab
-        title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-        title-link-class="rounded-0 px-2 py-1 h-100 text-body"
-        active
-      >
-        <template #title> <font-awesome-icon :icon="faTable" /> Table </template>
-        <uw-table-view :section="section" :show-joint-course-stud="showJointCourse" />
-      </uw-tab>
-      <uw-tab
-        title-item-class="text-nowrap myuw-text-md me-2 mb-1"
-        title-link-class="rounded-0 px-2 py-1 h-100 text-body"
-      >
-        <template #title> <font-awesome-icon :icon="faUserCircle" /> Photo Grid </template>
-        <uw-photo-list
-          :registrations="section.registrations"
-          :show-joint-course-stud="showJointCourse"
-        />
-      </uw-tab>
+      <template #tabs>
+        <uw-tab-button panel-id="table"
+            title-item-class="me-2 mb-1"
+            title-link-class="rounded-0 text-body">
+          <font-awesome-icon
+            :icon="faTable"
+            class="align-baseline"
+          />
+          Table
+        </uw-tab-button>
+        <uw-tab-button panel-id="photo-grid"
+            title-item-class="me-2 mb-1"
+            title-link-class="rounded-0 text-body">
+          <font-awesome-icon
+            :icon="faUserCircle"
+            class="align-baseline"
+          />
+          Photo Grid
+        </uw-tab-button>
+      </template>
+      <template #panels>
+        <uw-tab-panel panel-id="table">
+          <uw-table-view :section="section" :show-joint-course-stud="showJointCourse" />
+        </uw-tab-panel>
+        <uw-tab-panel panel-id="photo-grid">
+          <uw-photo-list
+            :registrations="section.registrations"
+            :show-joint-course-stud="showJointCourse"
+          />
+        </uw-tab-panel>
+      </template>
     </uw-tabs>
   </div>
 </template>
@@ -58,14 +70,16 @@
 <script>
 import { faDownload, faPrint, faTable, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '../../_templates/tabs/tabs.vue';
-import Tab from '../../_templates/tabs/tab.vue';
+import TabButton from '../../_templates/tabs/button.vue';
+import TabPanel from '../../_templates/tabs/panel.vue';
 import TableView from './table-view.vue';
 import PhotoList from './photo-list.vue';
 
 export default {
   components: {
     'uw-tabs': Tabs,
-    'uw-tab': Tab,
+    'uw-tab-button': TabButton,
+    'uw-tab-panel': TabPanel,
     'uw-table-view': TableView,
     'uw-photo-list': PhotoList,
   },

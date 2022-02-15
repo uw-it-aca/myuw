@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-import { shallowMount } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 import { createLocalVue, deepClone } from './helper';
 
 import Vuex from 'vuex';
@@ -15,8 +15,10 @@ import mockEventsStud20210928 from
 import UwCard from '../components/_templates/card.vue';
 import AcadCalTabs from '../components/calendar/tabs.vue';
 import AcadCalCards from '../components/calendar/calendar-cards.vue';
-import UwTabs from '../components/_templates/tabs/tabs.vue';
-import UwTab from '../components/_templates/tabs/tab.vue';
+import Tabs from '../components/_templates/tabs/tabs.vue';
+import TabButton from '../components/_templates/tabs/button.vue';
+import TabPanel from '../components/_templates/tabs/panel.vue';
+
 
 const localVue = createLocalVue(Vuex);
 
@@ -35,11 +37,11 @@ describe('Academic Calendar Page Content', () => {
 
   it('Faculty Content', async () => {
     axios.get.mockResolvedValue({data: mockEventFaculty20210701, status: 200});
-    let wrapper = shallowMount(AcadCalTabs, { store, localVue });
+    let wrapper = mount(AcadCalTabs, { store, localVue });
     await new Promise(setImmediate);
-
-    expect(wrapper.findComponent(UwTabs).exists()).toBe(true);
-    expect(wrapper.findAllComponents(UwTab).length).toBe(2);
+    expect(wrapper.findComponent(Tabs).exists()).toBe(true);
+    expect(wrapper.findAllComponents(TabButton).length).toBe(2);
+    expect(wrapper.findAllComponents(TabPanel).length).toBe(2);
     expect(wrapper.vm.isReady).toBeTruthy();
     expect(wrapper.vm.allEvents.length).toBe(93);
     expect(wrapper.vm.breakEvents.length).toBe(16);

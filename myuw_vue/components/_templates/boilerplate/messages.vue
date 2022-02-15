@@ -9,10 +9,9 @@
       </h2>
       <template v-if="bannerMessages.length > 0" id="message_banner_location">
         <div v-for="(message, i) in bannerMessages" id="messages" :key="i"
-             class="message px-3 py-2"
-        >
-          {{ message }}
-        </div>
+          class="message px-3 py-2"
+          v-html="message"
+        ></div>
       </template>
       <div v-if="displayOnboardMessage" class="px-3 py-2">
         New here?
