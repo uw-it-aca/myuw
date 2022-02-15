@@ -23,7 +23,7 @@
               <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
                 <span v-if="hasMisconduct(degree)">
                   <p class="myuw-text-md mb-0">
-                    Administrative hold, please contact the graduation office at
+                    Administrative hold – please contact the graduation office at
                     <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
                   </p>
                   <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
@@ -32,7 +32,7 @@
                 </span>
                 <span v-else-if="isIncomplete(degree)">
                   <p class="myuw-text-md mb-0">
-                    <em>Application inactive</em> – please contact your departmental advisor.
+                    <em>Application inactive</em> – please contact your departmental advisor
                   </p>
                   <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
@@ -40,7 +40,7 @@
                 </span>
                 <span v-else-if="isGranted(degree)">
                   <p class="myuw-text-md mb-0">
-                    Degree granted for <em>{{ degreeTerm(degree) }}</em>
+                    <em>Degree granted</em> for {{ degreeTerm(degree) }}
                   </p>
                   <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
@@ -48,7 +48,7 @@
                 </span>
                 <span v-else>
                   <p class="myuw-text-md mb-0">
-                    Application active for <em>{{ degreeTerm(degree) }}</em>
+                    <em>Application active</em> for {{ degreeTerm(degree) }}
                   </p>
                   <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
@@ -62,7 +62,7 @@
               <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
                 <span v-if="hasMisconduct(degree)">
                   <p class="myuw-text-md mb-0">
-                    Administrative hold, please contact the graduation office at
+                    Administrative hold – please contact the graduation office at
                     <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
                   </p>
                   <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
@@ -71,7 +71,7 @@
                 </span>
                 <span v-else-if="isIncomplete(degree)">
                   <p class="myuw-text-md mb-0">
-                    <em>Application inactive</em> – please contact your departmental advisor.
+                    <em>Application inactive</em> – please contact your departmental advisor
                   </p>
                   <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
@@ -79,7 +79,7 @@
                 </span>
                 <span v-else-if="isGranted(degree)">
                   <p class="myuw-text-md mb-0">
-                    Degree granted for <em>{{ degreeTerm(degree) }}</em>
+                    <em>Degree granted</em> for {{ degreeTerm(degree) }}
                   </p>
                   <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
@@ -87,7 +87,7 @@
                 </span>
                 <span v-else >
                   <p class="myuw-text-md mb-0">
-                    Application active for <em>{{ degreeTerm(degree) }}</em>
+                    <em>Application active</em> for {{ degreeTerm(degree) }}
                   </p>
                   <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
@@ -101,7 +101,7 @@
               <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
                 <span v-if="hasMisconduct(degree)">
                   <p class="myuw-text-md mb-0">
-                    Administrative hold, please contact the graduation office at
+                    Administrative hold – please contact the graduation office at
                     <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
                   </p>
                   <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
@@ -110,7 +110,7 @@
                 </span>
                 <span v-else-if="isIncomplete(degree)">
                   <p class="myuw-text-md mb-0">
-                    <em>Application inactive</em> – please contact your departmental advisor.
+                    <em>Application inactive</em> – please contact your departmental advisor
                   </p>
                   <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
