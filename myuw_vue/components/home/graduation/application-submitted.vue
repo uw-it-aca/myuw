@@ -9,13 +9,135 @@
       <h2 v-else class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Graduation Preparation</h2>
     </template>
     <template #card-body>
-      <div class="row">
-        <div class="col-8">
+      <div class="row gx-md-4">
+        <div class="col-12 order-md-2 col-md-4 mb-md-0 mb-3">
+          <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
+            Graduation application status
+          </h3>
+          <div v-if="doubleDegreesInDiffTerms">
+            <ul class="list-unstyled mb-0 myuw-text-md">
+              <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
+                <span v-if="hasMisconduct(degree)">
+                  <p class="myuw-text-md mb-0">
+                    Administrative hold, please contact the graduation office at
+                    <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
+                  </p>
+                  <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else-if="isIncomplete(degree)">
+                  <p class="myuw-text-md mb-0">
+                    <em>Application inactive</em> – please contact your departmental advisor.
+                  </p>
+                  <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else-if="isGranted(degree)">
+                  <p class="myuw-text-md mb-0">
+                    Degree granted for <em>{{ degreeTerm(degree) }}</em>
+                  </p>
+                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else>
+                  <p class="myuw-text-md mb-0">
+                    Application active for <em>{{ degreeTerm(degree) }}</em>
+                  </p>
+                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div v-else-if="doubleDegreeDiffStatus">
+            <ul class="list-unstyled mb-0 myuw-text-md">
+              <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
+                <span v-if="hasMisconduct(degree)">
+                  <p class="myuw-text-md mb-0">
+                    Administrative hold, please contact the graduation office at
+                    <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
+                  </p>
+                  <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else-if="isIncomplete(degree)">
+                  <p class="myuw-text-md mb-0">
+                    <em>Application inactive</em> – please contact your departmental advisor.
+                  </p>
+                  <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else-if="isGranted(degree)">
+                  <p class="myuw-text-md mb-0">
+                    Degree granted for <em>{{ degreeTerm(degree) }}</em>
+                  </p>
+                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else >
+                  <p class="myuw-text-md mb-0">
+                    Application active for <em>{{ degreeTerm(degree) }}</em>
+                  </p>
+                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div v-else>
+            <ul class="list-unstyled mb-0">
+              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
+                <span v-if="hasMisconduct(degree)">
+                  <p class="myuw-text-md mb-0">
+                    Administrative hold, please contact the graduation office at
+                    <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
+                  </p>
+                  <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else-if="isIncomplete(degree)">
+                  <p class="myuw-text-md mb-0">
+                    <em>Application inactive</em> – please contact your departmental advisor.
+                  </p>
+                  <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else-if="isGranted(degrees[0])">
+                  <p class="myuw-text-md mb-0">
+                    Degree granted for <em>{{ degreeTerm(degrees[0]) }}</em>
+                  </p>
+                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+                <span v-else>
+                  <p class="myuw-text-md mb-0">
+                    Application active for <em>{{ degreeTerm(degrees[0]) }}</em>
+                  </p>              
+                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
+                    {{ degree.title }}
+                  </span>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12 order-md-1 col-md-8">
           <p v-if="hasActiveApplication" class="myuw-text-md">
             <strong>You're on your way!</strong> We're here to help you get to the finish line!
           </p>
           <div v-if="hasActiveApplication">
-            <h3 class="h6 text-dark mb-0">
+            <h3 class="h6 myuw-font-encode-sans">
               Get an overview
             </h3>
             <ul class="list-style myuw-text-md">
@@ -53,7 +175,7 @@
           </div>
 
           <div v-if="hasActiveApplBeforeEarnedTerm">
-            <h3 class="h6 text-dark mb-0">
+            <h3 class="h6 myuw-font-encode-sans">
               Ensure that you stay on track
             </h3>
             <ul class="list-style myuw-text-md">
@@ -72,7 +194,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
-            <h3 class="h6 text-dark mb-0">
+            <h3 class="h6 myuw-font-encode-sans">
               Run final degree audits
             </h3>
             <ul class="list-style myuw-text-md">
@@ -85,7 +207,7 @@
           </div>
 
           <div v-if="hasGrantedDegree">
-            <h3 class="h6 text-dark mb-0">
+            <h3 class="h6 myuw-font-encode-sans">
               Post-Graduation Success
             </h3>
             <ul class="list-style myuw-text-md">
@@ -110,7 +232,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
-            <h3 class="h6 text-dark mb-0">
+            <h3 class="h6 myuw-font-encode-sans">
               Choose to take part in commencement ceremony
             </h3>
             <ul class="list-unstyled myuw-text-md">
@@ -152,7 +274,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringEarnedTerm">
-            <h3 class="h6 text-dark mb-0">
+            <h3 class="h6 myuw-font-encode-sans">
               Verify that your information and data will not be lost
             </h3>
             <ul class="list-unstyled myuw-text-md">
@@ -222,85 +344,14 @@
             </ul>
           </div>
         </div>
-        <div class="col-4">
-          <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md">
-            Graduation application status
-          </h3>
-          <div v-if="doubleDegreesInDiffTerms">
-            <ul class="list-unstyled mb-0 myuw-text-md">
-              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <p v-if="hasMisconduct(degree)" class="myuw-text-md mb-0">
-                  Administrative hold, please contact the graduation office at
-                  <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
-                </p>
-                <p v-else-if="isIncomplete(degree)" class="myuw-text-md mb-0">
-                  Application inactive, please contact your departmental advisor.
-                </p>
-                <p v-else-if="isGranted(degree)" class="myuw-text-md mb-0">
-                  Degree granted for <em>{{ degreeTerm(degree) }}</em>
-                </p>
-                <p v-else class="myuw-text-md mb-0">
-                  Application active for <em>{{ degreeTerm(degree) }}</em>
-                </p>
-                <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
-                  {{ degree.title }}
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div v-else-if="doubleDegreeDiffStatus">
-            <ul class="list-unstyled mb-0 myuw-text-md">
-              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <p v-if="hasMisconduct(degree)" class="myuw-text-md mb-0">
-                  Administrative hold, please contact the graduation office at
-                  <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
-                </p>
-                <p v-else-if="isIncomplete(degree)" class="myuw-text-md mb-0">
-                  Application inactive, please contact your departmental advisor.
-                </p>
-                <p v-else-if="isGranted(degree)" class="myuw-text-md mb-0">
-                  Degree granted for <em>{{ degreeTerm(degree) }}</em>
-                </p>
-                <p v-else class="mb-0">
-                  Application active for <em>{{ degreeTerm(degree) }}</em>
-                </p>
-                <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
-                  {{ degree.title }}
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div v-else>
-            <p v-if="hasMisconduct(degrees[0])" class="myuw-text-md mb-0">
-              Administrative hold, please contact the graduation office at
-              <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
-            </p>
-            <p v-else-if="isIncomplete(degrees[0])" class="myuw-text-md mb-0">
-              Application inactive, please contact your departmental advisor.
-            </p>
-            <p v-else-if="isGranted(degrees[0])" class="myuw-text-md mb-0">
-              Degree granted for <em>{{ degreeTerm(degrees[0]) }}</em>
-            </p>
-            <p v-else class="mb-0">
-              Application active for <em>{{ degreeTerm(degrees[0]) }}</em>
-            </p>
-            <ul class="list-unstyled mb-0">
-              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <span class="badge bg-success-light fw-normal myuw-text-md text-dark p-2">
-                  {{ degree.title }}
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </template>
     <template #card-disclosure>
       <uw-collapse id="collapseGradSupportAndHelp" v-model="isOpen">
-        <h3 class="h6 text-dark mb-0">
+        <h3 class="h6 myuw-font-encode-sans">
             Get Help and Support
         </h3>
-        <p class="myuw-text-md">
+        <p class="myuw-text-md mb-1">
           Moving on from the UW can be overwhelming. If you are worried, confused, or
           uncertain about what is next, you are not alone!
         </p>
