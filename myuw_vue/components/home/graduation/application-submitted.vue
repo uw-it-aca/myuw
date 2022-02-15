@@ -16,7 +16,7 @@
       <div class="row gx-md-4">
         <div class="col-12 order-md-2 col-md-4 mb-md-0 mb-3">
           <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
-            Graduation application status
+            Graduation Application Status
           </h3>
           <div v-if="doubleDegreesInDiffTerms">
             <ul class="list-unstyled mb-0 myuw-text-md">
