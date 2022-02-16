@@ -4,7 +4,8 @@
 import logging
 import traceback
 from myuw.dao import get_netid_of_current_user
-from myuw.dao.gws import is_student, is_applicant
+from myuw.dao.enrollment import get_latest_class_level
+from myuw.dao.gws import is_applicant, is_student
 from myuw.dao.pws import get_display_name_of_current_user
 from myuw.dao.password import get_pw_json
 from myuw.dao.student_profile import get_applicant_profile, get_student_profile
@@ -37,7 +38,7 @@ class MyProfile(ProtectedAPI):
                                prefetch_password=True,
                                prefetch_sws_person=True)
 
-            if is_student(request):
+            if is_student(request) or get_latest_class_level(request):
                 response = get_student_profile(request)
             elif is_applicant(request):
                 response = get_applicant_profile(request)

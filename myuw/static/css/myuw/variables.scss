@@ -12,7 +12,12 @@ $custom-colors: (
   'danger': #a94442,
   'warning': #f5d300,
 
-   // myuw custom colors
+  // myuw status colors
+  'success-light': #ebffe2,
+  'danger-light': #f9f1f1,
+
+
+   // myuw brand colors
    'purple': #4d307f, // uw purple
    'dark-purple': #452a78, // thin bar
    'beige': #e8e3d3, // tan
@@ -21,6 +26,7 @@ $custom-colors: (
    'gold': #ffbc24, //uw gold
    'teal': #4c7286, // uw teal
    'light-gray': #e8e8e8, // uw light gray
+   'dark-gray': #595959, // uw dark gray
  
    // myuw course colors
    'c1': #2E6884,
@@ -39,6 +45,7 @@ $custom-colors: (
    'c7a': #653FB2,
    'c8': #352E9B,
    'c8a': #473EC5,
+
 );
 
 // override global line height (1.5rem default)
