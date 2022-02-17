@@ -171,9 +171,9 @@
                 </a> at the Center for International Education.
               </li>
                <li v-if="tacoma">
-                Get an
+                Review the
                 <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
-                overview of the UW Tacoma graduation process</a>.
+                UW Tacoma Graduation Checklist</a> for an overview of tasks.
               </li>
             </ul>
           </div>
@@ -188,7 +188,8 @@
                 href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
               </li>
               <li>
-                Plan your remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>.
+                Plan your remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>
+                and with your adviser.
               </li>
               <li>
                 <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm
@@ -207,6 +208,15 @@
                 <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>
                 to make sure that your final quarter course load will satisfy your degree
                 requirements and that all your grades are recorded.
+              </li>
+              <li>
+                Contact your advisor if anything appears inaccurate.
+              </li>
+              <li v-if="tacoma">
+                If using transfer coursework to meet final requirements, request and
+                <em>official transcript</em> be sent to the
+                <a href="https://www.tacoma.uw.edu/admissions/submitting-transcripts">Office of Admissions</a>
+                following the end of the quarter.
               </li>
             </ul>
           </div>
