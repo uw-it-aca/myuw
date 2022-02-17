@@ -69,7 +69,6 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertTrue(affiliations["past_stud"])
         self.assertTrue(affiliations["past_employee"])
         self.assertTrue(affiliations["alum_asso"])
-        self.assertFalse(affiliations["registered_stud"])
 
     def test_is_retiree(self):
         now_request = get_request_with_user('retirestaff')
@@ -90,6 +89,12 @@ class TestAffilliationDao(TransactionTestCase):
         self.assertFalse(affiliations.get("official_pce"))
         self.assertTrue(affiliations.get('J1'))
         self.assertTrue(affiliations.get("intl_stud"))
+
+    def test_class_level(self):
+        now_request = get_request_with_user('jinter')
+        affiliations = get_all_affiliations(now_request)
+        self.assertEqual(affiliations.get('class_level'), 'NON_MATRIC')
+        self.assertEqual(affiliations.get('latest_class_level'), 'NON_MATRIC')
 
     def test_jinter(self):
         now_request = get_request_with_user('jinter')
@@ -120,7 +125,6 @@ class TestAffilliationDao(TransactionTestCase):
         affiliations = get_all_affiliations(now_request)
         self.assertTrue(affiliations.get("seattle"))
         self.assertTrue(affiliations.get("undergrad"))
-        self.assertTrue(affiliations.get("registered_stud"))
         self.assertTrue(affiliations.get("hxt_viewer"))
 
         now_request = get_request_with_user('jbothell')

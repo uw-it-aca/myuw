@@ -2,18 +2,23 @@
   <uw-card
     v-if="showCard"
     v-meta="{term: term}"
-    :loaded="isReady">
+    :loaded="showContent"
+    :errored="isErrored"
+    :errored-show="false"
+  >
     <template #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Graduation Preparation
       </h2>
     </template>
+
     <template #card-body>
       <p class="myuw-text-md">
-        <strong>To graduate, you'll need apply.</strong> Don't worry, it's an easy
+        <strong>To graduate, you'll need to apply.</strong> Don't worry, it's an easy
         process that you complete with your departmental adviser!
       </p>
     </template>
+
     <template #card-disclosure>
       <uw-collapse
         id="collapseGradAppDeadlineAndDetails"
@@ -25,14 +30,15 @@
             in which you intend to graduate.
           </li>
           <li class="mb-1">
-            <strong>Submit early:</strong> If you apply 2-3 quarters before
-            graduation, you get Graduating Senior Priority for registration for 2 quarters.
+            <strong>Submit early:</strong> You can apply up to 3 quarters before
+            graduation and get Graduating Senior Priority for registration for 2 quarters.
           </li>
         </ul>
 
         <p v-if="seattle" class="myuw-text-md">
           <strong>Get all the details:
-          <a href="https://www.washington.edu/students/graduation-checklist/">Follow the UW Seattle Graduation checklist</a>.
+          <a href="https://www.washington.edu/students/graduation-checklist/">
+          Follow the UW Seattle Graduation checklist</a>.
           </strong> 
         </p>
         <p v-if="tacoma" class="myuw-text-md">
@@ -55,12 +61,12 @@
         </p>
         <p v-if="seattle && intlStudent" class="myuw-text-md">
           International students, review the
-          <a href="https://iss.washington.edu/resources/final-checklist/">
-            ISS Graduation checklist
-          </a> for additional guidance.
+          <a href="https://iss.washington.edu/resources/final-checklist/"
+          >ISS Graduation checklist</a> for additional guidance.
         </p>
       </uw-collapse>
     </template>
+
     <template #card-footer>
       <button
         v-uw-collapse.collapseGradAppDeadlineAndDetails
@@ -96,6 +102,7 @@ export default {
   },
   computed: {
     ...mapGetters('profile', {
+      isFetching: 'isFetching',
       isReady: 'isReady',
       isErrored: 'isErrored',
       statusCode: 'statusCode',
@@ -112,15 +119,21 @@ export default {
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
     }),
+    curSenior() {
+      return (this.classLevel === 'SENIOR');
+    },
     showCard() {
-      return (this.isReady && this.degreeStatus.error_code === 404);
+      return (this.curSenior && (this.isFetching || this.showContent));
+    },
+    showContent() {
+      return (this.isReady && this.degreeStatus && this.degreeStatus.error_code === 404);
     },
     term() {
       return this.year + ',' + this.quarter;
     }
   },
   created() {
-    if (this.classLevel === 'SENIOR') this.fetch();
+    if (this.curSenior) this.fetch();
   },
   methods: {
     ...mapActions('profile', ['fetch']),
