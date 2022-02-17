@@ -23,7 +23,7 @@
           <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
             Graduation Application Status
           </h3>
-          <div v-if="doubleDegreesInDiffTerms">
+          <div>
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
                 <span v-if="hasMisconduct(degree)">
@@ -55,84 +55,6 @@
                   <p class="myuw-text-md mb-0">
                     <em>Application active</em> for {{ degreeTerm(degree) }}
                   </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div v-else-if="doubleDegreeDiffStatus">
-            <ul class="list-unstyled mb-0 myuw-text-md">
-              <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
-                <span v-if="hasMisconduct(degree)">
-                  <p class="myuw-text-md mb-0">
-                    Administrative hold – please contact the graduation office at
-                    <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
-                  </p>
-                  <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isIncomplete(degree)">
-                  <p class="myuw-text-md mb-0">
-                    <em>Application inactive</em> – please contact your departmental advisor
-                  </p>
-                  <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isGranted(degree)">
-                  <p class="myuw-text-md mb-0">
-                    <em>Degree granted</em> for {{ degreeTerm(degree) }}
-                  </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else >
-                  <p class="myuw-text-md mb-0">
-                    <em>Application active</em> for {{ degreeTerm(degree) }}
-                  </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div v-else>
-            <ul class="list-unstyled mb-0">
-              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <span v-if="hasMisconduct(degree)">
-                  <p class="myuw-text-md mb-0">
-                    Administrative hold – please contact the graduation office at
-                    <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
-                  </p>
-                  <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isIncomplete(degree)">
-                  <p class="myuw-text-md mb-0">
-                    <em>Application inactive</em> – please contact your departmental advisor
-                  </p>
-                  <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isGranted(degrees[0])">
-                  <p class="myuw-text-md mb-0">
-                    Degree granted for <em>{{ degreeTerm(degrees[0]) }}</em>
-                  </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else>
-                  <p class="myuw-text-md mb-0">
-                    Application active for <em>{{ degreeTerm(degrees[0]) }}</em>
-                  </p>              
                   <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
                   </span>
