@@ -136,12 +136,6 @@
               <li>
                 Contact your advisor if anything appears inaccurate.
               </li>
-              <li v-if="tacoma">
-                If using transfer coursework to meet final requirements, request and
-                <em>official transcript</em> be sent to the
-                <a href="https://www.tacoma.uw.edu/admissions/submitting-transcripts">Office of Admissions</a>
-                following the end of the quarter.
-              </li>
             </ul>
           </div>
 
