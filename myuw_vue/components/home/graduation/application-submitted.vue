@@ -14,11 +14,16 @@
     </template>
     <template #card-body>
       <div class="row gx-md-4">
-        <div class="col-12 order-md-2 col-md-4 mb-md-0 mb-3">
+        <div v-if="hasActiveApplication" class="col-12 mb-xl-0">
+          <p class="myuw-text-md">
+            <strong>You're on your way!</strong> We're here to help you get to the finish line!
+          </p>          
+        </div>
+        <div class="col-12 order-xl-2 col-xl-4 mb-xl-0 mb-3">
           <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
             Graduation Application Status
           </h3>
-          <div v-if="doubleDegreesInDiffTerms">
+          <div>
             <ul class="list-unstyled mb-0 myuw-text-md">
               <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
                 <span v-if="hasMisconduct(degree)">
@@ -50,84 +55,6 @@
                   <p class="myuw-text-md mb-0">
                     <em>Application active</em> for {{ degreeTerm(degree) }}
                   </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div v-else-if="doubleDegreeDiffStatus">
-            <ul class="list-unstyled mb-0 myuw-text-md">
-              <li v-for="(degree, j) in degrees" :key="j" class="mb-2">
-                <span v-if="hasMisconduct(degree)">
-                  <p class="myuw-text-md mb-0">
-                    Administrative hold – please contact the graduation office at
-                    <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
-                  </p>
-                  <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isIncomplete(degree)">
-                  <p class="myuw-text-md mb-0">
-                    <em>Application inactive</em> – please contact your departmental advisor
-                  </p>
-                  <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isGranted(degree)">
-                  <p class="myuw-text-md mb-0">
-                    <em>Degree granted</em> for {{ degreeTerm(degree) }}
-                  </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else >
-                  <p class="myuw-text-md mb-0">
-                    <em>Application active</em> for {{ degreeTerm(degree) }}
-                  </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-              </li>
-            </ul>
-          </div>
-          <div v-else>
-            <ul class="list-unstyled mb-0">
-              <li v-for="(degree, j) in degrees" :key="j" class="mb-1">
-                <span v-if="hasMisconduct(degree)">
-                  <p class="myuw-text-md mb-0">
-                    Administrative hold – please contact the graduation office at
-                    <a href="mailto:ugradoff@uw.edu" class="internal-link">ugradoff@uw.edu</a>.
-                  </p>
-                  <span class="badge bg-danger-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isIncomplete(degree)">
-                  <p class="myuw-text-md mb-0">
-                    <em>Application inactive</em> – please contact your departmental advisor
-                  </p>
-                  <span class="badge bg-light-gray fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else-if="isGranted(degrees[0])">
-                  <p class="myuw-text-md mb-0">
-                    Degree granted for <em>{{ degreeTerm(degrees[0]) }}</em>
-                  </p>
-                  <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
-                    {{ degree.title }}
-                  </span>
-                </span>
-                <span v-else>
-                  <p class="myuw-text-md mb-0">
-                    Application active for <em>{{ degreeTerm(degrees[0]) }}</em>
-                  </p>              
                   <span class="badge bg-success-light fw-normal myuw-text-sm text-dark p-2">
                     {{ degree.title }}
                   </span>
@@ -136,10 +63,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-12 order-md-1 col-md-8">
-          <p v-if="hasActiveApplication" class="myuw-text-md">
-            <strong>You're on your way!</strong> We're here to help you get to the finish line!
-          </p>
+        <div class="col-12 order-xl-1 col-xl-8">
           <div v-if="hasActiveApplication">
             <h3 class="h6 myuw-font-encode-sans">
               Get an overview
@@ -171,9 +95,9 @@
                 </a> at the Center for International Education.
               </li>
                <li v-if="tacoma">
-                Get an
+                Review the
                 <a href="https://www.tacoma.uw.edu/registrar/graduation-procedures">
-                overview of the UW Tacoma graduation process</a>.
+                UW Tacoma Graduation Checklist</a> for an overview of tasks.
               </li>
             </ul>
           </div>
@@ -188,7 +112,8 @@
                 href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>.
               </li>
               <li>
-                Plan your remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>.
+                Plan your remaining quarters in <a href="https://myplan.uw.edu/">MyPlan</a>
+                and with your adviser.
               </li>
               <li>
                 <a href="https://myplan.uw.edu/audit/#/plan">Audit your plan</a> to confirm
@@ -207,6 +132,9 @@
                 <a href="https://myplan.uw.edu/audit/#/degree">degree audit (DARS)</a>
                 to make sure that your final quarter course load will satisfy your degree
                 requirements and that all your grades are recorded.
+              </li>
+              <li>
+                Contact your advisor if anything appears inaccurate.
               </li>
             </ul>
           </div>
