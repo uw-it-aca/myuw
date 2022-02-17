@@ -1,0 +1,33 @@
+{
+  "StudentFullName": "Jerry Average Student",
+  "StudentSystemKey": "000083856",
+  "StudentRegID": "9136CCB8F66711D5BE060004AC494004",
+  "StudentNumber": "1033004",
+  "StudentUWNetID": "javg004",
+  "Degrees": [
+    {
+      "Campus": "BOTHELL",
+      "DegreeLevel": 1,
+      "DegreeTitle": "BACHELOR OF ARTS IN BUSINESS ADMINISTRATION",
+      "DegreeType": 2,
+      "DegreeEarnedYear": 2013,
+      "DegreeEarnedQuarter": "spring",
+      "DegreeStatus": 4,
+      "DiplomaName": "Javg004 Student",
+      "DiplomaMail": 0,
+      "DiplomaMailToLocalAddress": false
+    },
+    {
+      "Campus": "BOTHELL",
+      "DegreeLevel": 1,
+      "DegreeTitle": "BACHELOR OF ARTS (APPLIED COMPUTING)",
+      "DegreeType": 1,
+      "DegreeEarnedYear": 2013,
+      "DegreeEarnedQuarter": "autumn",
+      "DegreeStatus": 3,
+      "DiplomaName": "Javg004 Student",
+      "DiplomaMail": 0,
+      "DiplomaMailToLocalAddress": false
+    }
+  ]
+}

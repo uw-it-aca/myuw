@@ -1,0 +1,140 @@
+{
+  "uwnetid": "jbothell",
+  "uwregid": "FE36CCB8F66711D5BE060004AC494FCD",
+  "birth_date": "1981-10-26",
+  "email": "jbothell@u.washington.edu",
+  "first_name": "Jennifer Britany (JB)",
+  "last_name": "Othello",
+  "pronouns": "sheherherssheherherssheherherssheherherssheherhers",
+  "student_name": "Othello,Jennifer Britany (JB)",
+  "student_number": "1233334",
+  "employee_id": null,
+  "directory_release": true,
+  "local_address": {
+    "city": "Edmonds",
+    "country": "United States",
+    "street_line1": "502 Main St",
+    "street_line2": "",
+    "postal_code": "",
+    "state": "WA",
+    "zip_code": "98020"
+  },
+  "local_phone": "4255551287",
+  "permanent_address": {
+    "city": "Edmonds",
+    "country": "",
+    "street_line1": "502 Main St",
+    "street_line2": "",
+    "postal_code": "",
+    "state": "WA",
+    "zip_code": "98020"
+  },
+  "permanent_phone": "4255551287",
+  "visa_type": null,
+  "veteran_code": "0",
+  "is_student": true,
+  "is_grad_student": false,
+  "degree_status": null,
+  "campus": "Bothell",
+  "class_level": "FRESHMAN",
+  "term_majors": [
+    {
+      "quarter": "spring",
+      "year": 2013,
+      "majors": [
+        {
+          "degree_abbr": "B PRE",
+          "college_abbr": "",
+          "college_full_name": "",
+          "degree_level": 0,
+          "degree_name": null,
+          "campus": "Bothell",
+          "name": "PREMAJOR (BOTHELL)",
+          "full_name": "Premajor (Bothell Campus)",
+          "short_name": "B PRE"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "autumn",
+      "year": 2013,
+      "majors": [
+        {
+          "degree_abbr": "B PRE",
+          "college_abbr": "",
+          "college_full_name": "",
+          "degree_level": 0,
+          "degree_name": null,
+          "campus": "Bothell",
+          "name": "PREMAJOR (BOTHELL)",
+          "full_name": "Premajor (Bothell Campus)",
+          "short_name": "B PRE"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    }
+  ],
+  "has_pending_major": false,
+  "term_minors": [
+    {
+      "quarter": "spring",
+      "year": 2013,
+      "minors": [
+        {
+          "abbr": "ASL",
+          "campus": "Tacoma",
+          "name": "AMERICAN SIGN LANGUAGE",
+          "full_name": "American Sign Language",
+          "short_name": "ASL"
+        }
+      ],
+      "degrees_modified": false,
+      "has_only_dropped": false
+    },
+    {
+      "quarter": "autumn",
+      "year": 2013,
+      "minors": [
+        {
+          "abbr": "ASL",
+          "campus": "Tacoma",
+          "name": "AMERICAN SIGN LANGUAGE",
+          "full_name": "American Sign Language",
+          "short_name": "ASL"
+        },
+        {
+          "abbr": "POL SCI",
+          "campus": "Tacoma",
+          "name": "POLITICAL SCIENCE",
+          "full_name": "Political Science",
+          "short_name": "POL SCI"
+        }
+      ],
+      "degrees_modified": true,
+      "has_only_dropped": false
+    }
+  ],
+  "has_minors": true,
+  "has_pending_minor": true,
+  "display_name": "JAMES BOTHELL STUDENT",
+  "password": {
+    "uwnetid": "jbothell",
+    "kerb_status": "Active",
+    "last_change": "2013-01-27 10:49:42-08:00",
+    "interval": 10368000,
+    "last_change_med": null,
+    "expires_med": null,
+    "interval_med": null,
+    "minimum_length": 8,
+    "time_stamp": "2016-12-16 14:21:40-08:00",
+    "netid_status": [
+      "Person",
+      "Active"
+    ],
+    "days_after_last_pw_change": 77,
+    "has_active_med_pw": false
+  }
+}

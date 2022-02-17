@@ -1,0 +1,19 @@
+{
+  "StudentFullName": "John Joseph Average",
+  "StudentSystemKey": "000083856",
+  "StudentRegID": "9136CCB8F66711D5BE060004AC494FFE",
+  "StudentNumber": "1033334",
+  "StudentUWNetID": "javerage",
+  "Degrees": [{
+    "Campus": "SEATTLE",
+    "DegreeLevel": 1,
+    "DegreeTitle": "BACHELOR OF ARTS (POLITICAL SCIENCE)",
+    "DegreeType": 1,
+    "DegreeEarnedYear": 2013,
+    "DegreeEarnedQuarter": "summer",
+    "DegreeStatus": 5,
+    "DiplomaName": "John Joseph Average",
+    "DiplomaMail": 0,
+    "DiplomaMailToLocalAddress": false
+  }]
+}

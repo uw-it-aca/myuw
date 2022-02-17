@@ -185,6 +185,17 @@ class TestProfile(MyuwApiTest):
         for minor in minors:
             self.assertFalse(minor['degrees_modified'])
 
+    def test_degree_status(self):
+        # MUWM-5010
+        response = self.get_profile_response('javg004')
+        self.assertEquals(response.status_code, 200)
+        data = json.loads(response.content)
+        degrees = data['degree_status']['degrees']
+        self.assertTrue(degrees[0]["is_degree_earned_term"])
+        self.assertTrue(degrees[0]["during_april_may"])
+        self.assertTrue(degrees[1]["before_degree_earned_term"])
+        self.assertTrue(degrees[1]["during_april_may"])
+
     def test_applicant_profile(self):
         response = self.get_profile_response('japplicant')
 

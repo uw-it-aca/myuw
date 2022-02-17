@@ -1,0 +1,33 @@
+{
+  "StudentFullName": "June Average Student",
+  "StudentSystemKey": "000083856",
+  "StudentRegID": "9136CCB8F66711D5BE060004AC494003",
+  "StudentNumber": "1033003",
+  "StudentUWNetID": "javg003",
+  "Degrees": [
+    {
+      "Campus": "SEATTLE",
+      "DegreeLevel": 1,
+      "DegreeTitle": "BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (FINANCE)",
+      "DegreeType": 2,
+      "DegreeEarnedYear": 2013,
+      "DegreeEarnedQuarter": "spring",
+      "DegreeStatus": 5,
+      "DiplomaName": "Javg003 Student",
+      "DiplomaMail": 0,
+      "DiplomaMailToLocalAddress": false
+    },
+    {
+      "Campus": "SEATTLE",
+      "DegreeLevel": 1,
+      "DegreeTitle": "BACHELOR OF SCIENCE IN INFORMATICS (DATA SCIENCE)",
+      "DegreeType": 6,
+      "DegreeEarnedYear": 2013,
+      "DegreeEarnedQuarter": "spring",
+      "DegreeStatus": 3,
+      "DiplomaName": "Javg003 Student",
+      "DiplomaMail": 0,
+      "DiplomaMailToLocalAddress": false
+    }
+  ]
+}
