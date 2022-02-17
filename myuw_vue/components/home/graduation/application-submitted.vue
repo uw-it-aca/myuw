@@ -14,7 +14,12 @@
     </template>
     <template #card-body>
       <div class="row gx-md-4">
-        <div class="col-12 order-md-2 col-md-4 mb-md-0 mb-3">
+        <div v-if="hasActiveApplication" class="col-12 mb-xl-0">
+          <p class="myuw-text-md">
+            <strong>You're on your way!</strong> We're here to help you get to the finish line!
+          </p>          
+        </div>
+        <div class="col-12 order-xl-2 col-xl-4 mb-xl-0 mb-3">
           <h3 class="h6 text-dark myuw-font-encode-sans myuw-text-md mb-1">
             Graduation Application Status
           </h3>
@@ -136,10 +141,7 @@
             </ul>
           </div>
         </div>
-        <div class="col-12 order-md-1 col-md-8">
-          <p v-if="hasActiveApplication" class="myuw-text-md">
-            <strong>You're on your way!</strong> We're here to help you get to the finish line!
-          </p>
+        <div class="col-12 order-xl-1 col-xl-8">
           <div v-if="hasActiveApplication">
             <h3 class="h6 myuw-font-encode-sans">
               Get an overview
