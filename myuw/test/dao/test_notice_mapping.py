@@ -158,11 +158,16 @@ class TestMapNotices(TestCase):
                           ['notices_date_sort'])
 
         notice = map_notice_category(notices[19])
+        self.assertEquals(notice.custom_category, 'Admission')
+        self.assertEquals(notice.location_tags,
+                          ['checklist_no_orient'])
+
+        notice = map_notice_category(notices[20])
         self.assertEquals(notice.custom_category, 'Registration')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])
 
-        notice = map_notice_category(notices[20])
+        notice = map_notice_category(notices[21])
         self.assertEquals(notice.custom_category, 'Registration')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])

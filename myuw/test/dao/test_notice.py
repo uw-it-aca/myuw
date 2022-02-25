@@ -183,8 +183,9 @@ class TestNotices(TestCase):
         notices = _get_notices_by_regid(regid)
         self.assertEquals(len(notices), 19)
         self.assertEquals(notices[15].notice_type, 'HSImmunBlock')
-        self.assertEquals(notices[16].notice_type, 'HSImmunReqDateA')
-        self.assertEquals(notices[17].notice_type, 'HSImmunReqDateB')
+        self.assertEquals(notices[16].notice_type, 'AdvOrientRegDateB')
+        self.assertEquals(notices[17].notice_type, 'HSImmunReqDateA')
+        self.assertEquals(notices[18].notice_type, 'HSImmunReqDateB')
 
         regid = "FE36CCB8F66711D5BE060004AC494FCD"  # jbothell
         notices = _get_notices_by_regid(regid)
