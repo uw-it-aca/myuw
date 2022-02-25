@@ -181,7 +181,7 @@ class TestNotices(TestCase):
         # test MUWM-4535
         regid = "FE36CCB8F66711D5BE060004AC494F31"  # jnew
         notices = _get_notices_by_regid(regid)
-        self.assertEquals(len(notices), 18)
+        self.assertEquals(len(notices), 19)
         self.assertEquals(notices[15].notice_type, 'HSImmunBlock')
         self.assertEquals(notices[16].notice_type, 'HSImmunReqDateA')
         self.assertEquals(notices[17].notice_type, 'HSImmunReqDateB')
