@@ -151,18 +151,23 @@ class TestMapNotices(TestCase):
         # test MUWM-4535
         regid = "FE36CCB8F66711D5BE060004AC494F31"
         notices = get_notices_by_regid(regid)
-        self.assertEquals(len(notices), 21)
+        self.assertEquals(len(notices), 22)
         notice = map_notice_category(notices[18])
         self.assertEquals(notice.custom_category, 'Holds')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])
 
         notice = map_notice_category(notices[19])
+        self.assertEquals(notice.custom_category, 'Admission')
+        self.assertEquals(notice.location_tags,
+                          ['checklist_no_orient'])
+
+        notice = map_notice_category(notices[20])
         self.assertEquals(notice.custom_category, 'Registration')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])
 
-        notice = map_notice_category(notices[20])
+        notice = map_notice_category(notices[21])
         self.assertEquals(notice.custom_category, 'Registration')
         self.assertEquals(notice.location_tags,
                           ['notices_date_sort'])
