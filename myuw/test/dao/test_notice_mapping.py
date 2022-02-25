@@ -151,7 +151,7 @@ class TestMapNotices(TestCase):
         # test MUWM-4535
         regid = "FE36CCB8F66711D5BE060004AC494F31"
         notices = get_notices_by_regid(regid)
-        self.assertEquals(len(notices), 21)
+        self.assertEquals(len(notices), 22)
         notice = map_notice_category(notices[18])
         self.assertEquals(notice.custom_category, 'Holds')
         self.assertEquals(notice.location_tags,
