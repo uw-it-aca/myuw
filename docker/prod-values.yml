@@ -286,6 +286,8 @@ environmentVariables:
   - name: MAILMAN_POOL_SIZE
     value: "20"
 
+  - name: MYPLAN_AUTH_ENV
+    value: PROD
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
@@ -360,6 +362,8 @@ externalSecrets:
           property: django-secret
         - name: email-host
           property: email-host
+        - name: myplan-auth-secret
+          property: myplan-auth-secret
         - name: mailman-auth-key
           property: mailman-auth-key
         - name: mailman-request-recipient
@@ -430,6 +434,10 @@ environmentVariablesSecrets:
     name: EMAIL_HOST
     secretName: my.uw.edu-secrets
     secretKey: email-host
+  myplan-auth-secret:
+    name: MYPLAN_AUTH_SECRET
+    secretName: my.uw.edu-secrets
+    secretKey: myplan-auth-secret
   SectionStatusQueueARN:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: my.uw.edu-secrets

@@ -176,6 +176,8 @@ environmentVariables:
   - name: MAILMAN_TIMEOUT
     value: "30"
 
+  - name: MYPLAN_AUTH_ENV
+    value: PROD
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
@@ -242,6 +244,8 @@ externalSecrets:
           property: mailman-auth-key
         - name: mailman-request-recipient
           property: mailman-request-recipient
+        - name: myplan-auth-secret
+          property: myplan-auth-secret
         - name: safe-email-recipient
           property: safe-email-recipient
         - name: section-status-queue-arn
@@ -312,6 +316,10 @@ environmentVariablesSecrets:
     name: MAILMAN_REQUEST_RECIPIENT
     secretName: vue.my.uw.edu-secrets
     secretKey: mailman-request-recipient
+  myplan-auth-secret:
+    name: MYPLAN_AUTH_SECRET
+    secretName: my.uw.edu-secrets
+    secretKey: myplan-auth-secret
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT
     secretName: vue.my.uw.edu-secrets

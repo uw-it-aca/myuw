@@ -178,6 +178,8 @@ environmentVariables:
   - name: MAILMAN_TIMEOUT
     value: "15"
 
+  - name: MYPLAN_AUTH_ENV
+    value: EVAL
   - name: MYPLAN_ENV
     value: EVAL
   - name: MYPLAN_TIMEOUT
@@ -252,6 +254,8 @@ externalSecrets:
           property: mailman-request-recipient
         - name: safe-email-recipient
           property: safe-email-recipient
+        - name: myplan-auth-secret
+          property: myplan-auth-secret
         - name: section-status-queue-arn
           property: section-status-queue-arn
         - name: section-status-key-id
@@ -316,6 +320,10 @@ environmentVariablesSecrets:
     name: EMAIL_HOST
     secretName: test.my.uw.edu-secrets
     secretKey: email-host
+  myplan-auth-secret:
+    name: MYPLAN_AUTH_SECRET
+    secretName: my.uw.edu-secrets
+    secretKey: myplan-auth-secret
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT
     secretName: test.my.uw.edu-secrets
