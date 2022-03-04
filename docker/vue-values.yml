@@ -318,7 +318,7 @@ environmentVariablesSecrets:
     secretKey: mailman-request-recipient
   myplan-auth-secret:
     name: MYPLAN_AUTH_SECRET
-    secretName: my.uw.edu-secrets
+    secretName: vue.my.uw.edu-secrets
     secretKey: myplan-auth-secret
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT

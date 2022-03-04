@@ -295,7 +295,7 @@ environmentVariablesSecrets:
     secretKey: email-host
   myplan-auth-secret:
     name: MYPLAN_AUTH_SECRET
-    secretName: my.uw.edu-secrets
+    secretName: dev.my.uw.edu-secrets
     secretKey: myplan-auth-secret
   safe_email_recipient-secret:
     name: SAFE_EMAIL_RECIPIENT
