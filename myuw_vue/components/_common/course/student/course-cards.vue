@@ -5,7 +5,7 @@
     <template v-if="isReady">
       <uw-course-card
         v-for="(section, i) in course.sections" :key="i"
-        :course="course" :section="section" :index="i"
+        :course="course" :section="section" :index="i" :isCurrentTerm="isCurrentTerm"
       />
     </template>
     <uw-no-course-card
@@ -56,6 +56,9 @@ export default {
       isErroredTagged: 'isErroredTagged',
       statusCodeTagged: 'statusCodeTagged',
     }),
+    isCurrentTerm() {
+      return this.term === 'current';
+    },
     isReady() {
       return this.isReadyTagged(this.term);
     },
@@ -66,7 +69,7 @@ export default {
   created() {
     if (this.student) {
       this.fetchStudSche(this.term);
-      this.fetchEvalData();
+      if (this.isCurrentTerm) this.fetchEvalData();
     }
   },
 
