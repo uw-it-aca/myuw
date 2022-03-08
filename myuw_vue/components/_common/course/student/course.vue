@@ -11,11 +11,11 @@
 
       <template #card-body>
         <uw-course-eval
-          v-if="isReadyEval && getSectionEval(section.index).length > 0"
+          v-if="isCurrentTerm && isReadyEval && getSectionEval(section.index).length > 0"
           :eval-data="getSectionEval(section.index)"
           :section="section"
         />
-        <template v-else-if="isErroredEval && statusCodeEvals != 404" loaded>
+        <template v-else-if="isCurrentTerm && isErroredEval && statusCodeEvals != 404" loaded>
           <p>
             <font-awesome-icon :icon="faExclamationTriangle" class="me-1" />
             An error has occurred and MyUW cannot display the course evaluation
@@ -119,6 +119,10 @@ export default {
     index: {
       type: Number,
       required: true,
+    },
+    isCurrentTerm: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
