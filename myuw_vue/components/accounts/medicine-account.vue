@@ -45,12 +45,12 @@
             </template>
             <template #status-value>
               <div :class="expires30Days ? 'text-danger' : ''">
-                {{ toFriendlyDate(expiresMed) }}
+                {{ toFriendlyDatetime(expiresMed) }}
               </div>
             </template>
             <template #status-content>
               <div class="text-end">
-                {{ toFromNowDate(password.expires_med) }}
+                {{ toFromNowDate(password.expires_med) }}*
               </div>
             </template>
           </uw-card-status>
