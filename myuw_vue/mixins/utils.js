@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     dayjs: dayjs,
-    today: () => dayjs().hour(0).minute(0).second(0).millisecond(0),
+    today: () => dayjs().hour(0).minute(0).second(0).millisecond(0),  // bof
     encodeForMaps(s) {
       if (s) {
         s = s.replace(/ \(/g, " - ");
@@ -127,8 +127,10 @@ export default {
     toFriendlyDatetime(date_str) {
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D, h:mmA");
     },
-    toFromNowDate(date_str) {
-      return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).from(this.today()));
+    toFromNowDate(date_str, useCompDate = true) {
+      return (!date_str || date_str.length === 0 ? ''
+        : dayjs(date_str).from(this.nowDatetime(useCompDate)));
+        // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
     },
     toCalendar(date_str) {
       return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).calendar());

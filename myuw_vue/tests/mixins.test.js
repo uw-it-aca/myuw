@@ -110,22 +110,21 @@ describe('mixins', () => {
     expect(utils.methods.toFromNowDate('')).toEqual('');
 
     const now = utils.methods.dayjs();
-    const format = 'YYYY-MM-DD';
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'd').format(format)))
+    expect(utils.methods.toFromNowDate(now.subtract(1, 'd'), false))
       .toEqual('a day ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'd').format(format)))
+    expect(utils.methods.toFromNowDate(now.add(1, 'd'), false))
       .toEqual('in a day');
-    expect(utils.methods.toFromNowDate(now.subtract(5, 'd').format(format)))
+    expect(utils.methods.toFromNowDate(now.subtract(5, 'd'), false))
       .toEqual('5 days ago');
-    expect(utils.methods.toFromNowDate(now.add(5, 'd').format(format)))
+    expect(utils.methods.toFromNowDate(now.add(5, 'd'), false))
       .toEqual('in 5 days');
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.subtract(1, 'M'), false))
       .toEqual('a month ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.add(1, 'M'), false))
       .toEqual('in a month');
-    expect(utils.methods.toFromNowDate(now.subtract(5, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.subtract(5, 'M'), false))
       .toEqual('5 months ago');
-    expect(utils.methods.toFromNowDate(now.add(5, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.add(5, 'M'), false))
       .toEqual('in 5 months');
   });
 
