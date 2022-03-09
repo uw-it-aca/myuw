@@ -50,7 +50,7 @@
             </template>
             <template #status-content>
               <div class="text-end">
-                in {{ daysBeforeExpires }} days*
+                {{ toFromNowDate(password.expires_med) }}
               </div>
             </template>
           </uw-card-status>
