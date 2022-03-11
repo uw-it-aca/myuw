@@ -45,7 +45,12 @@
             </template>
             <template #status-value>
               <div :class="expires30Days ? 'text-danger' : ''">
-                {{ toFriendlyDatetime(expiresMed) }}
+                <span v-if="expiresWithin3Days">
+                  {{ toFriendlyDatetime(expiresMed) }}
+                </span>
+                <span v-else>
+                  {{ toFriendlyDate(expiresMed) }}
+                </span>
               </div>
             </template>
             <template #status-content>
@@ -111,6 +116,9 @@ export default {
     },
     expires30Days() {
       return this.daysBeforeExpires <= 30;
+    },
+    expiresWithin3Days() {
+      return this.daysBeforeExpires <= 3;
     },
   },
   mounted() {
