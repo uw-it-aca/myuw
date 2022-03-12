@@ -14,13 +14,13 @@ myplan = Plan()
 def get_plan(request, year, quarter):
     plan = myplan.get_plan(
         get_regid_of_current_user(request), year, quarter.lower(), terms=1)
-    plan_json = plan.json_data()
+
     has_ready_courses = False
     has_unready_courses = False
     ready_count = 0
     unready_count = 0
     has_sections = False
-
+    plan_json = plan.json_data()
     for course in plan_json["terms"][0]["courses"]:
         if course["registrations_available"]:
             has_ready_courses = True
