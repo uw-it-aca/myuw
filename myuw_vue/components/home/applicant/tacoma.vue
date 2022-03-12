@@ -84,7 +84,7 @@
         <li class="mb-1">
           <a
             v-out="'UW Tacoma Admission: Important dates &amp; deadlines'"
-            href="http://www.tacoma.uw.edu/admissions/important-dates-deadlines-all-applicants"
+            href="https://www.tacoma.uw.edu/admissions/important-dates"
           >
             Important dates &amp; deadlines
           </a>
@@ -96,14 +96,14 @@
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
           <a v-out="'Applying for financial Aid'"
-             href="http://www.tacoma.uw.edu/node/20240"
+             href="https://www.tacoma.uw.edu/finaid/application-process"
           >
             Applying for a financial Aid
           </a>
         </li>
         <li class="mb-1">
           <a v-out="'Financial aid key dates and deadlines'"
-             href="http://www.tacoma.uw.edu/node/41373"
+             href="https://www.tacoma.uw.edu/finaid/dates"
           >
             Financial aid key dates and deadlines
           </a>
@@ -122,7 +122,7 @@
         </li>
         <li class="mb-1">
           <a v-out="'UW Tacoma Student Housing'"
-             href="http://www.tacoma.uw.edu/node/38753"
+             href="https://www.tacoma.uw.edu/housing"
           >
             Learn about student Housing
           </a>
@@ -131,7 +131,7 @@
           Check out
           <a
             v-out="'UW Tacoma New Student programs'"
-            href="http://www.tacoma.uw.edu/new-student-family-programs/new-student-family-programs"
+            href="https://www.tacoma.uw.edu/new-students"
           >
             New Student programs
           </a>
@@ -149,14 +149,14 @@
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
           <a v-out="'Next Steps for Admitted UW Tacoma Students'"
-             href="http://www.tacoma.uw.edu/admissions/i-was-admitted-now-what"
+             href="https://www.tacoma.uw.edu/admissions/i-was-admitted"
           >
             Next steps for Admitted students
           </a>
         </li>
         <li class="mb-1">
           <a v-out="'New UW Tacoma Student Orientation'"
-             href="http://www.tacoma.uw.edu/node/41496"
+             href="https://www.tacoma.uw.edu/new-students"
           >
             Sign up for a New student orientation
           </a>
