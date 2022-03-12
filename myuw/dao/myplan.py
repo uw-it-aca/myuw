@@ -44,9 +44,9 @@ def get_plan(request, year, quarter):
             has_unready_courses = True
             unready_count = unready_count + 1
 
-            plan_json["terms"][0]["has_ready_courses"] = has_ready_courses
-            plan_json["terms"][0]["has_unready_courses"] = has_unready_courses
-            plan_json["terms"][0]["ready_count"] = ready_count
-            plan_json["terms"][0]["unready_count"] = unready_count
-            plan_json["terms"][0]["has_sections"] = has_sections
-        return plan_json
+    plan_json["terms"][0]["has_ready_courses"] = has_ready_courses
+    plan_json["terms"][0]["has_unready_courses"] = has_unready_courses
+    plan_json["terms"][0]["ready_count"] = ready_count
+    plan_json["terms"][0]["unready_count"] = unready_count
+    plan_json["terms"][0]["has_sections"] = has_sections
+    return plan_json

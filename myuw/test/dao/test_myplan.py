@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TestCase
-from restclients_core.exceptions import DataFailureException
 from myuw.dao.myplan import get_plan
 from myuw.test import get_request_with_user
 
@@ -14,8 +13,8 @@ class TestMyPlanDao(TestCase):
         data = get_plan(req, 2013, 'summer')
         self.assertEquals(data['terms'][0]['year'], 2013)
         self.assertEquals(data['terms'][0]['quarter'], 'Summer')
-        self.assertEquals(len(data["terms"][0]["courses"]), 1)
-        self.assertEquals(data["terms"][0]["unready_count"], 1)
+        self.assertEquals(len(data["terms"][0]["courses"]), 3)
+        self.assertEquals(data["terms"][0]["unready_count"], 3)
 
         req = get_request_with_user('jinter')
         data = get_plan(req, 2013, 'autumn')
@@ -38,5 +37,5 @@ class TestMyPlanDao(TestCase):
 
     def test_error(self):
         req = get_request_with_user('jerror')
-        self.assertRaises(DataFailureException,
-                          get_plan, req, 2013, 'spring')
+        self.assertRaises(
+            Exception, get_plan, req, 2013, 'spring')
