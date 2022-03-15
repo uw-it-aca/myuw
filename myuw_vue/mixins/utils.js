@@ -129,8 +129,10 @@ export default {
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D, h:mmA");
     },
     toFromNowDate(date_str, useCompDate = true) {
-      return (!date_str || date_str.length === 0 ? ''
-        : dayjs(date_str).from(this.nowDatetime(useCompDate)));
+      if (!date_str || date_str.length === 0) return '';
+      if (this.diffDays(date_str) === 0) return "Today";
+      if (this.diffDays(date_str) === 1) return "Tomorrow";
+      return dayjs(date_str).from(this.nowDatetime(useCompDate));
         // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
     },
     diffDays(date_str, unit = 'day', useCompDate = true) {

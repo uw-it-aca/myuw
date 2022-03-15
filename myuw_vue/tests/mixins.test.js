@@ -104,9 +104,21 @@ describe('mixins', () => {
       utils.methods.toFriendlyDate('')
     ).toEqual('');
   });
+  it('toFriendlyDatetime', () => {
+    expect(
+      utils.methods.toFriendlyDatetime('2013-04-17 16:00:00-08:00')
+    ).toEqual('Thu, Apr 18, 12:00AM');
+    expect(
+      utils.methods.toFriendlyDatetime(undefined)
+    ).toEqual('');
+    expect(
+      utils.methods.toFriendlyDatetime('')
+    ).toEqual('');
+  });
   it('diffDays', async () => {
     const now = utils.methods.dayjs();
-    expect(utils.methods.diffDays(now.add(1, 'd'), 'day', false)).toEqual(1);
+    expect(utils.methods.diffDays(now.add(1, 'h'), 'day', false)).toEqual(0);
+    expect(utils.methods.diffDays(now.add(25, 'h'), 'day', false)).toEqual(1);
     expect(utils.methods.diffDays(now.subtract(1, 'd'), 'day', false)).toEqual(-1);
   });
   it('toFromNowDate', async () => {
@@ -116,8 +128,10 @@ describe('mixins', () => {
     const now = utils.methods.dayjs();
     expect(utils.methods.toFromNowDate(now.subtract(1, 'd'), false))
       .toEqual('a day ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'd'), false))
-      .toEqual('in a day');
+    expect(utils.methods.toFromNowDate(now.add(1, 'h'), false))
+      .toEqual('Today');
+    expect(utils.methods.toFromNowDate(now.add(25, 'h'), false))
+      .toEqual('Tomorrow');
     expect(utils.methods.toFromNowDate(now.subtract(5, 'd'), false))
       .toEqual('5 days ago');
     expect(utils.methods.toFromNowDate(now.add(5, 'd'), false))
