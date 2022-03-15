@@ -35,12 +35,13 @@ describe('Husky Card', () => {
     const wrapper = mount(MedicineAccountCard, {store, localVue});
     await new Promise(setImmediate);
     expect(wrapper.vm.expiresMed).toBe(null);
-    expect(wrapper.vm.hasActiveMedPw).toBe(null);
-    expect(wrapper.vm.showCard).toBe(false);
+    expect(wrapper.vm.hasActiveMedPw).toBe(false);
+    expect(wrapper.vm.showCard).toBeFalsy;
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 
   it('Show card, password expired', async () => {
+    mockJinterProfile.password.last_change_med =	"2013-01-14 10:57:06-07:00";
     mockJinterProfile.password.expires_med = '2013-04-14 10:57:06-08:00';
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
@@ -51,13 +52,12 @@ describe('Husky Card', () => {
     expect(wrapper.vm.expired).toBe(true);
     expect(wrapper.vm.expiresIn3Days).toBe(true);
     expect(wrapper.vm.expiresIn30Days).toBe(true);
-    expect(wrapper.vm.expiration).toBe('Mon, Apr 14');
+    expect(wrapper.vm.expiration).toBe('Sun, Apr 14, 6:57PM');
   });
 
   it('Show card, password not expired', async () => {
-    mockJinterProfile.password.has_active_med_pw = true;
-    mockJinterProfile.password.med_pw_expired = false;
-    mockJinterProfile.password.expires_med = '2013-05-14 08:00:00-08:00';
+    mockJinterProfile.password.last_change_med = "2013-01-14 10:57:06-07:00";
+    mockJinterProfile.password.expires_med = '2013-05-14 00:00:00-08:00';
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     let wrapper = mount(MedicineAccountCard, { store, localVue });
     await new Promise(setImmediate);
@@ -67,13 +67,12 @@ describe('Husky Card', () => {
     expect(wrapper.vm.expiresIn30Days).toBe(true);
     expect(wrapper.vm.expiresIn3Days).toBe(false);
 
-    mockJinterProfile.password.expires_med = '2013-04-12 08:00:00-08:00';
+    mockJinterProfile.password.expires_med = '2013-04-17 16:00:00-08:00';
     axios.get.mockResolvedValue({ data: mockJinterProfile, status: 200 });
     wrapper = mount(MedicineAccountCard, { store, localVue });
     await new Promise(setImmediate);
-    expect(wrapper.vm.expiresIn3Days).toBe(truw);
-    expect(wrapper.vm.expiration).toBe(
-      wrapper.vm.toFriendlyDatetime(mockJinterProfile.password.expires_med));
+    expect(wrapper.vm.expiresIn3Days).toBe(true);
+    expect(wrapper.vm.expiration).toBe('Thu, Apr 18, 12:00AM');
   });
 
   it('toFriendlyDate', () => {

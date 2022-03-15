@@ -95,7 +95,7 @@ export default {
       return this.statusCode !== 404;
     },
     hasActiveMedPw() {
-      return this.password.last_change_med;
+      return Boolean(this.password.last_change_med);
     },
     expiresMed() {
       return this.password.expires_med;
