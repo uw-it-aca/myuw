@@ -1,5 +1,5 @@
 <template>
-  <div :class="dueIn30Days ? 'text-danger' : ''">
+  <div :class="displayTextDanger && dueIn30Days ? 'text-danger' : ''">
     {{ formattedDate }}
   </div>
 </template>
@@ -11,6 +11,10 @@ export default {
       type: String,
       required: true,
     },
+    displayTextDanger: {
+      type: Boolean,
+      default: false,
+    }
   },
   computed: {
     daysDiff() {
