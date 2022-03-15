@@ -2,8 +2,9 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import json
-from myuw.test.api import (MyuwApiTest, require_url, fdao_pws_override,
-                           fdao_sws_override, fdao_uwnetid_override)
+from myuw.test.api import (
+    MyuwApiTest, require_url, fdao_pws_override,
+    fdao_sws_override, fdao_uwnetid_override)
 
 
 @fdao_sws_override
@@ -39,7 +40,6 @@ class TestProfile(MyuwApiTest):
         pw_data = data["password"]
         self.assertEquals(pw_data["last_change"],
                           "2013-01-27 10:49:42-08:00")
-        self.assertFalse(pw_data["has_active_med_pw"])
         self.assertIsNone(pw_data["last_change_med"])
         self.assertIsNone(pw_data["expires_med"])
 
@@ -50,7 +50,7 @@ class TestProfile(MyuwApiTest):
         self.assertEquals(data["campus"], "Bothell")
         self.assertEqual(data["uwnetid"], "jbothell")
         pw_data = data["password"]
-        self.assertFalse(pw_data["has_active_med_pw"])
+        self.assertIsNotNone(pw_data["last_change"])
 
     def test_tacoma_student(self):
         response = self.get_profile_response("eight")
@@ -58,9 +58,9 @@ class TestProfile(MyuwApiTest):
         self.assertEqual(data["uwnetid"], "eight")
         self.assertEquals(data["campus"], "Tacoma")
         pw_data = data["password"]
-        self.assertTrue(pw_data["has_active_med_pw"])
+        self.assertIsNotNone(pw_data["last_change"])
 
-    def test_staff(self):
+    def test_password(self):
         response = self.get_profile_response("staff", adate="2014-01-10")
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
@@ -68,8 +68,8 @@ class TestProfile(MyuwApiTest):
         self.assertFalse(data["is_student"])
         self.assertFalse(data["is_grad_student"])
         pw_data = data["password"]
-        self.assertTrue(pw_data["has_active_med_pw"])
-        self.assertTrue(pw_data["med_pw_expired"])
+        self.assertTrue(pw_data["last_change"])
+        self.assertTrue(pw_data["expires_med"])
 
     def test_error_cases(self):
         response = self.get_profile_response("jerror")

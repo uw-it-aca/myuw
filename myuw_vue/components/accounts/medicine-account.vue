@@ -45,12 +45,12 @@
             </template>
             <template #status-value>
               <div :class="expiresIn30Days ? 'text-danger' : ''">
-                {{ expiration }}
+                {{ toFromNowDate(password.expires_med) }}
               </div>
             </template>
             <template #status-content>
               <div class="text-end">
-                {{ toFromNowDate(password.expires_med) }}*
+                {{ expiration }}*
               </div>
             </template>
           </uw-card-status>
@@ -95,7 +95,7 @@ export default {
       return this.statusCode !== 404;
     },
     hasActiveMedPw() {
-      return this.password.has_active_med_pw;
+      return this.password.last_change_med;
     },
     expiresMed() {
       return this.password.expires_med;
@@ -114,7 +114,8 @@ export default {
     },
     expiration() {
       return (this.expiresIn3Days
-        ? this.toFriendlyDatetime(this.expiresMed) : toFriendlyDate(this.expiresMed));
+        ? this.toFriendlyDatetime(this.expiresMed)
+        : this.toFriendlyDate(this.expiresMed));
     }
   },
   mounted() {

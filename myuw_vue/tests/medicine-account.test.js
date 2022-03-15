@@ -1,11 +1,10 @@
+import dayjs from 'dayjs';
+dayjs.extend(require('dayjs/plugin/timezone'))
 import axios from 'axios';
-
 import { mount } from '@vue/test-utils';
-import { createLocalVue } from './helper';
-
 import Vuex from 'vuex';
+import { createLocalVue } from './helper';
 import profile from '../vuex/store/profile';
-
 import UwCard from '../components/_templates/card.vue';
 import MedicineAccountCard from '../components/accounts/medicine-account.vue';
 import mockJinterProfile from './mock_data/profile/jinter.json';
@@ -24,6 +23,9 @@ describe('Husky Card', () => {
       },
       state: {
         staticUrl: '/static/',
+        cardDisplayDates: {
+          comparison_date: dayjs("2013-04-15T00:00:01"),
+        },
       }
     });
   });
@@ -32,46 +34,46 @@ describe('Husky Card', () => {
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, {store, localVue});
     await new Promise(setImmediate);
+    expect(wrapper.vm.expiresMed).toBe(null);
+    expect(wrapper.vm.hasActiveMedPw).toBe(null);
     expect(wrapper.vm.showCard).toBe(false);
     expect(wrapper.findComponent(UwCard).exists()).toBe(false);
   });
 
   it('Show card, password expired', async () => {
-    mockJinterProfile.password.has_active_med_pw = true;
-    mockJinterProfile.password.med_pw_expired = true;
-    mockJinterProfile.password.expires_med = '2013-04-01 00:00:00-08:00';
+    mockJinterProfile.password.expires_med = '2013-04-14 10:57:06-08:00';
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
-    await new Promise(setImmediate);
-    
+    await new Promise(setImmediate); 
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.hasActiveMedPw).toBe(true);
     expect(wrapper.vm.expired).toBe(true);
-    expect(wrapper.vm.expiresMed).toBe('2013-04-01 00:00:00-08:00');
-
-    expect(wrapper.vm.expiration).toBe('Mon, Apr 1');
-    expect(wrapper.vm.expires30Days).toBe(false);
+    expect(wrapper.vm.expiresIn3Days).toBe(true);
+    expect(wrapper.vm.expiresIn30Days).toBe(true);
+    expect(wrapper.vm.expiration).toBe('Mon, Apr 14');
   });
 
   it('Show card, password not expired', async () => {
     mockJinterProfile.password.has_active_med_pw = true;
     mockJinterProfile.password.med_pw_expired = false;
-    mockJinterProfile.password.expires_med = '2013-06-03 10:57:06-08:00';
-    mockJinterProfile.password.days_before_med_pw_expires = 49;
+    mockJinterProfile.password.expires_med = '2013-05-14 08:00:00-08:00';
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
-    const wrapper = mount(MedicineAccountCard, { store, localVue });
+    let wrapper = mount(MedicineAccountCard, { store, localVue });
     await new Promise(setImmediate);
-    
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
-    expect(wrapper.vm.hasActiveMedPw).toBe(true);
     expect(wrapper.vm.expired).toBe(false);
-    expect(wrapper.vm.expiresMed).toBe('2013-06-03 10:57:06-08:00');
-    expect(wrapper.vm.expiresIn30Days).toBe(false);
+    expect(wrapper.vm.expiresIn30Days).toBe(true);
     expect(wrapper.vm.expiresIn3Days).toBe(false);
-    expect(wrapper.vm.toFriendlyDate(wrapper.vm.expiresMed)).toBe('Mon, Jun 3');
-    expect(wrapper.vm.expires30Days).toBe(false);
+
+    mockJinterProfile.password.expires_med = '2013-04-12 08:00:00-08:00';
+    axios.get.mockResolvedValue({ data: mockJinterProfile, status: 200 });
+    wrapper = mount(MedicineAccountCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.expiresIn3Days).toBe(truw);
+    expect(wrapper.vm.expiration).toBe(
+      wrapper.vm.toFriendlyDatetime(mockJinterProfile.password.expires_med));
   });
 
   it('toFriendlyDate', () => {
