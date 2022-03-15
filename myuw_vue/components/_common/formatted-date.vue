@@ -7,7 +7,7 @@
 <script>
 export default {
   props: {
-    dueDate: {
+    dueDate: {  // a timezone aware datetime string
       type: String,
       required: true,
     },
