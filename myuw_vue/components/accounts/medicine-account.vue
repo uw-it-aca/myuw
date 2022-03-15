@@ -26,7 +26,7 @@
           This password is for UW Medicine applications
           like Epic, ORCA, MINDscape, AMC network, etc.
         </p>
-        <div v-if="medPwExpired">
+        <div v-if="expired">
           <div class="alert alert-danger" role="alert">
             <p>
               Password expired on {{ toFriendlyDate(expiresMed) }}.
@@ -44,13 +44,8 @@
               Password expiration
             </template>
             <template #status-value>
-              <div :class="expires30Days ? 'text-danger' : ''">
-                <span v-if="expiresWithin3Days">
-                  {{ toFriendlyDatetime(expiresMed) }}
-                </span>
-                <span v-else>
-                  {{ toFriendlyDate(expiresMed) }}
-                </span>
+              <div :class="expiresIn30Days ? 'text-danger' : ''">
+                {{ expiration }}
               </div>
             </template>
             <template #status-content>
@@ -102,24 +97,25 @@ export default {
     hasActiveMedPw() {
       return this.password.has_active_med_pw;
     },
-    medPwExpired() {
-      return this.password.med_pw_expired;
-    },
     expiresMed() {
       return this.password.expires_med;
-    },
-    daysBeforeExpires() {
-      return this.password.days_before_med_pw_expires;
     },
     showCard() {
       return !this.isReady || Boolean(this.password) && this.hasActiveMedPw;
     },
-    expires30Days() {
-      return this.daysBeforeExpires <= 30;
+    expiresIn30Days() {
+      return this.diffDays(this.expiresMed) <= 30;
     },
-    expiresWithin3Days() {
-      return this.daysBeforeExpires <= 3;
+    expiresIn3Days() {
+      return this.diffDays(this.expiresMed) <= 3;
     },
+    expired() {
+      return this.diffDays(this.expiresMed, 'second') <= 0;
+    },
+    expiration() {
+      return (this.expiresIn3Days
+        ? this.toFriendlyDatetime(this.expiresMed) : toFriendlyDate(this.expiresMed));
+    }
   },
   mounted() {
     this.fetch();

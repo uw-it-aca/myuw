@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import {mapState} from 'vuex';
 
 dayjs.extend(require('dayjs/plugin/calendar'))
+dayjs.extend(require('dayjs/plugin/duration'))
 dayjs.extend(require('dayjs/plugin/relativeTime'))
 dayjs.extend(require('dayjs/plugin/timezone'))
 dayjs.extend(require('dayjs/plugin/utc'))
@@ -131,6 +132,11 @@ export default {
       return (!date_str || date_str.length === 0 ? ''
         : dayjs(date_str).from(this.nowDatetime(useCompDate)));
         // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
+    },
+    diffDays(date_str, unit = 'day', useCompDate = true) {
+      // return the time delta of unit
+      return (!date_str || date_str.length === 0 ? false
+        : dayjs(date_str).diff(this.nowDatetime(useCompDate), unit));
     },
     toCalendar(date_str) {
       return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).calendar());

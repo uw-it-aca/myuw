@@ -40,7 +40,6 @@ describe('Husky Card', () => {
     mockJinterProfile.password.has_active_med_pw = true;
     mockJinterProfile.password.med_pw_expired = true;
     mockJinterProfile.password.expires_med = '2013-04-01 00:00:00-08:00';
-    mockJinterProfile.password.days_before_med_pw_expires = undefined;
     axios.get.mockResolvedValue({data: mockJinterProfile, status: 200});
     const wrapper = mount(MedicineAccountCard, { store, localVue });
     await new Promise(setImmediate);
@@ -48,11 +47,10 @@ describe('Husky Card', () => {
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.hasActiveMedPw).toBe(true);
-    expect(wrapper.vm.medPwExpired).toBe(true);
+    expect(wrapper.vm.expired).toBe(true);
     expect(wrapper.vm.expiresMed).toBe('2013-04-01 00:00:00-08:00');
-    expect(wrapper.vm.daysPwExpires).toBe(undefined);
 
-    expect(wrapper.vm.toFriendlyDate(wrapper.vm.expiresMed)).toBe('Mon, Apr 1');
+    expect(wrapper.vm.expiration).toBe('Mon, Apr 1');
     expect(wrapper.vm.expires30Days).toBe(false);
   });
 
@@ -68,10 +66,10 @@ describe('Husky Card', () => {
     expect(wrapper.vm.showCard).toBe(true);
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
     expect(wrapper.vm.hasActiveMedPw).toBe(true);
-    expect(wrapper.vm.medPwExpired).toBe(false);
+    expect(wrapper.vm.expired).toBe(false);
     expect(wrapper.vm.expiresMed).toBe('2013-06-03 10:57:06-08:00');
-    expect(wrapper.vm.daysBeforeExpires).toBe(49);
-
+    expect(wrapper.vm.expiresIn30Days).toBe(false);
+    expect(wrapper.vm.expiresIn3Days).toBe(false);
     expect(wrapper.vm.toFriendlyDate(wrapper.vm.expiresMed)).toBe('Mon, Jun 3');
     expect(wrapper.vm.expires30Days).toBe(false);
   });
