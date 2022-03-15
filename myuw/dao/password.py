@@ -49,6 +49,4 @@ def get_pw_json(request):
     }
     """
     pw = get_password_info(request)
-    if pw is None:
-        return None
-    return pw.json_data()
+    return pw.json_data() if pw else None

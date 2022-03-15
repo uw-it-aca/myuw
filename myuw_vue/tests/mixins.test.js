@@ -104,8 +104,12 @@ describe('mixins', () => {
       utils.methods.toFriendlyDate('')
     ).toEqual('');
   });
+  it('diffDays', async () => {
+    const now = utils.methods.dayjs();
+    expect(utils.methods.diffDays(now.add(1, 'd'), 'day', false)).toEqual(1);
+    expect(utils.methods.diffDays(now.subtract(1, 'd'), 'day', false)).toEqual(-1);
+  });
   it('toFromNowDate', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
     expect(utils.methods.toFromNowDate()).toEqual('');
     expect(utils.methods.toFromNowDate('')).toEqual('');
 

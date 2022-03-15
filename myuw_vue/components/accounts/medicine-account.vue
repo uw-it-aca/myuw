@@ -103,17 +103,18 @@ export default {
     showCard() {
       return !this.isReady || Boolean(this.password) && this.hasActiveMedPw;
     },
+    expired() {
+      return this.expiresMed && this.diffDays(this.expiresMed, 'second') <= 0;
+    },
     expiresIn30Days() {
-      return this.diffDays(this.expiresMed) <= 30;
+      return this.expiresMed && this.diffDays(this.expiresMed) <= 30;
     },
     expiresIn3Days() {
       return this.diffDays(this.expiresMed) <= 3;
     },
-    expired() {
-      return this.diffDays(this.expiresMed, 'second') <= 0;
-    },
     expiration() {
-      return (this.expiresIn3Days
+      return this.expiresMed && (
+        this.expiresIn3Days
         ? this.toFriendlyDatetime(this.expiresMed)
         : this.toFriendlyDate(this.expiresMed));
     }
