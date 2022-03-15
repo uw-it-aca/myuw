@@ -44,13 +44,11 @@
               Password expiration
             </template>
             <template #status-value>
-              <div :class="expiresIn30Days ? 'text-danger' : ''">
-                {{ toFromNowDate(password.expires_med) }}
-              </div>
+              <uw-formatted-date :due-date="expiresMed"></uw-formatted-date>
             </template>
             <template #status-content>
               <div class="text-end">
-                {{ expiration }}*
+                {{ toFromNowDate(expiresMed) }}*
               </div>
             </template>
           </uw-card-status>
@@ -70,11 +68,14 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import CardStatus from '../_templates/card-status.vue';
 import Card from '../_templates/card.vue';
+import FormattedDate from '../_common/formatted-date.vue';
+
 
 export default {
   components: {
     'uw-card': Card,
     'uw-card-status': CardStatus,
+    'uw-formatted-date': FormattedDate,
   },
   data: function() {
     return {
@@ -101,23 +102,12 @@ export default {
       return this.password.expires_med;
     },
     showCard() {
-      return !this.isReady || Boolean(this.password) && this.hasActiveMedPw;
+      return (!this.isReady ||
+        Boolean(this.password) && this.hasActiveMedPw && Boolean(this.expiresMed));
     },
     expired() {
-      return this.expiresMed && this.diffDays(this.expiresMed, 'second') <= 0;
+      return this.diffDays(this.expiresMed, 'second') < 0;
     },
-    expiresIn30Days() {
-      return this.expiresMed && this.diffDays(this.expiresMed) <= 30;
-    },
-    expiresIn3Days() {
-      return this.diffDays(this.expiresMed) <= 3;
-    },
-    expiration() {
-      return this.expiresMed && (
-        this.expiresIn3Days
-        ? this.toFriendlyDatetime(this.expiresMed)
-        : this.toFriendlyDate(this.expiresMed));
-    }
   },
   mounted() {
     this.fetch();
