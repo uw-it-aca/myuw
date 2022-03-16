@@ -271,12 +271,12 @@ export default {
       return notices;
     },
     hasTuitionDate() {
-        return Boolean(this.tuitionDueNotice) && Boolean(this.tuitionDueNotice.datestr);
+        return Boolean(this.tuitionDueNotice) && Boolean(this.tuitionDueNotice.dateStr);
     },
     tuitionDate() {
       // To change due date on localdev, uncomment the line below:
-      // this.tuitionDueNotice.datestr = "2013-04-14 07:00:00+00:00";
-      return this.tuitionDueNotice.datestr;
+      // this.tuitionDueNotice.dateStr = "2013-04-14 07:00:00+00:00";
+      return this.tuitionDueNotice.dateStr;
     },
     tuitionDateFromNow() {
       return this.toFromNowDate(this.tuitionDate);
