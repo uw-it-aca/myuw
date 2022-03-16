@@ -65,7 +65,7 @@ describe('Tuition store', () => {
 
     expect(wrapper.vm.hasTuitionDate).toBe(true);
     expect(wrapper.vm.tuitionDate).toBe("2013-04-19 07:00:00+00:00");
-    expect(wrapper.vm.daysDiffTuitionDueDate).toBe(4);
+    expect(wrapper.vm.daysDiffTuitionDueDate).toBe(5);
     expect(wrapper.vm.tuitionDateFromNow).toBe("in 4 days");
 
     expect(wrapper.vm.finAidNotices.length).toBe(1);
@@ -92,8 +92,8 @@ describe('Tuition store', () => {
 
     expect(wrapper.vm.hasTuitionDate).toBe(true);
     expect(wrapper.vm.tuitionDate).toBe("2013-04-15 07:00:00+00:00");
-    expect(wrapper.vm.daysDiffTuitionDueDate).toBe(0);
-    expect(wrapper.vm.tuitionDateFromNow).toBe("Today");
+    expect(wrapper.vm.daysDiffTuitionDueDate).toBe(1);
+    expect(wrapper.vm.tuitionDateFromNow).toBe("Tomorrow");
 
     expect(wrapper.vm.pceBalance).toBe(1000.00);
     expect(wrapper.vm.tuiBalance).toBe(12345.00);

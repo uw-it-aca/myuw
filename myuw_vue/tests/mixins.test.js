@@ -117,8 +117,9 @@ describe('mixins', () => {
   });
   it('timeDeltaFrom', async () => {
     const now = utils.methods.dayjs();
-    expect(utils.methods.timeDeltaFrom(now.add(1, 'h'), 'day', false)).toEqual(0);
-    expect(utils.methods.timeDeltaFrom(now.add(25, 'h'), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.add(1, 'h'), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.add(24, 'h'), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.add(25, 'h'), 'day', false)).toEqual(2);
     expect(utils.methods.timeDeltaFrom(now.subtract(1, 'd'), 'day', false)).toEqual(-1);
   });
   it('toFromNowDate', async () => {
@@ -128,9 +129,9 @@ describe('mixins', () => {
     const now = utils.methods.dayjs();
     expect(utils.methods.toFromNowDate(now.subtract(1, 'd'), false))
       .toEqual('a day ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'h'), false))
+    expect(utils.methods.toFromNowDate(now, false))
       .toEqual('Today');
-    expect(utils.methods.toFromNowDate(now.add(25, 'h'), false))
+    expect(utils.methods.toFromNowDate(now.add(1, 'd'), false))
       .toEqual('Tomorrow');
     expect(utils.methods.toFromNowDate(now.subtract(5, 'd'), false))
       .toEqual('5 days ago');

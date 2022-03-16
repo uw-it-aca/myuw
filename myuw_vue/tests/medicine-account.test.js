@@ -77,7 +77,7 @@ describe('Husky Card', () => {
     );
     expect(wrapper.vm.displayTextDanger).toBe(true);
     expect(wrapper.vm.displayTime).toBe(true);
-    expect(wrapper.vm.daysDiff).toBe(29);
+    expect(wrapper.vm.daysDiff).toBe(30);
     expect(wrapper.vm.dueIn30Days).toBe(true);
     expect(wrapper.vm.dueIn3Days).toBe(false);
     expect(wrapper.vm.formattedDate).toBe('Tue, May 14');
@@ -93,7 +93,7 @@ describe('Husky Card', () => {
           'displayTime': true }
         }
     );
-    expect(wrapper.vm.daysDiff).toBe(2);
+    expect(wrapper.vm.daysDiff).toBe(3);
     expect(wrapper.vm.dueIn30Days).toBe(true);
     expect(wrapper.vm.dueIn3Days).toBe(true);
     expect(wrapper.vm.formattedDate).toBe('Thu, Apr 18, 12:00AM');

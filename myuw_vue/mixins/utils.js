@@ -130,15 +130,17 @@ export default {
     },
     toFromNowDate(date_str, useCompDate = true) {
       if (!date_str || date_str.length === 0) return '';
-      if (this.timeDeltaFrom(date_str) === 0) return "Today";
-      if (this.timeDeltaFrom(date_str) === 1) return "Tomorrow";
+      const delta = this.timeDeltaFrom(date_str);
+      if (delta >= 0 && delta < 1) return "Today";
+      if (delta >= 1 && delta < 2) return "Tomorrow";
       return dayjs(date_str).from(this.nowDatetime(useCompDate));
       // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
     },
     timeDeltaFrom(date_str, unit = 'day', useCompDate = true) {
       // return the number of units that the date_str (must be a valid date/datetime string)
       // is to the comparison date.
-      return dayjs(date_str).diff(this.nowDatetime(useCompDate), unit);
+      // https://day.js.org/docs/en/display/difference
+      return Math.ceil(dayjs(date_str).diff(this.nowDatetime(useCompDate), unit, true));
     },
     toCalendar(date_str) {
       return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).calendar());
