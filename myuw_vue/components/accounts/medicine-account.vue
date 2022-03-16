@@ -44,7 +44,10 @@
               Password expiration
             </template>
             <template #status-value>
-              <uw-formatted-date :due-date="expiresMed" :display-text-danger="true">
+              <uw-formatted-date
+                :due-date="expiresMed"
+                :display-text-danger="true"
+                :display-time="true">
               </uw-formatted-date>
             </template>
             <template #status-content>

@@ -68,8 +68,15 @@ describe('Husky Card', () => {
   it('Due in 30 days', () => {
     const wrapper = mount(
       FormattedDate,
-      { store, localVue, propsData: { 'dueDate': '2013-05-14 00:00:00-08:00' } }
+      { store, localVue,
+        propsData: {
+          'dueDate': '2013-05-14 00:00:00-08:00',
+          'displayTextDanger': true,
+          'displayTime': true }
+        }
     );
+    expect(wrapper.vm.displayTextDanger).toBe(true);
+    expect(wrapper.vm.displayTime).toBe(true);
     expect(wrapper.vm.daysDiff).toBe(29);
     expect(wrapper.vm.dueIn30Days).toBe(true);
     expect(wrapper.vm.dueIn3Days).toBe(false);
@@ -79,7 +86,12 @@ describe('Husky Card', () => {
   it('Due in 3 days', () => {
     const wrapper = mount(
       FormattedDate,
-      { store, localVue, propsData: { 'dueDate': '2013-04-17 16:00:00-08:00' } }
+      { store, localVue,
+        propsData: {
+          'dueDate': '2013-04-17 16:00:00-08:00',
+          'displayTextDanger': true,
+          'displayTime': true }
+        }
     );
     expect(wrapper.vm.daysDiff).toBe(2);
     expect(wrapper.vm.dueIn30Days).toBe(true);
