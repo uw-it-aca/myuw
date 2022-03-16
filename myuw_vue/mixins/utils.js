@@ -133,7 +133,7 @@ export default {
       if (this.timeDeltaFrom(date_str) === 0) return "Today";
       if (this.timeDeltaFrom(date_str) === 1) return "Tomorrow";
       return dayjs(date_str).from(this.nowDatetime(useCompDate));
-        // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
+      // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
     },
     timeDeltaFrom(date_str, unit = 'day', useCompDate = true) {
       // return the number of units that the date_str (must be a valid date/datetime string)
