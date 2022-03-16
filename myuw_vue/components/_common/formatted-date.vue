@@ -14,6 +14,10 @@ export default {
     displayTextDanger: {
       type: Boolean,
       default: false,
+    },
+    displayTime: {
+      type: Boolean,
+      default: false,
     }
   },
   computed: {
@@ -27,7 +31,7 @@ export default {
       return this.daysDiff >= 0 && this.daysDiff <= 3;
     },
     formattedDate() {
-      return (this.dueIn3Days
+      return (this.displayTime && this.dueIn3Days
         ? this.toFriendlyDatetime(this.dueDate)
         : this.toFriendlyDate(this.dueDate));
     },
