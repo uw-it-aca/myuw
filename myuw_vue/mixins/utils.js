@@ -136,7 +136,8 @@ export default {
         // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
     },
     diffDays(date_str, unit = 'day', useCompDate = true) {
-      // return the time delta of unit. date_str must be a valid date/datetime str
+      // return the number of units that the date_str (must be a valid date/datetime string)
+      // is from the comparison date.
       return dayjs(date_str).diff(this.nowDatetime(useCompDate), unit);
     },
     toCalendar(date_str) {
