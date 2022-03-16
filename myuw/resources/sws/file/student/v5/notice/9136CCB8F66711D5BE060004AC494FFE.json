@@ -135,8 +135,23 @@
             {
                  "Name": "Date",
                  "DataType": "date",
-                 "Value": "future"
-             }
+                 "Value": "20130401"
+             },
+             {
+                "Name": "DisplayBegin",
+                "DataType": "date",
+                "Value": "20130329"
+            },
+            {
+                "Name": "DisplayEnd",
+                "DataType": "date",
+                "Value": "20130401"
+            },
+            {
+                "Name": "Quarter",
+                "DataType": "string",
+                "Value": "Sring"
+            }
             ],
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for winter quarter is due <span class=\"date\"></span>. For details, <a href=\"https://sdb.admin.washington.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
