@@ -282,7 +282,7 @@ export default {
       return this.toFromNowDate(this.tuitionDate);
     },
     daysDiffTuitionDueDate() {
-      return this.diffDays(this.tuitionDate);
+      return this.timeDeltaFrom(this.tuitionDate);
     },
     tuiBalance() {
       // regular tuition balance

@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     daysDiff() {
-      return this.diffDays(this.dueDate);
+      return this.timeDeltaFrom(this.dueDate);
     },
     dueIn30Days() {
       return this.daysDiff >= 0 && this.daysDiff <= 30;

@@ -115,11 +115,11 @@ describe('mixins', () => {
       utils.methods.toFriendlyDatetime('')
     ).toEqual('');
   });
-  it('diffDays', async () => {
+  it('timeDeltaFrom', async () => {
     const now = utils.methods.dayjs();
-    expect(utils.methods.diffDays(now.add(1, 'h'), 'day', false)).toEqual(0);
-    expect(utils.methods.diffDays(now.add(25, 'h'), 'day', false)).toEqual(1);
-    expect(utils.methods.diffDays(now.subtract(1, 'd'), 'day', false)).toEqual(-1);
+    expect(utils.methods.timeDeltaFrom(now.add(1, 'h'), 'day', false)).toEqual(0);
+    expect(utils.methods.timeDeltaFrom(now.add(25, 'h'), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.subtract(1, 'd'), 'day', false)).toEqual(-1);
   });
   it('toFromNowDate', async () => {
     expect(utils.methods.toFromNowDate()).toEqual('');

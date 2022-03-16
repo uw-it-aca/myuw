@@ -110,7 +110,7 @@ export default {
         Boolean(this.password) && this.hasActiveMedPw && Boolean(this.expiresMed));
     },
     expired() {
-      return this.diffDays(this.expiresMed, 'second') < 0;
+      return this.timeDeltaFrom(this.expiresMed, 'second') < 0;
     },
   },
   mounted() {
