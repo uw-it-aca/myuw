@@ -115,8 +115,6 @@
         "netid_status": [
             "Person",
             "Active"
-        ],
-        "days_after_last_pw_change": 18,
-        "has_active_med_pw": false
+        ]
     }
 }

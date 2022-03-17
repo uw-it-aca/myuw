@@ -22,7 +22,7 @@ class TestLibrary(MyuwApiTest):
                           {'fines': 0,
                            'holds_ready': 1,
                            'items_loaned': 1,
-                           'next_due': '2014-05-27T02:00:00+00:00'})
+                           'next_due': '2013-05-27T02:00:00+00:00'})
 
     def test_invalid_books(self):
         self.set_user('nodata')

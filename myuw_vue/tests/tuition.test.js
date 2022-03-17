@@ -62,9 +62,14 @@ describe('Tuition store', () => {
     expect(wrapper.vm.isC2).toBe(false);
     expect(wrapper.vm.isPCE).toBe(false);
     expect(wrapper.vm.notices.length).toBe(14);
+
+    expect(wrapper.vm.hasTuitionDate).toBe(true);
+    expect(wrapper.vm.tuitionDate).toBe("2013-04-19 07:00:00+00:00");
+    expect(wrapper.vm.daysDiffTuitionDueDate).toBe(5);
+    expect(wrapper.vm.tuitionDateFromNow).toBe("in 4 days");
+
     expect(wrapper.vm.finAidNotices.length).toBe(1);
     expect(wrapper.vm.pceTuitionDup.length).toBe(0);
-    expect(wrapper.vm.tuitionDate.formatted ).toBe('Wed, Aug 20');
     expect(wrapper.vm.pceBalance).toBe(0);
     expect(wrapper.vm.tuiBalance).toBe(1);
     expect(wrapper.findComponent(TuitionFees).exists()).toBe(true);
@@ -84,7 +89,12 @@ describe('Tuition store', () => {
     });
     const wrapper = mount(TuitionFees, {store, localVue});
     await new Promise(setImmediate);
-    expect(wrapper.vm.tuitionDate.formatted ).toBe("Mon, Feb 22");
+
+    expect(wrapper.vm.hasTuitionDate).toBe(true);
+    expect(wrapper.vm.tuitionDate).toBe("2013-04-15 07:00:00+00:00");
+    expect(wrapper.vm.daysDiffTuitionDueDate).toBe(1);
+    expect(wrapper.vm.tuitionDateFromNow).toBe("Tomorrow");
+
     expect(wrapper.vm.pceBalance).toBe(1000.00);
     expect(wrapper.vm.tuiBalance).toBe(12345.00);
     expect(Boolean(wrapper.vm.tuitionDate)).toBe(true);
@@ -107,8 +117,7 @@ describe('Tuition store', () => {
     });
     const wrapper = mount(TuitionFees, {store, localVue});
     await new Promise(setImmediate);
-    expect(wrapper.findAllComponents(CardStatus).length).toBe(3);
-    expect(wrapper.vm.tuitionDate.formatted ).toBe("Fri, Jul 9");
+    expect(wrapper.vm.hasTuitionDate).toBe(true);
     expect(wrapper.vm.pceBalance).toBe(2897.00);
     expect(wrapper.vm.tuiBalance).toBe(-10.00);
   });

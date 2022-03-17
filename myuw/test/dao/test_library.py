@@ -8,12 +8,13 @@ from myuw.dao.library import _get_account_by_uwnetid
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
-from myuw.test import fdao_pws_override, fdao_sws_override,\
-    get_request_with_user, get_request_with_date
+from myuw.test import (
+    fdao_pws_override, fdao_mylib_override ,
+    get_request_with_user, get_request_with_date)
 
 
 @fdao_pws_override
-@fdao_sws_override
+@fdao_mylib_override 
 class TestLibrary(TestCase):
 
     def test_get_account_balance(self):
@@ -21,7 +22,7 @@ class TestLibrary(TestCase):
 
         javerage_acct = _get_account_by_uwnetid('javerage')
         self.assertEquals(str(javerage_acct.next_due),
-                          '2014-05-27 02:00:00+00:00')
+                          '2013-05-27 02:00:00+00:00')
 
         self.assertRaises(DataFailureException,
                           _get_account_by_uwnetid,
