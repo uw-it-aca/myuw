@@ -12,9 +12,10 @@
       </h2>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        For application status, contact the Office of the University Registrar
+      <h3 class="h6 myuw-font-encode-sans">
+        Application status
       </h3>
+      <p>For application status, contact the Office of the University Registrar:</p>
       <div class="container">
         <div class="row">
           <div class="col">Email</div>
@@ -31,11 +32,11 @@
         </div>
       </div>
 
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        Registration for Returning Student
+      <h3 class="h6 myuw-font-encode-sans">
+        Registration for returning student
       </h3>
       <p>
-        You must confirm your intent to attend prior to being able to register.
+        If readmitted, you must <a href="https://sdb.admin.uw.edu/enroll/">confirm your enrollment</a> prior to being able to register.
       </p>
       <p>
         You may register during the Registration Period II of your
@@ -44,8 +45,8 @@
         >Academic calendar</a>.
       </p>
 
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        Resources for Seattle Applicants
+      <h3 class="h6 myuw-font-encode-sans">
+        Resources for Seattle applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
@@ -53,21 +54,21 @@
             v-out="'Student Financial Aid'"
             href="https://www.washington.edu/financialaid/"
           >
-            Learn all about student financial aid and scholarships
+            Student financial aid, loans, and scholarships
           </a>
         </li>
         <li class="mb-1">
           <a v-out="'Student Guide'"
              href="http://www.washington.edu/students/"
           >
-            Check out the Student guide for academics, student life, and more
+            Check out the Student Guide
           </a>
         </li>
         <li class="mb-1">
           <a
             href="http://www.washington.edu/students/reg/calendar.html"
           >
-            View the UW Academic calendars
+            View the UW Academic Calendar
           </a>
         </li>
       </ul>
@@ -79,8 +80,8 @@
         View your {{ applicantData.type }} application status
       </uw-link-button>
 
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        Resources for Seattle Applicants
+      <h3 class="h6 myuw-font-encode-sans">
+        Resources for Seattle applicants
       </h3>
       <h4 class="h6">
         ADMISSIONS
@@ -97,14 +98,14 @@
           <a
             href="https://admit.washington.edu/apply/dates-deadlines/#transfer"
           >
-            Key dates &amp; deadlines for Transfer
+            Key dates &amp; deadlines for transfer students
           </a>
         </li>
         <li v-if="applicantData.if_post_bac" class="mb-1">
           <a
             href="https://admit.washington.edu/apply/dates-deadlines/#postbac"
           >
-            Key dates &amp; deadlines for Postbaccalaureate
+            Key dates &amp; deadlines for postbaccalaureates
           </a>
         </li>
       </ul>
@@ -117,14 +118,21 @@
           <a
             href="https://www.washington.edu/financialaid/"
           >
-            Learn all about student financial aid and scholarships
+            Student financial aid, loans, and scholarships
+          </a>
+        </li>
+        <li class="mb-1">
+          <a
+            href="https://www.washington.edu/financialaid/applying-for-aid/key-dates-and-deadlines/"
+          >
+            Financial aid key dates and deadlines
           </a>
         </li>
         <li class="mb-1">
           <a
             href="https://admit.washington.edu/costs/coa/"
           >
-            Refer to total cost of attendance for financial planning
+            Understand total cost of attendance
           </a>
         </li>
       </ul>
@@ -140,42 +148,26 @@
         </li>
         <li class="mb-1">
           <a href="https://hfs.uw.edu/Live">
-            Learn about campus-living
+            Explore campus living
           </a>
         </li>
         <li class="mb-1">
           <a
-            href="http://hr.uw.edu/dso/services/matriculated-students/"
+            href="http://depts.washington.edu/uwdrs/"
           >
-            Check out student services: Disability Resources
+            Disability Resources for Students (DRS)
           </a>
         </li>
       </ul>
-      <h4 class="h6">
-        IF ADMITTED
-      </h4>
-      <ul class="list-unstyled myuw-text-md">
-        <li class="mb-1">
-          <a
-            href="http://www.washington.edu/newhuskies/must-do/"
-          >
-            Next steps for Admitted students
-          </a>
-        </li>
+      <h3 class="h6 myuw-font-encode-sans">
+        Next steps if you are admitted
+      </h3>
+      <ul style="list-style-type:circle;" class="myuw-text-md">
         <li class="mb-1">
           <a v-out="'Accept admission offer'"
-             href="http://www.washington.edu/newhuskies/must-do/#accept/"
+             href="https://www.washington.edu/newhuskies/must-do/accept/"
           >
-            Accept the admission offer and pay the New Student Enrollment
-            &amp; Orientation Fee
-          </a>
-        </li>
-        <li v-if="applicantData.is_international" class="mb-1">
-          <a v-out="'Intl student checklist'"
-             href="https://iss.washington.edu/new-students/"
-          >
-            View the Int’l student checklist from International Student
-            Services (ISS)
+            Accept your admission offer and pay the fee
           </a>
         </li>
         <li class="mb-1">
@@ -187,19 +179,52 @@
         </li>
         <li class="mb-1">
           <a
+            href="https://www.washington.edu/newhuskies/must-do/send-proof-of-immunity/"
+          >
+            Make sure you’re immunized
+          </a>
+        </li>
+        <li class="mb-1">
+          <a
+            href="https://www.washington.edu/newhuskies/must-do/#photo"
+          >
+            Submit a photo for your Husky Card
+          </a>
+        </li>
+        <li class="mb-1">
+          <a
+            href="http://www.washington.edu/newhuskies/must-do/"
+          >
+            See additional steps required to enroll at the UW
+          </a>
+        </li>
+        <li v-if="applicantData.is_international" class="mb-1">
+          <a v-out="'Intl student checklist'"
+             href="https://iss.washington.edu/new-students/"
+          >
+            International students: additional steps
+          </a>
+        </li>
+      </ul>
+      <h3 class="h6 myuw-font-encode-sans">
+        Additional resources for admitted students
+      </h3>
+      <ul class="list-unstyled myuw-text-md">
+        <li class="mb-1">
+          <a
             href="http://www.washington.edu/uaa/advising/academic-planning/majors-and-minors/list-of-undergraduate-majors/"
           >
-            View undergraduate Majors
+            View undergraduate majors
           </a>
         </li>
         <li class="mb-1">
           <a href="http://fyp.washington.edu/">
-            Learn about the First Year Programs
+            Learn about First Year Programs
           </a>
         </li>
         <li class="mb-1">
           <a href="http://www.washington.edu/students/">
-            Check out the Student guide
+            Check out the Student Guide
           </a>
         </li>
       </ul>
