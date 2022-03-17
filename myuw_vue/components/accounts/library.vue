@@ -42,7 +42,7 @@
             </template>
             <template #status-content>
               <div class="myuw-text-sm text-muted text-end">
-                <uw-formatted-date :due-date="nextDue" :display-time="true">
+                <uw-formatted-date :due-date="nextDue">
                 </uw-formatted-date>
               </div>
             </template>
