@@ -13,7 +13,7 @@
     </template>
     <template v-if="pplicantData.is_returning" #card-body>
       <h3 class="h6 myuw-font-encode-sans">
-        Appication Status
+        Application status
       </h3>
       <p class="myuw-text-md">For application status, contact the UW Tacoma Office of Registrar:</p>
       <div class="container mb-3 myuw-text-md">
