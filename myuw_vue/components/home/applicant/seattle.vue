@@ -15,8 +15,8 @@
       <h3 class="h6 myuw-font-encode-sans">
         Application status
       </h3>
-      <p>For application status, contact the Office of the University Registrar:</p>
-      <div class="container">
+      <p class="myuw-text-md">For application status, contact the Office of the University Registrar:</p>
+      <div class="container mb-3 myuw-text-md">
         <div class="row">
           <div class="col">Email</div>
           <div class="col"><a v-out="'Contact Registrar Office'"

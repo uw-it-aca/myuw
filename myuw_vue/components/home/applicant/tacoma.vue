@@ -11,12 +11,12 @@
         {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
       </h2>
     </template>
-    <template v-if="applicantData.is_returning" #card-body>
+    <template v-if="true || applicantData.is_returning" #card-body>
       <h3 class="h6 myuw-font-encode-sans">
         Appication Status
       </h3>
-      <p>For application status, contact the UW Tacoma Office of Registrar:</p>
-      <div class="container">
+      <p class="myuw-text-md">For application status, contact the UW Tacoma Office of Registrar:</p>
+      <div class="container mb-3 myuw-text-md">
         <div class="row">
           <div class="col">Email</div>
           <div class="col"><a href="mailto:reguwt@uw.edu">reguwt@uw.edu</a></div>
