@@ -49,7 +49,8 @@ const postProcess = (response, _, rootState) => {
     }
 
     if (dateAttr !== undefined && dateAttr.value !== undefined) {
-      notice.date = dayjs(dateAttr.value);
+      notice.date = dayjs(dateAttr.value); // used for sorting
+      notice.dateStr = dateAttr.value;  // used for displaying formatted date
       notice.formattedDate = dateAttr.formatted_value;
     }
     // Notices will be sorted by notice.sortDate
