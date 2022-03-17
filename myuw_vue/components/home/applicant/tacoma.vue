@@ -11,7 +11,7 @@
         {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
       </h2>
     </template>
-    <template v-if="true || applicantData.is_returning" #card-body>
+    <template v-if="pplicantData.is_returning" #card-body>
       <h3 class="h6 myuw-font-encode-sans">
         Appication Status
       </h3>
