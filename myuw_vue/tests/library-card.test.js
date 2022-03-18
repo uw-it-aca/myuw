@@ -8,6 +8,7 @@ import storeLibrary from '../vuex/store/library';
 
 import UwCard from '../components/_templates/card.vue';
 import LibraryCard from '../components/accounts/library.vue';
+import FormattedDate from '../components/_common/formatted-date.vue';
 
 let mockRes = {
   holds_ready: 1,
@@ -37,6 +38,7 @@ describe('Library Card', () => {
     await new Promise(setImmediate);
 
     expect(wrapper.findComponent(UwCard).exists()).toBe(true);
+    expect(wrapper.findComponent(FormattedDate).exists()).toBe(true);
     expect(wrapper.vm.holdsReady).toBe(1);
     expect(wrapper.vm.fines).toBe(0);
     expect(wrapper.vm.itemsLoaned).toBe(1);

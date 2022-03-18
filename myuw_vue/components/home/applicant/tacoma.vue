@@ -12,10 +12,11 @@
       </h2>
     </template>
     <template v-if="applicantData.is_returning" #card-body>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        For application status, contact the UW Tacoma Office of Registrar
+      <h3 class="h6 myuw-font-encode-sans">
+        Application status
       </h3>
-      <div class="container">
+      <p class="myuw-text-md">For application status, contact the UW Tacoma Office of Registrar:</p>
+      <div class="container mb-3 myuw-text-md">
         <div class="row">
           <div class="col">Email</div>
           <div class="col"><a href="mailto:reguwt@uw.edu">reguwt@uw.edu</a></div>
@@ -41,29 +42,29 @@
           </div>
         </div>
       </div>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        Resources for Tacoma Applicants
+      <h3 class="h6 myuw-font-encode-sans">
+        Resources for Tacoma applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
-          <a v-out="'UW Tacoma Financial Aid'"
-             href="http://www.tacoma.uw.edu/node/36610"
+          <a v-out="'UW Tacoma financial aid'"
+             href="https://www.tacoma.uw.edu/finaid/application-process"
           >
-            Learn all about student financial aid
+            Applying for financial aid
           </a>
         </li>
         <li class="mb-1">
-          <a v-out="'UW Tacoma Financial aid key dates and deadlines'"
-            href="http://www.tacoma.uw.edu/node/41373"
+          <a v-out="'UW Tacoma financial aid key dates and deadlines'"
+            href="https://www.tacoma.uw.edu/finaid/dates"
           >
             Financial aid key dates and deadlines
           </a>
         </li>
         <li class="mb-1">
-          <a v-out="'UW Tacoma Academic calendars'"
-             href="http://www.tacoma.uw.edu/node/41353"
+          <a v-out="'UW Tacoma Academic Calendar'"
+             href="https://www.tacoma.uw.edu/registrar/academic-calendar"
           >
-            View the UW Tacoma Academic calendars
+           UW Tacoma Academic Calendar
           </a>
         </li>
       </ul>
@@ -74,8 +75,8 @@
       >
         View your {{ applicantData.type }} application status
       </uw-link-button>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        Resources for Tacoma Applicants
+      <h3 class="h6 myuw-font-encode-sans">
+        Resources for Tacoma applicants
       </h3>
       <h4 class="h6">
         ADMISSIONS
@@ -124,18 +125,18 @@
           <a v-out="'UW Tacoma Student Housing'"
              href="https://www.tacoma.uw.edu/housing"
           >
-            Learn about student Housing
+            Student housing
           </a>
         </li>
         <li class="mb-1">
-          Check out
           <a
             v-out="'UW Tacoma New Student programs'"
             href="https://www.tacoma.uw.edu/new-students"
           >
-            New Student programs
+            New Student Programs
           </a>
-          and
+        </li>
+        <li class="mb-1">
           <a v-out="'UW Tacoma Disability Resources for Students (DRS)'"
              href="http://www.tacoma.uw.edu/drsuwt"
           >
@@ -143,22 +144,29 @@
           </a>
         </li>
       </ul>
-      <h4 class="h6">
-        IF ADMITTED
-      </h4>
+      <h3 class="h6 myuw-font-encode-sans">
+        Next steps if you are admitted
+      </h3>
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
           <a v-out="'Next Steps for Admitted UW Tacoma Students'"
-             href="https://www.tacoma.uw.edu/admissions/i-was-admitted"
+             href="https://www.tacoma.uw.edu/registrar/newly-admitted-students"
           >
-            Next steps for Admitted students
+            Accept your admission offer and pay the fee
           </a>
         </li>
         <li class="mb-1">
           <a v-out="'New UW Tacoma Student Orientation'"
              href="https://www.tacoma.uw.edu/new-students"
           >
-            Sign up for a New student orientation
+            Sign up for New Student Orientation
+          </a>
+        </li>
+        <li class="mb-1">
+          <a v-out="'Next Steps for Admitted UW Tacoma Students'"
+             href="https://www.tacoma.uw.edu/admissions/i-was-admitted"
+          >
+            See additional steps required to enroll at UW Tacoma
           </a>
         </li>
         <li v-if="applicantData.is_international">

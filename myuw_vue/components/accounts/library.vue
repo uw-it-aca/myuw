@@ -42,7 +42,8 @@
             </template>
             <template #status-content>
               <div class="myuw-text-sm text-muted text-end">
-                {{ toFriendlyDatetime(nextDue) }}
+                <uw-formatted-date :due-date="nextDue">
+                </uw-formatted-date>
               </div>
             </template>
           </uw-card-status>
@@ -86,12 +87,14 @@ import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 import CardStatus from '../_templates/card-status.vue';
 import LinkButton from '../_templates/link-button.vue';
+import FormattedDate from '../_common/formatted-date.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-card-status': CardStatus,
     'uw-link-button': LinkButton,
+    'uw-formatted-date': FormattedDate,
   },
   data() {
     return {
