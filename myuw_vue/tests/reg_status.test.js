@@ -10,6 +10,7 @@ import Myplan from '../components/home/registration/myplan.vue';
 import MyplanCourses from '../components/home/registration/myplan-courses.vue';
 import Resources from '../components/home/registration/resources.vue';
 import FinAids from '../components/_common/finaid.vue';
+import FormattedDate from '../components/_common/formatted-date.vue'
 
 import notices from '../vuex/store/notices';
 import oquarter from '../vuex/store/oquarter';
@@ -177,7 +178,17 @@ describe('Registration Status Card', () => {
     expect(wrapper.vm.pendingMinors.length).toBe(1);
     expect(wrapper.vm.regHoldsNotices.length).toBe(2);
     expect(wrapper.vm.estRegDateNotices.length).toBe(1);
-    expect(wrapper.vm.estRegData.estRegDate).toBe("Fri, May 10");  // MUWM-5034
+    expect(wrapper.findComponent(FormattedDate).exists()).toBe(true);
+    const wrapperFormattedDate = mount(
+      FormattedDate,
+      {
+        store, localVue,
+        propsData: { 'dueDate': wrapper.vm.estRegData.estRegDate },
+      }
+    );
+    expect(wrapperFormattedDate.vm.displayTextDanger).toBe(false);
+    expect(wrapperFormattedDate.vm.displayTime).toBe(false)
+    expect(wrapperFormattedDate.vm.formattedDate).toBe("Fri, May 10");  // MUWM-5034
     const myPlanCourses = wrapper.vm.myPlanData.terms[0];
     expect(myPlanCourses.ready_count).toBe(0);
     expect(myPlanCourses.has_ready_courses).toBe(false);
