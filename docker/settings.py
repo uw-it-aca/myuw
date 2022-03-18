@@ -17,6 +17,7 @@ INSTALLED_APPS += [
     'django_client_logger',
     'django_user_agents',
     'hx_toolkit',
+    'persistent_message',
     'rc_django',
     'userservice',
     'supporttools',
@@ -118,9 +119,13 @@ SUPPORTTOOLS_PARENT_APP_URL = "/"
 USERSERVICE_VALIDATION_MODULE = "myuw.authorization.validate_netid"
 USERSERVICE_OVERRIDE_AUTH_MODULE = "myuw.authorization.can_override_user"
 RESTCLIENTS_ADMIN_AUTH_MODULE = "myuw.authorization.can_proxy_restclient"
+PERSISTENT_MESSAGE_AUTH_MODULE = 'myuw.authorization.is_myuw_admin'
 
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = os.getenv("COMPRESSOR_ENABLED", "True") == "True"
+COMPRESS_OFFLINE_CONTEXT = {
+    'wrapper_template': 'persistent_message/manage_wrapper.html',
+}
 
 if os.getenv("COMPRESSOR_ENABLED", "True") == "False":
     COMPRESS_ENABLED = False
