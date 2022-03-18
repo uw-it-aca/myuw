@@ -11,7 +11,7 @@
     <template #card-body>
       <div style="text-align: center">
         <div
-          v-if="hasTuitionDate && daysDiffTuitionDueDate === 0 && tuiBalance > 0"
+          v-if="hasTuitionDate && tuitionDateFromNow === 'Today' && tuiBalance > 0"
           class="alert alert-danger text-danger"
           role="alert"
         >
