@@ -42,8 +42,7 @@
             </template>
             <template #status-content>
               <div class="myuw-text-sm text-muted text-end">
-                <uw-formatted-date :due-date="nextDue">
-                </uw-formatted-date>
+                <uw-formatted-date :due-date="nextDue" />
               </div>
             </template>
           </uw-card-status>
