@@ -1,0 +1,136 @@
+[
+  {
+    "model": "persistent_message.taggroup",
+    "pk": 1,
+    "fields": {
+      "name": "Campuses"
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Seattle",
+      "group": 1
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Bothell",
+      "group": 1
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Tacoma",
+      "group": 1
+    }
+  },
+  {
+    "model": "persistent_message.taggroup",
+    "pk": 2,
+    "fields": {
+      "name": "Affiliations"
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 11,
+    "fields": {
+      "name": "Applicant",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 12,
+    "fields": {
+      "name": "Grad student",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 13,
+    "fields": {
+      "name": "Undergraduate student",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 14,
+    "fields": {
+      "name": "Grad C2",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 15,
+    "fields": {
+      "name": "Undergraduate C2",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 16,
+    "fields": {
+      "name": "Clinician",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 17,
+    "fields": {
+      "name": "Faculty",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 18,
+    "fields": {
+      "name": "Instructor",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 19,
+    "fields": {
+      "name": "Staff employee",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 20,
+    "fields": {
+      "name": "Student employee",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 21,
+    "fields": {
+      "name": "Intl student",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 22,
+    "fields": {
+      "name": "Alumni",
+      "group": 2
+    }
+  }
+]
