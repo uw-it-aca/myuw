@@ -10,7 +10,7 @@
     "model": "persistent_message.tag",
     "pk": 1,
     "fields": {
-      "name": "Seattle",
+      "name": "seattle",
       "group": 1
     }
   },
@@ -18,7 +18,7 @@
     "model": "persistent_message.tag",
     "pk": 2,
     "fields": {
-      "name": "Bothell",
+      "name": "bothell",
       "group": 1
     }
   },
@@ -26,7 +26,7 @@
     "model": "persistent_message.tag",
     "pk": 3,
     "fields": {
-      "name": "Tacoma",
+      "name": "tacoma",
       "group": 1
     }
   },
@@ -41,7 +41,7 @@
     "model": "persistent_message.tag",
     "pk": 11,
     "fields": {
-      "name": "Applicant",
+      "name": "applicant",
       "group": 2
     }
   },
@@ -49,7 +49,7 @@
     "model": "persistent_message.tag",
     "pk": 12,
     "fields": {
-      "name": "Grad student",
+      "name": "grad-student",
       "group": 2
     }
   },
@@ -57,7 +57,7 @@
     "model": "persistent_message.tag",
     "pk": 13,
     "fields": {
-      "name": "Undergraduate student",
+      "name": "undergraduate",
       "group": 2
     }
   },
@@ -65,7 +65,7 @@
     "model": "persistent_message.tag",
     "pk": 14,
     "fields": {
-      "name": "Grad C2",
+      "name": "gradC2",
       "group": 2
     }
   },
@@ -73,7 +73,7 @@
     "model": "persistent_message.tag",
     "pk": 15,
     "fields": {
-      "name": "Undergraduate C2",
+      "name": "undergraduateC2",
       "group": 2
     }
   },
@@ -81,7 +81,7 @@
     "model": "persistent_message.tag",
     "pk": 16,
     "fields": {
-      "name": "Clinician",
+      "name": "clinician",
       "group": 2
     }
   },
@@ -89,7 +89,7 @@
     "model": "persistent_message.tag",
     "pk": 17,
     "fields": {
-      "name": "Faculty",
+      "name": "faculty",
       "group": 2
     }
   },
@@ -97,7 +97,7 @@
     "model": "persistent_message.tag",
     "pk": 18,
     "fields": {
-      "name": "Instructor",
+      "name": "instructor",
       "group": 2
     }
   },
@@ -105,7 +105,7 @@
     "model": "persistent_message.tag",
     "pk": 19,
     "fields": {
-      "name": "Staff employee",
+      "name": "staff-employee",
       "group": 2
     }
   },
@@ -113,7 +113,7 @@
     "model": "persistent_message.tag",
     "pk": 20,
     "fields": {
-      "name": "Student employee",
+      "name": "student-employee",
       "group": 2
     }
   },
@@ -121,7 +121,7 @@
     "model": "persistent_message.tag",
     "pk": 21,
     "fields": {
-      "name": "Intl student",
+      "name": "intl-student",
       "group": 2
     }
   },
@@ -129,7 +129,7 @@
     "model": "persistent_message.tag",
     "pk": 22,
     "fields": {
-      "name": "Alumni",
+      "name": "alumni",
       "group": 2
     }
   }
