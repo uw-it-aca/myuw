@@ -39,6 +39,14 @@
   },
   {
     "model": "persistent_message.tag",
+    "pk": 10,
+    "fields": {
+      "name": "alumni",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
     "pk": 11,
     "fields": {
       "name": "applicant",
@@ -81,39 +89,7 @@
     "model": "persistent_message.tag",
     "pk": 16,
     "fields": {
-      "name": "clinician",
-      "group": 2
-    }
-  },
-  {
-    "model": "persistent_message.tag",
-    "pk": 17,
-    "fields": {
-      "name": "faculty",
-      "group": 2
-    }
-  },
-  {
-    "model": "persistent_message.tag",
-    "pk": 18,
-    "fields": {
-      "name": "instructor",
-      "group": 2
-    }
-  },
-  {
-    "model": "persistent_message.tag",
-    "pk": 19,
-    "fields": {
-      "name": "staff-employee",
-      "group": 2
-    }
-  },
-  {
-    "model": "persistent_message.tag",
-    "pk": 20,
-    "fields": {
-      "name": "student-employee",
+      "name": "intl-student",
       "group": 2
     }
   },
@@ -121,7 +97,7 @@
     "model": "persistent_message.tag",
     "pk": 21,
     "fields": {
-      "name": "intl-student",
+      "name": "clinician",
       "group": 2
     }
   },
@@ -129,7 +105,31 @@
     "model": "persistent_message.tag",
     "pk": 22,
     "fields": {
-      "name": "alumni",
+      "name": "faculty",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 23,
+    "fields": {
+      "name": "instructor",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 24,
+    "fields": {
+      "name": "staff-employee",
+      "group": 2
+    }
+  },
+  {
+    "model": "persistent_message.tag",
+    "pk": 25,
+    "fields": {
+      "name": "student-employee",
       "group": 2
     }
   }
