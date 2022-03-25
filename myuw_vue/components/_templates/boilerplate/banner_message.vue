@@ -42,7 +42,7 @@ export default {
   },
   props: {
     messages: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },
