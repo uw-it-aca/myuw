@@ -20,13 +20,8 @@ class BannerMessage(object):
     def get_message_json(self):
         user_msgs = []
         for msg in Message.objects.all().order_by('-begins'):
-            logger.info({
-                'currentTime': {},
-                'msgContent': msg,
-                'is_active': msg.is_active(self.now),
-                'matched_with_affi': self._matched_with_affi(msg)})
             if msg.is_active(self.now) and self._matched_with_affi(msg):
-                user_msgs.append(msg.to_json(self.now))
+                user_msgs.append(self._to_json(msg))
         return user_msgs
 
     def _matched_with_affi(self, msg):
@@ -50,6 +45,22 @@ class BannerMessage(object):
             if self._is_employee_campus_matched(tags):
                 return True
         return False
+
+    def _to_json(self, msg, include_tags=False):
+        json_data = {
+            'id': msg.pk,
+            'content': msg.content,
+            'level': msg.level,
+            'level_name': msg.get_level_display(),
+            'start ': msg.begins.isoformat() if (
+                msg.begins is not None) else None,
+            'end': msg.expires.isoformat() if (
+                msg.expires is not None) else None
+        }
+        if include_tags:
+            for tag in msg.tags.all():
+                json_data[tag.name] = True
+        return json_data
 
     def __match(self, msg_tags, tag_name, tag_group_name):
         for tag in msg_tags:
