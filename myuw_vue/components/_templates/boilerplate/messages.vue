@@ -1,13 +1,17 @@
 <template>
   <div
-    v-if="displayOnboardMessage || bannerMessages.length > 0"
+    v-if="showContent"
     class="w-100 myuw-messages bg-teal" role="complementary"
   >
     <div class="text-center text-white myuw-text-md">
       <h2 class="visually-hidden">
         Announcements
       </h2>
-      <template v-if="bannerMessages.length > 0" id="message_banner_location">
+      <template v-if="bannerMessages.length || hasPersMsgToDisplay"
+        id="message_banner_location"
+      >
+        <uw-banner-message v-if="hasPersMsgToDisplay" :messages="persMessages" />
+
         <div v-for="(message, i) in bannerMessages" id="messages" :key="i"
           class="message px-3 py-2"
           v-html="message"
@@ -28,14 +32,26 @@
 </template>
 
 <script>
-import {mapState, mapMutations} from 'vuex';
+import { mapState, mapMutations} from 'vuex';
 import axios from 'axios';
+import BnrMessage from './banner_message.vue';
 export default {
+  components: {
+    'uw-banner-message': BnrMessage,
+  },
   computed: {
     ...mapState({
       bannerMessages: (state) => state.bannerMessages,
+      persMessages: (state) => state.persMessages,
       displayOnboardMessage: (state) => state.displayOnboardMessage,
     }),
+    hasPersMsgToDisplay() {
+      return this.persMessages.length > 0;
+    },
+    showContent() {
+      return (this.displayOnboardMessage || this.bannerMessages.length > 0 ||
+        this.hasPersMsgToDisplay);
+    },
   },
   methods: {
     hideOnboardMessage: function(event) {
