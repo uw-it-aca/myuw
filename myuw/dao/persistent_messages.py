@@ -52,7 +52,7 @@ class BannerMessage(object):
             'content': msg.content,
             'level': msg.level,
             'level_name': msg.get_level_display(),
-            'start ': msg.begins.isoformat() if (
+            'start': msg.begins.isoformat() if (
                 msg.begins is not None) else None,
             'end': msg.expires.isoformat() if (
                 msg.expires is not None) else None
