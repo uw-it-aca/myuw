@@ -138,7 +138,7 @@
     "pk": 1,
     "fields": {
       "content": "Test <a href='https://my.uw.edu/'>Message For All</a>.",
-      "level": 3,
+      "level": 20,
       "begins": "2013-04-14T00:00:01-07:00",
       "expires": "2013-11-01T10:10:10+00:00",
       "created": "2013-04-14T00:00:01-07:00",
