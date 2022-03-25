@@ -1,10 +1,13 @@
 # Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+import logging
 from persistent_message.models import Message
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.dao.gws import is_effective_member
 from myuw.dao.term import get_comparison_datetime_with_tz
+
+logger = logging.getLogger(__name__)
 
 
 class BannerMessage(object):
@@ -17,6 +20,11 @@ class BannerMessage(object):
     def get_message_json(self):
         user_msgs = []
         for msg in Message.objects.all().order_by('-begins'):
+            logger.info({
+                'currentTime': {},
+                'msgContent': msg,
+                'is_active': msg.is_active(self.now),
+                'matched_with_affi': self._matched_with_affi(msg)})
             if msg.is_active(self.now) and self._matched_with_affi(msg):
                 user_msgs.append(msg.to_json(self.now))
         return user_msgs
@@ -73,7 +81,7 @@ class BannerMessage(object):
     def _for_alumni(self, msg_tags):
         return (
             self._campus_neutral(msg_tags) and
-            self._match_affiliationh(msg_tags, 'alumni') and
+            self._match_affiliation(msg_tags, 'alumni') and
             self.affiliations["alumni"])
 
     def _for_applicant(self, msg_tags):

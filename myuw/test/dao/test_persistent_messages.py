@@ -20,10 +20,10 @@ class PersistentMessageDAOTest(TestCase):
           get_comparison_datetime_with_tz(req) - timedelta(days=1))
         self.message.save()
 
-    def set_campus(self, msg, campus, affi):
-        tag1 = Tag.objects.get(name=campus)
-        tag2 = Tag.objects.get(name=affi)
-        msg.tags.add(tag1, tag2)
+    def set_tags(self, msg, tag_names):
+        tags = []
+        for tag in tag_names:
+            msg.tags.add(Tag.objects.get(name=tag))
         msg.save()
 
     def test_tags(self):
@@ -42,19 +42,39 @@ class PersistentMessageDAOTest(TestCase):
         tags = msg.tags.all()
         self.assertTrue(bm._campus_neutral(tags))
 
-        self.set_campus(msg, 'seattle', 'undergraduate')
+        self.set_tags(msg, ['seattle', 'undergraduate'])
         tags = msg.tags.all()
         self.assertTrue(bm._is_stud_campus_matched(tags))
         self.assertTrue(bm._student_affiliation_matched(tags))
         self.assertEqual(len(bm.get_message_json()), 1)
 
-    def test_get_message_json(self):
-        req = get_request_with_user('jbothell')
+    def test_get_message_for_faculty(self):
+        req = get_request_with_user('bill')
         bm = BannerMessage(req)
         self.setup_db(req)
         msgs = Message.objects.all()
-        self.set_campus(msgs[0], 'bothell', 'undergraduate')
+        self.set_tags(msgs[0], ['seattle', 'faculty'])
         tags = msgs[0].tags.all()
-        self.assertTrue(bm._is_stud_campus_matched(tags))
+        self.assertTrue(bm._is_employee_campus_matched(tags))
+        self.assertTrue(bm._employee_affiliation_matched(tags))
         self.assertEqual(len(bm.get_message_json()), 1)
+
+    def test_get_message_for_alumni(self):
+        req = get_request_with_user('jalum')
+        bm = BannerMessage(req)
+        self.setup_db(req)
+        msgs = Message.objects.all()
+        self.set_tags(msgs[0], ['alumni'])
+        tags = msgs[0].tags.all()
+        self.assertTrue(bm._for_alumni(tags))
+        self.assertEqual(len(bm.get_message_json()), 1)
+
+    def test_get_message_for_alumni(self):
+        req = get_request_with_user('japplicant')
+        bm = BannerMessage(req)
+        self.setup_db(req)
+        msgs = Message.objects.all()
+        self.set_tags(msgs[0], ['applicant'])
+        tags = msgs[0].tags.all()
+        self.assertTrue(bm._for_applicant(tags))
         self.assertEqual(len(bm.get_message_json()), 1)
