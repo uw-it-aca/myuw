@@ -36,6 +36,12 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default {
+  props: {
+    messages: {
+      type: Array,
+      required: true,
+    },
+  },
   data: function() {
     return {
       grouped:false,
@@ -46,12 +52,6 @@ export default {
         'Success': []
       },
     };
-  },
-  props: {
-    messages: {
-      type: Array,
-      required: true,
-    },
   },
   computed: {
     groupedMsgs() {
