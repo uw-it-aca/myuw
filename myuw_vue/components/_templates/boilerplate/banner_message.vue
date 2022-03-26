@@ -38,6 +38,13 @@ import {
 export default {
   data: function() {
     return {
+      grouped:false,
+      groupedByLevel: {
+        'Info': [],
+        'Warning': [],
+        'Danger': [],
+        'Success': []
+      },
     };
   },
   props: {
@@ -47,31 +54,28 @@ export default {
     },
   },
   computed: {
-    groupedByLevel() {
-      const data = {
-        'Info': [],
-        'Warning': [],
-        'Danger': [],
-        'Success': []
-      };
-      this.messages.forEach((msg, j) => {
-          if (msg.level_name in data) {
-              data[msg.level_name].push(msg)  
+    groupedMsgs() {
+      if (!this.grouped) {
+        this.messages.forEach((msg, j) => {
+          if (msg.level_name in this.groupedByLevel) {
+            this.groupedByLevel[msg.level_name].push(msg)
           }
-      });       
-      return data;
+        });
+        this.grouped = true;
+      }
+      return this.groupedByLevel;
     },
     warningMsgs() {
-      return this.groupedByLevel['Warning'];
+      return this.groupedMsgs['Warning'];
     },
     dangerMsgs() {
-      return this.groupedByLevel['Danger'];
+      return this.groupedMsgs['Danger'];
     },
     infoMsgs() {
-      return this.groupedByLevel['Info'];
+      return this.groupedMsgs['Info'];
     },
     successMsgs() {
-      return this.groupedByLevel['Success'];
+      return this.groupedMsgs['Success'];
     },
   },
 };
