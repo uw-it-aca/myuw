@@ -1,33 +1,14 @@
 <template>
-  <div class="myuw-text-md">
-    <div v-if="dangerMsgs.length" class="bg-danger">
-      <ul class="list-unstyled">
-        <li v-for="(msg, i) in dangerMsgs" :key="i" class="mb-1">
-          <span v-html="msg.content" />
-        </li>
-      </ul>
-    </div>
-    <div v-if="warningMsgs.length" class="bg-warning">
-      <ul class="list-unstyled">
-        <li v-for="(msg, j) in warningMsgs" :key="j">
-          <span v-html="msg.content" />
-        </li>
-      </ul>
-    </div>
-    <div v-if="infoMsgs.length" class="bg-info">
-      <ul class="list-unstyled">
-        <li v-for="(msg, k) in infoMsgs" :key="k">
-          <span v-html="msg.content" />
-        </li>
-      </ul>
-    </div>
-    <div v-if="successMsgs.length" class="bg-success">
-      <ul class="list-unstyled">
-        <li v-for="(msg, l) in successMsgs" :key="l">
-          <span v-html="msg.content" />
-        </li>
-      </ul>
-    </div>
+  <div class="message px-3 py-2 myuw-text-md">
+    <ol class="list-unstyled">
+      <li v-for="(level, l) in levels" :key="l">
+        <ul class="styleAtLevel(level) list-unstyled">
+          <li v-for="(msg, i) in messageAtLevel(level)" :key="i" class="mb-1">
+            <span v-html="msg.content" />
+          </li>
+        </ul>
+      </li>
+    </ol>
   </div>
 </template>
 
@@ -45,11 +26,10 @@ export default {
   data: function() {
     return {
       grouped:false,
+      levels: ['Warning', 'Info'],
       groupedByLevel: {
         'Info': [],
-        'Warning': [],
-        'Danger': [],
-        'Success': []
+        'Warning': []
       },
     };
   },
@@ -57,60 +37,50 @@ export default {
     groupedMsgs() {
       if (!this.grouped) {
         this.messages.forEach((msg, j) => {
-          if (msg.level_name in this.groupedByLevel) {
-            this.groupedByLevel[msg.level_name].push(msg)
+          if (msg.level_name === 'Info' || msg.level_name === 'Success') {
+            this.groupedByLevel['Info'].push(msg)
+          } else {
+            this.groupedByLevel['Warning'].push(msg)
           }
         });
         this.grouped = true;
       }
       return this.groupedByLevel;
     },
-    warningMsgs() {
-      return this.groupedMsgs['Warning'];
-    },
-    dangerMsgs() {
-      return this.groupedMsgs['Danger'];
-    },
-    infoMsgs() {
-      return this.groupedMsgs['Info'];
-    },
-    successMsgs() {
-      return this.groupedMsgs['Success'];
-    },
   },
-};
+  methods: {
+    messageAtLevel(level) {
+      return this.groupedMsgs[level];
+    },
+    styleAtLevel(level) {
+      return (level === 'Info' ? "msg-info" : "msg-warning");
+    },
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 @use "sass:map";
 @import '../../../../myuw/static/css/myuw/variables.scss';
 .myuw-banner_message {
-  ::v-deep .external-link {}
-
-  ::v-deep .bg-danger {
-    background-color: lighten(
-      map.get($theme-colors, 'danger'),
-      47%
-    ) !important;
+  ::v-deep .date {
+    font-weight: bold;
   }
-  
-  ::v-deep .bg-warning {
+
+  ::v-deep .external-link {
+    color: white;
+  }
+
+  ::v-deep .msg-warning {
     background-color: lighten(
       map.get($theme-colors, 'warning'),
       47%
     ) !important;
   }
 
-  ::v-deep .bg-info {
+  ::v-deep .msg-info {
     background-color: lighten(
       map.get($theme-colors, 'info'),
-      47%
-    ) !important;
-  }
-
-  ::v-deep .bg-success {
-    background-color: lighten(
-      map.get($theme-colors, 'primary'),
       47%
     ) !important;
   }
