@@ -137,12 +137,54 @@
     "model": "persistent_message.message",
     "pk": 1,
     "fields": {
-      "content": "Test <a href='https://my.uw.edu/'>Message For All</a>.",
+      "content": "Planned maintenance of the student information system will disrupt display of content on MyUW from 8:00 a.m. to 12 p.m. PST on <span class='date'>Sunday, Feb 10th</span>. Some data may not be current or may be unavailable. Content for those applying to the UW will be unavailable. Please check back after 12:00 p.m. PST to view your content.",
       "level": 20,
-      "begins": "2013-04-14T00:00:01-07:00",
-      "expires": "2013-11-01T10:10:10+00:00",
-      "created": "2013-04-14T00:00:01-07:00",
+      "begins": "2013-04-01T00:00:01-07:00",
+      "expires": "2013-04-07T10:10:10+00:00",
+      "created": "2013-04-01T00:00:01-07:00",
       "modified": "2013-04-02T10:10:10+00:00",
+      "modified_by": "bill",
+      "tags": []
+    }
+  },
+  {
+    "model": "persistent_message.message",
+    "pk": 2,
+    "fields": {
+      "content": "<strong>MyUW mobile app</strong> is now available! Get it at the <a href='https://apps.apple.com/us/app/myuw/id1521514519'>Apple App Store</a> and on <a href='https://play.google.com/store/apps/details?id=edu.uw.myuw_android&hl=en_US&gl=US'>Google Play</a>",
+      "level": 25,
+      "begins": "2013-04-08T00:00:01-07:00",
+      "expires": "2013-04-14T10:10:10+00:00",
+      "created": "2013-04-08T00:00:01-07:00",
+      "modified": "2013-04-09T10:10:10+00:00",
+      "modified_by": "bill",
+      "tags": []
+    }
+  },
+  {
+    "model": "persistent_message.message",
+    "pk": 3,
+    "fields": {
+      "content": "Users are experiencing failed logins to UW web services, including ..., due to heavy load. Trying again often fixes the issue. See <a href='https://eoutage.uw.edu' class='external-link'>eOutage website</a> for more information.",
+      "level": 30,
+      "begins": "2013-04-15T00:00:01-07:00",
+      "expires": "2013-04-21T10:10:10+00:00",
+      "created": "2013-04-15T00:00:01-07:00",
+      "modified": "2013-04-16T10:10:10+00:00",
+      "modified_by": "bill",
+      "tags": []
+    }
+  },
+  {
+    "model": "persistent_message.message",
+    "pk": 4,
+    "fields": {
+      "content": "MyUW is incorrectly displaying tuition balances for some students. Our engineers are working to resolve this issue. Your tuition balance will be correctly displayed in the tuition payment system.",
+      "level": 40,
+      "begins": "2013-04-22T00:00:01-07:00",
+      "expires": "2013-04-28T10:10:10+00:00",
+      "created": "2013-04-22T00:00:01-07:00",
+      "modified": "2013-04-23T10:10:10+00:00",
       "modified_by": "bill",
       "tags": []
     }
