@@ -142,7 +142,6 @@
           </ul>
         </div>
       </div>
-
     </template>
   </uw-card>
 </template>
