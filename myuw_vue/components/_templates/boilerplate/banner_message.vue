@@ -25,27 +25,23 @@ export default {
   },
   data: function() {
     return {
-      grouped:false,
       levels: ['Warning', 'Info'],
-      groupedByLevel: {
-        'Info': [],
-        'Warning': []
-      },
     };
   },
   computed: {
     groupedMsgs() {
-      if (!this.grouped) {
-        this.messages.forEach((msg, j) => {
-          if (msg.level_name === 'Info' || msg.level_name === 'Success') {
-            this.groupedByLevel['Info'].push(msg)
-          } else {
-            this.groupedByLevel['Warning'].push(msg)
-          }
-        });
-        this.grouped = true;
-      }
-      return this.groupedByLevel;
+      const groupedByLevel = {
+        'Info': [],
+        'Warning': []
+      };
+      this.messages.forEach((msg, j) => {
+        if (msg.level_name === 'Info' || msg.level_name === 'Success') {
+          groupedByLevel['Info'].push(msg)
+        } else {
+          groupedByLevel['Warning'].push(msg)
+        }
+      });
+      return groupedByLevel;
     },
   },
   methods: {
