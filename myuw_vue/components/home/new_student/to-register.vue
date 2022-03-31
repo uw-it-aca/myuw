@@ -87,7 +87,7 @@
 
       <div class="d-flex mb-2">
         <font-awesome-icon
-         :icon="faInfoCircle"
+          :icon="faInfoCircle"
           class="me-3 mt-1 text-mid-beige myuw-text-lg"
         />
         <div class="mb-1"><span class="myuw-font-encode-sans">Required Immunizations</span>
@@ -156,6 +156,7 @@ import {
 import {mapGetters, mapState, mapActions} from 'vuex';
 import Card from '../../_templates/card.vue';
 import Collapse from '../../_templates/collapse.vue';
+
 export default {
   components: {
     'uw-card': Card,
@@ -167,6 +168,7 @@ export default {
       faCircle,
       faInfoCircle,
       isOpen: false,
+    };
   },
   computed: {
     ...mapState({
