@@ -104,13 +104,13 @@
                     COVID-19, with certain medical or religious exemptions allowed. 
                     <a v-if="seattle" href="https://www.washington.edu/newhuskies/must-do/send-proof-of-immunity/">
                     If you have not already, you must submit documents showing your proof of
-                    vaccination or complete the medical or religious exemption request process</a>.
+                    vaccination or complete the medical or religious exemption request process.</a>
                     <a v-if="tacoma" href="https://www.tacoma.uw.edu/registrar/newly-admitted-students#permalink-16114">
                     If you have not already, you must submit documents showing your proof of
-                    vaccination or complete the medical or religious exemption request process</a>.
+                    vaccination or complete the medical or religious exemption request process.</a>
                     <a v-if="bothell" href="https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/">
                     If you have not already, you must submit documents showing your proof of
-                    vaccination or complete the medical or religious exemption request process</a>.
+                    vaccination or complete the medical or religious exemption request process.</a>
                     You will not be allowed to register for classes until you have completed this
                     process.
                   </p>
