@@ -18,7 +18,7 @@ class PersistentMessageAPITest(MyuwApiTest):
         response = self.get_response()
         self.assertEquals(response.status_code, 200)
         data = json.loads(response.content)
-        self.assertEquals(len(data), 1)
+        self.assertEquals(len(data), 2)
 
         Message.objects.all().delete()
         response = self.get_response()

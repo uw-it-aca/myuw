@@ -19,7 +19,7 @@ class BannerMessage(object):
 
     def get_message_json(self):
         user_msgs = []
-        for msg in Message.objects.all().order_by('-begins'):
+        for msg in Message.objects.all().order_by('begins'):
             if msg.is_active(self.now) and self._matched_with_affi(msg):
                 user_msgs.append(self._to_json(msg))
         return user_msgs

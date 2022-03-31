@@ -26,7 +26,6 @@ def set_tags(msg, tag_names):
     return msg
 
 
-@override_settings(TIME_ZONE='America/Los_Angeles')
 class PersistentMessageDAOTest(TransactionTestCase):
     fixtures = ['persistent_messages.json']
 
@@ -37,7 +36,10 @@ class PersistentMessageDAOTest(TransactionTestCase):
     def test_get_message_for_all(self):
         req = get_request_with_user('none')
         bm = BannerMessage(req)
-        self.assertEqual(len(bm.get_message_json()), 1)
+        data = bm.get_message_json()
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0]["start"], "2013-04-08T07:00:01+00:00")
+        self.assertEqual(data[1]["start"], "2013-04-15T07:00:01+00:00")
 
     def test_get_message_no_match(self):
         req = get_request_with_user('seagrad')
@@ -63,7 +65,7 @@ class PersistentMessageDAOTest(TransactionTestCase):
         tags = msg.tags.all()
         self.assertTrue(bm._is_stud_campus_matched(tags))
         self.assertTrue(bm._student_affiliation_matched(tags))
-        self.assertEqual(len(bm.get_message_json()), 2)
+        self.assertEqual(len(bm.get_message_json()), 3)
 
     def test_get_message_for_faculty(self):
         req = get_request_with_user('bill')
@@ -72,12 +74,12 @@ class PersistentMessageDAOTest(TransactionTestCase):
         msg = set_tags(msg, ['faculty'])
         tags = msg.tags.all()
         self.assertTrue(bm._employee_affiliation_matched(tags))
-        self.assertEqual(len(bm.get_message_json()), 2)
+        self.assertEqual(len(bm.get_message_json()), 3)
 
         msg = set_tags(msg, ['seattle'])
         tags = msg.tags.all()
         self.assertTrue(bm._is_employee_campus_matched(tags))
-        self.assertEqual(len(bm.get_message_json()), 2)
+        self.assertEqual(len(bm.get_message_json()), 3)
 
     def test_get_message_for_alumni(self):
         req = get_request_with_user('jalum')
@@ -87,7 +89,7 @@ class PersistentMessageDAOTest(TransactionTestCase):
         tags = msg.tags.all()
         self.assertTrue(bm._campus_neutral(tags))
         self.assertTrue(bm._for_alumni(tags))
-        self.assertEqual(len(bm.get_message_json()), 2)
+        self.assertEqual(len(bm.get_message_json()), 3)
 
     def test_get_message_for_applicant(self):
         req = get_request_with_user('japplicant')
@@ -96,4 +98,4 @@ class PersistentMessageDAOTest(TransactionTestCase):
         msg = set_tags(msg, ['applicant'])
         tags = msg.tags.all()
         self.assertTrue(bm._for_applicant(tags))
-        self.assertEqual(len(bm.get_message_json()), 2)
+        self.assertEqual(len(bm.get_message_json()), 3)
