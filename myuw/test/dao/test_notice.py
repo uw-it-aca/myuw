@@ -25,16 +25,16 @@ class TestNotices(TestCase):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         notices = _get_notices_by_regid(regid)
         self.assertIsNotNone(notices)
-        self.assertEquals(len(notices), 23)
+        self.assertEquals(len(notices), 24)
 
         self.assertEquals(notices[0].custom_category, "Holds")
         self.assertEquals(notices[0].location_tags, ['notices_holds',
                                                      'reg_card_holds'])
         self.assertTrue(notices[0].is_critical)
 
-        self.assertEquals(notices[12].custom_category,
+        self.assertEquals(notices[13].custom_category,
                           "Fees & Finances")
-        self.assertEquals(notices[12].location_tags,
+        self.assertEquals(notices[13].location_tags,
                           ['tuition_aid_reminder_title'])
         self.assertFalse(notices[12].is_critical)
 
@@ -181,11 +181,11 @@ class TestNotices(TestCase):
         # test MUWM-4535
         regid = "FE36CCB8F66711D5BE060004AC494F31"  # jnew
         notices = _get_notices_by_regid(regid)
-        self.assertEquals(len(notices), 19)
-        self.assertEquals(notices[15].notice_type, 'HSImmunBlock')
-        self.assertEquals(notices[16].notice_type, 'AdvOrientRegDateB')
-        self.assertEquals(notices[17].notice_type, 'HSImmunReqDateA')
-        self.assertEquals(notices[18].notice_type, 'HSImmunReqDateB')
+        self.assertEquals(len(notices), 23)
+        self.assertEquals(notices[16].notice_type, 'HSImmunBlock')
+        self.assertEquals(notices[17].notice_type, 'AdvOrientRegDateB')
+        self.assertEquals(notices[18].notice_type, 'HSImmunReqDateA')
+        self.assertEquals(notices[19].notice_type, 'HSImmunReqDateB')
 
         regid = "FE36CCB8F66711D5BE060004AC494FCD"  # jbothell
         notices = _get_notices_by_regid(regid)
