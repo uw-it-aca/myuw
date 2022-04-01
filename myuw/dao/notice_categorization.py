@@ -214,8 +214,8 @@ NOTICE_CATEGORIES = {
         "critical": False
     },
     "newstudentclist_finaid": {
-        "myuw_category": "not a notice",
-        "location_tags": [],
+        "myuw_category": "Fees & Finances",
+        "location_tags": ['notice_date_sort'],
         "critical": False
     },
     "newstudentclist_emailservices": {
