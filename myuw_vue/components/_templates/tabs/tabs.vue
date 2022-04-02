@@ -16,7 +16,7 @@
 </template>
 
 <script>
-
+import { mapState, mapMutations } from 'vuex';
 export default {
   model: {
     // allows v-model binding on activeTabIdx
@@ -54,6 +54,9 @@ export default {
     },
   },
   computed: {
+    ...mapState({
+      activePanel: (state) => state.activePanel,
+    }),
     tabs() {
       // this is a check to remove any components in the scoped slot
       // that are undefined. Vue sometimes adds undefined components.
@@ -129,6 +132,10 @@ export default {
         }          
       });
       this.index = idx;
+      this.addVarToState({
+        name: 'activePanel',
+        value: panelId,
+      });
     },
     moveActiveTabLeft: function() {
       // move active tab to the left, not exceeding first tab
@@ -140,6 +147,9 @@ export default {
       if (this.index < this.tabs.length - 1)
         this.index += 1;
     },
+    ...mapMutations([
+      'addVarToState',
+    ]),
   }
 }
 </script>

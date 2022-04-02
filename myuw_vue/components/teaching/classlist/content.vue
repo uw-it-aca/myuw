@@ -68,6 +68,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { faDownload, faPrint, faTable, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '../../_templates/tabs/tabs.vue';
 import TabButton from '../../_templates/tabs/button.vue';
@@ -101,6 +102,11 @@ export default {
       faTable,
       faUserCircle,
     };
+  },
+  computed: {
+    ...mapState({
+      activePanel: (state) => state.activePanel,
+    }),
   },
   methods: {
     buttonTitle(showJointCourse) {
