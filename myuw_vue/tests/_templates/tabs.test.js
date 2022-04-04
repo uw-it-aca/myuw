@@ -67,7 +67,7 @@ const TabsTestComponent = {
   },
 }
 
-describe('Show Classlist Content', () => {
+describe('Tabs template', () => {
   let store;
   beforeEach(() => {
     store = new Vuex.Store({
