@@ -16,12 +16,12 @@
           </label>
         </div>
 
-        <button class="me-2" @click="downloadCL">
+        <button class="me-2 btn btn-link" @click="downloadCL">
           <font-awesome-icon :icon="faDownload" />
           Download (CSV)
         </button>
 
-        <button @click="printPhotos">
+        <button class="btn btn-link" @click="printPhotos">
           <font-awesome-icon :icon="faPrint" /> Print
         </button>
       </div>
