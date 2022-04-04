@@ -76,7 +76,8 @@ export default {
     },
     activePanelId() {
       // currently visible panel
-      return this.tabs[this.activeTabIdx].componentOptions.propsData.panelId
+      return (this.activePanel ? this.activePanel :
+        this.tabs[this.activeTabIdx].componentOptions.propsData.panelId);
     },
     navWrapperClassesComputed() {
       let wrapperClasses = this.classesToClassDict(this.navWrapperClass);

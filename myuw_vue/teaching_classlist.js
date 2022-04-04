@@ -24,7 +24,7 @@ vueConf.store.commit('addVarToState', {
 
 vueConf.store.commit('addVarToState', {
   name: 'activePanel',
-  value: 'photo-grid',
+  value: null,
 });
 
 Vue.component('myuw-boilerplate', Boilerplate);

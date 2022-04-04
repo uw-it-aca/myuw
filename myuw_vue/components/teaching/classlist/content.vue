@@ -16,14 +16,14 @@
           </label>
         </div>
 
-        <a class="me-2" @click="downloadCL">
+        <button class="me-2" @click="downloadCL">
           <font-awesome-icon :icon="faDownload" />
           Download (CSV)
-        </a>
+        </button>
 
-        <a href="javascript:window.print()" class="">
+        <button @click="printPhotos">
           <font-awesome-icon :icon="faPrint" /> Print
-        </a>
+        </button>
       </div>
     </div>
 
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import { faDownload, faPrint, faTable, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '../../_templates/tabs/tabs.vue';
 import TabButton from '../../_templates/tabs/button.vue';
@@ -107,6 +107,9 @@ export default {
     ...mapState({
       activePanel: (state) => state.activePanel,
     }),
+    getActivePanelId() {
+      return this.activePanel;
+    }
   },
   methods: {
     buttonTitle(showJointCourse) {
@@ -117,6 +120,23 @@ export default {
     downloadCL() {
       this.downloadClassList(this.section);
     },
+    printPhotos() {
+      this.addVarToState({
+        name: 'activePanel',
+        value: this.getActivePanelId,
+      });
+      window.print();
+    },
+    ...mapMutations([
+      'addVarToState',
+    ]),
   },
+  watch: {
+    activePanel: function() {
+      if(newActivePanel) {
+        this.getActivePanelId;
+      }
+    }
+  }
 };
 </script>
