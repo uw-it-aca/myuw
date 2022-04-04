@@ -107,9 +107,6 @@ export default {
     ...mapState({
       activePanel: (state) => state.activePanel,
     }),
-    getActivePanelId() {
-      return this.activePanel;
-    }
   },
   methods: {
     buttonTitle(showJointCourse) {
@@ -123,7 +120,7 @@ export default {
     printPhotos() {
       this.addVarToState({
         name: 'activePanel',
-        value: this.getActivePanelId,
+        value: this.activePanel,
       });
       window.print();
     },
@@ -131,12 +128,5 @@ export default {
       'addVarToState',
     ]),
   },
-  watch: {
-    activePanel: function() {
-      if(newActivePanel) {
-        this.getActivePanelId;
-      }
-    }
-  }
 };
 </script>
