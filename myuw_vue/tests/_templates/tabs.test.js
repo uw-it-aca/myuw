@@ -72,7 +72,7 @@ describe('Tabs template', () => {
   beforeEach(() => {
     store = new Vuex.Store({
       state: {
-        activePanel: null,
+        activeTabStored: null,
       }
     });
   });

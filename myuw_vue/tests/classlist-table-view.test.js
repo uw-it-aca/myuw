@@ -35,6 +35,7 @@ describe('Show Classlist Content', () => {
         classlist,
       },
       state: {
+        activeTabStored: null,
         user: {
           affiliations: {
             instructor: true,

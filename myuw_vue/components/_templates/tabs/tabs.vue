@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     ...mapState({
-      activePanel: (state) => state.activePanel,
+      activeTabStored: (state) => state.activeTabStored,
     }),
     tabs() {
       // this is a check to remove any components in the scoped slot
@@ -76,7 +76,7 @@ export default {
     },
     activePanelId() {
       // currently visible panel
-      return (this.activePanel ? this.activePanel :
+      return (this.activeTabStored ? this.activeTabStored :
         this.tabs[this.activeTabIdx].componentOptions.propsData.panelId);
     },
     navWrapperClassesComputed() {
@@ -122,6 +122,12 @@ export default {
     });
   },
   methods: {
+    saveActiveTabInStore(id) {
+      this.addVarToState({
+        name: 'activeTabStored',
+        value: id,
+      });
+    },
     setActivePanel: function(panelId) {
       // find the index of the tab with the specified panelId
       // and set it as the index
@@ -133,20 +139,23 @@ export default {
         }          
       });
       this.index = idx;
-      this.addVarToState({
-        name: 'activePanel',
-        value: panelId,
-      });
+      this.saveActiveTabInStore(panelId);
     },
     moveActiveTabLeft: function() {
       // move active tab to the left, not exceeding first tab
-      if (this.index > 0)
+      if (this.index > 0) {
         this.index -= 1;
+        this.saveActiveTabInStore(
+          this.tabs[this.index].componentOptions.propsData.panelId);
+      }
     },
     moveActiveTabRight: function() {
       // move active tab to the right, not exceeding last tab
-      if (this.index < this.tabs.length - 1)
+      if (this.index < this.tabs.length - 1) {
         this.index += 1;
+        this.saveActiveTabInStore(
+          this.tabs[this.index].componentOptions.propsData.panelId);
+      }
     },
     ...mapMutations([
       'addVarToState',

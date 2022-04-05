@@ -23,7 +23,7 @@ vueConf.store.commit('addVarToState', {
 });
 
 vueConf.store.commit('addVarToState', {
-  name: 'activePanel',
+  name: 'activeTabStored',
   value: null,
 });
 
