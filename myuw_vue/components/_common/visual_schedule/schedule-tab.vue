@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div v-if="hasOverlappingMeetings">
+      One or more of your course meetings overlaps another,
+      please note meeting start and end times.
+    </div>
     <div
       v-if="isSummerQuarter && isLastTab"
       class="alert alert-primary myuw-text-md"
@@ -205,6 +209,31 @@ export default {
     isSummerQuarter() {
       return this.term.quarter === 'summer';
     },
+    hasOverlappingMeetings() {
+      for (const day in this.meetingMap){
+        let dayMeetings = [];
+        for (const hour in this.meetingMap[day]){
+
+          // TODO: Display for the handled case with parallel start?
+          // if (this.meetingMap[day][hour].length > 1){
+          //   return true;
+          // }
+          if (this.meetingMap[day][hour].length > 0){
+            dayMeetings.push(this.meetingMap[day][hour][0]['meeting'])
+          }
+        }
+        dayMeetings.sort((a, b) =>
+            (a.start_time.isAfter(b.start_time)) ? 1 : -1);
+        for (let i = 0; i < dayMeetings.length; i++){
+          if (i+1 < dayMeetings.length){
+            if(dayMeetings[i].end_time.isAfter(dayMeetings[i+1].start_time)){
+              return true;
+            }
+          }
+        }
+      }
+      return false;
+    }
   },
   created() {
     // Set if this tab is for finals
