@@ -233,7 +233,7 @@ describe('Tabs template', () => {
     await wrapper.vm.$nextTick();
     // assert event has been emitted
     expect(tabDropdown0.emitted().input).toBeTruthy()
-    expect(tabDropdown0.emitted().input.length).toBe(1)
+    expect(tabDropdown0.emitted().input.length).toBe(2)
     expect(tabs.emitted().setActivePanel).toBeTruthy()
     expect(tabs.emitted().setActivePanel.length).toBe(1)
   });
