@@ -21,7 +21,7 @@
           Download (CSV)
         </button>
 
-        <button class="btn btn-link" @click="printPhotos">
+        <button class="btn btn-link" @click="printCL">
           <font-awesome-icon :icon="faPrint" /> Print
         </button>
       </div>
@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
 import { faDownload, faPrint, faTable, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '../../_templates/tabs/tabs.vue';
 import TabButton from '../../_templates/tabs/button.vue';
@@ -103,11 +102,6 @@ export default {
       faUserCircle,
     };
   },
-  computed: {
-    ...mapState({
-      activePanel: (state) => state.activePanel,
-    }),
-  },
   methods: {
     buttonTitle(showJointCourse) {
       return showJointCourse
@@ -117,16 +111,9 @@ export default {
     downloadCL() {
       this.downloadClassList(this.section);
     },
-    printPhotos() {
-      this.addVarToState({
-        name: 'activePanel',
-        value: this.activePanel,
-      });
+    printCL() {
       window.print();
     },
-    ...mapMutations([
-      'addVarToState',
-    ]),
   },
 };
 </script>
