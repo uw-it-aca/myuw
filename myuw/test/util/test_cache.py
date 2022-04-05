@@ -31,7 +31,8 @@ class TestCustomCachePolicy(TestCase):
 
         self.assertEquals(cache.get_cache_expiration_time(
             "myplan", "/api/plan/"), FIVE_SECONDS)
-
+        self.assertEquals(cache.get_cache_expiration_time(
+            "myplan_auth", "/oauth2/token"), 60 * 45)
         self.assertEquals(cache.get_cache_expiration_time(
             "sws", "/student/v5/term/2013,spring.json"), ONE_DAY)
         self.assertEquals(cache.get_cache_expiration_time(
