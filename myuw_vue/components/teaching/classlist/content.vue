@@ -16,7 +16,7 @@
           </label>
         </div>
 
-        <button class="me-2 btn btn-link" @click="downloadCL">
+        <button class="btn btn-link" @click="downloadCL">
           <font-awesome-icon :icon="faDownload" />
           Download (CSV)
         </button>
