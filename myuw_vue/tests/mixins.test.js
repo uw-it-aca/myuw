@@ -104,28 +104,46 @@ describe('mixins', () => {
       utils.methods.toFriendlyDate('')
     ).toEqual('');
   });
+  it('toFriendlyDatetime', () => {
+    expect(
+      utils.methods.toFriendlyDatetime('2013-04-17 16:00:00-08:00')
+    ).toEqual('Thu, Apr 18, 12:00AM');
+    expect(
+      utils.methods.toFriendlyDatetime(undefined)
+    ).toEqual('');
+    expect(
+      utils.methods.toFriendlyDatetime('')
+    ).toEqual('');
+  });
+  it('timeDeltaFrom', async () => {
+    const now = utils.methods.dayjs();
+    expect(utils.methods.timeDeltaFrom(now.add(1, 'h'), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.add(24, 'h'), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.add(25, 'h'), 'day', false)).toEqual(2);
+    expect(utils.methods.timeDeltaFrom(now.subtract(1, 'd'), 'day', false)).toEqual(-1);
+  });
   it('toFromNowDate', async () => {
-    axios.get.mockResolvedValue({data: mockNotices});
     expect(utils.methods.toFromNowDate()).toEqual('');
     expect(utils.methods.toFromNowDate('')).toEqual('');
 
     const now = utils.methods.dayjs();
-    const format = 'YYYY-MM-DD';
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'd').format(format)))
+    expect(utils.methods.toFromNowDate(now.subtract(1, 'd'), false))
       .toEqual('a day ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'd').format(format)))
-      .toEqual('in a day');
-    expect(utils.methods.toFromNowDate(now.subtract(5, 'd').format(format)))
+    expect(utils.methods.toFromNowDate(now, false))
+      .toEqual('Today');
+    expect(utils.methods.toFromNowDate(now.add(1, 'd'), false))
+      .toEqual('Tomorrow');
+    expect(utils.methods.toFromNowDate(now.subtract(5, 'd'), false))
       .toEqual('5 days ago');
-    expect(utils.methods.toFromNowDate(now.add(5, 'd').format(format)))
+    expect(utils.methods.toFromNowDate(now.add(5, 'd'), false))
       .toEqual('in 5 days');
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.subtract(1, 'M'), false))
       .toEqual('a month ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.add(1, 'M'), false))
       .toEqual('in a month');
-    expect(utils.methods.toFromNowDate(now.subtract(5, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.subtract(5, 'M'), false))
       .toEqual('5 months ago');
-    expect(utils.methods.toFromNowDate(now.add(5, 'M').format(format)))
+    expect(utils.methods.toFromNowDate(now.add(5, 'M'), false))
       .toEqual('in 5 months');
   });
 

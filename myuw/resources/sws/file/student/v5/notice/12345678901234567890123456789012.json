@@ -130,17 +130,17 @@
                 {
                    "Name": "Date",
                    "DataType": "date",
-                   "Value": "today"
+                   "Value": "20130701"
                 },
                 {
                     "Name": "DisplayBegin",
                     "DataType": "date",
-                    "Value": "yesterday"
+                    "Value": "20130621"
                 },
                 {
                     "Name": "DisplayEnd",
                     "DataType": "date",
-                    "Value": "today"
+                    "Value": "20130701"
                 },
                 {
                     "Name": "Quarter",

@@ -1,6 +1,6 @@
 autoscaling:
   enabled: true
-  minReplicas: 8
+  minReplicas: 3
   maxReplicas: 80
 targetAverageUtilization: 100
 resources:
@@ -177,7 +177,7 @@ environmentVariables:
   - name: BOOKSTORE_ENV
     value: PROD
   - name: BOOK_POOL_SIZE
-    value: "30"
+    value: "20"
   - name: BOOK_TIMEOUT
     value: "15"
 
@@ -186,21 +186,21 @@ environmentVariables:
   - name: CALENDAR_TIMEOUT
     value: "5"
   - name: CALENDAR_POOL_SIZE
-    value: "30"
+    value: "20"
 
   - name: CANVAS_ENV
     value: PROD
   - name: CANVAS_TIMEOUT
     value: "60"
   - name: CANVAS_POOL_SIZE
-    value: "20"
+    value: "15"
 
   - name: CODA_ENV
     value: PROD
   - name: CODA_TIMEOUT
     value: "10"
   - name: CODA_POOL_SIZE
-    value: "20"
+    value: "15"
 
   - name: GRAD_ENV
     value: PROD
@@ -212,7 +212,7 @@ environmentVariables:
   - name: GRADEPAGE_ENV
     value: PROD
   - name: GRADEPAGE_POOL_SIZE
-    value: "20"
+    value: "15"
   - name: GRADEPAGE_TIMEOUT
     value: "10"
 
@@ -221,21 +221,21 @@ environmentVariables:
   - name: GWS_TIMEOUT
     value: "5"
   - name: GWS_POOL_SIZE
-    value: "30"
+    value: "20"
 
   - name: HFS_ENV
     value: PROD
   - name: HFS_TIMEOUT
     value: "5"
   - name: HFS_POOL_SIZE
-    value: "30"
+    value: "20"
 
   - name: IASYSTEM_UW_ENV
     value: PROD
   - name: IASYSTEM_UW_TIMEOUT
     value: "10"
   - name: IASYSTEM_UW_POOL_SIZE
-    value: "20"
+    value: "15"
 
   - name: IASYSTEM_UWB_ENV
     value: PROD
@@ -268,14 +268,14 @@ environmentVariables:
   - name: LIBCURRICS_ENV
     value: PROD
   - name: LIBCURRICS_POOL_SIZE
-    value: "30"
+    value: "20"
   - name: LIBCURRICS_TIMEOUT
     value: "7"
 
   - name: LIBRARIES_ENV
     value: PROD
   - name: LIBRARIES_POOL_SIZE
-    value: "30"
+    value: "20"
   - name: LIBRARIES_TIMEOUT
     value: "7"
 
@@ -284,21 +284,23 @@ environmentVariables:
   - name: MAILMAN_TIMEOUT
     value: "30"
   - name: MAILMAN_POOL_SIZE
-    value: "20"
+    value: "15"
 
+  - name: MYPLAN_AUTH_ENV
+    value: PROD
   - name: MYPLAN_ENV
     value: PROD
   - name: MYPLAN_TIMEOUT
     value: "10"
   - name: MYPLAN_POOL_SIZE
-    value: "30"
+    value: "20"
 
   - name: PWS_ENV
     value: PROD
   - name: PWS_TIMEOUT
     value: "10"
   - name: PWS_POOL_SIZE
-    value: "30"
+    value: "20"
 
   - name: SDBMYUW_ENV
     value: PROD
@@ -312,7 +314,7 @@ environmentVariables:
   - name: SWS_TIMEOUT
     value: "10"
   - name: SWS_POOL_SIZE
-    value: "50"
+    value: "30"
 
   - name: SPACE_ENV
     value: PROD
@@ -322,12 +324,12 @@ environmentVariables:
   - name: UPASS_TIMEOUT
     value: "10"
   - name: UPASS_POOL_SIZE
-    value: "30"
+    value: "20"
 
   - name: UWNETID_ENV
     value: PROD
   - name: UWNETID_POOL_SIZE
-    value: "30"
+    value: "20"
   - name: UWNETID_TIMEOUT
     value: "10"
 
@@ -360,6 +362,8 @@ externalSecrets:
           property: django-secret
         - name: email-host
           property: email-host
+        - name: myplan-auth-secret
+          property: myplan-auth-secret
         - name: mailman-auth-key
           property: mailman-auth-key
         - name: mailman-request-recipient
@@ -430,6 +434,10 @@ environmentVariablesSecrets:
     name: EMAIL_HOST
     secretName: my.uw.edu-secrets
     secretKey: email-host
+  myplan-auth-secret:
+    name: MYPLAN_AUTH_SECRET
+    secretName: my.uw.edu-secrets
+    secretKey: myplan-auth-secret
   SectionStatusQueueARN:
     name: SECTION_STATUS_QUEUE_ARN
     secretName: my.uw.edu-secrets

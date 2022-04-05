@@ -93,11 +93,11 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Disable Vue Devtools
-        if: endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')
+        if: endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')
         run: echo "VUE_DEVTOOLS=False" >> $GITHUB_ENV
 
       - name: Enable Vue Devtools
-        if: ${{ !(endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')) }}
+        if: ${{ !(endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')) }}
         run: echo "VUE_DEVTOOLS=True" >> $GITHUB_ENV
 
       - name: Build App Image
@@ -305,8 +305,9 @@ jobs:
 
   housekeeping:
     if: github.event_name == 'push' &&
-        (endsWith(github.ref, '/master') || endsWith(github.ref, '/qa') ||
-         endsWith(github.ref, '/develop') || endsWith(github.ref, '/vue/dev'))
+        (endsWith(github.ref, '/main') || endsWith(github.ref, '/master') ||
+         endsWith(github.ref, '/qa') || endsWith(github.ref, '/develop') ||
+         endsWith(github.ref, '/vue/dev'))
 
     needs: [context, build, deploy]
 

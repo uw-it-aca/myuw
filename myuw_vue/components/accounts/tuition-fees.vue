@@ -11,15 +11,14 @@
     <template #card-body>
       <div style="text-align: center">
         <div
-          v-if="tuitionDate.diff === 0 && tuiBalance > 0"
+          v-if="hasTuitionDate && tuitionDateFromNow === 'Today' && tuiBalance > 0"
           class="alert alert-danger text-danger"
           role="alert"
         >
-          <font-awesome-icon :icon="faExclamationTriangle" /> Tuition and fees are due
-          today.
+          <font-awesome-icon :icon="faExclamationTriangle" /> Tuition and fees are due today.
         </div>
         <div
-          v-if="tuitionDate.diff < 0 && tuiBalance > 0"
+          v-if="hasTuitionDate && daysDiffTuitionDueDate < 0 && tuiBalance > 0"
           class="alert alert-danger text-danger"
           role="alert"
         >
@@ -118,15 +117,15 @@
           </uw-card-status>
         </li>
 
-        <li v-if="tuitionDate.formatted && tuitionDate.diff >= 0">
+        <li v-if="hasTuitionDate">
           <uw-card-status>
             <template #status-label>Payment Due</template>
-            <template #status-value>{{ tuitionDate.formatted }}</template>
+            <template #status-value>
+              <uw-formatted-date :due-date="tuitionDate"></uw-formatted-date>
+            </template>
             <template #status-content>
               <div class="myuw-text-md text-body text-end">
-                <span v-if="tuitionDate.diff === 0">Today</span>
-                <span v-else-if="tuitionDate.diff === 1">Tomorrow</span>
-                <span v-else>in {{ tuitionDate.diff }} days</span>
+                {{ tuitionDateFromNow }}
               </div>
             </template>
           </uw-card-status>
@@ -190,6 +189,7 @@ import CardStatus from '../_templates/card-status.vue';
 import LinkButton from '../_templates/link-button.vue';
 import FinAidComponent from '../_common/finaid.vue';
 import TuitionResources from './tuition-resources.vue';
+import FormattedDate from '../_common/formatted-date.vue';
 
 export default {
   components: {
@@ -198,6 +198,7 @@ export default {
     'uw-link-button': LinkButton,
     'uw-fin-aid': FinAidComponent,
     'uw-tuition-resources': TuitionResources,
+    'uw-formatted-date': FormattedDate,
   },
   data: function () {
     return {
@@ -269,15 +270,19 @@ export default {
       }
       return notices;
     },
+    hasTuitionDate() {
+        return Boolean(this.tuitionDueNotice) && Boolean(this.tuitionDueNotice.dateStr);
+    },
     tuitionDate() {
-      // from notice
-      const now = this.nowDatetime();
-      const result = {};
-      if (this.tuitionDueNotice && this.tuitionDueNotice.date) {
-        result.diff = Math.ceil(this.tuitionDueNotice.date.diff(now, 'day', true));
-        result.formatted = this.tuitionDueNotice.formattedDate;
-      }
-      return result;
+      // To change due date on localdev, uncomment the line below:
+      // this.tuitionDueNotice.dateStr = "2013-04-14 07:00:00+00:00";
+      return this.tuitionDueNotice.dateStr;
+    },
+    tuitionDateFromNow() {
+      return this.toFromNowDate(this.tuitionDate);
+    },
+    daysDiffTuitionDueDate() {
+      return this.timeDeltaFrom(this.tuitionDate);
     },
     tuiBalance() {
       // regular tuition balance
