@@ -5,7 +5,7 @@
     <template v-if="isReady">
       <uw-course-card
         v-for="(section, i) in course.sections" :key="i"
-        :course="course" :section="section" :index="i" :isCurrentTerm="isCurrentTerm"
+        :course="course" :section="section" :index="i" :is-current-term="isCurrentTerm"
       />
     </template>
     <uw-no-course-card

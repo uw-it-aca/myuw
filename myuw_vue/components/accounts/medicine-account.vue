@@ -26,7 +26,7 @@
           This password is for UW Medicine applications
           like Epic, ORCA, MINDscape, AMC network, etc.
         </p>
-        <div v-if="medPwExpired">
+        <div v-if="expired">
           <div class="alert alert-danger" role="alert">
             <p>
               Password expired on {{ toFriendlyDate(expiresMed) }}.
@@ -44,13 +44,15 @@
               Password expiration
             </template>
             <template #status-value>
-              <div :class="expires30Days ? 'text-danger' : ''">
-                {{ toFriendlyDate(expiresMed) }}
-              </div>
+              <uw-formatted-date
+                :due-date="expiresMed"
+                :display-text-danger="true"
+                :display-time="true">
+              </uw-formatted-date>
             </template>
             <template #status-content>
               <div class="text-end">
-                in {{ daysBeforeExpires }} days*
+                {{ toFromNowDate(expiresMed) }}*
               </div>
             </template>
           </uw-card-status>
@@ -70,11 +72,14 @@
 import {mapGetters, mapState, mapActions} from 'vuex';
 import CardStatus from '../_templates/card-status.vue';
 import Card from '../_templates/card.vue';
+import FormattedDate from '../_common/formatted-date.vue';
+
 
 export default {
   components: {
     'uw-card': Card,
     'uw-card-status': CardStatus,
+    'uw-formatted-date': FormattedDate,
   },
   data: function() {
     return {
@@ -95,22 +100,17 @@ export default {
       return this.statusCode !== 404;
     },
     hasActiveMedPw() {
-      return this.password.has_active_med_pw;
-    },
-    medPwExpired() {
-      return this.password.med_pw_expired;
+      return Boolean(this.password.last_change_med);
     },
     expiresMed() {
       return this.password.expires_med;
     },
-    daysBeforeExpires() {
-      return this.password.days_before_med_pw_expires;
-    },
     showCard() {
-      return !this.isReady || Boolean(this.password) && this.hasActiveMedPw;
+      return (!this.isReady ||
+        Boolean(this.password) && this.hasActiveMedPw && Boolean(this.expiresMed));
     },
-    expires30Days() {
-      return this.daysBeforeExpires <= 30;
+    expired() {
+      return this.timeDeltaFrom(this.expiresMed, 'second') < 0;
     },
   },
   mounted() {

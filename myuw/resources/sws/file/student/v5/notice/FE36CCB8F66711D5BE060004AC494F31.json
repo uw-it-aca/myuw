@@ -353,8 +353,25 @@
             "NoticeCategory": "StudentDAD",
             "NoticeContent": "<span class=\"notice-title\">Submit Health Science Immunizations</span><span class=\"notice-body-with-title\">Your required annual Health Science Immunization documents must  be updated prior to <span class=\"date\">Wed, Oct 30</span> to maintain eligibility to register for classes. Please allow 2 weeks for processing after you submit your documents to CastleBranch.  <a href=\"https://www.ehs.washington.edu/workplace/health-sciences-immunization-program-hsip\">More information...</a>",
             "NoticeType": "HSImmunReqDateB"
-        }
-
+        },
+				{
+					"NoticeAttributes": null,
+					"NoticeCategory": "StudentALR",
+					"NoticeContent": "<span class=\"notice-title\">UW Student COVID-19 Vaccination Requirement</span><span class=\"notice-body-with-title\"><p>The University of Washington requires all students to be vaccinated against COVID-19, with certain medical or religious exemptions allowed.</p> <p><strong>Even if you submitted an attestation or an exemption this past summer</strong>, you must now submit documents showing your proof of vaccination or complete the medical or religious exemption request process.</p><ul><li>If you <strong>have not yet submitted prooof of vaccination or documentation for an exemption</strong>, <a href=\"https://www.washington.edu/coronavirus/vaccination-requirement/\">visit the UW COVID-19 vaccination requirements page</a> as soon as possible to get started.</li><li>If you <strong>have already submitted documents requesting an exemption</strong>, Hall Health will follow up with you directly within several weeks of your request being uploaded.</li></ul><p>You will not be allowed to register for classes until you have completed this process.</p></span>",
+					"NoticeType": "HSImmunBlock"
+				},
+				{
+					"NoticeAttributes": null,
+					"NoticeCategory": "StudentALR",
+					"NoticeContent": "<span class=\"notice-title\">Registration Block: UW Student COVID-19 Vaccination Requirement</span><span class=\"notice-body-with-title\">You will not be allowed to register for classes until you upload your COVID-19 vaccination documentation or exemption request form. The University of Washington requires all students to upload proof of vaccination against COVID-19, with certain exemptions allowed. To resolve this registration block so you can register for classes, <a href=\"https://www.washington.edu/coronavirus/vaccination-requirement/\">visit the UW COVID-19 vaccination requirements page</a> as soon as possible to get started.</span>",
+					"NoticeType": "AdminHolds"
+				},
+				{
+					"NoticeAttributes": null,
+					"NoticeCategory": "StudentALR",
+					"NoticeContent": "<span class=\"notice-title\">Registration Block: UW Student MMM Vaccination Requirement</span><span class=\"notice-body-with-title\"><p>You have not met your MMM (<span class=\"italic\">Measles, Mumps, Meningitis</span>) Vaccination Requirement and you may not be able to register for classes. Please see the  email previously sent to your UW email address sent from immunity@uw.edu. More information can be found at  <a href=\"https://wellbeing.uw.edu/medical/immunizations/immunization-requirement/%20\">immunity.washington.edu</a>.</p><span>",
+					"NoticeType": "AdminHolds"
+				}
 	], 
 	"Person": {
 		"Href": "", 
