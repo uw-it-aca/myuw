@@ -156,6 +156,31 @@ AWS_SQS = {
     }
 }
 
+if os.getenv('MYPLAN_ENV') in RESTCLIENTS_DEFAULT_ENVS:
+    RESTCLIENTS_MYPLAN_DAO_CLASS = 'Live'
+    RESTCLIENTS_MYPLAN_CONNECT_TIMEOUT = 3
+    RESTCLIENTS_MYPLAN_TIMEOUT = os.getenv("MYPLAN_TIMEOUT", 7)
+    RESTCLIENTS_MYPLAN_POOL_SIZE = os.getenv(
+        "MYPLAN_POOL_SIZE", RESTCLIENTS_DEFAULT_POOL_SIZE)
+    RESTCLIENTS_MYPLAN_CERT_FILE = ''
+    RESTCLIENTS_MYPLAN_KEY_FILE = ''
+    RESTCLIENTS_MYPLAN_AUTH_SECRET = os.getenv('MYPLAN_AUTH_SECRET')
+    if os.getenv('MYPLAN_ENV') == 'PROD':
+        RESTCLIENTS_MYPLAN_HOST = 'https://api.planning.sis.uw.edu/'
+    else:
+        RESTCLIENTS_MYPLAN_HOST = 'https://api.planning-eval.sis.uw.edu/'
+
+
+if os.getenv('MYPLAN_AUTH_ENV') in RESTCLIENTS_DEFAULT_ENVS:
+    RESTCLIENTS_MYPLAN_AUTH_DAO_CLASS = 'Live'
+    RESTCLIENTS_MYPLAN_AUTH_CONNECT_TIMEOUT = 3
+    RESTCLIENTS_MYPLAN_AUTH_TIMEOUT = 10
+    RESTCLIENTS_MYPLAN_AUTH_POOL_SIZE = 3
+    if os.getenv('MYPLAN_AUTH_ENV') == 'PROD':
+        RESTCLIENTS_MYPLAN_AUTH_HOST = 'https://auth.api.planning.sis.uw.edu:443'
+    else:
+        RESTCLIENTS_MYPLAN_AUTH_HOST = 'https://auth.api.planning-eval.sis.uw.edu:443'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
