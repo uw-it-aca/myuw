@@ -37,7 +37,7 @@ class RestSearchViewTest(MyuwApiTest):
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
             response.url,
-            "/restclients/view/myplan/student/api/plan/v1/2013,spring,1,ABC")
+            "/restclients/view/myplan/plan/v1/2013,spring,1,ABC")
 
         # libraries
         url = reverse("myuw_rest_search", args=["libraries", "accounts"])

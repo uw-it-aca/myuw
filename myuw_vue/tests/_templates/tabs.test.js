@@ -73,7 +73,12 @@ describe('Tabs template', () => {
     store = new Vuex.Store({
       state: {
         activeTabStored: null,
-      }
+      },
+      mutations: {
+        addVarToState(state, {name, value}) {
+          state[name] = value;
+        },
+      },
     });
   });
 
@@ -120,7 +125,7 @@ describe('Tabs template', () => {
       "text-nowrap": true, "px-2": true, "py-1": true, "h-100": true,
       "active": true});
 
-    expect(tabButton1.text()).toBe("TAB 2 TITLE")
+    expect(tabButton1.text()).toBe("TAB 2 TITLE");
     expect(tabButton1.props('panelId')).toBe('tab2');
     expect(tabButton1.props('titleItemClass')).toBe('mock-title-item-class');
     expect(tabButton1.props('titleLinkClass')).toBe('mock-title-link-class');
@@ -175,8 +180,8 @@ describe('Tabs template', () => {
   });
 
   it('test changing active tab via a button click', async () => {
-    const wrapper = mount(TabsTestComponent, {store, localVue})
-    let tabs = wrapper.findComponent(Tabs)
+    const wrapper = mount(TabsTestComponent, {store, localVue});
+    let tabs = wrapper.findComponent(Tabs);
     let tabButtons = wrapper.findAllComponents(TabButton);
     let tabButton1 = tabButtons.at(1);
 
@@ -184,14 +189,14 @@ describe('Tabs template', () => {
     buttonEl.trigger('click');
     await wrapper.vm.$nextTick();
     // assert event has been emitted
-    expect(tabs.emitted().setActivePanel).toBeTruthy()
-    expect(tabs.emitted().setActivePanel.length).toBe(1)
-    expect(tabs.emitted().setActivePanel[0]).toEqual(["tab2"])
+    expect(tabs.emitted().setActivePanel).toBeTruthy();
+    expect(tabs.emitted().setActivePanel.length).toBe(1);
+    expect(tabs.emitted().setActivePanel[0]).toEqual(["tab2"]);
   });
 
   it('test changing active tab via left key press on button', async () => {
-    const wrapper = mount(TabsTestComponent, {store, localVue})
-    let tabs = wrapper.findComponent(Tabs)
+    const wrapper = mount(TabsTestComponent, {store, localVue});
+    let tabs = wrapper.findComponent(Tabs);
     let tabButtons = wrapper.findAllComponents(TabButton);
     let tabButton0 = tabButtons.at(0);
 
@@ -199,13 +204,13 @@ describe('Tabs template', () => {
     buttonEl.trigger('keydown.left.prevent');
     await wrapper.vm.$nextTick();
     // assert event has been emitted
-    expect(tabs.emitted().moveActiveTabLeft).toBeTruthy()
-    expect(tabs.emitted().moveActiveTabLeft.length).toBe(1)
+    expect(tabs.emitted().moveActiveTabLeft).toBeTruthy();
+    expect(tabs.emitted().moveActiveTabLeft.length).toBe(1);
   });
 
   it('test changing active tab via right key press on button', async () => {
-    const wrapper = mount(TabsTestComponent, {store, localVue})
-    let tabs = wrapper.findComponent(Tabs)
+    const wrapper = mount(TabsTestComponent, {store, localVue});
+    let tabs = wrapper.findComponent(Tabs);
     let tabButtons = wrapper.findAllComponents(TabButton);
     let tabButton0 = tabButtons.at(0);
 
@@ -213,13 +218,13 @@ describe('Tabs template', () => {
     buttonEl.trigger('keydown.right.prevent');
     await wrapper.vm.$nextTick();
     // assert event has been emitted
-    expect(tabs.emitted().moveActiveTabRight).toBeTruthy()
-    expect(tabs.emitted().moveActiveTabRight.length).toBe(1)
+    expect(tabs.emitted().moveActiveTabRight).toBeTruthy();
+    expect(tabs.emitted().moveActiveTabRight.length).toBe(1);
   });
 
   it('test changing active tab via dropdown select change', async () => {
-    const wrapper = mount(TabsTestComponent, {store, localVue})
-    let tabs = wrapper.findComponent(Tabs)
+    const wrapper = mount(TabsTestComponent, {store, localVue});
+    let tabs = wrapper.findComponent(Tabs);
     let tabDropdowns = wrapper.findAllComponents(TabDropdown);
     let tabDropdown0 = tabDropdowns.at(0);
 
@@ -227,15 +232,15 @@ describe('Tabs template', () => {
     selectEl.trigger('change');
     await wrapper.vm.$nextTick();
     // assert event has been emitted
-    expect(tabDropdown0.emitted().input).toBeTruthy()
-    expect(tabDropdown0.emitted().input.length).toBe(1)
-    expect(tabs.emitted().setActivePanel).toBeTruthy()
-    expect(tabs.emitted().setActivePanel.length).toBe(1)
+    expect(tabDropdown0.emitted().input).toBeTruthy();
+    expect(tabDropdown0.emitted().input.length).toBe(2);
+    expect(tabs.emitted().setActivePanel).toBeTruthy();
+    expect(tabs.emitted().setActivePanel.length).toBe(1);
   });
 
   it('test changing active tab via left key press on dropdown', async () => {
-    const wrapper = mount(TabsTestComponent, {store, localVue})
-    let tabs = wrapper.findComponent(Tabs)
+    const wrapper = mount(TabsTestComponent, {store, localVue});
+    let tabs = wrapper.findComponent(Tabs);
     let tabDropdowns = wrapper.findAllComponents(TabDropdown);
     let tabDropdown0 = tabDropdowns.at(0);
 
@@ -243,13 +248,13 @@ describe('Tabs template', () => {
     selectEl.trigger('keydown.left.prevent');
     await wrapper.vm.$nextTick();
     // assert event has been emitted
-    expect(tabs.emitted().moveActiveTabLeft).toBeTruthy()
-    expect(tabs.emitted().moveActiveTabLeft.length).toBe(1)
+    expect(tabs.emitted().moveActiveTabLeft).toBeTruthy();
+    expect(tabs.emitted().moveActiveTabLeft.length).toBe(1);
   });
 
   it('test changing active tab via right key press on dropdown', async () => {
-    const wrapper = mount(TabsTestComponent, {store, localVue})
-    let tabs = wrapper.findComponent(Tabs)
+    const wrapper = mount(TabsTestComponent, {store, localVue});
+    let tabs = wrapper.findComponent(Tabs);
     let tabDropdowns = wrapper.findAllComponents(TabDropdown);
     let tabDropdown0 = tabDropdowns.at(0);
 
@@ -257,7 +262,7 @@ describe('Tabs template', () => {
     selectEl.trigger('keydown.right.prevent');
     await wrapper.vm.$nextTick();
     // assert event has been emitted
-    expect(tabs.emitted().moveActiveTabRight).toBeTruthy()
-    expect(tabs.emitted().moveActiveTabRight.length).toBe(1)
+    expect(tabs.emitted().moveActiveTabRight).toBeTruthy();
+    expect(tabs.emitted().moveActiveTabRight.length).toBe(1);
   });
 });

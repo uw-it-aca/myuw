@@ -4,13 +4,11 @@
 import logging
 import traceback
 from restclients_core.exceptions import DataFailureException
-from uw_myplan import get_plan
-from myuw.dao.pws import get_regid_of_current_user
-from uw_sws.section import get_section_by_label
+from myuw.dao.myplan import get_plan
 from myuw.dao.card_display_dates import during_myplan_peak_load
-from myuw.dao.term import get_current_quarter, get_comparison_datetime
+from myuw.dao.term import get_comparison_datetime
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import log_api_call, log_err
+from myuw.logger.logresp import log_api_call, log_msg
 from myuw.views.api import ProtectedAPI
 from myuw.views.error import handle_exception
 
@@ -33,48 +31,11 @@ class MyPlan(ProtectedAPI):
                         "No MyPlan access during their peak load, abort!")
                 return self.json_response([])
 
-            plan = get_plan(regid=get_regid_of_current_user(request),
-                            year=year,
-                            quarter=quarter.lower(),
-                            terms=1)
-            base_json = plan.json_data()
-            has_ready_courses = False
-            has_unready_courses = False
-            ready_count = 0
-            unready_count = 0
-            has_sections = False
-
-            for course in base_json["terms"][0]["courses"]:
-                if course["registrations_available"]:
-                    has_ready_courses = True
-                    ready_count = ready_count + 1
-                    for section in course["sections"]:
-                        has_sections = True
-                        curriculum = course["curriculum_abbr"].upper()
-                        section_id = section["section_id"].upper()
-                        label = "{},{},{},{}/{}".format(
-                            year,
-                            quarter.lower(),
-                            curriculum,
-                            course["course_number"],
-                            section_id)
-
-                        sws_section = get_section_by_label(label)
-                        section["section_data"] = sws_section.json_data()
-                else:
-                    if len(course["sections"]):
-                        has_sections = True
-                    has_unready_courses = True
-                    unready_count = unready_count + 1
-
-            base_json["terms"][0]["has_ready_courses"] = has_ready_courses
-            base_json["terms"][0]["has_unready_courses"] = has_unready_courses
-            base_json["terms"][0]["ready_count"] = ready_count
-            base_json["terms"][0]["unready_count"] = unready_count
-            base_json["terms"][0]["has_sections"] = has_sections
-
+            plan_json = get_plan(request, year, quarter)
             log_api_call(timer, request, "Get MyPlan")
-            return self.json_response(base_json)
-        except Exception:
-            log_err(logger, timer, traceback)
-            return self.json_response([])
+            return self.json_response(plan_json)
+        except Exception as ex:
+            if (isinstance(ex, DataFailureException) and
+                    ex.status == 404):
+                return self.json_response([])
+            return handle_exception(logger, timer, traceback)
