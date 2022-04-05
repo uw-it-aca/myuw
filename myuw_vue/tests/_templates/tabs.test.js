@@ -73,7 +73,12 @@ describe('Tabs template', () => {
     store = new Vuex.Store({
       state: {
         activeTabStored: null,
-      }
+      },
+      mutations: {
+        addVarToState(state, {name, value}) {
+          state[name] = value;
+        },
+      },
     });
   });
 
