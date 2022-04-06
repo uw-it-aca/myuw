@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     ...mapState({
-      seattle: (state) => state.user.affiliations.seattle,
+      seattle: (state) => state.user.affiliations.seattle,  // fix/MUWM-5096
       notices: (state) => {
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_summerreg'),
