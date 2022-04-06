@@ -22,6 +22,7 @@ describe('Summer EFS Card', () => {
         user: {
           affiliations: {
             student: true,
+            seattle: true,
           }
         }
       }
@@ -37,5 +38,6 @@ describe('Summer EFS Card', () => {
 
     expect(wrapper.vm.notices).toHaveLength(1);
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
+    expect(wrapper.vm.showContent).toBeTruthy();
   });
 });
