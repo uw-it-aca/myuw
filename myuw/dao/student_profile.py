@@ -74,7 +74,7 @@ def get_degree_status(request):
 
 def get_cur_future_enrollments(request):
     try:
-        terms = get_current_and_next_quarters(request, 4)
+        terms = get_current_and_next_quarters(request, 3)
         return terms, get_enrollments_of_terms(request, terms)
     except Exception:
         log_err(logger, "get_enrollments_of_terms", traceback, request)
