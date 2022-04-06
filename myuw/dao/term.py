@@ -183,7 +183,7 @@ def get_current_and_next_quarters(request, num):
     term = get_current_quarter(request)
     quarters = [term]
 
-    for x in range(1, num):
+    for x in range(num):
         term = get_term_after(term)
         quarters.append(term)
 
