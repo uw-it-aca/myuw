@@ -22,22 +22,31 @@ describe('Summer EFS Card', () => {
         user: {
           affiliations: {
             student: true,
-            seattle: true,
           }
         }
       }
     });
   });
 
-  it('Summer EFS - default', async () => {
+  it('Show content to seattle student', async () => {
+    store.state.user.affiliations.seattle = true;
     axios.get.mockResolvedValue({data: mockNotices, status: 200});
     const wrapper = mount(SummerEFSCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
     expect(wrapper.vm.isReady).toBeTruthy();
-
+    expect(wrapper.vm.seattle).toBeTruthy();
     expect(wrapper.vm.notices).toHaveLength(1);
     expect(wrapper.vm.hasRegisterNotices).toBeTruthy();
     expect(wrapper.vm.showContent).toBeTruthy();
+  });
+  it('Hide content if not seattle student', async () => {
+    axios.get.mockResolvedValue({ data: mockNotices, status: 200 });
+    const wrapper = mount(SummerEFSCard, { store, localVue });
+    // It takes like 10 ms to process the mock data through fetch postProcess
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isReady).toBeTruthy();
+    expect(wrapper.vm.seattle).toBeFalsy();
+    expect(wrapper.vm.showContent).toBeFalsy;
   });
 });
