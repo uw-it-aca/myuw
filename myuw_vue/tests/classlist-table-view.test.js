@@ -35,6 +35,7 @@ describe('Show Classlist Content', () => {
         classlist,
       },
       state: {
+        activeTabStored: null,
         user: {
           affiliations: {
             instructor: true,
@@ -80,10 +81,9 @@ describe('Show Classlist Content', () => {
         propsData: {'section': section, 'isJointSectionDataReady': true}
       });
     await new Promise(setImmediate);
-    const link1 = wrapper.findAll('a').at(0);
-    expect(link1.text()).toBe('Download (CSV)');
-    const link2 = wrapper.findAll('a').at(1);
-    expect(link2.text()).toBe('Print');
+    const links = wrapper.findAll('button');
+    expect(links.at(0).text()).toBe('Download (CSV)');
+    expect(links.at(1).text()).toBe('Print');
     expect(wrapper.findComponent(Tabs).exists()).toBe(true);
     expect(wrapper.findAllComponents(TabPanel).length).toBe(2);
     expect(wrapper.findAllComponents(TabButton).length).toBe(2);
