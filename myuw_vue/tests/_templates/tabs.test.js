@@ -112,7 +112,7 @@ describe('Tabs template', () => {
     // buttons
     expect(tabButtons.length).toBe(2);
 
-    expect(tabButton0.text()).toBe("TAB 1 TITLE")
+    expect(tabButton0.text()).toBe("TAB 1 TITLE");
     expect(tabButton0.props('panelId')).toBe('tab1');
     expect(tabButton0.props('titleItemClass')).toBe('me-2 mb-1');
     expect(tabButton0.props('titleLinkClass')).toBe('rounded-0 text-body');
@@ -166,15 +166,15 @@ describe('Tabs template', () => {
     // panels
     expect(tabPanels.length).toBe(3);
 
-    expect(tabPanel0.text()).toBe("TAB 1 PANEL")
+    expect(tabPanel0.text()).toBe("TAB 1 PANEL");
     expect(tabPanel0.props('panelId')).toBe('tab1');
     expect(tabPanel0.vm.active).toBe(true);
 
-    expect(tabPanel1.text()).toBe("TAB 2 PANEL")
+    expect(tabPanel1.text()).toBe("TAB 2 PANEL");
     expect(tabPanel1.props('panelId')).toBe('tab2');
     expect(tabPanel1.vm.active).toBe(false);
 
-    expect(tabPanel2.text()).toBe("DROPDOWN PANEL")
+    expect(tabPanel2.text()).toBe("DROPDOWN PANEL");
     expect(tabPanel2.props('panelId')).toBe('dropdown');
     expect(tabPanel2.vm.active).toBe(false);
   });

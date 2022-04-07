@@ -53,6 +53,11 @@ export default {
       default: false,
     },
   },
+  data(){
+    return {
+      localIndex: this.activeTabIdx
+    }
+  },
   computed: {
     ...mapState({
       activeTabStored: (state) => state.activeTabStored,
@@ -67,17 +72,18 @@ export default {
       return filtered
     },
     index: {
-        get: function(){
-          return this.activeTabIdx;
-        },
-        set: function(newValue){
-          this.$emit('selected', newValue);
-        }   
+      get: function(){
+        return this.localIndex;
+      },
+      set: function(newValue){
+        this.localIndex = newValue;
+        this.$emit('selected', newValue);
+      }   
     },
     activePanelId() {
       // currently visible panel
       return (this.activeTabStored ? this.activeTabStored :
-        this.tabs[this.activeTabIdx].componentOptions.propsData.panelId);
+        this.tabs[this.index].componentOptions.propsData.panelId);
     },
     navWrapperClassesComputed() {
       let wrapperClasses = this.classesToClassDict(this.navWrapperClass);
@@ -139,27 +145,28 @@ export default {
         }          
       });
       this.index = idx;
-      this.saveActiveTabInStore(panelId);
     },
     moveActiveTabLeft: function() {
       // move active tab to the left, not exceeding first tab
       if (this.index > 0) {
         this.index -= 1;
-        this.saveActiveTabInStore(
-          this.tabs[this.index].componentOptions.propsData.panelId);
       }
     },
     moveActiveTabRight: function() {
       // move active tab to the right, not exceeding last tab
       if (this.index < this.tabs.length - 1) {
         this.index += 1;
-        this.saveActiveTabInStore(
-          this.tabs[this.index].componentOptions.propsData.panelId);
       }
     },
     ...mapMutations([
       'addVarToState',
     ]),
-  }
+  },
+  watch: {
+    index(newIndex) {
+      this.saveActiveTabInStore(
+        this.tabs[newIndex].componentOptions.propsData.panelId);
+    }
+  },
 }
 </script>
