@@ -176,14 +176,14 @@ def get_next_quarter(request):
 
 def get_current_and_next_quarters(request, num):
     """
-    Returns the current and next num uw_sws.models.Term objects in a list
+    Returns the current and next num of uw_sws.models.Term objects in a list
     for the current quarter refered in the user session. Returns the next
-    num -1 quarters along with the current one.
+    num of quarters along with the current one.
     """
     term = get_current_quarter(request)
     quarters = [term]
 
-    for x in range(1, num):
+    for x in range(num):
         term = get_term_after(term)
         quarters.append(term)
 
@@ -451,7 +451,7 @@ def add_term_data_to_context(request, context):
 
     Includes the data, the quarter (or break), and the week of the quarter.
     """
-    terms = get_current_and_next_quarters(request, 2)
+    terms = get_current_and_next_quarters(request, 1)
     cur_term = terms[0]
     next_term = terms[1]
 

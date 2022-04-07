@@ -342,21 +342,13 @@ class TestTerm(TestCase):
                          datetime(2013, 8, 28, 0, 0, 0))
 
     def test_get_current_and_next_quarters(self):
-        date = get_default_date()
-        now_request = get_request_with_date(date)
-        self.assertEquals(date.year, 2013)
-        self.assertEquals(date.month, 4)
-        self.assertEquals(date.day, 15)
-
-        quarters = get_current_and_next_quarters(now_request, 4)
-
+        now_request = get_request_with_user('javerage')
+        quarters = get_current_and_next_quarters(now_request, 3)
         self.assertEqual(len(quarters), 4)
-
-        spring = quarters[0]
+        spring = quarters[0]  # current term
         summer = quarters[1]
         autumn = quarters[2]
         winter = quarters[3]
-
         self.assertEqual(spring.quarter, "spring")
         self.assertEqual(summer.quarter, "summer")
         self.assertEqual(autumn.quarter, "autumn")
