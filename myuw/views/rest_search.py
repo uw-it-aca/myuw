@@ -40,7 +40,7 @@ class MyUWRestSearchView(RestSearchView):
                 url = url[index:]
                 params = self.format_params(request)
         elif service == "myplan":
-            url = "student/api/plan/v1/{},{},1,{}".format(
+            url = "plan/v1/{},{},1,{}".format(
                 request.POST["year"],
                 request.POST["quarter"],
                 request.POST["uwregid"])

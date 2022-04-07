@@ -22,6 +22,11 @@ vueConf.store.commit('addVarToState', {
   },
 });
 
+vueConf.store.commit('addVarToState', {
+  name: 'activeTabStored',
+  value: null,
+});
+
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-classlist', Classlist);
 
