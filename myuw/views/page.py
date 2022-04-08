@@ -67,6 +67,7 @@ def page(request,
     context["user"] = {
         "netid": netid,
         "isHybrid": is_native(request),
+        "isSafari": "Safari" in request.META['HTTP_USER_AGENT'],
     }
 
     if prefetch:

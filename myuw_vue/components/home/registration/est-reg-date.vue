@@ -37,6 +37,11 @@ export default {
       required: true,
     },
   },
+  computed: {
+    ...mapState({
+      isSafari: (state) => state.user.isSafari,
+    }),
+  },
 };
 </script>
 
