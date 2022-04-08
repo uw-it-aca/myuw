@@ -132,9 +132,11 @@ export default {
     },
     toFromNowDate(date_str, useCompDate = true) {
       if (!date_str || date_str.length === 0) return '';
+
       const delta = this.timeDeltaFrom(date_str);
       if (delta >= 0 && delta < 1) return "Today";
       if (delta >= 1 && delta < 2) return "Tomorrow";
+      date_str = date_str.replace(' ', 'T'); // MUWM-5095 'T' time works on all browsers
       return dayjs(date_str).from(this.nowDatetime(useCompDate));
       // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
     },
@@ -142,9 +144,11 @@ export default {
       // return the number of units that the date_str (must be a valid date/datetime string)
       // is to the comparison date.
       // https://day.js.org/docs/en/display/difference
+      date_str = date_str.replace(' ', 'T');  // MUWM-5095: 'T' time works on all browsers
       return Math.ceil(dayjs(date_str).diff(this.nowDatetime(useCompDate), unit, true));
     },
     toCalendar(date_str) {
+      // to be removed
       return (!date_str || date_str.length === 0 ? '' : dayjs(date_str).calendar());
     },
     formatPrice(price) {
