@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import CardStatus from '../../_templates/card-status.vue';
 import FormattedDate from '../../_common/formatted-date.vue';
 export default {
