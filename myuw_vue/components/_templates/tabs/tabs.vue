@@ -112,6 +112,12 @@ export default {
       return navClass;
     },
   },
+  watch: {
+    index(newIndex) {
+      this.saveActiveTabInStore(
+        this.tabs[newIndex].componentOptions.propsData.panelId);
+    }
+  },
   created() {
     this.$on("setActivePanel", (panelId) => {
       // child tab components emit setActivePanel when
@@ -161,12 +167,6 @@ export default {
     ...mapMutations([
       'addVarToState',
     ]),
-  },
-  watch: {
-    index(newIndex) {
-      this.saveActiveTabInStore(
-        this.tabs[newIndex].componentOptions.propsData.panelId);
-    }
   },
 }
 </script>
