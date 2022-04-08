@@ -1,6 +1,6 @@
 <template>
   <uw-card
-    v-if="student && (!isReady || hasRegisterNotices)"
+    v-if="showContent"
     :loaded="isReady"
     :errored="isErrored"
     :errored-show="showError"
@@ -40,6 +40,7 @@ export default {
   },
   computed: {
     ...mapState({
+      seattle: (state) => state.user.affiliations.seattle,  // fix/MUWM-5096
       notices: (state) => {
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_summerreg'),
@@ -53,6 +54,10 @@ export default {
       'isErrored',
       'statusCode',
     ]),
+    showContent() {
+      return (this.student &&
+        (!this.isReady || (this.seattle && this.hasRegisterNotices)));
+    },
     showError() {
       return this.statusCode !== 404;
     },

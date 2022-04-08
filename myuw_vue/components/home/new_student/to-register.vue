@@ -207,13 +207,13 @@ export default {
         );
       },
       measles_before: (state) => {
-        // newstudentclist_measlesa
+        // newstudentclist_measlesa, no longer used
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_measles_before'),
         );
       },
       measles_after: (state) => {
-        // newstudentclist_measlesb
+        // newstudentclist_measlesb, no longer used
         return state.notices.value.filter((notice) =>
           notice.location_tags.includes('checklist_measles_after'),
         );
