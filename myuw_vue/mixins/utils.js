@@ -32,6 +32,11 @@ export default {
       }
       return s;
     },
+    isSafari() {
+      // alert(navigator.userAgent);
+      return (navigator.userAgent.indexOf('Safari') != -1 &&
+        navigator.userAgent.indexOf('Chrome') == -1);
+    },
     // Phone Number Utils
     parsePhoneNumber(phNumStr) {
       let parsed = null;
@@ -123,9 +128,11 @@ export default {
       return tObj.format('h:mm A') ;
     },
     toFriendlyDate(date_str) {
+      if (this.isSafari) date_str.replace(' ', 'T');  // MUWM-5095
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D");
     },
     toFriendlyDatetime(date_str) {
+      if (this.isSafari) date_str.replace(' ', 'T');  // MUWM-5095
       return !date_str || date_str.length === 0 ? '' : dayjs(date_str).format("ddd, MMM D, h:mmA");
     },
     toFromNowDate(date_str, useCompDate = true) {
