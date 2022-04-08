@@ -16,7 +16,7 @@
     </template>
     <template #card-body>
 
-      <uw-est-reg-date :est-reg-data="estRegData" />
+      <uw-est-reg-date :est-reg-data="estRegData" :isSafari="isSafari" />
       <uw-holds
         v-if="regHoldsNotices && regHoldsNotices.length"
         :reg-holds-notices="regHoldsNotices"
@@ -123,6 +123,7 @@ export default {
     };
   },
   computed: {
+    isSafari() {
     ...mapState({
       student: (state) => state.user.affiliations.student,
       isAfterStartOfRegistrationDisplayPeriod: (state) =>
@@ -174,6 +175,10 @@ export default {
       isMyPlanReadyTagged: 'isReadyTagged',
       isMyPlanErroredTagged: 'isErroredTagged',
     }),
+    isSafari() {
+      return (navigator.userAgent.indexOf('Safari') != -1 &&
+        navigator.userAgent.indexOf('Chrome') == -1);
+    },
     isSummerReg() {
       return this.forQuarter === 'Summer';
     },
@@ -254,7 +259,7 @@ export default {
               estRegData.hasEstRegDataNotice = true;
               estRegData.noticeMyRegIsOpen = notice.my_reg_has_opened;
               estRegData.isMy1stRegDay = notice.is_my_1st_reg_day;
-              estRegData.estRegDate = notice.dateStr;     // MUWM-5034
+              estRegData.estRegDate = notice.dateStr;
             });
       });
 

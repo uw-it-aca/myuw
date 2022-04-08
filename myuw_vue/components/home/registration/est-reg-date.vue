@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import CardStatus from '../../_templates/card-status.vue';
 import FormattedDate from '../../_common/formatted-date.vue';
 export default {
@@ -37,11 +36,10 @@ export default {
       type: Object,
       required: true,
     },
-  },
-  computed: {
-    ...mapState({
-      isSafari: (state) => state.user.isSafari,
-    }),
+    isSafari: {
+      type: Boolean,
+      required: true
+    }
   },
 };
 </script>
