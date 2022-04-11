@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+import bleach
+import traceback
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
@@ -13,6 +15,14 @@ from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
 logger = logging.getLogger(__name__)
+ALLOWED_TAGS = [
+    'b', 'br', 'em', 'p', 'span', 'a', 'img', 'i', 'li', 'ol', 'strong', 'ul'
+]
+ALLOWED_ATTS = {
+    '*': ['class'],
+    'a': ['href', 'rel', 'title'],
+    'img': ['alt']
+}
 
 
 @login_required
@@ -117,7 +127,10 @@ def _save_notice(request, context, notice_id=None):
     title = None
     content = None
     try:
-        title = request.POST.get('title')
+        title = bleach.clean(
+            request.POST.get('title'),
+            tags=ALLOWED_TAGS,
+            attributes=ALLOWED_ATTS)
     except (KeyError, TypeError):
         has_error = True
         context['title_error'] = True
@@ -131,7 +144,10 @@ def _save_notice(request, context, notice_id=None):
         title = title.strip()
 
     try:
-        content = request.POST.get('content')
+        content = bleach.clean(
+            request.POST.get('content'),
+            tags=ALLOWED_TAGS,
+            attributes=ALLOWED_ATTS)
     except (KeyError, TypeError):
         has_error = True
         context['content_error'] = True
@@ -150,52 +166,66 @@ def _save_notice(request, context, notice_id=None):
 
     campus_list = request.POST.getlist('campus')
     affil_list = request.POST.getlist('affil')
-    if not has_error:
-        if form_action == "save":
-            notice = MyuwNotice(title=title,
-                                content=content,
-                                notice_type=notice_type,
-                                notice_category=notice_category,
-                                is_critical=is_critical,
-                                start=start_date,
-                                end=end_date,
-                                target_group=target_group)
-            for campus in campus_list:
-                setattr(notice, campus, True)
-
-            for affil in affil_list:
-                setattr(notice, affil, True)
-            notice.save()
-            log_info(logger, {'Saved notice': notice})
-        elif form_action == "edit":
-            notice = MyuwNotice.objects.get(id=notice_id)
-            notice.title = title
-            notice.content = content
-            notice.notice_type = notice_type
-            notice.notice_category = notice_category
-            notice.start = start_date
-            notice.end = end_date
-            notice.target_group = target_group
-
-            # reset filters
-            fields = MyuwNotice._meta.get_fields()
-            for field in fields:
-                if "is_" in field.name:
-                    setattr(notice, field.name, False)
-
-            for campus in campus_list:
-                setattr(notice, campus, True)
-
-            for affil in affil_list:
-                setattr(notice, affil, True)
-
-            notice.is_critical = is_critical
-            notice.save()
-
-        return True
-    else:
+    if has_error:
         context['has_error'] = has_error
         return False
+
+    if form_action == "save":
+        notice = MyuwNotice(title=title,
+                            content=content,
+                            notice_type=notice_type,
+                            notice_category=notice_category,
+                            is_critical=is_critical,
+                            start=start_date,
+                            end=end_date,
+                            target_group=target_group)
+        for campus in campus_list:
+            setattr(notice, campus, True)
+
+        for affil in affil_list:
+            setattr(notice, affil, True)
+        try:
+            notice.save()
+            log_info(logger, {'Saved notice': notice})
+            return True
+        except Exception:
+            log_exception(logger, "save_notice", traceback)
+            has_error = True
+            context['sql_error'] = True
+
+    elif form_action == "edit":
+        notice = MyuwNotice.objects.get(id=notice_id)
+        notice.title = title
+        notice.content = content
+        notice.notice_type = notice_type
+        notice.notice_category = notice_category
+        notice.start = start_date
+        notice.end = end_date
+        notice.target_group = target_group
+
+        # reset filters
+        fields = MyuwNotice._meta.get_fields()
+        for field in fields:
+            if "is_" in field.name:
+                setattr(notice, field.name, False)
+
+        for campus in campus_list:
+            setattr(notice, campus, True)
+
+        for affil in affil_list:
+            setattr(notice, affil, True)
+
+        notice.is_critical = is_critical
+        try:
+            notice.save()
+            log_info(logger, {'Edited notice': notice})
+            return True
+        except Exception:
+            log_exception(logger, "edit_notice", traceback)
+            has_error = True
+            context['sql_error'] = True
+
+    return False
 
 
 def _get_datetime(dt_string):
