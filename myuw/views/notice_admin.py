@@ -166,7 +166,7 @@ def _save_notice(request, context, notice_id=None):
             for affil in affil_list:
                 setattr(notice, affil, True)
             notice.save()
-
+            log_info(logger, {'Saved notice': notice})
         elif form_action == "edit":
             notice = MyuwNotice.objects.get(id=notice_id)
             notice.title = title
@@ -201,7 +201,6 @@ def _save_notice(request, context, notice_id=None):
 def _get_datetime(dt_string):
     try:
         dt = parse(dt_string)
-        logger.info(str(dt))
     except (TypeError, ValueError):
         return None
     return SWS_TIMEZONE.localize(dt)
