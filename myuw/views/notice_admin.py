@@ -5,7 +5,7 @@ import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
-from django.utils import timezone
+from uw_sws import SWS_TIMEZONE
 from myuw.dao.messages import clean_html
 from myuw.models.myuw_notice import MyuwNotice
 from myuw.logger.logresp import log_info
@@ -13,7 +13,6 @@ from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
 logger = logging.getLogger(__name__)
-MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
 
 
 @login_required
@@ -77,18 +76,24 @@ def _save_notice(request, context, notice_id=None):
     if start_date is None:
         has_error = True
         context['start_error'] = True
+        log_info({'err': 'Invalid start_date'})
 
     try:
         end_date = _get_datetime(request.POST.get('end_date'))
     except TypeError:
         has_error = True
+    if end_date is None:
+        has_error = True
+        context['end_error'] = True
+        log_info({'err': 'Invalid end_date'})
 
-    try:
-        if end_date < start_date:
-            has_error = True
-            context['date_error'] = True
-    except TypeError:
-        pass
+    if end_date < start_date:
+        has_error = True
+        context['date_error'] = True
+        log_info(
+            {'err': 'end_date is before start_date',
+             'start_date': start_date,
+             'end_date': end_date})
 
     notice_type = request.POST.get('notice_type')
     notice_category = request.POST.get('notice_category')
@@ -104,10 +109,11 @@ def _save_notice(request, context, notice_id=None):
     title = None
     content = None
     try:
-        title = clean_html(request.POST.get('title'))
+        title = request.POST.get('title')
     except TypeError:
         has_error = True
         context['title_error'] = True
+        log_info({'err': 'Invalid title'})
 
     if title is not None:
         if len(title) == 0:
@@ -116,15 +122,16 @@ def _save_notice(request, context, notice_id=None):
         else:
             title = title.strip()
     try:
-        content = clean_html(request.POST.get('content'),
-                             MYUW_NOTICE_ALLOWED_TAGS)
+        content = request.POST.get('content')
     except TypeError:
         has_error = True
         context['content_error'] = True
+        log_info({'err': 'Invalid content'})
 
     if content is not None and len(content) == 0:
         has_error = True
         context['content_error'] = True
+        log_info({'err': 'Invalid content'})
 
     target_group = request.POST.get('target_group')
     if target_group is not None:
@@ -185,6 +192,4 @@ def _get_datetime(dt_string):
         dt = parse(dt_string)
     except ValueError:
         return None
-    if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-        return timezone.make_aware(parse(dt_string))
-    return dt
+    return WS_TIMEZONE.localize(dt)
