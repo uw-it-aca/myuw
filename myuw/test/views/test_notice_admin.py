@@ -15,19 +15,15 @@ from myuw.test.dao.test_myuw_notice import get_datetime_with_tz
 class TestNoticeAdmin(MyuwApiTest):
 
     def test_get_datetime(self):
-        string = ""
-        self.assertIsNone(_get_datetime(string))
-
-        string = "foobar"
-        self.assertIsNone(_get_datetime(string))
+        self.assertIsNone(_get_datetime(""))
+        self.assertIsNone(_get_datetime(None))
 
         string = "2018-05-08 15:28"
         self.assertEqual(str(_get_datetime(string)),
                          "2018-05-08 15:28:00-07:00")
-
-        string = "2013-03-28 10:00:00+00:00"
-        dt = get_datetime_with_tz(2013, 3, 28, 3)
-        self.assertEqual(_get_datetime(string), dt)
+        string = "2018-05-08T15:28"
+        self.assertEqual(str(_get_datetime(string)),
+                         "2018-05-08 15:28:00-07:00")
 
     def test_save_new_notice(self):
         rf = RequestFactory()
@@ -67,8 +63,8 @@ class TestNoticeAdmin(MyuwApiTest):
             'action': 'save',
             'title': 'The Title',
             'content': "<p>Foobar</p>",
-            'start_date': "2018-05-25T12:05:00+00:00",
-            'end_date': "2017-05-26T12:05:00+00:00",
+            'start_date': "2018-05-25 12:05",
+            'end_date': "2017-05-26 12:05",
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
@@ -82,7 +78,7 @@ class TestNoticeAdmin(MyuwApiTest):
             'action': 'save',
             'title': 'The Title',
             'content': "<p>Foobar</p>",
-            'end_date': "2017-05-26T12:05:00+00:00",
+            'end_date': "2017-05-26 12:05",
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
@@ -98,6 +94,7 @@ class TestNoticeAdmin(MyuwApiTest):
         request = rf.post('', notice_context)
         context = {}
         self.assertFalse(_save_notice(request, context))
+        print(context)
         self.assertTrue(context['start_error'])
         self.assertTrue(context['type_error'])
         self.assertTrue(context['category_error'])
@@ -107,10 +104,10 @@ class TestNoticeAdmin(MyuwApiTest):
     def test_html_content(self):
         notice_context = {
             'action': 'save',
-            'title': '<b>The</b> <p>Title</p>',
-            'content': "<p>allowed tag</p> <script>not allowed</script>",
-            'start_date': "2018-05-05T12:05:00+00:00",
-            'end_date': "2018-05-26T12:05:00+00:00",
+            'title': '<b>The</b> Title',
+            'content': "<p>allowed tag</p> <span>not allowed</span>",
+            'start_date': "2018-05-05 12:05",
+            'end_date': "2018-05-26 12:05",
             'notice_type': 'Foo',
             'notice_category': 'Bar'
         }
@@ -122,19 +119,17 @@ class TestNoticeAdmin(MyuwApiTest):
         get_request_with_user('javerage', request)
         notices = get_myuw_notices_for_user(request)
 
-        self.assertEqual(notices[0].title, "<b>The</b> &lt;p&gt;"
-                                           "Title&lt;/p&gt;")
+        self.assertEqual(notices[0].title, "<b>The</b> Title")
 
-        self.assertEqual(notices[0].content, "<p>allowed tag</p> &lt;script"
-                                             "&gt;not allowed&lt;/script&gt;")
+        self.assertEqual(notices[0].content, "<p>allowed tag</p> <span>not allowed</span>")
 
     def test_edit_notice(self):
         notice_context = {
             'action': 'save',
             'title': 'Test Edit',
             'content': "Foo",
-            'start_date': "2013-03-27T13:00:00+00:00",
-            'end_date': "2013-05-06T23:13:00+00:00",
+            'start_date': "2013-03-27 13:00",
+            'end_date': "2013-05-06 23:13",
             'notice_type': 'Foo',
             'notice_category': 'Bar',
             'target_group': 'u_astratst_myuw_test-support-admin'

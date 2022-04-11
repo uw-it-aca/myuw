@@ -73,70 +73,79 @@ def _save_notice(request, context, notice_id=None):
     except TypeError:
         has_error = True
         context['start_error'] = True
-        log_info({'err': 'Missing start_date'})
+        log_info(logger, {'err': 'Missing start_date'})
     if start_date is None:
         has_error = True
         context['start_error'] = True
-        log_info({'err': 'Invalid start_date'})
+        log_info(logger, {'err': 'Invalid start_date'})
 
     try:
         end_date = _get_datetime(request.POST.get('end_date'))
     except TypeError:
         has_error = True
-        log_info({'err': 'Missing end_date'})
+        log_info(logger, {'err': 'Missing end_date'})
     if end_date is None:
         has_error = True
         context['end_error'] = True
-        log_info({'err': 'Invalid end_date'})
+        log_info(logger, {'err': 'Invalid end_date'})
 
-    if end_date < start_date:
+    if start_date and end_date and end_date < start_date:
         has_error = True
         context['date_error'] = True
-        log_info(
+        log_info(logger, 
             {'err': 'end_date is before start_date',
              'start_date': start_date,
              'end_date': end_date})
 
     notice_type = request.POST.get('notice_type')
-    notice_category = request.POST.get('notice_category')
     if notice_type is None:
         has_error = True
         context['type_error'] = True
+        log_info(logger, {'err': 'Invalid notice_type'})
+
+    notice_category = request.POST.get('notice_category')
     if notice_category is None:
         has_error = True
         context['category_error'] = True
+        log_info(logger, {'err': 'Invalid notice_category'})
 
-    is_critical = request.POST.get('critical') is not None
+    try:
+        is_critical = request.POST.get('critical') is not None
+    except (KeyError, TypeError):
+        is_critical = False
 
     title = None
     content = None
     try:
         title = request.POST.get('title')
-    except TypeError:
+    except (KeyError, TypeError):
         has_error = True
         context['title_error'] = True
-        log_info({'err': 'Invalid title'})
+        log_info(logger, {'err': 'Missing title'})
 
-    if title is not None:
-        if len(title) == 0:
-            has_error = True
-            context['title_error'] = True
-        else:
-            title = title.strip()
+    if title is None or len(title) == 0:
+        has_error = True
+        context['title_error'] = True
+        log_info(logger, {'err': 'Invalid title'})
+    else:
+        title = title.strip()
+
     try:
         content = request.POST.get('content')
-    except TypeError:
+    except (KeyError, TypeError):
         has_error = True
         context['content_error'] = True
-        log_info({'err': 'Invalid content'})
+        log_info(logger, {'err': 'Missing content'})
 
-    if content is not None and len(content) == 0:
+    if content is None or len(content) == 0:
         has_error = True
         context['content_error'] = True
-        log_info({'err': 'Invalid content'})
+        log_info(logger, {'err': 'Invalid content'})
+    else:
+        content = content.strip()
 
     target_group = request.POST.get('target_group')
-    if target_group is not None:
+    if target_group is not None and len(target_group):
         target_group = target_group.strip()
 
     campus_list = request.POST.getlist('campus')
@@ -192,6 +201,7 @@ def _save_notice(request, context, notice_id=None):
 def _get_datetime(dt_string):
     try:
         dt = parse(dt_string)
-    except ValueError:
+        logger.info(str(dt))
+    except (TypeError, ValueError):
         return None
-    return WS_TIMEZONE.localize(dt)
+    return SWS_TIMEZONE.localize(dt)
