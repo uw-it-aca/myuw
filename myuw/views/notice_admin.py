@@ -73,6 +73,7 @@ def _save_notice(request, context, notice_id=None):
     except TypeError:
         has_error = True
         context['start_error'] = True
+        log_info({'err': 'Missing start_date'})
     if start_date is None:
         has_error = True
         context['start_error'] = True
@@ -82,6 +83,7 @@ def _save_notice(request, context, notice_id=None):
         end_date = _get_datetime(request.POST.get('end_date'))
     except TypeError:
         has_error = True
+        log_info({'err': 'Missing end_date'})
     if end_date is None:
         has_error = True
         context['end_error'] = True
