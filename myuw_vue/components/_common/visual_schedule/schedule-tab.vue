@@ -3,7 +3,8 @@
     <div style="text-align: center">
       <div v-if="hasOverlappingMeetings" role="alert" class="alert alert-warning">
         <font-awesome-icon :icon="faExclamationTriangle" /> 
-        Class meetings times overlap – click on or hover over course to see exact start and end times.
+        Class meetings times overlap – click on or hover over course to see exact
+        start and end times.
       </div>
     </div>
     <div
