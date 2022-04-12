@@ -9,12 +9,12 @@ from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.registration import get_schedule_by_term
 from myuw.dao.term import get_current_quarter
 from myuw.test import (
-    fdao_pws_override, fdao_mylib_override ,
+    fdao_pws_override, fdao_mylib_override,
     get_request_with_user, get_request_with_date)
 
 
 @fdao_pws_override
-@fdao_mylib_override 
+@fdao_mylib_override
 class TestLibrary(TestCase):
 
     def test_get_account_balance(self):
