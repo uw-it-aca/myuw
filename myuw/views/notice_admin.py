@@ -4,6 +4,7 @@
 import logging
 import bleach
 import traceback
+import unicodedata
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
@@ -127,10 +128,7 @@ def _save_notice(request, context, notice_id=None):
     title = None
     content = None
     try:
-        title = bleach.clean(
-            request.POST.get('title'),
-            tags=ALLOWED_TAGS,
-            attributes=ALLOWED_ATTS)
+        title = _get_html(request, 'title')
     except (KeyError, TypeError):
         has_error = True
         context['title_error'] = True
@@ -144,10 +142,7 @@ def _save_notice(request, context, notice_id=None):
         title = title.strip()
 
     try:
-        content = bleach.clean(
-            request.POST.get('content'),
-            tags=ALLOWED_TAGS,
-            attributes=ALLOWED_ATTS)
+        content = _get_html(request, 'content')
     except (KeyError, TypeError):
         has_error = True
         context['content_error'] = True
@@ -236,3 +231,9 @@ def _get_datetime(dt_string):
     if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
         return SWS_TIMEZONE.localize(dt)
     return dt
+
+
+def _get_html(request, key):
+    content = bleach.clean(
+        request.POST.get(key), tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS)
+    return unicodedata.normalize("NFKD", content)
