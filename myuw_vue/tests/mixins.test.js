@@ -95,7 +95,7 @@ describe('mixins', () => {
   });
   it('toFriendlyDate', () => {
     expect(
-      utils.methods.toFriendlyDate('2020-08-24')
+      utils.methods.toFriendlyDate('2020-08-24 00:00:00-08:00')
     ).toEqual('Mon, Aug 24');
     expect(
       utils.methods.toFriendlyDate(undefined)
@@ -117,33 +117,34 @@ describe('mixins', () => {
   });
   it('timeDeltaFrom', async () => {
     const now = utils.methods.dayjs();
-    expect(utils.methods.timeDeltaFrom(now.add(1, 'h'), 'day', false)).toEqual(1);
-    expect(utils.methods.timeDeltaFrom(now.add(24, 'h'), 'day', false)).toEqual(1);
-    expect(utils.methods.timeDeltaFrom(now.add(25, 'h'), 'day', false)).toEqual(2);
-    expect(utils.methods.timeDeltaFrom(now.subtract(1, 'd'), 'day', false)).toEqual(-1);
+    expect(utils.methods.timeDeltaFrom(now.add(1, 'h').toISOString(), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.add(24, 'h').toISOString(), 'day', false)).toEqual(1);
+    expect(utils.methods.timeDeltaFrom(now.add(25, 'h').toISOString(), 'day', false)).toEqual(2);
+    expect(
+      utils.methods.timeDeltaFrom(now.subtract(1, 'd').toISOString(), 'day', false)).toEqual(-1);
   });
   it('toFromNowDate', async () => {
     expect(utils.methods.toFromNowDate()).toEqual('');
     expect(utils.methods.toFromNowDate('')).toEqual('');
 
     const now = utils.methods.dayjs();
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'd'), false))
+    expect(utils.methods.toFromNowDate(now.subtract(1, 'd').toISOString(), false))
       .toEqual('a day ago');
-    expect(utils.methods.toFromNowDate(now, false))
+    expect(utils.methods.toFromNowDate(now.toISOString(), false))
       .toEqual('Today');
-    expect(utils.methods.toFromNowDate(now.add(1, 'd'), false))
+    expect(utils.methods.toFromNowDate(now.add(1, 'd').toISOString(), false))
       .toEqual('Tomorrow');
-    expect(utils.methods.toFromNowDate(now.subtract(5, 'd'), false))
+    expect(utils.methods.toFromNowDate(now.subtract(5, 'd').toISOString(), false))
       .toEqual('5 days ago');
-    expect(utils.methods.toFromNowDate(now.add(5, 'd'), false))
+    expect(utils.methods.toFromNowDate(now.add(5, 'd').toISOString(), false))
       .toEqual('in 5 days');
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'M'), false))
+    expect(utils.methods.toFromNowDate(now.subtract(1, 'M').toISOString(), false))
       .toEqual('a month ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'M'), false))
+    expect(utils.methods.toFromNowDate(now.add(1, 'M').toISOString(), false))
       .toEqual('in a month');
-    expect(utils.methods.toFromNowDate(now.subtract(5, 'M'), false))
+    expect(utils.methods.toFromNowDate(now.subtract(5, 'M').toISOString(), false))
       .toEqual('5 months ago');
-    expect(utils.methods.toFromNowDate(now.add(5, 'M'), false))
+    expect(utils.methods.toFromNowDate(now.add(5, 'M').toISOString(), false))
       .toEqual('in 5 months');
   });
 
