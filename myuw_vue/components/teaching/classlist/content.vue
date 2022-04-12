@@ -16,14 +16,14 @@
           </label>
         </div>
 
-        <a class="me-2" @click="downloadCL">
+        <button class="btn btn-link" @click="downloadCL">
           <font-awesome-icon :icon="faDownload" />
           Download (CSV)
-        </a>
+        </button>
 
-        <a href="javascript:window.print()" class="">
+        <button class="btn btn-link" @click="printCL">
           <font-awesome-icon :icon="faPrint" /> Print
-        </a>
+        </button>
       </div>
     </div>
 
@@ -110,6 +110,9 @@ export default {
     },
     downloadCL() {
       this.downloadClassList(this.section);
+    },
+    printCL() {
+      window.print();
     },
   },
 };

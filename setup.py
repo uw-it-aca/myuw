@@ -44,7 +44,7 @@ setup(
         'UW-RestClients-IASystem~=1.1',
         'UW-RestClients-Libraries~=1.3',
         'UW-RestClients-Mailman~=1.0',
-        'UW-RestClients-MyPlan~=1.0',
+        'UW-RestClients-MyPlan~=1.1',
         'UW-RestClients-PWS~=2.1',
         'UW-RestClients-SWS~=2.3',
         'UW-RestClients-Sdbmyuw~=1.0',

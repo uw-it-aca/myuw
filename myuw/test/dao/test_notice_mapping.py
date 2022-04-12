@@ -62,38 +62,26 @@ class TestMapNotices(TestCase):
 
     def test_categorize_notices(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
-
         notices = categorize_notices(get_notices_by_regid(regid))
-        self.assertEquals(len(notices), 23)
         notice = notices[10]
         self.assertEquals(notice.custom_category, "Fees & Finances")
         self.assertEquals(notice.location_tags,
-                          ['tuition_aid_prioritydate_title'])
-        self.assertFalse(notice.is_critical)
-
-    def test_get_open_date(self):
-        regid = "9136CCB8F66711D5BE060004AC494FFE"
-        notices = categorize_notices(get_notices_by_regid(regid))
-        notice = notices[9]
+                          ["tuition_aid_prioritydate", "notices_date_sort"])
         self.assertTrue(notice.is_critical)
-        open_date = get_open_date(notice)
-        open = timezone.get_current_timezone().localize(
-            datetime(2013, 1, 1, 0, 0, 0)).astimezone(pytz.utc)
-        self.assertEquals(open_date, open)
 
-    def test_get_close_date(self):
+    def test_get_date(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         notices = categorize_notices(get_notices_by_regid(regid))
-        notice = notices[9]
+        notice = notices[10]
+        open_date = get_open_date(notice)
+        self.assertEquals(str(open_date), "2013-01-01 08:00:00+00:00")
         close_date = get_close_date(notice)
-        close = timezone.get_current_timezone().localize(
-            datetime(2013, 2, 28, 0, 0, 0)).astimezone(pytz.utc)
-        self.assertEquals(close_date, close)
+        self.assertEquals(str(close_date), "2013-02-28 08:00:00+00:00")
 
     def test_is_after_eof_days_after_open(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         notices = categorize_notices(get_notices_by_regid(regid))
-        notice = notices[9]
+        notice = notices[10]
         now = timezone.get_current_timezone().localize(
             datetime(2013, 1, 15, 0, 0, 0)).astimezone(pytz.utc)
         self.assertFalse(is_after_eof_days_after_open(now, notice, 14))
@@ -105,7 +93,7 @@ class TestMapNotices(TestCase):
     def test_is_before_bof_days_before_close(self):
         regid = "9136CCB8F66711D5BE060004AC494FFE"
         notices = categorize_notices(get_notices_by_regid(regid))
-        notice = notices[9]
+        notice = notices[10]
         now = timezone.get_current_timezone().localize(
             datetime(2013, 2, 14, 0, 0, 0)).astimezone(pytz.utc)
         self.assertFalse(is_before_bof_days_before_close(now, notice, 14))
@@ -121,7 +109,7 @@ class TestMapNotices(TestCase):
         notices = apply_showhide(
             now_request,
             categorize_notices(get_notices_by_regid(regid)))
-        notice = notices[9]
+        notice = notices[10]
         self.assertTrue(notice.is_critical)
 
         # after 14 days after open
@@ -129,7 +117,7 @@ class TestMapNotices(TestCase):
         notices = apply_showhide(
             now_request,
             categorize_notices(get_notices_by_regid(regid)))
-        notice = notices[9]
+        notice = notices[10]
         self.assertFalse(notice.is_critical)
 
         # before 14 days before close
@@ -137,7 +125,7 @@ class TestMapNotices(TestCase):
         notices = apply_showhide(
             now_request,
             categorize_notices(get_notices_by_regid(regid)))
-        notice = notices[9]
+        notice = notices[10]
         self.assertFalse(notice.is_critical)
 
         # within 14 days before close
@@ -145,13 +133,13 @@ class TestMapNotices(TestCase):
         notices = apply_showhide(
             now_request,
             categorize_notices(get_notices_by_regid(regid)))
-        notice = notices[9]
+        notice = notices[10]
         self.assertTrue(notice.is_critical)
 
         # test MUWM-4535
         regid = "FE36CCB8F66711D5BE060004AC494F31"
         notices = get_notices_by_regid(regid)
-        self.assertEquals(len(notices), 22)
+        self.assertEquals(len(notices), 25)
         notice = map_notice_category(notices[18])
         self.assertEquals(notice.custom_category, 'Holds')
         self.assertEquals(notice.location_tags,
