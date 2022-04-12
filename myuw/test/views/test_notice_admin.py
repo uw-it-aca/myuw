@@ -121,7 +121,9 @@ class TestNoticeAdmin(MyuwApiTest):
 
         self.assertEqual(notices[0].title, "<b>The</b> Title")
 
-        self.assertEqual(notices[0].content, "<p>allowed tag</p> <span>not allowed</span>")
+        self.assertEqual(
+            notices[0].content,
+            "<p>allowed tag</p> <span>not allowed</span>")
 
     def test_edit_notice(self):
         notice_context = {

@@ -103,7 +103,8 @@ def _save_notice(request, context, notice_id=None):
     if start_date and end_date and end_date < start_date:
         has_error = True
         context['date_error'] = True
-        log_info(logger, 
+        log_info(
+            logger,
             {'err': 'end_date is before start_date',
              'start_date': start_date,
              'end_date': end_date})
@@ -138,8 +139,6 @@ def _save_notice(request, context, notice_id=None):
         has_error = True
         context['title_error'] = True
         log_info(logger, {'err': 'Invalid title'})
-    else:
-        title = title.strip()
 
     try:
         content = _get_html(request, 'content')
@@ -152,8 +151,6 @@ def _save_notice(request, context, notice_id=None):
         has_error = True
         context['content_error'] = True
         log_info(logger, {'err': 'Invalid content'})
-    else:
-        content = content.strip()
 
     target_group = request.POST.get('target_group')
     if target_group is not None and len(target_group):
@@ -234,6 +231,7 @@ def _get_datetime(dt_string):
 
 
 def _get_html(request, key):
+    # MUWM-5092
     content = bleach.clean(
         request.POST.get(key), tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS)
-    return unicodedata.normalize("NFKD", content)
+    return unicodedata.normalize("NFKD", content).strip()
