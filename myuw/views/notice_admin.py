@@ -10,7 +10,7 @@ from dateutil.parser import parse
 from uw_sws import SWS_TIMEZONE
 from myuw.dao.messages import clean_html
 from myuw.models.myuw_notice import MyuwNotice
-from myuw.logger.logresp import log_info
+from myuw.logger.logresp import log_info, log_exception
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
@@ -224,7 +224,7 @@ def _save_notice(request, context, notice_id=None):
             log_exception(logger, "edit_notice", traceback)
             has_error = True
             context['sql_error'] = True
-
+    log_info(logger, {'context': context})
     return False
 
 
@@ -233,4 +233,6 @@ def _get_datetime(dt_string):
         dt = parse(dt_string)
     except (TypeError, ValueError):
         return None
-    return SWS_TIMEZONE.localize(dt)
+    if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
+        return SWS_TIMEZONE.localize(dt)
+    return dt
