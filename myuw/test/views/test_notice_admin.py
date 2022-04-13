@@ -33,7 +33,6 @@ class TestNoticeAdmin(MyuwApiTest):
     def test_get_datetime(self):
         self.assertIsNone(_get_datetime(""))
         self.assertIsNone(_get_datetime(None))
-
         string = "2018-05-08 15:28"
         self.assertEqual(str(_get_datetime(string)),
                          "2018-05-08 15:28:00-07:00")
@@ -45,17 +44,9 @@ class TestNoticeAdmin(MyuwApiTest):
                          "2018-05-08 15:28:00-07:00")
 
     def test_get_html(self):
-        request = self._get_request(
-            {
-                "title": "Test",
-                "content": CONTENT,
-                'action': 'save',
-                "notice_type": "Banner",
-                "notice_category": "MyUWNotice",
-                "is_critical": False,
-                "target_group": ""
-            })
-        self.assertIsNotNone(_get_html(request, 'content'))
+        self.assertIsNone(_get_html(None))
+        self.assertEqual(_get_html(''), "")
+        self.assertIsNotNone(_get_html(CONTENT))
 
     @patch.object(MyuwNotice, 'save')
     def test_sql_error_save(self, mock):

@@ -8,6 +8,7 @@ import unicodedata
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
+from dateutil.parser._parser import ParserError
 from uw_sws import SWS_TIMEZONE
 from myuw.dao.messages import clean_html
 from myuw.models.myuw_notice import MyuwNotice
@@ -77,28 +78,23 @@ def _save_notice(request, context, notice_id=None):
 
     has_error = False
 
-    start_date = None
-    end_date = None
     try:
         start_date = _get_datetime(request.POST.get('start_date'))
-    except TypeError:
-        has_error = True
-        context['start_error'] = True
-        log_info(logger, {'err': 'Missing start_date'})
+    except Exception as ex:
+        start_date = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid start_date'})
     if start_date is None:
         has_error = True
         context['start_error'] = True
-        log_info(logger, {'err': 'Invalid start_date'})
 
     try:
         end_date = _get_datetime(request.POST.get('end_date'))
-    except TypeError:
-        has_error = True
-        log_info(logger, {'err': 'Missing end_date'})
+    except Exception as ex:
+        end_date = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid end_date'})
     if end_date is None:
         has_error = True
         context['end_error'] = True
-        log_info(logger, {'err': 'Invalid end_date'})
 
     if start_date and end_date and end_date < start_date:
         has_error = True
@@ -126,31 +122,23 @@ def _save_notice(request, context, notice_id=None):
     except (KeyError, TypeError):
         is_critical = False
 
-    title = None
-    content = None
     try:
-        title = _get_html(request, 'title')
-    except (KeyError, TypeError):
-        has_error = True
-        context['title_error'] = True
-        log_info(logger, {'err': 'Missing title'})
-
+        title = _get_html(request.POST.get('title'))
+    except Exception as ex:
+        title = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid title'})
     if title is None or len(title) == 0:
         has_error = True
         context['title_error'] = True
-        log_info(logger, {'err': 'Invalid title'})
 
     try:
-        content = _get_html(request, 'content')
-    except (KeyError, TypeError):
-        has_error = True
-        context['content_error'] = True
-        log_info(logger, {'err': 'Missing content'})
-
+        content = _get_html(request.POST.get('content'))
+    except Exception as ex:
+        content = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid content'})
     if content is None or len(content) == 0:
         has_error = True
         context['content_error'] = True
-        log_info(logger, {'err': 'Invalid content'})
 
     target_group = request.POST.get('target_group')
     if target_group is not None and len(target_group):
@@ -221,15 +209,18 @@ def _save_notice(request, context, notice_id=None):
 def _get_datetime(dt_string):
     try:
         dt = parse(dt_string)
-    except (TypeError, ValueError):
+        if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
+            return SWS_TIMEZONE.localize(dt)
+        return dt
+    except (TypeError, ParserError):
         return None
-    if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-        return SWS_TIMEZONE.localize(dt)
-    return dt
 
 
-def _get_html(request, key):
-    # MUWM-5092
-    content = bleach.clean(
-        request.POST.get(key), tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS)
-    return unicodedata.normalize("NFKD", content).strip()
+def _get_html(value):
+    try:
+        content = bleach.clean(
+            value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS)
+        return unicodedata.normalize("NFKD", content).strip()
+        # MUWM-5092
+    except TypeError:
+        return None
