@@ -212,7 +212,9 @@ def _get_datetime(dt_string):
         if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
             return SWS_TIMEZONE.localize(dt)
         return dt
-    except (TypeError, ParserError):
+    except (TypeError, ParserError) as ex:
+        log_info(
+            logger, {'err': ex, 'msg': "_get_datetime({})".format(dt_string)})
         return None
 
 
@@ -222,5 +224,7 @@ def _get_html(value):
             value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS)
         return unicodedata.normalize("NFKD", content).strip()
         # MUWM-5092
-    except TypeError:
+    except TypeError as ex:
+        log_info(
+            logger, {'err': ex, 'msg': "_get_html({})".format(value)})
         return None
