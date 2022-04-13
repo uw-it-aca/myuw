@@ -182,7 +182,6 @@ def _save_notice(request, context, notice_id=None):
             return True
         except Exception:
             log_exception(logger, "save_notice", traceback)
-            has_error = True
             context['sql_error'] = True
 
     elif form_action == "edit":
@@ -214,7 +213,6 @@ def _save_notice(request, context, notice_id=None):
             return True
         except Exception:
             log_exception(logger, "edit_notice", traceback)
-            has_error = True
             context['sql_error'] = True
     log_info(logger, {'context': context})
     return False

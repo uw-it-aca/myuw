@@ -1,6 +1,7 @@
 # Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+from unittest.mock import patch
 from myuw.test.api import MyuwApiTest
 from django.test.client import RequestFactory
 from myuw.models.myuw_notice import MyuwNotice
@@ -26,6 +27,9 @@ CONTENT = (
 
 class TestNoticeAdmin(MyuwApiTest):
 
+    def _get_request(self, notice):
+        return RequestFactory().post('', notice)
+
     def test_get_datetime(self):
         self.assertIsNone(_get_datetime(""))
         self.assertIsNone(_get_datetime(None))
@@ -41,42 +45,56 @@ class TestNoticeAdmin(MyuwApiTest):
                          "2018-05-08 15:28:00-07:00")
 
     def test_get_html(self):
-        rf = RequestFactory()
-        notice_context = {
-            "title": "Test",
-            "content": CONTENT,
-            "notice_type": "Banner",
-            "notice_category": "MyUWNotice",
-            "is_critical": False,
-            "start": "2022-04-12T11:25:00-07:00",
-            "end": "2022-04-15T11:25:00-07:00",
-            "last_edit_by": "",
-            "last_edit_date": "2022-04-12T19:59:06.068510+00:00",
-            "target_group": ""}
-        request = rf.post('', notice_context)
+        request = self._get_request(
+            {
+                "title": "Test",
+                "content": CONTENT,
+                'action': 'save',
+                "notice_type": "Banner",
+                "notice_category": "MyUWNotice",
+                "is_critical": False,
+                "target_group": ""
+            })
         self.assertIsNotNone(_get_html(request, 'content'))
-        self.assertFalse(_save_notice(request, {}))
+
+    @patch.object(MyuwNotice, 'save')
+    def test_sql_error_save(self, mock):
+        request = self._get_request(
+            {
+                'action': 'save',
+                "title": "Test",
+                "start_date": "2022-04-12 11:25",
+                "end_date": "2022-04-15 11:25",
+                "content": CONTENT,
+                "notice_type": "Banner",
+                "notice_category": "MyUWNotice",
+                "is_critical": False,
+                'affil': ['is_employee'],
+                'target_group': ''
+            })
+        context = {}
+        mock.side_effect = Exception('Error!')
+        self.assertFalse(_save_notice(request, context))
+        self.assertTrue(context['sql_error'])
 
     def test_save_new_notice(self):
-        rf = RequestFactory()
-        request = rf.post('', {})
-
+        request = self._get_request({})
         saved = _save_notice(request, {})
         self.assertFalse(saved)
 
-        notice_context = {
-            'action': 'save',
-            'title': 'The Title ',
-            'content': "<p>Foobar</p>",
-            'affil': 'is_intl_stud',
-            'campus': 'is_seattle',
-            'start_date': '2018-05-25 12:00',
-            'end_date': '2018-05-26 12:00',
-            'notice_type': 'Foo',
-            'notice_category': 'Bar',
-            'target_group': ' uw_group '
-        }
-        request = rf.post('', notice_context)
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': 'The Title ',
+                'content': "<p>Foobar</p>",
+                'affil': 'is_intl_stud',
+                'campus': 'is_seattle',
+                'start_date': '2018-05-25 12:00',
+                'end_date': '2018-05-26 12:00',
+                'notice_type': 'Foo',
+                'notice_category': 'Bar',
+                'target_group': ' uw_group '
+            })
         self.assertTrue(_save_notice(request, {}))
 
         entries = MyuwNotice.objects.all()
@@ -91,39 +109,36 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertEqual(entries[0].target_group, "uw_group")
 
         # end before start
-        notice_context = {
-            'action': 'save',
-            'title': 'The Title',
-            'content': "<p>Foobar</p>",
-            'start_date': "2018-05-25 12:05",
-            'end_date': "2017-05-26 12:05",
-            'notice_type': 'Foo',
-            'notice_category': 'Bar'
-        }
-        request = rf.post('', notice_context)
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': 'The Title',
+                'content': "<p>Foobar</p>",
+                'start_date': "2018-05-25 12:05",
+                'end_date': "2017-05-26 12:05",
+                'notice_type': 'Foo',
+                'notice_category': 'Bar'
+            })
         context = {}
         self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['date_error'])
 
         # no start
-        notice_context = {
-            'action': 'save',
-            'title': 'The Title',
-            'content': "<p>Foobar</p>",
-            'end_date': "2017-05-26 12:05",
-            'notice_type': 'Foo',
-            'notice_category': 'Bar'
-        }
-        request = rf.post('', notice_context)
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': 'The Title',
+                'content': "<p>Foobar</p>",
+                'end_date': "2017-05-26 12:05",
+                'notice_type': 'Foo',
+                'notice_category': 'Bar'
+            })
         context = {}
         self.assertFalse(_save_notice(request, context))
         self.assertTrue(context['start_error'])
 
         # Missing Attrs
-        notice_context = {
-            'action': 'save',
-        }
-        request = rf.post('', notice_context)
+        request = self._get_request({'action': 'save', })
         context = {}
         self.assertFalse(_save_notice(request, context))
         print(context)
@@ -133,18 +148,17 @@ class TestNoticeAdmin(MyuwApiTest):
         self.assertTrue(context['title_error'])
         self.assertTrue(context['content_error'])
 
-    def test_create_notice(self):
-        notice_context = {
-            'action': 'save',
-            'title': '<b>The</b> Title',
-            'content': "<p>allowed tag</p> <span>not allowed</span>",
-            'start_date': "2018-05-05 12:05",
-            'end_date': "2018-05-26 12:05",
-            'notice_type': 'Foo',
-            'notice_category': 'Bar'
-        }
-        rf = RequestFactory()
-        request = rf.post('', notice_context)
+    def test_content_allowed_tags(self):
+        request = self._get_request(
+            {
+                'action': 'save',
+                'title': '<b>The</b> Title',
+                'content': "<p>allowed tag</p> <span>not allowed</span>",
+                'start_date': "2018-05-05 12:05",
+                'end_date': "2018-05-26 12:05",
+                'notice_type': 'Foo',
+                'notice_category': 'Bar'
+            })
         _save_notice(request, {})
 
         request = get_request_with_date("2018-05-09")
@@ -157,7 +171,7 @@ class TestNoticeAdmin(MyuwApiTest):
             notices[0].content,
             "<p>allowed tag</p> <span>not allowed</span>")
 
-    def test_edit_notice(self):
+    def test_target_group(self):
         notice_context = {
             'action': 'save',
             'title': 'Test Edit',
@@ -168,8 +182,7 @@ class TestNoticeAdmin(MyuwApiTest):
             'notice_category': 'Bar',
             'target_group': 'u_astratst_myuw_test-support-admin'
         }
-        rf = RequestFactory()
-        request = rf.post('', notice_context)
+        request = self._get_request(notice_context)
         self.assertTrue(_save_notice(request, {}))
 
         notice_context['action'] = 'edit'
@@ -179,7 +192,7 @@ class TestNoticeAdmin(MyuwApiTest):
         entries = MyuwNotice.objects.all()
         self.assertEqual(len(entries), 1)
 
-        request = rf.post('', notice_context)
+        request = self._get_request(notice_context)
         self.assertTrue(_save_notice(request, {},
                                      notice_id=entries[0].id))
 
