@@ -202,7 +202,7 @@ def _save_notice(request, context, notice_id=None):
         except Exception:
             log_exception(logger, "edit_notice", traceback)
             context['sql_error'] = True
-    log_info(logger, {'context': context})
+
     return False
 
 
