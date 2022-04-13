@@ -1,5 +1,12 @@
 <template>
   <div>
+    <div style="text-align: center">
+      <div v-if="hasOverlappingMeetings" role="alert" class="alert alert-warning">
+        <font-awesome-icon :icon="faExclamationTriangle" /> 
+        Class meetings times overlap – click on or hover over course to see exact
+        start and end times.
+      </div>
+    </div>
     <div
       v-if="isSummerQuarter && isLastTab"
       class="alert alert-primary myuw-text-md"
@@ -156,6 +163,9 @@
 
 <script>
 import CourseSection from './course-section.vue';
+import { faExclamationTriangle, 
+}
+from '@fortawesome/free-solid-svg-icons';
 
 export default {
   components: {
@@ -196,6 +206,7 @@ export default {
         current: null,
         options: [],
       },
+      faExclamationTriangle,
     };
   },
   computed: {
@@ -205,6 +216,31 @@ export default {
     isSummerQuarter() {
       return this.term.quarter === 'summer';
     },
+    hasOverlappingMeetings() {
+      for (const day in this.meetingMap){
+        let dayMeetings = [];
+        for (const hour in this.meetingMap[day]){
+
+          // TODO: Display for the handled case with parallel start?
+          // if (this.meetingMap[day][hour].length > 1){
+          //   return true;
+          // }
+          if (this.meetingMap[day][hour].length > 0){
+            dayMeetings.push(this.meetingMap[day][hour][0]['meeting'])
+          }
+        }
+        dayMeetings.sort((a, b) =>
+            (a.start_time.isAfter(b.start_time)) ? 1 : -1);
+        for (let i = 0; i < dayMeetings.length; i++){
+          if (i+1 < dayMeetings.length){
+            if(dayMeetings[i].end_time.isAfter(dayMeetings[i+1].start_time)){
+              return true;
+            }
+          }
+        }
+      }
+      return false;
+    }
   },
   created() {
     // Set if this tab is for finals
