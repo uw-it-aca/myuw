@@ -4,7 +4,8 @@ import {createLocalVue, deepClone, expectAction} from './helper';
 import {statusOptions} from '../vuex/store/model_builder';
 import Vuex from 'vuex';
 import Courses from '../vuex/store/schedule/student';
-import GradesCard from '../components/_common/grades.vue';
+import GradesCard from '../components/_common/grades/grades.vue';
+import GradesPanel from '../components/_common/grades/grades-panel.vue';
 
 import mockCourses from './mock_data/stud_schedule/javerage2013Spring.json';
 
