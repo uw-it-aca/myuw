@@ -35,7 +35,7 @@
           v-model="gradesOpen"
           class="myuw-fin-aid"
         >
-          <uw-grades-panel :sections="filteredSections" />
+          <uw-grades-panel :sections="filteredSections" class="p-3 mt-2 bg-light text-dark" />
         </uw-collapse>
       </div>
       <uw-grades-panel v-else :sections="filteredSections" />
