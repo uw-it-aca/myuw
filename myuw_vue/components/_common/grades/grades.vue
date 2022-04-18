@@ -28,7 +28,7 @@
         >
           <font-awesome-icon v-if="gradesOpen" :icon="faCaretDown" />
           <font-awesome-icon v-else :icon="faCaretRight" />
-          <span v-if="gradesOpen">Hide</span><span v-else>Show</span> your final grades
+          Your final grades
         </button>
         <uw-collapse
           :id="`grades-collapse`"

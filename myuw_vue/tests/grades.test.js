@@ -65,24 +65,12 @@ describe('Grades Card', () => {
           }
         },
         cardDisplayDates: {
-            is_after_7d_before_last_instruction: true,
             is_after_grade_submission_deadline: false,
             is_after_last_day_of_classes: true,
-            is_after_start_of_registration_display_period: true,
-            is_after_start_of_summer_reg_display_period1: false,
-            is_after_start_of_summer_reg_display_periodA: false,
-            is_before_eof_7days_of_term: false,
-            is_before_end_of_finals_week: false,
-            is_before_end_of_registration_display_period: true,
-            is_before_end_of_summer_reg_display_periodA: false,
-            is_before_end_of_summer_reg_display_period1: false,
             is_before_first_day_of_term: false,
             is_before_last_day_of_classes: false,
-            myplan_peak_load: false,
-            reg_period1_started: true,
             is_summer: false,
             is_after_summer_b: false,
-            in_coursevel_fetch_window: true,
             comparison_date: "2013-06-15T00:00:01",
             current_summer_term: "2013,summer",
             last_term: "2013,winter",
@@ -91,55 +79,66 @@ describe('Grades Card', () => {
     });
   });
 
-  it('Basic Render - 1', async () => {
+  it('Basic Render - on home page', async () => {
     axios.get.mockImplementation((url) => {
       const urlData = {
         '/api/v1/schedule/current': deepClone(mockCourses),
       };
       return Promise.resolve({data: urlData[url]});
     });
-    const wrapper = mount(GradesCard, {store, localVue});
+    const wrapper = mount(GradesCard, {store, localVue,
+      propsData: { 'isHomePage': true }
+    });
     await new Promise(setImmediate);
     expect(wrapper.vm.isAfterLastDayOfClasses).toBe(true);
     expect(wrapper.vm.gradeSubmissionDeadline).toBe("2013-06-18 17:00:00");
     expect(wrapper.vm.filteredSections.length).toBe(3);
     expect(wrapper.vm.showGradeCard).toBe(true);
     expect(wrapper.findComponent(GradesCard).exists()).toBe(true);
+    expect(wrapper.findComponent(GradesPanel).exists()).toBe(true);
+    let botton = wrapper.findAll('button');
+    expect(botton.at(0).text()).toBe('Your final grades');
   });
 
-  it('Basic Render - 2', async () => {
+  it('Basic Render - on Academics page', async () => {
+    axios.get.mockImplementation((url) => {
+      const urlData = {
+        '/api/v1/schedule/current': deepClone(mockCourses),
+      };
+      return Promise.resolve({ data: urlData[url] });
+    });
+    const wrapper = mount(GradesCard, { store, localVue });
+    await new Promise(setImmediate);
+    expect(wrapper.vm.isAfterLastDayOfClasses).toBe(true);
+    expect(wrapper.vm.gradeSubmissionDeadline).toBe("2013-06-18 17:00:00");
+    expect(wrapper.vm.filteredSections.length).toBe(3);
+    expect(wrapper.vm.showGradeCard).toBe(true);
+    expect(wrapper.findComponent(GradesCard).exists()).toBe(true);
+    expect(wrapper.findComponent(GradesPanel).exists()).toBe(true);
+    let botton = wrapper.findAll('button');
+    expect(botton.at(0).text()).toBe('Resources');
+  });
+
+  it('Not Render - not in display window', async () => {
     axios.get.mockResolvedValue({data: deepClone(mockCourses), status: 200});
 
     store.state.cardDisplayDates = {
-      is_after_7d_before_last_instruction: true,
       is_after_grade_submission_deadline: false,
-      is_after_last_day_of_classes: true,
-      is_after_start_of_registration_display_period: false,
-      is_after_start_of_summer_reg_display_period1: false,
-      is_after_start_of_summer_reg_display_periodA: false,
-      is_before_eof_7days_of_term: false,
-      is_before_end_of_finals_week: false,
-      is_before_end_of_registration_display_period: false,
-      is_before_end_of_summer_reg_display_periodA: false,
-      is_before_end_of_summer_reg_display_period1: false,
+      is_after_last_day_of_classes: false,
       is_before_first_day_of_term: false,
       is_before_last_day_of_classes: false,
-      myplan_peak_load: false,
-      reg_period1_started: false,
       is_summer: false,
       is_after_summer_b: false,
-      in_coursevel_fetch_window: true,
       comparison_date: "2013-12-15T00:00:01",
       current_summer_term: "2013,summer",
       last_term: "2013,summer"
     }
     const wrapper = mount(GradesCard, {store, localVue});
-
     await new Promise(setImmediate);
-    expect(wrapper.find('h2').text()).toEqual('Final Grades');
+    expect(wrapper.vm.showGradeCard).toBe(false);
   });
 
-  it('Not student - not create the card', async() => {
+  it('Not Render - not student', async() => {
     store.state.user.affiliations.student = false;
     axios.get.mockImplementation((url) => {
       return Promise.reject({response: {status: 404}});

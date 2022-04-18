@@ -41,7 +41,7 @@ export default {
   props: {
     sections: {
       type: Array,
-      default: false,
+      required: true,
     },
   },
   data: function() {
