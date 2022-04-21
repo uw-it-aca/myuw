@@ -77,7 +77,7 @@ export default {
   computed: {
     confirmFinalLink() {
       return ''.concat(
-        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=',
+        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/finalexam.aspx?quarter=',
         this.titleCaseWord(this.section.quarter), '+', this.section.year,
         '&sln=', this.section.sln, '&chanid=');
     }
