@@ -93,7 +93,7 @@ export default {
       if (this.section.quarter.toLowerCase() === 'summer') {
         this.displayNoFinalPeriod = true;
       } else {
-        this.displayConfirmFinalLink = true;
+        this.displayConfirmFinalLink = !this.section.pastTerm;
       }
     }
   },

@@ -43,7 +43,7 @@
         Manage
       </a>
     </span>
-    <span v-else>
+    <span v-else-if="!section.pastTerm">
       <span v-if="section.email_list.has_secondary_lists">
         <a
           v-uw-modal="`emaillist_view_${section.sln}`">
