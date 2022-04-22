@@ -195,7 +195,7 @@ export default {
     gradeDelegateUrl() {
       return 'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/gradedelegate.aspx?quarter=' +
         this.titleCaseWord(this.section.quarter) + '+' + this.section.year + '&sln=' +
-         this.section.sln + '&chanid=11';
+         this.section.sln;
     },
   },
 };

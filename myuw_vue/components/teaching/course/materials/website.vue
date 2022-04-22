@@ -10,7 +10,7 @@
       <a
         v-if="!section.pastTerm"
         v-out="'Update Course Website'"
-        :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
+        :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}`"
         :title="`Update Class Website of ${section.label}`"
         target="_blank"
       >Update</a>
@@ -20,7 +20,7 @@
       <span v-else-if="section.sln">
         <a
           v-out="'Add Course Website'"
-          :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}&chanid=11`"
+          :href="`https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/classurl.aspx?quarter=${section.quarter}+${section.year}&sln=${section.sln}`"
           :title="`Add Class Website for ${section.label}`"
           target="_blank"
         >Add</a>
