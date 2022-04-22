@@ -19,7 +19,7 @@
         {{ toFriendlyDate(gradeSubmissionDeadline) }}.
       </p>
       <div v-if="isHomePage">
-        <p>Your final grades have been hidden to protect your privacy.</p>
+        <p>Final grades are hidden to protect your privacy.</p>
         <button v-uw-collapse="`grades-collapse`"
           v-no-track-collapse
           type="button"
