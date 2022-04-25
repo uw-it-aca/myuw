@@ -13,8 +13,7 @@
 </template>
 
 <script>
-import {
-} from '@fortawesome/free-solid-svg-icons';
+import {} from '@fortawesome/free-solid-svg-icons';
 
 export default {
   props: {
@@ -23,7 +22,7 @@ export default {
       required: true,
     },
   },
-  data: function() {
+  data: function () {
     return {
       levels: ['Warning', 'Info'],
     };
@@ -31,14 +30,14 @@ export default {
   computed: {
     groupedMsgs() {
       const groupedByLevel = {
-        'Info': [],
-        'Warning': []
+        Info: [],
+        Warning: [],
       };
       this.messages.forEach((msg, j) => {
         if (msg.level_name === 'Info' || msg.level_name === 'Success') {
-          groupedByLevel['Info'].push(msg)
+          groupedByLevel['Info'].push(msg);
         } else {
-          groupedByLevel['Warning'].push(msg)
+          groupedByLevel['Warning'].push(msg);
         }
       });
       return groupedByLevel;
@@ -49,16 +48,16 @@ export default {
       return this.groupedMsgs[level];
     },
     styleAtLevel(level) {
-      return (level === 'Info' ? "msg-info" : "msg-warning");
+      return level === 'Info' ? 'msg-info' : 'msg-warning';
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-@use "sass:map";
+@use 'sass:map';
 @import '../../../../myuw/static/css/myuw/variables.scss';
-.myuw-banner_message {
+.message {
   ::v-deep .date {
     font-weight: bold;
   }
@@ -68,17 +67,11 @@ export default {
   }
 
   ::v-deep .msg-warning {
-    background-color: lighten(
-      map.get($theme-colors, 'warning'),
-      47%
-    ) !important;
+    background-color: lighten(map.get($theme-colors, 'warning'), 47%) !important;
   }
 
   ::v-deep .msg-info {
-    background-color: lighten(
-      map.get($theme-colors, 'info'),
-      47%
-    ) !important;
+    background-color: lighten(map.get($theme-colors, 'info'), 47%) !important;
   }
 }
 </style>
