@@ -2,7 +2,7 @@
   <div class="message px-3 py-2 myuw-text-md">
     <ol class="list-unstyled">
       <li v-for="(level, l) in levels" :key="l">
-        <ul class="styleAtLevel(level) list-unstyled">
+        <ul :class="styleAtLevel(level)">
           <li v-for="(msg, i) in messageAtLevel(level)" :key="i" class="mb-1">
             <span v-html="msg.content" />
           </li>
@@ -48,7 +48,7 @@ export default {
       return this.groupedMsgs[level];
     },
     styleAtLevel(level) {
-      return level === 'Info' ? 'msg-info' : 'msg-warning';
+      return level === 'Info' ? 'msg-info list-unstyled' : 'msg-warning list-unstyled';
     },
   },
 };
