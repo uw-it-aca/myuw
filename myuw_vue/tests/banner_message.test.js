@@ -31,7 +31,7 @@ describe('Banner Message Component', () => {
     );
     expect(wrapper.vm.messageAtLevel('Info').length).toBe(1);
     expect(wrapper.vm.messageAtLevel('Warning').length).toBe(1);
-    expect(wrapper.vm.styleAtLevel('Info')).toBe("msg-info");
-    expect(wrapper.vm.styleAtLevel('Warning')).toBe("msg-warning");
+    expect(wrapper.vm.styleAtLevel('Info')).toBe("msg-info list-unstyled");
+    expect(wrapper.vm.styleAtLevel('Warning')).toBe("msg-warning list-unstyled");
   });
 });
