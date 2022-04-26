@@ -2,18 +2,29 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import logging
+import bleach
+import traceback
+import unicodedata
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
-from django.utils import timezone
+from dateutil.parser._parser import ParserError
+from uw_sws import SWS_TIMEZONE
 from myuw.dao.messages import clean_html
 from myuw.models.myuw_notice import MyuwNotice
-from myuw.logger.logresp import log_info
+from myuw.logger.logresp import log_info, log_exception
 from myuw.views.decorators import admin_required
 from myuw.views import set_admin_wrapper_template
 
 logger = logging.getLogger(__name__)
-MYUW_NOTICE_ALLOWED_TAGS = ['br', 'p']
+ALLOWED_TAGS = [
+    'b', 'br', 'em', 'p', 'span', 'a', 'img', 'i', 'li', 'ol', 'strong', 'ul'
+]
+ALLOWED_ATTS = {
+    '*': ['class'],
+    'a': ['href', 'rel', 'title'],
+    'img': ['alt']
+}
 
 
 @login_required
@@ -67,124 +78,153 @@ def _save_notice(request, context, notice_id=None):
 
     has_error = False
 
-    start_date = None
-    end_date = None
     try:
         start_date = _get_datetime(request.POST.get('start_date'))
-    except TypeError:
-        has_error = True
-        context['start_error'] = True
+    except Exception as ex:
+        start_date = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid start_date'})
     if start_date is None:
         has_error = True
         context['start_error'] = True
 
     try:
         end_date = _get_datetime(request.POST.get('end_date'))
-    except TypeError:
+    except Exception as ex:
+        end_date = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid end_date'})
+    if end_date is None:
         has_error = True
+        context['end_error'] = True
 
-    try:
-        if end_date < start_date:
-            has_error = True
-            context['date_error'] = True
-    except TypeError:
-        pass
+    if start_date and end_date and end_date < start_date:
+        has_error = True
+        context['date_error'] = True
+        log_info(
+            logger,
+            {'err': 'end_date is before start_date',
+             'start_date': start_date,
+             'end_date': end_date})
 
     notice_type = request.POST.get('notice_type')
-    notice_category = request.POST.get('notice_category')
     if notice_type is None:
         has_error = True
         context['type_error'] = True
+        log_info(logger, {'err': 'Invalid notice_type'})
+
+    notice_category = request.POST.get('notice_category')
     if notice_category is None:
         has_error = True
         context['category_error'] = True
+        log_info(logger, {'err': 'Invalid notice_category'})
 
-    is_critical = request.POST.get('critical') is not None
-
-    title = None
-    content = None
     try:
-        title = clean_html(request.POST.get('title'))
-    except TypeError:
+        is_critical = request.POST.get('critical') is not None
+    except (KeyError, TypeError):
+        is_critical = False
+
+    try:
+        title = _get_html(request.POST.get('title'))
+    except Exception as ex:
+        title = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid title'})
+    if title is None or len(title) == 0:
         has_error = True
         context['title_error'] = True
 
-    if title is not None:
-        if len(title) == 0:
-            has_error = True
-            context['title_error'] = True
-        else:
-            title = title.strip()
     try:
-        content = clean_html(request.POST.get('content'),
-                             MYUW_NOTICE_ALLOWED_TAGS)
-    except TypeError:
-        has_error = True
-        context['content_error'] = True
-
-    if content is not None and len(content) == 0:
+        content = _get_html(request.POST.get('content'))
+    except Exception as ex:
+        content = None
+        log_info(logger, {'err': ex, 'msg': 'Invalid content'})
+    if content is None or len(content) == 0:
         has_error = True
         context['content_error'] = True
 
     target_group = request.POST.get('target_group')
-    if target_group is not None:
+    if target_group is not None and len(target_group):
         target_group = target_group.strip()
 
     campus_list = request.POST.getlist('campus')
     affil_list = request.POST.getlist('affil')
-    if not has_error:
-        if form_action == "save":
-            notice = MyuwNotice(title=title,
-                                content=content,
-                                notice_type=notice_type,
-                                notice_category=notice_category,
-                                is_critical=is_critical,
-                                start=start_date,
-                                end=end_date,
-                                target_group=target_group)
-            for campus in campus_list:
-                setattr(notice, campus, True)
-
-            for affil in affil_list:
-                setattr(notice, affil, True)
-            notice.save()
-
-        elif form_action == "edit":
-            notice = MyuwNotice.objects.get(id=notice_id)
-            notice.title = title
-            notice.content = content
-            notice.notice_type = notice_type
-            notice.notice_category = notice_category
-            notice.start = start_date
-            notice.end = end_date
-            notice.target_group = target_group
-
-            # reset filters
-            fields = MyuwNotice._meta.get_fields()
-            for field in fields:
-                if "is_" in field.name:
-                    setattr(notice, field.name, False)
-
-            for campus in campus_list:
-                setattr(notice, campus, True)
-
-            for affil in affil_list:
-                setattr(notice, affil, True)
-
-            notice.is_critical = is_critical
-            notice.save()
-
-        return True
-    else:
+    if has_error:
         context['has_error'] = has_error
         return False
+
+    if form_action == "save":
+        notice = MyuwNotice(title=title,
+                            content=content,
+                            notice_type=notice_type,
+                            notice_category=notice_category,
+                            is_critical=is_critical,
+                            start=start_date,
+                            end=end_date,
+                            target_group=target_group)
+        for campus in campus_list:
+            setattr(notice, campus, True)
+
+        for affil in affil_list:
+            setattr(notice, affil, True)
+        try:
+            notice.save()
+            log_info(logger, {'Saved notice': notice})
+            return True
+        except Exception:
+            log_exception(logger, "save_notice", traceback)
+            context['sql_error'] = True
+
+    elif form_action == "edit":
+        notice = MyuwNotice.objects.get(id=notice_id)
+        notice.title = title
+        notice.content = content
+        notice.notice_type = notice_type
+        notice.notice_category = notice_category
+        notice.start = start_date
+        notice.end = end_date
+        notice.target_group = target_group
+
+        # reset filters
+        fields = MyuwNotice._meta.get_fields()
+        for field in fields:
+            if "is_" in field.name:
+                setattr(notice, field.name, False)
+
+        for campus in campus_list:
+            setattr(notice, campus, True)
+
+        for affil in affil_list:
+            setattr(notice, affil, True)
+
+        notice.is_critical = is_critical
+        try:
+            notice.save()
+            log_info(logger, {'Edited notice': notice})
+            return True
+        except Exception:
+            log_exception(logger, "edit_notice", traceback)
+            context['sql_error'] = True
+
+    return False
 
 
 def _get_datetime(dt_string):
     try:
         dt = parse(dt_string)
-    except ValueError:
+        if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
+            return SWS_TIMEZONE.localize(dt)
+        return dt
+    except (TypeError, ParserError) as ex:
+        log_info(
+            logger, {'err': ex, 'msg': "_get_datetime({})".format(dt_string)})
         return None
-    if dt.tzinfo is None or dt.tzinfo.utcoffset(dt) is None:
-        return timezone.make_aware(parse(dt_string))
-    return dt
+
+
+def _get_html(value):
+    try:
+        content = bleach.clean(
+            value, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTS)
+        return unicodedata.normalize("NFKD", content).strip()
+        # MUWM-5092
+    except TypeError as ex:
+        log_info(
+            logger, {'err': ex, 'msg': "_get_html({})".format(value)})
+        return None
