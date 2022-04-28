@@ -11,13 +11,6 @@
       </h2>
     </template>
     <template #card-body>
-      <p
-        v-if="!isAfterGradeSubmissionDeadline"
-        class="text-muted fst-italic myuw-text-md"
-      >
-        These grades are not official until 11:59 p.m. on
-        {{ toFriendlyDate(gradeSubmissionDeadline) }}.
-      </p>
       <div v-if="isHomePage">
         <p>Final grades are hidden to protect your privacy.</p>
         <button v-uw-collapse="`grades-collapse`"
@@ -35,6 +28,13 @@
           v-model="gradesOpen"
           class="myuw-fin-aid"
         >
+          <p
+           v-if="!isAfterGradeSubmissionDeadline"
+          class="text-muted fst-italic myuw-text-md"
+          >
+          These grades are not official until 11:59 p.m. on
+          {{ toFriendlyDate(gradeSubmissionDeadline) }}.
+          </p>
           <uw-grades-panel :sections="filteredSections" class="p-3 mt-2 bg-light text-dark" />
         </uw-collapse>
       </div>
