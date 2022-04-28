@@ -37,7 +37,7 @@
         No final exam period during summer quarter.
       </template>
       <template v-else>
-        Day and time to be arranged.
+        <span class="text-muted">Day and time to be arranged</span>
       </template>
     </template>
     <template v-else>
@@ -77,7 +77,7 @@ export default {
   computed: {
     confirmFinalLink() {
       return ''.concat(
-        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=',
+        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/finalexam.aspx?quarter=',
         this.titleCaseWord(this.section.quarter), '+', this.section.year,
         '&sln=', this.section.sln, '&chanid=');
     }
@@ -93,7 +93,7 @@ export default {
       if (this.section.quarter.toLowerCase() === 'summer') {
         this.displayNoFinalPeriod = true;
       } else {
-        this.displayConfirmFinalLink = true;
+        this.displayConfirmFinalLink = !this.section.pastTerm;
       }
     }
   },
