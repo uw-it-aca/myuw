@@ -37,7 +37,7 @@
         No final exam period during summer quarter.
       </template>
       <template v-else>
-        Day and time to be arranged.
+        <span class="text-muted">Day and time to be arranged</span>
       </template>
     </template>
     <template v-else>

@@ -16,7 +16,7 @@
       >Update</a>
     </span>
     <span v-else>
-      <span v-if="section.pastTerm">None provided</span>
+      <span v-if="section.pastTerm" class="text-muted">None provided</span>
       <span v-else-if="section.sln">
         <a
           v-out="'Add Course Website'"
@@ -24,11 +24,11 @@
           :title="`Add Class Website for ${section.label}`"
           target="_blank"
         >Add</a>
-        <span class="myuw-text-sm fst-italic">
+        <div class="myuw-text-sm fst-italic">
           A link to the course Canvas is automatically shown to students.
           Changes to the course website may take up to one hour to display
           on MyUW.
-        </span>
+        </div>
       </span>
     </span>
   </span>
