@@ -18,7 +18,7 @@
           "url": "http://www.washington.edu/students/crscat/",
           "new_tab": false
         },
-        { "title": "Degree Audit (DARS)", "url": "https://myplan.uw.edu/dars", "new_tab": true },
+        { "title": "Degree Audit (DARS)", "url": "https://myplan.uw.edu/audit/#/degree", "new_tab": true },
         {
           "title": "MyPlan",
           "url": "https://uwstudent.washington.edu/student/myplan/mplogin/netid?rd=/student/myplan/",

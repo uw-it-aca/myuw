@@ -14,6 +14,7 @@
       <span v-else>
         <span>{{section.email_list.section_list.list_address}}@uw.edu</span>
         <a
+          v-if="!section.pastTerm"
           v-out="'Manage Email List'"
           :href="section.email_list.section_list.list_admin_url"
           :title="`Manage Email List for ${
@@ -32,6 +33,7 @@
     ">
       <span>{{section.email_list.joint_section_list.list_address}}@uw.edu</span>
       <a
+        v-if="!section.pastTerm"
         v-out="'Manage Email List (joint section)'"
         :href="section.email_list.joint_section_list.list_admin_url"
         :title="`Manage Joint Section Email List for ${
@@ -43,7 +45,7 @@
         Manage
       </a>
     </span>
-    <span v-else>
+    <span v-else-if="!section.pastTerm">
       <span v-if="section.email_list.has_secondary_lists">
         <a
           v-uw-modal="`emaillist_view_${section.sln}`">

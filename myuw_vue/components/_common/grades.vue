@@ -66,7 +66,7 @@
           </li>
           <li class="mb-1">
             <a v-out="'MyPlan DARS'"
-               href="https://myplan.uw.edu/dars"
+               href="https://myplan.uw.edu/audit/#/degree"
             >
               Degree Audit Reporting System (DARS)
             </a>

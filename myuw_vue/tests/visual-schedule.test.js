@@ -148,7 +148,10 @@ describe('Vue SFC Tests', () => {
     expect(wrapper.vm.termName).toBe("Spring 2013");
     expect(wrapper.vm.periods[0].title).toBe("Apr 01 - Jun 07");
     expect(wrapper.vm.periods[1].title).toBe("finals");
-    expect(wrapper.findAllComponents(ScheduleTab)).toHaveLength(2);
+    const tabs = wrapper.findAllComponents(ScheduleTab)
+    expect(tabs).toHaveLength(2);
+    expect(tabs.at(0).vm.hasOverlappingMeetings).toBe(true)
+    expect(tabs.at(1).vm.hasOverlappingMeetings).toBe(false)
 
     expect(
       wrapper.findAllComponents(ScheduleTab).at(0).vm
