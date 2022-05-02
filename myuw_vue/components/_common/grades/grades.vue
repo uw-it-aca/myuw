@@ -12,17 +12,16 @@
     </template>
     <template #card-body>
       <div v-if="isHomePage">
-        <p>Final grades are hidden to protect your privacy.</p>
-        <button v-uw-collapse="`grades-collapse`"
+        <p class="myuw-text-md">
+        Final grades are hidden to protect your privacy.
+          <a v-uw-collapse="`grades-collapse`"
           v-no-track-collapse
           type="button"
-          class="btn btn-link p-0 border-0 mb-2 bg-transparent myuw-text-md"
-          size="md"
-        >
-          <font-awesome-icon v-if="gradesOpen" :icon="faCaretDown" />
-          <font-awesome-icon v-else :icon="faCaretRight" />
-          Your final grades
-        </button>
+          class="p-0 border-0 mb-2 bg-transparent"
+          >
+          View final grades
+          </a>
+        </p>
         <uw-collapse
           :id="`grades-collapse`"
           v-model="gradesOpen"
