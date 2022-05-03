@@ -4,7 +4,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
-import Grades from './components/_common/grades.vue';
+import Grades from './components/_common/grades/grades.vue';
 import HuskyExperience from './components/_common/husky-experience.vue';
 import Outage from './components/_common/outage.vue';
 import FutureQuarterCards from './components/_common/future-quarter.vue';

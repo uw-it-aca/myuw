@@ -139,7 +139,7 @@ export default {
       if (this.currentPlanData && this.currentPlanData.degree_audit_href) {
         return this.currentPlanData.degree_audit_href;
       }
-      return 'https://myplan.uw.edu/dars';
+      return 'https://myplan.uw.edu/audit/#/degree';
     },
     nextTermQuarterCode() {
       if (!this.nextTermQuarter || this.nextTermQuarter === 0) {
