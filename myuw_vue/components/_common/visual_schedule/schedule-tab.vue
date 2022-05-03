@@ -230,14 +230,13 @@ export default {
           }
         }
         dayMeetings.sort((a, b) =>
-            ((this.isFinalsTab 
-              ? a.start_date.isAfter(b.start_date)
-              : a.start_time.isAfter(b.start_time)) ? 1 : -1);
+          this.isFinalsTab && a.start_date.isAfter(b.start_date) ||
+          a.start_time.isAfter(b.start_time) ? 1 : -1);
         for (let i = 0; i < dayMeetings.length; i++){
           if (i+1 < dayMeetings.length){
             if (this.isFinalsTab && 
                 dayMeetings[i].end_date.isAfter(dayMeetings[i+1].start_date) ||
-                dayMeetings[i].end_time.isAfter(dayMeetings[i+1].start_time)){
+                dayMeetings[i].end_time.isAfter(dayMeetings[i+1].start_time)) {
               return true;
             }
           }
