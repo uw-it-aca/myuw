@@ -217,6 +217,7 @@ export default {
       return this.term.quarter === 'summer';
     },
     hasOverlappingMeetings() {
+      // MUWM-5089, MUWM-5102
       for (const day in this.meetingMap){
         let dayMeetings = [];
         for (const hour in this.meetingMap[day]){
