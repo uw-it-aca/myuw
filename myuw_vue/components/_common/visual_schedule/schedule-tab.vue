@@ -230,9 +230,14 @@ export default {
             dayMeetings.push(this.meetingMap[day][hour][0]['meeting'])
           }
         }
-        dayMeetings.sort((a, b) =>
-          this.isFinalsTab && a.start_date.isAfter(b.start_date) ||
-          a.start_time.isAfter(b.start_time) ? 1 : -1);
+        if(!this.isFinalsTab){
+        dayMeetings.sort((a, b) => {
+          if(this.isFinalsTab){
+            return a.start_date.isAfter(b.start_date);
+          } else {
+            return a.start_time.isAfter(b.start_time)
+          }
+        });
         for (let i = 0; i < dayMeetings.length; i++){
           if (i+1 < dayMeetings.length){
             if (this.isFinalsTab && 
@@ -241,6 +246,7 @@ export default {
               return true;
             }
           }
+        }
         }
       }
       return false;
