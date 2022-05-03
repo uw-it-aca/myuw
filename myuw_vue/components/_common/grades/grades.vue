@@ -17,7 +17,7 @@
           <a v-uw-collapse="`grades-collapse`"
             v-no-track-collapse
             class="p-0 border-0 mb-2 bg-transparent"
-          >View final grades</a>.
+          >View final grades</a>
         </p>
         <uw-collapse
           :id="`grades-collapse`"
@@ -31,7 +31,7 @@
           These grades are not official until 11:59 p.m. on
           {{ toFriendlyDate(gradeSubmissionDeadline) }}.
           </p>
-          <uw-grades-panel :sections="filteredSections" class="p-3 mt-2 bg-light text-dark" />
+          <uw-grades-panel :sections="filteredSections"/>
         </uw-collapse>
       </div>
       <uw-grades-panel v-else :sections="filteredSections" />
