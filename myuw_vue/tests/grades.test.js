@@ -96,8 +96,8 @@ describe('Grades Card', () => {
     expect(wrapper.vm.showGradeCard).toBe(true);
     expect(wrapper.findComponent(GradesCard).exists()).toBe(true);
     expect(wrapper.findComponent(GradesPanel).exists()).toBe(true);
-    let botton = wrapper.findAll('button');
-    expect(botton.at(0).text()).toBe('Your final grades');
+    let botton = wrapper.findAll('a');
+    expect(botton.at(0).text()).toBe('View final grades');
   });
 
   it('Basic Render - on Academics page', async () => {
