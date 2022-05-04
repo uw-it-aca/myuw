@@ -49,6 +49,9 @@
         </h3>
         <ul class="list-inline myuw-text-md mb-1">
           <li class="list-inline-item">
+            <a href="/resources/#research">Research</a>
+          </li>
+          <li class="list-inline-item">
             <a href="/resources/#teaching">Teaching</a>
           </li>
           <li class="list-inline-item">

@@ -9,7 +9,10 @@
       </span>
     </uw-card-property>
     <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
-      <ul v-if="section.grade_submission_delegates" class="list-unstyled mb-1">
+      <ul
+        v-if="section.grade_submission_delegates && section.grade_submission_delegates.length"
+        class="list-unstyled mb-1"
+      >
         <li
           v-for="(delegate, i) in section.grade_submission_delegates"
           :key="i"
@@ -19,10 +22,10 @@
           ({{titleCaseWord(delegate.level)}})
         </li>
       </ul>
-      <span v-else>
+      <div v-else>
         None assigned
-      </span>
-      <a :href="gradeDelegateUrl" target="_blank">
+      </div>
+      <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
         <span v-if="section.gradeSubmissionSectionDelegate">
           Update grade submission delegate
         </span>
@@ -101,28 +104,26 @@
         </div>
       </template>
       <template v-else-if="section.gradingPeriod.isClosed">
-        <div v-if="section.grading_status">
-          <span v-if="section.grading_status.allGradesSubmitted">
-            <a
-              v-out="'Grade submitted by'"
-              :href="section.grading_status.section_url"
-            >
-              {{section.grading_status.submitted_count}}
-              grade{{section.grading_status.submitted_count ? 's' : ''}}
-              submitted
-            </a>
-            <span v-if="section.grading_status.submitted_by">
-              by {{section.grading_status.submitted_by}}
-            </span>
-            <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
-              on {{section.grading_status.submittedFmt}}
-            </span>
-            <br />
-            <div>
-              Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
-              <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
-            </div>
+        <div v-if="section.grading_status && section.grading_status.allGradesSubmitted">
+          <a
+            v-out="'Grade submitted by'"
+            :href="section.grading_status.section_url"
+          >
+            {{section.grading_status.submitted_count}}
+            grade{{section.grading_status.submitted_count ? 's' : ''}}
+            submitted
+          </a>
+          <span v-if="section.grading_status.submitted_by">
+            by {{section.grading_status.submitted_by}}
           </span>
+          <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
+            on {{section.grading_status.submittedFmt}}
+          </span>
+          <br />
+          <div>
+            Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
+            <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
+          </div>
         </div>
         <div v-else>
           <span v-if="section.grading_status" class="capitalize">
@@ -193,9 +194,9 @@ export default {
       return 0;
     },
     gradeDelegateUrl() {
-      return 'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=' +
+      return 'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/gradedelegate.aspx?quarter=' +
         this.titleCaseWord(this.section.quarter) + '+' + this.section.year + '&sln=' +
-         this.section.sln + '&chanid=11';
+         this.section.sln;
     },
   },
 };

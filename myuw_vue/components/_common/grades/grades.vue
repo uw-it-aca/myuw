@@ -11,49 +11,35 @@
       </h2>
     </template>
     <template #card-body>
-      <p
-        v-if="!isAfterGradeSubmissionDeadline"
-        class="text-muted fst-italic myuw-text-md"
-      >
-        These grades are not official until 11:59 p.m. on
-        {{ toFriendlyDate(gradeSubmissionDeadline) }}.
-      </p>
-      <ul class="list-unstyled">
-        <li
-          v-for="section in filteredSections"
-          :key="section.course_number"
-          class="mb-2"
+      <div v-if="isHomePage">
+        <p class="myuw-text-md">
+          Final grades are hidden to protect your privacy.
+          <a v-uw-collapse="`grades-collapse`"
+            v-no-track-collapse
+            class="p-0 border-0 mb-2 bg-transparent"
+          >View final grades</a>
+        </p>
+        <uw-collapse
+          :id="`grades-collapse`"
+          v-model="gradesOpen"
+          class="myuw-fin-aid"
         >
-          <div class="d-flex align-content-center">
-            <div class="w-50">
-              <font-awesome-icon
-                :icon="faSquareFull"
-                :class="`text-c${section.color_id}`"
-                class="me-1"
-              />
-              <span class="h6 myuw-font-encode-sans m-0">
-                {{ section.curriculum_abbr }} {{ section.course_number }}
-              </span>
-            </div>
-            <div class="w-50 text-end text-nowrap">
-              <span
-                v-if="section.grade === 'X'"
-                class="m-0 me-2 text-muted fst-italic myuw-text-md"
-              >
-                No grade yet
-              </span>
-              <span class="h6 myuw-font-encode-sans m-0">
-                {{ section.grade }}
-              </span>
-            </div>
-          </div>
-        </li>
-      </ul>
+          <p
+           v-if="!isAfterGradeSubmissionDeadline"
+          class="text-muted fst-italic myuw-text-md"
+          >
+          These grades are not official until 11:59 p.m. on
+          {{ toFriendlyDate(gradeSubmissionDeadline) }}.
+          </p>
+          <uw-grades-panel :sections="filteredSections"/>
+        </uw-collapse>
+      </div>
+      <uw-grades-panel v-else :sections="filteredSections" />
     </template>
     <template #card-disclosure>
       <uw-collapse
         id="grade_card_collapse"
-        v-model="isOpen"
+        v-model="gradeResOpen"
       >
         <h3 class="visually-hidden">
           Resources
@@ -85,7 +71,7 @@
         title='Additional grade resources'
       >
         Resources
-        <font-awesome-icon v-if="isOpen" :icon="faChevronUp" />
+        <font-awesome-icon v-if="gradeResOpen" :icon="faChevronUp" />
         <font-awesome-icon v-else :icon="faChevronDown" />
       </button>
     </template>
@@ -93,28 +79,39 @@
 </template>
 
 <script>
+import GradesPanel from './grades-panel.vue';
 import {
   faChevronUp,
   faChevronDown,
-  faSquareFull,
+  faCaretDown,
+  faCaretRight,
 } from '@fortawesome/free-solid-svg-icons';
 import {mapGetters, mapState, mapActions} from 'vuex';
-import Card from '../_templates/card.vue';
-import Collapse from '../_templates/collapse.vue';
+import Card from '../../_templates/card.vue';
+import Collapse from '../../_templates/collapse.vue';
 
 export default {
   components: {
     'uw-card': Card,
     'uw-collapse': Collapse,
+    'uw-grades-panel': GradesPanel,
+  },
+  props: {
+    isHomePage: {
+      type: Boolean,
+      default: false,
+    },
   },
   data: function() {
     return {
       term: null,
       showOnlyATerm: false,
-      isOpen: false,
+      gradeResOpen: false,
+      gradesOpen: false,
       faChevronUp,
       faChevronDown,
-      faSquareFull,
+      faCaretDown,
+      faCaretRight,
     };
   },
   computed: {
