@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="showContent"
-    class="w-100 myuw-messages bg-teal" role="complementary"
+    class="w-100 myuw-messages" role="complementary"
   >
     <div class="text-center text-white myuw-text-md">
       <h2 class="visually-hidden">
@@ -17,7 +17,7 @@
           v-html="message"
         ></div>
       </template>
-      <div v-if="displayOnboardMessage" class="px-3 py-2">
+      <div v-if="displayOnboardMessage" class="px-3 py-2 msg-onboard">
         New here?
         <a v-uw-modal.tourModal class="text-white"><u>See MyUW at a glance</u></a>
         <button
@@ -75,6 +75,8 @@ export default {
 @use "sass:map";
 @import '../../../../myuw/static/css/myuw/variables.scss';
 
-//.myuw-messages {}
+.msg-onboard {  
+  background-color: map.get($theme-colors, 'dark-beige');
+}
 
 </style>

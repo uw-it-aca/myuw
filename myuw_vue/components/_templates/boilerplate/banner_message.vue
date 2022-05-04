@@ -1,14 +1,12 @@
 <template>
-  <div class="message px-3 py-2 myuw-text-md">
-    <ol class="list-unstyled">
-      <li v-for="(level, l) in levels" :key="l">
-        <ul :class="styleAtLevel(level)">
-          <li v-for="(msg, i) in messageAtLevel(level)" :key="i" class="mb-1">
+  <div class="message px-0 py-0 myuw-text-md">
+      <div v-for="(level, l) in levels" :key="l">
+        <div :class="styleAtLevel(level)" class="list-unstyled">
+          <div v-for="(msg, i) in messageAtLevel(level)" :key="i" class="px-3 py-2">
             <span v-html="msg.content" />
-          </li>
-        </ul>
-      </li>
-    </ol>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -48,7 +46,7 @@ export default {
       return this.groupedMsgs[level];
     },
     styleAtLevel(level) {
-      return level === 'Info' ? 'msg-info list-unstyled' : 'msg-warning list-unstyled';
+      return level === 'Info' ? 'msg-info' : 'msg-warning';
     },
   },
 };
@@ -62,16 +60,29 @@ export default {
     font-weight: bold;
   }
 
-  ::v-deep .external-link {
-    color: white;
-  }
-
-  ::v-deep .msg-warning {
-    background-color: lighten(map.get($theme-colors, 'warning'), 47%) !important;
-  }
-
   ::v-deep .msg-info {
-    background-color: lighten(map.get($theme-colors, 'info'), 47%) !important;
+    background-color: map.get($theme-colors, 'dark-beige');
+    color: white;
+    .external-link {
+      color: white;
+      text-decoration: underline;
+      &:hover {
+        color: map.get($theme-colors, 'beige');
+        }
+    }
   }
+  ::v-deep .msg-warning {
+    background-color: map.get($theme-colors, 'warning') !important;
+    color: black;
+
+    .external-link {
+    text-decoration: underline;
+    color: black;
+      &:hover {
+      color: #555;
+      }
+    }
+  }
+
 }
 </style>
