@@ -45,12 +45,12 @@
     "Auditors":"0",
     "FinalExam":
     {
-        "Building":"",
-        "MeetingStatus":"0",
-        "RoomNumber":"",
-        "StartTime":"",
-        "Date":"",
-        "EndTime":""
+        "Building": "PAA",
+        "Date": "2013-06-14",
+        "EndTime": "10:20",
+        "MeetingStatus": "2",
+        "RoomNumber": "A102",
+        "StartTime": "08:30"
     },
     "PrimarySection":
     {
