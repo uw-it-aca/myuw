@@ -217,6 +217,7 @@ export default {
       return this.term.quarter === 'summer';
     },
     hasOverlappingMeetings() {
+      // MUWM-5089, MUWM-5102
       for (const day in this.meetingMap){
         let dayMeetings = [];
         for (const hour in this.meetingMap[day]){
@@ -229,12 +230,21 @@ export default {
             dayMeetings.push(this.meetingMap[day][hour][0]['meeting'])
           }
         }
-        dayMeetings.sort((a, b) =>
-            (a.start_time.isAfter(b.start_time)) ? 1 : -1);
-        for (let i = 0; i < dayMeetings.length; i++){
-          if (i+1 < dayMeetings.length){
-            if(dayMeetings[i].end_time.isAfter(dayMeetings[i+1].start_time)){
-              return true;
+        dayMeetings.sort((a, b) => {
+          if(this.isFinalsTab){
+            return a.start_date && b.start_date && a.start_date.isAfter(b.start_date);
+          } else {
+            return a.start_time && b.start_time && a.start_time.isAfter(b.start_time);
+          }
+        });
+        for (let i = 0; i < dayMeetings.length; i++) {
+          if (i+1 < dayMeetings.length) {
+            if (this.isFinalsTab) {
+              if (dayMeetings[i].end_date && dayMeetings[i+1].start_date &&
+                  dayMeetings[i].end_date.isAfter(dayMeetings[i+1].start_date)) return true;
+            } else {
+              if (dayMeetings[i].end_time && dayMeetings[i+1].start_time &&
+                  dayMeetings[i].end_time.isAfter(dayMeetings[i+1].start_time)) return true;
             }
           }
         }
