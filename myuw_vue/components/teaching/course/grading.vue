@@ -9,7 +9,10 @@
       </span>
     </uw-card-property>
     <uw-card-property :title="`Delegate${gradeSubmissionDelegatesCount > 1 ? 's' :  ''}`">
-      <ul v-if="section.gradeSubmissionSectionDelegate" class="list-unstyled mb-1">
+      <ul
+        v-if="section.grade_submission_delegates && section.grade_submission_delegates.length"
+        class="list-unstyled mb-1"
+      >
         <li
           v-for="(delegate, i) in section.grade_submission_delegates"
           :key="i"
@@ -19,9 +22,9 @@
           ({{titleCaseWord(delegate.level)}})
         </li>
       </ul>
-      <span v-else>
+      <div v-else>
         None assigned
-      </span>
+      </div>
       <a v-if="!section.pastTerm" :href="gradeDelegateUrl" target="_blank">
         <span v-if="section.gradeSubmissionSectionDelegate">
           Update grade submission delegate
