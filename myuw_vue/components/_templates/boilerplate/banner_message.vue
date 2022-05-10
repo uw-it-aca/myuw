@@ -1,12 +1,12 @@
 <template>
   <div class="message px-0 py-0 myuw-text-md">
-      <div v-for="(level, l) in levels" :key="l">
-        <div :class="styleAtLevel(level)" class="list-unstyled">
-          <div v-for="(msg, i) in messageAtLevel(level)" :key="i" class="px-3 py-2">
-            <span v-html="msg.content" />
-          </div>
+    <div v-for="(level, l) in levels" :key="l">
+      <div :class="styleAtLevel(level)" class="list-unstyled">
+        <div v-for="(msg, i) in messageAtLevel(level)" :key="i" class="px-3 py-2">
+          <span v-html="msg.content" />
         </div>
       </div>
+    </div>
   </div>
 </template>
 
