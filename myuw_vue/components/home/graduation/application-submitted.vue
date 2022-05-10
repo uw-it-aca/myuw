@@ -344,6 +344,22 @@
             your future or anything else, connect with a counselor.
           </li>
         </ul>
+        <h3 class="h6 myuw-font-encode-sans">
+          Related Husky Experience Toolkit Articles
+        </h3>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              Article 1 placeholder
+            </div>
+            <div class="col">
+              Article 2 placeholder
+            </div>
+            <div class="col">
+              Article 3 placeholder
+            </div>
+          </div>
+        </div>
       </uw-collapse>
     </template>
     <template #card-footer>
