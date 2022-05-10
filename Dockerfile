@@ -33,6 +33,9 @@ FROM app-prewebpack-container as app-container
 
 ADD --chown=acait:acait . /app/
 ADD --chown=acait:acait docker/ project/
+ADD --chown=acait:acait docker/app_start.sh /scripts
+RUN chmod u+x /scripts/app_start.sh
+
 COPY --chown=acait:acait --from=node-bundler /app/myuw/static /app/myuw/static
 
 RUN . /app/bin/activate && python manage.py collectstatic --noinput

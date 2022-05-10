@@ -19,6 +19,14 @@
 {% if is_myuw_admin %}
     <h3>Content Management</h3>
     <ul>
+        {% url 'manage_persistent_messages' as manage_messages_url %}
+        {% if manage_messages_url %}
+            <li>
+                <a href="{{ manage_messages_url }}">
+                    {{ persistent_message_link|default:"Persistent Messages" }}
+                </a>
+            </li>
+        {% endif %}
         <li><a href="{% url 'myuw_manage_messages' %}">Banner Messages</a></li>
         <li><a href="{% url 'myuw_popular_links' %}">Popular Links</a></li>
         <li><a href="{% url 'myuw_manage_notices' %}">MyUW Notices</a></li>
