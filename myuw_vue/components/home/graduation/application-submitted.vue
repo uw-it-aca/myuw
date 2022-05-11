@@ -350,13 +350,19 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              Article 1 placeholder
+              <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
+                How a Professional Job is Different from Being a Student
+              </a>
             </div>
             <div class="col">
-              Article 2 placeholder
+              <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
+                Preparing for a Professional Life
+              </a>
             </div>
             <div class="col">
-              Article 3 placeholder
+              <a href="https://vue.my.uw.edu/husky_experience_message?article=between-college-and-career">
+                Between College and Career
+              </a>
             </div>
           </div>
         </div>
