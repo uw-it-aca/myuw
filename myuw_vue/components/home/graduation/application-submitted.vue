@@ -348,23 +348,36 @@
           Related Husky Experience Toolkit Articles
         </h3>
         <div class="myuw-text-md">
-          <div class="container">
-            <div class="row">
-              <div class="col">
+          <div class="row">
+            <div class="col-12 col-lg-4">
+              <div class="border border-danger">
+                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
+              </div>
+              <div>
                 <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
                   How a Professional Job is Different from Being a Student
                 </a> 
                 <br>
                 <p class="fst-italic">2 min read</p>
               </div>
-              <div class="col">
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="border border-danger">
+                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
+              </div>
+              <div>
                 <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
                   Preparing for a Professional Life
                 </a>
                 <br>
                 <p class="fst-italic">2 min read</p>
               </div>
-              <div class="col">
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="border border-danger">
+                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
+              </div>
+              <div>
                 <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
                   Between College and Career
                 </a>
