@@ -363,7 +363,7 @@
             </div>
             <div class="col-12 col-lg-4">
               <div class="border border-danger">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
+                <img class="img-fluid" src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg" alt="">
               </div>
               <div>
                 <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
@@ -375,7 +375,7 @@
             </div>
             <div class="col-12 col-lg-4">
               <div class="border border-danger">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
+                <img class="img-fluid" src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg" alt="">
               </div>
               <div>
                 <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
