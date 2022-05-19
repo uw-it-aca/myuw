@@ -349,7 +349,7 @@
         </h3>
         <div class="myuw-text-md">
           <div class="d-flex flex-row">
-              <div class="border border-danger">
+              <div class="col-6 pe-3 pb-3">
                 <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
               </div>
               <div>
@@ -361,7 +361,7 @@
               </div>
             </div>
             <div class="d-flex flex-row">
-              <div class="border border-danger">
+              <div class="col-6 pe-3 pb-3">
                 <img class="img-fluid" src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg" alt="">
               </div>
               <div>
@@ -373,7 +373,7 @@
               </div>
             </div>
             <div class="d-flex flex-row">
-              <div class="border border-danger">
+              <div class="col-6 pe-3 pb-3">
                 <img class="img-fluid" src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg" alt="">
               </div>
               <div>
