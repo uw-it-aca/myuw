@@ -165,7 +165,7 @@
           </div>
 
           <div v-if="hasActiveOrGrantedDegreeDuringAprilMay">
-            <h3 class="h6 myuw-font-encode-sans">
+            <h3 class="h6 myuw-font-encode-sans"> 
               Choose to take part in commencement ceremony
             </h3>
             <ul class="list-unstyled myuw-text-md">
@@ -174,7 +174,7 @@
                   v-uw-collapse.commencementCollapse
                   type="button"
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                >
+                > <!-- New Indicator Here -->
                   Decide if you'd like to participate in the UW commencement celebration
                 </button>
                 <uw-collapse id="commencementCollapse">
@@ -216,7 +216,7 @@
                   v-uw-collapse.diplomaCollapse
                   type="button"
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                >How to update your diploma name and mailing address</button>
+                >How to update your diploma name and mailing address</button> <!-- New Indicator Here -->
                 <uw-collapse id="diplomaCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
@@ -244,7 +244,7 @@
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   Save your UW work before it is deleted
-                </button>
+                </button> <!-- New Indicator Here -->
                 <uw-collapse id="saveWorkCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
@@ -263,7 +263,7 @@
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
                 >
                   Keep receiving emails sent to your UW address – set up forwarding
-                </button>
+                </button> <!-- New Indicator Here -->
                 <uw-collapse id="emailForwardingCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>
