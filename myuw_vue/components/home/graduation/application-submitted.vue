@@ -216,7 +216,8 @@
                   v-uw-collapse.diplomaCollapse
                   type="button"
                   class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                >How to update your diploma name and mailing address</button> <!-- New Indicator Here -->
+                >How to update your diploma name and mailing address</button>
+                <!-- New Indicator Here -->
                 <uw-collapse id="diplomaCollapse">
                   <div class="p-3 mt-2 bg-light text-dark notice-body">
                     <p>

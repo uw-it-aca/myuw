@@ -378,5 +378,25 @@ NOTICE_CATEGORIES = {
         "myuw_category": "MyUW Banner Notice",
         "location_tags": ['notice_banner'],
         "critical": False
+    },
+    "degree_ceremony": {
+        "myuw_category": "Graduation Preparation",
+        "location_tags": ['graduation'],
+        "critical": False
+    },
+    "degree_diploma": {
+        "myuw_category": "Graduation Preparation",
+        "location_tags": ['graduation'],
+        "critical": False
+    },
+    "degree_savework": {
+        "myuw_category": "Graduation Preparation",
+        "location_tags": ['graduation'],
+        "critical": False
+    },
+    "degree_emailforwarding": {
+        "myuw_category": "Graduation Preparation",
+        "location_tags": ['graduation'],
+        "critical": False
     }
 }
