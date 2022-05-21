@@ -170,15 +170,8 @@
             </h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <button
-                  v-uw-collapse.commencementCollapse
-                  type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                > <!-- New Indicator Here -->
-                  Decide if you'd like to participate in the UW commencement celebration
-                </button>
-                <uw-collapse id="commencementCollapse">
-                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                <uw-collapsed-item :notice="degreeCeremony">
+                  <template #notice-body>
                     <p v-if="seattle">
                       <a href="https://www.washington.edu/graduation/how-to-participate-2/"
                         >Learn all about commencement</a
@@ -200,8 +193,8 @@
                       <li>How to register</li>
                       <li>Ordering cap and gown</li>
                     </ul>
-                  </div>
-                </uw-collapse>
+                  </template>
+                </uw-collapsed-item>
               </li>
             </ul>
           </div>
@@ -212,14 +205,8 @@
             </h3>
             <ul class="list-unstyled myuw-text-md">
               <li>
-                <button
-                  v-uw-collapse.diplomaCollapse
-                  type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                >How to update your diploma name and mailing address</button>
-                <!-- New Indicator Here -->
-                <uw-collapse id="diplomaCollapse">
-                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                <uw-collapsed-item :notice="degreeDiploma">
+                  <template #notice-body>
                     <p>
                       The Office of the University Registrar will send you an email about one
                       month after graduation with the link to a form where you can log in and
@@ -235,45 +222,31 @@
                       <a href="https://registrar.washington.edu/students/graduation-diplomas/"
                       >Graduations and Diplomas</a> site.
                     </p>
-                  </div>
-                </uw-collapse>
+                  </template>
+                </uw-collapsed-item>
               </li>
               <li>
-                <button
-                  v-uw-collapse.saveWorkCollapse
-                  type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                >
-                  Save your UW work before it is deleted
-                </button> <!-- New Indicator Here -->
-                <uw-collapse id="saveWorkCollapse">
-                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                <uw-collapsed-item :notice="degreeSaveWork">
+                  <template #notice-body>
                     <p>
                       All UW accounts will be deleted two quarters after graduation.
                       Take steps now to
                       <a href="https://itconnect.uw.edu/students/save-work-before-graduation/"
                       >save all your UW work</a> so that you don't lose it.
                     </p>
-                  </div>
-                </uw-collapse>
+                  </template>
+                </uw-collapsed-item>
               </li>
               <li>
-                <button
-                  v-uw-collapse.emailForwardingCollapse
-                  type="button"
-                  class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-                >
-                  Keep receiving emails sent to your UW address – set up forwarding
-                </button> <!-- New Indicator Here -->
-                <uw-collapse id="emailForwardingCollapse">
-                  <div class="p-3 mt-2 bg-light text-dark notice-body">
+                <uw-collapsed-item :notice="degreeEmailForwarding">
+                  <template #notice-body>
                     <p>
                       Don't miss critical emails sent to your UW account.
                       <a href="https://uwnetid.washington.edu/manage/?forward"
                       >Set up your email forwarding</a> before you permanently lose access.
                     </p>
-                  </div>
-                </uw-collapse>
+                  </template>
+                </uw-collapsed-item>
               </li>
             </ul>
           </div>
@@ -366,12 +339,12 @@
 import { mapGetters, mapState, mapActions } from 'vuex';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';
-import Collapse from '../../_templates/collapse.vue';
+import CollapsedItem from './collapsed-item.vue';
 
 export default {
   components: {
     'uw-card': Card,
-    'uw-collapse': Collapse,
+    'uw-collapsed-item': CollapsedItem,
   },
   data() {
     return {
@@ -381,6 +354,11 @@ export default {
     };
   },
   computed: {
+    ...mapGetters('notices', {
+      isReadyNotices: 'isReady',
+      isErroredNotices: 'isErrored',
+      statusCodeNotices: 'statusCode',
+    }),
     ...mapGetters('profile', {
       isFetching: 'isFetching',
       isReady: 'isReady',
@@ -390,12 +368,38 @@ export default {
     ...mapState({
       intlStudent: (state) => state.user.affiliations.intl_stud,
       classLevel: (state) => state.user.affiliations.latest_class_level,
+      notices: (state) => state.notices.value,
     }),
     ...mapState('profile', {
       degreeStatus: (state) => state.value.degree_status,
     }),
     graduatingSenior() {
       return (this.classLevel === 'SENIOR');
+    },
+    degreeNotices() {
+      return this.notices.filter((notice) =>
+        notice.location_tags.includes('graduation')
+      );
+    },
+    degreeCeremony() {
+      return this.degreeNotices.filter((notice) =>
+        notice.category === 'Graduation Ceremony'
+      )[0];
+    },
+    degreeDiploma() {
+      return this.degreeNotices.filter((notice) =>
+        notice.category === 'Graduation Diploma'
+      )[0];
+    },
+    degreeSaveWork() {
+      return this.degreeNotices.filter((notice) =>
+        notice.category === 'Graduation SaveWork'
+      )[0];
+    },
+    degreeEmailForwarding() {
+      return this.degreeNotices.filter((notice) =>
+        notice.category === 'Graduation EmailForwarding'
+      )[0];
     },
     showCard() {
       return (this.graduatingSenior &&
@@ -405,11 +409,14 @@ export default {
       // having a non-empty degree status
       return (
         this.degreeStatus && this.degreeStatus.degrees &&
-        this.degreeStatus.degrees.length > 0);
+        this.degreeStatus.degrees.length > 0 &&
+        Boolean(this.degreeCeremony) && Boolean(this.degreeDiploma) &&
+        Boolean(this.degreeSaveWork) && Boolean(this.degreeEmailForwarding));
     },
     showError() {
       // if fetching profile having any error or degree status has a non-404 error
       return (
+        this.isErroredNotices ||
         this.isErrored ||
         this.degreeStatus && this.degreeStatus.error_code &&
         this.degreeStatus.error_code !== 404);
@@ -501,10 +508,18 @@ export default {
     },
   },
   created() {
-    if (this.graduatingSenior) this.fetch();
+    if (this.graduatingSenior) {
+      this.fetchProfile();
+      this.fetchNotices();
+    }
   },
   methods: {
-    ...mapActions('profile', ['fetch']),
+    ...mapActions('notices', {
+      fetchNotices: 'fetch',
+    }),
+    ...mapActions('profile', {
+      fetchProfile: 'fetch',
+    }),
     hasMisconduct(degree) {
       return degree.is_admin_hold;
     },

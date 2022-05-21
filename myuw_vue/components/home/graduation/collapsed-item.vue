@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="notice-container">
+    <div>
       <button
         v-uw-collapse="`${notice.id_hash}-collapse-${$meta.uid}`"
         v-no-track-collapse
         type="button"
         class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
       >
-        <span class="notice-title" v-html="notice.notice_title" />
+        <span v-html="notice.notice_title" />
       </button>
       <span
         v-if="!notice.is_read"
