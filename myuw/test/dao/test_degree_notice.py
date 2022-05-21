@@ -15,6 +15,6 @@ class TestDegreeNotices(TestCase):
 
         final_notices = categorize_notices(notices)
         for notice in final_notices:
-            self.assertEquals(notice.custom_category, "Graduation Preparation")
+            self.assertTrue('Graduation' in notice.custom_category)
             self.assertEquals(notice.location_tags[0], 'graduation')
             self.assertFalse(notice.is_critical)

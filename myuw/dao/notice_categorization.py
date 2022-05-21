@@ -380,22 +380,22 @@ NOTICE_CATEGORIES = {
         "critical": False
     },
     "degree_ceremony": {
-        "myuw_category": "Graduation Preparation",
+        "myuw_category": "Graduation Ceremony",
         "location_tags": ['graduation'],
         "critical": False
     },
     "degree_diploma": {
-        "myuw_category": "Graduation Preparation",
+        "myuw_category": "Graduation Diploma",
         "location_tags": ['graduation'],
         "critical": False
     },
     "degree_savework": {
-        "myuw_category": "Graduation Preparation",
+        "myuw_category": "Graduation SaveWork",
         "location_tags": ['graduation'],
         "critical": False
     },
     "degree_emailforwarding": {
-        "myuw_category": "Graduation Preparation",
+        "myuw_category": "Graduation EmailForwarding",
         "location_tags": ['graduation'],
         "critical": False
     }
