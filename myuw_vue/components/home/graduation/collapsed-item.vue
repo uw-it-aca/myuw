@@ -2,12 +2,12 @@
   <div>
     <div>
       <button
-        v-uw-collapse="`${notice.id_hash}-collapse-${$meta.uid}`"
+        v-uw-collapse="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
         v-no-track-collapse
         type="button"
         class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
       >
-        <span v-html="notice.notice_title" />
+        <span class="notice-title" v-html="notice.notice_title" />
       </button>
       <span
         v-if="!notice.is_read"
@@ -15,7 +15,7 @@
       >New</span>
     </div>
     <uw-collapse
-      :id="`${notice.id_hash}-collapse-${$meta.uid}`"
+      :id="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
       tabindex="0"
       @show="onShowNotice(notice)"
     >
@@ -41,6 +41,7 @@ export default {
   },
   methods: {
     onShowNotice(notice) {
+      alert(notice.notice_title);
       this.$logger.noticeOpen(this, notice);
       if (!notice.is_read) {
         this.setRead(notice);
@@ -51,7 +52,4 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-::v-deep .date {
-  font-weight: bold;
-}
 </style>
