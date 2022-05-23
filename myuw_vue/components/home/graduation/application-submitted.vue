@@ -335,7 +335,7 @@
 </template>
 
 <script>
-// MUWM-5010
+// MUWM-5010, MUWM-5065
 import { mapGetters, mapState, mapActions } from 'vuex';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Card from '../../_templates/card.vue';

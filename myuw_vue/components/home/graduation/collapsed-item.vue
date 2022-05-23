@@ -16,6 +16,7 @@
     </div>
     <uw-collapse
       :id="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
+      v-model="collapseOpen"
       tabindex="0"
       @show="onShowNotice(notice)"
     >
@@ -39,9 +40,13 @@ export default {
       required: true,
     },
   },
+  data: function() {
+    return {
+      collapseOpen: false,
+    };
+  },
   methods: {
     onShowNotice(notice) {
-      alert(notice.notice_title);
       this.$logger.noticeOpen(this, notice);
       if (!notice.is_read) {
         this.setRead(notice);
@@ -52,4 +57,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@use "sass:map";
+@import '../../../../myuw/static/css/myuw/variables.scss';
 </style>

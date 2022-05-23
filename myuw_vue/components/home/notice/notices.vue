@@ -6,7 +6,7 @@
     <template v-if="!isErrored" #card-body>
       <p v-if="notices.length == 0">You do not have any notices at this time.</p>
       <ul v-else class="list-unstyled mb-0 myuw-text-md">
-        <li v-for="notice in sortNotices(notices)" :key="notice.id_hash" class="mb-1">
+        <li v-for="(notice, i) in sortNotices(notices)" :key="notice.id_hash" class="mb-1">
           <div class="d-flex d-sm-inline-flex notice-container">
             <div class="flex-grow-1 pe-1">
               <span class="notice-title">
@@ -32,7 +32,12 @@
               </span>
             </div>
           </div>
-          <uw-collapse :id="notice.id_hash" tabindex="0" @show="onShowNotice(notice)">
+          <uw-collapse
+            :id="notice.id_hash"
+            tabindex="0" 
+            v-model="noticeOpen[i]"
+            @show="onShowNotice(notice)"
+          >
             <div class="p-3 mt-2 bg-light text-dark notice-body" v-html="notice.notice_body" />
           </uw-collapse>
         </li>
@@ -61,6 +66,7 @@ export default {
   data() {
     return {
       faExclamationTriangle,
+      noticeOpen: Array(20).fill(false),
     };
   },
   computed: {
