@@ -5,7 +5,7 @@
     </template>
     <template v-if="!isErrored" #card-body>
       <p v-if="notices.length == 0">You do not have any notices at this time.</p>
-      <uw-notice-list :notices="sortNotices(notices)" />
+      <uw-notice-list v-else :notices="sortNotices(notices)" />
     </template>
     <template v-else #card-body>
       <p class="text-danger myuw-text-md">
