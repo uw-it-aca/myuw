@@ -64,7 +64,7 @@ export default {
         this.setRead(notice);
       }
     },
-    ...mapActions('notices', ['fetch', 'setRead']),
+    ...mapActions('notices', ['setRead']),
   },
 };
 </script>

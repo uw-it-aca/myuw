@@ -20,7 +20,7 @@
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../../_templates/card.vue';
-import NoticeList from './notice_items.vue';
+import NoticeList from './notice-items.vue';
 
 export default {
   components: {
