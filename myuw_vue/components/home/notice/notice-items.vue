@@ -1,6 +1,6 @@
 <template>
   <ul class="list-unstyled mb-0 myuw-text-md">
-    <li v-for="(notice, i) in sortNotices(notices)" :key="notice.id_hash" class="mb-1">
+    <li v-for="(notice, i) in notices" :key="notice.id_hash" class="mb-1">
       <div class="d-flex d-sm-inline-flex notice-container">
         <div class="flex-grow-1 pe-1">
           <span class="notice-title">
@@ -50,7 +50,7 @@ export default {
     notices: {
       type: Array,
       required: true,
-    },
+    },  // sorted by notice.sortDate
   },
   data() {
     return {
