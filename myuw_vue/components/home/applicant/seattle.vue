@@ -35,9 +35,11 @@
 
       <h3 class="h6 myuw-font-encode-sans">Registration for returning student</h3>
       <p>
-        If readmitted, you must
-        <a href="https://sdb.admin.uw.edu/enroll/">confirm your enrollment</a> prior to being able
+        You must
+        <a href="https://sdb.admin.uw.edu/enroll/uwnetid/">confirm your enrollment and pay the enrollment fee</a> prior to being able 
         to register.
+        You will then register beginning with Registration Period II for your returning quarter. Check dates on the 
+        <a href="https://my.uw.edu/academic_calendar/">Academic Calendar</a>.
       </p>
       <p>
         You may register during the Registration Period II of your quarter of readmittance. Check
