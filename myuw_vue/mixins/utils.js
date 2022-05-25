@@ -134,13 +134,13 @@ export default {
     },
     toFromNowDate(date_str, useCompDate = true) {
       if (!date_str || date_str.length === 0) return '';
-
+      // MUWM-3947
       const delta = this.timeDeltaFrom(date_str);
+      if (delta < -1) return Math.abs(delta) + ' days ago';
+      if (delta >= -1 && delta < 0) return "a day ago";
       if (delta >= 0 && delta < 1) return "Today";
       if (delta >= 1 && delta < 2) return "Tomorrow";
-      date_str = date_str.replace(' ', 'T'); // MUWM-5095 'T' time works on all browsers
-      return dayjs(date_str).from(this.nowDatetime(useCompDate));
-      // breakdown range https://day.js.org/docs/en/display/from-now#list-of-breakdown-range
+      return 'in ' + (delta - 1) + ' days';
     },
     timeDeltaFrom(date_str, unit = 'day', useCompDate = true) {
       // return the number of units that the date_str (must be a valid date/datetime string)
