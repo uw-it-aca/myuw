@@ -347,82 +347,58 @@
         <h3 class="h6 myuw-font-encode-sans">
           Related Husky Experience Toolkit Articles
         </h3>
-        <div class="myuw-text-md">
-          <div class="d-flex flex-row">
-              <div class="col-6 pe-3 pb-3">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
-              </div>
-              <div>
-                <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
-                  How a Professional Job is Different from Being a Student
-                </a> 
-                <br>
-                <p class="fst-italic">2 min read</p>
-              </div>
+        <div class="myuw-text-md"
+            :class="[$mq == 'desktop' ? 'd-flex justify-content-between' : '']"
+        >
+
+
+
+          <div class="d-flex border border-danger"
+              :class="[$mq == 'desktop' ? 'flex-column px-2 mb-0' : 'mb-3']"
+          >
+            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
             </div>
-            <div class="d-flex flex-row">
-              <div class="col-6 pe-3 pb-3">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg" alt="">
-              </div>
-              <div>
-                <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
-                  Preparing for a Professional Life
-                </a>
-                <br>
-                <p class="fst-italic">2 min read</p>
-              </div>
-            </div>
-            <div class="d-flex flex-row">
-              <div class="col-6 pe-3 pb-3">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg" alt="">
-              </div>
-              <div>
-                <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
-                  Between College and Career
-                </a>
-                <br>
-                <p class="fst-italic">2 min read</p>
-              </div>
-            </div>
-          <div class="row">
-            <div class="col-12 col-lg-4">
-              <div class="border border-danger">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
-              </div>
-              <div>
-                <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
-                  How a Professional Job is Different from Being a Student
-                </a> 
-                <br>
-                <p class="fst-italic">2 min read</p>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="border border-danger">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg" alt="">
-              </div>
-              <div>
-                <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
-                  Preparing for a Professional Life
-                </a>
-                <br>
-                <p class="fst-italic">2 min read</p>
-              </div>
-            </div>
-            <div class="col-12 col-lg-4">
-              <div class="border border-danger">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg" alt="">
-              </div>
-              <div>
-                <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
-                  Between College and Career
-                </a>
-                <br>
-                <p class="fst-italic">2 min read</p>
-              </div>
+            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
+                How a Professional Job is Different from Being a Student
+              </a> 
+              <br>
+              <p class="fst-italic">2 min read</p>
             </div>
           </div>
+          <div class="d-flex border border-danger"
+              :class="[$mq == 'desktop' ? 'flex-column px-2 mb-0' : 'mb-3']"
+          >
+            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <img class="img-fluid" src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg" alt="">
+            </div>
+            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
+                Preparing for a Professional Life
+              </a>
+              <br>
+              <p class="fst-italic">2 min read</p>
+            </div>
+          </div>
+          <div class="d-flex border border-danger"
+            :class="[$mq == 'desktop' ? 'flex-column px-2 mb-0' : 'mb-3']"
+          >
+            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <img class="img-fluid" src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg" alt="">
+            </div>
+            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
+                Between College and Career
+              </a>
+              <br>
+              <p class="fst-italic">2 min read</p>
+            </div>
+          </div>
+
+
         </div>
+          
       </uw-collapse>
     </template>
     <template #card-footer>
