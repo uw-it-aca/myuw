@@ -194,9 +194,10 @@ export default {
       return 0;
     },
     gradeDelegateUrl() {
-      return 'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=' +
-        this.titleCaseWord(this.section.quarter) + '+' + this.section.year + '&sln=' +
-         this.section.sln;
+      return ''.concat(
+        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/gradedelegate.aspx?quarter=',
+        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
+        // MUWM-5145
     },
   },
 };
