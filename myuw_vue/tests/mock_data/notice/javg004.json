@@ -517,5 +517,53 @@
         "location_tags": [
             "checklist_feespaid"
         ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Save your UW work before it is deleted</span><span class=\"notice-body-with-title\"></span>",
+        "attributes": [],
+        "category": "Graduation SaveWork",
+        "sws_category": "Degree",
+        "is_critical": false,
+        "id_hash": "2868effd585844d2ef64057adf86e0e6",
+        "is_read": false,
+        "location_tags": [
+            "graduation"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Decide if you'd like to participate in the UW commencement celebration</span><span class=\"notice-body-with-title\"></span>",
+        "attributes": [],
+        "category": "Graduation Ceremony",
+        "sws_category": "Degree",
+        "is_critical": false,
+        "id_hash": "9bf93089091c2bbebf7e268c26303844",
+        "is_read": true,
+        "location_tags": [
+            "graduation"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">Keep receiving emails sent to your UW address – set up forwarding</span><span class=\"notice-body-with-title\"></span>",
+        "attributes": [],
+        "category": "Graduation EmailForwarding",
+        "sws_category": "Degree",
+        "is_critical": false,
+        "id_hash": "9e5ef4eaf932a236ec61316fe1f1effd",
+        "is_read": false,
+        "location_tags": [
+            "graduation"
+        ]
+    },
+    {
+        "notice_content": "<span class=\"notice-title\">How to update your diploma name and mailing address</span><span class=\"notice-body-with-title\"></span>",
+        "attributes": [],
+        "category": "Graduation Diploma",
+        "sws_category": "Degree",
+        "is_critical": false,
+        "id_hash": "be8761577cb2dbc7c79520b2efa6c1f0",
+        "is_read": false,
+        "location_tags": [
+            "graduation"
+        ]
     }
 ]
