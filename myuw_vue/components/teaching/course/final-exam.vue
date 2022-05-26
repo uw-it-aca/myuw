@@ -79,7 +79,7 @@ export default {
       return ''.concat(
         'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/finalexam.aspx?quarter=',
         this.titleCaseWord(this.section.quarter), '+', this.section.year,
-        '&sln=', this.section.sln);
+        '&sln=', this.section.sln);  // MUWM-5145
     }
   },
   mounted() {
