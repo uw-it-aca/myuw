@@ -1,19 +1,22 @@
 <template>
   <div>
+    <div class="d-flex d-inline-flex notice-container">
+      <div class="flex-grow-1 pe-1">
+        <button
+          v-uw-collapse="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
+          v-no-track-collapse
+          type="button"
+          class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
+        >
+          <span class="notice-title" v-html="notice.notice_title" />
+        </button>
+      </div>
     <div>
-      <button
-        v-uw-collapse="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
-        v-no-track-collapse
-        type="button"
-        class="btn btn-link p-0 border-0 align-top notice-link text-start myuw-text-md"
-      >
-        <span class="notice-title" v-html="notice.notice_title" />
-      </button>
-      <span
-        v-if="!notice.is_read"
-        class="badge bg-warning fw-normal notice-status text-dark p-1"
-      >New</span>
+      <span v-if="!notice.is_read" class="badge bg-warning fw-normal notice-status text-dark p-1">
+      New
+      </span>
     </div>
+</div>
     <uw-collapse
       :id="`graduation-${notice.id_hash}-collapse-${$meta.uid}`"
       v-model="collapseOpen"

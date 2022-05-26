@@ -1,7 +1,7 @@
 <template>
   <ul class="list-unstyled mb-0 myuw-text-md">
     <li v-for="(notice, i) in notices" :key="notice.id_hash" class="mb-1">
-      <div class="d-flex d-sm-inline-flex notice-container">
+      <div class="d-flex d-inline-flex notice-container">
         <div class="flex-grow-1 pe-1">
           <span class="notice-title">
             <button
