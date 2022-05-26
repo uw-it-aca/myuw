@@ -131,10 +131,8 @@ export default {
         !this.section.is_primary_section);
     },
     legacyLink() {
-      return 'https://sdb.admin.uw.edu/sisMyUWClass/' +
-      'uwnetid/pop/classlist.aspx?quarter=' +
-      this.section.quarter + '+' +  this.section.year +
-      '&sln=' + this.section.sln;
+      return 'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/classlist.aspx?quarter=' +
+      this.section.quarter + '+' +  this.section.year + '&sln=' + this.section.sln;
     }
   },
   created() {
