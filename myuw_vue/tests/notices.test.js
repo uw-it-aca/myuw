@@ -6,6 +6,7 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import notices from '../vuex/store/notices';
 import NoticeCard from '../components/home/notice/notices';
+import NoticeList from '../components/home/notice/notice-items';
 
 import javgNotices from './mock_data/notice/javerage.json';
 import jnewNotices from './mock_data/notice/jnew.json';
@@ -123,15 +124,21 @@ describe('Notice Card', () => {
         notices.getters.isReady(wrapper.vm.$store.state.notices),
     ).toBeTruthy();
 
-    wrapper.vm.notices.forEach((notice) => {
-      wrapper.vm.onShowNotice(notice);
+    const wrapper1 = mount(NoticeList, {
+      store, localVue, propsData: {
+        notices: wrapper.vm.notices,
+      }
+    });
+    
+    wrapper1.vm.notices.forEach((notice) => {
+      wrapper1.vm.onShowNotice(notice);
     });
     expect(axios.put).toHaveBeenCalledTimes(9);
 
     // Test that it is not called twice
-    wrapper.vm.notices.forEach((notice) => {
+    wrapper1.vm.notices.forEach((notice) => {
       notice.is_read = true;
-      wrapper.vm.onShowNotice(notice);
+      wrapper1.vm.onShowNotice(notice);
     });
     expect(axios.put).toHaveBeenCalledTimes(9);
   });
