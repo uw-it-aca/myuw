@@ -344,22 +344,19 @@
             your future or anything else, connect with a counselor.
           </li>
         </ul>
-        <h3 class="h6 myuw-font-encode-sans">
+        <h3 class="h6 myuw-font-encode-sans mb-3">
           Related Husky Experience Toolkit Articles
         </h3>
         <div class="myuw-text-md"
             :class="[$mq == 'desktop' ? 'd-flex justify-content-between' : '']"
         >
-
-
-
-          <div class="d-flex border border-danger"
-              :class="[$mq == 'desktop' ? 'flex-column px-2 mb-0' : 'mb-3']"
+          <div class="d-flex"
+              :class="[$mq == 'desktop' ? 'flex-column pe-3 mb-0' : 'mb-3']"
           >
-            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+            <div :class="[$mq != 'desktop' ? 'w-50 pe-3' : '']">
               <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="">
             </div>
-            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+            <div :class="[$mq != 'desktop' ? 'w-50' : 'pt-2']">
               <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
                 How a Professional Job is Different from Being a Student
               </a> 
@@ -367,13 +364,13 @@
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
-          <div class="d-flex border border-danger"
-              :class="[$mq == 'desktop' ? 'flex-column px-2 mb-0' : 'mb-3']"
+          <div class="d-flex"
+              :class="[$mq == 'desktop' ? 'flex-column pe-3 mb-0' : 'mb-3']"
           >
-            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+            <div :class="[$mq != 'desktop' ? 'w-50 pe-3' : '']">
               <img class="img-fluid" src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg" alt="">
             </div>
-            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+            <div :class="[$mq != 'desktop' ? 'w-50' : 'pt-2']">
               <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
                 Preparing for a Professional Life
               </a>
@@ -381,13 +378,13 @@
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
-          <div class="d-flex border border-danger"
-            :class="[$mq == 'desktop' ? 'flex-column px-2 mb-0' : 'mb-3']"
+          <div class="d-flex"
+            :class="[$mq == 'desktop' ? 'flex-column pe-3 mb-0' : 'mb-3']"
           >
-            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+            <div :class="[$mq != 'desktop' ? 'w-50 pe-3' : '']">
               <img class="img-fluid" src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg" alt="">
             </div>
-            <div :class="[$mq != 'desktop' ? 'w-50' : '']">
+            <div :class="[$mq != 'desktop' ? 'w-50' : 'pt-2']">
               <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
                 Between College and Career
               </a>
