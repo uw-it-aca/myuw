@@ -137,15 +137,11 @@ describe('mixins', () => {
     expect(utils.methods.toFromNowDate(now.subtract(5, 'd').toISOString(), false))
       .toEqual('5 days ago');
     expect(utils.methods.toFromNowDate(now.add(5, 'd').toISOString(), false))
-      .toEqual('in 5 days');
+      .toEqual('in 4 days');
     expect(utils.methods.toFromNowDate(now.subtract(1, 'M').toISOString(), false))
-      .toEqual('a month ago');
+      .toEqual('30 days ago');
     expect(utils.methods.toFromNowDate(now.add(1, 'M').toISOString(), false))
-      .toEqual('in a month');
-    expect(utils.methods.toFromNowDate(now.subtract(5, 'M').toISOString(), false))
-      .toEqual('5 months ago');
-    expect(utils.methods.toFromNowDate(now.add(5, 'M').toISOString(), false))
-      .toEqual('in 5 months');
+      .toEqual('in 30 days');
   });
 
   it('formatPhoneNumberLink', () => {

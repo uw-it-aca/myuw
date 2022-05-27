@@ -111,6 +111,7 @@ class TestPageMethods(MyuwApiTest):
             self.assertEquals(response.context["disable_actions"], False)
             self.assertIsNotNone(response.context["card_display_dates"])
             self.assertIsNotNone(response.context["user"]["affiliations"])
+            self.assertIsNotNone(response.context["persistent_messages"])
             self.assertEquals(response.context["user"]['email_forward_url'],
                               'http://alpine.washington.edu')
             self.assertIsNone(response.context['google_search_key'])

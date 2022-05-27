@@ -168,8 +168,8 @@ export default {
       );
     },
     confirmationLink() {
-      // MUWM-4938
-      return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/finalexam.asp?${
+      // MUWM-5145
+      return `https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?${
         this.quarter}+${this.year}&sln=${this.meetingData.section.sln}`;
     },
     ariaLabel() {

@@ -30,6 +30,7 @@ from myuw.views.rest_search import MyUWRestSearchView
 from myuw.views.api.affiliation import Affiliation
 from myuw.views.api.applications import Applications
 from myuw.views.api.banner_message import CloseBannerMsg, TurnOffPopup
+from myuw.views.api.persistent_messages import BannerMessage
 from myuw.views.api.current_schedule import StudClasScheCurQuar
 from myuw.views.api.instructor_section import (InstSectionDetails,
                                                LTIInstSectionDetails)
@@ -98,6 +99,9 @@ urlpatterns += [
     re_path(r'api/v1/close_banner_message',
             CloseBannerMsg.as_view(),
             name="myuw_close_banner_message"),
+    re_path(r'api/v1/banner_message/$',
+            BannerMessage.as_view(),
+            name="myuw_banner_message"),
     re_path(r'api/v1/turn_off_tour_popup',
             TurnOffPopup.as_view(),
             name="myuw_turn_off_tour_popup"),

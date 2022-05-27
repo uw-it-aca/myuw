@@ -77,9 +77,9 @@ export default {
   computed: {
     confirmFinalLink() {
       return ''.concat(
-        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/finalexam.aspx?quarter=',
-        this.titleCaseWord(this.section.quarter), '+', this.section.year,
-        '&sln=', this.section.sln, '&chanid=');
+        'https://sdb.admin.uw.edu/sisMyUWClass/uwnetid/pop/finalexam.aspx?quarter=',
+        this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
+      // MUWM-5145
     }
   },
   mounted() {

@@ -16,6 +16,7 @@ from myuw.dao.gws import in_myuw_test_access_group
 from myuw.dao.quicklinks import get_quicklink_data
 from myuw.dao.card_display_dates import get_card_visibilty_date_values
 from myuw.dao.messages import get_current_messages
+from myuw.dao.persistent_messages import BannerMessage as Message
 from myuw.dao.term import add_term_data_to_context
 from myuw.dao.user import get_updated_user, not_existing_user
 from myuw.dao.user_pref import get_migration_preference
@@ -94,10 +95,17 @@ def page(request,
     banner_messages = []
     for message in get_current_messages(request):
         banner_messages.append(message.message_body)
+
+    try:
+        persistent_messages = Message(request).get_message_json()
+    except Exception:
+        log_exception(logger, err, traceback)
+
     context["banner_messages"] = banner_messages
     context["display_onboard_message"] = user_pref.display_onboard_message
     context["display_pop_up"] = user_pref.display_pop_up
     context["disable_actions"] = is_action_disabled()
+    context["persistent_messages"] = persistent_messages
 
     _add_email_forwarding(request, context)
 
