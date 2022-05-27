@@ -399,8 +399,6 @@
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
-
-
         </div>
           
       </uw-collapse>
