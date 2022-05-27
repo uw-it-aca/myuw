@@ -350,32 +350,44 @@
         <div class="myuw-text-md"
             :class="[$mq == 'desktop' ? 'd-flex justify-content-between' : '']"
         >
-          <div class="d-flex"
-              :class="[$mq == 'desktop' ? 'flex-column pe-4 mb-0' : 'mb-3']">
-            <div class="border border-secondary"
-            :class="[$mq != 'desktop' ? 'w-50' : '']">
-              <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/How_Professional_Job_Different_From_Student_480.jpg" alt="Urban planning student documenting observations in a downtown Seattle park.">
+          <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column pe-4 mb-0' : 'mb-3']">
+            <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <a
+                href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student"
+              >
+                <img
+                  class="img-fluid"
+                  :src="'/static/hx_toolkit_output/images/' +
+                        'How_Professional_Job_Different_From_Student_480.jpg'"
+                  alt="Urban planning student documenting observations in a downtown Seattle park.">
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
-              <a href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student">
+              <a
+                href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student"
+              >
                 How a Professional Job is Different from Being a Student
               </a> 
               <br>
               <p class="fst-italic">2 min read</p>
             </div>
           </div>
-          <div class="d-flex"
-              :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
-            <div class="border border-secondary"
-            :class="[$mq != 'desktop' ? 'w-50' : '']">
-              <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg" alt="Student and his mentor working together in a UW Health Sciences lab.">
+          <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
+            <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
+              <a
+                href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life"
+              >
+                <img
+                  class="img-fluid"
+                  src="/static/hx_toolkit_output/images/preparing_for_professional_life_480.jpg"
+                  alt="Student and his mentor working together in a UW Health Sciences lab."
+                >
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
-              <a href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life">
+              <a
+                href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life"
+              >
                 Preparing for a Professional Life
               </a>
               <br>
@@ -387,12 +399,21 @@
           >
             <div class="border border-secondary"
             :class="[$mq != 'desktop' ? 'w-50' : '']">
-              <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
-                <img class="img-fluid" src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg" alt="Person seated on rock ledge above a road that curves away in opposite directions.">
+              <a
+                href="https://my.uw.edu/husky_experience_message?article=between-college-and-career"
+              >
+                <img
+                  class="img-fluid"
+                  src="/static/hx_toolkit_output/images/Between_College_Career_480.jpg"
+                  :alt="'Person seated on rock ledge above a ' +
+                        'road that curves away in opposite directions.'"
+                >
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
-              <a href="https://my.uw.edu/husky_experience_message?article=between-college-and-career">
+              <a
+                href="https://my.uw.edu/husky_experience_message?article=between-college-and-career"
+              >
                 Between College and Career
               </a>
               <br>
