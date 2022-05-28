@@ -7,15 +7,8 @@
       <h2 class="visually-hidden">
         Announcements
       </h2>
-      <template v-if="bannerMessages.length || hasPersMsgToDisplay"
-        id="message_banner_location"
-      >
-        <uw-banner-message v-if="hasPersMsgToDisplay" :messages="persMessages" />
-
-        <div v-for="(message, i) in bannerMessages" id="messages" :key="i"
-          class="message px-3 py-2"
-          v-html="message"
-        ></div>
+      <template v-if="hasBannerMsgToDisplay" id="message_banner_location">
+        <uw-banner-message v-if="hasBannerMsgToDisplay" :messages="bannerMessages" />
       </template>
       <div v-if="displayOnboardMessage" class="px-3 py-2 msg-onboard">
         New here?
@@ -42,15 +35,13 @@ export default {
   computed: {
     ...mapState({
       bannerMessages: (state) => state.bannerMessages,
-      persMessages: (state) => state.persMessages,
       displayOnboardMessage: (state) => state.displayOnboardMessage,
     }),
-    hasPersMsgToDisplay() {
-      return this.persMessages.length > 0;
+    hasBannerMsgToDisplay() {
+      return this.bannerMessages.length > 0;
     },
     showContent() {
-      return (this.displayOnboardMessage || this.bannerMessages.length > 0 ||
-        this.hasPersMsgToDisplay);
+      return (this.displayOnboardMessage || this.hasBannerMsgToDisplay);
     },
   },
   methods: {
