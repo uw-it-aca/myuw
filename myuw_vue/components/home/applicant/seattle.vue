@@ -36,15 +36,12 @@
       <h3 class="h6 myuw-font-encode-sans">Registration for returning student</h3>
       <p>
         You must
-        <a href="https://sdb.admin.uw.edu/enroll/uwnetid/">confirm your enrollment and pay the enrollment fee</a> prior to being able 
+        <a href="https://sdb.admin.uw.edu/enroll/uwnetid/">confirm your enrollment</a> and pay the enrollment fee prior to being able 
         to register.
-        You will then register beginning with Registration Period II for your returning quarter. Check dates on the 
-        <a href="https://my.uw.edu/academic_calendar/">Academic Calendar</a>.
       </p>
       <p>
-        You may register during the Registration Period II of your quarter of readmittance. Check
-        dates in the
-        <a href="http://www.washington.edu/students/reg/calendar.html">Academic calendar</a>.
+        You will then register beginning with Registration Period II for your returning quarter. Check dates on the 
+        <a href="http://www.washington.edu/students/reg/calendar.html">Academic Calendar</a>.
       </p>
 
       <h3 class="h6 myuw-font-encode-sans">Resources for Seattle applicants</h3>
