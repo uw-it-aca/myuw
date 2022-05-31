@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations} from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import axios from 'axios';
 import BnrMessage from './banner_message.vue';
 export default {
