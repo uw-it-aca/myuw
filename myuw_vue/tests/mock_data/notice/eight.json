@@ -1,0 +1,751 @@
+[
+  {
+    "notice_content": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp;<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available.<span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-04-01 07:00:00+00:00",
+        "formatted_value": "Wed, Apr 1"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-07-30 07:00:00+00:00",
+        "formatted_value": "Thu, Jul 30"
+      }
+    ],
+    "short_content": "Summer Aid Application now available",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "13f3d5fd7927e38a5e7e73fe47ba57c8",
+    "is_read": false,
+    "location_tags": [
+      "tuition_summeraid_avail_title",
+      "reg_summeraid_avail_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Financial Aid Disbursement Begins Thurs, June 18</span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on Thurs, June 18. Aid that exceeds your account charges will take 2-3 days to appear in your bank account.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-06-08 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 8"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-06-23 07:00:00+00:00",
+        "formatted_value": "Tue, Jun 23"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-06-13 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 13"
+      }
+    ],
+    "short_content": "Aid disbursement begins Thurs, June 18",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "1fa011027e423b912dcace244a22a752",
+    "is_read": false,
+    "location_tags": [
+      "tuition_disbursedateA_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Loan Master Promissory Note required</span>&nbsp;<span class=\"notice-body-with-title\">You may have a Master Promissory Note that needs to be signed, please check your messages on <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Financial Aid Status</a>.</span>",
+    "attributes": [],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "28094fd258d5fec795efbf89d8ff8224",
+    "is_read": false,
+    "location_tags": [
+      "tuition_loanpromissory"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Save your UW work before it is deleted</span><span class=\"notice-body-with-title\"></span>",
+    "attributes": [],
+    "category": "Graduation SaveWork",
+    "sws_category": "Degree",
+    "is_critical": false,
+    "id_hash": "2868effd585844d2ef64057adf86e0e6",
+    "is_read": false,
+    "location_tags": [
+      "graduation"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Loan entrance counseling required</span>&nbsp;<span class=\"notice-body-with-title\">You need to complete <a href=\"https://studentloans.gov\">Entrance Counseling</a> for your Loan(s).</span>",
+    "attributes": [],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "2cf6df07896d39b156f905e010f106c7",
+    "is_read": false,
+    "location_tags": [
+      "tuition_loancounseling"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Enroll in Direct Deposit for Aid Funds</span>&nbsp<span class=\"notice-body-with-title\"><a href=\"https://sdb.admin.uw.edu/students/uwnetid/emt.asp\">Sign up for direct deposit</a> of your Financial Aid Funds.</span>",
+    "attributes": [],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "320e69fc7e8a1d49b9c0dbc9347f9ab2",
+    "is_read": false,
+    "location_tags": [
+      "tuition_direct_deposit"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Summer Aid Application available April 1st</span>&nbsp;<span class=\"notice-body-with-title\">Summer Financial Aid Application will be available Wed, Apr 1.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-03-18 07:00:00+00:00",
+        "formatted_value": "Wed, Mar 18"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-03-31 07:00:00+00:00",
+        "formatted_value": "Tue, Mar 31"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-05-30 07:00:00+00:00",
+        "formatted_value": "Mon, May 30"
+      }
+    ],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": false,
+    "id_hash": "33c712a0eab9a695c1bf260da6e960cd",
+    "is_read": false,
+    "location_tags": [
+      "tuition_summeraid_date",
+      "notices_date_sort"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Submit 2015-2016 FAFSA by Feb 28th</span>&nbsp;<span class=\"notice-body-with-title\">If you haven't already, complete your 2015-2016 <a href=\"https://fafsa.gov\">Financial Aid Application</a> before Sat, Feb 28 priority consideration.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-01-01 08:00:00+00:00",
+        "formatted_value": "Thu, Jan 1"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-02-28 08:00:00+00:00",
+        "formatted_value": "Sat, Feb 28"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-05-23 07:00:00+00:00",
+        "formatted_value": "Mon, May 23"
+      },
+      {
+        "name": "AIDYR",
+        "data_type": "string",
+        "value": "2015-2016"
+      }
+    ],
+    "short_content": "Submit 2015-2016 FAFSA by Sat, Feb 28",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "379f0e7eecff686c4157caa6f71ca023",
+    "is_read": false,
+    "location_tags": [
+      "tuition_aid_prioritydate_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Registration/Transcript Holds</span><span class=\"notice-body-with-title\">The following offices have placed administrative holds on your academic record. These will prevent registration and/or ordering official transcripts. To resolve these holds, contact the office(s) listed below.</span><ul class=\"notice-list\"> <li>Registration and Transcript hold(s) placed by Graduation and Academic Records, 264 Schmitz Hall, 206-543-1803</li><li>Registration hold(s) placed by College of Architecture and Urban Planning, 208 Gould Hall, 206-685-8407</li><li>Transcript hold(s) placed by Department of Chemistry, 109 Bagley Hall, 206-543-1607</li></ul><span class=\"notice-body-with-title\"><a href=\"http://www.washington.edu/students/reg/regrest.html#Q2\">What is an administrative hold?</a></span>",
+    "attributes": [],
+    "category": "Holds",
+    "sws_category": "StudentALR",
+    "is_critical": true,
+    "id_hash": "4485b5004211ce26ad93ed5380e5a8a2",
+    "is_read": false,
+    "location_tags": [
+      "notices_holds",
+      "reg_card_holds"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Accept or Reject Your Financial Aid</span>&nbsp;<span class=\"notice-body-with-title\">You have been awarded financial aid and you need to <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">accept/reject</a> the award(s) now in order to avoid cancellation.</span>",
+    "attributes": [],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "557b77f89994ce8b567853bd722623cb",
+    "is_read": false,
+    "location_tags": [
+      "tuition_acceptreject"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Financial Aid Disbursement Begins Thurs, June 18</span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on Thurs, June 18. Aid that exceeds your account charges will take 2-3 days to appear in your bank account.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-06-08 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 8"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-06-23 07:00:00+00:00",
+        "formatted_value": "Tue, Jun 23"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-06-13 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 13"
+      }
+    ],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "70e710061cd6286b83af32cd93997cfa",
+    "is_read": false,
+    "location_tags": [
+      "tuition_disbursedateA",
+      "notices_date_sort"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Loan Master Promissory Note required</span>&nbsp;<span class=\"notice-body-with-title\">You may have a Master Promissory Note that needs to be signed, please check your messages on <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Financial Aid Status</a>.</span>",
+    "attributes": [],
+    "short_content": "Loan Master Promissory Note needs signing",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "71eedeba09c802408c03d8411410fc2e",
+    "is_read": false,
+    "location_tags": [
+      "tuition_loanpromissory_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Summer Financial Aid Application now available</span>&nbsp;<span class=\"notice-body-with-title\">The <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">Summer Financial Aid Application</a> is now available.<span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-04-01 07:00:00+00:00",
+        "formatted_value": "Wed, Apr 1"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-07-30 07:00:00+00:00",
+        "formatted_value": "Thu, Jul 30"
+      }
+    ],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": false,
+    "id_hash": "7f5e670f878f040e5ba4dff7232ce778",
+    "is_read": false,
+    "location_tags": [
+      "tuition_summeraid_avail",
+      "reg_summeraid_avail"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Missing Financial Aid documents</span>&nbsp;<span class=\"notice-body-with-title\">Your aid has not been disbursed because you need to <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\"> submit missing documents.</a></span>",
+    "attributes": [],
+    "short_content": "Aid not disbursed because of missing documents",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "88010ba92bfa6491cc3fe3dc00626e07",
+    "is_read": false,
+    "location_tags": [
+      "tuition_missingdocs_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Accept or Reject Your Financial Aid</span>&nbsp;<span class=\"notice-body-with-title\">You have been awarded financial aid and you need to <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">accept/reject</a> the award(s) now in order to avoid cancellation.</span>",
+    "attributes": [],
+    "short_content": "Accept/reject your aid award",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "91d779e68493c9b37355f1e382272771",
+    "is_read": false,
+    "location_tags": [
+      "tuition_acceptreject_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Submit 2015-2016 FAFSA by Feb 28th</span>&nbsp;<span class=\"notice-body-with-title\">If you haven't already, complete your 2015-2016 <a href=\"https://fafsa.gov\">Financial Aid Application</a> before Sat, Feb 28 priority consideration.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-01-01 08:00:00+00:00",
+        "formatted_value": "Thu, Jan 1"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-02-28 08:00:00+00:00",
+        "formatted_value": "Sat, Feb 28"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-05-23 07:00:00+00:00",
+        "formatted_value": "Mon, May 23"
+      },
+      {
+        "name": "AIDYR",
+        "data_type": "string",
+        "value": "2015-2016"
+      }
+    ],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "92c9abeffe7ffaf56f8f8a70f2cec7ce",
+    "is_read": false,
+    "location_tags": [
+      "tuition_aid_prioritydate",
+      "notices_date_sort"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Decide if you'd like to participate in the UW commencement celebration</span><span class=\"notice-body-with-title\"></span>",
+    "attributes": [],
+    "category": "Graduation Ceremony",
+    "sws_category": "Degree",
+    "is_critical": false,
+    "id_hash": "9bf93089091c2bbebf7e268c26303844",
+    "is_read": false,
+    "location_tags": [
+      "graduation"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Keep receiving emails sent to your UW address – set up forwarding</span><span class=\"notice-body-with-title\"></span>",
+    "attributes": [],
+    "category": "Graduation EmailForwarding",
+    "sws_category": "Degree",
+    "is_critical": false,
+    "id_hash": "9e5ef4eaf932a236ec61316fe1f1effd",
+    "is_read": false,
+    "location_tags": [
+      "graduation"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\"> 2015-2016 FAFSA aid still available</span>&nbsp;<span class=\"notice-body-with-title\">You can still <a href=\"https://fafsa.gov\">apply for financial aid</a> even though the priority deadline has passed.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-03-01 08:00:00+00:00",
+        "formatted_value": "Sun, Mar 1"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-06-01 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 1"
+      },
+      {
+        "name": "AIDYR",
+        "data_type": "string",
+        "value": "2015-2016"
+      }
+    ],
+    "short_content": "You can still apply for 2015-2016 aid",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "a2139adbbebb4c080324b3f9dfdbfeea",
+    "is_read": false,
+    "location_tags": [
+      "tuition_aid_reminder_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">International Student Services Office Check-in Required</span><span class=\"notice-body-with-title\">You are not eligible to register until you check in with the UW Tacoma International Student Services Office (MAT 203). Please email uwtiss@uw.edu or call (253) 692-4762 for assistance.</span>",
+    "attributes": [
+      {
+        "name": "Campus",
+        "data_type": "string",
+        "value": "Tacoma"
+      }
+    ],
+    "category": "Holds",
+    "sws_category": "StudentALR",
+    "is_critical": true,
+    "id_hash": "a9fbcab8708d06d676fd56f8ce5bc03e",
+    "is_read": false,
+    "location_tags": [
+      "notices_holds",
+      "reg_card_holds"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Tuition Due</span><span class=\"notice-body-with-title\">Payment of tuition and tuition-related fees for summer quarter is due <span class=\"date\"> Fri, July 11</span>. For details, <a href=\"https://sdb.admin.uw.edu/students/UWNetID/tuition.asp\">view your Tuition Statement</a>.</span>",
+    "attributes": [
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2013-07-01 07:00:00+00:00",
+        "formatted_value": "Mon, Jul 1"
+      },
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2013-06-21 07:00:00+00:00",
+        "formatted_value": "Fri, Jun 21"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2013-07-01 07:00:00+00:00",
+        "formatted_value": "Mon, Jul 1"
+      },
+      {
+        "name": "Quarter",
+        "data_type": "string",
+        "value": "Summer"
+      }
+    ],
+    "category": "Fees & Finances",
+    "sws_category": "StudentDAD",
+    "is_critical": true,
+    "id_hash": "b27746083ea4bf9a0a5afb4524a53bbf",
+    "is_read": false,
+    "location_tags": [
+      "tuition_due_date",
+      "finance_card",
+      "notice_date_sort"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Missing Financial Aid documents</span>&nbsp;<span class=\"notice-body-with-title\">Your aid has not been disbursed because you need to <a href=\"https://sdb.admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\"> submit missing documents.</a></span>",
+    "attributes": [],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "b2d03becbba44fdadbb871ae49ba16ba",
+    "is_read": false,
+    "location_tags": [
+      "tuition_missingdocs"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Loan entrance counseling required</span>&nbsp;<span class=\"notice-body-with-title\">You need to complete <a href=\"https://studentloans.gov\">Entrance Counseling</a> for your Loan(s).</span>",
+    "attributes": [],
+    "short_content": "Loan entrance counseling required",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "be54fecf77cf388cf5dc38bbb17e32cb",
+    "is_read": false,
+    "location_tags": [
+      "tuition_loancounseling_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">How to update your diploma name and mailing address</span><span class=\"notice-body-with-title\"></span>",
+    "attributes": [],
+    "category": "Graduation Diploma",
+    "sws_category": "Degree",
+    "is_critical": false,
+    "id_hash": "be8761577cb2dbc7c79520b2efa6c1f0",
+    "is_read": false,
+    "location_tags": [
+      "graduation"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Financial Aid Hold</span>&nbsp;<span class=\"notice-body-with-title\">You have a <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">hold</a> on your financial aid.</span>",
+    "attributes": [],
+    "short_content": "You have a hold on your aid",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "c2aeb8fdff4d932686dd89fe07590233",
+    "is_read": false,
+    "location_tags": [
+      "tuition_aidhold_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Financial Aid Disbursement begins Thurs, June 18</span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on Thurs, June 18. Aid that exceeds your account charges can take up to 10 business days to get by mail.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-06-08 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 8"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-06-23 07:00:00+00:00",
+        "formatted_value": "Tue, Jun 23"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-06-13 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 13"
+      }
+    ],
+    "short_content": "Aid Disbursement begins Thurs, June 18",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "cc4c8ea73fc5ecb1755f572c7c2969f0",
+    "is_read": false,
+    "location_tags": [
+      "tuition_disbursedateB_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Summer Aid Application available April 1st</span>&nbsp;<span class=\"notice-body-with-title\">Summer Financial Aid Application will be available Wed, Apr 1.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-03-18 07:00:00+00:00",
+        "formatted_value": "Wed, Mar 18"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-03-31 07:00:00+00:00",
+        "formatted_value": "Tue, Mar 31"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-05-30 07:00:00+00:00",
+        "formatted_value": "Mon, May 30"
+      }
+    ],
+    "short_content": "Summer Aid Application available Wed, Apr 1",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "d2c619cb2db7edff3b5f74f4f40f1cf8",
+    "is_read": false,
+    "location_tags": [
+      "tuition_summeraid_date_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Enroll in Direct Deposit for Aid Funds</span>&nbsp<span class=\"notice-body-with-title\"><a href=\"https://sdb.admin.uw.edu/students/uwnetid/emt.asp\">Sign up for direct deposit</a> of your Financial Aid Funds.</span>",
+    "attributes": [],
+    "short_content": "Enroll in Direct Deposit",
+    "category": "Fees & Finances",
+    "is_critical": false,
+    "id_hash": "d6240733428083a2a0c454b36ecedc6f",
+    "is_read": false,
+    "location_tags": [
+      "tuition_direct_deposit_title"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\"> 2015-2016 FAFSA aid still available</span>&nbsp;<span class=\"notice-body-with-title\">You can still <a href=\"https://fafsa.gov\">apply for financial aid</a> even though the priority deadline has passed.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-03-01 08:00:00+00:00",
+        "formatted_value": "Sun, Mar 1"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-06-01 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 1"
+      },
+      {
+        "name": "AIDYR",
+        "data_type": "string",
+        "value": "2015-2016"
+      }
+    ],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": false,
+    "id_hash": "d6ed079b1245d3dc6fa2d7c2595eb8ee",
+    "is_read": false,
+    "location_tags": [
+      "tuition_aid_reminder"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Satisfactory Progress Registration Block</span><span class=\"notice-body-with-title\">You currently have a satisfactory progress registration block on your academic record. This will prevent further registration in any quarter but summer. <a href=\"http://www.washington.edu/students/reg/regpol.html#progress\">Learn how to resolve satisfactory progress registration blocks</a>.</span>",
+    "attributes": [],
+    "category": "Holds",
+    "sws_category": "StudentALR",
+    "is_critical": true,
+    "id_hash": "d70054000f91922718253ea4eb87844a",
+    "is_read": false,
+    "location_tags": [
+      "notices_holds",
+      "reg_card_holds"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">FERPA</span><span class=\"notice-body-with-title\">The Family Educational Rights and Privacy Act (FERPA) of 1974 protects the privacy of your education records. However, your directory information may be released unless you inform the Registrar's Office. For further details check the <a href=\"http://www.washington.edu/students/reg/ferpa.html\">Family Educational Rights and Privacy Act web site</a>.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2013-04-01 07:00:00+00:00",
+        "formatted_value": "Mon, Apr 1"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2013-05-01 07:00:00+00:00",
+        "formatted_value": "Wed, May 1"
+      }
+    ],
+    "category": "Legal",
+    "sws_category": "StudentGEN",
+    "is_critical": false,
+    "id_hash": "e5fa5413b55f3300b0d038dd966aa9a4",
+    "is_read": false,
+    "location_tags": [
+      "notices_legal"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Pre-Registration Requirement</span><span class=\"notice-body-with-title\">Beginning one week prior to each quarter's registration period you can make all the required Notices and Insurance&#47Optional Charges selections. You will then be able to go directly into Web Registration when your priority registration period begins. If you have not already done so <a href=\"https://sdb.admin.washington.edu/students/uwnetid/op_charges.asp\">go to the Insurance&#47Optional Charges</a> services now to complete these requirements prior to registering for autumn quarter.</span>",
+    "attributes": [
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-05-25 07:00:00+00:00",
+        "formatted_value": "Wed, May 25"
+      },
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2022-05-22 07:00:00+00:00",
+        "formatted_value": "Sun, May 22"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2022-05-25 07:00:00+00:00",
+        "formatted_value": "Wed, May 25"
+      },
+      {
+        "name": "Quarter",
+        "data_type": "string",
+        "value": "Autumn"
+      }
+    ],
+    "category": "Registration",
+    "sws_category": "StudentALR",
+    "is_critical": true,
+    "id_hash": "e91f63656df491f12dbb414cb7fa2db5",
+    "is_read": false,
+    "location_tags": [
+      "reg_card_messages"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Estimated Registration Date</span><span class=\"notice-body-with-title\">Your estimated Period I Priority Registration Date for autumn quarter is <span class=\"date\"> Thurs, May 15</span>. Registration begins at 6:00 AM. <a href=\"http://www.washington.edu/students/reg/priorau14.html\">View your Period 1 Priority Registration Date</a>.</span>",
+    "attributes": [
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-05-30 07:00:00+00:00",
+        "formatted_value": "Mon, May 30"
+      },
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2022-05-22 07:00:00+00:00",
+        "formatted_value": "Sun, May 22"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2022-05-30 07:00:00+00:00",
+        "formatted_value": "Mon, May 30"
+      },
+      {
+        "name": "Quarter",
+        "data_type": "string",
+        "value": "Autumn"
+      }
+    ],
+    "category": "Registration",
+    "sws_category": "StudentDAD",
+    "is_critical": true,
+    "id_hash": "ec5f029246c1079bb3250cef4911f30a",
+    "is_read": false,
+    "location_tags": [
+      "est_reg_date",
+      "notices_date_sort"
+    ],
+    "is_my_1st_reg_day": false,
+    "my_reg_has_opened": false
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Financial Aid Disbursement begins Thurs, June 18</span>&nbsp;<span class=\"notice-body-with-title\">Financial Aid disbursement begins on Thurs, June 18. Aid that exceeds your account charges can take up to 10 business days to get by mail.</span>",
+    "attributes": [
+      {
+        "name": "DisplayBegin",
+        "data_type": "date",
+        "value": "2015-06-08 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 8"
+      },
+      {
+        "name": "DisplayEnd",
+        "data_type": "date",
+        "value": "2015-06-23 07:00:00+00:00",
+        "formatted_value": "Tue, Jun 23"
+      },
+      {
+        "name": "Date",
+        "data_type": "date",
+        "value": "2022-06-13 07:00:00+00:00",
+        "formatted_value": "Mon, Jun 13"
+      }
+    ],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "ee82aff1dd94cfffe2fc182aea5d2aa4",
+    "is_read": false,
+    "location_tags": [
+      "tuition_disbursedateB",
+      "notices_date_sort"
+    ]
+  },
+  {
+    "notice_content": "<span class=\"notice-title\">Financial Aid Hold</span>&nbsp;<span class=\"notice-body-with-title\">You have a <a href=\"https://sdb/admin.uw.edu/sisStudents/uwnetid/finaidstatus.aspx\">hold</a> on your financial aid.</span>",
+    "attributes": [],
+    "category": "Fees & Finances",
+    "sws_category": "StudentFinAid",
+    "is_critical": true,
+    "id_hash": "efe408f2fef17eb9e3c56fe6001357d4",
+    "is_read": false,
+    "location_tags": [
+      "tuition_aidhold"
+    ]
+  }
+]
