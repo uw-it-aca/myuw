@@ -24,12 +24,8 @@
           </div>
         </div>
         <div class="row">
-          <div class="col">Phone</div>
-          <div class="col">(206) 543-4000</div>
-        </div>
-        <div class="row">
           <div class="col">Location</div>
-          <div class="col">225 Schmitz Hall</div>
+          <div class="col">2nd Floor Schmitz Hall</div>
         </div>
       </div>
 
