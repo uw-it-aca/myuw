@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-light d-flex align-items-end flex-column" style="min-height: 100vh">
+  <div class="bg-light dark:bg-dark d-flex align-items-end flex-column" style="min-height: 100vh">
     <header v-if="!displayHybrid" class="w-100">
       <div
         v-if="disableActions"
@@ -29,6 +29,7 @@
               ><font-awesome-icon :icon="faUser" class="me-1" />{{ netid }}</a>
             </div>
             <div class="col text-end">
+              <uw-dark-mode-toggle />
               <a
                 v-if="emailError"
                 v-out="'UW email services'"
@@ -118,7 +119,7 @@
               <div class="nav flex-column" :class="[$mq == 'desktop' ? '' : 'border-bottom']">
                 <li class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/"
                     :class="{ active: page.title == 'Home' }"
                     ><font-awesome-icon :icon="faHome" class="me-2" fixed-width />Home</a
@@ -126,7 +127,7 @@
                 </li>
                 <li v-if="student || applicant" class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/academics/"
                     :class="{ active: page.title == 'Academics' }"
                     ><font-awesome-icon :icon="faGraduationCap" class="me-2" fixed-width />Academics
@@ -134,7 +135,7 @@
                 </li>
                 <li v-if="(undergrad && seattle) || hxtViewer" class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/husky_experience/"
                     :class="{ active: page.title == 'Husky Experience Toolkit' }"
                   >
@@ -143,7 +144,7 @@
                 </li>
                 <li v-if="instructor" class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/teaching/"
                     :class="{ active: page.title == 'Teaching' }"
                   >
@@ -152,7 +153,7 @@
                 </li>
                 <li class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/accounts/"
                     :class="{ active: page.title == 'Accounts' }"
                   >
@@ -161,7 +162,7 @@
                 </li>
                 <li v-if="student" class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/notices/"
                     :class="{ active: page.title == 'Notices' }"
                   >
@@ -174,7 +175,7 @@
                 </li>
                 <li class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/profile/"
                     :class="{ active: page.title == 'Profile' }"
                   >
@@ -182,14 +183,14 @@
                   >
                 </li>
                 <li class="nav-item mb-2" aria-hidden="true">
-                  <a class="nav-link disabled text-dark d-block p-0 internal-link" href="#">
+                  <a class="nav-link disabled text-dark dark:bg-light d-block p-0 internal-link" href="#">
                     <hr class="m-0 bg-secondary" />
                     <span class="visually-hidden"> Navigation separator</span></a
                   >
                 </li>
                 <li class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/academic_calendar/"
                     :class="{ active: page.title == 'Academic Calendar' }"
                   >
@@ -202,7 +203,7 @@
                 </li>
                 <li class="nav-item mb-2">
                   <a
-                    class="nav-link text-dark d-block px-2 py-1"
+                    class="nav-link text-dark dark:text-light d-block px-2 py-1"
                     href="/resources/"
                     :class="{ active: page.title == 'UW Resources' }"
                   >
@@ -353,6 +354,8 @@ import Welcome from './welcome.vue';
 import Messages from './messages.vue';
 import Collapse from '../collapse.vue';
 import Modal from '../modal.vue';
+import Button from '../tabs/button.vue';
+import DarkModeToggle from './dark-mode-toggle.vue';
 
 export default {
   components: {
@@ -361,6 +364,8 @@ export default {
     'uw-welcome': Welcome,
     'uw-collapse': Collapse,
     'uw-modal': Modal,
+    'uw-button': Button,
+    'uw-dark-mode-toggle': DarkModeToggle,
   },
   props: {
     logoutUrl: {

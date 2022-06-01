@@ -1,3 +1,15 @@
 // myuw theme variables
 @import "./variables.scss";
 @import '~bootstrap/scss/bootstrap';
+
+@each $name, $color in $utilities-bg-colors {
+  html[data-theme='dark'] .dark\:bg-#{$name} {
+    @extend .bg-#{$name};
+  }
+}
+
+@each $name, $color in $utilities-text-colors {
+  html[data-theme='dark'] .dark\:text-#{$name} {
+    @extend .text-#{$name};
+  }
+}
