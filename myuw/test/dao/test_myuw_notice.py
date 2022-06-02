@@ -228,6 +228,14 @@ class TestMyuwNotice(TransactionTestCase):
                             end=get_datetime_with_tz(2018, 5, 10, 10),
                             target_group='u_astratst_myuw_test-support-admin')
         notice.save()
+        notice = MyuwNotice(title="Goo1",
+                            content="Notice Content1",
+                            notice_type="Banner",
+                            notice_category="MyUWNotice",
+                            start=get_datetime_with_tz(2018, 5, 8, 10),
+                            end=get_datetime_with_tz(2018, 5, 10, 10),
+                            target_group='u_not_exist')
+        notice.save()
         request = get_request_with_user(
             'bill', get_request_with_date("2018-05-09"))
         notices = get_myuw_notices_for_user(request)

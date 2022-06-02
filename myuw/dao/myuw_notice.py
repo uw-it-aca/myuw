@@ -1,10 +1,16 @@
 # Copyright 2022 UW-IT, University of Washington
 # SPDX-License-Identifier: Apache-2.0
 
+import logging
+import traceback
+from restclients_core.exceptions import DataFailureException
+from myuw.dao import log_err
 from myuw.dao.affiliation import get_all_affiliations
 from myuw.models.myuw_notice import MyuwNotice
 from myuw.dao.gws import is_effective_member
 from myuw.dao.term import get_comparison_datetime_with_tz
+
+logger = logging.getLogger(__name__)
 
 
 def get_myuw_notices_for_user(request):
@@ -20,9 +26,15 @@ def get_myuw_notices_for_user(request):
             continue
 
         if notice.has_target_group():
-            if is_effective_member(request, notice.target_group):
-                user_notices.append(notice)
-            continue
+            try:
+                if is_effective_member(request, notice.target_group):
+                    user_notices.append(notice)
+                continue
+            except DataFailureException:
+                log_err(
+                    logger, "is_effective_member of target group({})".format(
+                        notice.target_group), traceback, request)
+                # notice skipped
 
         if for_all_affi(notice):
             if (is_stud_campus_matched(notice, affiliations) or
