@@ -2,8 +2,10 @@
 # SPDX-License-Identifier: Apache-2.0
 
 from django.test import TransactionTestCase
+from unittest.mock import patch
 from datetime import datetime
 from django.utils import timezone
+from restclients_core.exceptions import DataFailureException
 from myuw.dao.myuw_notice import get_myuw_notices_for_user,\
     campus_neutral, is_stud_campus_matched, is_employee_campus_matched
 from myuw.dao.notice_mapping import categorize_notices
@@ -244,5 +246,14 @@ class TestMyuwNotice(TransactionTestCase):
 
         request = get_request_with_user(
             'jalum', get_request_with_date("2018-05-09"))
+        notices = get_myuw_notices_for_user(request)
+        self.assertEqual(len(notices), 0)
+
+    @patch('myuw.dao.gws.is_effective_member', spec=True)
+    def test_target_group_err(self, mock):
+        mock.side_effect = DataFailureException(
+            None, 401, "No read permission")
+        request = get_request_with_date("2018-05-09")
+        get_request_with_user('bill', request)
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 0)

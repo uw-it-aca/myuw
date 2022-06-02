@@ -29,12 +29,12 @@ def get_myuw_notices_for_user(request):
             try:
                 if is_effective_member(request, notice.target_group):
                     user_notices.append(notice)
-                continue
             except DataFailureException:
                 log_err(
                     logger, "is_effective_member of target group({})".format(
                         notice.target_group), traceback, request)
                 # notice skipped
+            continue
 
         if for_all_affi(notice):
             if (is_stud_campus_matched(notice, affiliations) or
