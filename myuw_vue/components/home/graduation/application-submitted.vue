@@ -327,18 +327,21 @@
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column pe-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a
-                href="/husky_experience_message?article=how-professional-job-different-being-student"
+                :href="'/husky_experience_message?article=' +
+                      'how-professional-job-different-being-student'"
               >
                 <img
                   class="img-fluid"
                   :src="'/static/hx_toolkit_output/images/' +
                         'How_Professional_Job_Different_From_Student_480.jpg'"
-                  alt="Urban planning student documenting observations in a downtown Seattle park.">
+                  alt="Urban planning student documenting observations in a downtown Seattle park."
+                >
               </a>
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
               <a
-                href="/husky_experience_message?article=how-professional-job-different-being-student"
+                :href="'/husky_experience_message?article=' +
+                      'how-professional-job-different-being-student'"
               >
                 How a Professional Job is Different from Being a Student
               </a> 
