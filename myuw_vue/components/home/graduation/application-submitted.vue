@@ -327,7 +327,7 @@
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column pe-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a
-                href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student"
+                href="/husky_experience_message?article=how-professional-job-different-being-student"
               >
                 <img
                   class="img-fluid"
@@ -338,7 +338,7 @@
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
               <a
-                href="https://my.uw.edu/husky_experience_message?article=how-professional-job-different-being-student"
+                href="/husky_experience_message?article=how-professional-job-different-being-student"
               >
                 How a Professional Job is Different from Being a Student
               </a> 
@@ -349,7 +349,7 @@
           <div class="d-flex" :class="[$mq == 'desktop' ? 'flex-column px-4 mb-0' : 'mb-3']">
             <div class="border border-secondary" :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a
-                href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life"
+                href="/husky_experience_message?article=preparing-professional-life"
               >
                 <img
                   class="img-fluid"
@@ -360,7 +360,7 @@
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
               <a
-                href="https://my.uw.edu/husky_experience_message?article=preparing-professional-life"
+                href="/husky_experience_message?article=preparing-professional-life"
               >
                 Preparing for a Professional Life
               </a>
@@ -374,7 +374,7 @@
             <div class="border border-secondary"
             :class="[$mq != 'desktop' ? 'w-50' : '']">
               <a
-                href="https://my.uw.edu/husky_experience_message?article=between-college-and-career"
+                href="/husky_experience_message?article=between-college-and-career"
               >
                 <img
                   class="img-fluid"
@@ -386,7 +386,7 @@
             </div>
             <div :class="[$mq != 'desktop' ? 'w-50 ps-3' : 'pt-2']">
               <a
-                href="https://my.uw.edu/husky_experience_message?article=between-college-and-career"
+                href="/husky_experience_message?article=between-college-and-career"
               >
                 Between College and Career
               </a>
