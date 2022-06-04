@@ -203,8 +203,8 @@ class TestMyuwNotice(TransactionTestCase):
         self.assertEqual(notices[0].title, "For all users")
         self.assertEqual(notices[1].title, "For alumni")
 
-        request = get_request_with_date("2013-06-09")
-        get_request_with_user('none', request)
+        request = get_request_with_user(
+            'none', get_request_with_date("2013-06-09"))
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 1)
         self.assertEqual(notices[0].title, "For all users")
@@ -249,11 +249,19 @@ class TestMyuwNotice(TransactionTestCase):
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 0)
 
-    @patch('myuw.dao.gws.is_effective_member', spec=True)
+    @patch('myuw.dao.myuw_notice.is_effective_member', spec=True)
     def test_target_group_err(self, mock):
+        notice = MyuwNotice(title="Goo",
+                            content="Notice Content",
+                            notice_type="Banner",
+                            notice_category="MyUWNotice",
+                            start=get_datetime_with_tz(2018, 5, 8, 10),
+                            end=get_datetime_with_tz(2018, 5, 10, 10),
+                            target_group='u_astratst_myuw_test-support-admin')
+        notice.save()
         mock.side_effect = DataFailureException(
             None, 401, "No read permission")
-        request = get_request_with_date("2018-05-09")
-        get_request_with_user('bill', request)
+        request = get_request_with_user(
+            'bill', get_request_with_date("2018-05-09"))
         notices = get_myuw_notices_for_user(request)
         self.assertEqual(len(notices), 0)
