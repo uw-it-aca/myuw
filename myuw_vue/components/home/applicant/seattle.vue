@@ -30,12 +30,12 @@
       </div>
 
       <h3 class="h6 myuw-font-encode-sans">Registration for returning student</h3>
-      <p>
+      <p class="myuw-text-md">
         You must
         <a href="https://sdb.admin.uw.edu/enroll/uwnetid/">confirm your enrollment</a>
         and pay the enrollment fee prior to being able to register.
       </p>
-      <p>
+      <p class="myuw-text-md">
         You will then register beginning with Registration Period II for your returning quarter.
         Check dates on the
         <a href="http://www.washington.edu/students/reg/calendar.html">Academic Calendar</a>.
