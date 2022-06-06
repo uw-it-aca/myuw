@@ -24,25 +24,21 @@
           </div>
         </div>
         <div class="row">
-          <div class="col">Phone</div>
-          <div class="col">(206) 543-4000</div>
-        </div>
-        <div class="row">
           <div class="col">Location</div>
-          <div class="col">225 Schmitz Hall</div>
+          <div class="col">2nd Floor Schmitz Hall</div>
         </div>
       </div>
 
       <h3 class="h6 myuw-font-encode-sans">Registration for returning student</h3>
-      <p>
-        If readmitted, you must
-        <a href="https://sdb.admin.uw.edu/enroll/">confirm your enrollment</a> prior to being able
-        to register.
+      <p class="myuw-text-md">
+        You must
+        <a href="https://sdb.admin.uw.edu/enroll/uwnetid/">confirm your enrollment</a>
+        and pay the enrollment fee prior to being able to register.
       </p>
-      <p>
-        You may register during the Registration Period II of your quarter of readmittance. Check
-        dates in the
-        <a href="http://www.washington.edu/students/reg/calendar.html">Academic calendar</a>.
+      <p class="myuw-text-md">
+        You will then register beginning with Registration Period II for your returning quarter.
+        Check dates on the
+        <a href="http://www.washington.edu/students/reg/calendar.html">Academic Calendar</a>.
       </p>
 
       <h3 class="h6 myuw-font-encode-sans">Resources for Seattle applicants</h3>
