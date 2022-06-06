@@ -52,6 +52,7 @@ describe('International Student Card - student.vue', () => {
     expect(wrapper.vm.seattle).toBe(true);
     expect(wrapper.vm.bothell).toBe(false);
     expect(wrapper.vm.tacoma).toBe(false);
+    expect(wrapper.vm.singleCampus).toBe(true);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(true);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(false);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(false);
@@ -61,6 +62,7 @@ describe('International Student Card - student.vue', () => {
     store.state.user.affiliations.seattle = false;
     store.state.user.affiliations.bothell = true;
     const wrapper = shallowMount(StudentCard, { store, localVue });
+    expect(wrapper.vm.singleCampus).toBe(true);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(false);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(true);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(false);
@@ -70,6 +72,7 @@ describe('International Student Card - student.vue', () => {
     store.state.user.affiliations.seattle = false;
     store.state.user.affiliations.tacoma = true;
     const wrapper = shallowMount(StudentCard, { store, localVue });
+    expect(wrapper.vm.singleCampus).toBe(true);
     expect(wrapper.findComponent(SeattleComp).exists()).toBe(false);
     expect(wrapper.findComponent(BothellComp).exists()).toBe(false);
     expect(wrapper.findComponent(TacomaComp).exists()).toBe(true);
@@ -78,6 +81,8 @@ describe('International Student Card - student.vue', () => {
   it('Render Logic for no campus', () => {
     store.state.user.affiliations.seattle = false;
     const wrapper = mount(StudentCard, { store, localVue });
+    expect(wrapper.vm.singleCampus).toBe(false);
+    expect(wrapper.vm.noCampus).toBe(true);
     expect(wrapper.findComponent(Tabs).exists()).toBe(true);
     expect(wrapper.findAllComponents(TabButton).length).toBe(3);
     expect(wrapper.findAllComponents(TabPanel).length).toBe(3);
