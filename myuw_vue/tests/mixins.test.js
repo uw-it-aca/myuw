@@ -138,10 +138,6 @@ describe('mixins', () => {
       .toEqual('5 days ago');
     expect(utils.methods.toFromNowDate(now.add(5, 'd').toISOString(), false))
       .toEqual('in 4 days');
-    expect(utils.methods.toFromNowDate(now.subtract(1, 'M').toISOString(), false))
-      .toEqual('30 days ago');
-    expect(utils.methods.toFromNowDate(now.add(1, 'M').toISOString(), false))
-      .toEqual('in 30 days');
   });
 
   it('formatPhoneNumberLink', () => {
