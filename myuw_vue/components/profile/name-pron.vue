@@ -33,9 +33,9 @@
           <p>
             <uw-link-button
               class="myuw-button"
-              href="https://wd5.myworkday.com/uw/login.htmld"
+              href="https://identity.uw.edu/"
               :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
-              >Edit in identity.UW
+              >Edit in Identity.UW
             </uw-link-button>
           </p>
         </uw-card-property>
