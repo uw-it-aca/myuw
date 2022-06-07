@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from dateutil.parser import parse
 from dateutil.parser._parser import ParserError
 from uw_sws import SWS_TIMEZONE
-from myuw.dao.messages import clean_html
 from myuw.models.myuw_notice import MyuwNotice
 from myuw.logger.logresp import log_info, log_exception
 from myuw.views.decorators import admin_required
