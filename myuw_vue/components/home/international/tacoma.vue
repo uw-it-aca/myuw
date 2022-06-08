@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h3 class="h6 text-dark-beige myuw-font-encode-sans">CIE Portal</h3>
+    <h3 class="h6 text-dark-beige myuw-font-encode-sans">ISSS Portal</h3>
     <p class="myuw-text-md">
-      Use CIE Portal to create requests, maintain your immigration record, report required
+      Use ISSS Portal to create requests, maintain your immigration record, report required
       immigration information to the U.S. government, and get critical updates about visa status.
       <br />
-      <uw-link-button class="mt-2 mb-1" href="https://cie.uwb.edu">
-        Go to CIE Portal
+      <uw-link-button class="mt-2 mb-1" href="https://isss.tacoma.uw.edu/">
+        Go to ISSS Portal
       </uw-link-button>
     </p>
     <h3 class="h6 text-dark-beige myuw-font-encode-sans">Visa and Immigration Rules</h3>
