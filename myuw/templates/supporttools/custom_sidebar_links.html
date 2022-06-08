@@ -23,11 +23,10 @@
         {% if manage_messages_url %}
             <li>
                 <a href="{{ manage_messages_url }}">
-                    {{ persistent_message_link|default:"Persistent Messages" }}
+                    {{ persistent_message_link|default:"Banner Messages" }}
                 </a>
             </li>
         {% endif %}
-        <li><a href="{% url 'myuw_manage_messages' %}">Banner Messages</a></li>
         <li><a href="{% url 'myuw_popular_links' %}">Popular Links</a></li>
         <li><a href="{% url 'myuw_manage_notices' %}">MyUW Notices</a></li>
     </ul>
