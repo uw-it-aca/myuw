@@ -1,13 +1,7 @@
 <template>
-  <uw-card
-    :loaded="isReady"
-    :errored="isErrored"
-    :errored-show="showError"
-  >
+  <uw-card :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Name & Pronouns 
-      </h2>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Name &amp; Pronouns</h2>
     </template>
     <template #card-body>
       <uw-card-property-group>
@@ -16,28 +10,23 @@
         </uw-card-property>
 
         <uw-card-property title="Preferred Name">
-          <p v-if="!hasPreferredName" class="text-muted">
-            No Preferred name listed
-          </p>
+          <p v-if="!hasPreferredName" class="text-muted">No Preferred name listed</p>
           <div v-else>
             {{ prefName }}
           </div>
         </uw-card-property>
         <uw-card-property title="Pronouns">
-          <p v-if="!hasPronouns" class="text-muted">
-            No pronouns listed
-          </p>
-          <div v-else>
+          <div v-if="hasPronouns">
             {{ pronouns }}
           </div>
-          <p>
+          <div v-else class="text-muted">No pronouns listed</div>
+          <div class="mt-4">
             <uw-link-button
-              class="myuw-button"
+              class="px-2 py-1"
               href="https://identity.uw.edu/"
-              :style="`background-image: url(${staticUrl}images/wday_logo.png);`"
               >Edit in Identity.UW
             </uw-link-button>
-          </p>
+          </div>
         </uw-card-property>
       </uw-card-property-group>
     </template>
@@ -89,12 +78,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-// myuw button style
-.myuw-button {
-  background-repeat: no-repeat;
-  background-position: 4% 50%;
-  background-size: 18px;
-  padding-left: 32px;
-}
-</style>
+
