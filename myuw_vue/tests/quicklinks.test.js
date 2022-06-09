@@ -46,9 +46,9 @@ describe('Quicklinks/Link', () => {
     await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
     expect(wrapper.findAllComponents(Link)).toHaveLength(mockQuicklinks['default_links'].length);
-    expect(wrapper.findComponent(CovidLink).exists()).toBe(true);
 
-    const wrapperCovid = mount(CovidLink, { store, localVue });
+    let wrapperCovid = mount(CovidLink, { store, localVue });
+    expect(wrapperCovid.findComponent(CovidLink).exists()).toBe(true);
     expect(wrapperCovid.vm.student).toBe(true);
     expect(wrapperCovid.vm.instructor).toBe(true);
     expect(wrapperCovid.vm.seattleStudent).toBe(false);
@@ -58,9 +58,15 @@ describe('Quicklinks/Link', () => {
     expect(wrapperCovid.vm.bothellEmp).toBe(false);
     expect(wrapperCovid.vm.tacomaEmp).toBe(false);
     // MUWM-5077
-    const allH3s = wrapperCovid.findAll('h3');
+    let allH3s = wrapperCovid.findAll('h3');
     expect(allH3s.at(0).text()).toEqual('UW Coronavirus');
     expect(allH3s.at(1).text()).toEqual('Online Teaching');
+
+    store.state.user.affiliations.seattle = true;
+    wrapperCovid = mount(CovidLink, { store, localVue });
+    expect(wrapperCovid.vm.seattleStudent).toBe(true);
+    allH3s = wrapperCovid.findAll('h3');
+    expect(allH3s.at(1).text()).toEqual('Online Learning');
   });
 
   it('Add link', async () => {
