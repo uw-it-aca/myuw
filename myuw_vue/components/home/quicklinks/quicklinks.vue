@@ -161,7 +161,6 @@ export default {
       popularLinks: (state) => state.value.popular_links,
       customLinks: (state) => state.value.custom_links,
       defaultLinks: (state) => state.value.default_links,
-      allLinks: (state) => state.value,
     }),
     ...mapGetters('quicklinks', {
       isReady: 'isReady',
