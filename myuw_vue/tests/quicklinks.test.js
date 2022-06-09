@@ -46,9 +46,9 @@ describe('Quicklinks/Link', () => {
     await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
     expect(wrapper.findAllComponents(Link)).toHaveLength(mockQuicklinks['default_links'].length);
+    expect(wrapper.findComponent(CovidLink).exists()).toBe(true);
 
     let wrapperCovid = mount(CovidLink, { store, localVue });
-    expect(wrapperCovid.findComponent(CovidLink).exists()).toBe(true);
     expect(wrapperCovid.vm.student).toBe(true);
     expect(wrapperCovid.vm.instructor).toBe(true);
     expect(wrapperCovid.vm.seattleStudent).toBe(false);
@@ -63,8 +63,12 @@ describe('Quicklinks/Link', () => {
     expect(allH3s.at(1).text()).toEqual('Online Teaching');
 
     store.state.user.affiliations.seattle = true;
+    store.state.user.affiliations.official_seattle = false;
+    store.state.user.affiliations.official_tacoma = true;
     wrapperCovid = mount(CovidLink, { store, localVue });
     expect(wrapperCovid.vm.seattleStudent).toBe(true);
+    expect(wrapperCovid.vm.seattleEmp).toBe(false);
+    expect(wrapperCovid.vm.tacomaEmp).toBe(true);
     allH3s = wrapperCovid.findAll('h3');
     expect(allH3s.at(1).text()).toEqual('Online Learning');
   });
