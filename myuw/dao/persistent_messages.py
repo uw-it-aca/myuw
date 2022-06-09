@@ -4,7 +4,6 @@
 import logging
 from persistent_message.models import Message
 from myuw.dao.affiliation import get_all_affiliations
-from myuw.dao.gws import is_effective_member
 from myuw.dao.term import get_comparison_datetime_with_tz
 
 logger = logging.getLogger(__name__)

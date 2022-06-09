@@ -91,9 +91,6 @@ const store = new Vuex.Store({
     bannerMessages: JSON.parse(
       document.getElementById('banner_messages').innerHTML,
     ),
-    persMessages: JSON.parse(
-      document.getElementById('persistent_messages').innerHTML,
-    ),
     displayOnboardMessage: JSON.parse(
       document.getElementById('display_onboard_message').innerHTML,
     ),
