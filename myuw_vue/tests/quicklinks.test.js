@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import quicklinks from '../vuex/store/quicklinks';
 import Link from '../components/home/quicklinks/link.vue';
+import CovidLink from '../components/home/quicklinks/covid-links.vue';
 import Quicklinks from '../components/home/quicklinks/quicklinks.vue';
 
 import mockQuicklinks from './mock_data/quicklinks.json';
@@ -22,7 +23,19 @@ describe('Quicklinks/Link', () => {
       },
       state: {
         csrfToken: "dfsdfsgfsdg",
-      },
+        user: {
+          affiliations: {
+            student: true,
+            instructor: true,
+            seattle: false,
+            bothell: false,
+            tacoma: false,
+            official_seattle: true,
+            official_bothell: false,
+            official_tacoma: false,
+          }
+        },
+      }
     });
   });
 
@@ -33,6 +46,21 @@ describe('Quicklinks/Link', () => {
     await new Promise(setImmediate);
     expect(wrapper.find('h2').text()).toEqual('Quick Links');
     expect(wrapper.findAllComponents(Link)).toHaveLength(mockQuicklinks['default_links'].length);
+    expect(wrapper.findComponent(CovidLink).exists()).toBe(true);
+
+    const wrapperCovid = mount(CovidLink, { store, localVue });
+    expect(wrapperCovid.vm.student).toBe(true);
+    expect(wrapperCovid.vm.instructor).toBe(true);
+    expect(wrapperCovid.vm.seattleStudent).toBe(false);
+    expect(wrapperCovid.vm.bothellStudent).toBe(false);
+    expect(wrapperCovid.vm.tacomaStudent).toBe(false);
+    expect(wrapperCovid.vm.seattleEmp).toBe(true);
+    expect(wrapperCovid.vm.bothellEmp).toBe(false);
+    expect(wrapperCovid.vm.tacomaEmp).toBe(false);
+    // MUWM-5077
+    const allH3s = wrapperCovid.findAll('h3');
+    expect(allH3s.at(0).text()).toEqual('UW Coronavirus');
+    expect(allH3s.at(1).text()).toEqual('Online Teaching');
   });
 
   it('Add link', async () => {

@@ -20,7 +20,7 @@
         />
       </ul>
 
-      <uw-covid-links :links="allLinks" />
+      <uw-covid-links />
 
       <div v-if="recentLinks.length">
         <h3 class="h6">
