@@ -2,7 +2,6 @@
   <uw-panel v-if="hasName" :loaded="isReady" :errored="isErrored">
     <template #panel-body>
       <h2 class="h4 mb-3">
-        hello
         <span v-if="hasPreferred">
           {{ titleCaseName(displayName) }}
           <span v-if="hasPronouns" class="myuw-text-md text-uppercase" title="Pronouns">
