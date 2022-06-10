@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {mount} from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import {createLocalVue} from './helper';
 import quicklinks from '../vuex/store/quicklinks';
@@ -59,6 +59,7 @@ describe('Quicklinks/Link', () => {
     expect(wrapperCovid.vm.tacomaEmp).toBe(false);
     // MUWM-5077
     let allH3s = wrapperCovid.findAll('h3');
+    expect(allH3s.length).toBe(2);
     expect(allH3s.at(0).text()).toEqual('UW Coronavirus');
     expect(allH3s.at(1).text()).toEqual('Online Teaching');
 
@@ -70,7 +71,9 @@ describe('Quicklinks/Link', () => {
     expect(wrapperCovid.vm.seattleEmp).toBe(false);
     expect(wrapperCovid.vm.tacomaEmp).toBe(true);
     allH3s = wrapperCovid.findAll('h3');
+    expect(allH3s.length).toBe(3);
     expect(allH3s.at(1).text()).toEqual('Online Learning');
+    expect(allH3s.at(2).text()).toEqual('Online Teaching');
   });
 
   it('Add link', async () => {
