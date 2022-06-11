@@ -20,18 +20,39 @@ def get_current_quarter_instructor_schedule(request):
 @require_url('myuw_instructor_current_schedule_api')
 class TestInstructorCurrentSchedule(MyuwApiTest):
 
+    def test_grading_open(self):
+        # MUWM-4795
+        now_request = get_request_with_user(
+            'bill', get_request_with_date("2013-08-16 09:00:00"))
+        resp = InstScheCurQuar().get(now_request)
+        data = json.loads(resp.content)
+        section1 = data['sections'][0]
+        self.assertIsNotNone(section1["grading_open_date"])
+        self.assertTrue(section1['grading_period_is_open'])
+        self.assertFalse(section1['grading_period_is_past'])
+
+        now_request = get_request_with_user(
+            'bill', get_request_with_date("2013-08-27 18:00:00"))
+        resp = InstScheCurQuar().get(now_request)
+        data = json.loads(resp.content)
+        section1 = data['sections'][0]
+        self.assertIsNotNone(section1["grading_open_date"])
+        self.assertFalse(section1['grading_period_is_open'])
+        self.assertTrue(section1['grading_period_is_past'])
+
     def test_bill_current_term(self):
         now_request = get_request_with_user('bill')
         schedule = get_current_quarter_instructor_schedule(now_request)
 
         resp = InstScheCurQuar().get(now_request)
         data = json.loads(resp.content)
-        self.assertTrue(data['grading_period_is_open'])
-        self.assertFalse(data['grading_period_is_past'])
 
         self.assertEqual(len(data['sections']), 6)
 
         section1 = data['sections'][0]
+        self.assertIsNotNone(section1["grading_open_date"])
+        self.assertFalse(section1['grading_period_is_open'])
+        self.assertFalse(section1['grading_period_is_past'])
         self.assertEqual(section1['lib_subj_guide'],
                          'http://guides.lib.uw.edu/research')
         self.assertEqual(section1['curriculum_abbr'], "ESS")
