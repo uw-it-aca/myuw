@@ -92,18 +92,13 @@ function postProcess(response, urlExtra, rootState) {
   return data;
 }
 
-function addCourseGradeData(courseData) {
-  const now = courseData.now;
-  let data = {
-    isOpen: courseData.grading_period_is_open,
-    isClosed: courseData.grading_period_is_past,
-    open: parseDate(courseData.term.grading_period_open),
-    deadline: parseDate(courseData.term.grade_submission_deadline),
-  };
-
+function addSectionGradeData(section, data, now) {
+  // MUWM-4795
+  data.open = parseDate(section.grading_open_date);
+  data.isOpen = section.grading_period_is_open;
+  data.isClosed = section.grading_period_is_past;
   data.openRelative = data.open.from(now);
   data.deadlineRelative = data.deadline.from(now);
-
   const near_date_threshold = 5;
 
   if (Math.abs(data.open.diff(now, 'days')) > near_date_threshold) {
@@ -120,6 +115,13 @@ function addCourseGradeData(courseData) {
 
   data.opensIn24Hours = !data.open.diff(now, 'days');
   data.deadlineIn24Hours = !data.deadline.diff(now, 'days');
+}
+
+function addCourseGradeData(courseData) {
+  const now = courseData.now;
+  let data = {
+    deadline: parseDate(courseData.term.grade_submission_deadline),
+  };
 
   courseData.sections.forEach((section) => {
     const courseCampus = section.course_campus.toLowerCase();
@@ -133,6 +135,7 @@ function addCourseGradeData(courseData) {
 
     // Copy over all the fields we generated in data
     section['gradingPeriod'] = data;
+    addSectionGradeData(section, section['gradingPeriod'], now);
 
     if ('grading_status' in section && section.grading_status) {
       section.grading_status.allGradesSubmitted =
