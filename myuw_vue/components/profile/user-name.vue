@@ -5,7 +5,7 @@
         <span v-if="hasPreferred">
           {{ titleCaseName(displayName) }}
           <span v-if="hasPronouns" class="myuw-text-md text-uppercase" title="Pronouns">
-            ({{ titleCaseName(Pronouns) }})
+            ({{ titleCaseName(pronouns) }})
           </span>
         </span>
       </h2>
