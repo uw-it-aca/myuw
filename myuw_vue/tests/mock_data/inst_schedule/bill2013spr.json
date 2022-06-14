@@ -10,9 +10,9 @@
         "first_day_quarter": "2013-04-01",
         "census_day": "2013-04-12",
         "last_day_instruction": "2013-06-07",
-        "grading_period_open": "2021-06-21 17:00:00",
-        "aterm_grading_period_open": "2021-06-21 17:00:00",
-        "grade_submission_deadline": "2021-06-23 17:00:00",
+        "grading_period_open": "2022-06-12 17:00:00",
+        "aterm_grading_period_open": "2022-06-12 17:00:00",
+        "grade_submission_deadline": "2022-06-14 17:00:00",
         "registration_periods": [
             {
                 "start": "2013-02-15",
@@ -143,9 +143,9 @@
                         }
                     ],
                     "is_remote": false,
-                    "latitude": 47.656645546715,
-                    "longitude": -122.30718991534,
-                    "building_name": "Smith Hall (SMI)",
+                    "latitude": "47.653693",
+                    "longitude": "-122.304747",
+                    "building_name": "Mechanical Engineering Building",
                     "classroom_info_url": "http://www.washington.edu/classroom/SMI+401"
                 }
             ],
@@ -165,9 +165,9 @@
                 "room_number": "401",
                 "room": "401",
                 "is_remote": false,
-                "longitude": -122.30718991534,
-                "latitude": 47.656645546715,
-                "building_name": "Smith Hall (SMI)",
+                "longitude": "-122.304747",
+                "latitude": "47.653693",
+                "building_name": "Mechanical Engineering Building",
                 "classroom_info_url": "http://www.washington.edu/classroom/SMI+401"
             },
             "index": 0,
@@ -233,6 +233,9 @@
                     "level": "curriculum"
                 }
             ],
+            "grading_open_date": "2022-06-12 17:00:00",
+            "grading_period_is_open": false,
+            "grading_period_is_past": false,
             "has_eos_dates": false,
             "limit_estimated_enrollment": 15,
             "canvas_url": "https://canvas.uw.edu/courses/149651",
@@ -283,12 +286,12 @@
             "evaluation": {
                 "domain": "uw",
                 "section_sln": 15612,
-                "eval_open_date": "2013-05-25 15:00:00+00:00",
-                "eval_close_date": "2013-06-11 07:59:59+00:00",
+                "eval_open_date": "2013-05-25T15:00:00+00:00",
+                "eval_close_date": "2013-06-11T07:59:59+00:00",
                 "eval_status": "Closed",
                 "eval_url": "https://uw.iasysdev.org/survey/136617",
                 "report_url": "https://uw.iasysdev.org/report/136617",
-                "report_available_date": "2051-07-01 07:59:59+00:00",
+                "report_available_date": "2051-07-01T07:59:59+00:00",
                 "response_rate": 0.2490453,
                 "delivery_method": "Online",
                 "is_completed": null,
@@ -448,9 +451,9 @@
                         }
                     ],
                     "is_remote": false,
-                    "latitude": 47.652991135758,
-                    "longitude": -122.31110674603,
-                    "building_name": "Physics / Astronomy Auditorium (PAA)",
+                    "latitude": "47.653693",
+                    "longitude": "-122.304747",
+                    "building_name": "Mechanical Engineering Building",
                     "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
                 },
                 {
@@ -620,9 +623,9 @@
                         }
                     ],
                     "is_remote": false,
-                    "latitude": 47.652991135758,
-                    "longitude": -122.31110674603,
-                    "building_name": "Physics / Astronomy Auditorium (PAA)",
+                    "latitude": "47.653693",
+                    "longitude": "-122.304747",
+                    "building_name": "Mechanical Engineering Building",
                     "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
                 }
             ],
@@ -634,9 +637,18 @@
             "grading_system": "standard",
             "is_remote": false,
             "final_exam": {
-                "is_confirmed": false,
+                "is_confirmed": true,
                 "no_exam_or_nontraditional": false,
-                "is_remote": false
+                "start_date": "2013-06-14 08:30",
+                "end_date": "2013-06-14 10:20",
+                "building": "PAA",
+                "room_number": "A102",
+                "room": "A102",
+                "is_remote": false,
+                "longitude": "-122.304747",
+                "latitude": "47.653693",
+                "building_name": "Mechanical Engineering Building",
+                "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
             },
             "index": 1,
             "color_id": 2,
@@ -725,6 +737,9 @@
                     "level": "curriculum"
                 }
             ],
+            "grading_open_date": "2022-06-12 17:00:00",
+            "grading_period_is_open": false,
+            "grading_period_is_past": false,
             "has_eos_dates": false,
             "limit_estimated_enrollment": 220,
             "canvas_url": "https://canvas.uw.edu/courses/149651",
@@ -920,12 +935,12 @@
             "evaluation": {
                 "domain": "uw",
                 "section_sln": 18529,
-                "eval_open_date": "2013-03-20 15:00:00+00:00",
-                "eval_close_date": "2013-03-26 07:59:59+00:00",
+                "eval_open_date": "2013-03-20T15:00:00+00:00",
+                "eval_close_date": "2013-03-26T07:59:59+00:00",
                 "eval_status": "Closed",
                 "eval_url": "https://uw.iasysdev.org/survey/136617",
                 "report_url": "https://uw.iasysdev.org/report/136617",
-                "report_available_date": "2051-07-01 07:59:59+00:00",
+                "report_available_date": "2051-07-01T07:59:59+00:00",
                 "response_rate": 0.019233,
                 "delivery_method": "Online",
                 "is_completed": null,
@@ -1050,9 +1065,9 @@
                         }
                     ],
                     "is_remote": false,
-                    "latitude": 47.653644681181,
-                    "longitude": -122.311302,
-                    "building_name": "Physics / Astronomy Building (PAB)",
+                    "latitude": "47.653693",
+                    "longitude": "-122.304747",
+                    "building_name": "Mechanical Engineering Building",
                     "classroom_info_url": "http://www.washington.edu/classroom/PAB+B164"
                 }
             ],
@@ -1112,6 +1127,9 @@
                     "level": "section"
                 }
             ],
+            "grading_open_date": "2022-06-12 17:00:00",
+            "grading_period_is_open": false,
+            "grading_period_is_past": false,
             "has_eos_dates": false,
             "limit_estimated_enrollment": 22,
             "canvas_url": "https://canvas.uw.edu/courses/149651",
@@ -1153,8 +1171,13 @@
                 "eval_not_exist": true
             },
             "final_exam": {
-                "is_confirmed": false,
-                "no_exam_or_nontraditional": false
+                "is_confirmed": true,
+                "no_exam_or_nontraditional": false,
+                "start_date": "2013-06-14 08:30",
+                "end_date": "2013-06-14 10:20",
+                "building": "PAA",
+                "room_number": "A102",
+                "room": "A102"
             },
             "current": true
         },
@@ -1266,9 +1289,9 @@
                         }
                     ],
                     "is_remote": false,
-                    "latitude": 47.653644681181,
-                    "longitude": -122.311302,
-                    "building_name": "Physics / Astronomy Building (PAB)",
+                    "latitude": "47.653693",
+                    "longitude": "-122.304747",
+                    "building_name": "Mechanical Engineering Building",
                     "classroom_info_url": "http://www.washington.edu/classroom/PAB+B108"
                 }
             ],
@@ -1289,6 +1312,9 @@
             "allows_secondary_grading": false,
             "cc_display_dates": false,
             "grade_submission_delegates": [],
+            "grading_open_date": "2022-06-12 17:00:00",
+            "grading_period_is_open": false,
+            "grading_period_is_past": false,
             "has_eos_dates": false,
             "limit_estimated_enrollment": 22,
             "canvas_url": "https://canvas.uw.edu/courses/149651",
@@ -1329,8 +1355,13 @@
                 "eval_not_exist": true
             },
             "final_exam": {
-                "is_confirmed": false,
-                "no_exam_or_nontraditional": false
+                "is_confirmed": true,
+                "no_exam_or_nontraditional": false,
+                "start_date": "2013-06-14 08:30",
+                "end_date": "2013-06-14 10:20",
+                "building": "PAA",
+                "room_number": "A102",
+                "room": "A102"
             },
             "current": true
         },
@@ -1490,8 +1521,8 @@
             "final_exam": {
                 "is_confirmed": true,
                 "no_exam_or_nontraditional": false,
-                "start_date": "2013-06-10 08:30",
-                "end_date": "2013-06-10 10:20",
+                "start_date": "2013-06-09 08:30",
+                "end_date": "2013-06-09 10:20",
                 "building": "*",
                 "room_number": "*",
                 "room": "*",
@@ -1546,6 +1577,9 @@
                     "level": "curriculum"
                 }
             ],
+            "grading_open_date": "2022-06-12 17:00:00",
+            "grading_period_is_open": false,
+            "grading_period_is_past": false,
             "has_eos_dates": false,
             "canvas_url": null,
             "lib_subj_guide": "http://guides.lib.uw.edu/friendly.php?s=research/pnw",
@@ -1585,12 +1619,12 @@
             "evaluation": {
                 "domain": "uw",
                 "section_sln": 13830,
-                "eval_open_date": "2013-05-25 15:00:00+00:00",
-                "eval_close_date": "2013-06-11 07:59:59+00:00",
+                "eval_open_date": "2013-05-25T15:00:00+00:00",
+                "eval_close_date": "2013-06-11T07:59:59+00:00",
                 "eval_status": "Open",
                 "eval_url": "https://uw.iasysdev.org/survey/136617",
                 "report_url": "https://uw.iasysdev.org/report/136617",
-                "report_available_date": "2051-07-01 07:59:59+00:00",
+                "report_available_date": "2051-07-01T07:59:59+00:00",
                 "response_rate": 0,
                 "delivery_method": "Paper",
                 "is_completed": null,
@@ -1820,9 +1854,9 @@
                 "room_number": "012",
                 "room": "012",
                 "is_remote": false,
-                "longitude": -122.309198619,
-                "latitude": 47.6565514399,
-                "building_name": "Kane Hall (KNE)",
+                "longitude": "-122.304747",
+                "latitude": "47.653693",
+                "building_name": "Mechanical Engineering Building",
                 "classroom_info_url": "http://www.washington.edu/classroom/KNE+012"
             },
             "index": 5,
@@ -1873,6 +1907,9 @@
                     "level": "curriculum"
                 }
             ],
+            "grading_open_date": "2022-06-12 17:00:00",
+            "grading_period_is_open": false,
+            "grading_period_is_past": false,
             "has_eos_dates": false,
             "limit_estimated_enrollment": 5,
             "canvas_url": "https://canvas.uw.edu/courses/149651",
@@ -2080,9 +2117,9 @@
             "first_day_quarter": "2013-04-01",
             "census_day": "2013-04-12",
             "last_day_instruction": "2013-06-07",
-            "grading_period_open": "2021-06-21 17:00:00",
-            "aterm_grading_period_open": "2021-06-21 17:00:00",
-            "grade_submission_deadline": "2021-06-23 17:00:00",
+            "grading_period_open": "2022-06-12 17:00:00",
+            "aterm_grading_period_open": "2022-06-12 17:00:00",
+            "grade_submission_deadline": "2022-06-14 17:00:00",
             "registration_periods": [
                 {
                     "start": "2013-02-15",
@@ -2173,7 +2210,5 @@
     ],
     "past_term": false,
     "future_term": false,
-    "grading_period_is_open": true,
-    "grading_period_is_past": false,
     "has_eos_dates": false
 }

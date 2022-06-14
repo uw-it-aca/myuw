@@ -90,6 +90,7 @@
               "surname": "TEACHER",
               "full_name": "BILL AVERAGE TEACHER",
               "display_name": "BILL AVERAGE TEACHER",
+              "pronouns": null,
               "whitepages_publish": true,
               "employee_id": "123456782",
               "addresses": [
@@ -148,6 +149,7 @@
               "surname": "STUDENT",
               "full_name": "JAMES AVERAGE STUDENT",
               "display_name": "J. Average Student",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "123456789",
               "addresses": [],
@@ -207,9 +209,9 @@
         "room_number": "012",
         "room": "012",
         "is_remote": false,
-        "longitude": -122.307751,
-        "latitude": 47.654829,
-        "building_name": "Mary Gates Hall (MGH)",
+        "longitude": "-122.304747",
+        "latitude": "47.653693",
+        "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/MGH+012"
       },
       "index": 0,
@@ -230,6 +232,7 @@
             "surname": "WINSLOWE",
             "full_name": "Bags",
             "display_name": "Jim Bags",
+            "pronouns": null,
             "whitepages_publish": true,
             "employee_id": "123456789",
             "addresses": [],
@@ -259,6 +262,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2013-08-16 08:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 5,
       "canvas_url": "https://canvas.uw.edu/courses/23456",
@@ -464,9 +470,9 @@
       "first_day_quarter": "2013-04-01",
       "census_day": "2013-04-12",
       "last_day_instruction": "2013-06-07",
-      "grading_period_open": "2020-11-17 17:00:00",
-      "aterm_grading_period_open": "2020-11-17 17:00:00",
-      "grade_submission_deadline": "2020-11-19 17:00:00",
+      "grading_period_open": "2022-06-12 17:00:00",
+      "aterm_grading_period_open": "2022-06-12 17:00:00",
+      "grade_submission_deadline": "2022-06-14 17:00:00",
       "registration_periods": [
         {
           "start": "2013-02-15",
@@ -557,7 +563,5 @@
   ],
   "past_term": false,
   "future_term": true,
-  "grading_period_is_open": false,
-  "grading_period_is_past": true,
   "has_eos_dates": false
 }

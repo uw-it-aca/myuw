@@ -7,7 +7,7 @@ import {expectAction, createLocalVue} from '../helper';
 import mockBill2013Summer from
   '../mock_data/inst_schedule/bill2013summer.json';
 import mockBillpce2013Summer from
-  '../mock_data/inst_schedule/billpce2013summer.json';
+  '../mock_data/inst_schedule/billpce2013sumABFterm.json';
 import mockBillsea2013Spring from
   '../mock_data/inst_schedule/billsea2013spring.json';
 import mockNoCourse2013Summer from
@@ -115,6 +115,12 @@ describe('Instructor Schedule Data', () => {
     expect(store.state.inst_schedule.value.testCurrent).toBeDefined();
     const sections = store.state.inst_schedule.value.testCurrent.sections;
     expect(sections).toHaveLength(3);
+    expect(sections[0].id).toBe("2013-summer-CM-450-A");
+    expect(sections[0].gradingPeriod.deadlineFmt).toBe("Aug 27 at 5:00 PM PDT");
+    expect(sections[0].gradingPeriod.openFmt).toBe("Jul 18 at 8:00 AM PDT");
+    expect(sections[1].id).toBe("2013-summer-LIS-498-C");
+    expect(sections[0].gradingPeriod.deadlineFmt).toBe("Aug 27 at 5:00 PM PDT");
+    expect(sections[0].gradingPeriod.openFmt).toBe("Aug 16 at 8:00 AM PDT");
     expect(sections[2].id).toBe("2013-summer-EDIT-120-C");
     expect(sections[2].isPrevTermEnrollment).toBe(false);
   });
