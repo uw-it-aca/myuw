@@ -21,7 +21,6 @@ function postProcess(response, urlExtra, rootState) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
-  const time_schedule_published = courseData.term.time_schedule_published;
   courseData.now = getNow(rootState);
 
   let linkedPrimaryLabel = undefined;
@@ -94,7 +93,7 @@ function postProcess(response, urlExtra, rootState) {
 
 function addSectionGradeData(data, section, now, near_date_threshold) {
   // MUWM-4795
-  data.open = parseDate(section.grading_open_date);
+  data.open = dayjs(section.grading_open_date);
   data.isOpen = section.grading_period_is_open;
   data.isClosed = section.grading_period_is_past;
   data.openRelative = data.open.from(now);
@@ -132,7 +131,7 @@ function addCourseGradeData(courseData) {
 
     // Copy over all the fields we generated in data
     section['gradingPeriod'] = addSectionGradeData(
-      { deadline: parseDate(courseData.term.grade_submission_deadline),},
+      { deadline: dayjs(courseData.term.grade_submission_deadline),},
       section, now, near_date_threshold);
 
     if ('grading_status' in section && section.grading_status) {

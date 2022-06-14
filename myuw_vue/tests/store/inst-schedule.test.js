@@ -116,11 +116,11 @@ describe('Instructor Schedule Data', () => {
     const sections = store.state.inst_schedule.value.testCurrent.sections;
     expect(sections).toHaveLength(3);
     expect(sections[0].id).toBe("2013-summer-CM-450-A");
-    expect(sections[0].gradingPeriod.deadlineFmt).toBe("Aug 27 at 5:00 PM PDT");
-    expect(sections[0].gradingPeriod.openFmt).toBe("Jul 18 at 8:00 AM PDT");
+    expect(sections[0].gradingPeriod.deadlineFmt).toBe("Aug 27 at 5:00 PM UTC");
+    expect(sections[0].gradingPeriod.openFmt).toBe("Jul 18 at 8:00 AM UTC");
     expect(sections[1].id).toBe("2013-summer-LIS-498-C");
-    expect(sections[0].gradingPeriod.deadlineFmt).toBe("Aug 27 at 5:00 PM PDT");
-    expect(sections[0].gradingPeriod.openFmt).toBe("Aug 16 at 8:00 AM PDT");
+    expect(sections[1].gradingPeriod.deadlineFmt).toBe("Aug 27 at 5:00 PM UTC");
+    expect(sections[1].gradingPeriod.openFmt).toBe("Aug 16 at 8:00 AM UTC");
     expect(sections[2].id).toBe("2013-summer-EDIT-120-C");
     expect(sections[2].isPrevTermEnrollment).toBe(false);
   });
