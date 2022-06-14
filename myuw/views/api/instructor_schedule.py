@@ -247,7 +247,7 @@ def safe_label(label):
 
 
 def load_schedule(request, schedule, summer_term, section_callback=None):
-    comprison_dt = get_comparison_datetime(request)
+    comparison_dt = get_comparison_datetime(request)
     json_data = schedule.json_data()
     json_data["summer_term"] = summer_term
 
@@ -325,10 +325,9 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
             if section.is_summer_a_term()
             else section.term.grading_period_open)
         section_data["grading_period_is_open"] =\
-            section.is_grading_period_open(comprison_dt)
-        section_data["grading_period_is_past"] = (
-            schedule.term.grade_submission_deadline is None or
-            comprison_dt > schedule.term.grade_submission_deadline)
+            section.is_grading_period_open(comparison_dt)
+        section_data["grading_period_is_past"] =\
+            comparison_dt > schedule.term.grade_submission_deadline
 
         t = Thread(target=set_course_resources, args=(
             section_data, section, schedule.person,
