@@ -12,7 +12,6 @@ import {
 import {
   dayjs,
   getNow,
-  parseDate,
 } from '../common';
 
 const fmt = 'MMM D [at] h:mm A z';
@@ -142,7 +141,7 @@ function addCourseGradeData(courseData) {
         section.grading_status.submitted_date &&
         section.grading_status.submitted_date !== 'None'
       ) {
-        let submitted = parseDate(section.grading_status.submitted_date);
+        let submitted = dayjs(section.grading_status.submitted_date);
         if (Math.abs(submitted.diff(now, 'days')) > near_date_threshold) {
           section.grading_status.submittedFmt = submitted.format(fmt);
         } else {
@@ -166,15 +165,15 @@ function addCourseEvalData(courseData) {
         section.evaluation.responseRatePercent = Math.round(section.evaluation.response_rate * 100);
       }
       if (section.evaluation.eval_open_date) {
-        let evalOpen = parseDate(section.evaluation.eval_open_date);
+        let evalOpen = dayjs(section.evaluation.eval_open_date);
         section.evaluation.evalOpenDateDisplay = evalOpen.format(fmt);
       }
       if (section.evaluation.eval_close_date) {
-        let evalClose = parseDate(section.evaluation.eval_close_date);
+        let evalClose = dayjs(section.evaluation.eval_close_date);
         section.evaluation.evalCloseDateDisplay = evalClose.format(fmt);
       }
       if (section.evaluation.report_available_date) {
-        var reportDate = parseDate(section.evaluation.report_available_date);
+        var reportDate = dayjs(section.evaluation.report_available_date);
         section.evaluation.reportAvailableDateDisplay = reportDate.format(fmt);
       }
     }
