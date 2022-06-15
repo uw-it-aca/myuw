@@ -245,9 +245,6 @@
       "first_day_quarter": "2013-06-24",
       "census_day": "2013-07-05",
       "last_day_instruction": "2013-08-23",
-      "grading_period_open": "2013-08-16 08:00:00",
-      "aterm_grading_period_open": "2013-07-18 08:00:00",
-      "grade_submission_deadline": "2013-08-27 17:00:00",
       "registration_periods": [
         {
           "start": "2013-04-15",
@@ -267,7 +264,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2013-08-23 23:59:59"
+      "last_final_exam_date": "2013-08-23T23:59:59"
     },
     {
       "quarter": "Autumn",
@@ -278,9 +275,6 @@
       "first_day_quarter": "2013-09-25",
       "census_day": "2013-10-04",
       "last_day_instruction": "2013-12-06",
-      "grading_period_open": "2013-11-18 08:00:00",
-      "aterm_grading_period_open": null,
-      "grade_submission_deadline": "2013-12-17 17:00:00",
       "registration_periods": [
         {
           "start": "2013-05-10",
@@ -300,7 +294,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2013-12-13 23:59:59"
+      "last_final_exam_date": "2013-12-13T23:59:59"
     }
   ],
   "past_term": false,
