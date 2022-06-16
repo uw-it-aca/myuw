@@ -20,7 +20,7 @@
         />
       </ul>
 
-      <uw-covid-links :links="allLinks" />
+      <uw-covid-links />
 
       <div v-if="recentLinks.length">
         <h3 class="h6">
@@ -161,7 +161,6 @@ export default {
       popularLinks: (state) => state.value.popular_links,
       customLinks: (state) => state.value.custom_links,
       defaultLinks: (state) => state.value.default_links,
-      allLinks: (state) => state.value,
     }),
     ...mapGetters('quicklinks', {
       isReady: 'isReady',

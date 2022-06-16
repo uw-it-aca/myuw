@@ -145,7 +145,7 @@
     <!-- no meeting specified notes -->
     <div v-if="meetingsWithoutTime.length > 0">
       <p v-if="!isFinalsTab" class="text-muted myuw-text-md mb-1">
-        No meeting time specified:
+        No meeting time specified in the selected date range:
       </p>
       <p v-else class="text-muted myuw-text-md mb-1">
         Courses with final exam meeting times to be determined or courses with

@@ -49,7 +49,7 @@
       "course_description": "Examines management of construction projects focusing on construction contracting, cost estimating, project scheduling, and resource management. Offered: S.",
       "class_website_url": null,
       "sln": 10823,
-      "summer_term": "Full-term",
+      "summer_term": "A-term",
       "start_date": null,
       "end_date": null,
       "current_enrollment": 14,
@@ -312,7 +312,7 @@
           "level": "curriculum"
         }
       ],
-      "grading_open_date": "2013-08-16 08:00:00",
+      "grading_open_date": "2013-07-18 08:00:00",
       "grading_period_is_open": false,
       "grading_period_is_past": false,
       "has_eos_dates": false,
@@ -998,8 +998,9 @@
     }
   ],
   "registered_summer_terms": {
-    "full-term": true,
-    "b-term": true
+    "a-term": true,
+    "b-term": true,
+    "full-term": true
   },
   "summer_term": "full-term",
   "related_terms": [
