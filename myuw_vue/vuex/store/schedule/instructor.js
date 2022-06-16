@@ -12,7 +12,6 @@ import {
 import {
   dayjs,
   getNow,
-  parseDate,
 } from '../common';
 
 const fmt = 'MMM D [at] h:mm A z';
@@ -21,7 +20,6 @@ function postProcess(response, urlExtra, rootState) {
   let data = setTermAndExtractData(response, urlExtra);
 
   const courseData = data[urlExtra];
-  const time_schedule_published = courseData.term.time_schedule_published;
   courseData.now = getNow(rootState);
 
   let linkedPrimaryLabel = undefined;
@@ -92,19 +90,13 @@ function postProcess(response, urlExtra, rootState) {
   return data;
 }
 
-function addCourseGradeData(courseData) {
-  const now = courseData.now;
-  let data = {
-    isOpen: courseData.grading_period_is_open,
-    isClosed: courseData.grading_period_is_past,
-    open: parseDate(courseData.term.grading_period_open),
-    deadline: parseDate(courseData.term.grade_submission_deadline),
-  };
-
+function addSectionGradeData(data, section, now, near_date_threshold) {
+  // MUWM-4795
+  data.open = dayjs(section.grading_open_date);
+  data.isOpen = section.grading_period_is_open;
+  data.isClosed = section.grading_period_is_past;
   data.openRelative = data.open.from(now);
   data.deadlineRelative = data.deadline.from(now);
-
-  const near_date_threshold = 5;
 
   if (Math.abs(data.open.diff(now, 'days')) > near_date_threshold) {
     data.openFmt = data.open.format(fmt);
@@ -120,7 +112,12 @@ function addCourseGradeData(courseData) {
 
   data.opensIn24Hours = !data.open.diff(now, 'days');
   data.deadlineIn24Hours = !data.deadline.diff(now, 'days');
+  return data;
+}
 
+function addCourseGradeData(courseData) {
+  const now = courseData.now;
+  const near_date_threshold = 5;
   courseData.sections.forEach((section) => {
     const courseCampus = section.course_campus.toLowerCase();
     section.isSeattle = courseCampus === 'seattle';
@@ -132,7 +129,9 @@ function addCourseGradeData(courseData) {
       !section.timeSchedulePublished[courseCampus]);
 
     // Copy over all the fields we generated in data
-    section['gradingPeriod'] = data;
+    section['gradingPeriod'] = addSectionGradeData(
+      { deadline: dayjs(courseData.term.grade_submission_deadline),},
+      section, now, near_date_threshold);
 
     if ('grading_status' in section && section.grading_status) {
       section.grading_status.allGradesSubmitted =
@@ -166,15 +165,15 @@ function addCourseEvalData(courseData) {
         section.evaluation.responseRatePercent = Math.round(section.evaluation.response_rate * 100);
       }
       if (section.evaluation.eval_open_date) {
-        let evalOpen = parseDate(section.evaluation.eval_open_date);
+        let evalOpen = dayjs(section.evaluation.eval_open_date);
         section.evaluation.evalOpenDateDisplay = evalOpen.format(fmt);
       }
       if (section.evaluation.eval_close_date) {
-        let evalClose = parseDate(section.evaluation.eval_close_date);
+        let evalClose = dayjs(section.evaluation.eval_close_date);
         section.evaluation.evalCloseDateDisplay = evalClose.format(fmt);
       }
       if (section.evaluation.report_available_date) {
-        var reportDate = parseDate(section.evaluation.report_available_date);
+        var reportDate = dayjs(section.evaluation.report_available_date);
         section.evaluation.reportAvailableDateDisplay = reportDate.format(fmt);
       }
     }
