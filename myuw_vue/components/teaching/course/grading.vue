@@ -39,19 +39,32 @@
         <div v-if="section.grading_status !== 'error'">
           <span v-if="section.grading_status">
             <span v-if="section.grading_status.allGradesSubmitted">
-              <a
-                v-out="'Grade submitted'"
-                :href="section.grading_status.section_url"
-              >
-                {{section.grading_status.submitted_count}}
-                grade{{section.grading_status.submitted_count ? 's' : ''}}
-                submitted
-              </a>
+              <span v-if="gradeSubmittedNotAccepted">
+                Grades unsuccessfully submitted - Error with
+                  {{section.grading_status.submitted_count}}
+                  grade{{section.grading_status.submitted_count ? 's' : ''}}
+                  submitted
+              </span>
+              <span v-else>
+                <a
+                  v-out="'Grade submitted'"
+                  :href="section.grading_status.section_url"
+                >
+                  {{section.grading_status.submitted_count}}
+                  grade{{section.grading_status.submitted_count ? 's' : ''}}
+                  submitted
+                </a>
+              </span>
               <span v-if="section.grading_status.submitted_by">
                 by {{section.grading_status.submitted_by}}
               </span>
               <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
                 on {{section.grading_status.submittedFmt}}
+              </span>
+              <span v-if="gradeSubmittedNotAccepted">
+                Please try
+                <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/">resubmitting grades</a>
+                or contact <a href="mailto:help@uw.edu">help@uw.edu</a>.
               </span>
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
@@ -104,7 +117,7 @@
         </div>
       </template>
       <template v-else-if="section.gradingPeriod.isClosed">
-        <div v-if="section.grading_status && section.grading_status.allGradesSubmitted">
+        <div v-if="section.grading_status && section.grading_status.allGradesSubmitted && !gradeSubmittedNotAccepted">
           <a
             v-out="'Grade submitted by'"
             :href="section.grading_status.section_url"
@@ -124,6 +137,15 @@
             Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
             <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
           </div>
+        </div>
+        <div v-if="gradeSubmittedNotAccepted">
+          Grades unsuccessfully submitted - Error with
+          {{section.grading_status.submitted_count}}
+          grade{{section.grading_status.submitted_count ? 's' : ''}}
+          submitted on {{section.grading_status.submittedFmt}}
+          Please try
+          <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/">resubmitting grades</a>
+          or contact <a href="mailto:help@uw.edu">help@uw.edu</a>.
         </div>
         <div v-else>
           <span v-if="section.grading_status" class="capitalize">
@@ -199,6 +221,9 @@ export default {
         this.section.quarter, '+', this.section.year,'&sln=', this.section.sln);
         // MUWM-5145
     },
+    gradeSubmittedNotAccepted() {
+      return this.section.grading_status.submitted_date !== null && this.section.grading_status.accepted_date === null;
+    }
   },
 };
 </script>
