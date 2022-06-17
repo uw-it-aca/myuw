@@ -117,7 +117,9 @@
         </div>
       </template>
       <template v-else-if="section.gradingPeriod.isClosed">
-        <div v-if="section.grading_status && section.grading_status.allGradesSubmitted && !gradeSubmittedNotAccepted">
+        <div v-if="section.grading_status
+        && section.grading_status.allGradesSubmitted
+        && !gradeSubmittedNotAccepted">
           <a
             v-out="'Grade submitted by'"
             :href="section.grading_status.section_url"
@@ -222,7 +224,8 @@ export default {
         // MUWM-5145
     },
     gradeSubmittedNotAccepted() {
-      return this.section.grading_status.submitted_date !== null && this.section.grading_status.accepted_date === null;
+      return this.section.grading_status.submitted_date !== null
+        && this.section.grading_status.accepted_date === null;
     }
   },
 };
