@@ -104,14 +104,13 @@ class TestPageMethods(MyuwApiTest):
             self.set_user('bill')
             response = self.client.get(url)
             self.assertEquals(response.status_code, 200)
-            self.assertEquals(response.context["banner_messages"], [])
             self.assertEquals(response.context["display_onboard_message"],
                               True)
             self.assertEquals(response.context["display_pop_up"], True)
             self.assertEquals(response.context["disable_actions"], False)
             self.assertIsNotNone(response.context["card_display_dates"])
             self.assertIsNotNone(response.context["user"]["affiliations"])
-            self.assertIsNotNone(response.context["persistent_messages"])
+            self.assertIsNotNone(response.context["banner_messages"])
             self.assertEquals(response.context["user"]['email_forward_url'],
                               'http://alpine.washington.edu')
             self.assertIsNone(response.context['google_search_key'])

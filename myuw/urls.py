@@ -15,7 +15,6 @@ from myuw.views.future_quarters import future_quarters
 from myuw.views.textbooks import textbooks
 from myuw.views.category import category
 from myuw.views.display_dates import override
-from myuw.views.message_admin import manage_messages
 from myuw.views.link_admin import popular_links
 from myuw.views.logger import log_interaction
 from myuw.views.photo import show_photo
@@ -84,7 +83,6 @@ if settings.DEBUG:
 
 urlpatterns += [
     re_path(r'admin/dates', override, name="myuw_date_override"),
-    re_path(r'admin/messages', manage_messages, name="myuw_manage_messages"),
     re_path(r'admin/notices/(?P<notice_id>[0-9]+)', edit_notice,
             name="myuw_edit_notices"),
     re_path(r'admin/notice_create', create_notice, name="myuw_create_notice"),

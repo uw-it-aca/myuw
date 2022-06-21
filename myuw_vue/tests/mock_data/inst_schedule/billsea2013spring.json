@@ -10,9 +10,9 @@
     "first_day_quarter": "2013-04-01",
     "census_day": "2013-04-12",
     "last_day_instruction": "2013-06-07",
-    "grading_period_open": "2020-11-17 17:00:00",
-    "aterm_grading_period_open": "2020-11-17 17:00:00",
-    "grade_submission_deadline": "2020-11-19 17:00:00",
+    "grading_period_open": "2022-06-14T17:00:00",
+    "aterm_grading_period_open": "2022-06-14T17:00:00",
+    "grade_submission_deadline": "2022-06-16T17:00:00",
     "registration_periods": [
       {
         "start": "2013-02-15",
@@ -32,7 +32,7 @@
       "seattle": true,
       "tacoma": true
     },
-    "last_final_exam_date": "2013-06-14 23:59:59"
+    "last_final_exam_date": "2013-06-15T00:00:00"
   },
   "sections": [
     {
@@ -90,6 +90,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "SVETLANA GLADYCHEVA",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -122,6 +123,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "R. Daryl Pedigo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -154,6 +156,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -204,6 +207,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "NINA M TOSTI",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -230,9 +234,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.652991135758,
-          "longitude": -122.31110674603,
-          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
         },
         {
@@ -268,6 +272,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "SVETLANA GLADYCHEVA",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -300,6 +305,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "R. Daryl Pedigo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -332,6 +338,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -382,6 +389,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "NINA M TOSTI",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -408,9 +416,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.652991135758,
-          "longitude": -122.31110674603,
-          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
         }
       ],
@@ -424,15 +432,15 @@
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-10 08:30",
-        "end_date": "2013-06-10 10:20",
+        "start_date": "2013-06-10T08:30:00",
+        "end_date": "2013-06-10T10:20:00",
         "building": "PAA",
         "room_number": "A118",
         "room": "A118",
         "is_remote": false,
-        "longitude": -122.31110674603,
-        "latitude": 47.652991135758,
-        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "longitude": "-122.304747",
+        "latitude": "47.653693",
+        "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
       },
       "index": 0,
@@ -454,6 +462,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -507,6 +516,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -552,6 +562,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 176,
       "canvas_url": null,
@@ -719,6 +732,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "Raymond Golingo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -751,6 +765,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "R. Daryl Pedigo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -783,6 +798,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -833,6 +849,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "NINA M TOSTI",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -859,9 +876,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.652991135758,
-          "longitude": -122.31110674603,
-          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
         },
         {
@@ -897,6 +914,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "Raymond Golingo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -929,6 +947,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "R. Daryl Pedigo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -961,6 +980,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -1011,6 +1031,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "NINA M TOSTI",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -1050,15 +1071,15 @@
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-13 08:30",
-        "end_date": "2013-06-13 10:20",
+        "start_date": "2013-06-13T08:30:00",
+        "end_date": "2013-06-13T10:20:00",
         "building": "PAA",
         "room_number": "A118",
         "room": "A118",
         "is_remote": false,
-        "longitude": -122.31110674603,
-        "latitude": 47.652991135758,
-        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "longitude": "-122.304747",
+        "latitude": "47.653693",
+        "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A118"
       },
       "index": 1,
@@ -1080,6 +1101,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -1133,6 +1155,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -1178,6 +1201,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 154,
       "canvas_url": null,
@@ -1284,6 +1310,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -1334,6 +1361,7 @@
               "surname": "TA",
               "full_name": "SEATTLE TA",
               "display_name": "Seattle Ta",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000009",
               "addresses": [],
@@ -1372,9 +1400,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.653644681181,
-          "longitude": -122.311302,
-          "building_name": "Physics / Astronomy Building (PAB)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B164"
         }
       ],
@@ -1388,8 +1416,8 @@
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-13 08:30",
-        "end_date": "2013-06-13 10:20",
+        "start_date": "2013-06-13T08:30:00",
+        "end_date": "2013-06-13T10:20:00",
         "building": "PAA",
         "room_number": "A118",
         "room": "A118"
@@ -1413,6 +1441,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -1466,6 +1495,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -1511,6 +1541,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 22,
       "canvas_url": null,
@@ -1595,6 +1628,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -1645,6 +1679,7 @@
               "surname": "TA",
               "full_name": "SEATTLE TA",
               "display_name": "Seattle Ta",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000009",
               "addresses": [],
@@ -1683,9 +1718,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.653644681181,
-          "longitude": -122.311302,
-          "building_name": "Physics / Astronomy Building (PAB)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B176"
         }
       ],
@@ -1699,8 +1734,8 @@
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-13 08:30",
-        "end_date": "2013-06-13 10:20",
+        "start_date": "2013-06-13T08:30:00",
+        "end_date": "2013-06-13T10:20:00",
         "building": "PAA",
         "room_number": "A118",
         "room": "A118"
@@ -1724,6 +1759,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -1777,6 +1813,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -1822,6 +1859,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 22,
       "canvas_url": null,
@@ -1906,6 +1946,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "R. Daryl Pedigo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -1938,6 +1979,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -1988,6 +2030,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "NINA M TOSTI",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -2014,9 +2057,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.652991135758,
-          "longitude": -122.31110674603,
-          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
         },
         {
@@ -2052,6 +2095,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "R. Daryl Pedigo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -2084,6 +2128,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -2134,6 +2179,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "NINA M TOSTI",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -2173,15 +2219,15 @@
       "final_exam": {
         "is_confirmed": false,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-12 08:30",
-        "end_date": "2013-06-12 10:20",
+        "start_date": "2013-06-12T08:30:00",
+        "end_date": "2013-06-12T10:20:00",
         "building": "PAA",
         "room_number": "A102",
         "room": "A102",
         "is_remote": false,
-        "longitude": -122.31110674603,
-        "latitude": 47.652991135758,
-        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "longitude": "-122.304747",
+        "latitude": "47.653693",
+        "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A102"
       },
       "index": 4,
@@ -2203,6 +2249,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -2256,6 +2303,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -2301,6 +2349,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 154,
       "canvas_url": null,
@@ -2421,6 +2472,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "Aurel Bulgac",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -2453,6 +2505,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "R. Daryl Pedigo",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -2485,6 +2538,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -2535,6 +2589,7 @@
               "surname": "",
               "full_name": "",
               "display_name": "NINA M TOSTI",
+              "pronouns": "",
               "whitepages_publish": false,
               "employee_id": null,
               "addresses": [],
@@ -2561,9 +2616,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.652991135758,
-          "longitude": -122.31110674603,
-          "building_name": "Physics / Astronomy Auditorium (PAA)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAA+A110"
         }
       ],
@@ -2577,15 +2632,15 @@
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-12 08:30",
-        "end_date": "2013-06-12 10:20",
+        "start_date": "2013-06-12T08:30:00",
+        "end_date": "2013-06-12T10:20:00",
         "building": "PAA",
         "room_number": "A110",
         "room": "A110",
         "is_remote": false,
-        "longitude": -122.31110674603,
-        "latitude": 47.652991135758,
-        "building_name": "Physics / Astronomy Auditorium (PAA)",
+        "longitude": "-122.304747",
+        "latitude": "47.653693",
+        "building_name": "Mechanical Engineering Building",
         "classroom_info_url": "http://www.washington.edu/classroom/PAA+A110"
       },
       "index": 5,
@@ -2607,6 +2662,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -2660,6 +2716,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -2705,6 +2762,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 66,
       "canvas_url": null,
@@ -2825,6 +2885,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -2875,6 +2936,7 @@
               "surname": "TA",
               "full_name": "SEATTLE TA",
               "display_name": "Seattle Ta",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000009",
               "addresses": [],
@@ -2913,9 +2975,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.653644681181,
-          "longitude": -122.311302,
-          "building_name": "Physics / Astronomy Building (PAB)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B156"
         }
       ],
@@ -2929,8 +2991,8 @@
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-12 08:30",
-        "end_date": "2013-06-12 10:20",
+        "start_date": "2013-06-12T08:30:00",
+        "end_date": "2013-06-12T10:20:00",
         "building": "PAA",
         "room_number": "A110",
         "room": "A110"
@@ -2954,6 +3016,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -3007,6 +3070,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -3052,6 +3116,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 22,
       "canvas_url": null,
@@ -3136,6 +3203,7 @@
               "surname": "FACULTY",
               "full_name": "SEATTLE FACULTY",
               "display_name": "Seattle Faculty",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000006",
               "addresses": [],
@@ -3186,6 +3254,7 @@
               "surname": "TA",
               "full_name": "SEATTLE TA",
               "display_name": "Seattle Ta",
+              "pronouns": null,
               "whitepages_publish": false,
               "employee_id": "100000009",
               "addresses": [],
@@ -3224,9 +3293,9 @@
             }
           ],
           "is_remote": false,
-          "latitude": 47.653644681181,
-          "longitude": -122.311302,
-          "building_name": "Physics / Astronomy Building (PAB)",
+          "latitude": "47.653693",
+          "longitude": "-122.304747",
+          "building_name": "Mechanical Engineering Building",
           "classroom_info_url": "http://www.washington.edu/classroom/PAB+B156"
         }
       ],
@@ -3240,8 +3309,8 @@
       "final_exam": {
         "is_confirmed": true,
         "no_exam_or_nontraditional": false,
-        "start_date": "2013-06-10 08:30",
-        "end_date": "2013-06-10 10:20",
+        "start_date": "2013-06-10T08:30:00",
+        "end_date": "2013-06-10T10:20:00",
         "building": "ARC",
         "room_number": "147",
         "room": "147"
@@ -3265,6 +3334,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -3318,6 +3388,7 @@
             "surname": "FACULTY",
             "full_name": "SEATTLE FACULTY",
             "display_name": "Seattle Faculty",
+            "pronouns": null,
             "whitepages_publish": false,
             "employee_id": "100000006",
             "addresses": [],
@@ -3363,6 +3434,9 @@
           "level": "curriculum"
         }
       ],
+      "grading_open_date": "2022-06-14 17:00:00",
+      "grading_period_is_open": false,
+      "grading_period_is_past": false,
       "has_eos_dates": false,
       "limit_estimated_enrollment": 22,
       "canvas_url": null,
@@ -3405,9 +3479,9 @@
       "first_day_quarter": "2012-01-03",
       "census_day": "2012-01-13",
       "last_day_instruction": "2012-03-09",
-      "grading_period_open": "2012-02-27 08:00:00",
+      "grading_period_open": "2012-02-27T08:00:00",
       "aterm_grading_period_open": null,
-      "grade_submission_deadline": "2012-03-20 17:00:00",
+      "grade_submission_deadline": "2012-03-20T17:00:00",
       "registration_periods": [
         {
           "start": "2011-11-04",
@@ -3427,7 +3501,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2012-03-16 23:59:59"
+      "last_final_exam_date": "2012-03-17T00:00:00"
     },
     {
       "quarter": "Spring",
@@ -3438,9 +3512,9 @@
       "first_day_quarter": "2012-03-26",
       "census_day": "2012-04-06",
       "last_day_instruction": "2012-06-01",
-      "grading_period_open": "2012-05-21 08:00:00",
+      "grading_period_open": "2012-05-21T08:00:00",
       "aterm_grading_period_open": null,
-      "grade_submission_deadline": "2012-06-12 17:00:00",
+      "grade_submission_deadline": "2012-06-12T17:00:00",
       "registration_periods": [
         {
           "start": "2012-02-17",
@@ -3460,7 +3534,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2012-06-08 23:59:59"
+      "last_final_exam_date": "2012-06-09T00:00:00"
     },
     {
       "quarter": "Summer",
@@ -3471,9 +3545,9 @@
       "first_day_quarter": "2012-06-18",
       "census_day": "2012-06-29",
       "last_day_instruction": "2012-08-17",
-      "grading_period_open": "2012-08-10 08:00:00",
-      "aterm_grading_period_open": "2012-07-12 08:00:00",
-      "grade_submission_deadline": "2012-08-21 17:00:00",
+      "grading_period_open": "2012-08-10T08:00:00",
+      "aterm_grading_period_open": "2012-07-12T08:00:00",
+      "grade_submission_deadline": "2012-08-21T17:00:00",
       "registration_periods": [
         {
           "start": "2012-04-16",
@@ -3493,7 +3567,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2012-08-17 23:59:59"
+      "last_final_exam_date": "2012-08-18T00:00:00"
     },
     {
       "quarter": "Autumn",
@@ -3504,9 +3578,9 @@
       "first_day_quarter": "2012-09-24",
       "census_day": "2012-10-05",
       "last_day_instruction": "2012-12-07",
-      "grading_period_open": "2012-11-19 08:00:00",
+      "grading_period_open": "2012-11-19T08:00:00",
       "aterm_grading_period_open": null,
-      "grade_submission_deadline": "2012-12-18 17:00:00",
+      "grade_submission_deadline": "2012-12-18T17:00:00",
       "registration_periods": [
         {
           "start": "2012-05-04",
@@ -3526,7 +3600,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2012-12-14 23:59:59"
+      "last_final_exam_date": "2012-12-15T00:00:00"
     },
     {
       "quarter": "Winter",
@@ -3537,9 +3611,9 @@
       "first_day_quarter": "2013-01-07",
       "census_day": "2013-01-18",
       "last_day_instruction": "2013-03-15",
-      "grading_period_open": "2013-02-25 08:00:00",
+      "grading_period_open": "2013-02-25T08:00:00",
       "aterm_grading_period_open": null,
-      "grade_submission_deadline": "2013-03-26 17:00:00",
+      "grade_submission_deadline": "2013-03-26T17:00:00",
       "registration_periods": [
         {
           "start": "2012-11-02",
@@ -3559,7 +3633,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2013-03-22 23:59:59"
+      "last_final_exam_date": "2013-03-23T00:00:00"
     },
     {
       "quarter": "Spring",
@@ -3570,9 +3644,9 @@
       "first_day_quarter": "2013-04-01",
       "census_day": "2013-04-12",
       "last_day_instruction": "2013-06-07",
-      "grading_period_open": "2020-11-17 17:00:00",
-      "aterm_grading_period_open": "2020-11-17 17:00:00",
-      "grade_submission_deadline": "2020-11-19 17:00:00",
+      "grading_period_open": "2022-06-14T17:00:00",
+      "aterm_grading_period_open": "2022-06-14T17:00:00",
+      "grade_submission_deadline": "2022-06-16T17:00:00",
       "registration_periods": [
         {
           "start": "2013-02-15",
@@ -3592,7 +3666,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2013-06-14 23:59:59"
+      "last_final_exam_date": "2013-06-15T00:00:00"
     },
     {
       "quarter": "Summer",
@@ -3603,9 +3677,9 @@
       "first_day_quarter": "2013-06-24",
       "census_day": "2013-07-05",
       "last_day_instruction": "2013-08-23",
-      "grading_period_open": "2013-08-16 08:00:00",
-      "aterm_grading_period_open": "2013-07-18 08:00:00",
-      "grade_submission_deadline": "2013-08-27 17:00:00",
+      "grading_period_open": "2013-08-16T08:00:00",
+      "aterm_grading_period_open": "2013-07-18T08:00:00",
+      "grade_submission_deadline": "2013-08-27T17:00:00",
       "registration_periods": [
         {
           "start": "2013-04-15",
@@ -3625,7 +3699,7 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2013-08-23 23:59:59"
+      "last_final_exam_date": "2013-08-24T00:00:00"
     },
     {
       "quarter": "Autumn",
@@ -3636,9 +3710,9 @@
       "first_day_quarter": "2013-09-25",
       "census_day": "2013-10-04",
       "last_day_instruction": "2013-12-06",
-      "grading_period_open": "2013-11-18 08:00:00",
+      "grading_period_open": "2013-11-18T08:00:00",
       "aterm_grading_period_open": null,
-      "grade_submission_deadline": "2013-12-17 17:00:00",
+      "grade_submission_deadline": "2013-12-17T17:00:00",
       "registration_periods": [
         {
           "start": "2013-05-10",
@@ -3658,12 +3732,10 @@
         "seattle": true,
         "tacoma": true
       },
-      "last_final_exam_date": "2013-12-13 23:59:59"
+      "last_final_exam_date": "2013-12-14T00:00:00"
     }
   ],
   "past_term": false,
   "future_term": false,
-  "grading_period_is_open": true,
-  "grading_period_is_past": false,
   "has_eos_dates": false
 }
