@@ -28,7 +28,7 @@ from myuw.dao.instructor_schedule import (
 from myuw.dao.library import get_subject_guide_by_section
 from myuw.dao.mailman import get_section_email_lists
 from myuw.dao.term import (
-    get_current_quarter, is_past, is_future,
+    get_current_quarter, is_past, is_future, get_comparison_datetime,
     get_previous_number_quarters, get_future_number_quarters)
 from myuw.logger.logresp import log_api_call, log_exception
 from myuw.logger.timer import Timer
@@ -247,6 +247,7 @@ def safe_label(label):
 
 
 def load_schedule(request, schedule, summer_term, section_callback=None):
+    comparison_dt = get_comparison_datetime(request)
     json_data = schedule.json_data()
     json_data["summer_term"] = summer_term
 
@@ -254,11 +255,6 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
     json_data["past_term"] = is_past(schedule.term, request)
     json_data["future_term"] = is_future(schedule.term, request)
 
-    # the override datetime doesn't affect these
-    json_data["grading_period_is_open"] =\
-        schedule.term.is_grading_period_open()
-    json_data["grading_period_is_past"] =\
-        schedule.term.is_grading_period_past()
     buildings = get_buildings_by_schedule(schedule)
     json_data["has_eos_dates"] = False
     section_index = 0
@@ -322,6 +318,16 @@ def load_schedule(request, schedule, summer_term, section_callback=None):
                     'person': delegate.person.json_data(),
                     'level': delegate.delegate_level
                 })
+
+        # MUWM-4795
+        section_data["grading_open_date"] = (
+            section.term.aterm_grading_period_open
+            if section.is_summer_a_term()
+            else section.term.grading_period_open)
+        section_data["grading_period_is_open"] =\
+            section.is_grading_period_open(comparison_dt)
+        section_data["grading_period_is_past"] =\
+            comparison_dt > schedule.term.grade_submission_deadline
 
         t = Thread(target=set_course_resources, args=(
             section_data, section, schedule.person,

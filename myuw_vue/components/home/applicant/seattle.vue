@@ -17,15 +17,15 @@
         For application status, contact the Office of the University Registrar:
       </p>
       <div class="container mb-3 myuw-text-md">
-        <div class="row">
-          <div class="col">Email</div>
-          <div class="col">
+        <div class="d-flex">
+          <div class="me-5">Email</div>
+          <div>
             <a v-out="'Contact Registrar Office'" href="mailto:regoff@uw.edu">regoff@uw.edu</a>
           </div>
         </div>
-        <div class="row">
-          <div class="col">Location</div>
-          <div class="col">2nd Floor Schmitz Hall</div>
+        <div class="d-flex">
+          <div class="me-4 pe-1">Location</div>
+          <div>2nd Floor Schmitz Hall</div>
         </div>
       </div>
 
