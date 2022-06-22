@@ -24,39 +24,40 @@ export default {
       employee: (state) => state.user.affiliations.all_employee,
       studEmployee: (state) => state.user.affiliations.stud_employee,
       student: (state) => state.user.affiliations.student,
-      isTacoma: (state) => state.user.affiliations.tacoma,
-      isBothell: (state) => state.user.affiliations.bothell,
+      isTacomaStud: (state) => state.user.affiliations.tacoma,
+      isBothellStud: (state) => state.user.affiliations.bothell,
     }),
-    prefNameLink() {
-      return (this.isTacoma
-      ? 'https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977'
-      : 'https://registrar.washington.edu/students/preferred-names/');
+    nonBotTacStudent() {
+      return (this.student || this.studEmployee) && !this.isTacomaStud && !this.isBothellStud;
     },
     linkList() {
       return [
-        this.isBothell ?
-          { url: "https://www.uwb.edu/facility/mail-services", title: "Mailing Services" } : null,
-        !this.isBothell && !this.isTacoma ?
-          { url: "http://www.washington.edu/about/addressing-letters-to-the-uw/",
-            title: "Addressing Letters to the UW"} : null,
-        { url: this.prefNameLink, title: "Preferred Names"},
-        (this.student || this.studEmployee) && this.isTacoma ?
+        this.isBothellStud ?
+          { url: "https://www.uwb.edu/facility/mail-services",
+            title: "Mailing Services" } : null,
+        this.isTacomaStud ?
           { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-10969",
             title: "Change Your Legal Name" } : null,
-        (this.student || this.studEmployee) && this.isBothell ?
+        this.isBothellStud ?
           { url: "https://www.uwb.edu/registration/policies/name-change",
             title: "Name Change Policy" } : null,
-        (this.student || this.studEmployee) && !this.isTacoma && !this.isBothell ? 
-          { url: "https://registrar.washington.edu/enrollment-and-records/name-change-policy/",
-            title: "Change Your Legal Name" } : null,
-        (this.student || this.studEmployee) && !this.isTacoma && !this.isBothell ? 
-          { url: "https://depts.washington.edu/qcenter/wordpress/changing-your-name-in-the-uw-student-database/",
-            title: "Changing Your Name and Gender" } : null,
+        this.nonBotTacStudent ?
+          { url: "https://registrar.washington.edu/students/personal-data/names/",
+            title: "Student Name and Updates" } : null,
+        this.isTacomaStud ?
+          { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977",
+            title: "Preferred Names" } : null,
+        this.nonBotTacStudent ?
+          { url: "https://registrar.washington.edu/students/personal-data/preferred-names-faqs/",
+            title: "Preferred Names FAQ" } : null,
+        this.nonBotTacStudent ?
+          { url: "https://registrar.washington.edu/students/personal-data/gender-identity/",
+            title: "Gender Identity & Updates" } : null,
         this.employee || this.studEmployee ?
           { url: "http://hr.uw.edu/benefits/life-events/change-your-address-name-gender-citizenship-or-birth-date/",
             title: "Change Your Personal Information" } : null,
         this.student ?
-          { url: "https://registrar.washington.edu/enrollment-and-degree-verification/",
+          { url: "https://registrar.washington.edu/students/enrollment-and-degree-verification/",
             title: "Self-Service Enrollment Verification" } : null,
       ].filter(x => x !== null);
     }
