@@ -36,20 +36,20 @@ export default {
           { url: "https://www.uwb.edu/facility/mail-services",
             title: "Mailing Services" } : null,
         this.isTacomaStud ?
-          { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977",
-            title: "Preferred Names" } : null,
-        this.nonBotTacStudent ?
-          { url: "https://registrar.washington.edu/students/personal-data/names/",
-            title: "Student Name and Updates" } : null,
-        this.nonBotTacStudent ?
-          { url: "https://registrar.washington.edu/students/personal-data/preferred-names-faqs/",
-            title: "Preferred Names FAQ" } : null,
-        this.isTacomaStud ?
           { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-10969",
             title: "Change Your Legal Name" } : null,
         this.isBothellStud ?
           { url: "https://www.uwb.edu/registration/policies/name-change",
             title: "Name Change Policy" } : null,
+        this.nonBotTacStudent ?
+          { url: "https://registrar.washington.edu/students/personal-data/names/",
+            title: "Student Name and Updates" } : null,
+        this.isTacomaStud ?
+          { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977",
+            title: "Preferred Names" } : null,
+        this.nonBotTacStudent ?
+          { url: "https://registrar.washington.edu/students/personal-data/preferred-names-faqs/",
+            title: "Preferred Names FAQ" } : null,
         this.nonBotTacStudent ?
           { url: "https://registrar.washington.edu/students/personal-data/gender-identity/",
             title: "Gender Identity & Updates" } : null,
