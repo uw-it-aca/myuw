@@ -10,51 +10,51 @@
             UW Coronavirus Home
           </a>
         </li>
-        <li v-if="links.student" class="mb-1">
+        <li v-if="student" class="mb-1">
           <a href="https://www.washington.edu/coronavirus/students/">
             Resources for Students
           </a>
         </li>
-        <li v-if="links.sea_student" class="mb-1">
+        <li v-if="seattleStudent" class="mb-1">
           <a href="https://wellbeing.uw.edu/">
             Husky Health &amp; Wellbeing
           </a>
         </li>
-        <li v-if="links.bot_student" class="mb-1">
+        <li v-if="bothellStudent" class="mb-1">
           <a href="https://www.uwb.edu/studentaffairs/counseling">
             Counseling Center
           </a>
         </li>
-        <li v-if="links.tac_student" class="mb-1">
+        <li v-if="tacomaStudent" class="mb-1">
           <a href="https://www.tacoma.uw.edu/studentcounseling">
             Counseling &amp; Psychological Services
           </a>
         </li>
-        <li v-if="links.tac_student" class="mb-1">
+        <li v-if="tacomaStudent" class="mb-1">
           <a href="https://apps.tacoma.uw.edu/attest/">
             Student Wellness Check-In
           </a>
         </li>
-        <li v-if="links.student" class="mb-1">
+        <li v-if="student" class="mb-1">
           <a href="https://www.washington.edu/counseling/covid-19/">
             Coping with COVID-19 Stress
           </a>
         </li>
       </ul>
     </div>
-    <div v-if="links.student">
+    <div v-if="seattleStudent || bothellStudent || tacomaStudent">
       <hr class="bg-secondary">
       <h3 class="h6">
         Online Learning
       </h3>
-      <ul v-if="links.sea_student" class="list-unstyled mb-0 myuw-text-md">
+      <ul v-if="seattleStudent" class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a href="https://webster.uaa.washington.edu/asp/website/online-learning/">
             Online Learning Tips and Resources
           </a>
         </li>
       </ul>
-      <ul v-if="links.bot_student" class="list-unstyled mb-0 myuw-text-md">
+      <ul v-if="bothellStudent" class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a href="https://www.uwb.edu/it/student-continuity">
             Student Help for Learning Online
@@ -71,7 +71,7 @@
           </a>
         </li>
       </ul>
-      <ul v-if="links.tac_student" class="list-unstyled mb-0 myuw-text-md">
+      <ul v-if="tacomaStudent" class="list-unstyled mb-0 myuw-text-md">
         <li class="mb-1">
           <a href="https://www.tacoma.uw.edu/digital-learning/student-online-support">
             Online Learning Support
@@ -89,7 +89,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="links.instructor">
+    <div v-if="instructor">
       <hr class="bg-secondary">
       <h3 class="h6">
         Online Teaching
@@ -103,7 +103,7 @@
             Plan digital learning experiences for your remote and hybrid courses.
           </div>
         </li>
-        <li v-if="links.bot_emp" class="mb-2">
+        <li v-if="bothellEmp" class="mb-2">
           <a href="https://www.uwb.edu/it/teaching">
             UWB Teach Anywhere
           </a>
@@ -111,7 +111,7 @@
             UW Bothell resources for teaching online
           </div>
         </li>
-        <li v-if="links.tac_emp" class="mb-2">
+        <li v-if="tacomaEmp" class="mb-2">
           <a href="https://www.tacoma.uw.edu/digital-learning/instructional-continuity">
             UWT Instructional Continuity
           </a>
@@ -159,12 +159,19 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
-  props: {
-    links: {
-      type: Object,
-      required: true,
-    },
+  computed: {
+    ...mapState({
+      student: (state) => state.user.affiliations.student,
+      instructor: (state) => state.user.affiliations.instructor,
+      seattleStudent: (state) => state.user.affiliations.seattle,
+      bothellStudent: (state) => state.user.affiliations.bothell,
+      tacomaStudent: (state) => state.user.affiliations.tacoma,
+      seattleEmp: (state) => state.user.affiliations.official_seattle,
+      bothellEmp: (state) => state.user.affiliations.official_bothell,
+      tacomaEmp: (state) => state.user.affiliations.official_tacoma,
+    }),
   },
 };
 </script>
