@@ -28,7 +28,7 @@ export default {
       isBothellStud: (state) => state.user.affiliations.bothell,
     }),
     nonBotTacStudent() {
-      return (this.student || this.studEmployee) && !this.isTacoma && !this.isBothell;
+      return (this.student || this.studEmployee) && !this.isTacomaStud && !this.isBothellStud;
     },
     linkList() {
       return [
