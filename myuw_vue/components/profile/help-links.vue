@@ -24,11 +24,12 @@ export default {
       employee: (state) => state.user.affiliations.all_employee,
       studEmployee: (state) => state.user.affiliations.stud_employee,
       student: (state) => state.user.affiliations.student,
-      isSeattleStud: (state) => state.user.affiliations.seattle,
       isTacomaStud: (state) => state.user.affiliations.tacoma,
       isBothellStud: (state) => state.user.affiliations.bothell,
     }),
-
+    nonBotTacStudent() {
+      return (this.student || this.studEmployee) && !this.isTacoma && !this.isBothell;
+    },
     linkList() {
       return [
         this.isBothellStud ?
@@ -37,10 +38,10 @@ export default {
         this.isTacomaStud ?
           { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977",
             title: "Preferred Names" } : null,
-        this.isSeattleStud ?
+        this.nonBotTacStudent ?
           { url: "https://registrar.washington.edu/students/personal-data/names/",
             title: "Student Name and Updates" } : null,
-        this.isSeattleStud ?
+        this.nonBotTacStudent ?
           { url: "https://registrar.washington.edu/students/personal-data/preferred-names-faqs/",
             title: "Preferred Names FAQ" } : null,
         this.isTacomaStud ?
@@ -49,7 +50,7 @@ export default {
         this.isBothellStud ?
           { url: "https://www.uwb.edu/registration/policies/name-change",
             title: "Name Change Policy" } : null,
-        this.isSeattleStud ?
+        this.nonBotTacStudent ?
           { url: "https://registrar.washington.edu/students/personal-data/gender-identity/",
             title: "Gender Identity & Updates" } : null,
         this.employee || this.studEmployee ?
