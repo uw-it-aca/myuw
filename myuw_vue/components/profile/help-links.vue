@@ -24,30 +24,32 @@ export default {
       employee: (state) => state.user.affiliations.all_employee,
       studEmployee: (state) => state.user.affiliations.stud_employee,
       student: (state) => state.user.affiliations.student,
-      isTacoma: (state) => state.user.affiliations.tacoma,
-      isBothell: (state) => state.user.affiliations.bothell,
+      isSeattleStud: (state) => state.user.affiliations.seattle,
+      isTacomaStud: (state) => state.user.affiliations.tacoma,
+      isBothellStud: (state) => state.user.affiliations.bothell,
     }),
 
     linkList() {
       return [
-        this.isBothell ?
-          { url: "https://www.uwb.edu/facility/mail-services", title: "Mailing Services" } : null,
-        this.student && this.isTacoma ?
+        this.isBothellStud ?
+          { url: "https://www.uwb.edu/facility/mail-services",
+            title: "Mailing Services" } : null,
+        this.isTacomaStud ?
           { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-4977",
             title: "Preferred Names" } : null,
-        (this.student || this.studEmployee) && !this.isTacoma && !this.isBothell ? 
+        this.isSeattleStud ?
           { url: "https://registrar.washington.edu/students/personal-data/names/",
             title: "Student Name and Updates" } : null,
-        this.student && !this.isTacoma && !this.isBothell ? 
+        this.isSeattleStud ?
           { url: "https://registrar.washington.edu/students/personal-data/preferred-names-faqs/",
             title: "Preferred Names FAQ" } : null,
-        (this.student || this.studEmployee) && this.isTacoma ?
+        this.isTacomaStud ?
           { url: "https://www.tacoma.uw.edu/registrar/changes-personal-data#permalink-10969",
             title: "Change Your Legal Name" } : null,
-        (this.student || this.studEmployee) && this.isBothell ?
+        this.isBothellStud ?
           { url: "https://www.uwb.edu/registration/policies/name-change",
             title: "Name Change Policy" } : null,
-        (this.student || this.studEmployee) && !this.isTacoma && !this.isBothell ? 
+        this.isSeattleStud ?
           { url: "https://registrar.washington.edu/students/personal-data/gender-identity/",
             title: "Gender Identity & Updates" } : null,
         this.employee || this.studEmployee ?
