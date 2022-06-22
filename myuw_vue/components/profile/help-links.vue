@@ -57,7 +57,7 @@ export default {
           { url: "http://hr.uw.edu/benefits/life-events/change-your-address-name-gender-citizenship-or-birth-date/",
             title: "Change Your Personal Information" } : null,
         this.student ?
-          { url: "https://registrar.washington.edu/enrollment-and-degree-verification/",
+          { url: "https://registrar.washington.edu/students/enrollment-and-degree-verification/",
             title: "Self-Service Enrollment Verification" } : null,
       ].filter(x => x !== null);
     }
