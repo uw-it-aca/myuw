@@ -50,9 +50,9 @@ memcached:
     type: RollingUpdate
 certs:
   mounted: true
-  certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
-  keyPath: /certs/myuw-dev.s.uw.edu-uwca.key
-  secretName: test.my.uw.edu-uwca-certs
+  certPath: /certs/test.my.uw.edu-ic.cert
+  keyPath: /certs/test.my.uw.edu-ic.key
+  secretName: test.my.uw.edu-ic-certs
 cronjob:
   enabled: true
   jobs:
@@ -236,7 +236,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: test.my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/test/secrets
+      externalKey: my/test/secrets
       data:
         - name: canvas-account-id
           property: canvas-account-id
@@ -267,26 +267,28 @@ externalSecrets:
         - name: google-search-key
           property: google-search-key
     - name: test.my.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/my/test/sql-secrets
+      externalKey: my/test/sql-secrets
       data:
         - name: username
           property: sql_user
         - name: password
           property: sql_pass
-    - name: test.my.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/my/test/uwca-certs
+     - name: test.my.uw.edu-ic-certs
+      externalKey: my/test/ic-certs
       data:
-        - name: myuw-dev.s.uw.edu-uwca.key
+        - name: test.my.uw.edu-ic.key
           property: key
-        - name: myuw-dev.s.uw.edu-uwca.cert
+        - name: test.my.uw.edu-ic.cert
           property: cert
-    - name: test.my.uw.edu-ic-certs
-      externalKey: axdd/kv/data/my/test/ic-certs
-      data:
-        - name: test.my.uw.edu.cert
-          property: cert
+    #- name: myuw-dev.s.uw.edu-ic-certs
+    #  externalKey: my/test/ic-certs
+    #  data:
+    #    - name: myuw-dev.s.uw.edu-ic.key
+    #      property: key
+    #    - name: myuw-dev.s.uw.edu-ic.cert
+    #      property: cert
     - name: test.my.uw.edu-uw-idp-cert
-      externalKey: axdd/kv/data/idp-cert
+      externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
