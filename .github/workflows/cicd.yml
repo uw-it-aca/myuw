@@ -47,7 +47,7 @@ on:
 
 jobs:
   context:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     outputs:
       commit_hash: ${{ steps.context.outputs.commit_hash }}
@@ -62,7 +62,7 @@ jobs:
           release_name: ${{ env.RELEASE_NAME }}
 
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     needs: context
 
@@ -73,7 +73,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.8
 
       - name: Run Python Linters
         uses: uw-it-aca/actions/python-linters@main
@@ -150,7 +150,7 @@ jobs:
       image_tag: ${{ steps.cicd.outputs.image_tag }}
 
   eslint:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     container:
       image: node:14.6.0-stretch
@@ -173,7 +173,7 @@ jobs:
         run: ./node_modules/.bin/eslint myuw_vue/ --ext .vue
 
   jest-cypress:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     container:
       image: cypress/browsers:node14.16.0-chrome90-ff88
@@ -218,7 +218,7 @@ jobs:
 
   collect-coverage:
     needs: [build, jest-cypress]
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout Repo
@@ -235,7 +235,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.6
+          python-version: 3.8
 
       - name: Set up Ruby 2.6
         uses: actions/setup-ruby@v1
@@ -261,7 +261,7 @@ jobs:
     outputs:
       context: ${{ steps.context.outputs.context }}
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout Repo
@@ -311,7 +311,7 @@ jobs:
 
     needs: [context, build, deploy]
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     steps:
       - name: House Keeping
