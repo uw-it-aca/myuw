@@ -350,7 +350,7 @@ externalSecrets:
   enabled: true
   secrets:
     - name: my.uw.edu-secrets
-      externalKey: axdd/kv/data/my/prod/secrets
+      externalKey: my/prod/secrets
       data:
         - name: canvas-account-id
           property: canvas-account-id
@@ -381,26 +381,26 @@ externalSecrets:
         - name: saml-entity-id
           property: saml-entity-id
     - name: my.uw.edu-sql-secrets
-      externalKey: axdd/kv/data/my/prod/sql-secrets
+      externalKey: my/prod/sql-secrets
       data:
         - name: username
           property: sql_user
         - name: password
           property: sql_pass
     - name: my.uw.edu-uwca-certs
-      externalKey: axdd/kv/data/my/prod/uwca-certs
+      externalKey: my/prod/uwca-certs
       data:
         - name: myuw.s.uw.edu-uwca.key
           property: key
         - name: myuw.s.uw.edu-uwca.cert
           property: cert
     - name: my.uw.edu-ic-certs
-      externalKey: axdd/kv/data/my/prod/ic-certs
+      externalKey: my/prod/ic-certs
       data:
         - name: my.uw.edu.cert
           property: cert
     - name: my.uw.edu-uw-idp-cert
-      externalKey: axdd/kv/data/idp-cert
+      externalKey: idp-cert
       data:
         - name: uw-idp-cert
           property: cert
