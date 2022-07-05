@@ -26,7 +26,7 @@ setup(
     author_email="aca-it@uw.edu",
     include_package_data=True,
     install_requires=[
-        'Django~=2.2',
+        'Django~=3.2',
         'ordereddict',
         'beautifulsoup4',
         'urllib3',
@@ -59,7 +59,7 @@ setup(
         'Django-Persistent-Message~=1.1',
         'Django-Safe-EmailBackend~=1.2',
         'django_client_logger<3.0',
-        'UW-HX-Toolkit~=2.6',
+        'UW-HX-Toolkit~=2.7',
         'django-blti~=2.2',
         'bleach',
         'pyyaml',
