@@ -27,7 +27,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import axios from 'axios';
-import BnrMessage from './banner_message.vue';
+import BnrMessage from './banner-msg.vue';
 export default {
   components: {
     'uw-banner-message': BnrMessage,

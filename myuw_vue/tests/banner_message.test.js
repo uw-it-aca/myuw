@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import Vuex from 'vuex';
 import { createLocalVue } from './helper';
-import BannerMessage from '../components/_templates/boilerplate/banner_message.vue';
+import BannerMessage from '../components/_templates/boilerplate/banner-msg.vue';
 
 const localVue = createLocalVue(Vuex);
 const messages = [
