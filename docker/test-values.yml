@@ -353,7 +353,7 @@ environmentVariablesSecrets:
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: test.my.uw.edu-ic-certs
-    secretKey: test.my.uw.edu.cert
+    secretKey: test.my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: test.my.uw.edu-uw-idp-cert
