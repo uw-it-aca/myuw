@@ -1,6 +1,6 @@
 <template>
-  <div class="myuw-text-md">
-
+  <div class="myuw-text-md fst-italic text-end">
+    This page was last loaded at 9:26 AM. Is something missing?
   </div>
 </template>
 
