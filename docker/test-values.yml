@@ -300,13 +300,7 @@ externalSecrets:
           property: key
         - name: test.my.uw.edu-ic.cert
           property: cert
-    #- name: myuw-dev.s.uw.edu-ic-certs
-    #  externalKey: my/test/ic-certs
-    #  data:
-    #    - name: myuw-dev.s.uw.edu-ic.key
-    #      property: key
-    #    - name: myuw-dev.s.uw.edu-ic.cert
-    #      property: cert
+
     - name: test.my.uw.edu-uw-idp-cert
       externalKey: idp-cert
       data:
