@@ -270,9 +270,9 @@ externalSecrets:
     - name: vue.my.uw.edu-ic-certs
       externalKey: my/prod/ic-certs
       data:
-        - name: vue.my.uw.edu-ic.key
+        - name: my.uw.edu-ic.key
           property: my.uw.edu-ic.key
-        - name: vue.my.uw.edu-ic.cert
+        - name: my.uw.edu-ic.cert
           property: my.uw.edu-ic.cert
 
     - name: vue.my.uw.edu-uw-idp-cert
@@ -341,7 +341,7 @@ environmentVariablesSecrets:
   SAMLServiceProviderCert:
     name: SP_CERT
     secretName: vue.my.uw.edu-ic-certs
-    secretKey: vue.my.uw.edu-ic.cert
+    secretKey: my.uw.edu-ic.cert
   SAMLIDPCert:
     name: IDP_CERT
     secretName: vue.my.uw.edu-uw-idp-cert
