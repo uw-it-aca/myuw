@@ -40,9 +40,9 @@ env:
 # defined in the "deploy" job
 on:
   push:
-    branches: [main, master, qa, develop, fix/MUWM-5091]
+    branches: [main, master, fix/MUWM-5091, develop, vue/dev]
   pull_request:
-    branches: [main, master, qa, develop, fix/MUWM-5091]
+    branches: [main, master, fix/MUWM-5091, develop, vue/dev]
     types: [opened, reopened, synchronize]
 
 jobs:
@@ -93,11 +93,11 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Disable Vue Devtools
-        if: endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')
+        if: endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/fix/MUWM-5091')
         run: echo "VUE_DEVTOOLS=False" >> $GITHUB_ENV
 
       - name: Enable Vue Devtools
-        if: ${{ !(endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/qa')) }}
+        if: ${{ !(endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/fix/MUWM-5091')) }}
         run: echo "VUE_DEVTOOLS=True" >> $GITHUB_ENV
 
       - name: Build App Image
@@ -269,7 +269,7 @@ jobs:
 
       - name: Deployment Pipeline
         if: >-
-          contains(fromJSON('["main", "master", "qa"]'),
+          contains(fromJSON('["main", "master", "fix/MUWM-5091"]'),
             needs.context.outputs.git_repo_branch)
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
@@ -289,7 +289,7 @@ jobs:
           app_instance: dev
 
       - name: Deploy Vue Branch
-        if: needs.context.outputs.git_repo_branch == 'fix/MUWM-5091'
+        if: needs.context.outputs.git_repo_branch == 'vue/dev'
         uses: uw-it-aca/actions/cicd-deploy@main
         with:
           release_name: ${{ env.RELEASE_NAME }}
@@ -306,8 +306,8 @@ jobs:
   housekeeping:
     if: github.event_name == 'push' &&
         (endsWith(github.ref, '/main') || endsWith(github.ref, '/master') ||
-         endsWith(github.ref, '/qa') || endsWith(github.ref, '/develop') ||
-         endsWith(github.ref, '/fix/MUWM-5091'))
+         endsWith(github.ref, '/fix/MUWM-5091') || endsWith(github.ref, '/develop') ||
+         endsWith(github.ref, '/vue/dev'))
 
     needs: [context, build, deploy]
 
