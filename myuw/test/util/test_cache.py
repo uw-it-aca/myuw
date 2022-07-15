@@ -55,7 +55,7 @@ class TestCustomCachePolicy(TestCase):
         self.assertEquals(cache.get_cache_expiration_time(
             "gws", "/group_sws/v3", status=200), HALF_HOUR)
         self.assertEquals(cache.get_cache_expiration_time(
-            "pws", "/group_sws/v3", status=404), 60 * 10)
+            "gws", "/group_sws/v3", status=404), 60 * 10)
 
         self.assertEquals(cache.get_cache_expiration_time(
             "pws", "/identity/v2/person"), ONE_HOUR)
