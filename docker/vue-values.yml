@@ -48,8 +48,8 @@ memcached:
     type: RollingUpdate
 certs:
   mounted: true
-  certPath: /certs/my.uw.edu-ic.cert
-  keyPath: /certs/my.uw.edu-ic.key
+  certPath: /certs/vue.my.uw.edu-ic.cert
+  keyPath: /certs/vue.my.uw.edu-ic.key
   secretName: vue.my.uw.edu-ic-certs
 cronjob:
   enabled: true
