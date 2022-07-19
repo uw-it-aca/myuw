@@ -93,11 +93,11 @@ jobs:
             ${{ runner.os }}-buildx-
 
       - name: Disable Vue Devtools
-        if: endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/fix/MUWM-5091')
+        if: endsWith(github.ref, '/main') || endsWith(github.ref, '/master')
         run: echo "VUE_DEVTOOLS=False" >> $GITHUB_ENV
 
       - name: Enable Vue Devtools
-        if: ${{ !(endsWith(github.ref, '/main') || endsWith(github.ref, '/master') || endsWith(github.ref, '/fix/MUWM-5091')) }}
+        if: ${{ !(endsWith(github.ref, '/main') || endsWith(github.ref, '/master')) }}
         run: echo "VUE_DEVTOOLS=True" >> $GITHUB_ENV
 
       - name: Build App Image
