@@ -4,12 +4,12 @@
 
     <a
       role="button"
-      class="test-popover"
+      class="cache-msg"
       data-bs-container="body"
       data-bs-toggle="popover"
       data-bs-placement="bottom"
-      title="hello"
-      data-bs-content="Bottom popover"
+      data-bs-html="true"
+      :data-bs-content="message"
     >
       <font-awesome-icon :icon="faQuestionCircle" />
     </a>
@@ -18,7 +18,6 @@
 
 <script>
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
-import { mapState } from 'vuex';
 import { Popover } from 'bootstrap';
 
 export default {
@@ -28,15 +27,16 @@ export default {
     };
   },
   computed: {
-    ...mapState({
-      pageLoadedDt: (state) => state.cardDisplayDates.comparison_date,
-    }),
+    message () {
+      return "Most data in MyUW updates every 15 minutes but can take up to four hours. " +
+      "If you’re not seeing information you’d expect, refresh the page and check back at " +
+      "a later time, otherwise <a href='mailto:help@uw.edu?subject=MyUW Question'>" +
+      "email help@uw.edu</a>";
+    }
   },
   mounted() {
-    var popover = new Popover(document.querySelector('.test-popover'));
+    var popover = new Popover(document.querySelector('.cache-msg'));
   },
-  methods: {},
-
 };
 </script>
 
