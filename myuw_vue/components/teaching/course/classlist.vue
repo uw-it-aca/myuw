@@ -71,9 +71,6 @@
             <font-awesome-icon :icon="faDownload" /> Download (CSV)
           </a>
         </span>
-        <div class="myuw-text-sm fst-italic">
-          Updates to enrollment may take up to four hours to display on MyUW.
-        </div>
       </template>
     </uw-card-property>
   </uw-card-property-group>

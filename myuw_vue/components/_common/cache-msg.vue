@@ -1,11 +1,22 @@
 <template>
   <div class="myuw-text-md fst-italic text-end">
-    This page was last loaded at 9:26 AM. Is something missing?
+    Is something missing? Most data updates every 15 minutes.
+    <a data-bs-container="body" 
+      data-bs-toggle="popover" 
+      data-bs-placement="bottom" 
+      title="hello" 
+      data-bs-content="Bottom popover">
+      <font-awesome-icon :icon="faQuestionCircle" />Popover on bottom
+    </a>
   </div>
 </template>
 
 <script>
+import {
+  faQuestionCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import {mapState} from 'vuex';
+import { Popover } from 'bootstrap';
 
 export default {
   computed: {
@@ -14,6 +25,11 @@ export default {
     }),
   },
   methods: {
+  },
+    data() {
+    return {
+      faQuestionCircle,
+    }
   },
 };
 </script>
