@@ -3,6 +3,7 @@
     Is something missing? Most data updates every 15 minutes.
 
     <a
+      role="button"
       class="test-popover"
       data-bs-container="body"
       data-bs-toggle="popover"
