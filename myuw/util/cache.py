@@ -43,6 +43,8 @@ class MyUWMemcachedCache(RestclientPymemcacheClient):
                 return ONE_DAY
 
         if "gws" == service:
+            if status != 200:
+                return 60 * 10
             return HALF_HOUR
 
         if "pws" == service:
