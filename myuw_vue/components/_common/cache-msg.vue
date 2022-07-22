@@ -1,18 +1,20 @@
 <template>
-  <div class="myuw-text-md fst-italic text-end">
-    Is something missing? Most data updates every 15 minutes.
+  <div class="row">
+    <div class="col-8 myuw-text-md fst-italic text-end">
+      Is something missing? Most data updates every 15 minutes.
 
-    <a
-      role="button"
-      class="cache-msg"
-      data-bs-container="body"
-      data-bs-toggle="popover"
-      data-bs-placement="bottom"
-      data-bs-html="true"
-      :data-bs-content="message"
-    >
-      <font-awesome-icon :icon="faQuestionCircle" />
-    </a>
+      <a
+        role="button"
+        class="cache-msg"
+        data-bs-container="body"
+        data-bs-toggle="popover"
+        data-bs-placement="bottom"
+        data-bs-html="true"
+        :data-bs-content="message"
+      >
+        <font-awesome-icon :icon="faQuestionCircle" />
+      </a>
+    </div>
   </div>
 </template>
 
