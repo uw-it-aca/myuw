@@ -6,40 +6,51 @@
       </h2>
     </template>
     <template #card-body>
-      <div class="mx-n3 mb-n3 myuw-huskyexp">
-        <div class="position-relative overflow-hidden" style="max-height:300px;">
+      <div class="mb-2">
+                <div class="myuw-text-md me-auto">
+       <div class="row">
+        <div class="col-10 col-lg-4">
           <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt" />
-          <div class="position-absolute h-100 w-100 myuw-huskyexp-body">
-            <a
-              v-inner="articleTeaserTitle"
-              :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
-              :href="expLink"
-              class="d-block h-100 px-3 py-4 pe-5"
-            >
+        </div>
+        <div class="col-10 col-lg-6">
               <h3 class="myuw-teaser-title">
-                <span class="bg-white h5 myuw-font-encode-sans px-2 py-1">{{
+                <span class="h6 myuw-font-encode-sans">{{
                   articleTeaserTitle
                 }}</span>
               </h3>
-              <span class="myuw-highlight text-body myuw-text-md">
+              <div class="myuw-text-md mb-2">
                 {{ articleTeaserBody }}
-                <font-awesome-icon
-                  v-if="articleFaClass"
-                  :icon="articleFaClass"
-                  aria-hidden="true"
-                  class="align-text-bottom"
-                />
-              </span>
+              </div>
+              <div>
+                <em>2 min read time</em>
+                </div>
+              <div>
+                <a class="myuw-text-md" href="https://my.uw.edu/husky_experience/">Learn more about the toolkit</a>
+              </div>
             </a>
-          </div>
         </div>
-      </div>
+
+              </div>
+                <div class="myuw-chevron">
+                  <a
+                    v-inner="articleTeaserTitle"
+                    :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
+                    :href="expLink"
+                  >
+                    <span class="visually-hidden">
+                     link to article
+                    </span>
+                    <font-awesome-icon :icon="faChevronRight" />
+                  </a>
+                </div>
+              </div>
+         </div>
     </template>
   </uw-card>
 </template>
 
 <script>
-import { faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -50,6 +61,7 @@ export default {
   data: function() {
     return {
       urlExtra: 'week/',
+      faChevronRight,
     };
   },
   computed: {
@@ -122,7 +134,7 @@ export default {
     }
   }
   img {
-    opacity: 0.75;
+    opacity: 1;
   }
   .myuw-huskyexp-body {
     top: 0;
@@ -131,10 +143,7 @@ export default {
 
   .myuw-teaser-title {
     color: black;
-    &:hover {
-      color: $link-color !important;
-      text-decoration: underline;
-    }
+
   }
 
   .myuw-highlight {
