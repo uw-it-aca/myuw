@@ -1,6 +1,5 @@
 <template>
-  <div class="row">
-    <div class="col-8 myuw-text-md fst-italic text-end">
+    <div class="myuw-text-md fst-italic" :class="[$mq === 'mobile' ? 'text-center' : 'text-end']">
       Is something missing? Most data updates every 15 minutes.
 
       <a
@@ -8,14 +7,14 @@
         class="cache-msg"
         data-bs-container="body"
         data-bs-toggle="popover"
+        title="Data Cache Policy"
         data-bs-placement="bottom"
         data-bs-html="true"
         :data-bs-content="message"
       >
-        <font-awesome-icon :icon="faQuestionCircle" />
+        <font-awesome-icon :icon="faQuestionCircle" class="text-dark-gray" />
       </a>
     </div>
-  </div>
 </template>
 
 <script>
@@ -30,10 +29,10 @@ export default {
   },
   computed: {
     message () {
-      return "Most data in MyUW updates every 15 minutes but can take up to four hours. " +
-      "If you’re not seeing information you’d expect, refresh the page and check back at " +
+      return "<p>Most data in MyUW updates every 15 minutes but can take up to four hours.</p>" +
+      "<div>If you’re not seeing information you’d expect, refresh the page and check back at " +
       "a later time, otherwise <a href='mailto:help@uw.edu?subject=MyUW Question'>" +
-      "email help@uw.edu</a>";
+      "email help@uw.edu</a></div>";
     }
   },
   mounted() {
