@@ -82,12 +82,7 @@ export default {
       articleTeaserBody: function(state) {
         return state.hx_toolkit.value[this.urlExtra].articleTeaserBody;
       },
-      articleFaClass: function(state) {
-        if (state.hx_toolkit.value[this.urlExtra].articleFaClass === 'caret-right') {
-          return faCaretRight;
-        }
-        return null;
-      },
+
       hxtViewer: state => state.user.affiliations.hxt_viewer,
     }),
     ...mapGetters('hx_toolkit', ['isReadyTagged', 'isErroredTagged', 'statusCodeTagged']),
