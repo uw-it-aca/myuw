@@ -7,47 +7,45 @@
     </template>
     <template #card-body>
       <div class="mb-2">
-                <div class="myuw-text-md me-auto">
-       <div class="row">
+        <div class="myuw-text-md me-auto">
+        <div class="row">
         <div class="col-10 col-lg-4">
           <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt" />
-        </div>
+      </div>
         <div class="col-10 col-lg-6">
-              <h3 class="myuw-teaser-title">
-                <span class="h6 myuw-font-encode-sans">{{
-                  articleTeaserTitle
-                }}</span>
-              </h3>
-              <div class="myuw-text-md mb-2">
-                {{ articleTeaserBody }}
-              </div>
-              <div>
-                <em>2 min read time</em>
-                </div>
-              <div>
-                <a class="myuw-text-md" href="https://my.uw.edu/husky_experience/">Learn more about the toolkit</a>
-              </div>
-            </a>
+          <h3 class="myuw-teaser-title">
+            <span class="h6 myuw-font-encode-sans">
+              {{articleTeaserTitle}}
+            </span>
+          </h3>
+            <div class="myuw-text-md mb-2">
+              {{ articleTeaserBody }}
+            </div>
+            <div>
+              <em>2 min read time</em>
+            </div>
+            <div>
+              <a class="myuw-text-md" href="https://my.uw.edu/husky_experience/">Learn more about the toolkit</a>
+            </div>
         </div>
-
-              </div>
-                <div class="myuw-chevron">
-                  <a
-                    v-inner="articleTeaserTitle"
-                    :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
-                    :href="expLink"
-                  >
-                    <span class="visually-hidden">
-                     link to article
-                    </span>
-                    <font-awesome-icon :icon="faChevronRight" />
-                  </a>
-                </div>
-              </div>
-         </div>
+      </div>
+         <div class="myuw-chevron">
+            <a
+              v-inner="articleTeaserTitle"
+              :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
+              :href="expLink">
+                <span class="visually-hidden">
+                   link to article
+                </span>
+                <font-awesome-icon :icon="faChevronRight" />
+            </a>
+          </div>
+        </div>
+      </div>
     </template>
   </uw-card>
 </template>
+
 
 <script>
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
