@@ -1,6 +1,6 @@
 <template>
     <div class="myuw-text-md fst-italic" :class="[$mq === 'mobile' ? 'text-center' : 'text-end']">
-      Is something missing? Most data updates every 15 minutes.
+      Is something missing? Most updates become available after 15 minutes.
 
       <a
         role="button"
