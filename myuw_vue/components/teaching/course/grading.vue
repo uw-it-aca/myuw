@@ -39,9 +39,12 @@
         <div v-if="section.grading_status !== 'error'">
           <span v-if="section.grading_status">
             <span v-if="section.grading_status.allGradesSubmitted">
-              <span v-if="gradeSubmittedNotAccepted">
-                Grades unsuccessfully submitted - Error with
-                  {{section.grading_status.submitted_count}}
+              <span v-if="gradeSubmittedNotAccepted" class="myuw-text-md">
+                <div class="text-danger">
+                  <font-awesome-icon :icon="faExclamationTriangle" />
+                Grades unsuccessfully submitted
+                </div>
+                Error with {{section.grading_status.submitted_count}}
                   grade{{section.grading_status.submitted_count ? 's' : ''}}
                   submitted
               </span>
@@ -62,7 +65,7 @@
                 on {{section.grading_status.submittedFmt}}
               </span>
               <span v-if="gradeSubmittedNotAccepted">
-                Please try
+              <br>Please try
                 <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/">resubmitting grades</a>
                 or contact <a href="mailto:help@uw.edu">help@uw.edu</a>.
               </span>
@@ -141,14 +144,17 @@
           </div>
         </div>
         <div v-if="gradeSubmittedNotAccepted" class="myuw-text-md">
-          <span class="text-danger">
+          <div class="text-danger">
             <font-awesome-icon :icon="faExclamationTriangle" />
             Grades unsuccessfully submitted
-          </span><em> – Error with
-          {{section.grading_status.submitted_count}}
-          grade{{section.grading_status.submitted_count ? 's' : ''}}
-          submitted {{section.grading_status.submittedFmt}}</em>
-          Please try
+          </div>
+          Error with {{section.grading_status.submitted_count}}
+          grade{{section.grading_status.submitted_count ? 's' : ''}} submitted
+          <span v-if="section.grading_status.submitted_by">
+          by {{section.grading_status.submitted_by}}
+          </span>
+          on {{section.grading_status.submittedFmt}}
+          <br>Please try
           <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/">resubmitting grades</a>
           or contact <a href="mailto:help@uw.edu">help@uw.edu</a>.
         </div>
