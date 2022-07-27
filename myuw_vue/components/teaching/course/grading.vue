@@ -140,11 +140,14 @@
             <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
           </div>
         </div>
-        <div v-if="gradeSubmittedNotAccepted">
-          Grades unsuccessfully submitted - Error with
+        <div v-if="gradeSubmittedNotAccepted" class="myuw-text-md">
+          <span class="text-danger">
+            <font-awesome-icon :icon="faExclamationTriangle" />
+            Grades unsuccessfully submitted
+          </span><em> – Error with
           {{section.grading_status.submitted_count}}
           grade{{section.grading_status.submitted_count ? 's' : ''}}
-          submitted on {{section.grading_status.submittedFmt}}
+          submitted {{section.grading_status.submittedFmt}}</em>
           Please try
           <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/">resubmitting grades</a>
           or contact <a href="mailto:help@uw.edu">help@uw.edu</a>.
