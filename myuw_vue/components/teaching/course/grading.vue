@@ -46,33 +46,28 @@
           </span>
 
           <span v-else>
-            <span v-if="section.grading_status.allGradesSubmitted">
-              <span v-if="gradeSubmittedNotAccepted">
-                <div class="text-danger">
-                  <font-awesome-icon :icon="faExclamationTriangle" />
-                Grades unsuccessfully submitted
-                </div>
-                Error with {{section.grading_status.submitted_count}}
+            <span v-if="section.grading_status.allGradesSubmitted && !gradeSubmittedNotAccepted">
+              <a v-out="'Grade submitted'" :href="section.grading_status.section_url">
+                {{section.grading_status.submitted_count}}
                 grade{{section.grading_status.submitted_count ? 's' : ''}} submitted
-              </span>
-              <span v-else>
-                <a
-                  v-out="'Grade submitted'"
-                  :href="section.grading_status.section_url"
-                >
-                  {{section.grading_status.submitted_count}}
-                  grade{{section.grading_status.submitted_count ? 's' : ''}}
-                  submitted
-                </a>
-              </span>
-
-              <span v-if="section.grading_status.submitted_by">
-                by {{section.grading_status.submitted_by}}
-              </span>
-              <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
-                on {{section.grading_status.submittedFmt}}
-              </span>
+              </a>
             </span>
+            <span v-else-if="gradeSubmittedNotAccepted">
+              <div class="text-danger">
+                <font-awesome-icon :icon="faExclamationTriangle" />
+              Grades unsuccessfully submitted
+              </div>
+              Error with {{section.grading_status.submitted_count}}
+              grade{{section.grading_status.submitted_count ? 's' : ''}} submitted
+            </span>
+
+            <span v-if="section.grading_status.submitted_by">
+              by {{section.grading_status.submitted_by}}
+            </span>
+            <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
+              on {{section.grading_status.submittedFmt}}
+            </span>
+
             <br>
             <span v-if="gradeSubmittedNotAccepted">
               Please try
