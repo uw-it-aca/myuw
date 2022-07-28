@@ -34,19 +34,26 @@
         </span>
       </a>
     </uw-card-property>
+
     <uw-card-property title="Grade Submission">
       <template v-if="section.gradingPeriod.isOpen">
-        <div v-if="section.grading_status !== 'error'">
-          <span v-if="section.grading_status">
+        <div v-if="section.grading_status" class="myuw-text-md">
+
+          <span v-if="section.grading_status === 'error'">
+            <font-awesome-icon :icon="faExclamationTriangle" />
+            An error occurred with
+            <a href="https://gradepage.uw.edu/">Gradepage</a>. Please try again later.
+          </span>
+
+          <span v-else>
             <span v-if="section.grading_status.allGradesSubmitted">
-              <span v-if="gradeSubmittedNotAccepted" class="myuw-text-md">
+              <span v-if="gradeSubmittedNotAccepted">
                 <div class="text-danger">
                   <font-awesome-icon :icon="faExclamationTriangle" />
                 Grades unsuccessfully submitted
                 </div>
                 Error with {{section.grading_status.submitted_count}}
-                  grade{{section.grading_status.submitted_count ? 's' : ''}}
-                  submitted
+                grade{{section.grading_status.submitted_count ? 's' : ''}} submitted
               </span>
               <span v-else>
                 <a
@@ -58,17 +65,21 @@
                   submitted
                 </a>
               </span>
+
               <span v-if="section.grading_status.submitted_by">
                 by {{section.grading_status.submitted_by}}
               </span>
               <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
                 on {{section.grading_status.submittedFmt}}
               </span>
-              <span v-if="gradeSubmittedNotAccepted">
-              <br>Please try
-                <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/">resubmitting grades</a>
-                or contact <a href="mailto:help@uw.edu">help@uw.edu</a>.
-              </span>
+            </span>
+            <br>
+            <span v-if="gradeSubmittedNotAccepted">
+              Please try
+              <a
+                v-out="'Grade to submit'"
+                :href="section.grading_status.section_url"
+              >resubmitting grades</a>
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
               <a
@@ -80,8 +91,7 @@
                 to submit
               </a>
             </span>
-            <span v-else-if="section.is_primary_section ||
-             section.allows_secondary_grading">
+            <span v-else-if="section.is_primary_section || section.allows_secondary_grading">
               <a
                 v-if="section.grading_status.no_grades_submitted"
                 :href="section.grading_status.section_url"
@@ -104,11 +114,7 @@
             <font-awesome-icon :icon="faQuestionCircle" />
           </a>
         </div>
-        <div v-else>
-          <font-awesome-icon :icon="faExclamationTriangle" />
-          An error occurred with
-          <a href="https://gradepage.uw.edu/">Gradepage</a>. Please try again later.
-        </div>
+
         <div class="myuw-text-sm fst-italic">
           Grade submission closes
           <strong class="fw-bold">
@@ -119,67 +125,67 @@
           </span>
         </div>
       </template>
+
       <template v-else-if="section.gradingPeriod.isClosed">
-        <div v-if="section.grading_status
-        && section.grading_status.allGradesSubmitted
-        && !gradeSubmittedNotAccepted">
-          <a
-            v-out="'Grade submitted by'"
-            :href="section.grading_status.section_url"
-          >
-            {{section.grading_status.submitted_count}}
-            grade{{section.grading_status.submitted_count ? 's' : ''}}
-            submitted
-          </a>
-          <span v-if="section.grading_status.submitted_by">
-            by {{section.grading_status.submitted_by}}
-          </span>
-          <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
-            on {{section.grading_status.submittedFmt}}
-          </span>
-          <br />
-          <div>
-            Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
-            <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
+        <div v-if="section.grading_status" class="myuw-text-md">
+          <div v-if="section.grading_status.allGradesSubmitted && !gradeSubmittedNotAccepted">
+            <a
+              v-out="'Grade submitted by'"
+              :href="section.grading_status.section_url"
+            >
+              {{section.grading_status.submitted_count}}
+              grade{{section.grading_status.submitted_count ? 's' : ''}}
+              submitted
+            </a>
+            <span v-if="section.grading_status.submitted_by">
+              by {{section.grading_status.submitted_by}}
+            </span>
+            <span v-if="section.grading_status.submittedFmt" class="text-nowrap">
+              on {{section.grading_status.submittedFmt}}
+            </span>
+            <br>
+            <div>
+              Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
+              <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
+            </div>
           </div>
-        </div>
-        <div v-if="gradeSubmittedNotAccepted" class="myuw-text-md">
-          <div class="text-danger">
-            <font-awesome-icon :icon="faExclamationTriangle" />
-            Grades unsuccessfully submitted
-          </div>
-          Error with {{section.grading_status.submitted_count}}
-          grade{{section.grading_status.submitted_count ? 's' : ''}} submitted
-          <span v-if="section.grading_status.submitted_by">
-          by {{section.grading_status.submitted_by}}
-          </span>
-          on {{section.grading_status.submittedFmt}}
-          <br>Please try
-          <a href="https://itconnect.uw.edu/learn/tools/gradepage/assign-submit-grades/">resubmitting grades</a>
-          or contact <a href="mailto:help@uw.edu">help@uw.edu</a>.
-        </div>
-        <div v-else>
-          <span v-if="section.grading_status" class="capitalize">
-            {{section.grading_status.grading_status ?
-              section.grading_status.grading_status :
-              section.grading_status.unsubmitted_count
-            }} grade{{section.grading_status.unsubmitted_count ? 's': ''}}
-            not submitted through GradePage
-          </span>
-          <div>
-            Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
-            {{section.gradingPeriod.deadlineFmt}}
-            <span v-if="section.grading_status">
-              <br />
+          <div v-else>
+            <div v-if="gradeSubmittedNotAccepted">
+              <div class="text-danger">
+                <font-awesome-icon :icon="faExclamationTriangle" />
+                Grades unsuccessfully submitted
+              </div>
+
+              Error with {{section.grading_status.submitted_count}}
+              grade{{section.grading_status.submitted_count ? 's' : ''}} submitted
+              <span v-if="section.grading_status.submitted_by">
+              by {{section.grading_status.submitted_by}}
+              </span> on {{section.grading_status.submittedFmt}}
+            </div>
+            <div v-else>
+              <span class="capitalize">
+                {{section.grading_status.grading_status ?
+                  section.grading_status.grading_status :
+                  section.grading_status.unsubmitted_count
+                }} grade{{section.grading_status.unsubmitted_count ? 's': ''}}
+                not submitted through GradePage
+              </span>
+            </div>
+
+            <div>
+              Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
+              {{section.gradingPeriod.deadlineFmt}}
+              <br>
               <a
                 href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
               >What can I do now?</a>
-            </span>
+            </div>
           </div>
         </div>
       </template>
+
       <template v-else>
-        <div>
+        <div class="myuw-text-md">
           Grade submission opens {{section.gradingPeriod.openFmt}}
           <span v-if="!section.gradingPeriod.opensIn24Hours">
             ({{section.gradingPeriod.openRelative}})
