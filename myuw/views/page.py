@@ -28,8 +28,7 @@ from myuw.util.settings import (
     get_google_search_key, get_google_analytics_key, get_django_debug,
     get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
-from myuw.views.error import (
-    unknown_uwnetid, no_access, pws_error_404)
+from myuw.views.error import no_access
 from django.contrib.auth.decorators import login_required
 
 
@@ -50,9 +49,7 @@ def page(request,
     except DataFailureException as ex:
         log_exception(logger, "PWS error", traceback)
         if ex.status == 404:
-            if not_existing_user(request):
-                return unknown_uwnetid()
-            return pws_error_404()
+            return render(request, '403.html', status=403)
         return render(request, '500.html', status=500)
 
     try:

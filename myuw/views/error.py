@@ -58,15 +58,6 @@ def unknown_uwnetid():
         "please try signing in to MyUW again in one hour.</p>")
 
 
-def pws_error_404():
-    return _make_response(
-        UNAUTHORIZED_ERROR,
-        "<p>MyUW cannot find data for this user account "
-        "in the Person Registry services. Please contact the "
-        "<a href=\"https://itconnect.uw.edu/it-connect-home/question/\">"
-        "UW-IT Service Center</a>.</p>")
-
-
 def invalid_input_data():
     return _make_response(HTTP_BAD_REQUEST, "Invalid post data content")
 
