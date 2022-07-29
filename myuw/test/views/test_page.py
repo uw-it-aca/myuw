@@ -225,9 +225,4 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('nobody')
         response = self.client.get(url,
                                    HTTP_USER_AGENT="Mozilla/5.0")
-        self.assertEquals(response.status_code, 403)
-        self.assertEquals(
-            response.reason_phrase,
-            ('<p>MyUW encountered a problem with your uwnetid, '
-             'please contact the <a href="https://itconnect.uw.edu/'
-             'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
+        self.assertEquals(response.status_code, 400)
