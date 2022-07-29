@@ -49,14 +49,6 @@ def not_instructor_error():
                           "Access Forbidden to Non Instructor")
 
 
-def blocked_uwnetid():
-    return _make_response(
-        UNAUTHORIZED_ERROR,
-        "<p>MyUW encountered a problem with your uwnetid, please contact the "
-        "<a href=\"https://itconnect.uw.edu/it-connect-home/question/\">"
-        "UW-IT Service Center</a>.</p>")
-
-
 def unknown_uwnetid():
     return _make_response(
         UNAUTHORIZED_ERROR,

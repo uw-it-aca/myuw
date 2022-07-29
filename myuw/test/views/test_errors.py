@@ -4,8 +4,7 @@
 from myuw.views.error import (
     not_instructor_error, data_not_found, no_access, data_error,
     disabled_action_error, invalid_future_term, invalid_input_data,
-    invalid_method, not_instructor_error, unknown_uwnetid,
-    blocked_uwnetid, pws_error_404)
+    invalid_method, not_instructor_error, unknown_uwnetid, pws_error_404)
 from myuw.test.api import MyuwApiTest
 
 
@@ -20,15 +19,6 @@ class TestViewsError(MyuwApiTest):
         response = not_instructor_error()
         self.assertEquals(response.content,
                           b'Access Forbidden to Non Instructor')
-        self.assertEquals(response.status_code, 403)
-
-    def test_blocked_uwnetid(self):
-        response = blocked_uwnetid()
-        self.assertEquals(
-            response.content,
-            (b'<p>MyUW encountered a problem with your uwnetid, '
-             b'please contact the <a href="https://itconnect.uw.edu/'
-             b'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
         self.assertEquals(response.status_code, 403)
 
     def pws_error_404(self):

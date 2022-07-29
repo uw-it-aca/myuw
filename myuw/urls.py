@@ -74,9 +74,10 @@ urlpatterns = []
 
 # debug routes error pages
 if settings.DEBUG:
-    from django.views.defaults import server_error, page_not_found
+    from django.views.defaults import bad_request, server_error, page_not_found
     urlpatterns += [
         re_path(r'^500/?$', server_error),
+        re_path(r'^400/?$', bad_request),
         re_path(r'^404/?$', login_required(page_not_found),
                 kwargs={'exception': Exception("Page not Found")}),
     ]

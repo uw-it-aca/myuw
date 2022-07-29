@@ -21,8 +21,7 @@ from myuw.dao.user import get_updated_user, not_existing_user
 from myuw.dao.user_pref import get_migration_preference
 from myuw.dao.uwnetid import get_email_forwarding_for_current_user
 from myuw.logger.timer import Timer
-from myuw.logger.logresp import (
-    log_invalid_netid_response, log_page_view, log_exception)
+from myuw.logger.logresp import log_page_view, log_exception
 from myuw.logger.session_log import (
     log_session, is_native, log_session_end)
 from myuw.util.settings import (
@@ -30,7 +29,7 @@ from myuw.util.settings import (
     get_logout_url, no_access_check)
 from myuw.views import prefetch_resources, get_enabled_features
 from myuw.views.error import (
-    unknown_uwnetid, no_access, blocked_uwnetid, pws_error_404)
+    unknown_uwnetid, no_access, pws_error_404)
 from django.contrib.auth.decorators import login_required
 
 
@@ -78,10 +77,9 @@ def page(request,
     try:
         affiliations = get_all_affiliations(request)
     except BlockedNetidErr:
-        django_logout(request)
-        return blocked_uwnetid()
-    except DataFailureException as err:
-        log_exception(logger, err, traceback)
+        return render(request, '400.html', status=400)
+    except DataFailureException:
+        log_exception(logger, "Failed to get_all_affiliations", traceback)
         return render(request, '500.html', status=500)
 
     user_pref = get_migration_preference(request)
