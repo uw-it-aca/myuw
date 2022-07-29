@@ -1,155 +1,19 @@
-<!DOCTYPE html>
-<html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>MyUW - Server Error</title>
-        <meta name="description" content="">
-        <meta name="HandheldFriendly" content="True">
-        <meta name="MobileOptimized" content="320">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-        <meta http-equiv="cleartype" content="on">
-
-        <!-- add web fonts if needed -->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
-
-        <!-- mobile first styles -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-
-        <!-- copy the base styling from mobile.less -->
-        <style type="text/less">
-
-        /*** global ***/
-        html, body { height: 100%; font-family: 'Open Sans', sans-serif; overflow-x: hidden; }
-        #app_header { background: #4b2e84;
-
-            .header-bar { position: relative; height: 30px;
-
-                .header-myuw h1 {
-                    font-family: 'Roboto', sans-serif;
-                    font-weight: 300;
-                    display: inline-block;
-                    margin: 0;
-                    padding: 0;
-                    font-size: 16px;
-                    color: #efe2cd;
-                    line-height: 30px;
-                }
-            }
-
-            .header-cover { background: #4f318c; height: 52px;
-                .uw-patch {
-                    display: block;
-                    text-indent: -9999px;
-                    width: 52px;
-                    height: 38px;
-                    background: url('https://www.washington.edu/static/home/wp-content/themes/uw-2014/assets/svg/uw-sprite.svg') no-repeat 0 0 transparent;
-                    position: absolute;
-                    background-size: 370px;
-                    bottom: 0;
-                    right: 15px;
-                    z-index: 1;
-                }
-
-            }
-        }
-
-
-        #app_content {
-            h1 { font-size: 18px; font-weight: bold; text-transform: uppercase; }
-            .card {
-                border: 1px solid;
-                border-color: #e5e6e9 #dfe0e4 #d0d1d5;
-                position: relative;
-                background-color: #fff;
-                margin-top: 20px;
-                padding: 10px;
-
-                .unstyled-list {
-                    padding-left: 0px;
-                    list-style-type: none;
-                    line-height: 20px;
-
-                    li { margin-bottom: 10px; }
-                }
-            }
-        }
-
-        #app_footer { background: #fff; margin-top: 20px;
-            .navigation-bar { margin-bottom: 10px;
-                .navigation-list {  list-style:none; padding-left:0; margin:0;
-                    li {  width: 49.5%; margin-right: 1%; margin-bottom: 1%; height: 100px; background:#e8e3d3; }
-                    li:nth-child(even) { margin-right: 0; }
-                    .navigation-item { display: inline-block; position: relative; padding: 5px;
-                        &:hover { text-decoration: none; }
-                        .navigation-item-text { color: #777; font-weight: bold; font-size: 14px; text-transform: uppercase; }
-                    }
-                }
-            }
-            .footer-bar { background:#333; padding: 10px 0;
-                .footer-links { color: #aaa; font-size: 11px;
-                    a {color: #fff; }
-                    ul { padding: 0; margin-bottom: .5em; line-height: 11px; list-style: none;
-                        li { display: inline-block; padding-right: 5px; margin-right: 3px; border-end: solid 1px #aaa; color: #222; }
-                    }
-                }
-            }
-        }
-        </style>
-
-        <!-- jquery -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-        <!-- less js precomiler -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/detectizr/1.5.0/detectizr.min.js"></script>
-
-        <script type="text/javascript">
-            var mobile, tablet, desktop;
-
-            Modernizr.Detectizr.detect({ detectDeviceModel: false, detectScreen: false, detectOS: false, detectBrowser: false, detectPlugins: false });
-
-            if ( $('html').hasClass("mobile") ) {
-                mobile = true
-                tablet = false
-                desktop = false
-            }
-            else if ( $('html').hasClass("tablet") ) {
-                mobile = false
-                tablet = true
-                desktop = false
-            }
-            else if ( $('html').hasClass("desktop") ){
-                mobile = false
-                tablet = false
-                desktop = true
-            }
-
-            window.onload = function() {
-              document.getElementById('year').innerHTML = new Date().getFullYear()
-            }
-        </script>
-    </head>
-    <body>
-        {% include "_common/top.html" %}
-        <!-- content container -->
-        <div id="app_content" role="main" aria-labelledby="myuw-500-error">
-            <div class="container">
-                <div>
-                    <h1 id="myuw-500-error">Issue with Your UWNetID</h1>
-                    <p>
-                      MyUW encountered a problem with your uwnetid, please contact the
-                      <a href="https://itconnect.uw.edu/it-connect-home/question/"
-                      >UW-IT Service Center</a>.
-                    </p>
-                    {% include "_common/direct-links.html" %}
-                </div>
+{% extends 'base-err.html' %}
+{% block body_content %}
+    {% include "_common/top.html" %}
+    <!-- content container -->
+    <div id="app_content" role="main" aria-labelledby="myuw-500-error">
+        <div class="container">
+            <div>
+                <h1 id="myuw-500-error">Issue with Your UWNetID</h1>
+                <p>
+                    MyUW encountered a problem with your uwnetid, please contact the
+                    <a href="https://itconnect.uw.edu/it-connect-home/question/"
+                    >UW-IT Service Center</a>.
+                </p>
+                {% include "_common/direct-links.html" %}
             </div>
         </div>
-        {% include "_common/footer.html" %}
-    </body>
-</html>
+    </div>
+    {% include "_common/footer.html" %}
+{% endblock body_content %}
