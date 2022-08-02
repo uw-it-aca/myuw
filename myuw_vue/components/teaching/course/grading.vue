@@ -97,8 +97,8 @@
                 Submit grades in Gradepage
               </a>
               <span v-else>
-                <!-- Display: term grade submission opens on... -->
                 {{section.grading_status.grading_status}}
+                <!-- ie, term grade submission opens on... -->
               </span>
             </span>
             <span v-else>
