@@ -72,11 +72,11 @@
 
             <br>
             <span v-if="gradeSubmittedNotAccepted">
-              Please try
+              Please
               <a
                 v-out="'Grade to submit'"
                 :href="section.grading_status.section_url"
-              >resubmitting grades</a>
+              >try resubmitting grades</a>
             </span>
             <span v-else-if="section.grading_status.unsubmitted_count">
               <a
@@ -144,7 +144,7 @@
               on {{section.grading_status.submittedFmt}}
             </span>
             <br>
-            <div>
+            <div class="myuw-text-sm fst-italic">
               Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
               <span class="text-nowrap">{{section.gradingPeriod.deadlineFmt}}</span>
             </div>
@@ -173,13 +173,14 @@
                 not submitted through GradePage
               </span>
             </div>
-
-            Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
-            {{section.gradingPeriod.deadlineFmt}}
+            <span class="myuw-text-sm fst-italic">
+              Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
+              {{section.gradingPeriod.deadlineFmt}}
+            </span>
             <br>
-            <a
+            To make changes, use <a
               href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
-            >What can I do now?</a>
+            ><em>Change Submitted Grades</em></a> form
           </div>
         </div>
       </template>
