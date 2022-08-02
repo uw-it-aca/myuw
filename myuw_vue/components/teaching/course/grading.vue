@@ -102,6 +102,7 @@
               </span>
             </span>
             <span v-else>
+              <!-- Section is secondary and no grading -->
               Grading for secondary section is disabled.
               <a :href="section.grading_status.section_url">Grade primary section</a>.
             </span>
