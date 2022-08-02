@@ -97,11 +97,12 @@
                 Submit grades in Gradepage
               </a>
               <span v-else>
-                <!-- Display: term grade submission opens on... -->
                 {{section.grading_status.grading_status}}
+                <!-- ie, term grade submission opens on... -->
               </span>
             </span>
             <span v-else>
+              <!-- Section is secondary and no grading -->
               Grading for secondary section is disabled.
               <a :href="section.grading_status.section_url">Grade primary section</a>.
             </span>
