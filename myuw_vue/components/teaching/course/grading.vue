@@ -47,12 +47,14 @@
 
           <span v-else>
             <span v-if="section.grading_status.allGradesSubmitted && !gradeSubmittedNotAccepted">
+              <!-- grades have been submitted -->
               <a v-out="'Grade submitted'" :href="section.grading_status.section_url">
                 {{section.grading_status.submitted_count}}
                 grade{{section.grading_status.submitted_count ? 's' : ''}} submitted
               </a>
             </span>
             <span v-else-if="gradeSubmittedNotAccepted">
+              <!-- grades submission unsuccessful -->
               <div class="text-danger">
                 <font-awesome-icon :icon="faExclamationTriangle" />
               Grades unsuccessfully submitted
@@ -86,14 +88,16 @@
                 to submit
               </a>
             </span>
-            <span v-else-if="section.is_primary_section || section.allows_secondary_grading">
+            <span v-else-if="section.is_primary_section ||
+             section.allows_secondary_grading">
               <a
                 v-if="section.grading_status.no_grades_submitted"
                 :href="section.grading_status.section_url"
-              >
+              ><!-- grades have not been submitted yet -->
                 Submit grades in Gradepage
               </a>
               <span v-else>
+                <!-- Display: term grade submission opens on... -->
                 {{section.grading_status.grading_status}}
               </span>
             </span>
@@ -124,6 +128,7 @@
       <template v-else-if="section.gradingPeriod.isClosed">
         <div v-if="section.grading_status" class="myuw-text-md">
           <div v-if="section.grading_status.allGradesSubmitted && !gradeSubmittedNotAccepted">
+            <!-- grades submission successful -->
             <a
               v-out="'Grade submitted by'"
               :href="section.grading_status.section_url"
@@ -146,6 +151,7 @@
           </div>
           <div v-else>
             <div v-if="gradeSubmittedNotAccepted">
+              <!-- grades submission unsuccessful -->
               <div class="text-danger">
                 <font-awesome-icon :icon="faExclamationTriangle" />
                 Grades unsuccessfully submitted
@@ -158,6 +164,7 @@
               </span> on {{section.grading_status.submittedFmt}}
             </div>
             <div v-else>
+              <!-- grades were not submitted via GradePage -->
               <span class="capitalize">
                 {{section.grading_status.grading_status ?
                   section.grading_status.grading_status :
@@ -167,14 +174,12 @@
               </span>
             </div>
 
-            <div>
-              Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
-              {{section.gradingPeriod.deadlineFmt}}
-              <br>
-              <a
-                href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
-              >What can I do now?</a>
-            </div>
+            Grade submission for {{titleCaseWord(section.quarter)}} {{section.year}} closed
+            {{section.gradingPeriod.deadlineFmt}}
+            <br>
+            <a
+              href="http://itconnect.uw.edu/learn/tools/gradepage/change-submitted-grades/"
+            >What can I do now?</a>
           </div>
         </div>
       </template>
