@@ -1,0 +1,16 @@
+{
+	"grading_status": {
+		"submitted_date": "2017-03-08T21:42:19+00:00",
+		"submitted_by": "BILL AVERAGE",
+		"display_name": "TRAIN 100 A",
+		"unsubmitted_count": 0,
+		"section_url": "/section/2013-winter-TRAIN-101-A-FBB38FE46A7C11D5A4AE0004AC494FFE",
+		"grade_import": null,
+		"section_id": "2013-winter-TRAIN-101-A-FBB38FE46A7C11D5A4AE0004AC494FFE",
+		"submitted_count": 1,
+		"status_url": "/api/v1/grading_status/2013-winter-TRAIN-101-A-FBB38FE46A7C11D5A4AE0004AC494FFE",
+		"grading_period_open": true,
+		"accepted_date": null,
+		"grading_status": null
+	}
+}
