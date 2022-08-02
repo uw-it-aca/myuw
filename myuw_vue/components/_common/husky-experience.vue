@@ -11,7 +11,7 @@
               <img :srcset="srcset" :src="src" class="img-fluid border" :alt="alt" />
             </div>
             <div class="col-10 col-lg-6">
-              <h3 class="myuw-teaser-title h6 myuw-font-encode-sans mb-1 mt-3 mt-0-xl">
+              <h3 class="myuw-teaser-title h6 myuw-font-encode-sans mb-1 mt-3 mt-lg-0">
                 {{ articleTeaserTitle }}
               </h3>
               <div class="myuw-text-md mb-1">
