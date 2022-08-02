@@ -10,18 +10,22 @@
         <div class="myuw-text-md me-auto">
         <div class="row">
         <div class="col-10 col-lg-4">
-          <img :srcset="srcset" :src="src" class="img-fluid" :alt="alt" />
+          <img :srcset="srcset" :src="src" class="img-fluid border" :alt="alt" />
       </div>
         <div class="col-10 col-lg-6">
-          <h3 class="myuw-teaser-title">
-            <span class="h6 myuw-font-encode-sans">
+          <h3 class="myuw-teaser-title h6 myuw-font-encode-sans mb-1 mt-3 mt-0-xl">
               {{articleTeaserTitle}}
-            </span>
           </h3>
-            <div class="myuw-text-md mb-2">
+            <div class="myuw-text-md mb-1">
               {{ articleTeaserBody }}
+              <a
+              v-inner="articleTeaserTitle"
+              :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
+              :href="expLink">
+              Read more
+              </a>
             </div>
-            <div>
+            <div class="mb-3 text-secondary">
               <em>2 min read time</em>
             </div>
             <div>
