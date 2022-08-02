@@ -1,47 +1,47 @@
 <template>
   <uw-card v-if="hxtViewer" :loaded="isReady" :errored="isErrored" :errored-show="showError">
     <template #card-heading>
-      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Husky Experience Toolkit
-      </h2>
+      <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">Husky Experience Toolkit</h2>
     </template>
     <template #card-body>
       <div class="mb-2">
         <div class="myuw-text-md me-auto">
-        <div class="row">
-        <div class="col-10 col-lg-4">
-          <img :srcset="srcset" :src="src" class="img-fluid border" :alt="alt" />
-      </div>
-        <div class="col-10 col-lg-6">
-          <h3 class="myuw-teaser-title h6 myuw-font-encode-sans mb-1 mt-3 mt-0-xl">
-              {{articleTeaserTitle}}
-          </h3>
-            <div class="myuw-text-md mb-1">
-              {{ articleTeaserBody }}
-              <a
-              v-inner="articleTeaserTitle"
-              :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
-              :href="expLink">
-              Read more
-              </a>
+          <div class="row">
+            <div class="col-10 col-lg-4">
+              <img :srcset="srcset" :src="src" class="img-fluid border" :alt="alt" />
             </div>
-            <div class="mb-3 text-secondary">
-              <em>2 min read time</em>
+            <div class="col-10 col-lg-6">
+              <h3 class="myuw-teaser-title h6 myuw-font-encode-sans mb-1 mt-3 mt-0-xl">
+                {{ articleTeaserTitle }}
+              </h3>
+              <div class="myuw-text-md mb-1">
+                {{ articleTeaserBody }}
+                <a
+                  v-inner="articleTeaserTitle"
+                  :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
+                  :href="expLink"
+                >
+                  Read more
+                </a>
+              </div>
+              <div class="mb-3 text-secondary">
+                <em>2 min read time</em>
+              </div>
+              <div>
+                <a class="myuw-text-md" href="https://my.uw.edu/husky_experience/"
+                  >Learn more about the toolkit</a
+                >
+              </div>
             </div>
-            <div>
-              <a class="myuw-text-md" href="https://my.uw.edu/husky_experience/">Learn more about the toolkit</a>
-            </div>
-        </div>
-      </div>
-         <div class="myuw-chevron">
+          </div>
+          <div class="myuw-chevron">
             <a
               v-inner="articleTeaserTitle"
               :title="`${articleTeaserTitle}. ${articleTeaserBody}`"
-              :href="expLink">
-                <span class="visually-hidden">
-                   link to article
-                </span>
-                <font-awesome-icon :icon="faChevronRight" />
+              :href="expLink"
+            >
+              <span class="visually-hidden"> link to article </span>
+              <font-awesome-icon :icon="faChevronRight" />
             </a>
           </div>
         </div>
@@ -50,9 +50,8 @@
   </uw-card>
 </template>
 
-
 <script>
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { mapGetters, mapState, mapActions } from 'vuex';
 import Card from '../_templates/card.vue';
 
@@ -60,7 +59,7 @@ export default {
   components: {
     'uw-card': Card,
   },
-  data: function() {
+  data: function () {
     return {
       urlExtra: 'week/',
       faChevronRight,
@@ -68,26 +67,26 @@ export default {
   },
   computed: {
     ...mapState({
-      expLink: function(state) {
+      expLink: function (state) {
         return state.hx_toolkit.value[this.urlExtra].expLink;
       },
-      srcset: function(state) {
+      srcset: function (state) {
         return state.hx_toolkit.value[this.urlExtra].srcset;
       },
-      src: function(state) {
+      src: function (state) {
         return state.hx_toolkit.value[this.urlExtra].src;
       },
-      alt: function(state) {
+      alt: function (state) {
         return state.hx_toolkit.value[this.urlExtra].alt;
       },
-      articleTeaserTitle: function(state) {
+      articleTeaserTitle: function (state) {
         return state.hx_toolkit.value[this.urlExtra].articleTeaserTitle;
       },
-      articleTeaserBody: function(state) {
+      articleTeaserBody: function (state) {
         return state.hx_toolkit.value[this.urlExtra].articleTeaserBody;
       },
 
-      hxtViewer: state => state.user.affiliations.hxt_viewer,
+      hxtViewer: (state) => state.user.affiliations.hxt_viewer,
     }),
     ...mapGetters('hx_toolkit', ['isReadyTagged', 'isErroredTagged', 'statusCodeTagged']),
     isReady() {
@@ -140,7 +139,6 @@ export default {
 
   .myuw-teaser-title {
     color: black;
-
   }
 
   .myuw-highlight {
