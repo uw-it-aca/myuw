@@ -1,13 +1,13 @@
 <template>
-    <div class="myuw-text-md fst-italic" :class="[$mq === 'mobile' ? 'text-center' : 'text-end']">
-      Is something missing? Most updates become available after 15 minutes.
+    <div class="myuw-text-sm text-dark-gray fst-italic" :class="[$mq === 'mobile' ? 'text-center' : 'text-end']">
+      Most updates become available after 15 minutes.
 
       <a
         role="button"
         class="cache-msg"
         data-bs-container="body"
         data-bs-toggle="popover"
-        title="Data Cache Policy"
+        title="Data Update Policy"
         data-bs-placement="bottom"
         data-bs-html="true"
         :data-bs-content="message"
@@ -29,10 +29,10 @@ export default {
   },
   computed: {
     message () {
-      return "<p>Most data in MyUW updates every 15 minutes but can take up to four hours.</p>" +
-      "<div>If you’re not seeing information you’d expect, refresh the page and check back at " +
-      "a later time, otherwise <a href='mailto:help@uw.edu?subject=MyUW Question'>" +
-      "email help@uw.edu</a></div>";
+      return "<p>Most data updates become available in MyUW every 15 minutes, but some can take up to four hours.</p>" +
+      "<div>If you’re not seeing information you’d expect, please refresh the page at " +
+      "a later time. If you're still having issues email <a href='mailto:help@uw.edu?subject=MyUW Question'>" +
+      "help@uw.edu</a>.</div>";
     }
   },
   mounted() {
