@@ -1,6 +1,6 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
-    <template v-if="applicantData.is_returning" #card-heading>
+    <template v-if="isReturning" #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
         Your Returning Student Application
       </h2>
@@ -11,7 +11,7 @@
         {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
       </h2>
     </template>
-    <template v-if="applicantData.is_returning" #card-body>
+    <template v-if="isReturning" #card-body>
       <h3 class="h6 text-dark-beige myuw-font-encode-sans">
         For application status, contact the UW Bothell Office of Admissions
       </h3>
@@ -82,6 +82,11 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  computed: {
+    isReturning() {
+      return this.applicantData.is_returning;
+    }
   },
 };
 </script>
