@@ -4,6 +4,7 @@ import {Vue, vueConf} from './base.js';
 import Boilerplate from './components/_templates/boilerplate/boilerplate.vue';
 
 // common components
+import CacheMsg from './components/_common/cache-msg.vue';
 import Grades from './components/_common/grades/grades.vue';
 import HuskyExperience from './components/_common/husky-experience.vue';
 import Outage from './components/_common/outage.vue';
@@ -85,6 +86,7 @@ vueConf.store.commit('addVarToState', {
 
 Vue.component('myuw-boilerplate', Boilerplate);
 Vue.component('myuw-banner-summaries', Summaries);
+Vue.component('myuw-cache-msg', CacheMsg);
 Vue.component('myuw-notice-card', Notices);
 Vue.component('myuw-acad-cal-snippet', AcadCalSnippet);
 Vue.component('myuw-ns-critical-info', CriticalInfo);
