@@ -75,7 +75,7 @@ urlpatterns = []
 
 # debug routes error pages
 if settings.DEBUG:
-    
+
     urlpatterns += [
         re_path(
             r"^500$",
