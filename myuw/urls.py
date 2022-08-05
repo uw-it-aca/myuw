@@ -4,6 +4,7 @@
 from django.conf import settings
 from django.urls import re_path
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView
 from myuw.views.page import logout
 from myuw.views.home import home
 from myuw.views.teaching import teaching, teaching_section, student_photo_list
@@ -74,14 +75,34 @@ urlpatterns = []
 
 # debug routes error pages
 if settings.DEBUG:
-    from django.views.defaults import (
-        permission_denied, bad_request, server_error, page_not_found)
+    
     urlpatterns += [
-        re_path(r'^500/?$', server_error),
-        re_path(r'^400/?$', bad_request),
-        re_path(r'^403/?$', permission_denied),
-        re_path(r'^404/?$', login_required(page_not_found),
-                kwargs={'exception': Exception("Page not Found")}),
+        re_path(
+            r"^500$",
+            TemplateView.as_view(template_name="500.html"),
+            name="500_response",
+        ),
+        re_path(
+            r"^543$",
+            TemplateView.as_view(template_name="543.html"),
+            name="543_response",
+        ),
+        re_path(
+            r"^400$",
+            TemplateView.as_view(template_name="400.html"),
+            name="400_response",
+        ),
+        re_path(
+            r"^403$",
+            TemplateView.as_view(template_name="403.html"),
+            name="403_response",
+        ),
+
+        re_path(
+            r"^404$",
+            TemplateView.as_view(template_name="404.html"),
+            name="404_response",
+        ),
     ]
 
 urlpatterns += [

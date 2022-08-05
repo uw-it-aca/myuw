@@ -1,0 +1,18 @@
+{% extends 'base-err.html' %}
+{% block body_content %}
+    {% include "_common/top.html" %}
+    <!-- content container -->
+    <div id="app_content" role="main" aria-labelledby="myuw-543-error">
+        <div class="container">
+            <div>
+                <h1 id="myuw-543-error">Unable to Load Page</h1>
+                <p>
+                    A data error has occurred.
+                    Please try again in a few minutes.
+                </p>
+                {% include "_common/direct-links.html" %}
+            </div>
+        </div>
+    </div>
+    {% include "_common/footer.html" %}
+{% endblock body_content %}

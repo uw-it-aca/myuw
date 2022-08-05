@@ -1,4 +1,17 @@
 {% extends 'base-err.html' %}
 {% block body_content %}
-    <p>place holder</p>
+{% include "_common/top.html" %}
+<!-- content container -->
+<div id="app_content" role="main" aria-labelledby="myuw-404-error">
+    <div class="container">
+        <div>
+            <h1 id="myuw-404-error"></h1>
+            <p>
+                Page not found
+            </p>
+            {% include "_common/direct-links.html" %}
+        </div>
+    </div>
+</div>
+{% include "_common/footer.html" %}
 {% endblock body_content %}
