@@ -24,12 +24,12 @@
           <div><a href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a></div>
         </div>
         <div class="d-flex">
-          <div class="me-5">Phone</div>
+          <div class="me-3 pe-4">Phone</div>
           <div>(425) 352-5000</div>
         </div>
         <div class="d-flex">
           <div class="me-4 pe-1">Location</div>
-          <div>Husky Hall<br />10909 NE 185th St <br />Bothell, WA 98011<br />Box 358500</div>
+          <div>Husky Hall<br />10909 NE 185th St <br />Bothell, WA 98011</div>
         </div>
       </div>
 
