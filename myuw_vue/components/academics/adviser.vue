@@ -36,12 +36,26 @@
         </ul>
         <hr class="my-0 bg-secondary">
       </div>
-      <div class="myuw-text-md mt-3 mb-3"> 
+      <div class="myuw-text-md mt-3 mb-3">
         <div class="fw-bold myuw-font-encode-sans"
         >Departmental and Major Advising Offices</div>
         <a
           href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
         >View departmental and major advising offices’ contact information</a>
+      </div>
+       <div class="myuw-text-md mt-3 mb-3">
+        <div class="fw-bold myuw-font-encode-sans"
+        >Advising Offices</div> <!--Tacoma-->
+        <a
+          href="https://www.tacoma.uw.edu/gaa#permalink-37917"
+        >View advising offices’ contact information</a>
+      </div>
+       <div class="myuw-text-md mt-3 mb-3">
+        <div class="fw-bold myuw-font-encode-sans"
+        >Advising Offices</div> <!--Bothell-->
+        <a
+          href="https://uwb.campus.eab.com/"
+        >View advising offices’ contact information</a>
       </div>
       <hr v-if="hasMajors || hasMinors" class="my-0 bg-secondary">
       <uw-card-property v-if="hasMajors" title="Your Major" class="mt-3" :no-margin-bottom="true">
@@ -88,7 +102,7 @@
       In the meantime, to contact a general adviser, try the
       <a href="https://www.washington.edu/uaa/advising/">
         Undergraduate Advising
-      </a> page and to contact a departmental or major adviser, try the 
+      </a> page and to contact a departmental or major adviser, try the
       <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">
         Departmental and Major Advising Offices
       </a> page.
