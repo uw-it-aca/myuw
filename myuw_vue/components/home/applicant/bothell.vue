@@ -2,7 +2,7 @@
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
     <template v-if="isReturning" #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Your Returning Student Form
+        Your Returning Student Status
       </h2>
     </template>
     <template v-else #card-heading>
@@ -13,7 +13,7 @@
     </template>
     <template v-if="isReturning" #card-body>
       <h3 class="h6 myuw-font-encode-sans">
-        Form status
+        Learn about your status
       </h3>
       <p class="myuw-text-md">
         For returning student form status, contact the UW Bothell Office of the Registrar:
