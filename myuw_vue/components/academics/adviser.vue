@@ -45,14 +45,14 @@
       </div>
        <div class="myuw-text-md mt-3 mb-3">
         <div class="fw-bold myuw-font-encode-sans"
-        >Advising Offices</div> <!--Tacoma-->
+        >Advising Offices</div> <!--Tacoma without assigned advisor-->
         <a
           href="https://www.tacoma.uw.edu/gaa#permalink-37917"
         >View advising offices’ contact information</a>
       </div>
        <div class="myuw-text-md mt-3 mb-3">
         <div class="fw-bold myuw-font-encode-sans"
-        >Advising Offices</div> <!--Bothell-->
+        >Advising Offices</div> <!--Bothell without assigned advisor-->
         <a
           href="https://uwb.campus.eab.com/"
         >View advising offices’ contact information</a>
