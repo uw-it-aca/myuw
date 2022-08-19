@@ -27,10 +27,6 @@
           <div class="me-3 pe-4">Phone</div>
           <div>(425) 352-5000</div>
         </div>
-        <div class="d-flex">
-          <div class="me-4 pe-1">Location</div>
-          <div>Husky Hall<br />10909 NE 185th St <br />Bothell, WA 98011</div>
-        </div>
       </div>
 
       <h3 class="h6 myuw-font-encode-sans">Registration for returning student</h3>
@@ -59,11 +55,6 @@
         <li class="mb-1">
           <a v-out="'UW Bothell Student Resources'" href="http://www.uwb.edu/studentaffairs">
             Check out the student resources for student life, career services, and more
-          </a>
-        </li>
-        <li class="mb-1">
-          <a v-out="'UW Bothell Academic calendars'" href="http://www.uwb.edu/calendars">
-            View the UW Bothell Academic calendars
           </a>
         </li>
       </ul>
