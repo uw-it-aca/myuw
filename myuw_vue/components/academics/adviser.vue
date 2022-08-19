@@ -36,7 +36,7 @@
         </ul>
         <hr class="my-0 bg-secondary">
       </div>
-      <div class="myuw-text-md mt-3 mb-3">
+      <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Seattle'">
         <div class="fw-bold myuw-font-encode-sans"
         >Departmental and Major Advising Offices</div>
         <a
