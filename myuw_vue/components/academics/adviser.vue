@@ -43,14 +43,14 @@
           href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
         >View departmental and major advising offices’ contact information</a>
       </div>
-       <div class="myuw-text-md mt-3 mb-3">
+       <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Tacoma'">
         <div class="fw-bold myuw-font-encode-sans"
         >Advising Offices</div> <!--Tacoma without assigned advisor-->
         <a
           href="https://www.tacoma.uw.edu/gaa#permalink-37917"
         >View advising offices’ contact information</a>
       </div>
-       <div class="myuw-text-md mt-3 mb-3">
+       <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Bothell'">
         <div class="fw-bold myuw-font-encode-sans"
         >Advising Offices</div> <!--Bothell without assigned advisor-->
         <a
