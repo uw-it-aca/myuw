@@ -51,19 +51,24 @@
     </script>
   </head>
   <body>
+
     <header class="w-100">
       <div class="bg-purple axdd-topbar-brand">
         <div class="container-xl axdd-topbar-logo">
-          <!--v-if-->
           <div class="d-inline align-middle text-white h2">
             <a href="/" class="axdd-font-encode-sans text-white text-decoration-none">MyUW</a>
           </div>
         </div>
       </div>
-      <!--v-if-->
     </header>
 
-    {% block body_content %}{% endblock body_content %}
+    <main class="container-xl">
+      <div class="row">
+        <div class="col">
+        {% block body_content %}{% endblock body_content %}
+        </div>
+      </div>
+    </main>
 
     <footer class="w-100 mt-auto">
       <div class="bg-dark">
@@ -89,5 +94,6 @@
         </div>
       </div>
     </footer>
+
   </body>
 </html>
