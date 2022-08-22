@@ -1,21 +1,18 @@
-{% extends 'base-err.html' %}
-{% block body_content %}
-    {% include "_common/top.html" %}
-    <!-- content container -->
-    <div id="app_content" role="main" aria-labelledby="myuw-500-error">
-        <div class="container">
-            <div class="row">
-              <div class="col">
-                <h1>Blocked NetID - Error 400</h1>
-                <p class="text-danger">Your NetID is currently blocked from accessing this content.</p>
-                <p>
-                    Get <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/"
-                    >MyUW help</a> for further information to resolve this issue.
-                </p>
-                {% include "_common/direct-links.html" %}
-              </div>
-            </div>
-        </div>
+{% extends 'base-err.html' %} {% block body_content %}
+<!-- content container -->
+<div id="app_content" role="main" aria-labelledby="myuw-500-error">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Blocked NetID - Error 400</h1>
+        <p class="text-danger">Your NetID is currently blocked from accessing this content.</p>
+        <p>
+          Get <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW help</a> for
+          further information to resolve this issue.
+        </p>
+        {% include "_common/direct-links.html" %}
+      </div>
     </div>
-    {% include "_common/footer.html" %}
+  </div>
+</div>
 {% endblock body_content %}
