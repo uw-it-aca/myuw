@@ -1,17 +1,15 @@
 {% extends 'base-err.html' %}
+{% block page_title %}Error 404{% endblock page_title %}
 {% block body_content %}
-{% include "_common/top.html" %}
 <!-- content container -->
-<div id="app_content" role="main" aria-labelledby="myuw-404-error">
-    <div class="container">
-        <div>
-            <h1 id="myuw-404-error"></h1>
-            <p>
-                Page not found
-            </p>
-            {% include "_common/direct-links.html" %}
-        </div>
-    </div>
-</div>
-{% include "_common/footer.html" %}
-{% endblock body_content %}
+<h1 class="h3 my-4">Page Not Found - Error 404</h1>
+  <p>This page cannot be found. Please make sure the page URL is correct, or visit <a href="https://my.uw.edu/"> MyUW home.</a></p>
+  <p class="fw-bold">
+  Contact
+  <a href="mailto:help@uw.edu?subject=MyUW%20Page%20Not%20Found%20-%20404&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20">help@uw.edu</a>
+  with any questions.
+  </p>
+{% include "_common/direct-links.html" %} {% endblock body_content %}
+
+
+

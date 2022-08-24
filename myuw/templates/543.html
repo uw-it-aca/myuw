@@ -1,18 +1,12 @@
 {% extends 'base-err.html' %}
+{% block page_title %}Error 543{% endblock page_title %}
 {% block body_content %}
-    {% include "_common/top.html" %}
-    <!-- content container -->
-    <div id="app_content" role="main" aria-labelledby="myuw-543-error">
-        <div class="container">
-            <div>
-                <h1 id="myuw-543-error">Unable to Load Page</h1>
-                <p>
-                    A data error has occurred.
-                    Please try again in a few minutes.
-                </p>
-                {% include "_common/direct-links.html" %}
-            </div>
-        </div>
-    </div>
-    {% include "_common/footer.html" %}
-{% endblock body_content %}
+<!-- content container -->
+<h1 class="h3 my-4">An Error Has Occurred - Error 543</h1>
+  <p>A data error has occurred.</p>
+  <p class="fw-bold">
+  Please try again in a few minutes or contact
+  <a href="mailto:help@uw.edu?subject=MyUW%20An%20Error%20Has%20Occurred20-%20Error%20543&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20">help@uw.edu</a>
+   if the issue does not resolve.
+  </p>
+{% include "_common/direct-links.html" %} {% endblock body_content %}

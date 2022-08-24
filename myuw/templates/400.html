@@ -1,9 +1,12 @@
-{% extends 'base-err.html' %} {% block body_content %}
+{% extends 'base-err.html' %}
+{% block page_title %}Error 400{% endblock page_title %}
+{% block body_content %}
 <!-- content container -->
-<h1>Blocked NetID - Error 400</h1>
-<p class="text-danger">Your NetID is currently blocked from accessing this content.</p>
-<p>
-  Get <a href="https://itconnect.uw.edu/learn/tools/myuw-help-center/">MyUW help</a> for further
-  information to resolve this issue.
-</p>
+<h1 class="h3 my-4">Blocked NetID - Error 400</h1>
+  <p>Your NetID is currently blocked from accessing this content.</p>
+  <p class="fw-bold">
+  Get
+  <a href="mailto:help@uw.edu?subject=MyUW%20Blocked%20NetID%20-%20Error%20400&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20">help@uw.edu</a>
+   for further information to resolve this issue.
+  </p>
 {% include "_common/direct-links.html" %} {% endblock body_content %}

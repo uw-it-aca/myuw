@@ -1,25 +1,19 @@
 {% extends 'base-err.html' %}
+{% block page_title %}Error 403{% endblock page_title %}
 {% block body_content %}
-    {% include "_common/top.html" %}
-    <!-- content container -->
-    <div id="app_content" role="main" aria-labelledby="myuw-500-error">
-        <div class="container">
-            <div>
-                <h1 id="myuw-500-error">Issue with Your UWNetID</h1>
-                <p>
-                    MyUW cannot find data for this user account
-                    in the Person Registry services.
-                </p>
-                <p>
-                    If you have just created your UW NetID,
-                    please try signing in to MyUW again in one hour.
-                    Otherwise, please contact the
-                    <a href="https://itconnect.uw.edu/it-connect-home/question/"
-                    >UW-IT Service Center</a>.
-                </p>
-                {% include "_common/direct-links.html" %}
-            </div>
-        </div>
-    </div>
-    {% include "_common/footer.html" %}
-{% endblock body_content %}
+<!-- content container below -->
+<h1 class="h3 my-4">User Not Found - Error 403</h1>
+  <p>An unknown user error has occurred. You don't have permission to access this page.</p>
+  <p class="fw-bold">
+  Please try again in five minutes. Contact
+    <a href="mailto:help@uw.edu?subject=MyUW%20User%20Not%20Found%20-%20Error%20403&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20">help@uw.edu</a>
+  if the issue does not resolve.
+  <p class="fw-bold">Possible reasons for this error:</p>
+    <ul>
+        <li>New NetID or Restored NetIDs: the system needs a few minutes to update before these can be used to sign in.</li>
+        <li>The system for NetIDs (Personal Web Services - PWS) is down and will be restored shortly.</li>
+    </ul>
+  </p>
+{% include "_common/direct-links.html" %} {% endblock body_content %}
+
+

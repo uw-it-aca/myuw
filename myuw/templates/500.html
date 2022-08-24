@@ -1,19 +1,12 @@
 {% extends 'base-err.html' %}
+{% block page_title %}Error 500{% endblock page_title %}
 {% block body_content %}
-    {% include "_common/top.html" %}
-    <!-- content container -->
-    <div id="app_content" role="main" aria-labelledby="myuw-500-error">
-        <div class="container">
-            <div>
-                <h1 id="myuw-500-error">Unable to Load Page</h1>
-                <p>
-                    A server error has occurred.
-                    We are aware of the issue and are working on it.
-                    Please try again in a few minutes.
-                </p>
-                {% include "_common/direct-links.html" %}
-            </div>
-        </div>
-    </div>
-    {% include "_common/footer.html" %}
-{% endblock body_content %}
+<!-- content container -->
+<h1 class="h3 my-4">Unable to Load Page - Error 500</h1>
+  <p>A server error has occured. You don't have permission to access this page.</p>
+  <p class="fw-bold">
+  Please return to the previous page. Contact
+  <a href="mailto:help@uw.edu?subject=MyUW%20Unable%20to%20Load%20Page%20-%20Error%20500&body=Hello,%0A%0A%3CInclude%20your%20comment%20or%20question%20about%20MyUW%20here%3e%0A%0A%0A%0ANetID%3A%20">help@uw.edu</a>
+   with any questions.
+  </p>
+{% include "_common/direct-links.html" %} {% endblock body_content %}
