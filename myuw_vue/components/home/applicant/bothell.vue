@@ -1,8 +1,8 @@
 <template>
   <uw-card v-if="!isReady || applicantData" :loaded="isReady">
-    <template v-if="applicantData.is_returning" #card-heading>
+    <template v-if="isReturning" #card-heading>
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">
-        Your Returning Student Application
+        Your Returning Student Status
       </h2>
     </template>
     <template v-else #card-heading>
@@ -11,27 +11,40 @@
         {{ titleCaseWord(applicantData.quarter) }} {{ applicantData.year }}
       </h2>
     </template>
-    <template v-if="applicantData.is_returning" #card-body>
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        For application status, contact the UW Bothell Office of Admissions
+    <template v-if="isReturning" #card-body>
+      <h3 class="h6 myuw-font-encode-sans">
+        Learn about your status
       </h3>
-      <div class="container">
-        <div class="row">
-          <div class="col">Email</div>
-          <div class="col"><a href="mailto:uwbifo@uw.edu">uwbifo@uw.edu</a></div>
+      <p class="myuw-text-md">
+        For returning student form status, contact the UW Bothell Office of the Registrar:
+      </p>
+      <div class="container mb-3 myuw-text-md">
+        <div class="d-flex">
+          <div class="me-5">Email</div>
+          <div><a href="mailto:uwbreg@uw.edu">uwbreg@uw.edu</a></div>
         </div>
-        <div class="row">
-          <div class="col">Phone</div>
-          <div class="col">(425) 352-5000</div>
-        </div>
-        <div class="row">
-          <div class="col">Mail</div>
-          <div class="col">10909 NE 185th St <br />Bothell, WA 98011<br />Box 358500</div>
+        <div class="d-flex">
+          <div class="me-3 pe-4">Phone</div>
+          <div>(425) 352-5000</div>
         </div>
       </div>
 
-      <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-        Resources for Bothell Applicants
+      <h3 class="h6 myuw-font-encode-sans">Registration for returning student</h3>
+      <ul class="list-style myuw-text-md">
+        <li>
+          You must
+          <a href="https://sdb.admin.uw.edu/enroll/uwnetid/">confirm your enrollment</a>
+          and pay the enrollment fee prior to being able to register.
+        </li>
+        <li>
+          You will then register beginning with Registration Period II for your returning quarter.
+          Check dates on the
+          <a href="http://www.uwb.edu/calendars">Academic Calendar</a>.
+        </li>
+      </ul>
+
+      <h3 class="h6 myuw-font-encode-sans">
+        Resources for Bothell applicants
       </h3>
       <ul class="list-unstyled myuw-text-md">
         <li class="mb-1">
@@ -42,11 +55,6 @@
         <li class="mb-1">
           <a v-out="'UW Bothell Student Resources'" href="http://www.uwb.edu/studentaffairs">
             Check out the student resources for student life, career services, and more
-          </a>
-        </li>
-        <li class="mb-1">
-          <a v-out="'UW Bothell Academic calendars'" href="http://www.uwb.edu/calendars">
-            View the UW Bothell Academic calendars
           </a>
         </li>
       </ul>
@@ -82,6 +90,11 @@ export default {
       type: Boolean,
       required: true,
     },
+  },
+  computed: {
+    isReturning() {
+      return this.applicantData.is_returning;
+    }
   },
 };
 </script>
