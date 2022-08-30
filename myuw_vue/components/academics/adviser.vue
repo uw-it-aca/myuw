@@ -55,7 +55,7 @@
        <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Bothell'">
         <a
           href="https://uwb.navigate.eab.com/"
-        >Find an advising office's contact information</a>
+        >Find your academic adviser's contact information</a>
       </div>
 
       <hr v-if="hasMajors || hasMinors" class="my-0 bg-secondary">
