@@ -43,20 +43,21 @@
           href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
         >View departmental and major advising offices’ contact information</a>
       </div>
+
+       <!--Tacoma without assigned advisor-->
        <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Tacoma'">
-        <div class="fw-bold myuw-font-encode-sans"
-        >Advising Offices</div> <!--Tacoma without assigned advisor-->
         <a
           href="https://www.tacoma.uw.edu/gaa#permalink-37917"
-        >View advising offices’ contact information</a>
+        >Find an advising office's contact information</a>
       </div>
+
+      <!--Bothell without assigned advisor-->
        <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Bothell'">
-        <div class="fw-bold myuw-font-encode-sans"
-        >Advising Offices</div> <!--Bothell without assigned advisor-->
         <a
-          href="https://uwb.campus.eab.com/"
-        >View advising offices’ contact information</a>
+          href="https://uwb.navigate.eab.com/"
+        >Find an advising office's contact information</a>
       </div>
+
       <hr v-if="hasMajors || hasMinors" class="my-0 bg-secondary">
       <uw-card-property v-if="hasMajors" title="Your Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
