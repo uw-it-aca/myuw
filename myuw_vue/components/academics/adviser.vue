@@ -124,6 +124,8 @@ export default {
     ...mapState({
       isUndergrad: (state) => state.user.affiliations.undergrad,
       studEmployee: (state) => state.user.affiliations.stud_employee,
+      isPCE: (state) => state.user.affiliations.pce,
+      isApplicant: (state) => state.user.affiliations.applicant,
       isGrad: (state) => state.user.affiliations.grad,
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
@@ -161,7 +163,8 @@ export default {
       );
     },
     showCard() {
-      return this.isUndergrad || this.studEmployee && !this.isGrad;
+      return (this.isUndergrad || this.studEmployee && !this.isGrad)
+        && !this.isPCE && !this.isApplicant;
     }
   },
   created() {
