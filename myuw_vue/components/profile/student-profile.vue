@@ -189,13 +189,13 @@ export default {
     },
     showResidency() {
       const undergradLevels = ["FRESHMAN", "SOPHOMORE", "JUNIOR", "SENIOR"];
-      let is_ug = false;
+      let isUG = false;
       if(this.classStanding !== undefined){
-        is_ug = undergradLevels.includes(this.classStanding.toUpperCase());
+        isUG = undergradLevels.includes(this.classStanding.toUpperCase());
       }
       return this.residentCode !== null
         && this.residentCode !== "0"
-        && is_ug;
+        && isUG;
     },
     residentDisplayString(){
       const resValues = ["1", "2"],
