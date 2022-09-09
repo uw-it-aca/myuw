@@ -103,6 +103,22 @@
             title="Change address on Student Personal Services website"
           >Change Address</a>
         </uw-card-property>
+        <uw-card-property v-if="showResidency" title="Residency">
+          <ul class="list-unstyled mb-0">
+            <li class="mb-1">
+              Resident
+            </li>
+            <li class="mb-1">
+              Non-Resident
+            </li>
+          </ul>
+        </uw-card-property>
+        <uw-card-property title="">
+          <a v-out="'About residency statuses'"
+             href="https://registrar.washington.edu/students/residency/"
+             title="About residency statuses"
+          >About residency statuses</a>
+        </uw-card-property>
       </uw-card-property-group>
       <uw-card-property-group>
         <uw-card-property title="Student Directory Information">
@@ -173,6 +189,9 @@ export default {
     showError() {
       return false;
     },
+    showResidency(){
+      return true;
+    }
   },
   created() {
     if (this.student || this.studentEmployee) this.fetch();
