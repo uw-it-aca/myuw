@@ -188,18 +188,18 @@ export default {
       return false;
     },
     showResidency() {
-      const undergrad_levels = ["FRESHMAN", "SOPHOMORE", "JUNIOR", "SENIOR"];
+      const undergradLevels = ["FRESHMAN", "SOPHOMORE", "JUNIOR", "SENIOR"];
       return this.residentCode !== null
         && this.residentCode !== "0"
-        && undergrad_levels.includes(this.classStanding.toUpperCase())
+        && undergradLevels.includes(this.classStanding.toUpperCase())
     },
     residentDisplayString(){
-      const res_values = ["1", "2"],
-        nonres_values = ["3", "4", "5", "6"];
-      if(res_values.includes(this.residentCode)){
+      const resValues = ["1", "2"],
+        nonresValues = ["3", "4", "5", "6"];
+      if(resValues.includes(this.residentCode)){
         return "Resident";
       }
-      if(nonres_values.includes(this.residentCode)){
+      if(nonresValues.includes(this.residentCode)){
         return "Non-resident";
       }
       return "";
