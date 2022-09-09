@@ -106,14 +106,11 @@
         <uw-card-property v-if="showResidency" title="Residency">
           <ul class="list-unstyled mb-0">
             <li class="mb-1">
-              Resident
-            </li>
-            <li class="mb-1">
-              Non-Resident
+              {{residentDisplayString}}
             </li>
           </ul>
         </uw-card-property>
-        <uw-card-property title="">
+        <uw-card-property v-if="showResidency" title="">
           <a v-out="'About residency statuses'"
              href="https://registrar.washington.edu/students/residency/"
              title="About residency statuses"
@@ -173,6 +170,7 @@ export default {
       permanentAddress: (state) => state.value.permanent_address,
       permanentPhone: (state) => state.value.permanent_phone,
       directoryRelease: (state) => state.value.directory_release,
+      residentCode: (state) => state.value.resident_code,
     }),
     ...mapGetters('profile', {
       isReady: 'isReady',
@@ -189,8 +187,22 @@ export default {
     showError() {
       return false;
     },
-    showResidency(){
-      return true;
+    showResidency() {
+      const undergrad_levels = ["FRESHMAN", "SOPHOMORE", "JUNIOR", "SENIOR"];
+      return this.residentCode !== null
+        && this.residentCode !== "0"
+        && undergrad_levels.includes(this.classStanding.toUpperCase())
+    },
+    residentDisplayString(){
+      const res_values = ["1", "2"],
+        nonres_values = ["3", "4", "5", "6"];
+      if(res_values.includes(this.residentCode)){
+        return "Resident";
+      }
+      if(nonres_values.includes(this.residentCode)){
+        return "Non-resident";
+      }
+      return "";
     }
   },
   created() {
