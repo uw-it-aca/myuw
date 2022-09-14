@@ -310,5 +310,6 @@ urlpatterns += [
             LTIPhotoList.as_view(), name='myuw_lti_photo_list'),
     re_path(r'photo/(?P<url_key>.*)', show_photo),
     re_path(r'out/?', outbound_link, name='myuw_outbound_link'),
-    re_path(r'.*', home, name="myuw_home"),
+    # default landing
+    re_path(r"^$", home, name="myuw_home"),
 ]
