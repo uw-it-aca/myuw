@@ -14,7 +14,7 @@ from myuw.logger.logresp import (
     log_api_call, log_msg, log_data_not_found_response)
 from myuw.views import prefetch_resources
 from myuw.views.api import ProtectedAPI
-from myuw.views.error import handle_exception, data_not_found, data_error
+from myuw.views.error import handle_exception, data_not_found
 
 logger = logging.getLogger(__name__)
 
