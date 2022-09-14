@@ -54,7 +54,7 @@ describe('Upass Card', () => {
     expect(wrapper.vm.seattle).toBe(true);
     expect(wrapper.vm.inSummer).toBeTruthy();
     expect(wrapper.vm.displayActivation).toBeTruthy();
-    expect(wrapper.vm.getUrl).toBe(
+    expect(wrapper.vm.getTroubleshootingUrl).toBe(
       "https://transportation.uw.edu/getting-here/transit/u-pass");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "https://transportation.uw.edu/getting-here/transit/u-pass");
@@ -66,7 +66,7 @@ describe('Upass Card', () => {
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
-    expect(wrapper.vm.getUrl).toBe(
+    expect(wrapper.vm.getTroubleshootingUrl).toBe(
        "https://www.uwb.edu/facility/commuter-services/upass");
     expect(wrapper.vm.getPurchaseUrl).toBe(
       "https://www.uwb.edu/facility/commuter-services/upass");
@@ -80,8 +80,8 @@ describe('Upass Card', () => {
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
-    expect(wrapper.vm.getUrl).toBe(
-       "https://www.tacoma.uw.edu/getting-campus/u-pass-orca");
+    expect(wrapper.vm.getTroubleshootingUrl).toBe(
+       "https://www.tacoma.uw.edu/fa/facilities/transportation/frequently-asked-questions#permalink-16642");
     expect(wrapper.vm.getPurchaseUrl).toBe(
       "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass");
     expect(wrapper.vm.getWhatIsUrl).toBe(
@@ -93,8 +93,8 @@ describe('Upass Card', () => {
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
-    expect(wrapper.vm.getUrl).toBe(
-       "https://transportation.uw.edu/getting-here/transit/u-pass");
+    expect(wrapper.vm.getTroubleshootingUrl).toBe(
+       "https://transportation.uw.edu/getting-here/transit/u-pass#troubleshooting");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "https://transportation.uw.edu/getting-here/transit/u-pass");
   });
@@ -105,9 +105,10 @@ describe('Upass Card', () => {
     const wrapper = mount(UpassCard, {store, localVue});
     // It takes like 10 ms to process the mock data through fetch postProcess
     await new Promise(setImmediate);
-    expect(wrapper.vm.getUrl).toBe(
-       "https://transportation.uw.edu/getting-here/transit/u-pass");
+    expect(wrapper.vm.getTroubleshootingUrl).toBe(
+       "https://transportation.uw.edu/getting-here/transit/u-pass#troubleshooting");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "https://transportation.uw.edu/getting-here/transit/u-pass");
   });
 });
+]
