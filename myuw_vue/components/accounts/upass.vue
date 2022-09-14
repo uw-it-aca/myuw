@@ -17,9 +17,13 @@
       </uw-card-status>
 
       <div v-if="isCurrent" id="upass-notices">
-        <a v-out="'U-Pass'" :href="getTroubleshootingUrl" class="myuw-text-md">
+        <a v-if="bothell" :href="getTroubleshootingUrl" class="myuw-text-md">
           U-PASS not working?
         </a>
+        <a v-else v-out="'U-Pass'" :href="getTroubleshootingUrl" class="myuw-text-md">
+          U-PASS not working?
+        </a>
+
         <br />
         <a v-out="'What is U-PASS'" :href="getWhatIsUrl">
           What is the U-PASS?
@@ -119,13 +123,11 @@ export default {
       return this.statusCode !== 404;
     },
     getTroubleshootingUrl() {
-      return this.employee
-        ? 'https://transportation.uw.edu/getting-here/transit/u-pass#troubleshooting'
-        : this.bothell
-          ? '"mailto:uwbpark@uw.edu?subject=ORCA Question'
-          : this.tacoma
-            ? 'https://www.tacoma.uw.edu/fa/facilities/transportation/frequently-asked-questions#permalink-16642'
-            : 'https://transportation.uw.edu/getting-here/transit/u-pass#troubleshooting';
+      return this.bothell
+        ? 'mailto:uwbpark@uw.edu?subject=ORCA Question'
+        : this.tacoma
+          ? 'https://www.tacoma.uw.edu/fa/facilities/transportation/frequently-asked-questions#permalink-16642'
+          : 'https://transportation.uw.edu/getting-here/transit/u-pass#troubleshooting';
     },
     getPurchaseUrl() {
       return this.bothell
