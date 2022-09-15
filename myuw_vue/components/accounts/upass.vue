@@ -25,7 +25,7 @@
         </a>
 
         <br />
-        <a v-out="'What is U-PASS'" :href="getWhatIsUrl">
+        <a v-out="'What is U-PASS'" :href="getWhatIsUrl" class="myuw-text-md">
           What is the U-PASS?
         </a>
       </div>
@@ -46,22 +46,24 @@
           </p>
         </div>
         <div v-if="!student && employee">
-          Some employees automatically qualify for a
-          <a v-out="'Subsidized U-PASS'" href="https://hr.uw.edu/policies/u-pass/eligibility/">
-            subsidized U-PASS</a>.
-          If you do not qualify, you can purchase a quarterly or annual U-PASS
-          through your <a v-out="'campus transportation office'"
-                          :href="getEmployeePurchaseUrl">campus transportation office</a>.
+          <p class="myuw-text-md">
+            Some employees automatically qualify for a
+            <a v-out="'Subsidized U-PASS'" href="https://hr.uw.edu/policies/u-pass/eligibility/">
+              subsidized U-PASS</a>.
+            If you do not qualify, you can purchase a quarterly or annual U-PASS
+            through your <a v-out="'campus transportation office'"
+                            :href="getEmployeePurchaseUrl">campus transportation office</a>.
+          </p>
         </div>
         <div v-if="student" id="upass-notices-for-students">
-          <div v-if="(seattle || tacoma) && !pce">
+          <div v-if="(seattle || tacoma) && !pce" class="myuw-text-md">
             <p>
               If you are registered for a quarter, your U-PASS will work one week
               before the quarter starts.
             </p>
           </div>
           <div v-else id="upass-notices-for-non-sea-studs">
-            <p v-if="bothell && !pce">
+            <p v-if="bothell && !pce" class="myuw-text-md">
               If you
               <a v-out="'Purchase U-PASS'" :href="getPurchaseUrl">
                 purchase
@@ -72,7 +74,7 @@
         </div>
         <ul class="list-unstyled myuw-text-md mb-1">
           <li class="mb-1">
-            <a v-out="'What is U-PASS'" :href="getWhatIsUrl">
+            <a v-out="'What is U-PASS'" :href="getWhatIsUrl" class="myuw-text-md">
               What is the U-PASS?
             </a>
           </li>
