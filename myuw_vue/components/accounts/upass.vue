@@ -30,21 +30,6 @@
         </a>
       </div>
       <div v-else id="upass-not-current">
-        <div v-if="student && inSummer">
-          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
-            Summer U-PASS Use
-          </h3>
-          <p class="myuw-text-md">
-            Unless you are registered for summer quarter, your U-PASS will not
-            work during summer quarter. Check your
-            <a
-              v-out="'campus transportation office'"
-              href="getSummerPurchaseUrl"
-            >
-              campus transportation office
-            </a> for summer transit options.
-          </p>
-        </div>
         <div v-if="!student && employee">
           <p class="myuw-text-md">
             Some employees automatically qualify for a
@@ -71,6 +56,21 @@
               a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
             </p>
           </div>
+        </div>
+        <div v-if="student && inSummer && !bothell">
+          <h3 class="h6 text-dark-beige myuw-font-encode-sans">
+            Summer U-PASS Use
+          </h3>
+          <p class="myuw-text-md">
+            Unless you are registered for summer quarter, your U-PASS will not
+            work during summer quarter. Check your
+            <a
+              v-out="'campus transportation office'"
+              href="getSummerPurchaseUrl"
+            >
+              campus transportation office
+            </a> for summer transit options.
+          </p>
         </div>
         <ul class="list-unstyled myuw-text-md mb-1">
           <li class="mb-1">
