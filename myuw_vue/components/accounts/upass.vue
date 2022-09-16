@@ -66,7 +66,7 @@
             work during summer quarter. Check your
             <a
               v-out="'campus transportation office'"
-              href="getSummerPurchaseUrl"
+              :href="getSummerPurchaseUrl"
             >
               campus transportation office
             </a> for summer transit options.
