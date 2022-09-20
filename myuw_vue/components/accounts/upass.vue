@@ -48,11 +48,10 @@
             </p>
           </div>
           <div v-else id="upass-notices-for-non-sea-studs">
-            <p v-if="bothell && !pce" class="myuw-text-md">
+            <p v-if="bothell || pce" class="myuw-text-md">
               If you
               <a v-out="'Purchase U-PASS'" :href="getPurchaseUrl">
-                purchase
-              </a>
+                purchase</a>
               a U-PASS for a quarter, your U-PASS will work one week before the quarter starts.
             </p>
           </div>
@@ -68,22 +67,13 @@
               v-out="'campus transportation office'"
               :href="getSummerPurchaseUrl"
             >
-              campus transportation office
-            </a> for summer transit options.
+              campus transportation office</a> for summer transit options.
           </p>
         </div>
         <ul class="list-unstyled myuw-text-md mb-1">
           <li class="mb-1">
             <a v-out="'What is U-PASS'" :href="getWhatIsUrl" class="myuw-text-md">
               What is the U-PASS?
-            </a>
-          </li>
-          <li v-if="pce" class="mb-1">
-            <a
-              v-out="'Continuum College Student Purchase U-PASS'"
-              href="https://transportation.uw.edu/getting-here/transit/u-pass"
-            >
-              Purchasing a U-PASS
             </a>
           </li>
         </ul>
@@ -133,8 +123,8 @@ export default {
     },
     getPurchaseUrl() {
       return this.bothell
-        ? 'https://www.uwb.edu/facility/commuter-services/upass'
-        : 'https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass';
+        ? 'https://www.uwb.edu/facilities/commuter-services/transportation/upass#Purchase/Cancel%20%20U-Pass'
+        : 'https://www.pce.uw.edu/help/registration-costs/costs-and-fees';
     },
     getWhatIsUrl() {
       return this.tacoma
@@ -147,7 +137,7 @@ export default {
       return this.tacoma
         ? 'https://www.tacoma.uw.edu/fa/facilities/transportation/universal-u-pass'
         : this.bothell
-          ? 'https://www.uwb.edu/facility/commuter-services/transportation/upass'
+          ? 'https://www.uwb.edu/facilities/commuter-services/transportation/upass#Purchase/Cancel%20%20U-Pass'
           : 'https://transportation.uw.edu/getting-here/transit/u-pass#u-pass-students';
     },
     getEmployeePurchaseUrl(){
