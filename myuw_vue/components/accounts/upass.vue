@@ -4,9 +4,9 @@
       <h2 class="h4 mb-3 text-dark-beige myuw-font-encode-sans">U-Pass Membership</h2>
     </template>
     <template #card-error>
-      An error occurred and MyUW cannot load your Husky card balance right now. In the meantime, if
-      you want to add funds, try the
-      <a href="https://transportation.uw.edu">UW Transportation</a> page.
+      An error occurred and MyUW cannot load your U-PASS status right now. In the meantime,
+      you may check out the
+      <a href="https://transportation.uw.edu/getting-here/transit/u-pass">U-PASS</a> page.
     </template>
     <template #card-body>
       <uw-card-status>
