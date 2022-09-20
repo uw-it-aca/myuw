@@ -5,7 +5,7 @@
     </template>
     <template #card-error>
       An error occurred and MyUW cannot load your U-PASS status right now. In the meantime,
-      you may check out the
+      you may find what you need on the
       <a href="https://transportation.uw.edu/getting-here/transit/u-pass">U-PASS</a> page.
     </template>
     <template #card-body>
