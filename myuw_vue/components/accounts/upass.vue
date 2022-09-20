@@ -17,13 +17,9 @@
       </uw-card-status>
 
       <div v-if="isCurrent" id="upass-notices">
-        <a v-if="bothell" :href="getTroubleshootingUrl" class="myuw-text-md">
+        <a :href="getTroubleshootingUrl" class="myuw-text-md">
           U-PASS not working?
         </a>
-        <a v-else v-out="'U-Pass'" :href="getTroubleshootingUrl" class="myuw-text-md">
-          U-PASS not working?
-        </a>
-
         <br />
         <a v-out="'What is U-PASS'" :href="getWhatIsUrl" class="myuw-text-md">
           What is the U-PASS?
