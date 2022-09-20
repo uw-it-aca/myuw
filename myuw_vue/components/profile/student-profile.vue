@@ -55,6 +55,13 @@
             </template>
           </ul>
         </uw-card-property>
+        <uw-card-property v-if="showResidency" title="Residency">
+              {{residentDisplayString}}
+            <br><a v-out="'About residency statuses'"
+             href="https://registrar.washington.edu/students/residency/"
+             title="About residency statuses"
+          >About residency statuses</a>
+        </uw-card-property>
       </uw-card-property-group>
       <uw-card-property-group>
         <uw-card-property title="Local Address">
@@ -102,19 +109,6 @@
             href="https://sdb.admin.uw.edu/sisStudents/uwnetid/address.aspx"
             title="Change address on Student Personal Services website"
           >Change Address</a>
-        </uw-card-property>
-        <uw-card-property v-if="showResidency" title="Residency">
-          <ul class="list-unstyled mb-0">
-            <li class="mb-1">
-              {{residentDisplayString}}
-            </li>
-          </ul>
-        </uw-card-property>
-        <uw-card-property v-if="showResidency" title="">
-          <a v-out="'About residency statuses'"
-             href="https://registrar.washington.edu/students/residency/"
-             title="About residency statuses"
-          >About residency statuses</a>
         </uw-card-property>
       </uw-card-property-group>
       <uw-card-property-group>
