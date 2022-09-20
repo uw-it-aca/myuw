@@ -65,10 +65,6 @@ def log_data_not_found_response(logger, timer):
     log_msg(logger, timer, 'Data not found')
 
 
-def log_invalid_netid_response(logger, timer):
-    log_msg(logger, timer, 'Invalid netid, abort')
-
-
 def log_invalid_regid_response(logger, timer):
     log_msg(logger, timer, 'Invalid regid, abort')
 
