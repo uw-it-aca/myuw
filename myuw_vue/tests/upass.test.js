@@ -69,7 +69,7 @@ describe('Upass Card', () => {
     expect(wrapper.vm.getTroubleshootingUrl).toBe(
        "mailto:uwbpark@uw.edu?subject=ORCA Question");
     expect(wrapper.vm.getPurchaseUrl).toBe(
-      "https://www.uwb.edu/facility/commuter-services/upass");
+      "https://www.uwb.edu/facilities/commuter-services/transportation/upass#Purchase/Cancel%20%20U-Pass");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "https://www.uwb.edu/facility/commuter-services/transportation/upass#What%20the%20U-PASS%20covers");
   });
@@ -82,8 +82,6 @@ describe('Upass Card', () => {
     await new Promise(setImmediate);
     expect(wrapper.vm.getTroubleshootingUrl).toBe(
        "https://www.tacoma.uw.edu/fa/facilities/transportation/frequently-asked-questions#permalink-16642");
-    expect(wrapper.vm.getPurchaseUrl).toBe(
-      "https://www.tacoma.uw.edu/getting-campus/students-purchasing-u-pass");
     expect(wrapper.vm.getWhatIsUrl).toBe(
       "https://www.tacoma.uw.edu/fa/facilities/transportation/u-pass-benefits");
   });
