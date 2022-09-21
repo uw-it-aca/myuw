@@ -146,31 +146,6 @@ class TestPageMethods(MyuwApiTest):
             HTTP_USER_AGENT="Mozilla/5.0 MyUW_Hybrid/1.0")
         self.assertEquals(response.status_code, 200)
 
-    @skipIf(missing_url("myuw_home"), "myuw urls not configured")
-    def test_user_not_in_pws(self):
-        req = get_request_with_user('usernotinpws')
-        response = page(req, 'home.html', add_quicklink_context=True)
-        self.assertEquals(response.status_code, 403)
-        self.assertEquals(
-            response.reason_phrase,
-            ("<p>MyUW cannot find data for this user account "
-             "in the Person Registry services. If you have just "
-             "created your UW NetID, please try signing in to "
-             "MyUW again in one hour.</p>"))
-
-        url = reverse("myuw_home")
-        self.set_user('usernotinpws')
-        User.objects.create(uwnetid='usernotinpws', last_visit=timezone.now())
-        response = self.client.get(url,
-                                   HTTP_USER_AGENT="Mozilla/5.0")
-        self.assertEquals(response.status_code, 403)
-        self.assertEquals(
-            response.reason_phrase,
-            ('<p>MyUW cannot find data for this user account '
-             'in the Person Registry services. Please contact the '
-             '<a href="https://itconnect.uw.edu/it-connect-home/question/">'
-             'UW-IT Service Center</a>.</p>'))
-
     @patch('myuw.views.page.get_updated_user', spec=True)
     def test_pws_err(self, mock):
         url = reverse("myuw_home")
@@ -225,9 +200,4 @@ class TestPageMethods(MyuwApiTest):
         self.set_user('nobody')
         response = self.client.get(url,
                                    HTTP_USER_AGENT="Mozilla/5.0")
-        self.assertEquals(response.status_code, 403)
-        self.assertEquals(
-            response.reason_phrase,
-            ('<p>MyUW encountered a problem with your uwnetid, '
-             'please contact the <a href="https://itconnect.uw.edu/'
-             'it-connect-home/question/">UW-IT Service Center</a>.</p>'))
+        self.assertEquals(response.status_code, 400)
