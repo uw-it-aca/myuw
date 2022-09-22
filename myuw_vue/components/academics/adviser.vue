@@ -36,13 +36,28 @@
         </ul>
         <hr class="my-0 bg-secondary">
       </div>
-      <div class="myuw-text-md mt-3 mb-3"> 
+      <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Seattle'">
         <div class="fw-bold myuw-font-encode-sans"
         >Departmental and Major Advising Offices</div>
         <a
           href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/"
         >View departmental and major advising offices’ contact information</a>
       </div>
+
+       <!--Tacoma without assigned advisor-->
+       <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Tacoma'">
+        <a
+          href="https://www.tacoma.uw.edu/gaa#permalink-37917"
+        >Find an advising office's contact information</a>
+      </div>
+
+      <!--Bothell without assigned advisor-->
+       <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Bothell'">
+        <a
+          href="https://uwb.navigate.eab.com/"
+        >Find your academic adviser's contact information</a>
+      </div>
+
       <hr v-if="hasMajors || hasMinors" class="my-0 bg-secondary">
       <uw-card-property v-if="hasMajors" title="Your Major" class="mt-3" :no-margin-bottom="true">
           <ul class="list-unstyled">
@@ -88,7 +103,7 @@
       In the meantime, to contact a general adviser, try the
       <a href="https://www.washington.edu/uaa/advising/">
         Undergraduate Advising
-      </a> page and to contact a departmental or major adviser, try the 
+      </a> page and to contact a departmental or major adviser, try the
       <a href="http://www.washington.edu/uaa/advising/degree-overview/majors/advising-offices-by-program/">
         Departmental and Major Advising Offices
       </a> page.
@@ -109,6 +124,8 @@ export default {
     ...mapState({
       isUndergrad: (state) => state.user.affiliations.undergrad,
       studEmployee: (state) => state.user.affiliations.stud_employee,
+      isPCE: (state) => state.user.affiliations.pce,
+      isApplicant: (state) => state.user.affiliations.applicant,
       isGrad: (state) => state.user.affiliations.grad,
       advisers: (state) => state.advisers.value,
       profile: (state) => state.profile.value,
@@ -146,7 +163,8 @@ export default {
       );
     },
     showCard() {
-      return this.isUndergrad || this.studEmployee && !this.isGrad;
+      return (this.isUndergrad || this.studEmployee && !this.isGrad)
+        && !this.isPCE && !this.isApplicant;
     }
   },
   created() {
