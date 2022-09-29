@@ -107,7 +107,9 @@ def _get_sections_by_section_reference(section_references, term):
         if section:
             # MUWM-4085
             if not section.is_primary_section:
-                section.final_exam = get_primary_final_exam(section)
+                primary_section = get_primary_section(section)
+                if primary_section:
+                    section.final_exam = primary_section.final_exam
 
             sections.append(section)
             if len(section.summer_term):
@@ -206,15 +208,15 @@ def check_section_instructor(section, person):
 
 
 def get_primary_section(secondary_section):
-    return get_section_by_label(secondary_section.primary_section_label())
-
-def get_primary_final_exam(secondary_section):
+    primary_section_label = secondary_section.primary_section_label()
     try:
-        primary_section = get_primary_section(secondary_section)
-        if primary_section:
-            return primary_section.final_exam
+        return get_section_by_label(primary_section_label)
     except Exception:
-        log_err(logger, "get_primary_final_exam", traceback, None)
+        log_err(
+            logger,
+            "get_primary_section({})".format(primary_section_label),
+            traceback, None)
+    return None
 
 
 def get_active_registrations_for_section(section, instructor_regid):
