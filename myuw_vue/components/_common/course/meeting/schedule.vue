@@ -68,7 +68,7 @@
             <td :headers="`location-${meeting.id}`"
               class="p-0 text-start text-nowrap"
             >
-              <uw-meeting-location :meeting="meeting" />
+              <uw-meeting-location :meeting="meeting" :show-room-info="showRoomInfo" />
             </td>
           </template>
 
@@ -106,6 +106,10 @@ export default {
       required: true,
     },
     showRowHeading: {
+      type: Boolean,
+      default: false,
+    },
+    showRoomInfo: {
       type: Boolean,
       default: false,
     },
