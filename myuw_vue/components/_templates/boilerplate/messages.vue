@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="showContent"
-    class="w-100 myuw-messages" role="complementary"
+    class="w-100 myuw-messages d-print-none" role="complementary"
   >
     <div class="text-center text-white myuw-text-md">
       <h2 class="visually-hidden">
