@@ -3,7 +3,7 @@
     v-if="!loaded || sectionData.current"
     :loaded="loaded"
     no-bottom-margin
-    class="statistics-card mb-0"
+    class="statistics-card mb-0 d-print-none"
   >
     <template #card-heading>
       <h3 class="h5 text-dark-beige myuw-font-encode-sans">
