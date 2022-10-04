@@ -23,11 +23,14 @@
         :href="meeting.classroom_info_url"
         title="View classroom information"
       >{{ meeting.room }}</a>
+
       <span v-else title="No classroom information available">
         {{ meeting.room }}
-        <a v-if="showRoomInfo && !meeting.room_tbd && meeting.room !== '*'"
-          v-out="'No classroom info'"
-          href=""><font-awesome-icon :icon="faQuestionCircle" /></a>
+        <i
+          v-if="showRoomInfo && !meeting.room_tbd && meeting.room !== '*'"
+          title="No classroom information available" aria-hidden="true">
+          <font-awesome-icon :icon="faQuestionCircle" />
+        </i>
       </span>
     </span>
   </span>
