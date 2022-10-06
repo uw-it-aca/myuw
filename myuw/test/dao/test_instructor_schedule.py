@@ -44,6 +44,8 @@ class TestInstructorSchedule(TestCase):
         request = get_request_with_user('billseata')
         schedule = get_instructor_schedule_by_term(request)
         self.assertEqual(len(schedule.sections), 7)
+        # MUWM-4085
+        self.assertTrue(len(schedule.sections[0].final_exam.building) > 0)
 
         # PCE courses
         request = get_request_with_user('billpce',

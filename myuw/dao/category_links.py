@@ -21,6 +21,9 @@ class MyuwLink:
     _singleton = None
 
     def __init__(self, csv_filename=None):
+        """
+        Read data from csv, honer the order in the file
+        """
         if csv_filename:
             self.csv_filename = csv_filename
         self.links = []
