@@ -36,7 +36,7 @@
         </ul>
         <hr class="my-0 bg-secondary">
       </div>
-      <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Seattle'">
+      <div v-if="profile.campus === 'Seattle'" class="myuw-text-md mt-3 mb-3">
         <div class="fw-bold myuw-font-encode-sans"
         >Departmental and Major Advising Offices</div>
         <a
@@ -45,14 +45,14 @@
       </div>
 
        <!--Tacoma without assigned advisor-->
-       <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Tacoma'">
+       <div v-if="profile.campus === 'Tacoma'" class="myuw-text-md mt-3 mb-3">
         <a
           href="https://www.tacoma.uw.edu/gaa#permalink-37917"
         >Find an advising office's contact information</a>
       </div>
 
       <!--Bothell without assigned advisor-->
-       <div class="myuw-text-md mt-3 mb-3" v-if="profile.campus === 'Bothell'">
+       <div v-if="profile.campus === 'Bothell'" class="myuw-text-md mt-3 mb-3">
         <a
           href="https://uwb.navigate.eab.com/"
         >Find your academic adviser's contact information</a>

@@ -14,7 +14,7 @@
 
     <template #card-body>
       <uw-card-property-group>
-        <uw-meeting-info show-row-heading :section="section" />
+        <uw-meeting-info show-row-heading show-room-info :section="section" />
         <uw-final-exam :section="section" />
       </uw-card-property-group>
       <uw-class-list :section="section" />

@@ -163,6 +163,7 @@ export default {
       return (
         this.meetingData.section.is_teaching &&
         this.isFinalsCard &&
+        this.meetingData.section.is_primary_section &&
         !this.meetingData.section.final_exam.no_exam_or_nontraditional &&
         !this.meetingData.section.final_exam.is_confirmed
       );

@@ -23,20 +23,39 @@
         :href="meeting.classroom_info_url"
         title="View classroom information"
       >{{ meeting.room }}</a>
-      <span v-else title="No classroom information available">
+
+      <span v-else>
         {{ meeting.room }}
+        <span
+          v-if="showRoomInfo && !meeting.room_tbd && meeting.room !== '*'"
+          title="No classroom information available"
+          class="text-dark-gray"
+          aria-hidden="true"
+        >
+          <font-awesome-icon :icon="faInfoCircle" />
+        </span>
       </span>
     </span>
   </span>
 </template>
 
 <script>
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 export default {
   props: {
     meeting: {
       type: Object,
       required: true,
     },
+    showRoomInfo: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data() {
+    return {
+      faInfoCircle,
+    };
   },
   computed: {
     locationUrl() {
