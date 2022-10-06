@@ -96,6 +96,15 @@ class TestInstructorCurrentSchedule(MyuwApiTest):
         self.assertEqual(data['sections'][1]['failure_rate'],
                          0.01790613718411552)
 
+    def test_billseata_current_term(self):
+        now_request = get_request_with_user('billseata')
+        resp = InstScheCurQuar().get(now_request)
+        data = json.loads(resp.content)
+        # MUWM-4085
+        final = data['sections'][0]['final_exam']
+        self.assertTrue(len(final['longitude']) > 0)
+        self.assertTrue(len(final['latitude']) > 0)
+
 
 @require_url('myuw_instructor_schedule_api',
              kwargs={'year': 2013, 'quarter': 'summer'},
