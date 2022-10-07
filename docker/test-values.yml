@@ -73,6 +73,10 @@ certs:
   certPath: /certs/myuw-dev.s.uw.edu-uwca.cert
   keyPath: /certs/myuw-dev.s.uw.edu-uwca.key
   secretName: test.my.uw.edu-uwca-certs
+mountedSecrets:
+  enabled: true
+  mountPath: /ssl
+  secretName: test.my.uw.edu-openssl-conf
 cronjob:
   enabled: true
   jobs:
@@ -249,6 +253,9 @@ environmentVariables:
   - name: CLUSTER_CNAME
     value: test.my.uw.edu
 
+  - name: OPENSSL_CONF
+    value: /ssl/openssl.cnf
+
   - name: MEMCACHED_MAX_POOL_SIZE
     value: "10"
 
@@ -310,6 +317,11 @@ externalSecrets:
       data:
         - name: uw-idp-cert
           property: cert
+    - name: test.my.uw.edu-openssl-conf
+      externalKey: openssl-conf
+      data:
+        - name: openssl.cnf
+          property: openssl.cnf
 
 environmentVariablesSecrets:
   django-secret:
